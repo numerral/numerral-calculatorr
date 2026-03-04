@@ -72,6 +72,7 @@ const whyNumerralFeatures = [
   { icon: "📱", title: "Works Everywhere", desc: "Fully responsive on all devices — smartphones, tablets, and desktops. No app needed." },
   { icon: "📚", title: "Learn While You Calculate", desc: "Every calculator includes step-by-step breakdowns, formulas, FAQs, and financial guides." },
   { icon: "🇮🇳", title: "Built for India", desc: "Tax slabs, GST rules, EPF, NPS, PPF — all calculators reflect Indian financial regulations." },
+  { icon: "✅", title: "Financial Formulas Verified", desc: "Numerral calculators use industry-standard financial formulas used by banks and financial institutions for EMI, compound interest, and tax estimation." },
 ];
 
 export default function HomePage() {
@@ -106,6 +107,9 @@ export default function HomePage() {
           50+ free calculators for loan EMI, SIP returns, income tax, and everyday math.
           Instant results, bank-grade accuracy — trusted by 1M+ users across India.
         </p>
+        <p className="t-body text-muted" style={{ maxWidth: "780px", marginTop: "var(--s-4)", lineHeight: 1.8, textAlign: "center", marginInline: "auto" }}>
+          Numerral provides free financial calculators that help individuals estimate loan EMIs, investment returns, tax liabilities, and financial planning scenarios. These calculators use standard financial formulas such as compound interest, amortization schedules, and tax computation models to generate accurate results instantly.
+        </p>
       </section>
 
       {/* ─── 2. CATEGORY NAVIGATION ─── */}
@@ -135,6 +139,14 @@ export default function HomePage() {
             </Link>
           ))}
         </div>
+      </section>
+
+      {/* ─── TOP FINANCIAL CALCULATIONS (Semantic Text Block) ─── */}
+      <section className="container section--sm">
+        <h2 className="t-h2" style={{ marginBottom: "var(--s-3)" }}>Top Financial Calculations in India</h2>
+        <p className="t-body text-muted" style={{ maxWidth: "780px", lineHeight: 1.8 }}>
+          Millions of Indians rely on financial calculators to estimate loan repayments, investment growth, and tax liabilities. Whether calculating a home loan EMI, estimating SIP returns, or evaluating compound interest, accurate financial calculations help individuals make informed financial decisions. Numerral&apos;s calculators cover the most common financial scenarios — from comparing fixed vs floating interest rates to projecting retirement corpus through NPS and PPF investments.
+        </p>
       </section>
 
       {/* ─── 4. FINANCIAL CALCULATION KNOWLEDGE ─── */}
