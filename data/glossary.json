@@ -1,0 +1,986 @@
+[
+    {
+        "term": "EMI",
+        "slug": "emi",
+        "definition": "Equated Monthly Instalment — a fixed payment amount made by a borrower to a lender at a specified date each month. EMI consists of both principal and interest components, with the interest portion decreasing over time.",
+        "formula": "EMI = P × r × (1+r)^n ÷ ((1+r)^n − 1)",
+        "category": "loan",
+        "related": [
+            "car-loan-emi",
+            "home-loan-emi"
+        ]
+    },
+    {
+        "term": "Principal",
+        "slug": "principal",
+        "definition": "The original sum of money borrowed in a loan or invested. In a loan context, the principal is the amount you owe excluding interest. Each EMI payment reduces the outstanding principal.",
+        "category": "loan",
+        "related": [
+            "home-loan-emi"
+        ]
+    },
+    {
+        "term": "Interest Rate",
+        "slug": "interest-rate",
+        "definition": "The percentage charged by a lender on the principal amount, typically expressed as an annual percentage. Can be fixed (unchanging) or floating (linked to a benchmark rate like RBI repo rate).",
+        "category": "loan",
+        "related": [
+            "car-loan-emi"
+        ]
+    },
+    {
+        "term": "Reducing Balance Method",
+        "slug": "reducing-balance-method",
+        "definition": "A method of calculating interest where the interest is computed on the outstanding loan balance after each EMI payment. As the principal reduces, the interest component of each EMI decreases. This is the standard method used by all Indian banks.",
+        "category": "loan",
+        "related": [
+            "car-loan-emi",
+            "home-loan-emi"
+        ]
+    },
+    {
+        "term": "Flat Rate",
+        "slug": "flat-rate",
+        "definition": "A method where interest is calculated on the original loan amount for the entire tenure, regardless of repayments made. Flat rates appear lower but cost significantly more than reducing balance rates. Rule of thumb: Flat rate × 1.8 ≈ equivalent reducing balance rate.",
+        "category": "loan",
+        "related": [
+            "car-loan-emi"
+        ]
+    },
+    {
+        "term": "Tenure",
+        "slug": "tenure",
+        "definition": "The duration or time period of a loan, typically measured in months or years. Longer tenure means lower EMI but higher total interest paid. Home loans can go up to 30 years; car loans typically 1-7 years.",
+        "category": "loan",
+        "related": [
+            "home-loan-emi"
+        ]
+    },
+    {
+        "term": "CIBIL Score",
+        "slug": "cibil-score",
+        "definition": "A credit score assigned by TransUnion CIBIL ranging from 300-900. It reflects your creditworthiness based on loan repayment history, credit utilization, and other factors. 750+ is considered good; 800+ is excellent. Banks use this to determine loan eligibility and interest rates.",
+        "category": "loan",
+        "related": [
+            "personal-loan-emi",
+            "loan-eligibility"
+        ]
+    },
+    {
+        "term": "LTV Ratio",
+        "slug": "ltv-ratio",
+        "definition": "Loan-to-Value ratio — the percentage of the property/asset value that a bank will finance. For home loans: up to 90% for properties ≤₹30L, 80% for ₹30-75L, and 75% for >₹75L. The remaining amount is your down payment.",
+        "formula": "LTV = (Loan Amount ÷ Property Value) × 100",
+        "category": "loan",
+        "related": [
+            "home-loan-emi",
+            "loan-eligibility"
+        ]
+    },
+    {
+        "term": "Down Payment",
+        "slug": "down-payment",
+        "definition": "The initial upfront portion of the total purchase price paid by the buyer from their own funds. For home loans, typically 10-25% of property value. For car loans, 10-30%. A higher down payment reduces EMI and total interest.",
+        "category": "loan",
+        "related": [
+            "car-loan-emi",
+            "home-loan-emi"
+        ]
+    },
+    {
+        "term": "Prepayment",
+        "slug": "prepayment",
+        "definition": "Paying part or all of a loan before its scheduled due date. Prepayment reduces the outstanding principal, leading to less interest charged. RBI mandates zero prepayment penalty for floating rate loans. Even small prepayments early in the loan save significant interest.",
+        "category": "loan",
+        "related": [
+            "prepayment"
+        ]
+    },
+    {
+        "term": "Foreclosure",
+        "slug": "foreclosure",
+        "definition": "Closing a loan entirely before the tenure ends by paying off the full outstanding balance. For floating rate loans, banks cannot charge foreclosure penalty (as per RBI). For fixed rate loans, penalty is typically 2-5% of outstanding amount.",
+        "category": "loan",
+        "related": [
+            "prepayment"
+        ]
+    },
+    {
+        "term": "Moratorium Period",
+        "slug": "moratorium-period",
+        "definition": "A grace period during which the borrower is not required to make loan repayments. Common in education loans (course duration + 6-12 months). Interest typically continues to accrue during this period and is added to the principal.",
+        "category": "loan",
+        "related": [
+            "education-loan-emi"
+        ]
+    },
+    {
+        "term": "Processing Fee",
+        "slug": "processing-fee",
+        "definition": "A one-time charge by the lender for processing a loan application. Typically 0.5-2% of the loan amount or a flat fee of ₹2,000-10,000. This is non-refundable and is charged upfront or deducted from the disbursed amount.",
+        "category": "loan",
+        "related": [
+            "car-loan-emi",
+            "home-loan-emi"
+        ]
+    },
+    {
+        "term": "Collateral",
+        "slug": "collateral",
+        "definition": "An asset pledged as security for a loan. If the borrower defaults, the lender can seize the collateral. Home loans use the property as collateral; car loans use the vehicle. Personal loans are unsecured (no collateral required).",
+        "category": "loan",
+        "related": [
+            "home-loan-emi",
+            "business-loan-emi"
+        ]
+    },
+    {
+        "term": "Repo Rate",
+        "slug": "repo-rate",
+        "definition": "The rate at which the Reserve Bank of India (RBI) lends money to commercial banks. Banks' lending rates are linked to the repo rate. When RBI reduces the repo rate, floating rate loans become cheaper. Current repo rate can be checked on RBI's website.",
+        "category": "loan",
+        "related": [
+            "home-loan-emi"
+        ]
+    },
+    {
+        "term": "SIP",
+        "slug": "sip",
+        "definition": "Systematic Investment Plan — a method of investing a fixed amount at regular intervals (typically monthly) in mutual funds. SIP benefits from rupee cost averaging (buying more units when prices are low) and the power of compounding.",
+        "category": "invest",
+        "related": [
+            "sip-calculator"
+        ]
+    },
+    {
+        "term": "NAV",
+        "slug": "nav",
+        "definition": "Net Asset Value — the per-unit value of a mutual fund scheme. Calculated daily as (Total Assets − Total Liabilities) ÷ Number of Units. When you invest via SIP, units are allotted based on the NAV on that day.",
+        "formula": "NAV = (Total Assets − Liabilities) ÷ Total Units",
+        "category": "invest",
+        "related": [
+            "sip-calculator",
+            "mutual-fund-returns"
+        ]
+    },
+    {
+        "term": "CAGR",
+        "slug": "cagr",
+        "definition": "Compound Annual Growth Rate — the mean annual growth rate of an investment over a specified time period longer than one year. Used to compare performance of different investments on a standardized basis.",
+        "formula": "CAGR = (Final Value ÷ Initial Value)^(1/n) − 1",
+        "category": "invest",
+        "related": [
+            "sip-calculator",
+            "mutual-fund-returns"
+        ]
+    },
+    {
+        "term": "XIRR",
+        "slug": "xirr",
+        "definition": "Extended Internal Rate of Return — the actual rate of return for a series of cash flows that are not necessarily periodic. Used to calculate real returns on SIPs and investments with irregular cash flows. More accurate than CAGR for SIP investors.",
+        "category": "invest",
+        "related": [
+            "sip-calculator"
+        ]
+    },
+    {
+        "term": "Compound Interest",
+        "slug": "compound-interest",
+        "definition": "Interest calculated on both the initial principal and the accumulated interest from previous periods. Often called 'interest on interest.' Over long periods, compound interest grows investments exponentially. Albert Einstein reportedly called it 'the eighth wonder of the world.'",
+        "formula": "A = P × (1 + r/n)^(n×t)",
+        "category": "invest",
+        "related": [
+            "compound-interest-calculator",
+            "fd-calculator"
+        ]
+    },
+    {
+        "term": "Simple Interest",
+        "slug": "simple-interest",
+        "definition": "Interest calculated only on the original principal amount. Unlike compound interest, previously earned interest does not earn additional interest. Used in some short-term lending and bond calculations.",
+        "formula": "SI = P × R × T ÷ 100",
+        "category": "invest",
+        "related": [
+            "simple-interest-calculator"
+        ]
+    },
+    {
+        "term": "Fixed Deposit",
+        "slug": "fixed-deposit",
+        "definition": "A financial instrument where you deposit a lump sum with a bank for a fixed tenure at a predetermined interest rate. FDs offer guaranteed returns with zero market risk. Interest is typically compounded quarterly. Premature withdrawal incurs a penalty of 0.5-1%.",
+        "category": "invest",
+        "related": [
+            "fd-calculator"
+        ]
+    },
+    {
+        "term": "Recurring Deposit",
+        "slug": "recurring-deposit",
+        "definition": "A savings scheme where you deposit a fixed amount every month for a predetermined tenure. At maturity, you receive the total deposits plus compound interest. Similar to FD but with monthly contributions instead of lump sum.",
+        "category": "invest",
+        "related": [
+            "rd-calculator"
+        ]
+    },
+    {
+        "term": "PPF",
+        "slug": "ppf",
+        "definition": "Public Provident Fund — a government-backed savings scheme with a 15-year lock-in offering tax-free returns (currently 7.1% p.a). Enjoys EEE tax status (Exempt-Exempt-Exempt). Maximum annual contribution: ₹1.5 Lakh. One of the safest investment options in India.",
+        "category": "invest",
+        "related": [
+            "ppf-calculator"
+        ]
+    },
+    {
+        "term": "NPS",
+        "slug": "nps",
+        "definition": "National Pension System — a government-sponsored retirement savings scheme. Offers equity, corporate bonds, and government securities asset classes. Provides additional ₹50,000 tax deduction under Section 80CCD(1B) beyond the ₹1.5L 80C limit. At retirement, 60% can be withdrawn tax-free; 40% must be used for annuity.",
+        "category": "invest",
+        "related": [
+            "nps-calculator"
+        ]
+    },
+    {
+        "term": "ELSS",
+        "slug": "elss",
+        "definition": "Equity Linked Savings Scheme — tax-saving mutual funds with the shortest lock-in period of 3 years among all Section 80C instruments. Invests primarily in equities (65%+ in stocks). Historical returns: 12-15% over 10 years. Qualifies for ₹1.5L deduction under Section 80C.",
+        "category": "invest",
+        "related": [
+            "sip-calculator"
+        ]
+    },
+    {
+        "term": "Mutual Fund",
+        "slug": "mutual-fund",
+        "definition": "A professionally managed investment vehicle that pools money from multiple investors to invest in stocks, bonds, or other securities. Types include equity funds, debt funds, hybrid funds, and index funds. Returns are not guaranteed but historically equity MFs have delivered 12-15% over long periods.",
+        "category": "invest",
+        "related": [
+            "sip-calculator",
+            "mutual-fund-returns"
+        ]
+    },
+    {
+        "term": "Index Fund",
+        "slug": "index-fund",
+        "definition": "A type of mutual fund that tracks a market index (like Nifty 50 or Sensex). Index funds have lower expense ratios (0.1-0.5%) compared to actively managed funds (1-2.5%). They offer market-average returns without the risk of fund manager underperformance.",
+        "category": "invest",
+        "related": [
+            "sip-calculator"
+        ]
+    },
+    {
+        "term": "Expense Ratio",
+        "slug": "expense-ratio",
+        "definition": "The annual fee charged by a mutual fund for managing investors' money, expressed as a percentage of assets. Lower expense ratios mean more of your returns stay with you. Index funds: 0.1-0.5%. Active funds: 1-2.5%. SEBI has capped the maximum expense ratio.",
+        "category": "invest",
+        "related": [
+            "sip-calculator",
+            "mutual-fund-returns"
+        ]
+    },
+    {
+        "term": "Rupee Cost Averaging",
+        "slug": "rupee-cost-averaging",
+        "definition": "The investment strategy behind SIPs where a fixed amount is invested regularly regardless of market conditions. When prices are high, fewer units are bought; when low, more units are bought. Over time, this averages out the purchase cost and reduces the impact of market volatility.",
+        "category": "invest",
+        "related": [
+            "sip-calculator"
+        ]
+    },
+    {
+        "term": "Maturity Value",
+        "slug": "maturity-value",
+        "definition": "The total amount receivable at the end of an investment's term. For FDs and RDs, maturity value = principal + compound interest. For PPF, it includes 15 years of contributions plus accumulated interest. Maturity value is guaranteed for fixed-income instruments.",
+        "category": "invest",
+        "related": [
+            "fd-calculator",
+            "rd-calculator",
+            "ppf-calculator"
+        ]
+    },
+    {
+        "term": "Annuity",
+        "slug": "annuity",
+        "definition": "A series of regular payments made over a defined period. In the NPS context, 40% of the corpus at retirement must be used to purchase an annuity, which provides a regular pension income. Annuity rates vary by provider: typically 5-7% annually.",
+        "category": "invest",
+        "related": [
+            "nps-calculator"
+        ]
+    },
+    {
+        "term": "Income Tax",
+        "slug": "income-tax",
+        "definition": "A direct tax levied by the government on the income earned by individuals and entities. In India, income tax is administered under the Income Tax Act, 1961. Two regimes exist: old (with deductions) and new (lower rates, fewer deductions). Filed annually by July 31st.",
+        "category": "tax",
+        "related": [
+            "income-tax-calculator"
+        ]
+    },
+    {
+        "term": "Tax Slab",
+        "slug": "tax-slab",
+        "definition": "The income ranges at which different tax rates apply. India uses a progressive tax system where higher income is taxed at higher rates. New regime has 6 slabs (0% to 30%). Old regime has 4 slabs (0% to 30%) with higher starting rates but more deductions.",
+        "category": "tax",
+        "related": [
+            "income-tax-calculator"
+        ]
+    },
+    {
+        "term": "Section 80C",
+        "slug": "section-80c",
+        "definition": "A provision under the Income Tax Act allowing a deduction of up to ₹1,50,000 on investments in specified instruments including EPF, PPF, ELSS, life insurance premiums, NSC, SSY, home loan principal, and 5-year tax-saver FDs. Available only under the old tax regime.",
+        "category": "tax",
+        "related": [
+            "income-tax-calculator",
+            "ppf-calculator"
+        ]
+    },
+    {
+        "term": "Section 80D",
+        "slug": "section-80d",
+        "definition": "Tax deduction for health insurance premiums. Self + family: up to ₹25,000. Parents below 60: up to ₹25,000. Parents above 60: up to ₹50,000. Maximum combined deduction: ₹1,00,000. A preventive health check-up of ₹5,000 is included within these limits.",
+        "category": "tax",
+        "related": [
+            "income-tax-calculator"
+        ]
+    },
+    {
+        "term": "Section 24(b)",
+        "slug": "section-24b",
+        "definition": "Allows deduction of up to ₹2,00,000 on home loan interest for self-occupied property. For rented property, the entire interest amount can be claimed without any upper limit (but net loss from house property is capped at ₹2L for set-off against other income).",
+        "category": "tax",
+        "related": [
+            "income-tax-calculator",
+            "home-loan-emi"
+        ]
+    },
+    {
+        "term": "HRA",
+        "slug": "hra",
+        "definition": "House Rent Allowance — a component of salary received by employees to meet rental expenses. HRA exemption under old regime is the minimum of: actual HRA received, rent paid minus 10% of basic salary, or 50/40% of basic salary (metro/non-metro).",
+        "formula": "Exempt HRA = min(Actual HRA, Rent − 10% of Basic, 50%/40% of Basic)",
+        "category": "tax",
+        "related": [
+            "hra-exemption-calculator"
+        ]
+    },
+    {
+        "term": "TDS",
+        "slug": "tds",
+        "definition": "Tax Deducted at Source — a mechanism where the payer deducts tax before making payment and deposits it with the government. Applied on salary, interest, rent, professional fees, and more. TDS rates vary: salary (as per slab), interest (10%), rent (10% if >₹2.4L/year).",
+        "category": "tax",
+        "related": [
+            "tds-calculator"
+        ]
+    },
+    {
+        "term": "GST",
+        "slug": "gst",
+        "definition": "Goods and Services Tax — a comprehensive indirect tax on the supply of goods and services in India. Replaced multiple taxes (VAT, service tax, excise) since July 1, 2017. Four rate slabs: 5%, 12%, 18%, 28%. Input tax credit allows businesses to offset GST paid on purchases.",
+        "category": "tax",
+        "related": [
+            "gst-calculator"
+        ]
+    },
+    {
+        "term": "CGST",
+        "slug": "cgst",
+        "definition": "Central GST — the portion of GST collected by the Central Government on intra-state transactions. For any intra-state sale, GST is split equally between CGST and SGST. For example, on an 18% GST item, 9% goes to CGST and 9% to SGST.",
+        "category": "tax",
+        "related": [
+            "gst-calculator"
+        ]
+    },
+    {
+        "term": "SGST",
+        "slug": "sgst",
+        "definition": "State GST — the portion of GST collected by the State Government on intra-state transactions. Combined with CGST, it forms the total GST on intra-state supplies. Each state has its own SGST legislation.",
+        "category": "tax",
+        "related": [
+            "gst-calculator"
+        ]
+    },
+    {
+        "term": "IGST",
+        "slug": "igst",
+        "definition": "Integrated GST — levied on inter-state supply of goods and services (and imports). Collected by the Central Government and then apportioned between the Centre and the destination state. IGST rate = CGST rate + SGST rate.",
+        "category": "tax",
+        "related": [
+            "gst-calculator"
+        ]
+    },
+    {
+        "term": "Input Tax Credit",
+        "slug": "input-tax-credit",
+        "definition": "The GST paid on business purchases that can be used to offset GST collected on sales. ITC reduces the net GST payable. Conditions: the goods/services must be used for business purposes, and the supplier must have filed their GST return.",
+        "category": "tax",
+        "related": [
+            "gst-calculator"
+        ]
+    },
+    {
+        "term": "Capital Gains Tax",
+        "slug": "capital-gains-tax",
+        "definition": "Tax on profit from the sale of capital assets (property, stocks, gold, etc.). Short-term capital gains (STCG) on equity: 15%. Long-term capital gains (LTCG) on equity above ₹1L: 10%. Property LTCG (after 2 years): 20% with indexation benefit.",
+        "category": "tax",
+        "related": [
+            "capital-gains-tax-calculator"
+        ]
+    },
+    {
+        "term": "LTCG",
+        "slug": "ltcg",
+        "definition": "Long Term Capital Gains — profit from selling assets held for more than a specified period. For equity/mutual funds: 12+ months. For property: 24+ months. For gold/debt funds: 36+ months. LTCG on equity above ₹1 Lakh is taxed at 10%.",
+        "category": "tax",
+        "related": [
+            "capital-gains-tax-calculator"
+        ]
+    },
+    {
+        "term": "STCG",
+        "slug": "stcg",
+        "definition": "Short Term Capital Gains — profit from selling assets held for less than the specified period. STCG on equity (held < 12 months): taxed at 15%. STCG on property (held < 24 months): taxed as per income tax slab.",
+        "category": "tax",
+        "related": [
+            "capital-gains-tax-calculator"
+        ]
+    },
+    {
+        "term": "Professional Tax",
+        "slug": "professional-tax",
+        "definition": "A tax levied by state governments on professionals and salaried individuals. Maximum amount: ₹2,500 per year (varies by state). Deducted by the employer from salary. Professional tax paid is deductible from taxable income. Not all states levy it.",
+        "category": "tax",
+        "related": [
+            "professional-tax-calculator"
+        ]
+    },
+    {
+        "term": "Surcharge",
+        "slug": "surcharge",
+        "definition": "An additional tax levied on taxpayers whose income exceeds certain thresholds. Surcharge is calculated on the income tax amount (not on total income). Rates: 10% for ₹50L-1Cr, 15% for ₹1-2Cr, 25% for ₹2-5Cr, 37% for above ₹5Cr (new regime caps at 25%).",
+        "category": "tax",
+        "related": [
+            "income-tax-calculator"
+        ]
+    },
+    {
+        "term": "Cess",
+        "slug": "cess",
+        "definition": "Health and Education Cess — a 4% surcharge on the total income tax (including surcharge). Cess is levied to fund specific government initiatives. It's calculated as 4% of (Income Tax + Surcharge). Everyone who pays income tax also pays cess.",
+        "category": "tax",
+        "related": [
+            "income-tax-calculator"
+        ]
+    },
+    {
+        "term": "PAN Card",
+        "slug": "pan-card",
+        "definition": "Permanent Account Number — a 10-character alphanumeric identifier issued by the Income Tax Department. Required for filing tax returns, opening bank accounts, investing in mutual funds, and any financial transaction above ₹50,000. Format: ABCDE1234F.",
+        "category": "tax",
+        "related": [
+            "income-tax-calculator"
+        ]
+    },
+    {
+        "term": "Form 16",
+        "slug": "form-16",
+        "definition": "A TDS certificate issued by employers to salaried employees, containing details of salary, allowances, deductions, TDS deducted, and tax computation. Essential for filing income tax returns. Employers must issue Form 16 by June 15th each year.",
+        "category": "tax",
+        "related": [
+            "income-tax-calculator"
+        ]
+    },
+    {
+        "term": "ITR",
+        "slug": "itr",
+        "definition": "Income Tax Return — the form used to file income tax with the government. Multiple forms exist: ITR-1 (salaried, income up to ₹50L), ITR-2 (with capital gains), ITR-3 (business income), ITR-4 (presumptive taxation). Due date: July 31st for individuals.",
+        "category": "tax",
+        "related": [
+            "income-tax-calculator"
+        ]
+    },
+    {
+        "term": "Assessment Year",
+        "slug": "assessment-year",
+        "definition": "The year following the financial year in which income is assessed and tax return is filed. For example, income earned in FY 2025-26 (April 2025 to March 2026) is assessed in AY 2026-27. Tax returns for FY 2025-26 are filed in AY 2026-27 by July 31, 2026.",
+        "category": "tax",
+        "related": [
+            "income-tax-calculator"
+        ]
+    },
+    {
+        "term": "BMI",
+        "slug": "bmi-term",
+        "definition": "Body Mass Index — a measure of body fat based on height and weight. Calculated as weight (kg) divided by height squared (m²). Categories: Underweight (<18.5), Normal (18.5-24.9), Overweight (25-29.9), Obese (30+). For South Asians, lower cutoffs are recommended.",
+        "formula": "BMI = Weight (kg) ÷ Height² (m²)",
+        "category": "utility",
+        "related": [
+            "bmi-calculator"
+        ]
+    },
+    {
+        "term": "Percentage",
+        "slug": "percentage-term",
+        "definition": "A fraction expressed as a portion of 100. Used extensively in finance for interest rates, returns, tax rates, and growth calculations. To convert a fraction to percentage: multiply by 100. To find X% of Y: (X/100) × Y.",
+        "formula": "Percentage = (Part ÷ Whole) × 100",
+        "category": "utility",
+        "related": [
+            "percentage-calculator"
+        ]
+    },
+    {
+        "term": "Amortization",
+        "slug": "amortization",
+        "definition": "The process of spreading loan payments over the full tenure. An amortization schedule shows the breakdown of each EMI into principal and interest components month by month. Early payments are interest-heavy; later payments are principal-heavy.",
+        "category": "loan",
+        "related": [
+            "home-loan-emi",
+            "car-loan-emi"
+        ]
+    },
+    {
+        "term": "Balance Transfer",
+        "slug": "balance-transfer",
+        "definition": "Moving an existing loan from one lender to another offering better terms (typically a lower interest rate). Common for home loans and credit cards. Processing fee is typically 0.5-1% of outstanding. Worth it if rate difference is 0.5%+ and remaining tenure is 10+ years.",
+        "category": "loan",
+        "related": [
+            "home-loan-emi"
+        ]
+    },
+    {
+        "term": "Floating Rate",
+        "slug": "floating-rate",
+        "definition": "An interest rate that changes periodically based on a benchmark rate (like RBI repo rate). Floating rates are typically 1-2% lower than fixed rates. When the benchmark rate changes, your EMI or tenure adjusts accordingly. Most Indian home loans use floating rates.",
+        "category": "loan",
+        "related": [
+            "home-loan-emi"
+        ]
+    },
+    {
+        "term": "Fixed Rate",
+        "slug": "fixed-rate",
+        "definition": "An interest rate that remains constant throughout the loan tenure. Provides EMI certainty but is typically 1-2% higher than floating rates. Some banks offer hybrid options: fixed for the first 2-3 years, then floating.",
+        "category": "loan",
+        "related": [
+            "home-loan-emi"
+        ]
+    },
+    {
+        "term": "Stamp Duty",
+        "slug": "stamp-duty",
+        "definition": "A tax paid to the state government when purchasing property. Rates vary by state: Maharashtra (5-6%), Karnataka (5%), Delhi (4-6%), Tamil Nadu (7%). Some states offer reduced rates for women buyers (1% rebate). Stamp duty is not tax-deductible.",
+        "category": "loan",
+        "related": [
+            "home-loan-emi"
+        ]
+    },
+    {
+        "term": "MCLR",
+        "slug": "mclr",
+        "definition": "Marginal Cost of Funds based Lending Rate — the minimum interest rate below which banks are not permitted to lend. Introduced by RBI in 2016. Most existing loans are linked to MCLR, though new loans may use External Benchmark Lending Rate (EBLR) instead.",
+        "category": "loan",
+        "related": [
+            "home-loan-emi"
+        ]
+    },
+    {
+        "term": "EBLR",
+        "slug": "eblr",
+        "definition": "External Benchmark Lending Rate — a lending rate linked to an external benchmark (typically RBI repo rate). Introduced in 2019. EBLR = Repo Rate + Bank's Spread. Changes in repo rate are transmitted to borrowers within 3 months. More transparent than MCLR.",
+        "category": "loan",
+        "related": [
+            "home-loan-emi"
+        ]
+    },
+    {
+        "term": "Mudra Loan",
+        "slug": "mudra-loan",
+        "definition": "Government-backed loans under Pradhan Mantri MUDRA Yojana for micro/small businesses up to ₹10 Lakh. Three categories: Shishu (up to ₹50K), Kishor (₹50K-5L), Tarun (₹5-10L). No collateral required. Available through all banks and NBFCs.",
+        "category": "loan",
+        "related": [
+            "business-loan-emi"
+        ]
+    },
+    {
+        "term": "AUM",
+        "slug": "aum",
+        "definition": "Assets Under Management — the total market value of investments managed by a mutual fund. Higher AUM generally indicates investor confidence. Large-cap funds typically have ₹10,000+ Cr AUM. Very small AUM (<₹100 Cr) may indicate liquidity risk.",
+        "category": "invest",
+        "related": [
+            "sip-calculator",
+            "mutual-fund-returns"
+        ]
+    },
+    {
+        "term": "Dividend",
+        "slug": "dividend",
+        "definition": "A portion of a company's profits distributed to shareholders. In mutual funds, dividend option means periodic payouts from the fund's profits. Note: 'dividend' option in MFs was renamed to 'IDCW' (Income Distribution cum Capital Withdrawal) by SEBI.",
+        "category": "invest",
+        "related": [
+            "mutual-fund-returns"
+        ]
+    },
+    {
+        "term": "Benchmark",
+        "slug": "benchmark",
+        "definition": "A standard against which the performance of a mutual fund or portfolio is measured. Common Indian benchmarks: Nifty 50 (large-cap), Nifty Midcap 150, Nifty Smallcap 250, CRISIL Short Duration Fund Index (debt). A good fund should beat its benchmark consistently.",
+        "category": "invest",
+        "related": [
+            "sip-calculator",
+            "mutual-fund-returns"
+        ]
+    },
+    {
+        "term": "Demat Account",
+        "slug": "demat-account",
+        "definition": "An electronic account that holds stocks, bonds, and mutual fund units in dematerialized (digital) form. Required for trading in the stock market. Providers: Zerodha, Groww, Angel One, ICICI Direct. Annual maintenance charge: ₹0-₹750.",
+        "category": "invest",
+        "related": [
+            "sip-calculator"
+        ]
+    },
+    {
+        "term": "KYC",
+        "slug": "kyc",
+        "definition": "Know Your Customer — a mandatory verification process for financial transactions. Required for opening bank accounts, investing in mutual funds, and buying insurance. Documents: Aadhaar + PAN. Can be done once through CKYC (Central KYC) and is valid across all financial institutions.",
+        "category": "invest",
+        "related": [
+            "sip-calculator"
+        ]
+    },
+    {
+        "term": "Lock-in Period",
+        "slug": "lock-in-period",
+        "definition": "The minimum duration for which an investment must be held before it can be redeemed. ELSS: 3 years. PPF: 15 years (partial withdrawal from year 7). Tax-saver FD: 5 years. NPS: till age 60. No lock-in for regular mutual funds.",
+        "category": "invest",
+        "related": [
+            "ppf-calculator",
+            "sip-calculator"
+        ]
+    },
+    {
+        "term": "Exit Load",
+        "slug": "exit-load",
+        "definition": "A fee charged when you redeem (sell) mutual fund units before a specified period. Typically 1% if redeemed within 1 year for equity funds. Liquid funds may charge 0.007% for 1-day exit. Exit load discourages short-term trading and protects long-term investors.",
+        "category": "invest",
+        "related": [
+            "sip-calculator",
+            "mutual-fund-returns"
+        ]
+    },
+    {
+        "term": "New Tax Regime",
+        "slug": "new-tax-regime",
+        "definition": "The simplified tax regime introduced in Budget 2020, made default from FY 2024-25. Offers lower tax rates but with minimal deductions. Standard deduction of ₹75,000 allowed. Best for those with deductions below ₹3.75 Lakh.",
+        "category": "tax",
+        "related": [
+            "income-tax-calculator"
+        ]
+    },
+    {
+        "term": "Old Tax Regime",
+        "slug": "old-tax-regime",
+        "definition": "The original Indian income tax structure with higher rates but comprehensive deductions under sections 80C, 80D, 24(b), HRA, etc. Better for individuals with significant investments, home loans, and health insurance premiums.",
+        "category": "tax",
+        "related": [
+            "income-tax-calculator"
+        ]
+    },
+    {
+        "term": "Standard Deduction",
+        "slug": "standard-deduction",
+        "definition": "A flat deduction from salary income, available without any proof of expenditure. ₹75,000 in new regime (increased from ₹50K in Budget 2024). ₹50,000 in old regime. Automatically reduces taxable income for all salaried employees.",
+        "category": "tax",
+        "related": [
+            "income-tax-calculator"
+        ]
+    },
+    {
+        "term": "Tax Rebate Under 87A",
+        "slug": "tax-rebate-87a",
+        "definition": "A rebate for resident individuals where the entire tax liability is waived if taxable income is ≤ ₹7 Lakh (new regime) or ≤ ₹5 Lakh (old regime). This effectively means zero tax for income up to these limits.",
+        "category": "tax",
+        "related": [
+            "income-tax-calculator"
+        ]
+    },
+    {
+        "term": "Advance Tax",
+        "slug": "advance-tax",
+        "definition": "Tax paid in installments during the financial year if your total tax liability exceeds ₹10,000. Due dates: 15% by June 15, 45% by Sep 15, 75% by Dec 15, 100% by Mar 15. Interest penalty under Section 234C for late/short payment.",
+        "category": "tax",
+        "related": [
+            "income-tax-calculator"
+        ]
+    },
+    {
+        "term": "Section 80E",
+        "slug": "section-80e",
+        "definition": "Tax deduction on interest paid on education loan. No upper limit on the deduction amount (unlike home loan cap of ₹2L). Available for 8 years from the year of first repayment. Loan must be for higher education of self, spouse, or children.",
+        "category": "tax",
+        "related": [
+            "education-loan-emi",
+            "income-tax-calculator"
+        ]
+    },
+    {
+        "term": "Depreciation",
+        "slug": "depreciation",
+        "definition": "The reduction in value of an asset over time due to wear and tear. In tax context, businesses can claim depreciation as a deductible expense under the Income Tax Act. Rates vary: 15% for buildings, 40% for computers, 15-30% for machinery.",
+        "category": "tax",
+        "related": [
+            "income-tax-calculator"
+        ]
+    },
+    {
+        "term": "Indexation",
+        "slug": "indexation",
+        "definition": "A method of adjusting the purchase price of a capital asset using the Cost Inflation Index (CII) to account for inflation. Used to calculate LTCG on property, gold, and debt mutual funds. Reduces the taxable capital gain significantly.",
+        "formula": "Indexed Cost = Original Cost × (CII of Sale Year ÷ CII of Purchase Year)",
+        "category": "tax",
+        "related": [
+            "capital-gains-tax-calculator"
+        ]
+    },
+    {
+        "term": "Rule of 72",
+        "slug": "rule-of-72",
+        "definition": "A quick formula to estimate how long it takes to double your money: 72 ÷ interest rate = years to double. At 8%: 9 years. At 12%: 6 years. At 15%: 4.8 years. Works best for rates between 6-15%.",
+        "formula": "Years to Double = 72 ÷ Rate of Return",
+        "category": "utility",
+        "related": [
+            "compound-interest-calculator"
+        ]
+    },
+    {
+        "term": "Inflation",
+        "slug": "inflation",
+        "definition": "The rate at which the general level of prices for goods and services rises, reducing purchasing power. India's target inflation: 4% (RBI mandate). Real returns = Nominal returns − Inflation. An FD at 7% with 5% inflation gives only 2% real return.",
+        "category": "utility",
+        "related": [
+            "fd-calculator",
+            "sip-calculator"
+        ]
+    },
+    {
+        "term": "Liquidity",
+        "slug": "liquidity",
+        "definition": "The ease with which an asset can be converted into cash without significant loss of value. Savings accounts and liquid mutual funds: high liquidity. PPF and NPS: low liquidity (long lock-in). Real estate: very low liquidity (months to sell).",
+        "category": "invest",
+        "related": [
+            "fd-calculator"
+        ]
+    },
+    {
+        "term": "Diversification",
+        "slug": "diversification",
+        "definition": "The strategy of spreading investments across different asset classes (equity, debt, gold, real estate) to reduce risk. 'Don't put all your eggs in one basket.' A diversified portfolio might include SIP + PPF + FD, covering growth, safety, and liquidity needs.",
+        "category": "invest",
+        "related": [
+            "sip-calculator",
+            "ppf-calculator",
+            "fd-calculator"
+        ]
+    },
+    {
+        "term": "Asset Allocation",
+        "slug": "asset-allocation",
+        "definition": "The distribution of investments across different asset categories. Common rule: equity allocation = 100 − your age. So at age 30, invest 70% in equity and 30% in debt. Rebalance annually to maintain target allocation.",
+        "category": "invest",
+        "related": [
+            "sip-calculator"
+        ]
+    },
+    {
+        "term": "GSTIN",
+        "slug": "gstin",
+        "definition": "GST Identification Number — a 15-digit unique number assigned to every registered GST taxpayer. Format: 2-digit state code + 10-digit PAN + 1 entity code + 1 default 'Z' + 1 checksum. Required on all invoices and for claiming input tax credit.",
+        "category": "tax",
+        "related": [
+            "gst-calculator"
+        ]
+    },
+    {
+        "term": "HSN Code",
+        "slug": "hsn-code",
+        "definition": "Harmonized System of Nomenclature — an internationally standardized system for classifying traded products. Used in GST to classify goods and determine applicable tax rate. 4-digit HSN for turnover >₹5Cr, 2-digit for ₹1.5-5Cr.",
+        "category": "tax",
+        "related": [
+            "gst-calculator"
+        ]
+    },
+    {
+        "term": "SAC Code",
+        "slug": "sac-code",
+        "definition": "Services Accounting Code — used to classify services under GST, similar to HSN codes for goods. 6-digit codes. For example: 998311 for management consulting, 997212 for renting of residential property.",
+        "category": "tax",
+        "related": [
+            "gst-calculator"
+        ]
+    },
+    {
+        "term": "E-way Bill",
+        "slug": "e-way-bill",
+        "definition": "An electronic document required for movement of goods worth more than ₹50,000. Generated on the e-way bill portal. Contains details of goods, supplier, recipient, and transporter. Valid for 1 day for every 200 km of distance.",
+        "category": "tax",
+        "related": [
+            "gst-calculator"
+        ]
+    },
+    {
+        "term": "Composition Scheme",
+        "slug": "composition-scheme",
+        "definition": "A simplified GST scheme for small businesses with turnover up to ₹1.5 Crore (goods) or ₹50 Lakh (services). Offers lower flat tax rates (1-6%) and quarterly filing. Cannot claim ITC or sell inter-state under this scheme.",
+        "category": "tax",
+        "related": [
+            "gst-calculator"
+        ]
+    },
+    {
+        "term": "Credit Score",
+        "slug": "credit-score",
+        "definition": "A numerical representation of creditworthiness, typically ranging from 300-900 in India. Factors: repayment history (35%), credit utilization (30%), credit age (15%), credit mix (10%), inquiries (10%). Check free at CIBIL, Experian, or CRIF.",
+        "category": "loan",
+        "related": [
+            "personal-loan-emi",
+            "loan-eligibility"
+        ]
+    },
+    {
+        "term": "EMI Bounce",
+        "slug": "emi-bounce",
+        "definition": "When an EMI payment fails due to insufficient funds in the linked bank account. Consequences: ₹500-1,000 penalty per bounce, penal interest, and CIBIL score drops by 30-50 points. Set up auto-debit with sufficient balance to avoid bounces.",
+        "category": "loan",
+        "related": [
+            "car-loan-emi",
+            "home-loan-emi"
+        ]
+    },
+    {
+        "term": "Co-borrower",
+        "slug": "co-borrower",
+        "definition": "A person who jointly takes a loan with the primary borrower. Both are equally responsible for repayment. Common in home loans (spouse as co-borrower). Benefits: higher eligibility, joint tax deductions under 80C and 24(b).",
+        "category": "loan",
+        "related": [
+            "home-loan-emi"
+        ]
+    },
+    {
+        "term": "Guarantor",
+        "slug": "guarantor",
+        "definition": "A person who guarantees to repay a loan if the primary borrower defaults. The guarantor's CIBIL score is affected if the borrower defaults. Different from co-borrower: guarantor doesn't receive loan proceeds and has no ownership claim.",
+        "category": "loan",
+        "related": [
+            "personal-loan-emi",
+            "education-loan-emi"
+        ]
+    },
+    {
+        "term": "Disbursement",
+        "slug": "disbursement",
+        "definition": "The actual release of loan funds to the borrower's account. Can be full (personal/car loan) or partial (home loan — disbursed in stages as construction progresses). Interest starts from the date of disbursement.",
+        "category": "loan",
+        "related": [
+            "home-loan-emi",
+            "car-loan-emi"
+        ]
+    },
+    {
+        "term": "Pre-EMI Interest",
+        "slug": "pre-emi-interest",
+        "definition": "Interest charged on the disbursed loan amount before the full loan is disbursed. Common in under-construction property loans. Only the interest amount is paid monthly until full disbursement, after which regular EMI begins.",
+        "category": "loan",
+        "related": [
+            "home-loan-emi"
+        ]
+    },
+    {
+        "term": "Sanction Letter",
+        "slug": "sanction-letter",
+        "definition": "An official document from the bank approving your loan application. Contains: sanctioned amount, interest rate, tenure, EMI, terms and conditions. Valid for 3-6 months. Important: interest rate on sanction letter may differ from the rate at disbursement.",
+        "category": "loan",
+        "related": [
+            "home-loan-emi",
+            "car-loan-emi"
+        ]
+    },
+    {
+        "term": "NOC",
+        "slug": "noc",
+        "definition": "No Objection Certificate — a document issued by the lender after a loan is fully repaid, confirming that the borrower has no outstanding dues. Required to release the lien on the vehicle (car loan) or property (home loan). Banks must issue NOC within 30 days of loan closure.",
+        "category": "loan",
+        "related": [
+            "car-loan-emi",
+            "home-loan-emi"
+        ]
+    },
+    {
+        "term": "Power of Compounding",
+        "slug": "power-of-compounding",
+        "definition": "The exponential growth effect where investment earnings generate their own earnings. ₹10,000 at 12% grows to ₹31,058 in 10 years and ₹96,462 in 20 years. The key factor is time — starting 10 years earlier can triple your wealth.",
+        "category": "invest",
+        "related": [
+            "compound-interest-calculator",
+            "sip-calculator"
+        ]
+    },
+    {
+        "term": "Real Returns",
+        "slug": "real-returns",
+        "definition": "Investment returns adjusted for inflation. Real Return = Nominal Return − Inflation Rate. An FD at 7% with 5% inflation gives 2% real return. Equity at 12% with 5% inflation gives 7% real return. Always compare real returns when choosing investments.",
+        "formula": "Real Return = Nominal Return − Inflation Rate",
+        "category": "invest",
+        "related": [
+            "fd-calculator",
+            "sip-calculator"
+        ]
+    },
+    {
+        "term": "Financial Year",
+        "slug": "financial-year",
+        "definition": "The 12-month period used for accounting and tax purposes in India, running from April 1 to March 31. Income earned during a financial year is taxed and reported in the subsequent assessment year.",
+        "category": "tax",
+        "related": [
+            "income-tax-calculator"
+        ]
+    },
+    {
+        "term": "Waist-to-Hip Ratio",
+        "slug": "waist-to-hip-ratio",
+        "definition": "A measure of fat distribution, calculated by dividing waist circumference by hip circumference. Healthy ratio: <0.90 for men, <0.85 for women. A better predictor of cardiovascular risk than BMI alone, especially for adults.",
+        "formula": "WHR = Waist Circumference ÷ Hip Circumference",
+        "category": "utility",
+        "related": [
+            "bmi-calculator"
+        ]
+    },
+    {
+        "term": "Discount Rate",
+        "slug": "discount-rate",
+        "definition": "The percentage reduction from the original price. Used in calculating sale prices, markdowns, and promotional offers. The effective discount on successive discounts is calculated differently: 20% + 10% off is not 30% off; it equals 28% effective discount.",
+        "formula": "Discounted Price = Original Price × (1 − Discount%/100)",
+        "category": "utility",
+        "related": [
+            "discount-calculator"
+        ]
+    },
+    {
+        "term": "Markup",
+        "slug": "markup",
+        "definition": "The amount added to the cost price to determine the selling price. Expressed as a percentage of cost. A 50% markup on ₹100 cost = ₹150 selling price. Note: markup ≠ margin. A 50% markup equals a 33.3% profit margin.",
+        "formula": "Selling Price = Cost × (1 + Markup%/100)",
+        "category": "utility",
+        "related": [
+            "percentage-calculator"
+        ]
+    },
+    {
+        "term": "Break-Even Point",
+        "slug": "break-even-point",
+        "definition": "The point at which total revenue equals total costs — no profit, no loss. In loan context, it indicates when the savings from refinancing exceed the costs (processing fees). Important for deciding whether to transfer a loan to a lower-rate lender.",
+        "category": "utility",
+        "related": [
+            "percentage-calculator"
+        ]
+    }
+]

@@ -1,0 +1,106 @@
+{
+    "loan": [
+        {
+            "label": "Car Loan EMI",
+            "href": "/loan-calculators/car-loan-emi"
+        },
+        {
+            "label": "Home Loan EMI",
+            "href": "/loan-calculators/home-loan-emi"
+        },
+        {
+            "label": "Personal Loan EMI",
+            "href": "/loan-calculators/personal-loan-emi"
+        },
+        {
+            "label": "Education Loan EMI",
+            "href": "/loan-calculators/education-loan-emi"
+        },
+        {
+            "label": "Bike Loan EMI",
+            "href": "/loan-calculators/bike-loan-emi"
+        },
+        {
+            "label": "Loan Eligibility",
+            "href": "/loan-calculators/loan-eligibility"
+        }
+    ],
+    "invest": [
+        {
+            "label": "SIP Calculator",
+            "href": "/investment-calculators/sip-calculator"
+        },
+        {
+            "label": "FD Calculator",
+            "href": "/investment-calculators/fd-calculator"
+        },
+        {
+            "label": "RD Calculator",
+            "href": "/investment-calculators/rd-calculator"
+        },
+        {
+            "label": "PPF Calculator",
+            "href": "/investment-calculators/ppf-calculator"
+        },
+        {
+            "label": "NPS Calculator",
+            "href": "/investment-calculators/nps-calculator"
+        },
+        {
+            "label": "Mutual Fund Returns",
+            "href": "/investment-calculators/mutual-fund-returns"
+        }
+    ],
+    "tax": [
+        {
+            "label": "Income Tax",
+            "href": "/tax-calculators/income-tax-calculator"
+        },
+        {
+            "label": "GST Calculator",
+            "href": "/tax-calculators/gst-calculator"
+        },
+        {
+            "label": "HRA Exemption",
+            "href": "/tax-calculators/hra-exemption-calculator"
+        },
+        {
+            "label": "TDS Calculator",
+            "href": "/tax-calculators/tds-calculator"
+        },
+        {
+            "label": "Capital Gains Tax",
+            "href": "/tax-calculators/capital-gains-tax-calculator"
+        },
+        {
+            "label": "Professional Tax",
+            "href": "/tax-calculators/professional-tax-calculator"
+        }
+    ],
+    "utility": [
+        {
+            "label": "Age Calculator",
+            "href": "/utility-calculators/age-calculator"
+        },
+        {
+            "label": "Percentage Calculator",
+            "href": "/utility-calculators/percentage-calculator"
+        },
+        {
+            "label": "Compound Interest",
+            "href": "/utility-calculators/compound-interest-calculator"
+        },
+        {
+            "label": "Simple Interest",
+            "href": "/utility-calculators/simple-interest-calculator"
+        },
+        {
+            "label": "BMI Calculator",
+            "href": "/utility-calculators/bmi-calculator"
+        },
+        {
+            "label": "Discount Calculator",
+            "href": "/utility-calculators/discount-calculator"
+        }
+    ]
+}

@@ -1,0 +1,884 @@
+[
+  {
+    "id": "car-loan-emi",
+    "category": "loan",
+    "title": "Car Loan EMI Calculator",
+    "slug": "car-loan-emi",
+    "categorySlug": "loan-calculators",
+    "icon": "🚗",
+    "description": "Calculate monthly EMI for your car loan with different rates and tenure.",
+    "stars": 5,
+    "defaults": {
+      "amount": 500000,
+      "rate": 8.5,
+      "tenure": 60
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 50000,
+        "max": 10000000,
+        "step": 50000
+      },
+      "rate": {
+        "min": 1,
+        "max": 30,
+        "step": 0.1
+      },
+      "tenure": {
+        "min": 6,
+        "max": 360,
+        "step": 6
+      }
+    }
+  },
+  {
+    "id": "home-loan-emi",
+    "category": "loan",
+    "title": "Home Loan EMI Calculator",
+    "slug": "home-loan-emi",
+    "categorySlug": "loan-calculators",
+    "icon": "🏠",
+    "description": "Plan your dream home with accurate mortgage calculations.",
+    "stars": 5,
+    "defaults": {
+      "amount": 3000000,
+      "rate": 8.5,
+      "tenure": 240
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 100000,
+        "max": 100000000,
+        "step": 100000
+      },
+      "rate": {
+        "min": 1,
+        "max": 20,
+        "step": 0.1
+      },
+      "tenure": {
+        "min": 12,
+        "max": 360,
+        "step": 12
+      }
+    }
+  },
+  {
+    "id": "personal-loan-emi",
+    "category": "loan",
+    "title": "Personal Loan EMI Calculator",
+    "slug": "personal-loan-emi",
+    "categorySlug": "loan-calculators",
+    "icon": "👤",
+    "description": "Estimate EMI for personal loans with flexible tenure options.",
+    "stars": 4,
+    "defaults": {
+      "amount": 200000,
+      "rate": 12,
+      "tenure": 36
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 10000,
+        "max": 5000000,
+        "step": 10000
+      },
+      "rate": {
+        "min": 5,
+        "max": 36,
+        "step": 0.25
+      },
+      "tenure": {
+        "min": 6,
+        "max": 84,
+        "step": 6
+      }
+    }
+  },
+  {
+    "id": "education-loan-emi",
+    "category": "loan",
+    "title": "Education Loan EMI Calculator",
+    "slug": "education-loan-emi",
+    "categorySlug": "loan-calculators",
+    "icon": "🎓",
+    "description": "Plan education financing with moratorium period support.",
+    "stars": 4,
+    "defaults": {
+      "amount": 1000000,
+      "rate": 10,
+      "tenure": 84
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 50000,
+        "max": 20000000,
+        "step": 50000
+      },
+      "rate": {
+        "min": 4,
+        "max": 18,
+        "step": 0.25
+      },
+      "tenure": {
+        "min": 12,
+        "max": 180,
+        "step": 12
+      }
+    }
+  },
+  {
+    "id": "bike-loan-emi",
+    "category": "loan",
+    "title": "Bike Loan EMI Calculator",
+    "slug": "bike-loan-emi",
+    "categorySlug": "loan-calculators",
+    "icon": "🏍️",
+    "description": "Quick EMI calculation for two-wheeler financing.",
+    "stars": 4,
+    "defaults": {
+      "amount": 80000,
+      "rate": 9,
+      "tenure": 36
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 10000,
+        "max": 500000,
+        "step": 5000
+      },
+      "rate": {
+        "min": 5,
+        "max": 25,
+        "step": 0.25
+      },
+      "tenure": {
+        "min": 6,
+        "max": 60,
+        "step": 6
+      }
+    }
+  },
+  {
+    "id": "business-loan-emi",
+    "category": "loan",
+    "title": "Business Loan EMI Calculator",
+    "slug": "business-loan-emi",
+    "categorySlug": "loan-calculators",
+    "icon": "🏢",
+    "description": "Calculate EMIs for MSME and business term loans.",
+    "stars": 4,
+    "defaults": {
+      "amount": 1000000,
+      "rate": 14,
+      "tenure": 60
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 50000,
+        "max": 50000000,
+        "step": 50000
+      },
+      "rate": {
+        "min": 8,
+        "max": 30,
+        "step": 0.25
+      },
+      "tenure": {
+        "min": 6,
+        "max": 120,
+        "step": 6
+      }
+    }
+  },
+  {
+    "id": "loan-comparison",
+    "category": "loan",
+    "title": "Loan Comparison Tool",
+    "slug": "loan-comparison",
+    "categorySlug": "loan-calculators",
+    "icon": "🔄",
+    "description": "Compare EMIs across multiple banks and NBFCs side by side.",
+    "stars": 5,
+    "defaults": {
+      "amount": 500000,
+      "rate": 8.5,
+      "tenure": 60
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 50000,
+        "max": 10000000,
+        "step": 50000
+      },
+      "rate": {
+        "min": 1,
+        "max": 30,
+        "step": 0.1
+      },
+      "tenure": {
+        "min": 6,
+        "max": 360,
+        "step": 6
+      }
+    }
+  },
+  {
+    "id": "loan-eligibility",
+    "category": "loan",
+    "title": "Loan Eligibility Calculator",
+    "slug": "loan-eligibility",
+    "categorySlug": "loan-calculators",
+    "icon": "✅",
+    "description": "Check how much loan you can get based on your income.",
+    "stars": 4,
+    "defaults": {
+      "amount": 500000,
+      "rate": 8.5,
+      "tenure": 60
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 50000,
+        "max": 10000000,
+        "step": 50000
+      },
+      "rate": {
+        "min": 1,
+        "max": 30,
+        "step": 0.1
+      },
+      "tenure": {
+        "min": 6,
+        "max": 360,
+        "step": 6
+      }
+    }
+  },
+  {
+    "id": "prepayment-calculator",
+    "category": "loan",
+    "title": "Prepayment Calculator",
+    "slug": "prepayment",
+    "categorySlug": "loan-calculators",
+    "icon": "💳",
+    "description": "See how partial prepayments reduce your total interest.",
+    "stars": 4,
+    "defaults": {
+      "amount": 500000,
+      "rate": 8.5,
+      "tenure": 60
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 50000,
+        "max": 10000000,
+        "step": 50000
+      },
+      "rate": {
+        "min": 1,
+        "max": 30,
+        "step": 0.1
+      },
+      "tenure": {
+        "min": 6,
+        "max": 360,
+        "step": 6
+      }
+    }
+  },
+  {
+    "id": "sip-calculator",
+    "category": "invest",
+    "title": "SIP Calculator",
+    "slug": "sip-calculator",
+    "categorySlug": "investment-calculators",
+    "icon": "📊",
+    "description": "Calculate returns on your monthly SIP investments in mutual funds.",
+    "stars": 5,
+    "calcType": "sip",
+    "defaults": {
+      "amount": 5000,
+      "rate": 12,
+      "tenure": 120
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 500,
+        "max": 100000,
+        "step": 500
+      },
+      "rate": {
+        "min": 1,
+        "max": 30,
+        "step": 0.5
+      },
+      "tenure": {
+        "min": 12,
+        "max": 360,
+        "step": 12
+      }
+    }
+  },
+  {
+    "id": "fd-calculator",
+    "category": "invest",
+    "title": "FD Calculator",
+    "slug": "fd-calculator",
+    "categorySlug": "investment-calculators",
+    "icon": "🏦",
+    "description": "Calculate maturity value of your fixed deposit with quarterly compounding.",
+    "stars": 5,
+    "calcType": "fd",
+    "defaults": {
+      "amount": 100000,
+      "rate": 7,
+      "tenure": 60
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 5000,
+        "max": 10000000,
+        "step": 5000
+      },
+      "rate": {
+        "min": 3,
+        "max": 10,
+        "step": 0.1
+      },
+      "tenure": {
+        "min": 6,
+        "max": 120,
+        "step": 6
+      }
+    }
+  },
+  {
+    "id": "rd-calculator",
+    "category": "invest",
+    "title": "RD Calculator",
+    "slug": "rd-calculator",
+    "categorySlug": "investment-calculators",
+    "icon": "💰",
+    "description": "Estimate maturity amount on recurring deposits with compounding.",
+    "stars": 4,
+    "calcType": "rd",
+    "defaults": {
+      "amount": 5000,
+      "rate": 6.5,
+      "tenure": 60
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 500,
+        "max": 100000,
+        "step": 500
+      },
+      "rate": {
+        "min": 3,
+        "max": 10,
+        "step": 0.1
+      },
+      "tenure": {
+        "min": 6,
+        "max": 120,
+        "step": 6
+      }
+    }
+  },
+  {
+    "id": "ppf-calculator",
+    "category": "invest",
+    "title": "PPF Calculator",
+    "slug": "ppf-calculator",
+    "categorySlug": "investment-calculators",
+    "icon": "🛡️",
+    "description": "Calculate Public Provident Fund maturity with annual compounding.",
+    "stars": 5,
+    "calcType": "ppf",
+    "defaults": {
+      "amount": 150000,
+      "rate": 7.1,
+      "tenure": 180
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 500,
+        "max": 150000,
+        "step": 500
+      },
+      "rate": {
+        "min": 5,
+        "max": 10,
+        "step": 0.1
+      },
+      "tenure": {
+        "min": 180,
+        "max": 600,
+        "step": 60
+      }
+    }
+  },
+  {
+    "id": "nps-calculator",
+    "category": "invest",
+    "title": "NPS Calculator",
+    "slug": "nps-calculator",
+    "categorySlug": "investment-calculators",
+    "icon": "👴",
+    "description": "Plan your retirement corpus with National Pension System calculator.",
+    "stars": 4,
+    "calcType": "nps",
+    "defaults": {
+      "amount": 5000,
+      "rate": 10,
+      "tenure": 300
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 500,
+        "max": 100000,
+        "step": 500
+      },
+      "rate": {
+        "min": 5,
+        "max": 15,
+        "step": 0.5
+      },
+      "tenure": {
+        "min": 60,
+        "max": 480,
+        "step": 12
+      }
+    }
+  },
+  {
+    "id": "mutual-fund-returns",
+    "category": "invest",
+    "title": "Mutual Fund Returns Calculator",
+    "slug": "mutual-fund-returns",
+    "categorySlug": "investment-calculators",
+    "icon": "📈",
+    "description": "Calculate lumpsum and SIP returns on mutual fund investments.",
+    "stars": 4,
+    "calcType": "lumpsum",
+    "defaults": {
+      "amount": 100000,
+      "rate": 12,
+      "tenure": 60
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 1000,
+        "max": 10000000,
+        "step": 1000
+      },
+      "rate": {
+        "min": 1,
+        "max": 30,
+        "step": 0.5
+      },
+      "tenure": {
+        "min": 12,
+        "max": 360,
+        "step": 12
+      }
+    }
+  },
+  {
+    "id": "income-tax-calculator",
+    "category": "tax",
+    "title": "Income Tax Calculator",
+    "slug": "income-tax-calculator",
+    "categorySlug": "tax-calculators",
+    "icon": "🧾",
+    "description": "Calculate income tax under Old & New regime for FY 2025-26. Compare slabs, deductions & savings.",
+    "stars": 5,
+    "calcType": "income-tax",
+    "defaults": {
+      "amount": 1000000,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 50000000,
+        "step": 50000
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    }
+  },
+  {
+    "id": "gst-calculator",
+    "category": "tax",
+    "title": "GST Calculator",
+    "slug": "gst-calculator",
+    "categorySlug": "tax-calculators",
+    "icon": "🏷️",
+    "description": "Calculate GST payable — CGST, SGST & IGST split for any amount at 5%, 12%, 18% or 28% rates.",
+    "stars": 5,
+    "calcType": "gst",
+    "defaults": {
+      "amount": 10000,
+      "rate": 18,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 10000000,
+        "step": 100
+      },
+      "rate": {
+        "min": 0,
+        "max": 28,
+        "step": 1
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    }
+  },
+  {
+    "id": "hra-exemption-calculator",
+    "category": "tax",
+    "title": "HRA Exemption Calculator",
+    "slug": "hra-exemption-calculator",
+    "categorySlug": "tax-calculators",
+    "icon": "🏠",
+    "description": "Calculate your HRA tax exemption — compare actual HRA, 50%/40% of basic & rent minus 10% of basic.",
+    "stars": 5,
+    "calcType": "hra",
+    "defaults": {
+      "amount": 600000,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 10000000,
+        "step": 5000
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    }
+  },
+  {
+    "id": "tds-calculator",
+    "category": "tax",
+    "title": "TDS Calculator",
+    "slug": "tds-calculator",
+    "categorySlug": "tax-calculators",
+    "icon": "📋",
+    "description": "Calculate TDS deduction on salary, rent, professional fees, property sale & other income types.",
+    "stars": 4,
+    "calcType": "tds",
+    "defaults": {
+      "amount": 500000,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 100000000,
+        "step": 10000
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    }
+  },
+  {
+    "id": "capital-gains-tax-calculator",
+    "category": "tax",
+    "title": "Capital Gains Tax Calculator",
+    "slug": "capital-gains-tax-calculator",
+    "categorySlug": "tax-calculators",
+    "icon": "📈",
+    "description": "Calculate short-term & long-term capital gains tax on stocks, mutual funds, property & gold.",
+    "stars": 4,
+    "calcType": "capital-gains",
+    "defaults": {
+      "amount": 500000,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 100000000,
+        "step": 10000
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    }
+  },
+  {
+    "id": "professional-tax-calculator",
+    "category": "tax",
+    "title": "Professional Tax Calculator",
+    "slug": "professional-tax-calculator",
+    "categorySlug": "tax-calculators",
+    "icon": "💼",
+    "description": "Calculate professional tax based on your state and monthly salary. Know exact PT deductions.",
+    "stars": 4,
+    "calcType": "professional-tax",
+    "defaults": {
+      "amount": 50000,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 1000000,
+        "step": 1000
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    }
+  },
+  {
+    "id": "age-calculator",
+    "category": "utility",
+    "title": "Age Calculator",
+    "slug": "age-calculator",
+    "categorySlug": "utility-calculators",
+    "icon": "🎂",
+    "description": "Calculate your exact age in years, months & days. Know age on any date — past, present or future.",
+    "stars": 5,
+    "calcType": "age",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    }
+  },
+  {
+    "id": "percentage-calculator",
+    "category": "utility",
+    "title": "Percentage Calculator",
+    "slug": "percentage-calculator",
+    "categorySlug": "utility-calculators",
+    "icon": "📊",
+    "description": "Calculate percentages instantly — X% of Y, percentage change, increase & decrease. Multiple modes.",
+    "stars": 5,
+    "calcType": "percentage",
+    "defaults": {
+      "amount": 1000,
+      "rate": 10,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 10000000,
+        "step": 1
+      },
+      "rate": {
+        "min": 0,
+        "max": 100,
+        "step": 0.01
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    }
+  },
+  {
+    "id": "compound-interest-calculator",
+    "category": "utility",
+    "title": "Compound Interest Calculator",
+    "slug": "compound-interest-calculator",
+    "categorySlug": "utility-calculators",
+    "icon": "📈",
+    "description": "Calculate compound interest with monthly, quarterly or yearly compounding. See how your money grows.",
+    "stars": 5,
+    "calcType": "compound-interest",
+    "defaults": {
+      "amount": 100000,
+      "rate": 8,
+      "tenure": 60
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 1000,
+        "max": 100000000,
+        "step": 1000
+      },
+      "rate": {
+        "min": 1,
+        "max": 30,
+        "step": 0.1
+      },
+      "tenure": {
+        "min": 1,
+        "max": 360,
+        "step": 1
+      }
+    }
+  },
+  {
+    "id": "simple-interest-calculator",
+    "category": "utility",
+    "title": "Simple Interest Calculator",
+    "slug": "simple-interest-calculator",
+    "categorySlug": "utility-calculators",
+    "icon": "🧮",
+    "description": "Calculate simple interest on any principal at any rate. Compare with compound interest.",
+    "stars": 4,
+    "calcType": "simple-interest",
+    "defaults": {
+      "amount": 100000,
+      "rate": 8,
+      "tenure": 60
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 1000,
+        "max": 100000000,
+        "step": 1000
+      },
+      "rate": {
+        "min": 1,
+        "max": 30,
+        "step": 0.1
+      },
+      "tenure": {
+        "min": 1,
+        "max": 360,
+        "step": 1
+      }
+    }
+  },
+  {
+    "id": "bmi-calculator",
+    "category": "utility",
+    "title": "BMI Calculator",
+    "slug": "bmi-calculator",
+    "categorySlug": "utility-calculators",
+    "icon": "⚖️",
+    "description": "Calculate your Body Mass Index (BMI) instantly. Know your weight category & healthy weight range.",
+    "stars": 5,
+    "calcType": "bmi",
+    "defaults": {
+      "amount": 70,
+      "rate": 170,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 20,
+        "max": 200,
+        "step": 0.5
+      },
+      "rate": {
+        "min": 100,
+        "max": 220,
+        "step": 1
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    }
+  },
+  {
+    "id": "discount-calculator",
+    "category": "utility",
+    "title": "Discount Calculator",
+    "slug": "discount-calculator",
+    "categorySlug": "utility-calculators",
+    "icon": "🏷️",
+    "description": "Calculate discount amount & final price. Double discount, markup & margin calculators included.",
+    "stars": 4,
+    "calcType": "discount",
+    "defaults": {
+      "amount": 5000,
+      "rate": 20,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 10000000,
+        "step": 100
+      },
+      "rate": {
+        "min": 0,
+        "max": 100,
+        "step": 0.5
+      },
+      "tenure": {
+        "min": 0,
+        "max": 100,
+        "step": 0.5
+      }
+    }
+  }
+]

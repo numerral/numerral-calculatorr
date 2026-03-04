@@ -1,0 +1,34 @@
+[
+    {
+        "name": "Home Loan EMI Calculator",
+        "href": "/loan-calculators/home-loan-emi-calculator"
+    },
+    {
+        "name": "SIP Return Calculator",
+        "href": "/investment-calculators/sip-calculator"
+    },
+    {
+        "name": "Income Tax Calculator 2025",
+        "href": "/tax-calculators/income-tax-calculator"
+    },
+    {
+        "name": "Compound Interest Calculator",
+        "href": "/utility-calculators/compound-interest-calculator"
+    },
+    {
+        "name": "GST Calculator",
+        "href": "/tax-calculators/gst-calculator"
+    },
+    {
+        "name": "FD Maturity Calculator",
+        "href": "/investment-calculators/fd-calculator"
+    },
+    {
+        "name": "PPF Calculator",
+        "href": "/investment-calculators/ppf-calculator"
+    },
+    {
+        "name": "Percentage Calculator",
+        "href": "/utility-calculators/percentage-calculator"
+    }
+]

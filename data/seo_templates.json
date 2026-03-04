@@ -1,0 +1,26 @@
+{
+    "car-loan-emi": {
+        "title": "{{amount_label}} Car Loan EMI Calculator | Numerral",
+        "description": "Calculate car loan EMI for {{amount_label}}. See monthly payment, total interest, and comparison scenarios. Free tool by Numerral.",
+        "h1": "Car Loan EMI for {{amount_label}} — Monthly Payment Calculator",
+        "subtitle": "Your EMI for a {{amount_label}} car loan at {{rate}}% — adjust rate and tenure below.",
+        "explanation_heading": "Understanding Your {{amount_label}} Car Loan EMI",
+        "explanation_paragraphs": [
+            "A {{amount_label}} car loan is a common borrowing amount for vehicles in India. At the average rate of {{rate}}% per annum over a {{tenure_years}}-year tenure, your EMI and total interest depend on the exact amount and rate offered by your bank.",
+            "To reduce your total cost, consider increasing your down payment or opting for a shorter tenure if your monthly budget allows a higher EMI."
+        ],
+        "explanation_highlight": "Pro tip: Even a 0.25% rate reduction on a {{amount_label}} loan saves thousands over the full tenure."
+    },
+    "home-loan-emi": {
+        "title": "{{amount_label}} Home Loan EMI Calculator | Numerral",
+        "description": "Calculate home loan EMI for {{amount_label}}. Compare monthly payments across different interest rates and tenure options.",
+        "h1": "Home Loan EMI for {{amount_label}} — Monthly Payment Calculator",
+        "subtitle": "Your EMI for a {{amount_label}} home loan at {{rate}}% for {{tenure_years}} years.",
+        "explanation_heading": "Understanding Your {{amount_label}} Home Loan EMI",
+        "explanation_paragraphs": [
+            "A {{amount_label}} home loan is one of the most common housing finance amounts in India. At {{rate}}% per annum over {{tenure_years}} years, your total interest can be substantial — making rate negotiation critical.",
+            "Consider options like a floating rate vs fixed rate, and evaluate the impact of prepayments on your total interest outgo."
+        ],
+        "explanation_highlight": "Pro tip: Prepaying even one extra EMI per year can reduce your {{amount_label}} home loan tenure by several years."
+    }
+}

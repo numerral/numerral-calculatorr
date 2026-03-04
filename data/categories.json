@@ -1,0 +1,34 @@
+[
+    {
+        "key": "loan",
+        "icon": "🏦",
+        "name": "Loan Calculators",
+        "description": "EMI, eligibility & repayment planning tools",
+        "count": 9,
+        "href": "/loan-calculators"
+    },
+    {
+        "key": "invest",
+        "icon": "📈",
+        "name": "Investment Calculators",
+        "description": "SIP, FD, mutual fund & compounding tools",
+        "count": 10,
+        "href": "/investment-calculators"
+    },
+    {
+        "key": "tax",
+        "icon": "🧾",
+        "name": "Tax Calculators",
+        "description": "Income tax, GST, HRA & TDS estimators",
+        "count": 8,
+        "href": "/tax-calculators"
+    },
+    {
+        "key": "utility",
+        "icon": "⚡",
+        "name": "Utility Calculators",
+        "description": "Age, percentage, unit & date converters",
+        "count": 15,
+        "href": "/utility-calculators"
+    }
+]

@@ -1,0 +1,466 @@
+{
+  "car-loan-emi": [
+    {
+      "slug": "1-lakh",
+      "amount": 100000
+    },
+    {
+      "slug": "1-5-lakh",
+      "amount": 150000
+    },
+    {
+      "slug": "2-lakh",
+      "amount": 200000
+    },
+    {
+      "slug": "2-5-lakh",
+      "amount": 250000
+    },
+    {
+      "slug": "3-lakh",
+      "amount": 300000
+    },
+    {
+      "slug": "4-lakh",
+      "amount": 400000
+    },
+    {
+      "slug": "4-5-lakh",
+      "amount": 450000
+    },
+    {
+      "slug": "5-lakh",
+      "amount": 500000
+    },
+    {
+      "slug": "5-5-lakh",
+      "amount": 550000
+    },
+    {
+      "slug": "6-lakh",
+      "amount": 600000
+    },
+    {
+      "slug": "7-lakh",
+      "amount": 700000
+    },
+    {
+      "slug": "8-lakh",
+      "amount": 800000
+    },
+    {
+      "slug": "9-lakh",
+      "amount": 900000
+    },
+    {
+      "slug": "10-lakh",
+      "amount": 1000000
+    },
+    {
+      "slug": "12-lakh",
+      "amount": 1200000
+    },
+    {
+      "slug": "15-lakh",
+      "amount": 1500000
+    },
+    {
+      "slug": "20-lakh",
+      "amount": 2000000
+    },
+    {
+      "slug": "25-lakh",
+      "amount": 2500000
+    },
+    {
+      "slug": "30-lakh",
+      "amount": 3000000
+    }
+  ],
+  "home-loan-emi": [
+    {
+      "slug": "10-lakh",
+      "amount": 1000000
+    },
+    {
+      "slug": "15-lakh",
+      "amount": 1500000
+    },
+    {
+      "slug": "20-lakh",
+      "amount": 2000000
+    },
+    {
+      "slug": "25-lakh",
+      "amount": 2500000
+    },
+    {
+      "slug": "30-lakh",
+      "amount": 3000000
+    },
+    {
+      "slug": "40-lakh",
+      "amount": 4000000
+    },
+    {
+      "slug": "50-lakh",
+      "amount": 5000000
+    },
+    {
+      "slug": "60-lakh",
+      "amount": 6000000
+    },
+    {
+      "slug": "75-lakh",
+      "amount": 7500000
+    },
+    {
+      "slug": "1-crore",
+      "amount": 10000000
+    }
+  ],
+  "personal-loan-emi": [
+    {
+      "slug": "50-thousand",
+      "amount": 50000
+    },
+    {
+      "slug": "1-lakh",
+      "amount": 100000
+    },
+    {
+      "slug": "2-lakh",
+      "amount": 200000
+    },
+    {
+      "slug": "3-lakh",
+      "amount": 300000
+    },
+    {
+      "slug": "5-lakh",
+      "amount": 500000
+    },
+    {
+      "slug": "7-lakh",
+      "amount": 700000
+    },
+    {
+      "slug": "10-lakh",
+      "amount": 1000000
+    },
+    {
+      "slug": "15-lakh",
+      "amount": 1500000
+    }
+  ],
+  "education-loan-emi": [
+    {
+      "slug": "2-lakh",
+      "amount": 200000
+    },
+    {
+      "slug": "3-lakh",
+      "amount": 300000
+    },
+    {
+      "slug": "5-lakh",
+      "amount": 500000
+    },
+    {
+      "slug": "7-5-lakh",
+      "amount": 750000
+    },
+    {
+      "slug": "10-lakh",
+      "amount": 1000000
+    },
+    {
+      "slug": "15-lakh",
+      "amount": 1500000
+    },
+    {
+      "slug": "20-lakh",
+      "amount": 2000000
+    }
+  ],
+  "bike-loan-emi": [
+    {
+      "slug": "50-thousand",
+      "amount": 50000
+    },
+    {
+      "slug": "75-thousand",
+      "amount": 75000
+    },
+    {
+      "slug": "1-lakh",
+      "amount": 100000
+    },
+    {
+      "slug": "1-5-lakh",
+      "amount": 150000
+    },
+    {
+      "slug": "2-lakh",
+      "amount": 200000
+    },
+    {
+      "slug": "3-lakh",
+      "amount": 300000
+    }
+  ],
+  "business-loan-emi": [
+    {
+      "slug": "5-lakh",
+      "amount": 500000
+    },
+    {
+      "slug": "10-lakh",
+      "amount": 1000000
+    },
+    {
+      "slug": "15-lakh",
+      "amount": 1500000
+    },
+    {
+      "slug": "20-lakh",
+      "amount": 2000000
+    },
+    {
+      "slug": "30-lakh",
+      "amount": 3000000
+    },
+    {
+      "slug": "50-lakh",
+      "amount": 5000000
+    }
+  ],
+  "sip-calculator": [
+    {
+      "slug": "500-per-month",
+      "amount": 500
+    },
+    {
+      "slug": "1000-per-month",
+      "amount": 1000
+    },
+    {
+      "slug": "2000-per-month",
+      "amount": 2000
+    },
+    {
+      "slug": "3000-per-month",
+      "amount": 3000
+    },
+    {
+      "slug": "5000-per-month",
+      "amount": 5000
+    },
+    {
+      "slug": "10000-per-month",
+      "amount": 10000
+    },
+    {
+      "slug": "15000-per-month",
+      "amount": 15000
+    },
+    {
+      "slug": "20000-per-month",
+      "amount": 20000
+    },
+    {
+      "slug": "25000-per-month",
+      "amount": 25000
+    },
+    {
+      "slug": "50000-per-month",
+      "amount": 50000
+    }
+  ],
+  "fd-calculator": [
+    {
+      "slug": "1-lakh",
+      "amount": 100000
+    },
+    {
+      "slug": "2-lakh",
+      "amount": 200000
+    },
+    {
+      "slug": "5-lakh",
+      "amount": 500000
+    },
+    {
+      "slug": "10-lakh",
+      "amount": 1000000
+    },
+    {
+      "slug": "25-lakh",
+      "amount": 2500000
+    },
+    {
+      "slug": "50-lakh",
+      "amount": 5000000
+    },
+    {
+      "slug": "1-crore",
+      "amount": 10000000
+    },
+    {
+      "slug": "1-year",
+      "amount": 100000
+    },
+    {
+      "slug": "3-years",
+      "amount": 100000
+    },
+    {
+      "slug": "5-years",
+      "amount": 100000
+    },
+    {
+      "slug": "10-years",
+      "amount": 100000
+    }
+  ],
+  "rd-calculator": [
+    {
+      "slug": "500-per-month",
+      "amount": 500
+    },
+    {
+      "slug": "1000-per-month",
+      "amount": 1000
+    },
+    {
+      "slug": "2000-per-month",
+      "amount": 2000
+    },
+    {
+      "slug": "5000-per-month",
+      "amount": 5000
+    },
+    {
+      "slug": "10000-per-month",
+      "amount": 10000
+    },
+    {
+      "slug": "1-year",
+      "amount": 5000
+    },
+    {
+      "slug": "3-years",
+      "amount": 5000
+    },
+    {
+      "slug": "5-years",
+      "amount": 5000
+    }
+  ],
+  "ppf-calculator": [
+    {
+      "slug": "500-per-year",
+      "amount": 500
+    },
+    {
+      "slug": "50000-per-year",
+      "amount": 50000
+    },
+    {
+      "slug": "1-lakh-per-year",
+      "amount": 100000
+    },
+    {
+      "slug": "1-5-lakh-per-year",
+      "amount": 150000
+    },
+    {
+      "slug": "15-years",
+      "amount": 150000
+    },
+    {
+      "slug": "20-years",
+      "amount": 150000
+    },
+    {
+      "slug": "25-years",
+      "amount": 150000
+    }
+  ],
+  "nps-calculator": [
+    {
+      "slug": "1000-per-month",
+      "amount": 1000
+    },
+    {
+      "slug": "2000-per-month",
+      "amount": 2000
+    },
+    {
+      "slug": "5000-per-month",
+      "amount": 5000
+    },
+    {
+      "slug": "10000-per-month",
+      "amount": 10000
+    },
+    {
+      "slug": "15000-per-month",
+      "amount": 15000
+    },
+    {
+      "slug": "25000-per-month",
+      "amount": 25000
+    },
+    {
+      "slug": "20-years",
+      "amount": 5000
+    },
+    {
+      "slug": "25-years",
+      "amount": 5000
+    },
+    {
+      "slug": "30-years",
+      "amount": 5000
+    }
+  ],
+  "mutual-fund-returns": [
+    {
+      "slug": "1-lakh",
+      "amount": 100000
+    },
+    {
+      "slug": "5-lakh",
+      "amount": 500000
+    },
+    {
+      "slug": "10-lakh",
+      "amount": 1000000
+    },
+    {
+      "slug": "25-lakh",
+      "amount": 2500000
+    },
+    {
+      "slug": "50-lakh",
+      "amount": 5000000
+    },
+    {
+      "slug": "1-crore",
+      "amount": 10000000
+    },
+    {
+      "slug": "3-years",
+      "amount": 100000
+    },
+    {
+      "slug": "5-years",
+      "amount": 100000
+    },
+    {
+      "slug": "10-years",
+      "amount": 100000
+    }
+  ]
+}

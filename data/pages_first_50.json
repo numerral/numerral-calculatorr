@@ -1,0 +1,402 @@
+[
+    {
+        "calculatorId": "car-loan-emi",
+        "slug": "1-lakh",
+        "amount": 100000,
+        "rate": 8.5,
+        "tenure": 60,
+        "isIndexable": true
+    },
+    {
+        "calculatorId": "car-loan-emi",
+        "slug": "1-5-lakh",
+        "amount": 150000,
+        "rate": 8.5,
+        "tenure": 60,
+        "isIndexable": true
+    },
+    {
+        "calculatorId": "car-loan-emi",
+        "slug": "2-lakh",
+        "amount": 200000,
+        "rate": 8.5,
+        "tenure": 60,
+        "isIndexable": true
+    },
+    {
+        "calculatorId": "car-loan-emi",
+        "slug": "2-5-lakh",
+        "amount": 250000,
+        "rate": 8.5,
+        "tenure": 60,
+        "isIndexable": true
+    },
+    {
+        "calculatorId": "car-loan-emi",
+        "slug": "3-lakh",
+        "amount": 300000,
+        "rate": 8.5,
+        "tenure": 60,
+        "isIndexable": true
+    },
+    {
+        "calculatorId": "car-loan-emi",
+        "slug": "3-5-lakh",
+        "amount": 350000,
+        "rate": 8.5,
+        "tenure": 60,
+        "isIndexable": true
+    },
+    {
+        "calculatorId": "car-loan-emi",
+        "slug": "4-lakh",
+        "amount": 400000,
+        "rate": 8.5,
+        "tenure": 60,
+        "isIndexable": true
+    },
+    {
+        "calculatorId": "car-loan-emi",
+        "slug": "4-5-lakh",
+        "amount": 450000,
+        "rate": 8.5,
+        "tenure": 60,
+        "isIndexable": true
+    },
+    {
+        "calculatorId": "car-loan-emi",
+        "slug": "5-lakh",
+        "amount": 500000,
+        "rate": 8.5,
+        "tenure": 60,
+        "isIndexable": true
+    },
+    {
+        "calculatorId": "car-loan-emi",
+        "slug": "5-5-lakh",
+        "amount": 550000,
+        "rate": 8.5,
+        "tenure": 60,
+        "isIndexable": true
+    },
+    {
+        "calculatorId": "car-loan-emi",
+        "slug": "6-lakh",
+        "amount": 600000,
+        "rate": 8.5,
+        "tenure": 60,
+        "isIndexable": true
+    },
+    {
+        "calculatorId": "car-loan-emi",
+        "slug": "7-lakh",
+        "amount": 700000,
+        "rate": 8.5,
+        "tenure": 60,
+        "isIndexable": true
+    },
+    {
+        "calculatorId": "car-loan-emi",
+        "slug": "8-lakh",
+        "amount": 800000,
+        "rate": 8.5,
+        "tenure": 60,
+        "isIndexable": true
+    },
+    {
+        "calculatorId": "car-loan-emi",
+        "slug": "9-lakh",
+        "amount": 900000,
+        "rate": 8.5,
+        "tenure": 60,
+        "isIndexable": true
+    },
+    {
+        "calculatorId": "car-loan-emi",
+        "slug": "10-lakh",
+        "amount": 1000000,
+        "rate": 8.5,
+        "tenure": 60,
+        "isIndexable": true
+    },
+    {
+        "calculatorId": "car-loan-emi",
+        "slug": "12-lakh",
+        "amount": 1200000,
+        "rate": 8.5,
+        "tenure": 60,
+        "isIndexable": true
+    },
+    {
+        "calculatorId": "car-loan-emi",
+        "slug": "15-lakh",
+        "amount": 1500000,
+        "rate": 8.5,
+        "tenure": 60,
+        "isIndexable": true
+    },
+    {
+        "calculatorId": "car-loan-emi",
+        "slug": "20-lakh",
+        "amount": 2000000,
+        "rate": 8.5,
+        "tenure": 60,
+        "isIndexable": true
+    },
+    {
+        "calculatorId": "car-loan-emi",
+        "slug": "25-lakh",
+        "amount": 2500000,
+        "rate": 8.5,
+        "tenure": 60,
+        "isIndexable": true
+    },
+    {
+        "calculatorId": "car-loan-emi",
+        "slug": "30-lakh",
+        "amount": 3000000,
+        "rate": 8.5,
+        "tenure": 60,
+        "isIndexable": true
+    },
+    {
+        "calculatorId": "car-loan-emi",
+        "slug": "40-lakh",
+        "amount": 4000000,
+        "rate": 8.5,
+        "tenure": 60,
+        "isIndexable": true
+    },
+    {
+        "calculatorId": "car-loan-emi",
+        "slug": "50-lakh",
+        "amount": 5000000,
+        "rate": 8.5,
+        "tenure": 60,
+        "isIndexable": true
+    },
+    {
+        "calculatorId": "home-loan-emi",
+        "slug": "10-lakh",
+        "amount": 1000000,
+        "rate": 8.5,
+        "tenure": 240,
+        "isIndexable": true
+    },
+    {
+        "calculatorId": "home-loan-emi",
+        "slug": "15-lakh",
+        "amount": 1500000,
+        "rate": 8.5,
+        "tenure": 240,
+        "isIndexable": true
+    },
+    {
+        "calculatorId": "home-loan-emi",
+        "slug": "20-lakh",
+        "amount": 2000000,
+        "rate": 8.5,
+        "tenure": 240,
+        "isIndexable": true
+    },
+    {
+        "calculatorId": "home-loan-emi",
+        "slug": "25-lakh",
+        "amount": 2500000,
+        "rate": 8.5,
+        "tenure": 240,
+        "isIndexable": true
+    },
+    {
+        "calculatorId": "home-loan-emi",
+        "slug": "30-lakh",
+        "amount": 3000000,
+        "rate": 8.5,
+        "tenure": 240,
+        "isIndexable": true
+    },
+    {
+        "calculatorId": "home-loan-emi",
+        "slug": "40-lakh",
+        "amount": 4000000,
+        "rate": 8.5,
+        "tenure": 240,
+        "isIndexable": true
+    },
+    {
+        "calculatorId": "home-loan-emi",
+        "slug": "50-lakh",
+        "amount": 5000000,
+        "rate": 8.5,
+        "tenure": 240,
+        "isIndexable": true
+    },
+    {
+        "calculatorId": "home-loan-emi",
+        "slug": "60-lakh",
+        "amount": 6000000,
+        "rate": 8.5,
+        "tenure": 240,
+        "isIndexable": true
+    },
+    {
+        "calculatorId": "home-loan-emi",
+        "slug": "70-lakh",
+        "amount": 7000000,
+        "rate": 8.5,
+        "tenure": 240,
+        "isIndexable": true
+    },
+    {
+        "calculatorId": "home-loan-emi",
+        "slug": "75-lakh",
+        "amount": 7500000,
+        "rate": 8.5,
+        "tenure": 240,
+        "isIndexable": true
+    },
+    {
+        "calculatorId": "home-loan-emi",
+        "slug": "80-lakh",
+        "amount": 8000000,
+        "rate": 8.5,
+        "tenure": 240,
+        "isIndexable": true
+    },
+    {
+        "calculatorId": "home-loan-emi",
+        "slug": "1-crore",
+        "amount": 10000000,
+        "rate": 8.5,
+        "tenure": 240,
+        "isIndexable": true
+    },
+    {
+        "calculatorId": "home-loan-emi",
+        "slug": "1-5-crore",
+        "amount": 15000000,
+        "rate": 8.5,
+        "tenure": 240,
+        "isIndexable": true
+    },
+    {
+        "calculatorId": "home-loan-emi",
+        "slug": "2-crore",
+        "amount": 20000000,
+        "rate": 8.5,
+        "tenure": 240,
+        "isIndexable": true
+    },
+    {
+        "calculatorId": "car-loan-emi",
+        "slug": "5-lakh-60-months",
+        "amount": 500000,
+        "rate": 8.5,
+        "tenure": 60,
+        "isIndexable": true
+    },
+    {
+        "calculatorId": "car-loan-emi",
+        "slug": "5-lakh-36-months",
+        "amount": 500000,
+        "rate": 8.5,
+        "tenure": 36,
+        "isIndexable": true
+    },
+    {
+        "calculatorId": "car-loan-emi",
+        "slug": "5-lakh-84-months",
+        "amount": 500000,
+        "rate": 8.5,
+        "tenure": 84,
+        "isIndexable": true
+    },
+    {
+        "calculatorId": "car-loan-emi",
+        "slug": "10-lakh-60-months",
+        "amount": 1000000,
+        "rate": 8.5,
+        "tenure": 60,
+        "isIndexable": true
+    },
+    {
+        "calculatorId": "car-loan-emi",
+        "slug": "10-lakh-84-months",
+        "amount": 1000000,
+        "rate": 8.5,
+        "tenure": 84,
+        "isIndexable": true
+    },
+    {
+        "calculatorId": "car-loan-emi",
+        "slug": "5-lakh-9-percent",
+        "amount": 500000,
+        "rate": 9.0,
+        "tenure": 60,
+        "isIndexable": false
+    },
+    {
+        "calculatorId": "car-loan-emi",
+        "slug": "5-lakh-10-percent",
+        "amount": 500000,
+        "rate": 10.0,
+        "tenure": 60,
+        "isIndexable": false
+    },
+    {
+        "calculatorId": "car-loan-emi",
+        "slug": "10-lakh-9-percent",
+        "amount": 1000000,
+        "rate": 9.0,
+        "tenure": 60,
+        "isIndexable": false
+    },
+    {
+        "calculatorId": "car-loan-emi",
+        "slug": "5-lakh-9-percent-60-months",
+        "amount": 500000,
+        "rate": 9.0,
+        "tenure": 60,
+        "isIndexable": false
+    },
+    {
+        "calculatorId": "home-loan-emi",
+        "slug": "30-lakh-240-months",
+        "amount": 3000000,
+        "rate": 8.5,
+        "tenure": 240,
+        "isIndexable": true
+    },
+    {
+        "calculatorId": "home-loan-emi",
+        "slug": "50-lakh-180-months",
+        "amount": 5000000,
+        "rate": 8.5,
+        "tenure": 180,
+        "isIndexable": true
+    },
+    {
+        "calculatorId": "home-loan-emi",
+        "slug": "1-crore-240-months",
+        "amount": 10000000,
+        "rate": 8.5,
+        "tenure": 240,
+        "isIndexable": true
+    },
+    {
+        "calculatorId": "home-loan-emi",
+        "slug": "50-lakh-8-5-percent",
+        "amount": 5000000,
+        "rate": 8.5,
+        "tenure": 240,
+        "isIndexable": false
+    },
+    {
+        "calculatorId": "home-loan-emi",
+        "slug": "50-lakh-9-percent",
+        "amount": 5000000,
+        "rate": 9.0,
+        "tenure": 240,
+        "isIndexable": false
+    }
+]

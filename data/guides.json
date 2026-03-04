@@ -1,0 +1,475 @@
+[
+    {
+        "slug": "home-loan-guide-2026",
+        "title": "Complete Home Loan Guide 2026 — Rates, Eligibility & Process",
+        "description": "Everything you need to know about home loans in India — current rates, eligibility criteria, documentation, stamp duty, and how to get the best deal.",
+        "category": "loan",
+        "icon": "🏠",
+        "readTime": "12 min",
+        "relatedCalculators": [
+            "home-loan-emi",
+            "loan-eligibility"
+        ],
+        "sections": [
+            {
+                "heading": "Current Home Loan Interest Rates (2026)",
+                "content": "Home loan rates in India currently range from 8.25% (SBI, Bank of Baroda) to 10.5% (NBFCs). Most banks offer floating rates linked to the RBI repo rate. Here's a comparison of top lenders:\n\n• **SBI** — 8.25% onwards (lowest for salaried, ₹5L+ salary)\n• **HDFC Bank** — 8.45% onwards\n• **ICICI Bank** — 8.40% onwards\n• **Bank of Baroda** — 8.30% onwards\n• **Axis Bank** — 8.55% onwards\n• **PNB Housing** — 8.50% onwards\n\nRates depend on your credit score, loan amount, property type (ready/under-construction), and employment type (salaried vs self-employed). A CIBIL score of 750+ typically gets you the best rates."
+            },
+            {
+                "heading": "Home Loan Eligibility Criteria",
+                "content": "Banks typically consider these factors:\n\n**Age**: 21-65 years (loan tenure + age should not exceed 65-70)\n**Income**: Minimum ₹25,000/month for salaried; ₹2L+ annual for self-employed\n**CIBIL Score**: 650+ (minimum), 750+ (best rates)\n**Employment**: Minimum 2 years experience (salaried) or 3 years vintage (business)\n**Property**: Should be approved by the bank; clear title documents required\n**LTV Ratio**: Banks fund 75-90% of property value; rest is your down payment\n\nThe maximum EMI-to-income ratio is typically 50-60%. If your monthly income is ₹1L, your total EMIs (all loans combined) should not exceed ₹50-60K."
+            },
+            {
+                "heading": "Documents Required for Home Loan",
+                "content": "**Identity & Address**: Aadhaar, PAN, passport, voter ID\n**Income Proof (Salaried)**: Last 3 months salary slips, 6 months bank statements, Form 16\n**Income Proof (Self-Employed)**: 3 years ITR, balance sheet, P&L, GST returns\n**Property Documents**: Sale agreement, title deed, builder approvals, NOC\n**Others**: Passport-size photographs, processing fee cheque\n\nPro tip: Keep your last 6 months bank statements clean — no cheque bounces, maintain minimum balance, and avoid cash deposits above reporting limits."
+            },
+            {
+                "heading": "Fixed vs Floating Rate — Which to Choose?",
+                "content": "**Floating Rate** (recommended): Currently 8.25-9.5%, changes with RBI repo rate. Most Indian home loans are floating. Benefit: No prepayment penalty under RBI guidelines.\n\n**Fixed Rate**: 1-2% higher than floating (10-11%). Provides EMI certainty but costs more overall. Some banks offer 'fixed for X years, then floating' hybrid options.\n\n**Verdict**: In the current rate cycle, floating rates are better. RBI has paused rate hikes, and any future cuts will directly reduce your EMI. Fixed rates make sense only if you expect significant rate increases."
+            },
+            {
+                "heading": "Tax Benefits on Home Loan",
+                "content": "Home loans offer the most generous tax deductions in India:\n\n• **Section 80C**: Up to ₹1.5 Lakh deduction on principal repayment\n• **Section 24(b)**: Up to ₹2 Lakh deduction on interest (self-occupied property)\n• **Section 80EEA**: Additional ₹1.5 Lakh for first-time buyers (stamp value ≤ ₹45L)\n\n**Joint Loan Benefit**: Both co-borrowers can claim deductions individually, effectively doubling the tax savings to ₹7L+ annually.\n\nFor a ₹50L loan at 8.5% for 20 years, the tax savings alone can be ₹15-25 Lakh over the loan tenure."
+            },
+            {
+                "heading": "Stamp Duty & Registration Charges",
+                "content": "Stamp duty varies by state and typically ranges from 3-8% of property value:\n\n• **Maharashtra**: 5% (6% in Mumbai)\n• **Karnataka**: 5%\n• **Delhi**: 4% (men), 4% (women get 1% rebate in some cases)\n• **Tamil Nadu**: 7%\n• **UP**: 5% (women get 1% rebate)\n\nRegistration charges are typically 1% of property value. Some states offer reduced stamp duty for women buyers — buying in a woman's name or as joint owner can save ₹50K-2L."
+            }
+        ],
+        "faq": [
+            {
+                "question": "What is the minimum down payment for a home loan?",
+                "answer": "10-25% of property value. For properties up to ₹30L, banks can fund up to 90%. For ₹30-75L, LTV is 80%. Above ₹75L, LTV is 75%."
+            },
+            {
+                "question": "Can I transfer my home loan to another bank?",
+                "answer": "Yes! Balance transfer is common when another bank offers a lower rate. The new bank pays off your existing loan. Processing fee is 0.5-1%. Worth it if rate difference is 0.5%+ and remaining tenure is 10+ years."
+            },
+            {
+                "question": "Is prepayment of home loan advisable?",
+                "answer": "For floating rate loans, there's zero prepayment penalty (RBI mandate). Prepaying even ₹1-2L annually in the first 5-7 years can save ₹10-15L in total interest on a ₹50L loan."
+            }
+        ]
+    },
+    {
+        "slug": "sip-vs-fd-vs-ppf-comparison",
+        "title": "SIP vs FD vs PPF — Where Should You Invest in 2026?",
+        "description": "Detailed comparison of SIP, Fixed Deposits, and PPF — returns, risk, liquidity, tax benefits, and which is best for your financial goals.",
+        "category": "invest",
+        "icon": "📊",
+        "readTime": "10 min",
+        "relatedCalculators": [
+            "sip-calculator",
+            "fd-calculator",
+            "ppf-calculator"
+        ],
+        "sections": [
+            {
+                "heading": "Quick Comparison Table",
+                "content": "| Feature | SIP (Equity MF) | Fixed Deposit | PPF |\n|---|---|---|---|\n| Returns (10Y avg) | 12-15% | 7-8% | 7.1% |\n| Risk | Medium-High | Very Low | Zero |\n| Liquidity | High (T+2 days) | Penalty on early withdrawal | Lock-in 15 years |\n| Tax on Returns | 10% LTCG (>₹1L) | As per slab | Tax-free |\n| Minimum Amount | ₹500/month | ₹1,000 | ₹500/year |\n| Section 80C | ELSS only | 5-year tax saver FD | Full amount |\n| Best For | Long-term wealth | Short-term safety | Guaranteed + tax-free |"
+            },
+            {
+                "heading": "SIP (Systematic Investment Plan)",
+                "content": "SIPs invest a fixed amount monthly into mutual funds. The power of SIPs lies in **rupee cost averaging** — you buy more units when prices are low and fewer when high.\n\n**₹10,000/month SIP for 20 years at 12%** → ₹99.9 Lakh (invested: ₹24L, gains: ₹75.9L)\n\n**Best for**: Long-term goals (retirement, child's education, wealth creation)\n**Risk**: NAV fluctuates daily; short-term losses possible\n**Tax**: LTCG above ₹1L taxed at 10% (equity), STCG at 15%\n\nPro tip: Start early. ₹5,000/month from age 25 = ₹3.5 Cr at 60. From age 35 = ₹1 Cr. That 10-year head start adds ₹2.5 Cr."
+            },
+            {
+                "heading": "Fixed Deposits (FD)",
+                "content": "FDs offer guaranteed returns with zero market risk. Current rates:\n\n• **SBI**: 6.50-7.10% (general), 7.00-7.60% (senior citizens)\n• **HDFC Bank**: 7.00-7.40%\n• **Post Office**: 7.50% (5-year)\n\n**₹10 Lakh FD for 5 years at 7.5%** → ₹14.36 Lakh (interest: ₹4.36L)\n\n**Best for**: Emergency fund, short-term goals (1-3 years), risk-averse investors\n**Risk**: Inflation risk (real returns often 0-2% after tax)\n**Tax**: Interest taxed as per income slab; TDS deducted if >₹40K/year\n\nPro tip: Senior citizens get 0.50% extra. Tax-saver FDs (5-year lock-in) qualify for Section 80C."
+            },
+            {
+                "heading": "PPF (Public Provident Fund)",
+                "content": "PPF is the **safest investment** in India — backed by the Government with tax-free returns.\n\n**Current rate**: 7.1% compounded annually\n**Lock-in**: 15 years (partial withdrawal from 7th year)\n**Max contribution**: ₹1.5 Lakh/year\n\n**₹1.5L/year for 15 years** → ₹40.68 Lakh (invested: ₹22.5L, interest: ₹18.18L — all tax-free)\n\n**Best for**: Risk-free guaranteed returns, tax savings, retirement corpus\n**Tax benefit**: EEE (Exempt-Exempt-Exempt) — contribution, interest, and maturity all tax-free\n\nPro tip: Deposit before 5th of every month to earn interest for that month. April 1-5 deposit maximizes annual interest."
+            },
+            {
+                "heading": "Which Should You Choose?",
+                "content": "**Age 20-35**: 70% SIP + 20% PPF + 10% FD (emergency fund)\n**Age 35-50**: 50% SIP + 30% PPF + 20% FD\n**Age 50+**: 30% SIP + 30% PPF + 40% FD/Senior Citizen Scheme\n\nThe ideal portfolio combines all three:\n• **SIP** for wealth creation (beats inflation)\n• **PPF** for guaranteed tax-free returns\n• **FD** for emergency liquidity and short-term goals\n\nNever put all your money in one basket. Even ₹5,000/month across these three instruments can build a ₹1 Cr+ corpus over 20 years."
+            }
+        ],
+        "faq": [
+            {
+                "question": "Is SIP better than FD?",
+                "answer": "For long-term goals (7+ years), SIP in equity mutual funds has historically outperformed FDs by 4-7% annually. But SIPs carry market risk. For goals less than 3 years, FD is safer."
+            },
+            {
+                "question": "Can I invest in all three simultaneously?",
+                "answer": "Absolutely! In fact, this is recommended. Diversification across asset classes reduces overall risk while maintaining good returns."
+            },
+            {
+                "question": "What if the stock market crashes during my SIP?",
+                "answer": "Don't stop your SIP during market crashes — that's when you buy more units at lower prices. Historical data shows SIPs through crashes (2008, 2020) generated higher long-term returns."
+            }
+        ]
+    },
+    {
+        "slug": "income-tax-guide-fy-2025-26",
+        "title": "Income Tax Guide FY 2025-26 — Slabs, Deductions & Regime Comparison",
+        "description": "Complete Indian income tax guide for FY 2025-26. Compare old vs new regime, understand deductions, and calculate your tax liability.",
+        "category": "tax",
+        "icon": "🧾",
+        "readTime": "15 min",
+        "relatedCalculators": [
+            "income-tax-calculator",
+            "hra-exemption-calculator"
+        ],
+        "sections": [
+            {
+                "heading": "New Tax Regime Slabs (FY 2025-26)",
+                "content": "The new regime (default from FY 2024-25) offers lower rates but fewer deductions:\n\n| Income Slab | Tax Rate |\n|---|---|\n| Up to ₹3,00,000 | Nil |\n| ₹3,00,001 - ₹7,00,000 | 5% |\n| ₹7,00,001 - ₹10,00,000 | 10% |\n| ₹10,00,001 - ₹12,00,000 | 15% |\n| ₹12,00,001 - ₹15,00,000 | 20% |\n| Above ₹15,00,000 | 30% |\n\n**Standard deduction**: ₹75,000 (increased from ₹50K)\n**Rebate under 87A**: Full tax rebate if taxable income ≤ ₹7 Lakh (zero tax)"
+            },
+            {
+                "heading": "Old Tax Regime Slabs",
+                "content": "The old regime has higher rates but allows deductions under 80C, 80D, HRA, etc.:\n\n| Income Slab | Tax Rate |\n|---|---|\n| Up to ₹2,50,000 | Nil |\n| ₹2,50,001 - ₹5,00,000 | 5% |\n| ₹5,00,001 - ₹10,00,000 | 20% |\n| Above ₹10,00,000 | 30% |\n\n**Key deductions allowed**:\n• **80C**: ₹1.5L (EPF, PPF, ELSS, life insurance, tuition fees)\n• **80D**: ₹25K-₹1L (health insurance)\n• **80CCD(1B)**: ₹50K (NPS)\n• **HRA**: Actual rent-based calculation\n• **Section 24**: ₹2L (home loan interest)"
+            },
+            {
+                "heading": "Old vs New Regime — Which Saves More Tax?",
+                "content": "**Choose New Regime if**: Your total deductions are less than ₹3.75 Lakh\n**Choose Old Regime if**: Your total deductions exceed ₹3.75 Lakh\n\n**Example at ₹12 Lakh income**:\n• New Regime: Tax = ₹71,500 (after ₹75K standard deduction)\n• Old Regime (with ₹3L deductions): Tax = ₹87,500\n• Old Regime (with ₹4.5L deductions): Tax = ₹57,500 ✓ Winner\n\nIf you have a home loan (₹2L interest) + 80C (₹1.5L) + 80D (₹50K) + HRA (₹2L), old regime almost always wins. Use our Income Tax Calculator to compare both regimes with your exact numbers."
+            },
+            {
+                "heading": "Key Deductions Under Old Regime",
+                "content": "**Section 80C (₹1.5L limit)**:\nEPF, PPF, ELSS mutual funds, life insurance premium, children's tuition fees, home loan principal, NSC, SSY, 5-year tax saver FD\n\n**Section 80D (Health Insurance)**:\n• Self + family: ₹25,000\n• Parents below 60: ₹25,000\n• Parents above 60: ₹50,000\n• Max possible: ₹1,00,000\n\n**Section 80CCD(1B)**: Additional ₹50,000 for NPS contribution\n\n**Section 80E**: Education loan interest (no upper limit, 8 years)\n\n**Section 80TTA/80TTB**: Savings account interest up to ₹10K (₹50K for seniors)"
+            },
+            {
+                "heading": "How to Calculate Your Tax",
+                "content": "**Step 1**: Calculate gross total income (salary + other income)\n**Step 2**: Subtract applicable deductions (80C, 80D, HRA, etc.)\n**Step 3**: Apply tax slab rates to taxable income\n**Step 4**: Add 4% health & education cess\n**Step 5**: Subtract TDS already paid\n**Step 6**: Pay balance tax or claim refund\n\nUse our Income Tax Calculator to do this automatically — it compares both regimes and tells you which saves more."
+            }
+        ],
+        "faq": [
+            {
+                "question": "Can I switch between old and new regime every year?",
+                "answer": "Salaried individuals can switch between regimes every financial year. Self-employed individuals can switch only once in their lifetime (after opting for new regime)."
+            },
+            {
+                "question": "Is the new regime really better?",
+                "answer": "For individuals with minimal investments/deductions, yes. But if you maximise 80C + 80D + HRA + home loan interest, old regime typically saves ₹30-50K more in tax annually above ₹10L income."
+            },
+            {
+                "question": "What is the tax on ₹10 Lakh salary?",
+                "answer": "New Regime: ~₹54,600 (after standard deduction). Old Regime: depends on deductions. With ₹2.5L deductions, it's ~₹65,000. With ₹4L deductions, it's ~₹35,000."
+            }
+        ]
+    },
+    {
+        "slug": "car-loan-tips-best-rate",
+        "title": "Car Loan Tips — How to Get the Best Interest Rate in 2026",
+        "description": "Expert tips to secure the lowest car loan rate. Compare dealer vs bank financing, understand processing fees, and save lakhs in interest.",
+        "category": "loan",
+        "icon": "🚗",
+        "readTime": "8 min",
+        "relatedCalculators": [
+            "car-loan-emi",
+            "loan-eligibility"
+        ],
+        "sections": [
+            {
+                "heading": "Current Car Loan Rates (2026)",
+                "content": "| Lender | New Car Rate | Used Car Rate |\n|---|---|---|\n| SBI | 8.25% | 11.50% |\n| HDFC Bank | 8.45% | 12.00% |\n| ICICI Bank | 8.40% | 12.50% |\n| Bank of Baroda | 8.30% | 11.00% |\n| Axis Bank | 8.55% | 12.00% |\n| Mahindra Finance | 9.50% | 14.00% |\n\nRates for new cars are significantly lower than used cars because the vehicle itself serves as better collateral."
+            },
+            {
+                "heading": "5 Tips to Get the Lowest Rate",
+                "content": "**1. Check Your Bank First**: Pre-approved offers from your salary account bank are 0.5-1% cheaper than walk-in rates.\n\n**2. Improve CIBIL to 750+**: Score above 750 unlocks the best rates. Pay off credit card dues, avoid new credit inquiries 3 months before applying.\n\n**3. Choose Shorter Tenure**: 3-year loans get lower rates than 5-7 year loans at most banks.\n\n**4. Negotiate the Rate**: Banks have flexibility of 0.25-0.75%. If you have multiple offers, show them to negotiate.\n\n**5. Avoid Dealer Financing**: Dealer-arranged loans are 1-2% more expensive. The dealer earns a commission on each loan — that cost is passed to you through a higher rate."
+            },
+            {
+                "heading": "Dealer Financing vs Bank Loan",
+                "content": "**Dealer Financing**: Convenient (done at showroom), but rates are 1-2% higher. Dealers earn ₹5,000-25,000 commission per loan. They may bundle insurance and accessories to inflate the loan amount.\n\n**Direct Bank Loan**: Lower rate, transparent terms, no bundled products. Takes 2-3 days to process. You walk into the dealership as a 'cash buyer' with more negotiating power on car price.\n\n**Savings Example**: ₹8L loan at dealer rate (9.5%) vs bank rate (8.25%) for 5 years:\n• Dealer: EMI ₹16,768 | Total Interest ₹2,06,080\n• Bank: EMI ₹16,310 | Total Interest ₹1,78,600\n• **You save ₹27,480** by going directly to the bank."
+            },
+            {
+                "heading": "Hidden Charges to Watch For",
+                "content": "• **Processing Fee**: 0.5-2% of loan amount (negotiate to ₹2,000-3,000 flat)\n• **Documentation Charges**: ₹500-2,000 (often waived if you ask)\n• **Prepayment Penalty**: Should be zero for floating rate (RBI rule). Fixed rate loans may charge 2-5%\n• **Insurance**: Banks may insist on comprehensive insurance in year 1. From year 2, you can switch to a cheaper insurer\n• **GPS Tracker**: Some NBFCs charge ₹3,000-5,000 for mandatory GPS — avoid these lenders"
+            }
+        ],
+        "faq": [
+            {
+                "question": "Should I take a car loan or pay cash?",
+                "answer": "If the loan rate is <9% and you can invest your cash at >12% (e.g., equity SIP), taking a loan and investing the difference is mathematically better. But being debt-free has psychological value too."
+            },
+            {
+                "question": "What is the ideal car loan tenure?",
+                "answer": "3-4 years is optimal. Shorter tenure means less total interest. Avoid 7-year tenures — you'll end up paying 35-40% of the car's value as interest."
+            },
+            {
+                "question": "Can I prepay my car loan EMI?",
+                "answer": "Yes! For floating rate car loans, RBI mandates zero prepayment penalty. Even partial prepayments of ₹25-50K can save significant interest."
+            }
+        ]
+    },
+    {
+        "slug": "gst-guide-small-business",
+        "title": "GST Guide for Small Businesses — Rates, Filing & Input Credit",
+        "description": "Complete GST guide for Indian small businesses. Understand registration, rates, filing deadlines, input tax credit, and composition scheme.",
+        "category": "tax",
+        "icon": "📋",
+        "readTime": "12 min",
+        "relatedCalculators": [
+            "gst-calculator"
+        ],
+        "sections": [
+            {
+                "heading": "GST Registration — Who Needs It?",
+                "content": "**Mandatory registration** if:\n• Annual turnover exceeds ₹40 Lakh (goods) or ₹20 Lakh (services)\n• You sell goods/services inter-state (any turnover)\n• You sell on e-commerce platforms (Amazon, Flipkart)\n• You're a casual taxable person\n\n**Voluntary registration** is beneficial if:\n• Your customers are GST-registered businesses (they need your GSTIN for input credit)\n• You want to claim input tax credit on your purchases\n• It adds credibility and professionalism to your business"
+            },
+            {
+                "heading": "GST Rate Structure",
+                "content": "| Rate | Category | Examples |\n|---|---|---|\n| 0% | Exempt | Fresh food, milk, education |\n| 5% | Essential | Packaged food, economy transport |\n| 12% | Standard | Processed food, business class |\n| 18% | Standard | Most services, electronics, IT |\n| 28% | Luxury | Cars, tobacco, aerated drinks |\n\n**Most common rate for services**: 18% (IT, consulting, rent, professional services)\n**Most common rate for goods**: 12-18%\n\nUse our GST Calculator to quickly compute GST on any amount at any rate."
+            },
+            {
+                "heading": "Input Tax Credit (ITC) — Save Money",
+                "content": "ITC is the most powerful GST benefit for businesses. You can claim credit for GST paid on business purchases against GST collected on sales.\n\n**Example**: You charge 18% GST on ₹1,00,000 service = ₹18,000 GST collected. You paid 18% GST on ₹40,000 office rent = ₹7,200 GST paid. **Net GST payable = ₹18,000 - ₹7,200 = ₹10,800**.\n\n**ITC is available on**: Goods and services used for business, capital goods, input services\n**ITC is NOT available on**: Personal use, food & beverages (unless you're in food business), health insurance for non-employees"
+            },
+            {
+                "heading": "Composition Scheme — Simplified Compliance",
+                "content": "For small businesses with turnover up to ₹1.5 Crore (goods) or ₹50 Lakh (services):\n\n• **Flat rate**: 1% (manufacturers), 5% (restaurants), 6% (services)\n• **Quarterly filing** instead of monthly\n• **No ITC** can be claimed\n• **Cannot sell inter-state**\n\nBest for: Small manufacturers, restaurants, and local service providers who sell B2C (to consumers, not businesses)."
+            },
+            {
+                "heading": "Filing Deadlines",
+                "content": "**Regular taxpayers**:\n• GSTR-1 (outward supplies): 11th of next month\n• GSTR-3B (summary return): 20th of next month\n• GSTR-9 (annual return): December 31st\n\n**Composition taxpayers**:\n• CMP-08: Quarterly (18th of month after quarter)\n• GSTR-4 (annual): April 30th\n\n**Late filing penalty**: ₹50/day (₹20/day for NIL return), max ₹5,000. Interest at 18% on tax due."
+            }
+        ],
+        "faq": [
+            {
+                "question": "What is GSTIN?",
+                "answer": "GST Identification Number — a 15-digit unique identifier. Format: 2 digits (state code) + 10 digits (PAN) + 1 digit (entity) + 1 digit (default Z) + 1 digit (checksum)."
+            },
+            {
+                "question": "Can I claim ITC on rent?",
+                "answer": "Yes, if the rented property is used for business purposes and the landlord is GST-registered. Commercial property rent attracts 18% GST, and you can claim full ITC."
+            },
+            {
+                "question": "Is GST registration free?",
+                "answer": "Yes, GST registration on the GST portal is completely free. Beware of agents charging fees for filing — you can do it yourself at gst.gov.in."
+            }
+        ]
+    },
+    {
+        "slug": "compound-interest-power-of-compounding",
+        "title": "Compound Interest — The 8th Wonder of the World Explained",
+        "description": "Understand the magic of compound interest with real examples. Learn how compounding frequency, time, and rate affect your wealth.",
+        "category": "utility",
+        "icon": "📈",
+        "readTime": "8 min",
+        "relatedCalculators": [
+            "compound-interest-calculator",
+            "simple-interest-calculator",
+            "sip-calculator"
+        ],
+        "sections": [
+            {
+                "heading": "What is Compound Interest?",
+                "content": "Compound interest means **earning interest on your interest**. Unlike simple interest (calculated only on principal), compound interest grows exponentially over time.\n\n**The Formula**: A = P × (1 + r/n)^(n×t)\n\nWhere:\n• P = Principal amount\n• r = Annual interest rate (decimal)\n• n = Number of times compounded per year\n• t = Time in years\n• A = Final amount"
+            },
+            {
+                "heading": "The Power of Time — ₹1,000/Month SIP Example",
+                "content": "At 12% annual returns:\n\n| Years | Invested | Corpus | Interest Earned |\n|---|---|---|---|\n| 5 | ₹60,000 | ₹82,486 | ₹22,486 |\n| 10 | ₹1,20,000 | ₹2,32,339 | ₹1,12,339 |\n| 20 | ₹2,40,000 | ₹9,99,148 | ₹7,59,148 |\n| 30 | ₹3,60,000 | ₹35,29,914 | ₹31,69,914 |\n\nNotice how 30 years = ₹35.3L from just ₹1,000/month. The interest earned (₹31.7L) is **8.8x** the total investment. That's compounding at work."
+            },
+            {
+                "heading": "Compounding Frequency Matters",
+                "content": "₹1 Lakh at 10% for 5 years:\n\n| Frequency | Final Amount | Interest |\n|---|---|---|\n| Yearly | ₹1,61,051 | ₹61,051 |\n| Quarterly | ₹1,63,862 | ₹63,862 |\n| Monthly | ₹1,64,531 | ₹64,531 |\n| Daily | ₹1,64,866 | ₹64,866 |\n\nMonthly compounding earns ₹3,480 more than yearly compounding on just ₹1L. On ₹1 Crore, that difference becomes ₹3.48 Lakh!"
+            },
+            {
+                "heading": "Rule of 72 — Quick Doubling Calculator",
+                "content": "Want to know how long it takes to double your money? Divide 72 by the interest rate:\n\n• At 6%: 72 ÷ 6 = **12 years** to double\n• At 8%: 72 ÷ 8 = **9 years** to double\n• At 12%: 72 ÷ 12 = **6 years** to double\n• At 15%: 72 ÷ 15 = **4.8 years** to double\n\nThis means ₹10 Lakh at 12% becomes ₹20L in 6 years, ₹40L in 12 years, ₹80L in 18 years, and ₹1.6 Cr in 24 years — without adding a single rupee!"
+            },
+            {
+                "heading": "Simple vs Compound Interest — The Gap",
+                "content": "₹1 Lakh at 10% over different periods:\n\n| Years | Simple Interest | Compound Interest | Difference |\n|---|---|---|---|\n| 5 | ₹1,50,000 | ₹1,61,051 | ₹11,051 |\n| 10 | ₹2,00,000 | ₹2,59,374 | ₹59,374 |\n| 20 | ₹3,00,000 | ₹6,72,750 | ₹3,72,750 |\n| 30 | ₹4,00,000 | ₹17,44,940 | ₹13,44,940 |\n\nAt 30 years, compound interest gives you **4.4x more** than simple interest. The longer you stay invested, the bigger the gap."
+            }
+        ],
+        "faq": [
+            {
+                "question": "Where can I earn compound interest?",
+                "answer": "Fixed deposits, recurring deposits, PPF, mutual funds (via NAV growth), savings accounts, and bonds all compound. Equity mutual funds don't technically 'compound' but the growth effect is similar through NAV appreciation."
+            },
+            {
+                "question": "Does compound interest work against me in loans?",
+                "answer": "Yes. EMI loans use compound interest on the reducing balance. Credit card debt compounds monthly at 2-3.5% (24-42% annually) — always pay credit card bills in full."
+            },
+            {
+                "question": "What did Einstein say about compound interest?",
+                "answer": "The quote 'Compound interest is the eighth wonder of the world. He who understands it, earns it; he who doesn't, pays it' is widely attributed to Einstein, though its true origin is debated."
+            }
+        ]
+    },
+    {
+        "slug": "personal-loan-vs-credit-card-emi",
+        "title": "Personal Loan vs Credit Card EMI — Which is Cheaper?",
+        "description": "Detailed cost comparison of personal loans vs credit card EMI conversion. Understand interest rates, processing fees, and which saves more.",
+        "category": "loan",
+        "icon": "💳",
+        "readTime": "7 min",
+        "relatedCalculators": [
+            "personal-loan-emi"
+        ],
+        "sections": [
+            {
+                "heading": "Interest Rate Comparison",
+                "content": "| Type | Interest Rate | Effective Annual Rate |\n|---|---|---|\n| Personal Loan (bank) | 10.5-14% | 10.5-14% |\n| Personal Loan (NBFC) | 14-24% | 14-24% |\n| Credit Card EMI | 12-18% (advertised) | 18-24% (effective) |\n| Credit Card Revolving | 2-3.5% per month | 24-42% |\n\n**Key insight**: Credit card EMI rates look lower because they're often quoted as flat rates (not reducing balance). A '15% flat rate' actually equals ~28% reducing balance rate. Always compare reducing balance rates."
+            },
+            {
+                "heading": "When to Choose Personal Loan",
+                "content": "✅ Loan amount is ₹1 Lakh+ (economy of scale for processing fees)\n✅ You need longer tenure (12-60 months)\n✅ Your CIBIL score is 750+ (gets you 10.5-12% rate)\n✅ You can get a pre-approved offer from your bank\n✅ You want a clear repayment schedule\n\nPersonal loans offer genuine reducing balance EMI at transparent rates. For amounts above ₹2L, they're almost always cheaper than credit card EMI."
+            },
+            {
+                "heading": "When to Choose Credit Card EMI",
+                "content": "✅ Purchase amount is ₹10,000-₹1,00,000\n✅ No-cost EMI is available (merchant absorbs interest)\n✅ Tenure is short (3-6 months)\n✅ You want instant conversion without loan application\n✅ The credit card offers 0% EMI with subvention\n\n**No-cost EMI is genuinely free** when the merchant provides interest subsidy. Check if the product price is the same for cash vs EMI — if it's the same, the no-cost EMI is real."
+            },
+            {
+                "heading": "Cost Comparison — ₹2 Lakh for 12 Months",
+                "content": "| Factor | Personal Loan | Credit Card EMI |\n|---|---|---|\n| Interest rate | 12% (reducing) | 15% (flat) ≈ 28% reducing |\n| EMI | ₹17,770 | ₹19,167 |\n| Total interest | ₹13,240 | ₹30,000 |\n| Processing fee | ₹2,000-4,000 | ₹0-1,000 |\n| **Total cost** | **₹15,240-₹17,240** | **₹30,000-₹31,000** |\n| Savings | **₹13,760-₹15,760 cheaper** | — |\n\nFor ₹2L over 12 months, personal loan saves nearly ₹14,000. The gap increases with amount and tenure."
+            }
+        ],
+        "faq": [
+            {
+                "question": "Does credit card EMI affect CIBIL score?",
+                "answer": "Credit card EMI typically doesn't appear as a separate loan on your credit report, but it increases your credit utilization ratio — keep it below 30% for a healthy score."
+            },
+            {
+                "question": "Can I convert existing credit card dues to EMI?",
+                "answer": "Yes, most banks offer this. But the conversion rate is 2-3% per month (24-36% annually). Better to take a personal loan to pay off credit card debt."
+            },
+            {
+                "question": "What is balance transfer?",
+                "answer": "Transferring credit card outstanding to another card offering 0% EMI for 6-12 months with a 1-2% processing fee. Effective way to eliminate high-interest credit card debt."
+            }
+        ]
+    },
+    {
+        "slug": "nps-vs-ppf-vs-elss-tax-saving",
+        "title": "NPS vs PPF vs ELSS — Tax-Saving Showdown 2026",
+        "description": "Compare NPS, PPF, and ELSS for Section 80C tax savings. Returns, lock-in, risk, and which is best for your age and goals.",
+        "category": "invest",
+        "icon": "🏆",
+        "readTime": "10 min",
+        "relatedCalculators": [
+            "nps-calculator",
+            "ppf-calculator",
+            "sip-calculator"
+        ],
+        "sections": [
+            {
+                "heading": "Quick Comparison",
+                "content": "| Feature | NPS | PPF | ELSS |\n|---|---|---|---|\n| Returns (10Y) | 8-12% | 7.1% (fixed) | 12-15% |\n| Lock-in | Till 60 | 15 years | 3 years |\n| Risk | Low-Medium | Zero | Medium-High |\n| Tax on maturity | 60% tax-free | 100% tax-free | 10% LTCG |\n| Extra 80C benefit | ₹50K (80CCD1B) | No | No |\n| Max 80C benefit | ₹1.5L + ₹50K | ₹1.5L | ₹1.5L |\n| Liquidity | Very low | Low | High (after 3Y) |"
+            },
+            {
+                "heading": "NPS — Best for Extra ₹50K Deduction",
+                "content": "NPS is the only instrument offering an **additional ₹50,000 deduction** under Section 80CCD(1B) — over and above the ₹1.5L limit of 80C.\n\n**For 30% tax bracket**: ₹50K extra deduction saves ₹15,600 in tax annually.\n\n**Returns**: NPS offers 3 asset classes — Equity (E), Corporate Bonds (C), Government Securities (G). Historical returns:\n• Aggressive (75% equity): 10-12%\n• Moderate (50% equity): 9-10%\n• Conservative (25% equity): 8-9%\n\n**Downside**: Money locked till 60. At maturity, 40% must go into annuity (pension), only 60% can be withdrawn (tax-free)."
+            },
+            {
+                "heading": "PPF — Safest Tax Saver",
+                "content": "PPF is the gold standard for risk-free tax savings:\n\n• **EEE status**: Contribution, interest, and maturity — all tax-free\n• **Government-backed**: Zero risk of default\n• **Current rate**: 7.1% compounded annually\n• **Lock-in**: 15 years (partial withdrawal from year 7)\n\n₹1.5L/year for 15 years at 7.1% = **₹40.68 Lakh** (invested ₹22.5L, interest ₹18.18L — all tax-free).\n\nBest for: Risk-averse investors, retirees, guaranteed returns component of portfolio."
+            },
+            {
+                "heading": "ELSS — Highest Returns, Shortest Lock-in",
+                "content": "ELSS (Equity Linked Savings Scheme) = tax-saving mutual funds:\n\n• **Only 3-year lock-in** (shortest among all 80C instruments)\n• **Equity exposure**: 65%+ in stocks\n• **Historical returns**: Top funds have given 12-18% over 10 years\n• **Tax**: LTCG above ₹1L taxed at 10%\n\n**₹1.5L/year SIP in ELSS for 15 years at 14%** = ₹70.9 Lakh (invested ₹22.5L, gains ₹48.4L)\nCompare with PPF: ₹40.68L. ELSS gives ₹30L more — but with market risk.\n\nBest for: Investors under 45 with 10+ year horizon and risk appetite."
+            },
+            {
+                "heading": "Which Should You Choose?",
+                "content": "**Recommended split for ₹1.5L 80C limit**:\n\n**Age 25-35**: ₹1L ELSS + ₹50K PPF (+ ₹50K NPS in 80CCD1B)\n**Age 35-45**: ₹75K ELSS + ₹75K PPF (+ ₹50K NPS)\n**Age 45-55**: ₹50K ELSS + ₹1L PPF (+ ₹50K NPS)\n**Age 55+**: ₹1.5L PPF (avoid equity risk near retirement)\n\n**Total tax deduction**: ₹2L (₹1.5L in 80C + ₹50K in NPS 80CCD1B)\n**Tax saved (30% bracket)**: ₹62,400 per year"
+            }
+        ],
+        "faq": [
+            {
+                "question": "Can I invest in all three?",
+                "answer": "Yes! The ₹1.5L limit under 80C is shared between all instruments (PPF, ELSS, EPF, LIC, etc.). NPS 80CCD(1B) is an additional ₹50K above this limit."
+            },
+            {
+                "question": "Which ELSS fund should I choose?",
+                "answer": "Look for funds with consistent 10-year track record. Top performers: Quant ELSS, Mirae Asset, Canara Robeco. Invest via SIP, not lump sum."
+            },
+            {
+                "question": "Can I withdraw NPS before 60?",
+                "answer": "Partial withdrawal (25% of own contribution) is allowed after 3 years for specific reasons: education, marriage, home purchase, medical emergency. Full premature exit: 80% goes to annuity."
+            }
+        ]
+    },
+    {
+        "slug": "how-emi-is-calculated",
+        "title": "How EMI is Calculated — Step-by-Step Formula Breakdown",
+        "description": "Learn exactly how banks calculate EMI using the reducing balance formula. Step-by-step examples with real numbers for home, car, and personal loans.",
+        "category": "loan",
+        "icon": "🧮",
+        "readTime": "8 min",
+        "relatedCalculators": [
+            "car-loan-emi",
+            "home-loan-emi",
+            "personal-loan-emi"
+        ],
+        "sections": [
+            {
+                "heading": "The EMI Formula",
+                "content": "**EMI = P × r × (1+r)^n ÷ ((1+r)^n – 1)**\n\nWhere:\n• **P** = Principal loan amount\n• **r** = Monthly interest rate (annual rate ÷ 12 ÷ 100)\n• **n** = Total number of monthly instalments\n\nThis is called the **reducing balance method** — interest is calculated on the outstanding balance, which decreases each month as you pay EMIs."
+            },
+            {
+                "heading": "Step-by-Step Example — ₹10 Lakh Car Loan",
+                "content": "**Given**: P = ₹10,00,000 | Rate = 8.5% p.a. | Tenure = 5 years (60 months)\n\n**Step 1**: Monthly rate r = 8.5 ÷ 12 ÷ 100 = 0.007083\n\n**Step 2**: (1 + r)^n = (1.007083)^60 = 1.5266\n\n**Step 3**: Numerator = P × r × (1+r)^n = 10,00,000 × 0.007083 × 1.5266 = 10,814\n\n**Step 4**: Denominator = (1+r)^n – 1 = 1.5266 – 1 = 0.5266\n\n**Step 5**: EMI = 10,814 ÷ 0.5266 = **₹20,543**\n\n**Total payment**: ₹20,543 × 60 = ₹12,32,580\n**Total interest**: ₹12,32,580 – ₹10,00,000 = **₹2,32,580** (23.3% of loan)"
+            },
+            {
+                "heading": "How EMI Splits Between Interest & Principal",
+                "content": "In the first months, most of your EMI goes toward interest. Over time, the interest portion decreases and principal portion increases.\n\n**₹10L loan at 8.5% for 5 years (EMI ₹20,543)**:\n\n| Month | EMI | Interest | Principal | Balance |\n|---|---|---|---|---|\n| 1 | ₹20,543 | ₹7,083 | ₹13,460 | ₹9,86,540 |\n| 12 | ₹20,543 | ₹6,110 | ₹14,433 | ₹8,47,714 |\n| 30 | ₹20,543 | ₹4,290 | ₹16,253 | ₹5,89,098 |\n| 48 | ₹20,543 | ₹2,271 | ₹18,272 | ₹3,02,461 |\n| 60 | ₹20,543 | ₹145 | ₹20,398 | ₹0 |\n\nMonth 1: 34.5% goes to interest. Month 60: Only 0.7% goes to interest."
+            },
+            {
+                "heading": "Flat Rate vs Reducing Balance — The Scam",
+                "content": "Some dealers and NBFCs quote **flat rate** instead of reducing balance. The flat rate looks lower but is actually much more expensive:\n\n| Method | Quoted Rate | Actual Cost (₹10L, 5Y) |\n|---|---|---|\n| **Reducing Balance** | 8.5% | Interest ₹2,32,580 |\n| **Flat Rate** | 8.5% | Interest ₹4,25,000 |\n\nFlat rate at 8.5% = Reducing balance at ~16%! The flat rate calculates interest on the original principal for the entire tenure, ignoring that you're paying it down monthly.\n\n**Rule of thumb**: Flat rate × 1.8 ≈ Reducing balance rate. So '7% flat' ≈ 12.6% reducing balance. Always ask for the reducing balance rate."
+            },
+            {
+                "heading": "How Prepayment Saves Money",
+                "content": "Prepaying even a small amount early in the loan dramatically reduces total interest:\n\n**₹10L loan at 8.5% for 5 years (EMI ₹20,543)**:\n\n| Prepayment | Tenure Saved | Interest Saved |\n|---|---|---|\n| ₹50,000 after 1 year | 3 months | ₹14,870 |\n| ₹1,00,000 after 1 year | 6 months | ₹28,430 |\n| ₹50,000 every year | 14 months | ₹46,280 |\n\nPrepaying ₹50K annually saves ₹46,280 in interest — almost the prepaid amount itself! Earlier prepayments save more because the outstanding balance is higher."
+            }
+        ],
+        "faq": [
+            {
+                "question": "Why does my EMI not change even when rates change?",
+                "answer": "With floating rate loans, banks typically adjust tenure (not EMI) when rates change. Your EMI stays the same but the loan extends or shortens. Some banks offer EMI adjustment — check with your lender."
+            },
+            {
+                "question": "Is there an easier way to calculate EMI?",
+                "answer": "Yes! Use Numerral's EMI calculators — just enter amount, rate, and tenure. We calculate everything instantly using the same reducing balance formula banks use."
+            },
+            {
+                "question": "What happens if I miss an EMI?",
+                "answer": "Late payment fee (1-2% of EMI) + penal interest (2-3% extra). More importantly, it damages your CIBIL score by 30-50 points. Set up auto-debit to avoid this."
+            }
+        ]
+    },
+    {
+        "slug": "bmi-health-understanding-numbers",
+        "title": "BMI & Health — Understanding Your Body Mass Index Numbers",
+        "description": "What your BMI really means, its limitations, and what other health metrics to track. Evidence-based guide to weight and health.",
+        "category": "utility",
+        "icon": "⚖️",
+        "readTime": "7 min",
+        "relatedCalculators": [
+            "bmi-calculator"
+        ],
+        "sections": [
+            {
+                "heading": "BMI Categories Explained",
+                "content": "| BMI Range | Category | Health Risk |\n|---|---|---|\n| Below 16 | Severely Underweight | Very High |\n| 16 - 18.4 | Underweight | High |\n| 18.5 - 24.9 | Normal Weight | Low |\n| 25 - 29.9 | Overweight | Increased |\n| 30 - 34.9 | Obese (Class I) | High |\n| 35 - 39.9 | Obese (Class II) | Very High |\n| 40+ | Obese (Class III) | Extremely High |\n\nThe 'normal' range of 18.5-24.9 is associated with the lowest risk of chronic diseases like diabetes, heart disease, and hypertension."
+            },
+            {
+                "heading": "How BMI is Calculated",
+                "content": "**Formula**: BMI = Weight (kg) ÷ Height² (m²)\n\n**Example**: 70 kg, 170 cm (1.7 m)\nBMI = 70 ÷ (1.7 × 1.7) = 70 ÷ 2.89 = **24.2** (Normal)\n\n**Height-weight ranges for Normal BMI**:\n| Height | Healthy Weight Range |\n|---|---|\n| 155 cm (5'1\") | 44 - 60 kg |\n| 160 cm (5'3\") | 47 - 64 kg |\n| 165 cm (5'5\") | 50 - 68 kg |\n| 170 cm (5'7\") | 53 - 72 kg |\n| 175 cm (5'9\") | 57 - 76 kg |\n| 180 cm (5'11\") | 60 - 81 kg |\n| 185 cm (6'1\") | 63 - 85 kg |"
+            },
+            {
+                "heading": "Limitations of BMI",
+                "content": "BMI is a useful screening tool but has significant limitations:\n\n**1. Doesn't distinguish muscle from fat**: A muscular athlete with 10% body fat could have a BMI of 28 ('overweight').\n\n**2. Doesn't account for body composition**: Two people with the same BMI can have very different health risks based on fat distribution.\n\n**3. Age and sex**: BMI categories were developed for adults 20+. They don't apply to children, pregnant women, or elderly.\n\n**4. Ethnicity**: South Asians have higher health risks at lower BMIs. Some guidelines suggest BMI 23+ (not 25+) as overweight for Asian populations.\n\n**Better metrics to track alongside BMI**: Waist circumference (<90 cm men, <80 cm women), waist-to-hip ratio, body fat percentage."
+            },
+            {
+                "heading": "BMI for Indian Adults — Asian Cutoffs",
+                "content": "The WHO has proposed lower BMI cutoffs for Asian populations due to higher metabolic risks:\n\n| Category | Standard WHO | Asian/Indian |\n|---|---|---|\n| Normal | 18.5 - 24.9 | 18.5 - 22.9 |\n| Overweight | 25 - 29.9 | 23 - 24.9 |\n| Obese | 30+ | 25+ |\n\nUnder Asian cutoffs, a BMI of 24 would be classified as 'overweight' rather than 'normal'. This is important for Indian users of our BMI Calculator."
+            }
+        ],
+        "faq": [
+            {
+                "question": "What is a good BMI?",
+                "answer": "For most adults, 18.5-24.9 is considered healthy. For Indians/South Asians, aim for 18.5-22.9 due to higher metabolic risks at lower BMI levels."
+            },
+            {
+                "question": "Can BMI be used for children?",
+                "answer": "No. For children 2-20 years, BMI-for-age percentile charts should be used instead. A child's BMI is compared to others of the same age and sex."
+            },
+            {
+                "question": "How quickly can I change my BMI?",
+                "answer": "Losing 0.5-1 kg per week through a 500-calorie daily deficit is safe and sustainable. This would reduce BMI by about 0.2-0.3 points per week for an average-height person."
+            }
+        ]
+    }
+]

@@ -1,0 +1,54 @@
+{
+    "car-loan-emi": {
+        "generic": [
+            {
+                "question": "What is EMI?",
+                "answer": "EMI (Equated Monthly Instalment) is the fixed amount you pay each month to repay a loan. It includes both principal and interest components."
+            },
+            {
+                "question": "How is car loan EMI calculated?",
+                "answer": "Using the formula: EMI = P × r × (1+r)^n / ((1+r)^n - 1), where P is the principal, r is the monthly interest rate, and n is the number of monthly instalments."
+            },
+            {
+                "question": "Does prepaying my car loan reduce the EMI?",
+                "answer": "Prepayment reduces your outstanding principal, which can either reduce your EMI amount or shorten your loan tenure. Most lenders allow you to choose."
+            }
+        ],
+        "amount_specific": [
+            {
+                "question": "What is the EMI for a {{amount_label}} car loan?",
+                "answer": "At {{rate}}% annual interest for {{tenure_months}} months, use the calculator above to see your exact EMI. Results update instantly as you adjust inputs."
+            },
+            {
+                "question": "How much total interest will I pay on a {{amount_label}} car loan?",
+                "answer": "Total interest depends on your rate and tenure. Compare scenarios using the comparison table below the calculator."
+            },
+            {
+                "question": "Which banks offer the best rates for a {{amount_label}} car loan?",
+                "answer": "SBI, HDFC, and ICICI typically offer competitive car loan rates starting from 7.5%–8.5% for new cars. Compare offers from at least 3 lenders."
+            }
+        ]
+    },
+    "home-loan-emi": {
+        "generic": [
+            {
+                "question": "What is the current home loan interest rate?",
+                "answer": "As of 2025, most major banks offer home loan rates between 8.25%–9.0% per annum. SBI, HDFC, and LIC Housing offer some of the most competitive rates."
+            },
+            {
+                "question": "Should I choose a fixed or floating rate?",
+                "answer": "Floating rates are typically 0.5–1% lower and benefit you when RBI cuts rates. Fixed rates give predictability but are usually higher."
+            }
+        ],
+        "amount_specific": [
+            {
+                "question": "What is the EMI for a {{amount_label}} home loan?",
+                "answer": "At {{rate}}% annual interest for {{tenure_years}} years, use the calculator above to see your exact EMI. Adjust inputs to see how rate changes affect your payment."
+            },
+            {
+                "question": "How much down payment do I need for a {{amount_label}} home?",
+                "answer": "Banks typically finance 75-90% of the property value. For a {{amount_label}} loan, you'd need at least 10-25% as down payment."
+            }
+        ]
+    }
+}
