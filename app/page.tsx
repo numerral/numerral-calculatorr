@@ -72,7 +72,6 @@ const whyNumerralFeatures = [
   { icon: "📱", title: "Works Everywhere", desc: "Fully responsive on all devices — smartphones, tablets, and desktops. No app needed." },
   { icon: "📚", title: "Learn While You Calculate", desc: "Every calculator includes step-by-step breakdowns, formulas, FAQs, and financial guides." },
   { icon: "🇮🇳", title: "Built for India", desc: "Tax slabs, GST rules, EPF, NPS, PPF — all calculators reflect Indian financial regulations." },
-  { icon: "✅", title: "Financial Formulas Verified", desc: "Numerral calculators use industry-standard financial formulas used by banks and financial institutions for EMI, compound interest, and tax estimation." },
 ];
 
 export default function HomePage() {
@@ -104,11 +103,10 @@ export default function HomePage() {
           <span className="text-gradient">Financial Calculators</span>
         </h1>
         <p className="hero__subtitle">
-          50+ free calculators for loan EMI, SIP returns, income tax, and everyday math.
-          Instant results, bank-grade accuracy — trusted by 1M+ users across India.
-        </p>
-        <p className="t-body text-muted" style={{ maxWidth: "780px", marginTop: "var(--s-4)", lineHeight: 1.8, textAlign: "center", marginInline: "auto" }}>
-          Numerral provides free financial calculators that help individuals estimate loan EMIs, investment returns, tax liabilities, and financial planning scenarios. These calculators use standard financial formulas such as compound interest, amortization schedules, and tax computation models to generate accurate results instantly.
+          Numerral provides free financial calculators that help individuals estimate loan EMIs,
+          investment returns, tax liabilities, and financial planning scenarios. These calculators
+          use standard financial formulas such as compound interest, amortization schedules, and
+          tax computation models to generate accurate results instantly.
         </p>
       </section>
 
@@ -141,12 +139,48 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ─── TOP FINANCIAL CALCULATIONS (Semantic Text Block) ─── */}
-      <section className="container section--sm">
-        <h2 className="t-h2" style={{ marginBottom: "var(--s-3)" }}>Top Financial Calculations in India</h2>
-        <p className="t-body text-muted" style={{ maxWidth: "780px", lineHeight: 1.8 }}>
-          Millions of Indians rely on financial calculators to estimate loan repayments, investment growth, and tax liabilities. Whether calculating a home loan EMI, estimating SIP returns, or evaluating compound interest, accurate financial calculations help individuals make informed financial decisions. Numerral&apos;s calculators cover the most common financial scenarios — from comparing fixed vs floating interest rates to projecting retirement corpus through NPS and PPF investments.
-        </p>
+      {/* ─── TOP FINANCIAL CALCULATIONS (Semantic Rich Section) ─── */}
+      <section className="hp-top-calcs container section--sm">
+        <div className="hp-top-calcs__inner">
+          <h2 className="t-h2">Top Financial Calculations in India</h2>
+          <p className="hp-top-calcs__intro">
+            Millions of Indians rely on financial calculators to estimate loan repayments, investment growth, and tax liabilities.
+            Accurate financial calculations help individuals make informed decisions about their money.
+          </p>
+          <div className="hp-top-calcs__grid">
+            <div className="hp-top-calcs__item">
+              <span className="hp-top-calcs__bullet">🏠</span>
+              <div>
+                <strong>Loan EMI Calculations</strong>
+                <p>Home loan, car loan, and personal loan EMI estimation using reducing balance method</p>
+              </div>
+            </div>
+            <div className="hp-top-calcs__item">
+              <span className="hp-top-calcs__bullet">📈</span>
+              <div>
+                <strong>SIP &amp; Investment Returns</strong>
+                <p>Mutual fund SIP projections, FD maturity, PPF corpus, and compound interest growth</p>
+              </div>
+            </div>
+            <div className="hp-top-calcs__item">
+              <span className="hp-top-calcs__bullet">🧾</span>
+              <div>
+                <strong>Income Tax &amp; GST</strong>
+                <p>Old vs new regime comparison, HRA exemption, TDS refund, and GST calculations</p>
+              </div>
+            </div>
+            <div className="hp-top-calcs__item">
+              <span className="hp-top-calcs__bullet">📊</span>
+              <div>
+                <strong>Financial Comparisons</strong>
+                <p>Fixed vs floating rates, SIP vs FD, rent vs buy, and loan vs cash purchase analysis</p>
+              </div>
+            </div>
+          </div>
+          <p className="hp-top-calcs__cta">
+            Numerral&apos;s calculators cover the most common financial scenarios — from comparing interest rates to projecting retirement corpus through NPS and PPF investments.
+          </p>
+        </div>
       </section>
 
       {/* ─── 4. FINANCIAL CALCULATION KNOWLEDGE ─── */}
@@ -264,6 +298,25 @@ export default function HomePage() {
               <p className="hp-why__desc">{f.desc}</p>
             </div>
           ))}
+        </div>
+
+        {/* Formula Verified — Full-width trust banner */}
+        <div className="hp-formula-banner">
+          <div className="hp-formula-banner__icon">🛡️</div>
+          <div className="hp-formula-banner__content">
+            <h3 className="hp-formula-banner__title">Financial Formulas Verified</h3>
+            <p className="hp-formula-banner__text">
+              Every Numerral calculator uses <strong>industry-standard financial formulas</strong> verified against bank calculations.
+              Our EMI calculator uses the reducing balance method, investment tools use compound interest formulas, and tax calculators follow
+              the latest Income Tax Act slabs — the same models used by <strong>leading banks, CAs, and financial institutions</strong> across India.
+            </p>
+            <div className="hp-formula-banner__badges">
+              <span className="hp-formula-badge">✓ Reducing Balance EMI</span>
+              <span className="hp-formula-badge">✓ Compound Interest (A=P(1+r/n)ⁿᵗ)</span>
+              <span className="hp-formula-badge">✓ FY 2025-26 Tax Slabs</span>
+              <span className="hp-formula-badge">✓ RBI-Linked Rates</span>
+            </div>
+          </div>
         </div>
       </section>
 
