@@ -1882,6 +1882,299 @@ ol {
     line-height: 1.6;
 }
 
+/* ── HOMEPAGE AUTHORITY SECTIONS ──────── */
+
+/* View All link */
+.hp-view-all {
+    font-size: var(--t-body-sm);
+    font-weight: 600;
+    color: var(--n-primary);
+    text-decoration: none;
+    transition: opacity var(--ease-default);
+    white-space: nowrap;
+}
+
+.hp-view-all:hover {
+    opacity: 0.8;
+}
+
+/* 4. Financial Knowledge */
+.hp-knowledge__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--s-4);
+}
+
+.hp-knowledge__card {
+    display: flex;
+    gap: var(--s-3);
+    padding: var(--s-4);
+    border: 1px solid var(--n-border);
+    border-radius: var(--r-lg);
+    text-decoration: none;
+    transition: all var(--ease-default);
+    background: var(--n-surface);
+}
+
+.hp-knowledge__card:hover {
+    border-color: var(--n-primary);
+    box-shadow: 0 4px 20px rgba(79, 70, 229, 0.08);
+    transform: translateY(-2px);
+}
+
+.hp-knowledge__icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.hp-knowledge__title {
+    font-size: var(--t-body);
+    font-weight: 600;
+    color: var(--n-text);
+    margin-bottom: var(--s-1);
+}
+
+.hp-knowledge__desc {
+    font-size: 13px;
+    color: var(--n-text-muted);
+    line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+    .hp-knowledge__grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* 5. How Financial Calculations Work */
+.hp-how-it-works__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--s-6);
+    max-width: 900px;
+    margin-inline: auto;
+    text-align: center;
+}
+
+.hp-how-it-works__step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--s-3);
+}
+
+.hp-how-it-works__num {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--n-primary), #818cf8);
+    color: white;
+    font-weight: 700;
+    font-size: 1.2rem;
+    border-radius: var(--r-full);
+    margin-bottom: var(--s-2);
+}
+
+@media (max-width: 600px) {
+    .hp-how-it-works__grid {
+        grid-template-columns: 1fr;
+        gap: var(--s-8);
+    }
+}
+
+/* 6. Featured Guides */
+.hp-guides__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--s-5);
+}
+
+.hp-guide-card {
+    border: 1px solid var(--n-border);
+    border-radius: var(--r-lg);
+    overflow: hidden;
+    text-decoration: none;
+    transition: all var(--ease-default);
+    background: var(--n-surface);
+}
+
+.hp-guide-card:hover {
+    border-color: var(--n-primary);
+    box-shadow: 0 8px 32px rgba(79, 70, 229, 0.1);
+    transform: translateY(-3px);
+}
+
+.hp-guide-card__img {
+    width: 100%;
+    height: 160px;
+    overflow: hidden;
+    background: var(--n-surface-alt);
+}
+
+.hp-guide-card__body {
+    padding: var(--s-4);
+}
+
+.hp-guide-card__category {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--n-primary);
+    margin-bottom: var(--s-2);
+    display: block;
+}
+
+.hp-guide-card__title {
+    font-size: var(--t-body);
+    font-weight: 600;
+    color: var(--n-text);
+    margin-bottom: var(--s-2);
+    line-height: 1.4;
+}
+
+.hp-guide-card__desc {
+    font-size: 13px;
+    color: var(--n-text-muted);
+    line-height: 1.4;
+    margin-bottom: var(--s-2);
+}
+
+.hp-guide-card__meta {
+    font-size: 12px;
+    color: var(--n-text-muted);
+}
+
+@media (max-width: 900px) {
+    .hp-guides__grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 500px) {
+    .hp-guides__grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* 7. Glossary Highlights */
+.hp-glossary__grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-2);
+}
+
+.hp-glossary__chip {
+    display: inline-flex;
+    align-items: center;
+    padding: var(--s-2) var(--s-4);
+    border: 1px solid var(--n-border);
+    border-radius: var(--r-full);
+    text-decoration: none;
+    font-size: var(--t-body-sm);
+    font-weight: 500;
+    color: var(--n-text-secondary);
+    background: var(--n-surface);
+    transition: all var(--ease-default);
+}
+
+.hp-glossary__chip:hover {
+    border-color: var(--n-primary);
+    color: var(--n-primary);
+    background: var(--n-gold-glow);
+}
+
+.hp-glossary__term {
+    white-space: nowrap;
+}
+
+/* 8. Trending */
+.hp-trending__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--s-3);
+}
+
+.hp-trending__card {
+    display: flex;
+    align-items: center;
+    gap: var(--s-2);
+    padding: var(--s-3) var(--s-4);
+    border: 1px solid var(--n-border);
+    border-radius: var(--r-md);
+    text-decoration: none;
+    font-size: var(--t-body-sm);
+    font-weight: 500;
+    color: var(--n-text-secondary);
+    transition: all var(--ease-default);
+    background: var(--n-surface);
+}
+
+.hp-trending__card:hover {
+    border-color: var(--n-primary);
+    color: var(--n-text);
+    background: var(--n-surface-alt);
+}
+
+.hp-trending__arrow {
+    color: var(--n-primary);
+    font-weight: 600;
+}
+
+@media (max-width: 768px) {
+    .hp-trending__grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* 9. Why Numerral */
+.hp-why__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--s-5);
+}
+
+.hp-why__card {
+    padding: var(--s-6);
+    border: 1px solid var(--n-border);
+    border-radius: var(--r-lg);
+    background: var(--n-surface);
+    transition: all var(--ease-default);
+}
+
+.hp-why__card:hover {
+    border-color: var(--n-primary);
+    box-shadow: 0 4px 20px rgba(79, 70, 229, 0.06);
+}
+
+.hp-why__icon {
+    font-size: 1.8rem;
+    margin-bottom: var(--s-3);
+    display: block;
+}
+
+.hp-why__title {
+    font-size: var(--t-body);
+    font-weight: 600;
+    color: var(--n-text);
+    margin-bottom: var(--s-2);
+}
+
+.hp-why__desc {
+    font-size: 13px;
+    color: var(--n-text-muted);
+    line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+    .hp-why__grid {
+        grid-template-columns: 1fr;
+    }
+}
+
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
 
