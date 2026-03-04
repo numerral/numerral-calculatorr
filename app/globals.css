@@ -2182,7 +2182,7 @@ ol {
     border: 1px solid var(--n-border);
     border-left: 4px solid var(--n-primary);
     border-radius: var(--radius-lg, 16px);
-    padding: var(--s-8) var(--s-8);
+    padding: var(--s-8) var(--s-10, 3.5rem);
     box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
 }
 
@@ -2352,7 +2352,9 @@ ol {
 .hp-formula-banner__badges {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     gap: var(--s-2);
+    width: 100%;
 }
 
 .hp-formula-badge {
