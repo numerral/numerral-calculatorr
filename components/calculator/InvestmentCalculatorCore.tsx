@@ -4,6 +4,7 @@
 
 import { useState, useMemo } from "react";
 import { calculateInvestment, calculateInvestmentComparison, type InvestmentResult } from "@/lib/calculators/investments";
+import InvestmentGrowthChart from "./InvestmentGrowthChart";
 
 interface InvestmentCalculatorCoreProps {
     defaults: { amount: number; rate: number; tenure: number };
@@ -198,6 +199,16 @@ export default function InvestmentCalculatorCore({
                     </button>
                 </div>
             </div>
+
+            <InvestmentGrowthChart
+                totalInvested={result.totalInvested}
+                estimatedReturns={result.estimatedReturns}
+                maturityValue={result.maturityValue}
+                monthlyAmount={amount}
+                rate={rate}
+                tenureMonths={tenure}
+                calcType={calcType}
+            />
 
             {/* Comparison Table */}
             <div style={{ marginTop: "var(--s-6)" }}>

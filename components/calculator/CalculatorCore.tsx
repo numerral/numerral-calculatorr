@@ -20,6 +20,7 @@ import {
 import InputPanel from "./InputPanel";
 import ResultCard from "./ResultCard";
 import ComparisonTable from "./ComparisonTable";
+import EMIBreakdownChart from "./EMIBreakdownChart";
 
 interface CalculatorCoreProps {
     /** Initial values (pre-filled on programmatic pages) */
@@ -79,6 +80,14 @@ export default function CalculatorCore({
             />
 
             <ResultCard result={result} principal={amount} />
+
+            <EMIBreakdownChart
+                principal={amount}
+                totalInterest={result.totalInterest}
+                emi={result.emi}
+                rate={rate}
+                tenureMonths={tenureInMonths}
+            />
 
             {showComparison && (
                 <section>
