@@ -1,6 +1,7 @@
 // Root Layout — wraps Header + Footer around all pages
 
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layout/Header";
@@ -37,6 +38,9 @@ export const metadata: Metadata = {
     "financial calculator India", "free online calculator", "Numerral",
     "loan eligibility", "CIBIL score", "tax calculator India",
   ],
+  verification: {
+    google: "MeU9cYu9W1hGdmNRzzMugVl6RYD6P-77U7R7FS1OpTY",
+  },
   openGraph: {
     type: "website",
     siteName: SITE_NAME,
@@ -51,6 +55,21 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        {/* Google Analytics GA4 */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-XVZQHV08SG"
+          strategy="afterInteractive"
+        />
+        <Script id="ga4-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-XVZQHV08SG');
+          `}
+        </Script>
+      </head>
       <body className={`${jakarta.className} ${jakarta.variable} ${jetbrains.variable}`}>
         <Header />
         {children}
