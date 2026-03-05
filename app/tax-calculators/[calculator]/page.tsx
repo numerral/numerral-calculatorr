@@ -120,15 +120,22 @@ const HUB_CONTENT: Record<string, {
         ],
     },
     "professional-tax-calculator": {
-        subtitle: "Know your professional tax deduction based on state and salary. PT varies significantly across Indian states.",
+        subtitle: "Calculate state-specific professional tax deductions for salaried employees across India.",
         explanation: {
-            heading: "Professional Tax in India",
+            heading: "Understanding Professional Tax in India",
             paragraphs: [
-                "Professional Tax (PT) is a state-level tax deducted by employers from employee salaries. It's capped at ₹2,500 per year (₹200-₹250/month maximum) by constitutional provision, though actual amounts vary by state and salary slab.",
-                "Not all states levy professional tax. Major states that do include Maharashtra, Karnataka, West Bengal, Andhra Pradesh, Telangana, Tamil Nadu, Gujarat, Madhya Pradesh, Kerala, and Odisha. PT is deductible under Section 16 of the Income Tax Act.",
+                "Professional Tax (PT) is a direct tax levied by state governments in India on all individuals who earn a living through salary, professions, trades, or callings. Despite the name, it is not just for professionals like doctors or lawyers—it applies to all salaried employees working in states where the legislation is active.",
+                "Under Article 276 of the Indian Constitution, the maximum amount any state can levy as professional tax is capped at ₹2,500 per financial year. Employers are responsible for deducting this amount directly from an employee's salary and remitting it to the state government. The exact amount deducted varies based on your gross salary slab and the specific state in which you are employed.",
+                "It's important to note that not all Indian states levy Professional Tax. States like Delhi, Haryana, and Uttar Pradesh do not charge PT, whereas states like Maharashtra, Karnataka, Tamil Nadu, and West Bengal do. For salaried employees filing income tax, the total professional tax paid during the year is allowed as a deduction under Section 16(iii) of the Income Tax Act."
             ],
-            highlight: "Maharashtra: ₹200/month for salary above ₹10,000 (₹300 in February) = ₹2,500/year. Karnataka: ₹200/month for salary above ₹15,000 = ₹2,400/year. Both are fully deductible from taxable income.",
+            highlight: "Did you know? Even if your employer doesn't deduct Professional Tax, self-employed professionals must register and pay this tax directly to their state commercial tax department.",
         },
+        faq: [
+            { question: "What is the maximum limit for professional tax?", answer: "As per the Constitution of India, the total professional tax payable by any person cannot exceed ₹2,500 per financial year." },
+            { question: "Is professional tax deductible under Income Tax?", answer: "Yes. Salaried employees can claim a deduction for the exact amount of professional tax paid during the year under Section 16(iii) of the Income Tax Act." },
+            { question: "Do all states charge professional tax?", answer: "No. It is a state-level tax. Many states and union territories (e.g., Delhi, Haryana, Chandigarh) do not levy any professional tax." }
+        ],
+    },
         faq: [
             { question: "Is professional tax the same in all states?", answer: "No. Each state sets its own PT slabs. Some states like Rajasthan and UP don't levy PT at all. Maharashtra charges ₹200/month for salary above ₹10,000, while Tamil Nadu has slabs ranging from ₹135 to ₹1,250/month." },
             { question: "Can I claim PT as a deduction?", answer: "Yes. Professional tax paid is deductible under Section 16(iii) of the Income Tax Act. It's automatically deducted from your gross salary when computing taxable income — in both old and new regimes." },

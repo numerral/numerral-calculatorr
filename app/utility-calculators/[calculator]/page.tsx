@@ -112,15 +112,22 @@ const HUB_CONTENT: Record<string, {
         ],
     },
     "discount-calculator": {
-        subtitle: "Calculate single and double discounts instantly. See final price, savings amount, and effective discount percentage.",
+        subtitle: "Instantly calculate final sale prices, double discounts, and total savings.",
         explanation: {
-            heading: "How Discounts Work",
+            heading: "How Discount Calculations Work",
             paragraphs: [
-                "A single discount is straightforward: 20% off ₹5,000 = ₹4,000. But double (stacked) discounts work differently — 20% + 10% is NOT 30%. The second discount applies to the already-reduced price.",
-                "Example: 20% + 10% on ₹5,000 → First: ₹5,000 × 0.8 = ₹4,000 → Second: ₹4,000 × 0.9 = ₹3,600. Effective discount = 28% (not 30%). Our calculator shows the exact savings and effective rate.",
+                "A discount calculator helps consumers and retail business owners quickly determine the final selling price of an item after applying a percentage-based markdown. Simply input the original maximum retail price (MRP) and the discount percentage to instantly reveal the final price alongside the exact cash amount saved.",
+                "In retail, promotional events frequently feature 'successive discounts' or 'double discounts'—such as '50% + 20% Off'. It is a common misconception that this equals a flat 70% off. In reality, the second discount is applied only to the already-reduced price, resulting in a true cumulative discount of 60%. Using a discount calculator ensures you never miscalculate these cascade scenarios.",
+                "For business merchants, establishing the correct discount strategy is critical for balancing sales volume with profit margins. Markdown percentages must be carefully calibrated against wholesale costs and overheads to avoid selling products at a loss. Consumers, on the other hand, benefit by gaining instant clarity during large clearance events or when comparing promotional offers across different stores."
             ],
-            highlight: "₹5,000 with 20% + 10% double discount: Save ₹1,400 (28% effective) → Final: ₹3,600. A 30% single discount would give ₹3,500 — ₹100 less!",
+            highlight: "Retail Trick: 'Flat 50% Off' always provides deeper savings than '30% + 20% Off'. The latter only equates to an effective 44% discount.",
         },
+        faq: [
+            { question: "How do I calculate a discount manually?", answer: "Multiply the original price by the discount percentage (as a decimal). For example, a 20% discount on ₹1,000 is 1,000 × 0.20 = ₹200. The final price is ₹1,000 - ₹200 = ₹800." },
+            { question: "What does '50% + 50% Off' mean?", answer: "It does not mean the item is free (100% off). The first 50% halves the price, and the second 50% halves the remaining price. The effective total discount is 75%." },
+            { question: "How do I reverse calculate an original price?", answer: "If you know the discounted price and the discount percentage, divide the discounted price by (1 - discount percentage). For example, ₹800 / (1 - 0.20) = ₹1,000." }
+        ],
+    },
         faq: [
             { question: "Why is 20% + 10% not equal to 30%?", answer: "Because the second discount applies to the reduced price, not the original. 20% off ₹5,000 = ₹4,000, then 10% off ₹4,000 = ₹3,600 (28% total, not 30%)." },
             { question: "Is 20% + 10% the same as 10% + 20%?", answer: "Yes! The order doesn't matter. Both give the same final price. Mathematically: (1 − 0.2) × (1 − 0.1) = (1 − 0.1) × (1 − 0.2) = 0.72." },

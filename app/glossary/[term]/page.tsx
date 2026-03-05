@@ -111,6 +111,53 @@ export default async function GlossaryTermPage({ params }: PageProps) {
                     </p>
                 </section>
 
+                {/* Significance (Dynamic SEO Expansion) */}
+                <section style={{ marginBottom: "var(--s-8)" }}>
+                    <h2 className="t-h2" style={{ marginBottom: "var(--s-3)" }}>Why is {term.term} Important?</h2>
+                    <div className="t-body" style={{ lineHeight: 1.8, color: "var(--n-text-secondary)" }}>
+                        {term.category === "loan" && (
+                            <>
+                                <p style={{ marginBottom: "var(--s-3)" }}>
+                                    When applying for a loan in India—whether it&apos;s a home loan, personal loan, or car loan—the concept of <strong>{term.term}</strong> plays a significant role in determining your total borrowing cost. Lenders use factors like this to assess credit risk, determine eligibility, and structure your EMI schedule. Understanding this term helps borrowers negotiate better interest rates, choose the right loan product, and save money over the loan tenure.
+                                </p>
+                                <p>
+                                    For accurate financial planning, it is highly recommended to use our free online calculators to see how {term.term} impacts your specific scenario. Real-time calculations provide clarity on monthly outgoes, principal vs. interest components, and long-term financial burdens.
+                                </p>
+                            </>
+                        )}
+                        {term.category === "tax" && (
+                            <>
+                                <p style={{ marginBottom: "var(--s-3)" }}>
+                                    Navigating the Indian tax system requires a clear understanding of terms like <strong>{term.term}</strong>. With the introduction of the new income tax regime alongside the old one, taxpayers must evaluate their deductions, exemptions, and tax brackets carefully. This concept is a key component in optimizing your tax liabilities under the Income Tax Act and GST framework.
+                                </p>
+                                <p>
+                                    Proper tax planning using this metric can help individuals and businesses maximize their take-home income while remaining fully compliant with government regulations. We provide free tax calculators to help you estimate these figures accurately and make informed decisions before filing your returns.
+                                </p>
+                            </>
+                        )}
+                        {term.category === "invest" && (
+                            <>
+                                <p style={{ marginBottom: "var(--s-3)" }}>
+                                    In the context of wealth creation and investing in India, <strong>{term.term}</strong> is a fundamental concept. Whether you are investing in mutual funds via SIPs, fixed deposits, or retirement schemes like PPF and NPS, this metric helps evaluate potential returns and risks. The power of compounding and market volatility make it essential to track this indicator for any long-term portfolio.
+                                </p>
+                                <p>
+                                    Investors are encouraged to use specific investment calculators to project the future value of their corpus. Understanding this term enables better asset allocation, inflation protection, and consistent progress toward your ultimate financial goals.
+                                </p>
+                            </>
+                        )}
+                        {term.category === "utility" && (
+                            <>
+                                <p style={{ marginBottom: "var(--s-3)" }}>
+                                    In everyday personal finance and mathematical computations, understanding <strong>{term.term}</strong> helps you make quick, informed decisions. Whether you are calculating discounts during a sale, determining health metrics, or figuring out percentage changes, this concept is universally applicable.
+                                </p>
+                                <p>
+                                    Using automated calculators for these metrics eliminates human error and provides instant results, allowing you to focus on the underlying financial or personal health decisions rather than manual arithmetic.
+                                </p>
+                            </>
+                        )}
+                    </div>
+                </section>
+
                 {/* Formula */}
                 {term.formula && (
                     <section style={{ marginBottom: "var(--s-8)" }}>
