@@ -166,6 +166,56 @@ const HUB_CONTENT: Record<string, {
             { question: "Are business loan EMIs tax deductible?", answer: "The interest component is fully deductible as business expense. Principal repayment is not tax deductible but the borrowed amount is used for business purposes." },
         ],
     },
+    "loan-comparison": {
+        subtitle: "Compare two loan scenarios side-by-side. Calculate how differences in interest rates, tenures, and loan amounts impact your EMIs and total interest generated.",
+        explanation: {
+            heading: "Why You Should Always Compare Loans",
+            paragraphs: [
+                "Taking a home loan, personal loan, or car loan without comparing multiple lenders is a costly mistake. Even a fractional difference in an interest rate—such as selecting a 9% rate instead of an 8.5% rate on a 20-year home loan—can ultimately cost you lakhs of rupees in extra interest overhead over the life of the loan.",
+                "Beyond just interest rates, it is vital to compare loan tenures. While opting for a 30-year home loan will result in a lower and more comfortable monthly EMI, the total interest paid to the bank will be astronomically higher. By comparing a 20-year term against a 15-year term using this calculator, you can visually clearly see exactly how much money you save by slightly increasing your EMI commitment.",
+                "Additionally, borrowers must evaluate processing fees, pre-closure charges, and down payment requirements across different banks before finalizing an offer. A loan with a lower interest rate but exorbitant processing fees (like 2% of the loan amount + GST) might effectively be more expensive in the short run than a loan with a slightly higher rate but zero processing fees."
+            ],
+            highlight: "Financial Wisdom: On a ₹50 Lakh loan for 20 years, an interest rate of 8.5% costs ₹43,400 monthly. If a competitor offers 8.25%, your EMI drops to ₹42,600. It seems minor, but it totals ₹1.92 Lakhs in guaranteed savings over the 20 years!"
+        },
+        faq: [
+            { question: "How does a longer tenure affect my loan?", answer: "A longer tenure reduces your monthly EMI, making it easier on your current cash flow. However, it significantly increases the total amount of interest you end up paying to the bank over the entire lifespan of the loan." },
+            { question: "Can I use this to compare different banks?", answer: "Absolutely. Input the loan amount, the interest rate offered by Bank A, and compare it with Bank B. The calculator will explicitly outline the monthly EMI difference and total interest savings." },
+            { question: "Is a flat parity rate better than a reducing balance?", answer: "No. Flat interest rates appear lower but are exceptionally expensive because you continue to pay interest on the original starting principal throughout the loan's life. Reducing balance rates adjust downward as you repay the principal, saving you massive amounts." },
+            { question: "When should I execute a balance transfer to a different bank?", answer: "You should consider a balance loan transfer when the new bank offers an interest rate that is at least 0.50% to 0.75% lower, and the calculated long-term interest savings exceed the upfront processing fees required to switch." }
+        ],
+        steps: [
+            { label: "Determine Loan Profiles", formula: "Find the exact details for Loan Scenario A and Loan Scenario B", result: "Gather Principal, Rate, and Tenure" },
+            { label: "Input Specifications", formula: "Set the parameters in the dual-column slider UI", result: "Instant side-by-side computation" },
+            { label: "Analyze Variance", formula: "Difference = Total Interest A — Total Interest B", result: "Highlight of exact cost savings" },
+            { label: "Factor Associated Fees", formula: "Add processing and administrative charges", result: "Real-world effective cost comparison" }
+        ],
+        insight: { icon: "⚖️", title: "Balance Transfer Reality Check", text: "When evaluating a home loan balance transfer, always use a loan comparison tool to ensure the long-term interest savings over the remaining tenure actually surpass the 0.5% - 1% processing fee the new bank will charge to take over your loan." }
+    },
+    "prepayment": {
+        subtitle: "Analyze how partial prepayments (part-payments) dramatically shrink your total loan tenure and eliminate massive interest blocks.",
+        explanation: {
+            heading: "The Mathematical Power of Loan Prepayment",
+            paragraphs: [
+                "Prepayment, often referred to as part-payment or making a lumpsum deposit, is mathematically the most effective financial strategy you can use to crush your debt early. Whenever you make a prepayment outside your standard EMI cycle, 100% of that extra cash injection directly attacks the outstanding principal balance. By shrinking the principal, the subsequent interest calculated on the remaining balance immediately plunges.",
+                "In India, as per RBI guidelines, all floating-rate term loans for individual borrowers—such as standard home loans—carry absolutely zero prepayment penalties. This means you can deposit annual bonuses, tax refunds, or matured FDs straight into your loan account with no hidden fees attached.",
+                "The timing of a prepayment fundamentally decides its power. Because loans operate on an amortization schedule where the initial years are heavily skewed toward interest recovery, making large prepayments during the first 1-5 years of a 20-year loan yields exponentially higher savings than making identical prepayments during the final 5 years. Always prioritize prepaying high-interest unsecured debt (like personal loans at 14%) before low-interest tax-shielded debt (like home loans at 8.5%)."
+            ],
+            highlight: "The Magic Trick: For a standard 20-year home loan, if you deposit just one extra EMI per year towards the principal, you will completely close the loan 4 entire years earlier, wiping out massive segments of the amortization schedule."
+        },
+        faq: [
+            { question: "Will the bank charge a penalty for prepaying?", answer: "According to strict RBI mandates, banks cannot charge any foreclosure, pre-closure, or part-payment penalties on floating rate loans taken by individual borrowers. Fixed-rate loans and business loans may still carry a 2-4% penalty." },
+            { question: "Does prepayment lower my EMI or reduce my tenure?", answer: "By default, banks apply part-payments to reduce your total remaining loan tenure while keeping your existing monthly EMI strictly identical. Alternatively, you can actively request the bank to lower your running EMI while keeping the tenure unchanged, though reducing tenure saves far more interest." },
+            { question: "When is the absolute best time to prepay a loan?", answer: "The most impactful time to prepay is as early in the loan cycle as humanly possible. Because of how reducing balance amortization works, early prepayments wipe out principal balances before they have a chance to generate decades of compound interest." },
+            { question: "Should I invest in mutual funds or prepay my home loan?", answer: "This is a classic question. If your home loan is at 8.5% (effective rate 6.5% considering Section 24b tax benefits) and you expect your diversified equity portfolio to yield 12%+, the math favors investing. However, prepaying guarantees a risk-free 8.5% return, making it the superior choice for conservative individuals." }
+        ],
+        steps: [
+            { label: "Understand Base Liability", formula: "Log existing loan principal, interest rate, and current remaining tenure.", result: "Establishes baseline total interest." },
+            { label: "Factor Lumpsum Injection", formula: "Determine the exact amount of the one-time prepayment (e.g., a ₹1 Lakh bonus).", result: "Subtract injection directly from Principal." },
+            { label: "Recalculate Amortization", formula: "Simulate the remaining tenure using the newly reduced Principal balance.", result: "Instantly updates the new schedule." },
+            { label: "Quantify Total Savings", formula: "Baseline Interest Liability — New Adjusted Interest Liability", result: "Actual Rupee amount saved by prepaying." }
+        ],
+        insight: { icon: "🔥", title: "Early Prepayment Advantage", text: "Prepaying ₹2 Lakhs in year 2 of a 20-year loan is exponentially more effective at reducing total interest overhead than prepaying that exact same ₹2 Lakhs in year 15. The underlying mathematical structure of EMI amortization guarantees that early interventions are geometrically rewarded." }
+    },
     "loan-eligibility": {
         subtitle: "Find out how much loan you're eligible for based on your monthly income, existing EMIs, interest rate, and tenure. Loan eligibility in India depends on several financial factors — this calculator estimates your maximum borrowing capacity using standard bank formulas.",
         explanation: {

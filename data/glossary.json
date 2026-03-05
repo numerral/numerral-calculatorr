@@ -511,7 +511,7 @@
     {
         "term": "BMI",
         "slug": "bmi-term",
-        "definition": "Body Mass Index — a measure of body fat based on height and weight. Calculated as weight (kg) divided by height squared (m²). Categories: Underweight (<18.5), Normal (18.5-24.9), Overweight (25-29.9), Obese (30+). For South Asians, lower cutoffs are recommended.",
+        "definition": "Body Mass Index (BMI) is a widely recognized medical and fitness proxy used to estimate a person's total body fat based on their height and weight. It is calculated by taking an individual's weight in kilograms and dividing it by the square of their height in meters (m²). By providing a standardized numerical score, the BMI helps healthcare professionals and individuals quickly categorize weight profiles into standard bands: Underweight (below 18.5), Normal or Healthy Weight (18.5 to 24.9), Overweight (25 to 29.9), and Obese (30 and above). It is important to note that while the BMI is an excellent general screening tool for the broader population, it does not distinguish between muscle mass and fat mass, making it less accurate for athletes or bodybuilders. Furthermore, for South Asian populations, health authorities often recommend slightly lower cutoffs because of an increased genetic predisposition to visceral fat and cardiovascular risks at lower BMI thresholds.",
         "formula": "BMI = Weight (kg) ÷ Height² (m²)",
         "category": "utility",
         "related": [
@@ -521,7 +521,7 @@
     {
         "term": "Percentage",
         "slug": "percentage-term",
-        "definition": "A fraction expressed as a portion of 100. Used extensively in finance for interest rates, returns, tax rates, and growth calculations. To convert a fraction to percentage: multiply by 100. To find X% of Y: (X/100) × Y.",
+        "definition": "A percentage is a mathematical fraction expressed as a portion of 100, denoted by the percent sign (%). In the world of personal finance and banking, percentages form the very bedrock of all calculations. They are used extensively to define crucial metrics such as annual interest rates on home loans, expected compound annual growth rates (CAGR) on mutual fund SIPs, fixed deposit maturity interest, varying tax brackets, and even simple merchant discounts. Understanding how percentages work allows individuals to accurately compare different financial products—for example, evaluating whether a flat interest rate of 8% is truly cheaper than a reducing balance rate of 10%. To convert any fraction to a percentage, you simply multiply it by 100, and conversely, to find a specific percentage X of a total value Y, you use the formula (X/100) × Y. Whether you are splitting a bill or calculating an EMI schedule, percentages are indispensable.",
         "formula": "Percentage = (Part ÷ Whole) × 100",
         "category": "utility",
         "related": [
@@ -745,7 +745,7 @@
     {
         "term": "Rule of 72",
         "slug": "rule-of-72",
-        "definition": "A quick formula to estimate how long it takes to double your money: 72 ÷ interest rate = years to double. At 8%: 9 years. At 12%: 6 years. At 15%: 4.8 years. Works best for rates between 6-15%.",
+        "definition": "The Rule of 72 is a popular, simplified mental math formula used by investors and financial planners to quickly estimate how many years it will take for a given investment to double in value under a fixed annual rate of compound interest. By simply dividing the number 72 by the expected annual interest rate, you instantly get the approximate timeframe in years. For instance, if you secure a fixed deposit offering an 8% annual return, dividing 72 by 8 reveals that your money will double in exactly 9 years. Similarly, an aggressive equity mutual fund returning 12% annually would double your initial capital in just 6 years. While the rule relies on a mathematical approximation rather than an exact logarithmic calculation, it provides a remarkably accurate heuristic for interest rates falling between 6% and 15%. This makes it an invaluable rule-of-thumb tool for comparing passive wealth-building strategies without reaching for a complex spreadsheet.",
         "formula": "Years to Double = 72 ÷ Rate of Return",
         "category": "utility",
         "related": [
@@ -755,7 +755,7 @@
     {
         "term": "Inflation",
         "slug": "inflation",
-        "definition": "The rate at which the general level of prices for goods and services rises, reducing purchasing power. India's target inflation: 4% (RBI mandate). Real returns = Nominal returns − Inflation. An FD at 7% with 5% inflation gives only 2% real return.",
+        "definition": "Inflation represents the gradual rate at which the general level of prices for everyday goods, services, housing, and commodities rises across an entire economy, fundamentally leading to a reduction in the purchasing power of your money over time. As inflation grows, a single rupee buys fewer goods today than it did a decade ago. In India, the Reserve Bank of India (RBI) operates with a central mandate to keep domestic retail inflation anchored around a target rate of roughly 4%, with an acceptable tolerance band. For savers and investors, understanding inflation is the most critical component of wealth preservation, as it dictates the concept of 'real returns.' True wealth only grows when your investments outpace the inflation rate (Real returns = Nominal returns − Inflation). For example, if a traditional fixed deposit yields a 7% nominal interest rate while the prevailing inflation rate sits at 5%, your actual, inflation-adjusted purchasing power has only grown by a meager 2%.",
         "category": "utility",
         "related": [
             "fd-calculator",
@@ -947,7 +947,7 @@
     {
         "term": "Waist-to-Hip Ratio",
         "slug": "waist-to-hip-ratio",
-        "definition": "A measure of fat distribution, calculated by dividing waist circumference by hip circumference. Healthy ratio: <0.90 for men, <0.85 for women. A better predictor of cardiovascular risk than BMI alone, especially for adults.",
+        "definition": "The Waist-to-Hip Ratio (WHR) is an important anthropometric measurement routinely used by doctors, nutritionists, and fitness experts as a key indicator of body fat distribution and overall metabolic health. It is calculated by taking the circumference of your waist (typically measured just above the belly button) and dividing it by the circumference of your hips (measured at the widest part of the buttocks). Modern medical research suggests that carrying excess weight around the abdominal region—often referred to as an 'apple shape' or visceral fat—poses a significantly higher risk for cardiovascular diseases, type 2 diabetes, and hypertension than carrying fat around the hips and thighs (a 'pear shape'). According to the World Health Organization, a healthy waist-to-hip ratio is defined as being strictly under 0.90 for men and under 0.85 for women. Because it pinpoints exactly where fat is stored, WHR is often considered a far more accurate and individualized health predictor for heart attacks and metabolic syndrome than the traditional Body Mass Index (BMI) alone.",
         "formula": "WHR = Waist Circumference ÷ Hip Circumference",
         "category": "utility",
         "related": [
@@ -957,7 +957,7 @@
     {
         "term": "Discount Rate",
         "slug": "discount-rate",
-        "definition": "The percentage reduction from the original price. Used in calculating sale prices, markdowns, and promotional offers. The effective discount on successive discounts is calculated differently: 20% + 10% off is not 30% off; it equals 28% effective discount.",
+        "definition": "In the retail and consumer sector, a discount rate is defined as the exact percentage reduction applied to the original, stated retail price of a good or service. This metric is the cornerstone of sales events, markdowns, and ongoing promotional strategies designed to incentivize immediate customer purchases. Understanding how discount percentages interact is particularly crucial when dealing with consecutive or layered promotions. For instance, the math behind 'successive discounts' is notoriously counterintuitive for many shoppers: a promotional sign advertising '20% off plus an additional 10% off at the register' does not equate to a flat 30% discount on the total. Instead, the first 20% discount is applied to the original price, and the subsequent 10% discount is taken only from that newly reduced subtotal, resulting in an effective real-world discount of precisely 28%. When used in a broader macroeconomic context, the term 'discount rate' can also refer to the baseline interest rate charged by a central bank to commercial banks, fundamentally influencing the flow of credit.",
         "formula": "Discounted Price = Original Price × (1 − Discount%/100)",
         "category": "utility",
         "related": [
@@ -967,7 +967,7 @@
     {
         "term": "Markup",
         "slug": "markup",
-        "definition": "The amount added to the cost price to determine the selling price. Expressed as a percentage of cost. A 50% markup on ₹100 cost = ₹150 selling price. Note: markup ≠ margin. A 50% markup equals a 33.3% profit margin.",
+        "definition": "Markup is a core commercial pricing concept defined as the specific monetary amount, or percentage, that a retailer or manufacturer adds to the wholesale cost price of a product in order to arrive at its final retail selling price. It is the fundamental mechanism through which businesses ensure they can cover their operating overheads—such as rent, labor, and marketing—while still generating a sustainable profit. Expressed mathematically as a percentage of the original cost, applying a 50% markup to a product that costs ₹100 to manufacture results in a final selling price of ₹150. A very common and critical error made by early business owners is confusing 'markup' with 'profit margin.' While the markup is calculated against the wholesale cost, the profit margin is always calculated as a percentage of the final selling price. Continuing the prior example, a steep 50% markup on cost only actually translates to a 33.3% gross profit margin on the final sale revenue. Accurately managing markups is essential for business viability.",
         "formula": "Selling Price = Cost × (1 + Markup%/100)",
         "category": "utility",
         "related": [
@@ -977,7 +977,7 @@
     {
         "term": "Break-Even Point",
         "slug": "break-even-point",
-        "definition": "The point at which total revenue equals total costs — no profit, no loss. In loan context, it indicates when the savings from refinancing exceed the costs (processing fees). Important for deciding whether to transfer a loan to a lower-rate lender.",
+        "definition": "The Break-Even Point is a foundational concept in both business forecasting and personal finance that identifies the exact moment when total accrued revenues entirely offset all associated costs, resulting in a state of zero net profit and zero net loss. In a corporate manufacturing setting, determining this point helps executives calculate precisely how many units of a product must be sold to cover all fixed and variable overheads before the company can begin turning a profit. In the context of consumer personal finance and lending, the break-even point is incredibly useful when evaluating whether to undergo a balance transfer or refinance an existing mortgage. For example, if you switch your home loan to a competing bank to secure a lower interest rate, you will likely incur upfront processing fees, legal charges, and stamp duties. The break-even point in this scenario tells you exactly how many months of EMI savings it will take to eventually recoup those switching costs and start realizing a genuine financial advantage.",
         "category": "utility",
         "related": [
             "percentage-calculator"
