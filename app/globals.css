@@ -2507,7 +2507,7 @@ ol {
     background: var(--n-surface);
     border: 1px solid var(--n-border);
     border-radius: var(--radius-lg, 16px);
-    padding: var(--s-7);
+    padding: var(--s-7) var(--s-8);
     box-shadow: 0 2px 16px rgba(0, 0, 0, 0.04);
 }
 
@@ -2946,7 +2946,7 @@ ol {
 
 @media (max-width: 1024px) {
     .cibil-module {
-        padding: var(--s-5);
+        padding: var(--s-6);
     }
 
     .cibil-bands {
