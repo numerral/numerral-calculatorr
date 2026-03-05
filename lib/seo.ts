@@ -15,13 +15,13 @@ import { type FAQItem } from "./types";
 
 /**
  * Build a full canonical URL from a relative path.
- * Always includes trailing slash for consistency.
+ * No trailing slash — canonical matches the actual URL exactly.
  *
- * @example canonicalUrl("/loan-calculators") → "https://numerral.com/loan-calculators/"
+ * @example canonicalUrl("/loan-calculators") → "https://www.numerral.com/loan-calculators"
  */
 export function canonicalUrl(path: string): string {
     const clean = path.replace(/\/+$/, "");
-    return `${SITE_URL}${clean}/`;
+    return `${SITE_URL}${clean}`;
 }
 
 // ---- Template-based SEO ----
