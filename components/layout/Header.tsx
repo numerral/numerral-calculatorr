@@ -61,8 +61,21 @@ export default function Header() {
             <div className="header__inner container">
                 {/* Logo */}
                 <Link href="/" className="header__logo">
-                    <span className="header__logo-icon">N</span>
-                    Numerral
+                    <span className="header__logo-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="logoGrad" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse">
+                                    <stop offset="0%" stopColor="#818cf8" />
+                                    <stop offset="100%" stopColor="#4f46e5" />
+                                </linearGradient>
+                            </defs>
+                            <rect x="2" y="2" width="20" height="20" rx="4" fill="url(#logoGrad)" />
+                            <path d="M7 8h2v8H7V8zm4 3h2v5h-2v-5zm4-1h2v6h-2v-6z" fill="white" />
+                        </svg>
+                    </span>
+                    <span className="header__logo-text">
+                        Numer<span className="header__logo-accent">ral</span>
+                    </span>
                 </Link>
 
                 {/* Desktop Navigation */}

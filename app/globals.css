@@ -478,25 +478,47 @@ ol {
 .header__logo {
     display: flex;
     align-items: center;
-    gap: var(--s-2);
+    gap: var(--s-3);
     font-size: var(--t-h3);
     font-weight: 700;
-    color: var(--n-primary);
+    color: var(--n-text);
     text-decoration: none;
     flex-shrink: 0;
+    transition: all 0.25s ease;
+}
+
+.header__logo:hover {
+    transform: translateY(-1px);
+}
+
+.header__logo:hover .header__logo-icon {
+    box-shadow: 0 4px 16px rgba(79, 70, 229, 0.3);
+    transform: scale(1.05);
 }
 
 .header__logo-icon {
-    width: 32px;
-    height: 32px;
-    background: var(--n-primary);
-    border-radius: var(--r-sm);
+    width: 36px;
+    height: 36px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
-    font-weight: 700;
-    font-size: 14px;
+    border-radius: var(--r-md);
+    transition: all 0.25s ease;
+    flex-shrink: 0;
+}
+
+.header__logo-text {
+    font-weight: 800;
+    font-size: 1.35rem;
+    letter-spacing: -0.03em;
+    color: var(--n-text);
+}
+
+.header__logo-accent {
+    background: linear-gradient(135deg, #4f46e5, #818cf8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .header__nav {
@@ -1553,10 +1575,14 @@ ol {
 
 .mega-footer__logo {
     font-size: var(--t-h2);
-    font-weight: 700;
+    font-weight: 800;
     color: var(--n-footer-heading) !important;
-    display: block;
+    display: flex;
+    align-items: center;
+    gap: var(--s-3);
     margin-bottom: var(--s-3);
+    letter-spacing: -0.03em;
+    text-decoration: none;
 }
 
 .mega-footer__brand p {
