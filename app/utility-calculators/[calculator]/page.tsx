@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     const calc = getCalculatorsByCategory("utility").find((c) => c.slug === calculator);
     if (!calc) return {};
     return {
-        title: `${calc.title} — Free Online Calculator`,
+        title: `${calc.title}`,
         description: calc.description,
         keywords: calc.keywords ? calc.keywords.split(", ") : undefined,
         alternates: { canonical: canonicalUrl(`/utility-calculators/${calc.slug}`) },

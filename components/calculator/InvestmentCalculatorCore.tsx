@@ -212,7 +212,7 @@ export default function InvestmentCalculatorCore({
 
             {/* Comparison Table */}
             <div style={{ marginTop: "var(--s-6)" }}>
-                <h3 className="t-h3" style={{ marginBottom: "var(--s-4)" }}>Scenario Comparison</h3>
+                <h3 className="t-h3" style={{ marginBottom: "var(--s-4)" }}>Investment Scenario Comparison</h3>
                 <div style={{ overflowX: "auto" }}>
                     <table className="comparison-table">
                         <thead>

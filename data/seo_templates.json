@@ -1,25 +1,29 @@
 {
     "car-loan-emi": {
-        "title": "{{amount_label}} Car Loan EMI Calculator | Numerral",
+        "title": "{{amount_label}} Car Loan EMI Calculator",
         "description": "Calculate car loan EMI for {{amount_label}}. See monthly payment, total interest, and comparison scenarios. Free tool by Numerral.",
         "h1": "Car Loan EMI for {{amount_label}} — Monthly Payment Calculator",
         "subtitle": "Your EMI for a {{amount_label}} car loan at {{rate}}% — adjust rate and tenure below.",
         "explanation_heading": "Understanding Your {{amount_label}} Car Loan EMI",
         "explanation_paragraphs": [
             "A {{amount_label}} car loan is a common borrowing amount for vehicles in India. At the average rate of {{rate}}% per annum over a {{tenure_years}}-year tenure, your EMI and total interest depend on the exact amount and rate offered by your bank.",
-            "To reduce your total cost, consider increasing your down payment or opting for a shorter tenure if your monthly budget allows a higher EMI."
+            "Your monthly EMI for this {{amount_label}} loan at {{rate}}% is calculated using the standard reducing balance method. As you pay your EMI each month, a portion goes toward the principal and a portion toward the interest. In the initial years, the interest component is higher, but it gradually reduces as the principal amount decreases.",
+            "To reduce your total cost, consider increasing your down payment or opting for a shorter tenure if your monthly budget allows a higher EMI. A shorter tenure significantly reduces the total interest paid to the lender.",
+            "When applying for a {{amount_label}} car loan, banks will also check your CIBIL score. A score of 750 or above usually qualifies you for the lowest interest rates. Be sure to compare processing fees, foreclosure charges, and part-payment rules across different Indian banks and NBFCs before finalizing your vehicle finance."
         ],
         "explanation_highlight": "Pro tip: Even a 0.25% rate reduction on a {{amount_label}} loan saves thousands over the full tenure."
     },
     "home-loan-emi": {
-        "title": "{{amount_label}} Home Loan EMI Calculator | Numerral",
+        "title": "{{amount_label}} Home Loan EMI Calculator",
         "description": "Calculate home loan EMI for {{amount_label}}. Compare monthly payments across different interest rates and tenure options.",
         "h1": "Home Loan EMI for {{amount_label}} — Monthly Payment Calculator",
         "subtitle": "Your EMI for a {{amount_label}} home loan at {{rate}}% for {{tenure_years}} years.",
         "explanation_heading": "Understanding Your {{amount_label}} Home Loan EMI",
         "explanation_paragraphs": [
             "A {{amount_label}} home loan is one of the most common housing finance amounts in India. At {{rate}}% per annum over {{tenure_years}} years, your total interest can be substantial — making rate negotiation critical.",
-            "Consider options like a floating rate vs fixed rate, and evaluate the impact of prepayments on your total interest outgo."
+            "Home loans in India are typically offered on floating interest rates linked to the RBI repo rate (RLLR). This means your {{amount_label}} loan EMI may fluctuate over the {{tenure_years}}-year tenure if the central bank changes its benchmark rates.",
+            "Consider options like a floating rate vs fixed rate, and evaluate the impact of prepayments on your total interest outgo. Since home loans have long tenures, the interest burden can exceed the principal amount if not managed actively.",
+            "Tax benefits are a major advantage of a {{amount_label}} home loan. Under Section 80C of the Income Tax Act, you can claim up to ₹1.5 Lakhs on principal repayment, and under Section 24(b), up to ₹2 Lakhs on interest paid for a self-occupied property. This effectively reduces your true cost of borrowing."
         ],
         "explanation_highlight": "Pro tip: Prepaying even one extra EMI per year can reduce your {{amount_label}} home loan tenure by several years."
     }
