@@ -1471,6 +1471,25 @@ ol {
     padding: 2px 0;
 }
 
+.mega-footer__semantic {
+    max-width: var(--w-max);
+    margin-inline: auto;
+    padding: var(--s-8) var(--s-6) 0;
+    margin-top: var(--s-10);
+    border-top: 1px solid hsl(228, 15%, 18%);
+}
+
+.mega-footer__semantic p {
+    font-size: 0.8rem;
+    line-height: 1.7;
+    color: hsl(220, 10%, 55%);
+    margin: 0 0 var(--s-4) 0;
+}
+
+.mega-footer__semantic p:last-child {
+    margin-bottom: 0;
+}
+
 .mega-footer__bottom {
     max-width: var(--w-max);
     margin-inline: auto;
@@ -2927,12 +2946,15 @@ ol {
     .cibil-module {
         padding: var(--s-5);
     }
+
     .cibil-bands {
         grid-template-columns: repeat(5, 1fr);
     }
+
     .cibil-band__range {
         font-size: 0.58rem;
     }
+
     .cibil-band__label {
         font-size: 0.62rem;
     }
