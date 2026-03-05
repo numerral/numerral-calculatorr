@@ -38,6 +38,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     return {
         title: `${calc.title} — Calculate Your Monthly Loan Payment`,
         description: calc.description,
+        keywords: calc.keywords ? calc.keywords.split(", ") : undefined,
         alternates: { canonical: url },
     };
 }

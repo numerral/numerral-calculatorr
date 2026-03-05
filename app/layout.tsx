@@ -29,6 +29,14 @@ export const metadata: Metadata = {
   },
   description:
     "India's smartest calculator platform. 50+ free calculators for loan EMI, SIP returns, income tax, and more.",
+  keywords: [
+    "EMI calculator", "loan calculator", "SIP calculator", "income tax calculator",
+    "home loan EMI", "car loan EMI", "personal loan EMI", "FD calculator",
+    "compound interest calculator", "GST calculator", "HRA calculator",
+    "mutual fund returns", "PPF calculator", "NPS calculator",
+    "financial calculator India", "free online calculator", "Numerral",
+    "loan eligibility", "CIBIL score", "tax calculator India",
+  ],
   openGraph: {
     type: "website",
     siteName: SITE_NAME,

@@ -29,6 +29,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     return {
         title: `${calc.title} — Free Investment Calculator India`,
         description: calc.description,
+        keywords: calc.keywords ? calc.keywords.split(", ") : undefined,
         alternates: { canonical: canonicalUrl(`/investment-calculators/${calc.slug}`) },
     };
 }

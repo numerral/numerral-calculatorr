@@ -29,7 +29,8 @@
         "max": 360,
         "step": 6
       }
-    }
+    },
+    "keywords": "car loan EMI, car loan calculator, car loan interest rate, car EMI calculator India, auto loan calculator, vehicle loan EMI, car finance calculator"
   },
   {
     "id": "home-loan-emi",
@@ -61,7 +62,8 @@
         "max": 360,
         "step": 12
       }
-    }
+    },
+    "keywords": "home loan EMI, home loan calculator, housing loan EMI, mortgage calculator India, home loan interest rate, property loan EMI, SBI home loan EMI"
   },
   {
     "id": "personal-loan-emi",
@@ -93,7 +95,8 @@
         "max": 84,
         "step": 6
       }
-    }
+    },
+    "keywords": "personal loan EMI, personal loan calculator, personal loan interest rate, unsecured loan EMI, personal loan India, instant personal loan calculator"
   },
   {
     "id": "education-loan-emi",
@@ -125,7 +128,8 @@
         "max": 180,
         "step": 12
       }
-    }
+    },
+    "keywords": "education loan EMI, education loan calculator, study loan EMI, student loan India, education loan interest rate, moratorium period calculator"
   },
   {
     "id": "bike-loan-emi",
@@ -157,7 +161,8 @@
         "max": 60,
         "step": 6
       }
-    }
+    },
+    "keywords": "bike loan EMI, two wheeler loan calculator, bike loan interest rate, scooter loan EMI, two wheeler finance calculator, bike EMI India"
   },
   {
     "id": "business-loan-emi",
@@ -189,7 +194,8 @@
         "max": 120,
         "step": 6
       }
-    }
+    },
+    "keywords": "business loan EMI, MSME loan calculator, business loan interest rate, Mudra loan calculator, working capital loan EMI, business finance India"
   },
   {
     "id": "loan-comparison",
@@ -253,7 +259,8 @@
         "max": 360,
         "step": 6
       }
-    }
+    },
+    "keywords": "loan eligibility calculator, loan eligibility check, home loan eligibility, personal loan eligibility, FOIR calculator, loan amount calculator India"
   },
   {
     "id": "prepayment-calculator",
@@ -285,7 +292,8 @@
         "max": 360,
         "step": 6
       }
-    }
+    },
+    "keywords": "loan prepayment calculator, part payment calculator, prepayment benefit calculator, home loan prepayment, EMI prepayment India"
   },
   {
     "id": "sip-calculator",
@@ -318,7 +326,8 @@
         "max": 360,
         "step": 12
       }
-    }
+    },
+    "keywords": "SIP calculator, SIP return calculator, mutual fund SIP, SIP investment calculator India, monthly SIP returns, step up SIP calculator"
   },
   {
     "id": "fd-calculator",
@@ -351,7 +360,8 @@
         "max": 120,
         "step": 6
       }
-    }
+    },
+    "keywords": "FD calculator, fixed deposit calculator, FD interest calculator, FD maturity calculator India, bank FD rates, senior citizen FD calculator"
   },
   {
     "id": "rd-calculator",
@@ -384,7 +394,8 @@
         "max": 120,
         "step": 6
       }
-    }
+    },
+    "keywords": "RD calculator, recurring deposit calculator, RD maturity calculator, RD interest calculator India, monthly savings calculator"
   },
   {
     "id": "ppf-calculator",
@@ -417,7 +428,8 @@
         "max": 600,
         "step": 60
       }
-    }
+    },
+    "keywords": "PPF calculator, Public Provident Fund calculator, PPF maturity calculator, PPF interest rate, Section 80C PPF, PPF return calculator India"
   },
   {
     "id": "nps-calculator",
@@ -450,7 +462,8 @@
         "max": 480,
         "step": 12
       }
-    }
+    },
+    "keywords": "NPS calculator, National Pension System calculator, NPS return calculator, retirement calculator India, NPS Tier 1 calculator, Section 80CCD"
   },
   {
     "id": "mutual-fund-returns",
@@ -483,7 +496,8 @@
         "max": 360,
         "step": 12
       }
-    }
+    },
+    "keywords": "mutual fund return calculator, mutual fund CAGR calculator, lumpsum return calculator, mutual fund SIP returns, XIRR calculator India"
   },
   {
     "id": "income-tax-calculator",
@@ -549,7 +563,8 @@
         "max": 0,
         "step": 0
       }
-    }
+    },
+    "keywords": "GST calculator, GST calculator India, CGST SGST calculator, GST rate calculator, reverse GST calculator, 18% GST calculator"
   },
   {
     "id": "hra-exemption-calculator",
@@ -615,7 +630,8 @@
         "max": 0,
         "step": 0
       }
-    }
+    },
+    "keywords": "TDS calculator, TDS rate calculator, TDS on salary, TDS on rent, TDS deduction calculator India, Section 194 calculator"
   },
   {
     "id": "capital-gains-tax-calculator",
@@ -714,7 +730,8 @@
         "max": 0,
         "step": 0
       }
-    }
+    },
+    "keywords": "age calculator, age calculator online, exact age calculator, date of birth calculator, age in days calculator, age calculator India"
   },
   {
     "id": "percentage-calculator",
@@ -747,7 +764,8 @@
         "max": 0,
         "step": 0
       }
-    }
+    },
+    "keywords": "percentage calculator, percentage calculator online, percent of number, percentage change calculator, markup calculator, margin calculator"
   },
   {
     "id": "compound-interest-calculator",
@@ -846,7 +864,8 @@
         "max": 0,
         "step": 0
       }
-    }
+    },
+    "keywords": "BMI calculator, body mass index calculator, BMI calculator India, weight calculator, healthy BMI range, BMI chart adults"
   },
   {
     "id": "discount-calculator",
@@ -879,6 +898,7 @@
         "max": 100,
         "step": 0.5
       }
-    }
+    },
+    "keywords": "discount calculator, sale price calculator, percentage discount calculator, double discount calculator, markup margin calculator India"
   }
 ]

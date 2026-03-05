@@ -26,6 +26,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     return {
         title: `${calc.title} — Free Online Calculator`,
         description: calc.description,
+        keywords: calc.keywords ? calc.keywords.split(", ") : undefined,
         alternates: { canonical: canonicalUrl(`/utility-calculators/${calc.slug}`) },
     };
 }
