@@ -34,6 +34,7 @@ export interface CalculatorDef {
     defaults: CalculatorDefaults;
     sliderRanges: SliderRanges;
     calcType?: string;
+    keywords?: string;
 }
 
 export interface VariantEntry {
