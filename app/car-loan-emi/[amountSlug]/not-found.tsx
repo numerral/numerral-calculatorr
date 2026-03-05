@@ -11,7 +11,7 @@ export default function AmountNotFound() {
                 standard amount pages or use the main calculator.
             </p>
             <p>
-                <Link href="/loan-calculators/car-loan-emi-calculator">
+                <Link href="/loan-calculators/car-loan-emi">
                     ← Go to Car Loan EMI Calculator
                 </Link>
             </p>

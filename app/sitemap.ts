@@ -38,13 +38,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: 0.85,
     }));
 
-    // Legacy car-loan-emi-calculator route
-    loanHubs.push({
-        url: canonicalUrl("/loan-calculators/car-loan-emi-calculator"),
-        lastModified: now,
-        changeFrequency: "monthly",
-        priority: 0.85,
-    });
+
 
     // ─── Investment calculator hubs ───
     const investHubs: MetadataRoute.Sitemap = getCalculatorsByCategory("invest").map((c) => ({

@@ -75,7 +75,7 @@ export default async function ProgrammaticPage({
             { name: "Loan Calculators", url: canonicalUrl("/loan-calculators") },
             {
                 name: "Car Loan EMI",
-                url: canonicalUrl("/loan-calculators/car-loan-emi-calculator"),
+                url: canonicalUrl("/loan-calculators/car-loan-emi"),
             },
             { name: label },
         ]),
@@ -97,7 +97,7 @@ export default async function ProgrammaticPage({
                     { label: "Loan Calculators", href: "/loan-calculators" },
                     {
                         label: "Car Loan EMI",
-                        href: "/loan-calculators/car-loan-emi-calculator",
+                        href: "/loan-calculators/car-loan-emi",
                     },
                     { label },
                 ]}
