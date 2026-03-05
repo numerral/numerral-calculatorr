@@ -103,10 +103,8 @@ export default function HomePage() {
           <span className="text-gradient">Financial Calculators</span>
         </h1>
         <p className="hero__subtitle">
-          Numerral provides free financial calculators that help individuals estimate loan EMIs,
-          investment returns, tax liabilities, and financial planning scenarios. These calculators
-          use standard financial formulas such as compound interest, amortization schedules, and
-          tax computation models to generate accurate results instantly.
+          50+ free calculators for loan EMI, SIP returns, income tax, and everyday math.
+          Instant results, bank-grade accuracy — trusted by 1M+ users across India.
         </p>
       </section>
 
