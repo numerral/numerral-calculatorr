@@ -102,7 +102,7 @@ export default function CalculatorCore({
 
             {showComparison && (
                 <section>
-                    <h2 className="t-h2" style={{ marginBottom: "var(--s-4)" }}>{loanConfig ? loanConfig.label : "Loan"} Scenario Comparison</h2>
+                    <h2 className="t-h2" style={{ marginBottom: "var(--s-4)" }}>{cibilConfig ? cibilConfig.label : "Loan"} Scenario Comparison</h2>
                     <ComparisonTable input={input} />
                 </section>
             )}

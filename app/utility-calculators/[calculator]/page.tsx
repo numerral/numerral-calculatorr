@@ -125,10 +125,7 @@ const HUB_CONTENT: Record<string, {
         faq: [
             { question: "How do I calculate a discount manually?", answer: "Multiply the original price by the discount percentage (as a decimal). For example, a 20% discount on ₹1,000 is 1,000 × 0.20 = ₹200. The final price is ₹1,000 - ₹200 = ₹800." },
             { question: "What does '50% + 50% Off' mean?", answer: "It does not mean the item is free (100% off). The first 50% halves the price, and the second 50% halves the remaining price. The effective total discount is 75%." },
-            { question: "How do I reverse calculate an original price?", answer: "If you know the discounted price and the discount percentage, divide the discounted price by (1 - discount percentage). For example, ₹800 / (1 - 0.20) = ₹1,000." }
-        ],
-    },
-        faq: [
+            { question: "How do I reverse calculate an original price?", answer: "If you know the discounted price and the discount percentage, divide the discounted price by (1 - discount percentage). For example, ₹800 / (1 - 0.20) = ₹1,000." },
             { question: "Why is 20% + 10% not equal to 30%?", answer: "Because the second discount applies to the reduced price, not the original. 20% off ₹5,000 = ₹4,000, then 10% off ₹4,000 = ₹3,600 (28% total, not 30%)." },
             { question: "Is 20% + 10% the same as 10% + 20%?", answer: "Yes! The order doesn't matter. Both give the same final price. Mathematically: (1 − 0.2) × (1 − 0.1) = (1 − 0.1) × (1 − 0.2) = 0.72." },
         ],
@@ -154,7 +151,7 @@ export default async function UtilityCalculatorHubPage({ params }: PageProps) {
     ]);
 
     return (
-        <main className="container" style={{ paddingTop: "var(--s-4)" }}>
+        <main className="container" style={{ paddingTop: "var(--s-4)" }} >
             <Script
                 id={`schema-${calc.slug}`}
                 type="application/ld+json"
@@ -188,6 +185,6 @@ export default async function UtilityCalculatorHubPage({ params }: PageProps) {
             />
 
             <FAQAccordion title={`${calc.title} FAQ`} items={hub.faq} />
-        </main>
+        </main >
     );
 }

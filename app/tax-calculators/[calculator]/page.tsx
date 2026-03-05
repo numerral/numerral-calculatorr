@@ -133,10 +133,7 @@ const HUB_CONTENT: Record<string, {
         faq: [
             { question: "What is the maximum limit for professional tax?", answer: "As per the Constitution of India, the total professional tax payable by any person cannot exceed ₹2,500 per financial year." },
             { question: "Is professional tax deductible under Income Tax?", answer: "Yes. Salaried employees can claim a deduction for the exact amount of professional tax paid during the year under Section 16(iii) of the Income Tax Act." },
-            { question: "Do all states charge professional tax?", answer: "No. It is a state-level tax. Many states and union territories (e.g., Delhi, Haryana, Chandigarh) do not levy any professional tax." }
-        ],
-    },
-        faq: [
+            { question: "Do all states charge professional tax?", answer: "No. It is a state-level tax. Many states and union territories (e.g., Delhi, Haryana, Chandigarh) do not levy any professional tax." },
             { question: "Is professional tax the same in all states?", answer: "No. Each state sets its own PT slabs. Some states like Rajasthan and UP don't levy PT at all. Maharashtra charges ₹200/month for salary above ₹10,000, while Tamil Nadu has slabs ranging from ₹135 to ₹1,250/month." },
             { question: "Can I claim PT as a deduction?", answer: "Yes. Professional tax paid is deductible under Section 16(iii) of the Income Tax Act. It's automatically deducted from your gross salary when computing taxable income — in both old and new regimes." },
         ],
@@ -165,7 +162,7 @@ export default async function TaxCalculatorHubPage({ params }: PageProps) {
     ]);
 
     return (
-        <main className="container" style={{ paddingTop: "var(--s-4)" }}>
+        <main className="container" style={{ paddingTop: "var(--s-4)" }} >
             <Script
                 id={`schema-${calc.slug}`}
                 type="application/ld+json"
@@ -199,6 +196,6 @@ export default async function TaxCalculatorHubPage({ params }: PageProps) {
             />
 
             <FAQAccordion title={`${calc.title} FAQ`} items={hub.faq} />
-        </main>
+        </main >
     );
 }
