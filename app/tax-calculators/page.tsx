@@ -11,7 +11,7 @@ import { canonicalUrl, breadcrumbSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
-    title: "Tax Calculators — Income Tax, GST, HRA & TDS Tools | Numerral",
+    title: "Tax Calculators — Income Tax, GST, HRA & TDS Tools for India",
     description:
         "Calculate income tax (old & new regime), GST, HRA exemption, TDS, capital gains tax & professional tax. Free, instant results for FY 2025-26.",
     alternates: { canonical: canonicalUrl("/tax-calculators") },

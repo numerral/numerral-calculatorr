@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     const calc = getCalculatorsByCategory("tax").find((c) => c.slug === calculator);
     if (!calc) return {};
     return {
-        title: `${calc.title} — Free Online ${calc.title} | Numerral`,
+        title: `${calc.title} — Free Tax Calculator for India FY 2025-26`,
         description: calc.description,
         alternates: { canonical: canonicalUrl(`/tax-calculators/${calc.slug}`) },
     };

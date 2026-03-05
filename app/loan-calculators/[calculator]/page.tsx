@@ -36,7 +36,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     if (!calc) return {};
     const url = canonicalUrl(`/loan-calculators/${calc.slug}`);
     return {
-        title: `${calc.title} — Calculate Your Monthly Payment | Numerral`,
+        title: `${calc.title} — Calculate Your Monthly Loan Payment`,
         description: calc.description,
         alternates: { canonical: url },
     };

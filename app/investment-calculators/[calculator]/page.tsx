@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     const calc = getCalculatorsByCategory("invest").find((c) => c.slug === calculator);
     if (!calc) return {};
     return {
-        title: `${calc.title} — Plan Your Investments | Numerral`,
+        title: `${calc.title} — Free Investment Calculator India`,
         description: calc.description,
         alternates: { canonical: canonicalUrl(`/investment-calculators/${calc.slug}`) },
     };

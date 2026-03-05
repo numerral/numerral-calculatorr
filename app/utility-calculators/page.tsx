@@ -11,7 +11,7 @@ import { canonicalUrl, breadcrumbSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
-    title: "Utility Calculators — Age, Percentage, BMI & More | Numerral",
+    title: "Utility Calculators — Age, Percentage, BMI & More",
     description:
         "Free utility calculators: Age Calculator, Percentage, Compound & Simple Interest, BMI, and Discount Calculator. Instant, accurate results.",
     alternates: { canonical: canonicalUrl("/utility-calculators") },

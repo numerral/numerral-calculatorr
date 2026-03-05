@@ -10,7 +10,7 @@ import { canonicalUrl, breadcrumbSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
-    title: "Financial Glossary — 100+ Key Terms Explained | Numerral",
+    title: "Financial Glossary — 100+ Key Finance and Banking Terms Explained",
     description:
         "Comprehensive glossary of financial terms: EMI, SIP, CAGR, CIBIL Score, GST, Section 80C, and 100+ more. Simple, jargon-free definitions.",
     alternates: { canonical: canonicalUrl("/glossary") },

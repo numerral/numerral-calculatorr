@@ -6,7 +6,7 @@
     "slug": "car-loan-emi",
     "categorySlug": "loan-calculators",
     "icon": "🚗",
-    "description": "Calculate monthly EMI for your car loan with different rates and tenure.",
+    "description": "Calculate your car loan EMI instantly. Enter loan amount, interest rate (7-12%), and tenure to see monthly payments, total interest, and amortization schedule. Compare rates from SBI, HDFC, ICICI and other Indian banks.",
     "stars": 5,
     "defaults": {
       "amount": 500000,
@@ -38,7 +38,7 @@
     "slug": "home-loan-emi",
     "categorySlug": "loan-calculators",
     "icon": "🏠",
-    "description": "Plan your dream home with accurate mortgage calculations.",
+    "description": "Calculate home loan EMI for any amount and tenure up to 30 years. See monthly payments, total interest cost, and year-by-year amortization. Compare floating rates from SBI (8.25%), HDFC Bank, ICICI Bank, and other Indian lenders.",
     "stars": 5,
     "defaults": {
       "amount": 3000000,
@@ -70,7 +70,7 @@
     "slug": "personal-loan-emi",
     "categorySlug": "loan-calculators",
     "icon": "👤",
-    "description": "Estimate EMI for personal loans with flexible tenure options.",
+    "description": "Estimate your personal loan EMI based on amount, rate (10-24%), and tenure. Unsecured loan calculator with total interest, monthly payment breakdown, and comparison across Indian banks and NBFCs.",
     "stars": 4,
     "defaults": {
       "amount": 200000,
@@ -102,7 +102,7 @@
     "slug": "education-loan-emi",
     "categorySlug": "loan-calculators",
     "icon": "🎓",
-    "description": "Plan education financing with moratorium period support.",
+    "description": "Calculate education loan EMI with moratorium period support. Estimate monthly payments for study in India or abroad. Covers SBI Scholar Loan, Credila, and other education financing options with Section 80E tax benefit.",
     "stars": 4,
     "defaults": {
       "amount": 1000000,
@@ -134,7 +134,7 @@
     "slug": "bike-loan-emi",
     "categorySlug": "loan-calculators",
     "icon": "🏍️",
-    "description": "Quick EMI calculation for two-wheeler financing.",
+    "description": "Calculate two-wheeler loan EMI for bikes and scooters. Enter amount, rate (8-15%), and tenure to see monthly payments. Covers new and used vehicle financing with down payment calculations for Indian lenders.",
     "stars": 4,
     "defaults": {
       "amount": 80000,
@@ -166,7 +166,7 @@
     "slug": "business-loan-emi",
     "categorySlug": "loan-calculators",
     "icon": "🏢",
-    "description": "Calculate EMIs for MSME and business term loans.",
+    "description": "Calculate business loan and MSME term loan EMI. Supports Mudra loan (PMMY) calculations up to ₹10 Lakh. Covers working capital, expansion financing, and CGTMSE-backed loans for Indian businesses.",
     "stars": 4,
     "defaults": {
       "amount": 1000000,
@@ -230,7 +230,7 @@
     "slug": "loan-eligibility",
     "categorySlug": "loan-calculators",
     "icon": "✅",
-    "description": "Check how much loan you can get based on your income.",
+    "description": "Check your maximum loan eligibility based on monthly income, existing EMIs, interest rate, and tenure. Uses FOIR (Fixed Obligation to Income Ratio) method followed by Indian banks for home, car, and personal loans.",
     "stars": 4,
     "defaults": {
       "amount": 500000,
@@ -262,7 +262,7 @@
     "slug": "prepayment",
     "categorySlug": "loan-calculators",
     "icon": "💳",
-    "description": "See how partial prepayments reduce your total interest.",
+    "description": "Calculate how partial prepayments reduce your total interest and tenure. See the impact of lumpsum payments on your home loan, car loan, or personal loan EMI schedule with Indian bank prepayment rules.",
     "stars": 4,
     "defaults": {
       "amount": 500000,
@@ -294,7 +294,7 @@
     "slug": "sip-calculator",
     "categorySlug": "investment-calculators",
     "icon": "📊",
-    "description": "Calculate returns on your monthly SIP investments in mutual funds.",
+    "description": "Calculate SIP returns and wealth accumulation over time. See how monthly investments of ₹500 to ₹1 Lakh grow through compounding in mutual funds. Includes step-up SIP and XIRR return estimation for Indian investors.",
     "stars": 5,
     "calcType": "sip",
     "defaults": {
@@ -327,7 +327,7 @@
     "slug": "fd-calculator",
     "categorySlug": "investment-calculators",
     "icon": "🏦",
-    "description": "Calculate maturity value of your fixed deposit with quarterly compounding.",
+    "description": "Calculate fixed deposit maturity value with quarterly compounding. Compare FD rates across SBI, HDFC Bank, ICICI Bank, and other Indian banks. Includes senior citizen rate calculations and TDS impact on FD interest.",
     "stars": 5,
     "calcType": "fd",
     "defaults": {
@@ -360,7 +360,7 @@
     "slug": "rd-calculator",
     "categorySlug": "investment-calculators",
     "icon": "💰",
-    "description": "Estimate maturity amount on recurring deposits with compounding.",
+    "description": "Calculate recurring deposit maturity amount with monthly compounding. See how regular monthly savings of ₹500 to ₹1 Lakh grow over 1-10 years at current Indian bank RD interest rates.",
     "stars": 4,
     "calcType": "rd",
     "defaults": {
@@ -393,7 +393,7 @@
     "slug": "ppf-calculator",
     "categorySlug": "investment-calculators",
     "icon": "🛡️",
-    "description": "Calculate Public Provident Fund maturity with annual compounding.",
+    "description": "Calculate Public Provident Fund maturity value over 15 years with annual compounding at current 7.1% rate. Includes yearly balance projection, Section 80C tax benefit, and partial withdrawal rules.",
     "stars": 5,
     "calcType": "ppf",
     "defaults": {
@@ -426,7 +426,7 @@
     "slug": "nps-calculator",
     "categorySlug": "investment-calculators",
     "icon": "👴",
-    "description": "Plan your retirement corpus with National Pension System calculator.",
+    "description": "Plan retirement corpus with National Pension System calculator. Project NPS returns for Tier 1 and Tier 2 with equity, corporate bond, and government security allocation. Includes Section 80CCD tax benefits.",
     "stars": 4,
     "calcType": "nps",
     "defaults": {
@@ -459,7 +459,7 @@
     "slug": "mutual-fund-returns",
     "categorySlug": "investment-calculators",
     "icon": "📈",
-    "description": "Calculate lumpsum and SIP returns on mutual fund investments.",
+    "description": "Calculate mutual fund lumpsum and SIP returns with CAGR and XIRR. Compare growth across equity, debt, and hybrid funds. Includes expense ratio impact and benchmark comparison for Indian mutual fund investors.",
     "stars": 4,
     "calcType": "lumpsum",
     "defaults": {
@@ -525,7 +525,7 @@
     "slug": "gst-calculator",
     "categorySlug": "tax-calculators",
     "icon": "🏷️",
-    "description": "Calculate GST payable — CGST, SGST & IGST split for any amount at 5%, 12%, 18% or 28% rates.",
+    "description": "Calculate GST payable with CGST, SGST, and IGST split for any amount. Supports 5%, 12%, 18%, and 28% GST rates. Includes reverse calculation (GST-exclusive from GST-inclusive amount) for Indian businesses.",
     "stars": 5,
     "calcType": "gst",
     "defaults": {
@@ -591,7 +591,7 @@
     "slug": "tds-calculator",
     "categorySlug": "tax-calculators",
     "icon": "📋",
-    "description": "Calculate TDS deduction on salary, rent, professional fees, property sale & other income types.",
+    "description": "Calculate TDS deduction on salary, rent, professional fees, property sale, and other income types. Covers Section 194A, 194C, 194H, 194I, 194J with current Indian TDS rates for FY 2025-26.",
     "stars": 4,
     "calcType": "tds",
     "defaults": {
@@ -690,7 +690,7 @@
     "slug": "age-calculator",
     "categorySlug": "utility-calculators",
     "icon": "🎂",
-    "description": "Calculate your exact age in years, months & days. Know age on any date — past, present or future.",
+    "description": "Calculate your exact age in years, months, and days from date of birth. Know your age on any date — past, present, or future. Includes age at next birthday, total days lived, and zodiac sign.",
     "stars": 5,
     "calcType": "age",
     "defaults": {
@@ -723,7 +723,7 @@
     "slug": "percentage-calculator",
     "categorySlug": "utility-calculators",
     "icon": "📊",
-    "description": "Calculate percentages instantly — X% of Y, percentage change, increase & decrease. Multiple modes.",
+    "description": "Calculate percentages instantly — X% of Y, percentage change, percentage increase and decrease. Multiple calculation modes including markup, margin, and reverse percentage for students and professionals.",
     "stars": 5,
     "calcType": "percentage",
     "defaults": {
@@ -822,7 +822,7 @@
     "slug": "bmi-calculator",
     "categorySlug": "utility-calculators",
     "icon": "⚖️",
-    "description": "Calculate your Body Mass Index (BMI) instantly. Know your weight category & healthy weight range.",
+    "description": "Calculate your Body Mass Index (BMI) instantly using height and weight. Know your weight category — underweight, normal, overweight, or obese. Includes healthy weight range and BMI chart for Indian adults.",
     "stars": 5,
     "calcType": "bmi",
     "defaults": {
@@ -855,7 +855,7 @@
     "slug": "discount-calculator",
     "categorySlug": "utility-calculators",
     "icon": "🏷️",
-    "description": "Calculate discount amount & final price. Double discount, markup & margin calculators included.",
+    "description": "Calculate discount amount and final price instantly. Supports double discount, buy-X-get-Y, markup and margin calculations. Compare original price vs sale price with percentage savings for Indian shoppers.",
     "stars": 4,
     "calcType": "discount",
     "defaults": {

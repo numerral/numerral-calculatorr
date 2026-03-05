@@ -5,7 +5,7 @@ import { canonicalUrl } from "@/lib/seo";
 import { getCalculatorsByCategory, getAllCategories } from "@/lib/data";
 
 export const metadata: Metadata = {
-    title: "Site Map — All Calculators & Pages | Numerral",
+    title: "Site Map — All Calculators, Guides & Pages",
     description:
         "Complete site map of Numerral. Browse all 200+ calculators across loans, investments, tax, and utilities.",
     alternates: { canonical: canonicalUrl("/site-map") },
