@@ -2642,7 +2642,7 @@ ol {
     flex-shrink: 0;
 }
 
-.cibil-toggle input:checked + .cibil-toggle__track {
+.cibil-toggle input:checked+.cibil-toggle__track {
     background: var(--n-primary);
 }
 
@@ -2658,7 +2658,7 @@ ol {
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
 }
 
-.cibil-toggle input:checked + .cibil-toggle__track .cibil-toggle__thumb {
+.cibil-toggle input:checked+.cibil-toggle__track .cibil-toggle__thumb {
     transform: translateX(20px);
 }
 
@@ -2960,7 +2960,8 @@ ol {
         gap: 2px;
     }
 }
-\n/* Reduced motion */
+
+/* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
 
     *,
