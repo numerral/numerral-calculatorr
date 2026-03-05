@@ -99,6 +99,13 @@ export const LOAN_CONFIGS: Record<string, CibilLoanConfig> = {
         idealScore: 750,
         description: "Business loans consider both personal CIBIL and business credit (CMR). Mudra loans may have relaxed score requirements.",
     },
+    "loan-eligibility": {
+        loanType: "loan-eligibility",
+        label: "Loan Eligibility",
+        typicalPreferred: 700,
+        idealScore: 750,
+        description: "Your CIBIL score directly impacts not just approval but the maximum loan amount you're eligible for. Higher scores can increase eligibility by 10-20%.",
+    },
 };
 
 // ── Lender types ──
@@ -190,6 +197,11 @@ export const CIBIL_FAQS: Record<string, { question: string; answer: string }[]> 
         { question: "What CIBIL score is needed for business loan?", answer: "Banks prefer 700+ for business loans. Mudra loans under PMMY may have slightly relaxed requirements. Business vintage (2+ years) and turnover also matter significantly." },
         { question: "Is personal CIBIL score checked for business loans?", answer: "Yes, especially for proprietorships and partnerships. For companies, both the promoter's personal CIBIL and the company's CMR (Commercial Credit Report) are evaluated." },
         { question: "Can MSME businesses get loans with low CIBIL score?", answer: "CGTMSE-backed loans may be available for scores of 650+. Mudra SHISHU loans (up to ₹50K) have the most relaxed criteria. Higher amounts require stronger profiles." },
+    ],
+    "loan-eligibility": [
+        { question: "How does CIBIL score affect loan eligibility amount?", answer: "A higher CIBIL score (750+) can increase your eligible loan amount by 10-20%. Banks offer higher loan-to-value ratios, lower rates, and more flexible FOIR limits for high-score borrowers, all of which increase the maximum amount you can borrow." },
+        { question: "Can I check loan eligibility with a low CIBIL score?", answer: "Yes, but your eligible amount will be lower. Scores below 650 may restrict eligibility to only NBFC lenders at higher rates. Improving your score before applying can significantly increase the loan amount you qualify for." },
+        { question: "What CIBIL score is needed for maximum loan eligibility?", answer: "750+ is ideal for maximum eligibility. At this score, banks offer the best rates and highest LTV ratios. Some banks even relax FOIR limits for borrowers with 800+ scores, effectively increasing your maximum eligible amount." },
     ],
 };
 

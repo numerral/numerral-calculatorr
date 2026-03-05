@@ -165,6 +165,39 @@ const HUB_CONTENT: Record<string, {
             { question: "Are business loan EMIs tax deductible?", answer: "The interest component is fully deductible as business expense. Principal repayment is not tax deductible but the borrowed amount is used for business purposes." },
         ],
     },
+    "loan-eligibility": {
+        subtitle: "Find out how much loan you're eligible for based on your monthly income, existing EMIs, interest rate, and tenure. Loan eligibility in India depends on several financial factors — this calculator estimates your maximum borrowing capacity using standard bank formulas.",
+        explanation: {
+            heading: "How Loan Eligibility Is Calculated in India",
+            paragraphs: [
+                "Loan eligibility in India is determined by a combination of your monthly or annual income, existing financial obligations (EMIs you're already paying), the proposed interest rate, and the loan tenure. Banks and NBFCs in India typically use a metric called FOIR (Fixed Obligation to Income Ratio) — this is the percentage of your monthly income that goes toward loan repayments. Most lenders cap FOIR at 50-60%, meaning your total EMIs (existing + proposed) should not exceed 50-60% of your net monthly income.",
+                "For salaried individuals, banks consider gross monthly salary minus statutory deductions (PF, professional tax, TDS). For self-employed borrowers, eligibility is based on ITR-filed income averaged over the last 2-3 years. Self-employed professionals (doctors, CAs, architects) typically get 1.5-2× higher eligibility than self-employed businesspersons due to perceived income stability.",
+                "Beyond income, your CIBIL score plays a critical role. A score of 750+ not only improves approval chances but can increase your eligible loan amount by 10-20% because banks feel confident lending more to creditworthy borrowers. Additionally, joint loans (husband-wife or parent-child) combine both applicants' incomes, significantly increasing eligibility — this is particularly useful for home loans where the property value exceeds a single borrower's capacity.",
+                "It's important to understand that gross eligibility (what you can borrow) and net eligibility (what you should borrow) are different. Financial advisors recommend keeping total EMIs below 35-40% of income, not 50-60%, to maintain a comfortable debt-to-income ratio and emergency buffer.",
+            ],
+            highlight: "Rule of thumb: Your maximum loan eligibility is approximately 60× your monthly take-home salary for a 20-year tenure at 8.5%. For example, a ₹1 Lakh/month salary makes you eligible for approximately ₹60 Lakh home loan. Reducing existing EMIs by ₹10,000 can increase eligibility by ₹8-12 Lakh.",
+        },
+        faq: [
+            { question: "How is loan eligibility calculated?", answer: "Banks use the FOIR (Fixed Obligation to Income Ratio) method. They take your net monthly income, subtract existing EMIs, and calculate the maximum new EMI you can afford (typically 50-60% of income). This EMI is then reverse-calculated using the interest rate and tenure to determine the maximum loan amount." },
+            { question: "What is FOIR and how does it affect eligibility?", answer: "FOIR (Fixed Obligation to Income Ratio) is the percentage of your income going toward EMIs. Banks cap this at 50-60%. If your salary is ₹1 Lakh and existing EMIs are ₹20K, your available capacity is ₹30-40K/month for new EMI. Lower existing obligations = higher eligibility." },
+            { question: "Does CIBIL score affect loan eligibility amount?", answer: "Yes, significantly. A CIBIL score of 750+ can increase your eligible amount by 10-20%. Some banks offer preferential treatment for 800+ scores, including higher loan-to-value ratios and lower interest rates, both of which increase the total amount you can borrow." },
+            { question: "How to increase loan eligibility in India?", answer: "1) Close existing loans and credit card dues. 2) Add a co-applicant (spouse/parent) to combine incomes. 3) Choose a longer tenure. 4) Improve your CIBIL score above 750. 5) Include variable income (bonuses, rental income) in your application. 6) Reduce credit card utilisation below 30%." },
+            { question: "What salary is needed for a ₹50 Lakh home loan?", answer: "At 8.5% for 20 years, the EMI is ~₹43,400. With a 50% FOIR limit, you need ₹86,800/month minimum income (assuming no other EMIs). With existing EMIs of ₹15K, you'd need ~₹1,17,000/month. Joint applications can reduce the required individual income." },
+            { question: "Is loan eligibility different for salaried and self-employed?", answer: "Yes. Salaried individuals get eligibility based on payslip income. Self-employed eligibility uses ITR-filed income (average of last 2-3 years). Self-employed borrowers typically need 20-30% higher documented income for the same loan amount due to perceived income variability." },
+            { question: "Can I check loan eligibility for multiple loan types?", answer: "Yes. Home loan eligibility is highest (longest tenure = lower EMI = more borrowing). Personal loan eligibility is lower (shorter tenure, higher rate). Car/bike loan eligibility depends on vehicle value. Use this calculator with different rates and tenures to compare across loan types." },
+        ],
+        steps: [
+            { label: "Calculate available EMI capacity", formula: "Net income ₹1,00,000 × 50% FOIR = ₹50,000 — Existing EMIs ₹15,000", result: "Available for new EMI: ₹35,000/month" },
+            { label: "Convert to monthly interest rate", formula: "8.5% ÷ 12 = 0.00708", result: "Monthly rate: 0.708%" },
+            { label: "Reverse-calculate max loan amount", formula: "₹35,000 × [(1.00708)^240 − 1] ÷ [0.00708 × (1.00708)^240]", result: "Max eligible: ₹33,67,000 (20 yrs at 8.5%)" },
+            { label: "Factor in LTV and down payment", formula: "Home: 80-90% LTV → You need 10-20% down payment", result: "₹33.67L loan + ₹4.2-8.4L down = ₹38-42L property" },
+        ],
+        comparison: [
+            { title: "20-Year Tenure", value: "₹33.67L eligible", detail: "EMI: ₹35,000/mo | Rate: 8.5% | Lower EMI, more borrowing", isWinner: true },
+            { title: "10-Year Tenure", value: "₹22.80L eligible", detail: "EMI: ₹35,000/mo | Rate: 8.5% | Higher EMI burden, less borrowing" },
+        ],
+        insight: { icon: "💡", title: "Eligibility Maximisation Tip", text: "Close credit card revolving balances and small personal loans before applying. Every ₹10,000 reduction in existing EMIs increases your home loan eligibility by ₹8-12 Lakh. A joint application with your spouse can nearly double your eligible amount." },
+    },
 };
 
 export default async function CalculatorHubPage({ params }: PageProps) {
@@ -172,9 +205,10 @@ export default async function CalculatorHubPage({ params }: PageProps) {
     const calc = getAllCalculators().find((c) => c.slug === calculator);
     if (!calc) return notFound();
 
-    // Check if this is an EMI calculator (has variants) or utility tool
+    // Check if this is an EMI calculator (has variants for programmatic pages)
     const variants = getVariants(calc.id);
     const isEMI = variants.length > 0;
+    const hasCalculator = calc.defaults && calc.sliderRanges; // Always show calculator if it has config
     const content = HUB_CONTENT[calc.id];
 
     const pageUrl = canonicalUrl(`/loan-calculators/${calc.slug}`);
@@ -212,7 +246,7 @@ export default async function CalculatorHubPage({ params }: PageProps) {
 
             <div className="layout-2col">
                 <div className="layout-2col__main">
-                    {isEMI && (
+                    {hasCalculator && (
                         <>
                             <CalculatorCore
                                 defaults={calc.defaults}
@@ -220,25 +254,28 @@ export default async function CalculatorHubPage({ params }: PageProps) {
                                 loanTypeId={calc.id}
                             />
 
-                            {/* Popular amounts grid */}
-                            <section style={{ marginTop: "var(--s-8)" }}>
-                                <h2 className="t-h2" style={{ marginBottom: "var(--s-4)" }}>
-                                    Popular {calc.title.replace(" Calculator", "")} Amounts
-                                </h2>
-                                <div className="popular-amounts__grid">
-                                    {variants.map((v) => (
-                                        <Link
-                                            key={v.slug}
-                                            href={`/loan-calculators/${calc.slug}/${v.slug}`}
-                                            className="popular-amounts__card"
-                                        >
-                                            <span className="popular-amounts__label">
-                                                {amountToLabel(v.amount)}
-                                            </span>
-                                        </Link>
-                                    ))}
-                                </div>
-                            </section>
+
+                            {/* Popular amounts grid — only for calculators with variants */}
+                            {isEMI && (
+                                <section style={{ marginTop: "var(--s-8)" }}>
+                                    <h2 className="t-h2" style={{ marginBottom: "var(--s-4)" }}>
+                                        Popular {calc.title.replace(" Calculator", "")} Amounts
+                                    </h2>
+                                    <div className="popular-amounts__grid">
+                                        {variants.map((v) => (
+                                            <Link
+                                                key={v.slug}
+                                                href={`/loan-calculators/${calc.slug}/${v.slug}`}
+                                                className="popular-amounts__card"
+                                            >
+                                                <span className="popular-amounts__label">
+                                                    {amountToLabel(v.amount)}
+                                                </span>
+                                            </Link>
+                                        ))}
+                                    </div>
+                                </section>
+                            )}
                         </>
                     )}
 
