@@ -298,7 +298,7 @@
   {
     "id": "sip-calculator",
     "category": "invest",
-    "title": "SIP Calculator",
+    "title": "SIP Calculator – Mutual Fund SIP Returns",
     "slug": "sip-calculator",
     "categorySlug": "investment-calculators",
     "icon": "📊",
@@ -332,7 +332,7 @@
   {
     "id": "fd-calculator",
     "category": "invest",
-    "title": "FD Calculator",
+    "title": "FD Calculator – Fixed Deposit Returns",
     "slug": "fd-calculator",
     "categorySlug": "investment-calculators",
     "icon": "🏦",
@@ -366,7 +366,7 @@
   {
     "id": "rd-calculator",
     "category": "invest",
-    "title": "RD Calculator",
+    "title": "RD Calculator – Recurring Deposit Returns",
     "slug": "rd-calculator",
     "categorySlug": "investment-calculators",
     "icon": "💰",
@@ -400,7 +400,7 @@
   {
     "id": "ppf-calculator",
     "category": "invest",
-    "title": "PPF Calculator",
+    "title": "PPF Calculator – Public Provident Fund Returns",
     "slug": "ppf-calculator",
     "categorySlug": "investment-calculators",
     "icon": "🛡️",
@@ -434,7 +434,7 @@
   {
     "id": "nps-calculator",
     "category": "invest",
-    "title": "NPS Calculator",
+    "title": "NPS Calculator – National Pension System Returns",
     "slug": "nps-calculator",
     "categorySlug": "investment-calculators",
     "icon": "👴",
@@ -535,7 +535,7 @@
   {
     "id": "gst-calculator",
     "category": "tax",
-    "title": "GST Calculator",
+    "title": "GST Calculator – Calculate GST Online",
     "slug": "gst-calculator",
     "categorySlug": "tax-calculators",
     "icon": "🏷️",
@@ -602,7 +602,7 @@
   {
     "id": "tds-calculator",
     "category": "tax",
-    "title": "TDS Calculator",
+    "title": "TDS Calculator – Calculate TDS Deduction",
     "slug": "tds-calculator",
     "categorySlug": "tax-calculators",
     "icon": "📋",
@@ -702,7 +702,7 @@
   {
     "id": "age-calculator",
     "category": "utility",
-    "title": "Age Calculator",
+    "title": "Online Age Calculator – Calculate Exact Age",
     "slug": "age-calculator",
     "categorySlug": "utility-calculators",
     "icon": "🎂",
@@ -836,7 +836,7 @@
   {
     "id": "bmi-calculator",
     "category": "utility",
-    "title": "BMI Calculator",
+    "title": "Online BMI Calculator – Check Body Mass Index",
     "slug": "bmi-calculator",
     "categorySlug": "utility-calculators",
     "icon": "⚖️",

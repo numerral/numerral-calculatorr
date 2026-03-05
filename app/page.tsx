@@ -19,9 +19,10 @@ import { canonicalUrl } from "@/lib/seo";
 import { SITE_NAME, SITE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: `Free Online Calculators — Loan, Investment, Tax & More | ${SITE_NAME}`,
+  title: `Free Online Finance Calculators — Loan, Investment & Tax | ${SITE_NAME}`,
   description:
-    "India's smartest calculator platform. 50+ free calculators for loan EMI, SIP returns, income tax, and more. Instant, accurate, and trusted by 1M+ users.",
+    "India's smartest finance calculator platform. 50+ free online financial calculators for loan EMI, SIP returns, income tax, and more. Instant and accurate.",
+  keywords: "finance calculators, online financial calculators, free finance tools, loan calculator, SIP calculator, tax calculator India",
   alternates: { canonical: canonicalUrl("/") },
 };
 
