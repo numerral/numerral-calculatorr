@@ -2529,7 +2529,7 @@ ol {
 /* Controls */
 .cibil-module__controls {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: var(--s-5);
     margin-bottom: var(--s-6);
 }
@@ -2739,8 +2739,9 @@ ol {
 
 /* Result — general (no score) */
 .cibil-general__thresholds {
-    display: flex;
-    gap: var(--s-5);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--s-3);
     margin-bottom: var(--s-4);
 }
 
@@ -2801,7 +2802,8 @@ ol {
 
 /* Score bands visual */
 .cibil-bands {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
     gap: var(--s-2);
     margin-bottom: var(--s-5);
 }
@@ -2851,7 +2853,7 @@ ol {
 
 .cibil-banks__grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: var(--s-2);
 }
 
@@ -2920,6 +2922,22 @@ ol {
 }
 
 /* Responsive */
+
+@media (max-width: 1024px) {
+    .cibil-module {
+        padding: var(--s-5);
+    }
+    .cibil-bands {
+        grid-template-columns: repeat(5, 1fr);
+    }
+    .cibil-band__range {
+        font-size: 0.58rem;
+    }
+    .cibil-band__label {
+        font-size: 0.62rem;
+    }
+}
+
 @media (max-width: 768px) {
     .cibil-module {
         padding: var(--s-5);
@@ -2943,12 +2961,11 @@ ol {
     }
 
     .cibil-bands {
-        flex-wrap: wrap;
+        grid-template-columns: repeat(3, 1fr);
     }
 
     .cibil-band {
-        flex: none;
-        width: calc(50% - var(--s-1));
+        /* handled by grid */
     }
 
     .cibil-banks__grid {
