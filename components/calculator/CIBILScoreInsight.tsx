@@ -83,11 +83,11 @@ export default function CIBILScoreInsight({ loanConfig }: Props) {
                         />
                     </div>
                     {/* Score scale labels */}
-                    <div className="cibil-scale">
-                        <span>300</span>
-                        <span className="cibil-scale__mid">600</span>
-                        <span className="cibil-scale__mid">750</span>
-                        <span>900</span>
+                    <div className="cibil-scale" style={{ position: "relative", height: "16px", marginTop: "4px" }}>
+                        <span style={{ position: "absolute", left: "0%" }}>300</span>
+                        <span className="cibil-scale__mid" style={{ position: "absolute", left: "50%", transform: "translateX(-50%)" }}>600</span>
+                        <span className="cibil-scale__mid" style={{ position: "absolute", left: "75%", transform: "translateX(-50%)" }}>750</span>
+                        <span style={{ position: "absolute", right: "0%" }}>900</span>
                     </div>
                 </div>
 
