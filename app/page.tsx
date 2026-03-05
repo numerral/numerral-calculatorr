@@ -99,14 +99,27 @@ export default function HomePage() {
 
       {/* ─── 1. HERO SECTION ─── */}
       <section className="hero container">
+        <div className="hero__badge">
+          <span className="hero__badge-icon">✨</span>
+          Trusted by 1M+ Indians
+        </div>
         <h1 className="t-display hero__title">
           India&apos;s Smartest{" "}
-          <span className="text-gradient">Financial Calculators</span>
+          <span className="text-gradient hover-glow">Financial Calculators</span>
         </h1>
         <p className="hero__subtitle">
           50+ free calculators for loan EMI, SIP returns, income tax, and everyday math.
-          Instant results, bank-grade accuracy — trusted by 1M+ users across India.
+          Instant results, bank-grade accuracy. No sign-ups. No hidden fees.
         </p>
+        <div className="hero__actions">
+          <Link href="/loan-calculators" className="btn-premium btn-premium--primary">
+            Explore Calculators
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+          </Link>
+          <Link href="/guides" className="btn-premium btn-premium--secondary">
+            Read Financial Guides
+          </Link>
+        </div>
       </section>
 
       {/* ─── 2. CATEGORY NAVIGATION ─── */}
