@@ -2578,10 +2578,12 @@ ol {
     display: flex;
     gap: var(--s-3);
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .cibil-control__input {
     width: 100px;
+    max-width: 30%;
     padding: 10px 14px;
     border: 1.5px solid var(--n-border);
     border-radius: var(--r-md, 8px);
