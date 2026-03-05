@@ -2480,7 +2480,487 @@ ol {
     }
 }
 
-/* Reduced motion */
+
+/* ── CIBIL SCORE INSIGHT MODULE ──────── */
+
+.cibil-module {
+    margin-top: var(--s-8);
+    background: var(--n-surface);
+    border: 1px solid var(--n-border);
+    border-radius: var(--radius-lg, 16px);
+    padding: var(--s-7);
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.04);
+}
+
+.cibil-module__header {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--s-4);
+    margin-bottom: var(--s-6);
+    padding-bottom: var(--s-5);
+    border-bottom: 1px solid var(--n-border);
+}
+
+.cibil-module__icon {
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.12), rgba(5, 150, 105, 0.08));
+    color: #059669;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cibil-module__title {
+    font-size: var(--t-h3, 1.25rem);
+    font-weight: 700;
+    color: var(--n-text);
+    margin: 0 0 var(--s-1) 0;
+}
+
+.cibil-module__subtitle {
+    font-size: var(--t-body-sm, 0.875rem);
+    color: var(--n-text-secondary);
+    margin: 0;
+}
+
+/* Controls */
+.cibil-module__controls {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--s-5);
+    margin-bottom: var(--s-6);
+}
+
+.cibil-control {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-2);
+}
+
+.cibil-control--toggle {
+    grid-column: 1 / -1;
+}
+
+.cibil-control__label {
+    font-size: var(--t-body-sm, 0.875rem);
+    font-weight: 600;
+    color: var(--n-text);
+}
+
+.cibil-control__optional {
+    font-weight: 400;
+    color: var(--n-text-secondary);
+}
+
+.cibil-control__row {
+    display: flex;
+    gap: var(--s-3);
+    align-items: center;
+}
+
+.cibil-control__input {
+    width: 100px;
+    padding: 10px 14px;
+    border: 1.5px solid var(--n-border);
+    border-radius: var(--r-md, 8px);
+    font-size: var(--t-body, 1rem);
+    font-weight: 600;
+    color: var(--n-text);
+    background: var(--n-bg);
+    outline: none;
+    transition: border-color var(--ease-default);
+}
+
+.cibil-control__input:focus {
+    border-color: var(--n-primary);
+}
+
+.cibil-control__input::placeholder {
+    font-weight: 400;
+    color: var(--n-text-secondary);
+    opacity: 0.6;
+}
+
+.cibil-control__slider {
+    flex: 1;
+    height: 6px;
+    accent-color: var(--n-primary);
+    cursor: pointer;
+}
+
+.cibil-scale {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.7rem;
+    color: var(--n-text-secondary);
+    padding: 0 2px;
+}
+
+.cibil-scale__mid {
+    opacity: 0.6;
+}
+
+.cibil-control__select {
+    padding: 10px 14px;
+    border: 1.5px solid var(--n-border);
+    border-radius: var(--r-md, 8px);
+    font-size: var(--t-body-sm, 0.875rem);
+    color: var(--n-text);
+    background: var(--n-bg);
+    cursor: pointer;
+    outline: none;
+    transition: border-color var(--ease-default);
+}
+
+.cibil-control__select:focus {
+    border-color: var(--n-primary);
+}
+
+/* Toggle */
+.cibil-toggle {
+    display: flex;
+    align-items: center;
+    gap: var(--s-3);
+    cursor: pointer;
+    user-select: none;
+}
+
+.cibil-toggle input {
+    display: none;
+}
+
+.cibil-toggle__track {
+    width: 44px;
+    height: 24px;
+    background: var(--n-border);
+    border-radius: 100px;
+    position: relative;
+    transition: background var(--ease-default);
+    flex-shrink: 0;
+}
+
+.cibil-toggle input:checked + .cibil-toggle__track {
+    background: var(--n-primary);
+}
+
+.cibil-toggle__thumb {
+    width: 18px;
+    height: 18px;
+    background: #fff;
+    border-radius: 50%;
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    transition: transform var(--ease-default);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+.cibil-toggle input:checked + .cibil-toggle__track .cibil-toggle__thumb {
+    transform: translateX(20px);
+}
+
+.cibil-toggle__label {
+    font-size: var(--t-body-sm, 0.875rem);
+    color: var(--n-text);
+    font-weight: 500;
+}
+
+/* Result — personalised (when score entered) */
+.cibil-result {
+    display: flex;
+    gap: var(--s-5);
+    align-items: flex-start;
+    margin-bottom: var(--s-5);
+}
+
+.cibil-result__badge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--s-1);
+    padding: var(--s-4) var(--s-5);
+    border: 2px solid;
+    border-radius: var(--radius-lg, 16px);
+    min-width: 120px;
+    text-align: center;
+}
+
+.cibil-result__score {
+    font-size: 2rem;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.cibil-result__label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.cibil-result__details {
+    flex: 1;
+}
+
+.cibil-result__thresholds {
+    display: flex;
+    gap: var(--s-5);
+    margin-bottom: var(--s-3);
+}
+
+.cibil-threshold {
+    display: flex;
+    align-items: center;
+    gap: var(--s-2);
+    font-size: var(--t-body-sm, 0.875rem);
+    color: var(--n-text-secondary);
+}
+
+.cibil-threshold__dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.cibil-result__tip {
+    font-size: var(--t-body-sm, 0.875rem);
+    color: var(--n-text-secondary);
+    line-height: 1.6;
+    background: rgba(245, 158, 11, 0.06);
+    border: 1px solid rgba(245, 158, 11, 0.15);
+    border-radius: var(--r-md, 8px);
+    padding: var(--s-3) var(--s-4);
+    margin: 0;
+}
+
+/* Result — general (no score) */
+.cibil-general__thresholds {
+    display: flex;
+    gap: var(--s-5);
+    margin-bottom: var(--s-4);
+}
+
+.cibil-general__item {
+    display: flex;
+    align-items: center;
+    gap: var(--s-3);
+    flex: 1;
+    padding: var(--s-4);
+    background: var(--n-bg);
+    border-radius: var(--r-md, 8px);
+}
+
+.cibil-general__icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.cibil-general__item strong {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--n-text-secondary);
+    font-weight: 500;
+}
+
+.cibil-general__value {
+    display: block;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--n-text);
+    margin-top: 2px;
+}
+
+.cibil-general__note {
+    font-size: var(--t-body-sm, 0.875rem);
+    color: var(--n-text-secondary);
+    line-height: 1.6;
+    margin: 0 0 var(--s-4) 0;
+}
+
+/* Lender note */
+.cibil-lender-note {
+    font-size: 0.8rem;
+    color: var(--n-text-secondary);
+    line-height: 1.5;
+    padding: var(--s-3) var(--s-4);
+    background: rgba(79, 70, 229, 0.04);
+    border-radius: var(--r-md, 8px);
+    margin: 0 0 var(--s-5) 0;
+}
+
+/* Score bands visual */
+.cibil-bands {
+    display: flex;
+    gap: var(--s-2);
+    margin-bottom: var(--s-5);
+}
+
+.cibil-band {
+    flex: 1;
+    padding: var(--s-2) var(--s-2);
+    border-radius: var(--r-md, 8px);
+    text-align: center;
+    border: 2px solid transparent;
+    transition: all var(--ease-default);
+}
+
+.cibil-band--active {
+    transform: scale(1.05);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.cibil-band__range {
+    display: block;
+    font-size: 0.65rem;
+    color: var(--n-text-secondary);
+    margin-bottom: 2px;
+}
+
+.cibil-band__label {
+    display: block;
+    font-size: 0.7rem;
+    font-weight: 600;
+}
+
+/* Bank list */
+.cibil-banks {
+    margin-bottom: var(--s-5);
+    padding: var(--s-5);
+    background: var(--n-bg);
+    border-radius: var(--r-md, 8px);
+    border: 1px solid var(--n-border);
+}
+
+.cibil-banks__title {
+    font-size: var(--t-body-sm, 0.875rem);
+    font-weight: 600;
+    color: var(--n-text);
+    margin: 0 0 var(--s-4) 0;
+}
+
+.cibil-banks__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--s-2);
+}
+
+.cibil-bank {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--s-2) var(--s-3);
+    border-radius: 6px;
+    transition: background var(--ease-default);
+}
+
+.cibil-bank:hover {
+    background: var(--n-surface);
+}
+
+.cibil-bank__name {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--n-text);
+}
+
+.cibil-bank__scores {
+    display: flex;
+    gap: var(--s-1);
+}
+
+.cibil-bank__tag {
+    font-size: 0.65rem;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 100px;
+    white-space: nowrap;
+}
+
+.cibil-bank__tag--preferred {
+    background: rgba(59, 130, 246, 0.08);
+    color: #3b82f6;
+}
+
+.cibil-bank__tag--ideal {
+    background: rgba(5, 150, 105, 0.08);
+    color: #059669;
+}
+
+/* Disclaimer */
+.cibil-disclaimer {
+    font-size: 0.75rem;
+    color: var(--n-text-secondary);
+    line-height: 1.5;
+    padding: var(--s-3) var(--s-4);
+    background: rgba(245, 158, 11, 0.04);
+    border-left: 3px solid rgba(245, 158, 11, 0.3);
+    border-radius: 0 var(--r-md, 8px) var(--r-md, 8px) 0;
+    margin: 0;
+}
+
+.cibil-disclaimer__link {
+    color: var(--n-primary);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.cibil-disclaimer__link:hover {
+    text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .cibil-module {
+        padding: var(--s-5);
+    }
+
+    .cibil-module__controls {
+        grid-template-columns: 1fr;
+    }
+
+    .cibil-result {
+        flex-direction: column;
+    }
+
+    .cibil-result__thresholds {
+        flex-direction: column;
+        gap: var(--s-2);
+    }
+
+    .cibil-general__thresholds {
+        flex-direction: column;
+    }
+
+    .cibil-bands {
+        flex-wrap: wrap;
+    }
+
+    .cibil-band {
+        flex: none;
+        width: calc(50% - var(--s-1));
+    }
+
+    .cibil-banks__grid {
+        grid-template-columns: 1fr;
+    }
+
+    .cibil-bank__scores {
+        flex-direction: column;
+        gap: 2px;
+    }
+}
+\n/* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
 
     *,

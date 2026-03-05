@@ -115,6 +115,7 @@ export default async function ProgrammaticPage({
                             rate: page.rate,
                             tenure: page.tenure,
                         }}
+                        loanTypeId="car-loan-emi"
                     />
 
                     <RelatedCalculations

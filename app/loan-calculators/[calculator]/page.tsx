@@ -17,6 +17,7 @@ import { getAllCalculators, getCalculatorById, getCalculatorsByCategory, getVari
 import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 import { amountToLabel } from "@/lib/slug";
+import { CIBIL_FAQS } from "@/lib/cibilConfig";
 
 interface PageProps {
     params: Promise<{ calculator: string }>;
@@ -216,6 +217,7 @@ export default async function CalculatorHubPage({ params }: PageProps) {
                             <CalculatorCore
                                 defaults={calc.defaults}
                                 sliderRanges={calc.sliderRanges}
+                                loanTypeId={calc.id}
                             />
 
                             {/* Popular amounts grid */}
@@ -272,6 +274,13 @@ export default async function CalculatorHubPage({ params }: PageProps) {
                                 highlight={content.explanation.highlight}
                             />
                             <FAQAccordion title={`${calc.title} FAQ`} items={content.faq} />
+
+                            {CIBIL_FAQS[calc.id] && (
+                                <FAQAccordion
+                                    title={`CIBIL Score for ${content.explanation.heading.replace('Understanding ', '')} — FAQ`}
+                                    items={CIBIL_FAQS[calc.id]}
+                                />
+                            )}
                         </>
                     )}
                 </div>

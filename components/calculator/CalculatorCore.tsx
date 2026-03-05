@@ -21,6 +21,8 @@ import InputPanel from "./InputPanel";
 import ResultCard from "./ResultCard";
 import ComparisonTable from "./ComparisonTable";
 import EMIBreakdownChart from "./EMIBreakdownChart";
+import CIBILScoreInsight from "./CIBILScoreInsight";
+import { LOAN_CONFIGS } from "@/lib/cibilConfig";
 
 interface CalculatorCoreProps {
     /** Initial values (pre-filled on programmatic pages) */
@@ -29,13 +31,18 @@ interface CalculatorCoreProps {
     sliderRanges?: SliderRanges;
     /** Show comparison table below result card (default: true) */
     showComparison?: boolean;
+    /** Loan type ID for CIBIL module (e.g. 'car-loan-emi') */
+    loanTypeId?: string;
 }
 
 export default function CalculatorCore({
     defaults,
     sliderRanges,
     showComparison = true,
+    loanTypeId,
 }: CalculatorCoreProps) {
+    // CIBIL config for this loan type
+    const cibilConfig = loanTypeId ? LOAN_CONFIGS[loanTypeId] : undefined;
     // ---- State ----
     const [amount, setAmount] = useState(defaults.amount);
     const [rate, setRate] = useState(defaults.rate);
@@ -88,6 +95,10 @@ export default function CalculatorCore({
                 rate={rate}
                 tenureMonths={tenureInMonths}
             />
+
+            {cibilConfig && (
+                <CIBILScoreInsight loanConfig={cibilConfig} />
+            )}
 
             {showComparison && (
                 <section>

@@ -76,7 +76,7 @@ export default function CarLoanEMICalculatorPage() {
             <div>
                 {/* Main column */}
                 <div>
-                    <CalculatorCore defaults={defaults} />
+                    <CalculatorCore defaults={defaults} loanTypeId="car-loan-emi" />
 
                     <DynamicExplanation
                         heading="Understanding Car Loan EMI"

@@ -107,6 +107,7 @@ export default async function AmountPage({ params }: PageProps) {
                             tenure: page.tenure,
                         }}
                         sliderRanges={calc.sliderRanges}
+                        loanTypeId={calc.id}
                     />
 
                     <DynamicExplanation
