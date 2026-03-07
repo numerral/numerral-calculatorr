@@ -196,6 +196,15 @@ export default function HomePage() {
                 <p>Fixed vs floating rates, SIP vs FD, rent vs buy, and loan vs cash purchase analysis</p>
               </div>
             </div>
+            <div className="hp-top-calcs__item" style={{ gridColumn: "1 / -1" }}>
+              <div className="hp-top-calcs__icon-box hp-top-calcs__icon-box--blue">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" /><line x1="12" y1="8" x2="12" y2="16" /><line x1="8" y1="12" x2="16" y2="12" /></svg>
+              </div>
+              <div>
+                <strong>Salary &amp; Income</strong>
+                <p>CTC to take-home breakdown, in-hand salary, gratuity calculation, and statutory bonus rules</p>
+              </div>
+            </div>
           </div>
           <div className="hp-top-calcs__footer">
             <p className="hp-top-calcs__cta">

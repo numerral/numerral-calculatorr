@@ -8,6 +8,7 @@ const categories = [
     { key: "loan", name: "Loan Calculators", icon: "🏠", href: "/loan-calculators", desc: "EMI, eligibility & repayment" },
     { key: "invest", name: "Investment Calculators", icon: "📈", href: "/investment-calculators", desc: "SIP, FD, mutual funds" },
     { key: "tax", name: "Tax Calculators", icon: "🧾", href: "/tax-calculators", desc: "Income tax, GST, HRA" },
+    { key: "salary", name: "Salary Calculators", icon: "💼", href: "/salary-calculators", desc: "CTC to in-hand, gratuity" },
     { key: "utility", name: "Utility Calculators", icon: "⚡", href: "/utility-calculators", desc: "Age, percentage, BMI" },
 ];
 

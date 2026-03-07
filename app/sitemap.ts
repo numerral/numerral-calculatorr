@@ -56,6 +56,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: 0.85,
     }));
 
+    // ─── Salary calculator hubs ───
+    const salaryHubs: MetadataRoute.Sitemap = getCalculatorsByCategory("salary").map((c) => ({
+        url: canonicalUrl(`/salary-calculators/${c.slug}`),
+        lastModified: now,
+        changeFrequency: "monthly" as const,
+        priority: 0.85,
+    }));
+
     // ─── Utility calculator hubs ───
     const utilityHubs: MetadataRoute.Sitemap = getCalculatorsByCategory("utility").map((c) => ({
         url: canonicalUrl(`/utility-calculators/${c.slug}`),

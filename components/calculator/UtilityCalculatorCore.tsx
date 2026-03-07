@@ -7,6 +7,9 @@ import {
     calculateSimpleInterest,
     calculateBMI,
     calculateDiscount,
+    calculateInterestRate,
+    calculateRuleOf72,
+    calculateInflationAdjustedReturn,
 } from "@/lib/calculators/utilities";
 
 function fmtINR(n: number): string {
@@ -391,6 +394,132 @@ function DiscountCalc() {
     );
 }
 
+// ─── Interest Rate (Reverse CAGR) ───
+function InterestRateCalc() {
+    const [principal, setPrincipal] = useState(100000);
+    const [maturityAmount, setMaturityAmount] = useState(200000);
+    const [tenure, setTenure] = useState(60);
+
+    const result = useMemo(() =>
+        calculateInterestRate(principal, maturityAmount, tenure),
+        [principal, maturityAmount, tenure]
+    );
+
+    return (
+        <div className="calc-card">
+            <div className="calc-field">
+                <label className="calc-field__label">₹ STARTING PRINCIPAL</label>
+                <input type="range" className="calc-field__slider" min={5000} max={10000000} step={5000}
+                    value={principal} onChange={(e) => setPrincipal(Number(e.target.value))} />
+                <input type="number" className="calc-field__input" value={principal}
+                    onChange={(e) => setPrincipal(Number(e.target.value))} />
+            </div>
+            <div className="calc-field">
+                <label className="calc-field__label">🎯 TARGET MATURITY AMOUNT</label>
+                <input type="range" className="calc-field__slider" min={10000} max={50000000} step={10000}
+                    value={maturityAmount} onChange={(e) => setMaturityAmount(Number(e.target.value))} />
+                <input type="number" className="calc-field__input" value={maturityAmount}
+                    onChange={(e) => setMaturityAmount(Number(e.target.value))} />
+            </div>
+            <div className="calc-field">
+                <label className="calc-field__label">📅 TIME HORIZON (MONTHS)</label>
+                <input type="range" className="calc-field__slider" min={12} max={360} step={12}
+                    value={tenure} onChange={(e) => setTenure(Number(e.target.value))} />
+                <div style={{ display: "flex", gap: "var(--s-2)", alignItems: "center" }}>
+                    <input type="number" className="calc-field__input" value={tenure}
+                        onChange={(e) => setTenure(Number(e.target.value))} style={{ flex: 1 }} />
+                    <span className="t-body-sm text-muted">{(tenure / 12).toFixed(1)} yr</span>
+                </div>
+            </div>
+
+            {/* Validate realistic numbers */}
+            {maturityAmount <= principal && (
+                <div className="n-alert n-alert--warning" style={{ marginTop: "var(--s-4)" }}>
+                    💡 Target maturity amount should be greater than the starting principal.
+                </div>
+            )}
+
+            <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
+                <p className="calc-field__label">REQUIRED INTEREST RATE (CAGR)</p>
+                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+                    {result.requiredRate > 0 ? `${result.requiredRate.toFixed(2)}%` : "N/A"}
+                </p>
+                <p style={{ fontSize: "var(--t-body-sm)", color: "var(--n-text-muted)" }}>
+                    You need an annualized compound growth rate of {result.requiredRate > 0 ? result.requiredRate.toFixed(2) : 0}%
+                    to grow {fmtINR(principal)} into {fmtINR(maturityAmount)} in {(tenure / 12).toFixed(1)} years.
+                </p>
+            </div>
+        </div>
+    );
+}
+
+// ─── Rule of 72 ───
+function RuleOf72Calc() {
+    const [rate, setRate] = useState(8);
+    const result = useMemo(() => calculateRuleOf72(rate), [rate]);
+
+    return (
+        <div className="calc-card">
+            <div className="calc-field">
+                <label className="calc-field__label">📈 EXPECTED ANNUAL RETURN (%)</label>
+                <input type="range" className="calc-field__slider" min={1} max={25} step={0.5}
+                    value={rate} onChange={(e) => setRate(Number(e.target.value))} />
+                <div style={{ display: "flex", gap: "var(--s-2)", alignItems: "center" }}>
+                    <input type="number" className="calc-field__input" value={rate}
+                        onChange={(e) => setRate(Number(e.target.value))} style={{ flex: 1 }} />
+                    <span className="t-body-sm text-muted">%</span>
+                </div>
+            </div>
+
+            <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
+                <p className="calc-field__label">YEARS TO DOUBLE YOUR MONEY</p>
+                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+                    {result.yearsToDouble > 0 ? `${result.yearsToDouble} Years` : "N/A"}
+                </p>
+                <p style={{ fontSize: "var(--t-body-sm)", color: "var(--n-text-muted)" }}>
+                    {result.formula}. This is a simple mathematical approximation used by investors globally.
+                </p>
+            </div>
+        </div>
+    );
+}
+
+// ─── Inflation Adjusted Return ───
+function InflationAdjustedCalc() {
+    const [nominalRate, setNominalRate] = useState(10);
+    const [inflationRate, setInflationRate] = useState(6);
+    const result = useMemo(() => calculateInflationAdjustedReturn(nominalRate, inflationRate), [nominalRate, inflationRate]);
+
+    return (
+        <div className="calc-card">
+            <div className="calc-field">
+                <label className="calc-field__label">💵 NOMINAL RETURN RATE (%)</label>
+                <input type="range" className="calc-field__slider" min={1} max={30} step={0.5}
+                    value={nominalRate} onChange={(e) => setNominalRate(Number(e.target.value))} />
+                <input type="number" className="calc-field__input" value={nominalRate}
+                    onChange={(e) => setNominalRate(Number(e.target.value))} />
+            </div>
+            <div className="calc-field">
+                <label className="calc-field__label">📉 EXPECTED INFLATION RATE (%)</label>
+                <input type="range" className="calc-field__slider" min={1} max={15} step={0.5}
+                    value={inflationRate} onChange={(e) => setInflationRate(Number(e.target.value))} />
+                <input type="number" className="calc-field__input" value={inflationRate}
+                    onChange={(e) => setInflationRate(Number(e.target.value))} />
+            </div>
+
+            <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
+                <p className="calc-field__label">REAL RATE OF RETURN</p>
+                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+                    {result.realReturn.toFixed(2)}%
+                </p>
+                <p style={{ fontSize: "var(--t-body-sm)", color: "var(--n-text-muted)" }}>
+                    After factoring in a {inflationRate}% loss in purchasing power, your real geometric yield is {result.realReturn.toFixed(2)}% (Formula: {result.formula}).
+                </p>
+            </div>
+        </div>
+    );
+}
+
 // ─── Dispatcher ───
 interface Props { calcType: string; }
 
@@ -401,6 +530,9 @@ const CALCULATORS: Record<string, React.FC> = {
     "simple-interest": SimpleInterestCalc,
     "bmi": BMICalc,
     "discount": DiscountCalc,
+    "rate": InterestRateCalc,
+    "ruleOf72": RuleOf72Calc,
+    "inflationAdjusted": InflationAdjustedCalc,
 };
 
 export default function UtilityCalculatorCore({ calcType }: Props) {

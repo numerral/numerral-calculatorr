@@ -133,6 +133,30 @@ export function calculateCompoundInterest(
     return { principal, totalInterest, maturityAmount, effectiveRate, yearlyBreakdown };
 }
 
+// ─── INTEREST RATE CALCULATOR (REVERSE CAGR) ───
+
+export interface InterestRateResult {
+    principal: number;
+    maturityAmount: number;
+    requiredRate: number; // CAGR percentage
+}
+
+export function calculateInterestRate(
+    principal: number,
+    maturityAmount: number,
+    tenureMonths: number
+): InterestRateResult {
+    if (principal <= 0 || maturityAmount <= 0 || tenureMonths <= 0) {
+        return { principal, maturityAmount, requiredRate: 0 };
+    }
+
+    const years = tenureMonths / 12;
+    // CAGR Formula: (Maturity / Principal) ^ (1/Years) - 1
+    const requiredRate = (Math.pow(maturityAmount / principal, 1 / years) - 1) * 100;
+
+    return { principal, maturityAmount, requiredRate };
+}
+
 // ─── SIMPLE INTEREST CALCULATOR ───
 
 export interface SimpleInterestResult {
@@ -227,5 +251,39 @@ export function calculateDiscount(
         discountAmount: totalDiscount,
         finalPrice,
         savedPercent,
+    };
+}
+
+// ─── RULE OF 72 ───
+
+export interface RuleOf72Result {
+    yearsToDouble: number;
+    formula: string;
+}
+
+export function calculateRuleOf72(rate: number): RuleOf72Result {
+    const years = rate > 0 ? 72 / rate : 0;
+    return {
+        yearsToDouble: Math.round(years * 10) / 10,
+        formula: `72 ÷ ${rate}% = ${Math.round(years * 10) / 10} years`,
+    };
+}
+
+// ─── INFLATION ADJUSTED RETURN ───
+
+export interface InflationAdjustedResult {
+    realReturn: number;
+    formula: string;
+}
+
+export function calculateInflationAdjustedReturn(returnRate: number, inflationRate: number): InflationAdjustedResult {
+    const nominal = returnRate / 100;
+    const inflation = inflationRate / 100;
+    const realReturn = ((1 + nominal) / (1 + inflation)) - 1;
+    const resultPercent = realReturn * 100;
+
+    return {
+        realReturn: Math.round(resultPercent * 100) / 100,
+        formula: `[(1 + ${returnRate}%) ÷ (1 + ${inflationRate}%)] − 1`,
     };
 }

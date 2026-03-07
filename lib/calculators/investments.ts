@@ -109,6 +109,34 @@ export function calculateNPS(input: InvestmentInput): InvestmentResult {
     return calculateSIP(input); // Same formula, different context
 }
 
+// ── Savings Interest Calculator ──
+// Daily or Monthly compounding on a base balance + regular deposits
+// For simplicity in UI, we use monthly compounding.
+export function calculateSavingsInterest(input: InvestmentInput): InvestmentResult {
+    const { amount, rate, tenure } = input;
+    if (amount <= 0 || rate <= 0 || tenure <= 0) return zeroResult();
+
+    // Standard savings account: compound monthly.
+    const monthlyRate = rate / 12 / 100;
+    const months = Math.round(tenure);
+
+    // Future value of an initial lumpsum + future value of regular monthly deposits.
+    // Assuming UI "amount" corresponds to an initial balance for Savings Interest.
+    let balance = amount;
+    for (let m = 1; m <= months; m++) {
+        balance = balance * (1 + monthlyRate);
+    }
+
+    const estimatedReturns = balance - amount;
+
+    return buildResult(amount, estimatedReturns, balance, rate);
+}
+
+// ── Deposit Maturity Calculator ──
+export function calculateDepositMaturity(input: InvestmentInput): InvestmentResult {
+    return calculateFD(input); // FD calculation handles lumpsum deposit maturity
+}
+
 // ── Lumpsum / Mutual Fund Returns ──
 // One-time investment with annual compounding
 export function calculateLumpsum(input: InvestmentInput): InvestmentResult {
@@ -134,6 +162,8 @@ export function calculateInvestment(
         case "rd": return calculateRD(input);
         case "ppf": return calculatePPF(input);
         case "nps": return calculateNPS(input);
+        case "savings": return calculateSavingsInterest(input);
+        case "maturity": return calculateDepositMaturity(input);
         case "lumpsum": return calculateLumpsum(input);
         default: return calculateLumpsum(input);
     }
@@ -178,4 +208,78 @@ function buildResult(invested: number, returns: number, maturity: number, rate: 
         returnsPercent: 100 - investedPercent,
         effectiveYield: parseFloat(((returns / invested) * 100).toFixed(1)),
     };
+}
+
+// ── Retirement / FIRE ──
+export interface RetirementInput {
+    currentAge: number;
+    retirementAge: number;
+    monthlyExpense: number;
+    inflationRate: number;
+    safeWithdrawalRate: number; // usually 4%
+}
+
+export interface RetirementResult {
+    yearsToRetire: number;
+    futureMonthlyExpense: number;
+    corpusRequired: number;
+}
+
+export function calculateRetirementCorpus(input: RetirementInput): RetirementResult {
+    const years = input.retirementAge - input.currentAge;
+    if (years <= 0) {
+        return {
+            yearsToRetire: 0,
+            futureMonthlyExpense: input.monthlyExpense,
+            corpusRequired: input.monthlyExpense * 12 * (100 / input.safeWithdrawalRate)
+        };
+    }
+
+    const futureMonthly = input.monthlyExpense * Math.pow(1 + input.inflationRate / 100, years);
+    const futureAnnual = futureMonthly * 12;
+    const corpus = futureAnnual * (100 / input.safeWithdrawalRate);
+
+    return {
+        yearsToRetire: years,
+        futureMonthlyExpense: Math.round(futureMonthly),
+        corpusRequired: Math.round(corpus)
+    };
+}
+
+export function calculateFIRE(monthlyExpense: number, safeWithdrawalRate: number = 4): number {
+    const annualExpense = monthlyExpense * 12;
+    return Math.round(annualExpense * (100 / safeWithdrawalRate));
+}
+
+// ── Stock Return ──
+export interface StockInput {
+    buyPrice: number;
+    sellPrice: number;
+    quantity: number;
+    dividendsReceived: number;
+}
+export interface StockResult {
+    totalInvestment: number;
+    totalValue: number;
+    capitalGains: number;
+    totalReturnPercent: number;
+}
+export function calculateStockReturn(input: StockInput): StockResult {
+    const invested = input.buyPrice * input.quantity;
+    const finalValue = input.sellPrice * input.quantity;
+    const capitalGains = finalValue - invested;
+    const totalReturn = capitalGains + input.dividendsReceived;
+    const totalReturnPercent = invested > 0 ? (totalReturn / invested) * 100 : 0;
+
+    return {
+        totalInvestment: invested,
+        totalValue: finalValue + input.dividendsReceived,
+        capitalGains: capitalGains,
+        totalReturnPercent: Math.round(totalReturnPercent * 100) / 100
+    };
+}
+
+// ── Dividend Yield ──
+export function calculateDividendYield(annualDividend: number, sharePrice: number): number {
+    return sharePrice > 0 ? Math.round((annualDividend / sharePrice) * 10000) / 100 : 0;
 }

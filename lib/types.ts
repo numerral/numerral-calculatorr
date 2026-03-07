@@ -27,7 +27,7 @@ export interface BreadcrumbItem {
     href?: string;
 }
 
-export type CategoryKey = "loan" | "invest" | "tax" | "utility";
+export type CategoryKey = "loan" | "invest" | "tax" | "salary" | "utility";
 
 export interface RelatedItem {
     label: string;

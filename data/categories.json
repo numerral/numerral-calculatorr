@@ -30,5 +30,13 @@
         "description": "Age, percentage, unit & date converters",
         "count": 15,
         "href": "/utility-calculators"
+    },
+    {
+        "key": "salary",
+        "icon": "💼",
+        "name": "Salary Calculators",
+        "description": "CTC to in-hand, tax, gratuity & bonus tools",
+        "count": 6,
+        "href": "/salary-calculators"
     }
 ]

@@ -900,5 +900,549 @@
       }
     },
     "keywords": "discount calculator, sale price calculator, percentage discount calculator, double discount calculator, markup margin calculator India"
+  },
+  {
+    "id": "salary-after-tax",
+    "category": "salary",
+    "title": "Salary After Tax Calculator – Net Pay India",
+    "slug": "salary-after-tax",
+    "categorySlug": "salary-calculators",
+    "icon": "💰",
+    "calcType": "salary-after-tax",
+    "description": "Calculate your salary after tax deductions for FY 2025-26. Enter your CTC and see your net take-home pay after income tax, EPF, professional tax, and other deductions under Old and New regime.",
+    "stars": 5,
+    "defaults": {
+      "amount": 1000000,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 50000000,
+        "step": 50000
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "salary after tax calculator, salary after tax India, net salary calculator, take home salary calculator, salary tax calculator FY 2025-26, post tax salary India"
+  },
+  {
+    "id": "in-hand-salary",
+    "category": "salary",
+    "title": "In-Hand Salary Calculator – Monthly Take Home",
+    "slug": "in-hand-salary",
+    "categorySlug": "salary-calculators",
+    "icon": "🏧",
+    "calcType": "in-hand-salary",
+    "description": "Calculate your monthly in-hand salary from gross or CTC. See detailed breakdown of EPF, professional tax, income tax deductions, and net pay credited to your bank account.",
+    "stars": 5,
+    "defaults": {
+      "amount": 800000,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 50000000,
+        "step": 50000
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "in hand salary calculator, in-hand salary calculator India, monthly take home calculator, net monthly salary, salary in hand calculation, actual salary calculator"
+  },
+  {
+    "id": "ctc-to-take-home",
+    "category": "salary",
+    "title": "CTC to Take Home Salary Calculator",
+    "slug": "ctc-to-take-home",
+    "categorySlug": "salary-calculators",
+    "icon": "📋",
+    "calcType": "ctc-to-take-home",
+    "description": "Convert your CTC (Cost to Company) to actual take-home salary. See how CTC is split into basic, HRA, special allowance, EPF, gratuity, and deductions. Compare Old vs New tax regime impact.",
+    "stars": 5,
+    "defaults": {
+      "amount": 1200000,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 50000000,
+        "step": 50000
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "CTC to take home calculator, CTC to in hand salary, CTC breakdown calculator, cost to company calculator India, CTC calculator, CTC vs take home"
+  },
+  {
+    "id": "hra-salary-calculator",
+    "category": "salary",
+    "title": "HRA Calculator – House Rent Allowance Exemption",
+    "slug": "hra-salary-calculator",
+    "categorySlug": "salary-calculators",
+    "icon": "🏠",
+    "calcType": "hra-salary",
+    "description": "Calculate HRA exemption for salaried employees. Compare all 3 HRA rules — actual HRA received, 50%/40% of basic, and rent minus 10% of basic. Find your maximum tax-exempt HRA.",
+    "stars": 5,
+    "defaults": {
+      "amount": 600000,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 10000000,
+        "step": 5000
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "HRA calculator, HRA exemption calculator, house rent allowance calculator, HRA tax exemption, HRA calculator India, salary HRA calculator"
+  },
+  {
+    "id": "gratuity-calculator",
+    "category": "salary",
+    "title": "Gratuity Calculator – Calculate Gratuity Amount",
+    "slug": "gratuity-calculator",
+    "categorySlug": "salary-calculators",
+    "icon": "🎁",
+    "calcType": "gratuity",
+    "description": "Calculate gratuity amount based on last drawn salary and years of service. Uses the formula: Basic × 15/26 × years. Includes eligibility check, tax exemption limit (₹25 Lakh), and taxable amount.",
+    "stars": 5,
+    "defaults": {
+      "amount": 50000,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 1000000,
+        "step": 1000
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "gratuity calculator, gratuity calculation formula, gratuity calculator India, gratuity amount calculator, gratuity eligibility, payment of gratuity act calculator"
+  },
+  {
+    "id": "bonus-calculator",
+    "category": "salary",
+    "title": "Bonus Calculator – Statutory & Performance Bonus",
+    "slug": "bonus-calculator",
+    "categorySlug": "salary-calculators",
+    "icon": "🎯",
+    "calcType": "bonus",
+    "description": "Calculate statutory bonus under Payment of Bonus Act. Covers minimum 8.33% to maximum 20% of salary (capped at ₹21,000/month). Know your annual bonus entitlement with detailed breakdown.",
+    "stars": 4,
+    "defaults": {
+      "amount": 30000,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 500000,
+        "step": 1000
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "bonus calculator, statutory bonus calculator, bonus calculator India, payment of bonus act calculator, performance bonus calculator, annual bonus calculator"
+  },
+  {
+    "id": "savings-interest",
+    "category": "invest",
+    "title": "Savings Interest Calculator",
+    "slug": "savings-interest-calculator",
+    "categorySlug": "investment-calculators",
+    "icon": "🐷",
+    "calcType": "savings",
+    "description": "Calculate interest earned on your savings account balance and regular deposits. Plan your short-term savings growth with daily or monthly compounding.",
+    "stars": 4,
+    "defaults": {
+      "amount": 100000,
+      "rate": 4,
+      "tenure": 5
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 1000,
+        "max": 5000000,
+        "step": 1000
+      },
+      "rate": {
+        "min": 1,
+        "max": 10,
+        "step": 0.1
+      },
+      "tenure": {
+        "min": 1,
+        "max": 30,
+        "step": 1
+      }
+    },
+    "keywords": "savings interest calculator, savings account interest calculator, daily balance interest calculator, short term savings calculator"
+  },
+  {
+    "id": "deposit-maturity",
+    "category": "invest",
+    "title": "Deposit Maturity Calculator",
+    "slug": "deposit-maturity-calculator",
+    "categorySlug": "investment-calculators",
+    "icon": "🏦",
+    "calcType": "maturity",
+    "description": "Calculate the maturity amount for your fixed deposits (FD) or lump sum investments. Know exactly how much interest you will earn over the tenure.",
+    "stars": 5,
+    "defaults": {
+      "amount": 500000,
+      "rate": 7.5,
+      "tenure": 5
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 10000,
+        "max": 10000000,
+        "step": 10000
+      },
+      "rate": {
+        "min": 3,
+        "max": 12,
+        "step": 0.1
+      },
+      "tenure": {
+        "min": 1,
+        "max": 20,
+        "step": 1
+      }
+    },
+    "keywords": "deposit maturity calculator, FD maturity calculator, fixed deposit maturity calculator, lump sum maturity calculator"
+  },
+  {
+    "id": "bank-emi",
+    "category": "loan",
+    "title": "Bank EMI Calculator",
+    "slug": "bank-emi-calculator",
+    "categorySlug": "loan-calculators",
+    "icon": "📊",
+    "calcType": "emi",
+    "description": "A universal bank EMI calculator for any type of loan. Enter principal amount, interest rate, and tenure to get your monthly equated installment and amortization schedule.",
+    "stars": 5,
+    "defaults": {
+      "amount": 1000000,
+      "rate": 10.5,
+      "tenure": 5
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 50000,
+        "max": 50000000,
+        "step": 50000
+      },
+      "rate": {
+        "min": 5,
+        "max": 24,
+        "step": 0.1
+      },
+      "tenure": {
+        "min": 1,
+        "max": 30,
+        "step": 1
+      }
+    },
+    "keywords": "bank emi calculator, universal emi calculator, general loan emi calculator, banking emi calculator"
+  },
+  {
+    "id": "interest-rate",
+    "category": "utility",
+    "title": "Interest Rate Calculator",
+    "slug": "interest-rate-calculator",
+    "categorySlug": "utility-calculators",
+    "icon": "🔍",
+    "calcType": "rate",
+    "description": "Reverse calculate the effective interest rate (CAGR) required to reach your target maturity amount from an initial principal investment.",
+    "stars": 4,
+    "defaults": {
+      "amount": 100000,
+      "rate": 0,
+      "tenure": 5
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 10000,
+        "max": 10000000,
+        "step": 10000
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 1,
+        "max": 30,
+        "step": 1
+      }
+    },
+    "keywords": "interest rate calculator, find interest rate, reverse calculate interest, required rate of return calculator, CAGR calculator"
+  },
+  {
+    "id": "rule-of-72",
+    "category": "utility",
+    "title": "Rule of 72 Calculator",
+    "slug": "rule-of-72-calculator",
+    "categorySlug": "utility-calculators",
+    "icon": "📈",
+    "calcType": "ruleOf72",
+    "description": "Quickly estimate how long it will take for your investment to double using the mathematical Rule of 72.",
+    "stars": 4,
+    "defaults": {
+      "amount": 0,
+      "rate": 8,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 1,
+        "max": 25,
+        "step": 0.5
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "rule of 72 calculator, investment doubling time, how long to double money"
+  },
+  {
+    "id": "inflation-adjusted-return",
+    "category": "utility",
+    "title": "Inflation Adjusted Return Calculator",
+    "slug": "inflation-adjusted-return-calculator",
+    "categorySlug": "utility-calculators",
+    "icon": "📉",
+    "calcType": "inflationAdjusted",
+    "description": "Calculate the real return of your investments after accounting for inflation using the Fisher equation.",
+    "stars": 4,
+    "defaults": {
+      "amount": 0,
+      "rate": 10,
+      "tenure": 6
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 1,
+        "max": 30,
+        "step": 0.5
+      },
+      "tenure": {
+        "min": 1,
+        "max": 15,
+        "step": 0.5
+      }
+    },
+    "keywords": "inflation adjusted return, real return calculator, return after inflation"
+  },
+  {
+    "id": "retirement-corpus",
+    "category": "invest",
+    "title": "Retirement Corpus Calculator",
+    "slug": "retirement-corpus-calculator",
+    "categorySlug": "investment-calculators",
+    "icon": "🏖️",
+    "calcType": "retirement",
+    "description": "Calculate the exact retirement corpus required based on your current age, retirement age, monthly expenses, and inflation.",
+    "stars": 5,
+    "defaults": {
+      "amount": 50000,
+      "rate": 6,
+      "tenure": 25
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 10000,
+        "max": 500000,
+        "step": 5000
+      },
+      "rate": {
+        "min": 3,
+        "max": 12,
+        "step": 0.5
+      },
+      "tenure": {
+        "min": 1,
+        "max": 40,
+        "step": 1
+      }
+    },
+    "keywords": "retirement calculator, corpus calculator, retirement planning India, how much to retire"
+  },
+  {
+    "id": "fire-calculator",
+    "category": "invest",
+    "title": "FIRE Calculator",
+    "slug": "fire-calculator",
+    "categorySlug": "investment-calculators",
+    "icon": "🔥",
+    "calcType": "fire",
+    "description": "Financial Independence, Retire Early (FIRE) calculator. Target your exact FIRE number using the 4% safe withdrawal rule.",
+    "stars": 5,
+    "defaults": {
+      "amount": 60000,
+      "rate": 4,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 10000,
+        "max": 1000000,
+        "step": 5000
+      },
+      "rate": {
+        "min": 1,
+        "max": 10,
+        "step": 0.25
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "FIRE calculator India, financial independence retire early, FIRE number calculator, safe withdrawal rate"
+  },
+  {
+    "id": "stock-return",
+    "category": "invest",
+    "title": "Stock Return Calculator",
+    "slug": "stock-return-calculator",
+    "categorySlug": "investment-calculators",
+    "icon": "📈",
+    "calcType": "stockReturn",
+    "description": "Calculate total return from equity markets by combining capital gains with dividend yield over your holding period.",
+    "stars": 4,
+    "defaults": {
+      "amount": 1000,
+      "rate": 1500,
+      "tenure": 50
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 50,
+        "max": 10000,
+        "step": 10
+      },
+      "rate": {
+        "min": 50,
+        "max": 20000,
+        "step": 10
+      },
+      "tenure": {
+        "min": 0,
+        "max": 5000,
+        "step": 10
+      }
+    },
+    "keywords": "stock return calculator, equity return, stock ROI, capital gains calculator"
+  },
+  {
+    "id": "dividend-yield",
+    "category": "invest",
+    "title": "Dividend Yield Calculator",
+    "slug": "dividend-yield-calculator",
+    "categorySlug": "investment-calculators",
+    "icon": "💸",
+    "calcType": "dividendYield",
+    "description": "Calculate the exact dividend yield percentage based on the company's annual dividend payouts and current market share price.",
+    "stars": 4,
+    "defaults": {
+      "amount": 25,
+      "rate": 800,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 1,
+        "max": 500,
+        "step": 1
+      },
+      "rate": {
+        "min": 10,
+        "max": 10000,
+        "step": 10
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "dividend yield calculator, stock dividend yield, calculate dividend percentage"
   }
 ]
