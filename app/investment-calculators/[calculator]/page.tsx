@@ -266,19 +266,15 @@ const HUB_CONTENT: Record<string, {
             </div>
 
             <h3>How Much Should You Save Monthly to Build This Corpus?</h3>
-            <p>Once you know your target corpus, the next question is: how much do you need to invest each month to reach it? That depends on:</p>
-            <ul>
-                <li>Your investment timeline (years until retirement)</li>
-                <li>The expected annual return on your investments during accumulation</li>
-                <li>Whether you are making lump-sum investments, monthly SIPs, or a combination</li>
-            </ul>
+            <p>Once you know your target corpus, the next question is: how much do you need to invest each month to reach it? That depends on your investment timeline (years until retirement), the expected annual return on your investments during accumulation, and whether you are making lump-sum investments, monthly SIPs, or a combination.</p>
             <p>As a rough benchmark: To build ₹5 Crores in 25 years at a 12% annual return (typical long-term equity fund return), you need to invest approximately ₹25,000 per month via SIP. Use our SIP Calculator alongside this tool for a complete retirement roadmap.</p>
-
-            <h3>Frequently Asked Questions — Retirement Corpus Calculator</h3>
-            <p><strong>Q: At what age should I start planning for retirement?</strong><br/>A: The earlier the better. Starting at 25 versus 35 provides 10 additional years of compounding, which can double the final corpus for the same monthly investment amount. Even ₹5,000/month started at 25 creates significantly more wealth than ₹15,000/month started at 40.</p>
-            <p><strong>Q: Should I use 4% or a different withdrawal rate for India?</strong><br/>A: The 4% rule was derived from US market data. Indian financial planners often recommend a 3 to 3.5% withdrawal rate for more conservative planning, given higher inflation volatility. Our calculator lets you customize this rate.</p>
-            <p><strong>Q: Does the retirement corpus include my EPF and NPS?</strong><br/>A: Yes — your EPF, NPS balance, and any existing investments should be deducted from the required corpus to find your actual savings gap.</p>
-        `
+        `,
+        faq: [
+            { question: "At what age should I start planning for retirement?", answer: "The earlier the better. Starting at 25 versus 35 provides 10 additional years of compounding, which can double the final corpus for the same monthly investment amount. Even ₹5,000/month started at 25 creates significantly more wealth than ₹15,000/month started at 40." },
+            { question: "Should I use the 4% withdrawal rate for India-based retirement planning?", answer: "The 4% rule was derived from US market data. Indian financial planners often recommend a 3 to 3.5% withdrawal rate for more conservative planning, given India's higher inflation volatility. A 3.5% rate means building 28x your annual expenses instead of 25x." },
+            { question: "Does the retirement corpus include my EPF and NPS?", answer: "Yes — your EPF balance, NPS corpus, and any existing investments should be subtracted from the required corpus to find your actual savings gap. Include only liquid, market-accessible assets that you can actually withdraw during retirement." },
+            { question: "How much does healthcare inflation affect the retirement corpus?", answer: "Medical inflation in India runs at 12 to 14% annually — more than double general CPI. A serious illness can cost ₹10 to ₹25 lakhs in a single hospitalization. Always maintain a high-value health insurance policy (base + super top-up of ₹1 Crore+) to protect your retirement corpus." },
+        ],
     },
     "fire-calculator": {
         subtitle: "Calculate your FIRE number — the exact portfolio size needed to retire early and live entirely off passive investment income.",
@@ -289,12 +285,7 @@ const HUB_CONTENT: Record<string, {
 
             <h3>The FIRE Number: What Is It and How Is It Calculated?</h3>
             <p>Your <strong>FIRE Number</strong> is the total investment portfolio you need to sustain your lifestyle forever — without depleting the principal. It is based on the <strong>4% Safe Withdrawal Rate</strong>, studied extensively in personal finance research (Trinity Study, William Bengen's work on sequence-of-return risk).</p>
-            <p>This gives us the formula: <strong>FIRE Number = Annual Expenses x 25</strong></p>
-            <ul>
-                <li>Annual expenses of ₹6 lakhs means a FIRE Number of ₹1.5 Crores</li>
-                <li>Annual expenses of ₹12 lakhs means a FIRE Number of ₹3 Crores</li>
-                <li>Annual expenses of ₹24 lakhs means a FIRE Number of ₹6 Crores</li>
-            </ul>
+            <p>Formula: <strong>FIRE Number = Annual Expenses x 25</strong> — so annual expenses of ₹12 lakhs means a FIRE Number of ₹3 Crores.</p>
 
             <h3>Different Types of FIRE</h3>
             <ol>
@@ -312,12 +303,13 @@ const HUB_CONTENT: Record<string, {
             <h3>How to Reach Your FIRE Number Faster</h3>
             <p>The single most powerful variable in your FIRE timeline is your <strong>savings rate</strong> — what percentage of your income you invest each month. A higher savings rate means you accumulate faster and simultaneously need a smaller FIRE target (because you prove you can live on less).</p>
             <p>At a 50% savings rate, most people can reach FIRE in 15 to 17 years. At a 70% savings rate, it can happen in under 10 years — regardless of income level.</p>
-
-            <h3>Frequently Asked Questions — FIRE Calculator</h3>
-            <p><strong>Q: Is the 4% Rule safe in India given higher inflation?</strong><br/>A: Many Indian FIRE practitioners use a more conservative 3 to 3.5% withdrawal rate, implying a corpus of 28x to 33x annual expenses. This provides a larger buffer against India's higher inflation volatility and medical costs.</p>
-            <p><strong>Q: What investment approach should a FIRE investor use?</strong><br/>A: During accumulation, a high-equity allocation (80%+ in diversified equity mutual funds) maximizes growth. After reaching FIRE, most practitioners gradually shift toward a 60:40 equity-to-debt ratio to balance growth with stability during the withdrawal phase.</p>
-            <p><strong>Q: How do I account for EPF, NPS, and Gratuity in FIRE planning?</strong><br/>A: These locked-in benefits typically mature at or after age 58 to 60. Pure FIRE before 50 often requires building an entirely separate, liquid investment portfolio — EPF and NPS are supplementary corpus that activates later in retirement.</p>
-        `
+        `,
+        faq: [
+            { question: "Is the 4% Rule safe in India given higher inflation?", answer: "Many Indian FIRE practitioners use a more conservative 3 to 3.5% withdrawal rate, implying a corpus of 28x to 33x annual expenses. This provides a larger buffer against India's higher inflation volatility and rising medical costs compared to the US where the 4% rule was derived." },
+            { question: "What investment approach should a FIRE investor use in India?", answer: "During accumulation, a high-equity allocation (80%+ in diversified equity mutual funds) maximizes growth. After reaching FIRE, most practitioners gradually shift toward a 60:40 equity-to-debt ratio to balance growth with stability during the withdrawal phase and reduce sequence-of-return risk." },
+            { question: "How do I account for EPF, NPS, and Gratuity in FIRE planning?", answer: "These locked-in benefits typically mature at or after age 58 to 60. Pure FIRE before 50 often requires building an entirely separate, liquid investment portfolio — EPF and NPS are supplementary corpus that activates later in retirement, not immediately accessible." },
+            { question: "What is the biggest risk after achieving FIRE?", answer: "Sequence-of-return risk — experiencing a severe bear market (e.g., a 30%+ crash like 2008 or Covid) in the first 2 to 3 years of retirement. Withdrawing from a sharply declining portfolio permanently destroys capital. Build a 2 to 3-year cash buffer outside your equity portfolio before quitting." },
+        ],
     },
     "stock-return": {
         subtitle: "Calculate your total return from a stock investment by combining capital gains and dividends received over your holding period.",
@@ -341,7 +333,6 @@ const HUB_CONTENT: Record<string, {
             <p>But ITC paid substantial dividends throughout — averaging around ₹10 to ₹14 per share annually. Over 10 years, a significant portion of the original investment was returned through dividends. When dividends are included and reinvested, the total return is meaningfully higher than the price-only figure suggests. This is exactly why serious investors always evaluate total return, not just price change.</p>
 
             <h3>Taxation of Stock Returns in India (FY 2024-25)</h3>
-            <p>Understanding tax treatment is critical for calculating your actual net return:</p>
             <ul>
                 <li><strong>Short-Term Capital Gains (STCG):</strong> Equity held under 12 months — taxed at 20%</li>
                 <li><strong>Long-Term Capital Gains (LTCG):</strong> Equity held 12+ months — tax-free up to ₹1.25 lakhs; gains above that taxed at 12.5% without indexation</li>
@@ -349,17 +340,14 @@ const HUB_CONTENT: Record<string, {
             </ul>
 
             <h3>Total Return vs CAGR: What is the Difference?</h3>
-            <p>Total return gives the absolute percentage gain over the entire holding period. CAGR (Compound Annual Growth Rate) expresses the same gain as an annualized rate, making it easier to compare investments held for different durations.</p>
-            <ul>
-                <li>A 100% total return over 10 years sounds impressive, but it is only a 7.2% CAGR — in line with average FD returns.</li>
-                <li>A 300% total return over 10 years equals a 14.9% CAGR, which is genuinely excellent equity performance that beats most mutual fund benchmarks.</li>
-            </ul>
-
-            <h3>Frequently Asked Questions — Stock Return Calculator</h3>
-            <p><strong>Q: Should I include brokerage and STT charges in my return calculation?</strong><br/>A: Yes, for the most accurate net return. Brokerage, STT (Securities Transaction Tax), and SEBI charges reduce your effective gain. For most retail investors using discount brokers, total transaction costs are small (0.05 to 0.1%) but worth including for long-term accuracy.</p>
-            <p><strong>Q: How do I handle bonus shares or stock splits in total return calculations?</strong><br/>A: A bonus issue or stock split does not change your overall position value immediately — it just increases the number of shares at a proportionally lower price. For return calculations, use the adjusted cost basis (cost per share after adjusting for splits and bonuses) for accurate results.</p>
-            <p><strong>Q: What is a good total return benchmark for Indian stocks?</strong><br/>A: The Nifty 50 TRI has delivered approximately 13 to 15% CAGR over 15+ year periods. Any stock investment consistently beating this on a risk-adjusted basis represents genuine alpha over the market.</p>
-        `
+            <p>Total return gives the absolute percentage gain over the entire holding period. CAGR expresses the same gain as an annualized rate, making it easier to compare investments held for different durations. A 100% total return over 10 years is only a 7.2% CAGR — in line with average FD returns. A 300% total return over 10 years equals a 14.9% CAGR, which is genuinely excellent equity performance.</p>
+        `,
+        faq: [
+            { question: "Should I include brokerage and STT charges in my return calculation?", answer: "Yes, for the most accurate net return. Brokerage, STT (Securities Transaction Tax), and SEBI charges reduce your effective gain. For most retail investors using discount brokers, total transaction costs are small (0.05 to 0.1%) but worth including for long-term return accuracy." },
+            { question: "How do I handle bonus shares or stock splits in total return calculations?", answer: "A bonus issue or stock split does not change your overall position value immediately — it just increases the number of shares at a proportionally lower price. For return calculations, use the adjusted cost basis (cost per share after adjusting for splits and bonuses) for accurate results." },
+            { question: "What is a good total return benchmark for Indian stocks?", answer: "The Nifty 50 TRI has delivered approximately 13 to 15% CAGR over 15+ year periods. Any stock investment consistently beating this on a risk-adjusted basis represents genuine alpha over the market index." },
+            { question: "Why does the Nifty 50 TRI outperform the Nifty 50?", answer: "The Nifty 50 Price Return index only tracks stock price changes. The Nifty 50 TRI (Total Returns Index) also includes dividends reinvested, giving a complete picture of returns. Over long periods, dividends contribute 15 to 25% of total equity market returns — a significant difference." },
+        ],
     },
     "dividend-yield": {
         subtitle: "Calculate the dividend yield of any stock — how much annual income you earn as a percentage of your share purchase price.",
@@ -369,7 +357,6 @@ const HUB_CONTENT: Record<string, {
             <p>Think of it like the interest rate on a savings account, but for stocks. A ₹500 stock that pays ₹20 in annual dividends has a dividend yield of 4% (20 / 500 = 0.04 = 4%). If you invest ₹5 lakhs in this stock, you receive ₹20,000 per year in dividend income — regardless of short-term price movements in the market.</p>
 
             <h3>The Dividend Yield Formula</h3>
-            <p>The calculation is straightforward:</p>
             <div class="explanation__highlight">
                 <strong>Dividend Yield (%) = (Annual Dividend Per Share / Current Share Price) x 100</strong><br/>
                 Example: Coal India at ₹450 with ₹36 annual dividend = (36 / 450) x 100 = 8% yield — higher than most FD rates.
@@ -379,7 +366,7 @@ const HUB_CONTENT: Record<string, {
             <ul>
                 <li><strong>Retirees and income investors:</strong> Who need regular cash flow from their portfolio without selling shares. High-dividend stocks in sectors like utilities, PSU banks, FMCG, and energy can generate a steady income stream that complements pension or NPS income.</li>
                 <li><strong>Value investors:</strong> Who use dividend yield as one signal of valuation. A low price relative to dividends paid can sometimes indicate an undervalued stock with a disciplined management team.</li>
-                <li><strong>Tax-conscious investors:</strong> Dividends are taxed as income in India at your applicable slab rate. For investors in the 10 to 20% tax bracket, high-yield stocks can be highly efficient. For those in the 30% bracket, tax efficiency matters more.</li>
+                <li><strong>Tax-conscious investors:</strong> Dividends are taxed as income in India at your applicable slab rate. For investors in the 10 to 20% tax bracket, high-yield stocks can be highly efficient. For those in the 30% bracket, LTCG-focused investing is more tax-efficient.</li>
             </ul>
 
             <h3>The Dividend Yield Trap: A Common Investing Mistake</h3>
@@ -387,25 +374,19 @@ const HUB_CONTENT: Record<string, {
             <ul>
                 <li><strong>Falling price inflates yield:</strong> If a company's stock crashes from ₹1,000 to ₹400 because the business is deteriorating, historical dividends of ₹50 per share push the yield from 5% to 12.5% — making it look attractively high when the fundamentals are worsening.</li>
                 <li><strong>Unsustainable payouts:</strong> Check the Dividend Payout Ratio (dividends divided by net profit). If a company pays 90%+ of earnings as dividends, it retains almost nothing for growth, debt repayment, or handling downturns. The healthy, sustainable range is generally 30 to 60%.</li>
-                <li><strong>Dividend cuts risk:</strong> Companies can and do reduce or eliminate dividends during financial stress. PSU companies sometimes cut dividends during government fiscal emergencies. Always verify 5+ years of consistent payout history before relying on dividend income.</li>
+                <li><strong>Dividend cuts risk:</strong> Companies can and do reduce or eliminate dividends during financial stress. Always verify 5+ years of consistent payout history before relying on dividend income.</li>
             </ul>
 
             <h3>Yield on Cost — The Long-Term Investor's Hidden Superpower</h3>
             <p>While dividend yield fluctuates daily with the share price, long-term investors benefit from <strong>Yield on Cost (YOC)</strong> — the yield based on what you originally paid, not the current market price.</p>
             <p>If you bought a quality stock at ₹100 per share 10 years ago, and it now pays ₹20 per share annually, your personal Yield on Cost is 20% — even if the stock's current market yield is only 4% (because the price has risen to ₹500). Patient dividend investors build extraordinary income yields that are invisible to new buyers but deeply valuable to long-term holders.</p>
-
-            <h3>Dividend Yield vs Dividend Growth: Which Matters More?</h3>
-            <p>For long-term wealth building, <strong>dividend growth</strong> often matters more than current yield:</p>
-            <ul>
-                <li>A stock with a 2% yield today growing its dividend at 15% per year will double the payout in roughly 5 years — giving you a 4% yield on your original cost plus significant capital appreciation.</li>
-                <li>A stock with a 7% yield today but flat dividend growth gives you income now but limited compounding of that income over the long term.</li>
-            </ul>
-
-            <h3>Frequently Asked Questions — Dividend Yield Calculator</h3>
-            <p><strong>Q: Are dividends in India taxable?</strong><br/>A: Yes. Since 2020, dividends are added to the investor's total income and taxed at their applicable income tax slab rate. TDS at 10% is deducted by the company if total dividends received exceed ₹5,000 in a financial year. For investors in the 30% tax bracket, this makes dividends relatively tax-inefficient compared to LTCG on equity.</p>
-            <p><strong>Q: What is a good dividend yield for Indian stocks?</strong><br/>A: Nifty 50 stocks typically yield 1 to 2%. PSU stocks, utilities, and mature FMCG companies often offer 3 to 8% yields. A dividend yield above 6% in a fundamentally strong company with a consistent payout history can represent good value. Yields above 10% warrant serious investigation into payout sustainability.</p>
-            <p><strong>Q: How do I find high dividend yield stocks in India?</strong><br/>A: Screen for high-dividend stocks using NSE/BSE stock screeners, Money Control, or Screener.in by filtering on dividend yield percentage and payout consistency. Always cross-check with 5-year payout history, Payout Ratio, EPS trend, and debt levels before investing for income.</p>
-        `
+        `,
+        faq: [
+            { question: "Are dividends in India taxable?", answer: "Yes. Since 2020, dividends are added to the investor's total income and taxed at their applicable income tax slab rate. TDS at 10% is deducted by the company if total dividends received exceed ₹5,000 in a financial year. For investors in the 30% tax bracket, this makes dividends relatively tax-inefficient compared to LTCG on equity." },
+            { question: "What is a good dividend yield for Indian stocks?", answer: "Nifty 50 stocks typically yield 1 to 2%. PSU stocks, utilities, and mature FMCG companies often offer 3 to 8% yields. A dividend yield above 6% in a fundamentally strong company with a consistent payout history can represent good value. Yields above 10% warrant serious investigation into payout sustainability." },
+            { question: "How do I find high dividend yield stocks in India?", answer: "Screen for high-dividend stocks using NSE/BSE stock screeners, Money Control, or Screener.in by filtering on dividend yield percentage and payout consistency. Always cross-check with 5-year payout history, Payout Ratio, EPS trend, and debt levels before investing for income." },
+            { question: "What is the difference between dividend yield and dividend growth investing?", answer: "Dividend yield focuses on current income — the payout relative to today's price. Dividend growth investing focuses on companies that consistently increase their dividend every year. A 2% yielder growing at 15% annually will double its payout in 5 years, outpacing a static high-yield stock over a 10+ year horizon." },
+        ],
     }
 };
 

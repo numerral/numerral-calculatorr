@@ -1181,6 +1181,7 @@ ol {
 
 .explanation__highlight {
     margin-top: var(--s-5);
+    margin-bottom: var(--s-5);
     padding: var(--s-4) var(--s-5);
     background: var(--n-primary-light);
     border-left: 3px solid var(--n-primary);
@@ -1189,6 +1190,86 @@ ol {
     font-weight: 500;
     color: var(--n-text);
     line-height: 1.6;
+}
+
+/* Rich HTML content block (used for contentHTML in advanced calculators) */
+.explanation__html h3 {
+    font-size: var(--t-h3);
+    font-weight: 700;
+    color: var(--n-text);
+    margin-top: var(--s-7);
+    margin-bottom: var(--s-3);
+}
+
+.explanation__html h3:first-child {
+    margin-top: 0;
+}
+
+.explanation__html h4 {
+    font-size: var(--t-body);
+    font-weight: 600;
+    color: var(--n-text);
+    margin-top: var(--s-5);
+    margin-bottom: var(--s-2);
+}
+
+.explanation__html p {
+    font-size: var(--t-body);
+    color: var(--n-text-secondary);
+    line-height: 1.75;
+    margin-bottom: var(--s-4);
+}
+
+.explanation__html ul,
+.explanation__html ol {
+    margin: 0 0 var(--s-5) var(--s-5);
+    padding: 0;
+}
+
+.explanation__html ul {
+    list-style-type: disc;
+}
+
+.explanation__html ol {
+    list-style-type: decimal;
+}
+
+.explanation__html li {
+    font-size: var(--t-body);
+    color: var(--n-text-secondary);
+    line-height: 1.7;
+    margin-bottom: var(--s-2);
+    padding-left: var(--s-1);
+}
+
+.explanation__html li strong {
+    color: var(--n-text);
+    font-weight: 600;
+}
+
+.explanation__html strong {
+    color: var(--n-text);
+    font-weight: 600;
+}
+
+.explanation__html em {
+    font-style: italic;
+    color: var(--n-text-secondary);
+}
+
+.explanation__html code {
+    font-family: monospace;
+    font-size: 0.9em;
+    background: var(--n-surface-alt);
+    color: var(--n-primary);
+    padding: 2px 6px;
+    border-radius: 4px;
+    border: 1px solid var(--n-border);
+}
+
+.explanation__html .explanation__highlight {
+    margin-top: var(--s-5);
+    margin-bottom: var(--s-5);
 }
 
 /* ── 15. FAQ ACCORDION ─────────────────── */
