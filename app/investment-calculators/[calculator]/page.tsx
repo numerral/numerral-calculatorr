@@ -44,109 +44,155 @@ const HUB_CONTENT: Record<string, {
     faq?: { question: string; answer: string }[];
     contentHTML?: string;
 }> = {
-    "lumpsum": {
+    "lumpsum-calculator": {
         subtitle: "Calculate the future value of a one-time investment with compound interest over a chosen time period.",
         explanation: {
             heading: "How Lumpsum Investment Returns Are Calculated",
             paragraphs: [
                 "A lumpsum investment involves putting a fixed amount of money into an investment at a single point in time. Unlike SIP where you invest monthly, in lumpsum investing all your capital works from day one. The returns compound annually (or quarterly, depending on the fund), and the growth is exponential rather than linear.",
-                "The formula used is: A = P × (1 + r)^n, where P is your principal, r is the annual rate of return (as a decimal), and n is the number of years. Our calculator handles all three of these variables and shows you both the maturity amount and the total profit.",
+                "The formula used is: A = P \u00d7 (1 + r)^n, where P is your principal, r is the annual rate of return (as a decimal), and n is the number of years. Our calculator handles all three of these variables and shows you both the maturity amount and the total profit.",
             ],
-            highlight: "₹5 Lakhs invested in an equity mutual fund for 15 years at 13% CAGR grows to approximately ₹28.5 Lakhs — a 5.7x return on your initial investment.",
+            highlight: "\u20b95 Lakhs invested in an equity mutual fund for 15 years at 13% CAGR grows to approximately \u20b928.5 Lakhs \u2014 a 5.7x return on your initial investment.",
         },
         faq: [
             { question: "When is lumpsum better than SIP?", answer: "Lumpsum investing at market lows can significantly outperform SIP in the medium term. Use lumpsum for windfalls like bonuses, inheritance, or proceeds from selling an asset. SIP is better for regular monthly income with no large capital available." },
-            { question: "How is lumpsum return taxed in India?", answer: "If redeemed after 1 year, equity mutual fund lumpsum gains are taxed as LTCG at 12.5% beyond ₹1.25 lakhs. Within 1 year, STCG at 20%. For debt funds, gains are taxed at applicable income slab rate regardless of holding period." },
+            { question: "How is lumpsum return taxed in India?", answer: "If redeemed after 1 year, equity mutual fund lumpsum gains are taxed as LTCG at 12.5% beyond \u20b91.25 lakhs. Within 1 year, STCG at 20%. For debt funds, gains are taxed at applicable income slab rate regardless of holding period." },
         ],
     },
-    "sip": {
+    "sip-calculator": {
         subtitle: "Find out how much wealth your monthly SIP can build over time, factoring in compounding and your chosen return rate.",
         explanation: {
             heading: "How SIP Compounding Works",
             paragraphs: [
-                "A Systematic Investment Plan (SIP) is a method of investing a fixed amount in a mutual fund scheme at regular intervals — typically monthly. Each SIP instalment buys a certain number of units at the prevailing NAV. When markets fall, the same amount buys more units; when they rise, fewer. This naturally lowers your average cost per unit over time — a principle called Rupee Cost Averaging.",
+                "A Systematic Investment Plan (SIP) is a method of investing a fixed amount in a mutual fund scheme at regular intervals \u2014 typically monthly. Each SIP instalment buys a certain number of units at the prevailing NAV. When markets fall, the same amount buys more units; when they rise, fewer. This naturally lowers your average cost per unit over time \u2014 a principle called Rupee Cost Averaging.",
                 "The key difference from lumpsum investing is that each instalment compounds from a different start date. Your 12th month's SIP has only 11 months of compounding, while your first month's SIP compounds for the full year. Our calculator aggregates the future value of all these individual investments to show your total wealth created.",
             ],
-            highlight: "₹10,000/month SIP for 20 years at 12% CAGR = Total invested: ₹24 lakhs | Wealth created: ₹99.9 lakhs. Compounding nearly quadruples your invested amount.",
+            highlight: "\u20b910,000/month SIP for 20 years at 12% CAGR = Total invested: \u20b924 lakhs | Wealth created: \u20b999.9 lakhs. Compounding nearly quadruples your invested amount.",
         },
         faq: [
-            { question: "What is the ideal SIP amount to invest?", answer: "A common rule of thumb is to invest at least 20-30% of your monthly take-home salary in SIPs. Ideally, increase your SIP by 10-15% every year (a Step-Up SIP) to offset lifestyle inflation and accelerate wealth creation." },
-            { question: "Can I stop or modify my SIP midway?", answer: "Yes. SIPs are flexible — you can pause, reduce, increase, or stop them with no exit penalty in most funds. However, stopping a SIP early significantly impacts your final corpus due to losing years of compounding." },
+            { question: "What is the ideal SIP amount to invest?", answer: "A common rule of thumb is to invest at least 20\u201330% of your monthly take-home salary in SIPs. Ideally, increase your SIP by 10\u201315% every year (a Step-Up SIP) to offset lifestyle inflation and accelerate wealth creation." },
+            { question: "Can I stop or modify my SIP midway?", answer: "Yes. SIPs are flexible \u2014 you can pause, reduce, increase, or stop them with no exit penalty in most funds. However, stopping a SIP early significantly impacts your final corpus due to losing years of compounding." },
+            { question: "Which mutual fund category is best for SIP?", answer: "For long-term SIPs (10+ years), diversified large-cap or flexi-cap equity funds are recommended for stability with good returns. For aggressive wealth creation with a 15+ year horizon, mid-cap funds can outperform. Always choose a fund with a consistent 5-year track record and low expense ratio." },
+            { question: "How does Rupee Cost Averaging benefit SIP investors?", answer: "Rupee Cost Averaging means you buy more units when markets fall (lower NAV) and fewer when markets rise (higher NAV). Over time, this automatically lowers your average purchase cost compared to investing a lumpsum at a single price point. It removes the stress of timing the market." },
         ],
     },
-    "ppf": {
+    "ppf-calculator": {
         subtitle: "Calculate the maturity amount of your Public Provident Fund (PPF) investment based on your annual contribution and remaining tenure.",
         explanation: {
-            heading: "Understanding PPF Returns",
+            heading: "Understanding PPF Returns and Tax Benefits",
             paragraphs: [
-                "PPF (Public Provident Fund) is a government-backed, guaranteed savings scheme with a lock-in period of 15 years (extendable in 5-year blocks). The current interest rate is 7.1% per annum, compounded annually. The minimum annual investment is ₹500, and the maximum is ₹1.5 lakhs per financial year.",
-                "PPF enjoys EEE (Exempt-Exempt-Exempt) tax status — meaning contributions up to ₹1.5 lakhs per year qualify for Section 80C deduction, the interest earned is tax-free, and the maturity amount is also completely tax-free. This makes PPF one of the most tax-efficient long-term debt instruments in India.",
+                "PPF (Public Provident Fund) is a government-backed, guaranteed savings scheme with a lock-in period of 15 years (extendable in 5-year blocks). The current interest rate is 7.1% per annum, compounded annually and credited on 31st March each year. The minimum annual deposit is \u20b9500 and the maximum is \u20b91.5 lakhs per financial year. You can make deposits in up to 12 instalments across the year.",
+                "PPF enjoys full EEE (Exempt-Exempt-Exempt) tax status \u2014 the only savings instrument in India with this triple benefit. Contributions up to \u20b91.5 lakhs per year qualify for Section 80C deduction, interest earned is completely tax-free every year, and the entire maturity amount is tax-free. This makes PPF one of the most tax-efficient long-term debt instruments available to Indian investors.",
             ],
-            highlight: "₹1.5 lakhs invested in PPF every year for 15 years at 7.1% compounds to approximately ₹40.68 lakhs — with zero tax on the entire corpus.",
+            highlight: "\u20b91.5 lakhs invested in PPF every year for 15 years at 7.1% compounds to approximately \u20b940.68 lakhs \u2014 with zero tax on the entire corpus. The effective post-tax return beats most taxable debt instruments by 2\u20133% for investors in the 30% tax bracket.",
         },
         faq: [
-            { question: "Can I withdraw PPF before the 15-year maturity?", answer: "Partial withdrawals are permitted from the 7th year onwards (up to 50% of the balance at the end of the 4th year). Full premature closure is only allowed under specific conditions like life-threatening medical emergencies and higher education needs, with a 1% interest rate penalty." },
-            { question: "Should I choose PPF over ELSS for tax saving?", answer: "PPF is risk-free and guarantees returns. ELSS carries equity market risk but has historically delivered 12-15% CAGR vs PPF's 7.1%. For long horizons (10+ years), ELSS typically creates significantly more wealth. PPF is ideal for risk-averse investors who prioritize capital safety." },
+            { question: "Can I withdraw PPF before the 15-year maturity?", answer: "Partial withdrawals are permitted from the 7th year onwards \u2014 up to 50% of the balance at the end of the 4th year or the previous year, whichever is lower. Full premature closure is allowed after 5 years only under specific conditions: life-threatening illness, higher education, or change in residency status. A 1% interest rate penalty applies." },
+            { question: "Should I choose PPF over ELSS for tax saving under Section 80C?", answer: "PPF is risk-free and guarantees 7.1% (government-set rate). ELSS carries equity market risk but has historically delivered 12\u201315% CAGR over 10+ years, with a 3-year lock-in. For long horizons (10+ years), ELSS creates significantly more wealth. PPF suits conservative investors prioritizing capital safety over maximizing returns." },
+            { question: "Can I open a PPF account in my child's name?", answer: "Yes. You can open a PPF account for a minor child and contribute to it from your own PPF limit of \u20b91.5 lakhs per year combined (your account + child's account combined cannot exceed \u20b91.5 lakhs total). This is a powerful long-term wealth building tool for children's education and marriage goals." },
+            { question: "What is the PPF interest rate history and when does the government revise it?", answer: "The PPF interest rate is set by the Ministry of Finance and revised quarterly along with other small savings scheme rates. It was 8% till 2020, then cut to 7.1% and has remained there since. Historically PPF has always offered 7\u20138% \u2014 safe, guaranteed, and fully tax-free." },
         ],
     },
-    "fd": {
+    "fd-calculator": {
         subtitle: "Calculate exact maturity value and total interest on your Fixed Deposit across different compounding frequencies.",
         explanation: {
             heading: "How Fixed Deposit Interest is Calculated",
             paragraphs: [
-                "Fixed Deposits (FDs) are time-bound deposits that earn a predetermined interest rate for the duration of the tenure. The interest can be compounded quarterly, half-yearly, or annually, depending on the bank. Quarterly compounding gives a slightly higher effective return than the nominal rate — this difference is measured by the Effective Annual Rate (EAR).",
-                "The formula is: A = P × (1 + r/n)^(n×t), where P = principal, r = annual rate, n = compounding frequency, t = time in years. Tax-Saver FDs (with 5-year lock-in) qualify for Section 80C deduction up to ₹1.5 lakhs, but the interest earned is fully taxable at your income slab rate.",
+                "Fixed Deposits (FDs) are time-bound deposits that earn a predetermined interest rate for the duration of the tenure. The interest can be compounded quarterly, half-yearly, or annually, depending on the bank. Quarterly compounding gives a slightly higher effective return than the nominal rate \u2014 this difference is measured by the Effective Annual Rate (EAR).",
+                "The formula is: A = P \u00d7 (1 + r/n)^(n\u00d7t), where P = principal, r = annual rate, n = compounding frequency, t = time in years. Tax-Saver FDs (with 5-year lock-in) qualify for Section 80C deduction up to \u20b91.5 lakhs, but the interest earned is fully taxable at your income slab rate.",
             ],
-            highlight: "₹2 lakhs in an FD at 7% for 5 years (quarterly compounding) grows to ₹2.83 lakhs — earning ₹83,000 in interest. TDS of 10% is deducted by the bank; actual post-tax return depends on your income slab.",
+            highlight: "\u20b92 lakhs in an FD at 7% for 5 years (quarterly compounding) grows to \u20b92.83 lakhs \u2014 earning \u20b983,000 in interest. TDS of 10% is deducted by the bank; actual post-tax return depends on your income slab.",
         },
         faq: [
-            { question: "Is FD interest taxable in India?", answer: "Yes. FD interest is added to your total income and taxed at your applicable income tax slab rate. Banks deduct TDS at 10% if annual interest exceeds ₹40,000 (₹50,000 for senior citizens). Form 15G/15H can be submitted to avoid TDS if your total income is below the taxable limit." },
-            { question: "Which is currently better — FD or debt mutual fund?", answer: "After the 2023 tax change, debt mutual funds are taxed at income slab rate (same as FD). FD offers guaranteed returns with no market risk. Debt funds offer better flexibility, liquidity, and potentially higher post-expense returns. For 3+ year investments, some debt fund categories may offer marginal advantages in specific tax scenarios." },
+            { question: "Is FD interest taxable in India?", answer: "Yes. FD interest is added to your total income and taxed at your applicable income tax slab rate. Banks deduct TDS at 10% if annual interest exceeds \u20b940,000 (\u20b950,000 for senior citizens). Submit Form 15G/15H if your total income is below the taxable limit to avoid TDS deduction." },
+            { question: "Which bank offers the best FD interest rates in 2025?", answer: "Small finance banks like Unity Small Finance Bank, ESAF, and AU Small Finance Bank typically offer 8\u20139% on FDs. Among major banks, IDFC First and Yes Bank offer competitive rates. Senior citizens get an additional 0.25\u20130.5% on most bank FDs. Always verify DICGC insurance coverage (\u20b95 lakh per bank) when choosing smaller banks." },
+            { question: "What is the difference between cumulative and non-cumulative FD?", answer: "Cumulative FD reinvests the interest back into the principal every compounding period \u2014 you receive the total maturity amount at the end. Non-cumulative (or interest-payout) FD pays interest monthly, quarterly, or annually. Cumulative FDs build more wealth due to compounding; non-cumulative FDs suit retirees who need regular income." },
+            { question: "Can I break an FD before maturity?", answer: "Yes, most FDs allow premature withdrawal with a penalty of 0.5\u20131% lower interest rate than the contracted rate. Some banks waive premature withdrawal penalties for senior citizens. Liquid funds or ultra-short debt funds can be a better alternative when you need liquidity, as they don't penalize early exits." },
         ],
     },
-    "mf-returns": {
+    "mutual-fund-returns": {
         subtitle: "See how a mutual fund investment grows over time and compare performance across short, medium, and long-term horizons.",
         explanation: {
             heading: "How Mutual Fund Returns Are Measured",
             paragraphs: [
-                "Mutual fund returns are typically measured using CAGR (Compound Annual Growth Rate) for lumpsum investments and XIRR (Extended Internal Rate of Return) for SIPs, where cash flows occur at different points in time. CAGR shows the effective annual growth rate that represents the overall performance as if it were a steady year-over-year return.",
-                "The absolute return is straightforward: ((Maturity Value - Invested Amount) / Invested Amount) × 100. But for comparing funds over different time periods, CAGR is more meaningful because it normalizes the time variable.",
+                "Mutual fund returns are typically measured using CAGR (Compound Annual Growth Rate) for lumpsum investments and XIRR (Extended Internal Rate of Return) for SIPs, where cash flows occur at different points in time. CAGR shows the consistent annual growth rate that would turn the initial investment into the final value, as if growing at a constant rate every year.",
+                "The absolute return is straightforward: ((Maturity Value - Invested Amount) / Invested Amount) \u00d7 100. But for comparing funds over different time periods, CAGR is far more meaningful because it normalizes the time variable. A fund that turned \u20b91 lakh into \u20b92 lakhs has 100% absolute return \u2014 but whether that's good or bad depends entirely on whether it took 3 years or 15 years.",
             ],
-            highlight: "A fund that doubled your money in 5 years delivered a 14.87% CAGR. A fund that tripled it in 8 years delivered a 14.65% CAGR — very similar! Time-adjusting returns reveals the true pace of wealth creation.",
+            highlight: "A fund that doubled your money in 5 years delivered a 14.87% CAGR. A fund that tripled it in 8 years delivered a 14.65% CAGR \u2014 very similar! Time-adjusting returns reveals the true pace of wealth creation.",
         },
         faq: [
-            { question: "What is a good CAGR for mutual funds in India?", answer: "Large-cap equity funds: 10–13% long-term CAGR is considered good. Mid-cap and small-cap funds: 14–18% over long periods, but with higher volatility. Debt funds: 6–8% CAGR. Any equity fund consistently delivering 15%+ CAGR over 10+ years is considered an exceptional performer." },
-            { question: "What is the difference between absolute return and CAGR?", answer: "Absolute return measures total profit or loss without considering time. CAGR shows the annualized rate, making comparisons across different holding periods fair. A 50% absolute return over 10 years is only a 4.1% CAGR — well below inflation." },
+            { question: "What is a good CAGR for mutual funds in India?", answer: "Large-cap equity funds: 10\u201313% long-term CAGR is considered good. Mid-cap and small-cap funds: 14\u201318% over long periods, but with higher volatility. Debt funds: 6\u20138% CAGR. Any equity fund consistently delivering 15%+ CAGR over 10+ years is considered an exceptional performer. Always compare against the category benchmark, not absolute numbers." },
+            { question: "What is the difference between absolute return and CAGR?", answer: "Absolute return measures total profit or loss without considering time. CAGR shows the annualized rate, making comparisons across different holding periods fair. A 50% absolute return over 10 years is only a 4.1% CAGR \u2014 well below inflation. Always use CAGR for investments held longer than 1 year." },
+            { question: "How is mutual fund expense ratio different from exit load?", answer: "The expense ratio is an annual fee (typically 0.1\u20132% of AUM) charged by the AMC for managing the fund. It's deducted from the NAV daily and reduces your effective return. Exit load is a one-time penalty charged if you redeem before a specific period (usually 1 year for equity funds, typically 1% of redemption amount). Direct plans have lower expense ratios than regular plans." },
+            { question: "What is SEBI's risk-o-meter for mutual funds?", answer: "SEBI mandates all mutual funds to display a risk-o-meter rating: Low, Low to Moderate, Moderate, Moderately High, High, or Very High. Overnight and liquid funds are Low; equity small-cap funds are Very High. Always match the risk label to your own risk tolerance and investment horizon before investing." },
         ],
     },
-    "rd": {
+    "savings-interest": {
+        subtitle: "Calculate interest earned on your savings account balance. Find out how much your idle savings are actually generating for you.",
+        explanation: {
+            heading: "How Savings Account Interest Works in India",
+            paragraphs: [
+                "A savings account interest rate in India typically ranges from 2.5% to 7% per annum, depending on the bank and your balance. Most private sector and public sector banks in India calculate savings account interest on the daily closing balance method \u2014 meaning interest accrues every day based on your end-of-day balance, even though it is credited to your account quarterly (March, June, September, December).",
+                "Understanding how your savings account earns interest helps you make smarter decisions. Keeping \u20b91 lakh in a regular savings account at 3.5% earns only \u20b93,500/year \u2014 which barely beats inflation on an after-tax basis. Sweeping excess savings into FDs, liquid funds, or arbitrage funds can meaningfully improve your short-term money returns without adding significant risk.",
+            ],
+            highlight: "\u20b91 lakh in a regular savings account at 3.5% earns \u20b93,500 per year before tax. The same amount in a small finance bank savings account at 6% earns \u20b96,000 \u2014 a 71% increase in interest income from a simple account switch.",
+        },
+        faq: [
+            { question: "Which bank offers the highest savings account interest rate in 2025?", answer: "Small finance banks typically offer the highest rates: AU Small Finance Bank (7%), ESAF Small Finance Bank (7%), Equitas Small Finance Bank (7%). Among major banks, Kotak Mahindra Bank offers 3.5\u20134% on higher balances. Payments banks like Airtel and FINO offer 2.5\u20134%. Savings interest is DICGC-insured up to \u20b95 lakhs per bank." },
+            { question: "Is savings account interest taxable?", answer: "Yes. Savings account interest is taxable as 'Income from Other Sources'. However, Section 80TTA provides a deduction of up to \u20b910,000 per year on savings account interest for individuals below 60. Senior citizens get a higher deduction of up to \u20b950,000 under Section 80TTB (covering both savings and FD interest)." },
+            { question: "What is a sweep-in FD and how does it improve returns?", answer: "A sweep-in (or auto-sweep) FD automatically transfers excess balance above a threshold (e.g., anything above \u20b925,000) from your savings account into an FD, earning higher FD interest rates. If you withdraw, the FD is broken in reverse order. This gives you FD-level returns on idle money with full liquidity \u2014 one of the smartest features offered by most major banks." },
+            { question: "How do I maximize returns on short-term idle money?", answer: "For money needed within 3 months: keep in a high-interest savings account or liquid mutual fund (5\u20137%). For 3\u201312 months: FD or short-term debt funds. For 12\u201336 months: ultra-short or money market funds. Liquid funds are particularly tax-efficient for those in the 30% bracket as they can generate returns with lower day-to-day tax friction than savings interest." },
+        ],
+    },
+    "deposit-maturity": {
+        subtitle: "Find out the exact maturity amount and total interest for any fixed deposit or lump sum investment over any tenure.",
+        explanation: {
+            heading: "How Deposit Maturity Amount is Calculated",
+            paragraphs: [
+                "The deposit maturity calculator computes how much your invested principal will grow to by the end of the deposit tenure, based on the interest rate and compounding frequency. For cumulative deposits (where interest is not paid out periodically), the formula is: Maturity Amount = Principal \u00d7 (1 + r/n)^(n\u00d7t), where r is the annual interest rate, n is the compounding periods per year, and t is the tenure in years.",
+                "The difference between your maturity amount and the principal deposited is your total interest earned. This calculator is useful for planning across multiple deposit types: bank FDs, company FDs, post office time deposits (POTD), National Savings Certificate (NSC), and Kisan Vikas Patra (KVP) \u2014 all of which are essentially fixed-term deposit instruments with different rates, tenures, and tax treatments.",
+            ],
+            highlight: "\u20b95 lakhs in a bank FD at 7.5% for 5 years with quarterly compounding matures to \u20b97.22 lakhs \u2014 total interest earned: \u20b92.22 lakhs. Choosing quarterly vs annual compounding alone adds an extra \u20b96,000+ in interest on this amount.",
+        },
+        faq: [
+            { question: "What is the difference between quarterly and annual compounding on FDs?", answer: "With annual compounding, interest is calculated once per year. With quarterly compounding, interest is calculated 4 times per year and each quarter's interest earns further interest. For a \u20b91 lakh deposit at 7%, annual compounding gives \u20b97,000 at year-end. Quarterly compounding gives \u20b97,186 \u2014 a small but compounding difference that grows significantly over 5\u201310 years." },
+            { question: "Are post office time deposits better than bank FDs?", answer: "Post office time deposits (POTD) are backed by the Government of India \u2014 zero default risk. The 5-year POTD qualifies for Section 80C deduction up to \u20b91.5 lakhs. Current rates: 1-year (6.9%), 2-year (7%), 3-year (7.1%), 5-year (7.5%). These are competitive with, or often better than, major bank FD rates with sovereign safety guarantee." },
+            { question: "What is National Savings Certificate (NSC) and how does it compare to FD?", answer: "NSC is a 5-year, government-backed savings certificate paying 7.7% (current rate) compounded annually but paid at maturity. Investment qualifies for Section 80C deduction. Unlike FD, NSC interest is auto-reinvested each year and also qualifies for 80C deduction in subsequent years. This makes NSC highly tax-efficient for investors in the 30% tax bracket." },
+            { question: "How does Kisan Vikas Patra (KVP) work?", answer: "KVP doubles your investment in a fixed period determined by the current interest rate. At the current 7.5% rate, KVP doubles money in approximately 115 months (9 years 7 months). It is available at post offices and major bank branches, with no maximum deposit limit. KVP is not eligible for Section 80C deduction but offers guaranteed government-backed returns." },
+        ],
+    },
+    "rd-calculator": {
         subtitle: "Calculate the maturity amount of your Recurring Deposit by entering monthly installment amount, interest rate, and tenure.",
         explanation: {
             heading: "How Recurring Deposit Interest is Calculated",
             paragraphs: [
-                "A Recurring Deposit (RD) allows you to deposit a fixed amount every month for a predetermined period. Banks compound the interest quarterly, meaning each deposit earns interest from the date of deposit to the maturity date. The calculation is similar to summing the future value of multiple FDs of different durations.",
-                "RD is essentially a disciplined savings tool for people who do not have a lumpsum to invest. At maturity, you receive the total principal plus accumulated interest. RD rates are similar to FD rates for the same tenure and are taxed the same way — as ordinary income at your slab rate.",
+                "A Recurring Deposit (RD) allows you to deposit a fixed amount every month for a predetermined period. Banks compound the interest quarterly, meaning each deposit earns interest from the date of deposit to the maturity date. The calculation is similar to summing the future value of multiple FDs starting at different months.",
+                "RD is essentially a disciplined savings tool for people who do not have a lumpsum to invest but can commit a fixed amount monthly. At maturity, you receive the total principal plus accumulated interest. RD rates are similar to FD rates for the same tenure and are taxed the same way \u2014 as ordinary income at your slab rate. TDS applies if annual interest exceeds \u20b940,000.",
             ],
-            highlight: "₹5,000/month RD for 3 years at 7% interest = Total invested: ₹1.8 lakhs | Maturity amount: ₹2.00 lakhs | Interest earned: ₹20,132",
+            highlight: "\u20b95,000/month RD for 3 years at 7% interest = Total invested: \u20b91.8 lakhs | Maturity amount: \u20b92.00 lakhs | Interest earned: \u20b920,132",
         },
         faq: [
-            { question: "Can I close an RD before maturity?", answer: "Yes, most banks allow premature closure of an RD, but with a penalty — typically 0.5% to 1% lower interest rate than the original contracted rate. Some banks also have a minimum lock-in period (often 3 months) before premature closure is permitted." },
-            { question: "Is RD better than SIP for monthly savings?", answer: "RD offers guaranteed, risk-free returns, ideal for capital protection goals (home down payment in 2 years, emergency fund). SIP invests in market-linked mutual funds — higher potential returns over 5+ years but with market volatility. Choose based on your timeline and risk appetite." },
+            { question: "Can I close an RD before maturity?", answer: "Yes, most banks allow premature closure of an RD, typically with a 0.5\u20131% lower interest rate penalty than the contracted rate. Some banks enforce a minimum lock-in period of 3 months before allowing premature closure. Online RDs through savings accounts are often more flexible." },
+            { question: "Is RD better than SIP for monthly savings?", answer: "RD offers guaranteed, risk-free returns (currently 6.5\u20137% for most banks) \u2014 ideal for capital protection goals with a 1\u20133 year horizon (home down payment, emergency fund, vacation). SIP in equity mutual funds targets 12\u201314% CAGR over 7+ years but involves market risk. Match the instrument to your timeline and purpose." },
+            { question: "Is RD interest taxable?", answer: "Yes. RD interest is fully taxable at your income slab rate, similar to FD interest. Banks deduct TDS at 10% if total interest (FD + RD combined) from a single branch exceeds \u20b940,000 in a financial year. Submit Form 15G/15H to avoid TDS if your total income is below the taxable threshold." },
+            { question: "How is RD different from SIP in a debt mutual fund?", answer: "Both involve regular monthly investments, but RD gives guaranteed returns at a fixed rate while debt mutual funds give market-linked returns that vary. Debt funds are generally more tax-efficient for investors in higher slabs (gains taxed at slab but with indexation for older investments) and offer higher liquidity. RD is simpler and completely risk-free." },
         ],
     },
-    "nps": {
+    "nps-calculator": {
         subtitle: "Estimate your National Pension System (NPS) corpus at retirement and the monthly pension you can expect.",
         explanation: {
             heading: "Understanding NPS Returns and Pension Calculation",
             paragraphs: [
-                "The National Pension System (NPS) is a government-regulated, long-term retirement savings scheme open to all Indian citizens between 18 and 60. You can choose your asset allocation across equity (Tier 1, up to 75%), corporate bonds, government bonds, and alternative assets. The returns are market-linked and vary based on your chosen mix.",
-                "At retirement (age 60), you must use at least 40% of the corpus to purchase an annuity (which provides your monthly pension). The remaining 60% can be withdrawn as a lump sum — tax-free. The annuity amount depends on the annuity rate from the insurance company at the time of purchase.",
+                "The National Pension System (NPS) is a government-regulated, long-term retirement savings scheme open to all Indian citizens between 18 and 70. You can choose your asset allocation across equity (Tier 1, up to 75% till age 50), corporate bonds, government bonds, and alternative assets. The returns are market-linked and vary based on your chosen mix and the Pension Fund Manager (PFM) selected.",
+                "At retirement (age 60), you must use at least 40% of the corpus to purchase an annuity from an empanelled life insurance company, which provides your monthly pension. The remaining 60% can be withdrawn as a lump sum \u2014 completely tax-free. The annuity amount depends on the annuity rate from the insurer at the time of vesting.",
             ],
-            highlight: "₹5,000/month NPS contribution from age 30 to 60 at an assumed 10% return = Final corpus of approximately ₹1.13 Crores. Using 40% for annuity at 5.5% annuity rate gives approximately ₹20,600/month pension.",
+            highlight: "\u20b95,000/month NPS contribution from age 30 to 60 at an assumed 10% return = Final corpus of approximately \u20b91.13 Crores. Using 40% for annuity at 5.5% annuity rate gives approximately \u20b920,600/month lifetime pension.",
         },
         faq: [
-            { question: "What are the tax benefits of NPS?", answer: "NPS contributions qualify for deduction under Section 80CCD(1) within the ₹1.5 lakh 80C limit, plus an additional ₹50,000 exclusively under Section 80CCD(1B). Employer contributions up to 10% of basic + DA are deductible under 80CCD(2). The 60% lump sum withdrawal at retirement is completely tax-free." },
-            { question: "Can I withdraw from NPS before retirement?", answer: "Partial withdrawals (up to 25% of own contributions) are allowed after 3 years for specific purposes: higher education, marriage of children, purchase or construction of a home, or treatment of critical illness. Premature exit before 60 requires investing 80% of the corpus in an annuity." },
+            { question: "What are the tax benefits of NPS in India?", answer: "NPS contributions qualify for deduction under Section 80CCD(1) within the \u20b91.5 lakh 80C limit. Additionally, \u20b950,000 exclusively under Section 80CCD(1B) \u2014 over and above the 80C limit, saving \u20b915,600 additional tax for someone in the 30% bracket. Employer contributions up to 10% of basic+DA are deductible under 80CCD(2) with no upper cap." },
+            { question: "Can I withdraw from NPS before retirement at 60?", answer: "Partial withdrawals up to 25% of own contributions are allowed after 3 years for specific purposes: children's higher education, marriage, purchase or construction of residential house, critical illness treatment. Premature exit before 60 requires investing 80% of the corpus in an annuity, with only 20% as a tax-free lump sum." },
+            { question: "Which NPS fund manager gives the best returns?", answer: "Equity (E scheme) funds managed by SBI Pension Funds, HDFC Pension, and ICICI Pru Pension have historically delivered 12\u201315% CAGR over 10+ years in the equity portion. The G (Government Securities) and C (Corporate Bond) schemes deliver 7\u20138%. Younger investors (below 40) benefit from maximum equity allocation (75%) in the auto or active choice." },
+            { question: "What is the difference between NPS Tier 1 and Tier 2?", answer: "NPS Tier 1 is a mandatory retirement account with lock-in till age 60 \u2014 it gets all the tax benefits. Tier 2 is a voluntary savings account with no lock-in and can be withdrawn anytime, but offers NO tax deduction benefits (except for government employees under certain conditions). Tier 2 acts like a flexible debt fund with lower expense ratios." },
         ],
     },
     "cagr": {
