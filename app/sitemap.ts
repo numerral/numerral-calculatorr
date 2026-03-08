@@ -12,6 +12,7 @@ import {
     getAllGlossaryTerms,
 } from "@/lib/data";
 import { canonicalUrl } from "@/lib/seo";
+import { AR_CALCULATORS } from "@/data/ar-calculators";
 
 export default function sitemap(): MetadataRoute.Sitemap {
     const now = new Date();
@@ -131,6 +132,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: 0.6,
     }));
 
+    // ─── Arabic calculator pages ───
+    const arHub: MetadataRoute.Sitemap = [
+        { url: `${SITE_URL}/ar`, lastModified: now, changeFrequency: "weekly" as const, priority: 0.8 },
+    ];
+    const arPages: MetadataRoute.Sitemap = AR_CALCULATORS.map((c) => ({
+        url: `${SITE_URL}/ar/${c.id}`,
+        lastModified: now,
+        changeFrequency: "monthly" as const,
+        priority: 0.7,
+    }));
+
     return [
         ...staticPages,
         ...loanHubs,
@@ -144,5 +156,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         ...guidePages,
         ...glossaryHub,
         ...glossaryPages,
+        ...arHub,
+        ...arPages,
     ];
 }

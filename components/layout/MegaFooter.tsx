@@ -89,6 +89,7 @@ export default function MegaFooter() {
                     <Link href="/privacy">Privacy</Link>
                     <Link href="/cookie-policy">Cookies</Link>
                     <Link href="/about">About</Link>
+                    <Link href="/ar" style={{ color: '#a5b4fc' }}>🌐 العربية</Link>
                 </div>
             </div>
         </footer>
