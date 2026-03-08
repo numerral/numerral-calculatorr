@@ -1,5 +1,12 @@
 // Arabic Calculator definitions — used by /ar/ hub and [calculator] pages
 
+export interface ArRichSection {
+    heading: string;
+    paragraphs?: string[];
+    bullets?: string[];
+    table?: { headers: string[]; rows: string[][] };
+}
+
 export interface ArCalculator {
     id: string;           // URL slug (transliterated)
     arabicTitle: string;   // Arabic heading
@@ -20,6 +27,8 @@ export interface ArCalculator {
         highlight: string;
     };
     faq: { question: string; answer: string }[];
+    richSections?: ArRichSection[];  // Optional rich content sections
+    relatedIds?: string[];            // IDs of related calculators
 }
 
 export const AR_CALCULATORS: ArCalculator[] = [
@@ -723,6 +732,15 @@ export const AR_CALCULATORS: ArCalculator[] = [
     },
 ];
 
+// Merge rich content at lookup time
+import { AR_RICH_DATA } from "./ar-rich-content";
+
 export function getArCalculatorBySlug(slug: string): ArCalculator | undefined {
-    return AR_CALCULATORS.find(c => c.id === slug);
+    const calc = AR_CALCULATORS.find(c => c.id === slug);
+    if (!calc) return undefined;
+    const rich = AR_RICH_DATA[slug];
+    if (rich) {
+        return { ...calc, richSections: rich.richSections, relatedIds: rich.relatedIds };
+    }
+    return calc;
 }

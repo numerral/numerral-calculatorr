@@ -1,5 +1,5 @@
 // Dynamic Arabic Calculator Page — /ar/[calculator]
-// Pre-renders all 10 Arabic calculator pages at build time
+// Pre-renders all 24 Arabic calculator pages at build time
 
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
@@ -15,7 +15,7 @@ interface PageProps {
     params: Promise<{ calculator: string }>;
 }
 
-// Pre-render all 10 Arabic calculator pages
+// Pre-render all Arabic calculator pages
 export function generateStaticParams() {
     return AR_CALCULATORS.map((c) => ({ calculator: c.id }));
 }
@@ -37,16 +37,32 @@ export default async function ArCalculatorPage({ params }: PageProps) {
     const calc = getArCalculatorBySlug(calculator);
     if (!calc) return notFound();
 
-    // Structured data
-    const schemaData = JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "WebApplication",
-        name: calc.arabicTitle,
-        url: `${SITE_URL}/ar/${calc.id}`,
-        applicationCategory: "FinanceApplication",
-        operatingSystem: "All",
-        inLanguage: "ar",
-    });
+    // Related calculators
+    const relatedCalcs = (calc.relatedIds || [])
+        .map((id) => AR_CALCULATORS.find((c) => c.id === id))
+        .filter(Boolean);
+
+    // Structured data (WebApplication + FAQPage)
+    const schemaData = JSON.stringify([
+        {
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            name: calc.arabicTitle,
+            url: `${SITE_URL}/ar/${calc.id}`,
+            applicationCategory: "FinanceApplication",
+            operatingSystem: "All",
+            inLanguage: "ar",
+        },
+        {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: calc.faq.map((f) => ({
+                "@type": "Question",
+                name: f.question,
+                acceptedAnswer: { "@type": "Answer", text: f.answer },
+            })),
+        },
+    ]);
 
     return (
         <main className="ar-page">
@@ -97,6 +113,52 @@ export default async function ArCalculatorPage({ params }: PageProps) {
                 </div>
             </section>
 
+            {/* Rich Content Sections — tables, bullets, extra paragraphs */}
+            {calc.richSections && calc.richSections.length > 0 && (
+                <div className="ar-rich-content">
+                    {calc.richSections.map((section, i) => (
+                        <section key={i} className="ar-rich-section">
+                            <h2 className="ar-rich-section__heading">{section.heading}</h2>
+
+                            {section.paragraphs && section.paragraphs.map((p, j) => (
+                                <p key={j} className="ar-rich-section__text">{p}</p>
+                            ))}
+
+                            {section.bullets && (
+                                <ul className="ar-rich-section__bullets">
+                                    {section.bullets.map((b, j) => (
+                                        <li key={j}>{b}</li>
+                                    ))}
+                                </ul>
+                            )}
+
+                            {section.table && (
+                                <div className="ar-rich-section__table-wrap">
+                                    <table className="ar-rich-section__table">
+                                        <thead>
+                                            <tr>
+                                                {section.table.headers.map((h, j) => (
+                                                    <th key={j}>{h}</th>
+                                                ))}
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {section.table.rows.map((row, j) => (
+                                                <tr key={j}>
+                                                    {row.map((cell, k) => (
+                                                        <td key={k}>{cell}</td>
+                                                    ))}
+                                                </tr>
+                                            ))}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            )}
+                        </section>
+                    ))}
+                </div>
+            )}
+
             {/* FAQ Accordion */}
             <section className="ar-faq">
                 <h2 className="ar-faq__title">أسئلة شائعة — {calc.arabicTitle}</h2>
@@ -107,6 +169,21 @@ export default async function ArCalculatorPage({ params }: PageProps) {
                     </details>
                 ))}
             </section>
+
+            {/* Related Calculators */}
+            {relatedCalcs.length > 0 && (
+                <section className="ar-related">
+                    <h2 className="ar-related__title">🔗 حاسبات ذات صلة</h2>
+                    <div className="ar-related__grid">
+                        {relatedCalcs.map((rc) => rc && (
+                            <Link key={rc.id} href={`/ar/${rc.id}`} className="ar-related__card">
+                                <span className="ar-related__icon">{rc.icon}</span>
+                                <span className="ar-related__name">{rc.arabicTitle}</span>
+                            </Link>
+                        ))}
+                    </div>
+                </section>
+            )}
 
             {/* Back to hub */}
             <div className="ar-page__back">
