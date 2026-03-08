@@ -4064,3 +4064,178 @@ ol {
         grid-template-columns: 1fr;
     }
 }
+
+/* ── Arabic Guides ────────── */
+.ar-guides-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: var(--s-5);
+    margin-top: var(--s-6);
+}
+
+.ar-guide-card {
+    display: flex;
+    flex-direction: column;
+    background: hsl(230, 20%, 14%);
+    border: 1px solid var(--n-border);
+    border-radius: var(--r-lg);
+    overflow: hidden;
+    text-decoration: none;
+    transition: all 0.2s;
+}
+
+.ar-guide-card:hover {
+    border-color: #818cf8;
+    transform: translateY(-2px);
+}
+
+.ar-guide-card__image {
+    width: 100%;
+    height: auto;
+}
+
+.ar-guide-card__body {
+    padding: var(--s-4);
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-3);
+    flex: 1;
+}
+
+.ar-guide-card__icon-row {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--s-2);
+}
+
+.ar-guide-card__icon {
+    font-size: 1.4rem;
+}
+
+.ar-guide-card__title {
+    font-weight: 700;
+    color: var(--n-heading);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.ar-guide-card__desc {
+    font-size: 0.82rem;
+    color: var(--n-text);
+    line-height: 1.6;
+}
+
+.ar-guide-card__footer {
+    display: flex;
+    align-items: center;
+    gap: var(--s-3);
+    margin-top: auto;
+}
+
+.ar-guide-card__badge {
+    font-size: 0.75rem;
+    padding: 2px 8px;
+    border-radius: var(--r-sm);
+    background: hsl(230, 25%, 18%);
+    color: var(--n-text);
+}
+
+.ar-guide-card__sections {
+    font-size: 0.75rem;
+    color: var(--n-text-secondary);
+}
+
+/* Article */
+.ar-guide-article {
+    max-width: 740px;
+    margin: 0 auto;
+}
+
+.ar-guide-article__header {
+    margin-bottom: var(--s-8);
+}
+
+.ar-guide-article__meta {
+    display: flex;
+    gap: var(--s-3);
+    margin-bottom: var(--s-3);
+}
+
+.ar-guide-article__badge {
+    font-size: 0.78rem;
+    padding: 3px 10px;
+    border-radius: var(--r-sm);
+    background: hsl(230, 25%, 18%);
+    color: var(--n-text);
+}
+
+.ar-guide-article__image {
+    width: 100%;
+    height: auto;
+    border-radius: var(--r-lg);
+    margin-top: var(--s-5);
+}
+
+/* ToC */
+.ar-guide-toc {
+    padding: var(--s-5);
+    background: hsl(230, 20%, 14%);
+    border: 1px solid var(--n-border);
+    border-radius: var(--r-md);
+    margin-bottom: var(--s-8);
+}
+
+.ar-guide-toc__title {
+    font-weight: 700;
+    margin-bottom: var(--s-3);
+    color: var(--n-heading);
+}
+
+.ar-guide-toc__list {
+    padding-right: var(--s-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-2);
+}
+
+.ar-guide-toc__list a {
+    color: #818cf8;
+    font-weight: 500;
+    font-size: 0.88rem;
+    text-decoration: none;
+}
+
+.ar-guide-toc__list a:hover {
+    text-decoration: underline;
+}
+
+/* Section */
+.ar-guide-section {
+    margin-bottom: var(--s-8);
+}
+
+.ar-guide-section__heading {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--n-heading);
+    margin-bottom: var(--s-4);
+    padding-bottom: var(--s-2);
+    border-bottom: 2px solid hsl(230, 30%, 20%);
+}
+
+.ar-guide-section__content {
+    line-height: 1.9;
+}
+
+.ar-guide-section__text {
+    font-size: 0.92rem;
+    color: var(--n-text);
+    margin-bottom: var(--s-4);
+    line-height: 1.9;
+}
+
+@media (max-width: 640px) {
+    .ar-guides-grid {
+        grid-template-columns: 1fr;
+    }
+}
