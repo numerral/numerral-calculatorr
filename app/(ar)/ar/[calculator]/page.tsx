@@ -7,6 +7,7 @@ import Script from "next/script";
 import Link from "next/link";
 import CalculatorCore from "@/components/calculator/CalculatorCore";
 import UtilityCalculatorCore from "@/components/calculator/UtilityCalculatorCore";
+import ArCustomCalculatorCore from "@/components/ar/ArCustomCalculators";
 import { AR_CALCULATORS, getArCalculatorBySlug } from "@/data/ar-calculators";
 import { SITE_URL } from "@/lib/constants";
 
@@ -76,6 +77,8 @@ export default async function ArCalculatorPage({ params }: PageProps) {
                             sliderRanges={calc.sliderRanges}
                             showComparison={false}
                         />
+                    ) : calc.engine === "custom" ? (
+                        <ArCustomCalculatorCore calcType={calc.calcType} />
                     ) : (
                         <UtilityCalculatorCore calcType={calc.calcType} />
                     )}
