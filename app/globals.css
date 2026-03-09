@@ -4234,8 +4234,294 @@ ol {
     line-height: 1.9;
 }
 
+.ar-guide-section__text strong {
+    color: var(--n-heading);
+    font-weight: 600;
+}
+
+/* ── Tables ── */
+.ar-rich-section__table-wrap {
+    width: 100%;
+    overflow-x: auto;
+    margin-bottom: var(--s-5);
+    border-radius: var(--r-md);
+    border: 1px solid var(--n-border);
+}
+
+.ar-rich-section__table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+    direction: rtl;
+}
+
+.ar-rich-section__table thead {
+    background: hsl(230, 25%, 20%);
+}
+
+.ar-rich-section__table th {
+    padding: 10px 14px;
+    text-align: right;
+    font-weight: 600;
+    color: #e2e8f0;
+    white-space: nowrap;
+    border-bottom: 2px solid hsl(230, 30%, 30%);
+}
+
+.ar-rich-section__table td {
+    padding: 10px 14px;
+    text-align: right;
+    color: var(--n-text);
+    border-bottom: 1px solid var(--n-border);
+    line-height: 1.7;
+}
+
+.ar-rich-section__table tbody tr:nth-child(even) {
+    background: hsl(230, 15%, 12%);
+}
+
+.ar-rich-section__table tbody tr:hover {
+    background: hsl(230, 20%, 16%);
+}
+
+.ar-rich-section__table td strong {
+    color: var(--n-heading);
+}
+
+/* ── Bullet Lists ── */
+.ar-rich-section__bullets {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 var(--s-5) 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-2);
+}
+
+.ar-rich-section__bullets li {
+    font-size: 0.9rem;
+    color: var(--n-text);
+    line-height: 1.8;
+    padding-right: 1.4em;
+    position: relative;
+}
+
+.ar-rich-section__bullets li::before {
+    content: "•";
+    position: absolute;
+    right: 0;
+    color: #818cf8;
+    font-weight: bold;
+}
+
+.ar-rich-section__bullets li strong {
+    color: var(--n-heading);
+    font-weight: 600;
+}
+
+/* ── Related Calculators ── */
+.ar-related {
+    margin: var(--s-8) 0;
+    padding-top: var(--s-6);
+    border-top: 1px solid var(--n-border);
+}
+
+.ar-related__title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--n-heading);
+    margin-bottom: var(--s-4);
+}
+
+.ar-related__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: var(--s-3);
+}
+
+.ar-related__card {
+    display: flex;
+    align-items: center;
+    gap: var(--s-3);
+    padding: var(--s-4);
+    border-radius: var(--r-md);
+    background: hsl(230, 20%, 14%);
+    border: 1px solid var(--n-border);
+    text-decoration: none;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.ar-related__card:hover {
+    background: hsl(230, 20%, 18%);
+    border-color: #818cf8;
+}
+
+.ar-related__icon {
+    font-size: 1.6rem;
+    flex-shrink: 0;
+}
+
+.ar-related__name {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #e2e8f0;
+    line-height: 1.4;
+}
+
+/* ── FAQ Accordion ── */
+.ar-faq {
+    margin: var(--s-8) 0;
+    padding-top: var(--s-6);
+    border-top: 1px solid var(--n-border);
+}
+
+.ar-faq__title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--n-heading);
+    margin-bottom: var(--s-4);
+}
+
+.ar-faq__item {
+    margin-bottom: var(--s-3);
+    border-radius: var(--r-md);
+    background: hsl(230, 20%, 14%);
+    border: 1px solid var(--n-border);
+    overflow: hidden;
+}
+
+.ar-faq__item[open] {
+    border-color: hsl(230, 50%, 45%);
+}
+
+.ar-faq__question {
+    padding: var(--s-4) var(--s-5);
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: #e2e8f0;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ar-faq__question::after {
+    content: "◂";
+    font-size: 0.8rem;
+    color: #818cf8;
+    transition: transform 0.2s;
+}
+
+.ar-faq__item[open] .ar-faq__question::after {
+    transform: rotate(-90deg);
+}
+
+.ar-faq__question::-webkit-details-marker {
+    display: none;
+}
+
+.ar-faq__answer {
+    padding: 0 var(--s-5) var(--s-5);
+    font-size: 0.88rem;
+    color: var(--n-text);
+    line-height: 1.9;
+}
+
+/* ── Back link ── */
+.ar-page__back {
+    margin-top: var(--s-8);
+    text-align: center;
+}
+
+.ar-page__back-link {
+    display: inline-block;
+    padding: var(--s-3) var(--s-6);
+    background: hsl(230, 20%, 14%);
+    border: 1px solid var(--n-border);
+    border-radius: var(--r-md);
+    color: #818cf8;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: background 0.2s;
+}
+
+.ar-page__back-link:hover {
+    background: hsl(230, 20%, 18%);
+}
+
+/* ── Light Theme overrides ── */
+[data-theme="light"] .ar-rich-section__table thead {
+    background: hsl(230, 20%, 92%);
+}
+
+[data-theme="light"] .ar-rich-section__table th {
+    color: hsl(230, 20%, 20%);
+    border-bottom-color: hsl(230, 15%, 85%);
+}
+
+[data-theme="light"] .ar-rich-section__table td {
+    color: hsl(230, 15%, 30%);
+}
+
+[data-theme="light"] .ar-rich-section__table tbody tr:nth-child(even) {
+    background: hsl(230, 15%, 96%);
+}
+
+[data-theme="light"] .ar-rich-section__table tbody tr:hover {
+    background: hsl(230, 15%, 93%);
+}
+
+[data-theme="light"] .ar-faq__item {
+    background: hsl(230, 15%, 96%);
+}
+
+[data-theme="light"] .ar-faq__question {
+    color: hsl(230, 20%, 15%);
+}
+
+[data-theme="light"] .ar-faq__answer {
+    color: hsl(230, 15%, 30%);
+}
+
+[data-theme="light"] .ar-related__card {
+    background: hsl(230, 15%, 96%);
+}
+
+[data-theme="light"] .ar-related__name {
+    color: hsl(230, 20%, 15%);
+}
+
+[data-theme="light"] .ar-guide-toc {
+    background: hsl(230, 15%, 96%);
+}
+
+[data-theme="light"] .ar-guide-article__badge {
+    background: hsl(230, 15%, 92%);
+    color: hsl(230, 20%, 25%);
+}
+
+[data-theme="light"] .ar-page__back-link {
+    background: hsl(230, 15%, 96%);
+    color: #6366f1;
+}
+
 @media (max-width: 640px) {
     .ar-guides-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .ar-rich-section__table {
+        font-size: 0.78rem;
+    }
+
+    .ar-rich-section__table th,
+    .ar-rich-section__table td {
+        padding: 8px 10px;
+    }
+
+    .ar-related__grid {
         grid-template-columns: 1fr;
     }
 }
