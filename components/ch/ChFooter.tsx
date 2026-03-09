@@ -23,9 +23,9 @@ export default function ChFooter() {
                 <div>
                     <h3 className="ar-footer__heading">Weitere</h3>
                     <ul className="ar-footer__links">
-                        <li><Link href="/ch/mieten-oder-kaufen">Mieten oder Kaufen</Link></li>
-                        <li><Link href="/ch/renditerechner">Renditerechner</Link></li>
-                        <li><Link href="/ch/budgetrechner">Budgetrechner</Link></li>
+                        <li><Link href="/ch/steuerrechner">Steuerrechner</Link></li>
+                        <li><Link href="/ch/mehrwertsteuerrechner">MWST Rechner</Link></li>
+                        <li><Link href="/ch/steuervergleich">Steuervergleich</Link></li>
                         <li><Link href="/">English Version</Link></li>
                     </ul>
                 </div>
