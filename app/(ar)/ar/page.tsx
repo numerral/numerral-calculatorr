@@ -17,39 +17,39 @@ const AR_CATEGORIES = [
         label: "القروض والتمويل",
         icon: "🏦",
         ids: [
-            "loan-calculator", "finance-calculator", "mortgage-calculator",
-            "monthly-installment", "interest-calculator", "personal-finance",
+            "hisabat-qurud", "hisabat-tamwil", "hisabat-tamwil-aqari",
+            "hisabat-qist-shahri", "hisabat-faida", "hisabat-tamwil-shakhsi",
         ],
     },
     {
         label: "البنوك السعودية",
         icon: "🇸🇦",
         ids: [
-            "rajhi-personal-finance", "rajhi-finance", "inma-personal-finance",
-            "bilad-personal-finance",
+            "hisabat-tamwil-rajhi", "hisabat-tamwil-rajhi-aam",
+            "hisabat-tamwil-inma", "hisabat-tamwil-bilad",
         ],
     },
     {
         label: "الاستثمار والادخار",
         icon: "📈",
         ids: [
-            "investment-calculator", "savings-calculator", "roi-calculator",
-            "profit-calculator", "discount-calculator", "commission-calculator",
+            "hisabat-istithmar", "hisabat-idkhar", "hisabat-roid",
+            "hisabat-ribh", "hisabat-khasm", "hisabat-umula",
         ],
     },
     {
         label: "الراتب والضريبة",
         icon: "💼",
         ids: [
-            "salary-calculator", "overtime-calculator", "tax-calculator",
-            "end-of-service", "citizen-account",
+            "hisabat-ratib", "hisabat-overtime", "hisabat-dariba",
+            "hisabat-nihayat-alkhidma", "hisabat-hisab-almuwatin",
         ],
     },
     {
         label: "أدوات عامة",
         icon: "🔧",
         ids: [
-            "percentage-calculator", "age-calculator", "pregnancy-calculator",
+            "hisabat-nisba-miwiya", "hisabat-umr", "hisabat-haml",
         ],
     },
 ];
