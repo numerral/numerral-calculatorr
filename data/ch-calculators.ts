@@ -833,6 +833,238 @@ export const CH_CALCULATORS: ChCalculator[] = [
         ],
         relatedIds: ["brutto-netto-rechner", "steuerrechner", "nettolohnrechner"],
     },
+    // ═══════════════════════════════════════════════════
+    // SWISS PENSION SYSTEM CALCULATORS
+    // ═══════════════════════════════════════════════════
+    {
+        id: "ahv-rentenrechner",
+        title: "AHV Rentenrechner",
+        keyword: "AHV Rentenrechner Schweiz",
+        calcType: "ahv-pension",
+        icon: "👴",
+        subtitle: "Berechnen Sie Ihre AHV-Rente (1. Säule). Mit Beitragsjahren, massgebendem durchschnittlichem Jahreseinkommen und Ehepaarplafonierung.",
+        explanation: {
+            heading: "AHV-Rente in der Schweiz — die 1. Säule",
+            paragraphs: [
+                "Die AHV (Alters- und Hinterlassenenversicherung) ist die 1. Säule der Schweizer Altersvorsorge. Die volle AHV-Rente erhalten Sie bei 44 Beitragsjahren (Männer) bzw. 43 Jahren (Frauen). Fehlende Beitragsjahre führen zu einer prozentualen Kürzung — jedes fehlende Jahr reduziert die Rente um ca. 1/44.",
+                "Die Rente wird anhand des massgebenden durchschnittlichen Jahreseinkommens (MDJE) berechnet. Die Minimalrente beträgt CHF 1'225/Monat, die Maximalrente CHF 2'450/Monat (2026). Bei Ehepaaren gilt eine Plafonierung: Die Summe beider Renten darf 150% der Maximalrente nicht übersteigen (CHF 3'675).",
+            ],
+            highlight: "MDJE CHF 88'200 (Maximum), 44 Beitragsjahre → Maximale AHV-Rente: CHF 2'450/Monat (CHF 29'400/Jahr). Ehepaar mit beiden Maximalrenten: 150% × CHF 2'450 = CHF 3'675/Monat.",
+        },
+        faq: [
+            { question: "Wie viele Beitragsjahre brauche ich für die volle Rente?", answer: "Männer: 44 Jahre, Frauen: 43 Jahre (ab AHV-Reform 21). Beitragsjahre beginnen ab dem 1. Januar nach dem 20. Geburtstag. Fehlende Jahre können unter Umständen durch Nachzahlungen (max. 5 Jahre rückwirkend) ausgeglichen werden." },
+            { question: "Was ist das massgebende durchschnittliche Jahreseinkommen?", answer: "Das MDJE ist der Durchschnitt aller aufgewerteten Einkommen über die Beitragsjahre. Einkommen werden mit Aufwertungsfaktoren an die Lohnentwicklung angepasst. Erziehungs- und Betreuungsgutschriften werden hinzugerechnet. Maximum 2026: CHF 88'200." },
+            { question: "Kann ich die AHV-Rente vorbeziehen?", answer: "Ja, ab 63 Jahren (Männer) bzw. 62 Jahren (Frauen). Pro Vorbezugsjahr wird die Rente um 6.8% gekürzt — lebenslang. 2 Jahre Vorbezug = 13.6% Kürzung. Seit der AHV-Reform können Sie auch einzelne Monate vorbeziehen." },
+            { question: "Was ist die Ehepaarplafonierung?", answer: "Wenn beide Ehepartner AHV-Rente beziehen, darf die Summe 150% der Maximaleinzelrente nicht übersteigen. Bei CHF 2'450 Maximum: CHF 3'675/Monat für das Ehepaar. Die einzelnen Renten werden proportional gekürzt." },
+        ],
+        richSections: [
+            {
+                heading: "AHV-Renten 2026 (Vollrente, 44/43 Beitragsjahre)",
+                table: {
+                    headers: ["MDJE", "Monatsrente", "Jahresrente"],
+                    rows: [
+                        ["Minimum (CHF 14'700)", "CHF 1'225", "CHF 14'700"],
+                        ["CHF 30'000", "CHF 1'488", "CHF 17'856"],
+                        ["CHF 50'000", "CHF 1'791", "CHF 21'492"],
+                        ["CHF 70'000", "CHF 2'094", "CHF 25'128"],
+                        ["Maximum (CHF 88'200)", "CHF 2'450", "CHF 29'400"],
+                    ],
+                },
+            },
+        ],
+        relatedIds: ["bvg-rechner", "altersvorsorgerechner", "rentenluckerechner"],
+    },
+    {
+        id: "bvg-rechner",
+        title: "BVG Rechner",
+        keyword: "BVG Rechner Schweiz",
+        calcType: "bvg",
+        icon: "🏛️",
+        subtitle: "Berechnen Sie Ihre BVG-Rente (2. Säule). Mit Koordinationsabzug, Altersgutschriften, Umwandlungssatz und Kapitaloption.",
+        explanation: {
+            heading: "Berufliche Vorsorge (BVG) — die 2. Säule",
+            paragraphs: [
+                "Das BVG (Bundesgesetz über die berufliche Vorsorge) ist die 2. Säule und ergänzt die AHV. Der versicherte Lohn berechnet sich: Bruttolohn minus Koordinationsabzug (CHF 25'725 in 2026). Der maximal versicherte Lohn beträgt CHF 62'475. Die Beiträge (Altersgutschriften) steigen mit dem Alter.",
+                "Das angesparte Kapital wird bei Pensionierung mit dem Umwandlungssatz in eine lebenslange Rente umgewandelt. Der gesetzliche Mindestsatz beträgt 6.8% für das obligatorische BVG-Guthaben. Viele Pensionskassen wenden tiefere Sätze für den überobligatorischen Teil an. Alternative: Kapitalbezug (ganz oder teilweise).",
+            ],
+            highlight: "Eintritt mit 25, Lohn CHF 85'000, volle Beitragsjahre → BVG-Kapital bei 65 ca. CHF 450'000. Rente (6.8%): CHF 2'550/Monat. Oder Kapital: CHF 450'000 auf einmal.",
+        },
+        faq: [
+            { question: "Was ist der Koordinationsabzug?", answer: "Der Koordinationsabzug (CHF 25'725) ist der Teil des Lohns, der bereits durch die AHV gedeckt ist. Nur der darüber liegende Lohn wird in der Pensionskasse versichert. Bei Teilzeit: Achtung, der Koordinationsabzug wird oft nicht angepasst, was den versicherten Lohn überproportional reduziert." },
+            { question: "Wie hoch sind die Altersgutschriften?", answer: "25-34 Jahre: 7% des koordinierten Lohns. 35-44 Jahre: 10%. 45-54 Jahre: 15%. 55-64/65 Jahre: 18%. Der Arbeitgeber zahlt mindestens die Hälfte. Viele Arbeitgeber zahlen mehr (z.B. 60/40 oder sogar 70/30)." },
+            { question: "Soll ich Kapital oder Rente wählen?", answer: "Rente: Lebenslang garantiert, inkl. Partnerrente (60%). Kapital: Flexibel, vererbbar, aber Anlagerisiko. Faustregel: Wenn Sie lange leben und wenig Vermögen haben → Rente. Wenn Sie vermögend sind und flexibel bleiben wollen → Kapital. Kombination ist oft optimal." },
+        ],
+        relatedIds: ["ahv-rentenrechner", "pensionskasserechner", "pension-kapital"],
+    },
+    {
+        id: "saeule-3a-rechner",
+        title: "Säule 3a Rechner",
+        keyword: "Säule 3a Rechner Schweiz",
+        calcType: "pillar-3a",
+        icon: "🏦",
+        subtitle: "Berechnen Sie Ihr Säule-3a-Vermögen bei Pensionierung. Mit jährlichen Einzahlungen, Rendite und steuerfreiem Kapitalwachstum.",
+        explanation: {
+            heading: "Säule 3a — die gebundene Altersvorsorge",
+            paragraphs: [
+                "Die Säule 3a ist die freiwillige, steuerlich begünstigte Altersvorsorge (3. Säule). Maximale Einzahlung 2026: CHF 7'258 (mit Pensionskasse) oder CHF 36'288 (ohne PK, max. 20% des Nettoeinkommens). Der gesamte Betrag ist vom steuerbaren Einkommen abziehbar.",
+                "Das 3a-Vermögen wächst steuerfrei (keine Vermögenssteuer, keine Verrechnungssteuer auf Zinsen). Bei Bezug (frühestens 5 Jahre vor AHV-Alter) wird eine reduzierte Kapitalleistungssteuer fällig — je nach Kanton 3-10% des Kapitals. Tipp: Mehrere 3a-Konten führen und gestaffelt beziehen.",
+            ],
+            highlight: "30 Jahre × CHF 7'258/Jahr bei 3% Rendite = CHF 354'000 Kapital. Steuerersparnis über 30 Jahre (bei 30% Grenzsteuersatz): CHF 65'322. Effektive Eigenleistung: nur CHF 288'678.",
+        },
+        faq: [
+            { question: "Wann kann ich die Säule 3a beziehen?", answer: "Frühestens 5 Jahre vor dem AHV-Referenzalter (aktuell ab 60). Ausnahmen für früheren Bezug: Kauf von selbstgenutztem Wohneigentum, Aufnahme einer selbständigen Tätigkeit, definitives Verlassen der Schweiz, oder IV-Rente." },
+            { question: "Wie viele 3a-Konten sollte ich haben?", answer: "Empfehlung: 3-5 Konten. Grund: Jedes Konto muss komplett aufgelöst werden. Durch gestaffelten Bezug über mehrere Steuerjahre brechen Sie die Steuerprogression und zahlen insgesamt weniger Kapitalleistungssteuer." },
+            { question: "3a-Konto oder 3a-Wertschriftenlösung?", answer: "Bei langem Anlagehorizont (>10 Jahre): Wertschriften mit Aktienanteil (z.B. 50-80%) bringen historisch deutlich höhere Renditen (5-7% vs. 0.5-1.5% Sparkonto). Bei kurzem Horizont (<5 Jahre): Sparkonto für Sicherheit." },
+        ],
+        relatedIds: ["saeule-3a-steuerersparnis", "altersvorsorgerechner", "ahv-rentenrechner"],
+    },
+    {
+        id: "saeule-3a-steuerersparnis",
+        title: "Säule 3a Steuerersparnis Rechner",
+        keyword: "Säule 3a Steuerersparnis Rechner",
+        calcType: "pillar-3a-tax",
+        icon: "💰",
+        subtitle: "Berechnen Sie, wie viel Steuern Sie mit der Säule 3a sparen. Mit kantonalen Steuersätzen und kumulierter Ersparnis über die Jahre.",
+        explanation: {
+            heading: "Steuerersparnis mit der Säule 3a",
+            paragraphs: [
+                "Jeder in die Säule 3a eingezahlte Franken reduziert Ihr steuerbares Einkommen. Bei einem Grenzsteuersatz von 30% sparen Sie mit der maximalen Einzahlung von CHF 7'258 jährlich CHF 2'177 Steuern. Über ein Berufsleben von 30+ Jahren summiert sich das auf über CHF 65'000.",
+                "Die Steuerersparnis variiert stark nach Kanton: In Genf oder Basel (hohe Steuern) sparen Sie mehr, in Zug oder Schwyz (tiefe Steuern) weniger. Beim Bezug fällt eine reduzierte Kapitalleistungssteuer an — deutlich tiefer als die reguläre Einkommenssteuer.",
+            ],
+            highlight: "Maximale 3a-Einzahlung CHF 7'258, Kanton Zürich, ledig, CHF 100'000 Einkommen → Jährliche Steuerersparnis: ca. CHF 2'177. Über 35 Jahre: CHF 76'200 gespart!",
+        },
+        faq: [
+            { question: "Lohnt sich die 3a-Einzahlung in einem steuergünstigen Kanton?", answer: "Ja, auch bei tiefen Steuersätzen lohnt sich die 3a-Einzahlung: In Zug sparen Sie ca. CHF 800/Jahr, über 35 Jahre = CHF 28'000. Zudem wächst das Kapital steuerfrei (keine Vermögenssteuer, keine Verrechnungssteuer). Die Bezugssteuer ist in steuergünstigen Kantonen ebenfalls tiefer." },
+            { question: "Wie wird die 3a bei Bezug besteuert?", answer: "Die Kapitalleistungssteuer wird separat vom übrigen Einkommen berechnet, zu einem reduzierten Tarif. Je nach Kanton und Betrag: 3-10% des Kapitals. Durch gestaffelten Bezug (mehrere 3a-Konten über verschiedene Jahre auflösen) können Sie die Progression brechen." },
+        ],
+        relatedIds: ["saeule-3a-rechner", "steueroptimierungrechner", "steuerabzugrechner"],
+    },
+    {
+        id: "fruehpensionierung-rechner",
+        title: "Frühpensionierung Rechner",
+        keyword: "Frühpensionierung Rechner Schweiz",
+        calcType: "early-retirement",
+        icon: "🏖️",
+        subtitle: "Berechnen Sie die finanziellen Auswirkungen einer Frühpensionierung: AHV-Kürzung, BVG-Reduktion und benötigtes Überbrückungskapital.",
+        explanation: {
+            heading: "Frühpensionierung in der Schweiz",
+            paragraphs: [
+                "Eine Frühpensionierung ist in der Schweiz ab 58-63 Jahren möglich (je nach PK-Reglement). Die Konsequenzen: AHV-Vorbezug ab 63 (Männer) mit 6.8% Kürzung pro Jahr (lebenslang), tieferes BVG-Kapital (weniger Beitragsjahre + tieferer Umwandlungssatz), und Überbrückungsrente bis zum AHV-Alter.",
+                "Finanziell müssen Sie drei Phasen finanzieren: (1) Überbrückung bis AHV-Alter (kein AHV, evt. PK-Rente), (2) AHV-Bezug mit Kürzung, (3) Langfristiger Ruhestand. Für jedes Jahr Frühpensionierung brauchen Sie ca. CHF 60'000-80'000 Überbrückungskapital.",
+            ],
+            highlight: "Frühpensionierung mit 62 (3 Jahre früher): AHV-Kürzung 3 × 6.8% = 20.4% lebenslang. Bei Max-Rente: CHF 2'450 → CHF 1'950/Monat. Überbrückung 62-65: ca. CHF 180'000-240'000 benötigt.",
+        },
+        faq: [
+            { question: "Was kostet mich jedes Jahr Frühpensionierung?", answer: "AHV: 6.8% Kürzung pro Vorbezugsjahr (lebenslang). BVG: Ca. 5-8% weniger Kapital pro fehlendes Jahr + tieferer Umwandlungssatz. Fehlende Beiträge: AHV-Beitragslücke (CHF 514/Jahr für Nichterwerbstätige). Plus Überbrückungskosten: CHF 60'000-80'000/Jahr." },
+            { question: "Wie kann ich die Frühpensionierung finanzieren?", answer: "Strategien: (1) PK-Überbrückungsrente (viele Kassen bieten dies an), (2) Gestaffelter Bezug von 3a-Konten, (3) Teilzeitarbeit (Teilpensionierung), (4) Freies Vermögen. Am effizientesten: Kombination aus PK-Überbrückungsrente und gestaffeltem 3a-Bezug." },
+        ],
+        relatedIds: ["ahv-rentenrechner", "rentenluckerechner", "altersvorsorgerechner"],
+    },
+    {
+        id: "altersvorsorgerechner",
+        title: "Altersvorsorge Rechner",
+        keyword: "Altersvorsorge Rechner Schweiz",
+        calcType: "retirement-planning",
+        icon: "📊",
+        subtitle: "Berechnen Sie Ihre gesamte Altersvorsorge: AHV + BVG + Säule 3a + freies Vermögen. Der Überblick über alle 3 Säulen.",
+        explanation: {
+            heading: "Das 3-Säulen-System der Schweiz",
+            paragraphs: [
+                "Die Schweizer Altersvorsorge basiert auf 3 Säulen: 1. Säule (AHV): Für alle obligatorisch, deckt den Grundbedarf (CHF 1'225-2'450/Monat). 2. Säule (BVG/Pensionskasse): Für Arbeitnehmer obligatorisch ab CHF 22'050 Lohn, soll den gewohnten Lebensstandard sichern. 3. Säule (3a/3b): Freiwillig, private Vorsorge.",
+                "Das Ziel: Die Renten aus allen 3 Säulen sollen zusammen ca. 60-70% des letzten Erwerbseinkommens erreichen. Bei mittleren Einkommen funktioniert das Modell gut. Bei hohen Einkommen (>CHF 150'000) gibt es eine Vorsorgelücke, da die AHV und das obligatorische BVG gedeckelt sind.",
+            ],
+            highlight: "Lohn CHF 100'000: AHV ca. CHF 2'200/Mt. + BVG ca. CHF 2'000/Mt. + 3a-Kapital CHF 350'000 = Gesamtrente ca. CHF 5'600/Mt. (67% des Lohns). Ziel erreicht!",
+        },
+        faq: [
+            { question: "Reichen AHV und BVG für meinen Lebensstandard?", answer: "Bei Einkommen bis CHF 85'000: Meist ja (AHV + BVG = ca. 60-70%). Bei CHF 85'000-150'000: Knapp, Säule 3a dringend empfohlen. Über CHF 150'000: Erhebliche Vorsorgelücke, freies Vermögen oder überobligatorische PK nötig." },
+            { question: "Wie viel sollte ich monatlich für die Altersvorsorge sparen?", answer: "Faustregel: 15-20% des Bruttoeinkommens (inkl. AHV/BVG-Beiträge). Davon sind ca. 12-15% bereits obligatorisch (AHV + BVG). Zusätzlich empfohlen: Maximale 3a-Einzahlung (CHF 605/Monat) und idealerweise freies Sparen." },
+        ],
+        relatedIds: ["ahv-rentenrechner", "bvg-rechner", "saeule-3a-rechner"],
+    },
+    {
+        id: "pensionskasserechner",
+        title: "Pensionskasse Rechner",
+        keyword: "Pensionskasse Rechner Schweiz",
+        calcType: "pension-fund",
+        icon: "🏢",
+        subtitle: "Berechnen Sie Ihr voraussichtliches Pensionskassen-Kapital und die daraus resultierende Rente. Mit PK-Einkauf-Simulation.",
+        explanation: {
+            heading: "Pensionskasse (BVG) — Kapitalaufbau und Einkauf",
+            paragraphs: [
+                "Ihre Pensionskasse baut sich über die Beitragsjahre auf: Jedes Jahr fliessen Altersgutschriften auf Ihr Konto (7-18% des koordinierten Lohns, je nach Alter). Hinzu kommt die Verzinsung (BVG-Mindestzins 2026: 1.25%). Viele Kassen bieten deutlich bessere Konditionen im überobligatorischen Bereich.",
+                "PK-Einkauf: Wenn Sie Beitragslücken haben (z.B. durch Jobwechsel, Zuzug aus dem Ausland, Lohnerhöhung), können Sie freiwillige Einkäufe tätigen. Diese sind vollständig vom steuerbaren Einkommen abzugsfähig — oft die attraktivste Steueroptimierungsmöglichkeit.",
+            ],
+            highlight: "PK-Einkauf CHF 50'000 bei Grenzsteuersatz 30% → Sofortige Steuerersparnis CHF 15'000. Plus langfristige Verzinsung des Einkaufsbetrags. Achtung: 3-Jahres-Sperrfrist für Kapitalbezug nach Einkauf!",
+        },
+        faq: [
+            { question: "Wie finde ich heraus, wie viel ich einkaufen kann?", answer: "Auf Ihrem PK-Ausweis ist die 'maximale Einkaufssumme' ausgewiesen. Diese berechnet sich aus: Reglementarisches Guthaben bei lückenloser Beitragsdauer minus Ihr aktuelles Guthaben. Bei Lohnerhöhungen oder nach einem Zuzug kann die Einkaufssumme hoch sein." },
+            { question: "Was passiert mit meiner PK bei Stellenwechsel?", answer: "Das gesamte BVG-Guthaben (Freizügigkeitsleistung) wird an die neue PK überwiesen. Es geht nichts verloren. Bei Arbeitslosigkeit: Übertragung auf ein Freizügigkeitskonto bei einer Bank oder Versicherung." },
+        ],
+        relatedIds: ["bvg-rechner", "pension-kapital", "saeule-3a-rechner"],
+    },
+    {
+        id: "rentenluckerechner",
+        title: "Rentenlücke Rechner",
+        keyword: "Rentenlücke Rechner Schweiz",
+        calcType: "pension-gap",
+        icon: "📉",
+        subtitle: "Berechnen Sie Ihre Rentenlücke: Differenz zwischen gewünschtem Einkommen im Alter und den voraussichtlichen Renten aus AHV und BVG.",
+        explanation: {
+            heading: "Was ist die Rentenlücke?",
+            paragraphs: [
+                "Die Rentenlücke ist die Differenz zwischen Ihrem gewünschten Einkommen im Alter (üblicherweise 70-80% des letzten Lohns) und den voraussichtlichen Rentenleistungen aus AHV und BVG. Je höher Ihr Einkommen, desto grösser die Lücke, da AHV und BVG gedeckelt sind.",
+                "Beispiel: Bei einem Lohn von CHF 150'000 erwarten Sie im Alter CHF 105'000 (70%). AHV gibt max. CHF 29'400, BVG geschätzt CHF 35'000 = Total CHF 64'400. Rentenlücke: CHF 40'600/Jahr. Diese muss durch Säule 3a, freies Vermögen oder Kapitalverzehr gedeckt werden.",
+            ],
+            highlight: "Lohn CHF 120'000, Ziel 70%: CHF 84'000/Jahr. AHV: CHF 28'000 + BVG: CHF 30'000 = CHF 58'000. Rentenlücke: CHF 26'000/Jahr = CHF 2'167/Monat. Über 20 Jahre Ruhestand: CHF 520'000 benötigt!",
+        },
+        faq: [
+            { question: "Wie gross ist die typische Rentenlücke?", answer: "Bei CHF 80'000 Lohn: Gering (0-5'000/Jahr). Bei CHF 120'000: Mittel (20'000-30'000/Jahr). Bei CHF 200'000: Gross (70'000-90'000/Jahr). Die Lücke wird oft unterschätzt, besonders von Gutverdiener." },
+            { question: "Wie schliesse ich die Rentenlücke?", answer: "1. Säule 3a maximal nutzen (CHF 7'258/Jahr). 2. PK-Einkauf prüfen. 3. Freies Vermögen aufbauen (ETF-Sparplan). 4. Überobligatorische Pensionskasse (Arbeitgeber wechseln?). 5. Immobilie als Altersvorsorge. 6. Teilzeitarbeit im Alter." },
+        ],
+        relatedIds: ["altersvorsorgerechner", "ahv-rentenrechner", "saeule-3a-rechner"],
+    },
+    {
+        id: "pension-kapital",
+        title: "Pension Kapital Rechner",
+        keyword: "Pension Kapital vs Rente Rechner Schweiz",
+        calcType: "capital-vs-annuity",
+        icon: "⚖️",
+        subtitle: "Rente oder Kapital? Vergleichen Sie beide Optionen bei der Pensionierung. Mit Breakeven-Berechnung und steuerlichen Auswirkungen.",
+        explanation: {
+            heading: "Rente oder Kapital — der wichtigste Entscheid",
+            paragraphs: [
+                "Bei der Pensionierung stehen Sie vor der Wahl: Lebenslanges Rentenversprechen der Pensionskasse oder einmaliger Kapitalbezug. Die Rente bietet Sicherheit (garantiert lebenslang, inkl. 60% Partnerrente), das Kapital bietet Flexibilität (vererbbar, frei investierbar).",
+                "Der Breakeven-Punkt zeigt, ab welchem Alter die Rente 'günstiger' wird als der Kapitalbezug. Bei einem Umwandlungssatz von 6.8% liegt er bei ca. 82-85 Jahren. Steuerlich: Rente wird als Einkommen besteuert, Kapitalbezug unterliegt der reduzierten Kapitalleistungssteuer.",
+            ],
+            highlight: "PK-Kapital CHF 500'000: Rente (6.8%) = CHF 2'833/Monat lebenslang. Kapitalbezug: CHF 500'000 – Steuer ~CHF 30'000 = CHF 470'000 verfügbar. Breakeven: ca. 83 Jahre.",
+        },
+        faq: [
+            { question: "Wann lohnt sich die Rente?", answer: "Wenn Sie (1) eine hohe Lebenserwartung haben, (2) wenig finanzielles Know-how oder Interesse an Geldanlage, (3) Sicherheit bevorzugen, (4) einen hohen Umwandlungssatz (>6%) haben, (5) einen Partner absichern wollen (60% Partnerrente)." },
+            { question: "Wann lohnt sich der Kapitalbezug?", answer: "Wenn Sie (1) über anderes Einkommen/Vermögen verfügen, (2) Kapital vererben wollen (Rente erlischt), (3) einen tiefen Umwandlungssatz haben (<5%), (4) in einen steuergünstigen Kanton ziehen vor Bezug, (5) das Kapital selbst renditestärker anlegen können." },
+        ],
+        relatedIds: ["bvg-rechner", "pension-auszahlung", "pensionskasserechner"],
+    },
+    {
+        id: "pension-auszahlung",
+        title: "Pension Auszahlung Rechner",
+        keyword: "Pension Auszahlung Rechner Schweiz",
+        calcType: "pension-payout",
+        icon: "💸",
+        subtitle: "Berechnen Sie die Kapitalleistungssteuer bei Bezug von PK-Kapital und Säule 3a. Mit kantonalen Steuersätzen und Staffelungsoptimierung.",
+        explanation: {
+            heading: "Kapitalleistungssteuer bei Pensionierung",
+            paragraphs: [
+                "Beim Bezug von Pensionskassen-Kapital und Säule 3a fällt eine einmalige Kapitalleistungssteuer an. Diese wird separat vom übrigen Einkommen berechnet und ist deutlich tiefer als die reguläre Einkommenssteuer. Die Sätze variieren stark nach Kanton — von ca. 3% (Schwyz) bis 12% (Genf).",
+                "Optimierungsstrategie: Gestaffelter Bezug über mehrere Jahre (z.B. PK-Kapital im Jahr X, 3a-Konto 1 im Jahr X+1, 3a-Konto 2 im Jahr X+2). Durch die Staffelung bleiben Sie in tieferen Progressionsstufen. Kantonsumzug vor dem Bezug kann ebenfalls Tausende sparen.",
+            ],
+            highlight: "Kapital CHF 600'000 in Zürich: Steuer ca. CHF 42'000 (7%). In Schwyz: ca. CHF 18'000 (3%). Gestaffelt (3 × CHF 200'000): Zürich ca. CHF 30'000 (5%). Ersparnis durch Staffelung: CHF 12'000.",
+        },
+        faq: [
+            { question: "Wie hoch ist die Kapitalleistungssteuer?", answer: "Abhängig von Kanton und Betrag: Schwyz/Zug 3-5%, Zürich 5-8%, Bern 6-9%, Basel 7-10%, Genf 8-12%. Bund: Progressiv, ca. 1-3%. Verheiratete zahlen oft weniger (geteilte Progression). Die genauen Tarife variieren je nach Steuerperiode." },
+            { question: "Kann ich den Bezugszeitpunkt optimieren?", answer: "Ja! PK-Kapital und 3a-Guthaben in verschiedenen Steuerjahren beziehen. 3a-Konten einzeln über mehrere Jahre auflösen. Idealerweise in einem Jahr mit tiefem sonstigem Einkommen beziehen. Umzug in einen steuergünstigen Kanton (mind. 2 Jahre vor Bezug) prüfen." },
+        ],
+        relatedIds: ["pension-kapital", "saeule-3a-rechner", "saeule-3a-steuerersparnis"],
+    },
 ];
 
 export function getChCalculatorBySlug(slug: string): ChCalculator | undefined {

@@ -1601,6 +1601,465 @@ function AfterTaxSalaryCalc() {
     );
 }
 
+// ═══════════════════════════════════════════════════
+// 31. AHV Rentenrechner
+// ═══════════════════════════════════════════════════
+function AhvPensionCalc() {
+    const [avgIncome, setAvgIncome] = useState(72000);
+    const [years, setYears] = useState(44);
+    const [married, setMarried] = useState(false);
+
+    const res = useMemo(() => {
+        const maxMDJE = 88200;
+        const minRente = 1225;
+        const maxRente = 2450;
+        const ratio = Math.min(avgIncome, maxMDJE) / maxMDJE;
+        const fullRente = minRente + (maxRente - minRente) * ratio;
+        const scaleFactor = Math.min(years, 44) / 44;
+        const monthlyRente = fullRente * scaleFactor;
+        const annualRente = monthlyRente * 12;
+        const coupleMax = maxRente * 1.5;
+        const couplePension = married ? Math.min(monthlyRente * 2, coupleMax) : monthlyRente;
+        return { monthlyRente, annualRente, scaleFactor: scaleFactor * 100, couplePension, coupleMax };
+    }, [avgIncome, years, married]);
+
+    return (
+        <div className="ar-custom-calc">
+            <div className="ar-custom-calc__input-row">
+                <div className="ar-custom-calc__input-group"><label>Ø Jahreseinkommen (MDJE, CHF)</label><input type="number" className="ar-custom-calc__number-input" value={avgIncome} onChange={e => setAvgIncome(+e.target.value)} min={14700} max={88200} step={1000} /></div>
+                <div className="ar-custom-calc__input-group"><label>Beitragsjahre</label><input type="number" className="ar-custom-calc__number-input" value={years} onChange={e => setYears(+e.target.value)} min={1} max={44} step={1} /></div>
+            </div>
+            <div className="ar-custom-calc__input-group"><label>Zivilstand</label><div className="ar-custom-calc__toggle-row"><button className={`ar-custom-calc__toggle${!married ? " ar-custom-calc__toggle--active" : ""}`} onClick={() => setMarried(false)}>Ledig</button><button className={`ar-custom-calc__toggle${married ? " ar-custom-calc__toggle--active" : ""}`} onClick={() => setMarried(true)}>Verheiratet</button></div></div>
+            <div className="ar-custom-calc__results">
+                <div className="ar-custom-calc__result-main"><span className="ar-custom-calc__result-label">{married ? "Ehepaar-Rente/Monat" : "AHV-Rente/Monat"}</span><span className="ar-custom-calc__result-value">CHF {fmtCHF(married ? res.couplePension : res.monthlyRente)}</span></div>
+                <div className="ar-custom-calc__result-grid">
+                    <div className="ar-custom-calc__result-card"><span className="ar-custom-calc__card-icon">📅</span><span className="ar-custom-calc__card-value">CHF {fmtCHF(res.annualRente)}</span><span className="ar-custom-calc__card-label">Jahresrente (Einzel)</span></div>
+                    <div className="ar-custom-calc__result-card"><span className="ar-custom-calc__card-icon">📊</span><span className="ar-custom-calc__card-value">{fmtPct(res.scaleFactor)}</span><span className="ar-custom-calc__card-label">Rentenskala ({years}/44 J.)</span></div>
+                    {married && <div className="ar-custom-calc__result-card"><span className="ar-custom-calc__card-icon">👫</span><span className="ar-custom-calc__card-value">CHF {fmtCHF(res.coupleMax)}</span><span className="ar-custom-calc__card-label">Plafonierung (150%)</span></div>}
+                </div>
+            </div>
+        </div>
+    );
+}
+
+// ═══════════════════════════════════════════════════
+// 32. BVG Rechner
+// ═══════════════════════════════════════════════════
+function BvgCalc() {
+    const [salary, setSalary] = useState(85000);
+    const [currentAge, setCurrentAge] = useState(35);
+    const [currentCapital, setCurrentCapital] = useState(80000);
+    const [interestRate, setInterestRate] = useState(1.25);
+
+    const res = useMemo(() => {
+        const coordDeduction = 25725;
+        const maxInsured = 62475;
+        const coordSalary = Math.min(Math.max(salary - coordDeduction, 0), maxInsured);
+        let capital = currentCapital;
+        for (let age = currentAge; age < 65; age++) {
+            const rate = age < 35 ? 0.07 : age < 45 ? 0.10 : age < 55 ? 0.15 : 0.18;
+            capital = capital * (1 + interestRate / 100) + coordSalary * rate;
+        }
+        const conversionRate = 0.068;
+        const annualPension = capital * conversionRate;
+        const monthlyPension = annualPension / 12;
+        return { coordSalary, capital, annualPension, monthlyPension, yearsLeft: 65 - currentAge };
+    }, [salary, currentAge, currentCapital, interestRate]);
+
+    return (
+        <div className="ar-custom-calc">
+            <div className="ar-custom-calc__input-row">
+                <div className="ar-custom-calc__input-group"><label>Bruttolohn/Jahr (CHF)</label><input type="number" className="ar-custom-calc__number-input" value={salary} onChange={e => setSalary(+e.target.value)} min={22050} step={5000} /></div>
+                <div className="ar-custom-calc__input-group"><label>Aktuelles Alter</label><input type="number" className="ar-custom-calc__number-input" value={currentAge} onChange={e => setCurrentAge(+e.target.value)} min={25} max={64} step={1} /></div>
+            </div>
+            <div className="ar-custom-calc__input-row">
+                <div className="ar-custom-calc__input-group"><label>Aktuelles PK-Guthaben (CHF)</label><input type="number" className="ar-custom-calc__number-input" value={currentCapital} onChange={e => setCurrentCapital(+e.target.value)} min={0} step={10000} /></div>
+                <div className="ar-custom-calc__input-group"><label>Zinssatz (%)</label><input type="number" className="ar-custom-calc__number-input" value={interestRate} onChange={e => setInterestRate(+e.target.value)} min={0} max={5} step={0.25} /></div>
+            </div>
+            <div className="ar-custom-calc__results">
+                <div className="ar-custom-calc__result-main"><span className="ar-custom-calc__result-label">Voraussichtliches PK-Kapital mit 65</span><span className="ar-custom-calc__result-value">CHF {fmtCHF(res.capital)}</span></div>
+                <div className="ar-custom-calc__result-grid">
+                    <div className="ar-custom-calc__result-card"><span className="ar-custom-calc__card-icon">💰</span><span className="ar-custom-calc__card-value">CHF {fmtCHF(res.monthlyPension)}</span><span className="ar-custom-calc__card-label">BVG-Rente/Monat (6.8%)</span></div>
+                    <div className="ar-custom-calc__result-card"><span className="ar-custom-calc__card-icon">📊</span><span className="ar-custom-calc__card-value">CHF {fmtCHF(res.coordSalary)}</span><span className="ar-custom-calc__card-label">Koordinierter Lohn</span></div>
+                    <div className="ar-custom-calc__result-card"><span className="ar-custom-calc__card-icon">⏳</span><span className="ar-custom-calc__card-value">{res.yearsLeft} Jahre</span><span className="ar-custom-calc__card-label">Bis Pensionierung</span></div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+// ═══════════════════════════════════════════════════
+// 33. Säule 3a Rechner
+// ═══════════════════════════════════════════════════
+function Pillar3aCalc() {
+    const [annualDeposit, setAnnualDeposit] = useState(7258);
+    const [yearsToRetire, setYearsToRetire] = useState(25);
+    const [returnRate, setReturnRate] = useState(3);
+    const [currentBalance, setCurrentBalance] = useState(0);
+
+    const res = useMemo(() => {
+        let balance = currentBalance;
+        let totalDeposits = currentBalance;
+        for (let i = 0; i < yearsToRetire; i++) {
+            balance = balance * (1 + returnRate / 100) + annualDeposit;
+            totalDeposits += annualDeposit;
+        }
+        const interest = balance - totalDeposits;
+        return { balance, totalDeposits, interest };
+    }, [annualDeposit, yearsToRetire, returnRate, currentBalance]);
+
+    return (
+        <div className="ar-custom-calc">
+            <div className="ar-custom-calc__input-row">
+                <div className="ar-custom-calc__input-group"><label>Jährliche Einzahlung (CHF)</label><input type="number" className="ar-custom-calc__number-input" value={annualDeposit} onChange={e => setAnnualDeposit(+e.target.value)} min={0} max={36288} step={100} /></div>
+                <div className="ar-custom-calc__input-group"><label>Jahre bis Pensionierung</label><input type="number" className="ar-custom-calc__number-input" value={yearsToRetire} onChange={e => setYearsToRetire(+e.target.value)} min={1} max={40} step={1} /></div>
+            </div>
+            <div className="ar-custom-calc__input-row">
+                <div className="ar-custom-calc__input-group"><label>Erwartete Rendite (%)</label><input type="number" className="ar-custom-calc__number-input" value={returnRate} onChange={e => setReturnRate(+e.target.value)} min={0} max={10} step={0.5} /></div>
+                <div className="ar-custom-calc__input-group"><label>Aktuelles 3a-Guthaben (CHF)</label><input type="number" className="ar-custom-calc__number-input" value={currentBalance} onChange={e => setCurrentBalance(+e.target.value)} min={0} step={5000} /></div>
+            </div>
+            <div className="ar-custom-calc__results">
+                <div className="ar-custom-calc__result-main"><span className="ar-custom-calc__result-label">Vermögen bei Pensionierung</span><span className="ar-custom-calc__result-value">CHF {fmtCHF(res.balance)}</span></div>
+                <div className="ar-custom-calc__result-grid">
+                    <div className="ar-custom-calc__result-card"><span className="ar-custom-calc__card-icon">💵</span><span className="ar-custom-calc__card-value">CHF {fmtCHF(res.totalDeposits)}</span><span className="ar-custom-calc__card-label">Eigene Einzahlungen</span></div>
+                    <div className="ar-custom-calc__result-card"><span className="ar-custom-calc__card-icon">📈</span><span className="ar-custom-calc__card-value">CHF {fmtCHF(res.interest)}</span><span className="ar-custom-calc__card-label">Zinsertrag (steuerfrei)</span></div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+// ═══════════════════════════════════════════════════
+// 34. Säule 3a Steuerersparnis Rechner
+// ═══════════════════════════════════════════════════
+function Pillar3aTaxCalc() {
+    const [deposit, setDeposit] = useState(7258);
+    const [marginalRate, setMarginalRate] = useState(30);
+    const [years, setYears] = useState(30);
+
+    const res = useMemo(() => {
+        const annualSaving = deposit * (marginalRate / 100);
+        const totalSaving = annualSaving * years;
+        const totalDeposits = deposit * years;
+        const withdrawalTax = totalDeposits * 0.06;
+        const netSaving = totalSaving - withdrawalTax;
+        return { annualSaving, totalSaving, totalDeposits, withdrawalTax, netSaving };
+    }, [deposit, marginalRate, years]);
+
+    return (
+        <div className="ar-custom-calc">
+            <div className="ar-custom-calc__input-row">
+                <div className="ar-custom-calc__input-group"><label>3a-Einzahlung/Jahr (CHF)</label><input type="number" className="ar-custom-calc__number-input" value={deposit} onChange={e => setDeposit(+e.target.value)} min={0} max={36288} step={100} /></div>
+                <div className="ar-custom-calc__input-group"><label>Grenzsteuersatz (%)</label><input type="number" className="ar-custom-calc__number-input" value={marginalRate} onChange={e => setMarginalRate(+e.target.value)} min={5} max={45} step={1} /></div>
+            </div>
+            <div className="ar-custom-calc__input-group"><label>Einzahlungsdauer (Jahre)</label><input type="number" className="ar-custom-calc__number-input" value={years} onChange={e => setYears(+e.target.value)} min={1} max={40} step={1} /></div>
+            <div className="ar-custom-calc__results">
+                <div className="ar-custom-calc__result-main"><span className="ar-custom-calc__result-label">Netto-Steuerersparnis</span><span className="ar-custom-calc__result-value">CHF {fmtCHF(res.netSaving)}</span></div>
+                <div className="ar-custom-calc__result-grid">
+                    <div className="ar-custom-calc__result-card"><span className="ar-custom-calc__card-icon">💰</span><span className="ar-custom-calc__card-value">CHF {fmtCHF(res.annualSaving)}</span><span className="ar-custom-calc__card-label">Jährl. Steuerersparnis</span></div>
+                    <div className="ar-custom-calc__result-card"><span className="ar-custom-calc__card-icon">📊</span><span className="ar-custom-calc__card-value">CHF {fmtCHF(res.totalSaving)}</span><span className="ar-custom-calc__card-label">Kumuliert ({years} Jahre)</span></div>
+                    <div className="ar-custom-calc__result-card"><span className="ar-custom-calc__card-icon">🏛️</span><span className="ar-custom-calc__card-value">CHF {fmtCHF(res.withdrawalTax)}</span><span className="ar-custom-calc__card-label">Bezugssteuer (~6%)</span></div>
+                </div>
+                <p className="ar-custom-calc__note">Tipp: Mit 3-5 Konten und gestaffeltem Bezug senken Sie die Bezugssteuer um bis zu 40%!</p>
+            </div>
+        </div>
+    );
+}
+
+// ═══════════════════════════════════════════════════
+// 35. Frühpensionierung Rechner
+// ═══════════════════════════════════════════════════
+function EarlyRetirementCalc() {
+    const [retireAge, setRetireAge] = useState(62);
+    const [ahvFull, setAhvFull] = useState(2450);
+    const [bvgCapital, setBvgCapital] = useState(450000);
+    const [monthlyCosts, setMonthlyCosts] = useState(6000);
+
+    const res = useMemo(() => {
+        const yearsEarly = 65 - retireAge;
+        const ahvCut = yearsEarly * 6.8;
+        const ahvReduced = ahvFull * (1 - ahvCut / 100);
+        const bridgeYears = yearsEarly;
+        const bridgeCapital = monthlyCosts * 12 * bridgeYears;
+        const bvgReduction = yearsEarly * 0.06;
+        const bvgAdjusted = bvgCapital * (1 - bvgReduction);
+        const bvgMonthly = (bvgAdjusted * 0.068) / 12;
+        const totalAfter65 = ahvReduced + bvgMonthly;
+        const gap = monthlyCosts - totalAfter65;
+        return { yearsEarly, ahvCut, ahvReduced, bridgeCapital, bvgAdjusted, bvgMonthly, totalAfter65, gap };
+    }, [retireAge, ahvFull, bvgCapital, monthlyCosts]);
+
+    return (
+        <div className="ar-custom-calc">
+            <div className="ar-custom-calc__input-row">
+                <div className="ar-custom-calc__input-group"><label>Gewünschtes Pensionsalter</label><input type="number" className="ar-custom-calc__number-input" value={retireAge} onChange={e => setRetireAge(+e.target.value)} min={58} max={64} step={1} /></div>
+                <div className="ar-custom-calc__input-group"><label>AHV-Rente (volle, CHF/Mt.)</label><input type="number" className="ar-custom-calc__number-input" value={ahvFull} onChange={e => setAhvFull(+e.target.value)} min={1225} max={2450} step={50} /></div>
+            </div>
+            <div className="ar-custom-calc__input-row">
+                <div className="ar-custom-calc__input-group"><label>PK-Kapital bei 65 (CHF)</label><input type="number" className="ar-custom-calc__number-input" value={bvgCapital} onChange={e => setBvgCapital(+e.target.value)} min={0} step={25000} /></div>
+                <div className="ar-custom-calc__input-group"><label>Monatl. Lebensbedarf (CHF)</label><input type="number" className="ar-custom-calc__number-input" value={monthlyCosts} onChange={e => setMonthlyCosts(+e.target.value)} min={3000} step={500} /></div>
+            </div>
+            <div className="ar-custom-calc__results">
+                <div className="ar-custom-calc__result-main"><span className="ar-custom-calc__result-label">Benötigtes Überbrückungskapital</span><span className="ar-custom-calc__result-value">CHF {fmtCHF(res.bridgeCapital)}</span></div>
+                <div className="ar-custom-calc__milestones">
+                    <h3>Auswirkungen ({res.yearsEarly} Jahre früher)</h3>
+                    <div className="ar-custom-calc__milestone"><span>AHV-Kürzung</span><span>–{fmtPct(res.ahvCut)} (lebenslang)</span></div>
+                    <div className="ar-custom-calc__milestone"><span>AHV-Rente (gekürzt)</span><span>CHF {fmtCHF(res.ahvReduced)}/Mt.</span></div>
+                    <div className="ar-custom-calc__milestone"><span>BVG-Kapital (reduziert)</span><span>CHF {fmtCHF(res.bvgAdjusted)}</span></div>
+                    <div className="ar-custom-calc__milestone"><span>BVG-Rente</span><span>CHF {fmtCHF(res.bvgMonthly)}/Mt.</span></div>
+                    <div className="ar-custom-calc__milestone ar-custom-calc__milestone--highlight"><span>Total Rente ab 65</span><span>CHF {fmtCHF(res.totalAfter65)}/Mt.</span></div>
+                    {res.gap > 0 && <div className="ar-custom-calc__milestone"><span>Verbleibende Lücke</span><span>CHF {fmtCHF(res.gap)}/Mt.</span></div>}
+                </div>
+            </div>
+        </div>
+    );
+}
+
+// ═══════════════════════════════════════════════════
+// 36. Altersvorsorge Rechner (3-Säulen-Überblick)
+// ═══════════════════════════════════════════════════
+function RetirementPlanningCalc() {
+    const [ahvMonthly, setAhvMonthly] = useState(2200);
+    const [bvgMonthly, setBvgMonthly] = useState(2000);
+    const [pillar3a, setPillar3a] = useState(300000);
+    const [freeAssets, setFreeAssets] = useState(100000);
+    const [lastSalary, setLastSalary] = useState(100000);
+
+    const res = useMemo(() => {
+        const targetPct = 0.70;
+        const targetMonthly = (lastSalary * targetPct) / 12;
+        const pillar3aMonthly = pillar3a / (20 * 12);
+        const freeMonthly = freeAssets / (20 * 12);
+        const totalMonthly = ahvMonthly + bvgMonthly + pillar3aMonthly + freeMonthly;
+        const gap = targetMonthly - totalMonthly;
+        const replacementRate = (totalMonthly / (lastSalary / 12)) * 100;
+        return { targetMonthly, pillar3aMonthly, freeMonthly, totalMonthly, gap, replacementRate };
+    }, [ahvMonthly, bvgMonthly, pillar3a, freeAssets, lastSalary]);
+
+    return (
+        <div className="ar-custom-calc">
+            <div className="ar-custom-calc__input-row">
+                <div className="ar-custom-calc__input-group"><label>AHV-Rente (CHF/Mt.)</label><input type="number" className="ar-custom-calc__number-input" value={ahvMonthly} onChange={e => setAhvMonthly(+e.target.value)} min={1225} max={2450} step={50} /></div>
+                <div className="ar-custom-calc__input-group"><label>BVG-Rente (CHF/Mt.)</label><input type="number" className="ar-custom-calc__number-input" value={bvgMonthly} onChange={e => setBvgMonthly(+e.target.value)} min={0} step={100} /></div>
+            </div>
+            <div className="ar-custom-calc__input-row">
+                <div className="ar-custom-calc__input-group"><label>Säule 3a Kapital (CHF)</label><input type="number" className="ar-custom-calc__number-input" value={pillar3a} onChange={e => setPillar3a(+e.target.value)} min={0} step={10000} /></div>
+                <div className="ar-custom-calc__input-group"><label>Freies Vermögen (CHF)</label><input type="number" className="ar-custom-calc__number-input" value={freeAssets} onChange={e => setFreeAssets(+e.target.value)} min={0} step={10000} /></div>
+            </div>
+            <div className="ar-custom-calc__input-group"><label>Letzter Jahreslohn (CHF)</label><input type="number" className="ar-custom-calc__number-input" value={lastSalary} onChange={e => setLastSalary(+e.target.value)} min={30000} step={5000} /></div>
+            <div className="ar-custom-calc__results">
+                <div className="ar-custom-calc__result-main"><span className="ar-custom-calc__result-label">Einkommensersatzquote</span><span className="ar-custom-calc__result-value">{fmtPct(res.replacementRate)}</span></div>
+                <div className="ar-custom-calc__milestones">
+                    <h3>Monatliche Einkünfte im Alter</h3>
+                    <div className="ar-custom-calc__milestone"><span>1. Säule (AHV)</span><span>CHF {fmtCHF(ahvMonthly)}</span></div>
+                    <div className="ar-custom-calc__milestone"><span>2. Säule (BVG)</span><span>CHF {fmtCHF(bvgMonthly)}</span></div>
+                    <div className="ar-custom-calc__milestone"><span>3. Säule (3a, 20 J.)</span><span>CHF {fmtCHF(res.pillar3aMonthly)}</span></div>
+                    <div className="ar-custom-calc__milestone"><span>Freies Vermögen (20 J.)</span><span>CHF {fmtCHF(res.freeMonthly)}</span></div>
+                    <div className="ar-custom-calc__milestone ar-custom-calc__milestone--highlight"><span>Total verfügbar</span><span>CHF {fmtCHF(res.totalMonthly)}/Mt.</span></div>
+                    <div className="ar-custom-calc__milestone"><span>Ziel (70% Lohn)</span><span>CHF {fmtCHF(res.targetMonthly)}/Mt.</span></div>
+                    {res.gap > 0 && <div className="ar-custom-calc__milestone"><span>⚠️ Rentenlücke</span><span>CHF {fmtCHF(res.gap)}/Mt.</span></div>}
+                </div>
+            </div>
+        </div>
+    );
+}
+
+// ═══════════════════════════════════════════════════
+// 37. Pensionskasse Rechner (PK-Einkauf)
+// ═══════════════════════════════════════════════════
+function PensionFundCalc() {
+    const [currentCapital, setCurrentCapital] = useState(250000);
+    const [maxPurchase, setMaxPurchase] = useState(80000);
+    const [purchaseAmount, setPurchaseAmount] = useState(50000);
+    const [marginalRate, setMarginalRate] = useState(30);
+    const [yearsToRetire, setYearsToRetire] = useState(15);
+
+    const res = useMemo(() => {
+        const taxSaving = purchaseAmount * (marginalRate / 100);
+        const capitalAfter = currentCapital + purchaseAmount;
+        const interestGain = purchaseAmount * Math.pow(1.015, yearsToRetire) - purchaseAmount;
+        const monthlyExtra = (purchaseAmount * 0.068) / 12;
+        const remaining = maxPurchase - purchaseAmount;
+        return { taxSaving, capitalAfter, interestGain, monthlyExtra, remaining };
+    }, [currentCapital, maxPurchase, purchaseAmount, marginalRate, yearsToRetire]);
+
+    return (
+        <div className="ar-custom-calc">
+            <div className="ar-custom-calc__input-row">
+                <div className="ar-custom-calc__input-group"><label>Aktuelles PK-Guthaben (CHF)</label><input type="number" className="ar-custom-calc__number-input" value={currentCapital} onChange={e => setCurrentCapital(+e.target.value)} min={0} step={10000} /></div>
+                <div className="ar-custom-calc__input-group"><label>Max. Einkaufssumme (CHF)</label><input type="number" className="ar-custom-calc__number-input" value={maxPurchase} onChange={e => setMaxPurchase(+e.target.value)} min={0} step={5000} /></div>
+            </div>
+            <div className="ar-custom-calc__input-row">
+                <div className="ar-custom-calc__input-group"><label>Geplanter Einkauf (CHF)</label><input type="number" className="ar-custom-calc__number-input" value={purchaseAmount} onChange={e => setPurchaseAmount(+e.target.value)} min={0} max={maxPurchase} step={5000} /></div>
+                <div className="ar-custom-calc__input-group"><label>Grenzsteuersatz (%)</label><input type="number" className="ar-custom-calc__number-input" value={marginalRate} onChange={e => setMarginalRate(+e.target.value)} min={5} max={45} step={1} /></div>
+            </div>
+            <div className="ar-custom-calc__results">
+                <div className="ar-custom-calc__result-main"><span className="ar-custom-calc__result-label">Steuerersparnis durch Einkauf</span><span className="ar-custom-calc__result-value">CHF {fmtCHF(res.taxSaving)}</span></div>
+                <div className="ar-custom-calc__result-grid">
+                    <div className="ar-custom-calc__result-card"><span className="ar-custom-calc__card-icon">🏛️</span><span className="ar-custom-calc__card-value">CHF {fmtCHF(res.capitalAfter)}</span><span className="ar-custom-calc__card-label">PK-Kapital nach Einkauf</span></div>
+                    <div className="ar-custom-calc__result-card"><span className="ar-custom-calc__card-icon">📈</span><span className="ar-custom-calc__card-value">CHF {fmtCHF(res.interestGain)}</span><span className="ar-custom-calc__card-label">Zinsertrag ({yearsToRetire} J.)</span></div>
+                    <div className="ar-custom-calc__result-card"><span className="ar-custom-calc__card-icon">💰</span><span className="ar-custom-calc__card-value">CHF {fmtCHF(res.monthlyExtra)}</span><span className="ar-custom-calc__card-label">Zusätzl. Rente/Mt.</span></div>
+                </div>
+                <p className="ar-custom-calc__note">⚠️ 3-Jahres-Sperrfrist: Nach einem Einkauf dürfen Sie 3 Jahre lang kein Kapital beziehen!</p>
+            </div>
+        </div>
+    );
+}
+
+// ═══════════════════════════════════════════════════
+// 38. Rentenlücke Rechner
+// ═══════════════════════════════════════════════════
+function PensionGapCalc() {
+    const [lastSalary, setLastSalary] = useState(120000);
+    const [targetPct, setTargetPct] = useState(70);
+    const [ahvRente, setAhvRente] = useState(2300);
+    const [bvgRente, setBvgRente] = useState(2000);
+
+    const res = useMemo(() => {
+        const targetMonthly = (lastSalary * targetPct / 100) / 12;
+        const totalProvided = ahvRente + bvgRente;
+        const gap = Math.max(0, targetMonthly - totalProvided);
+        const gapAnnual = gap * 12;
+        const capitalNeeded20 = gapAnnual * 20;
+        const capitalNeeded25 = gapAnnual * 25;
+        const coveredPct = (totalProvided / targetMonthly) * 100;
+        return { targetMonthly, totalProvided, gap, gapAnnual, capitalNeeded20, capitalNeeded25, coveredPct };
+    }, [lastSalary, targetPct, ahvRente, bvgRente]);
+
+    return (
+        <div className="ar-custom-calc">
+            <div className="ar-custom-calc__input-row">
+                <div className="ar-custom-calc__input-group"><label>Letzter Jahreslohn (CHF)</label><input type="number" className="ar-custom-calc__number-input" value={lastSalary} onChange={e => setLastSalary(+e.target.value)} min={30000} step={5000} /></div>
+                <div className="ar-custom-calc__input-group"><label>Ziel-Ersatzquote (%)</label><input type="number" className="ar-custom-calc__number-input" value={targetPct} onChange={e => setTargetPct(+e.target.value)} min={50} max={100} step={5} /></div>
+            </div>
+            <div className="ar-custom-calc__input-row">
+                <div className="ar-custom-calc__input-group"><label>Erwartete AHV (CHF/Mt.)</label><input type="number" className="ar-custom-calc__number-input" value={ahvRente} onChange={e => setAhvRente(+e.target.value)} min={1225} max={2450} step={50} /></div>
+                <div className="ar-custom-calc__input-group"><label>Erwartete BVG-Rente (CHF/Mt.)</label><input type="number" className="ar-custom-calc__number-input" value={bvgRente} onChange={e => setBvgRente(+e.target.value)} min={0} step={100} /></div>
+            </div>
+            <div className="ar-custom-calc__results">
+                <div className="ar-custom-calc__result-main"><span className="ar-custom-calc__result-label">Monatliche Rentenlücke</span><span className="ar-custom-calc__result-value">CHF {fmtCHF(res.gap)}</span></div>
+                <div className="ar-custom-calc__result-grid">
+                    <div className="ar-custom-calc__result-card"><span className="ar-custom-calc__card-icon">🎯</span><span className="ar-custom-calc__card-value">CHF {fmtCHF(res.targetMonthly)}</span><span className="ar-custom-calc__card-label">Ziel ({targetPct}%)</span></div>
+                    <div className="ar-custom-calc__result-card"><span className="ar-custom-calc__card-icon">📊</span><span className="ar-custom-calc__card-value">{fmtPct(res.coveredPct)}</span><span className="ar-custom-calc__card-label">Abgedeckt</span></div>
+                    <div className="ar-custom-calc__result-card"><span className="ar-custom-calc__card-icon">💰</span><span className="ar-custom-calc__card-value">CHF {fmtCHF(res.capitalNeeded20)}</span><span className="ar-custom-calc__card-label">Kapital für 20 J.</span></div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+// ═══════════════════════════════════════════════════
+// 39. Pension Kapital vs Rente Rechner
+// ═══════════════════════════════════════════════════
+function CapitalVsAnnuityCalc() {
+    const [pkCapital, setPkCapital] = useState(500000);
+    const [convRate, setConvRate] = useState(6.8);
+    const [capitalTaxRate, setCapitalTaxRate] = useState(6);
+    const [investReturn, setInvestReturn] = useState(3);
+
+    const res = useMemo(() => {
+        const monthlyPension = (pkCapital * convRate / 100) / 12;
+        const annualPension = monthlyPension * 12;
+        const capitalAfterTax = pkCapital * (1 - capitalTaxRate / 100);
+        const breakeven = capitalAfterTax / annualPension;
+        const ages = [80, 85, 90, 95];
+        const comparison = ages.map(age => {
+            const years = age - 65;
+            const totalRente = annualPension * years;
+            let capitalLeft = capitalAfterTax;
+            for (let i = 0; i < years; i++) {
+                capitalLeft = capitalLeft * (1 + investReturn / 100) - annualPension;
+            }
+            return { age, totalRente, capitalLeft: Math.max(0, capitalLeft), renteBetter: totalRente > capitalAfterTax };
+        });
+        return { monthlyPension, annualPension, capitalAfterTax, breakeven: 65 + breakeven, comparison };
+    }, [pkCapital, convRate, capitalTaxRate, investReturn]);
+
+    return (
+        <div className="ar-custom-calc">
+            <div className="ar-custom-calc__input-row">
+                <div className="ar-custom-calc__input-group"><label>PK-Kapital (CHF)</label><input type="number" className="ar-custom-calc__number-input" value={pkCapital} onChange={e => setPkCapital(+e.target.value)} min={50000} step={25000} /></div>
+                <div className="ar-custom-calc__input-group"><label>Umwandlungssatz (%)</label><input type="number" className="ar-custom-calc__number-input" value={convRate} onChange={e => setConvRate(+e.target.value)} min={4} max={7} step={0.1} /></div>
+            </div>
+            <div className="ar-custom-calc__input-row">
+                <div className="ar-custom-calc__input-group"><label>Kapitalleistungssteuer (%)</label><input type="number" className="ar-custom-calc__number-input" value={capitalTaxRate} onChange={e => setCapitalTaxRate(+e.target.value)} min={2} max={12} step={0.5} /></div>
+                <div className="ar-custom-calc__input-group"><label>Anlagerendite bei Kapital (%)</label><input type="number" className="ar-custom-calc__number-input" value={investReturn} onChange={e => setInvestReturn(+e.target.value)} min={0} max={8} step={0.5} /></div>
+            </div>
+            <div className="ar-custom-calc__results">
+                <div className="ar-custom-calc__result-main"><span className="ar-custom-calc__result-label">Breakeven-Alter</span><span className="ar-custom-calc__result-value">{res.breakeven.toFixed(1)} Jahre</span></div>
+                <div className="ar-custom-calc__result-grid">
+                    <div className="ar-custom-calc__result-card"><span className="ar-custom-calc__card-icon">🔄</span><span className="ar-custom-calc__card-value">CHF {fmtCHF(res.monthlyPension)}</span><span className="ar-custom-calc__card-label">Rente/Monat</span></div>
+                    <div className="ar-custom-calc__result-card"><span className="ar-custom-calc__card-icon">💵</span><span className="ar-custom-calc__card-value">CHF {fmtCHF(res.capitalAfterTax)}</span><span className="ar-custom-calc__card-label">Kapital netto</span></div>
+                </div>
+                <div className="ar-custom-calc__milestones">
+                    <h3>Vergleich nach Alter</h3>
+                    {res.comparison.map(c => (
+                        <div key={c.age} className="ar-custom-calc__milestone"><span>Mit {c.age}: {c.renteBetter ? "✅ Rente besser" : "💰 Kapital besser"}</span><span>Restkapital: CHF {fmtCHF(c.capitalLeft)}</span></div>
+                    ))}
+                </div>
+            </div>
+        </div>
+    );
+}
+
+// ═══════════════════════════════════════════════════
+// 40. Pension Auszahlung Rechner (Kapitalleistungssteuer)
+// ═══════════════════════════════════════════════════
+const CAPITAL_TAX_RATES = [
+    { canton: "Zürich", rate: 6.5 },
+    { canton: "Bern", rate: 7.5 },
+    { canton: "Luzern", rate: 4.5 },
+    { canton: "Schwyz", rate: 3.5 },
+    { canton: "Zug", rate: 4.0 },
+    { canton: "Basel-Stadt", rate: 8.5 },
+    { canton: "St. Gallen", rate: 5.5 },
+    { canton: "Aargau", rate: 5.0 },
+    { canton: "Genf", rate: 10.0 },
+    { canton: "Waadt", rate: 9.0 },
+];
+
+function PensionPayoutCalc() {
+    const [capital, setCapital] = useState(500000);
+    const [cantonIdx, setCantonIdx] = useState(0);
+    const [accounts, setAccounts] = useState(1);
+
+    const res = useMemo(() => {
+        const canton = CAPITAL_TAX_RATES[cantonIdx];
+        const singleTax = capital * (canton.rate / 100);
+        const perAccount = capital / accounts;
+        const splitTaxPerAccount = perAccount * (canton.rate * 0.85 / 100);
+        const splitTaxTotal = splitTaxPerAccount * accounts;
+        const saving = singleTax - splitTaxTotal;
+        const netSingle = capital - singleTax;
+        const netSplit = capital - splitTaxTotal;
+        const allCantons = CAPITAL_TAX_RATES.map(c => ({ ...c, tax: capital * (c.rate / 100), net: capital - capital * (c.rate / 100) })).sort((a, b) => a.tax - b.tax);
+        return { singleTax, splitTaxTotal, saving, netSingle, netSplit, allCantons };
+    }, [capital, cantonIdx, accounts]);
+
+    return (
+        <div className="ar-custom-calc">
+            <div className="ar-custom-calc__input-row">
+                <div className="ar-custom-calc__input-group"><label>Gesamtkapital (PK + 3a, CHF)</label><input type="number" className="ar-custom-calc__number-input" value={capital} onChange={e => setCapital(+e.target.value)} min={50000} step={25000} /></div>
+                <div className="ar-custom-calc__input-group"><label>Kanton</label><select className="ar-custom-calc__number-input" value={cantonIdx} onChange={e => setCantonIdx(+e.target.value)}>{CAPITAL_TAX_RATES.map((c, i) => <option key={i} value={i}>{c.canton}</option>)}</select></div>
+            </div>
+            <div className="ar-custom-calc__input-group"><label>Bezug aufgeteilt auf (Jahre)</label><div className="ar-custom-calc__toggle-row"><button className={`ar-custom-calc__toggle${accounts === 1 ? " ar-custom-calc__toggle--active" : ""}`} onClick={() => setAccounts(1)}>1 Jahr</button><button className={`ar-custom-calc__toggle${accounts === 2 ? " ar-custom-calc__toggle--active" : ""}`} onClick={() => setAccounts(2)}>2 Jahre</button><button className={`ar-custom-calc__toggle${accounts === 3 ? " ar-custom-calc__toggle--active" : ""}`} onClick={() => setAccounts(3)}>3 Jahre</button></div></div>
+            <div className="ar-custom-calc__results">
+                <div className="ar-custom-calc__result-main"><span className="ar-custom-calc__result-label">Kapitalleistungssteuer</span><span className="ar-custom-calc__result-value">CHF {fmtCHF(accounts > 1 ? res.splitTaxTotal : res.singleTax)}</span></div>
+                <div className="ar-custom-calc__result-grid">
+                    <div className="ar-custom-calc__result-card"><span className="ar-custom-calc__card-icon">💵</span><span className="ar-custom-calc__card-value">CHF {fmtCHF(accounts > 1 ? res.netSplit : res.netSingle)}</span><span className="ar-custom-calc__card-label">Netto-Auszahlung</span></div>
+                    {accounts > 1 && <div className="ar-custom-calc__result-card"><span className="ar-custom-calc__card-icon">🎯</span><span className="ar-custom-calc__card-value">CHF {fmtCHF(res.saving)}</span><span className="ar-custom-calc__card-label">Ersparnis durch Staffelung</span></div>}
+                </div>
+                <div className="ar-custom-calc__milestones">
+                    <h3>Steuervergleich Kantone</h3>
+                    {res.allCantons.map(c => (
+                        <div key={c.canton} className="ar-custom-calc__milestone"><span>{c.canton} ({c.rate}%)</span><span>CHF {fmtCHF(c.tax)}</span></div>
+                    ))}
+                </div>
+            </div>
+        </div>
+    );
+}
+
 // ─── Dispatcher ───
 interface Props { calcType: string }
 
@@ -1637,6 +2096,17 @@ const CUSTOM_CALCS: Record<string, React.FC> = {
     "bonus": BonusCalc,
     "overtime": OvertimeCalc,
     "after-tax-salary": AfterTaxSalaryCalc,
+    // Pension system calculators
+    "ahv-pension": AhvPensionCalc,
+    "bvg": BvgCalc,
+    "pillar-3a": Pillar3aCalc,
+    "pillar-3a-tax": Pillar3aTaxCalc,
+    "early-retirement": EarlyRetirementCalc,
+    "retirement-planning": RetirementPlanningCalc,
+    "pension-fund": PensionFundCalc,
+    "pension-gap": PensionGapCalc,
+    "capital-vs-annuity": CapitalVsAnnuityCalc,
+    "pension-payout": PensionPayoutCalc,
 };
 
 export default function ChCustomCalculatorCore({ calcType }: Props) {
