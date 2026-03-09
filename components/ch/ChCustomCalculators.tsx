@@ -1184,6 +1184,423 @@ function TaxOptimizationCalc() {
     );
 }
 
+// ═══════════════════════════════════════════════════
+// 21. Brutto Netto Rechner — Gross to Net
+// ═══════════════════════════════════════════════════
+function GrossNetCalc() {
+    const [gross, setGross] = useState(8000);
+    const [age, setAge] = useState(35);
+    const [has13, setHas13] = useState(true);
+
+    const res = useMemo(() => {
+        const ahv = gross * 0.0435;
+        const iv = gross * 0.007;
+        const eo = gross * 0.0025;
+        const alv = gross * 0.011;
+        const bvgRate = age < 25 ? 0 : age < 35 ? 0.07 : age < 45 ? 0.10 : age < 55 ? 0.15 : 0.18;
+        const bvg = gross * bvgRate;
+        const nbu = gross * 0.013;
+        const totalDeductions = ahv + iv + eo + alv + bvg + nbu;
+        const net = gross - totalDeductions;
+        const annual = has13 ? gross * 13 : gross * 12;
+        const annualNet = has13 ? net * 13 : net * 12;
+        return { ahv, iv, eo, alv, bvg, nbu, totalDeductions, net, annual, annualNet, bvgRate: bvgRate * 100 };
+    }, [gross, age, has13]);
+
+    return (
+        <div className="ar-custom-calc">
+            <div className="ar-custom-calc__input-row">
+                <div className="ar-custom-calc__input-group"><label>Bruttolohn/Monat (CHF)</label><input type="number" className="ar-custom-calc__number-input" value={gross} onChange={e => setGross(+e.target.value)} min={1000} step={500} /></div>
+                <div className="ar-custom-calc__input-group"><label>Alter</label><input type="number" className="ar-custom-calc__number-input" value={age} onChange={e => setAge(+e.target.value)} min={18} max={65} step={1} /></div>
+            </div>
+            <div className="ar-custom-calc__input-group"><label>13. Monatslohn</label><div className="ar-custom-calc__toggle-row"><button className={`ar-custom-calc__toggle${has13 ? " ar-custom-calc__toggle--active" : ""}`} onClick={() => setHas13(true)}>Ja (× 13)</button><button className={`ar-custom-calc__toggle${!has13 ? " ar-custom-calc__toggle--active" : ""}`} onClick={() => setHas13(false)}>Nein (× 12)</button></div></div>
+            <div className="ar-custom-calc__results">
+                <div className="ar-custom-calc__result-main"><span className="ar-custom-calc__result-label">Nettolohn/Monat</span><span className="ar-custom-calc__result-value">CHF {fmtCHF(res.net)}</span></div>
+                <div className="ar-custom-calc__result-grid">
+                    <div className="ar-custom-calc__result-card"><span className="ar-custom-calc__card-icon">📊</span><span className="ar-custom-calc__card-value">{fmtPct((res.net / gross) * 100)}</span><span className="ar-custom-calc__card-label">Netto-Quote</span></div>
+                    <div className="ar-custom-calc__result-card"><span className="ar-custom-calc__card-icon">📅</span><span className="ar-custom-calc__card-value">CHF {fmtCHF(res.annualNet)}</span><span className="ar-custom-calc__card-label">Jahresnetto</span></div>
+                    <div className="ar-custom-calc__result-card"><span className="ar-custom-calc__card-icon">💸</span><span className="ar-custom-calc__card-value">CHF {fmtCHF(res.totalDeductions)}</span><span className="ar-custom-calc__card-label">Total Abzüge/Mt.</span></div>
+                </div>
+                <div className="ar-custom-calc__milestones">
+                    <h3>Lohnabrechnung</h3>
+                    <div className="ar-custom-calc__milestone"><span>Bruttolohn</span><span>CHF {fmtCHF(gross)}</span></div>
+                    <div className="ar-custom-calc__milestone"><span>– AHV (4.35%)</span><span>–CHF {fmtCHF(res.ahv)}</span></div>
+                    <div className="ar-custom-calc__milestone"><span>– IV (0.70%)</span><span>–CHF {fmtCHF(res.iv)}</span></div>
+                    <div className="ar-custom-calc__milestone"><span>– EO (0.25%)</span><span>–CHF {fmtCHF(res.eo)}</span></div>
+                    <div className="ar-custom-calc__milestone"><span>– ALV (1.10%)</span><span>–CHF {fmtCHF(res.alv)}</span></div>
+                    <div className="ar-custom-calc__milestone"><span>– BVG ({fmtPct(res.bvgRate)})</span><span>–CHF {fmtCHF(res.bvg)}</span></div>
+                    <div className="ar-custom-calc__milestone"><span>– NBU (1.30%)</span><span>–CHF {fmtCHF(res.nbu)}</span></div>
+                    <div className="ar-custom-calc__milestone ar-custom-calc__milestone--highlight"><span>Nettolohn</span><span>CHF {fmtCHF(res.net)}</span></div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+// ═══════════════════════════════════════════════════
+// 22. Nettolohn Rechner — Net to Gross (reverse)
+// ═══════════════════════════════════════════════════
+function NetSalaryCalc() {
+    const [desired, setDesired] = useState(6500);
+    const [age, setAge] = useState(35);
+
+    const res = useMemo(() => {
+        const bvgRate = age < 25 ? 0 : age < 35 ? 0.07 : age < 45 ? 0.10 : age < 55 ? 0.15 : 0.18;
+        const totalRate = 0.0435 + 0.007 + 0.0025 + 0.011 + bvgRate + 0.013;
+        const gross = desired / (1 - totalRate);
+        const deductions = gross - desired;
+        return { gross, deductions, totalRate: totalRate * 100, bvgRate: bvgRate * 100 };
+    }, [desired, age]);
+
+    return (
+        <div className="ar-custom-calc">
+            <div className="ar-custom-calc__input-row">
+                <div className="ar-custom-calc__input-group"><label>Gewünschter Nettolohn (CHF/Mt.)</label><input type="number" className="ar-custom-calc__number-input" value={desired} onChange={e => setDesired(+e.target.value)} min={1000} step={500} /></div>
+                <div className="ar-custom-calc__input-group"><label>Alter</label><input type="number" className="ar-custom-calc__number-input" value={age} onChange={e => setAge(+e.target.value)} min={18} max={65} step={1} /></div>
+            </div>
+            <div className="ar-custom-calc__results">
+                <div className="ar-custom-calc__result-main"><span className="ar-custom-calc__result-label">Benötigter Bruttolohn</span><span className="ar-custom-calc__result-value">CHF {fmtCHF(res.gross)}</span></div>
+                <div className="ar-custom-calc__result-grid">
+                    <div className="ar-custom-calc__result-card"><span className="ar-custom-calc__card-icon">💵</span><span className="ar-custom-calc__card-value">CHF {fmtCHF(desired)}</span><span className="ar-custom-calc__card-label">Nettolohn</span></div>
+                    <div className="ar-custom-calc__result-card"><span className="ar-custom-calc__card-icon">💸</span><span className="ar-custom-calc__card-value">CHF {fmtCHF(res.deductions)}</span><span className="ar-custom-calc__card-label">Abzüge/Monat</span></div>
+                    <div className="ar-custom-calc__result-card"><span className="ar-custom-calc__card-icon">📊</span><span className="ar-custom-calc__card-value">{fmtPct(res.totalRate)}</span><span className="ar-custom-calc__card-label">Gesamtabzugsrate</span></div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+// ═══════════════════════════════════════════════════
+// 23. Stundenlohn Rechner
+// ═══════════════════════════════════════════════════
+function HourlyRateCalc() {
+    const [monthly, setMonthly] = useState(7000);
+    const [weeklyHours, setWeeklyHours] = useState(42);
+    const [vacWeeks, setVacWeeks] = useState(4);
+
+    const res = useMemo(() => {
+        const monthlyHours = (weeklyHours * 52) / 12;
+        const hourly = monthly / monthlyHours;
+        const vacPct = vacWeeks / (52 - vacWeeks);
+        const hourlyWithVac = hourly * (1 + vacPct);
+        const annualHours = weeklyHours * (52 - vacWeeks);
+        return { monthlyHours, hourly, vacPct: vacPct * 100, hourlyWithVac, annualHours };
+    }, [monthly, weeklyHours, vacWeeks]);
+
+    return (
+        <div className="ar-custom-calc">
+            <div className="ar-custom-calc__input-row">
+                <div className="ar-custom-calc__input-group"><label>Monatslohn (CHF)</label><input type="number" className="ar-custom-calc__number-input" value={monthly} onChange={e => setMonthly(+e.target.value)} min={1000} step={500} /></div>
+                <div className="ar-custom-calc__input-group"><label>Wochenstunden</label><input type="number" className="ar-custom-calc__number-input" value={weeklyHours} onChange={e => setWeeklyHours(+e.target.value)} min={20} max={50} step={0.5} /></div>
+            </div>
+            <div className="ar-custom-calc__input-group"><label>Ferienanspruch (Wochen)</label><div className="ar-custom-calc__toggle-row"><button className={`ar-custom-calc__toggle${vacWeeks === 4 ? " ar-custom-calc__toggle--active" : ""}`} onClick={() => setVacWeeks(4)}>4 Wochen</button><button className={`ar-custom-calc__toggle${vacWeeks === 5 ? " ar-custom-calc__toggle--active" : ""}`} onClick={() => setVacWeeks(5)}>5 Wochen</button><button className={`ar-custom-calc__toggle${vacWeeks === 6 ? " ar-custom-calc__toggle--active" : ""}`} onClick={() => setVacWeeks(6)}>6 Wochen</button></div></div>
+            <div className="ar-custom-calc__results">
+                <div className="ar-custom-calc__result-main"><span className="ar-custom-calc__result-label">Stundenlohn</span><span className="ar-custom-calc__result-value">CHF {res.hourly.toFixed(2)}</span></div>
+                <div className="ar-custom-calc__result-grid">
+                    <div className="ar-custom-calc__result-card"><span className="ar-custom-calc__card-icon">🏖️</span><span className="ar-custom-calc__card-value">CHF {res.hourlyWithVac.toFixed(2)}</span><span className="ar-custom-calc__card-label">Inkl. Ferienzuschlag ({fmtPct(res.vacPct)})</span></div>
+                    <div className="ar-custom-calc__result-card"><span className="ar-custom-calc__card-icon">🕐</span><span className="ar-custom-calc__card-value">{res.monthlyHours.toFixed(1)}h</span><span className="ar-custom-calc__card-label">Ø Stunden/Monat</span></div>
+                    <div className="ar-custom-calc__result-card"><span className="ar-custom-calc__card-icon">📅</span><span className="ar-custom-calc__card-value">{fmtCHF(res.annualHours)}h</span><span className="ar-custom-calc__card-label">Arbeitsstunden/Jahr</span></div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+// ═══════════════════════════════════════════════════
+// 24. Monatslohn Rechner
+// ═══════════════════════════════════════════════════
+function MonthlySalaryCalc() {
+    const [annual, setAnnual] = useState(100000);
+    const [has13, setHas13] = useState(true);
+    const [pensum, setPensum] = useState(100);
+
+    const res = useMemo(() => {
+        const divisor = has13 ? 13 : 12;
+        const fullTime = annual / divisor;
+        const partTime = fullTime * (pensum / 100);
+        const annualPartTime = partTime * divisor;
+        return { fullTime, partTime, annualPartTime, divisor };
+    }, [annual, has13, pensum]);
+
+    return (
+        <div className="ar-custom-calc">
+            <div className="ar-custom-calc__input-row">
+                <div className="ar-custom-calc__input-group"><label>Jahreslohn (CHF)</label><input type="number" className="ar-custom-calc__number-input" value={annual} onChange={e => setAnnual(+e.target.value)} min={10000} step={5000} /></div>
+                <div className="ar-custom-calc__input-group"><label>Pensum (%)</label><input type="number" className="ar-custom-calc__number-input" value={pensum} onChange={e => setPensum(+e.target.value)} min={10} max={100} step={10} /></div>
+            </div>
+            <div className="ar-custom-calc__input-group"><label>13. Monatslohn</label><div className="ar-custom-calc__toggle-row"><button className={`ar-custom-calc__toggle${has13 ? " ar-custom-calc__toggle--active" : ""}`} onClick={() => setHas13(true)}>Ja (÷ 13)</button><button className={`ar-custom-calc__toggle${!has13 ? " ar-custom-calc__toggle--active" : ""}`} onClick={() => setHas13(false)}>Nein (÷ 12)</button></div></div>
+            <div className="ar-custom-calc__results">
+                <div className="ar-custom-calc__result-main"><span className="ar-custom-calc__result-label">Monatslohn ({pensum}%)</span><span className="ar-custom-calc__result-value">CHF {fmtCHF(res.partTime)}</span></div>
+                <div className="ar-custom-calc__result-grid">
+                    <div className="ar-custom-calc__result-card"><span className="ar-custom-calc__card-icon">💼</span><span className="ar-custom-calc__card-value">CHF {fmtCHF(res.fullTime)}</span><span className="ar-custom-calc__card-label">Vollzeit-Monatslohn</span></div>
+                    <div className="ar-custom-calc__result-card"><span className="ar-custom-calc__card-icon">📅</span><span className="ar-custom-calc__card-value">CHF {fmtCHF(res.annualPartTime)}</span><span className="ar-custom-calc__card-label">Jahreslohn ({pensum}%)</span></div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+// ═══════════════════════════════════════════════════
+// 25. Jahreslohn Rechner
+// ═══════════════════════════════════════════════════
+function AnnualSalaryCalc() {
+    const [monthly, setMonthly] = useState(8000);
+    const [has13, setHas13] = useState(true);
+    const [bonus, setBonus] = useState(0);
+
+    const res = useMemo(() => {
+        const base = has13 ? monthly * 13 : monthly * 12;
+        const total = base + bonus;
+        const agCosts = total * 1.17;
+        const agExtra = agCosts - total;
+        return { base, total, agCosts, agExtra };
+    }, [monthly, has13, bonus]);
+
+    return (
+        <div className="ar-custom-calc">
+            <div className="ar-custom-calc__input-row">
+                <div className="ar-custom-calc__input-group"><label>Monatslohn (CHF)</label><input type="number" className="ar-custom-calc__number-input" value={monthly} onChange={e => setMonthly(+e.target.value)} min={1000} step={500} /></div>
+                <div className="ar-custom-calc__input-group"><label>Jährlicher Bonus (CHF)</label><input type="number" className="ar-custom-calc__number-input" value={bonus} onChange={e => setBonus(+e.target.value)} min={0} step={1000} /></div>
+            </div>
+            <div className="ar-custom-calc__input-group"><label>13. Monatslohn</label><div className="ar-custom-calc__toggle-row"><button className={`ar-custom-calc__toggle${has13 ? " ar-custom-calc__toggle--active" : ""}`} onClick={() => setHas13(true)}>Ja (× 13)</button><button className={`ar-custom-calc__toggle${!has13 ? " ar-custom-calc__toggle--active" : ""}`} onClick={() => setHas13(false)}>Nein (× 12)</button></div></div>
+            <div className="ar-custom-calc__results">
+                <div className="ar-custom-calc__result-main"><span className="ar-custom-calc__result-label">Jahreslohn (Total)</span><span className="ar-custom-calc__result-value">CHF {fmtCHF(res.total)}</span></div>
+                <div className="ar-custom-calc__result-grid">
+                    <div className="ar-custom-calc__result-card"><span className="ar-custom-calc__card-icon">💼</span><span className="ar-custom-calc__card-value">CHF {fmtCHF(res.base)}</span><span className="ar-custom-calc__card-label">Grundlohn/Jahr</span></div>
+                    <div className="ar-custom-calc__result-card"><span className="ar-custom-calc__card-icon">🏢</span><span className="ar-custom-calc__card-value">CHF {fmtCHF(res.agCosts)}</span><span className="ar-custom-calc__card-label">Arbeitgeberkosten</span></div>
+                    <div className="ar-custom-calc__result-card"><span className="ar-custom-calc__card-icon">💸</span><span className="ar-custom-calc__card-value">CHF {fmtCHF(res.agExtra)}</span><span className="ar-custom-calc__card-label">AG-Sozialabgaben (~17%)</span></div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+// ═══════════════════════════════════════════════════
+// 26. Freelancer Einkommen Rechner
+// ═══════════════════════════════════════════════════
+function FreelancerCalc() {
+    const [revenue, setRevenue] = useState(150000);
+    const [expenses, setExpenses] = useState(20000);
+    const [pillar3a, setPillar3a] = useState(7258);
+    const [cantonIdx, setCantonIdx] = useState(0);
+
+    const res = useMemo(() => {
+        const net = revenue - expenses;
+        const ahvRate = net <= 57400 ? 0.10 : 0.05371;
+        const ahv = net * ahvRate;
+        const pillar3aMax = Math.min(36288, net * 0.20);
+        const actual3a = Math.min(pillar3a, pillar3aMax);
+        const taxable = net - ahv - actual3a;
+        const canton = TAX_CANTONS[cantonIdx];
+        const tax = taxable * ((canton.incomeRate + 4) / 100);
+        const finalNet = net - ahv - tax;
+        const mwstRequired = revenue > 100000;
+        const hourly = finalNet / 1700;
+        return { net, ahv, ahvRate: ahvRate * 100, taxable, tax, finalNet, mwstRequired, hourly, pillar3aMax, actual3a };
+    }, [revenue, expenses, pillar3a, cantonIdx]);
+
+    return (
+        <div className="ar-custom-calc">
+            <div className="ar-custom-calc__input-row">
+                <div className="ar-custom-calc__input-group"><label>Jahresumsatz (CHF)</label><input type="number" className="ar-custom-calc__number-input" value={revenue} onChange={e => setRevenue(+e.target.value)} min={10000} step={5000} /></div>
+                <div className="ar-custom-calc__input-group"><label>Berufsauslagen (CHF)</label><input type="number" className="ar-custom-calc__number-input" value={expenses} onChange={e => setExpenses(+e.target.value)} min={0} step={1000} /></div>
+            </div>
+            <div className="ar-custom-calc__input-row">
+                <div className="ar-custom-calc__input-group"><label>Säule 3a (CHF)</label><input type="number" className="ar-custom-calc__number-input" value={pillar3a} onChange={e => setPillar3a(+e.target.value)} min={0} max={36288} step={100} /></div>
+                <div className="ar-custom-calc__input-group"><label>Kanton</label><select className="ar-custom-calc__number-input" value={cantonIdx} onChange={e => setCantonIdx(+e.target.value)}>{TAX_CANTONS.map((c, i) => <option key={i} value={i}>{c.name}</option>)}</select></div>
+            </div>
+            <div className="ar-custom-calc__results">
+                <div className="ar-custom-calc__result-main"><span className="ar-custom-calc__result-label">Nettoeinkommen (nach Steuern)</span><span className="ar-custom-calc__result-value">CHF {fmtCHF(res.finalNet)}</span></div>
+                <div className="ar-custom-calc__result-grid">
+                    <div className="ar-custom-calc__result-card"><span className="ar-custom-calc__card-icon">🧾</span><span className="ar-custom-calc__card-value">CHF {fmtCHF(res.ahv)}</span><span className="ar-custom-calc__card-label">AHV/IV/EO ({fmtPct(res.ahvRate)})</span></div>
+                    <div className="ar-custom-calc__result-card"><span className="ar-custom-calc__card-icon">🏛️</span><span className="ar-custom-calc__card-value">CHF {fmtCHF(res.tax)}</span><span className="ar-custom-calc__card-label">Steuern (geschätzt)</span></div>
+                    <div className="ar-custom-calc__result-card"><span className="ar-custom-calc__card-icon">{res.mwstRequired ? "⚠️" : "✅"}</span><span className="ar-custom-calc__card-value">{res.mwstRequired ? "Ja" : "Nein"}</span><span className="ar-custom-calc__card-label">MWST-Pflicht</span></div>
+                </div>
+                <div className="ar-custom-calc__milestones">
+                    <h3>Kalkulation</h3>
+                    <div className="ar-custom-calc__milestone"><span>Umsatz</span><span>CHF {fmtCHF(revenue)}</span></div>
+                    <div className="ar-custom-calc__milestone"><span>– Berufsauslagen</span><span>–CHF {fmtCHF(expenses)}</span></div>
+                    <div className="ar-custom-calc__milestone"><span>= Nettoeinkommen</span><span>CHF {fmtCHF(res.net)}</span></div>
+                    <div className="ar-custom-calc__milestone"><span>– AHV/IV/EO</span><span>–CHF {fmtCHF(res.ahv)}</span></div>
+                    <div className="ar-custom-calc__milestone"><span>– Steuern</span><span>–CHF {fmtCHF(res.tax)}</span></div>
+                    <div className="ar-custom-calc__milestone ar-custom-calc__milestone--highlight"><span>Verfügbar</span><span>CHF {fmtCHF(res.finalNet)}</span></div>
+                    <div className="ar-custom-calc__milestone"><span>≈ Stundenlohn (1'700h)</span><span>CHF {res.hourly.toFixed(2)}/h</span></div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+// ═══════════════════════════════════════════════════
+// 27. Quellensteuer Lohn Rechner
+// ═══════════════════════════════════════════════════
+function PayrollWithholdingCalc() {
+    const [gross, setGross] = useState(7500);
+    const [tariff, setTariff] = useState<"A0" | "B0" | "B2" | "C0">("A0");
+    const [cantonIdx, setCantonIdx] = useState(0);
+
+    const res = useMemo(() => {
+        const canton = TAX_CANTONS[cantonIdx];
+        const sozial = gross * 0.064;
+        const bvg = gross * 0.10;
+        const nbu = gross * 0.013;
+        const tariffMulti = tariff === "A0" ? 0.85 : tariff === "B0" ? 0.68 : tariff === "B2" ? 0.55 : 0.75;
+        const qst = gross * (canton.incomeRate * tariffMulti / 100);
+        const totalDeductions = sozial + bvg + nbu + qst;
+        const net = gross - totalDeductions;
+        return { sozial, bvg, nbu, qst, totalDeductions, net };
+    }, [gross, tariff, cantonIdx]);
+
+    return (
+        <div className="ar-custom-calc">
+            <div className="ar-custom-calc__input-row">
+                <div className="ar-custom-calc__input-group"><label>Bruttolohn/Monat (CHF)</label><input type="number" className="ar-custom-calc__number-input" value={gross} onChange={e => setGross(+e.target.value)} min={1000} step={500} /></div>
+                <div className="ar-custom-calc__input-group"><label>Kanton</label><select className="ar-custom-calc__number-input" value={cantonIdx} onChange={e => setCantonIdx(+e.target.value)}>{TAX_CANTONS.map((c, i) => <option key={i} value={i}>{c.name}</option>)}</select></div>
+            </div>
+            <div className="ar-custom-calc__input-group"><label>Tarif</label><div className="ar-custom-calc__toggle-row"><button className={`ar-custom-calc__toggle${tariff === "A0" ? " ar-custom-calc__toggle--active" : ""}`} onClick={() => setTariff("A0")}>A0 (ledig)</button><button className={`ar-custom-calc__toggle${tariff === "B0" ? " ar-custom-calc__toggle--active" : ""}`} onClick={() => setTariff("B0")}>B0 (verh.)</button><button className={`ar-custom-calc__toggle${tariff === "B2" ? " ar-custom-calc__toggle--active" : ""}`} onClick={() => setTariff("B2")}>B2 (verh. 2K)</button><button className={`ar-custom-calc__toggle${tariff === "C0" ? " ar-custom-calc__toggle--active" : ""}`} onClick={() => setTariff("C0")}>C0 (Doppel)</button></div></div>
+            <div className="ar-custom-calc__results">
+                <div className="ar-custom-calc__result-main"><span className="ar-custom-calc__result-label">Nettolohn (nach QST + Sozial)</span><span className="ar-custom-calc__result-value">CHF {fmtCHF(res.net)}</span></div>
+                <div className="ar-custom-calc__milestones">
+                    <div className="ar-custom-calc__milestone"><span>Bruttolohn</span><span>CHF {fmtCHF(gross)}</span></div>
+                    <div className="ar-custom-calc__milestone"><span>– AHV/IV/EO/ALV (6.4%)</span><span>–CHF {fmtCHF(res.sozial)}</span></div>
+                    <div className="ar-custom-calc__milestone"><span>– BVG (~10%)</span><span>–CHF {fmtCHF(res.bvg)}</span></div>
+                    <div className="ar-custom-calc__milestone"><span>– NBU (1.3%)</span><span>–CHF {fmtCHF(res.nbu)}</span></div>
+                    <div className="ar-custom-calc__milestone"><span>– Quellensteuer ({tariff})</span><span>–CHF {fmtCHF(res.qst)}</span></div>
+                    <div className="ar-custom-calc__milestone ar-custom-calc__milestone--highlight"><span>Nettolohn</span><span>CHF {fmtCHF(res.net)}</span></div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+// ═══════════════════════════════════════════════════
+// 28. Bonus Rechner
+// ═══════════════════════════════════════════════════
+function BonusCalc() {
+    const [bonusGross, setBonusGross] = useState(20000);
+    const [marginalRate, setMarginalRate] = useState(30);
+
+    const res = useMemo(() => {
+        const ahvIvEoAlv = bonusGross * 0.064;
+        const netBeforeTax = bonusGross - ahvIvEoAlv;
+        const taxOnBonus = bonusGross * (marginalRate / 100);
+        const netAfterTax = bonusGross - ahvIvEoAlv - taxOnBonus;
+        const effectiveRate = ((ahvIvEoAlv + taxOnBonus) / bonusGross) * 100;
+        const save3a = Math.min(7258, bonusGross) * (marginalRate / 100);
+        return { ahvIvEoAlv, netBeforeTax, taxOnBonus, netAfterTax, effectiveRate, save3a };
+    }, [bonusGross, marginalRate]);
+
+    return (
+        <div className="ar-custom-calc">
+            <div className="ar-custom-calc__input-row">
+                <div className="ar-custom-calc__input-group"><label>Bonus brutto (CHF)</label><input type="number" className="ar-custom-calc__number-input" value={bonusGross} onChange={e => setBonusGross(+e.target.value)} min={0} step={1000} /></div>
+                <div className="ar-custom-calc__input-group"><label>Grenzsteuersatz (%)</label><input type="number" className="ar-custom-calc__number-input" value={marginalRate} onChange={e => setMarginalRate(+e.target.value)} min={5} max={45} step={1} /></div>
+            </div>
+            <div className="ar-custom-calc__results">
+                <div className="ar-custom-calc__result-main"><span className="ar-custom-calc__result-label">Netto-Bonus (nach Sozial + Steuern)</span><span className="ar-custom-calc__result-value">CHF {fmtCHF(res.netAfterTax)}</span></div>
+                <div className="ar-custom-calc__result-grid">
+                    <div className="ar-custom-calc__result-card"><span className="ar-custom-calc__card-icon">🧾</span><span className="ar-custom-calc__card-value">CHF {fmtCHF(res.ahvIvEoAlv)}</span><span className="ar-custom-calc__card-label">Sozialabgaben (6.4%)</span></div>
+                    <div className="ar-custom-calc__result-card"><span className="ar-custom-calc__card-icon">🏛️</span><span className="ar-custom-calc__card-value">CHF {fmtCHF(res.taxOnBonus)}</span><span className="ar-custom-calc__card-label">Steuern ({marginalRate}%)</span></div>
+                    <div className="ar-custom-calc__result-card"><span className="ar-custom-calc__card-icon">🎯</span><span className="ar-custom-calc__card-value">CHF {fmtCHF(res.save3a)}</span><span className="ar-custom-calc__card-label">Sparpotenzial (3a)</span></div>
+                </div>
+                <p className="ar-custom-calc__note">Tipp: Investieren Sie den Bonus in die Säule 3a (max. CHF 7'258) — das spart CHF {fmtCHF(res.save3a)} Steuern!</p>
+            </div>
+        </div>
+    );
+}
+
+// ═══════════════════════════════════════════════════
+// 29. Überstunden Rechner
+// ═══════════════════════════════════════════════════
+function OvertimeCalc() {
+    const [monthly, setMonthly] = useState(7000);
+    const [weeklyHours, setWeeklyHours] = useState(42);
+    const [overtimeHours, setOvertimeHours] = useState(10);
+    const [isOvertime, setIsOvertime] = useState(true);
+
+    const res = useMemo(() => {
+        const monthlyH = (weeklyHours * 52) / 12;
+        const hourly = monthly / monthlyH;
+        const surcharge = isOvertime ? 1.25 : 1.0;
+        const pay = overtimeHours * hourly * surcharge;
+        const payNoSurcharge = overtimeHours * hourly;
+        const surchargeAmount = pay - payNoSurcharge;
+        return { hourly, surcharge, pay, payNoSurcharge, surchargeAmount, monthlyH };
+    }, [monthly, weeklyHours, overtimeHours, isOvertime]);
+
+    return (
+        <div className="ar-custom-calc">
+            <div className="ar-custom-calc__input-row">
+                <div className="ar-custom-calc__input-group"><label>Monatslohn (CHF)</label><input type="number" className="ar-custom-calc__number-input" value={monthly} onChange={e => setMonthly(+e.target.value)} min={1000} step={500} /></div>
+                <div className="ar-custom-calc__input-group"><label>Wochenstunden (vertragl.)</label><input type="number" className="ar-custom-calc__number-input" value={weeklyHours} onChange={e => setWeeklyHours(+e.target.value)} min={20} max={50} step={0.5} /></div>
+            </div>
+            <div className="ar-custom-calc__input-row">
+                <div className="ar-custom-calc__input-group"><label>Zusatzstunden (diesen Monat)</label><input type="number" className="ar-custom-calc__number-input" value={overtimeHours} onChange={e => setOvertimeHours(+e.target.value)} min={0} max={50} step={1} /></div>
+                <div className="ar-custom-calc__input-group"><label>Art</label><div className="ar-custom-calc__toggle-row"><button className={`ar-custom-calc__toggle${isOvertime ? " ar-custom-calc__toggle--active" : ""}`} onClick={() => setIsOvertime(true)}>Überzeit (+25%)</button><button className={`ar-custom-calc__toggle${!isOvertime ? " ar-custom-calc__toggle--active" : ""}`} onClick={() => setIsOvertime(false)}>Überstunden (1:1)</button></div></div>
+            </div>
+            <div className="ar-custom-calc__results">
+                <div className="ar-custom-calc__result-main"><span className="ar-custom-calc__result-label">Vergütung Zusatzstunden</span><span className="ar-custom-calc__result-value">CHF {fmtCHF(res.pay)}</span></div>
+                <div className="ar-custom-calc__result-grid">
+                    <div className="ar-custom-calc__result-card"><span className="ar-custom-calc__card-icon">⏱️</span><span className="ar-custom-calc__card-value">CHF {res.hourly.toFixed(2)}</span><span className="ar-custom-calc__card-label">Stundenlohn</span></div>
+                    <div className="ar-custom-calc__result-card"><span className="ar-custom-calc__card-icon">💰</span><span className="ar-custom-calc__card-value">CHF {fmtCHF(res.surchargeAmount)}</span><span className="ar-custom-calc__card-label">Zuschlag</span></div>
+                    <div className="ar-custom-calc__result-card"><span className="ar-custom-calc__card-icon">📊</span><span className="ar-custom-calc__card-value">CHF {fmtCHF(monthly + res.pay)}</span><span className="ar-custom-calc__card-label">Gesamtlohn diesen Mt.</span></div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+// ═══════════════════════════════════════════════════
+// 30. Lohn nach Steuern Rechner
+// ═══════════════════════════════════════════════════
+function AfterTaxSalaryCalc() {
+    const [gross, setGross] = useState(8000);
+    const [cantonIdx, setCantonIdx] = useState(0);
+    const [status, setStatus] = useState<"single" | "married">("single");
+    const [age, setAge] = useState(35);
+
+    const res = useMemo(() => {
+        const canton = TAX_CANTONS[cantonIdx];
+        const sozial = gross * 0.064;
+        const bvgRate = age < 25 ? 0 : age < 35 ? 0.07 : age < 45 ? 0.10 : age < 55 ? 0.15 : 0.18;
+        const bvg = gross * bvgRate;
+        const nbu = gross * 0.013;
+        const netBeforeTax = gross - sozial - bvg - nbu;
+        const annual = gross * 12;
+        const mf = status === "married" ? 0.82 : 1.0;
+        const monthlyTax = (annual * ((canton.incomeRate + 4) / 100) * mf) / 12;
+        const afterEverything = netBeforeTax - monthlyTax;
+        const effectiveRate = ((gross - afterEverything) / gross) * 100;
+        return { sozial, bvg, nbu, netBeforeTax, monthlyTax, afterEverything, effectiveRate };
+    }, [gross, cantonIdx, status, age]);
+
+    return (
+        <div className="ar-custom-calc">
+            <div className="ar-custom-calc__input-row">
+                <div className="ar-custom-calc__input-group"><label>Bruttolohn/Monat (CHF)</label><input type="number" className="ar-custom-calc__number-input" value={gross} onChange={e => setGross(+e.target.value)} min={1000} step={500} /></div>
+                <div className="ar-custom-calc__input-group"><label>Kanton</label><select className="ar-custom-calc__number-input" value={cantonIdx} onChange={e => setCantonIdx(+e.target.value)}>{TAX_CANTONS.map((c, i) => <option key={i} value={i}>{c.name}</option>)}</select></div>
+            </div>
+            <div className="ar-custom-calc__input-row">
+                <div className="ar-custom-calc__input-group"><label>Zivilstand</label><div className="ar-custom-calc__toggle-row"><button className={`ar-custom-calc__toggle${status === "single" ? " ar-custom-calc__toggle--active" : ""}`} onClick={() => setStatus("single")}>Ledig</button><button className={`ar-custom-calc__toggle${status === "married" ? " ar-custom-calc__toggle--active" : ""}`} onClick={() => setStatus("married")}>Verheiratet</button></div></div>
+                <div className="ar-custom-calc__input-group"><label>Alter</label><input type="number" className="ar-custom-calc__number-input" value={age} onChange={e => setAge(+e.target.value)} min={18} max={65} step={1} /></div>
+            </div>
+            <div className="ar-custom-calc__results">
+                <div className="ar-custom-calc__result-main"><span className="ar-custom-calc__result-label">Verfügbares Einkommen/Monat</span><span className="ar-custom-calc__result-value">CHF {fmtCHF(res.afterEverything)}</span></div>
+                <div className="ar-custom-calc__milestones">
+                    <h3>Vollständige Lohnrechnung</h3>
+                    <div className="ar-custom-calc__milestone"><span>Bruttolohn</span><span>CHF {fmtCHF(gross)}</span></div>
+                    <div className="ar-custom-calc__milestone"><span>– AHV/IV/EO/ALV</span><span>–CHF {fmtCHF(res.sozial)}</span></div>
+                    <div className="ar-custom-calc__milestone"><span>– BVG (Pensionskasse)</span><span>–CHF {fmtCHF(res.bvg)}</span></div>
+                    <div className="ar-custom-calc__milestone"><span>– NBU</span><span>–CHF {fmtCHF(res.nbu)}</span></div>
+                    <div className="ar-custom-calc__milestone"><span>= Nettolohn (Auszahlung)</span><span>CHF {fmtCHF(res.netBeforeTax)}</span></div>
+                    <div className="ar-custom-calc__milestone"><span>– Einkommenssteuer (monatl.)</span><span>–CHF {fmtCHF(res.monthlyTax)}</span></div>
+                    <div className="ar-custom-calc__milestone ar-custom-calc__milestone--highlight"><span>Verfügbar</span><span>CHF {fmtCHF(res.afterEverything)} ({fmtPct(100 - res.effectiveRate)} vom Brutto)</span></div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
 // ─── Dispatcher ───
 interface Props { calcType: string }
 
@@ -1209,6 +1626,17 @@ const CUSTOM_CALCS: Record<string, React.FC> = {
     "corporate-tax": CorporateTaxCalc,
     "tax-deductions": TaxDeductionsCalc,
     "tax-optimization": TaxOptimizationCalc,
+    // Salary & Payroll calculators
+    "gross-net": GrossNetCalc,
+    "net-salary": NetSalaryCalc,
+    "hourly-rate": HourlyRateCalc,
+    "monthly-salary": MonthlySalaryCalc,
+    "annual-salary": AnnualSalaryCalc,
+    "freelancer": FreelancerCalc,
+    "payroll-withholding": PayrollWithholdingCalc,
+    "bonus": BonusCalc,
+    "overtime": OvertimeCalc,
+    "after-tax-salary": AfterTaxSalaryCalc,
 };
 
 export default function ChCustomCalculatorCore({ calcType }: Props) {
@@ -1216,4 +1644,3 @@ export default function ChCustomCalculatorCore({ calcType }: Props) {
     if (!Comp) return <p>Rechner nicht gefunden.</p>;
     return <Comp />;
 }
-

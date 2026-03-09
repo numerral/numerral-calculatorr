@@ -585,9 +585,256 @@ export const CH_CALCULATORS: ChCalculator[] = [
         ],
         relatedIds: ["steuerabzugrechner", "einkommenssteuerrechner", "steuervergleich"],
     },
+    // ═══════════════════════════════════════════════════
+    // SWISS SALARY & PAYROLL CALCULATORS
+    // ═══════════════════════════════════════════════════
+    {
+        id: "brutto-netto-rechner",
+        title: "Brutto Netto Rechner Schweiz",
+        keyword: "Brutto Netto Rechner Schweiz",
+        calcType: "gross-net",
+        icon: "💵",
+        subtitle: "Berechnen Sie Ihren Nettolohn aus dem Bruttolohn. Mit allen Schweizer Sozialversicherungsabzügen: AHV, IV, EO, ALV, BVG und NBU.",
+        explanation: {
+            heading: "Vom Bruttolohn zum Nettolohn in der Schweiz",
+            paragraphs: [
+                "In der Schweiz werden vom Bruttolohn obligatorische Sozialversicherungsbeiträge abgezogen: AHV (Alters- und Hinterlassenenversicherung) 4.35%, IV (Invalidenversicherung) 0.7%, EO (Erwerbsersatzordnung) 0.25%, und ALV (Arbeitslosenversicherung) 1.1%. Zusammen ergibt das den Arbeitnehmerbeitrag von 6.4%.",
+                "Zusätzlich werden abgezogen: BVG-Beiträge (Pensionskasse, ca. 5-8% je nach Alter und Plan), NBU-Prämie (Nichtbetriebsunfallversicherung, ca. 1-2%), und allenfalls Quellensteuer bei ausländischen Arbeitnehmern. Der Arbeitgeber zahlt mindestens denselben Betrag nochmals (paritätische Beiträge).",
+            ],
+            highlight: "Bruttolohn CHF 8'000/Monat: AHV/IV/EO/ALV –CHF 512, BVG ca. –CHF 400, NBU ca. –CHF 100 = Nettolohn ca. CHF 6'988 (87.4%). Ohne Quellensteuer und Steuern.",
+        },
+        faq: [
+            { question: "Was ist der Unterschied zwischen Brutto und Netto?", answer: "Brutto = Gesamtlohn vor Abzügen (inkl. 13. Monatslohn). Netto = Auszahlungsbetrag nach Abzug von AHV/IV/EO/ALV, BVG, NBU und evtl. Quellensteuer. Steuern (Einkommens- und Vermögenssteuer) werden nicht vom Lohn abgezogen, sondern separat in Rechnung gestellt." },
+            { question: "Muss ich den 13. Monatslohn berücksichtigen?", answer: "Ja, der 13. Monatslohn ist in vielen Branchen üblich (aber nicht gesetzlich vorgeschrieben). Er wird pro rata im Dezember ausbezahlt. Bei der Berechnung des Jahreslohns: Monatslohn × 13 (wenn 13. ML vereinbart)." },
+            { question: "Warum ist der Nettolohn in der Schweiz so hoch im Vergleich?", answer: "Die Schweizer Sozialabgaben (ca. 12-15% Arbeitnehmeranteil) sind deutlich tiefer als in Deutschland (~20%) oder Frankreich (~22%). Zudem wird die Einkommenssteuer separat bezahlt, nicht vom Lohn abgezogen (ausser Quellensteuer)." },
+        ],
+        richSections: [
+            {
+                heading: "Obligatorische Lohnabzüge 2026 (Arbeitnehmeranteil)",
+                table: {
+                    headers: ["Abzug", "Satz", "Auf Lohn bis", "Monatlich (bei CHF 8'000)"],
+                    rows: [
+                        ["AHV (Altersvorsorge)", "4.35%", "Unbegrenzt", "CHF 348"],
+                        ["IV (Invalidenversicherung)", "0.70%", "Unbegrenzt", "CHF 56"],
+                        ["EO (Erwerbsersatz)", "0.25%", "Unbegrenzt", "CHF 20"],
+                        ["ALV (Arbeitslosenversicherung)", "1.10%", "CHF 148'200/Jahr", "CHF 88"],
+                        ["BVG (Pensionskasse)", "~5-8%", "Koordinierter Lohn", "CHF ~400"],
+                        ["NBU (Unfallversicherung)", "~1-2%", "CHF 148'200/Jahr", "CHF ~100"],
+                    ],
+                },
+            },
+        ],
+        relatedIds: ["nettolohnrechner", "stundenlohnrechner", "lohn-nach-steuern"],
+    },
+    {
+        id: "nettolohnrechner",
+        title: "Nettolohn Rechner",
+        keyword: "Nettolohn Rechner Schweiz",
+        calcType: "net-salary",
+        icon: "💰",
+        subtitle: "Berechnen Sie Ihren Nettolohn nach allen Abzügen. Geben Sie Ihren gewünschten Nettolohn ein und erfahren Sie, welcher Bruttolohn nötig ist.",
+        explanation: {
+            heading: "Nettolohn in der Schweiz berechnen",
+            paragraphs: [
+                "Der Nettolohn ist der Betrag, den Sie tatsächlich auf Ihr Konto überwiesen bekommen. Er berechnet sich aus dem Bruttolohn minus aller obligatorischen Abzüge. In der Schweiz liegt das Netto-zu-Brutto-Verhältnis typischerweise bei 85-90%.",
+                "Dieser Rechner funktioniert auch umgekehrt: Geben Sie Ihren gewünschten Nettolohn ein und berechnen Sie, welchen Bruttolohn Sie dafür verhandeln müssen. Besonders nützlich bei Gehaltsverhandlungen und Jobwechsel.",
+            ],
+            highlight: "Gewünschter Nettolohn CHF 6'000/Monat → Benötigter Bruttolohn ca. CHF 6'900-7'200 (je nach BVG-Plan und Alter).",
+        },
+        faq: [
+            { question: "Wie verhandle ich mein Gehalt richtig?", answer: "Verhandeln Sie immer den Bruttolohn. Fragen Sie nach dem 13. Monatslohn, Bonusregelungen und dem BVG-Plan (überobligatorische Leistungen können den Nettolohn stark beeinflussen). Tipp: Ein besserer BVG-Plan bedeutet zwar mehr Abzüge, aber auch mehr Altersvorsorge." },
+            { question: "Was beeinflusst die Höhe meiner Abzüge?", answer: "Das Alter (BVG-Beiträge steigen mit dem Alter: 25-34 Jahre: 7%, 35-44: 10%, 45-54: 15%, 55-64: 18%), der PK-Plan (obligatorisch vs. überobligatorisch), und ob Sie quellensteuerpflichtig sind." },
+        ],
+        relatedIds: ["brutto-netto-rechner", "jahreslohnrechner", "monatslohnrechner"],
+    },
+    {
+        id: "stundenlohnrechner",
+        title: "Stundenlohn Rechner",
+        keyword: "Stundenlohn Rechner Schweiz",
+        calcType: "hourly-rate",
+        icon: "⏱️",
+        subtitle: "Berechnen Sie Ihren Stundenlohn aus dem Monats- oder Jahreslohn. Oder ermitteln Sie den Monatslohn aus einem Stundensatz. Mit Ferienanspruch und Feiertagen.",
+        explanation: {
+            heading: "Stundenlohn in der Schweiz berechnen",
+            paragraphs: [
+                "Die Umrechnung von Monatslohn in Stundenlohn berücksichtigt die durchschnittliche Arbeitsstunden pro Monat. In der Schweiz beträgt die Normalarbeitszeit je nach Branche 40-42 Stunden/Woche (in Büroberufen 42h, in der Industrie 41h).",
+                "Bei der Berechnung des Stundenlohns müssen Ferien (4-5 Wochen) und Feiertage (8-9 Tage je nach Kanton) berücksichtigt werden. Der effektive Stundenlohn inkl. Ferienentschädigung ist ca. 8-10% höher als der reine Stundenlohn. Bei Teilzeit wird der Ferienzuschlag oft direkt auf den Stundenlohn aufgerechnet.",
+            ],
+            highlight: "Monatslohn CHF 7'000 bei 42h/Woche → Stundenlohn CHF 38.46. Inkl. 8.33% Ferienentschädigung (4 Wochen): CHF 41.67. Bei 5 Wochen Ferien (10.64%): CHF 42.55.",
+        },
+        faq: [
+            { question: "Wie berechne ich den Ferienanteil im Stundenlohn?", answer: "4 Wochen Ferien = 8.33% Zuschlag (4/48). 5 Wochen Ferien = 10.64% Zuschlag (5/47). 6 Wochen Ferien = 13.04% Zuschlag. Bei Stundenlöhnen muss der Ferienzuschlag separat ausgewiesen werden." },
+            { question: "Was ist die durchschnittliche Arbeitszeit pro Monat?", answer: "Bei 42h/Woche: 42 × 52 / 12 = 182 Stunden/Monat. Bei 40h/Woche: 40 × 52 / 12 = 173.3 Stunden/Monat. Diese Zahl wird für die Umrechnung Monats- ↔ Stundenlohn verwendet." },
+        ],
+        relatedIds: ["brutto-netto-rechner", "monatslohnrechner", "ueberstundenrechner"],
+    },
+    {
+        id: "monatslohnrechner",
+        title: "Monatslohn Rechner",
+        keyword: "Monatslohn Rechner Schweiz",
+        calcType: "monthly-salary",
+        icon: "📅",
+        subtitle: "Berechnen Sie Ihren Monatslohn aus dem Jahreslohn (inkl./exkl. 13. Monatslohn) oder aus dem Stundenlohn. Mit Teilzeitfaktor.",
+        explanation: {
+            heading: "Monatslohn berechnen — mit oder ohne 13. Monatslohn",
+            paragraphs: [
+                "In der Schweiz wird der Monatslohn oft als 1/12 oder 1/13 des Jahreslohns berechnet — je nachdem, ob ein 13. Monatslohn vereinbart ist. Der 13. Monatslohn ist kein gesetzlicher Anspruch, aber in vielen Branchen und GAV (Gesamtarbeitsverträge) üblich.",
+                "Bei Teilzeitarbeit wird der Monatslohn proportional berechnet: Ein 80%-Pensum bedeutet 80% des Vollzeit-Monatslohns. Beachten Sie: Sozialversicherungsbeiträge werden auf den reduzierten Lohn berechnet, was den BVG-Koordinationsabzug besonders relevant macht.",
+            ],
+            highlight: "Jahreslohn CHF 100'000 mit 13. ML: Monatslohn CHF 7'692 (× 13). Ohne 13. ML: CHF 8'333 (× 12). Bei 80% Pensum mit 13. ML: CHF 6'154.",
+        },
+        faq: [
+            { question: "Ist der 13. Monatslohn obligatorisch?", answer: "Nein, er ist nicht gesetzlich vorgeschrieben. Er muss im Arbeitsvertrag oder GAV vereinbart sein. Einige Branchen (z.B. Gastgewerbe, Detailhandel) sehen ihn im GAV vor. Manche Arbeitgeber zahlen stattdessen einen Bonus oder eine Gratifikation." },
+            { question: "Wie wird Teilzeit in der Schweiz abgerechnet?", answer: "Der Lohn wird proportional zum Pensum berechnet. Ein 60%-Pensum erhält 60% des Vollzeitlohns. Achtung beim BVG: Der Koordinationsabzug (CHF 25'725) wird bei Teilzeit nicht immer angepasst, was den versicherten Lohn überproportional reduziert." },
+        ],
+        relatedIds: ["jahreslohnrechner", "stundenlohnrechner", "brutto-netto-rechner"],
+    },
+    {
+        id: "jahreslohnrechner",
+        title: "Jahreslohn Rechner",
+        keyword: "Jahreslohn Rechner Schweiz",
+        calcType: "annual-salary",
+        icon: "📊",
+        subtitle: "Berechnen Sie Ihren Jahreslohn aus dem Monatslohn. Inkl. 13. Monatslohn, Bonus, Spesen und Sozialversicherungsbeiträge (Arbeitgeberkosten).",
+        explanation: {
+            heading: "Jahreslohn und Gesamtkosten für den Arbeitgeber",
+            paragraphs: [
+                "Der Jahreslohn umfasst mehr als 12 × Monatslohn: 13. Monatslohn, variable Vergütung (Bonus), und regelmässige Zulagen. Für den Arbeitgeber kommen die paritätischen Sozialversicherungsbeiträge hinzu (ca. 12-15%), was die Gesamtkosten pro Mitarbeiter deutlich erhöht.",
+                "Die Arbeitgeberkosten setzen sich zusammen aus: Bruttolohn + AHV/IV/EO/ALV (6.4%) + BVG-Arbeitgeberanteil (mindestens 50%) + BU/NBU + FAK (Familienausgleichskasse, ca. 1-3%) + evt. Krankentaggeld. Als Faustregel: Arbeitgeberkosten ≈ Bruttolohn × 1.15-1.20.",
+            ],
+            highlight: "Monatslohn CHF 8'000 × 13 = CHF 104'000 Jahreslohn. + Arbeitgeberbeiträge (~15%): CHF 15'600. = Gesamtkosten Arbeitgeber: CHF 119'600.",
+        },
+        faq: [
+            { question: "Was sind die Gesamtkosten für den Arbeitgeber?", answer: "Faustregel: Bruttolohn × 1.15-1.20. Zusatzkosten: AHV/IV/EO/ALV (6.4%), BVG-Arbeitgeberanteil (50-60% der PK-Beiträge), BU-Prämie (100% Arbeitgeber), FAK (1-3%), evt. Krankentaggeld und Weiterbildungskosten." },
+            { question: "Wie berechne ich meinen Gesamtjahreslohn?", answer: "Grundlohn × 12 (oder × 13 bei 13. ML) + Bonus/Variable + regelmässige Zulagen (Schichtzulage, Pikettentschädigung etc.). Nicht dazu gehören: Spesen (sind Auslagenersatz, kein Lohn) und einmalige Prämien." },
+        ],
+        relatedIds: ["monatslohnrechner", "brutto-netto-rechner", "bonusrechner"],
+    },
+    {
+        id: "freelancer-rechner",
+        title: "Freelancer Einkommen Rechner",
+        keyword: "Freelancer Einkommen Rechner Schweiz",
+        calcType: "freelancer",
+        icon: "💻",
+        subtitle: "Berechnen Sie Ihr Nettoeinkommen als Selbständiger in der Schweiz. Inkl. AHV/IV/EO, BVG-Optionen, MWST-Pflicht und Steuerbelastung.",
+        explanation: {
+            heading: "Einkommen als Freelancer in der Schweiz",
+            paragraphs: [
+                "Als Selbständiger in der Schweiz zahlen Sie AHV/IV/EO-Beiträge auf das Nettoeinkommen (ca. 10% bis CHF 57'400, darüber 5.371%). Es gibt keine ALV-Pflicht, aber auch keinen Anspruch auf Arbeitslosenentschädigung. BVG ist freiwillig, wird aber empfohlen (steuerlich absetzbar).",
+                "Wichtig: Ab CHF 100'000 Jahresumsatz müssen Sie sich für die MWST registrieren. Berufsauslagen (Büro, Equipment, Reisen, Weiterbildung) sind vom steuerbaren Einkommen abziehbar. Säule 3a: Ohne PK können Sie bis zu 20% des Nettoeinkommens einzahlen (max. CHF 36'288).",
+            ],
+            highlight: "Freelancer-Umsatz CHF 150'000, Berufsauslagen CHF 20'000 → Nettoeinkommen CHF 130'000. AHV/IV/EO ca. –CHF 7'000. Steuern (Zürich) ca. –CHF 18'000. Netto: ca. CHF 105'000.",
+        },
+        faq: [
+            { question: "Selbständig oder Angestellt — was lohnt sich mehr?", answer: "Finanziell: Als Angestellter zahlt der AG die Hälfte der Sozialversicherungen (~6.4% + BVG). Als Selbständiger tragen Sie alles selbst. Dafür können Sie Berufsauslagen abziehen und haben mehr Flexibilität. Faustregel: Ihr Stundensatz als Freelancer sollte 30-50% höher sein als ein vergleichbares Angestelltengehalt." },
+            { question: "Muss ich als Freelancer BVG haben?", answer: "Nein, BVG ist für Selbständige freiwillig. Sie können sich aber freiwillig bei einer Stiftung oder der Auffangeinrichtung BVG versichern. Der Vorteil: BVG-Beiträge sind steuerlich abzugsfähig. Alternative: Höhere Einzahlungen in die Säule 3a." },
+            { question: "Wie berechne ich meinen Stundensatz als Freelancer?", answer: "Ziel-Nettoeinkommen + Sozialversicherungen + Steuern + Berufsauslagen + Ferien/Krankheit (20% Zuschlag) = benötigter Bruttoumsatz. Geteilt durch fakturierbare Stunden (ca. 1'600-1'800/Jahr). Beispiel: CHF 120'000 Ziel → ca. CHF 170'000 Umsatz → CHF 95-106/Stunde." },
+        ],
+        relatedIds: ["brutto-netto-rechner", "stundenlohnrechner", "lohn-nach-steuern"],
+    },
+    {
+        id: "quellensteuer-lohn",
+        title: "Quellensteuer Lohn Rechner",
+        keyword: "Quellensteuer Lohn Rechner Schweiz",
+        calcType: "payroll-withholding",
+        icon: "✂️",
+        subtitle: "Berechnen Sie den Nettolohn nach Quellensteuerabzug. Für ausländische Arbeitnehmer (B- und L-Bewilligung) mit kantonalen Tarifen.",
+        explanation: {
+            heading: "Lohn nach Quellensteuer berechnen",
+            paragraphs: [
+                "Die Quellensteuer wird direkt vom Lohn abgezogen — anders als bei der ordentlichen Veranlagung, wo Sie die Steuer separat bezahlen. Der Quellensteuertarif berücksichtigt bereits Standardabzüge (Berufskosten, Versicherungen). Zusätzlich werden die normalen Sozialversicherungsbeiträge abgezogen.",
+                "Die Quellensteuer-Tarife: A = ledig/geschieden ohne Kinder, B = verheiratet, Alleinverdiener, C = verheiratet, Doppelverdiener. Nachgestellte Ziffer = Anzahl Kinder (z.B. B2 = verheiratet mit 2 Kindern). Ab CHF 120'000 Jahreseinkommen erfolgt eine nachträgliche ordentliche Veranlagung.",
+            ],
+            highlight: "Bruttolohn CHF 7'500/Mt., Tarif B2 (verheiratet, 2 Kinder), Kanton Zürich → Sozialabzüge ca. CHF 975 + Quellensteuer ca. CHF 525 = Nettolohn ca. CHF 6'000.",
+        },
+        faq: [
+            { question: "Welchen Tarif habe ich?", answer: "A0 = ledig, keine Kinder. A1 = ledig, 1 Kind. B0 = verheiratet, Alleinverdiener, keine Kinder. B2 = verheiratet, 2 Kinder. C0 = verheiratet, Doppelverdiener. Der Arbeitgeber bestimmt den Tarif anhand Ihrer Angaben." },
+            { question: "Kann ich als Quellensteuerpflichtiger eine 3a-Einzahlung abziehen?", answer: "Ja! Sie müssen aber eine Nachkorrektur (Tarifkorrektur) beantragen. Häufige zusätzliche Abzüge: Säule 3a, Kinderbetreuungskosten, höhere Berufskosten. Frist: 31. März des Folgejahres." },
+        ],
+        relatedIds: ["quellensteuerrechner", "brutto-netto-rechner", "nettolohnrechner"],
+    },
+    {
+        id: "bonusrechner",
+        title: "Bonus Rechner",
+        keyword: "Bonus Rechner Schweiz",
+        calcType: "bonus",
+        icon: "🎁",
+        subtitle: "Berechnen Sie den Nettobetrag Ihres Bonus nach Abzug von Sozialversicherungen. Inkl. AHV/IV/EO/ALV und BVG-Relevanz.",
+        explanation: {
+            heading: "Bonus und 13. Monatslohn in der Schweiz",
+            paragraphs: [
+                "Ein Bonus wird in der Schweiz wie normaler Lohn behandelt: Es fallen die gleichen Sozialversicherungsbeiträge an (AHV/IV/EO/ALV: 6.4%). BVG-Beiträge fallen auf den Bonus nur an, wenn er im versicherten Lohn berücksichtigt ist (bei vielen PK-Plänen nicht der Fall).",
+                "Steuerlich wird der Bonus zum Jahreseinkommen addiert. Da die Einkommenssteuer progressiv ist, kann ein hoher Bonus zu einer überproportionalen Steuerbelastung führen. Tipp: Prüfen Sie, ob eine Aufteilung auf zwei Steuerjahre möglich ist, oder investieren Sie den Bonus in die Säule 3a oder einen PK-Einkauf.",
+            ],
+            highlight: "Bonus CHF 20'000 brutto → AHV/IV/EO/ALV –CHF 1'280 = Netto vor Steuern CHF 18'720. Steuern auf den Bonus (Grenzsteuersatz 30%): ca. –CHF 6'000. Effektiver Netto-Bonus: ca. CHF 12'720.",
+        },
+        faq: [
+            { question: "Muss der Arbeitgeber einen Bonus zahlen?", answer: "Nur wenn vertraglich vereinbart. Es gibt drei Arten: (1) Gratifikation (freiwillig, kann aber durch langjährige Praxis zum Anspruch werden), (2) Variabler Lohnbestandteil (vertraglich, z.B. '0-20% des Grundlohns'), (3) Erfolgsbeteiligung (oft an Unternehmensergebnis gekoppelt)." },
+            { question: "Wird der Bonus für die Pensionskasse berücksichtigt?", answer: "Das hängt vom PK-Reglement ab. Viele Pläne versichern nur den Grundlohn. Einige überobligatorische Pläne berücksichtigen Bonuszahlungen bis zu einer Obergrenze. Prüfen Sie Ihren PK-Ausweis." },
+        ],
+        relatedIds: ["brutto-netto-rechner", "jahreslohnrechner", "lohn-nach-steuern"],
+    },
+    {
+        id: "ueberstundenrechner",
+        title: "Überstunden Rechner",
+        keyword: "Überstunden Rechner Schweiz",
+        calcType: "overtime",
+        icon: "⏰",
+        subtitle: "Berechnen Sie die Vergütung für Überstunden und Überzeit in der Schweiz. Inkl. gesetzlicher Zuschlag (25%) und maximale Arbeitszeiten.",
+        explanation: {
+            heading: "Überstunden und Überzeit in der Schweiz",
+            paragraphs: [
+                "Das Schweizer Arbeitsgesetz unterscheidet zwischen Überstunden und Überzeit: Überstunden = Arbeit über die vertraglich vereinbarte Arbeitszeit hinaus (z.B. über 42h/Woche). Überzeit = Arbeit über die gesetzliche Höchstarbeitszeit hinaus (45h für Büro/Industrie, 50h für andere).",
+                "Überzeit muss mit einem Zuschlag von 25% entschädigt werden (oder durch Freizeit gleicher Dauer kompensiert, wenn der Arbeitnehmer zustimmt). Überstunden werden gemäss Arbeitsvertrag/GAV geregelt — oft ohne Zuschlag kompensierbar. Maximale Überzeit pro Jahr: 170h (bei 45h-Grenze) bzw. 140h (bei 50h-Grenze).",
+            ],
+            highlight: "Monatslohn CHF 7'000, 42h/Woche → Stundenlohn CHF 38.46. 10h Überzeit × CHF 38.46 × 1.25 = CHF 480.77 Zuschlag. 10h Überstunden × CHF 38.46 × 1.0 = CHF 384.62 (ohne Zuschlag).",
+        },
+        faq: [
+            { question: "Wann muss ich einen Zuschlag zahlen/erhalten?", answer: "Überzeit (über gesetzliche Höchstarbeitszeit): 25% Zuschlag ist gesetzlich vorgeschrieben. Nacht- und Sonntagsarbeit: Lohnzuschlag je nach GAV/Vertrag (üblich: 25-100%). Überstunden: Zuschlag nur, wenn vertraglich vereinbart." },
+            { question: "Kann mein Arbeitgeber Überstunden anordnen?", answer: "Ja, sofern betrieblich notwendig, dem Arbeitnehmer zumutbar, und die gesetzliche Höchstarbeitszeit nicht überschritten wird. Regelmässige Überzeit muss der Behörde gemeldet werden. Schwangere und Jugendliche haben besondere Schutzbestimmungen." },
+        ],
+        relatedIds: ["stundenlohnrechner", "brutto-netto-rechner", "monatslohnrechner"],
+    },
+    {
+        id: "lohn-nach-steuern",
+        title: "Lohn nach Steuern Rechner",
+        keyword: "Lohn nach Steuern Rechner Schweiz",
+        calcType: "after-tax-salary",
+        icon: "🏦",
+        subtitle: "Berechnen Sie Ihren tatsächlichen Lohn nach allen Abzügen UND Steuern. Der vollständige Blick auf Ihr verfügbares Einkommen.",
+        explanation: {
+            heading: "Was bleibt wirklich vom Lohn?",
+            paragraphs: [
+                "In der Schweiz werden Einkommens- und Vermögenssteuern nicht direkt vom Lohn abgezogen (ausser Quellensteuer). Viele Arbeitnehmer sind überrascht, wenn die Steuerrechnung kommt. Dieser Rechner zeigt den tatsächlichen Nettobetrag nach ALLEN Abzügen: Sozialversicherungen + Steuern.",
+                "Für eine realistische Budgetplanung sollten Sie monatlich 10-15% des Bruttolohns für Steuern zurücklegen. Das tatsächlich verfügbare Einkommen nach Sozialabgaben und Steuern liegt in der Schweiz typischerweise bei 70-80% des Bruttolohns — je nach Kanton, Zivilstand und Kinderzahl.",
+            ],
+            highlight: "Bruttolohn CHF 8'000/Mt.: Sozialabzüge ca. –CHF 1'000 = Nettolohn CHF 7'000. Monatliche Steuerbelastung (Zürich, ledig): ca. –CHF 1'100. Verfügbares Einkommen: ca. CHF 5'900 (73.8% des Brutto).",
+        },
+        faq: [
+            { question: "Wie viel sollte ich für Steuern zurücklegen?", answer: "Faustregel: 10-15% des Bruttolohns. Als ledig in Zürich bei CHF 100'000: ca. 14%. Als verheiratet mit Kindern in Zug: nur ca. 6%. Tipp: Richten Sie einen Dauerauftrag auf ein separates Steuerkonto ein." },
+            { question: "Was sind die grössten Abzugsposten?", answer: "1. Einkommenssteuer (10-25% je nach Kanton/Einkommen), 2. AHV/IV/EO/ALV (6.4%), 3. BVG/Pensionskasse (5-18% je nach Alter), 4. Krankenversicherung (nicht vom Lohn, aber CHF 300-600/Mt.). Total: 25-40% des Bruttolohns." },
+        ],
+        richSections: [
+            {
+                heading: "Typische Lohnabrechnung Schweiz (Vollzeit, Zürich, ledig)",
+                table: {
+                    headers: ["Position", "Monatlich", "Anteil"],
+                    rows: [
+                        ["Bruttolohn", "CHF 8'000", "100%"],
+                        ["– AHV/IV/EO/ALV", "–CHF 512", "6.4%"],
+                        ["– BVG (Pensionskasse)", "–CHF 400", "~5%"],
+                        ["– NBU", "–CHF 100", "~1.3%"],
+                        ["= Nettolohn (Auszahlung)", "CHF 6'988", "87.4%"],
+                        ["– Einkommenssteuer (geschätzt)", "–CHF 1'100", "~13.8%"],
+                        ["= Verfügbares Einkommen", "CHF 5'888", "73.6%"],
+                    ],
+                },
+            },
+        ],
+        relatedIds: ["brutto-netto-rechner", "steuerrechner", "nettolohnrechner"],
+    },
 ];
 
 export function getChCalculatorBySlug(slug: string): ChCalculator | undefined {
     return CH_CALCULATORS.find(c => c.id === slug);
 }
-
