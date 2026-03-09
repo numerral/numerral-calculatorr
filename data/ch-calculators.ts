@@ -315,8 +315,279 @@ export const CH_CALCULATORS: ChCalculator[] = [
         ],
         relatedIds: ["tragbarkeitsrechner", "eigenkapitalrechner", "hypothekenrechner"],
     },
+    // ═══════════════════════════════════════════════════
+    // SWISS TAX CALCULATORS
+    // ═══════════════════════════════════════════════════
+    {
+        id: "steuerrechner",
+        title: "Steuerrechner Schweiz",
+        keyword: "Steuerrechner Schweiz",
+        calcType: "tax-overview",
+        icon: "🧾",
+        subtitle: "Berechnen Sie Ihre gesamte Steuerbelastung in der Schweiz: Bundessteuer, Kantonssteuer und Gemeindesteuer. Wählen Sie Ihren Kanton und Ihre Gemeinde.",
+        explanation: {
+            heading: "Wie funktioniert das Schweizer Steuersystem?",
+            paragraphs: [
+                "In der Schweiz werden Steuern auf drei Ebenen erhoben: Bund, Kanton und Gemeinde. Die direkte Bundessteuer ist für alle Kantone gleich und progressiv (max. 11.5%). Die Kantonssteuer variiert stark — Zug und Schwyz haben die tiefsten, Genf und Basel die höchsten Sätze.",
+                "Die Gemeindesteuer wird als Vielfaches (Steuerfuss) der Kantonssteuer berechnet. Ein Steuerfuss von 115% bedeutet: Kantonssteuer × 1.15. So kann die Gesamtbelastung innerhalb desselben Kantons je nach Gemeinde stark variieren. Abzüge wie Berufskosten, Säule 3a, Versicherungsprämien und Hypothekarzinsen senken das steuerbare Einkommen.",
+            ],
+            highlight: "Beispiel: Bruttoeinkommen CHF 120'000, verheiratet, 2 Kinder, Kanton Zürich, Stadt Zürich (Steuerfuss 119%) → Steuerbelastung ca. CHF 14'500 (12.1%). Im Kanton Zug wären es nur ca. CHF 8'200 (6.8%).",
+        },
+        faq: [
+            { question: "Warum sind die Steuern in der Schweiz so unterschiedlich?", answer: "Die Steuerhoheit der Kantone und Gemeinden ist in der Bundesverfassung verankert. Jeder Kanton hat eigene Steuergesetze und -tarife. Der Steuerwettbewerb zwischen Kantonen führt zu grossen Unterschieden — von ca. 8% (Zug) bis über 35% (Genf) Grenzsteuersatz." },
+            { question: "Was kann ich von der Steuer abziehen?", answer: "Typische Abzüge: Berufskosten (Pauschale oder effektiv), Fahrkosten zur Arbeit, Säule 3a (max. CHF 7'258), Hypothekarzinsen, Unterhalt der Liegenschaft, Krankenkassenprämien (pauschal), Kinderabzüge, Ausbildungskosten und Spenden." },
+            { question: "Wann muss ich die Steuererklärung einreichen?", answer: "In den meisten Kantonen bis 31. März des Folgejahres. Fristverlängerungen sind fast überall möglich (bis September/November). Tipp: Online-Steuererklärung nutzen — sie berechnet viele Abzüge automatisch." },
+            { question: "Was ist der Steuerfuss?", answer: "Der Steuerfuss ist ein Multiplikator, der auf die einfache Kantonssteuer angewandt wird. Er wird jährlich von der Gemeindeversammlung festgelegt. Ein Steuerfuss von 100% = einfache Steuer. 120% = 20% Zuschlag. Der Steuerfuss variiert innerhalb eines Kantons zwischen den Gemeinden." },
+        ],
+        richSections: [
+            {
+                heading: "Steuerbelastung nach Kanton (Richtwerte für CHF 100'000 Einkommen, ledig)",
+                table: {
+                    headers: ["Kanton", "Hauptort", "Ungefähre Belastung", "Effektiver Steuersatz"],
+                    rows: [
+                        ["Zug", "Zug", "CHF 8'200", "8.2%"],
+                        ["Schwyz", "Schwyz", "CHF 10'100", "10.1%"],
+                        ["Nidwalden", "Stans", "CHF 10'500", "10.5%"],
+                        ["Zürich", "Zürich", "CHF 14'500", "14.5%"],
+                        ["Bern", "Bern", "CHF 17'800", "17.8%"],
+                        ["Basel-Stadt", "Basel", "CHF 22'400", "22.4%"],
+                        ["Genf", "Genf", "CHF 24'600", "24.6%"],
+                    ],
+                },
+            },
+        ],
+        relatedIds: ["einkommenssteuerrechner", "vermoegenssteuerrechner", "steuervergleich"],
+    },
+    {
+        id: "einkommenssteuerrechner",
+        title: "Einkommenssteuer Rechner",
+        keyword: "Einkommenssteuer Rechner Schweiz",
+        calcType: "income-tax",
+        icon: "💼",
+        subtitle: "Berechnen Sie Ihre Einkommenssteuer nach Bund, Kanton und Gemeinde. Mit Berücksichtigung von Abzügen, Zivilstand und Kindern.",
+        explanation: {
+            heading: "Einkommenssteuer in der Schweiz berechnen",
+            paragraphs: [
+                "Die Einkommenssteuer wird auf das steuerbare Einkommen (Reineinkommen minus Abzüge) erhoben. Die direkte Bundessteuer ist progressiv mit einem Maximalsatz von 11.5%. Kantone und Gemeinden erheben zusätzlich ihre eigenen Einkommenssteuern mit unterschiedlichen Tarifen.",
+                "Das steuerbare Einkommen berechnet sich wie folgt: Bruttoeinkommen minus Sozialversicherungsbeiträge (AHV/IV/EO/ALV: ca. 6.4%), minus Berufskosten, minus Versicherungsprämien, minus Säule 3a, minus weitere Abzüge. Verheiratete Paare profitieren oft vom Verheiratetentarif mit tieferen Sätzen.",
+            ],
+            highlight: "Bruttoeinkommen CHF 100'000, ledig, keine Kinder → Steuerbares Einkommen ca. CHF 80'000 (nach Abzügen). Bundessteuer: ca. CHF 1'200. Kantons-/Gemeindesteuer (Zürich): ca. CHF 12'300. Total: ca. CHF 13'500.",
+        },
+        faq: [
+            { question: "Wie unterscheidet sich der Tarif für Verheiratete?", answer: "Verheiratete werden gemeinsam besteuert (Zusammenveranlagung). Der Verheiratetentarif hat tiefere Sätze bei gleichem Einkommen. Bei Doppelverdienern gibt es zusätzlich einen Zweiverdienerabzug. Achtung: Ab einem gewissen Einkommen kann die 'Heiratsstrafe' (höhere Steuern als zwei Einzelpersonen) eintreten." },
+            { question: "Was sind die wichtigsten Abzüge?", answer: "Berufskosten (Pauschale CHF 2'000-4'000), Fahrkosten (max. CHF 3'200 Bundessteuer), Säule 3a (CHF 7'258), Versicherungsprämien (kantonal unterschiedlich), Kinderabzug (CHF 6'600 pro Kind Bundessteuer), und Hypothekarzinsen." },
+            { question: "Werden Bonuszahlungen höher besteuert?", answer: "Nein, es gibt keinen speziellen Bonus-Steuersatz. Boni werden zum regulären Einkommen addiert. Da die Steuer progressiv ist, kann ein Bonus aber dazu führen, dass Sie in eine höhere Progressionsstufe rutschen und einen höheren Grenzsteuersatz zahlen." },
+        ],
+        relatedIds: ["steuerrechner", "steuerabzugrechner", "steueroptimierungrechner"],
+    },
+    {
+        id: "vermoegenssteuerrechner",
+        title: "Vermögenssteuer Rechner",
+        keyword: "Vermögenssteuer Rechner Schweiz",
+        calcType: "wealth-tax",
+        icon: "🏦",
+        subtitle: "Berechnen Sie Ihre kantonale und kommunale Vermögenssteuer. Die Schweiz ist eines der wenigen Länder, das Vermögen jährlich besteuert.",
+        explanation: {
+            heading: "Vermögenssteuer in der Schweiz",
+            paragraphs: [
+                "Die Vermögenssteuer wird von Kantonen und Gemeinden erhoben (nicht vom Bund). Sie besteuert das Reinvermögen: Wertschriften, Bankguthaben, Immobilien (zum Steuerwert), Fahrzeuge, Lebensversicherungen und weitere Vermögenswerte, abzüglich Schulden (v.a. Hypotheken).",
+                "Die Steuersätze sind progressiv und variieren stark nach Kanton. In steuergünstigen Kantonen wie Schwyz beträgt der Satz nur ca. 1‰, in Basel-Stadt bis zu 8‰. Freibeträge liegen je nach Kanton und Zivilstand zwischen CHF 50'000 und CHF 200'000.",
+            ],
+            highlight: "Beispiel: Reinvermögen CHF 1'000'000, Kanton Zürich → Vermögenssteuer ca. CHF 2'500 (2.5‰). Im Kanton Schwyz: ca. CHF 800 (0.8‰). Differenz: CHF 1'700 pro Jahr.",
+        },
+        faq: [
+            { question: "Wie wird der Wert meiner Immobilie für die Vermögenssteuer berechnet?", answer: "Immobilien werden zum amtlichen oder kantonalen Steuerwert bewertet, nicht zum Marktwert. Der Steuerwert liegt je nach Kanton bei 60-100% des Marktwertes. Durch regelmässige Neubewertungen nähern sich viele Kantone dem Marktwert an." },
+            { question: "Welche Schulden kann ich vom Vermögen abziehen?", answer: "Alle nachgewiesenen Schulden: Hypotheken, Darlehen, Privatkredite, Steuerschulden, offene Rechnungen. Wichtig: Hypothekarschulden reduzieren das steuerbare Vermögen direkt — ein Grund, warum viele Schweizer ihre Hypothek nicht vollständig zurückzahlen." },
+            { question: "Gibt es einen Freibetrag?", answer: "Ja, die meisten Kantone kennen Freibeträge: z.B. Zürich CHF 77'000 (ledig) / CHF 154'000 (verheiratet). Bern CHF 97'000 / CHF 194'000. Auf den Betrag unter dem Freibetrag wird keine Vermögenssteuer erhoben." },
+        ],
+        relatedIds: ["steuerrechner", "einkommenssteuerrechner", "steuervergleich"],
+    },
+    {
+        id: "quellensteuerrechner",
+        title: "Quellensteuer Rechner",
+        keyword: "Quellensteuer Rechner Schweiz",
+        calcType: "withholding-tax",
+        icon: "✂️",
+        subtitle: "Berechnen Sie die Quellensteuer für ausländische Arbeitnehmer ohne C-Bewilligung. Mit kantonalen Tarifen und Abzugsmöglichkeiten.",
+        explanation: {
+            heading: "Quellensteuer in der Schweiz",
+            paragraphs: [
+                "Die Quellensteuer betrifft ausländische Arbeitnehmer ohne Niederlassungsbewilligung C (also mit B- oder L-Bewilligung). Der Arbeitgeber zieht die Steuer direkt vom Lohn ab und überweist sie an das Steueramt. Ab einem Bruttojahreseinkommen von CHF 120'000 wird nachträglich eine ordentliche Veranlagung durchgeführt.",
+                "Der Quellensteuertarif berücksichtigt bereits Standardabzüge (Berufskosten, Versicherungen etc.). Es gibt verschiedene Tarife: A (ledig), B (verheiratet, Alleinverdiener), C (verheiratet, Doppelverdiener), und Sondertarife. Die Sätze variieren je nach Kanton und Bruttoeinkommen.",
+            ],
+            highlight: "Beispiel: Bruttoeinkommen CHF 8'000/Monat, ledig (Tarif A0), Kanton Zürich → Quellensteuer ca. CHF 920/Monat (11.5%). Im Kanton Zug: ca. CHF 520/Monat (6.5%).",
+        },
+        faq: [
+            { question: "Wer unterliegt der Quellensteuer?", answer: "Ausländische Arbeitnehmer mit B- oder L-Bewilligung (keine C-Bewilligung), Grenzgänger, und ausländische Arbeitnehmer mit vorübergehendem Aufenthalt. Sobald Sie die C-Bewilligung erhalten, werden Sie ordentlich veranlagt." },
+            { question: "Kann ich eine nachträgliche Korrektur beantragen?", answer: "Ja, wenn Sie Abzüge geltend machen möchten, die im Quellensteuertarif nicht pauschal enthalten sind (z.B. höhere effektive Berufskosten, Säule 3a, Kinderbetreuungskosten). Frist: bis 31. März des Folgejahres." },
+            { question: "Was passiert bei Einkommen über CHF 120'000?", answer: "Ab einem Jahresbruttoeinkommen von CHF 120'000 erfolgt eine nachträgliche ordentliche Veranlagung (NOV). Sie müssen eine vollständige Steuererklärung einreichen. Die bezahlte Quellensteuer wird angerechnet." },
+        ],
+        relatedIds: ["einkommenssteuerrechner", "steuerrechner", "steuerabzugrechner"],
+    },
+    {
+        id: "mehrwertsteuerrechner",
+        title: "Mehrwertsteuer Rechner (MWST)",
+        keyword: "Mehrwertsteuer Rechner Schweiz",
+        calcType: "vat",
+        icon: "🧮",
+        subtitle: "Berechnen Sie die Schweizer Mehrwertsteuer (MWST) für Normal-, Sonder- und reduzierte Sätze. Mit Netto-/Brutto-Umrechnung und MWST-Pflicht-Prüfung.",
+        explanation: {
+            heading: "Mehrwertsteuer (MWST) in der Schweiz",
+            paragraphs: [
+                "Die Schweizer MWST wird auf die meisten Waren und Dienstleistungen erhoben. Es gibt drei Sätze: Normalsatz 8.1% (seit 2024), reduzierter Satz 2.6% (Lebensmittel, Bücher, Medikamente, Zeitungen) und Sondersatz 3.8% (Beherbergung).",
+                "Unternehmen mit einem Jahresumsatz über CHF 100'000 sind MWST-pflichtig und müssen sich bei der ESTV (Eidgenössische Steuerverwaltung) registrieren. Die Vorsteuer (MWST auf Einkäufe) kann von der geschuldeten MWST abgezogen werden. Exporte und bestimmte Dienstleistungen sind von der MWST befreit.",
+            ],
+            highlight: "Produkt zum Nettopreis CHF 100: Mit 8.1% MWST = CHF 108.10 Bruttopreis. Lebensmittel zum Nettopreis CHF 100: Mit 2.6% MWST = CHF 102.60.",
+        },
+        faq: [
+            { question: "Was ist der Unterschied zu Deutschland/Österreich?", answer: "Die Schweizer MWST (8.1%) ist deutlich tiefer als in der EU (19-27%). Dafür sind weniger Waren/Dienstleistungen befreit. Beim Import in die Schweiz fällt statt ausländischer Umsatzsteuer die Schweizer MWST an (sogenannte Einfuhrsteuer)." },
+            { question: "Wann muss ich mich für die MWST registrieren?", answer: "Ab einem weltweiten Jahresumsatz von CHF 100'000 mit steuerbaren Leistungen. Freiwillige Registrierung ist ab CHF 0 möglich und lohnt sich, wenn Sie viel Vorsteuer geltend machen können. Die Registrierung erfolgt bei der ESTV." },
+            { question: "Welche Abrechnungsmethoden gibt es?", answer: "Effektive Methode: Geschuldete MWST minus Vorsteuer. Saldosteuersatz-Methode: Vereinfachte Berechnung mit einem branchenspezifischen Pauschalsatz (0.1-6.7%). Letztere eignet sich für KMU mit geringer Vorsteuer." },
+        ],
+        richSections: [
+            {
+                heading: "MWST-Sätze Schweiz (ab 01.01.2024)",
+                table: {
+                    headers: ["Satz", "Prozentsatz", "Anwendung"],
+                    rows: [
+                        ["Normalsatz", "8.1%", "Standardsatz für die meisten Waren und Dienstleistungen"],
+                        ["Reduzierter Satz", "2.6%", "Lebensmittel, Medikamente, Bücher, Zeitungen, Wasser"],
+                        ["Sondersatz", "3.8%", "Beherbergungsleistungen (Hotels, Ferienwohnungen)"],
+                        ["Befreit", "0%", "Exporte, Gesundheit, Bildung, Versicherungen, Bankdienstleistungen"],
+                    ],
+                },
+            },
+        ],
+        relatedIds: ["steuerrechner", "unternehmenssteuerrechner", "kapitalgewinnsteuerrechner"],
+    },
+    {
+        id: "steuervergleich",
+        title: "Steuervergleich Kantone",
+        keyword: "Steuervergleich Kantone Schweiz",
+        calcType: "tax-compare",
+        icon: "📊",
+        subtitle: "Vergleichen Sie die Steuerbelastung zwischen verschiedenen Kantonen und Gemeinden. Ermitteln Sie die günstigste Wohnlage für Ihre Steuersituation.",
+        explanation: {
+            heading: "Steuervergleich zwischen Kantonen",
+            paragraphs: [
+                "Der Steuerwettbewerb ist ein zentrales Merkmal des Schweizer Föderalismus. Die Steuerbelastung kann je nach Wohnort von unter 10% bis über 35% des Einkommens betragen. Nicht nur der Kanton, sondern die konkrete Gemeinde bestimmt die Steuerbelastung — durch den Steuerfuss.",
+                "Für einen sinnvollen Vergleich müssen Sie neben Einkommenssteuern auch Vermögenssteuern, Erbschaftssteuern und Lebenshaltungskosten berücksichtigen. Ein Umzug in einen steuergünstigen Kanton kann sich finanziell lohnen, hat aber auch Konsequenzen für Pendelwege, soziales Umfeld und Dienstleistungsangebot.",
+            ],
+            highlight: "Verheiratet, 2 Kinder, CHF 200'000 Einkommen: Kanton Zug (Stadt Baar) ca. CHF 15'400 vs. Kanton Basel-Stadt ca. CHF 39'200 — eine Differenz von CHF 23'800 pro Jahr!",
+        },
+        faq: [
+            { question: "Lohnt sich ein Umzug aus Steuergründen?", answer: "Bei hohem Einkommen oder Vermögen kann sich ein Umzug in einen steuergünstigen Kanton finanziell stark lohnen. Beispiel: Bei einer Steuerersparnis von CHF 20'000/Jahr und 20 Jahren Wohndauer sparen Sie CHF 400'000. Aber: Berücksichtigen Sie auch Immobilienpreise, Pendelkosten und Lebensqualität." },
+            { question: "Welche Kantone haben die tiefsten Steuern?", answer: "Für natürliche Personen: Zug, Schwyz, Nidwalden, Obwalden, Appenzell Innerrhoden, Uri. Für juristische Personen: Zug, Luzern, Nidwalden. Die konkrete Gemeinde innerhalb des Kantons macht aber einen grossen Unterschied." },
+        ],
+        relatedIds: ["steuerrechner", "einkommenssteuerrechner", "vermoegenssteuerrechner"],
+    },
+    {
+        id: "kapitalgewinnsteuerrechner",
+        title: "Kapitalgewinnsteuer Rechner",
+        keyword: "Kapitalgewinnsteuer Rechner Schweiz",
+        calcType: "capital-gains",
+        icon: "📈",
+        subtitle: "Berechnen Sie die Grundstückgewinnsteuer beim Immobilienverkauf. Mit kantonalen Sätzen und Haltedauer-Ermässigungen.",
+        explanation: {
+            heading: "Kapitalgewinnsteuer in der Schweiz",
+            paragraphs: [
+                "Privatpersonen zahlen in der Schweiz grundsätzlich keine Kapitalgewinnsteuer auf Wertschriften (Aktien, Fonds etc.) — ein international seltener Vorteil. ABER: Auf Immobiliengewinne wird die Grundstückgewinnsteuer erhoben, die je nach Kanton und Haltedauer erheblich sein kann.",
+                "Die Grundstückgewinnsteuer ist progressiv: Kurze Haltedauer führt zu Zuschlägen (bis +50% bei unter 1 Jahr), lange Haltedauer zu Ermässigungen (bis -60% nach 25+ Jahren). Der Gewinn berechnet sich aus Verkaufspreis minus Anlagekosten (Kaufpreis + wertvermehrende Investitionen + Kaufnebenkosten).",
+            ],
+            highlight: "Kaufpreis CHF 800'000, Verkaufspreis CHF 1'200'000, Haltedauer 10 Jahre, Kanton Zürich → Gewinn CHF 400'000, Steuer ca. CHF 72'000 (18%). Nach 25 Jahren Haltedauer: nur noch ca. CHF 40'000 (10%).",
+        },
+        faq: [
+            { question: "Muss ich auf Aktiengewinne Steuern zahlen?", answer: "Nein! Als Privatperson sind Kapitalgewinne auf beweglichem Vermögen (Aktien, Obligationen, Fonds, Kryptowährungen) in der Schweiz steuerfrei. Achtung: Wer als 'gewerbsmässiger Händler' eingestuft wird, muss Gewinne als Einkommen versteuern." },
+            { question: "Kann ich die Grundstückgewinnsteuer aufschieben?", answer: "Ja, bei Ersatzbeschaffung (Verkauf + Kauf einer gleichwertigen selbstbewohnten Liegenschaft innert 2 Jahren) wird die Steuer aufgeschoben. Auch bei Erbgang oder Schenkung an Nachkommen wird aufgeschoben. Die Steuer wird dann beim nächsten Verkauf fällig." },
+        ],
+        relatedIds: ["steuerrechner", "renditerechner", "steueroptimierungrechner"],
+    },
+    {
+        id: "unternehmenssteuerrechner",
+        title: "Unternehmenssteuer Rechner",
+        keyword: "Unternehmenssteuer Rechner Schweiz",
+        calcType: "corporate-tax",
+        icon: "🏢",
+        subtitle: "Berechnen Sie die Gewinnsteuer und Kapitalsteuer für Ihre GmbH oder AG nach Kanton. Inkl. direkte Bundessteuer (8.5%) und kantonale Sätze.",
+        explanation: {
+            heading: "Unternehmensbesteuerung in der Schweiz",
+            paragraphs: [
+                "Juristische Personen (AG, GmbH) zahlen Gewinn- und Kapitalsteuer auf drei Ebenen: Bund (8.5% Gewinnsteuer, keine Kapitalsteuer), Kanton und Gemeinde. Die effektive Gesamtsteuerbelastung variiert je nach Kanton von ca. 11% (Zug, Luzern) bis ca. 22% (Genf, Basel-Stadt).",
+                "Seit der Steuerreform STAF (2020) gelten schweizweit einheitliche Regeln: Patentbox (tiefere Besteuerung von Erträgen aus Patenten), zusätzlicher Abzug für F&E-Aufwand, und Entlastungsbegrenzung von 70%. Die Kapitalsteuer wird vom einbezahlten Eigenkapital berechnet (ca. 0.01-0.4‰ je nach Kanton).",
+            ],
+            highlight: "AG mit CHF 500'000 Reingewinn: Kanton Zug (Stadt Zug) → Gesamtsteuer ca. CHF 57'500 (11.5%). Kanton Zürich (Stadt Zürich) → ca. CHF 95'000 (19.0%). Differenz: CHF 37'500.",
+        },
+        faq: [
+            { question: "AG oder GmbH — steuerliche Unterschiede?", answer: "Kaum: Beide unterliegen der gleichen Gewinn- und Kapitalsteuer. Der Unterschied liegt im Gesellschaftsrecht (Mindestkapital AG CHF 100'000, GmbH CHF 20'000). Steuerlich relevant: Bei der AG kann die Lohnsumme flexibler gestaltet werden." },
+            { question: "Was ist die wirtschaftliche Doppelbelastung?", answer: "Unternehmensgewinne werden einmal als Gewinn beim Unternehmen besteuert, und ein zweites Mal als Dividende beim Aktionär (Einkommenssteuer). Seit der Teilbesteuerung (Bund 70%, Kantone 50-80%) wurde diese Belastung gemildert." },
+        ],
+        richSections: [
+            {
+                heading: "Effektive Gewinnsteuersätze nach Kanton (AG/GmbH)",
+                table: {
+                    headers: ["Kanton", "Hauptort", "Effektiver Gesamtsatz"],
+                    rows: [
+                        ["Zug", "Zug", "11.9%"],
+                        ["Luzern", "Luzern", "12.2%"],
+                        ["Nidwalden", "Stans", "12.0%"],
+                        ["Schwyz", "Schwyz", "14.1%"],
+                        ["Zürich", "Zürich", "19.7%"],
+                        ["Bern", "Bern", "21.0%"],
+                        ["Basel-Stadt", "Basel", "13.0%"],
+                        ["Genf", "Genf", "14.0%"],
+                    ],
+                },
+            },
+        ],
+        relatedIds: ["steuerrechner", "mehrwertsteuerrechner", "steuervergleich"],
+    },
+    {
+        id: "steuerabzugrechner",
+        title: "Steuerabzug Rechner",
+        keyword: "Steuerabzug Rechner Schweiz",
+        calcType: "tax-deductions",
+        icon: "📝",
+        subtitle: "Berechnen Sie alle möglichen Steuerabzüge: Berufskosten, Säule 3a, Versicherungen, Hypothekarzinsen, Kinderabzüge und mehr.",
+        explanation: {
+            heading: "Steuerabzüge optimal nutzen",
+            paragraphs: [
+                "Steuerabzüge senken Ihr steuerbares Einkommen und damit Ihre Steuerrechnung. In der Schweiz gibt es zahlreiche Abzugsmöglichkeiten, die viele Steuerpflichtige nicht vollständig ausschöpfen. Die wichtigsten: Berufskosten, Säule 3a, Versicherungen, Hypothekarzinsen, und Kinderbetreuung.",
+                "Tipp: Es gibt Pauschalabzüge und effektive Abzüge. Oft lohnt es sich, die effektiven Kosten zu berechnen, da sie höher sein können als die Pauschale. Besonders bei Berufskosten (Heimarbeit, Fachliteratur, Weiterbildung) und Liegenschaftsunterhalt (Renovationen) können die effektiven Kosten erheblich sein.",
+            ],
+            highlight: "Typische Abzüge bei CHF 120'000 Einkommen (ledig): Berufskosten CHF 4'000 + Fahrkosten CHF 3'200 + Säule 3a CHF 7'258 + Versicherungen CHF 2'600 + Verpflegung CHF 3'200 = Total CHF 20'258 Abzüge → Steuerersparnis ca. CHF 5'000.",
+        },
+        faq: [
+            { question: "Wie viel kann ich in die Säule 3a einzahlen?", answer: "Angestellte mit Pensionskasse: max. CHF 7'258 (2026). Selbständige ohne PK: max. 20% des Nettoeinkommens, höchstens CHF 36'288. Der Betrag ist vollständig vom steuerbaren Einkommen abzugsfähig." },
+            { question: "Kann ich Homeoffice-Kosten abziehen?", answer: "Ja, wenn Sie regelmässig von zu Hause arbeiten: Anteilige Miete/Hypothekarzins für das Arbeitszimmer, Stromkosten, Internet. Viele Kantone akzeptieren einen Pauschalabzug von CHF 2'000-3'000 für Homeoffice. Alternative: Effektive Kosten nachweisen." },
+            { question: "Lohnt sich der effektive oder pauschale Abzug für Berufskosten?", answer: "Vergleichen Sie: Pauschale Berufskosten betragen je nach Kanton ca. CHF 2'000-4'000. Wenn Ihre tatsächlichen Kosten (Weiterbildung, Fachliteratur, Werkzeuge, Arbeitskleider) höher sind, lohnt sich der Nachweis der effektiven Kosten." },
+        ],
+        relatedIds: ["einkommenssteuerrechner", "steueroptimierungrechner", "steuerrechner"],
+    },
+    {
+        id: "steueroptimierungrechner",
+        title: "Steueroptimierung Rechner",
+        keyword: "Steueroptimierung Rechner Schweiz",
+        calcType: "tax-optimization",
+        icon: "🎯",
+        subtitle: "Berechnen Sie Ihr Steueroptimierungspotenzial: Säule 3a, Einkauf in Pensionskasse, Liegenschaftsunterhalt, Hypothekarstrategie und optimaler Wohnort.",
+        explanation: {
+            heading: "Legale Steueroptimierung in der Schweiz",
+            paragraphs: [
+                "Die Schweiz bietet zahlreiche legale Möglichkeiten zur Steueroptimierung. Die wichtigsten Hebel sind: Maximale Einzahlung in Säule 3a (sofortige Steuerersparnis), Einkauf in die Pensionskasse (grosse Beträge abzugsfähig), strategische Hypothekenverwaltung (Zinsen abziehen, indirekte Amortisation), und zeitliche Verteilung von Renovationskosten.",
+                "Fortgeschrittene Strategien: Gestaffelte PK-Einkäufe über mehrere Jahre (Progression brechen), Renovationen in Steuer-Hochjahren durchführen, Schenkungen an gemeinnützige Organisationen, und Prüfung des optimalen Wohnorts. Ein Treuhandexperte kann Ihnen helfen, Ihre individuelle Strategie zu optimieren.",
+            ],
+            highlight: "Optimierungspotenzial pro Jahr (Einkommen CHF 150'000): Säule 3a: CHF 1'800 Ersparnis + PK-Einkauf CHF 10'000 (bei CHF 30'000 Einkauf): CHF 9'000 Ersparnis + Hypothekarstrategie: CHF 1'200 = Total bis CHF 12'000/Jahr Steuerersparnis!",
+        },
+        faq: [
+            { question: "Was ist die gestaffelte PK-Einkaufsstrategie?", answer: "Statt einen grossen PK-Einkauf auf einmal zu machen, verteilen Sie ihn auf mehrere Jahre (z.B. 3 × CHF 30'000 statt 1 × CHF 90'000). Durch die Progression sparen Sie insgesamt mehr Steuern, da jeder Einkauf in einem Jahr den Grenzsteuersatz senkt." },
+            { question: "Wie optimiere ich meine Hypothek steuerlich?", answer: "Indirekte Amortisation über Säule 3a: Hypothek bleibt konstant (maximaler Zinsabzug), 3a-Beiträge sind abzugsfähig. Doppelter Steuervorteil! Am Ende lösen Sie die Hypothek mit dem 3a-Guthaben ab. Tipp: Hypothekarzinsen mit Liegenschaftsunterhalt kombinieren." },
+            { question: "Lohnt sich der PK-Einkauf?", answer: "Meist ja: Der Einkaufsbetrag ist vollständig vom steuerbaren Einkommen abziehbar. Bei einem Grenzsteuersatz von 30% spart ein Einkauf von CHF 50'000 sofort CHF 15'000 Steuern. Bedingung: Kein Kapitalbezug innerhalb von 3 Jahren nach dem Einkauf." },
+        ],
+        relatedIds: ["steuerabzugrechner", "einkommenssteuerrechner", "steuervergleich"],
+    },
 ];
 
 export function getChCalculatorBySlug(slug: string): ChCalculator | undefined {
     return CH_CALCULATORS.find(c => c.id === slug);
 }
+
