@@ -2060,6 +2060,456 @@ function PensionPayoutCalc() {
     );
 }
 
+// ═══════════════════════════════════════════════════
+// 41. Zinseszins Rechner
+// ═══════════════════════════════════════════════════
+function CompoundInterestCalc() {
+    const [principal, setPrincipal] = useState(100000);
+    const [rate, setRate] = useState(5);
+    const [years, setYears] = useState(20);
+    const [monthlyAdd, setMonthlyAdd] = useState(500);
+
+    const res = useMemo(() => {
+        const r = rate / 100;
+        let balance = principal;
+        let totalDeposits = principal;
+        const yearlyData = [];
+        for (let y = 1; y <= years; y++) {
+            balance = balance * (1 + r) + monthlyAdd * 12;
+            totalDeposits += monthlyAdd * 12;
+            yearlyData.push({ y, balance, deposits: totalDeposits });
+        }
+        const interest = balance - totalDeposits;
+        const simpleInterest = principal * r * years + monthlyAdd * 12 * years;
+        const zinseszinsEffect = balance - principal - monthlyAdd * 12 * years - simpleInterest;
+        const doubleYears = r > 0 ? 72 / rate : Infinity;
+        return { balance, totalDeposits, interest, doubleYears, yearlyData };
+    }, [principal, rate, years, monthlyAdd]);
+
+    return (
+        <div className="ar-custom-calc">
+            <div className="ar-custom-calc__input-row">
+                <div className="ar-custom-calc__input-group"><label>Startkapital (CHF)</label><input type="number" className="ar-custom-calc__number-input" value={principal} onChange={e => setPrincipal(+e.target.value)} min={0} step={10000} /></div>
+                <div className="ar-custom-calc__input-group"><label>Jährliche Rendite (%)</label><input type="number" className="ar-custom-calc__number-input" value={rate} onChange={e => setRate(+e.target.value)} min={0} max={20} step={0.5} /></div>
+            </div>
+            <div className="ar-custom-calc__input-row">
+                <div className="ar-custom-calc__input-group"><label>Anlagedauer (Jahre)</label><input type="number" className="ar-custom-calc__number-input" value={years} onChange={e => setYears(+e.target.value)} min={1} max={50} step={1} /></div>
+                <div className="ar-custom-calc__input-group"><label>Monatl. Einzahlung (CHF)</label><input type="number" className="ar-custom-calc__number-input" value={monthlyAdd} onChange={e => setMonthlyAdd(+e.target.value)} min={0} step={100} /></div>
+            </div>
+            <div className="ar-custom-calc__results">
+                <div className="ar-custom-calc__result-main"><span className="ar-custom-calc__result-label">Endvermögen</span><span className="ar-custom-calc__result-value">CHF {fmtCHF(res.balance)}</span></div>
+                <div className="ar-custom-calc__result-grid">
+                    <div className="ar-custom-calc__result-card"><span className="ar-custom-calc__card-icon">💵</span><span className="ar-custom-calc__card-value">CHF {fmtCHF(res.totalDeposits)}</span><span className="ar-custom-calc__card-label">Eigene Einzahlungen</span></div>
+                    <div className="ar-custom-calc__result-card"><span className="ar-custom-calc__card-icon">📈</span><span className="ar-custom-calc__card-value">CHF {fmtCHF(res.interest)}</span><span className="ar-custom-calc__card-label">Zinsertrag</span></div>
+                    <div className="ar-custom-calc__result-card"><span className="ar-custom-calc__card-icon">⏱️</span><span className="ar-custom-calc__card-value">{res.doubleYears.toFixed(1)} J.</span><span className="ar-custom-calc__card-label">Verdoppelung (72er-Regel)</span></div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+// ═══════════════════════════════════════════════════
+// 42. Sparziel Rechner
+// ═══════════════════════════════════════════════════
+function SavingsGoalCalc() {
+    const [goal, setGoal] = useState(200000);
+    const [currentSavings, setCurrentSavings] = useState(20000);
+    const [years, setYears] = useState(10);
+    const [returnRate, setReturnRate] = useState(3);
+
+    const res = useMemo(() => {
+        const r = returnRate / 100 / 12;
+        const n = years * 12;
+        const fvCurrent = currentSavings * Math.pow(1 + r, n);
+        const remaining = goal - fvCurrent;
+        const monthlyNeeded = remaining > 0 && r > 0
+            ? remaining * r / (Math.pow(1 + r, n) - 1)
+            : remaining > 0 ? remaining / n : 0;
+        const totalPaid = monthlyNeeded * n + currentSavings;
+        const interestEarned = goal - totalPaid;
+        return { monthlyNeeded: Math.max(0, monthlyNeeded), totalPaid, interestEarned, fvCurrent };
+    }, [goal, currentSavings, years, returnRate]);
+
+    return (
+        <div className="ar-custom-calc">
+            <div className="ar-custom-calc__input-row">
+                <div className="ar-custom-calc__input-group"><label>Sparziel (CHF)</label><input type="number" className="ar-custom-calc__number-input" value={goal} onChange={e => setGoal(+e.target.value)} min={1000} step={10000} /></div>
+                <div className="ar-custom-calc__input-group"><label>Vorhandene Ersparnisse (CHF)</label><input type="number" className="ar-custom-calc__number-input" value={currentSavings} onChange={e => setCurrentSavings(+e.target.value)} min={0} step={5000} /></div>
+            </div>
+            <div className="ar-custom-calc__input-row">
+                <div className="ar-custom-calc__input-group"><label>Zeitraum (Jahre)</label><input type="number" className="ar-custom-calc__number-input" value={years} onChange={e => setYears(+e.target.value)} min={1} max={40} step={1} /></div>
+                <div className="ar-custom-calc__input-group"><label>Erwartete Rendite (%)</label><input type="number" className="ar-custom-calc__number-input" value={returnRate} onChange={e => setReturnRate(+e.target.value)} min={0} max={10} step={0.5} /></div>
+            </div>
+            <div className="ar-custom-calc__results">
+                <div className="ar-custom-calc__result-main"><span className="ar-custom-calc__result-label">Benötigte monatliche Sparrate</span><span className="ar-custom-calc__result-value">CHF {fmtCHF(res.monthlyNeeded)}</span></div>
+                <div className="ar-custom-calc__result-grid">
+                    <div className="ar-custom-calc__result-card"><span className="ar-custom-calc__card-icon">🎯</span><span className="ar-custom-calc__card-value">CHF {fmtCHF(goal)}</span><span className="ar-custom-calc__card-label">Sparziel</span></div>
+                    <div className="ar-custom-calc__result-card"><span className="ar-custom-calc__card-icon">💵</span><span className="ar-custom-calc__card-value">CHF {fmtCHF(res.totalPaid)}</span><span className="ar-custom-calc__card-label">Eigene Einzahlungen</span></div>
+                    <div className="ar-custom-calc__result-card"><span className="ar-custom-calc__card-icon">📈</span><span className="ar-custom-calc__card-value">CHF {fmtCHF(res.interestEarned)}</span><span className="ar-custom-calc__card-label">Zinsertrag</span></div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+// ═══════════════════════════════════════════════════
+// 43. ETF Rendite Rechner
+// ═══════════════════════════════════════════════════
+function EtfReturnCalc() {
+    const [monthly, setMonthly] = useState(500);
+    const [years, setYears] = useState(25);
+    const [grossReturn, setGrossReturn] = useState(7);
+    const [ter, setTer] = useState(0.2);
+    const [inflation, setInflation] = useState(1);
+
+    const res = useMemo(() => {
+        const netReturn = (grossReturn - ter) / 100;
+        const realReturn = ((1 + netReturn) / (1 + inflation / 100)) - 1;
+        let nominal = 0, real = 0;
+        const totalDeposits = monthly * 12 * years;
+        for (let y = 0; y < years; y++) {
+            nominal = (nominal + monthly * 12) * (1 + netReturn);
+            real = (real + monthly * 12) * (1 + realReturn);
+        }
+        const nominalGain = nominal - totalDeposits;
+        const realGain = real - totalDeposits;
+        return { nominal, real, totalDeposits, nominalGain, realGain, netReturn: netReturn * 100, realReturnPct: realReturn * 100 };
+    }, [monthly, years, grossReturn, ter, inflation]);
+
+    return (
+        <div className="ar-custom-calc">
+            <div className="ar-custom-calc__input-row">
+                <div className="ar-custom-calc__input-group"><label>Monatl. Sparrate (CHF)</label><input type="number" className="ar-custom-calc__number-input" value={monthly} onChange={e => setMonthly(+e.target.value)} min={50} step={50} /></div>
+                <div className="ar-custom-calc__input-group"><label>Anlagedauer (Jahre)</label><input type="number" className="ar-custom-calc__number-input" value={years} onChange={e => setYears(+e.target.value)} min={1} max={40} step={1} /></div>
+            </div>
+            <div className="ar-custom-calc__input-row">
+                <div className="ar-custom-calc__input-group"><label>Brutto-Rendite (%)</label><input type="number" className="ar-custom-calc__number-input" value={grossReturn} onChange={e => setGrossReturn(+e.target.value)} min={0} max={15} step={0.5} /></div>
+                <div className="ar-custom-calc__input-group"><label>TER / Fondskosten (%)</label><input type="number" className="ar-custom-calc__number-input" value={ter} onChange={e => setTer(+e.target.value)} min={0} max={2} step={0.05} /></div>
+            </div>
+            <div className="ar-custom-calc__results">
+                <div className="ar-custom-calc__result-main"><span className="ar-custom-calc__result-label">Vermögen (nominal)</span><span className="ar-custom-calc__result-value">CHF {fmtCHF(res.nominal)}</span></div>
+                <div className="ar-custom-calc__result-grid">
+                    <div className="ar-custom-calc__result-card"><span className="ar-custom-calc__card-icon">🎯</span><span className="ar-custom-calc__card-value">CHF {fmtCHF(res.real)}</span><span className="ar-custom-calc__card-label">Real (nach Inflation)</span></div>
+                    <div className="ar-custom-calc__result-card"><span className="ar-custom-calc__card-icon">💵</span><span className="ar-custom-calc__card-value">CHF {fmtCHF(res.totalDeposits)}</span><span className="ar-custom-calc__card-label">Eingezahlt</span></div>
+                    <div className="ar-custom-calc__result-card"><span className="ar-custom-calc__card-icon">📊</span><span className="ar-custom-calc__card-value">{fmtPct(res.realReturnPct)}</span><span className="ar-custom-calc__card-label">Realrendite p.a.</span></div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+// ═══════════════════════════════════════════════════
+// 44. Dividenden Rechner
+// ═══════════════════════════════════════════════════
+function DividendCalc() {
+    const [portfolio, setPortfolio] = useState(500000);
+    const [divYield, setDivYield] = useState(3);
+    const [taxRate, setTaxRate] = useState(30);
+    const [isSwiss, setIsSwiss] = useState(true);
+
+    const res = useMemo(() => {
+        const grossDiv = portfolio * (divYield / 100);
+        const vst = isSwiss ? grossDiv * 0.35 : 0;
+        const foreignWht = !isSwiss ? grossDiv * 0.15 : 0;
+        const taxableDiv = grossDiv;
+        const incomeTax = taxableDiv * (taxRate / 100);
+        const vstReclaimed = vst;
+        const netDiv = grossDiv - incomeTax - foreignWht;
+        const effectiveYield = (netDiv / portfolio) * 100;
+        return { grossDiv, vst, vstReclaimed, foreignWht, incomeTax, netDiv, effectiveYield };
+    }, [portfolio, divYield, taxRate, isSwiss]);
+
+    return (
+        <div className="ar-custom-calc">
+            <div className="ar-custom-calc__input-row">
+                <div className="ar-custom-calc__input-group"><label>Portfolio-Wert (CHF)</label><input type="number" className="ar-custom-calc__number-input" value={portfolio} onChange={e => setPortfolio(+e.target.value)} min={10000} step={25000} /></div>
+                <div className="ar-custom-calc__input-group"><label>Dividendenrendite (%)</label><input type="number" className="ar-custom-calc__number-input" value={divYield} onChange={e => setDivYield(+e.target.value)} min={0} max={10} step={0.25} /></div>
+            </div>
+            <div className="ar-custom-calc__input-row">
+                <div className="ar-custom-calc__input-group"><label>Grenzsteuersatz (%)</label><input type="number" className="ar-custom-calc__number-input" value={taxRate} onChange={e => setTaxRate(+e.target.value)} min={5} max={45} step={1} /></div>
+                <div className="ar-custom-calc__input-group"><label>Aktienstandort</label><div className="ar-custom-calc__toggle-row"><button className={`ar-custom-calc__toggle${isSwiss ? " ar-custom-calc__toggle--active" : ""}`} onClick={() => setIsSwiss(true)}>Schweiz (VST)</button><button className={`ar-custom-calc__toggle${!isSwiss ? " ar-custom-calc__toggle--active" : ""}`} onClick={() => setIsSwiss(false)}>Ausland (QST)</button></div></div>
+            </div>
+            <div className="ar-custom-calc__results">
+                <div className="ar-custom-calc__result-main"><span className="ar-custom-calc__result-label">Netto-Dividende/Jahr</span><span className="ar-custom-calc__result-value">CHF {fmtCHF(res.netDiv)}</span></div>
+                <div className="ar-custom-calc__milestones">
+                    <div className="ar-custom-calc__milestone"><span>Brutto-Dividende</span><span>CHF {fmtCHF(res.grossDiv)}</span></div>
+                    {isSwiss && <div className="ar-custom-calc__milestone"><span>VST 35% (rückforderbar)</span><span>–CHF {fmtCHF(res.vst)}</span></div>}
+                    {!isSwiss && <div className="ar-custom-calc__milestone"><span>Quellensteuer 15%</span><span>–CHF {fmtCHF(res.foreignWht)}</span></div>}
+                    <div className="ar-custom-calc__milestone"><span>Einkommenssteuer ({taxRate}%)</span><span>–CHF {fmtCHF(res.incomeTax)}</span></div>
+                    <div className="ar-custom-calc__milestone ar-custom-calc__milestone--highlight"><span>Netto (pro Monat)</span><span>CHF {fmtCHF(res.netDiv / 12)}</span></div>
+                    <div className="ar-custom-calc__milestone"><span>Effektive Rendite</span><span>{fmtPct(res.effectiveYield)}</span></div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+// ═══════════════════════════════════════════════════
+// 45. Portfolio Wachstum Rechner
+// ═══════════════════════════════════════════════════
+function PortfolioGrowthCalc() {
+    const [initial, setInitial] = useState(50000);
+    const [monthly, setMonthly] = useState(1000);
+    const [years, setYears] = useState(20);
+    const [stockPct, setStockPct] = useState(60);
+    const [bondPct, setBondPct] = useState(30);
+
+    const res = useMemo(() => {
+        const cashPct = 100 - stockPct - bondPct;
+        const weightedReturn = (stockPct * 7 + bondPct * 2 + cashPct * 0.5) / 100 / 100;
+        let balance = initial;
+        const totalDeposits = initial + monthly * 12 * years;
+        for (let y = 0; y < years; y++) {
+            balance = (balance + monthly * 12) * (1 + weightedReturn);
+        }
+        const gain = balance - totalDeposits;
+        const annualReturn = weightedReturn * 100;
+        return { balance, totalDeposits, gain, annualReturn, cashPct };
+    }, [initial, monthly, years, stockPct, bondPct]);
+
+    return (
+        <div className="ar-custom-calc">
+            <div className="ar-custom-calc__input-row">
+                <div className="ar-custom-calc__input-group"><label>Startkapital (CHF)</label><input type="number" className="ar-custom-calc__number-input" value={initial} onChange={e => setInitial(+e.target.value)} min={0} step={10000} /></div>
+                <div className="ar-custom-calc__input-group"><label>Monatl. Einzahlung (CHF)</label><input type="number" className="ar-custom-calc__number-input" value={monthly} onChange={e => setMonthly(+e.target.value)} min={0} step={100} /></div>
+            </div>
+            <div className="ar-custom-calc__input-row">
+                <div className="ar-custom-calc__input-group"><label>Anlagedauer (Jahre)</label><input type="number" className="ar-custom-calc__number-input" value={years} onChange={e => setYears(+e.target.value)} min={1} max={40} step={1} /></div>
+                <div className="ar-custom-calc__input-group"><label>Aktienanteil (%)</label><input type="number" className="ar-custom-calc__number-input" value={stockPct} onChange={e => setStockPct(+e.target.value)} min={0} max={100} step={5} /></div>
+            </div>
+            <div className="ar-custom-calc__input-group"><label>Obligationenanteil (%)</label><input type="number" className="ar-custom-calc__number-input" value={bondPct} onChange={e => setBondPct(+e.target.value)} min={0} max={100 - stockPct} step={5} /></div>
+            <div className="ar-custom-calc__results">
+                <div className="ar-custom-calc__result-main"><span className="ar-custom-calc__result-label">Portfoliowert nach {years} Jahren</span><span className="ar-custom-calc__result-value">CHF {fmtCHF(res.balance)}</span></div>
+                <div className="ar-custom-calc__result-grid">
+                    <div className="ar-custom-calc__result-card"><span className="ar-custom-calc__card-icon">📊</span><span className="ar-custom-calc__card-value">{fmtPct(res.annualReturn)}/J.</span><span className="ar-custom-calc__card-label">Gewichtete Rendite</span></div>
+                    <div className="ar-custom-calc__result-card"><span className="ar-custom-calc__card-icon">💵</span><span className="ar-custom-calc__card-value">CHF {fmtCHF(res.totalDeposits)}</span><span className="ar-custom-calc__card-label">Eingezahlt</span></div>
+                    <div className="ar-custom-calc__result-card"><span className="ar-custom-calc__card-icon">📈</span><span className="ar-custom-calc__card-value">CHF {fmtCHF(res.gain)}</span><span className="ar-custom-calc__card-label">Rendite</span></div>
+                </div>
+                <p className="ar-custom-calc__note">Allokation: {stockPct}% Aktien (7%) / {bondPct}% Obligationen (2%) / {res.cashPct}% Cash (0.5%)</p>
+            </div>
+        </div>
+    );
+}
+
+// ═══════════════════════════════════════════════════
+// 46. Vermögens Rechner (Nettovermögen)
+// ═══════════════════════════════════════════════════
+function NetWorthCalc() {
+    const [bankAccounts, setBankAccounts] = useState(50000);
+    const [securities, setSecurities] = useState(200000);
+    const [realEstate, setRealEstate] = useState(800000);
+    const [otherAssets, setOtherAssets] = useState(30000);
+    const [mortgage, setMortgage] = useState(640000);
+    const [otherDebts, setOtherDebts] = useState(10000);
+
+    const res = useMemo(() => {
+        const totalAssets = bankAccounts + securities + realEstate + otherAssets;
+        const totalDebts = mortgage + otherDebts;
+        const netWorth = totalAssets - totalDebts;
+        const freibetrag = 100000;
+        const taxable = Math.max(0, netWorth - freibetrag);
+        const wealthTax = taxable * 0.003;
+        return { totalAssets, totalDebts, netWorth, taxable, wealthTax };
+    }, [bankAccounts, securities, realEstate, otherAssets, mortgage, otherDebts]);
+
+    return (
+        <div className="ar-custom-calc">
+            <div className="ar-custom-calc__input-row">
+                <div className="ar-custom-calc__input-group"><label>Bankkonten (CHF)</label><input type="number" className="ar-custom-calc__number-input" value={bankAccounts} onChange={e => setBankAccounts(+e.target.value)} min={0} step={10000} /></div>
+                <div className="ar-custom-calc__input-group"><label>Wertschriften (CHF)</label><input type="number" className="ar-custom-calc__number-input" value={securities} onChange={e => setSecurities(+e.target.value)} min={0} step={10000} /></div>
+            </div>
+            <div className="ar-custom-calc__input-row">
+                <div className="ar-custom-calc__input-group"><label>Immobilien (CHF)</label><input type="number" className="ar-custom-calc__number-input" value={realEstate} onChange={e => setRealEstate(+e.target.value)} min={0} step={50000} /></div>
+                <div className="ar-custom-calc__input-group"><label>Sonstige Aktiven (CHF)</label><input type="number" className="ar-custom-calc__number-input" value={otherAssets} onChange={e => setOtherAssets(+e.target.value)} min={0} step={5000} /></div>
+            </div>
+            <div className="ar-custom-calc__input-row">
+                <div className="ar-custom-calc__input-group"><label>Hypothek (CHF)</label><input type="number" className="ar-custom-calc__number-input" value={mortgage} onChange={e => setMortgage(+e.target.value)} min={0} step={10000} /></div>
+                <div className="ar-custom-calc__input-group"><label>Sonstige Schulden (CHF)</label><input type="number" className="ar-custom-calc__number-input" value={otherDebts} onChange={e => setOtherDebts(+e.target.value)} min={0} step={5000} /></div>
+            </div>
+            <div className="ar-custom-calc__results">
+                <div className="ar-custom-calc__result-main"><span className="ar-custom-calc__result-label">Nettovermögen</span><span className="ar-custom-calc__result-value">CHF {fmtCHF(res.netWorth)}</span></div>
+                <div className="ar-custom-calc__result-grid">
+                    <div className="ar-custom-calc__result-card"><span className="ar-custom-calc__card-icon">📊</span><span className="ar-custom-calc__card-value">CHF {fmtCHF(res.totalAssets)}</span><span className="ar-custom-calc__card-label">Total Aktiven</span></div>
+                    <div className="ar-custom-calc__result-card"><span className="ar-custom-calc__card-icon">💳</span><span className="ar-custom-calc__card-value">CHF {fmtCHF(res.totalDebts)}</span><span className="ar-custom-calc__card-label">Total Schulden</span></div>
+                    <div className="ar-custom-calc__result-card"><span className="ar-custom-calc__card-icon">🏛️</span><span className="ar-custom-calc__card-value">CHF {fmtCHF(res.wealthTax)}</span><span className="ar-custom-calc__card-label">Vermögenssteuer (~3‰)</span></div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+// ═══════════════════════════════════════════════════
+// 47. Sparquote Rechner
+// ═══════════════════════════════════════════════════
+function SavingsRateCalc() {
+    const [grossIncome, setGrossIncome] = useState(120000);
+    const [totalExpenses, setTotalExpenses] = useState(72000);
+    const [ahvBvg, setAhvBvg] = useState(15000);
+
+    const res = useMemo(() => {
+        const savings = grossIncome - totalExpenses;
+        const rateGross = (savings / grossIncome) * 100;
+        const rateWithOblig = ((savings + ahvBvg) / grossIncome) * 100;
+        const monthly = savings / 12;
+        const swissAvg = 18;
+        const yearsToFire = rateGross > 0 ? Math.log(25 * (rateGross / 100)) / Math.log(1.07) : Infinity;
+        return { savings, rateGross, rateWithOblig, monthly, swissAvg, yearsToFire: Math.max(0, yearsToFire) };
+    }, [grossIncome, totalExpenses, ahvBvg]);
+
+    return (
+        <div className="ar-custom-calc">
+            <div className="ar-custom-calc__input-row">
+                <div className="ar-custom-calc__input-group"><label>Bruttoeinkommen/Jahr (CHF)</label><input type="number" className="ar-custom-calc__number-input" value={grossIncome} onChange={e => setGrossIncome(+e.target.value)} min={30000} step={5000} /></div>
+                <div className="ar-custom-calc__input-group"><label>Gesamtausgaben/Jahr (CHF)</label><input type="number" className="ar-custom-calc__number-input" value={totalExpenses} onChange={e => setTotalExpenses(+e.target.value)} min={0} step={5000} /></div>
+            </div>
+            <div className="ar-custom-calc__input-group"><label>AHV/BVG-Beiträge/Jahr (CHF)</label><input type="number" className="ar-custom-calc__number-input" value={ahvBvg} onChange={e => setAhvBvg(+e.target.value)} min={0} step={1000} /></div>
+            <div className="ar-custom-calc__results">
+                <div className="ar-custom-calc__result-main"><span className="ar-custom-calc__result-label">Sparquote</span><span className="ar-custom-calc__result-value">{fmtPct(res.rateGross)}</span></div>
+                <div className="ar-custom-calc__result-grid">
+                    <div className="ar-custom-calc__result-card"><span className="ar-custom-calc__card-icon">💰</span><span className="ar-custom-calc__card-value">CHF {fmtCHF(res.monthly)}</span><span className="ar-custom-calc__card-label">Monatl. Sparbetrag</span></div>
+                    <div className="ar-custom-calc__result-card"><span className="ar-custom-calc__card-icon">🇨🇭</span><span className="ar-custom-calc__card-value">{res.swissAvg}%</span><span className="ar-custom-calc__card-label">Schweizer Ø</span></div>
+                    <div className="ar-custom-calc__result-card"><span className="ar-custom-calc__card-icon">📊</span><span className="ar-custom-calc__card-value">{fmtPct(res.rateWithOblig)}</span><span className="ar-custom-calc__card-label">Inkl. AHV/BVG</span></div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+// ═══════════════════════════════════════════════════
+// 48. Inflation Rechner
+// ═══════════════════════════════════════════════════
+function InflationCalc() {
+    const [amount, setAmount] = useState(100000);
+    const [inflationRate, setInflationRate] = useState(1);
+    const [years, setYears] = useState(20);
+
+    const res = useMemo(() => {
+        const milestones = [5, 10, 15, 20, 25, 30].filter(y => y <= years || y === Math.min(30, years));
+        const data = milestones.map(y => {
+            const realValue = amount / Math.pow(1 + inflationRate / 100, y);
+            const loss = amount - realValue;
+            const lossPct = (loss / amount) * 100;
+            return { y, realValue, loss, lossPct };
+        });
+        const finalValue = amount / Math.pow(1 + inflationRate / 100, years);
+        const totalLoss = amount - finalValue;
+        return { data, finalValue, totalLoss };
+    }, [amount, inflationRate, years]);
+
+    return (
+        <div className="ar-custom-calc">
+            <div className="ar-custom-calc__input-row">
+                <div className="ar-custom-calc__input-group"><label>Heutiger Betrag (CHF)</label><input type="number" className="ar-custom-calc__number-input" value={amount} onChange={e => setAmount(+e.target.value)} min={1000} step={10000} /></div>
+                <div className="ar-custom-calc__input-group"><label>Inflation (%/Jahr)</label><input type="number" className="ar-custom-calc__number-input" value={inflationRate} onChange={e => setInflationRate(+e.target.value)} min={0} max={10} step={0.25} /></div>
+            </div>
+            <div className="ar-custom-calc__input-group"><label>Zeitraum (Jahre)</label><input type="number" className="ar-custom-calc__number-input" value={years} onChange={e => setYears(+e.target.value)} min={1} max={50} step={5} /></div>
+            <div className="ar-custom-calc__results">
+                <div className="ar-custom-calc__result-main"><span className="ar-custom-calc__result-label">Kaufkraft nach {years} Jahren</span><span className="ar-custom-calc__result-value">CHF {fmtCHF(res.finalValue)}</span></div>
+                <div className="ar-custom-calc__milestones">
+                    <h3>Kaufkraftverlust über die Zeit</h3>
+                    {res.data.map(d => (
+                        <div key={d.y} className="ar-custom-calc__milestone"><span>Nach {d.y} Jahren</span><span>CHF {fmtCHF(d.realValue)} (–{fmtPct(d.lossPct)})</span></div>
+                    ))}
+                </div>
+            </div>
+        </div>
+    );
+}
+
+// ═══════════════════════════════════════════════════
+// 49. Finanzielle Freiheit Rechner (FIRE)
+// ═══════════════════════════════════════════════════
+function FireCalc() {
+    const [monthlyExpenses, setMonthlyExpenses] = useState(5000);
+    const [currentSavings, setCurrentSavings] = useState(100000);
+    const [monthlySavings, setMonthlySavings] = useState(3000);
+    const [returnRate, setReturnRate] = useState(5);
+    const [ahvMonthly, setAhvMonthly] = useState(2000);
+
+    const res = useMemo(() => {
+        const annualExpenses = monthlyExpenses * 12;
+        const fireNumber = annualExpenses * 25;
+        const fireWith3p5 = annualExpenses / 0.035;
+        const reducedFirePost65 = (annualExpenses - ahvMonthly * 12) * 25;
+        let balance = currentSavings;
+        const r = returnRate / 100;
+        let yearsToFire = 0;
+        while (balance < fireNumber && yearsToFire < 100) {
+            balance = balance * (1 + r) + monthlySavings * 12;
+            yearsToFire++;
+        }
+        const fireAge = yearsToFire;
+        const savingsRate = monthlyExpenses + monthlySavings > 0
+            ? (monthlySavings / (monthlyExpenses + monthlySavings)) * 100 : 0;
+        return { fireNumber, fireWith3p5, reducedFirePost65, yearsToFire: fireAge, savingsRate };
+    }, [monthlyExpenses, currentSavings, monthlySavings, returnRate, ahvMonthly]);
+
+    return (
+        <div className="ar-custom-calc">
+            <div className="ar-custom-calc__input-row">
+                <div className="ar-custom-calc__input-group"><label>Monatl. Ausgaben (CHF)</label><input type="number" className="ar-custom-calc__number-input" value={monthlyExpenses} onChange={e => setMonthlyExpenses(+e.target.value)} min={2000} step={500} /></div>
+                <div className="ar-custom-calc__input-group"><label>Aktuelles Vermögen (CHF)</label><input type="number" className="ar-custom-calc__number-input" value={currentSavings} onChange={e => setCurrentSavings(+e.target.value)} min={0} step={25000} /></div>
+            </div>
+            <div className="ar-custom-calc__input-row">
+                <div className="ar-custom-calc__input-group"><label>Monatl. Sparbetrag (CHF)</label><input type="number" className="ar-custom-calc__number-input" value={monthlySavings} onChange={e => setMonthlySavings(+e.target.value)} min={0} step={500} /></div>
+                <div className="ar-custom-calc__input-group"><label>Rendite (%)</label><input type="number" className="ar-custom-calc__number-input" value={returnRate} onChange={e => setReturnRate(+e.target.value)} min={0} max={10} step={0.5} /></div>
+            </div>
+            <div className="ar-custom-calc__input-group"><label>Erwartete AHV-Rente (CHF/Mt.)</label><input type="number" className="ar-custom-calc__number-input" value={ahvMonthly} onChange={e => setAhvMonthly(+e.target.value)} min={0} max={2450} step={50} /></div>
+            <div className="ar-custom-calc__results">
+                <div className="ar-custom-calc__result-main"><span className="ar-custom-calc__result-label">FIRE in</span><span className="ar-custom-calc__result-value">{res.yearsToFire < 100 ? `${res.yearsToFire} Jahren` : "N/A"}</span></div>
+                <div className="ar-custom-calc__result-grid">
+                    <div className="ar-custom-calc__result-card"><span className="ar-custom-calc__card-icon">🔥</span><span className="ar-custom-calc__card-value">CHF {fmtCHF(res.fireNumber)}</span><span className="ar-custom-calc__card-label">FIRE-Zahl (4%-Regel)</span></div>
+                    <div className="ar-custom-calc__result-card"><span className="ar-custom-calc__card-icon">🇨🇭</span><span className="ar-custom-calc__card-value">CHF {fmtCHF(res.reducedFirePost65)}</span><span className="ar-custom-calc__card-label">Mit AHV (ab 65)</span></div>
+                    <div className="ar-custom-calc__result-card"><span className="ar-custom-calc__card-icon">💹</span><span className="ar-custom-calc__card-value">{fmtPct(res.savingsRate)}</span><span className="ar-custom-calc__card-label">Sparquote</span></div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+// ═══════════════════════════════════════════════════
+// 50. Investitions Rechner (ROI)
+// ═══════════════════════════════════════════════════
+function InvestmentReturnCalc() {
+    const [invested, setInvested] = useState(50000);
+    const [currentValue, setCurrentValue] = useState(72000);
+    const [years, setYears] = useState(5);
+
+    const res = useMemo(() => {
+        const totalReturn = currentValue - invested;
+        const roi = (totalReturn / invested) * 100;
+        const cagr = (Math.pow(currentValue / invested, 1 / years) - 1) * 100;
+        const etfAlternative = invested * Math.pow(1.07, years);
+        const savings = invested * Math.pow(1.01, years);
+        const opportunity = etfAlternative - currentValue;
+        return { totalReturn, roi, cagr, etfAlternative, savings, opportunity };
+    }, [invested, currentValue, years]);
+
+    return (
+        <div className="ar-custom-calc">
+            <div className="ar-custom-calc__input-row">
+                <div className="ar-custom-calc__input-group"><label>Investiertes Kapital (CHF)</label><input type="number" className="ar-custom-calc__number-input" value={invested} onChange={e => setInvested(+e.target.value)} min={1000} step={5000} /></div>
+                <div className="ar-custom-calc__input-group"><label>Aktueller Wert (CHF)</label><input type="number" className="ar-custom-calc__number-input" value={currentValue} onChange={e => setCurrentValue(+e.target.value)} min={0} step={5000} /></div>
+            </div>
+            <div className="ar-custom-calc__input-group"><label>Anlagedauer (Jahre)</label><input type="number" className="ar-custom-calc__number-input" value={years} onChange={e => setYears(+e.target.value)} min={1} max={30} step={1} /></div>
+            <div className="ar-custom-calc__results">
+                <div className="ar-custom-calc__result-main"><span className="ar-custom-calc__result-label">Annualisierte Rendite (CAGR)</span><span className="ar-custom-calc__result-value">{fmtPct(res.cagr)}</span></div>
+                <div className="ar-custom-calc__result-grid">
+                    <div className="ar-custom-calc__result-card"><span className="ar-custom-calc__card-icon">📈</span><span className="ar-custom-calc__card-value">CHF {fmtCHF(res.totalReturn)}</span><span className="ar-custom-calc__card-label">Gesamtrendite</span></div>
+                    <div className="ar-custom-calc__result-card"><span className="ar-custom-calc__card-icon">📊</span><span className="ar-custom-calc__card-value">{fmtPct(res.roi)}</span><span className="ar-custom-calc__card-label">ROI (total)</span></div>
+                </div>
+                <div className="ar-custom-calc__milestones">
+                    <h3>Vergleich Alternativen</h3>
+                    <div className="ar-custom-calc__milestone"><span>Ihre Investition</span><span>CHF {fmtCHF(currentValue)}</span></div>
+                    <div className="ar-custom-calc__milestone"><span>ETF-Alternative (7%)</span><span>CHF {fmtCHF(res.etfAlternative)}</span></div>
+                    <div className="ar-custom-calc__milestone"><span>Sparkonto (1%)</span><span>CHF {fmtCHF(res.savings)}</span></div>
+                    <div className="ar-custom-calc__milestone ar-custom-calc__milestone--highlight"><span>{res.opportunity > 0 ? "Opportunitätskosten" : "Outperformance vs ETF"}</span><span>CHF {fmtCHF(Math.abs(res.opportunity))}</span></div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
 // ─── Dispatcher ───
 interface Props { calcType: string }
 
@@ -2107,6 +2557,17 @@ const CUSTOM_CALCS: Record<string, React.FC> = {
     "pension-gap": PensionGapCalc,
     "capital-vs-annuity": CapitalVsAnnuityCalc,
     "pension-payout": PensionPayoutCalc,
+    // Investment & Wealth calculators
+    "compound-interest": CompoundInterestCalc,
+    "savings-goal": SavingsGoalCalc,
+    "etf-return": EtfReturnCalc,
+    "dividend": DividendCalc,
+    "portfolio-growth": PortfolioGrowthCalc,
+    "net-worth": NetWorthCalc,
+    "savings-rate": SavingsRateCalc,
+    "inflation": InflationCalc,
+    "fire": FireCalc,
+    "investment-return": InvestmentReturnCalc,
 };
 
 export default function ChCustomCalculatorCore({ calcType }: Props) {

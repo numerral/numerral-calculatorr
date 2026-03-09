@@ -1065,6 +1065,219 @@ export const CH_CALCULATORS: ChCalculator[] = [
         ],
         relatedIds: ["pension-kapital", "saeule-3a-rechner", "saeule-3a-steuerersparnis"],
     },
+    // ═══════════════════════════════════════════════════
+    // SWISS INVESTMENT & WEALTH CALCULATORS
+    // ═══════════════════════════════════════════════════
+    {
+        id: "zinseszinsrechner",
+        title: "Zinseszins Rechner",
+        keyword: "Zinseszins Rechner Schweiz",
+        calcType: "compound-interest",
+        icon: "📈",
+        subtitle: "Berechnen Sie den Zinseszinseffekt auf Ihre Ersparnisse und Investitionen. Mit monatlichen Einzahlungen und Verrechnungssteuer-Rückforderung.",
+        explanation: {
+            heading: "Zinseszins — die stärkste Kraft der Finanzwelt",
+            paragraphs: [
+                "Albert Einstein nannte den Zinseszins 'das achte Weltwunder'. Der Zinseszinseffekt bedeutet, dass Sie nicht nur auf Ihr Kapital, sondern auch auf die bereits erzielten Zinsen Zinsen erhalten. Je länger der Anlagehorizont und je höher der Zinssatz, desto stärker wirkt der Effekt.",
+                "In der Schweiz unterliegen Zinserträge der Verrechnungssteuer (35%), die Sie bei der Steuererklärung zurückfordern können. Dividenden und Kursgewinne auf Privatvermögen sind in der Schweiz steuerfrei (kein Capital Gains Tax). Zinsen auf Sparkonten und Obligationen unterliegen der Einkommenssteuer.",
+            ],
+            highlight: "CHF 100'000 zu 5% über 30 Jahre: Ohne Zinseszins = CHF 250'000. Mit Zinseszins = CHF 432'194. Differenz: CHF 182'194 — fast doppelt so viel!",
+        },
+        faq: [
+            { question: "Wie wirkt sich der Zinseszins aus?", answer: "Die '72er-Regel': Teilen Sie 72 durch den Zinssatz = Anzahl Jahre bis zur Verdoppelung. Bei 6% Rendite: 72/6 = 12 Jahre. Bei 3%: 24 Jahre. Bei 8%: nur 9 Jahre. Der Zinseszins beschleunigt das Wachstum exponentiell." },
+            { question: "Was ist die Verrechnungssteuer?", answer: "Die Verrechnungssteuer (VST) von 35% wird auf Schweizer Zinserträge und Dividenden erhoben. Sie wird an der Quelle abgezogen. Bei korrekter Deklaration in der Steuererklärung wird sie vollständig zurückerstattet. Also kein Verlust — nur ein Liquiditätsnachteil." },
+        ],
+        relatedIds: ["sparzielrechner", "etf-rendite-rechner", "portfolio-rechner"],
+    },
+    {
+        id: "sparzielrechner",
+        title: "Sparziel Rechner",
+        keyword: "Sparziel Rechner Schweiz",
+        calcType: "savings-goal",
+        icon: "🎯",
+        subtitle: "Wie viel müssen Sie monatlich sparen, um Ihr Ziel zu erreichen? Oder wann erreichen Sie Ihr Ziel mit der aktuellen Sparrate?",
+        explanation: {
+            heading: "Sparziel berechnen — Ihr Weg zum finanziellen Ziel",
+            paragraphs: [
+                "Ob Eigentum, Ausbildung, Weltreise oder Notgroschen — ein klares Sparziel motiviert und gibt Struktur. Dieser Rechner zeigt Ihnen, welche monatliche Sparrate Sie brauchen, um Ihr Ziel in der gewünschten Zeit zu erreichen — oder wie lange es mit der aktuellen Rate dauert.",
+                "Tipp: Für den Eigenkapitalaufbau beim Hauskauf benötigen Sie mindestens 20% des Kaufpreises (davon max. 10% aus der Pensionskasse). Bei einer Immobilie für CHF 1'000'000 sind das CHF 200'000 hartes Eigenkapital. Frühzeitig anfangen lohnt sich!",
+            ],
+            highlight: "Sparziel CHF 200'000 in 10 Jahren bei 3% Rendite → Benötigte monatliche Sparrate: CHF 1'432. Bei 5% Rendite: nur CHF 1'287. Der Zinseszins spart Ihnen CHF 17'400!",
+        },
+        faq: [
+            { question: "Wie viel sollte ich als Notgroschen haben?", answer: "Faustregel: 3-6 Monatsgehälter. Bei CHF 7'000 Netto: CHF 21'000-42'000. Auf einem zugänglichen Sparkonto (nicht in der Säule 3a). Für Selbständige: 6-12 Monatsausgaben." },
+            { question: "Wo spare ich am besten?", answer: "Kurzfristig (<3 Jahre): Sparkonto (Sicherheit). Mittelfristig (3-10 Jahre): ETF-Sparplan mit Obligationenanteil. Langfristig (>10 Jahre): ETF-Sparplan mit hohem Aktienanteil (70-100%). Steuerbegünstigt: Säule 3a (max. CHF 7'258/Jahr)." },
+        ],
+        relatedIds: ["zinseszinsrechner", "sparquoterechner", "vermoegens-rechner"],
+    },
+    {
+        id: "etf-rendite-rechner",
+        title: "ETF Rendite Rechner",
+        keyword: "ETF Rendite Rechner Schweiz",
+        calcType: "etf-return",
+        icon: "📊",
+        subtitle: "Berechnen Sie die erwartete Rendite Ihres ETF-Sparplans. Mit TER-Kosten, Inflation und historischen Vergleichswerten.",
+        explanation: {
+            heading: "ETF-Investing in der Schweiz",
+            paragraphs: [
+                "ETFs (Exchange Traded Funds) sind in der Schweiz die beliebteste Form des passiven Investierens. Sie bieten breite Diversifikation zu tiefen Kosten (TER von 0.05-0.30%). Die historische Durchschnittsrendite des MSCI World liegt bei ca. 7-8% pro Jahr (nominal), bzw. 5-6% real (nach Inflation).",
+                "Schweizer Besonderheit: Kursgewinne auf Privatvermögen sind steuerfrei! Nur Dividenden unterliegen der Einkommenssteuer. Bei ausländischen Quellensteuern können je nach Doppelbesteuerungsabkommen Teilrückforderungen gestellt werden (z.B. 15% von US-Dividenden via DA-1).",
+            ],
+            highlight: "CHF 500/Monat in MSCI World ETF (TER 0.20%) über 25 Jahre bei 7% Brutto → Vermögen: CHF 405'000. Eingezahlt: CHF 150'000. Rendite: CHF 255'000 (steuerfrei!).",
+        },
+        faq: [
+            { question: "Welcher ETF ist für Schweizer am besten?", answer: "Populäre Choices: (1) Vanguard FTSE All-World (VWRL), TER 0.22%, (2) iShares MSCI World (IWDA), TER 0.20%, (3) SPI-ETF für Schweizer Aktien (keine Quellensteuer). Tipp: Thesaurierende ETFs (acc) sind steuerlich einfacher als ausschüttende (dist)." },
+            { question: "Sind ETF-Gewinne in der Schweiz steuerfrei?", answer: "Kursgewinne: Ja, steuerfrei für Privatanleger. Dividenden: Nein, einkommenssteuerpflichtig (auch thesaurierte). Verrechnungssteuer: Nur bei Schweizer ETFs/Aktien (35%, rückforderbar). Ausländische Quellensteuer: Teilweise rückforderbar via DA-1." },
+        ],
+        relatedIds: ["zinseszinsrechner", "portfolio-rechner", "dividendenrechner"],
+    },
+    {
+        id: "dividendenrechner",
+        title: "Dividenden Rechner",
+        keyword: "Dividenden Rechner Schweiz",
+        calcType: "dividend",
+        icon: "💎",
+        subtitle: "Berechnen Sie Ihre Dividendeneinnahmen. Mit Brutto/Netto nach Verrechnungssteuer und steuerlichen Auswirkungen.",
+        explanation: {
+            heading: "Dividenden in der Schweiz — Brutto vs. Netto",
+            paragraphs: [
+                "Dividenden aus Schweizer Aktien unterliegen der Verrechnungssteuer (VST) von 35%. Diese wird automatisch abgezogen, ist aber bei korrekter Deklaration rückforderbar. Zusätzlich werden Dividenden als Einkommen besteuert (Einkommenssteuer). Bei qualifizierten Beteiligungen (≥10%) gilt eine Teilbesteuerung (70%).",
+                "Bei ausländischen Aktien fällt die Quellensteuer des Herkunftslandes an (z.B. USA: 30%, reduziert auf 15% via DBA). Die über 15% hinausgehende Quellensteuer ist via DA-1-Formular rückforderbar. Die 15% Restquellensteuer werden an die Schweizer Steuern angerechnet.",
+            ],
+            highlight: "Portfolio CHF 500'000, Dividendenrendite 3%: Brutto CHF 15'000. VST –CHF 5'250 (rückforderbar). Einkommenssteuer (30%) ca. –CHF 4'500. Netto: CHF 10'500/Jahr = CHF 875/Monat.",
+        },
+        faq: [
+            { question: "Muss ich Dividenden versteuern?", answer: "Ja, Dividenden sind einkommenssteuerpflichtig. Sie werden zum steuerbaren Einkommen addiert. Die Verrechnungssteuer (35%) ist separat und wird zurückerstattet, wenn Sie die Dividenden korrekt in der Steuererklärung angeben." },
+            { question: "Was sind die besten Schweizer Dividendenzahler?", answer: "Historisch hohe und stabile Dividenden: Nestlé, Roche, Novartis, Zurich Insurance, Swiss Re, Swisscom. Dividendenrenditen: typisch 2.5-5%. Schweizer Dividendenaktien profitieren von der vollen VST-Rückerstattung." },
+        ],
+        relatedIds: ["etf-rendite-rechner", "portfolio-rechner", "investitionsrechner"],
+    },
+    {
+        id: "portfolio-rechner",
+        title: "Portfolio Wachstum Rechner",
+        keyword: "Portfolio Wachstum Rechner Schweiz",
+        calcType: "portfolio-growth",
+        icon: "🧮",
+        subtitle: "Simulieren Sie das Wachstum Ihres Portfolios über die Zeit. Mit Asset-Allokation, Rebalancing und monatlichen Einzahlungen.",
+        explanation: {
+            heading: "Portfolio-Wachstum und Asset-Allokation",
+            paragraphs: [
+                "Die Asset-Allokation (Aufteilung zwischen Aktien, Obligationen und Cash) bestimmt ca. 90% der langfristigen Rendite. Je höher der Aktienanteil, desto höher die erwartete Rendite — aber auch das Risiko. Für einen Anlagehorizont von 10+ Jahren empfehlen Experten 60-80% Aktien.",
+                "In der Schweiz ist die 3a-Wertschriftenlösung eine beliebte Form des steueroptimierten Investierens: Kein Vermögenssteuer, keine Einkommenssteuer auf Erträge, und Steuerabzug bei der Einzahlung. Ausserhalb der 3. Säule profitieren Schweizer von steuerfreien Kapitalgewinnen.",
+            ],
+            highlight: "60% Aktien (7%) / 30% Obligationen (2%) / 10% Cash (0.5%), CHF 1'000/Mt. über 20 Jahre → Vermögen: CHF 450'000. Nur Aktien (7%): CHF 520'000. Nur Sparkonto (0.5%): CHF 256'000.",
+        },
+        faq: [
+            { question: "Wie oft sollte ich rebalancen?", answer: "Empfehlung: 1-2× pro Jahr oder bei Abweichung >5% von der Ziel-Allokation. Am besten rebalancen Sie durch neue Einzahlungen (weniger Transaktionskosten). Viele Broker bieten automatisches Rebalancing." },
+            { question: "Welche Asset-Allokation ist richtig für mich?", answer: "Faustregel: 100 minus Alter = Aktienanteil (z.B. 35 Jahre → 65% Aktien). Aggressiver: 120 minus Alter. Konservativ: 80 minus Alter. Entscheidend: Risikotoleranz und Anlagehorizont." },
+        ],
+        relatedIds: ["etf-rendite-rechner", "zinseszinsrechner", "vermoegens-rechner"],
+    },
+    {
+        id: "vermoegens-rechner",
+        title: "Vermögens Rechner",
+        keyword: "Vermögens Rechner Schweiz",
+        calcType: "net-worth",
+        icon: "🏆",
+        subtitle: "Berechnen Sie Ihr Nettovermögen und die resultierende Vermögenssteuer. Inkl. Immobilien, Wertschriften, PK und Schulden.",
+        explanation: {
+            heading: "Nettovermögen und Vermögenssteuer in der Schweiz",
+            paragraphs: [
+                "Ihr Nettovermögen = Summe aller Aktiven (Bankkonten, Wertschriften, Immobilien, Fahrzeuge) minus Schulden (Hypothek, Kredite). In der Schweiz unterliegt das Reinvermögen der Vermögenssteuer — eine Besonderheit, die es in den meisten anderen Ländern nicht gibt.",
+                "Die Vermögenssteuer variiert stark nach Kanton: Von ca. 0.1‰ (Schwyz) bis 1% (Genf). Freibeträge: CHF 100'000 (ledig) bzw. CHF 200'000 (verheiratet) in vielen Kantonen. Pensionskassenguthaben und Säule 3a sind von der Vermögenssteuer ausgenommen.",
+            ],
+            highlight: "Nettovermögen CHF 1'000'000 (nach Freibetrag CHF 800'000), Kanton Zürich → Vermögenssteuer ca. CHF 2'000/Jahr. In Zug: nur CHF 480. In Genf: ca. CHF 6'000.",
+        },
+        faq: [
+            { question: "Was zählt zum steuerbaren Vermögen?", answer: "Bankkonten, Wertschriften (zum Steuerwert/Kurswert 31.12.), Immobilien (zum Eigenmietwert oder Steuerwert), Fahrzeuge, Lebensversicherungen (Rückkaufswert), Darlehen an Dritte, und sonstige Vermögenswerte. NICHT dazu: 2. und 3a-Säule." },
+            { question: "Wie kann ich die Vermögenssteuer senken?", answer: "1. PK-Einkauf (reduziert steuerbares Vermögen). 2. Hypothek beibehalten (Schulden mindern Vermögen). 3. Indirekte Amortisation via 3a (statt direkte Hypothek-Rückzahlung). 4. Kantonsumzug in steuergünstigen Kanton." },
+        ],
+        relatedIds: ["portfolio-rechner", "sparquoterechner", "vermoegenssteuerrechner"],
+    },
+    {
+        id: "sparquoterechner",
+        title: "Sparquote Rechner",
+        keyword: "Sparquote Rechner Schweiz",
+        calcType: "savings-rate",
+        icon: "💹",
+        subtitle: "Berechnen Sie Ihre persönliche Sparquote und vergleichen Sie mit dem Schweizer Durchschnitt. Mit Tipps zur Optimierung.",
+        explanation: {
+            heading: "Sparquote — der wichtigste Finanzkennwert",
+            paragraphs: [
+                "Die Sparquote ist der Anteil Ihres Einkommens, den Sie sparen (inkl. Investitionen und Altersvorsorge). Die Schweiz hat eine der höchsten Sparquoten weltweit: ca. 18-20% im Durchschnitt. In der FIRE-Bewegung (Financial Independence, Retire Early) gilt: Je höher die Sparquote, desto schneller die finanzielle Unabhängigkeit.",
+                "Eine Sparquote von 50% bedeutet, dass Sie alle 1 Jahr Arbeit 1 Jahr Ruhestand finanzieren können. Bei 25% brauchen Sie 3 Jahre Arbeit für 1 Jahr Ruhestand. Die obligatorischen Beiträge zu AHV und BVG zählen bereits zur Sparquote.s",
+            ],
+            highlight: "Bruttoeinkommen CHF 120'000. Ausgaben CHF 72'000. Sparquote: 40%. Bei 7% Rendite können Sie in ca. 17 Jahren finanziell unabhängig sein (FIRE-Prinzip, 4%-Regel).",
+        },
+        faq: [
+            { question: "Was ist eine gute Sparquote?", answer: "10-15%: Grundsolide (Schweizer Durchschnitt). 20-30%: Überdurchschnittlich, guter Vermögensaufbau. 30-50%: Exzellent, schneller Weg zur finanziellen Unabhängigkeit. 50%+: FIRE-Niveau, Frühpensionierung möglich." },
+            { question: "Was zählt zur Sparquote?", answer: "Alle Formen der Vermögensbildung: Banksparen, Investitionen, Hypothek-Amortisation, Säule 3a, freiwillige PK-Einkäufe. Die obligatorischen AHV/BVG-Beiträge werden je nach Definition eingerechnet oder nicht." },
+        ],
+        relatedIds: ["sparzielrechner", "finanzielle-freiheit-rechner", "vermoegens-rechner"],
+    },
+    {
+        id: "inflationsrechner",
+        title: "Inflation Rechner",
+        keyword: "Inflation Rechner Schweiz",
+        calcType: "inflation",
+        icon: "📉",
+        subtitle: "Berechnen Sie den Kaufkraftverlust durch Inflation. Was sind CHF 100'000 heute in 10, 20 oder 30 Jahren noch wert?",
+        explanation: {
+            heading: "Inflation in der Schweiz — historisch tief, aber real",
+            paragraphs: [
+                "Die Schweiz hat historisch eine sehr tiefe Inflation (Ø 0.5-1% über die letzten 20 Jahre). Trotzdem: Bei 1% Inflation verliert Geld in 30 Jahren ca. 26% seiner Kaufkraft. CHF 100'000 sind dann nur noch CHF 74'000 wert. Bei 2% Inflation sogar nur CHF 55'000.",
+                "Für langfristige Finanzplanung ist die Realrendite entscheidend: Nominalrendite minus Inflation. Ein Sparkonto mit 1% Zins bei 1% Inflation ergibt eine Realrendite von 0%. Aktien (historisch 7% nominal) bieten eine Realrendite von ca. 5-6%.",
+            ],
+            highlight: "CHF 100'000 heute bei 1% Inflation/Jahr: In 10 Jahren = CHF 90'438 Kaufkraft. In 20 Jahren = CHF 81'791. In 30 Jahren = CHF 74'009. Realrendite Sparkonto: ca. 0%.",
+        },
+        faq: [
+            { question: "Wie hoch ist die Inflation in der Schweiz?", answer: "Historisch: Ø 0.5-1% (2000-2023). 2022 war ein Ausreisser mit 2.8% (Ukraine-Krise). Die SNB strebt eine Inflation von 0-2% an. Im internationalen Vergleich ist die Schweizer Inflation sehr tief (Eurozone: 2-3%, USA: 2-3%)." },
+            { question: "Wie schütze ich mich vor Inflation?", answer: "1. Aktien und Immobilien (Sachwerte, historisch inflationsschützend). 2. Inflationsgeschützte Obligationen (TIPS). 3. Lohnverhandlung (reale Lohnerhöhung). 4. NICHT: Geld auf dem Sparkonto liegen lassen (reale Entwertung)." },
+        ],
+        relatedIds: ["zinseszinsrechner", "etf-rendite-rechner", "vermoegens-rechner"],
+    },
+    {
+        id: "finanzielle-freiheit-rechner",
+        title: "Finanzielle Freiheit Rechner",
+        keyword: "Finanzielle Freiheit Rechner Schweiz FIRE",
+        calcType: "fire",
+        icon: "🔥",
+        subtitle: "Wann sind Sie finanziell unabhängig? Berechnen Sie Ihre FIRE-Zahl nach der 4%-Regel mit Schweizer Lebenshaltungskosten.",
+        explanation: {
+            heading: "FIRE — Financial Independence, Retire Early",
+            paragraphs: [
+                "Das FIRE-Prinzip basiert auf der 4%-Regel (Trinity Study): Wenn Ihr jährlicher Kapitalbezug 4% Ihres Vermögens nicht übersteigt, reicht das Kapital statistisch für 30+ Jahre. FIRE-Zahl = Jährliche Ausgaben × 25. In der Schweiz sind die Lebenshaltungskosten hoch, was eine höhere FIRE-Zahl erfordert.",
+                "Schweizer Besonderheit: Die AHV (ab 65) und allenfalls eine BVG-Rente reduzieren die benötigte FIRE-Zahl erheblich. Sie müssen nur die Lücke bis zum AHV-Alter und die Differenz zwischen AHV/BVG und Ihren Ausgaben selbst finanzieren.",
+            ],
+            highlight: "Monatliche Ausgaben CHF 5'000. FIRE-Zahl: CHF 5'000 × 12 × 25 = CHF 1'500'000. Mit AHV (CHF 2'000/Mt ab 65): Reduzierte FIRE-Zahl ab 65: CHF 900'000.",
+        },
+        faq: [
+            { question: "Funktioniert die 4%-Regel in der Schweiz?", answer: "Grundsätzlich ja, mit Anpassungen: (1) Tiefere Inflation = positiv. (2) Höhere Lebenshaltungskosten = höhere FIRE-Zahl. (3) AHV/BVG reduzieren den Bedarf ab 65. (4) Vermögenssteuer und Krankenversicherung beachten. In der Schweiz empfehlen Experten konservativ 3.5% statt 4%." },
+            { question: "Wie lange dauert es bis zur finanziellen Freiheit?", answer: "Abhängig von der Sparquote: 10% = 51 Jahre. 20% = 37 Jahre. 30% = 28 Jahre. 50% = 17 Jahre. 70% = 8.5 Jahre. Die Sparquote ist der entscheidende Faktor — wichtiger als die Rendite!" },
+        ],
+        relatedIds: ["sparquoterechner", "vermoegens-rechner", "portfolio-rechner"],
+    },
+    {
+        id: "investitionsrechner",
+        title: "Investitions Rechner",
+        keyword: "Investitions Rechner Schweiz",
+        calcType: "investment-return",
+        icon: "💼",
+        subtitle: "Berechnen Sie den Return on Investment (ROI) Ihrer Anlagen. Mit Einmal- und regelmässigen Einzahlungen und Opportunitätskosten.",
+        explanation: {
+            heading: "Return on Investment (ROI) berechnen",
+            paragraphs: [
+                "Der ROI zeigt, wie rentabel eine Investition war: (Endwert - Eingesetztes Kapital) / Eingesetztes Kapital × 100. Für den Vergleich verschiedener Anlagen ist der annualisierte ROI (CAGR) aussagekräftiger: Er berücksichtigt den Zeitfaktor und ermöglicht faire Vergleiche.",
+                "Opportunitätskosten: Was hätten Sie mit dem Geld alternativ verdienen können? Vergleichen Sie Ihre Investition immer mit einem passiven ETF-Investment (ca. 7% p.a.) oder zumindest mit einem Sparkonto. Erst wenn Ihr ROI höher liegt, hat sich die Investition gelohnt.",
+            ],
+            highlight: "Investition CHF 50'000 → nach 5 Jahren CHF 72'000. ROI: 44%. Annualisiert (CAGR): 7.6%. Vergleich: MSCI World (7%/Jahr) hätte CHF 70'128 ergeben. Ihre Investition war leicht besser!",
+        },
+        faq: [
+            { question: "Was ist ein guter ROI?", answer: "Sparkonto: 0.5-1.5% (2026). Obligationen: 1.5-3%. Schweizer Immobilien: 3-5% (Mietrendite). Aktien/ETFs: 7-8% (langfristig, nominal). Start-up: 20-100% (aber hohes Risiko). Alles über der risikolosen Rendite (Bundesobligation, ca. 1%) ist eine Risikoprämie." },
+            { question: "Was sind Opportunitätskosten?", answer: "Die 'entgangene Rendite' der besten nicht gewählten Alternative. Beispiel: Sie parken CHF 100'000 auf dem Sparkonto (1%) statt in ETFs (7%). Opportunitätskosten: 6% × CHF 100'000 = CHF 6'000/Jahr. Über 10 Jahre: ca. CHF 80'000 entgangen." },
+        ],
+        relatedIds: ["zinseszinsrechner", "etf-rendite-rechner", "portfolio-rechner"],
+    },
 ];
 
 export function getChCalculatorBySlug(slug: string): ChCalculator | undefined {
