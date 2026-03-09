@@ -1,0 +1,407 @@
+[
+    {
+        "term": "AHV (Alters- und Hinterlassenenversicherung)",
+        "slug": "ahv",
+        "definition": "Die 1. Säule des Schweizer Vorsorgesystems. Die AHV ist eine obligatorische staatliche Rentenversicherung, die allen Einwohnern eine Existenzsicherung im Alter bietet. Die maximale AHV-Rente beträgt CHF 2'450/Monat (Einzelperson) bzw. CHF 3'675/Monat (Ehepaar, max. 150% Plafonierung). Finanziert wird sie durch Lohnbeiträge von 8.7% (je hälftig Arbeitgeber/Arbeitnehmer).",
+        "category": "vorsorge",
+        "formula": "AHV-Beitrag = Bruttolohn × 4.35% (AN-Anteil)",
+        "related": ["ahv-rentenrechner"]
+    },
+    {
+        "term": "Amortisation",
+        "slug": "amortisation",
+        "definition": "Die planmässige Rückzahlung einer Hypothek. In der Schweiz muss die Hypothek innerhalb von 15 Jahren oder bis zum 65. Lebensjahr auf zwei Drittel des Belehnungswerts amortisiert werden. Es gibt direkte Amortisation (regelmässige Rückzahlung) und indirekte Amortisation (Einzahlung in Säule 3a, steuerlich vorteilhafter).",
+        "category": "immobilien",
+        "related": ["hypothekenrechner", "amortisationsrechner"]
+    },
+    {
+        "term": "Belehnung (Loan-to-Value / LTV)",
+        "slug": "belehnung",
+        "definition": "Das Verhältnis zwischen Hypothekarhöhe und Verkehrswert der Immobilie. In der Schweiz gilt eine maximale Belehnung von 80%. Die 1. Hypothek geht bis 67% des Verkehrswerts, die 2. Hypothek von 67-80%. Die 2. Hypothek muss innerhalb von 15 Jahren oder bis Alter 65 amortisiert werden.",
+        "category": "immobilien",
+        "formula": "Belehnung = Hypothek ÷ Verkehrswert × 100",
+        "related": ["belehnungsrechner", "hypothekenrechner"]
+    },
+    {
+        "term": "BVG (Berufliche Vorsorge)",
+        "slug": "bvg",
+        "definition": "Die 2. Säule des Schweizer Vorsorgesystems — die obligatorische berufliche Vorsorge (Pensionskasse). Arbeitnehmer ab CHF 22'050 Jahreslohn sind BVG-versichert. Der Koordinationsabzug beträgt CHF 25'725. Die Altersgutschriften steigen mit dem Alter: 7% (25-34), 10% (35-44), 15% (45-54), 18% (55-65). Der BVG-Mindestumwandlungssatz beträgt 6.8%.",
+        "category": "vorsorge",
+        "formula": "BVG-Jahresrente = Altersguthaben × Umwandlungssatz (6.8%)",
+        "related": ["bvg-rechner", "pensionskasserechner"]
+    },
+    {
+        "term": "CAGR (Compound Annual Growth Rate)",
+        "slug": "cagr",
+        "definition": "Die durchschnittliche jährliche Wachstumsrate einer Investition über einen bestimmten Zeitraum. Sie berücksichtigt den Zinseszinseffekt und ermöglicht den fairen Vergleich verschiedener Anlagen — unabhängig von der Anlagedauer oder Volatilität.",
+        "category": "investition",
+        "formula": "CAGR = (Endwert ÷ Anfangswert)^(1/n) − 1",
+        "related": ["investitionsrechner", "etf-rendite-rechner"]
+    },
+    {
+        "term": "DA-1 (Rückerstattung ausländische Quellensteuer)",
+        "slug": "da-1",
+        "definition": "Ein Schweizer Formular zur Rückforderung ausländischer Quellensteuern auf Dividenden. Bei US-Aktien z.B. werden 30% Quellensteuer abgezogen; dank Doppelbesteuerungsabkommen (DBA) können 15% via DA-1 zurückgefordert werden. Die restlichen 15% werden an die Schweizer Steuern angerechnet.",
+        "category": "steuern",
+        "related": ["dividendenrechner", "investitionsrechner"]
+    },
+    {
+        "term": "Eigenmietwert",
+        "slug": "eigenmietwert",
+        "definition": "Ein fiktives Einkommen, das Eigenheimbesitzer in der Schweiz versteuern müssen. Der Eigenmietwert entspricht dem Mietwert, den die Immobilie auf dem Markt erzielen würde (ca. 60-70% der Marktmiete). Im Gegenzug können Hypothekarzinsen und Unterhaltskosten steuerlich abgezogen werden. Eine Abschaffung wird politisch diskutiert.",
+        "category": "steuern",
+        "related": ["steuerrechner", "hypothekenrechner"]
+    },
+    {
+        "term": "Eigenkapital",
+        "slug": "eigenkapital",
+        "definition": "Das eigene Kapital, das beim Immobilienkauf eingebracht werden muss. In der Schweiz sind mindestens 20% Eigenkapital erforderlich — davon müssen mindestens 10% 'hartes' Eigenkapital sein (Bankguthaben, Wertschriften, Säule 3a, Erbvorbezug). Pensionskassengelder (2. Säule) dürfen maximal 10% ausmachen.",
+        "category": "immobilien",
+        "related": ["eigenkapitalrechner", "hypothekenrechner"]
+    },
+    {
+        "term": "Einkommenssteuer",
+        "slug": "einkommenssteuer",
+        "definition": "Die Steuer auf das steuerbare Einkommen, bestehend aus Bundes-, Kantons- und Gemeindesteuer. Die Bundessteuer ist progressiv (0-11.5%). Kantons- und Gemeindesteuern variieren stark. Abzüge: Berufsauslagen, Versicherungsprämien, Säule 3a (max. CHF 7'258), Hypothekarzinsen, Kinderabzüge.",
+        "category": "steuern",
+        "formula": "Steuer = (Einkommen − Abzüge) × Steuertarif × Steuerfuss",
+        "related": ["einkommenssteuerrechner", "steuerrechner"]
+    },
+    {
+        "term": "ETF (Exchange Traded Fund)",
+        "slug": "etf",
+        "definition": "Ein börsengehandelter Indexfonds, der einen Marktindex passiv abbildet. In der Schweiz die beliebteste Anlageform für passives Investieren. Vorteile: tiefe Kosten (TER 0.05-0.30%), breite Diversifikation, steuerfreie Kapitalgewinne für Privatanleger. Populäre ETFs: MSCI World (VWRL, IWDA), SPI-ETF für Schweizer Aktien.",
+        "category": "investition",
+        "related": ["etf-rendite-rechner", "portfolio-rechner"]
+    },
+    {
+        "term": "FIRE (Financial Independence, Retire Early)",
+        "slug": "fire",
+        "definition": "Eine Bewegung, die finanzielle Unabhängigkeit und vorzeitige Pensionierung anstrebt. Basiert auf der 4%-Regel (Trinity Study): Wer jährlich max. 4% seines Vermögens entnimmt, hat statistisch genug Kapital für 30+ Jahre. FIRE-Zahl = Jährliche Ausgaben × 25. In der Schweiz reduziert die AHV (ab 65) die benötigte FIRE-Zahl.",
+        "category": "investition",
+        "formula": "FIRE-Zahl = Jährliche Ausgaben × 25",
+        "related": ["finanzielle-freiheit-rechner", "sparquoterechner"]
+    },
+    {
+        "term": "Freizügigkeitskonto",
+        "slug": "freizuegigkeitskonto",
+        "definition": "Ein Konto, auf das das Pensionskassenguthaben (2. Säule) bei einem Stellenwechsel überwiesen wird, wenn kein nahtloser Übertritt in eine neue Pensionskasse erfolgt. Das Guthaben bleibt steuerfrei gebunden. Maximal 2 Freizügigkeitskonten sind möglich, was bei der Auszahlung eine steuerliche Staffelung ermöglicht.",
+        "category": "vorsorge",
+        "related": ["bvg-rechner", "pension-auszahlung"]
+    },
+    {
+        "term": "Grenzsteuersatz (Marginalsteuersatz)",
+        "slug": "grenzsteuersatz",
+        "definition": "Der Steuersatz, der auf den letzten verdienten Franken anfällt. Wegen der Steuerprogression liegt der Grenzsteuersatz über dem Durchschnittssteuersatz. Wichtig für die Berechnung der Steuerersparnis bei Säule 3a-Einzahlungen: Steuerersparnis = 3a-Einzahlung × Grenzsteuersatz.",
+        "category": "steuern",
+        "formula": "Steuerersparnis 3a = Einzahlung × Grenzsteuersatz",
+        "related": ["saeule-3a-steuerersparnis", "steuerrechner"]
+    },
+    {
+        "term": "Hypothek",
+        "slug": "hypothek",
+        "definition": "Ein grundpfandgesicherter Kredit zur Finanzierung von Wohneigentum. In der Schweiz unterteilt in 1. Hypothek (bis 67% Belehnung) und 2. Hypothek (67-80%). Typen: Festhypothek (fixer Zins für 2-15 Jahre), SARON-Hypothek (variabler Zins, gebunden an den SARON-Referenzzins), variable Hypothek (selten, kündbar). Tragbarkeit: Wohnkosten dürfen max. 33% des Bruttoeinkommens betragen.",
+        "category": "immobilien",
+        "related": ["hypothekenrechner", "tragbarkeitsrechner"]
+    },
+    {
+        "term": "Imputed Rental Value → Eigenmietwert",
+        "slug": "imputed-rental-value",
+        "definition": "Siehe Eigenmietwert. Eine Schweizer Besonderheit: Eigenheimbesitzer müssen den fiktiven Mietwert ihrer selbst bewohnten Immobilie als Einkommen versteuern. Im Gegenzug sind Hypothekarzinsen und Unterhaltskosten steuerlich abzugsfähig.",
+        "category": "steuern",
+        "related": ["steuerrechner", "hypothekenrechner"]
+    },
+    {
+        "term": "IV (Invalidenversicherung)",
+        "slug": "iv",
+        "definition": "Teil der 1. Säule. Die IV sichert den Lebensunterhalt bei Invalidität. Finanziert durch Lohnbeiträge von 1.4% (je hälftig AG/AN). Eine IV-Rente wird bei einem Invaliditätsgrad ab 40% ausgerichtet.",
+        "category": "vorsorge",
+        "formula": "IV-Beitrag = Bruttolohn × 0.7% (AN-Anteil)",
+        "related": ["brutto-netto-rechner"]
+    },
+    {
+        "term": "Kalkulatorischer Zinssatz",
+        "slug": "kalkulatorischer-zinssatz",
+        "definition": "Der Zinssatz, den Banken für die Tragbarkeitsberechnung verwenden — in der Regel 5%, unabhängig vom tatsächlichen Hypothekarzins. Dieser höhere Zinssatz stellt sicher, dass Kreditnehmer auch bei steigenden Zinsen ihre Hypothek tragen können. Tragbar = Gesamtkosten (kalkulatorischer Zins + Nebenkosten + Amortisation) < 33% des Bruttoeinkommens.",
+        "category": "immobilien",
+        "formula": "Tragbarkeit = (Hypothek × 5% + NK 1% + Amortisation) ÷ Bruttoeinkommen < 33%",
+        "related": ["tragbarkeitsrechner", "hypothekenrechner"]
+    },
+    {
+        "term": "Kapitalleistungssteuer",
+        "slug": "kapitalleistungssteuer",
+        "definition": "Die einmalige Steuer auf Kapitalleistungen aus der 2. und 3. Säule. Sie wird getrennt vom übrigen Einkommen zu einem reduzierten Satz besteuert. Der Steuersatz variiert stark nach Kanton (3.5-10%). Durch gestaffelte Bezüge (z.B. 3a-Konten, Freizügigkeit, PK in verschiedenen Jahren) kann die Progression gebrochen und die Steuerlast reduziert werden.",
+        "category": "steuern",
+        "related": ["pension-auszahlung", "saeule-3a-rechner"]
+    },
+    {
+        "term": "Kaufnebenkosten",
+        "slug": "kaufnebenkosten",
+        "definition": "Zusätzliche Kosten beim Immobilienkauf neben dem Kaufpreis. In der Schweiz typischerweise 3-5% des Kaufpreises: Notargebühren, Grundbuchgebühren, Handänderungssteuer (kantonsabhängig), Vorfälligkeitsentschädigung (bei Hypothekenablösung). Einige Kantone (z.B. Zürich) erheben keine Handänderungssteuer.",
+        "category": "immobilien",
+        "related": ["kaufnebenkostenrechner"]
+    },
+    {
+        "term": "Koordinationsabzug",
+        "slug": "koordinationsabzug",
+        "definition": "Der Teil des Lohns, der von der BVG-pflichtigen Lohnsumme abgezogen wird, weil er bereits durch die AHV (1. Säule) abgedeckt ist. Der Koordinationsabzug beträgt CHF 25'725 (2026). Der versicherte BVG-Lohn = Bruttolohn − Koordinationsabzug (max. CHF 62'475). Bei Teilzeitarbeit wird der Koordinationsabzug proportional gekürzt.",
+        "category": "vorsorge",
+        "formula": "Versicherter Lohn = Bruttolohn − CHF 25'725",
+        "related": ["bvg-rechner", "brutto-netto-rechner"]
+    },
+    {
+        "term": "Krankenkasse (KVG)",
+        "slug": "krankenkasse",
+        "definition": "Die obligatorische Grundversicherung gemäss Krankenversicherungsgesetz. Jede Person in der Schweiz muss eine KVG-Grundversicherung haben. Die Prämien variieren stark nach Kanton, Wohnort und Franchisestufe (CHF 300-2'500). Prämienverbilligung (IPV) ist für Personen mit tiefem Einkommen verfügbar.",
+        "category": "vorsorge",
+        "related": ["brutto-netto-rechner", "sparquoterechner"]
+    },
+    {
+        "term": "LIBOR → SARON",
+        "slug": "libor-saron",
+        "definition": "Der LIBOR (London Interbank Offered Rate) wurde 2021 durch den SARON (Swiss Average Rate Overnight) als Referenzzins für Schweizer Hypotheken abgelöst. SARON-Hypotheken haben einen variablen Zins, der sich am Interbankenzins orientiert, plus eine Bankmarge (0.6-1.0%). Gesamtzins = SARON-Zinssatz + Bankmarge.",
+        "category": "immobilien",
+        "related": ["hypothekenrechner", "hypothekzinsrechner"]
+    },
+    {
+        "term": "Mehrwertsteuer (MWST)",
+        "slug": "mwst",
+        "definition": "Die Schweizer Umsatzsteuer auf Waren und Dienstleistungen. Normalsatz: 8.1% (seit 2024). Reduzierter Satz: 2.6% (Lebensmittel, Bücher, Medikamente). Sondersatz: 3.8% (Beherbergung). Unternehmen ab CHF 100'000 Jahresumsatz sind MWST-pflichtig.",
+        "category": "steuern",
+        "formula": "MWST = Nettobetrag × MWST-Satz (8.1% / 2.6% / 3.8%)",
+        "related": ["mehrwertsteuerrechner"]
+    },
+    {
+        "term": "NBU (Nichtberufsunfallversicherung)",
+        "slug": "nbu",
+        "definition": "Die obligatorische Unfallversicherung für Unfälle ausserhalb der Arbeit. Arbeitnehmer mit mindestens 8 Stunden pro Woche sind automatisch NBU-versichert. Die Prämie (ca. 1-2% des versicherten Lohns) wird vollständig vom Arbeitnehmer getragen — im Gegensatz zur BU (Berufsunfallversicherung), die der Arbeitgeber zahlt.",
+        "category": "vorsorge",
+        "related": ["brutto-netto-rechner", "nettolohnrechner"]
+    },
+    {
+        "term": "Nettolohn",
+        "slug": "nettolohn",
+        "definition": "Der Lohn nach Abzug aller obligatorischen Sozialversicherungsbeiträge: AHV/IV/EO (5.3%), ALV (1.1%), BVG (altersabhängig, 3.5-9%), NBU (ca. 1-2%), sowie ggf. Quellensteuer. Typischer Abzug: ca. 12-15% vom Bruttolohn. Steuern (ausser Quellensteuer) werden nicht direkt vom Lohn abgezogen.",
+        "category": "lohn",
+        "formula": "Nettolohn = Bruttolohn − AHV − IV − EO − ALV − BVG − NBU",
+        "related": ["brutto-netto-rechner", "nettolohnrechner"]
+    },
+    {
+        "term": "Pensionskasse (PK)",
+        "slug": "pensionskasse",
+        "definition": "Die betriebliche Vorsorgeeinrichtung der 2. Säule. Arbeitgeber und Arbeitnehmer zahlen Beiträge ein — der Arbeitgeber mindestens 50%. Das angesparte Kapital wird bei Pensionierung als Rente (Umwandlungssatz × Kapital) oder als Kapitalbezug ausbezahlt. PK-Einkäufe (freiwillige Einzahlungen) sind vollständig steuerlich abzugsfähig.",
+        "category": "vorsorge",
+        "related": ["pensionskasserechner", "bvg-rechner"]
+    },
+    {
+        "term": "PK-Einkauf (Pensionskasseneinkauf)",
+        "slug": "pk-einkauf",
+        "definition": "Eine freiwillige Einzahlung in die Pensionskasse zur Aufstockung des Altersguthabens. PK-Einkäufe sind vollständig vom steuerbaren Einkommen abzugsfähig — die effektivste Steueroptimierung in der Schweiz. Achtung: 3-Jahres-Sperrfrist für Kapitalbezug nach einem Einkauf. Sinnvoll bei hohem Grenzsteuersatz und langer Anlagedauer.",
+        "category": "vorsorge",
+        "related": ["pensionskasserechner", "steueroptimierungrechner"]
+    },
+    {
+        "term": "Quellensteuer",
+        "slug": "quellensteuer",
+        "definition": "Eine direkt vom Lohn abgezogene Steuer für ausländische Arbeitnehmer ohne C-Bewilligung (Aufenthalt B, L, Grenzgänger G). Der Quellensteuersatz variiert nach Kanton, Einkommen und Familienstand. Ab CHF 120'000 Bruttojahreseinkommen erfolgt eine nachträgliche ordentliche Veranlagung (wie Schweizer). Quellensteuer kann auch auf Kapitalerträge (z.B. Dividenden) anfallen.",
+        "category": "steuern",
+        "related": ["quellensteuerrechner", "quellensteuer-lohn-rechner"]
+    },
+    {
+        "term": "Renditeliegenschaft",
+        "slug": "renditeliegenschaft",
+        "definition": "Eine Immobilie, die als Kapitalanlage und nicht zur Selbstbewohnung erworben wird. Mieteinnahmen sind einkommenssteuerpflichtig. Es gelten oft strengere Finanzierungsbedingungen (höherer Eigenkapitalanteil, tiefere Belehnung). Die Bruttorendite berechnet sich aus den jährlichen Mieteinnahmen ÷ Kaufpreis.",
+        "category": "immobilien",
+        "formula": "Bruttorendite = Jahresmieteinnahmen ÷ Kaufpreis × 100",
+        "related": ["immobilienrenditerechner"]
+    },
+    {
+        "term": "SARON (Swiss Average Rate Overnight)",
+        "slug": "saron",
+        "definition": "Der Schweizer Referenzzinssatz, der den LIBOR seit 2021 ersetzt hat. Er basiert auf tatsächlichen Transaktionen am besicherten Geldmarkt und wird von der SIX Exchange berechnet. SARON-Hypotheken bieten in der Regel tiefere Zinsen als Festhypotheken, sind aber zinsänderungsrisikobehaftet.",
+        "category": "immobilien",
+        "related": ["hypothekenrechner", "hypothekzinsrechner"]
+    },
+    {
+        "term": "Säule 3a (Gebundene Vorsorge)",
+        "slug": "saeule-3a",
+        "definition": "Die freiwillige, steuerbegünstigte private Vorsorge der 3. Säule. Einzahlungen sind vom steuerbaren Einkommen abzugsfähig: max. CHF 7'258/Jahr (Angestellte mit PK) bzw. CHF 36'288 (Selbständige ohne PK). Das Guthaben ist von Vermögens- und Einkommenssteuern befreit. Bezug frühestens 5 Jahre vor dem AHV-Alter. Bis zu 5 separate 3a-Konten empfohlen für gestaffelte Auszahlung.",
+        "category": "vorsorge",
+        "formula": "Max. Steuerersparnis = CHF 7'258 × Grenzsteuersatz",
+        "related": ["saeule-3a-rechner", "saeule-3a-steuerersparnis"]
+    },
+    {
+        "term": "SNB (Schweizerische Nationalbank)",
+        "slug": "snb",
+        "definition": "Die Zentralbank der Schweiz, verantwortlich für die Geldpolitik und Preisstabilität. Die SNB legt den Leitzins fest, der die Hypothekarzinsen (insbesondere SARON) massgeblich beeinflusst. Ziel: Inflation von 0-2%. Die SNB verwaltet die Währungsreserven und kann am Devisenmarkt intervenieren.",
+        "category": "investition",
+        "related": ["hypothekenrechner", "inflationsrechner"]
+    },
+    {
+        "term": "Sparquote",
+        "slug": "sparquote",
+        "definition": "Der Anteil des Einkommens, der gespart oder investiert wird. Die Schweiz hat eine der höchsten Sparquoten weltweit (ca. 18-20%). Für die FIRE-Bewegung ist die Sparquote der entscheidende Faktor: Bei 50% Sparquote kann man alle 1 Jahr Arbeit 1 Jahr Ruhestand finanzieren. Obligatorische AHV/BVG-Beiträge können zur Sparquote gezählt werden.",
+        "category": "investition",
+        "formula": "Sparquote = (Einkommen − Ausgaben) ÷ Einkommen × 100",
+        "related": ["sparquoterechner", "finanzielle-freiheit-rechner"]
+    },
+    {
+        "term": "Steuerfuss",
+        "slug": "steuerfuss",
+        "definition": "Der Multiplikator, mit dem Kantone und Gemeinden die einfache Staatssteuer multiplizieren. Jede Gemeinde legt ihren eigenen Steuerfuss fest. Beispiel: Einfache Staatssteuer CHF 5'000, Steuerfuss Gemeinde 119% → Gemeindesteuer = CHF 5'950. Tiefe Steuerfüsse finden sich z.B. in Zug, Schwyz und Nidwalden.",
+        "category": "steuern",
+        "formula": "Gemeindesteuer = Einfache Staatssteuer × Steuerfuss ÷ 100",
+        "related": ["steuerrechner", "steuervergleich"]
+    },
+    {
+        "term": "Steuerprogression",
+        "slug": "steuerprogression",
+        "definition": "Das Prinzip, dass der Steuersatz mit steigendem Einkommen ansteigt. In der Schweiz gilt dies für Bundes-, Kantons- und Gemeindesteuer. Die Bundessteuer reicht von 0% bis 11.5%. Die Progression kann durch steuerliche Optimierung gebrochen werden: 3a-Einzahlung, PK-Einkäufe, Staffelung von Kapitalbezügen.",
+        "category": "steuern",
+        "related": ["steuerrechner", "steueroptimierungrechner"]
+    },
+    {
+        "term": "TER (Total Expense Ratio)",
+        "slug": "ter",
+        "definition": "Die Gesamtkostenquote eines Anlagefonds oder ETFs, ausgedrückt als Prozentsatz des verwalteten Vermögens pro Jahr. Tiefe TER = günstigerer Fonds. Passive ETFs: 0.05-0.30%. Aktive Fonds: 1.0-2.0%. Die TER wird automatisch vom Fondsvermögen abgezogen und reduziert die Rendite entsprechend.",
+        "category": "investition",
+        "formula": "Nettorendite = Bruttorendite − TER",
+        "related": ["etf-rendite-rechner", "portfolio-rechner"]
+    },
+    {
+        "term": "Tragbarkeit",
+        "slug": "tragbarkeit",
+        "definition": "Die Fähigkeit, die gesamten Wohnkosten einer Hypothek zu tragen. In der Schweiz gilt die 33%-Regel: Die kalkulatorischen Wohnkosten (Hypothekarzins 5% + Nebenkosten 1% des Immobilienwerts + Amortisation) dürfen maximal ein Drittel des Bruttoeinkommens betragen. Wird von der Bank bei jeder Hypothekenvergabe geprüft.",
+        "category": "immobilien",
+        "formula": "Tragbar wenn: (Hyp × 5% + NK 1% + Amortisation) ÷ Bruttoeinkommen ≤ 33%",
+        "related": ["tragbarkeitsrechner", "hypothekenrechner"]
+    },
+    {
+        "term": "Umwandlungssatz",
+        "slug": "umwandlungssatz",
+        "definition": "Der Prozentsatz, mit dem das BVG-Altersguthaben in eine jährliche Rente umgerechnet wird. Der gesetzliche BVG-Mindestumwandlungssatz beträgt 6.8% (für Frauen und Männer bei Alter 65). Viele Pensionskassen wenden tiefere Sätze auf den überobligatorischen Teil an (4.5-5.5%). Ein tieferer Umwandlungssatz bedeutet eine tiefere Rente.",
+        "category": "vorsorge",
+        "formula": "Jahresrente = Altersguthaben × Umwandlungssatz",
+        "related": ["bvg-rechner", "pension-kapital"]
+    },
+    {
+        "term": "Verrechnungssteuer (VST)",
+        "slug": "verrechnungssteuer",
+        "definition": "Eine Schweizer Quellensteuer von 35% auf inländische Kapitalerträge (Zinsen und Dividenden). Die VST wird automatisch abgezogen — bei korrekter Deklaration in der Steuererklärung wird sie vollständig zurückerstattet. Die VST dient als Sicherungsmittel: Wer Einkünfte nicht deklariert, verliert den Anspruch auf Rückerstattung.",
+        "category": "steuern",
+        "formula": "VST = Kapitalertrag × 35%",
+        "related": ["dividendenrechner", "zinseszinsrechner"]
+    },
+    {
+        "term": "Vermögenssteuer",
+        "slug": "vermoegenssteuer",
+        "definition": "Eine Schweizer Besonderheit: Das Reinvermögen (Aktiven minus Passiven) wird jährlich besteuert. Die Vermögenssteuer variiert stark nach Kanton: von ca. 0.1‰ (Schwyz, Zug) bis ca. 1% (Genf). Freibeträge: ca. CHF 100'000 (ledig) bzw. CHF 200'000 (verheiratet). Pensionskassen- und 3a-Guthaben sind ausgenommen.",
+        "category": "steuern",
+        "related": ["vermoegenssteuerrechner", "vermoegens-rechner"]
+    },
+    {
+        "term": "Wohneigentumsförderung (WEF)",
+        "slug": "wef",
+        "definition": "Die Möglichkeit, Vorsorgegelder (2. Säule und Säule 3a) für den Erwerb von selbst genutztem Wohneigentum zu verwenden. Regeln: PK-Bezug min. CHF 20'000, alle 5 Jahre möglich, bis Alter 50 ohne Beschränkung, danach max. Guthaben mit 50 oder die Hälfte des aktuellen Guthabens. Bezug wird als Einkommen besteuert (reduzierter Satz). Rückzahlung möglich.",
+        "category": "immobilien",
+        "related": ["eigenkapitalrechner", "bvg-rechner"]
+    },
+    {
+        "term": "Zinseszins (Compound Interest)",
+        "slug": "zinseszins",
+        "definition": "Die Verzinsung von Zinsen — Zinsen, die auf das Kapital und die bereits aufgelaufenen Zinsen berechnet werden. Der Zinseszinseffekt ist die stärkste Kraft im Vermögensaufbau. Die 72er-Regel: 72 ÷ Zinssatz = Anzahl Jahre bis zur Verdoppelung des Kapitals. Bei 6% Rendite: 72/6 = 12 Jahre bis zur Verdoppelung.",
+        "category": "investition",
+        "formula": "Endkapital = Anfangskapital × (1 + Zinssatz)^Anzahl Jahre",
+        "related": ["zinseszinsrechner", "sparzielrechner"]
+    },
+    {
+        "term": "3-Säulen-System",
+        "slug": "drei-saeulen-system",
+        "definition": "Das Schweizer Altersvorsorgesystem, bestehend aus drei Säulen: 1. Säule (AHV/IV) — staatliche Vorsorge, Existenzsicherung. 2. Säule (BVG/Pensionskasse) — berufliche Vorsorge, gewohnter Lebensstandard. 3. Säule (3a/3b) — private Vorsorge, individuelle Ergänzung. Die drei Säulen sollen zusammen ca. 60-80% des letzten Einkommens abdecken.",
+        "category": "vorsorge",
+        "related": ["altersvorsorgerechner", "ahv-rentenrechner", "bvg-rechner"]
+    },
+    {
+        "term": "ALV (Arbeitslosenversicherung)",
+        "slug": "alv",
+        "definition": "Die obligatorische Versicherung gegen Arbeitslosigkeit. Beitragssatz: 2.2% des Bruttolohns bis CHF 148'200 (je hälftig AG/AN). Solidaritätsbeitrag: 1% auf den Lohnanteil über CHF 148'200. Anspruch: 70-80% des versicherten Verdienstes, max. 400 Taggelder (520 bei langer Beitragsdauer oder ab Alter 55).",
+        "category": "lohn",
+        "formula": "ALV-Beitrag = Bruttolohn × 1.1% (AN-Anteil, bis CHF 148'200)",
+        "related": ["brutto-netto-rechner", "nettolohnrechner"]
+    },
+    {
+        "term": "Bruttolohn (13. Monatslohn)",
+        "slug": "bruttolohn",
+        "definition": "Das vereinbarte Gehalt vor Abzügen der Sozialversicherungen. In der Schweiz ist der 13. Monatslohn branchenüblich (aber nicht gesetzlich vorgeschrieben) — er erhöht das Jahresbruttogehalt um 1/12. Der 13. Monatslohn unterliegt denselben Sozialabzügen wie reguläre Monatslöhne.",
+        "category": "lohn",
+        "related": ["brutto-netto-rechner", "jahreslohnrechner"]
+    },
+    {
+        "term": "EO (Erwerbsersatzordnung)",
+        "slug": "eo",
+        "definition": "Eine Versicherung innerhalb der 1. Säule, die Erwerbsersatz bei Militärdienst, Zivildienst und Mutterschaftsentschädigung bietet. Beitragssatz: 0.5% des Bruttolohns (je hälftig AG/AN). Die Mutterschaftsentschädigung beträgt 80% des durchschnittlichen Erwerbseinkommens, max. CHF 220/Tag, für 14 Wochen.",
+        "category": "lohn",
+        "formula": "EO-Beitrag = Bruttolohn × 0.25% (AN-Anteil)",
+        "related": ["brutto-netto-rechner"]
+    },
+    {
+        "term": "Festhypothek",
+        "slug": "festhypothek",
+        "definition": "Eine Hypothek mit einem für eine fixe Laufzeit festgelegten Zinssatz. Übliche Laufzeiten: 2, 3, 5, 7, 10 oder 15 Jahre. Vorteil: Planungssicherheit und Schutz vor Zinserhöhungen. Nachteil: Bei sinkenden Zinsen profitiert man nicht, und bei vorzeitiger Kündigung fällt eine Vorfälligkeitsentschädigung an.",
+        "category": "immobilien",
+        "related": ["hypothekenrechner", "hypothekzinsrechner"]
+    },
+    {
+        "term": "Indirekte Amortisation",
+        "slug": "indirekte-amortisation",
+        "definition": "Statt die Hypothek direkt zurückzuzahlen, wird der Betrag in eine Säule 3a eingezahlt. Bei Pensionierung oder Verkauf wird die 3a zur Hypothekenrückzahlung verwendet. Vorteile: Steuerabzug auf die 3a-Einzahlung + Hypothekarzinsabzug bleibt bestehen. Nachteil: Zinskosten bleiben höher, da die Hypothek nicht reduziert wird.",
+        "category": "immobilien",
+        "related": ["hypothekenrechner", "saeule-3a-rechner"]
+    },
+    {
+        "term": "Dividendenrendite",
+        "slug": "dividendenrendite",
+        "definition": "Das Verhältnis der jährlichen Dividende zum Aktienkurs, ausgedrückt in Prozent. Schweizer Blue-Chip-Aktien bieten typisch 2.5-5% Dividendenrendite. Dividenden sind in der Schweiz einkommenssteuerpflichtig. Die Verrechnungssteuer (35%) wird zurückerstattet, wenn die Dividende in der Steuererklärung deklariert wird.",
+        "category": "investition",
+        "formula": "Dividendenrendite = Jährliche Dividende ÷ Aktienkurs × 100",
+        "related": ["dividendenrechner", "portfolio-rechner"]
+    },
+    {
+        "term": "Inflation",
+        "slug": "inflation-glossar",
+        "definition": "Der Anstieg des allgemeinen Preisniveaus über die Zeit. Die Schweiz hat historisch eine sehr tiefe Inflation (Ø 0.5-1%). Die SNB strebt eine Inflation von 0-2% an. Für Anleger ist die Realrendite entscheidend: Nominalrendite minus Inflation. Bei 1% Inflation verliert Geld in 30 Jahren ca. 26% seiner Kaufkraft.",
+        "category": "investition",
+        "formula": "Realrendite = Nominalrendite − Inflationsrate",
+        "related": ["inflationsrechner", "etf-rendite-rechner"]
+    },
+    {
+        "term": "Frühpensionierung",
+        "slug": "fruehpensionierung",
+        "definition": "Vorzeitige Pensionierung vor dem ordentlichen AHV-Alter (65). AHV-Vorbezug: 1-2 Jahre möglich, mit Kürzung von 6.8% pro Jahr (lebenslang). BVG: Frühpensionierung ab 58 möglich, mit reduziertem Umwandlungssatz. Für die Überbrückung bis zur AHV wird ein Überbrückungskapital benötigt.",
+        "category": "vorsorge",
+        "related": ["fruehpensionierung-rechner", "altersvorsorgerechner"]
+    },
+    {
+        "term": "Überbrückungsrente",
+        "slug": "ueberbrueckungsrente",
+        "definition": "Eine temporäre Rente, die bei Frühpensionierung die Lücke bis zum AHV-Bezug überbrückt. Manche Pensionskassen bieten eine AHV-Überbrückungsrente an. Andernfalls muss das Überbrückungskapital aus eigenem Vermögen finanziert werden. Faustregel: Ca. CHF 2'000-2'500/Monat × Anzahl Jahre bis AHV-Alter 65.",
+        "category": "vorsorge",
+        "related": ["fruehpensionierung-rechner", "rentenluckerechner"]
+    },
+    {
+        "term": "Stundenlohn",
+        "slug": "stundenlohn",
+        "definition": "Der auf eine Arbeitsstunde umgerechnete Lohn. In der Schweiz gibt es keinen gesetzlichen Mindestlohn (ausser in einzelnen Kantonen: Genf CHF 24/h, Neuenburg, Basel-Stadt, Jura). Der Median-Stundenlohn in der Schweiz beträgt ca. CHF 39. Umrechnung: Stundenlohn = Monatslohn ÷ (Wochenstunden × 4.33).",
+        "category": "lohn",
+        "formula": "Stundenlohn = Jahreslohn ÷ (Wochenstunden × 52)",
+        "related": ["stundenlohnrechner", "brutto-netto-rechner"]
+    },
+    {
+        "term": "Überstunden (Überzeit)",
+        "slug": "ueberstunden",
+        "definition": "Arbeit über die vertraglich vereinbarte Arbeitszeit hinaus. In der Schweiz unterscheidet das OR zwischen Überstunden (über vertragliche Arbeitszeit, 125% Zuschlag oder Kompensation) und Überzeit (über gesetzliche Höchstarbeitszeit von 45/50h, zwingend 125% Zuschlag). Max. 170 Überstunden pro Jahr bei 45h-Woche.",
+        "category": "lohn",
+        "formula": "Überstundenlohn = Grundlohn × 1.25 (125%)",
+        "related": ["ueberstundenrechner", "stundenlohnrechner"]
+    }
+]
