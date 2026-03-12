@@ -1444,5 +1444,239 @@
       }
     },
     "keywords": "dividend yield calculator, stock dividend yield, calculate dividend percentage"
+  },
+  {
+    "id": "enterprise-value-calculator",
+    "category": "business",
+    "title": "Enterprise Value (EV) Calculator",
+    "slug": "enterprise-value-calculator",
+    "categorySlug": "business-calculators",
+    "icon": "🏛️",
+    "calcType": "enterprise-value",
+    "description": "Calculate Enterprise Value from market cap, total debt, and cash. Determine EV/EBITDA multiples for company valuation and M&A analysis.",
+    "stars": 5,
+    "defaults": { "amount": 5000000, "rate": 1000000, "tenure": 500000 },
+    "sliderRanges": {
+      "amount": { "min": 100000, "max": 100000000, "step": 100000 },
+      "rate": { "min": 0, "max": 50000000, "step": 100000 },
+      "tenure": { "min": 0, "max": 50000000, "step": 100000 }
+    },
+    "keywords": "enterprise value calculator, EV calculator, company valuation, EV/EBITDA, market cap calculator"
+  },
+  {
+    "id": "ebitda-calculator",
+    "category": "business",
+    "title": "EBITDA Calculator",
+    "slug": "ebitda-calculator",
+    "categorySlug": "business-calculators",
+    "icon": "📊",
+    "calcType": "ebitda",
+    "description": "Calculate EBITDA from net income, interest, taxes, depreciation, and amortization. Measure operating profitability before non-cash charges.",
+    "stars": 5,
+    "defaults": { "amount": 500000, "rate": 50000, "tenure": 100000 },
+    "sliderRanges": {
+      "amount": { "min": 0, "max": 50000000, "step": 10000 },
+      "rate": { "min": 0, "max": 10000000, "step": 10000 },
+      "tenure": { "min": 0, "max": 10000000, "step": 10000 }
+    },
+    "keywords": "EBITDA calculator, earnings before interest taxes depreciation amortization, operating profit calculator"
+  },
+  {
+    "id": "ebit-calculator",
+    "category": "business",
+    "title": "EBIT Calculator",
+    "slug": "ebit-calculator",
+    "categorySlug": "business-calculators",
+    "icon": "📋",
+    "calcType": "ebit",
+    "description": "Calculate EBIT (Earnings Before Interest and Taxes) from revenue, COGS, and operating expenses. Analyze core operating profitability.",
+    "stars": 4,
+    "defaults": { "amount": 2000000, "rate": 800000, "tenure": 500000 },
+    "sliderRanges": {
+      "amount": { "min": 0, "max": 100000000, "step": 50000 },
+      "rate": { "min": 0, "max": 50000000, "step": 50000 },
+      "tenure": { "min": 0, "max": 50000000, "step": 50000 }
+    },
+    "keywords": "EBIT calculator, operating income calculator, earnings before interest taxes"
+  },
+  {
+    "id": "wacc-calculator",
+    "category": "business",
+    "title": "WACC Calculator",
+    "slug": "wacc-calculator",
+    "categorySlug": "business-calculators",
+    "icon": "⚖️",
+    "calcType": "wacc",
+    "description": "Calculate Weighted Average Cost of Capital from equity, debt, cost of equity, cost of debt, and tax rate. Essential for DCF valuation.",
+    "stars": 5,
+    "defaults": { "amount": 7000000, "rate": 3000000, "tenure": 0 },
+    "sliderRanges": {
+      "amount": { "min": 0, "max": 100000000, "step": 100000 },
+      "rate": { "min": 0, "max": 100000000, "step": 100000 },
+      "tenure": { "min": 0, "max": 0, "step": 0 }
+    },
+    "keywords": "WACC calculator, weighted average cost of capital, cost of capital calculator, DCF discount rate"
+  },
+  {
+    "id": "cap-rate-calculator",
+    "category": "business",
+    "title": "Cap Rate Calculator",
+    "slug": "cap-rate-calculator",
+    "categorySlug": "business-calculators",
+    "icon": "🏢",
+    "calcType": "cap-rate",
+    "description": "Calculate capitalization rate for real estate investments. Evaluate rental property returns from net operating income and property value.",
+    "stars": 5,
+    "defaults": { "amount": 120000, "rate": 1500000, "tenure": 0 },
+    "sliderRanges": {
+      "amount": { "min": 0, "max": 10000000, "step": 10000 },
+      "rate": { "min": 100000, "max": 100000000, "step": 100000 },
+      "tenure": { "min": 0, "max": 0, "step": 0 }
+    },
+    "keywords": "cap rate calculator, capitalization rate, real estate ROI, rental yield calculator, property investment return"
+  },
+  {
+    "id": "roi-calculator",
+    "category": "business",
+    "title": "ROI Calculator",
+    "slug": "roi-calculator",
+    "categorySlug": "business-calculators",
+    "icon": "💹",
+    "calcType": "roi",
+    "description": "Calculate Return on Investment from total gain and investment cost. Compare ROI across different business and investment opportunities.",
+    "stars": 5,
+    "defaults": { "amount": 150000, "rate": 100000, "tenure": 0 },
+    "sliderRanges": {
+      "amount": { "min": 0, "max": 100000000, "step": 10000 },
+      "rate": { "min": 0, "max": 100000000, "step": 10000 },
+      "tenure": { "min": 0, "max": 0, "step": 0 }
+    },
+    "keywords": "ROI calculator, return on investment, investment return calculator, profit calculator"
+  },
+  {
+    "id": "cost-of-equity-calculator",
+    "category": "business",
+    "title": "Cost of Equity Calculator (CAPM)",
+    "slug": "cost-of-equity-calculator",
+    "categorySlug": "business-calculators",
+    "icon": "📉",
+    "calcType": "cost-of-equity",
+    "description": "Calculate Cost of Equity using the Capital Asset Pricing Model (CAPM). Estimate the required return for equity investors based on risk.",
+    "stars": 4,
+    "defaults": { "amount": 0, "rate": 0, "tenure": 0 },
+    "sliderRanges": {
+      "amount": { "min": 0, "max": 0, "step": 0 },
+      "rate": { "min": 0, "max": 0, "step": 0 },
+      "tenure": { "min": 0, "max": 0, "step": 0 }
+    },
+    "keywords": "cost of equity calculator, CAPM calculator, required rate of return, equity risk premium"
+  },
+  {
+    "id": "roas-calculator",
+    "category": "business",
+    "title": "ROAS Calculator",
+    "slug": "roas-calculator",
+    "categorySlug": "business-calculators",
+    "icon": "📢",
+    "calcType": "roas",
+    "description": "Calculate Return on Ad Spend from campaign revenue and ad expenditure. Measure advertising efficiency and optimize marketing budget.",
+    "stars": 5,
+    "defaults": { "amount": 50000, "rate": 10000, "tenure": 0 },
+    "sliderRanges": {
+      "amount": { "min": 0, "max": 10000000, "step": 1000 },
+      "rate": { "min": 0, "max": 10000000, "step": 1000 },
+      "tenure": { "min": 0, "max": 0, "step": 0 }
+    },
+    "keywords": "ROAS calculator, return on ad spend, advertising ROI, marketing ROI calculator, ad efficiency"
+  },
+  {
+    "id": "beta-calculator",
+    "category": "business",
+    "title": "Beta Calculator",
+    "slug": "beta-calculator",
+    "categorySlug": "business-calculators",
+    "icon": "📈",
+    "calcType": "beta",
+    "description": "Calculate stock beta to measure volatility relative to the market. Understand systematic risk for portfolio construction and CAPM analysis.",
+    "stars": 4,
+    "defaults": { "amount": 0, "rate": 0, "tenure": 0 },
+    "sliderRanges": {
+      "amount": { "min": 0, "max": 0, "step": 0 },
+      "rate": { "min": 0, "max": 0, "step": 0 },
+      "tenure": { "min": 0, "max": 0, "step": 0 }
+    },
+    "keywords": "beta calculator, stock beta, systematic risk, market volatility, portfolio risk calculator"
+  },
+  {
+    "id": "cash-back-calculator",
+    "category": "business",
+    "title": "Cash Back Calculator",
+    "slug": "cash-back-calculator",
+    "categorySlug": "business-calculators",
+    "icon": "💳",
+    "calcType": "cash-back",
+    "description": "Calculate cash back rewards on purchases. See your effective cost after cash back from credit cards, loyalty programs, and promotions.",
+    "stars": 4,
+    "defaults": { "amount": 5000, "rate": 5, "tenure": 0 },
+    "sliderRanges": {
+      "amount": { "min": 0, "max": 1000000, "step": 100 },
+      "rate": { "min": 0, "max": 50, "step": 0.5 },
+      "tenure": { "min": 0, "max": 0, "step": 0 }
+    },
+    "keywords": "cash back calculator, credit card cashback, rewards calculator, effective price calculator"
+  },
+  {
+    "id": "current-ratio-calculator",
+    "category": "business",
+    "title": "Current Ratio Calculator",
+    "slug": "current-ratio-calculator",
+    "categorySlug": "business-calculators",
+    "icon": "🏦",
+    "calcType": "current-ratio",
+    "description": "Calculate the current ratio from current assets and current liabilities. Assess short-term liquidity and financial health of any business.",
+    "stars": 4,
+    "defaults": { "amount": 500000, "rate": 300000, "tenure": 0 },
+    "sliderRanges": {
+      "amount": { "min": 0, "max": 100000000, "step": 10000 },
+      "rate": { "min": 0, "max": 100000000, "step": 10000 },
+      "tenure": { "min": 0, "max": 0, "step": 0 }
+    },
+    "keywords": "current ratio calculator, liquidity ratio, working capital ratio, financial health calculator"
+  },
+  {
+    "id": "net-worth-calculator",
+    "category": "business",
+    "title": "Net Worth Calculator",
+    "slug": "net-worth-calculator",
+    "categorySlug": "business-calculators",
+    "icon": "💰",
+    "calcType": "net-worth",
+    "description": "Calculate personal or business net worth from total assets and liabilities. Track financial progress and set wealth-building goals.",
+    "stars": 5,
+    "defaults": { "amount": 5000000, "rate": 2000000, "tenure": 0 },
+    "sliderRanges": {
+      "amount": { "min": 0, "max": 100000000, "step": 50000 },
+      "rate": { "min": 0, "max": 100000000, "step": 50000 },
+      "tenure": { "min": 0, "max": 0, "step": 0 }
+    },
+    "keywords": "net worth calculator, personal net worth, assets minus liabilities, wealth calculator"
+  },
+  {
+    "id": "opportunity-cost-calculator",
+    "category": "business",
+    "title": "Opportunity Cost Calculator",
+    "slug": "opportunity-cost-calculator",
+    "categorySlug": "business-calculators",
+    "icon": "🔀",
+    "calcType": "opportunity-cost",
+    "description": "Calculate the opportunity cost of choosing one investment over another. Compare returns and make better capital allocation decisions.",
+    "stars": 4,
+    "defaults": { "amount": 1000000, "rate": 8, "tenure": 12 },
+    "sliderRanges": {
+      "amount": { "min": 0, "max": 100000000, "step": 50000 },
+      "rate": { "min": 0, "max": 50, "step": 0.5 },
+      "tenure": { "min": 0, "max": 50, "step": 0.5 }
+    },
+    "keywords": "opportunity cost calculator, alternative investment cost, return comparison, capital allocation"
   }
 ]

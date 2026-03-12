@@ -38,5 +38,13 @@
         "description": "CTC to in-hand, tax, gratuity & bonus tools",
         "count": 6,
         "href": "/salary-calculators"
+    },
+    {
+        "key": "business",
+        "icon": "📊",
+        "name": "Business Calculators",
+        "description": "Enterprise value, WACC, ROI & financial ratio tools",
+        "count": 13,
+        "href": "/business-calculators"
     }
 ]
