@@ -46,5 +46,13 @@
         "description": "Enterprise value, WACC, ROI & financial ratio tools",
         "count": 13,
         "href": "/business-calculators"
+    },
+    {
+        "key": "time",
+        "icon": "🕐",
+        "name": "Time & Date Calculators",
+        "description": "Time zones, date math, countdowns & scheduling tools",
+        "count": 15,
+        "href": "/time-calculators"
     }
 ]
