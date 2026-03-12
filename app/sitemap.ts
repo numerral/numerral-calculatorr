@@ -14,6 +14,7 @@ import {
 import { canonicalUrl } from "@/lib/seo";
 import { AR_CALCULATORS } from "@/data/ar-calculators";
 import { ID_CALCULATORS } from "@/data/id-calculators";
+import { TR_CALCULATORS } from "@/data/tr-calculators";
 
 export default function sitemap(): MetadataRoute.Sitemap {
     const now = new Date();
@@ -155,6 +156,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: 0.7,
     }));
 
+    // ─── Turkish calculator pages ───
+    const trHub: MetadataRoute.Sitemap = [
+        { url: `${SITE_URL}/tr`, lastModified: now, changeFrequency: "weekly" as const, priority: 0.8 },
+    ];
+    const trPages: MetadataRoute.Sitemap = TR_CALCULATORS.map((c) => ({
+        url: `${SITE_URL}/tr/${c.id}`,
+        lastModified: now,
+        changeFrequency: "monthly" as const,
+        priority: 0.7,
+    }));
+
     return [
         ...staticPages,
         ...loanHubs,
@@ -172,5 +184,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         ...arPages,
         ...idHub,
         ...idPages,
+        ...trHub,
+        ...trPages,
     ];
 }
