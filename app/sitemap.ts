@@ -13,6 +13,7 @@ import {
 } from "@/lib/data";
 import { canonicalUrl } from "@/lib/seo";
 import { AR_CALCULATORS } from "@/data/ar-calculators";
+import { ID_CALCULATORS } from "@/data/id-calculators";
 
 export default function sitemap(): MetadataRoute.Sitemap {
     const now = new Date();
@@ -143,6 +144,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: 0.7,
     }));
 
+    // ─── Indonesian calculator pages ───
+    const idHub: MetadataRoute.Sitemap = [
+        { url: `${SITE_URL}/id`, lastModified: now, changeFrequency: "weekly" as const, priority: 0.8 },
+    ];
+    const idPages: MetadataRoute.Sitemap = ID_CALCULATORS.map((c) => ({
+        url: `${SITE_URL}/id/${c.id}`,
+        lastModified: now,
+        changeFrequency: "monthly" as const,
+        priority: 0.7,
+    }));
+
     return [
         ...staticPages,
         ...loanHubs,
@@ -158,5 +170,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         ...glossaryPages,
         ...arHub,
         ...arPages,
+        ...idHub,
+        ...idPages,
     ];
 }
