@@ -15,6 +15,7 @@ import { canonicalUrl } from "@/lib/seo";
 import { AR_CALCULATORS } from "@/data/ar-calculators";
 import { ID_CALCULATORS } from "@/data/id-calculators";
 import { TR_CALCULATORS } from "@/data/tr-calculators";
+import { DE_CALCULATORS } from "@/data/de-calculators";
 
 export default function sitemap(): MetadataRoute.Sitemap {
     const now = new Date();
@@ -167,6 +168,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: 0.7,
     }));
 
+    // ─── German calculator pages ───
+    const deHub: MetadataRoute.Sitemap = [
+        { url: `${SITE_URL}/de`, lastModified: now, changeFrequency: "weekly" as const, priority: 0.8 },
+    ];
+    const dePages: MetadataRoute.Sitemap = DE_CALCULATORS.map((c) => ({
+        url: `${SITE_URL}/de/${c.id}`,
+        lastModified: now,
+        changeFrequency: "monthly" as const,
+        priority: 0.7,
+    }));
+
     return [
         ...staticPages,
         ...loanHubs,
@@ -186,5 +198,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         ...idPages,
         ...trHub,
         ...trPages,
+        ...deHub,
+        ...dePages,
     ];
 }
