@@ -7,6 +7,7 @@ import Script from "next/script";
 import Link from "next/link";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import CalculatorCore from "@/components/calculator/CalculatorCore";
+import LoanToolsCore from "@/components/calculator/LoanToolsCore";
 import DynamicExplanation from "@/components/shared/DynamicExplanation";
 import FAQAccordion from "@/components/shared/FAQAccordion";
 import TrendingCalculations from "@/components/shared/TrendingCalculations";
@@ -44,9 +45,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 // Hub page content per calculator type
+const LOAN_TOOL_TYPES = ["mortgage","debtConsolidation","loanAffordability","loanInterestRate","loanPayoff","loanAmortization","ltv","balloonLoan","arm","fixedVsVariable","extraPayment","refinance","mortgageRefinance"];
+
 const HUB_CONTENT: Record<string, {
     subtitle: string;
-    explanation: { heading: string; paragraphs: string[]; highlight: string };
+    explanation?: { heading: string; paragraphs: string[]; highlight: string };
+    contentHTML?: string;
     faq: { question: string; answer: string }[];
     steps?: { label: string; formula?: string; result: string }[];
     comparison?: { title: string; value: string; detail: string; isWinner?: boolean }[];
@@ -267,6 +271,111 @@ const HUB_CONTENT: Record<string, {
             { question: "Is it financially prudent to utilize a Credit Card EMI conversion instead of taking a dedicated bank loan?", answer: "Credit card EMI conversion is highly convenient but notoriously expensive. While it eliminates the documentation friction inherent in processing a fresh personal loan, the interest rates applied to post-purchase EMI conversions typically hover between 15% and 18% per annum, often coupled with a non-refundable upfront processing fee. For larger funding requirements, a dedicated personal loan or overdraft facility is almost universally more cost-efficient." }
         ],
     },
+    "mortgage-calculator": {
+        subtitle: "Calculate your full monthly mortgage payment including principal, interest, property tax, insurance, and PMI. Plan your home purchase with total cost clarity.",
+        contentHTML: `<h3>How a Mortgage Payment is Calculated</h3><p>Your mortgage payment has four components (PITI): <strong>Principal</strong> (loan repayment), <strong>Interest</strong> (cost of borrowing), <strong>Taxes</strong> (property tax), and <strong>Insurance</strong> (homeowner's insurance). PMI is added when your down payment is less than 20%.</p><p>The P&I portion uses the standard amortization formula: <strong>M = P × r(1+r)^n / ((1+r)^n − 1)</strong>. Property tax and insurance are typically escrowed into the monthly payment by your lender.</p><div class="explanation__highlight"><strong>20% down payment tip:</strong> Putting at least 20% down eliminates PMI, saving you $100-$300/month on a $300K home. If you can't reach 20%, consider lender-paid PMI options where the cost is built into a slightly higher interest rate.</div>`,
+        faq: [
+            { question: "How much house can I afford?", answer: "The 28/36 rule: your mortgage payment should not exceed 28% of gross monthly income, and total debt payments should stay under 36%. On a $6,000/month income, aim for a max mortgage payment of ~$1,680." },
+            { question: "What is PMI and when can I remove it?", answer: "Private Mortgage Insurance protects the lender when your LTV exceeds 80%. You can request removal once you reach 20% equity. It's automatically cancelled at 22% equity. PMI typically costs 0.3%-1.5% of the loan annually." },
+            { question: "Fixed-rate or adjustable-rate mortgage?", answer: "Fixed-rate offers payment certainty for the full term. ARMs start lower but adjust after 5-10 years. Choose fixed if you plan to stay 10+ years. Choose ARM if you plan to move/refinance within the intro period." },
+        ],
+    },
+    "debt-consolidation-calculator": {
+        subtitle: "Compare the total cost of your existing debts against a single consolidated loan. See monthly payment reduction and total interest savings.",
+        contentHTML: `<h3>When Does Debt Consolidation Make Sense?</h3><p>Debt consolidation works best when the consolidated loan rate is significantly lower than your weighted average current rate. It simplifies multiple payments into one, reduces total interest, and can lower your monthly cash outflow.</p><ul><li><strong>Best for:</strong> High-interest credit card debt (18-24%) consolidated into a personal loan (8-12%)</li><li><strong>Risky if:</strong> You continue accumulating new debt after consolidating</li><li><strong>Consider:</strong> Balance transfer cards with 0% intro APR for debts under $15K</li></ul>`,
+        faq: [
+            { question: "Will debt consolidation hurt my credit score?", answer: "Short-term: a small dip from the hard inquiry. Long-term: it typically improves your score by lowering credit utilization and reducing the number of accounts with balances." },
+            { question: "What types of debt can be consolidated?", answer: "Credit card balances, personal loans, medical bills, payday loans, and store credit. Student loans and mortgages have their own refinancing programs." },
+        ],
+    },
+    "loan-affordability-calculator": {
+        subtitle: "Determine how much loan you can comfortably afford based on your income, expenses, and target debt-to-income ratio.",
+        contentHTML: `<h3>Understanding Loan Affordability</h3><p>Lenders use the <strong>debt-to-income (DTI) ratio</strong> to determine how much you can borrow. DTI = (Total Monthly Debt Payments ÷ Gross Monthly Income) × 100. Most lenders prefer DTI under 43%, with 36% considered ideal.</p><div class="explanation__highlight"><strong>Conservative approach:</strong> Financial advisors recommend keeping total EMIs (including the new loan) below 35-40% of take-home income — not gross. This ensures you have a comfortable buffer for emergencies, investments, and lifestyle expenses.</div>`,
+        faq: [
+            { question: "What DTI ratio do lenders prefer?", answer: "Most mortgage lenders want DTI below 43%. For personal loans, banks prefer below 50%. The lower your DTI, the better your rate and approval chances. Below 36% is considered excellent." },
+            { question: "Does income include bonuses and rental income?", answer: "Salaried: banks consider base salary + consistent allowances. Bonuses may be counted at 50%. Self-employed: ITR-filed income over 2-3 years. Rental income is typically counted at 50-75% of actual rent." },
+        ],
+    },
+    "loan-interest-rate-calculator": {
+        subtitle: "Reverse-calculate the effective interest rate on any loan from the EMI amount, principal, and tenure.",
+        contentHTML: `<h3>Finding the Hidden Interest Rate</h3><p>Many lenders quote flat rates, processing fees, or EMI amounts without clearly disclosing the effective annual rate. This calculator uses iterative numerical methods to back-calculate the exact reducing-balance interest rate from your actual EMI, so you can compare apples-to-apples across lenders.</p><p><strong>Example:</strong> A car dealer offers ₹10L at "8% flat" for 5 years. EMI = ₹18,333. The effective reducing-balance rate is actually <strong>14.8%</strong> — nearly double the quoted flat rate.</p>`,
+        faq: [
+            { question: "What is the difference between flat and reducing rate?", answer: "Flat rate calculates interest on the original principal throughout. Reducing rate calculates on outstanding balance each month. A 10% flat rate ≈ 17-18% reducing rate. Always compare using reducing/effective rate." },
+            { question: "How accurate is this reverse calculation?", answer: "The calculator uses binary search with 100 iterations to find the rate that produces your exact EMI. Accuracy is within ±0.01% of the true rate." },
+        ],
+    },
+    "loan-payoff-calculator": {
+        subtitle: "Calculate your loan payoff date with and without extra payments. See exactly how additional payments accelerate your debt freedom.",
+        contentHTML: `<h3>Accelerating Your Loan Payoff</h3><p>Every extra payment goes directly to principal reduction, saving you interest on that amount for the remaining loan tenure. The earlier you make extra payments, the more powerful the impact due to compound interest working in your favor.</p><ul><li>Adding just <strong>10% extra</strong> to each EMI can shorten a 20-year loan by 4-5 years</li><li>One extra EMI per year reduces a 30-year mortgage to ~25 years</li><li>Bi-weekly payments (26 half-payments/year vs 12 full) add one extra payment annually</li></ul>`,
+        faq: [
+            { question: "Is it better to make extra payments or invest?", answer: "If your loan rate is 9% and your investment returns 12% after tax, investing wins mathematically. But paying off debt gives a guaranteed, risk-free return equal to your loan rate. Choose debt payoff for peace of mind, investing for wealth growth." },
+            { question: "Do banks penalize extra payments?", answer: "In India, RBI mandates zero prepayment penalty on floating-rate individual loans. Fixed-rate and business loans may carry 2-4% penalty. In the US, check for prepayment penalties in your loan agreement." },
+        ],
+    },
+    "loan-amortization-calculator": {
+        subtitle: "Generate a complete month-by-month amortization schedule showing the principal and interest split for every single payment.",
+        contentHTML: `<h3>Reading Your Amortization Schedule</h3><p>An amortization schedule reveals the hidden structure of your loan. In early years, 60-80% of your EMI goes to interest. In later years, 80-90% goes to principal. This is why early prepayments are so powerful — they eliminate the high-interest early payments from the schedule entirely.</p><div class="explanation__highlight"><strong>Key insight:</strong> On a 20-year home loan at 8.5%, you pay more in interest than principal for the first 12 years. Only in year 13 does principal repayment finally exceed interest. This is why financial planners say "the first half of your loan is the bank's money."</div>`,
+        faq: [
+            { question: "Why is more interest charged in early months?", answer: "Interest is calculated on outstanding balance. At the start, your balance is highest, so interest is highest. As you pay down principal, less interest accrues each month, and more of your fixed EMI goes to principal." },
+            { question: "Can I get my amortization schedule from the bank?", answer: "Yes, banks are required to provide a loan amortization schedule upon request. Most net banking portals show this under your loan account details." },
+        ],
+    },
+    "ltv-calculator": {
+        subtitle: "Calculate your Loan-to-Value ratio to determine borrowing limits, PMI requirements, and interest rate eligibility.",
+        contentHTML: `<h3>Understanding LTV Ratio</h3><p>LTV = (Loan Amount ÷ Property Value) × 100. A lower LTV means less risk for the lender, which translates to better rates and terms for you.</p><ul><li><strong>LTV ≤ 80%:</strong> No PMI required, best rates available</li><li><strong>LTV 80-90%:</strong> PMI required, slightly higher rates</li><li><strong>LTV 90-95%:</strong> PMI required, limited lender options</li><li><strong>LTV > 95%:</strong> Very few lenders, highest rates</li></ul>`,
+        faq: [
+            { question: "What is a good LTV ratio?", answer: "Below 80% is ideal — it avoids PMI and qualifies you for the best rates. For investment properties, lenders typically require LTV below 70-75%." },
+            { question: "How does LTV affect my interest rate?", answer: "Every 5% reduction in LTV can save 0.125-0.25% on your rate. On a $300K loan, that's $2,000-$4,000 saved over the life of the loan." },
+        ],
+    },
+    "balloon-loan-calculator": {
+        subtitle: "Calculate payments for a balloon loan with a large lump-sum payment due at the end of the term.",
+        contentHTML: `<h3>How Balloon Loans Work</h3><p>A balloon loan has lower monthly payments because it's amortized over a longer period than the actual loan term. At the end of the term, the remaining balance (the "balloon") is due in one lump sum.</p><p><strong>Example:</strong> A $300K loan with 7-year term amortized over 30 years gives you the payment of a 30-year mortgage, but after 7 years you owe the remaining ~$265K as a balloon payment.</p><div class="explanation__highlight"><strong>Risk factor:</strong> Balloon loans assume you'll refinance or sell before the balloon is due. If property values drop or your credit deteriorates, you may not qualify for refinancing — leaving you with a massive payment you can't cover.</div>`,
+        faq: [
+            { question: "Who should use a balloon loan?", answer: "Investors planning to flip a property within 5-7 years, borrowers expecting a large future windfall, or buyers who plan to refinance before the balloon date. Not recommended for primary residences unless you have a clear exit strategy." },
+            { question: "What happens if I can't pay the balloon?", answer: "Options include refinancing, negotiating an extension with the lender, selling the asset, or in worst case, defaulting on the loan. Always have a backup plan." },
+        ],
+    },
+    "arm-calculator": {
+        subtitle: "Calculate payments for an adjustable-rate mortgage. See how rate changes after the introductory period impact your monthly payment.",
+        contentHTML: `<h3>How Adjustable Rate Mortgages Work</h3><p>An ARM offers a lower fixed rate for an intro period (typically 3, 5, 7, or 10 years), then adjusts periodically based on a reference index plus a margin. Common structures:</p><ul><li><strong>5/1 ARM:</strong> Fixed for 5 years, adjusts annually after</li><li><strong>7/6 ARM:</strong> Fixed for 7 years, adjusts every 6 months</li><li><strong>10/1 ARM:</strong> Fixed for 10 years, adjusts annually</li></ul><p>Rate caps limit how much the rate can change: initial cap (first adjustment), periodic cap (each subsequent adjustment), and lifetime cap (maximum over the loan's life).</p>`,
+        faq: [
+            { question: "When is an ARM better than a fixed rate?", answer: "When you plan to sell or refinance before the intro period ends. If you're in a 5/1 ARM and sell in year 4, you benefit from 4 years of lower payments without ever facing the rate adjustment." },
+            { question: "How much can my ARM rate increase?", answer: "Typical caps: 2% initial adjustment, 1-2% per year after, 5-6% lifetime cap. A 5% ARM with 5% lifetime cap can never exceed 10%, even if market rates go higher." },
+        ],
+    },
+    "fixed-vs-variable-calculator": {
+        subtitle: "Compare fixed-rate vs variable-rate loans side by side. See which saves more based on your expected rate trajectory.",
+        contentHTML: `<h3>Fixed vs Variable: The Key Decision</h3><p>This is one of the most consequential decisions in personal finance. The right choice depends on rate outlook, your risk tolerance, and how long you'll hold the loan.</p><ul><li><strong>Choose Fixed when:</strong> Rates are historically low, you want predictability, or you plan to hold 10+ years</li><li><strong>Choose Variable when:</strong> Rates are high and expected to fall, you plan to sell/refinance in 3-5 years, or you can handle payment fluctuations</li></ul>`,
+        faq: [
+            { question: "What if rates stay flat?", answer: "Variable wins — it starts lower and stays lower. Fixed rate includes a premium for certainty. If rates don't rise enough to offset that premium, variable saves money." },
+            { question: "Can I switch from variable to fixed?", answer: "Yes, most lenders offer a rate conversion option, though there may be a switching fee. You can also refinance with a different lender to lock in a fixed rate." },
+        ],
+    },
+    "extra-payment-calculator": {
+        subtitle: "See the powerful impact of making extra monthly payments or lump-sum prepayments on your loan payoff timeline and total interest.",
+        contentHTML: `<h3>The Mathematics of Extra Payments</h3><p>When you make an extra payment, 100% goes to principal reduction. This creates a compounding benefit: less principal → less interest next month → more of your regular EMI goes to principal → loan shrinks faster.</p><ul><li><strong>₹5,000 extra/month</strong> on a ₹50L loan at 9% for 20 years saves <strong>₹13.5L in interest</strong> and finishes <strong>5 years early</strong></li><li><strong>One-time ₹5L prepayment</strong> in year 2 of the same loan saves <strong>₹8.2L in interest</strong></li></ul>`,
+        faq: [
+            { question: "Should I reduce EMI or reduce tenure?", answer: "Reducing tenure saves significantly more interest. Reducing EMI gives immediate cash flow relief. If finances allow, always choose tenure reduction — it can save 15-30% more interest than EMI reduction." },
+            { question: "When is the best time to prepay?", answer: "As early as possible. A ₹1L prepayment in year 1 of a 20-year loan saves 3-4× more interest than the same ₹1L prepayment in year 15. The amortization curve heavily favors early intervention." },
+        ],
+    },
+    "refinance-calculator": {
+        subtitle: "Compare your current loan with a refinanced loan. Calculate monthly savings, total interest savings, and break-even period.",
+        contentHTML: `<h3>Should You Refinance?</h3><p>Refinancing makes sense when: (1) the new rate is at least 0.5-1% lower, (2) you plan to hold the loan long enough to pass the break-even point, and (3) closing costs don't eat up the savings.</p><p><strong>Break-even formula:</strong> Closing Costs ÷ Monthly Savings = Months to Break Even. If you plan to keep the loan longer than the break-even period, refinancing saves money.</p><div class="explanation__highlight"><strong>Watch out:</strong> Refinancing to a longer tenure decreases EMI but may increase total interest. Always compare total cost (EMI × tenure + closing costs), not just the monthly payment.</div>`,
+        faq: [
+            { question: "What are typical refinancing costs?", answer: "Processing fees (0.5-1% of loan), legal/valuation charges, stamp duty on new agreement, and sometimes a pre-closure penalty on the old loan. Total costs typically range from 1-3% of the loan amount." },
+            { question: "How many times can I refinance?", answer: "No legal limit. However, each refinance incurs costs, so ensure the savings justify the expense. Frequent refinancing can also temporarily impact your credit score." },
+        ],
+    },
+    "mortgage-refinance-calculator": {
+        subtitle: "Mortgage-specific refinance analysis with closing costs, PMI impact, and break-even timeline.",
+        contentHTML: `<h3>Mortgage Refinancing Analysis</h3><p>Mortgage refinancing involves replacing your existing home loan with a new one, typically at a lower rate. Beyond rate savings, consider:</p><ul><li><strong>Cash-out refinance:</strong> Borrow more than you owe and receive the difference in cash</li><li><strong>Rate-and-term:</strong> Simply change the rate and/or tenure</li><li><strong>PMI removal:</strong> If your equity has grown past 20%, refinancing can eliminate PMI</li></ul><p>Typical closing costs: 2-5% of loan amount in the US. Break-even analysis is critical — if you plan to move within 3 years, refinancing rarely pays off.</p>`,
+        faq: [
+            { question: "When should I refinance my mortgage?", answer: "When rates drop 0.75-1% below your current rate, when your credit score has improved significantly, when you want to switch from ARM to fixed, or when you have enough equity to drop PMI." },
+            { question: "Does refinancing reset my loan?", answer: "Yes, the amortization clock restarts. A 30-year refinance in year 5 of a 30-year loan means 35 total years of payments. Consider refinancing to a shorter term (15-20 years) to avoid this trap." },
+        ],
+    },
 };
 
 export default async function CalculatorHubPage({ params }: PageProps) {
@@ -317,11 +426,15 @@ export default async function CalculatorHubPage({ params }: PageProps) {
                 <div className="layout-2col__main">
                     {hasCalculator && (
                         <>
-                            <CalculatorCore
-                                defaults={calc.defaults}
-                                sliderRanges={calc.sliderRanges}
-                                loanTypeId={calc.id}
-                            />
+                            {calc.calcType && LOAN_TOOL_TYPES.includes(calc.calcType) ? (
+                                <LoanToolsCore calcType={calc.calcType} defaults={calc.defaults} sliderRanges={calc.sliderRanges} />
+                            ) : (
+                                <CalculatorCore
+                                    defaults={calc.defaults}
+                                    sliderRanges={calc.sliderRanges}
+                                    loanTypeId={calc.id}
+                                />
+                            )}
 
 
                             {/* Popular amounts grid — only for calculators with variants */}
@@ -375,15 +488,16 @@ export default async function CalculatorHubPage({ params }: PageProps) {
                             )}
 
                             <DynamicExplanation
-                                heading={content.explanation.heading}
-                                paragraphs={content.explanation.paragraphs}
-                                highlight={content.explanation.highlight}
+                                heading={content.explanation?.heading}
+                                paragraphs={content.explanation?.paragraphs}
+                                highlight={content.explanation?.highlight}
+                                contentHTML={content.contentHTML}
                             />
                             <FAQAccordion title={`${calc.title} FAQ`} items={content.faq} />
 
                             {CIBIL_FAQS[calc.id] && (
                                 <FAQAccordion
-                                    title={`CIBIL Score for ${content.explanation.heading.replace('Understanding ', '')} — FAQ`}
+                                    title={`CIBIL Score for ${content.explanation?.heading?.replace('Understanding ', '') ?? calc.title} — FAQ`}
                                     items={CIBIL_FAQS[calc.id]}
                                 />
                             )}
