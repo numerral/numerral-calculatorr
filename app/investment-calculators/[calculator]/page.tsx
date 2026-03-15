@@ -8,6 +8,8 @@ import Breadcrumb from "@/components/layout/Breadcrumb";
 import InvestmentCalculatorCore from "@/components/calculator/InvestmentCalculatorCore";
 import DynamicExplanation from "@/components/shared/DynamicExplanation";
 import FAQAccordion from "@/components/shared/FAQAccordion";
+import FormulaBlock from "@/components/shared/FormulaBlock";
+import RelatedCalculators from "@/components/shared/RelatedCalculators";
 import TrendingCalculations from "@/components/shared/TrendingCalculations";
 import { getCalculatorsByCategory } from "@/lib/data";
 import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
@@ -43,6 +45,12 @@ const HUB_CONTENT: Record<string, {
     };
     faq?: { question: string; answer: string }[];
     contentHTML?: string;
+    formula?: {
+        formula: string;
+        variables?: { symbol: string; meaning: string }[];
+        example?: { label: string; substitution: string; result: string }[];
+    };
+    relatedCalculators?: { title: string; slug: string; categorySlug: string; description: string }[];
 }> = {
     "lumpsum-calculator": {
         subtitle: "Calculate the future value of a one-time investment with compound interest over a chosen time period.",
@@ -58,6 +66,9 @@ const HUB_CONTENT: Record<string, {
             { question: "When is lumpsum better than SIP?", answer: "Lumpsum investing at market lows can significantly outperform SIP in the medium term. Use lumpsum for windfalls like bonuses, inheritance, or proceeds from selling an asset. SIP is better for regular monthly income with no large capital available." },
             { question: "How is lumpsum return taxed in India?", answer: "If redeemed after 1 year, equity mutual fund lumpsum gains are taxed as LTCG at 12.5% beyond \u20b91.25 lakhs. Within 1 year, STCG at 20%. For debt funds, gains are taxed at applicable income slab rate regardless of holding period." },
         ],
+    
+        formula: {"formula":"FV = P × (1 + r/100)ⁿ","variables":[{"symbol":"FV","meaning":"Future Value of the investment"},{"symbol":"P","meaning":"Principal (initial investment amount)"},{"symbol":"r","meaning":"Annual rate of return (%)"},{"symbol":"n","meaning":"Time period in years"}],"example":[{"label":"Invest ₹5,00,000 at 12% for 10 years","substitution":"FV = 5,00,000 × (1 + 12/100)¹⁰","result":"₹15,52,924"}]},
+        relatedCalculators: [{"title":"SIP Calculator","slug":"sip-calculator","categorySlug":"investment-calculators","description":"Calculate returns for systematic monthly investments"},{"title":"FD Calculator","slug":"fd-calculator","categorySlug":"investment-calculators","description":"Compare with fixed deposit returns"},{"title":"CAGR Calculator","slug":"cagr-calculator","categorySlug":"investment-calculators","description":"Find the annualized growth rate of any investment"},{"title":"Compound Interest Calculator","slug":"compound-interest-calculator","categorySlug":"utility-calculators","description":"Calculate compound interest with flexible compounding"}],
     },
     "sip-calculator": {
         subtitle: "Find out how much wealth your monthly SIP can build over time, factoring in compounding and your chosen return rate.",
@@ -75,6 +86,9 @@ const HUB_CONTENT: Record<string, {
             { question: "Which mutual fund category is best for SIP?", answer: "For long-term SIPs (10+ years), diversified large-cap or flexi-cap equity funds are recommended for stability with good returns. For aggressive wealth creation with a 15+ year horizon, mid-cap funds can outperform. Always choose a fund with a consistent 5-year track record and low expense ratio." },
             { question: "How does Rupee Cost Averaging benefit SIP investors?", answer: "Rupee Cost Averaging means you buy more units when markets fall (lower NAV) and fewer when markets rise (higher NAV). Over time, this automatically lowers your average purchase cost compared to investing a lumpsum at a single price point. It removes the stress of timing the market." },
         ],
+    
+        formula: {"formula":"FV = P × [{(1 + r)ⁿ − 1} / r] × (1 + r)","variables":[{"symbol":"FV","meaning":"Future Value of SIP investment"},{"symbol":"P","meaning":"Monthly SIP amount"},{"symbol":"r","meaning":"Monthly rate of return (Annual Rate / 12 / 100)"},{"symbol":"n","meaning":"Total number of monthly installments"}],"example":[{"label":"SIP ₹10,000/month at 12% for 10 years","substitution":"FV = 10000 × [{(1+0.01)¹²⁰ − 1} / 0.01] × (1.01)","result":"₹23,23,391"},{"label":"Total Invested","substitution":"₹10,000 × 120 months","result":"₹12,00,000"},{"label":"Wealth Gain","substitution":"₹23,23,391 − ₹12,00,000","result":"₹11,23,391"}]},
+        relatedCalculators: [{"title":"Lumpsum Calculator","slug":"lumpsum-calculator","categorySlug":"investment-calculators","description":"Calculate one-time investment returns"},{"title":"Mutual Fund Returns","slug":"mutual-fund-returns","categorySlug":"investment-calculators","description":"Calculate mutual fund maturity value"},{"title":"NPS Calculator","slug":"nps-calculator","categorySlug":"investment-calculators","description":"Plan your National Pension System contributions"},{"title":"CAGR Calculator","slug":"cagr-calculator","categorySlug":"investment-calculators","description":"Find the annualized growth rate"}],
     },
     "ppf-calculator": {
         subtitle: "Calculate the maturity amount of your Public Provident Fund (PPF) investment based on your annual contribution and remaining tenure.",
@@ -92,6 +106,9 @@ const HUB_CONTENT: Record<string, {
             { question: "Can I open a PPF account in my child's name?", answer: "Yes. You can open a PPF account for a minor child and contribute to it from your own PPF limit of \u20b91.5 lakhs per year combined (your account + child's account combined cannot exceed \u20b91.5 lakhs total). This is a powerful long-term wealth building tool for children's education and marriage goals." },
             { question: "What is the PPF interest rate history and when does the government revise it?", answer: "The PPF interest rate is set by the Ministry of Finance and revised quarterly along with other small savings scheme rates. It was 8% till 2020, then cut to 7.1% and has remained there since. Historically PPF has always offered 7\u20138% \u2014 safe, guaranteed, and fully tax-free." },
         ],
+    
+        formula: {"formula":"FV = P × [{(1 + r)ⁿ − 1} / r]","variables":[{"symbol":"FV","meaning":"PPF maturity value"},{"symbol":"P","meaning":"Annual contribution"},{"symbol":"r","meaning":"PPF interest rate (currently 7.1%)"},{"symbol":"n","meaning":"Investment period (min 15 years)"}],"example":[{"label":"₹1,50,000/year at 7.1% for 15 years","substitution":"FV = 1,50,000 × [{(1.071)¹⁵ − 1} / 0.071]","result":"₹40,68,209 (Invested: ₹22,50,000)"}]},
+        relatedCalculators: [{"title":"FD Calculator","slug":"fd-calculator","categorySlug":"investment-calculators","description":"Compare with taxable FD returns"},{"title":"NPS Calculator","slug":"nps-calculator","categorySlug":"investment-calculators","description":"Another tax-saving investment option"},{"title":"Retirement Corpus","slug":"retirement-corpus","categorySlug":"investment-calculators","description":"Plan your total retirement corpus"},{"title":"Lumpsum Calculator","slug":"lumpsum-calculator","categorySlug":"investment-calculators","description":"One-time investment returns"}],
     },
     "fd-calculator": {
         subtitle: "Calculate exact maturity value and total interest on your Fixed Deposit across different compounding frequencies.",
@@ -109,6 +126,9 @@ const HUB_CONTENT: Record<string, {
             { question: "What is the difference between cumulative and non-cumulative FD?", answer: "Cumulative FD reinvests the interest back into the principal every compounding period \u2014 you receive the total maturity amount at the end. Non-cumulative (or interest-payout) FD pays interest monthly, quarterly, or annually. Cumulative FDs build more wealth due to compounding; non-cumulative FDs suit retirees who need regular income." },
             { question: "Can I break an FD before maturity?", answer: "Yes, most FDs allow premature withdrawal with a penalty of 0.5\u20131% lower interest rate than the contracted rate. Some banks waive premature withdrawal penalties for senior citizens. Liquid funds or ultra-short debt funds can be a better alternative when you need liquidity, as they don't penalize early exits." },
         ],
+    
+        formula: {"formula":"A = P × (1 + r/n)^(n×t)","variables":[{"symbol":"A","meaning":"Maturity amount"},{"symbol":"P","meaning":"Principal (deposit amount)"},{"symbol":"r","meaning":"Annual interest rate (decimal)"},{"symbol":"n","meaning":"Compounding frequency per year (4 for quarterly)"},{"symbol":"t","meaning":"Time period in years"}],"example":[{"label":"₹1,00,000 FD at 7% for 5 years (quarterly)","substitution":"A = 1,00,000 × (1 + 0.07/4)^(4×5)","result":"₹1,41,478"}]},
+        relatedCalculators: [{"title":"RD Calculator","slug":"rd-calculator","categorySlug":"investment-calculators","description":"Calculate recurring deposit maturity"},{"title":"Savings Interest","slug":"savings-interest","categorySlug":"investment-calculators","description":"Calculate savings account interest"},{"title":"Deposit Maturity","slug":"deposit-maturity","categorySlug":"investment-calculators","description":"Check any deposit maturity amount"},{"title":"PPF Calculator","slug":"ppf-calculator","categorySlug":"investment-calculators","description":"Compare with tax-free PPF returns"}],
     },
     "mutual-fund-returns": {
         subtitle: "See how a mutual fund investment grows over time and compare performance across short, medium, and long-term horizons.",
@@ -126,6 +146,9 @@ const HUB_CONTENT: Record<string, {
             { question: "How is mutual fund expense ratio different from exit load?", answer: "The expense ratio is an annual fee (typically 0.1\u20132% of AUM) charged by the AMC for managing the fund. It's deducted from the NAV daily and reduces your effective return. Exit load is a one-time penalty charged if you redeem before a specific period (usually 1 year for equity funds, typically 1% of redemption amount). Direct plans have lower expense ratios than regular plans." },
             { question: "What is SEBI's risk-o-meter for mutual funds?", answer: "SEBI mandates all mutual funds to display a risk-o-meter rating: Low, Low to Moderate, Moderate, Moderately High, High, or Very High. Overnight and liquid funds are Low; equity small-cap funds are Very High. Always match the risk label to your own risk tolerance and investment horizon before investing." },
         ],
+    
+        formula: {"formula":"FV = P × (1 + r)ⁿ","variables":[{"symbol":"FV","meaning":"Future value of mutual fund investment"},{"symbol":"P","meaning":"Lumpsum investment amount"},{"symbol":"r","meaning":"Expected annual return (CAGR)"},{"symbol":"n","meaning":"Investment horizon in years"}],"example":[{"label":"₹2,00,000 in an equity fund at 14% for 7 years","substitution":"FV = 2,00,000 × (1.14)⁷","result":"₹4,94,748 (147% total return)"}]},
+        relatedCalculators: [{"title":"SIP Calculator","slug":"sip-calculator","categorySlug":"investment-calculators","description":"Systematic investment in mutual funds"},{"title":"CAGR Calculator","slug":"cagr-calculator","categorySlug":"investment-calculators","description":"Calculate your fund's CAGR"},{"title":"Lumpsum Calculator","slug":"lumpsum-calculator","categorySlug":"investment-calculators","description":"Generic lumpsum investment returns"},{"title":"Dividend Yield","slug":"dividend-yield","categorySlug":"investment-calculators","description":"Calculate dividend returns"}],
     },
     "savings-interest": {
         subtitle: "Calculate interest earned on your savings account balance. Find out how much your idle savings are actually generating for you.",
@@ -143,6 +166,9 @@ const HUB_CONTENT: Record<string, {
             { question: "What is a sweep-in FD and how does it improve returns?", answer: "A sweep-in (or auto-sweep) FD automatically transfers excess balance above a threshold (e.g., anything above \u20b925,000) from your savings account into an FD, earning higher FD interest rates. If you withdraw, the FD is broken in reverse order. This gives you FD-level returns on idle money with full liquidity \u2014 one of the smartest features offered by most major banks." },
             { question: "How do I maximize returns on short-term idle money?", answer: "For money needed within 3 months: keep in a high-interest savings account or liquid mutual fund (5\u20137%). For 3\u201312 months: FD or short-term debt funds. For 12\u201336 months: ultra-short or money market funds. Liquid funds are particularly tax-efficient for those in the 30% bracket as they can generate returns with lower day-to-day tax friction than savings interest." },
         ],
+    
+        formula: {"formula":"Interest = P × r × t / 100","variables":[{"symbol":"P","meaning":"Account balance / principal"},{"symbol":"r","meaning":"Annual interest rate (%)"},{"symbol":"t","meaning":"Time period in years"}],"example":[{"label":"₹3,00,000 in savings at 4% for 1 year","substitution":"Interest = 3,00,000 × 4 × 1 / 100","result":"₹12,000 per year (₹1,000/month)"}]},
+        relatedCalculators: [{"title":"FD Calculator","slug":"fd-calculator","categorySlug":"investment-calculators","description":"Earn higher interest with fixed deposits"},{"title":"RD Calculator","slug":"rd-calculator","categorySlug":"investment-calculators","description":"Monthly savings with recurring deposits"},{"title":"Compound Interest","slug":"compound-interest-calculator","categorySlug":"utility-calculators","description":"Calculate compound interest growth"},{"title":"Deposit Maturity","slug":"deposit-maturity","categorySlug":"investment-calculators","description":"When will your deposit mature?"}],
     },
     "deposit-maturity": {
         subtitle: "Find out the exact maturity amount and total interest for any fixed deposit or lump sum investment over any tenure.",
@@ -160,6 +186,9 @@ const HUB_CONTENT: Record<string, {
             { question: "What is National Savings Certificate (NSC) and how does it compare to FD?", answer: "NSC is a 5-year, government-backed savings certificate paying 7.7% (current rate) compounded annually but paid at maturity. Investment qualifies for Section 80C deduction. Unlike FD, NSC interest is auto-reinvested each year and also qualifies for 80C deduction in subsequent years. This makes NSC highly tax-efficient for investors in the 30% tax bracket." },
             { question: "How does Kisan Vikas Patra (KVP) work?", answer: "KVP doubles your investment in a fixed period determined by the current interest rate. At the current 7.5% rate, KVP doubles money in approximately 115 months (9 years 7 months). It is available at post offices and major bank branches, with no maximum deposit limit. KVP is not eligible for Section 80C deduction but offers guaranteed government-backed returns." },
         ],
+    
+        formula: {"formula":"Maturity = P × (1 + r/n)^(n×t)","variables":[{"symbol":"P","meaning":"Deposit principal amount"},{"symbol":"r","meaning":"Annual interest rate (as decimal)"},{"symbol":"n","meaning":"Compounding frequency per year"},{"symbol":"t","meaning":"Deposit tenure in years"}],"example":[{"label":"₹5,00,000 deposit at 7.5% for 3 years (quarterly)","substitution":"Maturity = 5,00,000 × (1 + 0.075/4)^(12)","result":"₹6,24,238 (Interest earned: ₹1,24,238)"}]},
+        relatedCalculators: [{"title":"FD Calculator","slug":"fd-calculator","categorySlug":"investment-calculators","description":"Fixed deposit specific calculations"},{"title":"RD Calculator","slug":"rd-calculator","categorySlug":"investment-calculators","description":"Recurring deposit returns"},{"title":"Savings Interest","slug":"savings-interest","categorySlug":"investment-calculators","description":"Compare with savings account"},{"title":"PPF Calculator","slug":"ppf-calculator","categorySlug":"investment-calculators","description":"Tax-free long-term deposits"}],
     },
     "rd-calculator": {
         subtitle: "Calculate the maturity amount of your Recurring Deposit by entering monthly installment amount, interest rate, and tenure.",
@@ -177,6 +206,9 @@ const HUB_CONTENT: Record<string, {
             { question: "Is RD interest taxable?", answer: "Yes. RD interest is fully taxable at your income slab rate, similar to FD interest. Banks deduct TDS at 10% if total interest (FD + RD combined) from a single branch exceeds \u20b940,000 in a financial year. Submit Form 15G/15H to avoid TDS if your total income is below the taxable threshold." },
             { question: "How is RD different from SIP in a debt mutual fund?", answer: "Both involve regular monthly investments, but RD gives guaranteed returns at a fixed rate while debt mutual funds give market-linked returns that vary. Debt funds are generally more tax-efficient for investors in higher slabs (gains taxed at slab but with indexation for older investments) and offer higher liquidity. RD is simpler and completely risk-free." },
         ],
+    
+        formula: {"formula":"M = P × [{(1 + r/n)^(n×t) − 1} / (1 − (1 + r/n)^(-1/n))]","variables":[{"symbol":"M","meaning":"Maturity amount"},{"symbol":"P","meaning":"Monthly RD installment"},{"symbol":"r","meaning":"Annual interest rate (decimal)"},{"symbol":"n","meaning":"Compounding frequency (4 for quarterly)"},{"symbol":"t","meaning":"Tenure in years"}],"example":[{"label":"₹5,000/month RD at 7% for 5 years","substitution":"Total Deposits = ₹5,000 × 60 = ₹3,00,000","result":"Maturity ≈ ₹3,59,964 (Interest: ₹59,964)"}]},
+        relatedCalculators: [{"title":"FD Calculator","slug":"fd-calculator","categorySlug":"investment-calculators","description":"Compare with fixed deposit returns"},{"title":"SIP Calculator","slug":"sip-calculator","categorySlug":"investment-calculators","description":"Compare with mutual fund SIP returns"},{"title":"PPF Calculator","slug":"ppf-calculator","categorySlug":"investment-calculators","description":"Tax-free long-term savings option"},{"title":"Savings Interest","slug":"savings-interest","categorySlug":"investment-calculators","description":"Calculate savings account interest"}],
     },
     "nps-calculator": {
         subtitle: "Estimate your National Pension System (NPS) corpus at retirement and the monthly pension you can expect.",
@@ -194,6 +226,9 @@ const HUB_CONTENT: Record<string, {
             { question: "Which NPS fund manager gives the best returns?", answer: "Equity (E scheme) funds managed by SBI Pension Funds, HDFC Pension, and ICICI Pru Pension have historically delivered 12\u201315% CAGR over 10+ years in the equity portion. The G (Government Securities) and C (Corporate Bond) schemes deliver 7\u20138%. Younger investors (below 40) benefit from maximum equity allocation (75%) in the auto or active choice." },
             { question: "What is the difference between NPS Tier 1 and Tier 2?", answer: "NPS Tier 1 is a mandatory retirement account with lock-in till age 60 \u2014 it gets all the tax benefits. Tier 2 is a voluntary savings account with no lock-in and can be withdrawn anytime, but offers NO tax deduction benefits (except for government employees under certain conditions). Tier 2 acts like a flexible debt fund with lower expense ratios." },
         ],
+    
+        formula: {"formula":"Corpus = P × [{(1 + r)ⁿ − 1} / r] × (1 + r)","variables":[{"symbol":"Corpus","meaning":"Total accumulated NPS corpus at retirement"},{"symbol":"P","meaning":"Monthly NPS contribution"},{"symbol":"r","meaning":"Expected monthly return (annual / 12 / 100)"},{"symbol":"n","meaning":"Total months until retirement"}],"example":[{"label":"₹5,000/month from age 30 to 60, at 10%","substitution":"Corpus at retirement","result":"₹1,13,02,959 (Invested: ₹18,00,000)"}]},
+        relatedCalculators: [{"title":"PPF Calculator","slug":"ppf-calculator","categorySlug":"investment-calculators","description":"Another Section 80C tax-saving option"},{"title":"Retirement Corpus","slug":"retirement-corpus","categorySlug":"investment-calculators","description":"How much do you need to retire?"},{"title":"SIP Calculator","slug":"sip-calculator","categorySlug":"investment-calculators","description":"Compare with mutual fund SIP"},{"title":"FIRE Calculator","slug":"fire-calculator","categorySlug":"investment-calculators","description":"Calculate Financial Independence age"}],
     },
     "cagr": {
         subtitle: "Calculate the Compound Annual Growth Rate of any investment — or find the return rate needed to reach a financial target.",
@@ -321,6 +356,9 @@ const HUB_CONTENT: Record<string, {
             { question: "Does the retirement corpus include my EPF and NPS?", answer: "Yes — your EPF balance, NPS corpus, and any existing investments should be subtracted from the required corpus to find your actual savings gap. Include only liquid, market-accessible assets that you can actually withdraw during retirement." },
             { question: "How much does healthcare inflation affect the retirement corpus?", answer: "Medical inflation in India runs at 12 to 14% annually — more than double general CPI. A serious illness can cost ₹10 to ₹25 lakhs in a single hospitalization. Always maintain a high-value health insurance policy (base + super top-up of ₹1 Crore+) to protect your retirement corpus." },
         ],
+    
+        formula: {"formula":"Required Corpus = Annual Expenses × 25 (4% Rule)","variables":[{"symbol":"Annual Expenses","meaning":"Your yearly living expenses at retirement (inflation-adjusted)"},{"symbol":"25","meaning":"Multiplier from the 4% safe withdrawal rate"},{"symbol":"4% Rule","meaning":"You can safely withdraw 4% of corpus annually without running out"}],"example":[{"label":"Current expenses: ₹50,000/month, retire at 60, inflation 6%","substitution":"Future monthly expense = ₹50,000 × (1.06)²⁵ = ₹2,14,594","result":"Corpus needed ≈ ₹6.44 Cr (₹25,75,128 × 25)"}]},
+        relatedCalculators: [{"title":"FIRE Calculator","slug":"fire-calculator","categorySlug":"investment-calculators","description":"When can you achieve financial independence?"},{"title":"NPS Calculator","slug":"nps-calculator","categorySlug":"investment-calculators","description":"Build retirement corpus via NPS"},{"title":"SIP Calculator","slug":"sip-calculator","categorySlug":"investment-calculators","description":"Systematic investing for retirement"},{"title":"PPF Calculator","slug":"ppf-calculator","categorySlug":"investment-calculators","description":"Tax-free retirement savings"}],
     },
     "fire-calculator": {
         subtitle: "Calculate your FIRE number — the exact portfolio size needed to retire early and live entirely off passive investment income.",
@@ -356,6 +394,9 @@ const HUB_CONTENT: Record<string, {
             { question: "How do I account for EPF, NPS, and Gratuity in FIRE planning?", answer: "These locked-in benefits typically mature at or after age 58 to 60. Pure FIRE before 50 often requires building an entirely separate, liquid investment portfolio — EPF and NPS are supplementary corpus that activates later in retirement, not immediately accessible." },
             { question: "What is the biggest risk after achieving FIRE?", answer: "Sequence-of-return risk — experiencing a severe bear market (e.g., a 30%+ crash like 2008 or Covid) in the first 2 to 3 years of retirement. Withdrawing from a sharply declining portfolio permanently destroys capital. Build a 2 to 3-year cash buffer outside your equity portfolio before quitting." },
         ],
+    
+        formula: {"formula":"FIRE Number = Annual Expenses × 25","variables":[{"symbol":"FIRE Number","meaning":"The corpus needed to retire early"},{"symbol":"Annual Expenses","meaning":"Yearly spending including inflation"},{"symbol":"25×","meaning":"Based on the 4% safe withdrawal rate (Trinity Study)"}],"example":[{"label":"Monthly expenses ₹80,000, savings rate 60%","substitution":"FIRE Number = ₹80,000 × 12 × 25","result":"₹2.4 Cr corpus needed for FIRE"}]},
+        relatedCalculators: [{"title":"Retirement Corpus","slug":"retirement-corpus","categorySlug":"investment-calculators","description":"Traditional retirement planning"},{"title":"SIP Calculator","slug":"sip-calculator","categorySlug":"investment-calculators","description":"Build your FIRE corpus via SIP"},{"title":"Reverse CAGR","slug":"reverse-cagr-calculator","categorySlug":"investment-calculators","description":"Project when you'll hit your FIRE number"},{"title":"Lumpsum Calculator","slug":"lumpsum-calculator","categorySlug":"investment-calculators","description":"Lumpsum investment for FIRE"}],
     },
     "stock-return": {
         subtitle: "Calculate your total return from a stock investment by combining capital gains and dividends received over your holding period.",
@@ -394,6 +435,9 @@ const HUB_CONTENT: Record<string, {
             { question: "What is a good total return benchmark for Indian stocks?", answer: "The Nifty 50 TRI has delivered approximately 13 to 15% CAGR over 15+ year periods. Any stock investment consistently beating this on a risk-adjusted basis represents genuine alpha over the market index." },
             { question: "Why does the Nifty 50 TRI outperform the Nifty 50?", answer: "The Nifty 50 Price Return index only tracks stock price changes. The Nifty 50 TRI (Total Returns Index) also includes dividends reinvested, giving a complete picture of returns. Over long periods, dividends contribute 15 to 25% of total equity market returns — a significant difference." },
         ],
+    
+        formula: {"formula":"Total Return = (Selling Price − Buying Price) × Shares + Dividends","variables":[{"symbol":"Total Return","meaning":"Net profit/loss from the stock investment"},{"symbol":"Selling Price","meaning":"Price per share when sold"},{"symbol":"Buying Price","meaning":"Price per share when purchased"},{"symbol":"Shares","meaning":"Number of shares held"},{"symbol":"Dividends","meaning":"Total dividends received during holding period"}],"example":[{"label":"Buy 100 shares at ₹500, sell at ₹750","substitution":"Return = (750 − 500) × 100","result":"₹25,000 profit (50% return)"}]},
+        relatedCalculators: [{"title":"CAGR Calculator","slug":"cagr-calculator","categorySlug":"investment-calculators","description":"Annualized return on your stock"},{"title":"Dividend Yield","slug":"dividend-yield","categorySlug":"investment-calculators","description":"Calculate dividend income"},{"title":"Mutual Fund Returns","slug":"mutual-fund-returns","categorySlug":"investment-calculators","description":"Compare with mutual fund performance"},{"title":"Crypto Profit","slug":"crypto-profit-calculator","categorySlug":"investment-calculators","description":"Calculate crypto trading returns"}],
     },
     "dividend-yield": {
         subtitle: "Calculate the dividend yield of any stock — how much annual income you earn as a percentage of your share purchase price.",
@@ -433,6 +477,9 @@ const HUB_CONTENT: Record<string, {
             { question: "How do I find high dividend yield stocks in India?", answer: "Screen for high-dividend stocks using NSE/BSE stock screeners, Money Control, or Screener.in by filtering on dividend yield percentage and payout consistency. Always cross-check with 5-year payout history, Payout Ratio, EPS trend, and debt levels before investing for income." },
             { question: "What is the difference between dividend yield and dividend growth investing?", answer: "Dividend yield focuses on current income — the payout relative to today's price. Dividend growth investing focuses on companies that consistently increase their dividend every year. A 2% yielder growing at 15% annually will double its payout in 5 years, outpacing a static high-yield stock over a 10+ year horizon." },
         ],
+    
+        formula: {"formula":"Dividend Yield = (Annual Dividend / Current Stock Price) × 100","variables":[{"symbol":"Dividend Yield (%)","meaning":"Annual return from dividends as a percentage of stock price"},{"symbol":"Annual Dividend","meaning":"Total dividends paid per share in one year"},{"symbol":"Current Stock Price","meaning":"Market price of one share today"}],"example":[{"label":"Stock at ₹200, pays ₹10 dividend/year","substitution":"Yield = (10 / 200) × 100","result":"5.0% dividend yield"}]},
+        relatedCalculators: [{"title":"Stock Return","slug":"stock-return","categorySlug":"investment-calculators","description":"Total return including capital gains"},{"title":"Mutual Fund Returns","slug":"mutual-fund-returns","categorySlug":"investment-calculators","description":"Compare with fund returns"},{"title":"FD Calculator","slug":"fd-calculator","categorySlug":"investment-calculators","description":"Compare with FD interest rate"},{"title":"CAGR Calculator","slug":"cagr-calculator","categorySlug":"investment-calculators","description":"Annualized growth rate"}],
     },
     "crypto-profit-calculator": {
         subtitle: "Calculate your cryptocurrency investment profit or loss — enter buy price, sell price, investment amount, and trading fees to see net profit, ROI, and total exit value.",
@@ -472,6 +519,9 @@ const HUB_CONTENT: Record<string, {
             { question: "Is crypto profit taxable?", answer: "Yes, in most countries. The US taxes crypto as property — short-term gains at income rates, long-term at 15-20%. India taxes all crypto gains at a flat 30% with no loss offset. The UK allows a £3,000 annual capital gains exemption. Always consult a local tax professional." },
             { question: "Should I use dollar-cost averaging for crypto?", answer: "DCA (buying fixed amounts at regular intervals) reduces the risk of buying at a peak. Studies show DCA outperforms lump-sum investing in highly volatile assets like crypto approximately 60% of the time. It's especially effective for Bitcoin and Ethereum over multi-year horizons." },
         ],
+    
+        formula: {"formula":"Net Profit = (Coins × Sell Price − Exit Fee) − (Investment + Entry Fee)","variables":[{"symbol":"Coins","meaning":"Investment Amount ÷ Buy Price"},{"symbol":"Sell Price","meaning":"Expected selling price per coin"},{"symbol":"Exit Fee","meaning":"Exchange fee on selling (0.1-0.5%)"},{"symbol":"Entry Fee","meaning":"Exchange fee on buying (0.1-0.5%)"}],"example":[{"label":"$1,000 in BTC at $50,000, sell at $65,000","substitution":"Coins = 0.02 BTC, Exit = 0.02 × $65,000 = $1,300","result":"Profit of $300 (30% ROI)"}]},
+        relatedCalculators: [{"title":"Stock Return","slug":"stock-return","categorySlug":"investment-calculators","description":"Compare with stock trading returns"},{"title":"CAGR Calculator","slug":"cagr-calculator","categorySlug":"investment-calculators","description":"Annualized crypto growth rate"},{"title":"IRR Calculator","slug":"irr-calculator","categorySlug":"investment-calculators","description":"True return with multiple buy/sell"},{"title":"NPV Calculator","slug":"npv-calculator","categorySlug":"investment-calculators","description":"Evaluate crypto as a cash flow investment"}],
     },
     "cagr-calculator": {
         subtitle: "Calculate the Compound Annual Growth Rate (CAGR) of any investment. Enter starting value, ending value, and time period to find the annualized return.",
@@ -482,6 +532,9 @@ const HUB_CONTENT: Record<string, {
             { question: "Can CAGR be negative?", answer: "Yes. If your ending value is less than the starting value, CAGR will be negative. For example, ₹10L invested becoming ₹6L over 3 years gives a CAGR of -15.6%." },
             { question: "How to calculate CAGR in Excel?", answer: "Use the formula: =((Ending/Starting)^(1/Years))-1. Or use the POWER function: =POWER(Ending/Starting, 1/Years)-1. Format the result as percentage." },
         ],
+    
+        formula: {"formula":"CAGR = (Ending Value / Starting Value)^(1/n) − 1","variables":[{"symbol":"CAGR","meaning":"Compound Annual Growth Rate"},{"symbol":"Ending Value","meaning":"Final value of the investment"},{"symbol":"Starting Value","meaning":"Initial investment amount"},{"symbol":"n","meaning":"Number of years"}],"example":[{"label":"₹1,00,000 grew to ₹5,00,000 in 5 years","substitution":"CAGR = (5,00,000 / 1,00,000)^(1/5) − 1","result":"37.97% per year"},{"label":"Total absolute return","substitution":"(5,00,000 − 1,00,000) / 1,00,000 × 100","result":"400% total, but CAGR is 37.97%"}]},
+        relatedCalculators: [{"title":"Reverse CAGR Calculator","slug":"reverse-cagr-calculator","categorySlug":"investment-calculators","description":"Project future value from known CAGR"},{"title":"IRR Calculator","slug":"irr-calculator","categorySlug":"investment-calculators","description":"Handle multiple cash flows (more advanced)"},{"title":"SIP Calculator","slug":"sip-calculator","categorySlug":"investment-calculators","description":"Calculate SIP returns"},{"title":"Lumpsum Calculator","slug":"lumpsum-calculator","categorySlug":"investment-calculators","description":"One-time investment growth"},{"title":"NPV Calculator","slug":"npv-calculator","categorySlug":"investment-calculators","description":"Evaluate investment using discount rate"}],
     },
     "reverse-cagr-calculator": {
         subtitle: "Calculate the future value of your investment when the CAGR is known. Project how your portfolio will grow over any time period.",
@@ -490,6 +543,9 @@ const HUB_CONTENT: Record<string, {
             { question: "How accurate is the future value projection?", answer: "The projection assumes a constant CAGR throughout the period. In reality, returns vary year to year. Use this as a planning tool, not a guarantee. Consider running projections at optimistic (15%), realistic (12%), and conservative (8%) CAGR scenarios." },
             { question: "What CAGR should I use for projections?", answer: "Use historical category averages: Large-cap equity funds: 12-14%, Mid-cap: 14-16%, Small-cap: 16-18%, Debt funds: 7-8%, Gold: 10-11%. Always use post-tax returns for realistic planning." },
         ],
+    
+        formula: {"formula":"Future Value = Initial × (1 + CAGR/100)ⁿ","variables":[{"symbol":"Future Value","meaning":"Projected value at end of period"},{"symbol":"Initial","meaning":"Starting investment amount"},{"symbol":"CAGR","meaning":"Expected compound annual growth rate (%)"},{"symbol":"n","meaning":"Number of years"}],"example":[{"label":"₹5,00,000 at 15% CAGR for 10 years","substitution":"FV = 5,00,000 × (1.15)¹⁰","result":"₹20,22,779 (4× growth)"}]},
+        relatedCalculators: [{"title":"CAGR Calculator","slug":"cagr-calculator","categorySlug":"investment-calculators","description":"Calculate CAGR from known values"},{"title":"Lumpsum Calculator","slug":"lumpsum-calculator","categorySlug":"investment-calculators","description":"One-time investment returns"},{"title":"Mutual Fund Returns","slug":"mutual-fund-returns","categorySlug":"investment-calculators","description":"Project mutual fund growth"},{"title":"Retirement Corpus","slug":"retirement-corpus","categorySlug":"investment-calculators","description":"Plan your retirement corpus"}],
     },
     "irr-calculator": {
         subtitle: "Calculate the Internal Rate of Return (IRR) for a series of cash flows. Evaluate whether an investment is worth pursuing based on its true annualized return.",
@@ -499,6 +555,9 @@ const HUB_CONTENT: Record<string, {
             { question: "What is a good IRR?", answer: "Depends on the asset class. Private equity targets 20%+, venture capital 25-30%, real estate 12-18%, fixed income 7-9%. Compare IRR to your opportunity cost — if you can get 12% in index funds risk-free, any alternative investment should exceed that." },
             { question: "Can IRR be misleading?", answer: "Yes. IRR assumes reinvestment at the same IRR rate, which may not be realistic. Multiple sign changes in cash flows can produce multiple IRRs. For comparing mutually exclusive projects, use NPV instead." },
         ],
+    
+        formula: {"formula":"NPV = Σ [CFₜ / (1 + IRR)ᵗ] = 0","variables":[{"symbol":"IRR","meaning":"Internal Rate of Return (the rate that makes NPV zero)"},{"symbol":"CFₜ","meaning":"Cash flow at time period t"},{"symbol":"t","meaning":"Time period (0, 1, 2, ... n years)"},{"symbol":"NPV","meaning":"Net Present Value (set to zero to find IRR)"}],"example":[{"label":"Invest ₹1L, get ₹30K, ₹35K, ₹40K, ₹45K over 4 years","substitution":"-100000 + 30000/(1+r) + 35000/(1+r)² + 40000/(1+r)³ + 45000/(1+r)⁴ = 0","result":"IRR ≈ 16.82%"}]},
+        relatedCalculators: [{"title":"NPV Calculator","slug":"npv-calculator","categorySlug":"investment-calculators","description":"Calculate NPV at a known discount rate"},{"title":"CAGR Calculator","slug":"cagr-calculator","categorySlug":"investment-calculators","description":"Simpler growth rate (single entry/exit)"},{"title":"Stock Return","slug":"stock-return","categorySlug":"investment-calculators","description":"Calculate stock investment returns"},{"title":"Reverse CAGR","slug":"reverse-cagr-calculator","categorySlug":"investment-calculators","description":"Project future value from known rate"}],
     },
     "npv-calculator": {
         subtitle: "Calculate the Net Present Value of future cash flows at a given discount rate. Determine whether an investment creates or destroys financial value.",
@@ -508,6 +567,9 @@ const HUB_CONTENT: Record<string, {
             { question: "NPV vs IRR — which is better?", answer: "NPV is theoretically superior because it gives absolute value created in rupees, assumes reinvestment at the discount rate (more realistic), and always gives a unique answer. IRR is easier to communicate ('this project returns 18%') but can be misleading with non-conventional cash flows." },
             { question: "Can NPV be negative even if total cash inflows exceed outflows?", answer: "Yes. Time value of money means ₹1 today is worth more than ₹1 next year. If cash inflows come very late or the discount rate is high, NPV can be negative even when total inflows exceed the initial investment." },
         ],
+    
+        formula: {"formula":"NPV = Σ [CFₜ / (1 + r)ᵗ]","variables":[{"symbol":"NPV","meaning":"Net Present Value (total value created/destroyed)"},{"symbol":"CFₜ","meaning":"Cash flow at time period t (negative = investment)"},{"symbol":"r","meaning":"Discount rate (opportunity cost / required return)"},{"symbol":"t","meaning":"Time period (0, 1, 2, ... n years)"}],"example":[{"label":"Invest ₹1L, earn ₹30K, ₹35K, ₹40K, ₹50K at 10% discount","substitution":"NPV = -1,00,000 + 27,273 + 28,926 + 30,053 + 34,151","result":"NPV = +₹20,402 → Invest! ✅"}]},
+        relatedCalculators: [{"title":"IRR Calculator","slug":"irr-calculator","categorySlug":"investment-calculators","description":"Find the rate where NPV = 0"},{"title":"CAGR Calculator","slug":"cagr-calculator","categorySlug":"investment-calculators","description":"Annualized growth rate"},{"title":"Lumpsum Calculator","slug":"lumpsum-calculator","categorySlug":"investment-calculators","description":"Simple investment returns"},{"title":"Retirement Corpus","slug":"retirement-corpus","categorySlug":"investment-calculators","description":"Plan your retirement using NPV principles"}],
     },
 };
 
@@ -574,7 +636,17 @@ export default async function InvestmentCalculatorHubPage({ params }: PageProps)
                                 highlight={content.explanation?.highlight}
                                 contentHTML={content.contentHTML}
                             />
+                            {content.formula && (
+                                <FormulaBlock
+                                    formula={content.formula.formula}
+                                    variables={content.formula.variables}
+                                    example={content.formula.example}
+                                />
+                            )}
                             {content.faq && <FAQAccordion title={`${calc.title} FAQ`} items={content.faq} />}
+                            {content.relatedCalculators && (
+                                <RelatedCalculators calculators={content.relatedCalculators} />
+                            )}
                         </>
                     )}
                 </div>
