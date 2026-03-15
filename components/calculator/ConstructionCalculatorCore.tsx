@@ -485,6 +485,436 @@ function CubicYardsCalc() {
     );
 }
 
+/* ──────────── 11. GRAVEL CALCULATOR ──────────── */
+function GravelCalc() {
+    const [length, setLength] = useState(20);
+    const [width, setWidth] = useState(10);
+    const [depth, setDepth] = useState(3);
+    const [depthUnit, setDepthUnit] = useState("inches");
+    const [material, setMaterial] = useState("crushed-stone");
+    const [pricePerYd, setPricePerYd] = useState(50);
+
+    const DENSITY: Record<string, number> = {
+        "crushed-stone": 1.4, "pea-gravel": 1.4, "river-rock": 1.5,
+        "limestone": 1.5, "decomposed-granite": 1.3,
+    };
+
+    const result = useMemo(() => {
+        const depthFt = depthUnit === "inches" ? depth / 12 : depth;
+        const cuFt = length * width * depthFt;
+        const cuYd = cuFt / 27;
+        const tons = cuYd * (DENSITY[material] || 1.4);
+        const cost = cuYd * pricePerYd;
+        return { cuFt, cuYd, tons, cost };
+    }, [length, width, depth, depthUnit, material, pricePerYd]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">🪨 Gravel Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Length" value={length} onChange={setLength} unit="ft" min={0.1} step={0.5} />
+                <InputField label="Width" value={width} onChange={setWidth} unit="ft" min={0.1} step={0.5} />
+                <InputField label="Depth" value={depth} onChange={setDepth} unit={depthUnit} min={0.5} step={0.5} />
+                <SelectField label="Depth Unit" value={depthUnit} onChange={setDepthUnit} options={[
+                    { value: "inches", label: "Inches" }, { value: "feet", label: "Feet" }
+                ]} />
+                <SelectField label="Material" value={material} onChange={setMaterial} options={[
+                    { value: "crushed-stone", label: "Crushed Stone" },
+                    { value: "pea-gravel", label: "Pea Gravel" },
+                    { value: "river-rock", label: "River Rock" },
+                    { value: "limestone", label: "Limestone" },
+                    { value: "decomposed-granite", label: "Decomposed Granite" },
+                ]} />
+                <InputField label="Price per cu yd" value={pricePerYd} onChange={setPricePerYd} unit="$" min={0} step={5} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Volume" value={fmt(result.cuFt)} unit="cu ft" />
+                <ResultRow label="Volume" value={fmt(result.cuYd)} unit="cu yd" />
+                <ResultRow label="Weight" value={fmt(result.tons, 1)} unit="tons" />
+                <ResultRow label="Estimated Cost" value={`$${fmt(result.cost)}`} />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 12. MULCH CALCULATOR ──────────── */
+function MulchCalc() {
+    const [length, setLength] = useState(10);
+    const [width, setWidth] = useState(10);
+    const [depth, setDepth] = useState(3);
+    const [bagSize, setBagSize] = useState(2);
+    const [pricePerBag, setPricePerBag] = useState(5);
+
+    const result = useMemo(() => {
+        const depthFt = depth / 12;
+        const cuFt = length * width * depthFt;
+        const cuYd = cuFt / 27;
+        const bags = bagSize > 0 ? cuFt / bagSize : 0;
+        const cost = bags * pricePerBag;
+        return { cuFt, cuYd, bags, cost };
+    }, [length, width, depth, bagSize, pricePerBag]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">🌿 Mulch Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Length" value={length} onChange={setLength} unit="ft" min={0.1} step={0.5} />
+                <InputField label="Width" value={width} onChange={setWidth} unit="ft" min={0.1} step={0.5} />
+                <InputField label="Depth" value={depth} onChange={setDepth} unit="inches" min={1} max={12} />
+                <InputField label="Bag Size" value={bagSize} onChange={setBagSize} unit="cu ft/bag" min={1} step={0.5} />
+                <InputField label="Price per Bag" value={pricePerBag} onChange={setPricePerBag} unit="$" min={0} step={0.5} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Volume" value={fmt(result.cuFt)} unit="cu ft" />
+                <ResultRow label="Volume" value={fmt(result.cuYd)} unit="cu yd" />
+                <ResultRow label="Bags Needed" value={fmtInt(result.bags)} unit="bags" />
+                <ResultRow label="Estimated Cost" value={`$${fmt(result.cost)}`} />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 13. BRICK CALCULATOR ──────────── */
+function BrickCalc() {
+    const [wallLength, setWallLength] = useState(20);
+    const [wallHeight, setWallHeight] = useState(8);
+    const [brickLength, setBrickLength] = useState(8);
+    const [brickHeight, setBrickHeight] = useState(2.25);
+    const [mortarJoint, setMortarJoint] = useState(0.375);
+    const [waste, setWaste] = useState(5);
+
+    const result = useMemo(() => {
+        const wallArea = wallLength * wallHeight;
+        const brickLenFt = (brickLength + mortarJoint) / 12;
+        const brickHtFt = (brickHeight + mortarJoint) / 12;
+        const brickArea = brickLenFt * brickHtFt;
+        const bricksExact = brickArea > 0 ? wallArea / brickArea : 0;
+        const bricksWithWaste = bricksExact * (1 + waste / 100);
+        const mortarBags = bricksWithWaste / 35;
+        return { wallArea, bricksExact, bricksWithWaste, mortarBags };
+    }, [wallLength, wallHeight, brickLength, brickHeight, mortarJoint, waste]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">🧱 Brick Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Wall Length" value={wallLength} onChange={setWallLength} unit="ft" min={1} />
+                <InputField label="Wall Height" value={wallHeight} onChange={setWallHeight} unit="ft" min={1} />
+                <InputField label="Brick Length" value={brickLength} onChange={setBrickLength} unit="in" min={1} step={0.25} />
+                <InputField label="Brick Height" value={brickHeight} onChange={setBrickHeight} unit="in" min={0.5} step={0.25} />
+                <InputField label="Mortar Joint" value={mortarJoint} onChange={setMortarJoint} unit="in" min={0.25} step={0.125} />
+                <InputField label="Waste Factor" value={waste} onChange={setWaste} unit="%" min={0} max={20} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Wall Area" value={fmt(result.wallArea)} unit="sq ft" />
+                <ResultRow label="Bricks (exact)" value={fmtInt(result.bricksExact)} unit="bricks" />
+                <ResultRow label="Bricks (+ waste)" value={fmtInt(result.bricksWithWaste)} unit="bricks" />
+                <ResultRow label="Mortar (80 lb bags)" value={fmtInt(result.mortarBags)} unit="bags" />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 14. FENCE CALCULATOR ──────────── */
+function FenceCalc() {
+    const [fenceLength, setFenceLength] = useState(100);
+    const [fenceHeight, setFenceHeight] = useState(6);
+    const [postSpacing, setPostSpacing] = useState(8);
+    const [fenceType, setFenceType] = useState("wood-picket");
+
+    const result = useMemo(() => {
+        const posts = Math.ceil(fenceLength / postSpacing) + 1;
+        const sections = posts - 1;
+        let rails = 0, pickets = 0, panels = 0;
+        if (fenceType === "wood-picket") {
+            rails = sections * (fenceHeight > 4 ? 3 : 2);
+            pickets = Math.ceil(fenceLength / 0.5); // 6" wide pickets
+        } else if (fenceType === "wood-panel") {
+            panels = sections;
+            rails = 0;
+        } else {
+            // chain-link: measured in linear feet of fabric
+            rails = sections * 2; // top + bottom rail
+        }
+        const postHoleDepth = Math.max(fenceHeight / 3 + 0.5, 2);
+        const concreteBags = posts * 2;
+        return { posts, sections, rails, pickets, panels, postHoleDepth, concreteBags };
+    }, [fenceLength, fenceHeight, postSpacing, fenceType]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">🏡 Fence Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Fence Length" value={fenceLength} onChange={setFenceLength} unit="ft" min={1} />
+                <InputField label="Fence Height" value={fenceHeight} onChange={setFenceHeight} unit="ft" min={3} max={10} />
+                <InputField label="Post Spacing" value={postSpacing} onChange={setPostSpacing} unit="ft" min={4} max={12} />
+                <SelectField label="Fence Type" value={fenceType} onChange={setFenceType} options={[
+                    { value: "wood-picket", label: "Wood Picket" },
+                    { value: "wood-panel", label: "Wood Panel (Pre-built)" },
+                    { value: "chain-link", label: "Chain Link" },
+                ]} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Posts Needed" value={fmtInt(result.posts)} unit="posts" />
+                <ResultRow label="Sections" value={fmtInt(result.sections)} unit="sections" />
+                <ResultRow label="Rails" value={fmtInt(result.rails)} unit="rails" />
+                {result.pickets > 0 && <ResultRow label="Pickets" value={fmtInt(result.pickets)} unit="pickets" />}
+                {result.panels > 0 && <ResultRow label="Panels" value={fmtInt(result.panels)} unit="panels" />}
+                <ResultRow label="Post Hole Depth" value={fmt(result.postHoleDepth, 1)} unit="ft" />
+                <ResultRow label="Concrete (50 lb bags)" value={fmtInt(result.concreteBags)} unit="bags" />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 15. DECK CALCULATOR ──────────── */
+function DeckCalc() {
+    const [deckLength, setDeckLength] = useState(12);
+    const [deckWidth, setDeckWidth] = useState(16);
+    const [boardWidth, setBoardWidth] = useState(5.5);
+    const [joistSpacing, setJoistSpacing] = useState(16);
+    const [pricePerBoard, setPricePerBoard] = useState(15);
+
+    const result = useMemo(() => {
+        const area = deckLength * deckWidth;
+        const boardWidthFt = boardWidth / 12;
+        const boardsNeeded = boardWidthFt > 0 ? Math.ceil(deckWidth / boardWidthFt) : 0;
+        const totalLinearFt = boardsNeeded * deckLength;
+        const joistSpacingFt = joistSpacing / 12;
+        const joists = joistSpacingFt > 0 ? Math.ceil(deckLength / joistSpacingFt) + 1 : 0;
+        const screws = boardsNeeded * joists * 2;
+        const posts = Math.ceil(deckLength / 6) * Math.ceil(deckWidth / 6);
+        const cost = boardsNeeded * pricePerBoard;
+        return { area, boardsNeeded, totalLinearFt, joists, screws, posts, cost };
+    }, [deckLength, deckWidth, boardWidth, joistSpacing, pricePerBoard]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">🪵 Deck Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Deck Length" value={deckLength} onChange={setDeckLength} unit="ft" min={4} />
+                <InputField label="Deck Width" value={deckWidth} onChange={setDeckWidth} unit="ft" min={4} />
+                <InputField label="Board Width" value={boardWidth} onChange={setBoardWidth} unit="in" min={3} max={12} step={0.5} />
+                <InputField label="Joist Spacing" value={joistSpacing} onChange={setJoistSpacing} unit="in OC" min={12} max={24} />
+                <InputField label="Price per Board" value={pricePerBoard} onChange={setPricePerBoard} unit="$" min={0} step={1} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Deck Area" value={fmt(result.area)} unit="sq ft" />
+                <ResultRow label="Deck Boards" value={fmtInt(result.boardsNeeded)} unit="boards" />
+                <ResultRow label="Total Linear Feet" value={fmt(result.totalLinearFt)} unit="lin ft" />
+                <ResultRow label="Joists" value={fmtInt(result.joists)} unit="joists" />
+                <ResultRow label="Support Posts" value={fmtInt(result.posts)} unit="posts" />
+                <ResultRow label="Deck Screws" value={fmtInt(result.screws)} unit="screws" />
+                <ResultRow label="Est. Board Cost" value={`$${fmt(result.cost)}`} />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 16. STAIRCASE CALCULATOR ──────────── */
+function StaircaseCalc() {
+    const [totalRise, setTotalRise] = useState(108);
+    const [stairWidth, setStairWidth] = useState(36);
+    const [riserTarget, setRiserTarget] = useState(7.5);
+
+    const result = useMemo(() => {
+        const numRisers = Math.round(totalRise / riserTarget);
+        const actualRiser = numRisers > 0 ? totalRise / numRisers : 0;
+        const numTreads = numRisers - 1;
+        const treadDepth = 10.5;
+        const totalRun = numTreads * treadDepth;
+        const stringerLength = Math.sqrt(totalRise * totalRise + totalRun * totalRun);
+        const numStringers = stairWidth > 36 ? 3 : 2;
+        return { numRisers, actualRiser, numTreads, treadDepth, totalRun, stringerLength, numStringers };
+    }, [totalRise, stairWidth, riserTarget]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">🪜 Staircase Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Total Rise" value={totalRise} onChange={setTotalRise} unit="in" min={12} />
+                <InputField label="Stair Width" value={stairWidth} onChange={setStairWidth} unit="in" min={24} max={72} />
+                <InputField label="Target Riser Height" value={riserTarget} onChange={setRiserTarget} unit="in" min={6} max={8} step={0.25} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Number of Risers" value={fmtInt(result.numRisers)} unit="risers" />
+                <ResultRow label="Actual Riser Height" value={fmt(result.actualRiser, 2)} unit="in" />
+                <ResultRow label="Number of Treads" value={fmtInt(result.numTreads)} unit="treads" />
+                <ResultRow label="Tread Depth" value={fmt(result.treadDepth, 1)} unit="in" />
+                <ResultRow label="Total Run" value={fmt(result.totalRun, 1)} unit="in" />
+                <ResultRow label="Stringer Length" value={fmt(result.stringerLength, 1)} unit="in" />
+                <ResultRow label="Stringers Needed" value={fmtInt(result.numStringers)} />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 17. LUMBER CALCULATOR ──────────── */
+function LumberCalc() {
+    const [boardLength, setBoardLength] = useState(8);
+    const [boardWidth, setBoardWidth] = useState(6);
+    const [boardThickness, setBoardThickness] = useState(1);
+    const [quantity, setQuantity] = useState(10);
+    const [pricePerBF, setPricePerBF] = useState(5);
+
+    const result = useMemo(() => {
+        const boardFeetEach = (boardLength * boardWidth * boardThickness) / 12;
+        const totalBF = boardFeetEach * quantity;
+        const cost = totalBF * pricePerBF;
+        return { boardFeetEach, totalBF, cost };
+    }, [boardLength, boardWidth, boardThickness, quantity, pricePerBF]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">🪓 Lumber Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Board Length" value={boardLength} onChange={setBoardLength} unit="ft" min={1} />
+                <InputField label="Board Width" value={boardWidth} onChange={setBoardWidth} unit="in" min={1} />
+                <InputField label="Board Thickness" value={boardThickness} onChange={setBoardThickness} unit="in" min={0.25} step={0.25} />
+                <InputField label="Quantity" value={quantity} onChange={setQuantity} min={1} />
+                <InputField label="Price per Board Foot" value={pricePerBF} onChange={setPricePerBF} unit="$" min={0} step={0.5} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Board Feet (each)" value={fmt(result.boardFeetEach)} unit="BF" />
+                <ResultRow label="Total Board Feet" value={fmt(result.totalBF)} unit="BF" />
+                <ResultRow label="Estimated Cost" value={`$${fmt(result.cost)}`} />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 18. INSULATION CALCULATOR ──────────── */
+function InsulationCalc() {
+    const [wallLength, setWallLength] = useState(40);
+    const [wallHeight, setWallHeight] = useState(8);
+    const [insulationType, setInsulationType] = useState("batt");
+    const [rValue, setRValue] = useState("R-13");
+
+    const BATT_COVERAGE: Record<string, number> = {
+        "R-13": 40, "R-19": 48, "R-30": 31, "R-38": 24,
+    };
+
+    const result = useMemo(() => {
+        const area = wallLength * wallHeight;
+        if (insulationType === "batt") {
+            const coverage = BATT_COVERAGE[rValue] || 40;
+            const rolls = area / coverage;
+            return { area, rolls, bags: 0 };
+        } else {
+            const bags = area / 40;
+            return { area, rolls: 0, bags };
+        }
+    }, [wallLength, wallHeight, insulationType, rValue]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">🧤 Insulation Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Wall Length" value={wallLength} onChange={setWallLength} unit="ft" min={1} />
+                <InputField label="Wall Height" value={wallHeight} onChange={setWallHeight} unit="ft" min={1} />
+                <SelectField label="Type" value={insulationType} onChange={setInsulationType} options={[
+                    { value: "batt", label: "Batt / Roll" },
+                    { value: "blown-in", label: "Blown-In (Cellulose)" },
+                ]} />
+                {insulationType === "batt" && (
+                    <SelectField label="R-Value" value={rValue} onChange={setRValue} options={[
+                        { value: "R-13", label: "R-13 (2×4 walls)" },
+                        { value: "R-19", label: "R-19 (2×6 walls)" },
+                        { value: "R-30", label: "R-30 (attic floors)" },
+                        { value: "R-38", label: "R-38 (attic floors)" },
+                    ]} />
+                )}
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Total Area" value={fmt(result.area)} unit="sq ft" />
+                {result.rolls > 0 && <ResultRow label="Rolls / Batts" value={fmtInt(result.rolls)} unit="rolls" />}
+                {result.bags > 0 && <ResultRow label="Bags (blown-in)" value={fmtInt(result.bags)} unit="bags" />}
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 19. CARPET CALCULATOR ──────────── */
+function CarpetCalc() {
+    const [length, setLength] = useState(12);
+    const [width, setWidth] = useState(10);
+    const [waste, setWaste] = useState(10);
+    const [pricePerSqYd, setPricePerSqYd] = useState(25);
+
+    const result = useMemo(() => {
+        const sqFt = length * width;
+        const withWaste = sqFt * (1 + waste / 100);
+        const sqYd = withWaste / 9;
+        const cost = sqYd * pricePerSqYd;
+        return { sqFt, withWaste, sqYd, cost };
+    }, [length, width, waste, pricePerSqYd]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">🟫 Carpet Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Room Length" value={length} onChange={setLength} unit="ft" min={1} />
+                <InputField label="Room Width" value={width} onChange={setWidth} unit="ft" min={1} />
+                <InputField label="Waste Factor" value={waste} onChange={setWaste} unit="%" min={0} max={30} />
+                <InputField label="Price per sq yd" value={pricePerSqYd} onChange={setPricePerSqYd} unit="$" min={0} step={1} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Room Area" value={fmt(result.sqFt)} unit="sq ft" />
+                <ResultRow label="Carpet Needed (+ waste)" value={fmt(result.withWaste)} unit="sq ft" />
+                <ResultRow label="Carpet Needed" value={fmt(result.sqYd, 1)} unit="sq yd" />
+                <ResultRow label="Estimated Cost" value={`$${fmt(result.cost)}`} />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 20. SAND CALCULATOR ──────────── */
+function SandCalc() {
+    const [length, setLength] = useState(10);
+    const [width, setWidth] = useState(10);
+    const [depth, setDepth] = useState(4);
+    const [depthUnit, setDepthUnit] = useState("inches");
+
+    const result = useMemo(() => {
+        const depthFt = depthUnit === "inches" ? depth / 12 : depth;
+        const cuFt = length * width * depthFt;
+        const cuYd = cuFt / 27;
+        const tons = cuYd * 1.35;
+        const bags50lb = cuFt * 100 / 50;
+        return { cuFt, cuYd, tons, bags50lb };
+    }, [length, width, depth, depthUnit]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">⏳ Sand Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Length" value={length} onChange={setLength} unit="ft" min={0.1} step={0.5} />
+                <InputField label="Width" value={width} onChange={setWidth} unit="ft" min={0.1} step={0.5} />
+                <InputField label="Depth" value={depth} onChange={setDepth} unit={depthUnit} min={0.5} step={0.5} />
+                <SelectField label="Depth Unit" value={depthUnit} onChange={setDepthUnit} options={[
+                    { value: "inches", label: "Inches" }, { value: "feet", label: "Feet" }
+                ]} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Volume" value={fmt(result.cuFt)} unit="cu ft" />
+                <ResultRow label="Volume" value={fmt(result.cuYd)} unit="cu yd" />
+                <ResultRow label="Weight" value={fmt(result.tons, 1)} unit="tons" />
+                <ResultRow label="50 lb Bags" value={fmtInt(result.bags50lb)} unit="bags" />
+            </div>
+        </div>
+    );
+}
+
 /* ──────────── DISPATCHER ──────────── */
 const CALC_MAP: Record<string, React.FC> = {
     "concrete": ConcreteCalc,
@@ -497,6 +927,16 @@ const CALC_MAP: Record<string, React.FC> = {
     "drywall": DrywallCalc,
     "square-footage": SquareFootageCalc,
     "cubic-yards": CubicYardsCalc,
+    "gravel": GravelCalc,
+    "mulch": MulchCalc,
+    "brick": BrickCalc,
+    "fence": FenceCalc,
+    "deck": DeckCalc,
+    "staircase": StaircaseCalc,
+    "lumber": LumberCalc,
+    "insulation": InsulationCalc,
+    "carpet": CarpetCalc,
+    "sand": SandCalc,
 };
 
 export default function ConstructionCalculatorCore({ calcType }: { calcType: string }) {
@@ -504,3 +944,4 @@ export default function ConstructionCalculatorCore({ calcType }: { calcType: str
     if (!CalcComponent) return <p>Calculator not found: {calcType}</p>;
     return <CalcComponent />;
 }
+
