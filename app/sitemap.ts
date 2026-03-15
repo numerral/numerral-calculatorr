@@ -29,6 +29,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         { url: canonicalUrl("/utility-calculators"), lastModified: now, changeFrequency: "weekly", priority: 0.9 },
         { url: canonicalUrl("/construction-calculators"), lastModified: now, changeFrequency: "weekly", priority: 0.9 },
         { url: canonicalUrl("/ev-calculators"), lastModified: now, changeFrequency: "weekly", priority: 0.9 },
+        { url: canonicalUrl("/health-calculators"), lastModified: now, changeFrequency: "weekly", priority: 0.9 },
         { url: canonicalUrl("/about"), lastModified: now, changeFrequency: "monthly", priority: 0.5 },
         { url: canonicalUrl("/terms"), lastModified: now, changeFrequency: "yearly", priority: 0.3 },
         { url: canonicalUrl("/privacy"), lastModified: now, changeFrequency: "yearly", priority: 0.3 },
@@ -88,6 +89,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // ─── EV calculator hubs ───
     const evHubs: MetadataRoute.Sitemap = getCalculatorsByCategory("ev").map((c) => ({
         url: canonicalUrl(`/ev-calculators/${c.slug}`),
+        lastModified: now,
+        changeFrequency: "monthly" as const,
+        priority: 0.85,
+    }));
+
+    // ─── Health calculator hubs ───
+    const healthHubs: MetadataRoute.Sitemap = getCalculatorsByCategory("health").map((c) => ({
+        url: canonicalUrl(`/health-calculators/${c.slug}`),
         lastModified: now,
         changeFrequency: "monthly" as const,
         priority: 0.85,
@@ -204,6 +213,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         ...utilityHubs,
         ...constructionHubs,
         ...evHubs,
+        ...healthHubs,
         ...loanSubPages,
         ...investSubPages,
         ...taxSubPages,

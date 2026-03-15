@@ -70,5 +70,13 @@
         "description": "Electric vehicle cost, charging, range & savings tools",
         "count": 22,
         "href": "/ev-calculators"
+    },
+    {
+        "key": "health",
+        "icon": "❤️",
+        "name": "Health Calculators",
+        "description": "BMI, calories, body fat, TDEE & fitness tools",
+        "count": 25,
+        "href": "/health-calculators"
     }
 ]

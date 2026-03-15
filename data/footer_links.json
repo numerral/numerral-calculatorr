@@ -202,5 +202,39 @@
       "label": "Battery Degradation",
       "href": "/ev-calculators/ev-battery-degradation-calculator"
     }
+  ],
+  "health": [
+    {
+      "label": "BMI Calculator",
+      "href": "/health-calculators/bmi-calculator"
+    },
+    {
+      "label": "Calorie Calculator",
+      "href": "/health-calculators/calorie-calculator"
+    },
+    {
+      "label": "TDEE Calculator",
+      "href": "/health-calculators/tdee-calculator"
+    },
+    {
+      "label": "Body Fat Calculator",
+      "href": "/health-calculators/body-fat-calculator"
+    },
+    {
+      "label": "Ideal Weight",
+      "href": "/health-calculators/ideal-weight-calculator"
+    },
+    {
+      "label": "Macro Calculator",
+      "href": "/health-calculators/macro-calculator"
+    },
+    {
+      "label": "Pregnancy Due Date",
+      "href": "/health-calculators/pregnancy-due-date-calculator"
+    },
+    {
+      "label": "Sleep Calculator",
+      "href": "/health-calculators/sleep-calculator"
+    }
   ]
 }
