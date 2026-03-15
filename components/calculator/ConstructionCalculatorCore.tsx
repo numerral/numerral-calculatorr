@@ -3777,6 +3777,509 @@ function DownspoutCalc() {
     );
 }
 
+/* ──────────── 91. CABINET DOOR CALCULATOR ──────────── */
+function CabinetDoorCalc() {
+    const [openingWidth, setOpeningWidth] = useState(15);
+    const [openingHeight, setOpeningHeight] = useState(30);
+    const [overlay, setOverlay] = useState(0.5);
+    const [numDoors, setNumDoors] = useState(1);
+    const [numCabinets, setNumCabinets] = useState(10);
+
+    const result = useMemo(() => {
+        const doorWidth = numDoors === 2 ? (openingWidth / 2) + overlay : openingWidth + (2 * overlay);
+        const doorHeight = openingHeight + (2 * overlay);
+        const hingesPerDoor = doorHeight > 40 ? 3 : 2;
+        const totalDoors = numDoors * numCabinets;
+        const totalHinges = hingesPerDoor * totalDoors;
+        const doorArea = (doorWidth * doorHeight) / 144; // sq ft per door
+        return { doorWidth, doorHeight, hingesPerDoor, totalDoors, totalHinges, doorArea };
+    }, [openingWidth, openingHeight, overlay, numDoors, numCabinets]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">🚪 Cabinet Door Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Opening Width" value={openingWidth} onChange={setOpeningWidth} unit="in" min={8} max={48} />
+                <InputField label="Opening Height" value={openingHeight} onChange={setOpeningHeight} unit="in" min={8} max={48} />
+                <SelectField label="Overlay" value={String(overlay)} onChange={(v) => setOverlay(Number(v))} options={[
+                    { value: "0.5", label: '1/2" Standard Overlay' },
+                    { value: "1.25", label: '1-1/4" Full Overlay' },
+                    { value: "0", label: 'Inset (Flush)' },
+                ]} />
+                <SelectField label="Doors per Opening" value={String(numDoors)} onChange={(v) => setNumDoors(Number(v))} options={[
+                    { value: "1", label: "Single Door" },
+                    { value: "2", label: "Double Door" },
+                ]} />
+                <InputField label="Number of Cabinets" value={numCabinets} onChange={setNumCabinets} min={1} max={50} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Door Size" value={`${fmt(result.doorWidth, 1)} × ${fmt(result.doorHeight, 1)}`} unit="in" />
+                <ResultRow label="Door Area" value={fmt(result.doorArea, 2)} unit="sq ft" />
+                <ResultRow label="Total Doors" value={fmtInt(result.totalDoors)} />
+                <ResultRow label="Hinges per Door" value={fmtInt(result.hingesPerDoor)} />
+                <ResultRow label="Total Hinges" value={fmtInt(result.totalHinges)} />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 92. FRAMING CALCULATOR ──────────── */
+function FramingCalc() {
+    const [wallLength, setWallLength] = useState(20);
+    const [wallHeight, setWallHeight] = useState(8);
+    const [spacing, setSpacing] = useState(16);
+    const [numCorners, setNumCorners] = useState(2);
+
+    const result = useMemo(() => {
+        const wallLengthIn = wallLength * 12;
+        const studs = Math.ceil(wallLengthIn / spacing) + 1;
+        const cornerStuds = numCorners * 3; // 3-stud corners
+        const totalStuds = studs + cornerStuds;
+        const plates = wallLength * 3; // top plate, double top plate, bottom plate
+        const studLength = wallHeight; // in ft
+        const totalStudLf = totalStuds * studLength;
+        const totalLf = totalStudLf + plates;
+        return { studs, cornerStuds, totalStuds, plates, totalStudLf, totalLf };
+    }, [wallLength, wallHeight, spacing, numCorners]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">🏗️ Framing Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Wall Length" value={wallLength} onChange={setWallLength} unit="ft" min={4} />
+                <InputField label="Wall Height" value={wallHeight} onChange={setWallHeight} unit="ft" min={8} max={12} />
+                <SelectField label="Stud Spacing" value={String(spacing)} onChange={(v) => setSpacing(Number(v))} options={[
+                    { value: "16", label: '16" OC (Standard)' },
+                    { value: "24", label: '24" OC (Non-Load)' },
+                    { value: "12", label: '12" OC (Heavy Load)' },
+                ]} />
+                <InputField label="Corners" value={numCorners} onChange={setNumCorners} min={0} max={8} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Field Studs" value={fmtInt(result.studs)} />
+                <ResultRow label="Corner Studs" value={fmtInt(result.cornerStuds)} />
+                <ResultRow label="Total Studs" value={fmtInt(result.totalStuds)} />
+                <ResultRow label="Plate Stock" value={fmt(result.plates)} unit="lin ft" />
+                <ResultRow label="Total Lumber" value={fmt(result.totalLf)} unit="lin ft" />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 93. LUMBER WEIGHT CALCULATOR ──────────── */
+function LumberWeightCalc() {
+    const [thickness, setThickness] = useState(2);
+    const [widthIn, setWidthIn] = useState(6);
+    const [lengthFt, setLengthFt] = useState(8);
+    const [qty, setQty] = useState(10);
+    const [species, setSpecies] = useState("spf");
+
+    const DENSITY: Record<string, number> = {
+        "spf": 28, "df": 34, "hem-fir": 29, "southern-pine": 36,
+        "cedar": 23, "oak": 47, "maple": 44, "walnut": 38, "cherry": 35,
+    };
+
+    const result = useMemo(() => {
+        const actualT = thickness <= 1 ? thickness * 0.75 : thickness - 0.5;
+        const actualW = widthIn <= 6 ? widthIn - 0.5 : widthIn - 0.75;
+        const volumeCuFt = (actualT * actualW * lengthFt * 12) / 1728;
+        const density = DENSITY[species] || 28;
+        const weightPerPiece = volumeCuFt * density;
+        const totalWeight = weightPerPiece * qty;
+        return { actualT, actualW, volumeCuFt, weightPerPiece, totalWeight, density };
+    }, [thickness, widthIn, lengthFt, qty, species]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">⚖️ Lumber Weight Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Nominal Thickness" value={thickness} onChange={setThickness} unit="in" min={1} max={6} />
+                <InputField label="Nominal Width" value={widthIn} onChange={setWidthIn} unit="in" min={2} max={16} />
+                <InputField label="Length" value={lengthFt} onChange={setLengthFt} unit="ft" min={4} max={20} />
+                <InputField label="Quantity" value={qty} onChange={setQty} min={1} max={500} />
+                <SelectField label="Species" value={species} onChange={setSpecies} options={[
+                    { value: "spf", label: "Spruce-Pine-Fir (28 lb/cu ft)" },
+                    { value: "df", label: "Douglas Fir (34 lb/cu ft)" },
+                    { value: "southern-pine", label: "Southern Pine (36 lb/cu ft)" },
+                    { value: "hem-fir", label: "Hem-Fir (29 lb/cu ft)" },
+                    { value: "cedar", label: "Western Cedar (23 lb/cu ft)" },
+                    { value: "oak", label: "Oak (47 lb/cu ft)" },
+                    { value: "maple", label: "Maple (44 lb/cu ft)" },
+                    { value: "walnut", label: "Walnut (38 lb/cu ft)" },
+                    { value: "cherry", label: "Cherry (35 lb/cu ft)" },
+                ]} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Actual Size" value={`${fmt(result.actualT, 2)} × ${fmt(result.actualW, 2)}`} unit="in" />
+                <ResultRow label="Weight per Piece" value={fmt(result.weightPerPiece, 1)} unit="lbs" />
+                <ResultRow label="Total Weight" value={fmt(result.totalWeight)} unit="lbs" />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 94. RAFTER LENGTH CALCULATOR ──────────── */
+function RafterLengthCalc() {
+    const [buildingSpan, setBuildingSpan] = useState(24);
+    const [pitch, setPitch] = useState(6);
+    const [overhang, setOverhang] = useState(12);
+    const [ridgeThickness, setRidgeThickness] = useState(1.5);
+
+    const result = useMemo(() => {
+        const run = (buildingSpan / 2) - (ridgeThickness / 2 / 12); // in ft
+        const rise = run * (pitch / 12);
+        const rafterLength = Math.sqrt(run * run + rise * rise);
+        const overhangFt = overhang / 12;
+        const tailLength = overhangFt * Math.sqrt(1 + Math.pow(pitch / 12, 2));
+        const totalLength = rafterLength + tailLength;
+        const birdsmouthSeat = ridgeThickness > 0 ? 3.5 : 0; // typical 2x4 wall seat cut
+        return { run, rise, rafterLength, tailLength, totalLength, birdsmouthSeat };
+    }, [buildingSpan, pitch, overhang, ridgeThickness]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">📐 Rafter Length Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Building Span" value={buildingSpan} onChange={setBuildingSpan} unit="ft" min={8} max={60} />
+                <InputField label="Roof Pitch" value={pitch} onChange={setPitch} unit="/12" min={2} max={12} />
+                <InputField label="Overhang" value={overhang} onChange={setOverhang} unit="in" min={0} max={24} />
+                <InputField label="Ridge Board Thickness" value={ridgeThickness} onChange={setRidgeThickness} unit="in" min={0} max={3} step={0.5} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Run" value={fmt(result.run, 2)} unit="ft" />
+                <ResultRow label="Rise" value={fmt(result.rise, 2)} unit="ft" />
+                <ResultRow label="Rafter Length" value={fmt(result.rafterLength, 2)} unit="ft" />
+                <ResultRow label="Tail Length" value={fmt(result.tailLength, 2)} unit="ft" />
+                <ResultRow label="Total Length" value={fmt(result.totalLength, 2)} unit="ft" />
+                <ResultRow label="Birdsmouth Seat" value={fmt(result.birdsmouthSeat, 1)} unit="in" />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 95. DIMENSIONAL LUMBER CALCULATOR ──────────── */
+function DimensionalLumberCalc() {
+    const [nominalT, setNominalT] = useState(2);
+    const [nominalW, setNominalW] = useState(4);
+    const [lengthFt, setLengthFt] = useState(8);
+    const [qty, setQty] = useState(1);
+
+    const ACTUAL_SIZES: Record<string, [number, number]> = {
+        "1x2": [0.75, 1.5], "1x3": [0.75, 2.5], "1x4": [0.75, 3.5], "1x6": [0.75, 5.5],
+        "1x8": [0.75, 7.25], "1x10": [0.75, 9.25], "1x12": [0.75, 11.25],
+        "2x2": [1.5, 1.5], "2x3": [1.5, 2.5], "2x4": [1.5, 3.5], "2x6": [1.5, 5.5],
+        "2x8": [1.5, 7.25], "2x10": [1.5, 9.25], "2x12": [1.5, 11.25],
+        "4x4": [3.5, 3.5], "4x6": [3.5, 5.5], "6x6": [5.5, 5.5],
+    };
+
+    const result = useMemo(() => {
+        const key = `${nominalT}x${nominalW}`;
+        const actual = ACTUAL_SIZES[key] || [nominalT - 0.5, nominalW - 0.5];
+        const areaSqIn = actual[0] * actual[1];
+        const volumeCuFt = (areaSqIn * lengthFt * 12) / 1728;
+        const boardFeet = (nominalT * nominalW * lengthFt) / 12;
+        const totalBf = boardFeet * qty;
+        return { actualT: actual[0], actualW: actual[1], areaSqIn, volumeCuFt, boardFeet, totalBf };
+    }, [nominalT, nominalW, lengthFt, qty]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">📏 Dimensional Lumber Calculator</h3>
+            <div className="con-calc__inputs">
+                <SelectField label="Nominal Size" value={`${nominalT}x${nominalW}`} onChange={(v) => {
+                    const parts = v.split("x"); setNominalT(Number(parts[0])); setNominalW(Number(parts[1]));
+                }} options={[
+                    { value: "1x2", label: '1×2' }, { value: "1x3", label: '1×3' }, { value: "1x4", label: '1×4' },
+                    { value: "1x6", label: '1×6' }, { value: "1x8", label: '1×8' }, { value: "1x10", label: '1×10' },
+                    { value: "1x12", label: '1×12' }, { value: "2x2", label: '2×2' }, { value: "2x3", label: '2×3' },
+                    { value: "2x4", label: '2×4' }, { value: "2x6", label: '2×6' }, { value: "2x8", label: '2×8' },
+                    { value: "2x10", label: '2×10' }, { value: "2x12", label: '2×12' }, { value: "4x4", label: '4×4' },
+                    { value: "4x6", label: '4×6' }, { value: "6x6", label: '6×6' },
+                ]} />
+                <InputField label="Length" value={lengthFt} onChange={setLengthFt} unit="ft" min={4} max={20} />
+                <InputField label="Quantity" value={qty} onChange={setQty} min={1} max={500} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Nominal Size" value={`${nominalT} × ${nominalW}`} unit="in" />
+                <ResultRow label="Actual Size" value={`${result.actualT} × ${result.actualW}`} unit="in" />
+                <ResultRow label="Cross-Section Area" value={fmt(result.areaSqIn, 2)} unit="sq in" />
+                <ResultRow label="Board Feet Each" value={fmt(result.boardFeet, 2)} unit="BF" />
+                <ResultRow label="Total Board Feet" value={fmt(result.totalBf, 1)} unit="BF" />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 96. PLYWOOD THICKNESS CALCULATOR ──────────── */
+function PlywoodThicknessCalc() {
+    const [nominalThickness, setNominalThickness] = useState("3/4");
+    const [sheetWidth, setSheetWidth] = useState(4);
+    const [sheetLength, setSheetLength] = useState(8);
+    const [numSheets, setNumSheets] = useState(1);
+
+    const THICKNESS_MAP: Record<string, { actual: number; weight: number }> = {
+        "1/4": { actual: 0.219, weight: 22 },
+        "3/8": { actual: 0.344, weight: 28.5 },
+        "1/2": { actual: 0.469, weight: 40.6 },
+        "5/8": { actual: 0.578, weight: 48 },
+        "3/4": { actual: 0.703, weight: 60.8 },
+        "1": { actual: 0.953, weight: 80 },
+    };
+
+    const result = useMemo(() => {
+        const info = THICKNESS_MAP[nominalThickness] || { actual: 0.75, weight: 61 };
+        const areaPerSheet = sheetWidth * sheetLength;
+        const totalArea = areaPerSheet * numSheets;
+        const totalWeight = info.weight * numSheets;
+        return { actual: info.actual, weightPerSheet: info.weight, areaPerSheet, totalArea, totalWeight };
+    }, [nominalThickness, sheetWidth, sheetLength, numSheets]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">🪵 Plywood Thickness Calculator</h3>
+            <div className="con-calc__inputs">
+                <SelectField label="Nominal Thickness" value={nominalThickness} onChange={setNominalThickness} options={[
+                    { value: "1/4", label: '1/4" (Underlayment)' },
+                    { value: "3/8", label: '3/8" (Wall Sheathing)' },
+                    { value: "1/2", label: '1/2" (Roof Sheathing)' },
+                    { value: "5/8", label: '5/8" (Subfloor)' },
+                    { value: "3/4", label: '3/4" (Subfloor/Shelving)' },
+                    { value: "1", label: '1" (Heavy Duty)' },
+                ]} />
+                <InputField label="Sheet Width" value={sheetWidth} onChange={setSheetWidth} unit="ft" min={4} max={5} />
+                <InputField label="Sheet Length" value={sheetLength} onChange={setSheetLength} unit="ft" min={8} max={10} />
+                <InputField label="Number of Sheets" value={numSheets} onChange={setNumSheets} min={1} max={200} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Nominal" value={`${nominalThickness}"`} />
+                <ResultRow label="Actual Thickness" value={`${result.actual}"`} />
+                <ResultRow label="Weight per Sheet" value={fmt(result.weightPerSheet, 1)} unit="lbs" />
+                <ResultRow label="Total Area" value={fmt(result.totalArea)} unit="sq ft" />
+                <ResultRow label="Total Weight" value={fmt(result.totalWeight)} unit="lbs" />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 97. CARPENTRY COST CALCULATOR ──────────── */
+function CarpentryCostCalc() {
+    const [area, setArea] = useState(200);
+    const [laborRate, setLaborRate] = useState(50);
+    const [projectType, setProjectType] = useState("framing");
+    const [complexity, setComplexity] = useState("standard");
+
+    const HOURS_PER_SQFT: Record<string, number> = {
+        "framing": 0.08, "trim-install": 0.12, "deck-build": 0.1,
+        "cabinet-install": 0.15, "door-install": 0.5, "shelving": 0.06,
+    };
+    const COMPLEXITY_MULT: Record<string, number> = {
+        "simple": 0.8, "standard": 1.0, "complex": 1.4,
+    };
+
+    const result = useMemo(() => {
+        const hoursPerSqFt = HOURS_PER_SQFT[projectType] || 0.1;
+        const mult = COMPLEXITY_MULT[complexity] || 1.0;
+        const totalHours = area * hoursPerSqFt * mult;
+        const laborCost = totalHours * laborRate;
+        const materialEst = laborCost * 0.6; // materials ~60% of labor
+        const totalLow = laborCost + materialEst * 0.8;
+        const totalHigh = laborCost * 1.2 + materialEst * 1.2;
+        return { totalHours, laborCost, materialEst, totalLow, totalHigh };
+    }, [area, laborRate, projectType, complexity]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">💰 Carpentry Cost Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Project Area" value={area} onChange={setArea} unit="sq ft" min={10} />
+                <InputField label="Labor Rate" value={laborRate} onChange={setLaborRate} unit="$/hr" min={25} max={150} />
+                <SelectField label="Project Type" value={projectType} onChange={setProjectType} options={[
+                    { value: "framing", label: "Wall Framing" },
+                    { value: "trim-install", label: "Trim & Molding Install" },
+                    { value: "deck-build", label: "Deck Building" },
+                    { value: "cabinet-install", label: "Cabinet Installation" },
+                    { value: "door-install", label: "Door Installation" },
+                    { value: "shelving", label: "Shelving & Storage" },
+                ]} />
+                <SelectField label="Complexity" value={complexity} onChange={setComplexity} options={[
+                    { value: "simple", label: "Simple (Basic)" },
+                    { value: "standard", label: "Standard" },
+                    { value: "complex", label: "Complex (Custom)" },
+                ]} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Estimated Hours" value={fmt(result.totalHours, 1)} unit="hrs" />
+                <ResultRow label="Labor Cost" value={`$${fmt(result.laborCost)}`} />
+                <ResultRow label="Material Est." value={`$${fmt(result.materialEst)}`} />
+                <ResultRow label="Total Range" value={`$${fmt(result.totalLow)} – $${fmt(result.totalHigh)}`} />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 98. STUD CALCULATOR ──────────── */
+function StudCalc() {
+    const [wallLength, setWallLength] = useState(20);
+    const [wallHeight, setWallHeight] = useState(8);
+    const [spacing, setSpacing] = useState(16);
+    const [numDoors, setNumDoors] = useState(1);
+    const [numWindows, setNumWindows] = useState(2);
+
+    const result = useMemo(() => {
+        const wallLengthIn = wallLength * 12;
+        const fieldStuds = Math.ceil(wallLengthIn / spacing) + 1;
+        const kingStuds = (numDoors + numWindows) * 2;
+        const jackStuds = (numDoors + numWindows) * 2;
+        const cripplesEst = numWindows * 2; // top and bottom per window
+        const totalStuds = fieldStuds + kingStuds + jackStuds + cripplesEst;
+        const studLf = totalStuds * wallHeight;
+        const plateLf = wallLength * 3; // bottom + double top
+        return { fieldStuds, kingStuds, jackStuds, cripplesEst, totalStuds, studLf, plateLf };
+    }, [wallLength, wallHeight, spacing, numDoors, numWindows]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">🪵 Stud Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Wall Length" value={wallLength} onChange={setWallLength} unit="ft" min={4} />
+                <InputField label="Wall Height" value={wallHeight} onChange={setWallHeight} unit="ft" min={8} max={12} />
+                <SelectField label="Stud Spacing" value={String(spacing)} onChange={(v) => setSpacing(Number(v))} options={[
+                    { value: "16", label: '16" OC (Standard)' },
+                    { value: "24", label: '24" OC' },
+                    { value: "12", label: '12" OC' },
+                ]} />
+                <InputField label="Doors" value={numDoors} onChange={setNumDoors} min={0} max={10} />
+                <InputField label="Windows" value={numWindows} onChange={setNumWindows} min={0} max={10} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Field Studs" value={fmtInt(result.fieldStuds)} />
+                <ResultRow label="King + Jack Studs" value={fmtInt(result.kingStuds + result.jackStuds)} />
+                <ResultRow label="Cripples Est." value={fmtInt(result.cripplesEst)} />
+                <ResultRow label="Total Studs" value={fmtInt(result.totalStuds)} />
+                <ResultRow label="Stud Lumber" value={fmt(result.studLf)} unit="lin ft" />
+                <ResultRow label="Plate Lumber" value={fmt(result.plateLf)} unit="lin ft" />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 99. JOIST SPAN CALCULATOR ──────────── */
+function JoistSpanCalc() {
+    const [joistSize, setJoistSize] = useState("2x10");
+    const [spacing, setSpacing] = useState(16);
+    const [grade, setGrade] = useState("no2");
+    const [joistType, setJoistType] = useState("floor");
+
+    // Approximate max spans for SPF #2 floor joists (40 psf live load)
+    const SPAN_TABLE: Record<string, Record<string, Record<string, number>>> = {
+        "floor": {
+            "12": { "2x6": 10.5, "2x8": 14, "2x10": 17.5, "2x12": 21 },
+            "16": { "2x6": 9.5, "2x8": 12.5, "2x10": 16, "2x12": 19 },
+            "24": { "2x6": 8, "2x8": 10.5, "2x10": 13, "2x12": 16 },
+        },
+        "ceiling": {
+            "12": { "2x6": 14, "2x8": 18.5, "2x10": 23.5, "2x12": 27 },
+            "16": { "2x6": 12.5, "2x8": 17, "2x10": 21, "2x12": 25 },
+            "24": { "2x6": 11, "2x8": 14, "2x10": 18, "2x12": 21 },
+        },
+    };
+
+    const result = useMemo(() => {
+        const spans = SPAN_TABLE[joistType]?.[String(spacing)] || {};
+        const maxSpan = spans[joistSize] || 0;
+        const gradeMult = grade === "sel" ? 1.1 : grade === "no1" ? 1.05 : 1.0;
+        const adjustedSpan = maxSpan * gradeMult;
+        return { maxSpan, adjustedSpan, joistSize, spacing };
+    }, [joistSize, spacing, grade, joistType]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">📏 Joist Span Calculator</h3>
+            <div className="con-calc__inputs">
+                <SelectField label="Joist Size" value={joistSize} onChange={setJoistSize} options={[
+                    { value: "2x6", label: "2×6" },
+                    { value: "2x8", label: "2×8" },
+                    { value: "2x10", label: "2×10" },
+                    { value: "2x12", label: "2×12" },
+                ]} />
+                <SelectField label="Spacing" value={String(spacing)} onChange={(v) => setSpacing(Number(v))} options={[
+                    { value: "12", label: '12" OC' },
+                    { value: "16", label: '16" OC (Standard)' },
+                    { value: "24", label: '24" OC' },
+                ]} />
+                <SelectField label="Lumber Grade" value={grade} onChange={setGrade} options={[
+                    { value: "sel", label: "Select Structural" },
+                    { value: "no1", label: "#1 Grade" },
+                    { value: "no2", label: "#2 Grade (Common)" },
+                ]} />
+                <SelectField label="Joist Type" value={joistType} onChange={setJoistType} options={[
+                    { value: "floor", label: "Floor Joist (40 psf)" },
+                    { value: "ceiling", label: "Ceiling Joist (20 psf)" },
+                ]} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Joist Size" value={joistSize} />
+                <ResultRow label="Max Span (SPF #2)" value={fmt(result.maxSpan, 1)} unit="ft" />
+                <ResultRow label="Adjusted Span" value={fmt(result.adjustedSpan, 1)} unit="ft" />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 100. SHELF BRACKET CALCULATOR ──────────── */
+function ShelfBracketCalc() {
+    const [shelfLength, setShelfLength] = useState(48);
+    const [loadWeight, setLoadWeight] = useState(20);
+    const [shelfMaterial, setShelfMaterial] = useState("3/4-plywood");
+
+    const MATERIAL_MAX_SPAN: Record<string, number> = {
+        "3/4-plywood": 36, "1-hardwood": 42, "3/4-mdf": 24,
+        "3/4-particleboard": 20, "glass": 18,
+    };
+
+    const result = useMemo(() => {
+        const maxSpan = MATERIAL_MAX_SPAN[shelfMaterial] || 36;
+        const bracketSpacing = loadWeight > 30 ? Math.min(maxSpan, 24) : maxSpan;
+        const numBrackets = Math.ceil(shelfLength / bracketSpacing) + 1;
+        const actualSpacing = shelfLength / (numBrackets - 1);
+        const overhang = Math.min(actualSpacing * 0.25, 6); // max 25% or 6 inches
+        return { numBrackets, actualSpacing, bracketSpacing, maxSpan, overhang };
+    }, [shelfLength, loadWeight, shelfMaterial]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">📚 Shelf Bracket Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Shelf Length" value={shelfLength} onChange={setShelfLength} unit="in" min={12} max={120} />
+                <InputField label="Load Weight" value={loadWeight} onChange={setLoadWeight} unit="lbs" min={5} max={100} />
+                <SelectField label="Shelf Material" value={shelfMaterial} onChange={setShelfMaterial} options={[
+                    { value: "3/4-plywood", label: '3/4" Plywood' },
+                    { value: "1-hardwood", label: '1" Solid Hardwood' },
+                    { value: "3/4-mdf", label: '3/4" MDF' },
+                    { value: "3/4-particleboard", label: '3/4" Particleboard' },
+                    { value: "glass", label: 'Tempered Glass' },
+                ]} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Brackets Needed" value={fmtInt(result.numBrackets)} />
+                <ResultRow label="Bracket Spacing" value={fmt(result.actualSpacing, 1)} unit="in" />
+                <ResultRow label="Max Unsupported Span" value={fmtInt(result.maxSpan)} unit="in" />
+                <ResultRow label="End Overhang" value={fmt(result.overhang, 1)} unit="in" />
+            </div>
+        </div>
+    );
+}
+
 /* ──────────── DISPATCHER ──────────── */
 const CALC_MAP: Record<string, React.FC> = {
     "concrete": ConcreteCalc,
@@ -3869,6 +4372,16 @@ const CALC_MAP: Record<string, React.FC> = {
     "board-foot": BoardFootCalc,
     "concrete-beam": ConcreteBeamCalc,
     "downspout": DownspoutCalc,
+    "cabinet-door": CabinetDoorCalc,
+    "framing": FramingCalc,
+    "lumber-weight": LumberWeightCalc,
+    "rafter-length": RafterLengthCalc,
+    "dimensional-lumber": DimensionalLumberCalc,
+    "plywood-thickness": PlywoodThicknessCalc,
+    "carpentry-cost": CarpentryCostCalc,
+    "stud": StudCalc,
+    "joist-span": JoistSpanCalc,
+    "shelf-bracket": ShelfBracketCalc,
 };
 
 export default function ConstructionCalculatorCore({ calcType }: { calcType: string }) {

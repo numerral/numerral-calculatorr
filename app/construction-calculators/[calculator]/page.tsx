@@ -1389,6 +1389,156 @@ const HUB_CONTENT: Record<string, {
             { question: "How far should downspouts extend from the foundation?", answer: "Minimum 4 feet — preferably 6–10 feet. Use splash blocks, flexible extensions, or underground drain pipes connected to a dry well or daylight outlet. Water pooling near the foundation is the #1 cause of basement water problems and foundation damage." },
         ],
     },
+    "cabinet-door-calculator": {
+        subtitle: "Calculate cabinet door sizes, hinge count, and overlay for kitchen and bathroom cabinets. Supports single and double door layouts.",
+        explanation: {
+            heading: "How to Calculate Cabinet Door Sizes",
+            paragraphs: [
+                "Cabinet door size depends on the opening dimensions and the overlay style. Standard overlay adds 1/2 inch on each side of the opening. Full overlay adds 1-1/4 inches, covering the face frame almost entirely. Inset doors are flush with the frame and equal the opening size exactly.",
+                "Hinges: use 2 hinges for doors up to 40 inches tall, 3 hinges for taller doors. European concealed hinges are standard for overlay doors. For double doors, each door width = (opening width ÷ 2) + overlay. Always verify measurements before ordering custom doors.",
+            ],
+            highlight: "A 15×30 inch opening with 1/2-inch overlay: door size = 16 × 31 inches. For 10 cabinets with single doors: 10 doors, 20 hinges total.",
+        },
+        faq: [
+            { question: "What is cabinet door overlay?", answer: "Overlay is how much the door covers the face frame. Standard overlay: 1/2 inch per side, revealing part of the frame between doors. Full overlay: 1-1/4 inches, minimal frame visible. Inset: door sits flush inside the frame (most expensive, requires precise fit)." },
+            { question: "How many hinges per cabinet door?", answer: "Up to 40 inches tall: 2 hinges. 40–60 inches: 3 hinges. Over 60 inches: 4 hinges. Use soft-close European concealed hinges (110° or 170° opening). Full overlay requires full overlay hinges; standard overlay uses standard hinges." },
+        ],
+    },
+    "framing-calculator": {
+        subtitle: "Calculate wall framing lumber — studs, plates, headers, and corners. Enter wall dimensions and stud spacing.",
+        explanation: {
+            heading: "How to Calculate Wall Framing",
+            paragraphs: [
+                "Wall framing requires field studs at regular spacing (16 or 24 inches on center), plus bottom plate and double top plate. Field stud count = (wall length in inches ÷ spacing) + 1. Add 3 extra studs for each corner (California or 3-stud corner assemblies).",
+                "Plate stock = wall length × 3 (one bottom plate, two top plates). Use 2×4 for non-load-bearing walls and 2×6 for load-bearing and exterior walls. Headers above openings require doubled lumber or engineered beams sized to the span.",
+            ],
+            highlight: "A 20 ft wall at 16\" OC: (240 ÷ 16) + 1 = 16 field studs. With 2 corners: 16 + 6 = 22 studs. Plates: 60 lin ft. Total lumber: ~236 lin ft.",
+        },
+        faq: [
+            { question: "When should I use 16 vs 24 inch spacing?", answer: "16\" OC: load-bearing walls, exterior walls, and walls receiving drywall. Required by most codes for load-bearing applications. 24\" OC: allowed for non-load-bearing interior partitions and some advanced framing methods. Check local code." },
+            { question: "How many extra studs for corners?", answer: "Standard 3-stud corner: 3 studs per corner. California corner (2-stud + blocking): 2 studs + drywall clips. Advanced framing corner: 2 studs with drywall clips for better insulation. Most inspectors accept all three methods." },
+        ],
+    },
+    "lumber-weight-calculator": {
+        subtitle: "Calculate the weight of lumber by species, dimensions, and quantity. Covers 9 softwood and hardwood species.",
+        explanation: {
+            heading: "How to Calculate Lumber Weight",
+            paragraphs: [
+                "Lumber weight depends on species, dimensions, and moisture content. Each species has a different density measured in pounds per cubic foot at 12% moisture content. Common softwoods range from 23 lb/cf (cedar) to 36 lb/cf (southern pine). Hardwoods range from 35 lb/cf (cherry) to 47 lb/cf (oak).",
+                "Calculate volume using actual (not nominal) dimensions. A nominal 2×6 is actually 1.5 × 5.5 inches. Multiply the actual cross-section by length to get volume, then multiply by density. Green (wet) lumber weighs significantly more than kiln-dried lumber.",
+            ],
+            highlight: "Ten 2×6 SPF boards, 8 ft long: actual size 1.5 × 5.5 in. Volume each = 0.382 cu ft. Weight each = 10.7 lbs. Total = 107 lbs.",
+        },
+        faq: [
+            { question: "How much does a 2×4×8 weigh?", answer: "SPF (Spruce-Pine-Fir): about 9 lbs. Douglas Fir: about 11 lbs. Southern Pine: about 13 lbs. Pressure-treated: about 17 lbs (wet weight, dries to ~14 lbs). These are approximate for kiln-dried lumber at 12% moisture content." },
+            { question: "Does pressure-treated lumber weigh more?", answer: "Yes — significantly more when fresh. The treatment chemicals and additional moisture add 50-70% to the dry weight. A pressure-treated 2×4×8 can weigh 17+ lbs vs. 9 lbs for untreated SPF. It gets lighter as it dries over several months." },
+        ],
+    },
+    "rafter-length-calculator": {
+        subtitle: "Calculate rafter length, birdsmouth cut, and tail length from roof span, pitch, and overhang.",
+        explanation: {
+            heading: "How to Calculate Rafter Length",
+            paragraphs: [
+                "Rafter length is calculated from the building span, roof pitch, and overhang. The run = (span ÷ 2) minus half the ridge board thickness. The rise = run × (pitch ÷ 12). Rafter length = √(run² + rise²). Add the tail length for the overhang.",
+                "The birdsmouth cut notches the rafter to sit flat on the wall plate. The seat cut (horizontal) should be at least 1.5 inches for a 2×4 wall. The HAP (Height Above Plate) should be at least 3.5 inches to maintain structural strength. Use 2×8 or larger rafters.",
+            ],
+            highlight: "24 ft span at 6/12 pitch with 12-inch overhang: run = 11.94 ft, rise = 5.97 ft. Rafter = 13.35 ft. Tail = 1.12 ft. Total = 14.47 ft — order 16 ft lumber.",
+        },
+        faq: [
+            { question: "What size lumber for rafters?", answer: "2×6: spans up to 10 ft. 2×8: spans up to 14 ft. 2×10: spans up to 18 ft. 2×12: spans up to 22 ft. These are approximate for SPF #2 at 16\" OC. Always verify with local code span tables for your species, grade, and load requirements." },
+            { question: "What is a birdsmouth cut?", answer: "A notch cut in the rafter where it sits on the wall plate. It has two cuts: the seat cut (horizontal, rests on plate) and the plumb cut (vertical, against the wall). The seat cut should not exceed 1/3 of the rafter depth. Minimum HAP is typically 3.5 inches." },
+        ],
+    },
+    "dimensional-lumber-calculator": {
+        subtitle: "Look up actual vs nominal lumber sizes for all common dimensions. See real measurements for 2×4, 2×6, 4×4, and more.",
+        explanation: {
+            heading: "Actual vs. Nominal Lumber Dimensions",
+            paragraphs: [
+                "Nominal lumber dimensions are not the actual size. A '2×4' is actually 1.5 × 3.5 inches after kiln-drying and planing. This difference matters for precise fitting, calculating board footage, and ordering materials. The larger the nominal size, the greater the dimensional difference.",
+                "For 1-inch nominal thickness, actual is 3/4 inch. For 2-inch nominal, actual is 1.5 inches. Widths follow a similar pattern: nominal 4 = 3.5 actual, nominal 6 = 5.5, nominal 8 = 7.25, nominal 10 = 9.25, nominal 12 = 11.25. Posts (4×4) are 3.5 × 3.5 inches, and 6×6 is 5.5 × 5.5.",
+            ],
+            highlight: "A nominal 2×4 is actually 1.5 × 3.5 inches — that's a 37% reduction in cross-section area compared to a true 2×4 (5.25 sq in vs 8 sq in).",
+        },
+        faq: [
+            { question: "Why aren't lumber dimensions actual?", answer: "Lumber is cut to nominal size when green (wet), then shrinks during kiln-drying and loses more material during planing to smooth surfaces. The resulting actual size is standardized by the American Lumber Standard Committee. This system dates back to the early 1900s." },
+            { question: "Are rough-sawn boards actual size?", answer: "Yes — rough-sawn lumber is full nominal size because it hasn't been surfaced. A rough 2×4 is a true 2 × 4 inches. This is important for board foot calculations. Rough-sawn is common for timber framing, barn construction, and hardwood lumber yards." },
+        ],
+    },
+    "plywood-thickness-calculator": {
+        subtitle: "Look up actual plywood thickness vs nominal. Compare weights per sheet across all standard thicknesses.",
+        explanation: {
+            heading: "Actual vs. Nominal Plywood Thickness",
+            paragraphs: [
+                "Like dimensional lumber, plywood nominal thickness differs from actual thickness. A nominal 3/4-inch sheet is actually 23/32 inch (0.703 inches). This matters for dadoes, rabbets, and any joint where precise fit is required.",
+                "A standard 4×8 sheet of 3/4-inch plywood weighs about 61 lbs. Thinner sheets are lighter: 1/4-inch weighs about 22 lbs, 1/2-inch about 41 lbs. Weight varies by wood species and grade. Baltic birch plywood runs true to nominal thickness and is heavier than softwood plywood.",
+            ],
+            highlight: "Nominal 3/4\" plywood is actually 0.703\" (23/32\"). A router bit set to 3/4\" will make a dado too wide. Use 23/32\" or test-fit before routing.",
+        },
+        faq: [
+            { question: "Why is plywood thinner than labeled?", answer: "Manufacturing tolerance and sanding. Plywood is made from veneer layers glued together, then sanded smooth. Each sanding pass removes material. Industry standards allow up to 1/32-inch under nominal. This is why dados cut to nominal width are always slightly loose." },
+            { question: "Is Baltic birch plywood actual thickness?", answer: "Yes — Baltic birch plywood is manufactured to metric sizes and is very close to nominal. A 3/4-inch (18mm) Baltic birch sheet is a true 18mm (0.709 inches). This makes it preferred for furniture, cabinetry, and any application requiring precise joinery." },
+        ],
+    },
+    "carpentry-cost-calculator": {
+        subtitle: "Estimate carpentry labor and material costs by project type. Get a cost range based on area, labor rate, and complexity.",
+        explanation: {
+            heading: "How to Estimate Carpentry Costs",
+            paragraphs: [
+                "Carpentry costs depend on project type, local labor rates, and complexity. Rough framing averages $4–$8 per sq ft. Trim installation runs $5–$15 per linear foot. Cabinet installation: $100–$300 per cabinet. Deck building: $15–$35 per sq ft installed.",
+                "Labor rates for carpenters range from $25–$75/hr for a helper to $50–$150/hr for a master carpenter. Materials typically cost 40–80% of the labor cost. Complex custom work (curved trim, built-ins, timber framing) can cost 40–100% more than standard work.",
+            ],
+            highlight: "200 sq ft wall framing at $50/hr: ~16 hours labor = $800. Materials ~$480. Total range: $1,184 – $1,536 depending on complexity and material pricing.",
+        },
+        faq: [
+            { question: "How much does a carpenter charge per hour?", answer: "Apprentice/helper: $25–$40/hr. Journeyman: $40–$75/hr. Master carpenter: $60–$150/hr. Rates vary by region — urban areas and high cost-of-living regions are higher. Some carpenters prefer to bid by the job rather than hourly, especially for larger projects." },
+            { question: "What's included in carpentry costs?", answer: "Labor costs cover cutting, fitting, fastening, and finishing. Material costs include lumber, fasteners, adhesives, and finishing materials. Typically NOT included: permits, engineering, painting/staining, electrical/plumbing work. Always get an itemized quote." },
+        ],
+    },
+    "stud-calculator": {
+        subtitle: "Calculate wall stud count including king studs, jack studs, and cripples for doors and windows.",
+        explanation: {
+            heading: "How to Calculate Wall Studs",
+            paragraphs: [
+                "Wall stud count starts with field studs: (wall length in inches ÷ spacing) + 1. Then add framing for openings: each door or window needs 2 king studs (full height) and 2 jack studs (support the header). Windows also need cripple studs above and below.",
+                "Standard stud spacing is 16 inches on center for load-bearing walls. Plate lumber (bottom plate + double top plate) = wall length × 3. For pre-cut studs (92-5/8 inches), pair with standard plates for an 8-foot finished wall height including drywall.",
+            ],
+            highlight: "A 20 ft wall at 16\" OC with 1 door and 2 windows: 16 field studs + 6 king + 6 jack + 4 cripples = 32 studs. Stud lumber: 256 lin ft. Plates: 60 lin ft.",
+        },
+        faq: [
+            { question: "What are king studs and jack studs?", answer: "King studs are full-height studs on each side of an opening — they run from bottom plate to top plate. Jack studs (trimmers) are shorter studs nailed to the king studs that support the header above the opening. Every opening needs a pair of each." },
+            { question: "How long is a pre-cut stud?", answer: "Standard pre-cut studs are 92-5/8 inches (7 ft 8-5/8 in). With a single bottom plate and double top plate (4.5 inches total), this gives exactly 97-1/8 inches — which allows for 8-foot (96-inch) drywall plus 1/8-inch clearance at the floor." },
+        ],
+    },
+    "joist-span-calculator": {
+        subtitle: "Find maximum allowable joist spans by size, spacing, species, and grade. Covers floor and ceiling joists.",
+        explanation: {
+            heading: "How to Determine Joist Span",
+            paragraphs: [
+                "Maximum joist span depends on four factors: lumber size, spacing, species/grade, and the type of load (floor vs. ceiling). Floor joists carry heavier live loads (40 psf residential) than ceiling joists (20 psf, no attic storage). Larger joists at closer spacing span farther.",
+                "Standard SPF #2 at 16\" OC: 2×6 spans 9.5 ft (floor) or 12.5 ft (ceiling). 2×8 spans 12.5 ft (floor). 2×10 spans 16 ft (floor). 2×12 spans 19 ft (floor). Higher grades (Select Structural, #1) allow 5–10% longer spans.",
+            ],
+            highlight: "2×10 SPF #2 at 16\" OC: max floor span = 16 ft. At 12\" OC, span increases to 17.5 ft. At 24\" OC, span decreases to 13 ft. Always verify with your local building code.",
+        },
+        faq: [
+            { question: "Can I use 2×6 for floor joists?", answer: "Yes, but with limited span: max ~9.5 ft for SPF #2 at 16\" OC (40 psf live load). Suitable for small rooms, closets, and stairway landings. For most rooms, 2×8 or 2×10 is more practical. Some codes require 2×10 minimum for floors spanning over 12 ft." },
+            { question: "Do I need blocking between joists?", answer: "Solid blocking or cross-bridging is required at supports and often at mid-span for joists deeper than 2×10. Blocking prevents joist rotation, distributes point loads, and provides fire stops. Use full-depth solid wood blocks or metal cross-bridging." },
+        ],
+    },
+    "shelf-bracket-calculator": {
+        subtitle: "Calculate shelf brackets needed based on shelf length, load weight, and material type for safe support.",
+        explanation: {
+            heading: "How to Calculate Shelf Brackets",
+            paragraphs: [
+                "Bracket spacing depends on shelf material, load, and bracket type. Plywood can span 36 inches under light loads. MDF should not span more than 24 inches due to sag. Solid hardwood can span 42 inches. Heavy loads require closer spacing (24 inches max).",
+                "Place brackets with no more than 25% of spacing as end overhang — for 36-inch spacing, max overhang is 9 inches. Bracket depth should be at least 2/3 of shelf depth for adequate support. Anchor into wall studs whenever possible; drywall anchors have limited load capacity.",
+            ],
+            highlight: "A 48-inch plywood shelf with 20 lb load: 2 brackets needed at 48-inch spacing. If load increases to 40 lbs, use 3 brackets at 24-inch spacing for sag prevention.",
+        },
+        faq: [
+            { question: "How far apart should shelf brackets be?", answer: "3/4\" plywood: max 36 inches. 1\" hardwood: max 42 inches. 3/4\" MDF: max 24 inches. Particleboard: max 20 inches. Glass: max 18 inches. Reduce spacing for heavy loads (books, records, tools). These spans assume light to moderate weight." },
+            { question: "Do shelf brackets need to be in studs?", answer: "Strongly recommended, especially for heavy loads. Each stud-mounted bracket can support 50–100+ lbs. Drywall anchors are limited to 15–25 lbs per anchor (toggle bolts up to 50 lbs). For floating shelves, stud mounting is essential." },
+        ],
+    },
 };
 
 export default async function ConstructionCalculatorHubPage({ params }: PageProps) {
