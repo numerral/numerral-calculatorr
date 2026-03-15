@@ -1446,6 +1446,40 @@
     "keywords": "dividend yield calculator, stock dividend yield, calculate dividend percentage"
   },
   {
+    "id": "crypto-profit-calculator",
+    "category": "invest",
+    "title": "Crypto Profit Calculator",
+    "slug": "crypto-profit-calculator",
+    "categorySlug": "investment-calculators",
+    "icon": "₿",
+    "calcType": "cryptoProfit",
+    "description": "Calculate your cryptocurrency investment profit or loss. Enter buy price, sell price, investment amount, and trading fees to see your exact ROI, net profit, and total exit value.",
+    "stars": 5,
+    "defaults": {
+      "amount": 1000,
+      "rate": 50000,
+      "tenure": 65000
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 10,
+        "max": 100000,
+        "step": 10
+      },
+      "rate": {
+        "min": 1,
+        "max": 200000,
+        "step": 1
+      },
+      "tenure": {
+        "min": 1,
+        "max": 200000,
+        "step": 1
+      }
+    },
+    "keywords": "crypto profit calculator, cryptocurrency profit calculator, crypto ROI calculator, bitcoin profit calculator, ethereum profit calculator, crypto investment calculator, crypto gain loss calculator"
+  },
+  {
     "id": "enterprise-value-calculator",
     "category": "business",
     "title": "Enterprise Value (EV) Calculator",

@@ -50,6 +50,7 @@ export default function InvestmentCalculatorCore({
     if (calcType === "fire") return <FireCalc defaults={defaults} sliderRanges={sliderRanges} />;
     if (calcType === "stockReturn") return <StockReturnCalc defaults={defaults} sliderRanges={sliderRanges} />;
     if (calcType === "dividendYield") return <DividendYieldCalc defaults={defaults} sliderRanges={sliderRanges} />;
+    if (calcType === "cryptoProfit") return <CryptoProfitCalc defaults={defaults} />;
 
     const [amount, setAmount] = useState(defaults.amount);
     const [rate, setRate] = useState(defaults.rate);
@@ -434,6 +435,198 @@ function DividendYieldCalc({ defaults, sliderRanges }: any) {
                 <p style={{ fontSize: "var(--t-body-sm)", color: "var(--n-text-muted)" }}>
                     You are earning an annualized cash return of {yieldPercent.toFixed(2)}% on your investment size, irrespective of the core capital appreciation.
                 </p>
+            </div>
+        </div>
+    );
+}
+
+// ─── Crypto Profit Calculator ───
+const POPULAR_COINS = [
+    { symbol: "BTC", name: "Bitcoin", icon: "₿" },
+    { symbol: "ETH", name: "Ethereum", icon: "Ξ" },
+    { symbol: "BNB", name: "BNB", icon: "◆" },
+    { symbol: "SOL", name: "Solana", icon: "◎" },
+    { symbol: "XRP", name: "XRP", icon: "✕" },
+    { symbol: "ADA", name: "Cardano", icon: "♦" },
+    { symbol: "DOGE", name: "Dogecoin", icon: "Ð" },
+    { symbol: "DOT", name: "Polkadot", icon: "●" },
+    { symbol: "AVAX", name: "Avalanche", icon: "▲" },
+    { symbol: "MATIC", name: "Polygon", icon: "⬡" },
+];
+
+function formatUSD(n: number): string {
+    if (n >= 1e9) return "$" + (n / 1e9).toFixed(2) + "B";
+    if (n >= 1e6) return "$" + (n / 1e6).toFixed(2) + "M";
+    if (Math.abs(n) >= 1000) return "$" + n.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    return "$" + n.toFixed(2);
+}
+
+function CryptoProfitCalc({ defaults }: { defaults: any }) {
+    const [selectedCoin, setSelectedCoin] = useState("BTC");
+    const [buyPrice, setBuyPrice] = useState(defaults.rate || 50000);
+    const [sellPrice, setSellPrice] = useState(defaults.tenure || 65000);
+    const [investment, setInvestment] = useState(defaults.amount || 1000);
+    const [investFee, setInvestFee] = useState(0);
+    const [exitFee, setExitFee] = useState(0);
+    const [searchQuery, setSearchQuery] = useState("");
+    const [showDropdown, setShowDropdown] = useState(false);
+
+    const filtered = POPULAR_COINS.filter(
+        (c) =>
+            c.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            c.symbol.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
+    const result = useMemo(() => {
+        const totalInvestCost = investment + investFee;
+        const coinsBought = buyPrice > 0 ? investment / buyPrice : 0;
+        const grossExit = coinsBought * sellPrice;
+        const totalExitAmount = grossExit - exitFee;
+        const profitLoss = totalExitAmount - totalInvestCost;
+        const roi = totalInvestCost > 0 ? (profitLoss / totalInvestCost) * 100 : 0;
+        return { totalInvestCost, coinsBought, grossExit, totalExitAmount, profitLoss, roi };
+    }, [buyPrice, sellPrice, investment, investFee, exitFee]);
+
+    const selectedCoinObj = POPULAR_COINS.find((c) => c.symbol === selectedCoin);
+    const isProfit = result.profitLoss >= 0;
+
+    return (
+        <div>
+            {/* Quick Coin Selector */}
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", marginBottom: "var(--s-4)" }}>
+                {POPULAR_COINS.slice(0, 6).map((c) => (
+                    <button
+                        key={c.symbol}
+                        className={`btn ${selectedCoin === c.symbol ? "btn--primary" : "btn--ghost"}`}
+                        style={{ fontSize: "13px", padding: "6px 14px", borderRadius: "20px" }}
+                        onClick={() => { setSelectedCoin(c.symbol); setSearchQuery(""); setShowDropdown(false); }}
+                    >
+                        {c.icon} {c.symbol}
+                    </button>
+                ))}
+            </div>
+
+            <div className="calc-input-panel">
+                {/* Coin Search */}
+                <div className="calc-field" style={{ position: "relative" }}>
+                    <label className="calc-field__label">🔍 COIN</label>
+                    <input
+                        type="text"
+                        className="calc-field__input"
+                        placeholder={selectedCoinObj ? `${selectedCoinObj.name} (${selectedCoinObj.symbol})` : "Search..."}
+                        value={searchQuery}
+                        onChange={(e) => { setSearchQuery(e.target.value); setShowDropdown(true); }}
+                        onFocus={() => setShowDropdown(true)}
+                    />
+                    {showDropdown && filtered.length > 0 && (
+                        <div style={{
+                            position: "absolute", top: "100%", left: 0, right: 0, zIndex: 10,
+                            background: "var(--n-surface-alt)", border: "1px solid var(--n-border)",
+                            borderRadius: "8px", maxHeight: "200px", overflowY: "auto", marginTop: "4px"
+                        }}>
+                            {filtered.map((c) => (
+                                <button
+                                    key={c.symbol}
+                                    style={{
+                                        display: "flex", alignItems: "center", gap: "8px", width: "100%",
+                                        padding: "10px 14px", background: "none", border: "none",
+                                        color: "var(--n-text)", cursor: "pointer", fontSize: "14px", textAlign: "left"
+                                    }}
+                                    onClick={() => { setSelectedCoin(c.symbol); setSearchQuery(""); setShowDropdown(false); }}
+                                    onMouseEnter={(e) => (e.currentTarget.style.background = "var(--n-surface)")}
+                                    onMouseLeave={(e) => (e.currentTarget.style.background = "none")}
+                                >
+                                    <span style={{ fontSize: "18px" }}>{c.icon}</span>
+                                    <span>{c.name}</span>
+                                    <span style={{ color: "var(--n-text-muted)", marginLeft: "auto" }}>{c.symbol}</span>
+                                </button>
+                            ))}
+                        </div>
+                    )}
+                </div>
+
+                {/* Buy Price */}
+                <div className="calc-field">
+                    <label className="calc-field__label">💲 BUY PRICE</label>
+                    <input type="number" className="calc-field__input" value={buyPrice} onChange={(e) => setBuyPrice(Number(e.target.value))} inputMode="decimal" min={0} />
+                </div>
+
+                {/* Sell Price */}
+                <div className="calc-field">
+                    <label className="calc-field__label">💲 SELL PRICE</label>
+                    <input type="number" className="calc-field__input" value={sellPrice} onChange={(e) => setSellPrice(Number(e.target.value))} inputMode="decimal" min={0} />
+                </div>
+
+                {/* Investment Amount */}
+                <div className="calc-field">
+                    <label className="calc-field__label">💰 INVESTMENT AMOUNT</label>
+                    <input type="number" className="calc-field__input" value={investment} onChange={(e) => setInvestment(Number(e.target.value))} inputMode="decimal" min={0} />
+                </div>
+
+                {/* Fees row */}
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "var(--s-3)" }}>
+                    <div className="calc-field">
+                        <label className="calc-field__label">📥 INVESTMENT FEE ($)</label>
+                        <input type="number" className="calc-field__input" value={investFee} onChange={(e) => setInvestFee(Number(e.target.value))} inputMode="decimal" min={0} />
+                    </div>
+                    <div className="calc-field">
+                        <label className="calc-field__label">📤 EXIT FEE ($)</label>
+                        <input type="number" className="calc-field__input" value={exitFee} onChange={(e) => setExitFee(Number(e.target.value))} inputMode="decimal" min={0} />
+                    </div>
+                </div>
+            </div>
+
+            {/* Result Card */}
+            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
+                <p className="calc-field__label" style={{ marginBottom: "var(--s-1)" }}>INVESTMENT RESULT</p>
+
+                <p className="calc-field__label" style={{ fontSize: "12px", marginBottom: "4px" }}>Profit / Loss</p>
+                <p style={{
+                    fontSize: "var(--t-h1)", fontWeight: 700,
+                    color: isProfit ? "var(--n-success)" : "var(--n-error, #ef4444)",
+                    marginBottom: "var(--s-4)"
+                }}>
+                    {isProfit ? "+" : ""}{formatUSD(result.profitLoss)}
+                </p>
+
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "var(--s-3)" }}>
+                    <div>
+                        <p className="calc-field__label">TOTAL INVESTED</p>
+                        <p style={{ fontWeight: 700, color: "var(--n-text)" }}>{formatUSD(result.totalInvestCost)}</p>
+                    </div>
+                    <div>
+                        <p className="calc-field__label">EXIT AMOUNT</p>
+                        <p style={{ fontWeight: 700, color: "var(--n-text)" }}>{formatUSD(result.totalExitAmount)}</p>
+                    </div>
+                    <div>
+                        <p className="calc-field__label">ROI</p>
+                        <p style={{ fontWeight: 700, color: isProfit ? "var(--n-success)" : "var(--n-error, #ef4444)" }}>
+                            {isProfit ? "+" : ""}{result.roi.toFixed(2)}%
+                        </p>
+                    </div>
+                </div>
+
+                {result.coinsBought > 0 && (
+                    <p style={{ fontSize: "var(--t-body-sm)", color: "var(--n-text-muted)", marginTop: "var(--s-3)" }}>
+                        {result.coinsBought.toFixed(6)} {selectedCoin} purchased at {formatUSD(buyPrice)} → sold at {formatUSD(sellPrice)}
+                    </p>
+                )}
+            </div>
+
+            {/* Copy / Share */}
+            <div style={{ display: "flex", gap: "var(--s-2)", marginTop: "var(--s-4)" }}>
+                <button
+                    className="btn btn--ghost"
+                    onClick={() => {
+                        const text = `${selectedCoin} Profit: ${formatUSD(result.profitLoss)} | ROI: ${result.roi.toFixed(2)}% | Invested: ${formatUSD(result.totalInvestCost)} | Exit: ${formatUSD(result.totalExitAmount)}`;
+                        navigator.clipboard.writeText(text);
+                    }}
+                >
+                    📋 Copy
+                </button>
+                <button className="btn btn--ghost" onClick={() => { if (typeof window !== "undefined") navigator.clipboard.writeText(window.location.href); }}>
+                    📤 Share
+                </button>
             </div>
         </div>
     );

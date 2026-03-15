@@ -433,7 +433,46 @@ const HUB_CONTENT: Record<string, {
             { question: "How do I find high dividend yield stocks in India?", answer: "Screen for high-dividend stocks using NSE/BSE stock screeners, Money Control, or Screener.in by filtering on dividend yield percentage and payout consistency. Always cross-check with 5-year payout history, Payout Ratio, EPS trend, and debt levels before investing for income." },
             { question: "What is the difference between dividend yield and dividend growth investing?", answer: "Dividend yield focuses on current income — the payout relative to today's price. Dividend growth investing focuses on companies that consistently increase their dividend every year. A 2% yielder growing at 15% annually will double its payout in 5 years, outpacing a static high-yield stock over a 10+ year horizon." },
         ],
-    }
+    },
+    "crypto-profit-calculator": {
+        subtitle: "Calculate your cryptocurrency investment profit or loss — enter buy price, sell price, investment amount, and trading fees to see net profit, ROI, and total exit value.",
+        contentHTML: `
+            <h3>How Crypto Profit is Calculated</h3>
+            <p>The crypto profit calculator works in three simple steps:</p>
+            <ol>
+                <li><strong>Coins Purchased:</strong> Your investment amount divided by the buy price gives the number of coins you acquired. Example: $1,000 ÷ $50,000/BTC = 0.02 BTC.</li>
+                <li><strong>Gross Exit Value:</strong> Coins purchased × sell price. If BTC rises to $65,000: 0.02 × $65,000 = $1,300.</li>
+                <li><strong>Net Profit/Loss:</strong> Gross exit − exit fee − total invested (investment + investment fee). $1,300 − $0 − $1,000 = <strong>$300 profit (+30% ROI)</strong>.</li>
+            </ol>
+
+            <h3>Understanding Trading Fees</h3>
+            <p>Most cryptocurrency exchanges charge <strong>0.1% to 0.5%</strong> per trade. This applies both when buying and selling:</p>
+            <ul>
+                <li><strong>Maker fees:</strong> 0.02%–0.10% on limit orders (you provide liquidity)</li>
+                <li><strong>Taker fees:</strong> 0.04%–0.20% on market orders (you take liquidity)</li>
+                <li><strong>Spread:</strong> The hidden cost — the difference between bid and ask price, typically 0.1%–1% on most exchanges</li>
+                <li><strong>Network/Gas fees:</strong> Charged for on-chain transactions (withdrawals to wallets), varies by blockchain</li>
+            </ul>
+
+            <div class="explanation__highlight">
+                <strong>Pro tip:</strong> On a $10,000 trade at 0.1% maker fee, you pay $10 per side — $20 round trip. On a $10,000 trade at 0.5% taker fee, you pay $50 per side — $100 round trip. Fee differences compound dramatically for active traders.
+            </div>
+
+            <h3>Crypto Investment Tax Implications</h3>
+            <p>In most jurisdictions, cryptocurrency gains are subject to capital gains tax:</p>
+            <ul>
+                <li><strong>Short-term gains:</strong> Crypto held less than 1 year (2 years in some countries) — taxed at ordinary income rates</li>
+                <li><strong>Long-term gains:</strong> Crypto held over 1 year — typically taxed at a lower rate (15–20% in the US, 30% flat in India)</li>
+                <li><strong>India specific:</strong> From April 2022, all crypto gains are taxed at a flat 30% + 4% cess, with no deductions except cost of acquisition. 1% TDS applies on all crypto sales above ₹10,000.</li>
+            </ul>
+        `,
+        faq: [
+            { question: "How do I calculate profit on Bitcoin?", answer: "Divide your investment by the buy price to get BTC amount. Multiply BTC amount by the sell price. Subtract your original investment and any fees. Example: $5,000 invested at $50,000/BTC = 0.1 BTC. Sold at $70,000: 0.1 × $70,000 = $7,000. Profit = $7,000 − $5,000 = $2,000 (40% ROI)." },
+            { question: "What fees should I include in the calculation?", answer: "Include exchange trading fees (0.1-0.5% per trade), withdrawal fees (varies by coin, typically $1-$30), and any spread costs. For accurate results, add your buy-side fee as 'Investment Fee' and your sell-side fee as 'Exit Fee' in the calculator." },
+            { question: "Is crypto profit taxable?", answer: "Yes, in most countries. The US taxes crypto as property — short-term gains at income rates, long-term at 15-20%. India taxes all crypto gains at a flat 30% with no loss offset. The UK allows a £3,000 annual capital gains exemption. Always consult a local tax professional." },
+            { question: "Should I use dollar-cost averaging for crypto?", answer: "DCA (buying fixed amounts at regular intervals) reduces the risk of buying at a peak. Studies show DCA outperforms lump-sum investing in highly volatile assets like crypto approximately 60% of the time. It's especially effective for Bitcoin and Ethereum over multi-year horizons." },
+        ],
+    },
 };
 
 export default async function InvestmentCalculatorHubPage({ params }: PageProps) {
