@@ -51,6 +51,10 @@ export default function InvestmentCalculatorCore({
     if (calcType === "stockReturn") return <StockReturnCalc defaults={defaults} sliderRanges={sliderRanges} />;
     if (calcType === "dividendYield") return <DividendYieldCalc defaults={defaults} sliderRanges={sliderRanges} />;
     if (calcType === "cryptoProfit") return <CryptoProfitCalc defaults={defaults} />;
+    if (calcType === "cagr") return <CAGRCalc defaults={defaults} />;
+    if (calcType === "reverseCagr") return <ReverseCAGRCalc defaults={defaults} />;
+    if (calcType === "irr") return <IRRCalc defaults={defaults} />;
+    if (calcType === "npv") return <NPVCalc defaults={defaults} />;
 
     const [amount, setAmount] = useState(defaults.amount);
     const [rate, setRate] = useState(defaults.rate);
@@ -627,6 +631,246 @@ function CryptoProfitCalc({ defaults }: { defaults: any }) {
                 <button className="btn btn--ghost" onClick={() => { if (typeof window !== "undefined") navigator.clipboard.writeText(window.location.href); }}>
                     📤 Share
                 </button>
+            </div>
+        </div>
+    );
+}
+
+// ─── CAGR Calculator ───
+function CAGRCalc({ defaults }: { defaults: { amount: number; rate: number; tenure: number } }) {
+    const [startValue, setStartValue] = useState(defaults.amount || 100000);
+    const [endValue, setEndValue] = useState(500000);
+    const [years, setYears] = useState(5);
+
+    const result = useMemo(() => {
+        if (startValue <= 0 || endValue <= 0 || years <= 0) return { cagr: 0, totalReturn: 0, absReturn: 0 };
+        const cagr = (Math.pow(endValue / startValue, 1 / years) - 1) * 100;
+        const totalReturn = ((endValue - startValue) / startValue) * 100;
+        const absReturn = endValue - startValue;
+        return { cagr, totalReturn, absReturn };
+    }, [startValue, endValue, years]);
+
+    // Yearly growth table
+    const yearlyData = useMemo(() => {
+        const data: { year: number; value: number }[] = [];
+        const rate = result.cagr / 100;
+        for (let y = 0; y <= years; y++) {
+            data.push({ year: y, value: startValue * Math.pow(1 + rate, y) });
+        }
+        return data;
+    }, [startValue, years, result.cagr]);
+
+    return (
+        <div>
+            <div className="calc-input-panel">
+                <div className="calc-field"><label className="calc-field__label">💰 STARTING VALUE</label>
+                <input type="number" className="calc-field__input" value={startValue} onChange={e => setStartValue(Number(e.target.value))} /></div>
+                <div className="calc-field"><label className="calc-field__label">🎯 ENDING VALUE</label>
+                <input type="number" className="calc-field__input" value={endValue} onChange={e => setEndValue(Number(e.target.value))} /></div>
+                <div className="calc-field"><label className="calc-field__label">📅 TIME PERIOD (Years)</label>
+                <input type="number" className="calc-field__input" value={years} onChange={e => setYears(Number(e.target.value))} min={1} /></div>
+            </div>
+
+            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
+                <p className="calc-field__label">COMPOUND ANNUAL GROWTH RATE</p>
+                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: result.cagr >= 0 ? "var(--n-success)" : "var(--n-error, #ef4444)" }}>
+                    {result.cagr.toFixed(2)}%
+                </p>
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "var(--s-3)", marginTop: "var(--s-4)" }}>
+                    <div><p className="calc-field__label">ABSOLUTE RETURN</p><p style={{ fontWeight: 700 }}>{formatINR(result.absReturn)}</p></div>
+                    <div><p className="calc-field__label">TOTAL RETURN %</p><p style={{ fontWeight: 700 }}>{result.totalReturn.toFixed(2)}%</p></div>
+                    <div><p className="calc-field__label">GROWTH MULTIPLE</p><p style={{ fontWeight: 700 }}>{startValue > 0 ? (endValue / startValue).toFixed(2) : "0"}x</p></div>
+                </div>
+            </div>
+
+            {yearlyData.length > 1 && (
+                <div style={{ marginTop: "var(--s-4)", overflowX: "auto" }}>
+                    <table className="comparison-table">
+                        <thead><tr><th>Year</th><th>Value</th><th>Growth</th></tr></thead>
+                        <tbody>{yearlyData.map(row => (
+                            <tr key={row.year}><td>{row.year}</td><td>{formatINR(row.value)}</td>
+                            <td>{row.year > 0 ? "+" + formatINR(row.value - yearlyData[row.year - 1].value) : "—"}</td></tr>
+                        ))}</tbody>
+                    </table>
+                </div>
+            )}
+        </div>
+    );
+}
+
+// ─── Reverse CAGR Calculator ───
+function ReverseCAGRCalc({ defaults }: { defaults: { amount: number; rate: number; tenure: number } }) {
+    const [initial, setInitial] = useState(defaults.amount || 100000);
+    const [cagr, setCagr] = useState(defaults.rate || 12);
+    const [years, setYears] = useState(defaults.tenure || 10);
+
+    const result = useMemo(() => {
+        const futureValue = initial * Math.pow(1 + cagr / 100, years);
+        const totalGain = futureValue - initial;
+        return { futureValue, totalGain };
+    }, [initial, cagr, years]);
+
+    const yearlyData = useMemo(() => {
+        const data: { year: number; value: number }[] = [];
+        for (let y = 0; y <= years; y++) data.push({ year: y, value: initial * Math.pow(1 + cagr / 100, y) });
+        return data;
+    }, [initial, cagr, years]);
+
+    return (
+        <div>
+            <div className="calc-input-panel">
+                <div className="calc-field"><label className="calc-field__label">💰 INITIAL INVESTMENT</label>
+                <input type="number" className="calc-field__input" value={initial} onChange={e => setInitial(Number(e.target.value))} /></div>
+                <div className="calc-field"><label className="calc-field__label">📈 EXPECTED CAGR (%)</label>
+                <input type="number" className="calc-field__input" value={cagr} onChange={e => setCagr(Number(e.target.value))} step={0.5} /></div>
+                <div className="calc-field"><label className="calc-field__label">📅 TIME PERIOD (Years)</label>
+                <input type="number" className="calc-field__input" value={years} onChange={e => setYears(Number(e.target.value))} min={1} /></div>
+            </div>
+
+            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
+                <p className="calc-field__label">PROJECTED FUTURE VALUE</p>
+                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)" }}>{formatINR(result.futureValue)}</p>
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "var(--s-3)", marginTop: "var(--s-4)" }}>
+                    <div><p className="calc-field__label">INVESTED</p><p style={{ fontWeight: 700 }}>{formatINR(initial)}</p></div>
+                    <div><p className="calc-field__label">TOTAL GAIN</p><p style={{ fontWeight: 700, color: "var(--n-success)" }}>{formatINR(result.totalGain)}</p></div>
+                    <div><p className="calc-field__label">GROWTH MULTIPLE</p><p style={{ fontWeight: 700 }}>{initial > 0 ? (result.futureValue / initial).toFixed(2) : "0"}x</p></div>
+                </div>
+            </div>
+
+            {yearlyData.length > 1 && (
+                <div style={{ marginTop: "var(--s-4)", overflowX: "auto" }}>
+                    <table className="comparison-table">
+                        <thead><tr><th>Year</th><th>Value</th><th>Growth</th></tr></thead>
+                        <tbody>{yearlyData.map(row => (
+                            <tr key={row.year}><td>{row.year}</td><td>{formatINR(row.value)}</td>
+                            <td>{row.year > 0 ? "+" + formatINR(row.value - yearlyData[row.year - 1].value) : "—"}</td></tr>
+                        ))}</tbody>
+                    </table>
+                </div>
+            )}
+        </div>
+    );
+}
+
+// ─── IRR Calculator ───
+function IRRCalc({ defaults }: { defaults: { amount: number; rate: number; tenure: number } }) {
+    const [cashFlows, setCashFlows] = useState<{ year: number; amount: number }[]>([
+        { year: 0, amount: -100000 },
+        { year: 1, amount: 30000 },
+        { year: 2, amount: 35000 },
+        { year: 3, amount: 40000 },
+        { year: 4, amount: 45000 },
+    ]);
+
+    const updateCF = (i: number, val: number) => {
+        const n = [...cashFlows]; n[i].amount = val; setCashFlows(n);
+    };
+
+    const irr = useMemo(() => {
+        const cf = cashFlows.map(c => c.amount);
+        let lo = -0.99, hi = 10, mid = 0;
+        for (let iter = 0; iter < 200; iter++) {
+            mid = (lo + hi) / 2;
+            let npv = 0;
+            for (let i = 0; i < cf.length; i++) npv += cf[i] / Math.pow(1 + mid, i);
+            if (Math.abs(npv) < 0.01) break;
+            if (npv > 0) lo = mid; else hi = mid;
+        }
+        return mid * 100;
+    }, [cashFlows]);
+
+    const totalInvest = cashFlows.filter(c => c.amount < 0).reduce((s, c) => s + Math.abs(c.amount), 0);
+    const totalReturn = cashFlows.filter(c => c.amount > 0).reduce((s, c) => s + c.amount, 0);
+
+    return (
+        <div>
+            <div className="calc-input-panel">
+                <p className="calc-field__label" style={{ marginBottom: "var(--s-2)" }}>CASH FLOWS (negative = investment, positive = return)</p>
+                {cashFlows.map((cf, i) => (
+                    <div key={i} style={{ display: "grid", gridTemplateColumns: "80px 1fr auto", gap: "8px", marginBottom: "6px", alignItems: "center" }}>
+                        <span className="calc-field__label">Year {cf.year}</span>
+                        <input type="number" className="calc-field__input" value={cf.amount} onChange={e => updateCF(i, Number(e.target.value))} />
+                        {i > 0 && <button className="btn btn--ghost" style={{ padding: "4px 8px" }} onClick={() => setCashFlows(cashFlows.filter((_, j) => j !== i))}>✕</button>}
+                    </div>
+                ))}
+                <button className="btn btn--ghost" onClick={() => setCashFlows([...cashFlows, { year: cashFlows.length, amount: 0 }])}>+ Add Year</button>
+            </div>
+
+            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
+                <p className="calc-field__label">INTERNAL RATE OF RETURN</p>
+                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: irr >= 0 ? "var(--n-success)" : "var(--n-error, #ef4444)" }}>
+                    {irr.toFixed(2)}%
+                </p>
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "var(--s-3)", marginTop: "var(--s-4)" }}>
+                    <div><p className="calc-field__label">TOTAL INVESTED</p><p style={{ fontWeight: 700 }}>{formatINR(totalInvest)}</p></div>
+                    <div><p className="calc-field__label">TOTAL RETURNS</p><p style={{ fontWeight: 700, color: "var(--n-success)" }}>{formatINR(totalReturn)}</p></div>
+                    <div><p className="calc-field__label">NET GAIN</p><p style={{ fontWeight: 700, color: totalReturn - totalInvest >= 0 ? "var(--n-success)" : "var(--n-error, #ef4444)" }}>{formatINR(totalReturn - totalInvest)}</p></div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+// ─── NPV Calculator ───
+function NPVCalc({ defaults }: { defaults: { amount: number; rate: number; tenure: number } }) {
+    const [discountRate, setDiscountRate] = useState(defaults.amount || 10);
+    const [cashFlows, setCashFlows] = useState<{ year: number; amount: number }[]>([
+        { year: 0, amount: -100000 },
+        { year: 1, amount: 30000 },
+        { year: 2, amount: 35000 },
+        { year: 3, amount: 40000 },
+        { year: 4, amount: 50000 },
+    ]);
+
+    const updateCF = (i: number, val: number) => {
+        const n = [...cashFlows]; n[i].amount = val; setCashFlows(n);
+    };
+
+    const result = useMemo(() => {
+        const r = discountRate / 100;
+        let npv = 0;
+        const pvs: { year: number; cf: number; pv: number }[] = [];
+        for (let i = 0; i < cashFlows.length; i++) {
+            const pv = cashFlows[i].amount / Math.pow(1 + r, i);
+            npv += pv;
+            pvs.push({ year: i, cf: cashFlows[i].amount, pv });
+        }
+        return { npv, pvs };
+    }, [cashFlows, discountRate]);
+
+    return (
+        <div>
+            <div className="calc-input-panel">
+                <div className="calc-field"><label className="calc-field__label">📊 DISCOUNT RATE (%)</label>
+                <input type="number" className="calc-field__input" value={discountRate} onChange={e => setDiscountRate(Number(e.target.value))} step={0.5} /></div>
+                <p className="calc-field__label" style={{ marginTop: "var(--s-3)", marginBottom: "var(--s-2)" }}>CASH FLOWS</p>
+                {cashFlows.map((cf, i) => (
+                    <div key={i} style={{ display: "grid", gridTemplateColumns: "80px 1fr auto", gap: "8px", marginBottom: "6px", alignItems: "center" }}>
+                        <span className="calc-field__label">Year {cf.year}</span>
+                        <input type="number" className="calc-field__input" value={cf.amount} onChange={e => updateCF(i, Number(e.target.value))} />
+                        {i > 0 && <button className="btn btn--ghost" style={{ padding: "4px 8px" }} onClick={() => setCashFlows(cashFlows.filter((_, j) => j !== i))}>✕</button>}
+                    </div>
+                ))}
+                <button className="btn btn--ghost" onClick={() => setCashFlows([...cashFlows, { year: cashFlows.length, amount: 0 }])}>+ Add Year</button>
+            </div>
+
+            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
+                <p className="calc-field__label">NET PRESENT VALUE</p>
+                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: result.npv >= 0 ? "var(--n-success)" : "var(--n-error, #ef4444)" }}>
+                    {formatINR(result.npv)}
+                </p>
+                <p style={{ fontSize: "var(--t-body)", fontWeight: 700, color: result.npv >= 0 ? "var(--n-success)" : "var(--n-error, #ef4444)", marginTop: "var(--s-2)" }}>
+                    {result.npv >= 0 ? "✅ Investment is profitable at " + discountRate + "% discount rate" : "❌ Investment destroys value at " + discountRate + "% discount rate"}
+                </p>
+            </div>
+
+            <div style={{ marginTop: "var(--s-4)", overflowX: "auto" }}>
+                <table className="comparison-table">
+                    <thead><tr><th>Year</th><th>Cash Flow</th><th>Present Value</th></tr></thead>
+                    <tbody>{result.pvs.map(row => (
+                        <tr key={row.year}><td>{row.year}</td><td>{formatINR(row.cf)}</td><td>{formatINR(row.pv)}</td></tr>
+                    ))}</tbody>
+                </table>
             </div>
         </div>
     );

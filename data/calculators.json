@@ -1888,6 +1888,142 @@
     "keywords": "crypto profit calculator, cryptocurrency profit calculator, crypto ROI calculator, bitcoin profit calculator, ethereum profit calculator, crypto investment calculator, crypto gain loss calculator"
   },
   {
+    "id": "cagr-calculator",
+    "category": "invest",
+    "title": "CAGR Calculator",
+    "slug": "cagr-calculator",
+    "categorySlug": "investment-calculators",
+    "icon": "📈",
+    "calcType": "cagr",
+    "description": "Calculate the Compound Annual Growth Rate (CAGR) of your investments. Enter starting value, ending value, and time period to find the annualized return rate.",
+    "stars": 5,
+    "defaults": {
+      "amount": 100000,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 1000,
+        "max": 100000000,
+        "step": 1000
+      },
+      "rate": {
+        "min": 1000,
+        "max": 100000000,
+        "step": 1000
+      },
+      "tenure": {
+        "min": 1,
+        "max": 50,
+        "step": 1
+      }
+    },
+    "keywords": "CAGR calculator, compound annual growth rate calculator, CAGR formula, investment growth rate calculator, annualized return calculator"
+  },
+  {
+    "id": "reverse-cagr-calculator",
+    "category": "invest",
+    "title": "Reverse CAGR Calculator",
+    "slug": "reverse-cagr-calculator",
+    "categorySlug": "investment-calculators",
+    "icon": "🔄",
+    "calcType": "reverseCagr",
+    "description": "Calculate the future value of your investment when the CAGR is already known. Enter initial investment, expected CAGR, and time period to project your portfolio growth.",
+    "stars": 4,
+    "defaults": {
+      "amount": 100000,
+      "rate": 12,
+      "tenure": 10
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 1000,
+        "max": 100000000,
+        "step": 1000
+      },
+      "rate": {
+        "min": 1,
+        "max": 100,
+        "step": 0.5
+      },
+      "tenure": {
+        "min": 1,
+        "max": 50,
+        "step": 1
+      }
+    },
+    "keywords": "reverse CAGR calculator, future value calculator, investment projection calculator, CAGR future value, portfolio growth calculator"
+  },
+  {
+    "id": "irr-calculator",
+    "category": "invest",
+    "title": "IRR Calculator",
+    "slug": "irr-calculator",
+    "categorySlug": "investment-calculators",
+    "icon": "📊",
+    "calcType": "irr",
+    "description": "Calculate the Internal Rate of Return (IRR) for a series of cash flows. Evaluate investment profitability by finding the discount rate that makes the net present value zero.",
+    "stars": 5,
+    "defaults": {
+      "amount": -100000,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": -10000000,
+        "max": 10000000,
+        "step": 10000
+      },
+      "rate": {
+        "min": -10000000,
+        "max": 10000000,
+        "step": 10000
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "IRR calculator, internal rate of return calculator, IRR formula, investment return calculator, cash flow IRR calculator"
+  },
+  {
+    "id": "npv-calculator",
+    "category": "invest",
+    "title": "NPV Calculator",
+    "slug": "npv-calculator",
+    "categorySlug": "investment-calculators",
+    "icon": "💎",
+    "calcType": "npv",
+    "description": "Calculate Net Present Value (NPV) of future cash flows at a given discount rate. Determine whether an investment adds value by comparing present value of inflows vs outflows.",
+    "stars": 5,
+    "defaults": {
+      "amount": 10,
+      "rate": -100000,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 1,
+        "max": 50,
+        "step": 0.5
+      },
+      "rate": {
+        "min": -10000000,
+        "max": 10000000,
+        "step": 10000
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "NPV calculator, net present value calculator, NPV formula, discounted cash flow calculator, investment NPV calculator"
+  },
+  {
     "id": "enterprise-value-calculator",
     "category": "business",
     "title": "Enterprise Value (EV) Calculator",
