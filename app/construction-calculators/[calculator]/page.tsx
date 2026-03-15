@@ -639,6 +639,156 @@ const HUB_CONTENT: Record<string, {
             { question: "Should I use fast-setting or regular concrete?", answer: "Fast-setting (e.g., Quikrete Fast-Setting): sets in 20–40 minutes, can be poured dry — ideal for fence posts. Regular concrete: requires mixing, 24-hour set time — better for structural posts (deck, pergola) that need maximum strength. Never use fast-set for structural support posts." },
         ],
     },
+    "mortar-calculator": {
+        subtitle: "Calculate mortar mix needed for brick, block, or stone projects. Get pre-mix bags and site-mix quantities by wall area and joint thickness.",
+        explanation: {
+            heading: "How to Calculate Mortar Quantities",
+            paragraphs: [
+                "Mortar volume depends on masonry unit size and joint thickness. Standard bricks have about 7 joints per square foot of wall, CMU blocks have about 3.5, and natural stone varies widely. Multiply the number of joints by the joint cross-section area to get total mortar volume.",
+                "Pre-mixed mortar bags (Type S or Type N) yield about 0.5–0.6 cubic feet per 60–80 lb bag. For site mixing, use a 1:3 portland-to-sand ratio by volume. Type S mortar is standard for structural and below-grade work; Type N is for above-grade non-structural applications.",
+            ],
+            highlight: "A 100 sq ft brick wall with 3/8-inch joints: mortar volume ≈ 1.8 cu ft. That's about 4 bags of 60 lb pre-mix, or about half a bag of portland cement plus 1.4 cu ft of sand.",
+        },
+        faq: [
+            { question: "What type of mortar should I use?", answer: "Type S: structural walls, retaining walls, below-grade, and high-wind areas. Type N: above-grade exterior walls, chimneys, and general use. Type M: heavy loads, below-grade foundations. Type O: interior non-load-bearing walls only." },
+            { question: "How long does mortar stay workable?", answer: "Pre-mixed mortar is workable for about 90 minutes after mixing (less in hot weather). Do not retemper mortar that has started to set. Mix small batches and use quickly for best bond strength." },
+        ],
+    },
+    "concrete-footing-calculator": {
+        subtitle: "Calculate concrete volume for continuous strip footings. Enter footing length, width, and depth for cubic yards and bag counts.",
+        explanation: {
+            heading: "How to Calculate Concrete Footing Volume",
+            paragraphs: [
+                "Continuous footings (strip footings) run along the base of foundation walls. The volume calculation is straightforward: length × width × depth. Standard residential footings are typically 16–24 inches wide and 8–12 inches deep, extending at least 12 inches below the frost line.",
+                "Building codes generally require footings to be twice the width of the wall they support. For an 8-inch foundation wall, the footing should be at least 16 inches wide. Rebar reinforcement (typically #4 bars) is required in most jurisdictions.",
+            ],
+            highlight: "A 40 ft perimeter footing, 16 inches wide × 8 inches deep: volume = 40 × 1.33 × 0.67 = 35.7 cu ft = 1.32 cu yd. That is about 59 bags of 80 lb concrete.",
+        },
+        faq: [
+            { question: "How deep do footings need to be?", answer: "Below the frost line in your area — ranges from 12 inches in warm climates to 48+ inches in northern states. Check local building codes. The bottom of the footing must rest on undisturbed, compacted soil." },
+            { question: "Do footings need rebar?", answer: "Yes — most building codes require at least 2 continuous #4 (1/2 inch) rebar running the length of the footing, plus vertical dowels every 4 feet to tie into the foundation wall above." },
+        ],
+    },
+    "landscape-rock-calculator": {
+        subtitle: "Calculate decorative landscape rock, river rock, or boulders needed for gardens and yards. Get tons, cubic yards, and estimated cost.",
+        explanation: {
+            heading: "How to Calculate Landscape Rock",
+            paragraphs: [
+                "Landscape rock is sold by the ton or cubic yard. Different rock types have different densities: river rock weighs about 1.3 tons per cubic yard, lava rock is very light at 0.5 tons, and dense flagstone weighs about 1.5 tons per cubic yard.",
+                "A typical decorative rock bed is 2–3 inches deep. For weed suppression under rock, install landscape fabric first. Order 5–10% extra for irregular shapes and settling. For large areas, bulk delivery is more cost-effective than bagged rock.",
+            ],
+            highlight: "A 10×10 ft rock bed at 3 inches deep with river rock: 25 cu ft = 0.93 cu yd × 1.3 tons/yd = 1.2 tons. At $50/ton, that is about $60 in material.",
+        },
+        faq: [
+            { question: "How deep should landscape rock be?", answer: "Decorative ground cover: 2–3 inches. Weed barrier over fabric: 2 inches minimum. Drainage beds: 4–6 inches. Dry creek beds: 3–4 inches. Deeper is not always better — too much rock can feel unnatural." },
+            { question: "Should I use landscape fabric under rock?", answer: "Yes — it prevents weed growth and keeps rock from sinking into soil. Use commercial-grade woven fabric, not cheap plastic sheeting. Overlap seams by 6 inches and secure with landscape staples every 12 inches." },
+        ],
+    },
+    "roof-truss-calculator": {
+        subtitle: "Calculate the number of roof trusses needed for a building. Enter building length, span, pitch, and truss spacing.",
+        explanation: {
+            heading: "How to Calculate Roof Trusses",
+            paragraphs: [
+                "The number of trusses equals the building length divided by truss spacing, plus one for the end. Standard truss spacing is 24 inches on center for residential, 16 inches OC for heavy snow loads. Common truss types include king post, queen post, Fink, and scissors.",
+                "Truss span (building width) determines the truss size and lumber requirements. Spans up to 24 feet use 2×4 lumber; 24–36 feet typically use 2×6 lumber. Always consult an engineer for spans over 30 feet or unusual load conditions.",
+            ],
+            highlight: "A 30 ft building with 24-inch OC spacing: 30 / 2 + 1 = 16 trusses. For a 24 ft span at 6/12 pitch, each rafter is 13.4 ft long. Estimated lumber per truss: about 35 board feet.",
+        },
+        faq: [
+            { question: "What truss spacing should I use?", answer: "24 inches OC: standard for most residential applications. 16 inches OC: heavy snow load areas, tile roofs, or when using lighter sheathing. 48 inches OC: agricultural buildings with heavy purlins. Check local codes for your snow and wind loads." },
+            { question: "Can I cut or modify a truss?", answer: "Never cut or modify a manufactured truss without an engineer's approval. Removing any member — even a web — can cause catastrophic failure. If you need attic space, specify attic trusses at the design stage." },
+        ],
+    },
+    "wainscoting-calculator": {
+        subtitle: "Calculate wainscoting panels, chair rail, and baseboard needed for any room. Enter room dimensions, height, and panel specifications.",
+        explanation: {
+            heading: "How to Calculate Wainscoting Materials",
+            paragraphs: [
+                "Wainscoting covers the lower portion of walls, typically 32–36 inches high (one-third of wall height). Materials include beadboard panels, flat panels with applied moulding, or raised panel sections. Calculate the total wall length, subtract door openings, and divide by panel width.",
+                "In addition to panels, you will need chair rail moulding along the top, baseboard along the bottom, and possibly cap moulding. All trim pieces are measured in linear feet matching the total coverable wall length.",
+            ],
+            highlight: "A 12×10 ft room with 1 door: perimeter = 44 ft, less 3 ft door = 41 ft coverable. With 48-inch wide panels: 41 / 4 = 11 panels. Plus 41 ft each of chair rail and baseboard.",
+        },
+        faq: [
+            { question: "What is the standard wainscoting height?", answer: "Standard: 32–36 inches (one-third of an 8–9 ft wall). Bathroom: 48–54 inches for moisture protection. Stairways: follow the stair slope with a consistent distance from each step. Dining rooms: 36 inches is traditional." },
+            { question: "What material is best for wainscoting?", answer: "MDF: smooth, paintable, most affordable, not for wet areas. Solid wood: premium look, can be stained. Beadboard: cottage/farmhouse style, available in MDF or wood. PVC: waterproof, ideal for bathrooms. For painted applications, MDF is the best value." },
+        ],
+    },
+    "grading-calculator": {
+        subtitle: "Calculate cut and fill volumes for land grading and leveling. Enter area dimensions and elevation changes for cubic yards of earthwork.",
+        explanation: {
+            heading: "How to Calculate Grading Volumes",
+            paragraphs: [
+                "Grading involves removing soil (cut) from high spots and adding soil (fill) to low spots to achieve the desired grade. The volume is calculated by multiplying the area by the average depth of cut or fill. For proper drainage, grade away from buildings at a minimum slope of 1/4 inch per foot.",
+                "When cut volume exceeds fill, excess soil must be hauled away. When fill exceeds cut, soil must be imported. A standard dump truck carries about 14 cubic yards. Compacted fill volume is about 25% less than loose fill, so order extra material for fill areas.",
+            ],
+            highlight: "A 50×50 ft area with 6 inches of cut: 2,500 sq ft × 0.5 ft = 1,250 cu ft = 46.3 cu yd. That is about 3.3 dump truck loads to haul away.",
+        },
+        faq: [
+            { question: "What slope is needed for drainage?", answer: "Minimum 1/4 inch per foot (2% grade) away from foundations for the first 10 feet. Swales and drainage channels: 1/2 to 1 inch per foot. Driveways: 1–2% for surface drainage. Yards: 2–5% is ideal for positive drainage." },
+            { question: "How much does grading cost?", answer: "DIY with a skid steer rental: $250–$500/day. Professional grading: $1,500–$5,000 for a typical residential lot. Factors: area size, soil type, access difficulty, and how much soil needs to be hauled away or imported." },
+        ],
+    },
+    "stucco-calculator": {
+        subtitle: "Calculate stucco mix, metal lath, and supplies needed for exterior or interior walls. Accounts for doors and windows.",
+        explanation: {
+            heading: "How to Calculate Stucco Materials",
+            paragraphs: [
+                "Traditional three-coat stucco consists of a scratch coat, brown coat, and finish coat applied over metal lath on exterior walls. Total thickness is about 7/8 inch. An 80 lb bag of stucco mix covers approximately 25 square feet per coat.",
+                "Metal lath sheets are typically 2.5 × 10.5 feet (about 27 sq ft each). Subtract door openings (about 21 sq ft each) and window openings (about 15 sq ft each) from the gross wall area to get the net stucco area.",
+            ],
+            highlight: "A house with four 40×9 ft walls, 2 doors, 8 windows: gross = 1,440 sq ft, minus 162 sq ft openings = 1,278 sq ft net. 3-coat stucco: about 154 bags of 80 lb mix and 48 lath sheets.",
+        },
+        faq: [
+            { question: "How many coats of stucco are needed?", answer: "Traditional stucco: 3 coats (scratch, brown, finish) over metal lath. Total thickness: 7/8 inch. One-coat stucco: a single 3/8-inch application over foam insulation board — faster but less durable than traditional three-coat." },
+            { question: "Can I apply stucco over existing siding?", answer: "Not recommended. Stucco needs a solid substrate — typically plywood or OSB sheathing with moisture barrier and metal lath. Applying stucco over existing siding can trap moisture and cause rot. Remove old siding first." },
+        ],
+    },
+    "rain-barrel-calculator": {
+        subtitle: "Calculate rainwater harvest potential from your roof area. Get gallons per rainstorm and number of barrels needed.",
+        explanation: {
+            heading: "How to Calculate Rainwater Collection",
+            paragraphs: [
+                "One inch of rain on 1 square foot of roof yields 0.623 gallons of water. A typical 30×40 ft roof section produces 748 gallons per inch of rain. Collection efficiency is about 75–85% due to evaporation, splash, and first-flush diversion.",
+                "Standard rain barrels hold 55 gallons. Position barrels under downspouts and connect overflow to a garden or drainage area. For larger systems, multiple barrels can be linked together. Collected rainwater is excellent for garden irrigation.",
+            ],
+            highlight: "A 30×40 ft roof section with 1 inch of rain at 80% efficiency: 1,200 sq ft × 0.623 × 0.80 = 598 gallons. You would need 11 standard 55-gallon rain barrels to capture it all.",
+        },
+        faq: [
+            { question: "Is collecting rainwater legal?", answer: "Laws vary by state. Most states allow residential rainwater collection. Colorado limits barrels to two 55-gallon barrels. Some states (Texas, Ohio) offer incentives. Check your local regulations before installing a system." },
+            { question: "How do I keep rain barrel water clean?", answer: "Use a first-flush diverter to discard the first gallon (which carries roof debris). Add a fine mesh screen to keep mosquitoes out. Cover the barrel to block sunlight (prevents algae). Use collected water within a week or treat with a small amount of bleach." },
+        ],
+    },
+    "concrete-curb-calculator": {
+        subtitle: "Calculate concrete volume for curbs, mow strips, and landscape edging. Enter curb length, height, and width for cubic yards and bag counts.",
+        explanation: {
+            heading: "How to Calculate Concrete Curb Volume",
+            paragraphs: [
+                "Concrete curbs are simple rectangular shapes: length × height × width = volume. Standard residential landscape curbs are 6 inches tall and 6 inches wide. Street curbs are typically 6 inches tall and 6 inches wide with a 12–18 inch gutter pan.",
+                "For curved sections, measure along the inside curve. Add 10% for waste on curved layouts. Use 3,000–4,000 PSI concrete mix for curbs exposed to freeze-thaw cycles. Extruded curbing machines can pour continuous curbs much faster than hand-forming.",
+            ],
+            highlight: "A 50 ft landscape curb, 6 inches tall × 6 inches wide: 50 × 0.5 × 0.5 = 12.5 cu ft = 0.46 cu yd. That is about 21 bags of 80 lb concrete.",
+        },
+        faq: [
+            { question: "How long does concrete curbing last?", answer: "Properly installed concrete curbing lasts 25–50 years. Factors: concrete strength (use 4,000 PSI minimum), proper drainage base, expansion joints every 10 feet, and sealing every 2–3 years. Machine-extruded curbing is denser and lasts longer than hand-poured." },
+            { question: "Do concrete curbs need rebar?", answer: "Short landscape curbs (under 6 inches tall) generally do not need rebar. Taller curbs (8+ inches), driveway curbs, and curbs subject to vehicle traffic should have #3 or #4 rebar running continuously through the length." },
+        ],
+    },
+    "wire-mesh-calculator": {
+        subtitle: "Calculate welded wire mesh sheets needed for concrete slab reinforcement. Enter slab dimensions and overlap for total sheet count.",
+        explanation: {
+            heading: "How to Calculate Wire Mesh for Concrete",
+            paragraphs: [
+                "Welded wire mesh (WWM) comes in standard 5×10 ft sheets or 5 ft wide rolls. Sheets must overlap a minimum of 6 inches on all edges. The most common specification is 6×6 W1.4/W1.4 (10 gauge wire on 6-inch grid) for residential flatwork.",
+                "Calculate the number of sheets by dividing slab dimensions by effective sheet size (sheet size minus overlap). Wire mesh should be positioned in the upper third of the slab — use wire mesh chairs or rebar chairs to support it at the correct height during the pour.",
+            ],
+            highlight: "A 20×20 ft slab with 6-inch overlap: effective size = 4.5 × 9.5 ft. Sheets wide: 5, sheets long: 3. Total = 15 sheets of 5×10 ft welded wire mesh.",
+        },
+        faq: [
+            { question: "What gauge wire mesh should I use?", answer: "Residential flatwork: 6×6 W1.4 (10 gauge). Driveways and garage floors: 6×6 W2.9 (6 gauge). Heavy industrial: 4×4 W2.9 (6 gauge). Heavier gauge and tighter spacing provide more reinforcement. Check engineering specs for commercial applications." },
+            { question: "Is wire mesh better than rebar for slabs?", answer: "Wire mesh: faster to install, good for thin slabs (4 inches), controls shrinkage cracking. Rebar: stronger, better for thick slabs, structural applications, and heavy loads. Many contractors use both — rebar on the perimeter and at control joints, mesh in the field." },
+        ],
+    },
 };
 
 export default async function ConstructionCalculatorHubPage({ params }: PageProps) {
