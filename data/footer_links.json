@@ -168,5 +168,39 @@
       "label": "Bonus Calculator",
       "href": "/salary-calculators/bonus-calculator"
     }
+  ],
+  "ev": [
+    {
+      "label": "EV vs Gas Cost",
+      "href": "/ev-calculators/ev-vs-gas-calculator"
+    },
+    {
+      "label": "Charging Cost",
+      "href": "/ev-calculators/ev-charging-cost-calculator"
+    },
+    {
+      "label": "EV Tax Credit",
+      "href": "/ev-calculators/ev-tax-credit-calculator"
+    },
+    {
+      "label": "EV Range",
+      "href": "/ev-calculators/ev-range-calculator"
+    },
+    {
+      "label": "Total Cost of Ownership",
+      "href": "/ev-calculators/ev-tco-calculator"
+    },
+    {
+      "label": "Fuel Savings",
+      "href": "/ev-calculators/ev-fuel-savings-calculator"
+    },
+    {
+      "label": "EV Loan/EMI",
+      "href": "/ev-calculators/ev-loan-calculator"
+    },
+    {
+      "label": "Battery Degradation",
+      "href": "/ev-calculators/ev-battery-degradation-calculator"
+    }
   ]
 }

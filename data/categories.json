@@ -62,5 +62,13 @@
         "description": "Concrete, roofing, flooring & building estimators",
         "count": 162,
         "href": "/construction-calculators"
+    },
+    {
+        "key": "ev",
+        "icon": "🔋",
+        "name": "EV Calculators",
+        "description": "Electric vehicle cost, charging, range & savings tools",
+        "count": 22,
+        "href": "/ev-calculators"
     }
 ]
