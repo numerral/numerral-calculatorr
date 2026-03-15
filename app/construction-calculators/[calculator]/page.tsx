@@ -1239,6 +1239,156 @@ const HUB_CONTENT: Record<string, {
             { question: "Where do I need ice and water shield?", answer: "Code requires it from the eave edge to at least 24 inches past the interior wall line. In cold climates, this is typically the first 3–6 feet. Also apply at valleys, around chimneys, skylights, and any roof penetration. It is self-adhering and waterproof." },
         ],
     },
+    "anchor-bolt-calculator": {
+        subtitle: "Calculate anchor bolt quantity and spacing for sill plates, mudsills, and holdowns. Determine bolt diameter and embedment depth.",
+        explanation: {
+            heading: "How to Calculate Anchor Bolt Requirements",
+            paragraphs: [
+                "Anchor bolts (J-bolts or L-bolts) secure the wood sill plate to the concrete foundation. IRC code requires a minimum 1/2-inch diameter bolt embedded at least 7 inches into concrete, spaced no more than 6 feet apart, with a bolt within 12 inches of each end of each sill plate piece.",
+                "In high-wind and seismic zones, spacing may be reduced to 4 feet or 32 inches. Holdown brackets at shear wall ends require additional anchor bolts — typically 5/8-inch or 3/4-inch diameter with deeper embedment. Always check your local building code for specific requirements.",
+            ],
+            highlight: "A 40 ft wall at 6 ft spacing: 40 / 6 + 1 = 8 bolts per wall. Four walls = 32 anchor bolts total. With 1/2-inch bolts, minimum 7-inch embedment into concrete.",
+        },
+        faq: [
+            { question: "How far apart should anchor bolts be?", answer: "IRC standard: maximum 6 feet on center. High-wind zones: 4 feet. Seismic Design Category D/E: as close as 32 inches. Always place a bolt within 12 inches of each end of each sill plate piece, and within 12 inches of each side of openings." },
+            { question: "What size anchor bolt do I need?", answer: "Standard residential: 1/2-inch × 10-inch J-bolt. High-wind/seismic: 5/8-inch. Holdown connections: 5/8 or 3/4-inch. Minimum embedment: 7 inches for 1/2-inch bolts, 8 inches for 5/8-inch. Use a nut and washer on top of the sill plate." },
+        ],
+    },
+    "brick-veneer-calculator": {
+        subtitle: "Calculate bricks, mortar, wall ties, and flashing for brick veneer walls. Accounts for openings and waste.",
+        explanation: {
+            heading: "How to Calculate Brick Veneer Materials",
+            paragraphs: [
+                "Brick veneer is a single-wythe layer of brick attached to a wood or steel-framed wall. Standard modular bricks require approximately 6.75 bricks per square foot (including mortar joints). Subtract door and window openings from the gross wall area to get the net brick area.",
+                "Wall ties connect the brick veneer to the structural wall behind — one tie per 2.67 sq ft (every 16 inches vertically, 24 inches horizontally). Mortar uses about one 80-lb bag per 35 sq ft of wall. Base flashing with weep holes is required at the bottom of the veneer.",
+            ],
+            highlight: "A 20×9 ft wall with 2 openings (15 sq ft each): net area = 150 sq ft. Bricks: 1,013. Mortar: 5 bags. Wall ties: 57. Base flashing: 20 lin ft.",
+        },
+        faq: [
+            { question: "How thick is a brick veneer wall?", answer: "The brick layer is typically 3.5–4 inches thick with a 1-inch air gap between the brick and the sheathing. Total added wall thickness: about 5 inches. The air gap is critical for drainage and must not be bridged by mortar droppings." },
+            { question: "Do I need wall ties for brick veneer?", answer: "Yes — corrugated metal or adjustable wall ties are required to connect the veneer to the structural wall. Spacing: 16 inches vertically, 24 inches horizontally (one per 2.67 sq ft). Use stainless steel or hot-dipped galvanized ties to prevent corrosion." },
+        ],
+    },
+    "concrete-washout-calculator": {
+        subtitle: "Estimate washout pit size and water volume for cleaning concrete trucks, pumps, and tools on site.",
+        explanation: {
+            heading: "How to Calculate Concrete Washout Requirements",
+            paragraphs: [
+                "Concrete washout is required on any construction site that receives ready-mix deliveries. Each truck washout generates approximately 100–200 gallons of washwater (including chute rinse and drum washout). EPA regulations and most local stormwater permits require containment of all washout water.",
+                "A washout pit should be lined with 10-mil polyethylene sheeting and sized to contain all expected washout water. Minimum pit depth is 2 feet. After the water evaporates, the hardened concrete residue can be broken up and disposed of as solid waste.",
+            ],
+            highlight: "3 truck loads with 150 gal washout each: 450 gallons total. At 2 ft depth, pit needs about 30 sq ft — roughly a 6×6 ft excavation. Liner: about 100 sq ft.",
+        },
+        faq: [
+            { question: "Is concrete washout required by law?", answer: "Yes — EPA NPDES stormwater permits require concrete washout containment on most construction sites. Discharging washout water to storm drains, ditches, or waterways can result in significant fines. Washout pH is typically 12+, which is harmful to aquatic life." },
+            { question: "How do I dispose of concrete washout?", answer: "Allow water to evaporate in the pit. The hardened concrete residue is classified as solid waste and can be disposed of at a construction debris landfill. Some sites recycle dried washout concrete as base material. Never dump liquid washout into storm drains." },
+        ],
+    },
+    "ridge-vent-calculator": {
+        subtitle: "Calculate ridge vent material for roof ventilation. Get vent pieces, cap shingles, and net free area.",
+        explanation: {
+            heading: "How to Calculate Ridge Vent",
+            paragraphs: [
+                "Ridge vents run along the peak of the roof and provide exhaust ventilation for the attic. They work best when paired with soffit vents (intake). Standard ridge vent pieces are 4 feet long and 10–14 inches wide. The total vent length should match the full ridge length for optimal airflow.",
+                "Net Free Area (NFA) is the actual open area for airflow — typically 18 sq in per linear foot of quality ridge vent. Code requires a minimum 1:150 ratio of NFA to attic floor area (or 1:300 with balanced intake/exhaust). Cap shingles cover the vent, with one bundle covering 25–35 linear feet.",
+            ],
+            highlight: "A 30 ft ridge with 4 ft vent pieces: 8 pieces needed. NFA = 30 × 18 = 540 sq in. Cap shingle bundles: 1. That ventilates up to 810 sq ft of attic (at 1:150 ratio).",
+        },
+        faq: [
+            { question: "How much ridge vent do I need?", answer: "Install ridge vent along the entire ridge length for best results. Cut the sheathing back 1 inch on each side of the ridge (2-inch slot total) before installing. Do not vent within 12 inches of the roof ends to prevent rain entry." },
+            { question: "Can I use ridge vents with gable vents?", answer: "Not recommended. Gable vents can short-circuit the soffit-to-ridge airflow pattern, reducing ventilation efficiency. If you install ridge vents, close or cover any existing gable vents. The ideal system is continuous soffit intake + continuous ridge exhaust." },
+        ],
+    },
+    "stair-stringer-calculator": {
+        subtitle: "Calculate stair stringer length, riser count, tread dimensions, and lumber for building stairs.",
+        explanation: {
+            heading: "How to Calculate Stair Stringers",
+            paragraphs: [
+                "A stair stringer is the diagonal board that supports the treads and risers. The number of risers equals total rise divided by desired riser height (rounded to the nearest whole number). Treads = risers minus 1. Stringer length is calculated using the Pythagorean theorem: √(total rise² + total run²).",
+                "Building code requires risers between 4–7.75 inches (7–7.5 inches is ideal) and treads at least 10 inches deep. All risers must be within 3/8 inch of each other. Use 2×12 lumber for stringers, as the notched throat depth must be at least 3.5 inches.",
+            ],
+            highlight: "A 36-inch total rise with 7.5-inch risers: 5 risers, 4 treads at 10 inches = 40-inch run. Stringer length = √(36² + 40²) / 12 = 4.5 ft. Use 2×12 × 6 ft lumber.",
+        },
+        faq: [
+            { question: "How many stringers do I need?", answer: "Minimum 3 stringers for stairs up to 36 inches wide. For wider stairs, add a stringer every 16 inches. A 48-inch wide stair needs 4 stringers. Stringers at the edges plus evenly spaced interior stringers prevent tread bounce." },
+            { question: "What is the maximum riser height allowed by code?", answer: "IRC maximum: 7.75 inches. Ideal range: 7.0–7.5 inches. The riser-tread relationship should follow: riser + tread = 17–18 inches. All risers in a flight must be consistent — maximum 3/8-inch variation between any two risers." },
+        ],
+    },
+    "waterproofing-membrane-calculator": {
+        subtitle: "Calculate waterproofing membrane for basement walls, decks, and wet areas. Get rolls, adhesive, and seam tape quantities.",
+        explanation: {
+            heading: "How to Calculate Waterproofing Membrane",
+            paragraphs: [
+                "Waterproofing membranes come in three main types: sheet membranes (rubberized asphalt, 200 sq ft/roll), liquid-applied (100 sq ft/gallon), and peel-and-stick (self-adhered, 75 sq ft/roll). Calculate the surface area to cover, add 15% for overlaps and waste.",
+                "All seams must be overlapped 4–6 inches and sealed with compatible tape or adhesive. For below-grade applications, the membrane must extend from the footing to at least 6 inches above grade. Detail all penetrations, corners, and transitions carefully.",
+            ],
+            highlight: "A 30×8 ft basement wall: area = 240 sq ft + 15% = 276 sq ft. Sheet membrane: 2 rolls. Liquid applied: 3 gallons. Peel & stick: 4 rolls. Seam tape: 45 lin ft.",
+        },
+        faq: [
+            { question: "What type of waterproofing membrane is best?", answer: "Below-grade foundations: peel-and-stick or liquid-applied (self-healing properties). Decks/balconies: sheet membrane with heat-welded seams. Shower/wet areas: liquid-applied or sheet. Self-adhered membranes are easiest for DIY; liquid-applied gives the most seamless coverage." },
+            { question: "Can I waterproof over existing coatings?", answer: "Generally no — the surface must be clean, dry, and free of previous coatings for proper adhesion. Remove old paint, tar, or coatings first. Prime the surface with the manufacturer's recommended primer. Test adhesion in a small area before committing to the full application." },
+        ],
+    },
+    "weep-screed-calculator": {
+        subtitle: "Calculate weep screed for stucco and masonry wall bases. Get piece count and total stock length.",
+        explanation: {
+            heading: "How to Calculate Weep Screed",
+            paragraphs: [
+                "Weep screed is a metal flashing installed at the base of stucco and masonry walls, typically 4 inches above grade. It provides a termination point for the stucco and allows moisture to weep out of the wall assembly. Standard pieces are 10 feet long.",
+                "Install weep screed around the entire building perimeter with 2-inch overlap at joints. Nail or screw every 6 inches along the top flange. The bottom leg should extend past the foundation by at least 1/2 inch. Building code requires weep screed on all stucco exteriors.",
+            ],
+            highlight: "A 120 ft perimeter with 10 ft pieces and 2-inch overlap: effective length = 9.83 ft. Pieces needed: 13. Total stock: 130 lin ft. About 78 fasteners.",
+        },
+        faq: [
+            { question: "Is weep screed required by code?", answer: "Yes — IRC Section R703.7.2.2 requires weep screed at or below the foundation plate line on all exterior stucco walls. It must be a minimum of 4 inches above earth or 2 inches above paved surfaces. Omitting weep screed can trap moisture and cause rot." },
+            { question: "What material is weep screed made of?", answer: "Galvanized steel (most common, 26 gauge), stainless steel (coastal/corrosive environments), or plastic (for EIFS systems). Use galvanized for standard residential. Stainless steel is required within 5 miles of salt water in many jurisdictions." },
+        ],
+    },
+    "board-foot-calculator": {
+        subtitle: "Convert lumber dimensions to board feet for pricing hardwood and specialty lumber. Includes cost estimator.",
+        explanation: {
+            heading: "How to Calculate Board Feet",
+            paragraphs: [
+                "A board foot is a unit of lumber volume: 1 inch thick × 12 inches wide × 12 inches long (144 cubic inches). The formula is: (thickness in inches × width in inches × length in feet) ÷ 12. Hardwood and specialty lumber are sold by the board foot rather than by the piece.",
+                "When purchasing rough-sawn lumber, nominal dimensions equal actual dimensions. For surfaced lumber (S4S), the actual thickness is less than nominal — a 4/4 board (1 inch nominal) is actually 13/16 inch after surfacing. Price per board foot typically ranges from $3–$15+ depending on species and grade.",
+            ],
+            highlight: "Ten 2×6 boards, 8 ft long: BF each = (2 × 6 × 8) ÷ 12 = 8 BF. Total = 80 BF. At $5/BF (walnut), cost = $400.",
+        },
+        faq: [
+            { question: "What is a board foot?", answer: "One board foot = 144 cubic inches of wood (1 inch × 12 inches × 12 inches). It is the standard unit for pricing hardwood lumber, turning blanks, and specialty wood. Softwood (construction lumber) is typically sold by the linear foot or piece, not by the board foot." },
+            { question: "How do I calculate board feet for rough lumber?", answer: "Use the actual (not nominal) dimensions: (thickness × width × length) ÷ 12, where thickness and width are in inches and length is in feet. For rough lumber, measure the actual dimensions. Hardwood thickness is often expressed in quarters: 4/4 = 1 inch, 8/4 = 2 inches." },
+        ],
+    },
+    "concrete-beam-calculator": {
+        subtitle: "Calculate concrete volume and rebar for grade beams and structural beams. Get cubic yards, bags, and reinforcement.",
+        explanation: {
+            heading: "How to Calculate Concrete Beam Volume",
+            paragraphs: [
+                "Concrete beam volume = length × width × depth. Grade beams are horizontal beams that connect foundation piers and distribute loads. Typical residential grade beams are 12 inches wide × 18–24 inches deep. Structural beams above grade may be larger depending on span and load.",
+                "All concrete beams require reinforcement. Minimum: 4 longitudinal bars (typically #5 or #6) with #3 stirrups spaced every 12 inches (closer near supports). Grade beams spanning between piers need bottom bars for tension. Use 3,000–4,000 PSI concrete for structural beams.",
+            ],
+            highlight: "Two grade beams, 20 ft × 12 in × 18 in: volume each = 22.5 cu ft. Total = 45 cu ft = 1.67 cu yd. Rebar: 160 lin ft of longitudinal bars. About 75 bags of 80 lb mix.",
+        },
+        faq: [
+            { question: "What is a grade beam?", answer: "A grade beam is a reinforced concrete beam at ground level that connects foundation piers, distributes wall loads, and spans over poor soil. Unlike strip footings that bear directly on soil, grade beams transfer loads to the piers. Common in pier-and-beam foundations." },
+            { question: "How much rebar does a concrete beam need?", answer: "Minimum 4 longitudinal bars: 2 top, 2 bottom. Typical: #5 bars for residential, #6 for commercial. Stirrups (#3 bars bent into rectangles) every 12 inches in the middle third, every 6 inches near the ends. Lap splice bars 40 diameters minimum." },
+        ],
+    },
+    "downspout-calculator": {
+        subtitle: "Calculate downspout count, length, and extensions for roof drainage. Get elbows and accessories needed.",
+        explanation: {
+            heading: "How to Calculate Downspouts",
+            paragraphs: [
+                "The standard rule is one downspout per 600 square feet of roof area (for 2×3 inch rectangular downspouts) or per 1,200 sq ft (for 3×4 inch). Downspout length equals the wall height plus approximately 1 foot for the top elbow connection from the gutter.",
+                "Each downspout requires 2 elbows (one at the top to offset from the gutter and one at the bottom to direct water away). Extensions should carry water at least 4 feet from the foundation. Use splash blocks or underground drain pipes for proper dispersal.",
+            ],
+            highlight: "A 1,200 sq ft roof with 9 ft walls: 2 downspouts needed (2×3 size). Length each: 10 ft. Total: 20 lin ft of downspout, 4 elbows, 2 extensions at 4 ft each.",
+        },
+        faq: [
+            { question: "How many downspouts do I need?", answer: "One 2×3 inch downspout per 600 sq ft of roof area. One 3×4 inch downspout per 1,200 sq ft. Place at corners and at low points of the gutter run. Maximum gutter run to a single downspout: 40 feet for 5-inch gutters, 50 feet for 6-inch gutters." },
+            { question: "How far should downspouts extend from the foundation?", answer: "Minimum 4 feet — preferably 6–10 feet. Use splash blocks, flexible extensions, or underground drain pipes connected to a dry well or daylight outlet. Water pooling near the foundation is the #1 cause of basement water problems and foundation damage." },
+        ],
+    },
 };
 
 export default async function ConstructionCalculatorHubPage({ params }: PageProps) {

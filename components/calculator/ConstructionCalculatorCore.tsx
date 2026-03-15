@@ -3409,6 +3409,374 @@ function RoofUnderlaymentCalc() {
     );
 }
 
+/* ──────────── 81. ANCHOR BOLT CALCULATOR ──────────── */
+function AnchorBoltCalc() {
+    const [wallLength, setWallLength] = useState(40);
+    const [spacing, setSpacing] = useState(6);
+    const [boltDiameter, setBoltDiameter] = useState(0.5);
+    const [numWalls, setNumWalls] = useState(4);
+
+    const result = useMemo(() => {
+        const boltsPerWall = Math.ceil(wallLength / spacing) + 1;
+        const totalBolts = boltsPerWall * numWalls;
+        const embedment = boltDiameter === 0.5 ? 7 : boltDiameter === 0.625 ? 8 : 10;
+        const nutWasherSets = totalBolts;
+        return { boltsPerWall, totalBolts, embedment, nutWasherSets };
+    }, [wallLength, spacing, boltDiameter, numWalls]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">🔩 Anchor Bolt Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Wall Length" value={wallLength} onChange={setWallLength} unit="ft" min={4} />
+                <InputField label="Bolt Spacing" value={spacing} onChange={setSpacing} unit="ft" min={2} max={8} />
+                <SelectField label="Bolt Diameter" value={String(boltDiameter)} onChange={(v) => setBoltDiameter(Number(v))} options={[
+                    { value: "0.5", label: '1/2" (Standard)' },
+                    { value: "0.625", label: '5/8" (Heavy)' },
+                    { value: "0.75", label: '3/4" (Commercial)' },
+                ]} />
+                <InputField label="Number of Walls" value={numWalls} onChange={setNumWalls} min={1} max={20} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Bolts per Wall" value={fmtInt(result.boltsPerWall)} />
+                <ResultRow label="Total Anchor Bolts" value={fmtInt(result.totalBolts)} unit="bolts" />
+                <ResultRow label="Min. Embedment" value={fmtInt(result.embedment)} unit="in" />
+                <ResultRow label="Nut & Washer Sets" value={fmtInt(result.nutWasherSets)} unit="sets" />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 82. BRICK VENEER CALCULATOR ──────────── */
+function BrickVeneerCalc() {
+    const [wallLength, setWallLength] = useState(20);
+    const [wallHeight, setWallHeight] = useState(9);
+    const [openings, setOpenings] = useState(2);
+    const [avgOpeningArea, setAvgOpeningArea] = useState(15);
+
+    const result = useMemo(() => {
+        const grossArea = wallLength * wallHeight;
+        const netArea = Math.max(0, grossArea - openings * avgOpeningArea);
+        const bricks = Math.ceil(netArea * 6.75); // ~6.75 standard bricks per sq ft
+        const mortarBags = Math.ceil(netArea / 35); // 1 bag per 35 sq ft
+        const wallTies = Math.ceil(netArea / 2.67); // 1 tie per 2.67 sq ft
+        const flashingLf = wallLength; // base flashing
+        return { grossArea, netArea, bricks, mortarBags, wallTies, flashingLf };
+    }, [wallLength, wallHeight, openings, avgOpeningArea]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">🧱 Brick Veneer Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Wall Length" value={wallLength} onChange={setWallLength} unit="ft" min={4} />
+                <InputField label="Wall Height" value={wallHeight} onChange={setWallHeight} unit="ft" min={4} />
+                <InputField label="Number of Openings" value={openings} onChange={setOpenings} min={0} max={20} />
+                <InputField label="Avg Opening Area" value={avgOpeningArea} onChange={setAvgOpeningArea} unit="sq ft" min={0} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Net Wall Area" value={fmt(result.netArea)} unit="sq ft" />
+                <ResultRow label="Bricks Needed" value={fmtInt(result.bricks)} unit="bricks" />
+                <ResultRow label="Mortar Bags (80 lb)" value={fmtInt(result.mortarBags)} unit="bags" />
+                <ResultRow label="Wall Ties" value={fmtInt(result.wallTies)} unit="ties" />
+                <ResultRow label="Base Flashing" value={fmt(result.flashingLf)} unit="lin ft" />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 83. CONCRETE WASHOUT CALCULATOR ──────────── */
+function ConcreteWashoutCalc() {
+    const [trucks, setTrucks] = useState(3);
+    const [washoutGallons, setWashoutGallons] = useState(150);
+    const [pitDepth, setPitDepth] = useState(2);
+
+    const result = useMemo(() => {
+        const totalGallons = trucks * washoutGallons;
+        const totalCuFt = totalGallons / 7.48; // 1 cu ft = 7.48 gal
+        const pitArea = totalCuFt / pitDepth;
+        const pitSide = Math.ceil(Math.sqrt(pitArea));
+        const linerSqFt = (pitSide + 2 * pitDepth) * (pitSide + 2 * pitDepth); // liner includes sides
+        return { totalGallons, totalCuFt, pitArea, pitSide, linerSqFt };
+    }, [trucks, washoutGallons, pitDepth]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">🚿 Concrete Washout Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Concrete Trucks" value={trucks} onChange={setTrucks} min={1} max={20} />
+                <InputField label="Washout per Truck" value={washoutGallons} onChange={setWashoutGallons} unit="gal" min={50} max={300} />
+                <InputField label="Pit Depth" value={pitDepth} onChange={setPitDepth} unit="ft" min={1} max={4} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Total Washout" value={fmtInt(result.totalGallons)} unit="gal" />
+                <ResultRow label="Pit Volume" value={fmt(result.totalCuFt)} unit="cu ft" />
+                <ResultRow label="Min Pit Size" value={`${result.pitSide} × ${result.pitSide}`} unit="ft" />
+                <ResultRow label="Liner Needed" value={fmtInt(result.linerSqFt)} unit="sq ft" />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 84. RIDGE VENT CALCULATOR ──────────── */
+function RidgeVentCalc() {
+    const [ridgeLength, setRidgeLength] = useState(30);
+    const [ventWidth, setVentWidth] = useState(12);
+    const [pieceLengthFt, setPieceLengthFt] = useState(4);
+
+    const result = useMemo(() => {
+        const pieces = Math.ceil(ridgeLength / pieceLengthFt);
+        const nfa = ridgeLength * (ventWidth / 12) * 9; // ~9 sq in NFA per sq ft of vent
+        const capShingleBundles = Math.ceil(ridgeLength / 25); // 1 bundle per 25 lin ft
+        const nails = pieces * 8; // ~8 nails per piece
+        return { pieces, nfa, capShingleBundles, nails };
+    }, [ridgeLength, ventWidth, pieceLengthFt]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">🌬️ Ridge Vent Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Ridge Length" value={ridgeLength} onChange={setRidgeLength} unit="ft" min={8} />
+                <InputField label="Vent Width" value={ventWidth} onChange={setVentWidth} unit="in" min={8} max={16} />
+                <InputField label="Piece Length" value={pieceLengthFt} onChange={setPieceLengthFt} unit="ft" min={2} max={8} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Vent Pieces" value={fmtInt(result.pieces)} unit="pcs" />
+                <ResultRow label="Net Free Area" value={fmt(result.nfa)} unit="sq in" />
+                <ResultRow label="Cap Shingle Bundles" value={fmtInt(result.capShingleBundles)} unit="bundles" />
+                <ResultRow label="Nails Needed" value={fmtInt(result.nails)} />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 85. STAIR STRINGER CALCULATOR ──────────── */
+function StairStringerCalc() {
+    const [totalRise, setTotalRise] = useState(36);
+    const [riserHeight, setRiserHeight] = useState(7.5);
+    const [treadDepth, setTreadDepth] = useState(10);
+    const [stairWidth, setStairWidth] = useState(36);
+
+    const result = useMemo(() => {
+        const risers = Math.round(totalRise / riserHeight);
+        const actualRiser = totalRise / risers;
+        const treads = risers - 1;
+        const totalRun = treads * treadDepth;
+        const stringerLength = Math.sqrt(totalRise * totalRise + totalRun * totalRun) / 12; // in ft
+        const numStringers = stairWidth <= 36 ? 3 : Math.ceil(stairWidth / 16) + 1;
+        return { risers, actualRiser, treads, totalRun, stringerLength, numStringers };
+    }, [totalRise, riserHeight, treadDepth, stairWidth]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">📏 Stair Stringer Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Total Rise" value={totalRise} onChange={setTotalRise} unit="in" min={12} max={144} />
+                <InputField label="Desired Riser Height" value={riserHeight} onChange={setRiserHeight} unit="in" min={5} max={8} step={0.25} />
+                <InputField label="Tread Depth" value={treadDepth} onChange={setTreadDepth} unit="in" min={9} max={14} />
+                <InputField label="Stair Width" value={stairWidth} onChange={setStairWidth} unit="in" min={24} max={60} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Number of Risers" value={fmtInt(result.risers)} />
+                <ResultRow label="Actual Riser Height" value={fmt(result.actualRiser, 2)} unit="in" />
+                <ResultRow label="Number of Treads" value={fmtInt(result.treads)} />
+                <ResultRow label="Total Run" value={fmt(result.totalRun)} unit="in" />
+                <ResultRow label="Stringer Length" value={fmt(result.stringerLength, 1)} unit="ft" />
+                <ResultRow label="Stringers Needed" value={fmtInt(result.numStringers)} />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 86. WATERPROOFING MEMBRANE CALCULATOR ──────────── */
+function WaterproofingMembraneCalc() {
+    const [areaLength, setAreaLength] = useState(30);
+    const [areaHeight, setAreaHeight] = useState(8);
+    const [membraneType, setMembraneType] = useState("sheet");
+
+    const ROLL_COVERAGE: Record<string, number> = {
+        "sheet": 200, "liquid": 100, "peel-stick": 75,
+    };
+
+    const result = useMemo(() => {
+        const area = areaLength * areaHeight;
+        const withOverlap = area * 1.15;
+        const coverage = ROLL_COVERAGE[membraneType] || 200;
+        const rolls = Math.ceil(withOverlap / coverage);
+        const seamTape = Math.ceil(areaLength * 1.5); // seam tape estimate
+        return { area, withOverlap, rolls, seamTape, coverage };
+    }, [areaLength, areaHeight, membraneType]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">💧 Waterproofing Membrane Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Wall/Area Length" value={areaLength} onChange={setAreaLength} unit="ft" min={4} />
+                <InputField label="Wall/Area Height" value={areaHeight} onChange={setAreaHeight} unit="ft" min={2} />
+                <SelectField label="Membrane Type" value={membraneType} onChange={setMembraneType} options={[
+                    { value: "sheet", label: "Sheet Membrane (200 sq ft/roll)" },
+                    { value: "liquid", label: "Liquid Applied (100 sq ft/gal)" },
+                    { value: "peel-stick", label: "Peel & Stick (75 sq ft/roll)" },
+                ]} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Surface Area" value={fmt(result.area)} unit="sq ft" />
+                <ResultRow label="With 15% Overlap" value={fmt(result.withOverlap)} unit="sq ft" />
+                <ResultRow label="Rolls/Units Needed" value={fmtInt(result.rolls)} />
+                <ResultRow label="Seam Tape" value={fmtInt(result.seamTape)} unit="lin ft" />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 87. WEEP SCREED CALCULATOR ──────────── */
+function WeepScreedCalc() {
+    const [perimeter, setPerimeter] = useState(120);
+    const [pieceLength, setPieceLength] = useState(10);
+    const [overlap, setOverlap] = useState(2);
+
+    const result = useMemo(() => {
+        const effectiveLength = pieceLength - overlap / 12;
+        const pieces = Math.ceil(perimeter / effectiveLength);
+        const totalLength = pieces * pieceLength;
+        const nails = pieces * 6; // ~6 nails per piece
+        return { pieces, totalLength, nails, effectiveLength };
+    }, [perimeter, pieceLength, overlap]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">🏗️ Weep Screed Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Wall Perimeter" value={perimeter} onChange={setPerimeter} unit="ft" min={10} />
+                <InputField label="Piece Length" value={pieceLength} onChange={setPieceLength} unit="ft" min={8} max={12} />
+                <InputField label="Overlap per Joint" value={overlap} onChange={setOverlap} unit="in" min={1} max={4} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Pieces Needed" value={fmtInt(result.pieces)} unit="pcs" />
+                <ResultRow label="Total Stock Length" value={fmt(result.totalLength)} unit="lin ft" />
+                <ResultRow label="Nails Needed" value={fmtInt(result.nails)} />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 88. BOARD FOOT CALCULATOR ──────────── */
+function BoardFootCalc() {
+    const [thickness, setThickness] = useState(2);
+    const [widthIn, setWidthIn] = useState(6);
+    const [lengthFt, setLengthFt] = useState(8);
+    const [qty, setQty] = useState(10);
+    const [pricePerBf, setPricePerBf] = useState(5);
+
+    const result = useMemo(() => {
+        const bfPerPiece = (thickness * widthIn * lengthFt) / 12;
+        const totalBf = bfPerPiece * qty;
+        const totalCost = totalBf * pricePerBf;
+        return { bfPerPiece, totalBf, totalCost };
+    }, [thickness, widthIn, lengthFt, qty, pricePerBf]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">🪵 Board Foot Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Thickness" value={thickness} onChange={setThickness} unit="in" min={1} max={16} />
+                <InputField label="Width" value={widthIn} onChange={setWidthIn} unit="in" min={2} max={16} />
+                <InputField label="Length" value={lengthFt} onChange={setLengthFt} unit="ft" min={4} max={20} />
+                <InputField label="Quantity" value={qty} onChange={setQty} min={1} max={500} />
+                <InputField label="Price per BF" value={pricePerBf} onChange={setPricePerBf} unit="$" min={1} max={50} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="BF per Piece" value={fmt(result.bfPerPiece, 2)} unit="BF" />
+                <ResultRow label="Total Board Feet" value={fmt(result.totalBf, 1)} unit="BF" />
+                <ResultRow label="Total Cost" value={`$${fmt(result.totalCost)}`} />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 89. CONCRETE BEAM CALCULATOR ──────────── */
+function ConcreteBeamCalc() {
+    const [beamLength, setBeamLength] = useState(20);
+    const [beamWidth, setBeamWidth] = useState(12);
+    const [beamDepth, setBeamDepth] = useState(18);
+    const [numBeams, setNumBeams] = useState(2);
+
+    const result = useMemo(() => {
+        const widthFt = beamWidth / 12;
+        const depthFt = beamDepth / 12;
+        const cuFtEach = beamLength * widthFt * depthFt;
+        const totalCuFt = cuFtEach * numBeams;
+        const cuYd = totalCuFt / 27;
+        const bags80 = Math.ceil(totalCuFt / 0.6);
+        const rebarLf = beamLength * numBeams * 4; // 4 longitudinal bars per beam
+        return { cuFtEach, totalCuFt, cuYd, bags80, rebarLf };
+    }, [beamLength, beamWidth, beamDepth, numBeams]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">🏗️ Concrete Beam Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Beam Length" value={beamLength} onChange={setBeamLength} unit="ft" min={4} />
+                <InputField label="Beam Width" value={beamWidth} onChange={setBeamWidth} unit="in" min={6} max={36} />
+                <InputField label="Beam Depth" value={beamDepth} onChange={setBeamDepth} unit="in" min={8} max={48} />
+                <InputField label="Number of Beams" value={numBeams} onChange={setNumBeams} min={1} max={20} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Volume per Beam" value={fmt(result.cuFtEach)} unit="cu ft" />
+                <ResultRow label="Total Volume" value={fmt(result.totalCuFt)} unit="cu ft" />
+                <ResultRow label="Cubic Yards" value={fmt(result.cuYd, 2)} unit="cu yd" />
+                <ResultRow label="80 lb Bags" value={fmtInt(result.bags80)} unit="bags" />
+                <ResultRow label="Rebar (4 bars)" value={fmtInt(result.rebarLf)} unit="lin ft" />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 90. DOWNSPOUT CALCULATOR ──────────── */
+function DownspoutCalc() {
+    const [roofArea, setRoofArea] = useState(1200);
+    const [wallHeight, setWallHeight] = useState(9);
+    const [extensionLength, setExtensionLength] = useState(4);
+
+    const result = useMemo(() => {
+        // 1 downspout per 600 sq ft of roof area (standard rule)
+        const numDownspouts = Math.ceil(roofArea / 600);
+        const downspoutLength = wallHeight + 1; // wall height + 1 ft for top elbow
+        const totalDownspoutLf = downspoutLength * numDownspouts;
+        const elbows = numDownspouts * 2; // top and bottom elbows
+        const extensions = numDownspouts;
+        const totalExtensionLf = extensionLength * numDownspouts;
+        return { numDownspouts, downspoutLength, totalDownspoutLf, elbows, extensions, totalExtensionLf };
+    }, [roofArea, wallHeight, extensionLength]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">🌧️ Downspout Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Roof Area" value={roofArea} onChange={setRoofArea} unit="sq ft" min={200} />
+                <InputField label="Wall Height" value={wallHeight} onChange={setWallHeight} unit="ft" min={6} max={30} />
+                <InputField label="Extension Length" value={extensionLength} onChange={setExtensionLength} unit="ft" min={2} max={10} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Downspouts Needed" value={fmtInt(result.numDownspouts)} />
+                <ResultRow label="Length Each" value={fmt(result.downspoutLength, 1)} unit="ft" />
+                <ResultRow label="Total Downspout" value={fmt(result.totalDownspoutLf)} unit="lin ft" />
+                <ResultRow label="Elbows" value={fmtInt(result.elbows)} unit="pcs" />
+                <ResultRow label="Extension Total" value={fmt(result.totalExtensionLf)} unit="lin ft" />
+            </div>
+        </div>
+    );
+}
+
 /* ──────────── DISPATCHER ──────────── */
 const CALC_MAP: Record<string, React.FC> = {
     "concrete": ConcreteCalc,
@@ -3491,6 +3859,16 @@ const CALC_MAP: Record<string, React.FC> = {
     "grout": GroutCalc,
     "concrete-patio": ConcretePatioCalc,
     "roof-underlayment": RoofUnderlaymentCalc,
+    "anchor-bolt": AnchorBoltCalc,
+    "brick-veneer": BrickVeneerCalc,
+    "concrete-washout": ConcreteWashoutCalc,
+    "ridge-vent": RidgeVentCalc,
+    "stair-stringer": StairStringerCalc,
+    "waterproofing-membrane": WaterproofingMembraneCalc,
+    "weep-screed": WeepScreedCalc,
+    "board-foot": BoardFootCalc,
+    "concrete-beam": ConcreteBeamCalc,
+    "downspout": DownspoutCalc,
 };
 
 export default function ConstructionCalculatorCore({ calcType }: { calcType: string }) {
