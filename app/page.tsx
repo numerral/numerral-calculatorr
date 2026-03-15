@@ -1,5 +1,5 @@
 // Homepage — / (Server Component)
-// Redesigned 7-Section Layout — Inch Calculator Inspired
+// Redesigned 7-Section Layout — Universal Calculator Platform
 
 import type { Metadata } from "next";
 import Script from "next/script";
@@ -17,11 +17,11 @@ import { canonicalUrl } from "@/lib/seo";
 import { SITE_NAME, SITE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: `Free Online Calculators — Loan, Investment, Tax & More | ${SITE_NAME}`,
+  title: `346+ Free Online Calculators — Finance, Construction, Health & More | ${SITE_NAME}`,
   description:
-    "India's smartest calculator platform. 50+ free online calculators for loan EMI, SIP returns, income tax, and more. Instant results, bank-grade accuracy.",
+    "Numerral offers 346+ free online calculators across finance, construction, health, EV, and everyday math. Instant results, transparent formulas, zero data collection. Available in 6 languages.",
   keywords:
-    "finance calculators, online financial calculators, free finance tools, loan calculator, SIP calculator, tax calculator India",
+    "online calculators, free calculators, loan EMI calculator, SIP calculator, construction calculator, BMI calculator, EV calculator, tax calculator, health calculator, financial calculator, compound interest calculator, mortgage calculator",
   alternates: { canonical: canonicalUrl("/") },
 };
 
@@ -43,7 +43,7 @@ const orgSchema = JSON.stringify({
   name: SITE_NAME,
   url: SITE_URL,
   description:
-    "India's smartest financial calculator platform — instant EMI, SIP, tax, and investment calculations.",
+    "Free online calculator platform with 346+ tools covering loan EMI, investment returns, income tax, construction material estimation, health metrics, EV cost analysis, and everyday math. Available in 6 languages.",
   sameAs: [],
 });
 
@@ -51,47 +51,43 @@ const homepageFaqs = [
   {
     question: "What is Numerral?",
     answer:
-      "Numerral is India's smartest financial calculator platform. It provides 50+ free calculators for loan EMI, investment returns, income tax, and everyday utilities — all with instant, accurate results.",
+      "Numerral is a free online calculator platform with 346+ calculators across 10 categories — including finance (loan EMI, SIP, FD, tax), construction (concrete, lumber, roofing, flooring), health (BMI, TDEE, calories, body fat), electric vehicles (charging cost, range, TCO), and everyday utility tools. All calculators produce instant results using standard, transparent formulas.",
   },
   {
-    question: "Are the calculators on Numerral free?",
+    question: "How many calculators does Numerral have?",
     answer:
-      "Yes, all calculators on Numerral are 100% free to use. There are no hidden charges, sign-ups, or limits on usage.",
+      "Numerral currently offers 346+ calculators organized into 10 categories: Loan Calculators (23), Investment Calculators (17), Tax Calculators (8), Utility Calculators (8), Salary Calculators (6), Business Calculators (13), Time & Date Calculators (15), Construction Calculators (162), EV Calculators (22), and Health Calculators (72). New calculators are added regularly.",
   },
   {
-    question: "How accurate are Numerral's financial calculators?",
+    question: "Are all calculators on Numerral free to use?",
     answer:
-      "Our calculators use the same standard financial formulas used by banks and financial institutions — such as the reducing balance EMI formula, compound interest formula, and Income Tax Act slabs for FY 2025-26.",
+      "Yes. Every calculator on Numerral is 100% free with no sign-up, no account required, and no usage limits. There are no hidden fees or premium tiers.",
   },
   {
-    question: "Can I use Numerral on mobile?",
+    question: "What formulas do Numerral calculators use?",
     answer:
-      "Absolutely. Numerral is fully responsive and works on all devices — smartphones, tablets, and desktops. No app download required.",
+      "Each calculator uses industry-standard formulas. Loan EMI calculators use the reducing balance amortization formula. Investment calculators use compound interest and XIRR. Health calculators use peer-reviewed equations such as Mifflin-St Jeor for BMR and the standard BMI formula (weight in kg ÷ height in m²). Construction calculators use material estimation formulas based on dimensional analysis and industry waste factors.",
   },
   {
-    question: "What types of calculators does Numerral offer?",
+    question: "Does Numerral store my data?",
     answer:
-      "Numerral offers Loan Calculators (Car, Home, Personal, Education, Bike EMI), Investment Calculators (SIP, FD, RD, PPF, NPS, Mutual Fund), Tax Calculators (Income Tax, GST, HRA, TDS, Capital Gains), Salary Calculators, Business Calculators, and Utility Calculators (Age, Percentage, Compound Interest, BMI, and more).",
+      "No. All calculations run entirely in your browser using client-side JavaScript. Numerral does not collect, store, transmit, or share any data you enter into any calculator. There are no cookies tracking your inputs.",
   },
   {
-    question: "How is EMI calculated?",
+    question: "What languages is Numerral available in?",
     answer:
-      "EMI is calculated using the reducing balance formula: EMI = P × r × (1+r)^n / ((1+r)^n – 1), where P is principal, r is monthly interest rate, and n is number of months.",
+      "Numerral is available in 6 languages: English, Arabic (العربية), Chinese (中文), German (Deutsch), Indonesian (Bahasa Indonesia), and Turkish (Türkçe). Each version is fully localized with native-language content and culturally relevant calculator configurations.",
   },
   {
-    question: "Does Numerral store my financial data?",
+    question: "Can I use Numerral on my phone?",
     answer:
-      "No. All calculations happen in your browser. We do not collect, store, or share any financial data you enter into our calculators.",
+      "Yes. Numerral is a fully responsive web application that works on smartphones, tablets, and desktops. No app download required — open numerral.com in any modern browser to access all 346+ calculators instantly.",
   },
-];
-
-const trustBrands = [
-  "Economic Times",
-  "Mint",
-  "Business Standard",
-  "NDTV Profit",
-  "MoneyControl",
-  "The Hindu",
+  {
+    question: "How accurate are the construction calculators?",
+    answer:
+      "Numerral's 162 construction calculators use standard material estimation formulas with configurable waste factors. They cover concrete volume, lumber board feet, roofing squares, flooring coverage, drywall sheets, paint area, gravel tonnage, insulation R-value, and 150+ other building project types. Results match industry estimating practices used by contractors and builders.",
+  },
 ];
 
 export default function HomePage() {
@@ -109,6 +105,9 @@ export default function HomePage() {
 
   // Featured calculator
   const featuredCalc = allCalcs.find((c) => c.id === "home-loan-emi") || allCalcs[0];
+
+  // Total calculator count
+  const totalCalcs = allCalcs.length;
 
   return (
     <main>
@@ -130,7 +129,7 @@ export default function HomePage() {
             Find Your <span className="text-gradient">Calculator</span>
           </h1>
           <p className="hp-hero__subtitle">
-            Explore <strong>50+ free calculators</strong> designed to help solve everyday problems quickly and easily.
+            Explore <strong>{totalCalcs}+ free calculators</strong> for finance, construction, health, electric vehicles, and everyday math — instant results, zero sign-up.
           </p>
           <HomeSearchBar calculators={searchCalcs} />
         </div>
@@ -154,14 +153,15 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ─── 3. TRUST BAR ─── */}
+      {/* ─── 3. PLATFORM STATS ─── */}
       <section className="hp-trust">
         <div className="hp-trust__inner container">
-          <p className="hp-trust__label">Featured In</p>
           <div className="hp-trust__logos">
-            {trustBrands.map((brand) => (
-              <span key={brand} className="hp-trust__brand">{brand}</span>
-            ))}
+            <span className="hp-trust__brand"><strong>{totalCalcs}+</strong> Calculators</span>
+            <span className="hp-trust__brand"><strong>10</strong> Categories</span>
+            <span className="hp-trust__brand"><strong>6</strong> Languages</span>
+            <span className="hp-trust__brand"><strong>0</strong> Data Collected</span>
+            <span className="hp-trust__brand"><strong>100%</strong> Free</span>
           </div>
         </div>
       </section>
@@ -186,14 +186,18 @@ export default function HomePage() {
         <h2 className="hp-about__title">About Numerral</h2>
         <div className="hp-about__content">
           <p>
-            Numerral provides free, accurate, and instant financial calculators trusted by millions of users across India.
-            Our tools use the same standard financial formulas used by banks and financial institutions — including
-            reducing balance EMI, compound interest, and the latest FY 2025-26 income tax slabs.
+            Numerral is a free online calculator platform offering {totalCalcs}+ tools across 10 specialized categories.
+            Our finance calculators use the reducing balance EMI formula, compound interest computation, XIRR for 
+            irregular cash flows, and current FY 2025-26 Indian income tax slabs. Construction calculators cover 
+            material estimation for concrete volume, lumber board feet, roofing squares, flooring coverage, 
+            insulation R-value, and 150+ building project types with configurable waste factors.
           </p>
           <p>
-            All calculations happen locally in your browser. We never store, collect, or share your financial data.
-            Whether you&apos;re planning a home loan, estimating SIP returns, computing income tax, or converting units — 
-            Numerral provides precise results instantly on any device with no sign-up required.
+            Health calculators compute BMI, basal metabolic rate (BMR) via Mifflin-St Jeor and Harris-Benedict 
+            equations, total daily energy expenditure (TDEE), body fat percentage, macro distribution, calorie 
+            targets, and pregnancy due dates. EV calculators compare electric vs. gasoline total cost of ownership, 
+            estimate per-kWh charging costs, project battery degradation, and calculate fuel savings over time. 
+            Every calculation runs in your browser — Numerral collects zero user data.
           </p>
         </div>
         <div className="hp-about__features">
@@ -201,28 +205,28 @@ export default function HomePage() {
             <span className="hp-about__feature-icon">⚡</span>
             <div>
               <strong>Instant Results</strong>
-              <p>Real-time calculations as you adjust inputs. No page reloads.</p>
+              <p>Real-time calculations as you adjust inputs. No page reloads or server round-trips.</p>
             </div>
           </div>
           <div className="hp-about__feature">
             <span className="hp-about__feature-icon">🔒</span>
             <div>
               <strong>100% Private</strong>
-              <p>All computations run in your browser. Zero data stored.</p>
+              <p>All computation runs client-side in your browser. Zero data stored or transmitted.</p>
             </div>
           </div>
           <div className="hp-about__feature">
             <span className="hp-about__feature-icon">🎯</span>
             <div>
-              <strong>Bank-Grade Accuracy</strong>
-              <p>Same formulas used by banks, CAs, and financial institutions.</p>
+              <strong>Transparent Formulas</strong>
+              <p>Every calculator uses documented, standard formulas — the same used by professionals in each field.</p>
             </div>
           </div>
           <div className="hp-about__feature">
-            <span className="hp-about__feature-icon">📱</span>
+            <span className="hp-about__feature-icon">🌐</span>
             <div>
-              <strong>Works Everywhere</strong>
-              <p>Fully responsive on mobile, tablet, and desktop. No app needed.</p>
+              <strong>Available in 6 Languages</strong>
+              <p>Fully localized in English, Arabic, Chinese, German, Indonesian, and Turkish.</p>
             </div>
           </div>
         </div>
@@ -232,7 +236,7 @@ export default function HomePage() {
       <section className="hp-popular container">
         <h2 className="hp-popular__heading">Popular Calculators</h2>
         <p className="hp-popular__subheading">
-          Choose a category below to find calculators for loans, investments, tax, and more.
+          Browse {totalCalcs}+ calculators across finance, construction, health, EV, and everyday math.
         </p>
 
         <div className="hp-popular__categories">

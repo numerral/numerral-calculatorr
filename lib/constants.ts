@@ -1,7 +1,7 @@
 // Site-wide constants
 
 export const SITE_NAME = "Numerral";
-export const SITE_TAGLINE = "India's smartest calculator platform";
+export const SITE_TAGLINE = "Free online calculator platform";
 export const SITE_URL = "https://www.numerral.com";
 
 export const DEFAULT_SLIDER_RANGES = {
