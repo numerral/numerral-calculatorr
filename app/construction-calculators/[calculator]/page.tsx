@@ -1089,6 +1089,156 @@ const HUB_CONTENT: Record<string, {
             { question: "How wide should a utility trench be?", answer: "Water lines: 12-18 inches. Sewer pipes: pipe diameter + 12 inches. Electrical conduit: 6–12 inches. Gas lines: 12–18 inches. Wider trenches are easier to work in but require more backfill. Bell holes are needed at pipe joints." },
         ],
     },
+    "concrete-driveway-calculator": {
+        subtitle: "Calculate concrete volume for a new driveway. Get cubic yards, bag count, and ready-mix cost estimate.",
+        explanation: {
+            heading: "How to Calculate Concrete for a Driveway",
+            paragraphs: [
+                "Driveway concrete volume = length × width × thickness. Standard residential driveway thickness is 4–5 inches for passenger cars and 5–6 inches for heavy vehicles. Always order 10% extra for waste, subgrade variations, and over-excavation.",
+                "A two-car driveway is typically 20–24 feet wide. Single-car driveways are 10–12 feet wide. Include aprons, turnarounds, and walkways in your calculations. Ready-mix concrete costs $120–$160 per cubic yard delivered.",
+            ],
+            highlight: "A 40×12 ft driveway at 5 inches thick: volume = 200 cu ft = 7.41 cu yd. Order 8.15 cu yd (+10%). At $130/yd, ready-mix cost ≈ $1,060.",
+        },
+        faq: [
+            { question: "How thick should a concrete driveway be?", answer: "Passenger cars: 4 inches minimum, 5 inches recommended. Heavy vehicles (RVs, trucks): 5–6 inches. Commercial: 6–8 inches. Always pour on 4 inches of compacted gravel base. Thicken edges to 6 inches for support." },
+            { question: "How much does a concrete driveway cost?", answer: "Materials: $8–$12 per sq ft for basic broom finish. Stamped or colored: $12–$20 per sq ft. Professional installation adds $3–$8 per sq ft for labor. A 40×12 ft driveway: $4,000–$8,000 total installed." },
+        ],
+    },
+    "shingle-calculator": {
+        subtitle: "Calculate roofing shingle bundles needed for your roof. Enter dimensions, pitch, and waste factor.",
+        explanation: {
+            heading: "How to Calculate Roofing Shingles",
+            paragraphs: [
+                "Roofing is measured in squares — one square = 100 sq ft. Standard 3-tab shingles come 3 bundles per square. Architectural shingles may require 4–5 bundles per square. Account for roof pitch using the pitch multiplier.",
+                "Add 10–15% waste for valleys, hips, ridges, and starter courses. Complex roofs with many valleys and dormers waste more material. Ridge cap shingles are sold separately — plan 1 bundle per 20–35 linear feet of ridge.",
+            ],
+            highlight: "A 30×24 ft gable roof at 6/12 pitch: flat area = 720 sq ft × 1.118 = 805 sq ft + 10% = 886 sq ft = 8.9 squares = 27 bundles of 3-tab shingles.",
+        },
+        faq: [
+            { question: "How many bundles of shingles per square?", answer: "3-tab shingles: 3 bundles per square. Architectural/dimensional: 3–5 bundles per square (varies by brand). Check the coverage listed on each bundle — it ranges from 25 to 33.3 sq ft per bundle." },
+            { question: "How long do shingles last?", answer: "3-tab shingles: 15–20 years. Architectural/dimensional: 25–30 years. Premium architectural: 30–50 years. Metal roofing: 40–70 years. Lifespan depends on ventilation, sun exposure, and climate." },
+        ],
+    },
+    "caulk-calculator": {
+        subtitle: "Calculate caulk tubes needed for sealing joints. Enter joint length, width, and depth for tube count.",
+        explanation: {
+            heading: "How to Calculate Caulk Quantity",
+            paragraphs: [
+                "Caulk volume = joint length × width × depth. A standard 10.3 oz cartridge contains about 18.8 cubic inches of caulk. Squeeze tubes (5.5 oz) contain about 10 cubic inches. Calculate the joint cross-section and multiply by total length.",
+                "For joints wider than 1/2 inch, use backer rod to fill the gap first, then caulk. The ideal caulk joint is wider than it is deep — a 2:1 width-to-depth ratio provides the best adhesion and flexibility.",
+            ],
+            highlight: "50 ft of 1/4 × 1/4 inch joints: volume = 600 × 0.25 × 0.25 = 37.5 cu in ÷ 18.8 = 2 tubes of 10.3 oz caulk.",
+        },
+        faq: [
+            { question: "How much does a tube of caulk cover?", answer: "A 10.3 oz tube covers: 1/8 inch bead = 96 lin ft. 1/4 inch bead = 48 lin ft. 3/8 inch bead = 24 lin ft. 1/2 inch bead = 12 lin ft. Joint depth matters too — deeper joints use more caulk per foot." },
+            { question: "What type of caulk should I use?", answer: "Exterior/windows: polyurethane or silicone. Bathrooms: 100% silicone (mold-resistant). Interior trim: acrylic latex (paintable). Concrete: polyurethane. Roof: roofing sealant. Never use silicone where you plan to paint." },
+        ],
+    },
+    "gable-wall-calculator": {
+        subtitle: "Calculate gable wall area for siding, sheathing, or framing. Enter base width and peak height.",
+        explanation: {
+            heading: "How to Calculate Gable Wall Area",
+            paragraphs: [
+                "A gable wall is the triangular end wall of a building where the roof slopes meet. Area = (base × height) / 2. Most homes have two gable ends. Include gable area in your siding, sheathing, and painting calculations.",
+                "For siding coverage, add 10% waste for cutting triangular pieces. For sheathing (4×8 sheets), divide the total area by 32 sq ft per sheet. Gable vents, if present, reduce the area slightly.",
+            ],
+            highlight: "Two gable ends, 24 ft base × 8 ft peak: area each = 96 sq ft. Total = 192 sq ft. Sheathing: 6 sheets. Siding (+10%): 211 sq ft.",
+        },
+        faq: [
+            { question: "How do I frame a gable wall?", answer: "Frame the gable wall on top of the end wall, using 2×4 or 2×6 studs on 16-inch centers. Cut each stud to follow the roof slope. A ridge board runs across the top. Use a template or layout the angle on the bottom plate." },
+            { question: "Should I vent gable walls?", answer: "Gable vents help ventilate attics when used alone or with soffit vents. However, mixing gable vents with ridge vents can cause short-circuiting of airflow. The best system is continuous soffit vents + ridge vent (no gable vents)." },
+        ],
+    },
+    "deck-board-calculator": {
+        subtitle: "Calculate deck boards needed for your deck surface. Enter dimensions, board width, and gap spacing.",
+        explanation: {
+            heading: "How to Calculate Deck Boards",
+            paragraphs: [
+                "Count deck boards by dividing the deck width by the board width plus gap. Standard composite boards are 5.5 inches wide with a 1/8-inch gap. Wood boards (5/4×6) are 5.5 inches actual width. Always run boards perpendicular to joists.",
+                "Each board needs 2 screws at every joist crossing (typically 16-inch centers). For a 16 ft board crossing joists at 16 inches, that is about 24 screws per board. Hidden fastener systems use 1 clip per joist per board.",
+            ],
+            highlight: "A 16×12 ft deck with 5.5-inch boards and 1/8-inch gap: 26 boards × 16 ft = 416 lin ft. About 1,248 deck screws.",
+        },
+        faq: [
+            { question: "How far apart should deck boards be?", answer: "Wood boards: 1/8 to 1/4 inch gap for drainage and expansion. Composite boards: follow manufacturer specs (usually 1/8 inch side-to-side, 1/8 to 3/16 inch end-to-end). In hot climates, allow slightly more for thermal expansion." },
+            { question: "Wood or composite decking?", answer: "Wood (pressure-treated): $2–$4/lin ft, requires annual maintenance, 10–15 year lifespan. Composite: $5–$12/lin ft, minimal maintenance, 25–50 year warranty. PVC: $8–$14/lin ft, no moisture absorption, best for pool decks." },
+        ],
+    },
+    "mortar-bed-calculator": {
+        subtitle: "Calculate mortar for tile or stone setting beds. Enter area, bed thickness, and mortar type for bag count.",
+        explanation: {
+            heading: "How to Calculate Mortar Bed Material",
+            paragraphs: [
+                "Mortar bed thickness determines the type: thinset (1/4 inch or less) for flat surfaces, medium-bed (1/4 to 3/4 inch) for slight leveling, and thick-bed/mud bed (3/4 to 1.5 inches) for significant leveling or shower pans.",
+                "A 50 lb bag of thinset covers about 95 sq ft at 1/4 inch with a 1/4×1/4 inch notched trowel. Coverage decreases proportionally with thicker applications. Large-format tiles (over 15 inches) require back-buttering.",
+            ],
+            highlight: "A 50 sq ft shower floor with 3/4-inch thick mud bed: coverage per bag ≈ 8 sq ft. Need about 7 bags of 50 lb mortar = 350 lbs.",
+        },
+        faq: [
+            { question: "How thick should a mortar bed be?", answer: "Thinset: 3/16 to 1/4 inch for flat substrates. Medium-bed: 1/4 to 3/4 inch for slight unevenness. Thick bed (mud bed): 3/4 to 1.5 inches for shower pans and major leveling. Never exceed the manufacturer's maximum thickness." },
+            { question: "What is the difference between thinset and mortar?", answer: "Thinset is a thin-layer Portland cement adhesive for tile. Mortar (mud) is a thicker sand-cement mix for setting beds and leveling. Use thinset for most tile work. Use a mud bed for shower floors, large-format stone, and uneven substrates." },
+        ],
+    },
+    "window-trim-calculator": {
+        subtitle: "Calculate window trim (casing) needed for all windows. Enter window sizes and quantity for total linear feet.",
+        explanation: {
+            heading: "How to Calculate Window Trim",
+            paragraphs: [
+                "Window trim perimeter = 2 × (width + height) for each window. Multiply by the number of windows for total linear feet. Add 10% for waste from miter cuts at corners. Standard window casing is 2.25 to 3.5 inches wide.",
+                "For picture-frame style casing (trim on all 4 sides), calculate the full perimeter. For traditional casing with a sill/stool, calculate 3 sides (top and both sides) plus the sill and apron separately.",
+            ],
+            highlight: "Eight windows at 36×48 inches: perimeter each = 14 ft. Total = 112 ft + 10% = 123 ft. That is 16 pieces of 8 ft trim.",
+        },
+        faq: [
+            { question: "What width window casing should I use?", answer: "2.25 inch: standard builder-grade. 3.25 inch: popular upgrade. 3.5 inch: craftsman/farmhouse style. 4.5+ inch: Victorian and ornate homes. Match the style and scale to your baseboard and crown molding." },
+            { question: "Should window casing match baseboard?", answer: "Ideally, yes. They should be the same style family and similar scale. Casing is typically the same width or slightly narrower than baseboard. Same wood species and finish create a cohesive look throughout the room." },
+        ],
+    },
+    "grout-calculator": {
+        subtitle: "Calculate grout needed for tile installations. Enter tile size, joint width, and area for pounds of grout.",
+        explanation: {
+            heading: "How to Calculate Grout",
+            paragraphs: [
+                "Grout volume depends on tile size, joint width, tile thickness, and installation area. Smaller tiles with wider joints use dramatically more grout. A 1-inch mosaic with 1/8-inch joints uses 10× more grout per sq ft than 12-inch tile.",
+                "Use unsanded grout for joints 1/8 inch or less, sanded grout for joints over 1/8 inch. Epoxy grout is recommended for wet areas and high-traffic floors. A 25 lb bag of sanded grout covers 100–200 sq ft of 12-inch tile.",
+            ],
+            highlight: "100 sq ft of 12×12 tile with 1/8-inch joints at 3/8-inch tile thickness: grout ≈ 2 lbs. One 25 lb bag is more than sufficient.",
+        },
+        faq: [
+            { question: "Sanded or unsanded grout?", answer: "Unsanded: joints 1/8 inch or narrower (polished marble, glass tile). Sanded: joints over 1/8 inch (floor tile, subway tile). Large joints (3/8+ inch): use sanded grout. Sanded grout is stronger and resists cracking in wider joints." },
+            { question: "How much grout do I mix at a time?", answer: "Mix only what you can use in 30 minutes. For most jobs, mix 5–10 lbs at a time. Work in sections of 20–30 sq ft. Keep the consistency of smooth peanut butter. Do not add water to grout that has begun to set — discard it." },
+        ],
+    },
+    "concrete-patio-calculator": {
+        subtitle: "Calculate concrete for a patio with finish style options. Get volume, bags, and finish cost estimate.",
+        explanation: {
+            heading: "How to Calculate Concrete for a Patio",
+            paragraphs: [
+                "Patio concrete volume = length × width × thickness. Standard patio thickness is 4 inches. The base should be 4 inches of compacted gravel. Include control joints every 8–10 feet to prevent random cracking.",
+                "Finish options significantly affect cost: broom finish ($8/sq ft installed), exposed aggregate ($10/sq ft), colored/stained ($12/sq ft), and stamped concrete ($15+/sq ft). Stamped patios can mimic stone, brick, or slate.",
+            ],
+            highlight: "A 16×12 ft patio at 4 inches thick: 64 cu ft = 2.37 cu yd. Order 2.6 cu yd (+10%). Stamped finish: $192 × $15 = $2,880.",
+        },
+        faq: [
+            { question: "How thick should a concrete patio be?", answer: "4 inches for foot traffic and patio furniture. 5–6 inches if supporting hot tubs, fire pits, or outdoor kitchens. Always pour on 4 inches of compacted gravel with proper drainage slope (1/4 inch per foot away from the house)." },
+            { question: "How long until I can use my new patio?", answer: "Light foot traffic: 24–48 hours. Furniture placement: 3–5 days. Full use: 7 days. Full strength: 28 days. Keep the concrete moist for the first 7 days for proper curing. Do not apply sealers for at least 28 days." },
+        ],
+    },
+    "roof-underlayment-calculator": {
+        subtitle: "Calculate roof underlayment (felt or synthetic) needed. Enter roof area, pitch, and overlap for rolls required.",
+        explanation: {
+            heading: "How to Calculate Roof Underlayment",
+            paragraphs: [
+                "Roof underlayment goes under shingles as a secondary moisture barrier. Calculate total roof area using the pitch multiplier, then add 15% for horizontal and vertical overlaps. Standard overlap: 4 inches horizontal, 6 inches at end laps.",
+                "Types: #15 felt (400 sq ft/roll), #30 felt (200 sq ft/roll), synthetic (1,000 sq ft/roll), and self-adhered ice & water shield (75 sq ft/roll). Ice shield is required in the first 3 feet of eaves in cold climates.",
+            ],
+            highlight: "A 30×24 ft roof at 6/12 pitch: actual area = 805 sq ft + 15% overlap = 926 sq ft. Synthetic: 1 roll. #15 felt: 3 rolls. #30 felt: 5 rolls.",
+        },
+        faq: [
+            { question: "Do I need synthetic or felt underlayment?", answer: "Synthetic: stronger, lighter, UV-resistant (can be exposed longer during construction), lays flat. More expensive. Felt (#15 or #30): traditional, affordable, breathable. Use #30 for steeper roofs and higher wind zones. Code may dictate the minimum." },
+            { question: "Where do I need ice and water shield?", answer: "Code requires it from the eave edge to at least 24 inches past the interior wall line. In cold climates, this is typically the first 3–6 feet. Also apply at valleys, around chimneys, skylights, and any roof penetration. It is self-adhering and waterproof." },
+        ],
+    },
 };
 
 export default async function ConstructionCalculatorHubPage({ params }: PageProps) {

@@ -3029,6 +3029,386 @@ function TrenchFillCalc() {
     );
 }
 
+/* ──────────── 71. CONCRETE DRIVEWAY CALCULATOR ──────────── */
+function ConcreteDrivewayCalc() {
+    const [length, setLength] = useState(40);
+    const [width, setWidth] = useState(12);
+    const [thickness, setThickness] = useState(5);
+    const [pricePerYd, setPricePerYd] = useState(130);
+
+    const result = useMemo(() => {
+        const thickFt = thickness / 12;
+        const cuFt = length * width * thickFt;
+        const cuYd = cuFt / 27;
+        const cuYdWithWaste = cuYd * 1.1;
+        const bags80 = cuFt / 0.6;
+        const readyMixCost = cuYdWithWaste * pricePerYd;
+        return { cuFt, cuYd, cuYdWithWaste, bags80, readyMixCost };
+    }, [length, width, thickness, pricePerYd]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">🚗 Concrete Driveway Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Length" value={length} onChange={setLength} unit="ft" min={10} />
+                <InputField label="Width" value={width} onChange={setWidth} unit="ft" min={8} />
+                <InputField label="Thickness" value={thickness} onChange={setThickness} unit="in" min={4} max={8} />
+                <InputField label="Ready-Mix Price" value={pricePerYd} onChange={setPricePerYd} unit="$/yd" min={0} step={10} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Volume" value={fmt(result.cuYd, 2)} unit="cu yd" />
+                <ResultRow label="Order (+10% waste)" value={fmt(result.cuYdWithWaste, 2)} unit="cu yd" />
+                <ResultRow label="80 lb Bags" value={fmtInt(result.bags80)} unit="bags" />
+                <ResultRow label="Ready-Mix Cost" value={`$${fmt(result.readyMixCost)}`} />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 72. SHINGLE CALCULATOR ──────────── */
+function ShingleCalc() {
+    const [roofLength, setRoofLength] = useState(30);
+    const [roofWidth, setRoofWidth] = useState(24);
+    const [pitch, setPitch] = useState(6);
+    const [waste, setWaste] = useState(10);
+
+    const result = useMemo(() => {
+        const flatArea = roofLength * roofWidth;
+        const pitchMultiplier = Math.sqrt(1 + Math.pow(pitch / 12, 2));
+        const actualArea = flatArea * pitchMultiplier;
+        const withWaste = actualArea * (1 + waste / 100);
+        const squares = withWaste / 100;
+        const bundles = Math.ceil(squares * 3);
+        const nails = Math.ceil(withWaste * 4 / 250); // ~4 nails/shingle, 250 nails/lb
+        return { flatArea, actualArea, withWaste, squares, bundles, nails };
+    }, [roofLength, roofWidth, pitch, waste]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">🏠 Shingle Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Roof Length" value={roofLength} onChange={setRoofLength} unit="ft" min={10} />
+                <InputField label="Building Width" value={roofWidth} onChange={setRoofWidth} unit="ft" min={10} />
+                <InputField label="Roof Pitch" value={pitch} onChange={setPitch} unit="/12" min={1} max={12} />
+                <InputField label="Waste Factor" value={waste} onChange={setWaste} unit="%" min={0} max={25} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Actual Roof Area" value={fmt(result.actualArea)} unit="sq ft" />
+                <ResultRow label="Roofing Squares" value={fmt(result.squares, 1)} unit="squares" />
+                <ResultRow label="Bundles (3-tab)" value={fmtInt(result.bundles)} unit="bundles" />
+                <ResultRow label="Roofing Nails" value={fmtInt(result.nails)} unit="lbs" />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 73. CAULK CALCULATOR ──────────── */
+function CaulkCalc() {
+    const [jointLength, setJointLength] = useState(50);
+    const [jointWidth, setJointWidth] = useState(0.25);
+    const [jointDepth, setJointDepth] = useState(0.25);
+
+    const result = useMemo(() => {
+        const jointLenIn = jointLength * 12;
+        const volCuIn = jointLenIn * jointWidth * jointDepth;
+        const tubeVolCuIn = 10.3; // standard 10.3 oz cartridge ≈ 18.8 cu in
+        const tubes = Math.ceil(volCuIn / 18.8);
+        return { volCuIn, tubes };
+    }, [jointLength, jointWidth, jointDepth]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">🔧 Caulk Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Total Joint Length" value={jointLength} onChange={setJointLength} unit="ft" min={1} />
+                <InputField label="Joint Width" value={jointWidth} onChange={setJointWidth} unit="in" min={0.125} max={1} step={0.125} />
+                <InputField label="Joint Depth" value={jointDepth} onChange={setJointDepth} unit="in" min={0.125} max={1} step={0.125} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Joint Volume" value={fmt(result.volCuIn, 1)} unit="cu in" />
+                <ResultRow label="Tubes (10.3 oz)" value={fmtInt(result.tubes)} unit="tubes" />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 74. GABLE WALL CALCULATOR ──────────── */
+function GableWallCalc() {
+    const [baseWidth, setBaseWidth] = useState(24);
+    const [peakHeight, setPeakHeight] = useState(8);
+    const [numGables, setNumGables] = useState(2);
+
+    const result = useMemo(() => {
+        const areaEach = (baseWidth * peakHeight) / 2;
+        const totalArea = areaEach * numGables;
+        const sheets4x8 = Math.ceil(totalArea / 32);
+        const sidingSqFt = totalArea * 1.1; // 10% waste
+        return { areaEach, totalArea, sheets4x8, sidingSqFt };
+    }, [baseWidth, peakHeight, numGables]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">🔺 Gable Wall Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Gable Base Width" value={baseWidth} onChange={setBaseWidth} unit="ft" min={8} />
+                <InputField label="Peak Height" value={peakHeight} onChange={setPeakHeight} unit="ft" min={2} />
+                <InputField label="Number of Gables" value={numGables} onChange={setNumGables} min={1} max={6} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Area per Gable" value={fmt(result.areaEach)} unit="sq ft" />
+                <ResultRow label="Total Gable Area" value={fmt(result.totalArea)} unit="sq ft" />
+                <ResultRow label="Sheathing (4×8)" value={fmtInt(result.sheets4x8)} unit="sheets" />
+                <ResultRow label="Siding (+10%)" value={fmt(result.sidingSqFt)} unit="sq ft" />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 75. DECK BOARD CALCULATOR ──────────── */
+function DeckBoardCalc() {
+    const [deckLength, setDeckLength] = useState(16);
+    const [deckWidth, setDeckWidth] = useState(12);
+    const [boardWidth, setBoardWidth] = useState(5.5);
+    const [gap, setGap] = useState(0.125);
+
+    const result = useMemo(() => {
+        const area = deckLength * deckWidth;
+        const boardWidthFt = (boardWidth + gap) / 12;
+        const numBoards = boardWidthFt > 0 ? Math.ceil(deckWidth / boardWidthFt) : 0;
+        const totalLinFt = numBoards * deckLength;
+        const screwsPerBoard = Math.ceil(deckLength * 2); // 2 screws per joist crossing
+        const totalScrews = screwsPerBoard * numBoards;
+        const screwLbs = Math.ceil(totalScrews / 75); // ~75 screws/lb for deck screws
+        return { area, numBoards, totalLinFt, totalScrews, screwLbs };
+    }, [deckLength, deckWidth, boardWidth, gap]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">🪵 Deck Board Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Deck Length" value={deckLength} onChange={setDeckLength} unit="ft" min={4} />
+                <InputField label="Deck Width" value={deckWidth} onChange={setDeckWidth} unit="ft" min={4} />
+                <InputField label="Board Width" value={boardWidth} onChange={setBoardWidth} unit="in" min={3.5} max={7.25} step={0.25} />
+                <InputField label="Gap Between" value={gap} onChange={setGap} unit="in" min={0} max={0.25} step={0.0625} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Deck Area" value={fmt(result.area)} unit="sq ft" />
+                <ResultRow label="Boards Needed" value={fmtInt(result.numBoards)} unit="boards" />
+                <ResultRow label="Total Linear Feet" value={fmt(result.totalLinFt)} unit="lin ft" />
+                <ResultRow label="Deck Screws" value={fmt(result.totalScrews)} unit="screws" />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 76. MORTAR BED CALCULATOR ──────────── */
+function MortarBedCalc() {
+    const [area, setArea] = useState(50);
+    const [thickness, setThickness] = useState(1);
+    const [mortarType, setMortarType] = useState("thinset");
+
+    const COVERAGE: Record<string, number> = {
+        "thinset": 95, "medium-bed": 50, "thick-bed": 25,
+    };
+
+    const result = useMemo(() => {
+        const thickFactor = thickness / 0.25;
+        const coveragePerBag = (COVERAGE[mortarType] || 95) / thickFactor;
+        const bags50 = coveragePerBag > 0 ? Math.ceil(area / coveragePerBag) : 0;
+        const totalWeight = bags50 * 50;
+        return { coveragePerBag, bags50, totalWeight };
+    }, [area, thickness, mortarType]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">🧱 Mortar Bed Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Floor Area" value={area} onChange={setArea} unit="sq ft" min={1} />
+                <SelectField label="Mortar Type" value={mortarType} onChange={setMortarType} options={[
+                    { value: "thinset", label: "Thinset (1/4 inch)" },
+                    { value: "medium-bed", label: "Medium Bed (1/2 inch)" },
+                    { value: "thick-bed", label: "Thick Bed (3/4–1 inch)" },
+                ]} />
+                <InputField label="Bed Thickness" value={thickness} onChange={setThickness} unit="in" min={0.25} max={1.5} step={0.25} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Coverage/Bag" value={fmt(result.coveragePerBag, 1)} unit="sq ft" />
+                <ResultRow label="50 lb Bags" value={fmtInt(result.bags50)} unit="bags" />
+                <ResultRow label="Total Weight" value={fmt(result.totalWeight)} unit="lbs" />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 77. WINDOW TRIM CALCULATOR ──────────── */
+function WindowTrimCalc() {
+    const [windowWidth, setWindowWidth] = useState(36);
+    const [windowHeight, setWindowHeight] = useState(48);
+    const [numWindows, setNumWindows] = useState(8);
+    const [trimWidth, setTrimWidth] = useState(3.5);
+
+    const result = useMemo(() => {
+        const perimeterEach = (2 * (windowWidth + windowHeight)) / 12; // in feet
+        const totalLinFt = perimeterEach * numWindows;
+        const withWaste = totalLinFt * 1.1;
+        const pieces8ft = Math.ceil(withWaste / 8);
+        return { perimeterEach, totalLinFt, withWaste, pieces8ft };
+    }, [windowWidth, windowHeight, numWindows, trimWidth]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">🪟 Window Trim Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Window Width" value={windowWidth} onChange={setWindowWidth} unit="in" min={12} max={96} />
+                <InputField label="Window Height" value={windowHeight} onChange={setWindowHeight} unit="in" min={12} max={96} />
+                <InputField label="Number of Windows" value={numWindows} onChange={setNumWindows} min={1} max={30} />
+                <InputField label="Trim Width" value={trimWidth} onChange={setTrimWidth} unit="in" min={2} max={6} step={0.5} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Trim per Window" value={fmt(result.perimeterEach, 1)} unit="lin ft" />
+                <ResultRow label="Total Trim" value={fmt(result.totalLinFt)} unit="lin ft" />
+                <ResultRow label="With 10% Waste" value={fmt(result.withWaste)} unit="lin ft" />
+                <ResultRow label="8 ft Pieces" value={fmtInt(result.pieces8ft)} unit="pieces" />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 78. GROUT CALCULATOR ──────────── */
+function GroutCalc() {
+    const [area, setArea] = useState(100);
+    const [tileSizeIn, setTileSizeIn] = useState(12);
+    const [jointWidth, setJointWidth] = useState(0.125);
+    const [tileThickness, setTileThickness] = useState(0.375);
+
+    const result = useMemo(() => {
+        const jointVolumePerSqFt = tileSizeIn > 0
+            ? (2 * 12 / tileSizeIn) * jointWidth * tileThickness
+            : 0;
+        const totalVolCuIn = jointVolumePerSqFt * area;
+        const lbs = totalVolCuIn * 0.045; // ~0.045 lbs per cu in
+        const bags25 = Math.ceil(lbs / 25);
+        const groutType = jointWidth <= 0.125 ? "Unsanded" : "Sanded";
+        return { lbs, bags25, groutType };
+    }, [area, tileSizeIn, jointWidth, tileThickness]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">🧽 Grout Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Tile Area" value={area} onChange={setArea} unit="sq ft" min={1} />
+                <InputField label="Tile Size" value={tileSizeIn} onChange={setTileSizeIn} unit="in" min={1} max={24} />
+                <InputField label="Joint Width" value={jointWidth} onChange={setJointWidth} unit="in" min={0.0625} max={0.5} step={0.0625} />
+                <InputField label="Tile Thickness" value={tileThickness} onChange={setTileThickness} unit="in" min={0.25} max={0.75} step={0.125} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Grout Type" value={result.groutType} />
+                <ResultRow label="Grout Needed" value={fmt(result.lbs, 1)} unit="lbs" />
+                <ResultRow label="25 lb Bags" value={fmtInt(result.bags25)} unit="bags" />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 79. CONCRETE PATIO CALCULATOR ──────────── */
+function ConcretePatioCalc() {
+    const [length, setLength] = useState(16);
+    const [width, setWidth] = useState(12);
+    const [thickness, setThickness] = useState(4);
+    const [finish, setFinish] = useState("broom");
+
+    const FINISH_COST: Record<string, number> = {
+        "broom": 8, "stamped": 15, "exposed": 10, "colored": 12,
+    };
+
+    const result = useMemo(() => {
+        const thickFt = thickness / 12;
+        const area = length * width;
+        const cuFt = area * thickFt;
+        const cuYd = cuFt / 27;
+        const cuYdWithWaste = cuYd * 1.1;
+        const finishCost = area * (FINISH_COST[finish] || 8);
+        return { area, cuFt, cuYd, cuYdWithWaste, finishCost };
+    }, [length, width, thickness, finish]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">🏡 Concrete Patio Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Length" value={length} onChange={setLength} unit="ft" min={4} />
+                <InputField label="Width" value={width} onChange={setWidth} unit="ft" min={4} />
+                <InputField label="Thickness" value={thickness} onChange={setThickness} unit="in" min={3} max={8} />
+                <SelectField label="Finish Style" value={finish} onChange={setFinish} options={[
+                    { value: "broom", label: "Broom Finish" },
+                    { value: "stamped", label: "Stamped" },
+                    { value: "exposed", label: "Exposed Aggregate" },
+                    { value: "colored", label: "Colored/Stained" },
+                ]} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Patio Area" value={fmt(result.area)} unit="sq ft" />
+                <ResultRow label="Concrete" value={fmt(result.cuYd, 2)} unit="cu yd" />
+                <ResultRow label="Order (+10%)" value={fmt(result.cuYdWithWaste, 2)} unit="cu yd" />
+                <ResultRow label="Finish Cost Est." value={`$${fmt(result.finishCost)}`} />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 80. ROOF UNDERLAYMENT CALCULATOR ──────────── */
+function RoofUnderlaymentCalc() {
+    const [roofLength, setRoofLength] = useState(30);
+    const [roofWidth, setRoofWidth] = useState(24);
+    const [pitch, setPitch] = useState(6);
+    const [underlaymentType, setUnderlaymentType] = useState("synthetic");
+
+    const ROLL_COVERAGE: Record<string, number> = {
+        "15lb-felt": 400, "30lb-felt": 200, "synthetic": 1000, "ice-shield": 75,
+    };
+
+    const result = useMemo(() => {
+        const flatArea = roofLength * roofWidth;
+        const pitchMultiplier = Math.sqrt(1 + Math.pow(pitch / 12, 2));
+        const actualArea = flatArea * pitchMultiplier;
+        const withOverlap = actualArea * 1.15;
+        const rollCoverage = ROLL_COVERAGE[underlaymentType] || 1000;
+        const rolls = Math.ceil(withOverlap / rollCoverage);
+        return { flatArea, actualArea, withOverlap, rolls, rollCoverage };
+    }, [roofLength, roofWidth, pitch, underlaymentType]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">📐 Roof Underlayment Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Roof Length" value={roofLength} onChange={setRoofLength} unit="ft" min={10} />
+                <InputField label="Building Width" value={roofWidth} onChange={setRoofWidth} unit="ft" min={10} />
+                <InputField label="Roof Pitch" value={pitch} onChange={setPitch} unit="/12" min={1} max={12} />
+                <SelectField label="Underlayment Type" value={underlaymentType} onChange={setUnderlaymentType} options={[
+                    { value: "synthetic", label: "Synthetic (1,000 sq ft/roll)" },
+                    { value: "15lb-felt", label: "#15 Felt (400 sq ft/roll)" },
+                    { value: "30lb-felt", label: "#30 Felt (200 sq ft/roll)" },
+                    { value: "ice-shield", label: "Ice & Water Shield (75 sq ft/roll)" },
+                ]} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Actual Roof Area" value={fmt(result.actualArea)} unit="sq ft" />
+                <ResultRow label="With 15% Overlap" value={fmt(result.withOverlap)} unit="sq ft" />
+                <ResultRow label="Rolls Needed" value={fmtInt(result.rolls)} unit="rolls" />
+            </div>
+        </div>
+    );
+}
+
 /* ──────────── DISPATCHER ──────────── */
 const CALC_MAP: Record<string, React.FC> = {
     "concrete": ConcreteCalc,
@@ -3101,6 +3481,16 @@ const CALC_MAP: Record<string, React.FC> = {
     "baluster": BalusterCalc,
     "backsplash": BacksplashCalc,
     "trench-fill": TrenchFillCalc,
+    "concrete-driveway": ConcreteDrivewayCalc,
+    "shingle": ShingleCalc,
+    "caulk": CaulkCalc,
+    "gable-wall": GableWallCalc,
+    "deck-board": DeckBoardCalc,
+    "mortar-bed": MortarBedCalc,
+    "window-trim": WindowTrimCalc,
+    "grout": GroutCalc,
+    "concrete-patio": ConcretePatioCalc,
+    "roof-underlayment": RoofUnderlaymentCalc,
 };
 
 export default function ConstructionCalculatorCore({ calcType }: { calcType: string }) {
