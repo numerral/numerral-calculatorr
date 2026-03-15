@@ -2244,6 +2244,231 @@ const HUB_CONTENT: Record<string, {
             { question: "How do I calculate a partially filled tank?", answer: "For a vertical tank: calculate full volume, then multiply by (current fill height ÷ total height). For a horizontal cylinder, the partial volume calculation is more complex — use the measured fill height with a tank chart for your specific diameter." },
         ],
     },
+    "cfm-calculator": {
+        subtitle: "Calculate cubic feet per minute (CFM) airflow for HVAC, ventilation, exhaust fans, and range hoods.",
+        explanation: {
+            heading: "How to Calculate CFM",
+            paragraphs: [
+                "CFM = (Room Volume × Air Changes per Hour) ÷ 60. Room volume is length × width × ceiling height in feet. Air changes per hour (ACH) vary by room type: 4–6 for offices, 6–8 for kitchens, 8–12 for bathrooms and workshops.",
+                "Common CFM requirements: bathroom exhaust fans 50–110 CFM, kitchen range hoods 100–600 CFM, whole-house fans 3,000–6,000 CFM. Building codes often specify minimum ventilation rates.",
+            ],
+            highlight: "A 12 × 10 × 8 ft room at 6 ACH: (960 × 6) ÷ 60 = 96 CFM needed.",
+        },
+        faq: [
+            { question: "How many CFM do I need for a bathroom fan?", answer: "1 CFM per square foot minimum. A 50 sq ft bathroom needs at least 50 CFM. For bathrooms over 100 sq ft, add 50 CFM per toilet, shower, and bathtub." },
+            { question: "What size exhaust fan for my kitchen?", answer: "Range hoods: 100 CFM per linear foot of range for wall-mounted, 150 CFM per foot for island hoods. A 30-inch range needs at least 250 CFM; a 36-inch professional range may need 600+ CFM." },
+        ],
+    },
+    "flow-rate-calculator": {
+        subtitle: "Calculate water flow rate from pipe diameter and velocity. Get results in GPM, GPH, liters per minute, and CFS.",
+        explanation: {
+            heading: "How to Calculate Flow Rate",
+            paragraphs: [
+                "Flow rate (Q) = pipe cross-sectional area × velocity. Q (CFS) = π × (D/2)² × V, where D is diameter in feet and V is velocity in feet per second. Convert CFS to GPM by multiplying by 448.831.",
+                "Recommended water velocities: 4–8 ft/s for supply lines, 2–4 ft/s for drain lines. Velocities above 8 ft/s can cause water hammer and pipe erosion.",
+            ],
+            highlight: "A 2\" pipe at 5 ft/s flow: area = 0.0218 ft² → Q = 0.109 CFS = 49 GPM = 2,936 GPH.",
+        },
+        faq: [
+            { question: "What is a normal water flow rate for a house?", answer: "Typical residential flow: 6–12 GPM total. Individual fixtures: shower 2.0–2.5 GPM, faucet 1.5–2.2 GPM, toilet flush 1.6 GPF, dishwasher 2–3 GPM." },
+            { question: "How do I increase water flow rate?", answer: "Increase pipe diameter (larger diameter = much more flow), reduce pipe length and fittings, increase pressure, or remove restrictions. Doubling pipe diameter roughly quadruples flow capacity." },
+        ],
+    },
+    "furnace-btu-calculator": {
+        subtitle: "Calculate the BTU output needed for your furnace based on home size, climate zone, and insulation quality.",
+        explanation: {
+            heading: "How to Size a Furnace",
+            paragraphs: [
+                "Furnace BTU = home sq ft × BTU per sq ft factor. Climate factors: mild (25 BTU/ft²), moderate (35), cold (45), very cold (60). Adjust for insulation quality: poor (+30%), average (baseline), good (−15%), excellent (−30%).",
+                "Furnaces are rated by input BTU and AFUE efficiency. A 95% AFUE 80,000 BTU furnace delivers 76,000 BTU of heat. Common sizes: 40K, 60K, 80K, 100K, 120K BTU.",
+            ],
+            highlight: "1,500 sq ft home in moderate climate: 1,500 × 35 = 52,500 BTU. With average insulation, a 60,000 BTU furnace is recommended.",
+        },
+        faq: [
+            { question: "What size furnace do I need for 2,000 sq ft?", answer: "Depends on climate: mild = 50,000 BTU, moderate = 70,000 BTU, cold = 90,000 BTU, very cold = 120,000 BTU. Adjust for insulation quality and ceiling height." },
+            { question: "What does AFUE mean?", answer: "Annual Fuel Utilization Efficiency — the percentage of fuel converted to heat. 95% AFUE means 95¢ of every $1 in fuel becomes heat. Standard furnaces: 80% AFUE. High-efficiency: 90–98% AFUE." },
+        ],
+    },
+    "pipe-volume-calculator": {
+        subtitle: "Calculate the internal volume of a pipe from diameter and length. Get results in gallons, liters, cubic feet, and cubic inches.",
+        explanation: {
+            heading: "How to Calculate Pipe Volume",
+            paragraphs: [
+                "Pipe volume = π × r² × length, where r = inner radius. Use internal diameter (ID), not outer diameter (OD). The wall thickness reduces the usable volume inside the pipe.",
+                "Common uses: calculating water content for draining/filling systems, determining antifreeze amounts, sizing expansion tanks, and calculating head loss in plumbing systems.",
+            ],
+            highlight: "A 2\" ID pipe × 100 ft long: volume = 1.63 cu ft = 12.2 gallons = 46.2 liters.",
+        },
+        faq: [
+            { question: "How many gallons of water in 100 feet of pipe?", answer: "1/2\" pipe: 1.0 gal. 3/4\" pipe: 2.3 gal. 1\" pipe: 4.1 gal. 1.5\" pipe: 9.2 gal. 2\" pipe: 16.3 gal. 3\" pipe: 36.7 gal. 4\" pipe: 65.3 gal." },
+            { question: "Should I use ID or OD for pipe volume?", answer: "Always use the inner diameter (ID). Nominal pipe sizes don't match actual dimensions. For example, a 1\" nominal copper pipe has an ID of 1.055\" and OD of 1.125\"." },
+        ],
+    },
+    "refrigerant-line-charge-calculator": {
+        subtitle: "Calculate additional refrigerant charge for HVAC line sets beyond factory charge length. Enter liquid line size and total length.",
+        explanation: {
+            heading: "Refrigerant Line Set Charging",
+            paragraphs: [
+                "AC and heat pump systems come with a factory refrigerant charge sized for a standard line set length (typically 15–25 ft). Longer line sets need additional refrigerant based on the liquid line diameter.",
+                "Common liquid line charge rates (R-410A): 1/4\" = 0.19 oz/ft, 3/8\" = 0.43 oz/ft, 1/2\" = 0.78 oz/ft. Only the liquid line is used for calculating additional charge — suction line volume is negligible for charge purposes.",
+            ],
+            highlight: "50 ft of 3/8\" liquid line: 50 × 0.43 = 21.5 oz total. If factory charge covers 25 oz, no additional charge needed.",
+        },
+        faq: [
+            { question: "How much refrigerant per foot of line set?", answer: "R-410A (liquid line): 1/4\" = 0.19 oz/ft, 5/16\" = 0.30 oz/ft, 3/8\" = 0.43 oz/ft, 1/2\" = 0.78 oz/ft, 5/8\" = 1.22 oz/ft. These values are for the liquid (small) line only." },
+            { question: "What is factory charge?", answer: "The amount of refrigerant pre-charged at the factory, typically sized for 15–25 ft of line set. Check the unit nameplate for exact factory charge amount. Any additional line length requires adding refrigerant." },
+        ],
+    },
+    "water-velocity-calculator": {
+        subtitle: "Calculate water velocity in pipes from flow rate and diameter. Check against recommended velocity limits to prevent water hammer.",
+        explanation: {
+            heading: "Water Velocity in Pipes",
+            paragraphs: [
+                "Velocity = flow rate ÷ pipe cross-sectional area. V = (GPM ÷ 448.831) ÷ (π × r²), where r is the pipe radius in feet. Recommended limits: 5 ft/s for residential, 8 ft/s for commercial.",
+                "Excessive velocity causes water hammer, pipe erosion, noise, and pressure drops. Under-sized pipes create high velocities. A common fix is upsizing the pipe — doubling diameter reduces velocity by 75%.",
+            ],
+            highlight: "10 GPM through a 1\" pipe: velocity = 4.09 ft/s ✅ Within limits. Same flow in 3/4\" pipe: 7.27 ft/s ⚠️ Getting high.",
+        },
+        faq: [
+            { question: "What is the maximum water velocity in pipes?", answer: "Residential: 5 ft/s recommended, 8 ft/s maximum. Commercial: 8 ft/s normal, 10 ft/s maximum for short runs. Hot water lines should be slower than cold water lines." },
+            { question: "What causes water hammer?", answer: "Water hammer occurs when flowing water is suddenly stopped (valve closing), creating a pressure wave. Higher velocities = worse hammer. Solutions: lower velocity, add water hammer arrestors, use slow-closing valves." },
+        ],
+    },
+    "window-ac-size-calculator": {
+        subtitle: "Calculate the right BTU window AC unit for your room based on area, sun exposure, and number of occupants.",
+        explanation: {
+            heading: "How to Size a Window Air Conditioner",
+            paragraphs: [
+                "The DOE recommends 20 BTU per square foot as a baseline. Add 10% for sunny rooms, subtract 10% for shaded rooms, and add 600 BTU per additional person beyond 2. Common sizes: 5,000–18,000 BTU.",
+                "Standard window AC sizes: 5,000 BTU (100–150 sq ft), 8,000 BTU (300–350 sq ft), 10,000 BTU (400–450 sq ft), 12,000 BTU (450–550 sq ft), 14,000–18,000 BTU (700–1,000 sq ft).",
+            ],
+            highlight: "A 300 sq ft room with normal sun and 2 people: 8,000 BTU recommended. With heavy sun: 9,000 BTU.",
+        },
+        faq: [
+            { question: "What size window AC for a 12×12 room?", answer: "144 sq ft = 5,000–6,000 BTU. If the room gets afternoon sun, go with 6,000 BTU. A 5,000 BTU unit is fine for a shaded room." },
+            { question: "Can a window AC be too big?", answer: "Yes! An oversized AC cools too quickly without removing humidity, leaving the room cold and clammy. It also cycles on/off more frequently, wasting energy and wearing out the compressor faster." },
+        ],
+    },
+    "ice-water-shield-calculator": {
+        subtitle: "Calculate ice and water shield membrane needed for eaves, valleys, and roof penetrations. Get rolls needed for your project.",
+        explanation: {
+            heading: "Ice & Water Shield Coverage",
+            paragraphs: [
+                "Ice and water shield is a self-adhering membrane installed at vulnerable roof areas: eaves (2–3 ft minimum past the exterior wall), valleys (3 ft wide), and around penetrations. Building codes typically require it in cold climates.",
+                "Standard rolls are 3' × 75' (225 sq ft per roll) or 3' × 67' (200 sq ft). Apply to eaves extending at least 24 inches past the exterior wall, the full length of all valleys, and around skylights, chimneys, and vent pipes.",
+            ],
+            highlight: "40 ft eave (both sides, 3 ft wide) + 2 valleys (15 ft × 3 ft): 240 + 90 = 330 sq ft = 2 rolls (3' × 75').",
+        },
+        faq: [
+            { question: "Where do I need ice and water shield?", answer: "Eaves: 24\" minimum past exterior wall (many codes require 36\"). All valleys. Around chimneys, skylights, vent pipes. Low-slope areas. Dormers and wall intersections. Some codes require it on the entire roof deck." },
+            { question: "How many rolls of ice and water shield?", answer: "Measure total area needed: eave length × width + valley length × 3 ft + penetration areas. Divide by 225 (for 3'×75' rolls) or 200 (for 3'×67' rolls). Add 10% for overlap." },
+        ],
+    },
+    "metal-roofing-calculator": {
+        subtitle: "Calculate metal roofing panels, screws, trim, and ridge cap needed. Select panel type for accurate material estimates.",
+        explanation: {
+            heading: "Metal Roofing Material Estimation",
+            paragraphs: [
+                "Metal roofing panels come in three main types: standing seam (16\" coverage width), corrugated (26\" coverage), and ribbed/R-panel (36\" coverage). Panels are cut to length to span from eave to ridge.",
+                "Count panels by dividing roof width by panel coverage width. Screws: 75–80 per 100 sq ft for exposed fastener types, fewer for standing seam. Add ridge cap, trim, and closure strips to your order.",
+            ],
+            highlight: "30 × 20 ft roof with standing seam: 600 sq ft, 15 panels, 495 screws, 20 ft ridge cap.",
+        },
+        faq: [
+            { question: "How many metal roofing panels do I need?", answer: "Divide roof width by panel coverage width. 20 ft wide ÷ 16\" coverage (1.33 ft) = 15 panels for standing seam. For corrugated (26\" = 2.17 ft), you'd need 10 panels." },
+            { question: "How much does metal roofing cost?", answer: "Corrugated: $3–5/sq ft installed. Standing seam: $8–14/sq ft installed. R-panel: $4–7/sq ft installed. Metal lasts 40–70 years vs 15–25 for asphalt shingles." },
+        ],
+    },
+    "plywood-sheathing-calculator": {
+        subtitle: "Calculate plywood or OSB sheathing sheets needed for roofs, walls, or subfloors. Get sheet count and cost estimate.",
+        explanation: {
+            heading: "Plywood Sheathing Estimation",
+            paragraphs: [
+                "Standard plywood sheathing is 4' × 8' (32 sq ft per sheet). Common thicknesses: 7/16\" OSB for walls, 1/2\" or 5/8\" CDX for roofs, and 3/4\" tongue-and-groove for subfloors.",
+                "Divide total area by 32 sq ft per sheet, then add 10–15% for waste and cuts. Waste is higher for complex roof shapes with many hips, valleys, and dormers.",
+            ],
+            highlight: "A 30 × 20 ft roof: 600 sq ft ÷ 32 = 19 sheets. With 10% waste: 21 sheets × $35 = $735.",
+        },
+        faq: [
+            { question: "Should I use plywood or OSB?", answer: "OSB is cheaper ($3–5 less per sheet) and more uniform. Plywood is stronger on edges, handles moisture better, and holds nails better. For roofs, either works. For subfloors, plywood is preferred." },
+            { question: "What thickness plywood for a roof?", answer: "Minimum 7/16\" OSB or 1/2\" plywood for 24\" rafter spacing. Use 5/8\" for heavy snow loads or when installing solar panels. Check local codes — they may require thicker sheathing." },
+        ],
+    },
+    "roof-snow-load-calculator": {
+        subtitle: "Calculate snow weight on your roof based on depth, snow type, and roof area. Check against structural capacity.",
+        explanation: {
+            heading: "Roof Snow Load Calculation",
+            paragraphs: [
+                "Snow load (PSF) = snow density × depth (inches). Fresh snow: ~1.25 PSF/inch. Settled: ~2 PSF/inch. Packed: ~3 PSF/inch. Wet/heavy: ~5 PSF/inch. Ice: ~4.7 PSF/inch.",
+                "Most residential roofs are designed for 20–40 PSF snow load. Check your local building code for design snow load requirements. Critical warning signs: ceiling sagging, doors sticking, cracks in walls or ceilings.",
+            ],
+            highlight: "12 inches of packed snow on a 30 × 20 ft roof: 37.5 PSF × 600 sq ft = 22,500 lbs = 11.25 tons on your roof.",
+        },
+        faq: [
+            { question: "How much snow can a roof hold?", answer: "Most residential roofs: 20–40 PSF. That equals 16–32 inches of fresh snow, 6–13 inches of packed snow, or 4–8 inches of wet/heavy snow. Always check your local codes for design load." },
+            { question: "When should I remove snow from my roof?", answer: "Remove when snow depth exceeds 2 feet of fresh snow or 1 foot of packed/wet snow. Use a roof rake (safer than climbing). Never use salt or heat — it can damage shingles. Call a professional for large accumulations." },
+        ],
+    },
+    "roofing-material-calculator": {
+        subtitle: "Calculate complete roofing materials: shingles, underlayment, nails, ridge cap, drip edge, and flashing for a full job.",
+        explanation: {
+            heading: "Complete Roofing Material List",
+            paragraphs: [
+                "Roofing squares: total area (with waste) ÷ 100. Each square needs 3 bundles of shingles, 1.5 lbs of roofing nails, and coverage from underlayment rolls. Add 15% waste for a typical gable roof, 20% for hip roofs.",
+                "Don't forget accessories: ridge cap shingles (one per 10\" of ridge), drip edge (one 10' piece per 10 feet of eave and rake), and flashing for valleys, walls, and penetrations.",
+            ],
+            highlight: "30 × 20 ft roof + 15% waste = 6.9 squares = 21 bundles of shingles, 1 roll underlayment, 11 lbs nails, 38 ridge caps, 10 drip edge pieces.",
+        },
+        faq: [
+            { question: "How many bundles of shingles per square?", answer: "3 bundles = 1 square (100 sq ft). Some architectural/designer shingles may require 4–5 bundles per square. Always check the manufacturer's coverage specifications." },
+            { question: "How many squares is my roof?", answer: "Measure footprint area, then multiply by pitch factor: 4/12 pitch = ×1.054, 6/12 = ×1.118, 8/12 = ×1.202, 10/12 = ×1.302, 12/12 = ×1.414. Add 15% for waste on a gable roof." },
+        ],
+    },
+    "clapboard-siding-calculator": {
+        subtitle: "Calculate clapboard or lap siding boards needed for your walls. Enter dimensions, exposure, and board length for total count.",
+        explanation: {
+            heading: "Clapboard & Lap Siding Estimation",
+            paragraphs: [
+                "Clapboard siding is installed horizontally with each board overlapping the one below. The visible portion is called the 'exposure' — typically 4–6 inches. Rows = wall height ÷ exposure.",
+                "Total boards = number of rows × boards per row (wall length ÷ board length). Standard board lengths: 8', 10', 12', and 16'. Add 10% for waste from cuts around windows and doors.",
+            ],
+            highlight: "A 40 × 9 ft wall with 4\" exposure and 12' boards: 27 rows × 4 boards per row = 108 boards. With waste: 119 boards.",
+        },
+        faq: [
+            { question: "What is the standard exposure for clapboard siding?", answer: "4–6 inches depending on board width. A 6\" wide board typically has 4\" exposure and 2\" overlap. Wider boards (8\") can have 5–6\" exposure. Check manufacturer specifications." },
+            { question: "How much siding do I need for my house?", answer: "Calculate each wall separately: height × length = gross area. Subtract window and door areas. Divide net area by the coverage per board (board length × exposure). Add 10% for waste." },
+        ],
+    },
+    "siding-material-calculator": {
+        subtitle: "Calculate siding material in squares for vinyl, wood, fiber cement, or metal siding. Includes waste and cost estimates.",
+        explanation: {
+            heading: "Siding Material Estimation",
+            paragraphs: [
+                "Siding is measured in 'squares' — 1 square = 100 sq ft. Calculate gross wall area (perimeter × height), subtract openings (windows, doors), then add 10% for waste.",
+                "Average house has 15–20% openings. A typical 1,500 sq ft home with 9 ft walls has about 1,350 sq ft of gross wall area, minus 200–270 sq ft of openings = 10–12 squares of siding needed.",
+            ],
+            highlight: "150 ft perimeter × 9 ft height = 1,350 sq ft gross. Minus 200 sq ft openings = 1,150 sq ft net = 11.5 squares + 10% waste = 12.7 squares.",
+        },
+        faq: [
+            { question: "How many squares of siding for my house?", answer: "Measure perimeter × wall height = gross area. Subtract window and door areas (typically 15–20% of gross). Divide net area by 100 = squares. Add 10% waste. A typical 1,500 sq ft ranch needs 10–13 squares." },
+            { question: "What type of siding is cheapest?", answer: "Vinyl siding: $3–8/sq ft installed (cheapest). Fiber cement: $6–11/sq ft. Wood: $8–14/sq ft. Metal/aluminum: $5–10/sq ft. Natural stone: $15–30/sq ft (most expensive)." },
+        ],
+    },
+    "vinyl-siding-calculator": {
+        subtitle: "Calculate vinyl siding panels, J-channel, corner posts, and starter strips. Get a complete material list for your project.",
+        explanation: {
+            heading: "Vinyl Siding Material List",
+            paragraphs: [
+                "Vinyl siding comes in boxes covering approximately 100 sq ft (1 square). In addition to panels, you need: J-channel around windows and doors, corner posts for inside and outside corners, starter strips along the bottom, and utility trim at the top.",
+                "J-channel: calculate the total perimeter of all openings. Corner posts: one per corner (inside or outside). Starter strips: total length of the bottom of all walls. Add under-sill trim for beneath windows.",
+            ],
+            highlight: "1,150 sq ft net siding area + 10% waste = 12.7 squares → 13 boxes of siding, 18 J-channels, 4 corners, 13 starter strips.",
+        },
+        faq: [
+            { question: "How many boxes of vinyl siding do I need?", answer: "Calculate net wall area (gross minus openings), add 10% waste, divide by 100. Each box typically covers 100 sq ft (2 squares per carton at some manufacturers — check the label)." },
+            { question: "What accessories do I need for vinyl siding?", answer: "J-channel (around all openings), outside corner posts, inside corner posts, starter strips, under-sill trim, utility trim, F-channel or J-channel for soffit, and flashing. Budget 30–40% of siding cost for accessories." },
+        ],
+    },
 };
 
 export default async function ConstructionCalculatorHubPage({ params }: PageProps) {

@@ -6337,6 +6337,626 @@ function TankVolumeCalc() {
     );
 }
 
+/* ──────────── 148. CFM CALCULATOR ──────────── */
+function CfmCalc() {
+    const [length, setLength] = useState(12);
+    const [width, setWidth] = useState(10);
+    const [ceilingHeight, setCeilingHeight] = useState(8);
+    const [ach, setAch] = useState("6");
+
+    const result = useMemo(() => {
+        const volume = length * width * ceilingHeight;
+        const achVal = Number(ach);
+        const cfm = (volume * achVal) / 60;
+        const cfmPerSqFt = cfm / (length * width);
+        return { volume, cfm, cfmPerSqFt };
+    }, [length, width, ceilingHeight, ach]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">💨 CFM Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Room Length" value={length} onChange={setLength} unit="ft" min={1} />
+                <InputField label="Room Width" value={width} onChange={setWidth} unit="ft" min={1} />
+                <InputField label="Ceiling Height" value={ceilingHeight} onChange={setCeilingHeight} unit="ft" min={6} max={20} />
+                <SelectField label="Air Changes / Hour (ACH)" value={ach} onChange={setAch} options={[
+                    { value: "4", label: "4 ACH – Offices, Bedrooms" },
+                    { value: "6", label: "6 ACH – Living Rooms, Retail" },
+                    { value: "8", label: "8 ACH – Kitchens, Restaurants" },
+                    { value: "10", label: "10 ACH – Bathrooms, Labs" },
+                    { value: "12", label: "12 ACH – Workshops, Garages" },
+                    { value: "15", label: "15 ACH – Smoking Areas, Bars" },
+                ]} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Room Volume" value={fmt(result.volume)} unit="cu ft" />
+                <ResultRow label="Required CFM" value={fmt(result.cfm, 1)} unit="CFM" />
+                <ResultRow label="CFM per Sq Ft" value={fmt(result.cfmPerSqFt, 2)} unit="CFM/ft²" />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 149. FLOW RATE CALCULATOR ──────────── */
+function FlowRateCalc() {
+    const [diameter, setDiameter] = useState(2);
+    const [velocity, setVelocity] = useState(5);
+
+    const result = useMemo(() => {
+        const radiusFt = (diameter / 12) / 2;
+        const areaSqFt = Math.PI * radiusFt * radiusFt;
+        const cfs = areaSqFt * velocity; // cu ft/sec
+        const gpm = cfs * 448.831;
+        const gph = gpm * 60;
+        const lpm = gpm * 3.78541;
+        return { areaSqFt, cfs, gpm, gph, lpm };
+    }, [diameter, velocity]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">🌊 Flow Rate Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Pipe Diameter" value={diameter} onChange={setDiameter} unit="in" min={0.5} step={0.5} />
+                <InputField label="Flow Velocity" value={velocity} onChange={setVelocity} unit="ft/s" min={0.5} step={0.5} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="GPM" value={fmt(result.gpm, 1)} unit="gal/min" />
+                <ResultRow label="GPH" value={fmt(result.gph)} unit="gal/hr" />
+                <ResultRow label="Liters/min" value={fmt(result.lpm, 1)} unit="L/min" />
+                <ResultRow label="CFS" value={fmt(result.cfs, 3)} unit="ft³/s" />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 150. FURNACE BTU CALCULATOR ──────────── */
+function FurnaceBtuCalc() {
+    const [sqFt, setSqFt] = useState(1500);
+    const [climate, setClimate] = useState("moderate");
+    const [insulation, setInsulation] = useState("average");
+
+    const CLIMATE_FACTOR: Record<string, number> = {
+        "mild": 25, "moderate": 35, "cold": 45, "very-cold": 60,
+    };
+    const INSUL_FACTOR: Record<string, number> = {
+        "poor": 1.3, "average": 1.0, "good": 0.85, "excellent": 0.7,
+    };
+
+    const result = useMemo(() => {
+        const base = sqFt * (CLIMATE_FACTOR[climate] || 35);
+        const adjusted = base * (INSUL_FACTOR[insulation] || 1.0);
+        const furnaceInput = adjusted / 0.95; // 95% AFUE
+        const kw = adjusted / 3412;
+        return { btuOutput: adjusted, furnaceInput, kw };
+    }, [sqFt, climate, insulation]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">🔥 Furnace BTU Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Home Size" value={sqFt} onChange={setSqFt} unit="sq ft" min={200} step={100} />
+                <SelectField label="Climate Zone" value={climate} onChange={setClimate} options={[
+                    { value: "mild", label: "Mild (25 BTU/ft²) – Southern US" },
+                    { value: "moderate", label: "Moderate (35 BTU/ft²) – Mid-Atlantic" },
+                    { value: "cold", label: "Cold (45 BTU/ft²) – Northern US" },
+                    { value: "very-cold", label: "Very Cold (60 BTU/ft²) – Minnesota, Alaska" },
+                ]} />
+                <SelectField label="Insulation Quality" value={insulation} onChange={setInsulation} options={[
+                    { value: "poor", label: "Poor (+30%)" },
+                    { value: "average", label: "Average (baseline)" },
+                    { value: "good", label: "Good (−15%)" },
+                    { value: "excellent", label: "Excellent (−30%)" },
+                ]} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="BTU Output Needed" value={fmt(result.btuOutput)} unit="BTU/hr" />
+                <ResultRow label="Furnace Input (95% AFUE)" value={fmt(result.furnaceInput)} unit="BTU/hr" />
+                <ResultRow label="Equivalent kW" value={fmt(result.kw, 1)} unit="kW" />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 151. PIPE VOLUME CALCULATOR ──────────── */
+function PipeVolumeCalc() {
+    const [diameter, setDiameter] = useState(2);
+    const [lengthFt, setLengthFt] = useState(100);
+
+    const result = useMemo(() => {
+        const radiusFt = (diameter / 12) / 2;
+        const cuFt = Math.PI * radiusFt * radiusFt * lengthFt;
+        const gallons = cuFt * 7.48052;
+        const liters = cuFt * 28.3168;
+        const cuIn = cuFt * 1728;
+        return { cuFt, gallons, liters, cuIn };
+    }, [diameter, lengthFt]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">🔧 Pipe Volume Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Inner Diameter" value={diameter} onChange={setDiameter} unit="in" min={0.5} step={0.25} />
+                <InputField label="Pipe Length" value={lengthFt} onChange={setLengthFt} unit="ft" min={1} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="US Gallons" value={fmt(result.gallons, 2)} unit="gal" />
+                <ResultRow label="Liters" value={fmt(result.liters, 2)} unit="L" />
+                <ResultRow label="Cubic Feet" value={fmt(result.cuFt, 3)} unit="cu ft" />
+                <ResultRow label="Cubic Inches" value={fmt(result.cuIn, 1)} unit="cu in" />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 152. REFRIGERANT LINE CHARGE CALCULATOR ──────────── */
+function RefrigerantLineCalc() {
+    const [lineLength, setLineLength] = useState(50);
+    const [factoryCharge, setFactoryCharge] = useState(25);
+    const [lineSize, setLineSize] = useState("3/8");
+
+    const OZ_PER_FT: Record<string, number> = {
+        "1/4": 0.19, "5/16": 0.30, "3/8": 0.43, "1/2": 0.78,
+        "5/8": 1.22, "3/4": 1.76, "7/8": 2.40,
+    };
+
+    const result = useMemo(() => {
+        const ozPerFt = OZ_PER_FT[lineSize] || 0.43;
+        const totalOz = lineLength * ozPerFt;
+        const additionalOz = Math.max(0, totalOz - factoryCharge);
+        const totalLbs = totalOz / 16;
+        const additionalLbs = additionalOz / 16;
+        return { ozPerFt, totalOz, additionalOz, totalLbs, additionalLbs };
+    }, [lineLength, factoryCharge, lineSize]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">❄️ Refrigerant Line Charge Calculator</h3>
+            <div className="con-calc__inputs">
+                <SelectField label="Liquid Line Size" value={lineSize} onChange={setLineSize} options={[
+                    { value: "1/4", label: "1/4 inch (0.19 oz/ft)" },
+                    { value: "5/16", label: "5/16 inch (0.30 oz/ft)" },
+                    { value: "3/8", label: "3/8 inch (0.43 oz/ft)" },
+                    { value: "1/2", label: "1/2 inch (0.78 oz/ft)" },
+                    { value: "5/8", label: "5/8 inch (1.22 oz/ft)" },
+                    { value: "3/4", label: "3/4 inch (1.76 oz/ft)" },
+                    { value: "7/8", label: "7/8 inch (2.40 oz/ft)" },
+                ]} />
+                <InputField label="Line Set Length" value={lineLength} onChange={setLineLength} unit="ft" min={5} />
+                <InputField label="Factory Charge" value={factoryCharge} onChange={setFactoryCharge} unit="oz" min={0} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Total Charge" value={fmt(result.totalOz, 1)} unit="oz" />
+                <ResultRow label="Additional Charge" value={fmt(result.additionalOz, 1)} unit="oz" />
+                <ResultRow label="Additional (lbs)" value={fmt(result.additionalLbs, 2)} unit="lbs" />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 153. WATER VELOCITY CALCULATOR ──────────── */
+function WaterVelocityCalc() {
+    const [gpm, setGpm] = useState(10);
+    const [diameter, setDiameter] = useState(1);
+
+    const result = useMemo(() => {
+        const radiusFt = (diameter / 12) / 2;
+        const areaSqFt = Math.PI * radiusFt * radiusFt;
+        const cfs = gpm / 448.831;
+        const velocity = areaSqFt > 0 ? cfs / areaSqFt : 0; // ft/s
+        const mps = velocity * 0.3048;
+        const status = velocity <= 5 ? "✅ Within limits" : velocity <= 8 ? "⚠️ Moderate" : "🔴 Too fast – risk of water hammer";
+        return { velocity, mps, status };
+    }, [gpm, diameter]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">💧 Water Velocity Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Flow Rate" value={gpm} onChange={setGpm} unit="GPM" min={1} />
+                <InputField label="Pipe Diameter" value={diameter} onChange={setDiameter} unit="in" min={0.5} step={0.25} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Velocity" value={fmt(result.velocity, 2)} unit="ft/s" />
+                <ResultRow label="Velocity (metric)" value={fmt(result.mps, 2)} unit="m/s" />
+                <ResultRow label="Assessment" value={result.status} />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 154. WINDOW AC SIZE CALCULATOR ──────────── */
+function WindowAcSizeCalc() {
+    const [sqFt, setSqFt] = useState(300);
+    const [sunExposure, setSunExposure] = useState("normal");
+    const [occupants, setOccupants] = useState(2);
+
+    const result = useMemo(() => {
+        let baseBtu: number;
+        if (sqFt <= 150) baseBtu = 5000;
+        else if (sqFt <= 250) baseBtu = 6000;
+        else if (sqFt <= 350) baseBtu = 8000;
+        else if (sqFt <= 450) baseBtu = 10000;
+        else if (sqFt <= 550) baseBtu = 12000;
+        else if (sqFt <= 700) baseBtu = 14000;
+        else if (sqFt <= 1000) baseBtu = 18000;
+        else baseBtu = Math.ceil(sqFt * 20 / 1000) * 1000;
+
+        if (sunExposure === "heavy") baseBtu *= 1.1;
+        else if (sunExposure === "shaded") baseBtu *= 0.9;
+
+        if (occupants > 2) baseBtu += (occupants - 2) * 600;
+
+        const tons = baseBtu / 12000;
+        return { btu: Math.ceil(baseBtu / 1000) * 1000, tons };
+    }, [sqFt, sunExposure, occupants]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">🌡️ Window AC Size Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Room Area" value={sqFt} onChange={setSqFt} unit="sq ft" min={50} step={25} />
+                <SelectField label="Sun Exposure" value={sunExposure} onChange={setSunExposure} options={[
+                    { value: "shaded", label: "Heavily Shaded (−10%)" },
+                    { value: "normal", label: "Normal" },
+                    { value: "heavy", label: "Very Sunny (+10%)" },
+                ]} />
+                <InputField label="Number of Occupants" value={occupants} onChange={setOccupants} min={1} max={10} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Recommended BTU" value={fmt(result.btu)} unit="BTU" />
+                <ResultRow label="Cooling Tons" value={fmt(result.tons, 2)} unit="tons" />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 155. ICE & WATER SHIELD CALCULATOR ──────────── */
+function IceWaterShieldCalc() {
+    const [roofLength, setRoofLength] = useState(40);
+    const [eaveOverhang, setEaveOverhang] = useState(3);
+    const [numValleys, setNumValleys] = useState(2);
+    const [valleyLength, setValleyLength] = useState(15);
+
+    const result = useMemo(() => {
+        const eaveArea = roofLength * eaveOverhang * 2; // both sides
+        const valleyArea = numValleys * valleyLength * 3; // 3 ft wide each
+        const totalSqFt = eaveArea + valleyArea;
+        const rollWidth = 3; // ft
+        const rollLength = 75; // ft
+        const rollCoverage = rollWidth * rollLength;
+        const rolls = Math.ceil(totalSqFt / rollCoverage);
+        return { eaveArea, valleyArea, totalSqFt, rolls };
+    }, [roofLength, eaveOverhang, numValleys, valleyLength]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">🧊 Ice & Water Shield Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Roof Length (eave)" value={roofLength} onChange={setRoofLength} unit="ft" min={10} />
+                <InputField label="Eave Coverage Width" value={eaveOverhang} onChange={setEaveOverhang} unit="ft" min={2} max={6} />
+                <InputField label="Number of Valleys" value={numValleys} onChange={setNumValleys} min={0} max={10} />
+                <InputField label="Avg Valley Length" value={valleyLength} onChange={setValleyLength} unit="ft" min={5} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Eave Area" value={fmt(result.eaveArea)} unit="sq ft" />
+                <ResultRow label="Valley Area" value={fmt(result.valleyArea)} unit="sq ft" />
+                <ResultRow label="Total Coverage" value={fmt(result.totalSqFt)} unit="sq ft" />
+                <ResultRow label="Rolls Needed (3'×75')" value={fmtInt(result.rolls)} unit="rolls" />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 156. METAL ROOFING CALCULATOR ──────────── */
+function MetalRoofingCalc() {
+    const [roofLength, setRoofLength] = useState(30);
+    const [roofWidth, setRoofWidth] = useState(20);
+    const [panelType, setPanelType] = useState("standing-seam");
+    const [wastePct, setWastePct] = useState(10);
+
+    const PANEL_WIDTH: Record<string, number> = {
+        "standing-seam": 16, "corrugated": 26, "ribbed": 36,
+    };
+
+    const result = useMemo(() => {
+        const area = roofLength * roofWidth;
+        const areaWithWaste = area * (1 + wastePct / 100);
+        const panelWidthIn = PANEL_WIDTH[panelType] || 16;
+        const panelWidthFt = panelWidthIn / 12;
+        const panels = Math.ceil(roofWidth / panelWidthFt);
+        const screwsPer100 = panelType === "standing-seam" ? 75 : 80;
+        const screws = Math.ceil(areaWithWaste / 100) * screwsPer100;
+        const ridgeCapFt = roofWidth;
+        return { area, areaWithWaste, panels, screws, ridgeCapFt };
+    }, [roofLength, roofWidth, panelType, wastePct]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">🏠 Metal Roofing Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Roof Length (slope)" value={roofLength} onChange={setRoofLength} unit="ft" min={5} />
+                <InputField label="Roof Width" value={roofWidth} onChange={setRoofWidth} unit="ft" min={5} />
+                <SelectField label="Panel Type" value={panelType} onChange={setPanelType} options={[
+                    { value: "standing-seam", label: "Standing Seam (16\" coverage)" },
+                    { value: "corrugated", label: "Corrugated (26\" coverage)" },
+                    { value: "ribbed", label: "Ribbed / R-Panel (36\" coverage)" },
+                ]} />
+                <InputField label="Waste %" value={wastePct} onChange={setWastePct} unit="%" min={5} max={25} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Roof Area" value={fmt(result.area)} unit="sq ft" />
+                <ResultRow label="With Waste" value={fmt(result.areaWithWaste)} unit="sq ft" />
+                <ResultRow label="Panels Needed" value={fmtInt(result.panels)} unit="panels" />
+                <ResultRow label="Screws" value={fmt(result.screws)} unit="pcs" />
+                <ResultRow label="Ridge Cap" value={fmt(result.ridgeCapFt)} unit="lin ft" />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 157. PLYWOOD SHEATHING CALCULATOR ──────────── */
+function PlywoodSheathingCalc() {
+    const [length, setLength] = useState(30);
+    const [width, setWidth] = useState(20);
+    const [wastePct, setWastePct] = useState(10);
+    const [costPerSheet, setCostPerSheet] = useState(35);
+
+    const result = useMemo(() => {
+        const area = length * width;
+        const areaWithWaste = area * (1 + wastePct / 100);
+        const sheetArea = 4 * 8; // 4x8 sheet
+        const sheets = Math.ceil(areaWithWaste / sheetArea);
+        const totalCost = sheets * costPerSheet;
+        return { area, sheets, totalCost };
+    }, [length, width, wastePct, costPerSheet]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">🪵 Plywood Sheathing Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Length" value={length} onChange={setLength} unit="ft" min={1} />
+                <InputField label="Width" value={width} onChange={setWidth} unit="ft" min={1} />
+                <InputField label="Waste %" value={wastePct} onChange={setWastePct} unit="%" min={5} max={25} />
+                <InputField label="Cost per Sheet" value={costPerSheet} onChange={setCostPerSheet} unit="$" min={10} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Area" value={fmt(result.area)} unit="sq ft" />
+                <ResultRow label="4×8 Sheets Needed" value={fmtInt(result.sheets)} unit="sheets" />
+                <ResultRow label="Total Cost" value={`$${fmt(result.totalCost, 2)}`} />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 158. ROOF SNOW LOAD CALCULATOR ──────────── */
+function RoofSnowLoadCalc() {
+    const [roofLength, setRoofLength] = useState(30);
+    const [roofWidth, setRoofWidth] = useState(20);
+    const [snowDepth, setSnowDepth] = useState(12);
+    const [snowType, setSnowType] = useState("packed");
+
+    const DENSITY: Record<string, number> = {
+        "fresh": 1.25, "settled": 2.08, "packed": 3.13, "wet": 5.2, "ice": 4.69,
+    };
+
+    const result = useMemo(() => {
+        const area = roofLength * roofWidth;
+        const psfPerInch = DENSITY[snowType] || 3.13;
+        const psf = psfPerInch * snowDepth;
+        const totalLbs = psf * area;
+        const totalTons = totalLbs / 2000;
+        return { area, psf, totalLbs, totalTons };
+    }, [roofLength, roofWidth, snowDepth, snowType]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">❄️ Roof Snow Load Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Roof Length" value={roofLength} onChange={setRoofLength} unit="ft" min={5} />
+                <InputField label="Roof Width" value={roofWidth} onChange={setRoofWidth} unit="ft" min={5} />
+                <InputField label="Snow Depth" value={snowDepth} onChange={setSnowDepth} unit="in" min={1} max={60} />
+                <SelectField label="Snow Type" value={snowType} onChange={setSnowType} options={[
+                    { value: "fresh", label: "Fresh / Light (1.25 PSF/in)" },
+                    { value: "settled", label: "Settled (2.08 PSF/in)" },
+                    { value: "packed", label: "Packed (3.13 PSF/in)" },
+                    { value: "wet", label: "Wet / Heavy (5.2 PSF/in)" },
+                    { value: "ice", label: "Ice (4.69 PSF/in)" },
+                ]} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Roof Area" value={fmt(result.area)} unit="sq ft" />
+                <ResultRow label="Snow Load" value={fmt(result.psf, 1)} unit="PSF" />
+                <ResultRow label="Total Weight" value={fmt(result.totalLbs)} unit="lbs" />
+                <ResultRow label="Total Weight" value={fmt(result.totalTons, 2)} unit="tons" />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 159. ROOFING MATERIAL CALCULATOR ──────────── */
+function RoofingMaterialCalc() {
+    const [roofLength, setRoofLength] = useState(30);
+    const [roofWidth, setRoofWidth] = useState(20);
+    const [ridgeLength, setRidgeLength] = useState(30);
+    const [wastePct, setWastePct] = useState(15);
+
+    const result = useMemo(() => {
+        const area = roofLength * roofWidth;
+        const areaWithWaste = area * (1 + wastePct / 100);
+        const squares = areaWithWaste / 100;
+        const shingleBundles = Math.ceil(squares * 3);
+        const underlaymentRolls = Math.ceil(areaWithWaste / (4 * 250)); // 4x250 sq ft roll
+        const nailLbs = Math.ceil(squares * 1.5);
+        const ridgeCapPcs = Math.ceil(ridgeLength / 0.8); // ~10 in exposure per piece
+        const dripEdgeFt = roofLength * 2 + roofWidth * 2;
+        const dripEdgePcs = Math.ceil(dripEdgeFt / 10);
+        return { area, squares, shingleBundles, underlaymentRolls, nailLbs, ridgeCapPcs, dripEdgePcs };
+    }, [roofLength, roofWidth, ridgeLength, wastePct]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">🏗️ Roofing Material Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Roof Length (slope)" value={roofLength} onChange={setRoofLength} unit="ft" min={5} />
+                <InputField label="Roof Width" value={roofWidth} onChange={setRoofWidth} unit="ft" min={5} />
+                <InputField label="Ridge Length" value={ridgeLength} onChange={setRidgeLength} unit="ft" min={5} />
+                <InputField label="Waste %" value={wastePct} onChange={setWastePct} unit="%" min={10} max={25} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Roofing Squares" value={fmt(result.squares, 1)} unit="squares" />
+                <ResultRow label="Shingle Bundles" value={fmtInt(result.shingleBundles)} unit="bundles" />
+                <ResultRow label="Underlayment Rolls" value={fmtInt(result.underlaymentRolls)} unit="rolls" />
+                <ResultRow label="Roofing Nails" value={fmtInt(result.nailLbs)} unit="lbs" />
+                <ResultRow label="Ridge Cap Pieces" value={fmtInt(result.ridgeCapPcs)} unit="pcs" />
+                <ResultRow label="Drip Edge" value={fmtInt(result.dripEdgePcs)} unit="pcs (10')" />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 160. CLAPBOARD / LAP SIDING CALCULATOR ──────────── */
+function ClapboardSidingCalc() {
+    const [wallLength, setWallLength] = useState(40);
+    const [wallHeight, setWallHeight] = useState(9);
+    const [openingsSqFt, setOpeningsSqFt] = useState(60);
+    const [exposureIn, setExposureIn] = useState(4);
+    const [boardLengthFt, setBoardLengthFt] = useState(12);
+
+    const result = useMemo(() => {
+        const grossArea = wallLength * wallHeight;
+        const netArea = grossArea - openingsSqFt;
+        const exposureFt = exposureIn / 12;
+        const rows = Math.ceil(wallHeight / exposureFt);
+        const boardsPerRow = Math.ceil(wallLength / boardLengthFt);
+        const totalBoards = rows * boardsPerRow;
+        const withWaste = Math.ceil(totalBoards * 1.1);
+        return { grossArea, netArea, rows, totalBoards, withWaste };
+    }, [wallLength, wallHeight, openingsSqFt, exposureIn, boardLengthFt]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">🏠 Clapboard & Lap Siding Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Wall Length" value={wallLength} onChange={setWallLength} unit="ft" min={5} />
+                <InputField label="Wall Height" value={wallHeight} onChange={setWallHeight} unit="ft" min={4} />
+                <InputField label="Openings (doors/windows)" value={openingsSqFt} onChange={setOpeningsSqFt} unit="sq ft" min={0} />
+                <InputField label="Board Exposure" value={exposureIn} onChange={setExposureIn} unit="in" min={2} max={8} />
+                <InputField label="Board Length" value={boardLengthFt} onChange={setBoardLengthFt} unit="ft" min={4} max={16} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Gross Wall Area" value={fmt(result.grossArea)} unit="sq ft" />
+                <ResultRow label="Net Area" value={fmt(result.netArea)} unit="sq ft" />
+                <ResultRow label="Rows of Siding" value={fmtInt(result.rows)} />
+                <ResultRow label="Boards Needed" value={fmtInt(result.totalBoards)} />
+                <ResultRow label="With 10% Waste" value={fmtInt(result.withWaste)} unit="boards" />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 161. SIDING MATERIAL CALCULATOR ──────────── */
+function SidingMaterialCalc() {
+    const [perimeterFt, setPerimeterFt] = useState(150);
+    const [wallHeight, setWallHeight] = useState(9);
+    const [openingsSqFt, setOpeningsSqFt] = useState(200);
+    const [sidingType, setSidingType] = useState("vinyl");
+    const [costPerSq, setCostPerSq] = useState(150);
+
+    const result = useMemo(() => {
+        const grossArea = perimeterFt * wallHeight;
+        const netArea = grossArea - openingsSqFt;
+        const squares = netArea / 100;
+        const squaresWithWaste = squares * 1.1;
+        const totalCost = squaresWithWaste * costPerSq;
+        return { grossArea, netArea, squares, squaresWithWaste, totalCost };
+    }, [perimeterFt, wallHeight, openingsSqFt, costPerSq]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">🏡 Siding Material Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="House Perimeter" value={perimeterFt} onChange={setPerimeterFt} unit="ft" min={40} />
+                <InputField label="Wall Height" value={wallHeight} onChange={setWallHeight} unit="ft" min={4} />
+                <InputField label="Total Openings" value={openingsSqFt} onChange={setOpeningsSqFt} unit="sq ft" min={0} />
+                <SelectField label="Siding Type" value={sidingType} onChange={setSidingType} options={[
+                    { value: "vinyl", label: "Vinyl" },
+                    { value: "wood", label: "Wood / Cedar" },
+                    { value: "fiber-cement", label: "Fiber Cement (HardiePlank)" },
+                    { value: "metal", label: "Metal / Aluminum" },
+                ]} />
+                <InputField label="Cost per Square (100 sq ft)" value={costPerSq} onChange={setCostPerSq} unit="$" min={50} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Gross Wall Area" value={fmt(result.grossArea)} unit="sq ft" />
+                <ResultRow label="Net Siding Area" value={fmt(result.netArea)} unit="sq ft" />
+                <ResultRow label="Squares" value={fmt(result.squares, 1)} unit="sq (100 ft²)" />
+                <ResultRow label="With 10% Waste" value={fmt(result.squaresWithWaste, 1)} unit="squares" />
+                <ResultRow label="Material Cost" value={`$${fmt(result.totalCost, 2)}`} />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 162. VINYL SIDING CALCULATOR ──────────── */
+function VinylSidingCalc() {
+    const [perimeterFt, setPerimeterFt] = useState(150);
+    const [wallHeight, setWallHeight] = useState(9);
+    const [openingsSqFt, setOpeningsSqFt] = useState(200);
+    const [numCorners, setNumCorners] = useState(4);
+
+    const result = useMemo(() => {
+        const grossArea = perimeterFt * wallHeight;
+        const netArea = grossArea - openingsSqFt;
+        const squares = netArea / 100;
+        const squaresWithWaste = Math.ceil(squares * 1.1 * 10) / 10;
+        // Panels: 2 per box, each box covers ~100 sq ft
+        const boxes = Math.ceil(squaresWithWaste);
+        // J-channel: perimeter of all openings (approx 4x per 15 sq ft opening)
+        const jChannelFt = Math.ceil(openingsSqFt / 15 * 16);
+        const jChannelPcs = Math.ceil(jChannelFt / 12.5);
+        // Corners
+        const cornerPcs = numCorners;
+        // Starter strip: same as perimeter
+        const starterPcs = Math.ceil(perimeterFt / 12);
+        return { grossArea, netArea, squares: squaresWithWaste, boxes, jChannelPcs, cornerPcs, starterPcs };
+    }, [perimeterFt, wallHeight, openingsSqFt, numCorners]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">🏠 Vinyl Siding Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="House Perimeter" value={perimeterFt} onChange={setPerimeterFt} unit="ft" min={40} />
+                <InputField label="Wall Height" value={wallHeight} onChange={setWallHeight} unit="ft" min={4} />
+                <InputField label="Total Openings" value={openingsSqFt} onChange={setOpeningsSqFt} unit="sq ft" min={0} />
+                <InputField label="Number of Corners" value={numCorners} onChange={setNumCorners} min={4} max={20} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Net Siding Area" value={fmt(result.netArea)} unit="sq ft" />
+                <ResultRow label="Squares (w/ waste)" value={fmt(result.squares, 1)} unit="squares" />
+                <ResultRow label="Siding Boxes" value={fmtInt(result.boxes)} unit="boxes" />
+                <ResultRow label="J-Channel" value={fmtInt(result.jChannelPcs)} unit="pcs (12.5')" />
+                <ResultRow label="Corner Posts" value={fmtInt(result.cornerPcs)} unit="pcs" />
+                <ResultRow label="Starter Strips" value={fmtInt(result.starterPcs)} unit="pcs (12')" />
+            </div>
+        </div>
+    );
+}
+
 /* ──────────── DISPATCHER ──────────── */
 const CALC_MAP: Record<string, React.FC> = {
     "concrete": ConcreteCalc,
@@ -6486,6 +7106,21 @@ const CALC_MAP: Record<string, React.FC> = {
     "square-meters": SquareMetersCalc,
     "square-yards": SquareYardsCalc,
     "tank-volume": TankVolumeCalc,
+    "cfm": CfmCalc,
+    "flow-rate": FlowRateCalc,
+    "furnace-btu": FurnaceBtuCalc,
+    "pipe-volume": PipeVolumeCalc,
+    "refrigerant-line": RefrigerantLineCalc,
+    "water-velocity": WaterVelocityCalc,
+    "window-ac-size": WindowAcSizeCalc,
+    "ice-water-shield": IceWaterShieldCalc,
+    "metal-roofing": MetalRoofingCalc,
+    "plywood-sheathing": PlywoodSheathingCalc,
+    "roof-snow-load": RoofSnowLoadCalc,
+    "roofing-material": RoofingMaterialCalc,
+    "clapboard-siding": ClapboardSidingCalc,
+    "siding-material": SidingMaterialCalc,
+    "vinyl-siding": VinylSidingCalc,
 };
 
 export default function ConstructionCalculatorCore({ calcType }: { calcType: string }) {
