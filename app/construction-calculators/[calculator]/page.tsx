@@ -789,6 +789,156 @@ const HUB_CONTENT: Record<string, {
             { question: "Is wire mesh better than rebar for slabs?", answer: "Wire mesh: faster to install, good for thin slabs (4 inches), controls shrinkage cracking. Rebar: stronger, better for thick slabs, structural applications, and heavy loads. Many contractors use both — rebar on the perimeter and at control joints, mesh in the field." },
         ],
     },
+    "lintel-calculator": {
+        subtitle: "Calculate lintel size and concrete volume for door and window openings. Enter span, load type, and wall thickness.",
+        explanation: {
+            heading: "How to Calculate Lintels",
+            paragraphs: [
+                "A lintel is a horizontal beam spanning an opening (door, window) to carry the load above. Minimum lintel depth is typically span/8 for light loads, deeper for heavier loads. Bearing length on each end should be at least half the span or 4 inches, whichever is greater.",
+                "Concrete lintels are reinforced with rebar — typically 2 bars in the bottom for spans up to 4 feet, and 3–4 bars for wider spans. For pre-cast lintels, sizes are standardized. For cast-in-place, form the lintel in position and pour with at least 3,000 PSI concrete.",
+            ],
+            highlight: "A 36-inch window opening with 8-inch wall: minimum lintel depth = 4.5 inches (use 5 inches). Concrete volume per lintel = 36 × 8 × 5 / 1728 = 0.83 cu ft. Four lintels = 3.3 cu ft ≈ 6 bags of 80 lb mix.",
+        },
+        faq: [
+            { question: "What size lintel do I need?", answer: "Rule of thumb: lintel depth = span ÷ 8 (minimum 4 inches). Width matches wall thickness. For a 3 ft opening in an 8-inch wall, use an 8×5 inch lintel minimum. Increase depth by 25–50% for load-bearing walls." },
+            { question: "How much bearing does a lintel need?", answer: "Minimum bearing: 4 inches or half the span, whichever is greater. For a 36-inch span, 4 inches each end. For a 10 ft span, at least 6 inches each end. Always use bearing pads under steel lintels on masonry." },
+        ],
+    },
+    "concrete-slab-calculator": {
+        subtitle: "Calculate concrete volume for flat slabs — patios, garage floors, driveways, and walkways. Get cubic yards, bags, and ready-mix cost.",
+        explanation: {
+            heading: "How to Calculate Concrete Slab Volume",
+            paragraphs: [
+                "Slab volume = length × width × thickness. Standard residential slab thicknesses: sidewalks and patios = 4 inches, garage floors and driveways = 4–6 inches, heavy-duty industrial = 6–8 inches. Order 10% extra for waste, uneven subgrade, and form variations.",
+                "Ready-mix concrete is sold by the cubic yard and costs $120–$160 per yard in most markets. For small jobs under 1 cubic yard, bagged concrete may be more practical. One cubic yard fills a 10×10 ft slab at 3.24 inches thick.",
+            ],
+            highlight: "A 20×12 ft patio at 4 inches thick: 20 × 12 × 0.33 = 80 cu ft = 2.96 cu yd. Order 3.26 cu yd (+10%). At $130/yd, ready-mix cost ≈ $424.",
+        },
+        faq: [
+            { question: "How thick should my concrete slab be?", answer: "Foot traffic only (sidewalk, patio): 4 inches. Passenger vehicles (driveway, garage): 4–6 inches. Heavy trucks or equipment: 6–8 inches. Always pour on a 4-inch compacted gravel base with vapor barrier." },
+            { question: "Do I need rebar in a concrete slab?", answer: "For 4-inch slabs, wire mesh is adequate. For driveways and garages (5–6 inches), use #3 or #4 rebar on 18-inch centers. Fiber mesh is a good addition for crack control. Always use control joints every 8–12 feet." },
+        ],
+    },
+    "roof-decking-calculator": {
+        subtitle: "Calculate roof decking (sheathing) panels needed for your roof. Accounts for roof pitch, waste, and standard 4×8 sheet size.",
+        explanation: {
+            heading: "How to Calculate Roof Decking",
+            paragraphs: [
+                "Roof decking area is larger than the footprint because of the pitch. Multiply the flat area by the pitch factor: √(1 + (pitch/12)²). A 6/12 pitch increases area by 11.8%. Common decking is 4×8 ft CDX plywood or 7/16-inch OSB (32 sq ft per sheet).",
+                "Add 10–15% for waste — more for complex roof shapes with valleys, hips, and dormers. Decking must be staggered (joints offset by at least 4 feet) and fastened with 8d nails every 6 inches on edges and 12 inches in the field.",
+            ],
+            highlight: "A 30×24 ft gable roof at 6/12 pitch: flat area = 720 sq ft × 1.118 = 805 sq ft. With 10% waste = 886 sq ft ÷ 32 = 28 sheets of 4×8 plywood or OSB.",
+        },
+        faq: [
+            { question: "Should I use plywood or OSB for roof decking?", answer: "OSB: less expensive, consistent quality, but swells when wet. Plywood (CDX): more moisture-resistant, stronger, preferred in high-humidity areas. Both work when properly installed. Use H-clips between rafters for 7/16-inch panels." },
+            { question: "What thickness for roof decking?", answer: "24-inch OC rafters: 7/16-inch OSB or 1/2-inch plywood minimum. 16-inch OC: 3/8-inch minimum. For heavy snow loads or tile roofs: 5/8-inch or 3/4-inch. Check local codes for your snow load zone." },
+        ],
+    },
+    "vapor-barrier-calculator": {
+        subtitle: "Calculate vapor barrier sheeting needed for crawl spaces, under slabs, and on walls. Includes overlap and seam tape quantities.",
+        explanation: {
+            heading: "How to Calculate Vapor Barrier Material",
+            paragraphs: [
+                "Vapor barriers are polyethylene sheeting (typically 6–20 mil thick) installed to prevent moisture migration. For crawl spaces, cover the entire floor and run 6 inches up the walls. For under-slab applications, use 10-mil or thicker.",
+                "Seams must overlap 6–12 inches and be sealed with vapor barrier tape. Calculate strips by dividing the width of the area by the effective roll width (roll width minus overlap). Standard roll sizes: 10 ft, 12 ft, or 20 ft wide × 100 ft long.",
+            ],
+            highlight: "A 20×15 ft crawl space with 10 ft rolls and 12-inch overlap: effective width = 9 ft. Strips needed: 2. Material = 40 lin ft. 1 roll (10×100 ft) is sufficient. Seam tape: 20 lin ft.",
+        },
+        faq: [
+            { question: "How thick should a vapor barrier be?", answer: "Crawl spaces: 6-mil minimum, 12–20 mil preferred. Under concrete slabs: 10-mil minimum (15-mil recommended). Wall applications: 6-mil poly. Thicker is always better — thin poly tears easily during construction." },
+            { question: "Do I need a vapor barrier under a concrete slab?", answer: "Yes — always. Moisture wicking through a slab can cause flooring failures, mold, and humidity problems. Use 10-mil or thicker poly directly under the slab (not buried in gravel). Seal all seams and penetrations with vapor barrier tape." },
+        ],
+    },
+    "excavation-calculator": {
+        subtitle: "Calculate excavation volume for foundations, pools, and trenches. Get bank and loose cubic yards with swell factor by soil type.",
+        explanation: {
+            heading: "How to Calculate Excavation Volume",
+            paragraphs: [
+                "Excavation volumes must account for swell — soil expands when removed from the ground. Clay swells 35%, common earth 25%, sand 10%, and rock 50%. Bank cubic yards (in ground) × swell factor = loose cubic yards (in truck).",
+                "Standard dump trucks hold about 14 cubic yards of loose material. For trenches, add 1–2 feet of extra width for working space around foundations and utilities. Stockpiled soil will also need more space than in-ground volume due to swell.",
+            ],
+            highlight: "A 20×15×4 ft foundation excavation in clay: bank volume = 44.4 cu yd × 1.35 swell = 60 cu yd loose. That is about 4.3 truck loads.",
+        },
+        faq: [
+            { question: "What is the swell factor for different soils?", answer: "Sand/gravel: 10–15% swell. Common earth: 20–30%. Clay: 30–40%. Shale: 40–50%. Rock: 50–70%. These factors mean you need more trucks to haul material than the in-ground volume suggests." },
+            { question: "How deep do I need to excavate for a foundation?", answer: "Depends on frost depth and footing requirements: 18–24 inches in temperate climates, 36–48 inches in cold climates. Add footing depth + 4 inches for gravel base. Always excavate to undisturbed soil — never pour footings on fill." },
+        ],
+    },
+    "crown-molding-calculator": {
+        subtitle: "Calculate crown molding needed for any room. Enter room dimensions and molding piece length for total linear feet and pieces.",
+        explanation: {
+            heading: "How to Calculate Crown Molding",
+            paragraphs: [
+                "Crown molding is measured by room perimeter. Measure each wall separately to account for closets, alcoves, and bump-outs. Standard piece lengths are 8, 12, or 16 feet. Add 10% for waste — crown molding cuts at compound angles waste material at each joint.",
+                "Inside corners require coped joints (preferred) or compound miter cuts. Outside corners use miter joints. Count corners to plan your cuts. For a typical rectangular room, you have 4 inside corners and 0 outside corners.",
+            ],
+            highlight: "A 14×12 ft room: perimeter = 52 ft + 10% waste = 57.2 ft. With 8 ft pieces: 8 pieces needed. 4 inside corner cope cuts.",
+        },
+        faq: [
+            { question: "What angle do I cut crown molding?", answer: "Standard crown sits at 38° (52/38 spring angle). Miter angle: 31.6°. Bevel angle: 33.9°. Most compound miter saws have crown molding settings. Alternatively, cut it upside down on a flat miter saw at 45°." },
+            { question: "What size crown molding should I use?", answer: "8 ft ceilings: 3.5–4.5 inch crown. 9 ft ceilings: 4.5–6 inch. 10+ ft ceilings: 6–8 inch or built-up combinations. Larger molding has more visual impact but costs more and is harder to install." },
+        ],
+    },
+    "soffit-calculator": {
+        subtitle: "Calculate soffit panels, J-channel, and fascia needed for roof overhang enclosures. Enter perimeter and overhang width.",
+        explanation: {
+            heading: "How to Calculate Soffit Materials",
+            paragraphs: [
+                "Soffit covers the underside of the roof overhang. Area = perimeter × overhang width. Standard soffit panels are 12 inches wide by 12 feet long. Vented soffit provides attic ventilation — use it for at least 50% of soffit area.",
+                "J-channel runs along both edges (wall side and fascia side) — so you need twice the perimeter in J-channel. Fascia board covers the vertical face of the overhang, matching the perimeter length. F-channel can replace J-channel where soffit meets the wall.",
+            ],
+            highlight: "A house with 120 ft perimeter and 12-inch overhang: soffit area = 120 sq ft. With 12-inch × 12-ft panels: 10 panels. J-channel: 240 lin ft. Fascia: 120 lin ft.",
+        },
+        faq: [
+            { question: "Should I use vented or solid soffit?", answer: "Use vented soffit for proper attic ventilation — it prevents moisture buildup, ice dams, and heat buildup. Code typically requires 1 sq ft of soffit vent per 150 sq ft of attic floor. Combine with ridge vents for best airflow." },
+            { question: "What material is best for soffit?", answer: "Aluminum: most popular, durable, low maintenance, available vented. Vinyl: affordable, easy to install, comes in many colors. Wood: traditional look, requires painting, prone to rot. Fiber cement: premium, fireproof, long-lasting." },
+        ],
+    },
+    "rip-rap-calculator": {
+        subtitle: "Calculate rip rap stone needed for erosion control, embankments, and shoreline protection. Get tons and cubic yards by area and thickness.",
+        explanation: {
+            heading: "How to Calculate Rip Rap",
+            paragraphs: [
+                "Rip rap is large, angular stone (typically 4–24 inches diameter) used for erosion control. It weighs about 1.5 tons per cubic yard. Minimum thickness should be 1.5× the maximum stone diameter, or 12 inches, whichever is greater.",
+                "Place rip rap on filter fabric (geotextile) to prevent fine soil from migrating through the rock layer. For slopes steeper than 2:1, use grouted rip rap or consider retaining walls instead. Size selection depends on water velocity and slope angle.",
+            ],
+            highlight: "A 30×10 ft stream bank at 12 inches thick: volume = 300 cu ft = 11.1 cu yd × 1.5 = 16.7 tons. At $40/ton, cost ≈ $667.",
+        },
+        faq: [
+            { question: "What size rip rap do I need?", answer: "Class I (4–8 inch): ditches and mild slopes. Class II (8–15 inch): stream banks and moderate flow. Class III (15–24 inch): heavy flow, shorelines, and steep slopes. Consult an engineer for specific hydraulic conditions." },
+            { question: "Do I need filter fabric under rip rap?", answer: "Yes — always use non-woven geotextile filter fabric under rip rap. Without it, fine soil washes through the rocks, undermining the protection. Overlap fabric seams 12 inches and pin with landscape staples." },
+        ],
+    },
+    "baseboard-calculator": {
+        subtitle: "Calculate baseboard trim for any room. Enter room dimensions, number of doors, and piece length for total linear feet and pieces needed.",
+        explanation: {
+            heading: "How to Calculate Baseboard",
+            paragraphs: [
+                "Baseboard is measured by room perimeter minus door openings (standard door width = 3 ft). Add 10% for waste from cuts — especially inside and outside corner miters. Standard piece lengths are 8, 12, or 16 feet.",
+                "Inside corners use cope joints (one piece butted, one coped to fit). Outside corners use 45° miter joints. Count the corners to plan joint types. Use a scarf joint (overlapping 45° cut) where two straight pieces meet along a wall.",
+            ],
+            highlight: "A 14×12 ft room with 2 doors: perimeter = 52 ft minus 6 ft doors = 46 ft + 10% = 50.6 ft. With 8 ft pieces: 7 pieces. 2 inside corners (after subtracting door positions).",
+        },
+        faq: [
+            { question: "What size baseboard should I use?", answer: "3.25 inch: standard for most homes. 5.25 inch: popular upgrade for modern homes. 7.25+ inch: Victorian, craftsman, and high-end homes. Taller baseboard adds perceived luxury. Match style to crown molding." },
+            { question: "How do I handle inside corners?", answer: "Coping is superior to mitering for inside corners. Cut the first piece square to the wall. Cut the second piece at 45°, then cope (cut along the profile with a coping saw). This accommodates walls that are not perfectly square." },
+        ],
+    },
+    "concrete-wall-calculator": {
+        subtitle: "Calculate concrete volume for poured walls — foundations, retaining walls, and privacy walls. Enter length, height, and thickness.",
+        explanation: {
+            heading: "How to Calculate Concrete Wall Volume",
+            paragraphs: [
+                "Wall volume = length × height × thickness. Standard foundation walls are 8 inches thick for 1-story homes and 10 inches for 2-story. Basement walls are typically 8–10 inches thick and 8 feet tall. Add 5% for waste and form settlement.",
+                "Poured concrete walls require steel forms, rebar reinforcement, and proper curing. Walls over 4 feet tall need horizontal and vertical rebar — typically #4 bars at 12-inch centers both ways. Plan for inspection before the pour.",
+            ],
+            highlight: "A 40 ft foundation wall, 8 ft high, 8 inches thick: 40 × 8 × 0.67 = 213 cu ft = 7.9 cu yd. Order 8.3 cu yd (+5%). At $130/yd, cost ≈ $1,079.",
+        },
+        faq: [
+            { question: "How thick should a concrete wall be?", answer: "Foundation walls: 8 inches for 1-story, 10 inches for 2-story, 12 inches for 3-story or deep basements. Retaining walls: 8 inches for walls under 4 ft, 10–12 inches for taller walls. Garden/privacy walls: 4–6 inches with pilasters." },
+            { question: "How long before I can backfill against a concrete wall?", answer: "Wait at least 7 days — preferably 14 days — for the concrete to reach adequate strength before backfilling. Apply waterproofing, install drainage board, and place drain tile before backfilling. Never backfill with heavy clay directly against the wall." },
+        ],
+    },
 };
 
 export default async function ConstructionCalculatorHubPage({ params }: PageProps) {
