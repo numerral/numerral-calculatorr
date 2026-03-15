@@ -1689,6 +1689,156 @@ const HUB_CONTENT: Record<string, {
             { question: "What about non-load-bearing walls?", answer: "Non-bearing walls need only a flat 2×4 for openings up to 6 feet, or a single 2×6/2×8 on edge for wider openings. The header just prevents the top plate from sagging. Some codes allow no header at all for narrow openings (under 3 ft) in non-bearing walls." },
         ],
     },
+    "deck-stain-calculator": {
+        subtitle: "Calculate gallons of deck stain or sealer needed. Covers transparent, semi-transparent, solid, and clear sealer types.",
+        explanation: {
+            heading: "How Much Deck Stain Do I Need?",
+            paragraphs: [
+                "Coverage varies by stain type: transparent stains cover ~400 sq ft/gallon (thin coats, mostly absorbed). Semi-transparent: ~300 sq ft/gallon. Solid color stains: ~200 sq ft/gallon (thick film). Clear sealers: ~350 sq ft/gallon.",
+                "Most manufacturers recommend 2 coats for optimal protection and color. New, unsealed wood absorbs more stain on the first coat — you may need 10–15% extra. Sand between coats for best adhesion. Re-stain every 2–3 years for horizontal surfaces.",
+            ],
+            highlight: "300 sq ft deck, semi-transparent, 2 coats: 600 sq ft total coverage ÷ 300 sq ft/gal = 2 gallons. Buy an extra quart for railings and touch-ups.",
+        },
+        faq: [
+            { question: "How long does deck stain last?", answer: "Transparent: 1–2 years. Semi-transparent: 2–3 years. Solid: 3–5 years. Horizontal surfaces wear faster than vertical. Pressure-wash and re-stain when water no longer beads on the surface." },
+            { question: "Should I stain or seal a new deck?", answer: "Wait 3–6 months for new pressure-treated wood to dry before staining. Test by sprinkling water — if it absorbs within 10 minutes, the wood is ready. New cedar can be stained immediately." },
+        ],
+    },
+    "paver-base-calculator": {
+        subtitle: "Calculate gravel base and sand bedding material for paver installations. Get cubic yards and tons for both layers.",
+        explanation: {
+            heading: "How Much Base Material for Pavers?",
+            paragraphs: [
+                "A proper paver base has two layers: compacted gravel base (4–6 inches for pedestrian, 8–12 inches for vehicular) and sand bedding (1 inch). The gravel base provides structural support while the sand bedding lets you level individual pavers.",
+                "Crushed gravel weighs about 1.4 tons per cubic yard. Sand weighs about 1.35 tons per cubic yard. Always compact the gravel base in 2-inch lifts with a plate compactor. The sand layer should NOT be compacted before laying pavers — it's screeded flat.",
+            ],
+            highlight: "200 sq ft patio, 6\" gravel base + 1\" sand: Gravel = 3.7 cu yd (5.1 tons). Sand = 0.62 cu yd (0.8 tons). Order 10% extra for edge compaction.",
+        },
+        faq: [
+            { question: "How deep should paver base be?", answer: "Pedestrian walkways/patios: 4–6 inches of compacted gravel. Driveways: 8–12 inches. Plus 1 inch of leveling sand on top. In areas with freeze-thaw, go deeper — 8 inches minimum for patios and 12 inches for driveways." },
+            { question: "What type of gravel for paver base?", answer: "Use 3/4-inch crushed stone (not river rock) for the main base — angular edges interlock when compacted. Top with 1/4-inch crusher fines or concrete sand for the leveling layer. Never use pea gravel for the base — it doesn't compact." },
+        ],
+    },
+    "polymeric-sand-calculator": {
+        subtitle: "Calculate polymeric sand bags for paver joints. Enter area, joint width, and paver thickness for an accurate estimate.",
+        explanation: {
+            heading: "How Much Polymeric Sand Do I Need?",
+            paragraphs: [
+                "Polymeric sand fills paver joints and hardens when wet, preventing weed growth and insect penetration. Coverage depends on joint width, paver thickness (which determines joint depth), and paver size (which determines joint density).",
+                "A standard 50-lb bag covers roughly 25–50 sq ft for standard pavers with 1/4-inch joints. Wider joints and thicker pavers require significantly more sand. Apply in dry conditions and activate with a fine mist of water.",
+            ],
+            highlight: "200 sq ft of standard pavers, 1/4\" joints, 2-3/8\" thick: approximately 2 bags of 50 lb polymeric sand. Add 10% for waste and uneven joints.",
+        },
+        faq: [
+            { question: "Can I use regular sand between pavers?", answer: "Yes, but regular sand washes out and allows weed growth. Polymeric sand costs more ($25–$35/bag vs. $5 for play sand) but locks pavers together, inhibits weeds, and resists insect penetration. It's the recommended choice for permanent installations." },
+            { question: "How do I apply polymeric sand?", answer: "1. Sweep sand into dry joints until full. 2. Compact with plate compactor to settle sand. 3. Sweep more sand to fill any gaps. 4. Blow off ALL excess sand from paver surfaces. 5. Mist lightly with water to activate. Any sand left on the surface will haze permanently." },
+        ],
+    },
+    "asphalt-sealer-calculator": {
+        subtitle: "Calculate driveway sealcoat needed based on area, surface condition, and number of coats.",
+        explanation: {
+            heading: "How Much Driveway Sealer Do I Need?",
+            paragraphs: [
+                "Asphalt sealcoat coverage depends on surface condition. Smooth, well-maintained driveways: ~90 sq ft per gallon. Fair condition with some cracks: ~70 sq ft/gal. Poor/rough surfaces: ~50 sq ft/gal. Most manufacturers recommend 2 coats for optimal protection.",
+                "A 5-gallon bucket covers 350–450 sq ft (one coat). For a typical 2-car driveway (600 sq ft), plan on 2 buckets for 2 coats. Apply in dry weather above 50°F, and allow 24–48 hours between coats.",
+            ],
+            highlight: "600 sq ft driveway, fair condition, 2 coats: 1,200 sq ft total ÷ 70 sq ft/gal = 17.1 gallons. That's 4 five-gallon buckets.",
+        },
+        faq: [
+            { question: "How often should I seal my driveway?", answer: "Every 2–3 years for asphalt driveways. Don't over-seal — too many coats build up and crack. Wait at least 6 months before sealing new asphalt. The best time to seal is late spring through early fall when temperatures stay above 50°F for 24 hours." },
+            { question: "Should I fill cracks before sealing?", answer: "Yes — always fill cracks wider than 1/4 inch with crack filler before sealcoating. For cracks wider than 1 inch, use cold-patch asphalt. Let crack filler cure fully (24–48 hours) before applying sealer. Sealer alone won't fill or seal cracks." },
+        ],
+    },
+    "gravel-driveway-calculator": {
+        subtitle: "Calculate gravel for a driveway with base, middle, and top layer breakdown. Get volume in cubic yards and tons.",
+        explanation: {
+            heading: "How Much Gravel for a Driveway?",
+            paragraphs: [
+                "A proper gravel driveway has 3 layers: base layer (large #3 stone, 3–4 inches), middle layer (#57 stone, 2 inches), and top/surface layer (#8 or #411 stone, 1–2 inches). Total depth: 6–8 inches minimum. For heavy traffic, use 10–12 inches.",
+                "Gravel weighs about 1.4 tons per cubic yard (varies by stone type and moisture). A 50×12 ft driveway at 6 inches deep needs roughly 12.3 cu yd (17.3 tons). Order 10% extra for edge spreading and compaction.",
+            ],
+            highlight: "50×12 ft driveway, 6\" total depth: 300 cu ft = 11.1 cu yd = 15.6 tons. Base layer (#3): 9.3 tons. Middle (#57): 4.7 tons. Top (#8): 1.6 tons.",
+        },
+        faq: [
+            { question: "What type of gravel for a driveway?", answer: "Bottom layer: #3 stone (1.5–2 inch) for drainage and base. Middle: #57 stone (3/4 inch) for stability. Top: #8 stone or #411 (crusher run/stone dust mix) for a smooth surface. Don't use round river rock — it rolls under tires." },
+            { question: "How thick should a gravel driveway be?", answer: "Minimum 6 inches for light traffic. 8–10 inches for regular cars. 12+ inches for heavy vehicles. On clay soil, add 2 inches of depth and consider geotextile fabric under the base layer to prevent stone migration." },
+        ],
+    },
+    "fence-stain-calculator": {
+        subtitle: "Calculate gallons of fence stain needed. Enter fence length, height, and whether you're staining one or both sides.",
+        explanation: {
+            heading: "How Much Stain for a Fence?",
+            paragraphs: [
+                "Fence stain coverage: transparent ~350 sq ft/gal, semi-transparent ~250 sq ft/gal, solid ~200 sq ft/gal. Wood fences with rough-sawn texture absorb more stain than smooth wood — reduce coverage by 15–20%.",
+                "Staining both sides of a fence doubles your material needs. For spraying, add 10% for overspray. A 100 ft × 6 ft privacy fence (both sides) = 1,200 sq ft of staining surface.",
+            ],
+            highlight: "100 ft fence, 6 ft high, both sides, semi-transparent: 1,200 sq ft ÷ 250 sq ft/gal = 5 gallons.",
+        },
+        faq: [
+            { question: "Should I stain both sides of a fence?", answer: "Ideally yes — staining both sides provides uniform protection and prevents warping from uneven moisture absorption. At minimum, stain the side facing the weather (sun/rain). If you can only do one side, stain the side that gets the most sun exposure." },
+            { question: "How long does fence stain last?", answer: "Semi-transparent: 2–4 years. Solid stain: 4–6 years. Transparent: 1–2 years. Application method matters — brush application lasts longest because it works stain into the wood grain. Spray application is faster but may not penetrate as deeply." },
+        ],
+    },
+    "vinyl-fence-calculator": {
+        subtitle: "Calculate vinyl fence panels, posts, and gates needed. Enter perimeter and choose fence height and panel width.",
+        explanation: {
+            heading: "How to Estimate Vinyl Fence Materials",
+            paragraphs: [
+                "Vinyl fence comes in pre-assembled panels (typically 6 ft or 8 ft wide) with separate posts. Each panel requires a post on each side — shared between adjacent panels. Standard post spacing matches panel width: every 6 or 8 feet.",
+                "Account for gates when calculating panels — a standard gate takes 4 feet of fencing. Gate posts are heavier-duty than line posts. Don't forget post caps, which protect the hollow post tops from rain and debris.",
+            ],
+            highlight: "150 ft of 6 ft privacy fence (8 ft panels), 1 gate: 18 panels, 20 posts, 20 post caps, 1 gate kit.",
+        },
+        faq: [
+            { question: "How long does vinyl fence last?", answer: "20–30+ years with virtually no maintenance. Vinyl doesn't rot, peel, or need painting. Clean with soapy water and a garden hose. Most manufacturers offer lifetime limited warranties. UV inhibitors prevent yellowing; white is the most common and durable color." },
+            { question: "Is vinyl fence cheaper than wood?", answer: "Higher upfront cost ($25–$40/ft vs. $15–$25/ft for wood), but much lower lifetime cost. No painting, staining, or replacing rotted boards. Over 20 years, vinyl typically costs less than wood when maintenance is factored in." },
+        ],
+    },
+    "fence-cost-calculator": {
+        subtitle: "Estimate total fence cost by material type — wood, vinyl, chain link, aluminum, or wrought iron. Includes material and labor.",
+        explanation: {
+            heading: "How Much Does a Fence Cost?",
+            paragraphs: [
+                "Fence costs vary dramatically by material. Chain link is cheapest ($17/ft installed), wood privacy is mid-range ($27/ft), and wrought iron is most expensive ($60/ft). Height affects cost — 8 ft fences cost 30% more than 6 ft.",
+                "Labor is typically 50–60% of total fence cost. DIY can save significantly, but professional installation includes post-hole digging, alignment, and proper drainage. Add $200–$500 for each gate. Permit costs vary by municipality ($50–$200).",
+            ],
+            highlight: "150 ft wood privacy fence, 6 ft tall: Material $1,800 + Labor $2,250 = $4,050 total ($27/ft). Vinyl same length: $6,450 ($43/ft).",
+        },
+        faq: [
+            { question: "What is the cheapest fence to install?", answer: "Chain link: $15–$20/ft installed. Wood picket: $18–$25/ft. Split rail: $12–$18/ft. For privacy, wood privacy fence at $25–$35/ft is the most affordable option. Prices include posts, hardware, and basic installation." },
+            { question: "Do I need a permit for a fence?", answer: "Most municipalities require a fence permit ($50–$200). Height limits are typically 6 ft for backyard, 3–4 ft for front yard. Setback from property line is usually 6 inches to 1 foot. Some HOAs have additional restrictions on material, color, and style. Always check before building." },
+        ],
+    },
+    "linear-feet-to-square-feet-calculator": {
+        subtitle: "Convert between linear feet and square feet using material width. Works for flooring, siding, trim, and rolls.",
+        explanation: {
+            heading: "How to Convert Linear Feet to Square Feet",
+            paragraphs: [
+                "Linear feet to square feet: multiply linear feet by the material width in feet. For example, 100 linear feet of 6-inch-wide boards = 100 × 0.5 = 50 sq ft. To convert back: square feet ÷ width in feet = linear feet.",
+                "This conversion is essential for materials sold by the linear foot but needed in square foot coverage, like: flooring boards, siding planks, wall paneling, fabric rolls, and fencing. Width must be converted to feet first (divide inches by 12).",
+            ],
+            highlight: "100 linear feet of 6\" wide boards = 100 × (6÷12) = 50 sq ft. Conversely, to cover 200 sq ft with 8\" boards: 200 ÷ (8÷12) = 300 linear feet.",
+        },
+        faq: [
+            { question: "What is the difference between linear feet and square feet?", answer: "Linear feet measures length only (one dimension). Square feet measures area (length × width). A 10-foot board is 10 linear feet regardless of its width. If that board is 6 inches wide, it covers 5 square feet of surface area." },
+            { question: "How do I convert board feet to square feet?", answer: "Board feet is a volume measure (1 bd ft = 1\" thick × 12\" × 12\"). To convert to square feet of coverage: board feet ÷ thickness in inches = square feet. So 100 board feet of 3/4\" lumber covers about 133 sq ft." },
+        ],
+    },
+    "flooring-cost-calculator": {
+        subtitle: "Estimate flooring installation costs by material — hardwood, laminate, tile, vinyl, or carpet. Includes material, labor, and underlayment.",
+        explanation: {
+            heading: "How Much Does Flooring Cost?",
+            paragraphs: [
+                "Flooring costs per sq ft installed: carpet ($4), laminate ($4.80), vinyl plank ($5.30), engineered wood ($9), hardwood ($10.50), tile ($11). These include material, labor, and underlayment. Always add 10% for waste and cuts.",
+                "Tile is the most labor-intensive (highest labor cost per sq ft). Laminate and vinyl plank are the most DIY-friendly and can save $2–$4/sq ft in labor. Remove old flooring before estimating — demo adds $1–$2/sq ft.",
+            ],
+            highlight: "15×12 ft room (180 sq ft), laminate: Material $495 + Labor $360 + Underlay $54 = $909 total. Hardwood: $1,188 + $720 + $90 = $1,998.",
+        },
+        faq: [
+            { question: "What is the cheapest flooring option?", answer: "Carpet: $2–$4/sq ft installed. Vinyl sheet: $3–$5. Laminate: $4–$7. Vinyl plank (LVP): $4–$8. Engineered wood: $6–$12. Solid hardwood: $8–$15. Tile: $7–$15. Natural stone: $10–$30. Prices vary by quality, brand, and region." },
+            { question: "Should I install flooring myself?", answer: "Floating floors (laminate, click-lock vinyl) are very DIY-friendly and can save $2–$4/sq ft in labor. Tile requires more skill (mortar, grout, leveling). Hardwood nailing/gluing is intermediate. Carpet stretching requires specialized tools. Always level the subfloor first regardless of material." },
+        ],
+    },
 };
 
 export default async function ConstructionCalculatorHubPage({ params }: PageProps) {
