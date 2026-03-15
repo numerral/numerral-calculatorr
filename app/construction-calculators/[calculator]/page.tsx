@@ -2019,6 +2019,231 @@ const HUB_CONTENT: Record<string, {
             { question: "How much does a ton of stone cover?", answer: "At 2-inch depth: ~100 sq ft. At 3-inch depth: ~65 sq ft. At 4-inch depth: ~50 sq ft. Coverage varies slightly by stone type and size. Larger stones (4-6 inch river rock) have more air gaps and cover slightly more area. Crushed stone packs tightly with less void space." },
         ],
     },
+    "cubic-feet-calculator": {
+        subtitle: "Calculate volume in cubic feet from length, width, and height. Converts to cubic yards, cubic meters, gallons, and liters.",
+        explanation: {
+            heading: "How to Calculate Cubic Feet",
+            paragraphs: [
+                "Cubic feet = length (ft) × width (ft) × height (ft). One cubic foot equals 1,728 cubic inches, 7.48 US gallons, or 28.3 liters. It's the standard unit for measuring volume in construction, shipping, and storage.",
+                "Common uses: refrigerator/freezer capacity, moving truck volume, storage unit sizing, concrete volume, firewood (a cord = 128 cu ft), and HVAC airflow (CFM = cubic feet per minute).",
+            ],
+            highlight: "A 10 × 8 × 4 ft space = 320 cubic feet = 11.85 cubic yards = 2,394 US gallons = 9,061 liters.",
+        },
+        faq: [
+            { question: "How do I convert cubic feet to cubic yards?", answer: "Divide by 27. One cubic yard = 27 cubic feet (3 ft × 3 ft × 3 ft). For example, 81 cubic feet ÷ 27 = 3 cubic yards." },
+            { question: "How many gallons in a cubic foot?", answer: "7.48 US gallons. So a 10 cubic foot container holds 74.8 gallons. To convert cubic feet to gallons, multiply by 7.48." },
+        ],
+    },
+    "cubic-inches-calculator": {
+        subtitle: "Calculate volume in cubic inches from dimensions. Convert to cubic feet, gallons, liters, and milliliters.",
+        explanation: {
+            heading: "How to Calculate Cubic Inches",
+            paragraphs: [
+                "Cubic inches = length (in) × width (in) × height (in). One cubic inch = 16.387 mL = 0.004329 US gallons. There are 1,728 cubic inches in one cubic foot and 231 cubic inches in one US gallon.",
+                "Common uses: engine displacement (e.g., a 350 cubic inch V8), box volume for shipping, 3D printing build volume, and small container capacity.",
+            ],
+            highlight: "A 12 × 8 × 6 inch box = 576 cubic inches = 0.33 cubic feet = 2.49 US gallons = 9,439 mL.",
+        },
+        faq: [
+            { question: "How many cubic inches in a gallon?", answer: "231 cubic inches = 1 US gallon. To convert cubic inches to gallons, divide by 231. For example, 462 cubic inches = 2 gallons." },
+            { question: "How do I convert cubic inches to cubic feet?", answer: "Divide by 1,728. One cubic foot = 12 × 12 × 12 = 1,728 cubic inches." },
+        ],
+    },
+    "cubic-meters-calculator": {
+        subtitle: "Calculate volume in cubic meters. Convert between cubic meters, cubic feet, cubic yards, liters, and US gallons.",
+        explanation: {
+            heading: "How to Calculate Cubic Meters",
+            paragraphs: [
+                "Cubic meters = length (m) × width (m) × height (m). One cubic meter = 35.31 cubic feet = 1.31 cubic yards = 1,000 liters = 264.17 US gallons. It is the SI unit for volume.",
+                "Common uses: shipping containers (a 20-ft container ≈ 33 m³), concrete orders in metric countries, pool volume, and room volume for HVAC calculations.",
+            ],
+            highlight: "A 3 × 2 × 1 m space = 6 m³ = 211.9 cu ft = 7.85 cu yd = 6,000 liters = 1,585 gallons.",
+        },
+        faq: [
+            { question: "How do I convert cubic meters to cubic feet?", answer: "Multiply by 35.3147. For example, 2 m³ × 35.3147 = 70.63 cubic feet." },
+            { question: "How many liters in a cubic meter?", answer: "1,000 liters. A cubic meter is the same as a 1,000-liter tank (1 kiloliter)." },
+        ],
+    },
+    "cubic-yards-to-tons-calculator": {
+        subtitle: "Convert cubic yards to tons for gravel, sand, soil, mulch, asphalt, and other bulk materials. Select material for accurate density.",
+        explanation: {
+            heading: "How to Convert Cubic Yards to Tons",
+            paragraphs: [
+                "Tons = cubic yards × material density (tons per cubic yard). Different materials have different densities: gravel ≈ 1.4 ton/yd³, sand ≈ 1.35, topsoil ≈ 1.1, mulch ≈ 0.4, concrete ≈ 2.0. Bulk materials are typically sold by the ton.",
+                "When ordering, always round up and add 5–10% for waste and settling. Delivery trucks typically carry 10–15 cubic yards or 15–22 tons depending on the truck type.",
+            ],
+            highlight: "5 cubic yards of gravel: 5 × 1.4 = 7 tons = 14,000 lbs. Same volume of mulch: 5 × 0.4 = 2 tons.",
+        },
+        faq: [
+            { question: "How many tons is 1 cubic yard of gravel?", answer: "Approximately 1.4 tons (2,800 lbs). Crushed stone is similar. Pea gravel is slightly less at 1.35 tons per cubic yard." },
+            { question: "How many cubic yards in a ton?", answer: "Divide 1 by the material density. Gravel: 1 ÷ 1.4 = 0.71 cubic yards per ton. Topsoil: 1 ÷ 1.1 = 0.91 cubic yards per ton. Mulch: 1 ÷ 0.4 = 2.5 cubic yards per ton." },
+        ],
+    },
+    "cylinder-cubic-footage-calculator": {
+        subtitle: "Calculate the volume of a cylinder in cubic feet. Enter diameter and height for volume in cu ft, cubic yards, gallons, and liters.",
+        explanation: {
+            heading: "How to Calculate Cylinder Volume in Cubic Feet",
+            paragraphs: [
+                "Cylinder volume = π × r² × h, where r = radius (diameter ÷ 2) and h = height. All measurements must be in the same unit. The result is in cubic units of that measurement.",
+                "Common cylindrical applications: round concrete piers, Sonotube forms, pipes, water tanks, silos, round pools, and cisterns.",
+            ],
+            highlight: "A 4-ft diameter × 6-ft tall cylinder: π × 2² × 6 = 75.40 cu ft = 2.79 cu yd = 564 gallons.",
+        },
+        faq: [
+            { question: "How do I calculate concrete for a round footing?", answer: "Use the cylinder formula: π × (diameter/2)² × depth. For a 2-ft diameter × 4-ft deep pier: π × 1² × 4 = 12.57 cu ft = 0.47 cu yd. One 80-lb bag fills 0.6 cu ft, so you need 21 bags." },
+            { question: "How many gallons does a cylindrical tank hold?", answer: "Calculate cubic feet (π × r² × h), then multiply by 7.48 gallons per cubic foot. A 3-ft diameter × 4-ft high tank: π × 1.5² × 4 = 28.27 cu ft × 7.48 = 211 gallons." },
+        ],
+    },
+    "cylinder-cubic-yardage-calculator": {
+        subtitle: "Calculate cylinder volume in cubic yards for concrete piers, Sonotube forms, and round footings. Enter diameter and depth in inches.",
+        explanation: {
+            heading: "Cylinder Cubic Yardage for Concrete",
+            paragraphs: [
+                "For concrete piers and round footings, enter the diameter and depth in inches. The calculator converts to cubic feet and cubic yards, and estimates the number of 80-lb bags of premix concrete needed.",
+                "Standard Sonotube sizes: 8\", 10\", 12\", 14\", 16\", 18\", 20\", and 24\" diameter. A 12\" × 48\" tube holds about 3.14 cu ft = 0.12 cu yd and needs 5–6 bags of 80-lb concrete mix.",
+            ],
+            highlight: "A 12\" diameter × 48\" deep pier: 3.14 cu ft = 0.12 cu yd. Needs 6 bags of 80-lb concrete. Four such piers: 12.57 cu ft = 0.47 cu yd = 21 bags.",
+        },
+        faq: [
+            { question: "How many bags of concrete for a Sonotube?", answer: "12\" × 48\" tube: 5–6 bags (80 lb). 12\" × 36\": 4 bags. 8\" × 42\": 2–3 bags. 18\" × 48\": 12–13 bags. Each 80-lb bag fills about 0.6 cu ft." },
+            { question: "What size Sonotube do I need for a deck?", answer: "Most deck codes require 10–12\" diameter piers extending below the frost line (24–48\" in most areas). Check local building codes. For heavy loads (hot tubs, multi-story decks), 16–18\" piers may be required." },
+        ],
+    },
+    "feet-and-inches-calculator": {
+        subtitle: "Add, subtract, multiply, and divide measurements in feet and inches. Essential for construction math.",
+        explanation: {
+            heading: "Construction Math: Feet and Inches",
+            paragraphs: [
+                "Construction measurements are typically in feet and inches (e.g., 10' 6\"). Adding, subtracting, or dividing these mixed measurements requires converting to a single unit, performing the operation, then converting back.",
+                "This calculator handles the conversion automatically. Enter two measurements in feet and inches, select an operation, and get the result in feet-inches, decimal feet, total inches, and meters.",
+            ],
+            highlight: "10' 6\" + 5' 3\" = 15' 9\" = 189 inches = 15.75 decimal feet = 4.801 meters.",
+        },
+        faq: [
+            { question: "How do I convert feet and inches to decimal feet?", answer: "Divide inches by 12 and add to feet. For example, 10' 6\" = 10 + (6/12) = 10.5 feet. For 8' 3\" = 8 + (3/12) = 8.25 feet." },
+            { question: "How do I add feet and inches?", answer: "Add feet and inches separately, then carry over: 10' 9\" + 8' 7\" = 18' 16\". Since 16\" > 12\", subtract 12\" and add 1': 19' 4\"." },
+        ],
+    },
+    "inch-fraction-calculator": {
+        subtitle: "Convert decimal inches to fractions and fractions to decimals. Find the nearest standard tape measure fraction.",
+        explanation: {
+            heading: "Decimal to Fraction Inch Conversion",
+            paragraphs: [
+                "Tape measures and construction plans use fractions (1/2\", 3/8\", 5/16\"). This calculator converts any decimal measurement to the nearest standard fraction at your chosen precision (1/8, 1/16, 1/32, or 1/64 inch).",
+                "For example, 3.375\" = 3 3/8\". The calculator also shows millimeter and centimeter equivalents, making it useful for converting between imperial and metric measurements.",
+            ],
+            highlight: "3.375\" = 3 3/8\" (at 1/16 precision). In metric: 85.72 mm = 8.57 cm.",
+        },
+        faq: [
+            { question: "What fraction is 0.625 inches?", answer: "5/8 inch. Common decimals: 0.125 = 1/8, 0.25 = 1/4, 0.375 = 3/8, 0.5 = 1/2, 0.625 = 5/8, 0.75 = 3/4, 0.875 = 7/8." },
+            { question: "How do I read a tape measure?", answer: "The longest marks are inches. The next longest is 1/2\". Then 1/4\" marks, 1/8\" marks, and the shortest marks are 1/16\". Count the smallest marks from the last whole inch to read the fraction." },
+        ],
+    },
+    "scale-conversion-calculator": {
+        subtitle: "Convert scale model measurements to actual dimensions. Works for architectural blueprints, maps, and model building.",
+        explanation: {
+            heading: "How to Use Scale Conversions",
+            paragraphs: [
+                "Architectural and engineering drawings use scale ratios to represent real dimensions on paper. Common scales: 1/4\" = 1' (1:48), 1/8\" = 1' (1:96), 1\" = 1' (1:12). To find the actual dimension, multiply the measured drawing dimension by the scale ratio.",
+                "For example, at 1/4\" = 1' scale, a wall that measures 3\" on the blueprint is actually 3 × 48 = 144 inches = 12 feet in reality.",
+            ],
+            highlight: "Blueprint at 1/4\" = 1' scale: a 6\" measurement on paper = 6 × 48 = 288\" = 24 feet actual.",
+        },
+        faq: [
+            { question: "What does 1/4 inch scale mean?", answer: "1/4\" = 1' means every 1/4 inch on the drawing represents 1 foot in real life. The ratio is 1:48. A 2-inch line on the blueprint = 8 feet actual. This is the most common residential architectural scale." },
+            { question: "How do I read a blueprint scale?", answer: "Use an architect's scale ruler, or measure with a regular ruler and multiply. At 1/4\" = 1' scale, multiply inches by 4 to get feet. At 1/8\" = 1' scale, multiply inches by 8 to get feet." },
+        ],
+    },
+    "square-feet-to-cubic-feet-calculator": {
+        subtitle: "Convert area in square feet to volume in cubic feet by adding depth. Calculate material volume for any coverage area.",
+        explanation: {
+            heading: "Square Feet to Cubic Feet",
+            paragraphs: [
+                "Cubic feet = square feet × depth (in feet). If depth is in inches, divide by 12 first. This conversion is essential for calculating how much material you need to cover an area at a given depth.",
+                "Common applications: concrete slabs, gravel base layers, topsoil, mulch, and sand. For example, a 200 sq ft patio with 4\" of gravel base needs 200 × (4/12) = 66.7 cubic feet.",
+            ],
+            highlight: "200 sq ft × 4 inches deep: 200 × 0.333 = 66.7 cubic feet = 2.47 cubic yards.",
+        },
+        faq: [
+            { question: "How do I convert square feet to cubic feet?", answer: "Multiply the area by the depth in feet. If depth is in inches, divide inches by 12 first. Example: 500 sq ft × 6 inches = 500 × 0.5 = 250 cubic feet." },
+            { question: "How many cubic feet of mulch for my garden?", answer: "Mulch is typically applied 2–4 inches deep. 100 sq ft at 3\" deep = 100 × 0.25 = 25 cubic feet. One bag of mulch is typically 2 cubic feet, so you need about 13 bags." },
+        ],
+    },
+    "square-feet-to-cubic-yards-calculator": {
+        subtitle: "Convert square feet to cubic yards by adding depth. Calculate how many cubic yards of material to order for any project.",
+        explanation: {
+            heading: "Square Feet to Cubic Yards",
+            paragraphs: [
+                "Cubic yards = (square feet × depth in feet) ÷ 27. Most bulk materials (gravel, soil, mulch, sand) are sold by the cubic yard. Always add 10% for waste and settling.",
+                "Quick reference at common depths: at 2\" deep, 1 cubic yard covers 162 sq ft. At 3\", 108 sq ft. At 4\", 81 sq ft. At 6\", 54 sq ft. At 12\", 27 sq ft.",
+            ],
+            highlight: "500 sq ft at 4 inches deep: (500 × 0.333) ÷ 27 = 6.17 cubic yards. With 10% waste: 6.79 cu yd — order 7.",
+        },
+        faq: [
+            { question: "How many cubic yards do I need?", answer: "Multiply area (sq ft) × depth (inches) ÷ 324. For example: 1,000 sq ft × 4 inches ÷ 324 = 12.35 cubic yards. Add 10% = 13.6 — order 14 cubic yards." },
+            { question: "How much area does 1 cubic yard cover?", answer: "At 2\" depth: 162 sq ft. At 3\" depth: 108 sq ft. At 4\" depth: 81 sq ft. At 6\" depth: 54 sq ft. At 12\" depth: 27 sq ft." },
+        ],
+    },
+    "square-inches-calculator": {
+        subtitle: "Calculate area in square inches. Convert to square feet, square centimeters, and square millimeters.",
+        explanation: {
+            heading: "How to Calculate Square Inches",
+            paragraphs: [
+                "Square inches = length (in) × width (in). There are 144 square inches in one square foot (12 × 12). Square inches are used for smaller areas like tiles, screens, paper, and cross-sections.",
+                "Common conversions: 1 sq in = 6.45 cm² = 645.16 mm². A standard sheet of paper (8.5 × 11\") = 93.5 sq in. A 12 × 12\" tile = 144 sq in = 1 sq ft.",
+            ],
+            highlight: "12 × 8 inches = 96 square inches = 0.667 square feet = 619.4 cm².",
+        },
+        faq: [
+            { question: "How many square inches in a square foot?", answer: "144 square inches = 1 square foot (12 inches × 12 inches). To convert square inches to square feet, divide by 144." },
+            { question: "How do I convert square inches to square centimeters?", answer: "Multiply by 6.4516. For example, 96 sq in × 6.4516 = 619.4 cm²." },
+        ],
+    },
+    "square-meters-calculator": {
+        subtitle: "Calculate area in square meters. Convert between square meters, square feet, square yards, acres, and hectares.",
+        explanation: {
+            heading: "How to Calculate Square Meters",
+            paragraphs: [
+                "Square meters = length (m) × width (m). One square meter = 10.764 square feet. It's the SI unit for area and is used worldwide for real estate, construction, and land measurement.",
+                "Common references: a parking space ≈ 12 m², a single car garage ≈ 15–20 m², a tennis court = 260.87 m², a basketball court = 420 m², one hectare = 10,000 m².",
+            ],
+            highlight: "5 × 4 meters = 20 m² = 215.28 sq ft = 23.92 sq yd = 0.002 hectares.",
+        },
+        faq: [
+            { question: "How do I convert square meters to square feet?", answer: "Multiply by 10.764. For example, 20 m² × 10.764 = 215.28 sq ft. To convert sq ft to sq m, divide by 10.764." },
+            { question: "How big is 100 square meters?", answer: "About 1,076 square feet — roughly a 10 × 10 meter area (33 × 33 ft). It's about the size of a small apartment or a large living room." },
+        ],
+    },
+    "square-yards-calculator": {
+        subtitle: "Calculate area in square yards from dimensions. Convert between square yards, square feet, and square meters.",
+        explanation: {
+            heading: "How to Calculate Square Yards",
+            paragraphs: [
+                "Square yards = (length in feet × width in feet) ÷ 9. One square yard = 9 square feet = 0.8361 square meters. Square yards are commonly used for carpet, fabric, and flooring pricing.",
+                "Quick conversion: divide square feet by 9 to get square yards. For example, a 12 × 10 ft room = 120 sq ft ÷ 9 = 13.33 sq yd of carpet needed.",
+            ],
+            highlight: "12 × 10 ft room = 120 sq ft = 13.33 sq yd = 11.15 m². Carpet at $25/sq yd = $333.",
+        },
+        faq: [
+            { question: "How many square feet in a square yard?", answer: "9 square feet = 1 square yard (3 ft × 3 ft). To convert sq ft to sq yd, divide by 9." },
+            { question: "Why is carpet sold in square yards?", answer: "Carpet rolls are typically 12 feet (4 yards) wide, making square yards a natural measurement. Some retailers now list prices per square foot, but the rolls are still manufactured in standard yard widths." },
+        ],
+    },
+    "tank-volume-calculator": {
+        subtitle: "Calculate tank volume for rectangular, cylindrical, and oval tanks. Get capacity in gallons, liters, and cubic feet.",
+        explanation: {
+            heading: "How to Calculate Tank Volume",
+            paragraphs: [
+                "Tank volume formulas: Rectangular = L × W × H. Cylindrical = π × r² × H. Oval = π × a × b × L (where a and b are the semi-axes of the elliptical cross-section). Enter dimensions in inches.",
+                "Convert cubic inches to gallons by dividing by 231 (US) or by 277.42 (UK/Imperial). A standard 55-gallon drum is approximately 23\" diameter × 34\" tall. A 275-gallon oil tank is roughly 27\" × 44\" × 60\".",
+            ],
+            highlight: "Rectangular tank 48\" × 24\" × 36\" = 41,472 cu in = 179.5 gallons = 679.5 liters.",
+        },
+        faq: [
+            { question: "How many gallons in my tank?", answer: "Rectangular: (L × W × H in inches) ÷ 231 = US gallons. Cylindrical: (π × r² × H in inches) ÷ 231 = US gallons. For example, a 24\" diameter × 48\" tall cylinder: 21,715 cu in ÷ 231 = 94 gallons." },
+            { question: "How do I calculate a partially filled tank?", answer: "For a vertical tank: calculate full volume, then multiply by (current fill height ÷ total height). For a horizontal cylinder, the partial volume calculation is more complex — use the measured fill height with a tank chart for your specific diameter." },
+        ],
+    },
 };
 
 export default async function ConstructionCalculatorHubPage({ params }: PageProps) {

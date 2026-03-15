@@ -5748,6 +5748,595 @@ function StoneCalc() {
     );
 }
 
+/* ──────────── 133. CUBIC FEET CALCULATOR ──────────── */
+function CubicFeetCalc() {
+    const [length, setLength] = useState(10);
+    const [width, setWidth] = useState(8);
+    const [height, setHeight] = useState(4);
+
+    const result = useMemo(() => {
+        const cuFt = length * width * height;
+        const cuYd = cuFt / 27;
+        const cuIn = cuFt * 1728;
+        const cuM = cuFt * 0.0283168;
+        const liters = cuFt * 28.3168;
+        const gallons = cuFt * 7.48052;
+        return { cuFt, cuYd, cuIn, cuM, liters, gallons };
+    }, [length, width, height]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">📦 Cubic Feet Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Length" value={length} onChange={setLength} unit="ft" min={0.1} step={0.1} />
+                <InputField label="Width" value={width} onChange={setWidth} unit="ft" min={0.1} step={0.1} />
+                <InputField label="Height / Depth" value={height} onChange={setHeight} unit="ft" min={0.1} step={0.1} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Cubic Feet" value={fmt(result.cuFt, 2)} unit="cu ft" />
+                <ResultRow label="Cubic Yards" value={fmt(result.cuYd, 2)} unit="cu yd" />
+                <ResultRow label="Cubic Inches" value={fmt(result.cuIn)} unit="cu in" />
+                <ResultRow label="Cubic Meters" value={fmt(result.cuM, 3)} unit="m³" />
+                <ResultRow label="Liters" value={fmt(result.liters, 1)} unit="L" />
+                <ResultRow label="US Gallons" value={fmt(result.gallons, 1)} unit="gal" />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 134. CUBIC INCHES CALCULATOR ──────────── */
+function CubicInchesCalc() {
+    const [length, setLength] = useState(12);
+    const [width, setWidth] = useState(8);
+    const [height, setHeight] = useState(6);
+
+    const result = useMemo(() => {
+        const cuIn = length * width * height;
+        const cuFt = cuIn / 1728;
+        const liters = cuIn * 0.016387;
+        const gallons = cuIn / 231;
+        const ml = cuIn * 16.387;
+        return { cuIn, cuFt, liters, gallons, ml };
+    }, [length, width, height]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">📐 Cubic Inches Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Length" value={length} onChange={setLength} unit="in" min={0.1} step={0.1} />
+                <InputField label="Width" value={width} onChange={setWidth} unit="in" min={0.1} step={0.1} />
+                <InputField label="Height / Depth" value={height} onChange={setHeight} unit="in" min={0.1} step={0.1} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Cubic Inches" value={fmt(result.cuIn, 1)} unit="cu in" />
+                <ResultRow label="Cubic Feet" value={fmt(result.cuFt, 3)} unit="cu ft" />
+                <ResultRow label="US Gallons" value={fmt(result.gallons, 2)} unit="gal" />
+                <ResultRow label="Liters" value={fmt(result.liters, 2)} unit="L" />
+                <ResultRow label="Milliliters" value={fmt(result.ml, 1)} unit="mL" />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 135. CUBIC METERS CALCULATOR ──────────── */
+function CubicMetersCalc() {
+    const [length, setLength] = useState(3);
+    const [width, setWidth] = useState(2);
+    const [height, setHeight] = useState(1);
+
+    const result = useMemo(() => {
+        const cuM = length * width * height;
+        const cuFt = cuM * 35.3147;
+        const cuYd = cuM * 1.30795;
+        const liters = cuM * 1000;
+        const gallons = cuM * 264.172;
+        return { cuM, cuFt, cuYd, liters, gallons };
+    }, [length, width, height]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">📏 Cubic Meters Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Length" value={length} onChange={setLength} unit="m" min={0.01} step={0.01} />
+                <InputField label="Width" value={width} onChange={setWidth} unit="m" min={0.01} step={0.01} />
+                <InputField label="Height / Depth" value={height} onChange={setHeight} unit="m" min={0.01} step={0.01} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Cubic Meters" value={fmt(result.cuM, 3)} unit="m³" />
+                <ResultRow label="Cubic Feet" value={fmt(result.cuFt, 2)} unit="cu ft" />
+                <ResultRow label="Cubic Yards" value={fmt(result.cuYd, 2)} unit="cu yd" />
+                <ResultRow label="Liters" value={fmt(result.liters, 1)} unit="L" />
+                <ResultRow label="US Gallons" value={fmt(result.gallons, 1)} unit="gal" />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 136. CUBIC YARDS TO TONS CALCULATOR ──────────── */
+function CubicYardsToTonsCalc() {
+    const [cuYd, setCuYd] = useState(5);
+    const [material, setMaterial] = useState("gravel");
+
+    const DENSITY: Record<string, number> = {
+        "gravel": 1.4, "sand": 1.35, "topsoil": 1.1, "mulch": 0.4,
+        "crushed-stone": 1.4, "dirt": 1.1, "asphalt": 1.15, "concrete": 2.0,
+        "limestone": 1.5, "river-rock": 1.35,
+    };
+
+    const result = useMemo(() => {
+        const density = DENSITY[material] || 1.4;
+        const tons = cuYd * density;
+        const lbs = tons * 2000;
+        const kg = lbs * 0.453592;
+        return { density, tons, lbs, kg };
+    }, [cuYd, material]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">⚖️ Cubic Yards to Tons Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Cubic Yards" value={cuYd} onChange={setCuYd} unit="cu yd" min={0.1} step={0.1} />
+                <SelectField label="Material" value={material} onChange={setMaterial} options={[
+                    { value: "gravel", label: "Gravel (1.4 ton/yd³)" },
+                    { value: "sand", label: "Sand (1.35 ton/yd³)" },
+                    { value: "topsoil", label: "Topsoil (1.1 ton/yd³)" },
+                    { value: "mulch", label: "Mulch (0.4 ton/yd³)" },
+                    { value: "crushed-stone", label: "Crushed Stone (1.4 ton/yd³)" },
+                    { value: "dirt", label: "Fill Dirt (1.1 ton/yd³)" },
+                    { value: "asphalt", label: "Asphalt (1.15 ton/yd³)" },
+                    { value: "concrete", label: "Concrete (2.0 ton/yd³)" },
+                    { value: "limestone", label: "Limestone (1.5 ton/yd³)" },
+                    { value: "river-rock", label: "River Rock (1.35 ton/yd³)" },
+                ]} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Tons" value={fmt(result.tons, 2)} unit="tons" />
+                <ResultRow label="Pounds" value={fmt(result.lbs)} unit="lbs" />
+                <ResultRow label="Kilograms" value={fmt(result.kg)} unit="kg" />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 137. CYLINDER CUBIC FOOTAGE CALCULATOR ──────────── */
+function CylinderCubicFootageCalc() {
+    const [diameter, setDiameter] = useState(4);
+    const [height, setHeight] = useState(6);
+
+    const result = useMemo(() => {
+        const radius = diameter / 2;
+        const cuFt = Math.PI * radius * radius * height;
+        const cuYd = cuFt / 27;
+        const gallons = cuFt * 7.48052;
+        const liters = cuFt * 28.3168;
+        return { cuFt, cuYd, gallons, liters };
+    }, [diameter, height]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">🛢️ Cylinder Cubic Footage Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Diameter" value={diameter} onChange={setDiameter} unit="ft" min={0.1} step={0.1} />
+                <InputField label="Height / Length" value={height} onChange={setHeight} unit="ft" min={0.1} step={0.1} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Cubic Feet" value={fmt(result.cuFt, 2)} unit="cu ft" />
+                <ResultRow label="Cubic Yards" value={fmt(result.cuYd, 2)} unit="cu yd" />
+                <ResultRow label="US Gallons" value={fmt(result.gallons, 1)} unit="gal" />
+                <ResultRow label="Liters" value={fmt(result.liters, 1)} unit="L" />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 138. CYLINDER CUBIC YARDAGE CALCULATOR ──────────── */
+function CylinderCubicYardageCalc() {
+    const [diameterIn, setDiameterIn] = useState(12);
+    const [depthIn, setDepthIn] = useState(48);
+    const [numCylinders, setNumCylinders] = useState(1);
+
+    const result = useMemo(() => {
+        const radiusFt = (diameterIn / 12) / 2;
+        const depthFt = depthIn / 12;
+        const cuFtEach = Math.PI * radiusFt * radiusFt * depthFt;
+        const totalCuFt = cuFtEach * numCylinders;
+        const cuYd = totalCuFt / 27;
+        const bags80 = Math.ceil(totalCuFt / 0.6);
+        return { cuFtEach, totalCuFt, cuYd, bags80 };
+    }, [diameterIn, depthIn, numCylinders]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">🏗️ Cylinder Cubic Yardage Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Diameter" value={diameterIn} onChange={setDiameterIn} unit="in" min={4} max={60} />
+                <InputField label="Depth / Height" value={depthIn} onChange={setDepthIn} unit="in" min={6} max={120} />
+                <InputField label="Number of Cylinders" value={numCylinders} onChange={setNumCylinders} min={1} max={50} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Volume Each" value={fmt(result.cuFtEach, 2)} unit="cu ft" />
+                <ResultRow label="Total Volume" value={fmt(result.totalCuFt, 2)} unit="cu ft" />
+                <ResultRow label="Cubic Yards" value={fmt(result.cuYd, 2)} unit="cu yd" />
+                <ResultRow label="80 lb Bags" value={fmtInt(result.bags80)} unit="bags" />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 139. FEET AND INCHES LENGTH CALCULATOR ──────────── */
+function FeetAndInchesCalc() {
+    const [feet1, setFeet1] = useState(10);
+    const [inches1, setInches1] = useState(6);
+    const [feet2, setFeet2] = useState(5);
+    const [inches2, setInches2] = useState(3);
+    const [operation, setOperation] = useState("add");
+
+    const result = useMemo(() => {
+        const totalIn1 = feet1 * 12 + inches1;
+        const totalIn2 = feet2 * 12 + inches2;
+        let resultIn: number;
+        if (operation === "add") resultIn = totalIn1 + totalIn2;
+        else if (operation === "subtract") resultIn = totalIn1 - totalIn2;
+        else if (operation === "multiply") resultIn = totalIn1 * feet2; // multiply by a number
+        else resultIn = feet2 > 0 ? totalIn1 / feet2 : 0; // divide by a number
+        const isMultDiv = operation === "multiply" || operation === "divide";
+        const resultFt = Math.floor(Math.abs(resultIn) / 12);
+        const resultInches = Math.abs(resultIn) % 12;
+        const sign = resultIn < 0 ? "-" : "";
+        const totalFt = resultIn / 12;
+        const meters = totalFt * 0.3048;
+        return { resultFt, resultInches, sign, totalFt, totalIn: resultIn, meters, isMultDiv };
+    }, [feet1, inches1, feet2, inches2, operation]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">📏 Feet and Inches Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Feet (A)" value={feet1} onChange={setFeet1} unit="ft" min={0} />
+                <InputField label="Inches (A)" value={inches1} onChange={setInches1} unit="in" min={0} max={11} />
+                <SelectField label="Operation" value={operation} onChange={setOperation} options={[
+                    { value: "add", label: "Add (+)" },
+                    { value: "subtract", label: "Subtract (−)" },
+                    { value: "multiply", label: "Multiply (×)" },
+                    { value: "divide", label: "Divide (÷)" },
+                ]} />
+                {!result.isMultDiv ? (
+                    <>
+                        <InputField label="Feet (B)" value={feet2} onChange={setFeet2} unit="ft" min={0} />
+                        <InputField label="Inches (B)" value={inches2} onChange={setInches2} unit="in" min={0} max={11} />
+                    </>
+                ) : (
+                    <InputField label="Factor" value={feet2} onChange={setFeet2} min={1} />
+                )}
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Result" value={`${result.sign}${result.resultFt}' ${fmt(result.resultInches, 1)}"`} />
+                <ResultRow label="Total Inches" value={fmt(result.totalIn, 1)} unit="in" />
+                <ResultRow label="Decimal Feet" value={fmt(result.totalFt, 3)} unit="ft" />
+                <ResultRow label="Meters" value={fmt(result.meters, 3)} unit="m" />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 140. INCH FRACTION CALCULATOR ──────────── */
+function InchFractionCalc() {
+    const [decimal, setDecimal] = useState(3.375);
+    const [precision, setPrecision] = useState("16");
+
+    const result = useMemo(() => {
+        const prec = Number(precision);
+        const wholeInches = Math.floor(decimal);
+        const fractionalPart = decimal - wholeInches;
+        const numerator = Math.round(fractionalPart * prec);
+        // Simplify fraction
+        const gcd = (a: number, b: number): number => b === 0 ? a : gcd(b, a % b);
+        const g = numerator === 0 ? 1 : gcd(numerator, prec);
+        const simpNum = numerator / g;
+        const simpDen = prec / g;
+        const fractionStr = simpNum === 0 ? `${wholeInches}"` : `${wholeInches} ${simpNum}/${simpDen}"`;
+        const backToDecimal = wholeInches + (simpNum / simpDen);
+        const mm = decimal * 25.4;
+        const cm = decimal * 2.54;
+        return { fractionStr, backToDecimal, mm, cm, wholeInches, simpNum, simpDen };
+    }, [decimal, precision]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">🔢 Inch Fraction Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Decimal Inches" value={decimal} onChange={setDecimal} unit="in" min={0} step={0.001} />
+                <SelectField label="Precision" value={precision} onChange={setPrecision} options={[
+                    { value: "8", label: "1/8 inch" },
+                    { value: "16", label: "1/16 inch" },
+                    { value: "32", label: "1/32 inch" },
+                    { value: "64", label: "1/64 inch" },
+                ]} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Fraction" value={result.fractionStr} />
+                <ResultRow label="Decimal" value={`${fmt(result.backToDecimal, 4)}"`} />
+                <ResultRow label="Millimeters" value={fmt(result.mm, 2)} unit="mm" />
+                <ResultRow label="Centimeters" value={fmt(result.cm, 2)} unit="cm" />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 141. SCALE CONVERSION CALCULATOR ──────────── */
+function ScaleConversionCalc() {
+    const [scaleMeasurement, setScaleMeasurement] = useState(6);
+    const [scaleRatio, setScaleRatio] = useState("48");
+
+    const result = useMemo(() => {
+        const ratio = Number(scaleRatio);
+        const actualIn = scaleMeasurement * ratio;
+        const actualFt = actualIn / 12;
+        const actualM = actualFt * 0.3048;
+        return { actualIn, actualFt, actualM, ratio };
+    }, [scaleMeasurement, scaleRatio]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">🗺️ Scale Conversion Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Scale Measurement" value={scaleMeasurement} onChange={setScaleMeasurement} unit="in" min={0.01} step={0.01} />
+                <SelectField label="Scale Ratio" value={scaleRatio} onChange={setScaleRatio} options={[
+                    { value: "12", label: '1" = 1\' (1:12)' },
+                    { value: "24", label: '1/2" = 1\' (1:24)' },
+                    { value: "48", label: '1/4" = 1\' (1:48)' },
+                    { value: "96", label: '1/8" = 1\' (1:96)' },
+                    { value: "192", label: '1/16" = 1\' (1:192)' },
+                    { value: "120", label: '1" = 10\' (1:120)' },
+                    { value: "240", label: '1" = 20\' (1:240)' },
+                    { value: "600", label: '1" = 50\' (1:600)' },
+                ]} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Actual (inches)" value={fmt(result.actualIn, 1)} unit="in" />
+                <ResultRow label="Actual (feet)" value={fmt(result.actualFt, 2)} unit="ft" />
+                <ResultRow label="Actual (meters)" value={fmt(result.actualM, 2)} unit="m" />
+                <ResultRow label="Scale Factor" value={`1 : ${fmtInt(result.ratio)}`} />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 142. SQUARE FEET TO CUBIC FEET CALCULATOR ──────────── */
+function SqFtToCuFtCalc() {
+    const [area, setArea] = useState(200);
+    const [depthIn, setDepthIn] = useState(4);
+
+    const result = useMemo(() => {
+        const depthFt = depthIn / 12;
+        const cuFt = area * depthFt;
+        const cuYd = cuFt / 27;
+        const liters = cuFt * 28.3168;
+        return { depthFt, cuFt, cuYd, liters };
+    }, [area, depthIn]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">📐 Square Feet to Cubic Feet</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Area" value={area} onChange={setArea} unit="sq ft" min={1} />
+                <InputField label="Depth / Thickness" value={depthIn} onChange={setDepthIn} unit="in" min={0.5} step={0.5} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Depth" value={fmt(result.depthFt, 3)} unit="ft" />
+                <ResultRow label="Cubic Feet" value={fmt(result.cuFt, 2)} unit="cu ft" />
+                <ResultRow label="Cubic Yards" value={fmt(result.cuYd, 2)} unit="cu yd" />
+                <ResultRow label="Liters" value={fmt(result.liters, 1)} unit="L" />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 143. SQUARE FEET TO CUBIC YARDS CALCULATOR ──────────── */
+function SqFtToCuYdCalc() {
+    const [area, setArea] = useState(500);
+    const [depthIn, setDepthIn] = useState(4);
+
+    const result = useMemo(() => {
+        const depthFt = depthIn / 12;
+        const cuFt = area * depthFt;
+        const cuYd = cuFt / 27;
+        const cuYdWithWaste = cuYd * 1.1;
+        const tons = cuYd * 1.4; // typical gravel
+        return { depthFt, cuFt, cuYd, cuYdWithWaste, tons };
+    }, [area, depthIn]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">📐 Square Feet to Cubic Yards</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Area" value={area} onChange={setArea} unit="sq ft" min={1} />
+                <InputField label="Depth / Thickness" value={depthIn} onChange={setDepthIn} unit="in" min={0.5} step={0.5} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Cubic Feet" value={fmt(result.cuFt, 1)} unit="cu ft" />
+                <ResultRow label="Cubic Yards" value={fmt(result.cuYd, 2)} unit="cu yd" />
+                <ResultRow label="With 10% Waste" value={fmt(result.cuYdWithWaste, 2)} unit="cu yd" />
+                <ResultRow label="Approx. Tons (gravel)" value={fmt(result.tons, 1)} unit="tons" />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 144. SQUARE INCHES CALCULATOR ──────────── */
+function SquareInchesCalc() {
+    const [length, setLength] = useState(12);
+    const [width, setWidth] = useState(8);
+
+    const result = useMemo(() => {
+        const sqIn = length * width;
+        const sqFt = sqIn / 144;
+        const sqCm = sqIn * 6.4516;
+        const sqMm = sqIn * 645.16;
+        return { sqIn, sqFt, sqCm, sqMm };
+    }, [length, width]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">📐 Square Inches Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Length" value={length} onChange={setLength} unit="in" min={0.1} step={0.1} />
+                <InputField label="Width" value={width} onChange={setWidth} unit="in" min={0.1} step={0.1} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Square Inches" value={fmt(result.sqIn, 2)} unit="sq in" />
+                <ResultRow label="Square Feet" value={fmt(result.sqFt, 4)} unit="sq ft" />
+                <ResultRow label="Square Centimeters" value={fmt(result.sqCm, 2)} unit="cm²" />
+                <ResultRow label="Square Millimeters" value={fmt(result.sqMm, 1)} unit="mm²" />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 145. SQUARE METERS CALCULATOR ──────────── */
+function SquareMetersCalc() {
+    const [length, setLength] = useState(5);
+    const [width, setWidth] = useState(4);
+
+    const result = useMemo(() => {
+        const sqM = length * width;
+        const sqFt = sqM * 10.7639;
+        const sqYd = sqFt / 9;
+        const hectares = sqM / 10000;
+        const acres = sqM / 4046.86;
+        return { sqM, sqFt, sqYd, hectares, acres };
+    }, [length, width]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">📏 Square Meters Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Length" value={length} onChange={setLength} unit="m" min={0.01} step={0.01} />
+                <InputField label="Width" value={width} onChange={setWidth} unit="m" min={0.01} step={0.01} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Square Meters" value={fmt(result.sqM, 2)} unit="m²" />
+                <ResultRow label="Square Feet" value={fmt(result.sqFt, 2)} unit="sq ft" />
+                <ResultRow label="Square Yards" value={fmt(result.sqYd, 2)} unit="sq yd" />
+                <ResultRow label="Hectares" value={fmt(result.hectares, 4)} unit="ha" />
+                <ResultRow label="Acres" value={fmt(result.acres, 4)} unit="acres" />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 146. SQUARE YARDS CALCULATOR ──────────── */
+function SquareYardsCalc() {
+    const [length, setLength] = useState(12);
+    const [width, setWidth] = useState(10);
+    const [inputUnit, setInputUnit] = useState("feet");
+
+    const result = useMemo(() => {
+        let lengthFt = length, widthFt = width;
+        if (inputUnit === "yards") { lengthFt = length * 3; widthFt = width * 3; }
+        else if (inputUnit === "meters") { lengthFt = length * 3.28084; widthFt = width * 3.28084; }
+        const sqFt = lengthFt * widthFt;
+        const sqYd = sqFt / 9;
+        const sqM = sqFt * 0.092903;
+        return { sqFt, sqYd, sqM };
+    }, [length, width, inputUnit]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">📐 Square Yards Calculator</h3>
+            <div className="con-calc__inputs">
+                <SelectField label="Input Unit" value={inputUnit} onChange={setInputUnit} options={[
+                    { value: "feet", label: "Feet" },
+                    { value: "yards", label: "Yards" },
+                    { value: "meters", label: "Meters" },
+                ]} />
+                <InputField label="Length" value={length} onChange={setLength} unit={inputUnit === "meters" ? "m" : inputUnit === "yards" ? "yd" : "ft"} min={0.1} step={0.1} />
+                <InputField label="Width" value={width} onChange={setWidth} unit={inputUnit === "meters" ? "m" : inputUnit === "yards" ? "yd" : "ft"} min={0.1} step={0.1} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Square Yards" value={fmt(result.sqYd, 2)} unit="sq yd" />
+                <ResultRow label="Square Feet" value={fmt(result.sqFt, 2)} unit="sq ft" />
+                <ResultRow label="Square Meters" value={fmt(result.sqM, 2)} unit="m²" />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 147. TANK VOLUME CALCULATOR ──────────── */
+function TankVolumeCalc() {
+    const [tankShape, setTankShape] = useState("rectangular");
+    const [lengthIn, setLengthIn] = useState(48);
+    const [widthIn, setWidthIn] = useState(24);
+    const [heightIn, setHeightIn] = useState(36);
+
+    const result = useMemo(() => {
+        let cuIn: number;
+        if (tankShape === "rectangular") {
+            cuIn = lengthIn * widthIn * heightIn;
+        } else if (tankShape === "cylindrical-h") {
+            // horizontal cylinder: diameter = widthIn, length = lengthIn
+            const r = widthIn / 2;
+            cuIn = Math.PI * r * r * lengthIn;
+        } else if (tankShape === "cylindrical-v") {
+            // vertical cylinder: diameter = lengthIn, height = heightIn
+            const r = lengthIn / 2;
+            cuIn = Math.PI * r * r * heightIn;
+        } else {
+            // oval: approximate as ellipse cross-section
+            const a = widthIn / 2;
+            const b = heightIn / 2;
+            cuIn = Math.PI * a * b * lengthIn;
+        }
+        const cuFt = cuIn / 1728;
+        const gallons = cuIn / 231;
+        const liters = cuIn * 0.016387;
+        const cuYd = cuFt / 27;
+        return { cuIn, cuFt, gallons, liters, cuYd };
+    }, [tankShape, lengthIn, widthIn, heightIn]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">🛢️ Tank Volume Calculator</h3>
+            <div className="con-calc__inputs">
+                <SelectField label="Tank Shape" value={tankShape} onChange={setTankShape} options={[
+                    { value: "rectangular", label: "Rectangular" },
+                    { value: "cylindrical-h", label: "Cylindrical (Horizontal)" },
+                    { value: "cylindrical-v", label: "Cylindrical (Vertical)" },
+                    { value: "oval", label: "Oval / Elliptical" },
+                ]} />
+                <InputField label={tankShape.includes("cylindrical-v") ? "Diameter" : "Length"} value={lengthIn} onChange={setLengthIn} unit="in" min={1} />
+                {(tankShape === "rectangular" || tankShape === "cylindrical-h" || tankShape === "oval") && (
+                    <InputField label={tankShape === "cylindrical-h" ? "Diameter" : "Width"} value={widthIn} onChange={setWidthIn} unit="in" min={1} />
+                )}
+                {(tankShape === "rectangular" || tankShape === "cylindrical-v" || tankShape === "oval") && (
+                    <InputField label="Height" value={heightIn} onChange={setHeightIn} unit="in" min={1} />
+                )}
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="US Gallons" value={fmt(result.gallons, 1)} unit="gal" />
+                <ResultRow label="Liters" value={fmt(result.liters, 1)} unit="L" />
+                <ResultRow label="Cubic Feet" value={fmt(result.cuFt, 2)} unit="cu ft" />
+                <ResultRow label="Cubic Inches" value={fmt(result.cuIn)} unit="cu in" />
+            </div>
+        </div>
+    );
+}
+
 /* ──────────── DISPATCHER ──────────── */
 const CALC_MAP: Record<string, React.FC> = {
     "concrete": ConcreteCalc,
@@ -5882,6 +6471,21 @@ const CALC_MAP: Record<string, React.FC> = {
     "sod": SodCalc,
     "sod-weight": SodWeightCalc,
     "stone": StoneCalc,
+    "cubic-feet": CubicFeetCalc,
+    "cubic-inches": CubicInchesCalc,
+    "cubic-meters": CubicMetersCalc,
+    "cubic-yards-to-tons": CubicYardsToTonsCalc,
+    "cylinder-cubic-footage": CylinderCubicFootageCalc,
+    "cylinder-cubic-yardage": CylinderCubicYardageCalc,
+    "feet-and-inches": FeetAndInchesCalc,
+    "inch-fraction": InchFractionCalc,
+    "scale-conversion": ScaleConversionCalc,
+    "sqft-to-cuft": SqFtToCuFtCalc,
+    "sqft-to-cuyd": SqFtToCuYdCalc,
+    "square-inches": SquareInchesCalc,
+    "square-meters": SquareMetersCalc,
+    "square-yards": SquareYardsCalc,
+    "tank-volume": TankVolumeCalc,
 };
 
 export default function ConstructionCalculatorCore({ calcType }: { calcType: string }) {
