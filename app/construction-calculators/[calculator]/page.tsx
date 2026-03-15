@@ -939,6 +939,156 @@ const HUB_CONTENT: Record<string, {
             { question: "How long before I can backfill against a concrete wall?", answer: "Wait at least 7 days — preferably 14 days — for the concrete to reach adequate strength before backfilling. Apply waterproofing, install drainage board, and place drain tile before backfilling. Never backfill with heavy clay directly against the wall." },
         ],
     },
+    "french-drain-calculator": {
+        subtitle: "Calculate gravel, pipe, and filter fabric needed for a French drain. Enter trench dimensions and pipe size.",
+        explanation: {
+            heading: "How to Calculate French Drain Materials",
+            paragraphs: [
+                "A French drain is a gravel-filled trench with a perforated pipe that redirects surface and groundwater away from foundations. Standard dimensions: 12 inches wide × 18 inches deep minimum. The pipe sits at the bottom on 2 inches of gravel, with gravel filling the rest of the trench.",
+                "Wrap the entire trench with landscape filter fabric before adding gravel to prevent soil from clogging the system. Use washed crushed stone (3/4 inch) — not pea gravel, which can migrate into the pipe perforations.",
+            ],
+            highlight: "A 30 ft French drain, 12 inches wide × 18 inches deep: gravel ≈ 1.6 cu yd (2.2 tons). Perforated pipe: 30 lin ft. Filter fabric: about 120 sq ft.",
+        },
+        faq: [
+            { question: "How deep should a French drain be?", answer: "Minimum 18 inches deep for surface water. For foundation drainage, dig to the footing level — typically 24–36 inches. The pipe should slope at least 1% (1 inch per 8 feet) toward the outlet. Deeper is better for intercepting groundwater." },
+            { question: "What size pipe for a French drain?", answer: "4-inch perforated pipe handles most residential applications. Use 6-inch for heavy flow areas or long runs over 50 feet. Rigid PVC is more durable than flexible corrugated pipe. Place holes facing down for groundwater, up for surface water." },
+        ],
+    },
+    "concrete-pier-calculator": {
+        subtitle: "Calculate concrete volume for cylindrical piers and Sonotube footings. Enter diameter, depth, and quantity.",
+        explanation: {
+            heading: "How to Calculate Concrete Pier Volume",
+            paragraphs: [
+                "Pier volume uses the cylinder formula: π × r² × h. Common pier diameters: 8 inches for light loads (fences), 12 inches for deck posts, 18–24 inches for heavy structural loads. Depth must reach below the frost line — 36 to 48 inches in most northern climates.",
+                "Sonotube cardboard forms make pouring cylindrical piers easy. Set the tube, add rebar (typically 2 vertical #4 bars), pour concrete, and insert a post bracket before the concrete sets. One 80 lb bag of concrete fills about 0.6 cubic feet.",
+            ],
+            highlight: "Six 12-inch diameter piers × 48 inches deep: volume each = 3.14 cu ft. Total = 18.8 cu ft = 0.70 cu yd ≈ 32 bags of 80 lb concrete.",
+        },
+        faq: [
+            { question: "What diameter pier do I need?", answer: "Fence posts: 8–10 inches. Deck posts: 12 inches minimum. Load-bearing columns: 18–24 inches. Check local code for required footing size based on soil bearing capacity and tributary load." },
+            { question: "How deep should concrete piers be?", answer: "At minimum below the frost line: 36 inches in moderate climates, 42–48 inches in cold climates. Check local building codes. Foundation piers may need to reach 5–6 feet to hit bearing soil. Always pour on undisturbed soil." },
+        ],
+    },
+    "house-wrap-calculator": {
+        subtitle: "Calculate house wrap (weather barrier) for exterior walls. Enter wall dimensions and openings for total rolls needed.",
+        explanation: {
+            heading: "How to Calculate House Wrap",
+            paragraphs: [
+                "House wrap is a weather-resistant barrier (WRB) installed over exterior sheathing before siding. Calculate net wall area by subtracting door and window openings from gross wall area. Add 10% for overlaps — horizontal laps should be 6 inches, vertical laps 12 inches.",
+                "Standard rolls are 9 ft × 100 ft (900 sq ft) or 9 ft × 150 ft (1,350 sq ft). Install from bottom up so upper courses overlap lower courses. Tape all seams and penetrations with manufacturer-recommended tape.",
+            ],
+            highlight: "A home with 4 walls averaging 40 ft × 9 ft, 2 doors, and 8 windows: gross area = 1,440 sq ft minus 162 sq ft openings = 1,278 sq ft + 10% = 1,406 sq ft ≈ 2 rolls.",
+        },
+        faq: [
+            { question: "Is house wrap necessary?", answer: "Yes — building code requires a weather-resistant barrier in most jurisdictions. House wrap prevents bulk water intrusion while allowing moisture vapor to escape, protecting sheathing and framing from rot. It also reduces air infiltration." },
+            { question: "What is the best house wrap?", answer: "Tyvek HomeWrap is the industry standard. ZIP System (integrated sheathing + WRB) is gaining popularity. Other options: Typar, Henry Blueskin (self-adhered). Key factors: water resistance, vapor permeability, and durability during construction exposure." },
+        ],
+    },
+    "stair-railing-calculator": {
+        subtitle: "Calculate stair railing materials — balusters, posts, and rails. Enter railing length and spacing requirements.",
+        explanation: {
+            heading: "How to Calculate Stair Railing Materials",
+            paragraphs: [
+                "Building code requires railings on stairs with 4 or more risers. Rail height must be 34–38 inches measured from the stair nosing. Balusters must be spaced so a 4-inch sphere cannot pass through — typically 4 inches on center with standard balusters.",
+                "Posts are required at the top and bottom of each stair run, and every 6–8 feet along the run. Top and bottom rails run the full railing length. Calculate balusters by dividing the railing length by the on-center spacing, then add one.",
+            ],
+            highlight: "A 12 ft stair railing at 4-inch baluster spacing: 37 balusters, 3 posts, 12 lin ft of top and bottom rail.",
+        },
+        faq: [
+            { question: "What is the code for stair railing height?", answer: "IRC requires 34–38 inches measured vertically from the stair nosing to the top of the handrail. Guardrails (landing/deck) must be 36 inches minimum (42 inches in commercial). Graspable handrails must be 1.25–2 inches in diameter." },
+            { question: "How far apart can balusters be on stairs?", answer: "Code requires that a 4-inch sphere cannot pass through any opening. With 1.5-inch balusters, on-center spacing is about 5.5 inches (4-inch gap + 1.5-inch width). On open risers, a 6-inch sphere cannot pass through." },
+        ],
+    },
+    "drop-ceiling-calculator": {
+        subtitle: "Calculate drop ceiling tiles, grid components, and hardware for a suspended ceiling. Enter room dimensions and tile size.",
+        explanation: {
+            heading: "How to Calculate Drop Ceiling Materials",
+            paragraphs: [
+                "A drop (suspended) ceiling consists of wall angle around the perimeter, main runners every 4 feet, cross tees connecting the runners, and ceiling tiles filling the grid. Standard tile sizes are 2×4 ft and 2×2 ft.",
+                "Main runners hang from the joists/deck above with hanger wires every 4 feet. Install the ceiling at least 3 inches below the lowest obstruction (pipes, ducts). For 2×2 tiles, extra cross tees are needed to subdivide the 2×4 grid.",
+            ],
+            highlight: "A 14×12 ft room with 2×4 tiles: area = 168 sq ft. Tiles: 21. Main runners: 36 lin ft. Wall angle: 52 lin ft. Hang wires: 11 pieces.",
+        },
+        faq: [
+            { question: "How low does a drop ceiling hang?", answer: "Minimum 3 inches below the lowest obstruction (pipe, duct, beam). Typical clearance is 4–6 inches. You need at least 7.5 ft finished ceiling height in habitable rooms (check local code). For recessed lights, allow 6+ inches." },
+            { question: "Are 2×2 or 2×4 tiles better?", answer: "2×4 tiles: fewer grid pieces, faster installation, more economical. 2×2 tiles: more modern appearance, stiffer (less sag), easier to handle. Both use the same main runner grid — 2×2 just adds mid-span cross tees." },
+        ],
+    },
+    "concrete-column-calculator": {
+        subtitle: "Calculate concrete volume for square, rectangular, or round columns. Enter dimensions, height, and quantity.",
+        explanation: {
+            heading: "How to Calculate Concrete Column Volume",
+            paragraphs: [
+                "For rectangular columns: volume = width × depth × height. For round columns: volume = π × r² × height. Common residential columns are 12×12 inches square or 12 inches diameter. Structural columns may be 18–36 inches.",
+                "All concrete columns require reinforcement — typically 4 vertical #5 or #6 bars with #3 ties every 12 inches. Forms must be plumb, braced, and oiled before pouring. Vibrate the concrete during placement to eliminate air pockets.",
+            ],
+            highlight: "Four 12×12 inch square columns × 10 ft tall: volume each = 10 cu ft. Total = 40 cu ft = 1.48 cu yd ≈ 67 bags of 80 lb mix.",
+        },
+        faq: [
+            { question: "What size concrete column do I need?", answer: "Size depends on the load: residential porch posts 12×12 inches, carport columns 16×16, commercial 18–36 inches. Rule of thumb: column width should be at least 1/12 of the unsupported height. Always get engineering for structural columns." },
+            { question: "How much rebar in a concrete column?", answer: "Minimum: 4 vertical bars, 1% of cross-sectional area. Typical residential: 4 #5 bars with #3 ties at 12 inches. Lap splice vertical bars 40 diameters (25 inches for #5). Ties should be spaced no more than 16 bar diameters or 48 tie diameters." },
+        ],
+    },
+    "flashing-calculator": {
+        subtitle: "Calculate roof and wall flashing for chimneys, valleys, drip edges, and penetrations. Get total linear feet and metal area.",
+        explanation: {
+            heading: "How to Calculate Flashing Materials",
+            paragraphs: [
+                "Flashing prevents water intrusion at roof intersections, penetrations, and transitions. Add up all valley runs, step flashing along walls, chimney perimeters, and drip edge lengths. Typical flashing widths: 4–8 inches for step flashing, 12–18 inches for valleys.",
+                "Materials include aluminum (economical), galvanized steel (durable), copper (premium/long-lasting), and lead (chimneys). Step flashing pieces are typically 5×7 inches, overlapping shingle-style. Valley flashing uses W-shaped or open metal.",
+            ],
+            highlight: "A roof with 20 ft of valley, 16 ft of step flashing, 8 ft chimney perimeter, and 80 ft drip edge at 8-inch width: total = 124 lin ft of flashing = 83 sq ft of metal.",
+        },
+        faq: [
+            { question: "What type of flashing should I use?", answer: "Aluminum: affordable, easy to bend, corrosion-resistant. Galvanized steel: stronger, good for drip edges. Copper: premium, 100+ year life, develops patina. Never mix copper with galvanized (galvanic corrosion). Use lead or lead-coated copper for chimney cricket flashing." },
+            { question: "How wide should flashing be?", answer: "Step flashing: 5×7 inches minimum. Valleys: 12 inches minimum each side (24 total), 18 inches for low-slope roofs. Drip edge: 2×3 inches typical. Chimney base flashing: 8–12 inches. Always extend flashing 4+ inches under roofing material." },
+        ],
+    },
+    "baluster-calculator": {
+        subtitle: "Calculate balusters needed for deck or porch railings. Enter railing length, baluster width, and maximum gap spacing.",
+        explanation: {
+            heading: "How to Calculate Balusters",
+            paragraphs: [
+                "Building code requires that a 4-inch sphere cannot pass through railing openings. This means the maximum gap between balusters is 3.5 inches (accounting for the sphere contacting both sides). Divide the railing length by on-center spacing (baluster width + gap), then add 1.",
+                "Standard balusters are 1.5 inches square (wood) or 0.75 inches (metal). Proper spacing ensures code compliance while maintaining visual balance. Use equal spacing — calculate the actual gap by distributing evenly across the full railing length.",
+            ],
+            highlight: "A 20 ft railing with 1.5-inch wood balusters at 4-inch max gap: on-center spacing = 5.5 inches. Balusters = 44 pieces.",
+        },
+        faq: [
+            { question: "What is code-compliant baluster spacing?", answer: "IRC and IBC require that a 4-inch sphere cannot pass through any opening. With 1.5-inch balusters, max gap = 3.5 inches, giving 5-inch on-center spacing. Many builders use 4-inch spacing for a safer, cleaner look." },
+            { question: "How do I space balusters evenly?", answer: "Measure total railing length between posts. Divide by desired on-center spacing to get the number of spaces. Adjust the gap slightly so all spaces are equal. Use a spacer jig cut to the exact gap width for consistent installation." },
+        ],
+    },
+    "backsplash-calculator": {
+        subtitle: "Calculate tile, grout, and adhesive for kitchen or bathroom backsplashes. Enter dimensions and tile size.",
+        explanation: {
+            heading: "How to Calculate Backsplash Tile",
+            paragraphs: [
+                "Backsplash area = length × height. Standard backsplash height is 18 inches (countertop to upper cabinets). Full-height backsplashes go to the ceiling (36–42 inches). Add 10% for waste from cuts, especially around outlets and corners.",
+                "Subway tile (3×6 inches) is the most popular backsplash choice. Count tiles by dividing the total area by individual tile area. Grout coverage: about 0.5 lbs per square foot for subway tile. Use unsanded grout for joints 1/8 inch or smaller.",
+            ],
+            highlight: "A 10 ft backsplash × 18 inches high with 3×6 subway tile: area = 15 sq ft + 10% = 16.5 sq ft ≈ 132 tiles. Grout: 7.5 lbs.",
+        },
+        faq: [
+            { question: "What is the most popular backsplash tile?", answer: "3×6 inch subway tile in white or neutral tones is the most popular — timeless, affordable, and versatile. Running bond (brick pattern) is the classic layout. Other popular options: herringbone, 4×12 stacked, hexagon, and penny tile." },
+            { question: "How high should a kitchen backsplash be?", answer: "Standard: 18 inches (countertop to upper cabinets). Full height: countertop to ceiling (no upper cabinets). Behind the stove: extend to the range hood, typically 24–30 inches. Minimum recommended: 4 inches to protect the wall from splashes." },
+        ],
+    },
+    "trench-fill-calculator": {
+        subtitle: "Calculate backfill material for utility trenches. Enter trench dimensions and fill material type for cubic yards and tons.",
+        explanation: {
+            heading: "How to Calculate Trench Fill Volume",
+            paragraphs: [
+                "Trench fill volume = length × width × depth. For utility trenches, the fill typically consists of bedding material (sand or pea gravel around the pipe) and backfill (native soil or gravel above). Pipe diameter reduces the fill volume slightly.",
+                "Standard utility trench widths: 12 inches for small pipes (water, electrical), 18–24 inches for sewer and drain pipes, 36–48 inches for large utilities. Compact backfill in 6-inch lifts to prevent settlement. Use clean fill — no rocks, debris, or organic material.",
+            ],
+            highlight: "A 30 ft trench, 12 inches wide × 24 inches deep with gravel fill: volume = 60 cu ft = 2.2 cu yd ≈ 3.1 tons.",
+        },
+        faq: [
+            { question: "What should I backfill a trench with?", answer: "Above pipes: 6 inches of sand or pea gravel bedding, then native soil or clean fill in 6-inch compacted lifts. For drainage trenches: washed gravel. For structural fills: compactable gravel (road base). Never use clay, organic soil, or material with large rocks." },
+            { question: "How wide should a utility trench be?", answer: "Water lines: 12-18 inches. Sewer pipes: pipe diameter + 12 inches. Electrical conduit: 6–12 inches. Gas lines: 12–18 inches. Wider trenches are easier to work in but require more backfill. Bell holes are needed at pipe joints." },
+        ],
+    },
 };
 
 export default async function ConstructionCalculatorHubPage({ params }: PageProps) {
