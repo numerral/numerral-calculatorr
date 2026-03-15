@@ -993,6 +993,403 @@ function WeightLossCalc() {
     </div></div>);
 }
 
+/* ──── Shared 1RM helper (Epley) ──── */
+function epley1RM(w: number, r: number) { return r === 1 ? w : w * (1 + r / 30); }
+function pctLoads(max: number) { return [100,95,90,85,80,75,70,65,60].map(p => ({ pct: p, wt: max * p / 100 })); }
+
+/* 50. Air Force PT Test */
+function AirForcePtCalc() {
+    const [pushups, setPushups] = useState(50); const [situps, setSitups] = useState(50); const [runMin, setRunMin] = useState(12); const [runSec, setRunSec] = useState(0); const [sex, setSex] = useState("male");
+    const r = useMemo(() => {
+        const puPts = Math.min(Math.max((pushups - 20) * 1, 0), 20); const suPts = Math.min(Math.max((situps - 20) * 1, 0), 20);
+        const runTime = runMin + runSec / 60; const maxRun = sex === "male" ? 13.36 : 16.22;
+        const runPts = Math.min(Math.max((maxRun - runTime) / (maxRun - 9.12) * 60, 0), 60);
+        const total = puPts + suPts + runPts; const pass = total >= 75 && runPts >= 25;
+        return { puPts: Math.round(puPts), suPts: Math.round(suPts), runPts: Math.round(runPts), total: Math.round(total), pass };
+    }, [pushups, situps, runMin, runSec, sex]);
+    return (<div className="con-calc"><h3 className="con-calc__title">✈️ Air Force PT Test</h3><div className="con-calc__inputs">
+        <SelectField label="Sex" value={sex} onChange={setSex} options={[{value:"male",label:"Male"},{value:"female",label:"Female"}]} />
+        <InputField label="Push-Ups" value={pushups} onChange={setPushups} min={0} max={100} />
+        <InputField label="Sit-Ups" value={situps} onChange={setSitups} min={0} max={100} />
+        <InputField label="Run (min)" value={runMin} onChange={setRunMin} min={7} max={25} /><InputField label="Run (sec)" value={runSec} onChange={setRunSec} unit="sec" min={0} max={59} />
+    </div><div className="con-calc__results"><h4>Score</h4>
+        <ResultRow label="Push-Up Points" value={String(r.puPts)} unit="/20" /><ResultRow label="Sit-Up Points" value={String(r.suPts)} unit="/20" />
+        <ResultRow label="Run Points" value={String(r.runPts)} unit="/60" /><ResultRow label="Composite" value={String(r.total)} unit="/100" />
+        <ResultRow label="Status" value={r.pass ? "✅ Pass" : "❌ Fail"} />
+    </div></div>);
+}
+
+/* 51. Army Fitness Test (ACFT) */
+function ArmyFitnessTestCalc() {
+    const [deadlift, setDeadlift] = useState(180); const [powerThrow, setPowerThrow] = useState(10);
+    const [pushups, setPushups] = useState(30); const [sdc, setSdc] = useState(120); const [plank, setPlank] = useState(150); const [run, setRun] = useState(16);
+    const r = useMemo(() => {
+        const dlPts = Math.min(Math.round(Math.max((deadlift - 60) / 3, 0)), 100);
+        const ptPts = Math.min(Math.round(Math.max((powerThrow - 4) * 10, 0)), 100);
+        const puPts = Math.min(Math.round(Math.max(pushups * 2, 0)), 100);
+        const sdcPts = Math.min(Math.round(Math.max((200 - sdc) / 1.4, 0)), 100);
+        const plkPts = Math.min(Math.round(Math.max((plank - 60) / 1.8, 0)), 100);
+        const runPts = Math.min(Math.round(Math.max((25 - run) * 7.5, 0)), 100);
+        const total = dlPts + ptPts + puPts + sdcPts + plkPts + runPts;
+        const pass = [dlPts, ptPts, puPts, sdcPts, plkPts, runPts].every(p => p >= 60);
+        return { dlPts, ptPts, puPts, sdcPts, plkPts, runPts, total, pass };
+    }, [deadlift, powerThrow, pushups, sdc, plank, run]);
+    return (<div className="con-calc"><h3 className="con-calc__title">🪖 Army ACFT Calculator</h3><div className="con-calc__inputs">
+        <InputField label="3-Rep Deadlift" value={deadlift} onChange={setDeadlift} unit="lbs" min={60} max={400} />
+        <InputField label="Power Throw" value={powerThrow} onChange={setPowerThrow} unit="m" min={3} max={15} step={0.1} />
+        <InputField label="Hand-Release Push-Ups" value={pushups} onChange={setPushups} min={0} max={70} />
+        <InputField label="Sprint-Drag-Carry" value={sdc} onChange={setSdc} unit="sec" min={60} max={250} />
+        <InputField label="Plank" value={plank} onChange={setPlank} unit="sec" min={30} max={300} />
+        <InputField label="2-Mile Run" value={run} onChange={setRun} unit="min" min={10} max={30} step={0.1} />
+    </div><div className="con-calc__results"><h4>ACFT Score</h4>
+        <ResultRow label="Deadlift" value={String(r.dlPts)} /><ResultRow label="Power Throw" value={String(r.ptPts)} />
+        <ResultRow label="Push-Ups" value={String(r.puPts)} /><ResultRow label="Sprint-Drag-Carry" value={String(r.sdcPts)} />
+        <ResultRow label="Plank" value={String(r.plkPts)} /><ResultRow label="2-Mile Run" value={String(r.runPts)} />
+        <ResultRow label="Total" value={String(r.total)} unit="/600" /><ResultRow label="Status" value={r.pass ? "✅ Pass" : "❌ Fail"} />
+    </div></div>);
+}
+
+/* 52. Bench Press */
+function BenchPressCalc() {
+    const [w, setW] = useState(80); const [reps, setReps] = useState(5); const [bw, setBw] = useState(80);
+    const r = useMemo(() => { const max = epley1RM(w, reps); const ratio = max / bw;
+        const cat = ratio < 0.75 ? "Beginner" : ratio < 1.0 ? "Novice" : ratio < 1.25 ? "Intermediate" : ratio < 1.5 ? "Advanced" : "Elite";
+        return { max, ratio, cat, loads: pctLoads(max) }; }, [w, reps, bw]);
+    return (<div className="con-calc"><h3 className="con-calc__title">🏋️ Bench Press Calculator</h3><div className="con-calc__inputs">
+        <InputField label="Weight Lifted" value={w} onChange={setW} unit="kg" min={10} max={300} />
+        <InputField label="Reps" value={reps} onChange={setReps} min={1} max={30} />
+        <InputField label="Body Weight" value={bw} onChange={setBw} unit="kg" min={30} />
+    </div><div className="con-calc__results"><h4>Estimated 1RM</h4>
+        <ResultRow label="Max Bench Press" value={fmt(r.max, 0)} unit="kg" /><ResultRow label="Strength Ratio" value={`${fmt(r.ratio, 2)}× BW`} />
+        <ResultRow label="Level" value={r.cat} />
+        <h4>Training Loads</h4>
+        {r.loads.slice(0, 5).map(l => <ResultRow key={l.pct} label={`${l.pct}%`} value={fmt(l.wt, 0)} unit="kg" />)}
+    </div></div>);
+}
+
+/* Helper for MET-based calorie burn */
+function metCalBurn(met: number, w: number, mins: number) { return met * 3.5 * w / 200 * mins; }
+
+/* 53. Calories Biking */
+function CaloriesBikingCalc() {
+    const [w, setW] = useState(70); const [mins, setMins] = useState(30); const [intensity, setIntensity] = useState("moderate");
+    const r = useMemo(() => { const met = intensity === "light" ? 4.0 : intensity === "moderate" ? 8.0 : intensity === "vigorous" ? 10.0 : 12.0;
+        return { cal: metCalBurn(met, w, mins), met }; }, [w, mins, intensity]);
+    return (<div className="con-calc"><h3 className="con-calc__title">🚴 Calories Burned Biking</h3><div className="con-calc__inputs">
+        <InputField label="Weight" value={w} onChange={setW} unit="kg" min={30} /><InputField label="Duration" value={mins} onChange={setMins} unit="min" min={1} />
+        <SelectField label="Intensity" value={intensity} onChange={setIntensity} options={[{value:"light",label:"Light (<16 km/h)"},{value:"moderate",label:"Moderate (16-20 km/h)"},{value:"vigorous",label:"Vigorous (20-25 km/h)"},{value:"racing",label:"Racing (>25 km/h)"}]} />
+    </div><div className="con-calc__results"><h4>Results</h4>
+        <ResultRow label="Calories Burned" value={fmt(r.cal, 0)} unit="kcal" /><ResultRow label="MET Value" value={fmt(r.met)} />
+        <ResultRow label="Cal/minute" value={fmt(r.cal / mins, 1)} unit="kcal" />
+    </div></div>);
+}
+
+/* 54. Calories Hiking */
+function CaloriesHikingCalc() {
+    const [w, setW] = useState(70); const [mins, setMins] = useState(60); const [terrain, setTerrain] = useState("moderate"); const [pack, setPack] = useState(0);
+    const r = useMemo(() => { const baseMet = terrain === "flat" ? 3.5 : terrain === "moderate" ? 6.0 : terrain === "steep" ? 8.0 : 10.0;
+        const packBonus = pack * 0.02; const met = baseMet + packBonus;
+        return { cal: metCalBurn(met, w + pack, mins), met }; }, [w, mins, terrain, pack]);
+    return (<div className="con-calc"><h3 className="con-calc__title">🥾 Calories Burned Hiking</h3><div className="con-calc__inputs">
+        <InputField label="Weight" value={w} onChange={setW} unit="kg" min={30} /><InputField label="Duration" value={mins} onChange={setMins} unit="min" min={1} />
+        <SelectField label="Terrain" value={terrain} onChange={setTerrain} options={[{value:"flat",label:"Flat trail"},{value:"moderate",label:"Moderate hills"},{value:"steep",label:"Steep terrain"},{value:"scramble",label:"Scrambling/off-trail"}]} />
+        <InputField label="Pack Weight" value={pack} onChange={setPack} unit="kg" min={0} max={40} />
+    </div><div className="con-calc__results"><h4>Results</h4>
+        <ResultRow label="Calories Burned" value={fmt(r.cal, 0)} unit="kcal" /><ResultRow label="MET Value" value={fmt(r.met)} />
+    </div></div>);
+}
+
+/* 55. Calories Jump Rope */
+function CaloriesJumpRopeCalc() {
+    const [w, setW] = useState(70); const [mins, setMins] = useState(15); const [speed, setSpeed] = useState("moderate");
+    const r = useMemo(() => { const met = speed === "slow" ? 8.8 : speed === "moderate" ? 11.8 : 12.3;
+        return { cal: metCalBurn(met, w, mins), met }; }, [w, mins, speed]);
+    return (<div className="con-calc"><h3 className="con-calc__title">🤸 Calories Burned Jumping Rope</h3><div className="con-calc__inputs">
+        <InputField label="Weight" value={w} onChange={setW} unit="kg" min={30} /><InputField label="Duration" value={mins} onChange={setMins} unit="min" min={1} max={60} />
+        <SelectField label="Speed" value={speed} onChange={setSpeed} options={[{value:"slow",label:"Slow (<100 skips/min)"},{value:"moderate",label:"Moderate (100-120)"},{value:"fast",label:"Fast (>120 skips/min)"}]} />
+    </div><div className="con-calc__results"><h4>Results</h4>
+        <ResultRow label="Calories Burned" value={fmt(r.cal, 0)} unit="kcal" /><ResultRow label="MET Value" value={fmt(r.met)} />
+        <ResultRow label="Cal/minute" value={fmt(r.cal / mins, 1)} unit="kcal" />
+    </div></div>);
+}
+
+/* 56. Calories Running */
+function CaloriesRunningCalc() {
+    const [w, setW] = useState(70); const [mins, setMins] = useState(30); const [pace, setPace] = useState("moderate");
+    const r = useMemo(() => { const met = pace === "jog" ? 7.0 : pace === "moderate" ? 9.8 : pace === "fast" ? 11.5 : 14.5;
+        return { cal: metCalBurn(met, w, mins), met }; }, [w, mins, pace]);
+    return (<div className="con-calc"><h3 className="con-calc__title">🏃 Calories Burned Running</h3><div className="con-calc__inputs">
+        <InputField label="Weight" value={w} onChange={setW} unit="kg" min={30} /><InputField label="Duration" value={mins} onChange={setMins} unit="min" min={1} />
+        <SelectField label="Pace" value={pace} onChange={setPace} options={[{value:"jog",label:"Light jog (8 km/h)"},{value:"moderate",label:"Moderate (10 km/h)"},{value:"fast",label:"Fast (12 km/h)"},{value:"sprint",label:"Sprint (15+ km/h)"}]} />
+    </div><div className="con-calc__results"><h4>Results</h4>
+        <ResultRow label="Calories Burned" value={fmt(r.cal, 0)} unit="kcal" /><ResultRow label="MET Value" value={fmt(r.met)} />
+        <ResultRow label="Cal/minute" value={fmt(r.cal / mins, 1)} unit="kcal" />
+    </div></div>);
+}
+
+/* 57. Calories Swimming */
+function CaloriesSwimmingCalc() {
+    const [w, setW] = useState(70); const [mins, setMins] = useState(30); const [stroke, setStroke] = useState("freestyle");
+    const r = useMemo(() => { const mets: Record<string, number> = { freestyle: 8.3, backstroke: 7.0, breaststroke: 10.3, butterfly: 13.8, leisure: 6.0 };
+        const met = mets[stroke] || 8.3; return { cal: metCalBurn(met, w, mins), met }; }, [w, mins, stroke]);
+    return (<div className="con-calc"><h3 className="con-calc__title">🏊 Calories Burned Swimming</h3><div className="con-calc__inputs">
+        <InputField label="Weight" value={w} onChange={setW} unit="kg" min={30} /><InputField label="Duration" value={mins} onChange={setMins} unit="min" min={1} />
+        <SelectField label="Stroke" value={stroke} onChange={setStroke} options={[{value:"leisure",label:"Leisure"},{value:"freestyle",label:"Freestyle"},{value:"backstroke",label:"Backstroke"},{value:"breaststroke",label:"Breaststroke"},{value:"butterfly",label:"Butterfly"}]} />
+    </div><div className="con-calc__results"><h4>Results</h4>
+        <ResultRow label="Calories Burned" value={fmt(r.cal, 0)} unit="kcal" /><ResultRow label="MET Value" value={fmt(r.met)} />
+        <ResultRow label="Cal/minute" value={fmt(r.cal / mins, 1)} unit="kcal" />
+    </div></div>);
+}
+
+/* 58. Calories Walking */
+function CaloriesWalkingCalc() {
+    const [w, setW] = useState(70); const [mins, setMins] = useState(30); const [speed, setSpeed] = useState("moderate");
+    const r = useMemo(() => { const met = speed === "slow" ? 2.8 : speed === "moderate" ? 3.5 : speed === "brisk" ? 4.3 : 5.0;
+        return { cal: metCalBurn(met, w, mins), met, steps: Math.round(mins * (speed === "slow" ? 80 : speed === "moderate" ? 100 : speed === "brisk" ? 115 : 130)) };
+    }, [w, mins, speed]);
+    return (<div className="con-calc"><h3 className="con-calc__title">🚶 Calories Burned Walking</h3><div className="con-calc__inputs">
+        <InputField label="Weight" value={w} onChange={setW} unit="kg" min={30} /><InputField label="Duration" value={mins} onChange={setMins} unit="min" min={1} />
+        <SelectField label="Speed" value={speed} onChange={setSpeed} options={[{value:"slow",label:"Slow (3 km/h)"},{value:"moderate",label:"Moderate (5 km/h)"},{value:"brisk",label:"Brisk (6.5 km/h)"},{value:"power",label:"Power walk (8 km/h)"}]} />
+    </div><div className="con-calc__results"><h4>Results</h4>
+        <ResultRow label="Calories Burned" value={fmt(r.cal, 0)} unit="kcal" /><ResultRow label="Est. Steps" value={r.steps.toLocaleString()} />
+        <ResultRow label="MET Value" value={fmt(r.met)} />
+    </div></div>);
+}
+
+/* 59. Calories Weight Lifting */
+function CaloriesWeightsCalc() {
+    const [w, setW] = useState(70); const [mins, setMins] = useState(45); const [intensity, setIntensity] = useState("moderate");
+    const r = useMemo(() => { const met = intensity === "light" ? 3.5 : intensity === "moderate" ? 5.0 : 6.0;
+        return { cal: metCalBurn(met, w, mins), met }; }, [w, mins, intensity]);
+    return (<div className="con-calc"><h3 className="con-calc__title">💪 Calories Burned Weight Lifting</h3><div className="con-calc__inputs">
+        <InputField label="Weight" value={w} onChange={setW} unit="kg" min={30} /><InputField label="Duration" value={mins} onChange={setMins} unit="min" min={1} />
+        <SelectField label="Intensity" value={intensity} onChange={setIntensity} options={[{value:"light",label:"Light (machines, slow)"},{value:"moderate",label:"Moderate (free weights)"},{value:"vigorous",label:"Vigorous (circuit/supersets)"}]} />
+    </div><div className="con-calc__results"><h4>Results</h4>
+        <ResultRow label="Calories Burned" value={fmt(r.cal, 0)} unit="kcal" /><ResultRow label="MET Value" value={fmt(r.met)} />
+    </div></div>);
+}
+
+/* 60. Deadlift Max */
+function DeadliftMaxCalc() {
+    const [w, setW] = useState(120); const [reps, setReps] = useState(5); const [bw, setBw] = useState(80);
+    const r = useMemo(() => { const max = epley1RM(w, reps); const ratio = max / bw;
+        const cat = ratio < 1.0 ? "Beginner" : ratio < 1.5 ? "Novice" : ratio < 2.0 ? "Intermediate" : ratio < 2.5 ? "Advanced" : "Elite";
+        return { max, ratio, cat, loads: pctLoads(max) }; }, [w, reps, bw]);
+    return (<div className="con-calc"><h3 className="con-calc__title">🏋️ Deadlift Max Calculator</h3><div className="con-calc__inputs">
+        <InputField label="Weight Lifted" value={w} onChange={setW} unit="kg" min={20} max={400} />
+        <InputField label="Reps" value={reps} onChange={setReps} min={1} max={30} />
+        <InputField label="Body Weight" value={bw} onChange={setBw} unit="kg" min={30} />
+    </div><div className="con-calc__results"><h4>Estimated 1RM</h4>
+        <ResultRow label="Max Deadlift" value={fmt(r.max, 0)} unit="kg" /><ResultRow label="Strength Ratio" value={`${fmt(r.ratio, 2)}× BW`} />
+        <ResultRow label="Level" value={r.cat} />
+        <h4>Training Loads</h4>
+        {r.loads.slice(0, 5).map(l => <ResultRow key={l.pct} label={`${l.pct}%`} value={fmt(l.wt, 0)} unit="kg" />)}
+    </div></div>);
+}
+
+/* 61. Golf Altitude */
+function GolfAltitudeCalc() {
+    const [distance, setDistance] = useState(150); const [altitude, setAltitude] = useState(1500);
+    const r = useMemo(() => { const pct = altitude / 300 * 1; const adjusted = distance * (1 + pct / 100);
+        const diff = adjusted - distance; return { adjusted, diff, pct }; }, [distance, altitude]);
+    return (<div className="con-calc"><h3 className="con-calc__title">⛳ Golf Altitude Adjustment</h3><div className="con-calc__inputs">
+        <InputField label="Sea-Level Distance" value={distance} onChange={setDistance} unit="yards" min={30} max={350} />
+        <InputField label="Altitude" value={altitude} onChange={setAltitude} unit="m" min={0} max={3000} />
+    </div><div className="con-calc__results"><h4>Adjusted Distance</h4>
+        <ResultRow label="Carries At Altitude" value={fmt(r.adjusted, 0)} unit="yards" />
+        <ResultRow label="Extra Distance" value={`+${fmt(r.diff, 0)}`} unit="yards" />
+        <ResultRow label="Increase" value={`+${fmt(r.pct, 1)}%`} />
+    </div></div>);
+}
+
+/* 62. Ice Rink Volume */
+function IceRinkVolumeCalc() {
+    const [l, setL] = useState(12); const [w, setW] = useState(6); const [depth, setDepth] = useState(10);
+    const r = useMemo(() => { const vol = l * w * (depth / 100); const litres = vol * 1000; const gallons = litres * 0.264172;
+        const fillMins = litres / 40; return { vol, litres, gallons, fillMins, fillHrs: fillMins / 60 }; }, [l, w, depth]);
+    return (<div className="con-calc"><h3 className="con-calc__title">⛸️ Ice Rink Volume Calculator</h3><div className="con-calc__inputs">
+        <InputField label="Length" value={l} onChange={setL} unit="m" min={2} max={60} />
+        <InputField label="Width" value={w} onChange={setW} unit="m" min={2} max={30} />
+        <InputField label="Ice Depth" value={depth} onChange={setDepth} unit="cm" min={2} max={30} />
+    </div><div className="con-calc__results"><h4>Results</h4>
+        <ResultRow label="Volume" value={fmt(r.vol, 1)} unit="m³" /><ResultRow label="Water Needed" value={fmt(r.litres, 0)} unit="litres" />
+        <ResultRow label="US Gallons" value={fmt(r.gallons, 0)} /><ResultRow label="Fill Time (~40 L/min)" value={fmt(r.fillHrs, 1)} unit="hours" />
+    </div></div>);
+}
+
+/* 63. Lifting Strength */
+function LiftingStrengthCalc() {
+    const [bw, setBw] = useState(80); const [bench, setBench] = useState(80); const [squat, setSquat] = useState(100); const [dl, setDl] = useState(120);
+    const r = useMemo(() => { const total = bench + squat + dl; const dots = total / bw;
+        const cat = dots < 3 ? "Beginner" : dots < 4.5 ? "Novice" : dots < 6 ? "Intermediate" : dots < 7.5 ? "Advanced" : "Elite";
+        return { total, dots, cat, benchR: bench / bw, squatR: squat / bw, dlR: dl / bw }; }, [bw, bench, squat, dl]);
+    return (<div className="con-calc"><h3 className="con-calc__title">💪 Lifting Strength Calculator</h3><div className="con-calc__inputs">
+        <InputField label="Body Weight" value={bw} onChange={setBw} unit="kg" min={30} />
+        <InputField label="Bench 1RM" value={bench} onChange={setBench} unit="kg" min={0} />
+        <InputField label="Squat 1RM" value={squat} onChange={setSquat} unit="kg" min={0} />
+        <InputField label="Deadlift 1RM" value={dl} onChange={setDl} unit="kg" min={0} />
+    </div><div className="con-calc__results"><h4>Results</h4>
+        <ResultRow label="Total" value={fmt(r.total, 0)} unit="kg" /><ResultRow label="Strength Score" value={`${fmt(r.dots, 1)}× BW`} />
+        <ResultRow label="Level" value={r.cat} />
+        <ResultRow label="Bench Ratio" value={`${fmt(r.benchR, 2)}×`} /><ResultRow label="Squat Ratio" value={`${fmt(r.squatR, 2)}×`} />
+        <ResultRow label="Deadlift Ratio" value={`${fmt(r.dlR, 2)}×`} />
+    </div></div>);
+}
+
+/* 64. Miles to Steps */
+function MilesToStepsCalc() {
+    const [miles, setMiles] = useState(3); const [h, setH] = useState(170);
+    const r = useMemo(() => { const stride = h * 0.415 / 100; const stepsPerMile = 1609.34 / stride;
+        const total = Math.round(miles * stepsPerMile); return { stepsPerMile: Math.round(stepsPerMile), total, km: miles * 1.60934 }; }, [miles, h]);
+    return (<div className="con-calc"><h3 className="con-calc__title">👟 Miles to Steps</h3><div className="con-calc__inputs">
+        <InputField label="Miles" value={miles} onChange={setMiles} min={0} max={50} step={0.1} />
+        <InputField label="Height" value={h} onChange={setH} unit="cm" min={100} max={220} />
+    </div><div className="con-calc__results"><h4>Results</h4>
+        <ResultRow label="Total Steps" value={r.total.toLocaleString()} /><ResultRow label="Steps per Mile" value={r.stepsPerMile.toLocaleString()} />
+        <ResultRow label="Distance" value={fmt(r.km, 1)} unit="km" />
+    </div></div>);
+}
+
+/* 65. Navy PRT */
+function NavyPrtCalc() {
+    const [pushups, setPushups] = useState(50); const [plank, setPlank] = useState(120); const [runMin, setRunMin] = useState(12); const [sex, setSex] = useState("male");
+    const r = useMemo(() => {
+        const puPts = Math.min(Math.round(Math.max(pushups * 1.5, 0)), 100);
+        const plkPts = Math.min(Math.round(Math.max((plank - 60) / 1.8, 0)), 100);
+        const runTime = runMin; const maxRun = sex === "male" ? 16.1 : 18.5;
+        const runPts = Math.min(Math.round(Math.max((maxRun - runTime) / (maxRun - 8.5) * 100, 0)), 100);
+        const avg = Math.round((puPts + plkPts + runPts) / 3);
+        const cat = avg >= 90 ? "Outstanding" : avg >= 75 ? "Excellent" : avg >= 60 ? "Good" : avg >= 45 ? "Satisfactory" : "Fail";
+        return { puPts, plkPts, runPts, avg, cat };
+    }, [pushups, plank, runMin, sex]);
+    return (<div className="con-calc"><h3 className="con-calc__title">⚓ Navy PRT Calculator</h3><div className="con-calc__inputs">
+        <SelectField label="Sex" value={sex} onChange={setSex} options={[{value:"male",label:"Male"},{value:"female",label:"Female"}]} />
+        <InputField label="Push-Ups" value={pushups} onChange={setPushups} min={0} max={100} />
+        <InputField label="Plank Hold" value={plank} onChange={setPlank} unit="sec" min={0} max={300} />
+        <InputField label="1.5-Mile Run" value={runMin} onChange={setRunMin} unit="min" min={7} max={20} step={0.1} />
+    </div><div className="con-calc__results"><h4>Score</h4>
+        <ResultRow label="Push-Ups" value={String(r.puPts)} /><ResultRow label="Plank" value={String(r.plkPts)} />
+        <ResultRow label="Run" value={String(r.runPts)} /><ResultRow label="Average" value={String(r.avg)} />
+        <ResultRow label="Category" value={r.cat} />
+    </div></div>);
+}
+
+/* 66. Push-Ups Calories */
+function PushupsCaloriesCalc() {
+    const [w, setW] = useState(70); const [reps, setReps] = useState(50);
+    const r = useMemo(() => { const timeMin = reps * 3 / 60; const cal = metCalBurn(8.0, w, timeMin);
+        const perRep = cal / Math.max(reps, 1); return { cal, perRep }; }, [w, reps]);
+    return (<div className="con-calc"><h3 className="con-calc__title">🫸 Push-Ups Calorie Calculator</h3><div className="con-calc__inputs">
+        <InputField label="Weight" value={w} onChange={setW} unit="kg" min={30} />
+        <InputField label="Push-Ups" value={reps} onChange={setReps} min={1} max={500} />
+    </div><div className="con-calc__results"><h4>Results</h4>
+        <ResultRow label="Calories Burned" value={fmt(r.cal, 1)} unit="kcal" />
+        <ResultRow label="Per Push-Up" value={fmt(r.perRep, 2)} unit="kcal" />
+    </div></div>);
+}
+
+/* 67. Squat Max */
+function SquatMaxCalc() {
+    const [w, setW] = useState(100); const [reps, setReps] = useState(5); const [bw, setBw] = useState(80);
+    const r = useMemo(() => { const max = epley1RM(w, reps); const ratio = max / bw;
+        const cat = ratio < 1.0 ? "Beginner" : ratio < 1.5 ? "Novice" : ratio < 2.0 ? "Intermediate" : ratio < 2.5 ? "Advanced" : "Elite";
+        return { max, ratio, cat, loads: pctLoads(max) }; }, [w, reps, bw]);
+    return (<div className="con-calc"><h3 className="con-calc__title">🏋️ Squat Max Calculator</h3><div className="con-calc__inputs">
+        <InputField label="Weight Lifted" value={w} onChange={setW} unit="kg" min={10} max={400} />
+        <InputField label="Reps" value={reps} onChange={setReps} min={1} max={30} />
+        <InputField label="Body Weight" value={bw} onChange={setBw} unit="kg" min={30} />
+    </div><div className="con-calc__results"><h4>Estimated 1RM</h4>
+        <ResultRow label="Max Squat" value={fmt(r.max, 0)} unit="kg" /><ResultRow label="Strength Ratio" value={`${fmt(r.ratio, 2)}× BW`} />
+        <ResultRow label="Level" value={r.cat} />
+        <h4>Training Loads</h4>
+        {r.loads.slice(0, 5).map(l => <ResultRow key={l.pct} label={`${l.pct}%`} value={fmt(l.wt, 0)} unit="kg" />)}
+    </div></div>);
+}
+
+/* 68. Steps to Calories */
+function StepsToCaloriesCalc() {
+    const [steps, setSteps] = useState(10000); const [w, setW] = useState(70);
+    const r = useMemo(() => { const miles = steps * 0.000762; const cal = w * 0.57 * miles * 2.2;// ~0.04 kcal/step/kg approx
+        return { cal, miles, km: miles * 1.609 }; }, [steps, w]);
+    return (<div className="con-calc"><h3 className="con-calc__title">🔥 Steps to Calories</h3><div className="con-calc__inputs">
+        <InputField label="Steps" value={steps} onChange={setSteps} min={100} max={50000} step={100} />
+        <InputField label="Weight" value={w} onChange={setW} unit="kg" min={30} />
+    </div><div className="con-calc__results"><h4>Results</h4>
+        <ResultRow label="Calories Burned" value={fmt(r.cal, 0)} unit="kcal" />
+        <ResultRow label="Distance" value={fmt(r.km, 1)} unit="km" /><ResultRow label="Distance" value={fmt(r.miles, 1)} unit="miles" />
+    </div></div>);
+}
+
+/* 69. Steps to Km */
+function StepsToKmCalc() {
+    const [steps, setSteps] = useState(10000); const [h, setH] = useState(170);
+    const r = useMemo(() => { const stride = h * 0.415 / 100; const km = steps * stride / 1000;
+        return { km, miles: km * 0.621371, stride }; }, [steps, h]);
+    return (<div className="con-calc"><h3 className="con-calc__title">📏 Steps to Kilometers</h3><div className="con-calc__inputs">
+        <InputField label="Steps" value={steps} onChange={setSteps} min={100} max={50000} step={100} />
+        <InputField label="Height" value={h} onChange={setH} unit="cm" min={100} max={220} />
+    </div><div className="con-calc__results"><h4>Results</h4>
+        <ResultRow label="Distance" value={fmt(r.km, 2)} unit="km" /><ResultRow label="In Miles" value={fmt(r.miles, 2)} unit="mi" />
+        <ResultRow label="Stride Length" value={fmt(r.stride * 100, 0)} unit="cm" />
+    </div></div>);
+}
+
+/* 70. Steps to Miles */
+function StepsToMilesCalc() {
+    const [steps, setSteps] = useState(10000); const [h, setH] = useState(170);
+    const r = useMemo(() => { const stride = h * 0.415 / 100; const km = steps * stride / 1000; const miles = km * 0.621371;
+        return { miles, km, stride }; }, [steps, h]);
+    return (<div className="con-calc"><h3 className="con-calc__title">📏 Steps to Miles</h3><div className="con-calc__inputs">
+        <InputField label="Steps" value={steps} onChange={setSteps} min={100} max={50000} step={100} />
+        <InputField label="Height" value={h} onChange={setH} unit="cm" min={100} max={220} />
+    </div><div className="con-calc__results"><h4>Results</h4>
+        <ResultRow label="Distance" value={fmt(r.miles, 2)} unit="miles" /><ResultRow label="In Kilometers" value={fmt(r.km, 2)} unit="km" />
+        <ResultRow label="Stride Length" value={fmt(r.stride * 100, 0)} unit="cm" />
+    </div></div>);
+}
+
+/* 71. USMC PFT */
+function UsmcPftCalc() {
+    const [pullups, setPullups] = useState(20); const [crunches, setCrunches] = useState(80); const [runMin, setRunMin] = useState(21);
+    const r = useMemo(() => {
+        const puPts = Math.min(Math.round(pullups * 5), 100);
+        const crPts = Math.min(Math.round(crunches), 100);
+        const runPts = Math.min(Math.round(Math.max((28 - runMin) / (28 - 18) * 100, 0)), 100);
+        const total = puPts + crPts + runPts;
+        const cat = total >= 235 ? "1st Class" : total >= 200 ? "2nd Class" : total >= 150 ? "3rd Class" : "Fail";
+        return { puPts, crPts, runPts, total, cat };
+    }, [pullups, crunches, runMin]);
+    return (<div className="con-calc"><h3 className="con-calc__title">🎖️ USMC PFT Calculator</h3><div className="con-calc__inputs">
+        <InputField label="Pull-Ups" value={pullups} onChange={setPullups} min={0} max={50} />
+        <InputField label="Crunches (2 min)" value={crunches} onChange={setCrunches} min={0} max={120} />
+        <InputField label="3-Mile Run" value={runMin} onChange={setRunMin} unit="min" min={15} max={35} step={0.1} />
+    </div><div className="con-calc__results"><h4>PFT Score</h4>
+        <ResultRow label="Pull-Ups" value={String(r.puPts)} /><ResultRow label="Crunches" value={String(r.crPts)} />
+        <ResultRow label="Run" value={String(r.runPts)} /><ResultRow label="Total" value={String(r.total)} unit="/300" />
+        <ResultRow label="Class" value={r.cat} />
+    </div></div>);
+}
+
+/* 72. Zone 2 Heart Rate */
+function Zone2HrCalc() {
+    const [age, setAge] = useState(30); const [rhr, setRhr] = useState(60);
+    const r = useMemo(() => {
+        const mhr = 220 - age; const hrr = mhr - rhr;
+        const z2Lo = rhr + hrr * 0.6; const z2Hi = rhr + hrr * 0.7;
+        const maf = 180 - age; const z2Pct = `${Math.round(z2Lo / mhr * 100)}-${Math.round(z2Hi / mhr * 100)}%`;
+        return { mhr, z2Lo, z2Hi, maf, z2Pct };
+    }, [age, rhr]);
+    return (<div className="con-calc"><h3 className="con-calc__title">💗 Zone 2 Heart Rate</h3><div className="con-calc__inputs">
+        <InputField label="Age" value={age} onChange={setAge} unit="years" min={15} max={80} />
+        <InputField label="Resting Heart Rate" value={rhr} onChange={setRhr} unit="bpm" min={35} max={100} />
+    </div><div className="con-calc__results"><h4>Results</h4>
+        <ResultRow label="Zone 2 Range" value={`${fmt(r.z2Lo, 0)} – ${fmt(r.z2Hi, 0)}`} unit="bpm" />
+        <ResultRow label="% of Max HR" value={r.z2Pct} />
+        <ResultRow label="MAF (180−age)" value={fmt(r.maf, 0)} unit="bpm" />
+        <ResultRow label="Max Heart Rate" value={fmt(r.mhr, 0)} unit="bpm" />
+    </div></div>);
+}
+
 /* ──── DISPATCHER ──── */
 const CALC_MAP: Record<string, React.FC> = {
     "bmi": BmiCalc, "calorie": CalorieCalc, "tdee": TdeeCalc, "bmr": BmrCalc,
@@ -1014,6 +1411,18 @@ const CALC_MAP: Record<string, React.FC> = {
     "harris-benedict": HarrisBenedictCalc, "keto": KetoCalc, "maintenance-calorie": MaintenanceCalorieCalc,
     "mifflin-st-jeor": MifflinStJeorCalc, "net-carb": NetCarbCalc, "rmr": RmrCalc,
     "weight-gain": WeightGainCalc, "weight-loss": WeightLossCalc,
+    "air-force-pt": AirForcePtCalc, "army-fitness-test": ArmyFitnessTestCalc,
+    "bench-press": BenchPressCalc, "calories-biking": CaloriesBikingCalc,
+    "calories-hiking": CaloriesHikingCalc, "calories-jump-rope": CaloriesJumpRopeCalc,
+    "calories-running": CaloriesRunningCalc, "calories-swimming": CaloriesSwimmingCalc,
+    "calories-walking": CaloriesWalkingCalc, "calories-weights": CaloriesWeightsCalc,
+    "deadlift-max": DeadliftMaxCalc, "golf-altitude": GolfAltitudeCalc,
+    "ice-rink-volume": IceRinkVolumeCalc, "lifting-strength": LiftingStrengthCalc,
+    "miles-to-steps": MilesToStepsCalc, "navy-prt": NavyPrtCalc,
+    "pushups-calories": PushupsCaloriesCalc, "squat-max": SquatMaxCalc,
+    "steps-to-calories": StepsToCaloriesCalc, "steps-to-km": StepsToKmCalc,
+    "steps-to-miles": StepsToMilesCalc, "usmc-pft": UsmcPftCalc,
+    "zone-2-hr": Zone2HrCalc,
 };
 
 export default function HealthCalculatorCore({ calcType }: { calcType: string }) {
