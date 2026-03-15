@@ -489,6 +489,156 @@ const HUB_CONTENT: Record<string, {
             { question: "How much does fill dirt cost?", answer: "Clean fill dirt: $5–$15 per cubic yard (some contractors give it away for free). Screened fill: $10–$25 per cubic yard. Delivery: $50–$150 per truckload depending on distance. For large projects, you can often find free fill dirt from nearby excavation sites." },
         ],
     },
+    "soil-amendment-calculator": {
+        subtitle: "Calculate how much lime, sulfur, gypsum, or compost to add to your soil. Enter area and application rate for bags and volume needed.",
+        explanation: {
+            heading: "How to Calculate Soil Amendments",
+            paragraphs: [
+                "Soil amendments are applied at specific rates per 100 square feet, depending on the material and your soil test results. Agricultural lime is applied at 3–8 lbs per 100 sq ft, elemental sulfur at 0.5–2 lbs, and gypsum at 3–5 lbs. Compost amendments are measured in cubic feet.",
+                "Always start with a soil test to determine your soil's current pH and nutrient levels. Lime raises pH (makes soil less acidic), sulfur lowers pH (makes soil more acidic), gypsum improves clay soil structure without changing pH, and compost improves overall soil health and water retention.",
+            ],
+            highlight: "A 10×10 ft garden bed needing lime at 5 lbs per 100 sq ft: area = 100 sq ft, total lime = 5 lbs. For a 50×50 ft lawn at the same rate: 2,500 sq ft × 5/100 = 125 lbs = about 3 bags of 40 lb lime.",
+        },
+        faq: [
+            { question: "How often should I amend my soil?", answer: "Lime and sulfur: every 2–3 years based on soil test results. Compost: annually in spring or fall (1–2 inches worked into the top 4–6 inches). Gypsum: annually for heavy clay soils. Always retest soil before reapplying pH-adjusting amendments." },
+            { question: "Can I apply too much lime or sulfur?", answer: "Yes — over-liming raises pH too high, locking out iron, manganese, and other micronutrients. Too much sulfur drops pH below optimal range, making aluminum toxic to plants. Apply in increments and retest. Maximum single application: 50 lbs lime or 5 lbs sulfur per 1,000 sq ft." },
+        ],
+    },
+    "concrete-stairs-calculator": {
+        subtitle: "Calculate concrete volume for poured stairs. Enter total rise, stair width, and tread dimensions for cubic yards and bag counts.",
+        explanation: {
+            heading: "How to Calculate Concrete for Stairs",
+            paragraphs: [
+                "Poured concrete stairs are calculated by combining the volume of each individual step plus the underlying slab (stringer) volume. Each step is essentially a rectangular block: tread depth × riser height × stair width. The stringer adds a triangular cross-section beneath the steps.",
+                "Building code requirements for stairs: riser height 4–7.75 inches (7–7.5 inches is ideal), tread depth minimum 10–11 inches, and stair width minimum 36 inches. The total rise determines the number of steps: divide total rise by desired riser height and round to the nearest whole number.",
+            ],
+            highlight: "A 36-inch total rise with 36-inch wide stairs, 7.5\" risers, 11\" treads, and 6\" slab: 5 steps. Volume ≈ 8.4 cu ft = 0.31 cu yd. That's about 14 bags of 80 lb concrete mix.",
+        },
+        faq: [
+            { question: "What is the ideal riser height and tread depth?", answer: "The ideal riser height is 7–7.5 inches with an 11-inch tread depth. A common rule: riser + tread = 17–18 inches. All risers must be within ⅜ inch of each other in height per building code. Wider treads (12\"+) are more comfortable for outdoor stairs." },
+            { question: "Do concrete stairs need rebar?", answer: "Yes — concrete stairs should be reinforced with #4 rebar (½ inch) placed in a grid within the slab, plus bars running through each step. Without reinforcement, concrete stairs are prone to cracking from freeze-thaw cycles and settling." },
+        ],
+    },
+    "aggregate-calculator": {
+        subtitle: "Calculate aggregate needed for sub-bases, drainage layers, and concrete mixing. Get cubic yards, tons, and cost by aggregate type.",
+        explanation: {
+            heading: "How to Calculate Aggregate Quantities",
+            paragraphs: [
+                "Aggregate is the general term for crushed stone, gravel, road base, and similar materials used as sub-bases under concrete, asphalt, and pavers. Different aggregates have different densities: crushed stone weighs about 1.4 tons per cubic yard, road base (Class 5) about 1.6 tons, and pea gravel about 1.4 tons.",
+                "The calculation is straightforward: Length × Width × Depth = Volume in cubic feet, divide by 27 for cubic yards, then multiply by the material's density for tons. Sub-base depths vary by application: 4 inches for walkways, 6 inches under patios, and 8–12 inches under driveways.",
+            ],
+            highlight: "A 20×20 ft driveway sub-base at 6 inches of Class 5 road base: 200 cu ft = 7.4 cu yd × 1.6 tons/yd = 11.9 tons. At $25 per ton, the material costs about $297.",
+        },
+        faq: [
+            { question: "What type of aggregate should I use for a sub-base?", answer: "Driveways/parking: Class 5 road base (crushed limestone with fines, compacts well). Patios/walkways: crushed stone or ¾\" clear aggregate. Drainage: washed stone or pea gravel (no fines, allows water flow). Concrete mixing: clean washed gravel/stone." },
+            { question: "How deep should an aggregate sub-base be?", answer: "Walkways: 4 inches. Patios: 4–6 inches. Residential driveways: 6–8 inches. Commercial driveways: 8–12 inches. All aggregate should be compacted in 2-inch lifts using a plate compactor for maximum density." },
+        ],
+    },
+    "column-calculator": {
+        subtitle: "Calculate concrete volume for round or square columns and pier footings. Get results per column and totals in cubic feet, cubic yards, and bag counts.",
+        explanation: {
+            heading: "How to Calculate Concrete Column Volume",
+            paragraphs: [
+                "Round columns (Sonotubes) use the cylinder formula: π × radius² × height. Square columns simply multiply side × side × height. Common residential applications include deck piers (8–12 inch diameter), porch columns (12–18 inch), and structural piers (18–24 inch).",
+                "Sonotube forms are available in diameters from 6 to 48 inches. For frost-protected foundations, pier depth must extend below the frost line — typically 36–48 inches in northern climates. Most jurisdictions require a footing pad at the bottom that's wider than the column.",
+            ],
+            highlight: "Four 12-inch round piers at 48 inches deep: volume per pier = π × 0.5² × 4 = 3.14 cu ft. Total = 12.57 cu ft = 0.47 cu yd ≈ 21 bags of 80 lb concrete.",
+        },
+        faq: [
+            { question: "What diameter Sonotube do I need?", answer: "Deck piers: 8–12 inch diameter for most residential decks. Porch/pergola columns: 12–18 inch. Heavy structural loads: 18–24 inch. Always check local building codes — many require minimum 12-inch diameter for frost-protected foundations." },
+            { question: "How deep do pier foundations need to be?", answer: "Below the local frost line — varies from 12 inches in southern states to 48+ inches in northern climates. Check your local building code. The bottom of the pier should rest on undisturbed soil or a compacted gravel base." },
+        ],
+    },
+    "board-and-batten-calculator": {
+        subtitle: "Calculate boards and battens needed for accent walls, siding, or wainscoting. Enter wall dimensions, board width, and spacing.",
+        explanation: {
+            heading: "How to Calculate Board and Batten Materials",
+            paragraphs: [
+                "Board and batten is a vertical siding pattern where wide boards are placed edge-to-edge (with a small gap) and narrow battens cover the joints. Common board widths are 6–10 inches with 1–2 inch battens. Calculate the number of boards by dividing wall width by the board width plus gap.",
+                "The number of battens is always one fewer than the number of boards (battens cover the gaps between boards). Total linear feet equals the number of pieces multiplied by the wall height. This calculation works for both exterior siding and interior accent walls.",
+            ],
+            highlight: "A 12 ft wide × 8 ft tall accent wall with 6-inch boards and ½-inch gaps: 12 ft = 144 inches ÷ 6.5\" = 23 boards × 8 ft = 184 ft of board stock. Plus 22 battens × 8 ft = 176 ft of batten stock.",
+        },
+        faq: [
+            { question: "What is the standard board and batten spacing?", answer: "Boards: 6–10 inches wide (1×6, 1×8, 1×10 common). Gap between boards: ¼–½ inch. Battens: 1.5–2 inches wide (1×2 lumber). For exterior siding, leave a ⅜\" gap behind battens for drainage. Interior accent walls can have tighter spacing." },
+            { question: "What material should I use for board and batten?", answer: "Exterior: cedar, redwood, or fiber cement (most durable). Interior: MDF, pine, or poplar (easiest to paint). Pre-primed finger-joint pine is the most cost-effective for painted interior applications." },
+        ],
+    },
+    "drainage-calculator": {
+        subtitle: "Calculate French drain materials — perforated pipe, drainage gravel, landscape fabric, and catch basins by trench dimensions.",
+        explanation: {
+            heading: "How to Calculate French Drain Materials",
+            paragraphs: [
+                "A French drain consists of a gravel-filled trench with a perforated pipe at the bottom, wrapped in landscape fabric to prevent soil migration. Standard residential dimensions: 12 inches wide × 18 inches deep. The trench should slope ¼ inch per foot minimum toward the outlet.",
+                "Materials breakdown: the pipe runs the full trench length, gravel fills the entire trench volume, and landscape fabric wraps around the gravel (bottom, sides, and top overlap). Catch basins are placed every 50 feet or at corners to provide inspection and cleanout points.",
+            ],
+            highlight: "A 50 ft French drain, 12\" wide × 18\" deep: gravel = 2.8 cu yd, pipe = 50 ft, landscape fabric = 200 sq ft, 1 catch basin. Total material cost: $200–$400.",
+        },
+        faq: [
+            { question: "How deep should a French drain be?", answer: "Standard yard drainage: 12–18 inches deep. Foundation perimeter drains: 24–36 inches deep (at footing level). Deeper drains handle more water but cost more to install. Always ensure the bottom of the drain is above the water table." },
+            { question: "What size gravel should I use for a French drain?", answer: "Washed ¾\" crushed stone or river rock is ideal — large enough for good flow but small enough to fill the trench evenly. Do NOT use pea gravel (too round, shifts easily) or road base (contains fines that clog the pipe). The gravel must be clean and washed." },
+        ],
+    },
+    "plywood-calculator": {
+        subtitle: "Calculate how many 4×8 plywood sheets you need for floors, walls, roofs, or subfloors. Includes waste factor and cost estimator.",
+        explanation: {
+            heading: "How to Calculate Plywood Sheets",
+            paragraphs: [
+                "A standard plywood sheet is 4 feet × 8 feet = 32 square feet. To find how many sheets you need, calculate the total area, add a waste factor (10% for rectangular areas, 15% for complex shapes), and divide by 32. Round up — you can't buy partial sheets.",
+                "Plywood comes in various thicknesses: ¼ inch (underlayment), ⅜ inch (wall sheathing), ½ inch (roof sheathing), ⅝ inch (subfloor residential), and ¾ inch (subfloor, heavy-duty). CDX is the standard structural grade, while sanded plywood is used for visible applications.",
+            ],
+            highlight: "A 20×12 ft subfloor with 10% waste: 240 sq ft × 1.10 = 264 sq ft ÷ 32 sq ft/sheet = 9 sheets of ¾\" plywood. At $45/sheet = $405.",
+        },
+        faq: [
+            { question: "What thickness plywood do I need?", answer: "Subfloor: ¾\" (23/32\"). Roof sheathing: ½\" or ⅝\". Wall sheathing: ⅜\" or ½\". Underlayment: ¼\". Cabinet backs: ¼\". Shelving: ¾\". Always match to code requirements for your specific application and joist/rafter spacing." },
+            { question: "What's the difference between CDX and OSB?", answer: "CDX plywood: layers of wood veneer cross-laminated, stronger and more water-resistant. OSB: oriented strand board made from compressed wood strands, cheaper but swells when wet. For subfloors and roof sheathing, both are code-approved. CDX is preferred for moisture-prone areas." },
+        ],
+    },
+    "ceiling-tile-calculator": {
+        subtitle: "Calculate drop ceiling tiles, main runners, cross tees, wall angle, and hanger wires for suspended ceiling grid installations.",
+        explanation: {
+            heading: "How to Calculate Suspended Ceiling Materials",
+            paragraphs: [
+                "A suspended ceiling grid system consists of main runners (12 ft sections running the length of the room), cross tees (2 ft or 4 ft sections connecting main runners), wall angle (perimeter trim), and hanger wires (every 4 ft along main runners). Tiles drop into the grid openings.",
+                "The two standard tile sizes are 2×4 ft (most common in commercial spaces) and 2×2 ft (residential and offices wanting a refined look). With 2×4 tiles, you need fewer cross tees since tiles span the full 4 ft between main runners. Hanger wires support the grid from the ceiling joists above.",
+            ],
+            highlight: "A 20×12 ft room with 2×4 tiles: 240 sq ft ÷ 8 sq ft/tile = 30 tiles. Plus 30 main runner pieces, 64 ft of wall angle, and 15 hanger wires.",
+        },
+        faq: [
+            { question: "How low does a drop ceiling need to hang?", answer: "Minimum 3–4 inches below the lowest obstruction (pipes, ductwork, joists). Most building codes require minimum 7 ft 6 in finished ceiling height in habitable rooms. Plan clearance carefully before installing — once the grid is up, adjustments are difficult." },
+            { question: "What's the difference between 2×2 and 2×4 ceiling tiles?", answer: "2×4 tiles: fewer pieces to install, lower material cost, more visible grid lines. 2×2 tiles: more refined appearance, easier to replace individual tiles, better for rooms where access to above-ceiling utilities is needed frequently." },
+        ],
+    },
+    "gabion-wall-calculator": {
+        subtitle: "Calculate gabion baskets and rock fill needed for retaining walls, garden walls, and landscape features by wall and basket dimensions.",
+        explanation: {
+            heading: "How to Calculate Gabion Wall Materials",
+            paragraphs: [
+                "Gabion walls are constructed from wire mesh baskets filled with rock or stone. Standard basket sizes range from 3×3×3 ft to 6×3×3 ft. The total number of baskets depends on the wall dimensions divided by individual basket size. Baskets are stacked in rows with each upper row set back slightly for stability.",
+                "Each basket is filled with clean, angular rock (typically 4–8 inches). The rock volume equals the basket dimensions, but since rock doesn't pack perfectly, expect about 30–40% void space. Rock weighs approximately 1.4 tons per cubic yard. Gabion walls are permeable, eliminating the need for separate drainage systems.",
+            ],
+            highlight: "A 20 ft × 3 ft gabion wall with 6×3×3 ft baskets: 1 row × 4 baskets/row = 4 baskets. Rock fill = 4 × 54 cu ft = 216 cu ft = 8 cu yd ≈ 11.2 tons of rock.",
+        },
+        faq: [
+            { question: "How high can a gabion wall be?", answer: "Gravity gabion walls: up to 10 feet with proper stepped-back design (each row set back ½ the basket depth). Walls over 6 feet should be engineered. For taller walls, use a combination of gabion facing with reinforced earth or geogrids behind." },
+            { question: "What type of rock should I use in gabion baskets?", answer: "Angular, hard rock: granite, limestone, basalt, or quartzite. Size: 4–8 inches (larger than the mesh openings). Avoid round river rock (shifts and settles). The rock must be durable and weather-resistant. River rock can be used for decorative gabion features that don't bear loads." },
+        ],
+    },
+    "post-hole-calculator": {
+        subtitle: "Calculate concrete needed for fence post holes. Enter hole diameter, depth, post size, and number of holes for total bags needed.",
+        explanation: {
+            heading: "How to Calculate Concrete for Post Holes",
+            paragraphs: [
+                "Post hole concrete volume equals the hole volume minus the post volume: π × (hole radius)² × depth − π × (post radius)² × depth. Standard fence post holes are 10 inches diameter × 36 inches deep for a 4×4 post. Deck post holes are typically 12 inches diameter × 42–48 inches deep.",
+                "Each 80 lb bag of concrete yields approximately 0.6 cubic feet. Quick-set concrete can be poured dry into the hole and wetted — no mixing required. For structural posts (decks, pergolas), use standard concrete mix and allow full cure time (24–48 hours before loading).",
+            ],
+            highlight: "10 fence post holes, 10\" diameter × 36\" deep with 4\" posts: concrete per hole ≈ 0.15 cu ft. Total = 1.5 cu ft ≈ 3 bags of 80 lb concrete. For 12\" holes, it's about 5 bags total.",
+        },
+        faq: [
+            { question: "How deep should fence post holes be?", answer: "General rule: ⅓ of total post length should be in the ground. For a 6 ft fence (8 ft post): 32 inches deep minimum. For a 4 ft fence (6 ft post): 24 inches deep. In cold climates, posts should extend below the frost line to prevent heaving." },
+            { question: "Should I use fast-setting or regular concrete?", answer: "Fast-setting (e.g., Quikrete Fast-Setting): sets in 20–40 minutes, can be poured dry — ideal for fence posts. Regular concrete: requires mixing, 24-hour set time — better for structural posts (deck, pergola) that need maximum strength. Never use fast-set for structural support posts." },
+        ],
+    },
 };
 
 export default async function ConstructionCalculatorHubPage({ params }: PageProps) {
