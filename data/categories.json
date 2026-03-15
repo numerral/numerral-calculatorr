@@ -54,5 +54,13 @@
         "description": "Time zones, date math, countdowns & scheduling tools",
         "count": 15,
         "href": "/time-calculators"
+    },
+    {
+        "key": "construction",
+        "icon": "🔨",
+        "name": "Construction Calculators",
+        "description": "Concrete, roofing, flooring & building estimators",
+        "count": 10,
+        "href": "/construction-calculators"
     }
 ]

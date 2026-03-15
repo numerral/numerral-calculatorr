@@ -27,6 +27,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         { url: canonicalUrl("/investment-calculators"), lastModified: now, changeFrequency: "weekly", priority: 0.9 },
         { url: canonicalUrl("/tax-calculators"), lastModified: now, changeFrequency: "weekly", priority: 0.9 },
         { url: canonicalUrl("/utility-calculators"), lastModified: now, changeFrequency: "weekly", priority: 0.9 },
+        { url: canonicalUrl("/construction-calculators"), lastModified: now, changeFrequency: "weekly", priority: 0.9 },
         { url: canonicalUrl("/about"), lastModified: now, changeFrequency: "monthly", priority: 0.5 },
         { url: canonicalUrl("/terms"), lastModified: now, changeFrequency: "yearly", priority: 0.3 },
         { url: canonicalUrl("/privacy"), lastModified: now, changeFrequency: "yearly", priority: 0.3 },
@@ -71,6 +72,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // ─── Utility calculator hubs ───
     const utilityHubs: MetadataRoute.Sitemap = getCalculatorsByCategory("utility").map((c) => ({
         url: canonicalUrl(`/utility-calculators/${c.slug}`),
+        lastModified: now,
+        changeFrequency: "monthly" as const,
+        priority: 0.85,
+    }));
+    // ─── Construction calculator hubs ───
+    const constructionHubs: MetadataRoute.Sitemap = getCalculatorsByCategory("construction").map((c) => ({
+        url: canonicalUrl(`/construction-calculators/${c.slug}`),
         lastModified: now,
         changeFrequency: "monthly" as const,
         priority: 0.85,
@@ -185,6 +193,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         ...investHubs,
         ...taxHubs,
         ...utilityHubs,
+        ...constructionHubs,
         ...loanSubPages,
         ...investSubPages,
         ...taxSubPages,
