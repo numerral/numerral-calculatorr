@@ -1539,6 +1539,156 @@ const HUB_CONTENT: Record<string, {
             { question: "Do shelf brackets need to be in studs?", answer: "Strongly recommended, especially for heavy loads. Each stud-mounted bracket can support 50–100+ lbs. Drywall anchors are limited to 15–25 lbs per anchor (toggle bolts up to 50 lbs). For floating shelves, stud mounting is essential." },
         ],
     },
+    "concrete-block-fill-calculator": {
+        subtitle: "Calculate grout or concrete fill volume for hollow CMU blocks. Supports 4\" through 12\" block sizes with partial fill options.",
+        explanation: {
+            heading: "How to Calculate Block Fill",
+            paragraphs: [
+                "Hollow CMU (concrete masonry unit) blocks have two cores that can be filled with grout or concrete. Solid grouting fills every core — required for reinforced walls and below-grade applications. Partial grouting fills only cores containing rebar, saving material on non-structural walls.",
+                "Fill volume per block depends on block width: an 8-inch standard block takes about 0.028 cu ft of grout per core fill. For 100 blocks solid-grouted, you need roughly 2.8 cu ft (0.10 cu yd). Always add 10% waste for spillage and overfill.",
+            ],
+            highlight: "100 standard 8\" blocks, solid grouted: 2.8 cu ft = 0.10 cu yd. With 10% waste: 0.11 cu yd. Or about 5 bags of 80 lb premix grout.",
+        },
+        faq: [
+            { question: "Do I have to fill all block cores?", answer: "Not always. Structural walls and walls below grade must be solid grouted per code. Above-grade non-structural walls can be partially grouted — fill only cores with rebar (typically every 48 inches). Check your structural engineer's specifications." },
+            { question: "Can I use regular concrete to fill blocks?", answer: "Use grout, not concrete. Block fill grout has a higher slump (8–10 inches) so it flows into cores and around rebar. Regular concrete (3–4 inch slump) won't fill voids properly. Pre-mixed grout bags are available at any building supply store." },
+        ],
+    },
+    "concrete-mix-calculator": {
+        subtitle: "Calculate bags of premix concrete needed for any project. Shows bag counts for 40, 60, and 80 lb bags with waste factor.",
+        explanation: {
+            heading: "How Many Bags of Concrete Do I Need?",
+            paragraphs: [
+                "Premix concrete bags are sold by weight. An 80 lb bag yields about 0.60 cu ft. A 60 lb bag yields 0.45 cu ft. A 40 lb bag yields 0.30 cu ft. Calculate your project volume in cubic feet (length × width × thickness), add 10% for waste, then divide by the yield per bag.",
+                "For projects over 1 cubic yard (27 cu ft), consider ordering ready-mix concrete from a truck — it's cheaper per yard and much less labor. Premix bags are best for small projects: fence posts, small pads, repairs, and patching.",
+            ],
+            highlight: "A 10×10 ft slab, 4 inches thick: 33.3 cu ft. With 10% waste: 36.7 cu ft. That's 62 bags at 80 lbs — about 2,480 lbs of bags. Consider ready-mix at this size.",
+        },
+        faq: [
+            { question: "How many 80 lb bags per cubic yard?", answer: "45 bags of 80 lb concrete per cubic yard. One 80 lb bag yields 0.60 cu ft; 27 cu ft per yard ÷ 0.60 = 45 bags. That's 3,600 lbs (1.8 tons) of bags. At this volume, ready-mix delivery is almost always more economical." },
+            { question: "How much water per bag of concrete?", answer: "An 80 lb bag needs about 3 quarts (0.75 gallons) of water. A 60 lb bag needs about 2.5 quarts. Start with less water and add slowly — the most common mistake is adding too much water, which weakens the concrete and causes cracking." },
+        ],
+    },
+    "concrete-weight-calculator": {
+        subtitle: "Calculate the weight of a concrete slab or structure by volume. Covers standard, lightweight, reinforced, and heavyweight concrete.",
+        explanation: {
+            heading: "How Much Does Concrete Weigh?",
+            paragraphs: [
+                "Standard concrete weighs 150 lbs per cubic foot (4,050 lbs per cubic yard). This is the most common type used for slabs, foundations, and structural work. Lightweight concrete (110 lb/cf) uses expanded shale or clay aggregate and is used for roof decks and non-structural fills.",
+                "Reinforced concrete (with rebar) weighs about 156 lb/cf due to the added steel. Heavyweight concrete (180 lb/cf) uses heavyweight aggregate like barite and is used for radiation shielding. Always account for concrete weight when calculating structural loads.",
+            ],
+            highlight: "A 10×20 ft slab, 4 inches thick: 66.7 cu ft of standard concrete = 10,000 lbs (5 tons). That's the weight of two pickup trucks sitting on your soil.",
+        },
+        faq: [
+            { question: "How much does a cubic yard of concrete weigh?", answer: "Standard: 4,050 lbs (2.03 tons). Lightweight: 2,970 lbs. Reinforced: 4,212 lbs. A standard concrete truck carries 8–10 cubic yards, meaning a full truck weighs 32,000–40,000 lbs of concrete alone." },
+            { question: "Does wet concrete weigh more than dry?", answer: "Wet (freshly placed) concrete weighs about the same as cured concrete — approximately 150 lb/cf. As concrete cures, it doesn't dry out; it undergoes hydration (chemical reaction with water). The water becomes chemically bound, not evaporated." },
+        ],
+    },
+    "rebar-weight-calculator": {
+        subtitle: "Look up rebar sizes, diameters, and weight per foot for #3 through #18 bars. Calculate total weight by length.",
+        explanation: {
+            heading: "Rebar Size and Weight Reference",
+            paragraphs: [
+                "Rebar is designated by bar number, which represents the diameter in 1/8-inch increments. A #4 bar is 4/8 = 1/2 inch diameter. A #8 bar is 1 inch. Weight per foot increases with the square of the diameter — a #8 bar weighs 4× more per foot than a #4 bar.",
+                "Standard rebar comes in 20-foot lengths. Common sizes for residential: #3 and #4 for slabs and light foundations. #5 and #6 for footings, walls, and grade beams. #7 and #8 for heavy structural. #9–#18 for commercial and industrial applications.",
+            ],
+            highlight: "#4 rebar (1/2\" dia.): 0.668 lb/ft. 100 feet = 66.8 lbs, requiring 5 standard 20-foot bars. #8 rebar (1\" dia.): 2.670 lb/ft. 100 feet = 267 lbs.",
+        },
+        faq: [
+            { question: "What size rebar for a concrete slab?", answer: "#3 (3/8\") or #4 (1/2\") for residential slabs, typically on 18\" or 24\" centers both ways. #4 on 12\" centers for driveways. Some codes allow welded wire mesh (6×6 W1.4) instead of rebar for non-structural slabs." },
+            { question: "How much does a 20-foot #4 rebar weigh?", answer: "#4 rebar weighs 0.668 lb/ft × 20 ft = 13.36 lbs per bar. A bundle of 50 bars weighs about 668 lbs. #5 rebar: 1.043 lb/ft × 20 = 20.86 lbs per bar. Always account for lap splice lengths (40 diameters minimum) when ordering." },
+        ],
+    },
+    "concrete-cost-calculator": {
+        subtitle: "Estimate total concrete project costs including material, delivery, labor, and finishing by finish type.",
+        explanation: {
+            heading: "How Much Does a Concrete Slab Cost?",
+            paragraphs: [
+                "Concrete project costs include three main components: material (~$140/cu yd for ready-mix), labor/finishing ($6–$14/sq ft depending on finish), and delivery. Small orders under 5 cubic yards incur a short load fee of $100–$200.",
+                "Finish type significantly affects total cost: broom finish is cheapest (~$6/sq ft total). Exposed aggregate (~$10/sq ft). Stamped concrete is most expensive (~$14/sq ft) due to the additional labor for stamping, coloring, and sealing.",
+            ],
+            highlight: "20×20 ft driveway, 4 inches thick: 400 sq ft, 4.94 cu yd. Material: $691. Broom finish labor: $2,400. Total: ~$3,091. Stamped: ~$6,291.",
+        },
+        faq: [
+            { question: "How much is ready-mix concrete per yard?", answer: "$125–$165 per cubic yard delivered, depending on region and mix design. High-strength mixes (4000+ psi) cost $10–$20 more per yard. Fiber-reinforced adds $5–$10 per yard. Colored concrete adds $10–$30 per yard. Minimum delivery is typically 1 yard." },
+            { question: "Is DIY concrete cheaper?", answer: "For small jobs (under 1 cu yd), DIY with premix bags can save money — $4–$6/sq ft vs. $8–$14 for a contractor. For larger jobs, professional-poured concrete is usually cheaper per sq ft because ready-mix trucks and experienced crews work faster and waste less." },
+        ],
+    },
+    "soil-volume-calculator": {
+        subtitle: "Calculate soil for raised beds, planters, and landscaping. Get volume in cubic feet, cubic yards, and bag counts.",
+        explanation: {
+            heading: "How to Calculate Soil Volume",
+            paragraphs: [
+                "Soil volume = length × width × depth. For a 4×8 ft raised bed, 12 inches deep: 4 × 8 × 1 = 32 cu ft (1.19 cu yd). Bags of soil are sold in 1 or 2 cu ft sizes. Bulk soil by the cubic yard is cheaper for large projects.",
+                "For raised beds, use a mix of 60% topsoil, 30% compost, and 10% perlite or vermiculite. Plan for 5–10% settling after the first watering — fill beds slightly higher than needed. Deeper beds (12–18 inches) support root vegetables; 6–8 inches is fine for herbs and lettuce.",
+            ],
+            highlight: "A 4×8 ft raised bed, 12\" deep: 32 cu ft = 1.19 cu yd. That's 32 bags (1 cu ft) or 16 bags (2 cu ft). Bulk delivery is cheaper above 3 cu yd.",
+        },
+        faq: [
+            { question: "How much soil for a 4×8 raised bed?", answer: "12 inches deep: 32 cu ft (1.19 cu yd). 18 inches deep: 48 cu ft (1.78 cu yd). At about $3–5 per bag (1 cu ft), a 32 cu ft bed costs $96–$160 in bagged soil. Bulk topsoil runs $20–$50 per cu yd but requires a minimum delivery of 2–3 yards." },
+            { question: "How much does soil weigh?", answer: "Dry topsoil: about 75 lbs per cu ft. Wet topsoil: 90–100 lbs per cu ft. One cubic yard of topsoil weighs about 2,000–2,700 lbs. A 4×8 bed, 12\" deep (32 cu ft) will weigh about 2,400 lbs when wet — make sure your raised bed frame can support this." },
+        ],
+    },
+    "roofing-cost-calculator": {
+        subtitle: "Estimate roofing costs by material — asphalt shingles, metal, tile, or TPO. Includes material, labor, and tear-off.",
+        explanation: {
+            heading: "How Much Does a New Roof Cost?",
+            paragraphs: [
+                "Roofing cost is calculated per square (100 sq ft of roof area). Roof area is larger than floor area due to pitch — a 6/12 pitch adds 12% to flat area. Common costs per square installed: 3-tab shingles: $350. Architectural shingles: $500. Standing seam metal: $900. Clay tile: $1,300.",
+                "Total project cost includes tear-off ($100–$150/square), underlayment, flashing, ridge caps, and labor. Steep roofs (8/12+), complex geometry (dormers, valleys), and multi-story homes cost 20–50% more due to additional safety equipment and slower work pace.",
+            ],
+            highlight: "30×24 ft house, 6/12 pitch: 806 sq ft roof area (8.06 squares). Architectural shingles: $2,015 material + $2,015 labor + $1,008 tear-off = $5,038.",
+        },
+        faq: [
+            { question: "How long does a roof last?", answer: "3-tab asphalt: 15–20 years. Architectural asphalt: 25–30 years. Metal standing seam: 40–70 years. Clay/concrete tile: 50–100 years. Slate: 75–200 years. These are typical lifespans with proper installation and attic ventilation." },
+            { question: "Can I roof over existing shingles?", answer: "Most codes allow up to 2 layers of asphalt shingles. Adding a second layer saves tear-off cost ($100–$150/square), but adds weight, may void warranties, and can mask underlying deck damage. Best practice is to tear off and inspect the deck before re-roofing." },
+        ],
+    },
+    "foundation-calculator": {
+        subtitle: "Calculate concrete for foundations including footings and stem walls. Enter perimeter, footing width, depth, and wall dimensions.",
+        explanation: {
+            heading: "How to Calculate Foundation Concrete",
+            paragraphs: [
+                "Foundation concrete includes two parts: the footing (horizontal spread at the base) and the stem wall (vertical wall above the footing). Footing volume = perimeter × width × depth. Stem wall volume = perimeter × thickness × height. Total concrete = footing + wall.",
+                "Standard residential footings: 16–24 inches wide, 8–12 inches deep. Stem walls: 6–8 inches thick, 8–48 inches tall depending on grade and frost depth. Always add 10% to your order for waste, overpour, and variations in the trench. Under-ordering concrete is very expensive.",
+            ],
+            highlight: "140 ft perimeter, 16\" wide × 8\" deep footing, 8 ft × 8\" wall: footing = 124 cu ft + wall = 747 cu ft = 871 cu ft (32.3 cu yd). Order 35.5 cu yd (+10%).",
+        },
+        faq: [
+            { question: "How wide should footings be?", answer: "Minimum 2× the wall thickness. For an 8\" wall: 16\" wide footing (code minimum for 1-story). For 2-story: 20–24\" wide. In weak soils (clay, silt), widen footings to 24–36\" to spread the load. Always follow local code and soil bearing capacity reports." },
+            { question: "How deep do footings need to be?", answer: "Below the frost line — varies by region: 12\" in southern US, 36–48\" in northern states. Code minimum depth is typically 12 inches into undisturbed soil. Deeper is better for frost protection and load distribution. Monolithic slabs combine slab and footing in one pour." },
+        ],
+    },
+    "beam-span-calculator": {
+        subtitle: "Find maximum beam span for dimensional lumber, LVL, glulam, and steel beams by load condition and tributary width.",
+        explanation: {
+            heading: "How to Determine Beam Span",
+            paragraphs: [
+                "Beam span depends on beam type, size, tributary load width (the area of floor or roof the beam supports), and load type (floor or roof). A larger tributary width means more load, which reduces allowable span. Standard tributary width is 8 feet for residential construction.",
+                "LVL (laminated veneer lumber) and glulam beams span farther than dimensional lumber and don't shrink, twist, or warp. Steel beams span the farthest. Common residential beams: doubled 2×10 or 2×12 for short spans, LVL for mid-range, steel for long spans and point loads.",
+            ],
+            highlight: "LVL 1.75×11.25, 8 ft tributary, floor load: max span ~13 ft. Same beam supporting a roof: ~17 ft. Steel W8×18: floor span ~18 ft, roof ~24 ft.",
+        },
+        faq: [
+            { question: "When should I use an LVL beam?", answer: "LVL (Laminated Veneer Lumber) when: span exceeds doubled 2×12 capacity (~9 ft floor), you need a consistent depth, or the beam is concealed in a wall/ceiling. LVLs are straight, don't crown, and come in lengths up to 60 ft. Common sizes: 1.75×9.25, 1.75×11.25, 1.75×14." },
+            { question: "What is tributary width?", answer: "The width of floor or roof area that loads onto the beam. For a beam in the middle of a room, tributary width = room width ÷ 2 (joists connect from each side). A larger tributary width means more load on the beam, requiring a larger beam or shorter span." },
+        ],
+    },
+    "header-size-calculator": {
+        subtitle: "Determine the right header size for door and window openings. Enter span, wall type, and load conditions.",
+        explanation: {
+            heading: "How to Size a Header",
+            paragraphs: [
+                "Headers carry loads above openings (doors, windows) to the jack studs on each side. For load-bearing walls, header size depends on the span width and number of stories supported. Non-bearing walls need only a flat 2×4 header for spans up to 6 feet.",
+                "Load-bearing headers (1 story): 4 ft span = doubled 2×6. 6 ft = doubled 2×8. 8 ft = doubled 2×10. 10 ft = doubled 2×12. For 2-story support, upsize by one or use LVL. Spans over 10 feet typically require engineered beams (LVL, glulam, or steel).",
+            ],
+            highlight: "6 ft window opening, 1-story load-bearing: Doubled 2×8 (7.25\" deep). 2-story support: Doubled 2×10 (9.25\" deep). Jack stud height = 80\" − header depth.",
+        },
+        faq: [
+            { question: "Can I use a single 2×header instead of doubled?", answer: "No — headers must be doubled (two boards) for load-bearing walls. The two boards are nailed together with 1/2\" plywood spacer in between to match the 3.5\" wall stud depth. Some builders use solid 4×lumber for the same purpose." },
+            { question: "What about non-load-bearing walls?", answer: "Non-bearing walls need only a flat 2×4 for openings up to 6 feet, or a single 2×6/2×8 on edge for wider openings. The header just prevents the top plate from sagging. Some codes allow no header at all for narrow openings (under 3 ft) in non-bearing walls." },
+        ],
+    },
 };
 
 export default async function ConstructionCalculatorHubPage({ params }: PageProps) {

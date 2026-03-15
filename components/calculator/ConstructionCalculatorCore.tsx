@@ -4280,6 +4280,485 @@ function ShelfBracketCalc() {
     );
 }
 
+/* ──────────── 101. CONCRETE BLOCK FILL CALCULATOR ──────────── */
+function ConcreteBlockFillCalc() {
+    const [numBlocks, setNumBlocks] = useState(100);
+    const [blockSize, setBlockSize] = useState("8");
+    const [fillPercent, setFillPercent] = useState(100);
+
+    const CORE_VOLUME: Record<string, number> = {
+        "4": 0.005, "6": 0.017, "8": 0.028, "10": 0.039, "12": 0.05,
+    }; // cu ft per block core fill
+
+    const result = useMemo(() => {
+        const coreVol = CORE_VOLUME[blockSize] || 0.028;
+        const totalCuFt = numBlocks * coreVol * (fillPercent / 100);
+        const cuYd = totalCuFt / 27;
+        const bags80 = Math.ceil(totalCuFt / 0.6);
+        const withWaste = cuYd * 1.1;
+        return { totalCuFt, cuYd, bags80, withWaste, coreVol };
+    }, [numBlocks, blockSize, fillPercent]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">🧱 Concrete Block Fill Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Number of Blocks" value={numBlocks} onChange={setNumBlocks} min={1} />
+                <SelectField label="Block Width" value={blockSize} onChange={setBlockSize} options={[
+                    { value: "4", label: '4" Block' },
+                    { value: "6", label: '6" Block' },
+                    { value: "8", label: '8" Block (Standard)' },
+                    { value: "10", label: '10" Block' },
+                    { value: "12", label: '12" Block' },
+                ]} />
+                <SelectField label="Fill %" value={String(fillPercent)} onChange={(v) => setFillPercent(Number(v))} options={[
+                    { value: "100", label: "100% — All Cores (Solid Grout)" },
+                    { value: "50", label: "50% — Every Other Core" },
+                    { value: "25", label: "25% — Rebar Cells Only" },
+                ]} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Fill Volume" value={fmt(result.totalCuFt)} unit="cu ft" />
+                <ResultRow label="Cubic Yards" value={fmt(result.cuYd, 2)} unit="cu yd" />
+                <ResultRow label="With 10% Waste" value={fmt(result.withWaste, 2)} unit="cu yd" />
+                <ResultRow label="80 lb Bags" value={fmtInt(result.bags80)} unit="bags" />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 102. CONCRETE MIX CALCULATOR ──────────── */
+function ConcreteMixCalc() {
+    const [length, setLength] = useState(10);
+    const [width, setWidth] = useState(10);
+    const [thickness, setThickness] = useState(4);
+    const [wasteFactor, setWasteFactor] = useState(10);
+
+    const result = useMemo(() => {
+        const thickFt = thickness / 12;
+        const cuFt = length * width * thickFt;
+        const cuFtWithWaste = cuFt * (1 + wasteFactor / 100);
+        const cuYd = cuFtWithWaste / 27;
+        const bags40 = Math.ceil(cuFtWithWaste / 0.30);
+        const bags50 = Math.ceil(cuFtWithWaste / 0.375);
+        const bags60 = Math.ceil(cuFtWithWaste / 0.45);
+        const bags80 = Math.ceil(cuFtWithWaste / 0.60);
+        return { cuFt, cuFtWithWaste, cuYd, bags40, bags50, bags60, bags80 };
+    }, [length, width, thickness, wasteFactor]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">🏗️ Concrete Mix Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Length" value={length} onChange={setLength} unit="ft" min={1} />
+                <InputField label="Width" value={width} onChange={setWidth} unit="ft" min={1} />
+                <InputField label="Thickness" value={thickness} onChange={setThickness} unit="in" min={2} max={12} />
+                <InputField label="Waste Factor" value={wasteFactor} onChange={setWasteFactor} unit="%" min={0} max={20} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Volume" value={fmt(result.cuFtWithWaste)} unit="cu ft" />
+                <ResultRow label="Cubic Yards" value={fmt(result.cuYd, 2)} unit="cu yd" />
+                <ResultRow label="40 lb Bags" value={fmtInt(result.bags40)} unit="bags" />
+                <ResultRow label="60 lb Bags" value={fmtInt(result.bags60)} unit="bags" />
+                <ResultRow label="80 lb Bags" value={fmtInt(result.bags80)} unit="bags" />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 103. CONCRETE WEIGHT CALCULATOR ──────────── */
+function ConcreteWeightCalc() {
+    const [length, setLength] = useState(10);
+    const [width, setWidth] = useState(10);
+    const [thickness, setThickness] = useState(4);
+    const [concreteType, setConcreteType] = useState("standard");
+
+    const WEIGHT_PER_CUFT: Record<string, number> = {
+        "standard": 150, "lightweight": 110, "heavyweight": 180, "reinforced": 156,
+    };
+
+    const result = useMemo(() => {
+        const thickFt = thickness / 12;
+        const cuFt = length * width * thickFt;
+        const cuYd = cuFt / 27;
+        const weightPerCf = WEIGHT_PER_CUFT[concreteType] || 150;
+        const totalWeight = cuFt * weightPerCf;
+        const tons = totalWeight / 2000;
+        return { cuFt, cuYd, totalWeight, tons, weightPerCf };
+    }, [length, width, thickness, concreteType]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">⚖️ Concrete Weight Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Length" value={length} onChange={setLength} unit="ft" min={1} />
+                <InputField label="Width" value={width} onChange={setWidth} unit="ft" min={1} />
+                <InputField label="Thickness" value={thickness} onChange={setThickness} unit="in" min={2} max={24} />
+                <SelectField label="Concrete Type" value={concreteType} onChange={setConcreteType} options={[
+                    { value: "standard", label: "Standard (150 lb/cu ft)" },
+                    { value: "lightweight", label: "Lightweight (110 lb/cu ft)" },
+                    { value: "reinforced", label: "Reinforced (156 lb/cu ft)" },
+                    { value: "heavyweight", label: "Heavyweight (180 lb/cu ft)" },
+                ]} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Volume" value={fmt(result.cuFt)} unit="cu ft" />
+                <ResultRow label="Cubic Yards" value={fmt(result.cuYd, 2)} unit="cu yd" />
+                <ResultRow label="Weight" value={fmt(result.totalWeight)} unit="lbs" />
+                <ResultRow label="Tons" value={fmt(result.tons, 2)} unit="tons" />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 104. REBAR WEIGHT CALCULATOR ──────────── */
+function RebarWeightCalc() {
+    const [barSize, setBarSize] = useState(4);
+    const [totalLength, setTotalLength] = useState(100);
+
+    const REBAR_DATA: Record<number, { diameter: number; weight: number; area: number }> = {
+        3: { diameter: 0.375, weight: 0.376, area: 0.11 },
+        4: { diameter: 0.500, weight: 0.668, area: 0.20 },
+        5: { diameter: 0.625, weight: 1.043, area: 0.31 },
+        6: { diameter: 0.750, weight: 1.502, area: 0.44 },
+        7: { diameter: 0.875, weight: 2.044, area: 0.60 },
+        8: { diameter: 1.000, weight: 2.670, area: 0.79 },
+        9: { diameter: 1.128, weight: 3.400, area: 1.00 },
+        10: { diameter: 1.270, weight: 4.303, area: 1.27 },
+        11: { diameter: 1.410, weight: 5.313, area: 1.56 },
+        14: { diameter: 1.693, weight: 7.650, area: 2.25 },
+        18: { diameter: 2.257, weight: 13.600, area: 4.00 },
+    };
+
+    const result = useMemo(() => {
+        const data = REBAR_DATA[barSize] || REBAR_DATA[4];
+        const totalWeight = data.weight * totalLength;
+        const bars20ft = Math.ceil(totalLength / 20);
+        return { ...data, totalWeight, bars20ft };
+    }, [barSize, totalLength]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">📏 Rebar Weight Calculator</h3>
+            <div className="con-calc__inputs">
+                <SelectField label="Bar Size" value={String(barSize)} onChange={(v) => setBarSize(Number(v))} options={[
+                    { value: "3", label: "#3 (3/8\")" }, { value: "4", label: "#4 (1/2\")" },
+                    { value: "5", label: "#5 (5/8\")" }, { value: "6", label: "#6 (3/4\")" },
+                    { value: "7", label: "#7 (7/8\")" }, { value: "8", label: "#8 (1\")" },
+                    { value: "9", label: "#9 (1-1/8\")" }, { value: "10", label: "#10 (1-1/4\")" },
+                    { value: "11", label: "#11 (1-3/8\")" }, { value: "14", label: "#14 (1-11/16\")" },
+                    { value: "18", label: "#18 (2-1/4\")" },
+                ]} />
+                <InputField label="Total Length" value={totalLength} onChange={setTotalLength} unit="ft" min={1} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Bar Diameter" value={`${result.diameter}"`} />
+                <ResultRow label="Weight per Foot" value={fmt(result.weight, 3)} unit="lb/ft" />
+                <ResultRow label="Cross-Section Area" value={fmt(result.area, 2)} unit="sq in" />
+                <ResultRow label="Total Weight" value={fmt(result.totalWeight)} unit="lbs" />
+                <ResultRow label="20 ft Bars" value={fmtInt(result.bars20ft)} unit="bars" />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 105. CONCRETE COST CALCULATOR ──────────── */
+function ConcreteCostCalc() {
+    const [length, setLength] = useState(20);
+    const [width, setWidth] = useState(20);
+    const [thickness, setThickness] = useState(4);
+    const [finishType, setFinishType] = useState("broom");
+
+    const FINISH_COST: Record<string, number> = {
+        "broom": 6, "smooth": 7, "stamped": 14, "exposed": 10, "colored": 11,
+    };
+
+    const result = useMemo(() => {
+        const area = length * width;
+        const cuFt = area * (thickness / 12);
+        const cuYd = cuFt / 27;
+        const materialCost = cuYd * 140; // ~$140/cu yd ready mix
+        const deliveryCost = cuYd < 5 ? 150 : 0; // short load fee
+        const laborCost = area * (FINISH_COST[finishType] || 6);
+        const totalCost = materialCost + deliveryCost + laborCost;
+        return { area, cuYd, materialCost, deliveryCost, laborCost, totalCost };
+    }, [length, width, thickness, finishType]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">💰 Concrete Cost Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Length" value={length} onChange={setLength} unit="ft" min={4} />
+                <InputField label="Width" value={width} onChange={setWidth} unit="ft" min={4} />
+                <InputField label="Thickness" value={thickness} onChange={setThickness} unit="in" min={3} max={8} />
+                <SelectField label="Finish Type" value={finishType} onChange={setFinishType} options={[
+                    { value: "broom", label: "Broom Finish ($6/sq ft)" },
+                    { value: "smooth", label: "Smooth Trowel ($7/sq ft)" },
+                    { value: "exposed", label: "Exposed Aggregate ($10/sq ft)" },
+                    { value: "colored", label: "Colored/Stained ($11/sq ft)" },
+                    { value: "stamped", label: "Stamped ($14/sq ft)" },
+                ]} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Area" value={fmt(result.area)} unit="sq ft" />
+                <ResultRow label="Concrete" value={fmt(result.cuYd, 2)} unit="cu yd" />
+                <ResultRow label="Material" value={`$${fmt(result.materialCost)}`} />
+                <ResultRow label="Labor & Finish" value={`$${fmt(result.laborCost)}`} />
+                {result.deliveryCost > 0 && <ResultRow label="Short Load Fee" value={`$${fmt(result.deliveryCost)}`} />}
+                <ResultRow label="Total Estimate" value={`$${fmt(result.totalCost)}`} />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 106. SOIL VOLUME CALCULATOR ──────────── */
+function SoilVolumeCalc() {
+    const [length, setLength] = useState(8);
+    const [width, setWidth] = useState(4);
+    const [depth, setDepth] = useState(12);
+    const [numBeds, setNumBeds] = useState(1);
+
+    const result = useMemo(() => {
+        const depthFt = depth / 12;
+        const cuFtEach = length * width * depthFt;
+        const totalCuFt = cuFtEach * numBeds;
+        const cuYd = totalCuFt / 27;
+        const bags1cuft = Math.ceil(totalCuFt);
+        const bags2cuft = Math.ceil(totalCuFt / 2);
+        return { cuFtEach, totalCuFt, cuYd, bags1cuft, bags2cuft };
+    }, [length, width, depth, numBeds]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">🌱 Soil Volume Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Length" value={length} onChange={setLength} unit="ft" min={1} />
+                <InputField label="Width" value={width} onChange={setWidth} unit="ft" min={1} />
+                <InputField label="Depth" value={depth} onChange={setDepth} unit="in" min={4} max={36} />
+                <InputField label="Number of Beds" value={numBeds} onChange={setNumBeds} min={1} max={20} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Volume per Bed" value={fmt(result.cuFtEach)} unit="cu ft" />
+                <ResultRow label="Total Volume" value={fmt(result.totalCuFt)} unit="cu ft" />
+                <ResultRow label="Cubic Yards" value={fmt(result.cuYd, 2)} unit="cu yd" />
+                <ResultRow label="1 cu ft Bags" value={fmtInt(result.bags1cuft)} unit="bags" />
+                <ResultRow label="2 cu ft Bags" value={fmtInt(result.bags2cuft)} unit="bags" />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 107. ROOFING COST CALCULATOR ──────────── */
+function RoofingCostCalc() {
+    const [roofLength, setRoofLength] = useState(30);
+    const [roofWidth, setRoofWidth] = useState(24);
+    const [pitch, setPitch] = useState(6);
+    const [material, setMaterial] = useState("asphalt-3tab");
+
+    const MATERIAL_COST: Record<string, { material: number; labor: number }> = {
+        "asphalt-3tab": { material: 1.50, labor: 2.00 },
+        "asphalt-arch": { material: 2.50, labor: 2.50 },
+        "metal-standing": { material: 5.00, labor: 4.00 },
+        "clay-tile": { material: 8.00, labor: 5.00 },
+        "flat-tpo": { material: 3.50, labor: 3.00 },
+    };
+
+    const result = useMemo(() => {
+        const flatArea = roofLength * roofWidth;
+        const pitchMult = Math.sqrt(1 + Math.pow(pitch / 12, 2));
+        const roofArea = flatArea * pitchMult;
+        const squares = roofArea / 100;
+        const costs = MATERIAL_COST[material] || MATERIAL_COST["asphalt-3tab"];
+        const materialCost = roofArea * costs.material;
+        const laborCost = roofArea * costs.labor;
+        const tearOff = roofArea * 1.25;
+        const totalCost = materialCost + laborCost + tearOff;
+        return { flatArea, roofArea, squares, materialCost, laborCost, tearOff, totalCost };
+    }, [roofLength, roofWidth, pitch, material]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">🏠 Roofing Cost Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Roof Length" value={roofLength} onChange={setRoofLength} unit="ft" min={10} />
+                <InputField label="Building Width" value={roofWidth} onChange={setRoofWidth} unit="ft" min={10} />
+                <InputField label="Pitch" value={pitch} onChange={setPitch} unit="/12" min={0} max={12} />
+                <SelectField label="Material" value={material} onChange={setMaterial} options={[
+                    { value: "asphalt-3tab", label: "Asphalt 3-Tab ($3.50/sq ft)" },
+                    { value: "asphalt-arch", label: "Architectural Shingle ($5/sq ft)" },
+                    { value: "metal-standing", label: "Standing Seam Metal ($9/sq ft)" },
+                    { value: "clay-tile", label: "Clay Tile ($13/sq ft)" },
+                    { value: "flat-tpo", label: "TPO Flat Roof ($6.50/sq ft)" },
+                ]} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Roof Area" value={fmt(result.roofArea)} unit="sq ft" />
+                <ResultRow label="Squares" value={fmt(result.squares, 1)} />
+                <ResultRow label="Material" value={`$${fmt(result.materialCost)}`} />
+                <ResultRow label="Labor" value={`$${fmt(result.laborCost)}`} />
+                <ResultRow label="Tear-Off" value={`$${fmt(result.tearOff)}`} />
+                <ResultRow label="Total Estimate" value={`$${fmt(result.totalCost)}`} />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 108. FOUNDATION CALCULATOR ──────────── */
+function FoundationCalc() {
+    const [perimeter, setPerimeter] = useState(140);
+    const [footingWidth, setFootingWidth] = useState(16);
+    const [footingDepth, setFootingDepth] = useState(8);
+    const [wallHeight, setWallHeight] = useState(8);
+    const [wallThickness, setWallThickness] = useState(8);
+
+    const result = useMemo(() => {
+        const footingWidthFt = footingWidth / 12;
+        const footingDepthFt = footingDepth / 12;
+        const wallThickFt = wallThickness / 12;
+        const footingCuFt = perimeter * footingWidthFt * footingDepthFt;
+        const wallCuFt = perimeter * wallThickFt * wallHeight;
+        const totalCuFt = footingCuFt + wallCuFt;
+        const cuYd = totalCuFt / 27;
+        const cuYdWithWaste = cuYd * 1.1;
+        return { footingCuFt, wallCuFt, totalCuFt, cuYd, cuYdWithWaste };
+    }, [perimeter, footingWidth, footingDepth, wallHeight, wallThickness]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">🏗️ Foundation Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Perimeter" value={perimeter} onChange={setPerimeter} unit="ft" min={20} />
+                <InputField label="Footing Width" value={footingWidth} onChange={setFootingWidth} unit="in" min={12} max={36} />
+                <InputField label="Footing Depth" value={footingDepth} onChange={setFootingDepth} unit="in" min={6} max={24} />
+                <InputField label="Wall Height" value={wallHeight} onChange={setWallHeight} unit="ft" min={0} max={12} />
+                <InputField label="Wall Thickness" value={wallThickness} onChange={setWallThickness} unit="in" min={6} max={12} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Footing Volume" value={fmt(result.footingCuFt)} unit="cu ft" />
+                <ResultRow label="Wall Volume" value={fmt(result.wallCuFt)} unit="cu ft" />
+                <ResultRow label="Total Volume" value={fmt(result.totalCuFt)} unit="cu ft" />
+                <ResultRow label="Cubic Yards" value={fmt(result.cuYd, 1)} unit="cu yd" />
+                <ResultRow label="Order (+10%)" value={fmt(result.cuYdWithWaste, 1)} unit="cu yd" />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 109. BEAM SPAN CALCULATOR ──────────── */
+function BeamSpanCalc() {
+    const [beamType, setBeamType] = useState("lvl-1.75x11.25");
+    const [tributaryWidth, setTributaryWidth] = useState(8);
+    const [loadType, setLoadType] = useState("floor");
+
+    const BEAM_SPANS: Record<string, Record<string, number>> = {
+        "2x-2x8": { "floor": 5, "roof": 7 },
+        "2x-2x10": { "floor": 7, "roof": 9 },
+        "2x-2x12": { "floor": 9, "roof": 12 },
+        "lvl-1.75x9.25": { "floor": 10, "roof": 14 },
+        "lvl-1.75x11.25": { "floor": 13, "roof": 17 },
+        "lvl-1.75x14": { "floor": 16, "roof": 21 },
+        "glulam-3.125x9": { "floor": 11, "roof": 15 },
+        "glulam-3.125x12": { "floor": 15, "roof": 20 },
+        "steel-w8x18": { "floor": 18, "roof": 24 },
+    };
+
+    const result = useMemo(() => {
+        const spans = BEAM_SPANS[beamType] || {};
+        const baseSpan = spans[loadType] || 10;
+        const adjustedSpan = tributaryWidth <= 8 ? baseSpan : baseSpan * (8 / tributaryWidth);
+        return { baseSpan, adjustedSpan, tributaryWidth };
+    }, [beamType, tributaryWidth, loadType]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">📏 Beam Span Calculator</h3>
+            <div className="con-calc__inputs">
+                <SelectField label="Beam Type" value={beamType} onChange={setBeamType} options={[
+                    { value: "2x-2x8", label: "Doubled 2×8" },
+                    { value: "2x-2x10", label: "Doubled 2×10" },
+                    { value: "2x-2x12", label: "Doubled 2×12" },
+                    { value: "lvl-1.75x9.25", label: "LVL 1.75×9.25" },
+                    { value: "lvl-1.75x11.25", label: "LVL 1.75×11.25" },
+                    { value: "lvl-1.75x14", label: "LVL 1.75×14" },
+                    { value: "glulam-3.125x9", label: "Glulam 3.125×9" },
+                    { value: "glulam-3.125x12", label: "Glulam 3.125×12" },
+                    { value: "steel-w8x18", label: "Steel W8×18" },
+                ]} />
+                <InputField label="Tributary Width" value={tributaryWidth} onChange={setTributaryWidth} unit="ft" min={4} max={20} />
+                <SelectField label="Load Type" value={loadType} onChange={setLoadType} options={[
+                    { value: "floor", label: "Floor Load (40 psf)" },
+                    { value: "roof", label: "Roof Load (20 psf)" },
+                ]} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Max Span (8 ft trib.)" value={fmt(result.baseSpan, 1)} unit="ft" />
+                <ResultRow label="Adjusted Span" value={fmt(result.adjustedSpan, 1)} unit="ft" />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 110. HEADER SIZE CALCULATOR ──────────── */
+function HeaderSizeCalc() {
+    const [openingWidth, setOpeningWidth] = useState(6);
+    const [wallType, setWallType] = useState("load-bearing");
+    const [stories, setStories] = useState(1);
+
+    const result = useMemo(() => {
+        let headerSize: string;
+        let headerDepth: number;
+        const span = openingWidth;
+
+        if (wallType === "non-bearing") {
+            headerSize = span <= 6 ? "2×4 flat" : span <= 8 ? "2×6" : "2×8";
+            headerDepth = span <= 6 ? 3.5 : span <= 8 ? 5.5 : 7.25;
+        } else {
+            const multStory = stories >= 2 ? 1 : 0;
+            if (span <= 4) { headerSize = "Doubled 2×6"; headerDepth = 5.5; }
+            else if (span <= 6) { headerSize = multStory ? "Doubled 2×10" : "Doubled 2×8"; headerDepth = multStory ? 9.25 : 7.25; }
+            else if (span <= 8) { headerSize = multStory ? "Doubled 2×12" : "Doubled 2×10"; headerDepth = multStory ? 11.25 : 9.25; }
+            else if (span <= 10) { headerSize = multStory ? "LVL 1.75×11.25" : "Doubled 2×12"; headerDepth = multStory ? 11.25 : 11.25; }
+            else { headerSize = "LVL or Engineered — consult engineer"; headerDepth = 14; }
+        }
+
+        const jackStudHeight = 80 - headerDepth; // rough opening assumes ~80" for door
+        return { headerSize, headerDepth, jackStudHeight, span };
+    }, [openingWidth, wallType, stories]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">🪵 Header Size Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Opening Width" value={openingWidth} onChange={setOpeningWidth} unit="ft" min={2} max={16} />
+                <SelectField label="Wall Type" value={wallType} onChange={setWallType} options={[
+                    { value: "load-bearing", label: "Load-Bearing" },
+                    { value: "non-bearing", label: "Non-Load-Bearing" },
+                ]} />
+                <SelectField label="Stories Supported" value={String(stories)} onChange={(v) => setStories(Number(v))} options={[
+                    { value: "1", label: "1 Story (Roof Only)" },
+                    { value: "2", label: "2 Stories (Floor + Roof)" },
+                ]} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Opening Span" value={fmtInt(result.span)} unit="ft" />
+                <ResultRow label="Recommended Header" value={result.headerSize} />
+                <ResultRow label="Header Depth" value={fmt(result.headerDepth, 2)} unit="in" />
+                <ResultRow label="Jack Stud Height" value={fmt(result.jackStudHeight, 2)} unit="in" />
+            </div>
+        </div>
+    );
+}
+
 /* ──────────── DISPATCHER ──────────── */
 const CALC_MAP: Record<string, React.FC> = {
     "concrete": ConcreteCalc,
@@ -4382,6 +4861,16 @@ const CALC_MAP: Record<string, React.FC> = {
     "stud": StudCalc,
     "joist-span": JoistSpanCalc,
     "shelf-bracket": ShelfBracketCalc,
+    "concrete-block-fill": ConcreteBlockFillCalc,
+    "concrete-mix": ConcreteMixCalc,
+    "concrete-weight": ConcreteWeightCalc,
+    "rebar-weight": RebarWeightCalc,
+    "concrete-cost": ConcreteCostCalc,
+    "soil-volume": SoilVolumeCalc,
+    "roofing-cost": RoofingCostCalc,
+    "foundation": FoundationCalc,
+    "beam-span": BeamSpanCalc,
+    "header-size": HeaderSizeCalc,
 };
 
 export default function ConstructionCalculatorCore({ calcType }: { calcType: string }) {
