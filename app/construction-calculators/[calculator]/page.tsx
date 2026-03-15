@@ -339,6 +339,156 @@ const HUB_CONTENT: Record<string, {
             { question: "How much does sand cost?", answer: "Bulk sand: $25–$50 per cubic yard. Bags (50 lb): $4–$6 each. Specialty sands (play sand, polymeric) cost more: $15–$25 per bag. Delivery fees for bulk: $50–$150. Bulk is dramatically cheaper per unit for large projects." },
         ],
     },
+    "topsoil-calculator": {
+        subtitle: "Calculate how much topsoil you need for gardens, raised beds, and new lawns. Get results in cubic yards, tons, and bags by soil type.",
+        explanation: {
+            heading: "How to Calculate Topsoil Quantities",
+            paragraphs: [
+                "Topsoil is sold by the cubic yard or by the bag. One cubic yard covers approximately 108 sq ft at 3 inches deep — the recommended minimum for establishing new grass or garden beds. For raised beds, plan for 6–12 inches of depth.",
+                "Different soil products have different densities: standard topsoil weighs about 1.1 tons per cubic yard, garden mix about 1.0 ton, and compost about 0.6 tons. Knowing the density helps you estimate delivery weight and plan for equipment access.",
+            ],
+            highlight: "A 10×10 ft raised bed at 6 inches deep = 50 cu ft = 1.85 cu yd of topsoil ≈ 2 tons. That's roughly 100 bags of 40 lb soil. Bulk delivery is typically 50–70% cheaper than buying bags.",
+        },
+        faq: [
+            { question: "How deep should topsoil be?", answer: "New lawns: 4–6 inches minimum over compacted subgrade. Garden beds: 6–12 inches. Raised beds: fill to desired height (typically 8–12 inches). Top-dressing existing lawns: ¼–½ inch. The deeper the topsoil, the better the root development." },
+            { question: "What's the difference between topsoil and garden soil?", answer: "Topsoil is natural surface soil (top 4–12 inches of earth), screened to remove debris. Garden soil is topsoil amended with compost, peat, and other organic matter for better drainage and nutrient content. Garden soil costs more but requires less amendment." },
+        ],
+    },
+    "retaining-wall-calculator": {
+        subtitle: "Calculate blocks, cap stones, gravel backfill, and drainage pipe needed for a retaining wall. Enter wall dimensions and block specifications.",
+        explanation: {
+            heading: "How to Estimate Retaining Wall Materials",
+            paragraphs: [
+                "Retaining wall block calculators work by dividing the wall face area by the face area of a single block. Standard landscape blocks are 12 inches long × 4 inches tall, requiring 3 blocks per linear foot per row. Walls over 4 feet typically need engineering review.",
+                "Critical materials beyond blocks include: gravel backfill behind the wall (provides drainage and reduces hydrostatic pressure), perforated drainage pipe at the base, landscape fabric between backfill and soil, and cap blocks (adhesive-set) for the top course.",
+            ],
+            highlight: "A 20 ft × 3 ft retaining wall with 12×4 blocks = 9 rows × 20 blocks/row = 180 wall blocks + 20 cap blocks. Add 0.7 cu yd of gravel backfill and 20 ft of perforated drain pipe.",
+        },
+        faq: [
+            { question: "How high can I build a retaining wall without engineering?", answer: "Most jurisdictions allow gravity retaining walls up to 3–4 feet without a permit or engineer. Walls over 4 feet typically require engineered design with geogrids, proper drainage, and a building permit. Always check local codes." },
+            { question: "Do I need drainage behind a retaining wall?", answer: "Yes, always. Without drainage, water builds up behind the wall creating hydrostatic pressure that can cause failure. Install 6–12 inches of clean gravel backfill with a perforated pipe at the base, wrapped in landscape fabric." },
+        ],
+    },
+    "asphalt-calculator": {
+        subtitle: "Calculate how much asphalt you need for driveways, parking lots, and roads. Get tonnage, volume, truckloads, and cost estimates.",
+        explanation: {
+            heading: "How to Calculate Asphalt Quantities",
+            paragraphs: [
+                "Hot mix asphalt (HMA) weighs approximately 145 lbs per cubic foot, or about 2 tons per cubic yard. The standard residential driveway thickness is 2–3 inches for the surface course over a properly prepared gravel base. Commercial applications typically use 3–4 inches.",
+                "Asphalt is ordered in tons and delivered by dump truck (typically 20 tons per load). The formula is: Length × Width × Thickness (in feet) × 145 ÷ 2000 = tons needed. Always order 5–10% extra to account for variations in subgrade and compaction.",
+            ],
+            highlight: "A 20×12 ft driveway at 3 inches thick = 240 × 0.25 = 60 cu ft × 145 lbs ÷ 2000 = 4.35 tons of hot mix asphalt. That's well under one truckload.",
+        },
+        faq: [
+            { question: "How thick should an asphalt driveway be?", answer: "Residential driveways: 2–3 inches of asphalt over 6–8 inches of compacted gravel base. Heavy-use commercial driveways: 3–4 inches over 8–12 inches of base. The base preparation is actually more important than the asphalt thickness." },
+            { question: "How much does asphalt cost?", answer: "Hot mix asphalt: $80–$150 per ton for materials. Professional installation: $3–$7 per square foot including base preparation. A typical 20×12 ft driveway costs $1,500–$3,500 fully installed." },
+        ],
+    },
+    "rebar-calculator": {
+        subtitle: "Calculate rebar needed for concrete slabs and footings. Get total bars, linear feet, and weight by bar size (#3–#8) and spacing.",
+        explanation: {
+            heading: "How to Calculate Rebar Quantities",
+            paragraphs: [
+                "Rebar is placed in a grid pattern within concrete to provide tensile strength. Standard residential slab spacing is 12–18 inches on center (OC) in both directions. Calculate bars in each direction: divide the perpendicular dimension by the spacing and add 1 for the starting bar.",
+                "Rebar is identified by bar size number — the number represents eighths of an inch in diameter. #4 rebar (½ inch) is the most common for residential work. It weighs 0.668 lbs per foot. #3 (⅜ inch) is used for light-duty, while #5 and #6 are for heavier structural applications.",
+            ],
+            highlight: "A 20×20 ft slab with #4 rebar at 12\" OC needs: 21 bars each way = 42 total bars. Total linear feet = 42 × 20 = 840 ft. Weight = 840 × 0.668 = 561 lbs of rebar.",
+        },
+        faq: [
+            { question: "What size rebar do I need?", answer: "#3 (⅜\"): light-duty slabs, thin walls. #4 (½\"): standard residential slabs, driveways, patios. #5 (⅝\"): foundation walls, heavier slabs. #6 (¾\"): structural columns, beams. #7–#8: heavy commercial and infrastructure projects." },
+            { question: "What spacing should I use for rebar?", answer: "12 inches OC: driveways, garage floors, structural slabs. 16 inches OC: standard residential slabs, patios. 18 inches OC: lightly-loaded slabs, walkways. Always follow the structural engineer's specifications when available." },
+        ],
+    },
+    "siding-calculator": {
+        subtitle: "Calculate how much siding material you need for your home exterior. Accounts for walls, gables, doors, and windows with waste factor.",
+        explanation: {
+            heading: "How to Calculate Siding Materials",
+            paragraphs: [
+                "Siding is measured in 'squares' (100 sq ft each), similar to roofing. Start by calculating the gross wall area: average wall length × wall height × number of walls, plus any gable-end triangles. Then subtract openings: standard doors (≈ 21 sq ft each) and windows (≈ 15 sq ft each).",
+                "Add 10% waste for standard rectangular homes with few obstacles. Increase to 15% for homes with many windows, unusual angles, or complex trim details. Siding types differ in coverage — vinyl panels are typically sold by the square, while fiber cement comes in individual planks.",
+            ],
+            highlight: "A home with 4 walls averaging 40×9 ft plus 60 sq ft of gables, with 2 doors and 8 windows: gross = 1,500 sq ft − 162 sq ft openings = 1,338 sq ft net. With 10% waste = 14.7 squares of siding.",
+        },
+        faq: [
+            { question: "What type of siding is most cost-effective?", answer: "Vinyl siding: $3–$8/sq ft installed (cheapest, 20–30 year lifespan). Fiber cement (Hardie): $6–$13/sq ft installed (durable, 30–50 years). Wood: $5–$12/sq ft (classic look, requires maintenance). Engineered wood: $4–$9/sq ft (good middle ground)." },
+            { question: "How do I measure gable ends?", answer: "A standard gable is a triangle: measure the base width and the height from the wall top to the peak, then calculate ½ × base × height. For a 30 ft wide gable with a 6 ft rise: ½ × 30 × 6 = 90 sq ft." },
+        ],
+    },
+    "gutter-calculator": {
+        subtitle: "Calculate gutters, downspouts, brackets, elbows, and end caps needed for your roof. Enter roof edge length and downspout spacing.",
+        explanation: {
+            heading: "How to Calculate Gutter Materials",
+            paragraphs: [
+                "Gutter length equals the total roof edge (eave) length where you want gutters installed — typically the front and back of the house, plus any side sections. Standard gutter sections are 10 feet long. Downspouts should be placed every 30–40 feet and at each end of a gutter run.",
+                "For each downspout, plan 3 elbows (2 at the top to transition from gutter to wall, 1 at the bottom to direct water away). Brackets or hangers are installed every 3 feet along the gutter. End caps close off the gutter ends, and inside/outside corner pieces join gutter runs at angles.",
+            ],
+            highlight: "A home with 100 ft of roof edge, 40 ft downspout spacing: 10 gutter sections, 3 downspouts, 34 brackets, 9 elbows, and 2 end caps.",
+        },
+        faq: [
+            { question: "What size gutters should I use?", answer: "5-inch K-style gutters handle most residential roofs. 6-inch gutters are recommended for large roof areas, steep pitches, or heavy rainfall regions. Match with 2×3 inch downspouts for 5-inch gutters, or 3×4 inch for 6-inch gutters." },
+            { question: "How many downspouts do I need?", answer: "One downspout per 30–40 linear feet of gutter as a rule of thumb. Each 2×3 inch downspout can handle approximately 600 sq ft of roof area. More downspouts provide better drainage and reduce overflow risk." },
+        ],
+    },
+    "paver-calculator": {
+        subtitle: "Calculate how many pavers you need for patios, walkways, and driveways. Includes gravel base, leveling sand, and polymeric joint sand estimates.",
+        explanation: {
+            heading: "How to Calculate Paver Materials",
+            paragraphs: [
+                "Paver calculations divide the project area by the area of a single paver (including the joint gap). Common sizes include 4×8 inches (standard brick), 6×6, 6×9, and 12×12 inches. The joint gap is typically ¼ inch for polymeric sand or ⅛ inch for dry-laid.",
+                "A proper paver installation requires three layers below the pavers: compacted subgrade, 4–6 inches of crushed gravel base, and 1 inch of leveling sand. After laying, polymeric sand is swept into the joints and activated with water to lock pavers in place.",
+            ],
+            highlight: "A 12×10 ft patio with 4×8\" pavers and ¼\" gap = 120 sq ft ÷ 0.233 sq ft/paver = 515 pavers. Add 10% waste = 567 pavers. Plus 1.5 cu yd gravel base, 0.4 cu yd leveling sand, and 5 bags of polymeric sand.",
+        },
+        faq: [
+            { question: "How thick should the gravel base be under pavers?", answer: "4 inches for walkways and patios with light foot traffic. 6–8 inches for driveways and areas with vehicle traffic. The base should be compacted in 2-inch lifts using a plate compactor. Proper base preparation prevents settling and shifting." },
+            { question: "How many pavers come on a pallet?", answer: "It varies by size: 4×8\" brick pavers: ~480 per pallet. Holland pavers (4×8×2.375\"): ~486. 6×6\" pavers: ~270. 12×12\" pavers: ~120. Always check with your specific manufacturer for exact pallet counts." },
+        ],
+    },
+    "wallpaper-calculator": {
+        subtitle: "Calculate how many rolls of wallpaper you need for any room. Accounts for doors, windows, roll size, and pattern repeat.",
+        explanation: {
+            heading: "How to Calculate Wallpaper Rolls",
+            paragraphs: [
+                "Standard American wallpaper rolls are 20.5 inches wide × 33 feet long, covering approximately 56 square feet per roll. Euro rolls are wider (21–27.5 inches) and shorter (33 feet is standard). Actual usable coverage is less due to trimming, pattern matching, and waste around openings.",
+                "Pattern repeat is the most overlooked factor in wallpaper calculations. A large pattern repeat (21+ inches) can waste up to 15% of each roll in matching. Straight-match patterns are more efficient than drop-match patterns. For patterned wallpaper, always buy 1–2 extra rolls from the same batch.",
+            ],
+            highlight: "A 12×10 ft room with 8 ft ceilings, 1 door, 2 windows: perimeter = 44 ft, wall area = 352 sq ft, minus openings = 301 sq ft. At 56 sq ft usable/roll = 6 rolls needed (no pattern). With pattern repeat = 7 rolls.",
+        },
+        faq: [
+            { question: "How do I handle pattern matching?", answer: "Random textures: no waste. Straight match: line up the pattern horizontally at the same height — budget 10% extra. Half-drop match: every other strip is offset by half the repeat — budget 15–20% extra. Large patterns (21\"+) waste the most." },
+            { question: "How much wallpaper paste do I need?", answer: "Most pre-mixed paste covers 120–150 sq ft per quart. For a 300 sq ft room, plan 2–3 quarts. Pre-pasted wallpaper only needs water. Some premium papers require specialty adhesives — check manufacturer recommendations." },
+        ],
+    },
+    "pool-volume-calculator": {
+        subtitle: "Calculate the water volume of your swimming pool in gallons and liters. Supports rectangular, round, and oval pool shapes with variable shallow and deep ends.",
+        explanation: {
+            heading: "How to Calculate Pool Volume",
+            paragraphs: [
+                "Pool volume is calculated using the pool's surface area multiplied by the average depth, then converted to gallons. For rectangular pools: Length × Width × Average Depth × 7.48 gallons/cu ft. For round pools: π × radius² × Average Depth × 7.48. Average depth = (shallow end + deep end) ÷ 2.",
+                "Knowing your pool volume is essential for proper chemical dosing, heater sizing, pump selection, and filling time estimation. A garden hose delivers approximately 5–10 gallons per minute, so a 15,000-gallon pool takes 25–50 hours to fill from empty.",
+            ],
+            highlight: "A 30×15 ft rectangular pool with 3 ft shallow and 8 ft deep end: average depth = 5.5 ft. Volume = 30 × 15 × 5.5 = 2,475 cu ft × 7.48 = 18,512 gallons (70,083 liters).",
+        },
+        faq: [
+            { question: "How many gallons is a typical residential pool?", answer: "Small pools (12×24 ft): 8,000–12,000 gallons. Medium pools (16×32 ft): 15,000–25,000 gallons. Large pools (20×40 ft): 25,000–40,000 gallons. Above-ground round pools (18 ft diameter, 4 ft deep): ~7,600 gallons." },
+            { question: "Why do I need to know my pool volume?", answer: "Chemical dosing (chlorine, pH adjusters, algaecide) is calculated per 10,000 gallons. Incorrect volume estimates lead to over- or under-dosing. It's also needed for sizing pool heaters, pumps, filters, and estimating water bills for filling." },
+        ],
+    },
+    "fill-dirt-calculator": {
+        subtitle: "Calculate how much fill dirt you need for grading, backfilling, and leveling. Get volume in cubic yards, tons, and truckloads with compaction factor.",
+        explanation: {
+            heading: "How to Calculate Fill Dirt Quantities",
+            paragraphs: [
+                "Fill dirt is used to raise grade, fill excavations, and create level building surfaces. The key to accurate estimation is the compaction factor — loose fill dirt compacts 20–30% when mechanically compacted, meaning you need to order 20–30% more than the finished volume.",
+                "Fill dirt weighs approximately 1.15 tons per cubic yard (compacted). Standard dump trucks carry 10–14 cubic yards per load. For large projects, ordering by the truckload is most economical. Specify 'clean fill' to ensure you get dirt free of organic matter, debris, and contaminants.",
+            ],
+            highlight: "A 20×20 ft area needing 12 inches of fill: base volume = 400 cu ft, with 25% compaction factor = 500 cu ft = 18.5 cu yd ≈ 21.3 tons. That's about 1.3 dump truck loads (14 yd each).",
+        },
+        faq: [
+            { question: "What's the difference between fill dirt and topsoil?", answer: "Fill dirt is subsoil — it has little to no organic content, making it ideal for structural fill, grading, and foundation backfill. Topsoil is nutrient-rich surface soil for growing plants. Never use topsoil as structural fill — it settles and decomposes over time." },
+            { question: "How much does fill dirt cost?", answer: "Clean fill dirt: $5–$15 per cubic yard (some contractors give it away for free). Screened fill: $10–$25 per cubic yard. Delivery: $50–$150 per truckload depending on distance. For large projects, you can often find free fill dirt from nearby excavation sites." },
+        ],
+    },
 };
 
 export default async function ConstructionCalculatorHubPage({ params }: PageProps) {

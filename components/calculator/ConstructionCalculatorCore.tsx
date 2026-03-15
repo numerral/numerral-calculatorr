@@ -915,6 +915,461 @@ function SandCalc() {
     );
 }
 
+/* ──────────── 21. TOPSOIL CALCULATOR ──────────── */
+function TopsoilCalc() {
+    const [length, setLength] = useState(10);
+    const [width, setWidth] = useState(10);
+    const [depth, setDepth] = useState(6);
+    const [depthUnit, setDepthUnit] = useState("inches");
+    const [material, setMaterial] = useState("topsoil");
+    const [pricePerYd, setPricePerYd] = useState(35);
+
+    const DENSITY: Record<string, number> = {
+        "topsoil": 1.1, "garden-mix": 1.0, "compost": 0.6, "potting-soil": 0.5,
+    };
+
+    const result = useMemo(() => {
+        const depthFt = depthUnit === "inches" ? depth / 12 : depth;
+        const cuFt = length * width * depthFt;
+        const cuYd = cuFt / 27;
+        const tons = cuYd * (DENSITY[material] || 1.1);
+        const bags40lb = (tons * 2000) / 40;
+        const cost = cuYd * pricePerYd;
+        return { cuFt, cuYd, tons, bags40lb, cost };
+    }, [length, width, depth, depthUnit, material, pricePerYd]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">🌱 Topsoil Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Length" value={length} onChange={setLength} unit="ft" min={0.1} step={0.5} />
+                <InputField label="Width" value={width} onChange={setWidth} unit="ft" min={0.1} step={0.5} />
+                <InputField label="Depth" value={depth} onChange={setDepth} unit={depthUnit} min={0.5} step={0.5} />
+                <SelectField label="Depth Unit" value={depthUnit} onChange={setDepthUnit} options={[
+                    { value: "inches", label: "Inches" }, { value: "feet", label: "Feet" }
+                ]} />
+                <SelectField label="Material" value={material} onChange={setMaterial} options={[
+                    { value: "topsoil", label: "Topsoil" },
+                    { value: "garden-mix", label: "Garden Mix" },
+                    { value: "compost", label: "Compost" },
+                    { value: "potting-soil", label: "Potting Soil" },
+                ]} />
+                <InputField label="Price per cu yd" value={pricePerYd} onChange={setPricePerYd} unit="$" min={0} step={5} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Volume" value={fmt(result.cuFt)} unit="cu ft" />
+                <ResultRow label="Volume" value={fmt(result.cuYd)} unit="cu yd" />
+                <ResultRow label="Weight" value={fmt(result.tons, 1)} unit="tons" />
+                <ResultRow label="40 lb Bags" value={fmtInt(result.bags40lb)} unit="bags" />
+                <ResultRow label="Estimated Cost" value={`$${fmt(result.cost)}`} />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 22. RETAINING WALL CALCULATOR ──────────── */
+function RetainingWallCalc() {
+    const [wallLength, setWallLength] = useState(20);
+    const [wallHeight, setWallHeight] = useState(3);
+    const [blockLength, setBlockLength] = useState(12);
+    const [blockHeight, setBlockHeight] = useState(4);
+    const [blockDepth, setBlockDepth] = useState(8);
+
+    const result = useMemo(() => {
+        const rows = Math.ceil((wallHeight * 12) / blockHeight);
+        const blocksPerRow = Math.ceil((wallLength * 12) / blockLength);
+        const totalBlocks = rows * blocksPerRow;
+        const capBlocks = blocksPerRow;
+        const gravelCuFt = wallLength * (blockDepth / 12) * wallHeight * 0.5;
+        const gravelCuYd = gravelCuFt / 27;
+        const drainagePipe = wallLength;
+        return { rows, blocksPerRow, totalBlocks, capBlocks, gravelCuYd, drainagePipe };
+    }, [wallLength, wallHeight, blockLength, blockHeight, blockDepth]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">🧱 Retaining Wall Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Wall Length" value={wallLength} onChange={setWallLength} unit="ft" min={1} />
+                <InputField label="Wall Height" value={wallHeight} onChange={setWallHeight} unit="ft" min={0.5} step={0.5} />
+                <InputField label="Block Length" value={blockLength} onChange={setBlockLength} unit="in" min={4} />
+                <InputField label="Block Height" value={blockHeight} onChange={setBlockHeight} unit="in" min={2} />
+                <InputField label="Block Depth" value={blockDepth} onChange={setBlockDepth} unit="in" min={4} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Rows" value={fmtInt(result.rows)} unit="rows" />
+                <ResultRow label="Blocks per Row" value={fmtInt(result.blocksPerRow)} unit="blocks" />
+                <ResultRow label="Total Blocks" value={fmtInt(result.totalBlocks)} unit="blocks" />
+                <ResultRow label="Cap Blocks" value={fmtInt(result.capBlocks)} unit="blocks" />
+                <ResultRow label="Gravel Backfill" value={fmt(result.gravelCuYd, 1)} unit="cu yd" />
+                <ResultRow label="Drainage Pipe" value={fmt(result.drainagePipe)} unit="ft" />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 23. ASPHALT CALCULATOR ──────────── */
+function AsphaltCalc() {
+    const [length, setLength] = useState(20);
+    const [width, setWidth] = useState(12);
+    const [thickness, setThickness] = useState(3);
+    const [pricePerTon, setPricePerTon] = useState(100);
+
+    const result = useMemo(() => {
+        const area = length * width;
+        const thicknessFt = thickness / 12;
+        const cuFt = area * thicknessFt;
+        const cuYd = cuFt / 27;
+        const tons = cuFt * 145 / 2000; // hot mix asphalt ≈ 145 lbs/cu ft
+        const truckloads = tons / 20; // typical truck = ~20 tons
+        const cost = tons * pricePerTon;
+        return { area, cuFt, cuYd, tons, truckloads, cost };
+    }, [length, width, thickness, pricePerTon]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">🛣️ Asphalt Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Length" value={length} onChange={setLength} unit="ft" min={1} />
+                <InputField label="Width" value={width} onChange={setWidth} unit="ft" min={1} />
+                <InputField label="Thickness" value={thickness} onChange={setThickness} unit="in" min={1} max={12} step={0.5} />
+                <InputField label="Price per Ton" value={pricePerTon} onChange={setPricePerTon} unit="$" min={0} step={10} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Area" value={fmt(result.area)} unit="sq ft" />
+                <ResultRow label="Volume" value={fmt(result.cuYd)} unit="cu yd" />
+                <ResultRow label="Hot Mix Needed" value={fmt(result.tons, 1)} unit="tons" />
+                <ResultRow label="Truckloads (20 ton)" value={fmt(result.truckloads, 1)} unit="loads" />
+                <ResultRow label="Estimated Cost" value={`$${fmt(result.cost)}`} />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 24. REBAR CALCULATOR ──────────── */
+function RebarCalc() {
+    const [slabLength, setSlabLength] = useState(20);
+    const [slabWidth, setSlabWidth] = useState(20);
+    const [spacing, setSpacing] = useState(12);
+    const [barSize, setBarSize] = useState("#4");
+
+    const BAR_WEIGHT: Record<string, number> = {
+        "#3": 0.376, "#4": 0.668, "#5": 1.043, "#6": 1.502, "#7": 2.044, "#8": 2.670,
+    };
+
+    const result = useMemo(() => {
+        const spacingFt = spacing / 12;
+        const barsLength = spacingFt > 0 ? Math.floor(slabWidth / spacingFt) + 1 : 0;
+        const barsWidth = spacingFt > 0 ? Math.floor(slabLength / spacingFt) + 1 : 0;
+        const totalBars = barsLength + barsWidth;
+        const linearFtLength = barsLength * slabLength;
+        const linearFtWidth = barsWidth * slabWidth;
+        const totalLinearFt = linearFtLength + linearFtWidth;
+        const weightPerFt = BAR_WEIGHT[barSize] || 0.668;
+        const totalWeight = totalLinearFt * weightPerFt;
+        return { barsLength, barsWidth, totalBars, totalLinearFt, totalWeight };
+    }, [slabLength, slabWidth, spacing, barSize]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">🔩 Rebar Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Slab Length" value={slabLength} onChange={setSlabLength} unit="ft" min={1} />
+                <InputField label="Slab Width" value={slabWidth} onChange={setSlabWidth} unit="ft" min={1} />
+                <InputField label="Bar Spacing" value={spacing} onChange={setSpacing} unit="in OC" min={6} max={24} />
+                <SelectField label="Bar Size" value={barSize} onChange={setBarSize} options={[
+                    { value: "#3", label: "#3 (⅜ in)" },
+                    { value: "#4", label: "#4 (½ in)" },
+                    { value: "#5", label: "#5 (⅝ in)" },
+                    { value: "#6", label: "#6 (¾ in)" },
+                    { value: "#7", label: "#7 (⅞ in)" },
+                    { value: "#8", label: "#8 (1 in)" },
+                ]} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Bars (lengthwise)" value={fmtInt(result.barsLength)} unit="bars" />
+                <ResultRow label="Bars (widthwise)" value={fmtInt(result.barsWidth)} unit="bars" />
+                <ResultRow label="Total Bars" value={fmtInt(result.totalBars)} unit="bars" />
+                <ResultRow label="Total Linear Feet" value={fmt(result.totalLinearFt)} unit="ft" />
+                <ResultRow label="Total Weight" value={fmt(result.totalWeight, 1)} unit="lbs" />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 25. SIDING CALCULATOR ──────────── */
+function SidingCalc() {
+    const [wallLength, setWallLength] = useState(40);
+    const [wallHeight, setWallHeight] = useState(9);
+    const [walls, setWalls] = useState(4);
+    const [doors, setDoors] = useState(2);
+    const [windows, setWindows] = useState(8);
+    const [gableArea, setGableArea] = useState(60);
+    const [waste, setWaste] = useState(10);
+
+    const result = useMemo(() => {
+        const grossArea = wallLength * wallHeight * walls + gableArea;
+        const openingsArea = (doors * 21) + (windows * 15);
+        const netArea = grossArea - openingsArea;
+        const withWaste = netArea * (1 + waste / 100);
+        const squares = withWaste / 100; // 1 "square" = 100 sq ft of siding
+        return { grossArea, openingsArea, netArea, withWaste, squares };
+    }, [wallLength, wallHeight, walls, doors, windows, gableArea, waste]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">🏠 Siding Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Avg Wall Length" value={wallLength} onChange={setWallLength} unit="ft" min={1} />
+                <InputField label="Wall Height" value={wallHeight} onChange={setWallHeight} unit="ft" min={1} />
+                <InputField label="Number of Walls" value={walls} onChange={setWalls} min={1} max={10} />
+                <InputField label="Doors" value={doors} onChange={setDoors} min={0} />
+                <InputField label="Windows" value={windows} onChange={setWindows} min={0} />
+                <InputField label="Gable Area" value={gableArea} onChange={setGableArea} unit="sq ft" min={0} />
+                <InputField label="Waste Factor" value={waste} onChange={setWaste} unit="%" min={0} max={25} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Gross Wall Area" value={fmt(result.grossArea)} unit="sq ft" />
+                <ResultRow label="Openings Deducted" value={fmt(result.openingsArea)} unit="sq ft" />
+                <ResultRow label="Net Siding Area" value={fmt(result.netArea)} unit="sq ft" />
+                <ResultRow label="Total (+ waste)" value={fmt(result.withWaste)} unit="sq ft" />
+                <ResultRow label="Siding Squares" value={fmt(result.squares, 1)} unit="squares" />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 26. GUTTER CALCULATOR ──────────── */
+function GutterCalc() {
+    const [roofEdge, setRoofEdge] = useState(100);
+    const [downspoutSpacing, setDownspoutSpacing] = useState(40);
+    const [gutterSection, setGutterSection] = useState(10);
+
+    const result = useMemo(() => {
+        const sections = Math.ceil(roofEdge / gutterSection);
+        const downspouts = Math.max(Math.ceil(roofEdge / downspoutSpacing), 2);
+        const brackets = Math.ceil(roofEdge / 3); // 1 bracket every 3 ft
+        const insideCorners = 2;
+        const outsideCorners = 2;
+        const elbowsPerDownspout = 3; // 2 at top + 1 at bottom
+        const totalElbows = downspouts * elbowsPerDownspout;
+        const endCaps = 2;
+        return { sections, downspouts, brackets, insideCorners, outsideCorners, totalElbows, endCaps };
+    }, [roofEdge, downspoutSpacing, gutterSection]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">🌧️ Gutter Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Total Roof Edge" value={roofEdge} onChange={setRoofEdge} unit="ft" min={10} />
+                <InputField label="Downspout Spacing" value={downspoutSpacing} onChange={setDownspoutSpacing} unit="ft" min={20} max={60} />
+                <InputField label="Gutter Section Length" value={gutterSection} onChange={setGutterSection} unit="ft" min={5} max={20} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Gutter Sections" value={fmtInt(result.sections)} unit="sections" />
+                <ResultRow label="Downspouts" value={fmtInt(result.downspouts)} unit="downspouts" />
+                <ResultRow label="Brackets / Hangers" value={fmtInt(result.brackets)} unit="brackets" />
+                <ResultRow label="Elbows" value={fmtInt(result.totalElbows)} unit="elbows" />
+                <ResultRow label="End Caps" value={fmtInt(result.endCaps)} unit="caps" />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 27. PAVER CALCULATOR ──────────── */
+function PaverCalc() {
+    const [areaLength, setAreaLength] = useState(12);
+    const [areaWidth, setAreaWidth] = useState(10);
+    const [paverLength, setPaverLength] = useState(8);
+    const [paverWidth, setPaverWidth] = useState(4);
+    const [gap, setGap] = useState(0.25);
+    const [waste, setWaste] = useState(10);
+    const [baseDepth, setBaseDepth] = useState(4);
+
+    const result = useMemo(() => {
+        const areaSqFt = areaLength * areaWidth;
+        const effectiveL = (paverLength + gap) / 12;
+        const effectiveW = (paverWidth + gap) / 12;
+        const paverArea = effectiveL * effectiveW;
+        const paversExact = paverArea > 0 ? areaSqFt / paverArea : 0;
+        const paversWithWaste = paversExact * (1 + waste / 100);
+        const baseCuFt = areaSqFt * (baseDepth / 12);
+        const baseCuYd = baseCuFt / 27;
+        const sandCuFt = areaSqFt * (1 / 12); // 1 inch leveling sand
+        const sandCuYd = sandCuFt / 27;
+        const polymericBags = areaSqFt / 25; // ~1 bag per 25 sq ft
+        return { areaSqFt, paversExact, paversWithWaste, baseCuYd, sandCuYd, polymericBags };
+    }, [areaLength, areaWidth, paverLength, paverWidth, gap, waste, baseDepth]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">🧱 Paver Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Area Length" value={areaLength} onChange={setAreaLength} unit="ft" min={1} />
+                <InputField label="Area Width" value={areaWidth} onChange={setAreaWidth} unit="ft" min={1} />
+                <InputField label="Paver Length" value={paverLength} onChange={setPaverLength} unit="in" min={2} />
+                <InputField label="Paver Width" value={paverWidth} onChange={setPaverWidth} unit="in" min={2} />
+                <InputField label="Joint Gap" value={gap} onChange={setGap} unit="in" min={0} step={0.0625} />
+                <InputField label="Waste Factor" value={waste} onChange={setWaste} unit="%" min={0} max={20} />
+                <InputField label="Gravel Base Depth" value={baseDepth} onChange={setBaseDepth} unit="in" min={2} max={8} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Total Area" value={fmt(result.areaSqFt)} unit="sq ft" />
+                <ResultRow label="Pavers (exact)" value={fmtInt(result.paversExact)} unit="pavers" />
+                <ResultRow label="Pavers (+ waste)" value={fmtInt(result.paversWithWaste)} unit="pavers" />
+                <ResultRow label="Gravel Base" value={fmt(result.baseCuYd, 1)} unit="cu yd" />
+                <ResultRow label="Leveling Sand" value={fmt(result.sandCuYd, 1)} unit="cu yd" />
+                <ResultRow label="Polymeric Sand" value={fmtInt(result.polymericBags)} unit="bags" />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 28. WALLPAPER CALCULATOR ──────────── */
+function WallpaperCalc() {
+    const [roomLength, setRoomLength] = useState(12);
+    const [roomWidth, setRoomWidth] = useState(10);
+    const [wallHeight, setWallHeight] = useState(8);
+    const [doors, setDoors] = useState(1);
+    const [windows, setWindows] = useState(2);
+    const [rollWidth, setRollWidth] = useState(21);
+    const [rollLength, setRollLength] = useState(33);
+    const [patternRepeat, setPatternRepeat] = useState(0);
+
+    const result = useMemo(() => {
+        const perimeter = 2 * (roomLength + roomWidth);
+        const wallArea = perimeter * wallHeight;
+        const openingsArea = (doors * 21) + (windows * 15);
+        const coverableArea = wallArea - openingsArea;
+        const rollWidthFt = rollWidth / 12;
+        const usableLength = patternRepeat > 0 ? rollLength * 0.85 : rollLength; // 15% pattern waste
+        const rollCoverage = rollWidthFt * usableLength;
+        const rolls = rollCoverage > 0 ? Math.ceil(coverableArea / rollCoverage) : 0;
+        return { wallArea, coverableArea, rollCoverage, rolls };
+    }, [roomLength, roomWidth, wallHeight, doors, windows, rollWidth, rollLength, patternRepeat]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">🎨 Wallpaper Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Room Length" value={roomLength} onChange={setRoomLength} unit="ft" min={1} />
+                <InputField label="Room Width" value={roomWidth} onChange={setRoomWidth} unit="ft" min={1} />
+                <InputField label="Wall Height" value={wallHeight} onChange={setWallHeight} unit="ft" min={1} />
+                <InputField label="Doors" value={doors} onChange={setDoors} min={0} />
+                <InputField label="Windows" value={windows} onChange={setWindows} min={0} />
+                <InputField label="Roll Width" value={rollWidth} onChange={setRollWidth} unit="in" min={15} max={36} />
+                <InputField label="Roll Length" value={rollLength} onChange={setRollLength} unit="ft" min={10} max={60} />
+                <InputField label="Pattern Repeat" value={patternRepeat} onChange={setPatternRepeat} unit="in" min={0} max={36} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Total Wall Area" value={fmt(result.wallArea)} unit="sq ft" />
+                <ResultRow label="Coverable Area" value={fmt(result.coverableArea)} unit="sq ft" />
+                <ResultRow label="Coverage per Roll" value={fmt(result.rollCoverage, 1)} unit="sq ft" />
+                <ResultRow label="Rolls Needed" value={fmtInt(result.rolls)} unit="rolls" />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 29. POOL VOLUME CALCULATOR ──────────── */
+function PoolVolumeCalc() {
+    const [shape, setShape] = useState("rectangle");
+    const [length, setLength] = useState(30);
+    const [width, setWidth] = useState(15);
+    const [shallowDepth, setShallowDepth] = useState(3);
+    const [deepDepth, setDeepDepth] = useState(8);
+
+    const result = useMemo(() => {
+        const avgDepth = (shallowDepth + deepDepth) / 2;
+        let cuFt = 0;
+        if (shape === "rectangle") {
+            cuFt = length * width * avgDepth;
+        } else if (shape === "round") {
+            const radius = length / 2;
+            cuFt = Math.PI * radius * radius * avgDepth;
+        } else if (shape === "oval") {
+            cuFt = Math.PI * (length / 2) * (width / 2) * avgDepth;
+        }
+        const gallons = cuFt * 7.48052;
+        const liters = gallons * 3.78541;
+        return { avgDepth, cuFt, gallons, liters };
+    }, [shape, length, width, shallowDepth, deepDepth]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">🏊 Pool Volume Calculator</h3>
+            <div className="con-calc__inputs">
+                <SelectField label="Pool Shape" value={shape} onChange={setShape} options={[
+                    { value: "rectangle", label: "Rectangle" },
+                    { value: "round", label: "Round" },
+                    { value: "oval", label: "Oval" },
+                ]} />
+                <InputField label={shape === "round" ? "Diameter" : "Length"} value={length} onChange={setLength} unit="ft" min={4} />
+                {shape !== "round" && <InputField label="Width" value={width} onChange={setWidth} unit="ft" min={4} />}
+                <InputField label="Shallow End Depth" value={shallowDepth} onChange={setShallowDepth} unit="ft" min={1} max={12} step={0.5} />
+                <InputField label="Deep End Depth" value={deepDepth} onChange={setDeepDepth} unit="ft" min={1} max={16} step={0.5} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Average Depth" value={fmt(result.avgDepth, 1)} unit="ft" />
+                <ResultRow label="Volume" value={fmt(result.cuFt)} unit="cu ft" />
+                <ResultRow label="Volume" value={fmtInt(result.gallons)} unit="gallons" />
+                <ResultRow label="Volume" value={fmtInt(result.liters)} unit="liters" />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 30. FILL DIRT CALCULATOR ──────────── */
+function FillDirtCalc() {
+    const [length, setLength] = useState(20);
+    const [width, setWidth] = useState(20);
+    const [depth, setDepth] = useState(12);
+    const [depthUnit, setDepthUnit] = useState("inches");
+    const [compaction, setCompaction] = useState(25);
+
+    const result = useMemo(() => {
+        const depthFt = depthUnit === "inches" ? depth / 12 : depth;
+        const cuFt = length * width * depthFt;
+        const cuFtWithCompaction = cuFt * (1 + compaction / 100);
+        const cuYd = cuFtWithCompaction / 27;
+        const tons = cuYd * 1.15; // fill dirt ≈ 1.15 tons/cu yd
+        const truckloads = cuYd / 14; // typical dump truck ≈ 14 cu yd
+        return { cuFt, cuFtWithCompaction, cuYd, tons, truckloads };
+    }, [length, width, depth, depthUnit, compaction]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">⛰️ Fill Dirt Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Length" value={length} onChange={setLength} unit="ft" min={0.1} step={0.5} />
+                <InputField label="Width" value={width} onChange={setWidth} unit="ft" min={0.1} step={0.5} />
+                <InputField label="Depth" value={depth} onChange={setDepth} unit={depthUnit} min={0.5} step={0.5} />
+                <SelectField label="Depth Unit" value={depthUnit} onChange={setDepthUnit} options={[
+                    { value: "inches", label: "Inches" }, { value: "feet", label: "Feet" }
+                ]} />
+                <InputField label="Compaction Factor" value={compaction} onChange={setCompaction} unit="%" min={0} max={50} step={5} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Volume (loose)" value={fmt(result.cuFt)} unit="cu ft" />
+                <ResultRow label="Volume (+ compaction)" value={fmt(result.cuFtWithCompaction)} unit="cu ft" />
+                <ResultRow label="Order Amount" value={fmt(result.cuYd, 1)} unit="cu yd" />
+                <ResultRow label="Weight" value={fmt(result.tons, 1)} unit="tons" />
+                <ResultRow label="Truckloads (14 yd)" value={fmt(result.truckloads, 1)} unit="loads" />
+            </div>
+        </div>
+    );
+}
+
 /* ──────────── DISPATCHER ──────────── */
 const CALC_MAP: Record<string, React.FC> = {
     "concrete": ConcreteCalc,
@@ -937,6 +1392,16 @@ const CALC_MAP: Record<string, React.FC> = {
     "insulation": InsulationCalc,
     "carpet": CarpetCalc,
     "sand": SandCalc,
+    "topsoil": TopsoilCalc,
+    "retaining-wall": RetainingWallCalc,
+    "asphalt": AsphaltCalc,
+    "rebar": RebarCalc,
+    "siding": SidingCalc,
+    "gutter": GutterCalc,
+    "paver": PaverCalc,
+    "wallpaper": WallpaperCalc,
+    "pool-volume": PoolVolumeCalc,
+    "fill-dirt": FillDirtCalc,
 };
 
 export default function ConstructionCalculatorCore({ calcType }: { calcType: string }) {
