@@ -1839,6 +1839,186 @@ const HUB_CONTENT: Record<string, {
             { question: "Should I install flooring myself?", answer: "Floating floors (laminate, click-lock vinyl) are very DIY-friendly and can save $2–$4/sq ft in labor. Tile requires more skill (mortar, grout, leveling). Hardwood nailing/gluing is intermediate. Carpet stretching requires specialized tools. Always level the subfloor first regardless of material." },
         ],
     },
+    "bathroom-renovation-cost-calculator": {
+        subtitle: "Estimate bathroom remodel costs by size and renovation scope. Get a breakdown of fixtures, tile, plumbing, electrical, and labor.",
+        explanation: {
+            heading: "How Much Does a Bathroom Renovation Cost?",
+            paragraphs: [
+                "Bathroom renovation costs vary dramatically based on the scope of work and bathroom size. A cosmetic refresh (paint, new fixtures, accessories) for a small bathroom can cost as little as $3,300, while a full upscale gut renovation of a large master bath can exceed $40,000.",
+                "The biggest cost drivers are tile/surfaces (30–35% of budget), labor (35–40%), and plumbing (15–20%). Moving plumbing fixtures (toilet, shower, tub) from their existing locations adds $1,000–$3,000 per fixture. Keeping the existing layout saves significantly on plumbing costs.",
+            ],
+            highlight: "A medium bathroom, mid-range renovation: $15,000 total — $2,500 fixtures + $3,500 tile + $2,000 plumbing + $1,000 electrical + $6,000 labor.",
+        },
+        faq: [
+            { question: "How long does a bathroom renovation take?", answer: "Cosmetic update: 1–2 weeks. Mid-range remodel: 3–5 weeks. Full gut renovation: 6–10 weeks. Timeline depends on permit requirements, custom orders (vanity, tile), and contractor availability. Allow 4–8 weeks lead time for custom orders." },
+            { question: "What adds the most value in a bathroom remodel?", answer: "Updated vanity and fixtures (highest ROI), new tile flooring, modern shower/tub, and improved lighting. Walk-in showers have replaced tubs as the top desired feature. Heated floors and frameless glass shower doors are popular upgrades." },
+        ],
+    },
+    "electrical-cost-calculator": {
+        subtitle: "Estimate electrical project costs — full rewiring, panel upgrades, new circuits, or surge protection. Enter project type for a cost breakdown.",
+        explanation: {
+            heading: "How Much Does Electrical Work Cost?",
+            paragraphs: [
+                "Electrical costs vary by project scope. A full house rewire runs $6–$10 per square foot ($9,000–$15,000 for a 1,500 sq ft home). A panel upgrade from 100A to 200A costs $2,500–$4,500. Adding a new 20A circuit costs $200–$400 per circuit including materials and labor.",
+                "Electricians charge $50–$100/hour depending on region and experience. Permits are required for most electrical work and cost $100–$500. Always hire a licensed electrician — DIY electrical work can void insurance, fail inspection, and create fire hazards.",
+            ],
+            highlight: "Adding 4 new circuits: $300 materials + $800 labor + $150 permit = $1,250 total. Full rewire of a 1,500 sq ft home: $3,600 materials + $7,400 labor + $500 permit = $11,500.",
+        },
+        faq: [
+            { question: "When should I upgrade my electrical panel?", answer: "When: your panel is 100A and you're adding major appliances (EV charger, AC, hot tub), you see flickering lights, breakers trip frequently, or you have a Federal Pacific or Zinsco panel (known fire hazards). Modern homes should have 200A service minimum." },
+            { question: "Do I need a permit for electrical work?", answer: "Yes — most jurisdictions require permits for new circuits, panel upgrades, and rewiring. Minor work like replacing switches/outlets may not require a permit, but check local codes. Unpermitted electrical work can cause problems when selling your home." },
+        ],
+    },
+    "hvac-cost-calculator": {
+        subtitle: "Estimate HVAC installation or replacement costs by system type and home size. Covers central AC, heat pumps, furnaces, and mini-splits.",
+        explanation: {
+            heading: "How Much Does a New HVAC System Cost?",
+            paragraphs: [
+                "HVAC costs depend on system type, home size, and whether existing ductwork is reused. Central AC replacement: $5,000–$8,000. Heat pump: $6,000–$10,000. Gas furnace: $3,500–$6,000. Ductless mini-split: $3,000–$8,000 (1–4 zones). Full system (AC + furnace): $8,000–$15,000.",
+                "Ductwork adds $2,000–$5,000 if new or replacement is needed. Mini-splits avoid this cost entirely. System sizing is critical — oversized units short-cycle (wasting energy), while undersized units run constantly. A Manual J load calculation ($100–$300) ensures proper sizing.",
+            ],
+            highlight: "1,500 sq ft home, central AC: $2,250 equipment + $3,000 installation + $2,000 ductwork = $7,250 total. Mini-split (no ductwork): $3,750 equipment + $3,500 install = $7,250.",
+        },
+        faq: [
+            { question: "How long does an HVAC system last?", answer: "Central AC: 15–20 years. Heat pump: 12–15 years. Gas furnace: 15–25 years. Ductless mini-split: 15–20 years. Regular maintenance (annual tune-ups, filter changes) extends lifespan. Efficiency drops 5% per year without maintenance." },
+            { question: "Heat pump or AC — which is better?", answer: "Heat pumps provide both heating and cooling, making them more efficient overall (300% efficiency for heating vs. 95% for gas furnace). In mild climates, heat pumps are the clear winner. In very cold climates (below 0°F regularly), a dual-fuel system (heat pump + gas furnace backup) is ideal." },
+        ],
+    },
+    "kitchen-renovation-cost-calculator": {
+        subtitle: "Estimate kitchen remodel costs by size and scope. Get a breakdown of cabinets, countertops, appliances, flooring, and labor.",
+        explanation: {
+            heading: "How Much Does a Kitchen Renovation Cost?",
+            paragraphs: [
+                "Kitchen renovations range from $4,000 (cosmetic refresh) to $92,000+ (large upscale gut renovation). Mid-range kitchen remodels average $28,500 for a medium kitchen. Cabinets are typically the largest single expense (30–35%), followed by labor (25–30%) and countertops (10–15%).",
+                "Cosmetic updates (painting cabinets, new hardware, backsplash) offer the highest ROI at 75–80% return. Full gut renovations have a lower ROI (55–65%) but create the most transformation. Keep the existing layout to avoid expensive plumbing and electrical relocation costs.",
+            ],
+            highlight: "Medium kitchen, mid-range scope: $8,000 cabinets + $4,000 countertops + $5,000 appliances + $2,500 flooring + $9,000 labor = $28,500 total.",
+        },
+        faq: [
+            { question: "How long does a kitchen renovation take?", answer: "Cosmetic: 1–3 weeks. Mid-range: 6–10 weeks. Full gut: 10–16 weeks. Ordering custom cabinets adds 6–12 weeks of lead time before work begins. Plan to live without a kitchen for the duration — set up a temporary kitchen area with a microwave and mini-fridge." },
+            { question: "What kitchen upgrades have the best ROI?", answer: "Highest ROI: painted/refaced cabinets (80%), new countertops (75%), updated appliances (70%), new flooring (70%). Lowest ROI: moving walls, relocating plumbing, ultra-high-end finishes. A minor kitchen remodel typically recoups 75–80% of its cost at resale." },
+        ],
+    },
+    "acreage-calculator": {
+        subtitle: "Calculate land area in acres, square feet, hectares, and square meters. Enter length and width for instant conversions.",
+        explanation: {
+            heading: "How to Calculate Acreage",
+            paragraphs: [
+                "One acre equals 43,560 square feet, approximately 208.71 × 208.71 feet, or about 90% of a football field (including end zones). To calculate acreage from dimensions: multiply length × width in feet, then divide by 43,560.",
+                "For irregular lot shapes, divide the property into rectangles and triangles, calculate each area separately, and add them together. For very irregular parcels, a GPS survey provides the most accurate measurement. County GIS maps often list parcel acreage as well.",
+            ],
+            highlight: "A lot measuring 200 × 200 ft = 40,000 sq ft ÷ 43,560 = 0.918 acres. A full acre would be approximately 209 × 209 ft.",
+        },
+        faq: [
+            { question: "How big is an acre?", answer: "43,560 sq ft — roughly 209 × 209 ft (square), or any rectangle with that area (e.g., 100 × 435 ft). About 90% of a football field. Visualize 16 tennis courts or 75% of a soccer field. A typical suburban lot is 1/4 to 1/3 acre." },
+            { question: "How many acres is my lot?", answer: "Multiply length × width in feet, then divide by 43,560. For example, a 150 × 100 ft lot = 15,000 sq ft = 0.344 acres. You can also check your property deed, tax records, or county GIS website for the official acreage." },
+        ],
+    },
+    "elevation-grade-calculator": {
+        subtitle: "Calculate slope grade percentage, ratio, and angle from rise and run. Essential for drainage, roads, ADA ramps, and landscaping.",
+        explanation: {
+            heading: "How to Calculate Elevation Grade",
+            paragraphs: [
+                "Grade (slope) is the ratio of vertical rise to horizontal run, expressed as a percentage. A 6% grade means 6 feet of rise over 100 feet of horizontal run. Grade = (rise ÷ run) × 100. Positive grade = uphill; negative grade = downhill.",
+                "Common grade requirements: lawn drainage (1–2%), driveway maximum (15–25%), wheelchair ramp (ADA maximum 8.33%, or 1:12), French drain (1%), sanitary sewer (1–2%), parking lot (1–5%). Steeper grades increase erosion, stormwater runoff, and construction difficulty.",
+            ],
+            highlight: "A 6 ft rise over 100 ft run: grade = 6%, slope ratio = 1:16.7, angle = 3.43°. Slope length = 100.2 ft — slightly longer than the horizontal run.",
+        },
+        faq: [
+            { question: "What grade should my yard have for drainage?", answer: "Minimum 1% (1/8 inch per foot) away from the foundation — 2% (1/4 inch per foot) is preferred. For the first 10 feet from the house, aim for 6 inches of fall. After that, 1% is sufficient to move water to drainage areas or the street." },
+            { question: "What is the maximum driveway grade?", answer: "Most building codes allow up to 15% (some areas up to 25%). Ideal driveway grade: 5–8%. Above 12%, consider heating elements or textured concrete for winter traction. ADA ramps must not exceed 8.33% (1:12 ratio) with landings every 30 feet." },
+        ],
+    },
+    "grass-seed-calculator": {
+        subtitle: "Calculate grass seed needed for new lawns or overseeding. Select seed type and area for pounds and bags required.",
+        explanation: {
+            heading: "How Much Grass Seed Do I Need?",
+            paragraphs: [
+                "Seeding rates vary by grass species. Kentucky bluegrass: 2–3 lbs per 1,000 sq ft. Tall fescue: 6–8 lbs. Bermuda grass: 1–2 lbs. Perennial ryegrass: 6–8 lbs. For overseeding existing lawns, use half the new lawn rate.",
+                "For best germination: prepare the soil (rake, dethatch, or aerate), spread seed evenly with a broadcast or drop spreader, lightly rake seed into the top 1/4 inch of soil, and keep moist (not soaked) for 2–3 weeks. Apply starter fertilizer at seeding time.",
+            ],
+            highlight: "2,000 sq ft new lawn with Kentucky bluegrass at 3 lbs/1000 sf: 6 lbs of seed = 2 bags of 5 lb seed. Overseeding the same area: 3 lbs = 1 bag.",
+        },
+        faq: [
+            { question: "When is the best time to seed a lawn?", answer: "Cool-season grasses (bluegrass, fescue, rye): late August to mid-October (ideal) or early spring. Warm-season grasses (Bermuda, zoysia): late spring to early summer when soil temps reach 65–70°F. Fall seeding is generally more successful due to less weed competition." },
+            { question: "How long does grass seed take to germinate?", answer: "Kentucky bluegrass: 14–30 days. Tall fescue: 7–14 days. Perennial rye: 5–10 days. Bermuda: 10–30 days. Zoysia: 14–21 days. Keep the seedbed consistently moist — water lightly 2–3 times daily until germination, then reduce to once daily." },
+        ],
+    },
+    "lawn-mowing-calculator": {
+        subtitle: "Calculate lawn mowing time, fuel cost per mow, and seasonal expense by lawn size and mower type.",
+        explanation: {
+            heading: "How Long Does It Take to Mow a Lawn?",
+            paragraphs: [
+                "Mowing time depends on lawn size and mower type. A push mower covers about 150 sq ft per minute (2,500 sq ft/hr). A riding mower with a 42-inch deck covers 500 sq ft/min (about 1 acre/hr). A commercial zero-turn with a 54-inch deck covers 800 sq ft/min (2+ acres/hr).",
+                "Fuel costs per mow are modest — a push mower uses about 0.5 gallons per hour ($2.50/hr). Electric push mowers cost about $0.15/hr in electricity. Riding mowers use 1–1.5 gal/hr ($4–$6/hr). Over a 28-week season, fuel costs add up — a half-acre lot with a push mower costs about $60–$70/season in fuel.",
+            ],
+            highlight: "5,000 sq ft lawn with a push gas mower: 33 minutes per mow. Fuel: $1.39/mow. Over 28 weekly mows: $38.89/season. A riding mower does it in 10 minutes but costs $2.22/mow.",
+        },
+        faq: [
+            { question: "How often should I mow my lawn?", answer: "Follow the 1/3 rule — never cut more than 1/3 of the grass blade length at once. This means weekly mowing during peak growing season (spring/fall for cool-season, summer for warm-season). In slow-growth periods, every 10–14 days is fine." },
+            { question: "What height should I mow my lawn?", answer: "Kentucky bluegrass: 2.5–3.5 inches. Tall fescue: 3–4 inches. Bermuda: 1–2 inches. Zoysia: 1–2 inches. Mow higher in summer (top of range) for drought tolerance and deeper roots. Mow shorter for the last cut of fall to reduce snow mold risk." },
+        ],
+    },
+    "plant-and-flower-calculator": {
+        subtitle: "Calculate how many plants or flowers you need for a garden bed. Enter bed dimensions and plant spacing for total count and flats.",
+        explanation: {
+            heading: "How Many Plants for a Garden Bed?",
+            paragraphs: [
+                "Plant count depends on bed area and desired spacing. For a grid layout: plants per row = (bed length ÷ spacing) + 1. Rows = (bed width ÷ spacing) + 1. Total plants = rows × plants per row. For a triangular (staggered) layout, add 15% more plants.",
+                "Common spacing: annuals (6–12 inches apart), perennials (12–24 inches), shrubs (24–48 inches), ground cover (6–12 inches). Closer spacing gives faster fill-in but is more expensive. Wider spacing takes 1–2 seasons to fill in but costs less upfront.",
+            ],
+            highlight: "A 10 × 8 ft bed with 12-inch spacing: 11 plants per row × 9 rows = 99 plants. That's 6 flats of 18-count annuals. At 6-inch spacing: 21 × 17 = 357 plants.",
+        },
+        faq: [
+            { question: "How far apart should I plant flowers?", answer: "Check the plant tag for mature spread. Annuals (petunias, marigolds): 6–12 inches. Small perennials (lavender, salvia): 12–18 inches. Large perennials (hostas, daylilies): 18–24 inches. Shrubs: half the mature width. Mass plantings can be closer for instant impact." },
+            { question: "How many flats of flowers do I need?", answer: "Flats contain 18 plants (standard 6-cell packs × 3). Divide your total plant count by 18. For example, 99 plants = 5.5 flats — buy 6 to have extras for replacements. Flats of 4-inch pots usually contain 12 plants. Quart pots are sold individually." },
+        ],
+    },
+    "sod-calculator": {
+        subtitle: "Calculate sod rolls or pallets needed for a new lawn. Enter area and waste percentage for total coverage and cost estimate.",
+        explanation: {
+            heading: "How Much Sod Do I Need?",
+            paragraphs: [
+                "Standard sod rolls are 2 ft × 5 ft = 10 sq ft each. A pallet contains approximately 450 sq ft of sod (45 rolls). Calculate your lawn area, add 5–10% for waste (cutting around edges, irregular shapes, and damaged pieces), then divide by 10 for rolls or 450 for pallets.",
+                "Sod costs $0.30–$0.80 per sq ft for the sod itself, plus $0.50–$1.00 per sq ft for professional installation. A 2,000 sq ft lawn costs $600–$1,600 for sod alone, or $1,600–$3,600 installed. Prepare the soil (grade, amend, water) before sod delivery day.",
+            ],
+            highlight: "2,000 sq ft lawn + 10% waste = 2,200 sq ft. That's 220 rolls or about 4.9 pallets. Cost range: $660–$1,760 for sod. Installed: $1,760–$3,960.",
+        },
+        faq: [
+            { question: "How long does sod take to root?", answer: "Initial root attachment: 10–14 days. Fully rooted: 4–6 weeks. Start mowing after 2–3 weeks (when you can tug a corner and it resists). Stay off new sod for the first 2 weeks. Water heavily for the first 2 weeks (keep consistently moist), then gradually reduce." },
+            { question: "Is sod or seed cheaper?", answer: "Seed is much cheaper ($0.05–$0.15/sq ft vs. $0.30–$0.80 for sod) but takes 6–8 weeks to establish and requires intensive watering. Sod gives instant lawn and is ready for light use in 2 weeks. Sod also prevents erosion on slopes where seed would wash away." },
+        ],
+    },
+    "sod-weight-calculator": {
+        subtitle: "Calculate the weight of sod rolls and pallets by quantity and moisture condition. Plan delivery and transport needs.",
+        explanation: {
+            heading: "How Much Does Sod Weigh?",
+            paragraphs: [
+                "A standard sod roll (2 × 5 ft, 10 sq ft) weighs approximately 15 lbs when freshly cut under normal moisture conditions. Wet sod can weigh 30% more (19–20 lbs per roll). A full pallet (~450 sq ft, ~45 rolls) weighs about 1,500 lbs under normal conditions — up to 2,000 lbs when wet.",
+                "Weight matters for delivery and transport. A standard pickup truck can carry about 1 pallet (1,500 lbs). A half-ton truck should limit to 1 pallet. A 3/4-ton truck can carry 2 pallets. For larger jobs, have the supplier deliver. Sod should be installed the same day it's delivered — it deteriorates quickly in stacked pallets.",
+            ],
+            highlight: "1 pallet (normal moisture): 1,500 lbs. 50 individual rolls: 750 lbs. Total: 2,250 lbs. Wet conditions: add 30% = 2,925 lbs — you'll need a heavy-duty truck or trailer.",
+        },
+        faq: [
+            { question: "Can I pick up sod in my truck?", answer: "A half-ton pickup (F-150, Silverado 1500) can safely carry 1 pallet (~1,500 lbs). A 3/4-ton truck can carry 2 pallets. For 3+ pallets, use a trailer or have it delivered. Always account for wet sod being 30% heavier. Lower your tailgate and slide pallets in over it." },
+            { question: "How long can sod sit on a pallet?", answer: "Install within 12–24 hours of harvest. In hot weather (above 80°F), install the same day. Stacked sod generates heat and the inner rolls begin to yellow within 24 hours. If you can't install immediately, unroll the sod in a shaded area and keep it moist." },
+        ],
+    },
+    "stone-calculator": {
+        subtitle: "Calculate stone or rock needed for landscaping, pathways, and walls. Enter area, depth, and stone type for tons and cubic yards.",
+        explanation: {
+            heading: "How Much Stone Do I Need?",
+            paragraphs: [
+                "Stone volume = area × depth. Convert to cubic yards (divide cubic feet by 27), then multiply by the stone's density to get tons. Crushed stone: 1.4 tons/cu yd. River rock: 1.35 tons/cu yd. Flagstone: 1.5 tons/cu yd. Lava rock: 0.5 tons/cu yd (much lighter).",
+                "Coverage depth depends on application: decorative ground cover (2–3 inches), pathway (3–4 inches), drainage (4–6 inches), driveway base (6–12 inches). Order 10% extra for settling, compaction, and edge irregularities. Bulk stone is sold by the ton — one ton covers roughly 100 sq ft at 2-inch depth.",
+            ],
+            highlight: "20×15 ft patio area, 3\" crushed stone: 300 sq ft × 0.25 ft = 75 cu ft = 2.8 cu yd × 1.4 = 3.9 tons. At $50/ton: ~$194. Lava rock same area: 1.4 tons at $100/ton = $139.",
+        },
+        faq: [
+            { question: "What type of stone should I use for landscaping?", answer: "Decorative beds: river rock or lava rock (low maintenance, no decomposition). Pathways: crushed stone or pea gravel (compacts well). Patios: flagstone (flat, natural look). Drainage: crushed stone #57 (excellent water flow). Retaining walls: wall stone or fieldstone." },
+            { question: "How much does a ton of stone cover?", answer: "At 2-inch depth: ~100 sq ft. At 3-inch depth: ~65 sq ft. At 4-inch depth: ~50 sq ft. Coverage varies slightly by stone type and size. Larger stones (4-6 inch river rock) have more air gaps and cover slightly more area. Crushed stone packs tightly with less void space." },
+        ],
+    },
 };
 
 export default async function ConstructionCalculatorHubPage({ params }: PageProps) {

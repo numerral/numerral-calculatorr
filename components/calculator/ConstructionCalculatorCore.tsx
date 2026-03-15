@@ -5198,6 +5198,556 @@ function FlooringCostCalc() {
     );
 }
 
+/* ──────────── 121. BATHROOM RENOVATION COST CALCULATOR ──────────── */
+function BathroomRenovationCostCalc() {
+    const [bathSize, setBathSize] = useState("medium");
+    const [scope, setScope] = useState("mid-range");
+
+    const COSTS: Record<string, Record<string, { fixtures: number; tile: number; plumbing: number; electrical: number; labor: number }>> = {
+        "small": {
+            "cosmetic": { fixtures: 500, tile: 800, plumbing: 300, electrical: 200, labor: 1500 },
+            "mid-range": { fixtures: 1500, tile: 2000, plumbing: 1200, electrical: 600, labor: 4000 },
+            "upscale": { fixtures: 3500, tile: 4000, plumbing: 2500, electrical: 1200, labor: 7000 },
+        },
+        "medium": {
+            "cosmetic": { fixtures: 800, tile: 1200, plumbing: 500, electrical: 300, labor: 2200 },
+            "mid-range": { fixtures: 2500, tile: 3500, plumbing: 2000, electrical: 1000, labor: 6000 },
+            "upscale": { fixtures: 5000, tile: 6000, plumbing: 3500, electrical: 2000, labor: 10000 },
+        },
+        "large": {
+            "cosmetic": { fixtures: 1200, tile: 1800, plumbing: 800, electrical: 500, labor: 3200 },
+            "mid-range": { fixtures: 4000, tile: 5000, plumbing: 3000, electrical: 1500, labor: 8500 },
+            "upscale": { fixtures: 8000, tile: 9000, plumbing: 5000, electrical: 3000, labor: 15000 },
+        },
+    };
+
+    const result = useMemo(() => {
+        const c = COSTS[bathSize]?.[scope] || COSTS["medium"]["mid-range"];
+        const total = c.fixtures + c.tile + c.plumbing + c.electrical + c.labor;
+        return { ...c, total };
+    }, [bathSize, scope]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">🛁 Bathroom Renovation Cost Calculator</h3>
+            <div className="con-calc__inputs">
+                <SelectField label="Bathroom Size" value={bathSize} onChange={setBathSize} options={[
+                    { value: "small", label: "Small (up to 40 sq ft)" },
+                    { value: "medium", label: "Medium (40–75 sq ft)" },
+                    { value: "large", label: "Large (75+ sq ft)" },
+                ]} />
+                <SelectField label="Renovation Scope" value={scope} onChange={setScope} options={[
+                    { value: "cosmetic", label: "Cosmetic (paint, fixtures, accessories)" },
+                    { value: "mid-range", label: "Mid-Range (new tile, vanity, tub)" },
+                    { value: "upscale", label: "Upscale (full gut, custom finishes)" },
+                ]} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Fixtures" value={`$${fmt(result.fixtures)}`} />
+                <ResultRow label="Tile & Surfaces" value={`$${fmt(result.tile)}`} />
+                <ResultRow label="Plumbing" value={`$${fmt(result.plumbing)}`} />
+                <ResultRow label="Electrical" value={`$${fmt(result.electrical)}`} />
+                <ResultRow label="Labor" value={`$${fmt(result.labor)}`} />
+                <ResultRow label="Total Estimate" value={`$${fmt(result.total)}`} />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 122. ELECTRICAL COST CALCULATOR ──────────── */
+function ElectricalCostCalc() {
+    const [sqFt, setSqFt] = useState(1500);
+    const [projectType, setProjectType] = useState("new-circuits");
+
+    const COST_DATA: Record<string, { perSqFt: number; permit: number; fixed: number }> = {
+        "full-rewire": { perSqFt: 6, permit: 500, fixed: 2000 },
+        "panel-upgrade": { perSqFt: 0, permit: 300, fixed: 2500 },
+        "new-circuits": { perSqFt: 0, permit: 150, fixed: 0 },
+        "whole-house-surge": { perSqFt: 0, permit: 100, fixed: 500 },
+    };
+
+    const [numCircuits, setNumCircuits] = useState(4);
+
+    const result = useMemo(() => {
+        const data = COST_DATA[projectType] || COST_DATA["new-circuits"];
+        let material: number, labor: number;
+        if (projectType === "full-rewire") {
+            material = sqFt * data.perSqFt * 0.4;
+            labor = sqFt * data.perSqFt * 0.6 + data.fixed;
+        } else if (projectType === "panel-upgrade") {
+            material = 800;
+            labor = data.fixed;
+        } else if (projectType === "new-circuits") {
+            material = numCircuits * 75;
+            labor = numCircuits * 200;
+        } else {
+            material = 150;
+            labor = data.fixed;
+        }
+        const permit = data.permit;
+        const total = material + labor + permit;
+        return { material, labor, permit, total };
+    }, [sqFt, projectType, numCircuits]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">⚡ Electrical Cost Calculator</h3>
+            <div className="con-calc__inputs">
+                <SelectField label="Project Type" value={projectType} onChange={setProjectType} options={[
+                    { value: "full-rewire", label: "Full House Rewire" },
+                    { value: "panel-upgrade", label: "Panel Upgrade (100A→200A)" },
+                    { value: "new-circuits", label: "Add New Circuits" },
+                    { value: "whole-house-surge", label: "Whole-House Surge Protector" },
+                ]} />
+                {projectType === "full-rewire" && (
+                    <InputField label="Home Size" value={sqFt} onChange={setSqFt} unit="sq ft" min={500} max={5000} />
+                )}
+                {projectType === "new-circuits" && (
+                    <InputField label="Number of Circuits" value={numCircuits} onChange={setNumCircuits} min={1} max={20} />
+                )}
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Material" value={`$${fmt(result.material)}`} />
+                <ResultRow label="Labor" value={`$${fmt(result.labor)}`} />
+                <ResultRow label="Permit" value={`$${fmt(result.permit)}`} />
+                <ResultRow label="Total Estimate" value={`$${fmt(result.total)}`} />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 123. HVAC COST CALCULATOR ──────────── */
+function HVACCostCalc() {
+    const [sqFt, setSqFt] = useState(1500);
+    const [systemType, setSystemType] = useState("central-ac");
+
+    const SYSTEM_COSTS: Record<string, { unitPerSqFt: number; installBase: number; ductwork: number }> = {
+        "central-ac": { unitPerSqFt: 1.5, installBase: 3000, ductwork: 2000 },
+        "heat-pump": { unitPerSqFt: 2.0, installBase: 4000, ductwork: 2000 },
+        "gas-furnace": { unitPerSqFt: 1.2, installBase: 2500, ductwork: 1500 },
+        "mini-split": { unitPerSqFt: 2.5, installBase: 3500, ductwork: 0 },
+        "full-system": { unitPerSqFt: 3.0, installBase: 5000, ductwork: 3000 },
+    };
+
+    const result = useMemo(() => {
+        const data = SYSTEM_COSTS[systemType] || SYSTEM_COSTS["central-ac"];
+        const unitCost = sqFt * data.unitPerSqFt;
+        const installation = data.installBase;
+        const ductwork = data.ductwork;
+        const total = unitCost + installation + ductwork;
+        return { unitCost, installation, ductwork, total };
+    }, [sqFt, systemType]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">❄️ HVAC Cost Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Home Size" value={sqFt} onChange={setSqFt} unit="sq ft" min={500} max={5000} />
+                <SelectField label="System Type" value={systemType} onChange={setSystemType} options={[
+                    { value: "central-ac", label: "Central Air Conditioning" },
+                    { value: "heat-pump", label: "Heat Pump (Heating & Cooling)" },
+                    { value: "gas-furnace", label: "Gas Furnace" },
+                    { value: "mini-split", label: "Ductless Mini-Split" },
+                    { value: "full-system", label: "Full System (AC + Furnace)" },
+                ]} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Equipment" value={`$${fmt(result.unitCost)}`} />
+                <ResultRow label="Installation" value={`$${fmt(result.installation)}`} />
+                <ResultRow label="Ductwork" value={`$${fmt(result.ductwork)}`} />
+                <ResultRow label="Total Estimate" value={`$${fmt(result.total)}`} />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 124. KITCHEN RENOVATION COST CALCULATOR ──────────── */
+function KitchenRenovationCostCalc() {
+    const [kitchenSize, setKitchenSize] = useState("medium");
+    const [scope, setScope] = useState("mid-range");
+
+    const COSTS: Record<string, Record<string, { cabinets: number; countertops: number; appliances: number; flooring: number; labor: number }>> = {
+        "small": {
+            "cosmetic": { cabinets: 1000, countertops: 500, appliances: 0, flooring: 500, labor: 2000 },
+            "mid-range": { cabinets: 5000, countertops: 2500, appliances: 3000, flooring: 1500, labor: 6000 },
+            "upscale": { cabinets: 12000, countertops: 5000, appliances: 8000, flooring: 3000, labor: 12000 },
+        },
+        "medium": {
+            "cosmetic": { cabinets: 1500, countertops: 800, appliances: 0, flooring: 800, labor: 3000 },
+            "mid-range": { cabinets: 8000, countertops: 4000, appliances: 5000, flooring: 2500, labor: 9000 },
+            "upscale": { cabinets: 20000, countertops: 8000, appliances: 12000, flooring: 5000, labor: 18000 },
+        },
+        "large": {
+            "cosmetic": { cabinets: 2500, countertops: 1200, appliances: 0, flooring: 1200, labor: 4500 },
+            "mid-range": { cabinets: 12000, countertops: 6000, appliances: 7000, flooring: 3500, labor: 12000 },
+            "upscale": { cabinets: 30000, countertops: 12000, appliances: 18000, flooring: 7000, labor: 25000 },
+        },
+    };
+
+    const result = useMemo(() => {
+        const c = COSTS[kitchenSize]?.[scope] || COSTS["medium"]["mid-range"];
+        const total = c.cabinets + c.countertops + c.appliances + c.flooring + c.labor;
+        return { ...c, total };
+    }, [kitchenSize, scope]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">🍳 Kitchen Renovation Cost Calculator</h3>
+            <div className="con-calc__inputs">
+                <SelectField label="Kitchen Size" value={kitchenSize} onChange={setKitchenSize} options={[
+                    { value: "small", label: "Small (under 70 sq ft)" },
+                    { value: "medium", label: "Medium (70–150 sq ft)" },
+                    { value: "large", label: "Large (150+ sq ft)" },
+                ]} />
+                <SelectField label="Renovation Scope" value={scope} onChange={setScope} options={[
+                    { value: "cosmetic", label: "Cosmetic (paint, hardware, backsplash)" },
+                    { value: "mid-range", label: "Mid-Range (new cabinets, counters, appliances)" },
+                    { value: "upscale", label: "Upscale (custom, full gut renovation)" },
+                ]} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Cabinets" value={`$${fmt(result.cabinets)}`} />
+                <ResultRow label="Countertops" value={`$${fmt(result.countertops)}`} />
+                <ResultRow label="Appliances" value={`$${fmt(result.appliances)}`} />
+                <ResultRow label="Flooring" value={`$${fmt(result.flooring)}`} />
+                <ResultRow label="Labor" value={`$${fmt(result.labor)}`} />
+                <ResultRow label="Total Estimate" value={`$${fmt(result.total)}`} />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 125. ACREAGE CALCULATOR ──────────── */
+function AcreageCalc() {
+    const [length, setLength] = useState(200);
+    const [width, setWidth] = useState(200);
+
+    const result = useMemo(() => {
+        const sqFt = length * width;
+        const acres = sqFt / 43560;
+        const hectares = acres * 0.404686;
+        const sqMeters = sqFt * 0.092903;
+        return { sqFt, acres, hectares, sqMeters };
+    }, [length, width]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">📐 Acreage Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Length" value={length} onChange={setLength} unit="ft" min={1} />
+                <InputField label="Width" value={width} onChange={setWidth} unit="ft" min={1} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Square Feet" value={fmt(result.sqFt)} unit="sq ft" />
+                <ResultRow label="Acres" value={fmt(result.acres, 3)} unit="acres" />
+                <ResultRow label="Hectares" value={fmt(result.hectares, 3)} unit="ha" />
+                <ResultRow label="Square Meters" value={fmt(result.sqMeters)} unit="m²" />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 126. ELEVATION GRADE CALCULATOR ──────────── */
+function ElevationGradeCalc() {
+    const [run, setRun] = useState(100);
+    const [rise, setRise] = useState(6);
+
+    const result = useMemo(() => {
+        const gradePercent = run > 0 ? (rise / run) * 100 : 0;
+        const slopeRatio = run > 0 ? run / rise : 0;
+        const angleDeg = run > 0 ? Math.atan(rise / run) * (180 / Math.PI) : 0;
+        const slopeLength = Math.sqrt(run * run + rise * rise);
+        return { gradePercent, slopeRatio, angleDeg, slopeLength };
+    }, [run, rise]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">⛰️ Elevation Grade Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Horizontal Run" value={run} onChange={setRun} unit="ft" min={1} />
+                <InputField label="Rise (Elevation Change)" value={rise} onChange={setRise} unit="ft" min={0.1} step={0.1} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Grade" value={`${fmt(result.gradePercent, 2)}%`} />
+                <ResultRow label="Slope Ratio" value={`1 : ${fmt(result.slopeRatio, 1)}`} />
+                <ResultRow label="Angle" value={`${fmt(result.angleDeg, 2)}°`} />
+                <ResultRow label="Slope Length" value={fmt(result.slopeLength, 1)} unit="ft" />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 127. GRASS SEED CALCULATOR ──────────── */
+function GrassSeedCalc() {
+    const [area, setArea] = useState(2000);
+    const [seedType, setSeedType] = useState("kentucky-bluegrass");
+    const [purpose, setPurpose] = useState("new-lawn");
+
+    const SEED_RATES: Record<string, { newLawn: number; overseed: number }> = {
+        "kentucky-bluegrass": { newLawn: 3, overseed: 1.5 },
+        "tall-fescue": { newLawn: 8, overseed: 4 },
+        "bermuda": { newLawn: 2, overseed: 1 },
+        "perennial-rye": { newLawn: 8, overseed: 4 },
+        "zoysia": { newLawn: 2, overseed: 1 },
+    };
+
+    const result = useMemo(() => {
+        const rates = SEED_RATES[seedType] || SEED_RATES["kentucky-bluegrass"];
+        const ratePerK = purpose === "new-lawn" ? rates.newLawn : rates.overseed;
+        const lbs = (area / 1000) * ratePerK;
+        const bags5lb = Math.ceil(lbs / 5);
+        const bags25lb = Math.ceil(lbs / 25);
+        return { ratePerK, lbs, bags5lb, bags25lb };
+    }, [area, seedType, purpose]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">🌱 Grass Seed Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Lawn Area" value={area} onChange={setArea} unit="sq ft" min={100} />
+                <SelectField label="Seed Type" value={seedType} onChange={setSeedType} options={[
+                    { value: "kentucky-bluegrass", label: "Kentucky Bluegrass (3 lb/1000 sf)" },
+                    { value: "tall-fescue", label: "Tall Fescue (8 lb/1000 sf)" },
+                    { value: "bermuda", label: "Bermuda Grass (2 lb/1000 sf)" },
+                    { value: "perennial-rye", label: "Perennial Ryegrass (8 lb/1000 sf)" },
+                    { value: "zoysia", label: "Zoysia Grass (2 lb/1000 sf)" },
+                ]} />
+                <SelectField label="Purpose" value={purpose} onChange={setPurpose} options={[
+                    { value: "new-lawn", label: "New Lawn (full rate)" },
+                    { value: "overseed", label: "Overseeding (half rate)" },
+                ]} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Seed Rate" value={fmt(result.ratePerK, 1)} unit="lb/1000 sf" />
+                <ResultRow label="Total Seed" value={fmt(result.lbs, 1)} unit="lbs" />
+                <ResultRow label="5 lb Bags" value={fmtInt(result.bags5lb)} unit="bags" />
+                <ResultRow label="25 lb Bags" value={fmtInt(result.bags25lb)} unit="bags" />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 128. LAWN MOWING CALCULATOR ──────────── */
+function LawnMowingCalc() {
+    const [area, setArea] = useState(5000);
+    const [mowerType, setMowerType] = useState("push-gas");
+
+    const MOWER_DATA: Record<string, { sqFtPerMin: number; costPerHour: number }> = {
+        "push-gas": { sqFtPerMin: 150, costPerHour: 2.5 },
+        "push-electric": { sqFtPerMin: 150, costPerHour: 0.15 },
+        "self-propelled": { sqFtPerMin: 200, costPerHour: 2.5 },
+        "riding-42": { sqFtPerMin: 500, costPerHour: 4.0 },
+        "zero-turn": { sqFtPerMin: 800, costPerHour: 5.0 },
+    };
+
+    const result = useMemo(() => {
+        const data = MOWER_DATA[mowerType] || MOWER_DATA["push-gas"];
+        const minutes = area / data.sqFtPerMin;
+        const hours = minutes / 60;
+        const fuelCost = hours * data.costPerHour;
+        const weeksPerSeason = 28; // ~April to October
+        const seasonCost = fuelCost * weeksPerSeason;
+        return { minutes, hours, fuelCost, seasonCost, weeksPerSeason };
+    }, [area, mowerType]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">🏡 Lawn Mowing Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Lawn Area" value={area} onChange={setArea} unit="sq ft" min={500} />
+                <SelectField label="Mower Type" value={mowerType} onChange={setMowerType} options={[
+                    { value: "push-gas", label: "Push Mower (Gas)" },
+                    { value: "push-electric", label: "Push Mower (Electric)" },
+                    { value: "self-propelled", label: "Self-Propelled (Gas)" },
+                    { value: "riding-42", label: "Riding Mower (42\" deck)" },
+                    { value: "zero-turn", label: "Zero-Turn (54\" deck)" },
+                ]} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Mowing Time" value={fmt(result.minutes, 0)} unit="min" />
+                <ResultRow label="Fuel/Energy per Mow" value={`$${fmt(result.fuelCost, 2)}`} />
+                <ResultRow label="Mows per Season" value={fmtInt(result.weeksPerSeason)} />
+                <ResultRow label="Season Fuel Cost" value={`$${fmt(result.seasonCost, 2)}`} />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 129. PLANT AND FLOWER CALCULATOR ──────────── */
+function PlantFlowerCalc() {
+    const [bedLength, setBedLength] = useState(10);
+    const [bedWidth, setBedWidth] = useState(8);
+    const [spacingIn, setSpacingIn] = useState(12);
+
+    const result = useMemo(() => {
+        const areaSqFt = bedLength * bedWidth;
+        const spacingFt = spacingIn / 12;
+        const plantsPerRow = spacingFt > 0 ? Math.floor(bedLength / spacingFt) + 1 : 0;
+        const rows = spacingFt > 0 ? Math.floor(bedWidth / spacingFt) + 1 : 0;
+        const totalPlants = plantsPerRow * rows;
+        const flats = Math.ceil(totalPlants / 18); // 18 plants per flat
+        const fourInchPots = totalPlants;
+        return { areaSqFt, plantsPerRow, rows, totalPlants, flats, fourInchPots };
+    }, [bedLength, bedWidth, spacingIn]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">🌸 Plant and Flower Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Bed Length" value={bedLength} onChange={setBedLength} unit="ft" min={1} />
+                <InputField label="Bed Width" value={bedWidth} onChange={setBedWidth} unit="ft" min={1} />
+                <InputField label="Plant Spacing" value={spacingIn} onChange={setSpacingIn} unit="in" min={4} max={36} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Bed Area" value={fmt(result.areaSqFt)} unit="sq ft" />
+                <ResultRow label="Plants Needed" value={fmtInt(result.totalPlants)} unit="plants" />
+                <ResultRow label="Flats (18-count)" value={fmtInt(result.flats)} unit="flats" />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 130. SOD CALCULATOR ──────────── */
+function SodCalc() {
+    const [area, setArea] = useState(2000);
+    const [wastePercent, setWastePercent] = useState(10);
+
+    const result = useMemo(() => {
+        const areaWithWaste = area * (1 + wastePercent / 100);
+        const rolls = Math.ceil(areaWithWaste / 10); // standard roll = 10 sq ft (2 ft × 5 ft)
+        const pallets = areaWithWaste / 450; // ~450 sq ft per pallet
+        const costLow = areaWithWaste * 0.30; // $0.30/sq ft
+        const costHigh = areaWithWaste * 0.80; // $0.80/sq ft
+        return { areaWithWaste, rolls, pallets, costLow, costHigh };
+    }, [area, wastePercent]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">🟩 Sod Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Lawn Area" value={area} onChange={setArea} unit="sq ft" min={100} />
+                <InputField label="Waste Factor" value={wastePercent} onChange={setWastePercent} unit="%" min={0} max={20} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Coverage Needed" value={fmt(result.areaWithWaste)} unit="sq ft" />
+                <ResultRow label="Sod Rolls" value={fmtInt(result.rolls)} unit="rolls" />
+                <ResultRow label="Pallets" value={fmt(result.pallets, 1)} unit="pallets" />
+                <ResultRow label="Cost (Low)" value={`$${fmt(result.costLow)}`} />
+                <ResultRow label="Cost (High)" value={`$${fmt(result.costHigh)}`} />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 131. SOD WEIGHT CALCULATOR ──────────── */
+function SodWeightCalc() {
+    const [numPallets, setNumPallets] = useState(1);
+    const [numRolls, setNumRolls] = useState(50);
+    const [moisture, setMoisture] = useState("normal");
+
+    const MOISTURE_MULT: Record<string, number> = {
+        "dry": 0.8, "normal": 1.0, "wet": 1.3,
+    };
+
+    const result = useMemo(() => {
+        const mult = MOISTURE_MULT[moisture] || 1.0;
+        const rollWeight = 15 * mult; // ~15 lbs dry per 10 sq ft roll
+        const totalRollWeight = numRolls * rollWeight;
+        const palletWeight = 1500 * mult; // ~1500 lbs per pallet (~450 sq ft)
+        const totalPalletWeight = numPallets * palletWeight;
+        const totalWeight = totalRollWeight + totalPalletWeight;
+        return { rollWeight, totalRollWeight, palletWeight, totalPalletWeight, totalWeight };
+    }, [numPallets, numRolls, moisture]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">⚖️ Sod Weight Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Pallets" value={numPallets} onChange={setNumPallets} min={0} max={20} />
+                <InputField label="Individual Rolls" value={numRolls} onChange={setNumRolls} min={0} max={500} />
+                <SelectField label="Moisture Condition" value={moisture} onChange={setMoisture} options={[
+                    { value: "dry", label: "Dry (recently cut)" },
+                    { value: "normal", label: "Normal" },
+                    { value: "wet", label: "Wet (recently watered)" },
+                ]} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Per Roll" value={fmt(result.rollWeight, 1)} unit="lbs" />
+                <ResultRow label="Rolls Total" value={fmt(result.totalRollWeight)} unit="lbs" />
+                <ResultRow label="Per Pallet" value={fmt(result.palletWeight)} unit="lbs" />
+                <ResultRow label="Pallets Total" value={fmt(result.totalPalletWeight)} unit="lbs" />
+                <ResultRow label="Grand Total" value={fmt(result.totalWeight)} unit="lbs" />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── 132. STONE CALCULATOR ──────────── */
+function StoneCalc() {
+    const [length, setLength] = useState(20);
+    const [width, setWidth] = useState(15);
+    const [depthIn, setDepthIn] = useState(3);
+    const [stoneType, setStoneType] = useState("crushed-stone");
+
+    const DENSITY: Record<string, number> = {
+        "crushed-stone": 1.4,
+        "river-rock": 1.35,
+        "flagstone": 1.5,
+        "limestone": 1.5,
+        "lava-rock": 0.5,
+        "pea-gravel": 1.35,
+    };
+
+    const result = useMemo(() => {
+        const area = length * width;
+        const cuFt = area * (depthIn / 12);
+        const cuYd = cuFt / 27;
+        const density = DENSITY[stoneType] || 1.4;
+        const tons = cuYd * density;
+        const costLow = tons * 35;
+        const costHigh = tons * 75;
+        return { area, cuFt, cuYd, tons, costLow, costHigh };
+    }, [length, width, depthIn, stoneType]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">🪨 Stone Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Length" value={length} onChange={setLength} unit="ft" min={1} />
+                <InputField label="Width" value={width} onChange={setWidth} unit="ft" min={1} />
+                <InputField label="Depth" value={depthIn} onChange={setDepthIn} unit="in" min={1} max={12} />
+                <SelectField label="Stone Type" value={stoneType} onChange={setStoneType} options={[
+                    { value: "crushed-stone", label: "Crushed Stone (1.4 ton/yd³)" },
+                    { value: "river-rock", label: "River Rock (1.35 ton/yd³)" },
+                    { value: "flagstone", label: "Flagstone (1.5 ton/yd³)" },
+                    { value: "limestone", label: "Limestone (1.5 ton/yd³)" },
+                    { value: "lava-rock", label: "Lava Rock (0.5 ton/yd³)" },
+                    { value: "pea-gravel", label: "Pea Gravel (1.35 ton/yd³)" },
+                ]} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Results</h4>
+                <ResultRow label="Area" value={fmt(result.area)} unit="sq ft" />
+                <ResultRow label="Volume" value={fmt(result.cuYd, 1)} unit="cu yd" />
+                <ResultRow label="Weight" value={fmt(result.tons, 1)} unit="tons" />
+                <ResultRow label="Cost (Low)" value={`$${fmt(result.costLow)}`} />
+                <ResultRow label="Cost (High)" value={`$${fmt(result.costHigh)}`} />
+            </div>
+        </div>
+    );
+}
+
 /* ──────────── DISPATCHER ──────────── */
 const CALC_MAP: Record<string, React.FC> = {
     "concrete": ConcreteCalc,
@@ -5320,6 +5870,18 @@ const CALC_MAP: Record<string, React.FC> = {
     "fence-cost": FenceCostCalc,
     "linear-sqft": LinearSqftCalc,
     "flooring-cost": FlooringCostCalc,
+    "bathroom-renovation-cost": BathroomRenovationCostCalc,
+    "electrical-cost": ElectricalCostCalc,
+    "hvac-cost": HVACCostCalc,
+    "kitchen-renovation-cost": KitchenRenovationCostCalc,
+    "acreage": AcreageCalc,
+    "elevation-grade": ElevationGradeCalc,
+    "grass-seed": GrassSeedCalc,
+    "lawn-mowing": LawnMowingCalc,
+    "plant-flower": PlantFlowerCalc,
+    "sod": SodCalc,
+    "sod-weight": SodWeightCalc,
+    "stone": StoneCalc,
 };
 
 export default function ConstructionCalculatorCore({ calcType }: { calcType: string }) {
