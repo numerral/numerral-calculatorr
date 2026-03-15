@@ -101,22 +101,6 @@ const HUB_CONTENT: Record<string, {
             { question: "How do I convert simple interest rate to effective annual rate?", answer: "Simple interest rate does not compound, so it is equal to the nominal rate. For a direct comparison with compound interest investments, use online XIRR or effective annual rate calculators." },
         ],
     },
-    "bmi-calculator": {
-        subtitle: "Calculate your Body Mass Index (BMI) to know if your weight is in a healthy range for your height and age.",
-        explanation: {
-            heading: "Understanding Your BMI",
-            paragraphs: [
-                "Body Mass Index (BMI) is a simple screening tool to assess whether your weight is appropriate for your height. It is calculated as: BMI = Weight (kg) ÷ Height (m)². The result is then compared against standard WHO ranges to classify your weight category.",
-                "BMI is widely used by doctors, insurance companies, and fitness professionals in India for quick health assessments. While BMI doesn't measure body fat directly or account for muscle mass, it is a reliable first indicator for health risks related to being underweight, overweight, or obese.",
-            ],
-            highlight: "Healthy BMI range for adults is 18.5 to 24.9. For Indians specifically, health guidelines suggest keeping BMI below 23 due to higher metabolic risk at lower BMI thresholds compared to Western populations.",
-        },
-        faq: [
-            { question: "What is a healthy BMI for Indians?", answer: "WHO recommends 18.5–24.9 as healthy. However, Indian medical bodies recommend a stricter cut-off of 23 as 'overweight' and 25 as 'obese' for Indians, due to higher risk of Type 2 Diabetes and heart disease at lower body fat thresholds." },
-            { question: "Does BMI apply to children?", answer: "For children and teenagers, BMI is interpreted using age-and-sex specific percentiles, not fixed adult categories. A paediatrician's assessment is recommended for children under 18." },
-            { question: "What are the BMI limitations?", answer: "BMI does not distinguish between fat and muscle. An athlete with high muscle mass may show as 'overweight' by BMI. For accurate body composition analysis, use DEXA scans or waist-to-hip ratio measurements alongside BMI." },
-        ],
-    },
     "discount-calculator": {
         subtitle: "Find the final price after discount. Enter the original price and discount percentage to instantly calculate your savings.",
         explanation: {

@@ -11,9 +11,9 @@ import { canonicalUrl, breadcrumbSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
-    title: "Utility Calculators — Age, Percentage, BMI & More",
+    title: "Utility Calculators — Age, Percentage, Interest & More",
     description:
-        "Free utility calculators: Age Calculator, Percentage, Compound & Simple Interest, BMI, and Discount Calculator. Instant, accurate results.",
+        "Free utility calculators: Age Calculator, Percentage, Compound & Simple Interest, Discount, and Interest Rate Calculator. Instant, accurate results.",
     alternates: { canonical: canonicalUrl("/utility-calculators") },
 };
 
@@ -26,7 +26,7 @@ const schemaData = JSON.stringify([
         "@context": "https://schema.org",
         "@type": "CollectionPage",
         name: "Utility Calculators",
-        description: "All utility calculators including age, percentage, compound interest, simple interest, BMI, and discount.",
+        description: "All utility calculators including age, percentage, compound interest, simple interest, discount, and interest rate.",
         url: canonicalUrl("/utility-calculators"),
     },
 ]);
@@ -50,11 +50,11 @@ export default function UtilityCalculatorsPage() {
             />
 
             <h1 className="t-h1" style={{ marginBottom: "var(--s-2)" }}>
-                Utility Calculators — Age, Percentage, BMI & More
+                Utility Calculators — Age, Percentage, Interest & More
             </h1>
             <p className="t-body text-muted" style={{ marginBottom: "var(--s-8)" }}>
                 Everyday calculators for quick calculations — find your exact age, calculate percentages,
-                compare simple vs compound interest, check BMI, and compute discounts instantly.
+                compare simple vs compound interest, find required rates of return, and compute discounts instantly.
             </p>
 
             <section style={{ marginBottom: "var(--s-12)" }}>
@@ -82,8 +82,8 @@ export default function UtilityCalculatorsPage() {
             <DynamicExplanation
                 heading="Why Use Utility Calculators?"
                 paragraphs={[
-                    "Our utility calculators cover everyday math that saves you time. Whether you're computing a sale discount, checking your BMI, or figuring out compound interest on your savings — these tools give you instant, accurate results.",
-                    "The Compound Interest Calculator helps you visualize the power of compounding across monthly, quarterly, and yearly frequencies. The BMI Calculator provides your weight category with a healthy range for your height. Each tool is designed to be fast, mobile-friendly, and completely free.",
+                    "Our utility calculators cover everyday math that saves you time. Whether you're computing a sale discount, calculating interest rates, or figuring out compound interest on your savings — these tools give you instant, accurate results.",
+                    "The Compound Interest Calculator helps you visualize the power of compounding across monthly, quarterly, and yearly frequencies. The Rule of 72 Calculator tells you how long until your money doubles. Each tool is designed to be fast, mobile-friendly, and completely free.",
                 ]}
                 highlight="Pro tip: Compound interest vs simple interest on ₹1L at 8% for 5 years — CI gives ₹1,48,985 while SI gives ₹1,40,000. That's ₹8,985 extra from compounding alone!"
             />
@@ -100,12 +100,8 @@ export default function UtilityCalculatorsPage() {
                         answer: "Simple interest is calculated only on the principal amount. Compound interest is calculated on the principal plus accumulated interest. Over time, compound interest grows exponentially — the longer the tenure, the bigger the gap.",
                     },
                     {
-                        question: "What is a healthy BMI range?",
-                        answer: "A BMI between 18.5 and 24.9 is considered normal/healthy. Below 18.5 is underweight, 25-29.9 is overweight, and 30+ is obese. BMI is a screening tool — consult a healthcare provider for a complete assessment.",
-                    },
-                    {
-                        question: "How does the double discount work?",
-                        answer: "Double discount applies two discounts sequentially. For example, 20% + 10% on ₹5,000: first discount gives ₹4,000, then 10% on ₹4,000 gives ₹3,600. The effective discount is 28% (not 30%).",
+                        question: "What is the Rule of 72 and how does it work?",
+                        answer: "The Rule of 72 is a quick formula to estimate how many years it takes your money to double. Divide 72 by the annual interest rate — e.g., at 12%, your money doubles in about 6 years.",
                     },
                 ]}
             />

@@ -4,7 +4,7 @@
         "icon": "🏦",
         "name": "Loan Calculators",
         "description": "EMI, eligibility & repayment planning tools",
-        "count": 9,
+        "count": 10,
         "href": "/loan-calculators"
     },
     {
@@ -28,7 +28,7 @@
         "icon": "⚡",
         "name": "Utility Calculators",
         "description": "Age, percentage, unit & date converters",
-        "count": 15,
+        "count": 8,
         "href": "/utility-calculators"
     },
     {

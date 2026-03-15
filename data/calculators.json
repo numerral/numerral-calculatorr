@@ -834,40 +834,6 @@
     }
   },
   {
-    "id": "bmi-calculator",
-    "category": "utility",
-    "title": "Online BMI Calculator – Check Body Mass Index",
-    "slug": "bmi-calculator",
-    "categorySlug": "utility-calculators",
-    "icon": "⚖️",
-    "description": "Calculate your Body Mass Index (BMI) instantly using height and weight. Know your weight category — underweight, normal, overweight, or obese....",
-    "stars": 5,
-    "calcType": "bmi",
-    "defaults": {
-      "amount": 70,
-      "rate": 170,
-      "tenure": 0
-    },
-    "sliderRanges": {
-      "amount": {
-        "min": 20,
-        "max": 200,
-        "step": 0.5
-      },
-      "rate": {
-        "min": 100,
-        "max": 220,
-        "step": 1
-      },
-      "tenure": {
-        "min": 0,
-        "max": 0,
-        "step": 0
-      }
-    },
-    "keywords": "BMI calculator, body mass index calculator, BMI calculator India, weight calculator, healthy BMI range, BMI chart adults"
-  },
-  {
     "id": "discount-calculator",
     "category": "utility",
     "title": "Discount Calculator",
