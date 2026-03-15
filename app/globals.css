@@ -5566,3 +5566,597 @@ ol {
         grid-template-columns: 1fr;
     }
 }
+
+
+/* ══════════════════════════════════════════
+   HOMEPAGE REDESIGN — Inch Calculator Inspired
+   ══════════════════════════════════════════ */
+
+/* ── HP HERO ─── */
+.hp-hero {
+    text-align: center;
+    padding: var(--s-16) 0 var(--s-10);
+    background:
+        radial-gradient(circle at 50% 20%, rgba(79, 70, 229, 0.07) 0%, transparent 50%),
+        linear-gradient(180deg, rgba(79, 70, 229, 0.03) 0%, transparent 100%);
+    position: relative;
+}
+
+.hp-hero::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--n-border), transparent);
+}
+
+.hp-hero__inner {
+    max-width: 720px;
+    margin-inline: auto;
+}
+
+.hp-hero__title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    margin-bottom: var(--s-3);
+}
+
+.hp-hero__subtitle {
+    font-size: var(--t-h4);
+    color: var(--n-text-secondary);
+    max-width: 540px;
+    margin-inline: auto;
+    line-height: 1.6;
+    margin-bottom: var(--s-8);
+}
+
+.hp-hero__subtitle strong {
+    color: var(--n-text);
+}
+
+/* ── HP SEARCH BAR ─── */
+.hp-search {
+    position: relative;
+    max-width: 560px;
+    margin-inline: auto;
+    z-index: 50;
+}
+
+.hp-search__box {
+    display: flex;
+    align-items: center;
+    gap: var(--s-3);
+    background: var(--n-surface);
+    border: 2px solid var(--n-border);
+    border-radius: var(--r-full);
+    padding: 14px 24px;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+.hp-search__box--focus {
+    border-color: var(--n-primary);
+    box-shadow: 0 4px 24px rgba(79, 70, 229, 0.15);
+}
+
+.hp-search__icon {
+    color: var(--n-text-muted);
+    flex-shrink: 0;
+}
+
+.hp-search__input {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: var(--t-body);
+    font-weight: 500;
+    color: var(--n-text);
+    font-family: inherit;
+}
+
+.hp-search__input::placeholder {
+    color: var(--n-text-muted);
+    font-weight: 400;
+}
+
+.hp-search__clear {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--n-text-muted);
+    font-size: 14px;
+    padding: 4px;
+    transition: color 0.15s;
+}
+
+.hp-search__clear:hover {
+    color: var(--n-text);
+}
+
+.hp-search__dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    right: 0;
+    background: var(--n-surface);
+    border: 1px solid var(--n-border);
+    border-radius: var(--r-md);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+    overflow: hidden;
+    animation: hp-search-slide 0.15s ease-out;
+}
+
+@keyframes hp-search-slide {
+    from { opacity: 0; transform: translateY(-6px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.hp-search__result {
+    display: flex;
+    align-items: center;
+    gap: var(--s-3);
+    padding: 12px 20px;
+    text-decoration: none;
+    color: var(--n-text);
+    transition: background 0.12s;
+    border-bottom: 1px solid var(--n-border);
+}
+
+.hp-search__result:last-child {
+    border-bottom: none;
+}
+
+.hp-search__result:hover {
+    background: var(--n-primary-light);
+}
+
+.hp-search__result-icon {
+    font-size: 1.3rem;
+    flex-shrink: 0;
+    width: 32px;
+    text-align: center;
+}
+
+.hp-search__result-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.hp-search__result-title {
+    font-weight: 600;
+    font-size: var(--t-body-sm);
+}
+
+.hp-search__result-cat {
+    font-size: var(--t-caption);
+    color: var(--n-text-muted);
+    text-transform: capitalize;
+}
+
+.hp-search__result-arrow {
+    color: var(--n-text-muted);
+    font-size: 1.1rem;
+    flex-shrink: 0;
+}
+
+.hp-search__no-results {
+    padding: 20px;
+    text-align: center;
+    color: var(--n-text-muted);
+    font-size: var(--t-body-sm);
+}
+
+/* ── HP CATEGORIES ─── */
+.hp-categories {
+    padding: var(--s-10) 0;
+}
+
+.hp-categories__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: var(--s-4);
+    max-width: 800px;
+    margin-inline: auto;
+    margin-bottom: var(--s-8);
+}
+
+.hp-categories__tile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--s-2);
+    padding: var(--s-5) var(--s-3);
+    background: var(--n-surface);
+    border: 1px solid var(--n-border);
+    border-radius: var(--r-md);
+    text-decoration: none;
+    color: var(--n-text);
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.hp-categories__tile:hover {
+    border-color: var(--n-primary);
+    background: var(--n-primary-light);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(79, 70, 229, 0.1);
+}
+
+.hp-categories__tile-icon {
+    font-size: 2rem;
+    line-height: 1;
+}
+
+.hp-categories__tile-label {
+    font-size: var(--t-body-sm);
+    font-weight: 600;
+    text-align: center;
+    line-height: 1.3;
+}
+
+.hp-categories__cta {
+    text-align: center;
+}
+
+/* ── HP TRUST BAR ─── */
+.hp-trust {
+    background: var(--n-surface-alt);
+    border-top: 1px solid var(--n-border);
+    border-bottom: 1px solid var(--n-border);
+    padding: var(--s-6) 0;
+}
+
+.hp-trust__inner {
+    text-align: center;
+}
+
+.hp-trust__label {
+    font-size: var(--t-caption);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--n-primary);
+    margin-bottom: var(--s-4);
+}
+
+.hp-trust__logos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-6);
+    justify-content: center;
+    align-items: center;
+}
+
+.hp-trust__brand {
+    font-size: var(--t-body);
+    font-weight: 700;
+    color: var(--n-text-muted);
+    opacity: 0.6;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    transition: opacity 0.2s;
+}
+
+.hp-trust__brand:hover {
+    opacity: 1;
+}
+
+/* ── HP FEATURED ─── */
+.hp-featured {
+    padding: var(--s-12) 0;
+}
+
+.hp-featured__inner {
+    max-width: 720px;
+    margin-inline: auto;
+    text-align: center;
+    padding: var(--s-8) var(--s-6);
+    background: var(--n-surface);
+    border: 1px solid var(--n-border);
+    border-radius: var(--r-lg);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+.hp-featured__inner::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--n-primary), #10b981, var(--n-primary));
+}
+
+.hp-featured__badge {
+    display: inline-block;
+    font-size: var(--t-caption);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--n-primary);
+    margin-bottom: var(--s-4);
+}
+
+.hp-featured__title {
+    font-size: var(--t-h2);
+    font-weight: 700;
+    margin-bottom: var(--s-3);
+}
+
+.hp-featured__desc {
+    font-size: var(--t-body);
+    color: var(--n-text-secondary);
+    line-height: 1.6;
+    max-width: 540px;
+    margin-inline: auto;
+    margin-bottom: var(--s-6);
+}
+
+/* ── HP ABOUT ─── */
+.hp-about {
+    padding: var(--s-12) 0;
+    border-top: 1px solid var(--n-border);
+}
+
+.hp-about__title {
+    font-size: var(--t-h2);
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: var(--s-6);
+    color: var(--n-primary);
+}
+
+.hp-about__content {
+    max-width: 720px;
+    margin-inline: auto;
+    margin-bottom: var(--s-8);
+}
+
+.hp-about__content p {
+    font-size: var(--t-body);
+    color: var(--n-text-secondary);
+    line-height: 1.8;
+    margin-bottom: var(--s-4);
+}
+
+.hp-about__content p:last-child {
+    margin-bottom: 0;
+}
+
+.hp-about__features {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--s-5);
+    max-width: 760px;
+    margin-inline: auto;
+}
+
+.hp-about__feature {
+    display: flex;
+    gap: var(--s-3);
+    align-items: flex-start;
+    padding: var(--s-4);
+    background: var(--n-surface);
+    border: 1px solid var(--n-border);
+    border-radius: var(--r-md);
+    transition: box-shadow 0.2s;
+}
+
+.hp-about__feature:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+}
+
+.hp-about__feature-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.hp-about__feature strong {
+    display: block;
+    font-size: var(--t-body);
+    font-weight: 700;
+    color: var(--n-text);
+    margin-bottom: var(--s-1);
+}
+
+.hp-about__feature p {
+    font-size: var(--t-body-sm);
+    color: var(--n-text-secondary);
+    line-height: 1.5;
+    margin: 0;
+}
+
+@media (max-width: 640px) {
+    .hp-about__features {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ── HP POPULAR CALCULATORS ─── */
+.hp-popular {
+    padding: var(--s-12) 0;
+    border-top: 1px solid var(--n-border);
+}
+
+.hp-popular__heading {
+    font-size: var(--t-h2);
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: var(--s-2);
+}
+
+.hp-popular__subheading {
+    font-size: var(--t-body);
+    color: var(--n-text-secondary);
+    text-align: center;
+    margin-bottom: var(--s-8);
+    max-width: 560px;
+    margin-inline: auto;
+}
+
+.hp-popular__categories {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--s-6);
+}
+
+.hp-popular__cat-block {
+    background: var(--n-surface);
+    border: 1px solid var(--n-border);
+    border-radius: var(--r-md);
+    padding: var(--s-5);
+    transition: box-shadow 0.2s;
+}
+
+.hp-popular__cat-block:hover {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+.hp-popular__cat-header {
+    display: flex;
+    align-items: center;
+    gap: var(--s-2);
+    margin-bottom: var(--s-4);
+    padding-bottom: var(--s-3);
+    border-bottom: 2px solid var(--n-primary);
+}
+
+.hp-popular__cat-icon {
+    font-size: 1.3rem;
+}
+
+.hp-popular__cat-title {
+    font-size: var(--t-body);
+    font-weight: 700;
+    color: var(--n-text);
+}
+
+.hp-popular__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.hp-popular__link {
+    display: flex;
+    align-items: center;
+    gap: var(--s-2);
+    padding: 10px 6px;
+    text-decoration: none;
+    color: var(--n-text-secondary);
+    border-bottom: 1px solid var(--n-border);
+    font-size: var(--t-body-sm);
+    transition: all 0.15s ease;
+}
+
+.hp-popular__link:hover {
+    color: var(--n-primary);
+    background: var(--n-primary-light);
+    padding-left: 10px;
+    border-radius: var(--r-xs);
+}
+
+.hp-popular__list li:last-child .hp-popular__link {
+    border-bottom: none;
+}
+
+.hp-popular__link-icon {
+    font-size: 1.1rem;
+    flex-shrink: 0;
+    width: 24px;
+    text-align: center;
+}
+
+.hp-popular__link-title {
+    flex: 1;
+    font-weight: 500;
+}
+
+.hp-popular__link-arrow {
+    color: var(--n-text-muted);
+    font-size: 1.2rem;
+    font-weight: 300;
+    flex-shrink: 0;
+    transition: transform 0.15s;
+}
+
+.hp-popular__link:hover .hp-popular__link-arrow {
+    transform: translateX(3px);
+    color: var(--n-primary);
+}
+
+.hp-popular__see-all {
+    display: block;
+    margin-top: var(--s-3);
+    font-size: var(--t-body-sm);
+    font-weight: 600;
+    color: var(--n-primary);
+    text-decoration: none;
+    transition: opacity 0.15s;
+}
+
+.hp-popular__see-all:hover {
+    opacity: 0.8;
+    text-decoration: underline;
+}
+
+/* ── HP RESPONSIVE ─── */
+@media (max-width: 768px) {
+    .hp-hero {
+        padding: var(--s-10) 0 var(--s-8);
+    }
+
+    .hp-hero__title {
+        font-size: clamp(1.6rem, 6vw, 2.4rem);
+    }
+
+    .hp-search__box {
+        padding: 12px 18px;
+    }
+
+    .hp-categories__grid {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        gap: var(--s-3);
+    }
+
+    .hp-categories__tile {
+        padding: var(--s-3) var(--s-2);
+    }
+
+    .hp-categories__tile-icon {
+        font-size: 1.5rem;
+    }
+
+    .hp-categories__tile-label {
+        font-size: var(--t-caption);
+    }
+
+    .hp-trust__logos {
+        gap: var(--s-4);
+    }
+
+    .hp-trust__brand {
+        font-size: var(--t-body-sm);
+    }
+
+    .hp-featured__inner {
+        padding: var(--s-6) var(--s-4);
+    }
+
+    .hp-popular__categories {
+        grid-template-columns: 1fr;
+    }
+}
