@@ -454,6 +454,137 @@ function FractionToRatioCalc() {
     </div></div>);
 }
 
+/* 12. Compare Fractions Calculator */
+function CompareFractionsCalc() {
+    const [n1, setN1] = useState("2"); const [d1, setD1] = useState("3");
+    const [n2, setN2] = useState("3"); const [d2, setD2] = useState("5");
+    const r = useMemo(() => {
+        const num1 = parseInt(n1) || 0; const den1 = parseInt(d1) || 1;
+        const num2 = parseInt(n2) || 0; const den2 = parseInt(d2) || 1;
+        const dec1 = den1 !== 0 ? num1 / den1 : 0;
+        const dec2 = den2 !== 0 ? num2 / den2 : 0;
+        const steps: string[] = [];
+        // Method 1: Decimal conversion
+        steps.push(`Method 1 — Convert to decimals:`);
+        steps.push(`  ${num1}/${den1} = ${fmt(dec1, 6)}`);
+        steps.push(`  ${num2}/${den2} = ${fmt(dec2, 6)}`);
+        // Method 2: Cross multiplication
+        const cross1 = num1 * den2;
+        const cross2 = num2 * den1;
+        steps.push(`Method 2 — Cross multiply:`);
+        steps.push(`  ${num1} × ${den2} = ${cross1}`);
+        steps.push(`  ${num2} × ${den1} = ${cross2}`);
+        // Method 3: Common denominator
+        const lcd = lcmTwo(Math.abs(den1), Math.abs(den2));
+        const eqN1 = num1 * (lcd / den1);
+        const eqN2 = num2 * (lcd / den2);
+        steps.push(`Method 3 — Common denominator (LCD = ${lcd}):`);
+        steps.push(`  ${num1}/${den1} = ${eqN1}/${lcd}`);
+        steps.push(`  ${num2}/${den2} = ${eqN2}/${lcd}`);
+        let comparison: string;
+        let symbol: string;
+        if (dec1 > dec2) { comparison = `${num1}/${den1} is GREATER than ${num2}/${den2}`; symbol = ">"; }
+        else if (dec1 < dec2) { comparison = `${num1}/${den1} is LESS than ${num2}/${den2}`; symbol = "<"; }
+        else { comparison = `${num1}/${den1} is EQUAL to ${num2}/${den2}`; symbol = "="; }
+        const diff = Math.abs(dec1 - dec2);
+        // Simplify both
+        const [s1n, s1d] = simplifyFraction(num1, den1);
+        const [s2n, s2d] = simplifyFraction(num2, den2);
+        const pct1 = fmt(dec1 * 100, 4) + "%";
+        const pct2 = fmt(dec2 * 100, 4) + "%";
+        return { comparison, symbol, dec1, dec2, diff, steps, s1n, s1d, s2n, s2d, pct1, pct2 };
+    }, [n1, d1, n2, d2]);
+    return (<div className="con-calc"><h3 className="con-calc__title">⚖️ Comparing Fractions Calculator</h3><div className="con-calc__inputs">
+        <div style={{display:"flex",gap:"var(--s-2)",alignItems:"center"}}>
+            <InputField label="Numerator 1" value={n1} onChange={setN1} />
+            <InputField label="Denominator 1" value={d1} onChange={setD1} />
+        </div>
+        <div style={{display:"flex",gap:"var(--s-2)",alignItems:"center"}}>
+            <InputField label="Numerator 2" value={n2} onChange={setN2} />
+            <InputField label="Denominator 2" value={d2} onChange={setD2} />
+        </div>
+    </div><div className="con-calc__results"><h4>Result</h4>
+        <ResultRow label="Comparison" value={r.comparison} />
+        <ResultRow label="" value={`${r.s1n}/${r.s1d}  ${r.symbol}  ${r.s2n}/${r.s2d}`} />
+        <ResultRow label="Decimal 1" value={fmt(r.dec1, 6)} />
+        <ResultRow label="Decimal 2" value={fmt(r.dec2, 6)} />
+        <ResultRow label="Percentage 1" value={r.pct1} />
+        <ResultRow label="Percentage 2" value={r.pct2} />
+        <ResultRow label="Difference" value={fmt(r.diff, 6)} />
+        <h4>Step-by-Step (3 Methods)</h4>
+        {r.steps.map((s, i) => <ResultRow key={i} label="" value={s} />)}
+    </div></div>);
+}
+
+/* 13. Fraction to Mixed Number Calculator */
+function FractionToMixedCalc() {
+    const [mode, setMode] = useState("to-mixed");
+    // improper fraction inputs
+    const [num, setNum] = useState("7"); const [den, setDen] = useState("3");
+    // mixed number inputs
+    const [whole, setWhole] = useState("2"); const [mNum, setMNum] = useState("1"); const [mDen, setMDen] = useState("3");
+    const r = useMemo(() => {
+        const steps: string[] = [];
+        if (mode === "to-mixed") {
+            const n = parseInt(num) || 0; const d = parseInt(den) || 1;
+            // Simplify first
+            const g = gcd(Math.abs(n), Math.abs(d));
+            const sn = n / g; const sd = d / g;
+            if (g > 1) steps.push(`Simplify: ${n}/${d} ÷ ${g} = ${sn}/${sd}`);
+            if (Math.abs(sn) < Math.abs(sd)) {
+                steps.push(`${sn}/${sd} is a proper fraction (numerator < denominator)`);
+                steps.push(`Already in simplest form: ${sn}/${sd}`);
+                return { result: `${sn}/${sd}`, decimal: fmt(d !== 0 ? n / d : 0, 6), fraction: `${sn}/${sd}`, steps };
+            }
+            const q = Math.floor(Math.abs(sn) / Math.abs(sd));
+            const rem = Math.abs(sn) % Math.abs(sd);
+            const sign = (sn < 0) !== (sd < 0) ? "-" : "";
+            steps.push(`Step 1 — Long division: ${Math.abs(sn)} ÷ ${Math.abs(sd)} = ${q} remainder ${rem}`);
+            steps.push(`Step 2 — Quotient = ${q} (whole number), Remainder = ${rem} (new numerator)`);
+            steps.push(`Step 3 — Keep original denominator: ${Math.abs(sd)}`);
+            const mixed = rem > 0 ? `${sign}${q} ${rem}/${Math.abs(sd)}` : `${sign}${q}`;
+            steps.push(`Result: ${sn}/${sd} = ${mixed}`);
+            return { result: mixed, decimal: fmt(d !== 0 ? n / d : 0, 6), fraction: `${sn}/${sd}`, steps };
+        } else {
+            const w = parseInt(whole) || 0;
+            const n = parseInt(mNum) || 0;
+            const d = parseInt(mDen) || 1;
+            steps.push(`Mixed number: ${w} ${n}/${d}`);
+            steps.push(`Step 1 — Multiply whole number by denominator: ${Math.abs(w)} × ${Math.abs(d)} = ${Math.abs(w) * Math.abs(d)}`);
+            const newNum = w * d + (w < 0 ? -Math.abs(n) : Math.abs(n));
+            steps.push(`Step 2 — Add numerator: ${Math.abs(w) * Math.abs(d)} + ${n} = ${Math.abs(newNum)}`);
+            steps.push(`Step 3 — Keep denominator: ${d}`);
+            const sign = newNum < 0 ? "-" : "";
+            steps.push(`Result: ${w} ${n}/${d} = ${sign}${Math.abs(newNum)}/${Math.abs(d)}`);
+            // Simplify
+            const g = gcd(Math.abs(newNum), Math.abs(d));
+            if (g > 1) steps.push(`Simplified: ${newNum / g}/${d / g}`);
+            return { result: `${newNum}/${d}`, decimal: fmt(d !== 0 ? newNum / d : 0, 6), fraction: g > 1 ? `${newNum / g}/${d / g}` : `${newNum}/${d}`, steps };
+        }
+    }, [mode, num, den, whole, mNum, mDen]);
+    return (<div className="con-calc"><h3 className="con-calc__title">🔀 Fraction ↔ Mixed Number Converter</h3><div className="con-calc__inputs">
+        <SelectField label="Conversion" value={mode} onChange={setMode} options={[{value:"to-mixed",label:"Improper Fraction → Mixed Number"},{value:"to-improper",label:"Mixed Number → Improper Fraction"}]} />
+        {mode === "to-mixed" ? (
+            <div style={{display:"flex",gap:"var(--s-2)",alignItems:"center"}}>
+                <InputField label="Numerator" value={num} onChange={setNum} />
+                <InputField label="Denominator" value={den} onChange={setDen} />
+            </div>
+        ) : (<>
+            <InputField label="Whole Number" value={whole} onChange={setWhole} />
+            <div style={{display:"flex",gap:"var(--s-2)",alignItems:"center"}}>
+                <InputField label="Numerator" value={mNum} onChange={setMNum} />
+                <InputField label="Denominator" value={mDen} onChange={setMDen} />
+            </div>
+        </>)}
+    </div><div className="con-calc__results"><h4>Result</h4>
+        <ResultRow label={mode === "to-mixed" ? "Mixed Number" : "Improper Fraction"} value={r.result} />
+        <ResultRow label="Simplified" value={r.fraction} />
+        <ResultRow label="Decimal" value={r.decimal} />
+        <h4>Steps</h4>
+        {r.steps.map((s, i) => <ResultRow key={i} label={`Step ${i + 1}`} value={s} />)}
+    </div></div>);
+}
+
 /* ──── DISPATCHER ──── */
 const CALC_MAP: Record<string, React.FC> = {
     "percentage": PercentageCalc,
@@ -467,6 +598,8 @@ const CALC_MAP: Record<string, React.FC> = {
     "standard-deviation": StdDevCalc,
     "long-division": LongDivisionCalc,
     "fraction-to-ratio": FractionToRatioCalc,
+    "compare-fractions": CompareFractionsCalc,
+    "fraction-to-mixed": FractionToMixedCalc,
 };
 
 export default function MathCalculatorCore({ calcType }: { calcType: string }) {

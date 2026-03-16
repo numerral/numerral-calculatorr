@@ -11832,5 +11832,33 @@
     "defaults": { "amount": 0, "rate": 0, "tenure": 0 },
     "sliderRanges": { "amount": { "min": 0, "max": 0, "step": 0 }, "rate": { "min": 0, "max": 0, "step": 0 }, "tenure": { "min": 0, "max": 0, "step": 0 } },
     "keywords": "fraction to ratio calculator, convert fraction to ratio, fraction ratio converter, fraction as ratio, mixed number to ratio, ratio notation"
+  },
+  {
+    "id": "compare-fractions-calculator",
+    "category": "math",
+    "title": "Comparing Fractions Calculator",
+    "slug": "compare-fractions-calculator",
+    "categorySlug": "math-calculators",
+    "icon": "⚖️",
+    "description": "Compare two or more fractions to find which is greater, less, or equal. See step-by-step comparison using decimal conversion and common denominator methods.",
+    "stars": 4,
+    "calcType": "compare-fractions",
+    "defaults": { "amount": 0, "rate": 0, "tenure": 0 },
+    "sliderRanges": { "amount": { "min": 0, "max": 0, "step": 0 }, "rate": { "min": 0, "max": 0, "step": 0 }, "tenure": { "min": 0, "max": 0, "step": 0 } },
+    "keywords": "compare fractions, comparing fractions calculator, which fraction is bigger, fraction comparison, greater than less than fractions, order fractions"
+  },
+  {
+    "id": "fraction-to-mixed-number-calculator",
+    "category": "math",
+    "title": "Fraction to Mixed Number Calculator",
+    "slug": "fraction-to-mixed-number-calculator",
+    "categorySlug": "math-calculators",
+    "icon": "🔀",
+    "description": "Convert an improper fraction to a mixed number or a mixed number back to an improper fraction. See the step-by-step conversion with long division.",
+    "stars": 4,
+    "calcType": "fraction-to-mixed",
+    "defaults": { "amount": 0, "rate": 0, "tenure": 0 },
+    "sliderRanges": { "amount": { "min": 0, "max": 0, "step": 0 }, "rate": { "min": 0, "max": 0, "step": 0 }, "tenure": { "min": 0, "max": 0, "step": 0 } },
+    "keywords": "fraction to mixed number, improper fraction to mixed number, convert fraction to mixed number, mixed number converter, improper fraction calculator"
   }
 ]

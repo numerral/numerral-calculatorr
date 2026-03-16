@@ -757,6 +757,228 @@ const HUB_CONTENT: Record<string, {
             { title: "Long Division Calculator", slug: "long-division-calculator", categorySlug: "math-calculators", description: "Divide to convert fractions to decimals" },
         ],
     },
+
+    /* ─── 12. COMPARE FRACTIONS CALCULATOR — RICH CONTENT ─── */
+    "compare-fractions-calculator": {
+        subtitle: "Compare two fractions to find which is greater, less than, or equal. See the step-by-step comparison using decimal conversion, cross multiplication, and common denominator methods.",
+        contentHTML: `
+            <h2 id="how-to-compare-fractions">How to Compare Fractions</h2>
+            <p>Comparing fractions might seem challenging at first — it's a bit like comparing apples and oranges when the denominators are different. Fortunately, there are several reliable methods to determine which fraction is larger. Our calculator above uses all of them and shows the complete step-by-step work.</p>
+            <p>Below you'll find four methods explained in detail, each with a worked example using the same pair of fractions: <strong>2/7</strong> and <strong>3/5</strong>.</p>
+
+            <h3 id="method-decimal">Method One: Compare Fractions by Converting to Decimals</h3>
+            <p>The simplest method is to convert each fraction to a <strong>decimal</strong> by dividing the numerator by the denominator. Once both fractions are in decimal form, you can compare them directly — the larger decimal is the larger fraction.</p>
+            <p><strong>Example:</strong> Compare 2/7 and 3/5.</p>
+            <ul>
+                <li>2/7 = 2 ÷ 7 = <strong>0.2857…</strong></li>
+                <li>3/5 = 3 ÷ 5 = <strong>0.6000</strong></li>
+            </ul>
+            <p>Since 0.6 > 0.2857, we know that <strong>3/5 > 2/7</strong>.</p>
+            <p>Use our <a href="/math-calculators/long-division-calculator">Long Division Calculator</a> to see the full division steps when converting fractions to decimals.</p>
+
+            <h3 id="method-common-denominator">Method Two: Compare by Finding the Common Denominator</h3>
+            <p>Rewrite both fractions as <strong>equivalent fractions</strong> with the same denominator. Then simply compare the numerators — the fraction with the larger numerator is the larger fraction.</p>
+            <p><strong>Example:</strong> Compare 2/7 and 3/5.</p>
+            <ul>
+                <li>Find the <a href="/math-calculators/lcm-calculator">LCD (Least Common Denominator)</a>: LCM(7, 5) = <strong>35</strong></li>
+                <li>2/7 = (2 × 5) / (7 × 5) = <strong>10/35</strong></li>
+                <li>3/5 = (3 × 7) / (5 × 7) = <strong>21/35</strong></li>
+            </ul>
+            <p>Compare numerators: 21 > 10, so <strong>3/5 > 2/7</strong>.</p>
+
+            <div class="explanation__highlight">
+                <strong>Tip:</strong> This method is especially useful when you need to compare more than two fractions — convert all of them to the same denominator, then simply rank the numerators.
+            </div>
+
+            <h3 id="method-same-numerator">Method Three: Compare Fractions with the Same Numerator</h3>
+            <p>When two fractions have the <strong>same numerator</strong>, there's a shortcut: the fraction with the <strong>smaller denominator is larger</strong>.</p>
+            <p>Why? Because a smaller denominator means the whole is divided into fewer pieces, so each piece is bigger.</p>
+            <p><strong>Example:</strong> Compare 3/5 and 3/8.</p>
+            <ul>
+                <li>Both numerators are 3.</li>
+                <li>5 < 8, so fifths are larger than eighths.</li>
+                <li>Therefore, <strong>3/5 > 3/8</strong>.</li>
+            </ul>
+
+            <h3 id="method-cross-multiply">Method Four: Cross Multiplication</h3>
+            <p><strong>Cross multiplication</strong> is a quick, reliable method that always works. Multiply each numerator by the opposite denominator and compare the products.</p>
+            <p><strong>Formula:</strong> To compare a/b and c/d, compute a × d and c × b.</p>
+            <ul>
+                <li>If a × d > c × b, then a/b > c/d</li>
+                <li>If a × d < c × b, then a/b < c/d</li>
+                <li>If a × d = c × b, then a/b = c/d</li>
+            </ul>
+            <p><strong>Example:</strong> Compare 2/7 and 3/5.</p>
+            <ul>
+                <li>2 × 5 = <strong>10</strong></li>
+                <li>3 × 7 = <strong>21</strong></li>
+                <li>10 < 21, so <strong>2/7 < 3/5</strong>.</li>
+            </ul>
+
+            <div class="explanation__highlight">
+                <strong>All four methods confirm the same result:</strong> 3/5 is greater than 2/7. Cross multiplication is the fastest single method, while the common denominator method gives you the most insight into <em>how much</em> larger one fraction is.
+            </div>
+
+            <h2 id="compare-decimals-percentages">How to Compare Fractions to Decimals and Percentages</h2>
+            <p>To compare a fraction to a decimal or percentage, convert all values to the same format:</p>
+            <ul>
+                <li><strong>Fraction → Decimal:</strong> Divide the numerator by the denominator. Example: 3/8 = 0.375</li>
+                <li><strong>Fraction → Percentage:</strong> Convert to decimal, then multiply by 100. Example: 3/8 = 0.375 = 37.5%</li>
+                <li><strong>Percentage → Decimal:</strong> Divide by 100. Example: 45% = 0.45</li>
+            </ul>
+            <p>Once all values are in the same format, compare them directly. Use our <a href="/math-calculators/percentage-calculator">Percentage Calculator</a> for quick conversions.</p>
+
+            <h2 id="faq">Frequently Asked Questions</h2>
+
+            <h3>Why do we compare fractions?</h3>
+            <p>Comparing fractions is essential for:</p>
+            <ul>
+                <li>Determining which quantity is larger or smaller (e.g., is 3/4 cup more than 2/3 cup?)</li>
+                <li>Ordering and ranking data represented as fractions</li>
+                <li>Deciding between options in recipes, measurements, and science experiments</li>
+                <li>Evaluating performance metrics (e.g., batting averages, completion rates)</li>
+            </ul>
+
+            <h3>Why is it easier to compare decimals instead of fractions?</h3>
+            <p>Decimals use the <strong>base-10 number system</strong>, which makes their relative size immediately visible. Comparing 0.75 and 0.6 is trivial — you can see at a glance that 0.75 is larger. With fractions like 3/4 and 3/5, the comparison requires extra steps because the denominators are different.</p>
+
+            <h3>How do you compare fractions with whole numbers?</h3>
+            <p>Convert the whole number to a fraction by putting it over 1 (e.g., 3 = 3/1), then use any of the four methods above. Alternatively, convert the fraction to a decimal and compare directly. For example: Is 2/3 greater than 1? Since 2/3 = 0.667 and 1 = 1.000, we know 2/3 < 1.</p>
+
+            <h3>How do you compare more than two fractions at a time?</h3>
+            <p>The best approach is to find a <strong>common denominator</strong> for all the fractions using the <a href="/math-calculators/lcm-calculator">LCM</a> of all denominators. Convert each fraction to an equivalent fraction with that denominator, then rank the numerators from smallest to largest. Alternatively, convert all fractions to decimals and sort them.</p>
+        `,
+        formula: {
+            formula: "Cross multiply: compare a×d with c×b (for a/b vs c/d)",
+            variables: [
+                { symbol: "a/b", meaning: "First fraction to compare" },
+                { symbol: "c/d", meaning: "Second fraction to compare" },
+                { symbol: "a×d vs c×b", meaning: "If a×d > c×b then a/b > c/d" },
+            ],
+            example: [
+                { label: "Compare 2/7 vs 3/5", substitution: "2×5=10  vs  3×7=21", result: "10 < 21 → 2/7 < 3/5" },
+                { label: "Common denom. method", substitution: "LCD=35 → 10/35 vs 21/35", result: "10 < 21 → 2/7 < 3/5" },
+                { label: "Decimal method", substitution: "0.2857 vs 0.6000", result: "0.2857 < 0.6 → 2/7 < 3/5" },
+            ],
+        },
+        relatedCalculators: [
+            { title: "Fraction Calculator", slug: "fraction-calculator", categorySlug: "math-calculators", description: "Add, subtract, multiply, and divide fractions" },
+            { title: "LCM Calculator", slug: "lcm-calculator", categorySlug: "math-calculators", description: "Find the LCD for comparing fractions" },
+            { title: "GCD Calculator", slug: "gcd-calculator", categorySlug: "math-calculators", description: "Simplify fractions before comparing" },
+            { title: "Percentage Calculator", slug: "percentage-calculator", categorySlug: "math-calculators", description: "Convert fractions to percentages" },
+            { title: "Fraction to Ratio", slug: "fraction-to-ratio-calculator", categorySlug: "math-calculators", description: "Convert fractions to ratios" },
+        ],
+    },
+
+    /* ─── 13. FRACTION TO MIXED NUMBER CALCULATOR — RICH CONTENT ─── */
+    "fraction-to-mixed-number-calculator": {
+        subtitle: "Convert an improper fraction to a mixed number or a mixed number back to an improper fraction. See each step of the conversion including long division and simplification.",
+        contentHTML: `
+            <h2 id="how-to-convert-improper">How to Convert an Improper Fraction to a Mixed Number</h2>
+            <p>An <strong>improper fraction</strong> is a <a href="/math-calculators/fraction-calculator">fraction</a> where the numerator is greater than or equal to the denominator — meaning its value is 1 or greater. A <strong>mixed number</strong> combines a whole number with a proper fraction, like 2 1/3. Both forms represent the same value, but mixed numbers are often easier to understand in everyday life.</p>
+            <p>Converting between them takes just two simple steps.</p>
+
+            <h3 id="step-long-division">Step One: Use Long Division</h3>
+            <p>Divide the numerator by the denominator using <a href="/math-calculators/long-division-calculator">long division</a>. You need two numbers from this division:</p>
+            <ul>
+                <li><strong>Quotient</strong> — the whole number result (how many times the denominator fits into the numerator)</li>
+                <li><strong>Remainder</strong> — what's left over after division</li>
+            </ul>
+            <p><strong>Example:</strong> Convert 7/3 to a mixed number.</p>
+            <p>7 ÷ 3 = <strong>2 remainder 1</strong></p>
+
+            <h3 id="step-rewrite">Step Two: Rewrite as a Mixed Number</h3>
+            <p>Use the quotient and remainder to build the mixed number:</p>
+            <ul>
+                <li><strong>Whole number</strong> = quotient = 2</li>
+                <li><strong>New numerator</strong> = remainder = 1</li>
+                <li><strong>Denominator</strong> = original denominator = 3</li>
+            </ul>
+            <p>Result: 7/3 = <strong>2 1/3</strong></p>
+
+            <div class="explanation__highlight">
+                <strong>General formula:</strong> For any improper fraction a/b where a ≥ b: divide a ÷ b = q remainder r. Then a/b = q r/b. If the remainder is 0, the fraction is exactly equal to the whole number (e.g., 6/3 = 2).
+            </div>
+
+            <h3 id="more-examples">More Examples</h3>
+            <ul>
+                <li><strong>11/4:</strong> 11 ÷ 4 = 2 remainder 3 → <strong>2 3/4</strong></li>
+                <li><strong>23/5:</strong> 23 ÷ 5 = 4 remainder 3 → <strong>4 3/5</strong></li>
+                <li><strong>15/5:</strong> 15 ÷ 5 = 3 remainder 0 → <strong>3</strong> (exact whole number)</li>
+                <li><strong>9/4:</strong> 9 ÷ 4 = 2 remainder 1 → <strong>2 1/4</strong></li>
+            </ul>
+
+            <h2 id="mixed-to-improper">How to Convert a Mixed Number to an Improper Fraction</h2>
+            <p>Converting in the other direction is equally simple — multiply and add:</p>
+            <ol>
+                <li><strong>Multiply</strong> the whole number by the denominator.</li>
+                <li><strong>Add</strong> the result to the numerator.</li>
+                <li><strong>Keep</strong> the same denominator.</li>
+            </ol>
+            <p><strong>Formula:</strong> w n/d = (w × d + n) / d</p>
+            <p><strong>Example:</strong> Convert 3 2/5 to an improper fraction.</p>
+            <ul>
+                <li>3 × 5 = 15</li>
+                <li>15 + 2 = 17</li>
+                <li>3 2/5 = <strong>17/5</strong></li>
+            </ul>
+            <p>You can verify this is correct by converting back: 17 ÷ 5 = 3 remainder 2 → 3 2/5 ✓</p>
+
+            <h2 id="simplifying">Simplifying Before and After Conversion</h2>
+            <p>It's good practice to <strong>simplify</strong> your fraction before or after converting. Find the <a href="/math-calculators/gcd-calculator">Greatest Common Divisor (GCD)</a> of the numerator and denominator, then divide both by it.</p>
+            <p><strong>Example:</strong> Convert 18/8 to a mixed number.</p>
+            <ul>
+                <li>Simplify first: GCD(18, 8) = 2 → 18/8 = <strong>9/4</strong></li>
+                <li>Convert: 9 ÷ 4 = 2 remainder 1 → <strong>2 1/4</strong></li>
+            </ul>
+
+            <h2 id="negative-fractions">Negative Improper Fractions</h2>
+            <p>For negative improper fractions, convert the absolute value to a mixed number, then apply the negative sign to the whole number.</p>
+            <p><strong>Example:</strong> Convert −7/3 to a mixed number.</p>
+            <ul>
+                <li>|7/3| → 7 ÷ 3 = 2 remainder 1 → 2 1/3</li>
+                <li>Apply negative: <strong>−2 1/3</strong></li>
+            </ul>
+
+            <h2 id="faq">Frequently Asked Questions</h2>
+
+            <h3>What is the difference between a proper fraction, improper fraction, and mixed number?</h3>
+            <p>A <strong>proper fraction</strong> has a numerator smaller than the denominator (value < 1), like 3/4. An <strong>improper fraction</strong> has a numerator ≥ denominator (value ≥ 1), like 7/3. A <strong>mixed number</strong> is another way to write an improper fraction: 7/3 = 2 1/3. Every improper fraction can be written as a mixed number and vice versa.</p>
+
+            <h3>When should I use mixed numbers instead of improper fractions?</h3>
+            <p>Mixed numbers are easier to visualize in <strong>everyday contexts</strong> — measurements (2 1/2 inches), cooking (1 3/4 cups), and time (2 1/4 hours). Improper fractions are preferred in <strong>mathematical calculations</strong> — it's easier to multiply, divide, add, and subtract with improper fractions. Use our <a href="/math-calculators/fraction-calculator">Fraction Calculator</a> to perform operations on either form.</p>
+
+            <h3>Can a proper fraction be converted to a mixed number?</h3>
+            <p>No — a proper fraction (where numerator < denominator) is already less than 1, so there's no whole number part. 3/4 simply remains 3/4. Only <strong>improper fractions</strong> (numerator ≥ denominator) can be converted to mixed numbers.</p>
+
+            <h3>How do I simplify the fractional part of a mixed number?</h3>
+            <p>Find the <a href="/math-calculators/gcd-calculator">GCD</a> of the fractional part's numerator and denominator, then divide both by it. For example, 3 4/8: GCD(4, 8) = 4, so 4/8 = 1/2. The simplified mixed number is <strong>3 1/2</strong>.</p>
+
+            <h3>What if the remainder is zero?</h3>
+            <p>If the remainder is 0, the improper fraction is exactly equal to a whole number. For example, 12/4 = 12 ÷ 4 = 3 remainder 0, so 12/4 = <strong>3</strong> (no fractional part).</p>
+        `,
+        formula: {
+            formula: "a/b = q  r/b  (where a ÷ b = q remainder r)",
+            variables: [
+                { symbol: "a/b", meaning: "Improper fraction (numerator ≥ denominator)" },
+                { symbol: "q", meaning: "Quotient from long division (whole number part)" },
+                { symbol: "r", meaning: "Remainder (becomes the new numerator)" },
+                { symbol: "b", meaning: "Original denominator (stays the same)" },
+            ],
+            example: [
+                { label: "7/3 → Mixed", substitution: "7 ÷ 3 = 2 R 1", result: "2 1/3" },
+                { label: "11/4 → Mixed", substitution: "11 ÷ 4 = 2 R 3", result: "2 3/4" },
+                { label: "3 2/5 → Improper", substitution: "(3 × 5 + 2) / 5", result: "17/5" },
+            ],
+        },
+        relatedCalculators: [
+            { title: "Fraction Calculator", slug: "fraction-calculator", categorySlug: "math-calculators", description: "Perform operations with fractions and mixed numbers" },
+            { title: "GCD Calculator", slug: "gcd-calculator", categorySlug: "math-calculators", description: "Find the GCD to simplify fractions" },
+            { title: "Long Division Calculator", slug: "long-division-calculator", categorySlug: "math-calculators", description: "See the full division steps used in conversion" },
+            { title: "Compare Fractions", slug: "compare-fractions-calculator", categorySlug: "math-calculators", description: "Compare fractions and mixed numbers" },
+            { title: "Fraction to Ratio", slug: "fraction-to-ratio-calculator", categorySlug: "math-calculators", description: "Convert fractions and mixed numbers to ratios" },
+        ],
+    },
 };
 
 export default async function MathCalculatorHubPage({ params }: PageProps) {
