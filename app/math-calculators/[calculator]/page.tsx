@@ -979,6 +979,565 @@ const HUB_CONTENT: Record<string, {
             { title: "Fraction to Ratio", slug: "fraction-to-ratio-calculator", categorySlug: "math-calculators", description: "Convert fractions and mixed numbers to ratios" },
         ],
     },
+
+    /* ─── 14. DECIMAL TO FRACTION CALCULATOR — RICH CONTENT ─── */
+    "decimal-to-fraction-calculator": {
+        subtitle: "Convert any decimal number to a fraction in simplest form. See the step-by-step process — from writing the decimal over 1 to reducing with the GCD.",
+        contentHTML: `
+            <h2 id="how-to-convert">How to Convert a Decimal to a Fraction</h2>
+            <p>Every <strong>terminating decimal</strong> (a decimal with a finite number of digits) can be converted to a fraction in just three steps. This process works for any decimal, whether it's less than 1 (like 0.75), greater than 1 (like 1.25), or negative (like −0.4).</p>
+
+            <h3 id="step-starting-fraction">Step One: Create the Starting Fraction</h3>
+            <p>Write the decimal as a fraction with the decimal number as the <strong>numerator</strong> and <strong>1</strong> as the denominator.</p>
+            <p><strong>Example:</strong> Convert 0.75 to a fraction.</p>
+            <p>0.75 = <strong>0.75 / 1</strong></p>
+
+            <h3 id="step-multiply-ten">Step Two: Multiply by 10 to Remove the Decimal</h3>
+            <p>Multiply both the numerator and denominator by <strong>10</strong> repeatedly until the numerator is a whole number. The number of times you multiply equals the number of decimal places.</p>
+            <p><strong>Continuing the example:</strong></p>
+            <ul>
+                <li>0.75 has 2 decimal places → multiply by 10² = 100</li>
+                <li>0.75 / 1 = (0.75 × 100) / (1 × 100) = <strong>75 / 100</strong></li>
+            </ul>
+
+            <h3 id="step-reduce">Step Three: Reduce the Fraction</h3>
+            <p>Find the <a href="/math-calculators/gcd-calculator">Greatest Common Divisor (GCD)</a> of the numerator and denominator, then divide both by it to get the simplest form.</p>
+            <p><strong>Completing the example:</strong></p>
+            <ul>
+                <li>GCD(75, 100) = 25</li>
+                <li>75 / 100 = (75 ÷ 25) / (100 ÷ 25) = <strong>3/4</strong></li>
+            </ul>
+            <p>So 0.75 = <strong>3/4</strong>. ✓</p>
+
+            <div class="explanation__highlight">
+                <strong>Quick shortcut:</strong> For common decimals, you can read off the fraction directly. 0.5 = 1/2, 0.25 = 1/4, 0.75 = 3/4, 0.2 = 1/5, 0.125 = 1/8. For everything else, follow the three steps above.
+            </div>
+
+            <h3 id="more-examples">More Worked Examples</h3>
+            <ul>
+                <li><strong>0.625:</strong> 625/1000 → GCD = 125 → <strong>5/8</strong></li>
+                <li><strong>0.4:</strong> 4/10 → GCD = 2 → <strong>2/5</strong></li>
+                <li><strong>1.25:</strong> 125/100 → GCD = 25 → 5/4 → as mixed number: <strong>1 1/4</strong></li>
+                <li><strong>2.375:</strong> 2375/1000 → GCD = 125 → 19/8 → as mixed number: <strong>2 3/8</strong></li>
+                <li><strong>0.333:</strong> 333/1000 → GCD = 1 → <strong>333/1000</strong> (not exact — see repeating decimals below)</li>
+            </ul>
+
+            <h2 id="decimals-greater-than-1">Converting Decimals Greater Than 1</h2>
+            <p>Decimals larger than 1 produce <strong>improper fractions</strong> (where the numerator is larger than the denominator). You can convert these to <a href="/math-calculators/fraction-to-mixed-number-calculator">mixed numbers</a>:</p>
+            <ol>
+                <li>Follow the same three steps to get the improper fraction.</li>
+                <li>Divide the numerator by the denominator — the quotient is the whole number, the remainder is the new numerator.</li>
+            </ol>
+            <p><strong>Example:</strong> 1.75 → 175/100 → GCD = 25 → 7/4 → 7 ÷ 4 = 1 remainder 3 → <strong>1 3/4</strong></p>
+
+            <h2 id="repeating-decimals">How to Convert a Repeating Decimal to a Fraction</h2>
+            <p>A <strong>repeating decimal</strong> is a decimal that goes on forever with a repeating pattern, like 0.333… (= 1/3) or 0.142857142857… (= 1/7). These require a different algebraic approach:</p>
+            <ol>
+                <li>Let x = the repeating decimal (e.g., x = 0.333…)</li>
+                <li>Multiply both sides by a power of 10 to shift the repeating part (e.g., 10x = 3.333…)</li>
+                <li>Subtract the original equation: 10x − x = 3.333… − 0.333… → 9x = 3</li>
+                <li>Solve for x: x = 3/9 = <strong>1/3</strong></li>
+            </ol>
+            <p><strong>Another example:</strong> 0.1666… (where 6 repeats)</p>
+            <ul>
+                <li>x = 0.1666…</li>
+                <li>10x = 1.666… and 100x = 16.666…</li>
+                <li>100x − 10x = 16.666… − 1.666… → 90x = 15</li>
+                <li>x = 15/90 = <strong>1/6</strong></li>
+            </ul>
+
+            <h2 id="negative-decimals">How to Convert a Negative Decimal</h2>
+            <p>For negative decimals, simply <strong>ignore the minus sign</strong>, convert the absolute value to a fraction using the steps above, then add the negative sign back to the result.</p>
+            <p><strong>Example:</strong> −0.4 → convert 0.4 → 4/10 = 2/5 → <strong>−2/5</strong></p>
+
+            <h2 id="common-conversions">Common Decimal to Fraction Conversions</h2>
+            <p>Here are some frequently used conversions for quick reference:</p>
+            <ul>
+                <li>0.1 = <strong>1/10</strong> &nbsp;|&nbsp; 0.125 = <strong>1/8</strong> &nbsp;|&nbsp; 0.2 = <strong>1/5</strong></li>
+                <li>0.25 = <strong>1/4</strong> &nbsp;|&nbsp; 0.333… = <strong>1/3</strong> &nbsp;|&nbsp; 0.375 = <strong>3/8</strong></li>
+                <li>0.4 = <strong>2/5</strong> &nbsp;|&nbsp; 0.5 = <strong>1/2</strong> &nbsp;|&nbsp; 0.625 = <strong>5/8</strong></li>
+                <li>0.666… = <strong>2/3</strong> &nbsp;|&nbsp; 0.75 = <strong>3/4</strong> &nbsp;|&nbsp; 0.875 = <strong>7/8</strong></li>
+            </ul>
+
+            <h2 id="faq">Frequently Asked Questions</h2>
+
+            <h3>When do you need to convert decimals to fractions?</h3>
+            <p>You'll need to convert decimals to fractions in <strong>construction</strong> (measurements in inches), <strong>cooking</strong> (recipe quantities like 1/3 cup), <strong>finance</strong> (interest rates), and in <strong>math courses</strong> when simplifying expressions or solving equations. Fractions are also essential when working with <a href="/math-calculators/fraction-to-ratio-calculator">ratios</a>.</p>
+
+            <h3>What are the benefits of using fractions over decimals?</h3>
+            <p>Fractions are <strong>exact</strong> — 1/3 is precise, while 0.333… is an approximation. Fractions also make it easier to see relationships between numbers (3/4 immediately tells you "three out of four parts"), and they simplify certain calculations like finding common denominators for <a href="/math-calculators/fraction-calculator">adding fractions</a>.</p>
+
+            <h3>How do you convert a decimal greater than 1 to a fraction?</h3>
+            <p>Follow the same three steps (write over 1, multiply by 10, reduce). The result will be an <strong>improper fraction</strong> that you can convert to a <a href="/math-calculators/fraction-to-mixed-number-calculator">mixed number</a>. For example, 2.5 → 25/10 → 5/2 → 2 1/2.</p>
+
+            <h3>What is 0.333… as a fraction?</h3>
+            <p>0.333… (repeating) = <strong>1/3</strong>. Similarly, 0.666… = 2/3 and 0.999… = 1 (exactly). These are repeating decimals that require the algebraic method described above.</p>
+
+            <h3>Can every decimal be expressed as a fraction?</h3>
+            <p>Every <strong>terminating decimal</strong> and every <strong>repeating decimal</strong> can be expressed as a fraction (rational number). However, <strong>irrational numbers</strong> like π (3.14159…) and √2 (1.41421…) cannot be expressed as exact fractions because their decimal expansions never terminate or repeat.</p>
+        `,
+        formula: {
+            formula: "decimal = numerator / denominator (after GCD reduction)",
+            variables: [
+                { symbol: "decimal", meaning: "The decimal number to convert" },
+                { symbol: "10ⁿ", meaning: "Multiply by 10 raised to the number of decimal places" },
+                { symbol: "GCD", meaning: "Greatest Common Divisor — divide both by it to simplify" },
+            ],
+            example: [
+                { label: "0.75 → Fraction", substitution: "75/100 → GCD=25 → 75÷25 / 100÷25", result: "3/4" },
+                { label: "1.25 → Fraction", substitution: "125/100 → GCD=25 → 5/4", result: "1 1/4" },
+                { label: "0.625 → Fraction", substitution: "625/1000 → GCD=125 → 5/8", result: "5/8" },
+            ],
+        },
+        relatedCalculators: [
+            { title: "Fraction Calculator", slug: "fraction-calculator", categorySlug: "math-calculators", description: "Perform operations with the resulting fractions" },
+            { title: "GCD Calculator", slug: "gcd-calculator", categorySlug: "math-calculators", description: "Find the GCD to simplify fractions" },
+            { title: "Fraction to Mixed Number", slug: "fraction-to-mixed-number-calculator", categorySlug: "math-calculators", description: "Convert improper fractions to mixed numbers" },
+            { title: "Percentage Calculator", slug: "percentage-calculator", categorySlug: "math-calculators", description: "Convert decimals to percentages" },
+            { title: "Long Division Calculator", slug: "long-division-calculator", categorySlug: "math-calculators", description: "See the division steps for fraction-to-decimal" },
+        ],
+    },
+
+    /* ─── 15. INCH FRACTION CALCULATOR — RICH CONTENT ─── */
+    "inch-fraction-calculator": {
+        subtitle: "Convert decimal inches to inch fractions (1/16″, 1/32″, 1/64″) or inch fractions to decimal. Also converts to metric (mm, cm). See step-by-step rounding.",
+        contentHTML: `
+            <h2 id="how-to-calculate">How to Calculate Inch Fractions</h2>
+            <p>Measurements in inches can be expressed as a <strong>decimal</strong> (2.695″) or as an <strong>inch fraction</strong> (2 11/16″). Inch fractions follow a special rule: the denominator is always a <strong>power of 2</strong> — specifically 2, 4, 8, 16, 32, or 64. These are called <strong>dyadic fractions</strong>.</p>
+            <p>This means converting a decimal to an inch fraction is not the same as converting to a <a href="/math-calculators/decimal-to-fraction-calculator">regular fraction</a>. Some rounding is required to snap the value to the nearest power-of-2 denominator.</p>
+
+            <h3 id="decimal-to-fraction">How to Convert Decimal Inches to an Inch Fraction</h3>
+            <p>Follow these three steps to convert a decimal measurement to an inch fraction:</p>
+            <ol>
+                <li><strong>Separate</strong> the whole number from the decimal portion. The whole number is the full inches.</li>
+                <li><strong>Multiply</strong> the decimal portion by your desired precision (16 for 1/16″, 32 for 1/32″, or 64 for 1/64″).</li>
+                <li><strong>Round</strong> the result to the nearest whole number — this becomes the numerator. Place it over the precision denominator and simplify.</li>
+            </ol>
+            <p><strong>Example:</strong> Convert 2.695″ to the nearest 1/16″.</p>
+            <ul>
+                <li>Separate: 2 whole inches + 0.695 decimal</li>
+                <li>Multiply: 0.695 × 16 = 11.12</li>
+                <li>Round: 11.12 → 11</li>
+                <li>Result: 2 11/16″</li>
+            </ul>
+            <p>Note: We use ≈ (approximately equal) rather than = because the rounding introduces a tiny difference. The more precise your denominator (32 or 64), the closer the result.</p>
+
+            <div class="explanation__highlight">
+                <strong>Precision comparison:</strong> 2.695″ = 2 11/16″ (1/16 precision) = 2 11/16″ (1/32 → 2 22/32 = 2 11/16) = 2 44/64 = 2 11/16″. In this case all precisions give the same result, but for values like 2.7″: 1/16 → 2 11/16, 1/32 → 2 22/32 = 2 11/16, 1/64 → 2 45/64.
+            </div>
+
+            <h3 id="fraction-to-decimal">How to Convert Inch Fractions to Decimal</h3>
+            <p>Converting an inch fraction to decimal is simple — just <strong>divide the numerator by the denominator</strong> and add the whole inches.</p>
+            <p><strong>Example:</strong> Convert 3 7/8″ to decimal.</p>
+            <ul>
+                <li>7 ÷ 8 = 0.875</li>
+                <li>3 + 0.875 = <strong>3.875″</strong></li>
+            </ul>
+            <p>Use our <a href="/math-calculators/long-division-calculator">Long Division Calculator</a> for the full division steps.</p>
+
+            <h2 id="inches-to-metric">How to Convert Inches to Metric Measurements</h2>
+            <p>To convert inch fractions to metric, use these conversion factors:</p>
+            <ul>
+                <li><strong>1 inch = 25.4 millimeters (mm)</strong></li>
+                <li><strong>1 inch = 2.54 centimeters (cm)</strong></li>
+            </ul>
+            <p><strong>Example:</strong> Convert 2 11/16″ to millimeters.</p>
+            <ul>
+                <li>2 11/16″ = 2.6875″</li>
+                <li>2.6875 × 25.4 = <strong>68.2625 mm</strong></li>
+                <li>2.6875 × 2.54 = <strong>6.82625 cm</strong></li>
+            </ul>
+
+            <h2 id="tape-measure">How to Find Inch Fractions on a Tape Measure</h2>
+            <p>The markings on a ruler or tape measure vary in length to indicate different fractions of an inch:</p>
+            <ul>
+                <li><strong>Longest marks</strong> (after whole inches) = <strong>1/2″</strong></li>
+                <li><strong>Next longest</strong> = <strong>1/4″</strong> marks (at 1/4, 3/4)</li>
+                <li><strong>Medium marks</strong> = <strong>1/8″</strong> marks (at 1/8, 3/8, 5/8, 7/8)</li>
+                <li><strong>Short marks</strong> = <strong>1/16″</strong> marks (at 1/16, 3/16, 5/16, …)</li>
+                <li><strong>Shortest marks</strong> (on precision tapes) = <strong>1/32″</strong> or <strong>1/64″</strong></li>
+            </ul>
+            <p>The key insight: <strong>longer marks = larger fractions</strong>. Count the marks from the last whole inch to find your measurement.</p>
+
+            <h2 id="common-conversions">Common Inch Fraction Conversions</h2>
+            <ul>
+                <li>1/8″ = 0.125″ = 3.175 mm &nbsp;|&nbsp; 1/4″ = 0.25″ = 6.35 mm</li>
+                <li>3/8″ = 0.375″ = 9.525 mm &nbsp;|&nbsp; 1/2″ = 0.5″ = 12.7 mm</li>
+                <li>5/8″ = 0.625″ = 15.875 mm &nbsp;|&nbsp; 3/4″ = 0.75″ = 19.05 mm</li>
+                <li>7/8″ = 0.875″ = 22.225 mm &nbsp;|&nbsp; 1″ = 1.0″ = 25.4 mm</li>
+            </ul>
+
+            <h2 id="faq">Frequently Asked Questions</h2>
+
+            <h3>What is an inch fraction?</h3>
+            <p>An <strong>inch fraction</strong> is a fraction of an inch with a denominator that is a power of 2 — specifically 2, 4, 8, 16, 32, or 64. Examples: 1/2″, 3/8″, 15/16″, 17/32″, 33/64″. These are the fractions you see on standard rulers and tape measures.</p>
+
+            <h3>How big is one inch?</h3>
+            <p>One inch equals <strong>25.4 millimeters</strong> or <strong>2.54 centimeters</strong>. For reference, a standard paperclip is about one inch long, and the diameter of a U.S. quarter coin is approximately one inch.</p>
+
+            <h3>Do you use decimals or fractions for inches?</h3>
+            <p>Both are common. <strong>Fractions</strong> are standard in woodworking, construction, and on tape measures. <strong>Decimals</strong> are preferred in engineering, CNC machining, and when higher precision is needed. Our calculator converts between both formats instantly.</p>
+
+            <h3>Why does the U.S. use inches?</h3>
+            <p>The U.S. inherited the <strong>imperial measurement system</strong> from the British Empire, which adopted these units in 1826. While the UK has since switched primarily to the metric system, the U.S. continues to use imperial units — inches, feet, yards, and miles — for everyday measurements.</p>
+
+            <h3>What is the symbol for inches?</h3>
+            <p>Inches are represented with the abbreviation <strong>in</strong> or the <strong>double prime symbol ″</strong>. For example: 5 inches = 5 in = 5″. Feet use a single prime (′), so 5 feet 3 inches = 5′ 3″.</p>
+        `,
+        formula: {
+            formula: "Inch Fraction = round(decimal × precision) / precision",
+            variables: [
+                { symbol: "decimal", meaning: "The decimal portion of the inch measurement" },
+                { symbol: "precision", meaning: "Desired denominator: 8, 16, 32, or 64" },
+                { symbol: "round()", meaning: "Round to the nearest whole number" },
+                { symbol: "25.4", meaning: "Millimeters per inch (for metric conversion)" },
+            ],
+            example: [
+                { label: "2.695″ → 1/16″", substitution: "0.695 × 16 = 11.12 → round = 11", result: "2 11/16″" },
+                { label: "3 7/8″ → Decimal", substitution: "3 + 7/8 = 3 + 0.875", result: "3.875″" },
+                { label: "3.875″ → mm", substitution: "3.875 × 25.4", result: "98.425 mm" },
+            ],
+        },
+        relatedCalculators: [
+            { title: "Decimal to Fraction", slug: "decimal-to-fraction-calculator", categorySlug: "math-calculators", description: "Convert any decimal to a standard fraction" },
+            { title: "Fraction Calculator", slug: "fraction-calculator", categorySlug: "math-calculators", description: "Add, subtract, multiply inch fractions" },
+            { title: "GCD Calculator", slug: "gcd-calculator", categorySlug: "math-calculators", description: "Simplify inch fractions" },
+            { title: "Long Division Calculator", slug: "long-division-calculator", categorySlug: "math-calculators", description: "Divide to convert fractions to decimals" },
+            { title: "Fraction to Mixed Number", slug: "fraction-to-mixed-number-calculator", categorySlug: "math-calculators", description: "Convert improper inch fractions" },
+        ],
+    },
+
+    /* ─── 16. EQUIVALENT FRACTIONS CALCULATOR — RICH CONTENT ─── */
+    "equivalent-fractions-calculator": {
+        subtitle: "Find equivalent fractions for any fraction. See the simplified form and a list of equivalent fractions generated by multiplying the numerator and denominator.",
+        contentHTML: `
+            <h2 id="how-to-calculate">How to Calculate Equivalent Fractions</h2>
+            <p><strong>Equivalent fractions</strong> are fractions that have the same value but different numerators and denominators. For example, 1/2, 2/4, 3/6, and 5/10 are all equivalent — they all represent the same amount (half).</p>
+            <p>Finding equivalent fractions is a two-step process: simplify first, then multiply to generate new equivalents.</p>
+
+            <h3 id="step-reduce">Step One: Reduce to Simplest Form</h3>
+            <p>Find the <a href="/math-calculators/gcd-calculator">Greatest Common Divisor (GCD)</a> of the numerator and denominator, then divide both by it.</p>
+            <p><strong>Example:</strong> Simplify 6/9.</p>
+            <ul>
+                <li>GCD(6, 9) = 3</li>
+                <li>6 ÷ 3 = 2, 9 ÷ 3 = 3</li>
+                <li>6/9 = <strong>2/3</strong> (simplest form)</li>
+            </ul>
+
+            <h3 id="step-multiply">Step Two: Generate Equivalent Fractions</h3>
+            <p>Multiply both the numerator and denominator by the same number (2, 3, 4, …) to create new equivalent fractions.</p>
+            <p><strong>Example:</strong> Starting from 2/3, generate equivalents:</p>
+            <ul>
+                <li>2/3 × 2/2 = <strong>4/6</strong></li>
+                <li>2/3 × 3/3 = <strong>6/9</strong></li>
+                <li>2/3 × 4/4 = <strong>8/12</strong></li>
+                <li>2/3 × 5/5 = <strong>10/15</strong></li>
+                <li>2/3 × 10/10 = <strong>20/30</strong></li>
+            </ul>
+
+            <div class="explanation__highlight">
+                <strong>Key principle:</strong> Multiplying (or dividing) both the numerator and denominator by the same non-zero number does not change the value of the fraction. This is because you're multiplying by 1 (e.g., 3/3 = 1).
+            </div>
+
+            <h2 id="check-if-equivalent">How to Check if Two Fractions Are Equivalent</h2>
+            <p>There are three reliable methods to determine whether two fractions are equivalent:</p>
+
+            <h3 id="method-reduce">Method 1: Reduce Both to Simplest Form</h3>
+            <p>Simplify both fractions using their GCD. If the simplified forms are identical, the fractions are equivalent.</p>
+            <p><strong>Example:</strong> Are 5/10 and 6/12 equivalent?</p>
+            <ul>
+                <li>5/10: GCD(5,10) = 5 → 5/10 = <strong>1/2</strong></li>
+                <li>6/12: GCD(6,12) = 6 → 6/12 = <strong>1/2</strong></li>
+                <li>Both equal 1/2, so <strong>yes, they are equivalent</strong>. ✓</li>
+            </ul>
+
+            <h3 id="method-decimal">Method 2: Convert to Decimals</h3>
+            <p>Divide the numerator by the denominator for each fraction. If the decimals are equal, the fractions are equivalent.</p>
+            <ul>
+                <li>5 ÷ 10 = <strong>0.5</strong></li>
+                <li>6 ÷ 12 = <strong>0.5</strong></li>
+                <li>Equal decimals → <strong>equivalent</strong>. ✓</li>
+            </ul>
+
+            <h3 id="method-cross-multiply">Method 3: Cross Multiplication</h3>
+            <p>For fractions a/b and c/d: if a × d = b × c, the fractions are equivalent.</p>
+            <p><strong>Example:</strong> Are 3/4 and 9/12 equivalent?</p>
+            <ul>
+                <li>3 × 12 = 36</li>
+                <li>4 × 9 = 36</li>
+                <li>36 = 36 → <strong>equivalent</strong>. ✓</li>
+            </ul>
+            <p>Use our <a href="/math-calculators/compare-fractions-calculator">Compare Fractions Calculator</a> to check equivalence automatically.</p>
+
+            <h2 id="why-equivalent-fractions">Why Are Equivalent Fractions Important?</h2>
+            <p>Equivalent fractions are used everywhere in math and daily life:</p>
+            <ul>
+                <li><strong>Adding fractions:</strong> You need a <a href="/math-calculators/lcm-calculator">common denominator</a>, which requires finding equivalent fractions. To add 1/3 + 1/4, convert to 4/12 + 3/12 = 7/12.</li>
+                <li><strong>Comparing fractions:</strong> Convert to equivalent fractions with the same denominator to see which is larger.</li>
+                <li><strong>Simplifying:</strong> Reducing fractions to simplest form means finding the smallest equivalent fraction.</li>
+                <li><strong>Measurements:</strong> 1/2 inch = 2/4 inch = 4/8 inch = 8/16 inch — all the same measurement on a tape measure.</li>
+                <li><strong>Cooking:</strong> Doubling a recipe that calls for 1/3 cup? You need 2/3 cup — an equivalent fraction scaled up.</li>
+            </ul>
+
+            <h2 id="faq">Frequently Asked Questions</h2>
+
+            <h3>What are equivalent fractions?</h3>
+            <p>Equivalent fractions are fractions that represent the <strong>same value</strong> despite having different numerators and denominators. For example, 1/2 = 2/4 = 3/6 = 50/100. You create them by multiplying or dividing both parts of the fraction by the same number.</p>
+
+            <h3>How many equivalent fractions does a fraction have?</h3>
+            <p><strong>Infinitely many.</strong> Since you can multiply the numerator and denominator by any number (2, 3, 4, …, 100, …, 1000, …), there is no limit to how many equivalent fractions you can find. For example, 1/2 = 2/4 = 3/6 = 4/8 = … = 500/1000 = …</p>
+
+            <h3>Is 0/5 equivalent to 0/10?</h3>
+            <p>Yes. Any fraction with a numerator of 0 equals 0, regardless of the denominator (as long as the denominator is not also 0). So 0/5 = 0/10 = 0/1000 = 0.</p>
+
+            <h3>How do you simplify a fraction to find its simplest equivalent?</h3>
+            <p>Find the <a href="/math-calculators/gcd-calculator">GCD (Greatest Common Divisor)</a> of the numerator and denominator, then divide both by it. The result is the simplest equivalent fraction. For example, 18/24: GCD(18,24) = 6 → 18÷6 / 24÷6 = <strong>3/4</strong>.</p>
+
+            <h3>Can mixed numbers have equivalent fractions?</h3>
+            <p>Yes! First convert the <a href="/math-calculators/fraction-to-mixed-number-calculator">mixed number to an improper fraction</a>, then find equivalents. For example, 1 1/2 = 3/2 → 6/4, 9/6, 12/8, etc.</p>
+        `,
+        formula: {
+            formula: "a/b = (a×n) / (b×n) for any non-zero n",
+            variables: [
+                { symbol: "a/b", meaning: "Original fraction" },
+                { symbol: "n", meaning: "Any non-zero multiplier (2, 3, 4, …)" },
+                { symbol: "(a×n)/(b×n)", meaning: "Equivalent fraction — same value, different form" },
+            ],
+            example: [
+                { label: "6/9 simplified", substitution: "GCD(6,9) = 3 → 6÷3 / 9÷3", result: "2/3" },
+                { label: "2/3 × 4", substitution: "(2×4) / (3×4)", result: "8/12" },
+                { label: "Check: 5/10 ≟ 6/12", substitution: "5×12 = 60, 10×6 = 60", result: "60 = 60 → Equivalent ✓" },
+            ],
+        },
+        relatedCalculators: [
+            { title: "GCD Calculator", slug: "gcd-calculator", categorySlug: "math-calculators", description: "Find the GCD to simplify fractions" },
+            { title: "Fraction Calculator", slug: "fraction-calculator", categorySlug: "math-calculators", description: "Add, subtract, multiply, divide fractions" },
+            { title: "Compare Fractions", slug: "compare-fractions-calculator", categorySlug: "math-calculators", description: "Check if fractions are equivalent" },
+            { title: "LCM Calculator", slug: "lcm-calculator", categorySlug: "math-calculators", description: "Find common denominators" },
+            { title: "Fraction to Mixed Number", slug: "fraction-to-mixed-number-calculator", categorySlug: "math-calculators", description: "Convert improper fractions to mixed numbers" },
+        ],
+    },
+
+    /* ─── 17. LCD CALCULATOR — RICH CONTENT ─── */
+    "lcd-calculator": {
+        subtitle: "Find the least common denominator (LCD) for two or more fractions. See step-by-step solutions using prime factorization, the listing method, and the GCD formula.",
+        contentHTML: `
+            <h2 id="how-to-find">How to Find the Least Common Denominator</h2>
+            <p>The <strong>denominator</strong> is the bottom number of a <a href="/math-calculators/fraction-calculator">fraction</a> — for 1/3, the denominator is 3. A <strong>common denominator</strong> is a denominator shared by two or more fractions. The <strong>least common denominator (LCD)</strong> is the <em>smallest</em> number that every denominator divides into evenly.</p>
+            <p>For example, the LCD of 1/3 and 2/5 is <strong>15</strong>, because 15 ÷ 3 = 5 and 15 ÷ 5 = 3 — both divide evenly with no remainder.</p>
+            <p>There are three methods to find the LCD.</p>
+
+            <h3 id="method-factorization">Method 1: Prime Factorization</h3>
+            <p>Find the prime factors of each denominator, then multiply all the prime factors together, taking common factors only once.</p>
+            <p><strong>Example:</strong> Find the LCD of 10 and 15.</p>
+            <ol>
+                <li>Prime factors of 10: <strong>2 × 5</strong></li>
+                <li>Prime factors of 15: <strong>3 × 5</strong></li>
+                <li>Common factor: 5 (use only once)</li>
+                <li>LCD = 2 × 3 × 5 = <strong>30</strong></li>
+            </ol>
+
+            <h3 id="method-multiples">Method 2: Listing Multiples</h3>
+            <p>List multiples of each denominator and find the smallest number that appears in both lists.</p>
+            <p><strong>Example:</strong> Find the LCD of 4 and 6.</p>
+            <ul>
+                <li>Multiples of 4: 4, 8, <strong>12</strong>, 16, 20, <strong>24</strong>, …</li>
+                <li>Multiples of 6: 6, <strong>12</strong>, 18, <strong>24</strong>, 30, …</li>
+                <li>Common multiples: 12, 24, 36, … → Smallest = <strong>12</strong></li>
+            </ul>
+
+            <h3 id="method-division">Method 3: Using the GCD Formula</h3>
+            <p>The fastest method: LCD = (a × b) / <a href="/math-calculators/gcd-calculator">GCD(a, b)</a>, where a and b are the two denominators.</p>
+            <p><strong>Example:</strong> Find the LCD of 3 and 5.</p>
+            <ul>
+                <li>GCD(3, 5) = 1 (they share no common factors)</li>
+                <li>LCD = (3 × 5) / 1 = <strong>15</strong></li>
+            </ul>
+            <p><strong>Another example:</strong> LCD of 8 and 12.</p>
+            <ul>
+                <li>GCD(8, 12) = 4</li>
+                <li>LCD = (8 × 12) / 4 = 96 / 4 = <strong>24</strong></li>
+            </ul>
+
+            <div class="explanation__highlight">
+                <strong>Quick check:</strong> After finding the LCD, verify that each denominator divides into it evenly. If LCD = 24: 24 ÷ 8 = 3 ✓, 24 ÷ 12 = 2 ✓.
+            </div>
+
+            <h2 id="using-lcd">How to Use the LCD to Add Fractions</h2>
+            <p>The main reason to find the LCD is so you can <strong>add or subtract fractions</strong> with different denominators. Here's the process:</p>
+            <ol>
+                <li>Find the LCD of the denominators.</li>
+                <li>Convert each fraction to an <a href="/math-calculators/equivalent-fractions-calculator">equivalent fraction</a> with the LCD as the denominator.</li>
+                <li>Add (or subtract) the numerators.</li>
+                <li>Simplify the result if needed.</li>
+            </ol>
+            <p><strong>Example:</strong> 1/3 + 2/5</p>
+            <ul>
+                <li>LCD of 3 and 5 = 15</li>
+                <li>1/3 = 5/15 (multiply by 5/5)</li>
+                <li>2/5 = 6/15 (multiply by 3/3)</li>
+                <li>5/15 + 6/15 = <strong>11/15</strong></li>
+            </ul>
+
+            <h2 id="lcd-vs-lcm-vs-gcf">LCD vs. LCM vs. GCF — What's the Difference?</h2>
+            <ul>
+                <li><strong>LCD (Least Common Denominator):</strong> The smallest common multiple of fraction <em>denominators</em>. Used to add/subtract fractions.</li>
+                <li><strong>LCM (Least Common Multiple):</strong> The smallest common multiple of any two (or more) numbers — not just denominators. The LCD <em>is</em> the LCM of the denominators.</li>
+                <li><strong>GCF/GCD (Greatest Common Factor/Divisor):</strong> The <em>largest</em> number that divides both numbers evenly. Used to <em>simplify</em> fractions and also to <em>compute</em> the LCD via the formula LCD = (a × b) / GCD.</li>
+            </ul>
+
+            <h2 id="faq">Frequently Asked Questions</h2>
+
+            <h3>What is the least common denominator used for?</h3>
+            <p>The LCD is used to convert fractions to <a href="/math-calculators/equivalent-fractions-calculator">equivalent fractions</a> with the same denominator so you can <strong>add, subtract, or compare</strong> them. Without a common denominator, you cannot directly combine fractions.</p>
+
+            <h3>Are LCD and LCM the same thing?</h3>
+            <p>They're related but not identical. The <strong>LCM</strong> is the least common multiple of any set of numbers. The <strong>LCD</strong> is specifically the LCM of the <em>denominators</em> of two or more fractions. So the LCD is a specific application of the LCM concept.</p>
+
+            <h3>What is the difference between LCD and GCF?</h3>
+            <p>They serve opposite purposes. The <strong>GCF</strong> (Greatest Common Factor) is the largest number that divides into all given numbers — used to <em>simplify</em> fractions. The <strong>LCD</strong> is the smallest number that all denominators divide into — used to find <em>common denominators</em> for adding fractions.</p>
+
+            <h3>What if the denominators are already the same?</h3>
+            <p>If the fractions already have the same denominator, the LCD is simply that denominator. For example, the LCD of 3/7 and 5/7 is just <strong>7</strong>. You can add them directly: 3/7 + 5/7 = 8/7.</p>
+
+            <h3>Can you find the LCD of more than two fractions?</h3>
+            <p>Yes! Find the LCD of the first two denominators, then find the LCD of that result with the third denominator, and so on. For example, LCD of 2, 3, and 5: LCD(2,3) = 6, then LCD(6,5) = <strong>30</strong>.</p>
+        `,
+        formula: {
+            formula: "LCD = (a × b) / GCD(a, b)",
+            variables: [
+                { symbol: "a, b", meaning: "The two denominators" },
+                { symbol: "GCD(a,b)", meaning: "Greatest Common Divisor of a and b" },
+                { symbol: "LCD", meaning: "Least Common Denominator — smallest number divisible by both" },
+            ],
+            example: [
+                { label: "LCD(3, 5)", substitution: "(3 × 5) / GCD(3,5) = 15 / 1", result: "15" },
+                { label: "LCD(8, 12)", substitution: "(8 × 12) / GCD(8,12) = 96 / 4", result: "24" },
+                { label: "LCD(10, 15)", substitution: "(10 × 15) / GCD(10,15) = 150 / 5", result: "30" },
+            ],
+        },
+        relatedCalculators: [
+            { title: "GCD Calculator", slug: "gcd-calculator", categorySlug: "math-calculators", description: "Find the GCD used in the LCD formula" },
+            { title: "LCM Calculator", slug: "lcm-calculator", categorySlug: "math-calculators", description: "Find the least common multiple of any numbers" },
+            { title: "Fraction Calculator", slug: "fraction-calculator", categorySlug: "math-calculators", description: "Add and subtract fractions using the LCD" },
+            { title: "Equivalent Fractions", slug: "equivalent-fractions-calculator", categorySlug: "math-calculators", description: "Convert fractions to equivalent forms" },
+            { title: "Compare Fractions", slug: "compare-fractions-calculator", categorySlug: "math-calculators", description: "Compare fractions using a common denominator" },
+        ],
+    },
+
+    /* ─── 18. MIXED NUMBER CALCULATOR — RICH CONTENT ─── */
+    "mixed-number-calculator": {
+        subtitle: "Add, subtract, multiply, or divide mixed numbers and fractions. See the full step-by-step solution with conversion to improper fractions, LCD, and simplification.",
+        contentHTML: `
+            <h2 id="how-to-calculate">How to Calculate Mixed Numbers</h2>
+            <p>A <strong>mixed number</strong> combines a whole number with a <a href="/math-calculators/fraction-calculator">fraction</a> — like 1 2/3 or 3 1/4. Calculating with mixed numbers is similar to calculating with regular fractions, but with one extra step: you first convert each mixed number to an <strong>improper fraction</strong>.</p>
+
+            <h3 id="step-convert">Step One: Convert to Improper Fractions</h3>
+            <p>Multiply the whole number by the denominator, then add the numerator. Keep the same denominator.</p>
+            <p><strong>Formula:</strong> w n/d = (w × d + n) / d</p>
+            <p><strong>Example:</strong> Convert 1 2/3 and 1 3/4 to improper fractions.</p>
+            <ul>
+                <li>1 2/3 = (1 × 3 + 2) / 3 = <strong>5/3</strong></li>
+                <li>1 3/4 = (1 × 4 + 3) / 4 = <strong>7/4</strong></li>
+            </ul>
+            <p>Use our <a href="/math-calculators/fraction-to-mixed-number-calculator">Fraction to Mixed Number Calculator</a> for this step.</p>
+
+            <h3 id="step-lcd">Step Two: Find a Common Denominator</h3>
+            <p>For <strong>addition</strong> and <strong>subtraction</strong>, you need fractions with the same denominator. Find the <a href="/math-calculators/lcd-calculator">Least Common Denominator (LCD)</a> and convert both fractions.</p>
+            <p><strong>Continuing the example:</strong></p>
+            <ul>
+                <li>LCD(3, 4) = 12</li>
+                <li>5/3 = (5 × 4) / (3 × 4) = <strong>20/12</strong></li>
+                <li>7/4 = (7 × 3) / (4 × 3) = <strong>21/12</strong></li>
+            </ul>
+
+            <h3 id="step-operate">Step Three: Add or Subtract the Numerators</h3>
+            <p>With matching denominators, add (or subtract) the numerators and keep the denominator.</p>
+            <p>20/12 + 21/12 = (20 + 21) / 12 = <strong>41/12</strong></p>
+
+            <h3 id="step-simplify">Step Four: Simplify and Convert Back</h3>
+            <p>Simplify the fraction using the <a href="/math-calculators/gcd-calculator">GCD</a>, then convert back to a mixed number using <a href="/math-calculators/long-division-calculator">long division</a>.</p>
+            <ul>
+                <li>41/12 — GCD(41, 12) = 1, already simplified</li>
+                <li>41 ÷ 12 = 3 remainder 5</li>
+                <li>Result: 1 2/3 + 1 3/4 = <strong>3 5/12</strong></li>
+            </ul>
+
+            <div class="explanation__highlight">
+                <strong>Tip:</strong> Skip Step Two for multiplication and division — you don't need a common denominator for those operations.
+            </div>
+
+            <h2 id="multiply-mixed">How to Multiply Mixed Numbers</h2>
+            <p>Multiplying mixed numbers is actually <em>simpler</em> than adding them because you don't need a common denominator:</p>
+            <ol>
+                <li>Convert both mixed numbers to improper fractions.</li>
+                <li>Multiply the numerators together and the denominators together.</li>
+                <li>Simplify and convert back to a mixed number.</li>
+            </ol>
+            <p><strong>Example:</strong> 2 1/2 × 1 1/3</p>
+            <ul>
+                <li>2 1/2 = 5/2, 1 1/3 = 4/3</li>
+                <li>5/2 × 4/3 = (5 × 4) / (2 × 3) = 20/6</li>
+                <li>Simplify: GCD(20, 6) = 2 → 10/3</li>
+                <li>Convert: 10 ÷ 3 = 3 R 1 → <strong>3 1/3</strong></li>
+            </ul>
+
+            <h2 id="divide-mixed">How to Divide Mixed Numbers</h2>
+            <p>Dividing mixed numbers uses the "flip and multiply" method:</p>
+            <ol>
+                <li>Convert both mixed numbers to improper fractions.</li>
+                <li><strong>Flip</strong> the second fraction (swap numerator and denominator).</li>
+                <li>Multiply the fractions.</li>
+                <li>Simplify and convert back.</li>
+            </ol>
+            <p><strong>Example:</strong> 3 1/2 ÷ 1 1/4</p>
+            <ul>
+                <li>3 1/2 = 7/2, 1 1/4 = 5/4</li>
+                <li>Flip: 5/4 → 4/5</li>
+                <li>7/2 × 4/5 = 28/10</li>
+                <li>Simplify: GCD(28, 10) = 2 → 14/5</li>
+                <li>Convert: 14 ÷ 5 = 2 R 4 → <strong>2 4/5</strong></li>
+            </ul>
+
+            <h2 id="faq">Frequently Asked Questions</h2>
+
+            <h3>What is the difference between a mixed number and an improper fraction?</h3>
+            <p>A <strong>mixed number</strong> has a whole number and a fraction (e.g., 2 3/4). An <strong>improper fraction</strong> has a numerator ≥ denominator (e.g., 11/4). They represent the same value: 2 3/4 = 11/4. Mixed numbers are easier to read; improper fractions are easier to calculate with.</p>
+
+            <h3>Do I always need to convert to improper fractions first?</h3>
+            <p>Yes — for all four operations. It's the simplest and most reliable approach. Once you've finished calculating, convert the result back to a mixed number for readability.</p>
+
+            <h3>Can I add mixed numbers with different denominators?</h3>
+            <p>Yes, but you must first find a <a href="/math-calculators/lcd-calculator">common denominator</a>. Convert both fractions to <a href="/math-calculators/equivalent-fractions-calculator">equivalent fractions</a> with the same denominator, then add the numerators.</p>
+
+            <h3>Why don't I need a common denominator for multiplication?</h3>
+            <p>When multiplying fractions, you simply multiply numerators together and denominators together. There's no combining of numerators that requires matching denominators. The same applies to division (after flipping the second fraction).</p>
+
+            <h3>How do I subtract a larger mixed number from a smaller one?</h3>
+            <p>The result will be <strong>negative</strong>. Follow the same steps — the answer will naturally come out negative. For example, 1 1/4 − 2 1/2 = 5/4 − 5/2 = 5/4 − 10/4 = −5/4 = <strong>−1 1/4</strong>.</p>
+        `,
+        formula: {
+            formula: "Convert to improper → Operate → Simplify → Convert back",
+            variables: [
+                { symbol: "w n/d → (w×d+n)/d", meaning: "Convert mixed number to improper fraction" },
+                { symbol: "LCD", meaning: "Least Common Denominator (needed for +/−)" },
+                { symbol: "a/b × c/d = ac/bd", meaning: "Multiply numerators & denominators" },
+                { symbol: "a/b ÷ c/d = a/b × d/c", meaning: "Flip second fraction and multiply" },
+            ],
+            example: [
+                { label: "1 2/3 + 1 3/4", substitution: "5/3 + 7/4 = 20/12 + 21/12 = 41/12", result: "3 5/12" },
+                { label: "2 1/2 × 1 1/3", substitution: "5/2 × 4/3 = 20/6 → 10/3", result: "3 1/3" },
+                { label: "3 1/2 ÷ 1 1/4", substitution: "7/2 × 4/5 = 28/10 → 14/5", result: "2 4/5" },
+            ],
+        },
+        relatedCalculators: [
+            { title: "Fraction Calculator", slug: "fraction-calculator", categorySlug: "math-calculators", description: "Perform operations with regular fractions" },
+            { title: "Fraction to Mixed Number", slug: "fraction-to-mixed-number-calculator", categorySlug: "math-calculators", description: "Convert between mixed numbers and improper fractions" },
+            { title: "LCD Calculator", slug: "lcd-calculator", categorySlug: "math-calculators", description: "Find the common denominator for adding" },
+            { title: "GCD Calculator", slug: "gcd-calculator", categorySlug: "math-calculators", description: "Simplify the result" },
+            { title: "Equivalent Fractions", slug: "equivalent-fractions-calculator", categorySlug: "math-calculators", description: "Find fractions with matching denominators" },
+        ],
+    },
 };
 
 export default async function MathCalculatorHubPage({ params }: PageProps) {
