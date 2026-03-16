@@ -1363,6 +1363,76 @@ function ArcLengthCalc() {
     </div></div>);
 }
 
+/* 28. Pentagon Calculator */
+function PentagonCalc() {
+    const [mode, setMode] = useState("side");
+    const [val, setVal] = useState("5");
+    const r = useMemo(() => {
+        const v = parseFloat(val) || 0;
+        const steps: string[] = [];
+        // Constants for regular pentagon
+        const phi = (1 + Math.sqrt(5)) / 2; // golden ratio ≈ 1.618
+        // Derive side length from whichever input
+        let a = 0;
+        if (mode === "side") { a = v; steps.push(`Side length: a = ${v}`); }
+        else if (mode === "perimeter") { a = v / 5; steps.push(`Side from perimeter: a = P/5 = ${v}/5 = ${fmt(a, 6)}`); }
+        else if (mode === "area") {
+            // A = (a²/4)√(5(5+2√5)) → a = √(4A / √(5(5+2√5)))
+            const k = Math.sqrt(5 * (5 + 2 * Math.sqrt(5)));
+            a = Math.sqrt(4 * v / k);
+            steps.push(`Side from area: a = √(4A / √(5(5+2√5))) = ${fmt(a, 6)}`);
+        } else if (mode === "diagonal") {
+            a = v / phi;
+            steps.push(`Side from diagonal: a = d / φ = ${v} / ${fmt(phi, 6)} = ${fmt(a, 6)}`);
+        } else if (mode === "circumradius") {
+            const Rk = Math.sqrt(50 + 10 * Math.sqrt(5)) / 10;
+            a = v / Rk;
+            steps.push(`Side from circumradius: a = R / k = ${fmt(a, 6)}`);
+        } else if (mode === "apothem") {
+            const rk = Math.sqrt(25 + 10 * Math.sqrt(5)) / 10;
+            a = v / rk;
+            steps.push(`Side from apothem: a = r / k = ${fmt(a, 6)}`);
+        }
+        // Compute all properties
+        const area = (a * a / 4) * Math.sqrt(5 * (5 + 2 * Math.sqrt(5)));
+        const perimeter = 5 * a;
+        const diagonal = a * phi;
+        const height = a * Math.sqrt(5 + 2 * Math.sqrt(5)) / 2;
+        const circumR = a * Math.sqrt(50 + 10 * Math.sqrt(5)) / 10;
+        const apothem = a * Math.sqrt(25 + 10 * Math.sqrt(5)) / 10;
+        steps.push(`Area: A = (a²/4)√(5(5+2√5)) = ${fmt(area, 6)}`);
+        steps.push(`Perimeter: P = 5a = ${fmt(perimeter, 6)}`);
+        steps.push(`Diagonal: d = a × φ = ${fmt(a, 4)} × ${fmt(phi, 6)} = ${fmt(diagonal, 6)}`);
+        steps.push(`Height: h = a√(5+2√5)/2 = ${fmt(height, 6)}`);
+        steps.push(`Circumradius: R = ${fmt(circumR, 6)}`);
+        steps.push(`Apothem: r = ${fmt(apothem, 6)}`);
+        steps.push(`Interior angle: 108° (each)`);
+        return { a: fmt(a, 6), area: fmt(area, 6), perimeter: fmt(perimeter, 6), diagonal: fmt(diagonal, 6), height: fmt(height, 6), circumR: fmt(circumR, 6), apothem: fmt(apothem, 6), steps };
+    }, [mode, val]);
+    return (<div className="con-calc"><h3 className="con-calc__title">⬠ Pentagon Calculator</h3><div className="con-calc__inputs">
+        <SelectField label="Known Value" value={mode} onChange={setMode} options={[
+            {value:"side",label:"Side Length (a)"},
+            {value:"perimeter",label:"Perimeter (P)"},
+            {value:"area",label:"Area (A)"},
+            {value:"diagonal",label:"Diagonal (d)"},
+            {value:"circumradius",label:"Circumradius (R)"},
+            {value:"apothem",label:"Apothem / Inradius (r)"},
+        ]} />
+        <InputField label={mode === "side" ? "Side Length (a)" : mode === "perimeter" ? "Perimeter (P)" : mode === "area" ? "Area (A)" : mode === "diagonal" ? "Diagonal (d)" : mode === "circumradius" ? "Circumradius (R)" : "Apothem (r)"} value={val} onChange={setVal} />
+    </div><div className="con-calc__results"><h4>Pentagon Properties</h4>
+        <ResultRow label="Side Length (a)" value={r.a} />
+        <ResultRow label="Area (A)" value={r.area} />
+        <ResultRow label="Perimeter (P)" value={r.perimeter} />
+        <ResultRow label="Diagonal (d)" value={r.diagonal} />
+        <ResultRow label="Height (h)" value={r.height} />
+        <ResultRow label="Circumradius (R)" value={r.circumR} />
+        <ResultRow label="Apothem / Inradius (r)" value={r.apothem} />
+        <ResultRow label="Interior Angle" value="108°" />
+        <h4>Steps</h4>
+        {r.steps.map((s, i) => <ResultRow key={i} label={`Step ${i + 1}`} value={s} />)}
+    </div></div>);
+}
+
 /* ──── DISPATCHER ──── */
 const CALC_MAP: Record<string, React.FC> = {
     "percentage": PercentageCalc,
@@ -1392,6 +1462,7 @@ const CALC_MAP: Record<string, React.FC> = {
     "angle-converter": AngleConverterCalc,
     "parallelogram-area": ParallelogramAreaCalc,
     "arc-length": ArcLengthCalc,
+    "pentagon": PentagonCalc,
 };
 
 export default function MathCalculatorCore({ calcType }: { calcType: string }) {

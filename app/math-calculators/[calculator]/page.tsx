@@ -2453,6 +2453,107 @@ const HUB_CONTENT: Record<string, {
             { title: "Exponent Calculator", slug: "exponent-calculator", categorySlug: "math-calculators", description: "Calculate r² for sector area" },
         ],
     },
+
+    /* ─── 28. PENTAGON — RICH CONTENT ─── */
+    "pentagon-calculator": {
+        subtitle: "Calculate all properties of a regular pentagon — area, perimeter, diagonal, height, circumradius, and apothem — from any known measurement. Step-by-step formulas with golden ratio included.",
+        contentHTML: `
+            <h2 id="what-is-pentagon">What Is a Pentagon?</h2>
+            <p>A <strong>pentagon</strong> is a polygon with <strong>five sides</strong> and five angles. When all sides and angles are equal, it's called a <strong>regular pentagon</strong>. In a regular pentagon:</p>
+            <ul>
+                <li>All five sides are equal length</li>
+                <li>Every interior angle is <strong>108°</strong></li>
+                <li>The sum of all interior angles is <strong>540°</strong></li>
+                <li>It can be divided into <strong>5 isosceles triangles</strong></li>
+            </ul>
+            <p>Our calculator computes every property of a regular pentagon from any single known value — enter the side length, area, perimeter, diagonal, circumradius, or apothem, and all other properties are calculated automatically.</p>
+
+            <h2 id="properties">Pentagon Properties &amp; Formulas</h2>
+
+            <h3 id="area">Area of a Pentagon</h3>
+            <p>The area formula for a regular pentagon involves the square root of 5:</p>
+            <p><strong>A = (a²/4) × √(5(5 + 2√5))</strong></p>
+            <p>This simplifies to approximately <strong>A ≈ 1.72048 × a²</strong>.</p>
+            <p><strong>Example:</strong> For a pentagon with side length 5:</p>
+            <ul>
+                <li>A = (25/4) × √(5 × 9.4721) = 6.25 × √47.3607 = 6.25 × 6.882 ≈ <strong>43.01</strong></li>
+            </ul>
+
+            <h3 id="perimeter">Perimeter of a Pentagon</h3>
+            <p>Since all five sides are equal:</p>
+            <p><strong>P = 5a</strong></p>
+            <p>For a = 5: P = 5 × 5 = <strong>25</strong></p>
+
+            <h3 id="diagonal">Diagonal of a Pentagon</h3>
+            <p>The diagonal connects two non-adjacent vertices. In a regular pentagon, the diagonal-to-side ratio is the famous <strong>golden ratio φ</strong> (phi):</p>
+            <p><strong>d = a × φ = a × (1 + √5)/2 ≈ 1.618 × a</strong></p>
+            <p>For a = 5: d = 5 × 1.618 ≈ <strong>8.09</strong></p>
+            <p>Each pentagon has <strong>5 diagonals</strong>, all of equal length in a regular pentagon.</p>
+
+            <h3 id="height">Height of a Pentagon</h3>
+            <p>The height is the perpendicular distance from one side to the opposite vertex:</p>
+            <p><strong>h = a × √(5 + 2√5) / 2 ≈ 1.539 × a</strong></p>
+            <p>For a = 5: h ≈ 5 × 1.539 ≈ <strong>7.69</strong></p>
+
+            <h3 id="circumradius">Circumradius (R)</h3>
+            <p>The <strong>circumradius</strong> is the radius of the circle that passes through all five vertices (circumscribed circle):</p>
+            <p><strong>R = a × √(50 + 10√5) / 10 ≈ 0.851 × a</strong></p>
+            <p>For a = 5: R ≈ <strong>4.253</strong></p>
+
+            <h3 id="apothem">Apothem / Inradius (r)</h3>
+            <p>The <strong>apothem</strong> (or inradius) is the perpendicular distance from the center to the midpoint of a side (inscribed circle radius):</p>
+            <p><strong>r = a × √(25 + 10√5) / 10 ≈ 0.688 × a</strong></p>
+            <p>For a = 5: r ≈ <strong>3.441</strong></p>
+
+            <h2 id="golden-ratio">The Golden Ratio &amp; Pentagons</h2>
+            <p>The regular pentagon has a deep connection to the <strong>golden ratio φ ≈ 1.61803</strong>. The ratio of the diagonal to the side length <em>equals</em> φ exactly. This makes pentagons a fundamental shape in both mathematics and art.</p>
+            <p>The golden ratio also appears in: the Fibonacci sequence, the Parthenon's proportions, sunflower seed spirals, and the famous <strong>pentagram</strong> (five-pointed star drawn inside a pentagon).</p>
+
+            <div class="explanation__highlight">
+                <strong>Quick approximations:</strong> Area ≈ 1.72 × a², Diagonal ≈ 1.618 × a (golden ratio), Height ≈ 1.539 × a, Circumradius ≈ 0.851 × a, Apothem ≈ 0.688 × a.
+            </div>
+
+            <h2 id="faq">Frequently Asked Questions</h2>
+
+            <h3>What is a regular vs. irregular pentagon?</h3>
+            <p>A <strong>regular pentagon</strong> has all five sides equal and all five angles equal (108° each). An <strong>irregular pentagon</strong> has sides and angles of different lengths and measures. Our calculator handles regular pentagons only, since irregular pentagons require all five side lengths and additional information to solve.</p>
+
+            <h3>How many diagonals does a pentagon have?</h3>
+            <p>A pentagon has <strong>5 diagonals</strong>. The formula for the number of diagonals in any polygon is n(n−3)/2. For a pentagon: 5(5−3)/2 = 5. In a regular pentagon, all diagonals are the same length.</p>
+
+            <h3>Why is the interior angle 108°?</h3>
+            <p>The sum of interior angles of any polygon is (n−2) × 180°. For a pentagon: (5−2) × 180° = 540°. Dividing equally among 5 angles: 540° / 5 = <strong>108°</strong>.</p>
+
+            <h3>What is the difference between circumradius and apothem?</h3>
+            <p>The <strong>circumradius (R)</strong> is the distance from the center to a vertex (corner). The <strong>apothem (r)</strong> is the distance from the center to the midpoint of a side. The circumradius is always larger: R ≈ 1.236 × r.</p>
+
+            <h3>Where are pentagons found in real life?</h3>
+            <p>The most famous example is the <strong>Pentagon building</strong> in Washington, D.C. Pentagons also appear in soccer ball patterns, certain crystals, starfish body plans, and many tiling patterns. The pentagram (five-pointed star) inscribed in a pentagon is an ancient mathematical symbol.</p>
+        `,
+        formula: {
+            formula: "A = (a²/4) × √(5(5 + 2√5))",
+            variables: [
+                { symbol: "a", meaning: "Side length of the regular pentagon" },
+                { symbol: "A", meaning: "Area (≈ 1.72 × a²)" },
+                { symbol: "P", meaning: "Perimeter (= 5a)" },
+                { symbol: "d", meaning: "Diagonal (= a × φ ≈ 1.618a)" },
+                { symbol: "R", meaning: "Circumradius (≈ 0.851a)" },
+                { symbol: "r", meaning: "Apothem / inradius (≈ 0.688a)" },
+            ],
+            example: [
+                { label: "Side = 5", substitution: "A = (25/4)√(5×9.472)", result: "43.01" },
+                { label: "Perimeter", substitution: "P = 5 × 5", result: "25" },
+                { label: "Diagonal", substitution: "d = 5 × 1.618", result: "8.09" },
+            ],
+        },
+        relatedCalculators: [
+            { title: "Parallelogram Area", slug: "parallelogram-area-calculator", categorySlug: "math-calculators", description: "Calculate parallelogram area" },
+            { title: "Arc Length Calculator", slug: "arc-length-calculator", categorySlug: "math-calculators", description: "Calculate arc length and sector area" },
+            { title: "Angle Converter", slug: "angle-converter-calculator", categorySlug: "math-calculators", description: "Convert between angle units" },
+            { title: "Percentage Calculator", slug: "percentage-calculator", categorySlug: "math-calculators", description: "Calculate area ratios" },
+            { title: "Exponent Calculator", slug: "exponent-calculator", categorySlug: "math-calculators", description: "Calculate powers for formulas" },
+        ],
+    },
 };
 
 export default async function MathCalculatorHubPage({ params }: PageProps) {

@@ -12056,5 +12056,19 @@
     "defaults": { "amount": 0, "rate": 0, "tenure": 0 },
     "sliderRanges": { "amount": { "min": 0, "max": 0, "step": 0 }, "rate": { "min": 0, "max": 0, "step": 0 }, "tenure": { "min": 0, "max": 0, "step": 0 } },
     "keywords": "arc length calculator, arc length formula, sector arc length, arc of a circle, chord length calculator, sector area calculator, central angle arc length"
+  },
+  {
+    "id": "pentagon-calculator",
+    "category": "math",
+    "title": "Pentagon Calculator",
+    "slug": "pentagon-calculator",
+    "categorySlug": "math-calculators",
+    "icon": "⬠",
+    "description": "Calculate all properties of a regular pentagon: area, perimeter, diagonal, height, circumradius, and apothem from any known value. Step-by-step formulas included.",
+    "stars": 5,
+    "calcType": "pentagon",
+    "defaults": { "amount": 0, "rate": 0, "tenure": 0 },
+    "sliderRanges": { "amount": { "min": 0, "max": 0, "step": 0 }, "rate": { "min": 0, "max": 0, "step": 0 }, "tenure": { "min": 0, "max": 0, "step": 0 } },
+    "keywords": "pentagon calculator, area of a pentagon, pentagon perimeter, pentagon diagonal, pentagon height, circumradius pentagon, apothem pentagon, regular pentagon formula"
   }
 ]
