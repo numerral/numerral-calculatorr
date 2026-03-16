@@ -855,6 +855,245 @@ function MixedNumberCalc() {
     </div></div>);
 }
 
+/* 19. Fraction Simplifier */
+function FractionSimplifierCalc() {
+    const [num, setNum] = useState("18"); const [den, setDen] = useState("24");
+    const r = useMemo(() => {
+        const n = parseInt(num) || 0; const d = parseInt(den) || 1;
+        const steps: string[] = [];
+        const absN = Math.abs(n); const absD = Math.abs(d);
+        // Factors
+        const fN: number[] = []; const fD: number[] = [];
+        for (let i = 1; i <= absN; i++) if (absN % i === 0) fN.push(i);
+        for (let i = 1; i <= absD; i++) if (absD % i === 0) fD.push(i);
+        steps.push(`Factors of ${absN}: ${fN.join(", ")}`);
+        steps.push(`Factors of ${absD}: ${fD.join(", ")}`);
+        const g = gcd(absN, absD);
+        steps.push(`Greatest Common Factor: ${g}`);
+        const sn = absN / g; const sd = absD / g;
+        steps.push(`Divide both by ${g}: ${absN}÷${g} / ${absD}÷${g} = ${sn}/${sd}`);
+        const sign = (n < 0) !== (d < 0) ? "-" : "";
+        const simplified = `${sign}${sn}/${sd}`;
+        steps.push(`Simplified form: ${simplified}`);
+        let mixed = simplified;
+        if (sn >= sd && sd > 1) {
+            const q = Math.floor(sn / sd); const rem = sn % sd;
+            mixed = rem > 0 ? `${sign}${q} ${rem}/${sd}` : `${sign}${q}`;
+            steps.push(`As mixed number: ${mixed}`);
+        }
+        const decimal = d !== 0 ? fmt(n / d, 6) : "0";
+        const percent = d !== 0 ? fmt((n / d) * 100, 4) + "%" : "0%";
+        const alreadySimplified = g === 1;
+        if (alreadySimplified) steps.push("This fraction is already in simplest form!");
+        return { simplified, mixed, decimal, percent, alreadySimplified, steps };
+    }, [num, den]);
+    return (<div className="con-calc"><h3 className="con-calc__title">✂️ Fraction Simplifier</h3><div className="con-calc__inputs">
+        <div style={{display:"flex",gap:"var(--s-2)",alignItems:"center"}}>
+            <InputField label="Numerator" value={num} onChange={setNum} />
+            <InputField label="Denominator" value={den} onChange={setDen} />
+        </div>
+    </div><div className="con-calc__results"><h4>Simplified Fraction</h4>
+        <ResultRow label="Simplest Form" value={r.simplified} />
+        <ResultRow label="Mixed Number" value={r.mixed} />
+        <ResultRow label="Decimal" value={r.decimal} />
+        <ResultRow label="Percentage" value={r.percent} />
+        <ResultRow label="Already Simplified?" value={r.alreadySimplified ? "Yes ✔" : "No — reduced above"} />
+        <h4>Steps</h4>
+        {r.steps.map((s, i) => <ResultRow key={i} label={`Step ${i + 1}`} value={s} />)}
+    </div></div>);
+}
+
+/* 20. Mixed Number to Improper Fraction */
+function MixedToImproperCalc() {
+    const [w, setW] = useState("2"); const [n, setN] = useState("1"); const [d, setD] = useState("4");
+    const r = useMemo(() => {
+        const whole = parseInt(w) || 0; const num = parseInt(n) || 0; const den = parseInt(d) || 1;
+        const steps: string[] = [];
+        const neg = whole < 0;
+        const absW = Math.abs(whole);
+        steps.push(`Mixed number: ${whole} ${num}/${den}`);
+        const wholeNum = absW * den;
+        steps.push(`Step 1: Multiply whole × denominator: ${absW} × ${den} = ${wholeNum}`);
+        const impNum = wholeNum + num;
+        steps.push(`Step 2: Add numerator: ${wholeNum} + ${num} = ${impNum}`);
+        const sign = neg ? "-" : "";
+        steps.push(`Improper fraction: ${sign}${impNum}/${den}`);
+        // Simplify
+        const g = gcd(impNum, Math.abs(den));
+        const sn = impNum / g; const sd = Math.abs(den) / g;
+        if (g > 1) steps.push(`Simplify: GCD(${impNum},${Math.abs(den)})=${g} → ${sign}${sn}/${sd}`);
+        const totalVal = neg ? -(absW + num / den) : (absW + num / den);
+        const decimal = fmt(totalVal, 6);
+        const percent = fmt(totalVal * 100, 4) + "%";
+        return { improper: `${sign}${impNum}/${den}`, simplified: `${sign}${sn}/${sd}`, decimal, percent, steps };
+    }, [w, n, d]);
+    return (<div className="con-calc"><h3 className="con-calc__title">🔄 Mixed Number to Improper Fraction</h3><div className="con-calc__inputs">
+        <div style={{display:"flex",gap:"var(--s-2)",alignItems:"center"}}>
+            <InputField label="Whole" value={w} onChange={setW} />
+            <InputField label="Numerator" value={n} onChange={setN} />
+            <InputField label="Denominator" value={d} onChange={setD} />
+        </div>
+    </div><div className="con-calc__results"><h4>Result</h4>
+        <ResultRow label="Improper Fraction" value={r.improper} />
+        <ResultRow label="Simplified" value={r.simplified} />
+        <ResultRow label="Decimal" value={r.decimal} />
+        <ResultRow label="Percentage" value={r.percent} />
+        <h4>Steps</h4>
+        {r.steps.map((s, i) => <ResultRow key={i} label={`Step ${i + 1}`} value={s} />)}
+    </div></div>);
+}
+
+/* 21. Solve for Unknown Fraction */
+function SolveUnknownFractionCalc() {
+    const [pos, setPos] = useState("n1");
+    const [a, setA] = useState(""); const [b, setB] = useState("3");
+    const [c, setC] = useState("3"); const [d, setD] = useState("4");
+    const r = useMemo(() => {
+        const steps: string[] = [];
+        const va = parseFloat(a) || 0; const vb = parseFloat(b) || 0;
+        const vc = parseFloat(c) || 0; const vd = parseFloat(d) || 0;
+        let x = 0;
+        if (pos === "n1") {
+            steps.push(`x/${vb} = ${vc}/${vd}`);
+            steps.push(`Cross multiply: x × ${vd} = ${vc} × ${vb}`);
+            steps.push(`${vd}x = ${vc * vb}`);
+            x = (vc * vb) / vd;
+            steps.push(`x = ${vc * vb} / ${vd} = ${fmt(x, 6)}`);
+        } else if (pos === "d1") {
+            steps.push(`${va}/x = ${vc}/${vd}`);
+            steps.push(`Cross multiply: ${va} × ${vd} = ${vc} × x`);
+            steps.push(`${va * vd} = ${vc}x`);
+            x = (va * vd) / vc;
+            steps.push(`x = ${va * vd} / ${vc} = ${fmt(x, 6)}`);
+        } else if (pos === "n2") {
+            steps.push(`${va}/${vb} = x/${vd}`);
+            steps.push(`Cross multiply: ${va} × ${vd} = x × ${vb}`);
+            steps.push(`${va * vd} = ${vb}x`);
+            x = (va * vd) / vb;
+            steps.push(`x = ${va * vd} / ${vb} = ${fmt(x, 6)}`);
+        } else {
+            steps.push(`${va}/${vb} = ${vc}/x`);
+            steps.push(`Cross multiply: ${va} × x = ${vc} × ${vb}`);
+            steps.push(`${va}x = ${vc * vb}`);
+            x = (vc * vb) / va;
+            steps.push(`x = ${vc * vb} / ${va} = ${fmt(x, 6)}`);
+        }
+        // As fraction
+        const num = Math.round(x * 1000); const den = 1000;
+        const g = gcd(Math.abs(num), den);
+        const sn = num / g; const sd = den / g;
+        if (sd !== 1) steps.push(`As fraction: ${sn}/${sd}`);
+        let mixed = sd === 1 ? `${sn}` : `${sn}/${sd}`;
+        if (Math.abs(sn) >= sd && sd > 1) {
+            const q = Math.floor(Math.abs(sn) / sd); const rem = Math.abs(sn) % sd;
+            const sign = sn < 0 ? "-" : "";
+            mixed = rem > 0 ? `${sign}${q} ${rem}/${sd}` : `${sign}${q}`;
+            steps.push(`As mixed number: ${mixed}`);
+        }
+        return { x: fmt(x, 6), fraction: sd === 1 ? `${sn}` : `${sn}/${sd}`, mixed, steps };
+    }, [pos, a, b, c, d]);
+    const lbl = (p: string, v: string) => p === pos ? "x (unknown)" : v;
+    return (<div className="con-calc"><h3 className="con-calc__title">❓ Solve for Unknown Fraction</h3><div className="con-calc__inputs">
+        <SelectField label="Unknown Position" value={pos} onChange={setPos} options={[{value:"n1",label:"Numerator 1 (x/b = c/d)"},{value:"d1",label:"Denominator 1 (a/x = c/d)"},{value:"n2",label:"Numerator 2 (a/b = x/d)"},{value:"d2",label:"Denominator 2 (a/b = c/x)"}]} />
+        <div style={{display:"flex",gap:"var(--s-2)",alignItems:"center"}}>
+            {pos !== "n1" && <InputField label="a (Num 1)" value={a} onChange={setA} />}
+            {pos !== "d1" && <InputField label="b (Den 1)" value={b} onChange={setB} />}
+            {pos !== "n2" && <InputField label="c (Num 2)" value={c} onChange={setC} />}
+            {pos !== "d2" && <InputField label="d (Den 2)" value={d} onChange={setD} />}
+        </div>
+    </div><div className="con-calc__results"><h4>Solution</h4>
+        <ResultRow label="x" value={r.x} />
+        <ResultRow label="As Fraction" value={r.fraction} />
+        <ResultRow label="Mixed Number" value={r.mixed} />
+        <h4>Steps</h4>
+        {r.steps.map((s, i) => <ResultRow key={i} label={`Step ${i + 1}`} value={s} />)}
+    </div></div>);
+}
+
+/* 22. Fraction to Percent */
+function FractionToPercentCalc() {
+    const [w, setW] = useState("0"); const [n, setN] = useState("3"); const [d, setD] = useState("4");
+    const r = useMemo(() => {
+        const whole = parseInt(w) || 0; const num = parseInt(n) || 0; const den = parseInt(d) || 1;
+        const steps: string[] = [];
+        const totalNum = whole * den + num;
+        if (whole) steps.push(`Convert mixed: ${whole} ${num}/${den} = ${totalNum}/${den}`);
+        const decimal = totalNum / den;
+        steps.push(`Divide: ${totalNum} ÷ ${den} = ${fmt(decimal, 6)}`);
+        const percent = decimal * 100;
+        steps.push(`Multiply by 100: ${fmt(decimal, 6)} × 100 = ${fmt(percent, 4)}%`);
+        // Simplified
+        const g = gcd(Math.abs(totalNum), Math.abs(den));
+        const sn = totalNum / g; const sd = den / g;
+        return { percent: fmt(percent, 4) + "%", decimal: fmt(decimal, 6), fraction: `${totalNum}/${den}`, simplified: `${sn}/${sd}`, steps };
+    }, [w, n, d]);
+    return (<div className="con-calc"><h3 className="con-calc__title">💯 Fraction to Percent Calculator</h3><div className="con-calc__inputs">
+        <div style={{display:"flex",gap:"var(--s-2)",alignItems:"center"}}>
+            <InputField label="Whole (opt)" value={w} onChange={setW} />
+            <InputField label="Numerator" value={n} onChange={setN} />
+            <InputField label="Denominator" value={d} onChange={setD} />
+        </div>
+    </div><div className="con-calc__results"><h4>Result</h4>
+        <ResultRow label="Percentage" value={r.percent} />
+        <ResultRow label="Decimal" value={r.decimal} />
+        <ResultRow label="Fraction" value={r.fraction} />
+        <ResultRow label="Simplified" value={r.simplified} />
+        <h4>Steps</h4>
+        {r.steps.map((s, i) => <ResultRow key={i} label={`Step ${i + 1}`} value={s} />)}
+    </div></div>);
+}
+
+/* 23. Subtract Fractions */
+function SubtractFractionsCalc() {
+    const [n1, setN1] = useState("1"); const [d1, setD1] = useState("2");
+    const [n2, setN2] = useState("1"); const [d2, setD2] = useState("3");
+    const r = useMemo(() => {
+        const a = parseInt(n1) || 0; const b = parseInt(d1) || 1;
+        const c = parseInt(n2) || 0; const d = parseInt(d2) || 1;
+        const steps: string[] = [];
+        steps.push(`${a}/${b} − ${c}/${d}`);
+        const g = gcd(Math.abs(b), Math.abs(d));
+        const lcd = (Math.abs(b) * Math.abs(d)) / g;
+        const m1 = lcd / Math.abs(b); const m2 = lcd / Math.abs(d);
+        const adj1 = a * m1; const adj2 = c * m2;
+        steps.push(`LCD(${b}, ${d}) = ${lcd}`);
+        steps.push(`${a}/${b} = ${adj1}/${lcd}, ${c}/${d} = ${adj2}/${lcd}`);
+        const resN = adj1 - adj2;
+        steps.push(`${adj1} − ${adj2} = ${resN}`);
+        steps.push(`Result: ${resN}/${lcd}`);
+        // Simplify
+        const sign = resN < 0 ? "-" : "";
+        const absN = Math.abs(resN);
+        const g2 = gcd(absN, lcd);
+        const sn = absN / g2; const sd = lcd / g2;
+        if (g2 > 1) steps.push(`Simplify: GCD(${absN},${lcd})=${g2} → ${sign}${sn}/${sd}`);
+        let mixed = `${sign}${sn}/${sd}`;
+        if (sn >= sd && sd > 1) {
+            const q = Math.floor(sn / sd); const rem = sn % sd;
+            mixed = rem > 0 ? `${sign}${q} ${rem}/${sd}` : `${sign}${q}`;
+            steps.push(`As mixed number: ${mixed}`);
+        }
+        const decimal = lcd !== 0 ? fmt(resN / lcd, 6) : "0";
+        return { fraction: `${sign}${sn}/${sd}`, mixed, decimal, steps };
+    }, [n1, d1, n2, d2]);
+    return (<div className="con-calc"><h3 className="con-calc__title">➖ Subtracting Fractions Calculator</h3><div className="con-calc__inputs">
+        <div style={{display:"flex",gap:"var(--s-2)",alignItems:"center"}}>
+            <InputField label="Numerator 1" value={n1} onChange={setN1} />
+            <InputField label="Denominator 1" value={d1} onChange={setD1} />
+        </div>
+        <div style={{display:"flex",gap:"var(--s-2)",alignItems:"center"}}>
+            <InputField label="Numerator 2" value={n2} onChange={setN2} />
+            <InputField label="Denominator 2" value={d2} onChange={setD2} />
+        </div>
+    </div><div className="con-calc__results"><h4>Result</h4>
+        <ResultRow label="Fraction" value={r.fraction} />
+        <ResultRow label="Mixed Number" value={r.mixed} />
+        <ResultRow label="Decimal" value={r.decimal} />
+        <h4>Steps</h4>
+        {r.steps.map((s, i) => <ResultRow key={i} label={`Step ${i + 1}`} value={s} />)}
+    </div></div>);
+}
+
 /* ──── DISPATCHER ──── */
 const CALC_MAP: Record<string, React.FC> = {
     "percentage": PercentageCalc,
@@ -875,6 +1114,11 @@ const CALC_MAP: Record<string, React.FC> = {
     "equivalent-fractions": EquivalentFractionsCalc,
     "lcd": LCDCalc,
     "mixed-number": MixedNumberCalc,
+    "fraction-simplifier": FractionSimplifierCalc,
+    "mixed-to-improper": MixedToImproperCalc,
+    "solve-unknown-fraction": SolveUnknownFractionCalc,
+    "fraction-to-percent": FractionToPercentCalc,
+    "subtract-fractions": SubtractFractionsCalc,
 };
 
 export default function MathCalculatorCore({ calcType }: { calcType: string }) {

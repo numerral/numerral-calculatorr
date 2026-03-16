@@ -1538,6 +1538,496 @@ const HUB_CONTENT: Record<string, {
             { title: "Equivalent Fractions", slug: "equivalent-fractions-calculator", categorySlug: "math-calculators", description: "Find fractions with matching denominators" },
         ],
     },
+
+    /* ─── 19. FRACTION SIMPLIFIER — RICH CONTENT ─── */
+    "fraction-simplifier": {
+        subtitle: "Simplify any fraction to its lowest terms. Reduce proper, improper, and negative fractions using GCD division with step-by-step work shown.",
+        contentHTML: `
+            <h2 id="how-to-simplify">How to Simplify a Fraction</h2>
+            <p>A <strong>simplified fraction</strong> (also called a <em>reduced fraction</em>) is one where the numerator and denominator are as small as possible while still being whole numbers. The key: the only common factor between them is 1.</p>
+            <p>For example, 6/8 and 3/4 are <a href="/math-calculators/equivalent-fractions-calculator">equivalent fractions</a> — they represent the same value. But <strong>3/4</strong> is in simplest form because the only common factor of 3 and 4 is 1.</p>
+
+            <h3 id="step-gcf">Step One: Find the Greatest Common Factor (GCF)</h3>
+            <p>List all factors of both the numerator and denominator, then identify the largest factor they share.</p>
+            <p><strong>Example:</strong> Simplify 18/24.</p>
+            <ul>
+                <li>Factors of 18: 1, 2, 3, <strong>6</strong>, 9, 18</li>
+                <li>Factors of 24: 1, 2, 3, 4, <strong>6</strong>, 8, 12, 24</li>
+                <li>Common factors: 1, 2, 3, <strong>6</strong></li>
+                <li>Greatest Common Factor = <strong>6</strong></li>
+            </ul>
+            <p>Use our <a href="/math-calculators/gcd-calculator">GCD Calculator</a> for a faster way to find the GCF.</p>
+
+            <h3 id="step-divide">Step Two: Divide by the GCF</h3>
+            <p>Divide both the numerator and denominator by the greatest common factor.</p>
+            <ul>
+                <li>18 ÷ 6 = 3</li>
+                <li>24 ÷ 6 = 4</li>
+                <li>18/24 = <strong>3/4</strong> ✓</li>
+            </ul>
+
+            <div class="explanation__highlight">
+                <strong>Verification:</strong> A fraction is fully simplified when GCF(numerator, denominator) = 1. For 3/4: GCF(3, 4) = 1 ✓.
+            </div>
+
+            <h2 id="division-ladder">The Division Ladder — An Easier Method</h2>
+            <p>Instead of finding all factors, repeatedly divide both numbers by the smallest common factor until no more common factors exist:</p>
+            <p><strong>Example:</strong> Simplify 8/12 using the division ladder.</p>
+            <ol>
+                <li>Both are even → divide by 2: 8/12 → 4/6</li>
+                <li>Both are even → divide by 2: 4/6 → 2/3</li>
+                <li>2 and 3 share no common factor → <strong>done!</strong></li>
+            </ol>
+            <p>Result: 8/12 = <strong>2/3</strong></p>
+            <p>This method is great when you don't want to compute the GCF upfront — you just keep dividing by small primes (2, 3, 5, …) until you can't anymore.</p>
+
+            <h2 id="improper-fractions">How to Simplify Improper Fractions</h2>
+            <p>An <strong>improper fraction</strong> has a numerator larger than the denominator (like 12/8). First simplify, then convert to a <a href="/math-calculators/fraction-to-mixed-number-calculator">mixed number</a>.</p>
+            <p><strong>Example:</strong> Simplify 12/8.</p>
+            <ul>
+                <li>GCF(12, 8) = 4</li>
+                <li>12/8 = 3/2 (simplified)</li>
+                <li>3 ÷ 2 = 1 remainder 1 → <strong>1 1/2</strong> (as mixed number)</li>
+            </ul>
+            <p>Use our <a href="/math-calculators/long-division-calculator">Long Division Calculator</a> for that final step.</p>
+
+            <h2 id="negative-fractions">Simplifying Negative Fractions</h2>
+            <p>For negative fractions like −6/8 or 6/(−8):</p>
+            <ol>
+                <li>Note the sign — if exactly one of numerator or denominator is negative, the fraction is negative.</li>
+                <li>Simplify the absolute values: 6/8 → 3/4.</li>
+                <li>Reattach the sign: <strong>−3/4</strong>.</li>
+            </ol>
+            <p>If <em>both</em> are negative (−6/−8), the negatives cancel and the result is <strong>positive</strong>: 3/4.</p>
+
+            <h2 id="faq">Frequently Asked Questions</h2>
+
+            <h3>What does it mean to simplify a fraction?</h3>
+            <p>Simplifying means expressing a fraction in its <strong>lowest terms</strong> — the numerator and denominator have no common factor other than 1. The value of the fraction doesn't change; only the way it's written becomes simpler. For example, 6/8 simplified is 3/4.</p>
+
+            <h3>How do you know when a fraction is already in simplest form?</h3>
+            <p>A fraction is in simplest form when the <a href="/math-calculators/gcd-calculator">GCF (Greatest Common Factor)</a> of the numerator and denominator is <strong>1</strong>. For example, 3/4 has GCF(3,4) = 1, so it's already simplified. But 6/8 has GCF(6,8) = 2, so it can still be reduced.</p>
+
+            <h3>What is the difference between reducing and simplifying a fraction?</h3>
+            <p>They're often used interchangeably. <strong>Reducing</strong> typically means dividing both parts by any common factor (making the fraction smaller). <strong>Simplifying</strong> means reducing all the way to the <em>lowest</em> terms by dividing by the GCF. So simplifying is the complete version of reducing.</p>
+
+            <h3>Can fractions with prime numbers be simplified?</h3>
+            <p>If both the numerator and denominator are prime numbers (and different), the fraction is <strong>already in simplest form</strong> because primes only have factors of 1 and themselves. For example, 3/7 cannot be simplified. However, 5/5 = 1.</p>
+
+            <h3>Is 0/5 a simplified fraction?</h3>
+            <p>Yes — any fraction with a <strong>numerator of 0</strong> equals 0 and is already in simplest form, as long as the denominator is not also 0 (which would be undefined). The simplest way to write 0/5 is just <strong>0</strong>.</p>
+        `,
+        formula: {
+            formula: "Simplified = (n ÷ GCF) / (d ÷ GCF)",
+            variables: [
+                { symbol: "n", meaning: "Numerator of the original fraction" },
+                { symbol: "d", meaning: "Denominator of the original fraction" },
+                { symbol: "GCF", meaning: "Greatest Common Factor of n and d" },
+            ],
+            example: [
+                { label: "18/24", substitution: "GCF(18,24) = 6 → 18÷6 / 24÷6", result: "3/4" },
+                { label: "12/8 (improper)", substitution: "GCF(12,8) = 4 → 12÷4 / 8÷4 = 3/2", result: "1 1/2" },
+                { label: "−6/8 (negative)", substitution: "GCF(6,8) = 2 → 6÷2 / 8÷2 = 3/4", result: "−3/4" },
+            ],
+        },
+        relatedCalculators: [
+            { title: "GCD Calculator", slug: "gcd-calculator", categorySlug: "math-calculators", description: "Find the GCF to simplify" },
+            { title: "Equivalent Fractions", slug: "equivalent-fractions-calculator", categorySlug: "math-calculators", description: "Find equivalent fractions" },
+            { title: "Fraction to Mixed Number", slug: "fraction-to-mixed-number-calculator", categorySlug: "math-calculators", description: "Convert improper fractions" },
+            { title: "Fraction Calculator", slug: "fraction-calculator", categorySlug: "math-calculators", description: "Add, subtract, multiply fractions" },
+            { title: "Long Division Calculator", slug: "long-division-calculator", categorySlug: "math-calculators", description: "Convert to mixed numbers" },
+        ],
+    },
+
+    /* ─── 20. MIXED NUMBER TO IMPROPER FRACTION — RICH CONTENT ─── */
+    "mixed-number-to-fraction-calculator": {
+        subtitle: "Convert a mixed number to an improper fraction. See the step-by-step conversion with formula, simplification, and decimal equivalent.",
+        contentHTML: `
+            <h2 id="how-to-convert">How to Convert a Mixed Number to an Improper Fraction</h2>
+            <p>A <strong>mixed number</strong> combines a whole number with a proper fraction — like 2 1/4. An <strong>improper fraction</strong> has a numerator that is greater than or equal to the denominator — like 9/4. Both represent the same value, just written differently.</p>
+            <p>Converting a mixed number to an improper fraction takes just two simple steps.</p>
+
+            <h3 id="step-multiply">Step One: Multiply the Whole Number by the Denominator</h3>
+            <p>Multiply the whole number part by the fraction's denominator. This tells you how many "fractional parts" the whole number contains.</p>
+            <p><strong>Example:</strong> Convert 2 1/4 to an improper fraction.</p>
+            <ul>
+                <li>Whole number: 2, Denominator: 4</li>
+                <li>2 × 4 = <strong>8</strong></li>
+            </ul>
+            <p>Think of it this way: 2 whole pizzas, each cut into 4 slices = 8 slices total.</p>
+
+            <h3 id="step-add">Step Two: Add the Numerator</h3>
+            <p>Add the original numerator to the result from Step One. This becomes the new numerator of the improper fraction.</p>
+            <ul>
+                <li>8 + 1 = <strong>9</strong></li>
+                <li>Place over the original denominator: <strong>9/4</strong></li>
+            </ul>
+            <p>So 2 1/4 = <strong>9/4</strong>. That's 8 slices from 2 whole pizzas plus 1 extra slice = 9 slices of size 1/4.</p>
+
+            <div class="explanation__highlight">
+                <strong>Quick formula:</strong> w n/d = (w × d + n) / d. In one step: multiply whole by denominator, add numerator, keep denominator.
+            </div>
+
+            <h2 id="more-examples">More Worked Examples</h2>
+            <p><strong>Example 1:</strong> Convert 3 2/5 to an improper fraction.</p>
+            <ul>
+                <li>3 × 5 = 15</li>
+                <li>15 + 2 = 17</li>
+                <li>3 2/5 = <strong>17/5</strong></li>
+            </ul>
+            <p><strong>Example 2:</strong> Convert 1 7/8 to an improper fraction.</p>
+            <ul>
+                <li>1 × 8 = 8</li>
+                <li>8 + 7 = 15</li>
+                <li>1 7/8 = <strong>15/8</strong></li>
+            </ul>
+            <p><strong>Example 3:</strong> Convert 5 1/3 to an improper fraction.</p>
+            <ul>
+                <li>5 × 3 = 15</li>
+                <li>15 + 1 = 16</li>
+                <li>5 1/3 = <strong>16/3</strong></li>
+            </ul>
+
+            <h2 id="negative-mixed">Negative Mixed Numbers</h2>
+            <p>For negative mixed numbers like −2 1/4:</p>
+            <ol>
+                <li>Ignore the sign and convert as usual: 2 1/4 → 9/4</li>
+                <li>Reattach the negative sign: <strong>−9/4</strong></li>
+            </ol>
+
+            <h2 id="why-convert">Why Convert to Improper Fractions?</h2>
+            <p>You need improper fractions when performing <strong>arithmetic operations</strong>:</p>
+            <ul>
+                <li><strong>Adding/Subtracting:</strong> You need a common denominator, which requires improper fractions first. Use our <a href="/math-calculators/mixed-number-calculator">Mixed Number Calculator</a>.</li>
+                <li><strong>Multiplying/Dividing:</strong> Multiply numerators and denominators directly — only works with improper fractions.</li>
+                <li><strong>Comparing:</strong> It's easier to <a href="/math-calculators/compare-fractions-calculator">compare fractions</a> when all are in the same form.</li>
+            </ul>
+            <p>To go the other way, use our <a href="/math-calculators/fraction-to-mixed-number-calculator">Improper Fraction to Mixed Number Calculator</a>.</p>
+
+            <h2 id="faq">Frequently Asked Questions</h2>
+
+            <h3>What is the formula for converting a mixed number to an improper fraction?</h3>
+            <p>The formula is: <strong>(whole × denominator + numerator) / denominator</strong>. Multiply the whole number by the denominator, add the numerator to get the new numerator, and keep the original denominator.</p>
+
+            <h3>What is the difference between a mixed number and an improper fraction?</h3>
+            <p>A <strong>mixed number</strong> shows a whole part and a fractional part separately (e.g., 2 3/4). An <strong>improper fraction</strong> writes the same value as a single fraction where the numerator ≥ denominator (e.g., 11/4). They represent the same quantity.</p>
+
+            <h3>Can every mixed number be converted to an improper fraction?</h3>
+            <p>Yes — every mixed number has an equivalent improper fraction. The conversion simply re-expresses the whole parts as fractional parts. For example, 1 1/2 = 3/2, 10 3/4 = 43/4, etc.</p>
+
+            <h3>Should I simplify the improper fraction after converting?</h3>
+            <p>If possible, yes. Use our <a href="/math-calculators/fraction-simplifier">Fraction Simplifier</a> to reduce the improper fraction to lowest terms. For example, 2 4/8 = 20/8, which simplifies to 5/2.</p>
+
+            <h3>How do I convert back from an improper fraction to a mixed number?</h3>
+            <p>Divide the numerator by the denominator. The quotient is the whole number, and the remainder is the new numerator. For example, 17/5: 17 ÷ 5 = 3 remainder 2 → <strong>3 2/5</strong>. See our <a href="/math-calculators/fraction-to-mixed-number-calculator">Fraction to Mixed Number Calculator</a>.</p>
+        `,
+        formula: {
+            formula: "Improper Fraction = (w × d + n) / d",
+            variables: [
+                { symbol: "w", meaning: "Whole number part" },
+                { symbol: "n", meaning: "Numerator of the fractional part" },
+                { symbol: "d", meaning: "Denominator of the fractional part" },
+            ],
+            example: [
+                { label: "2 1/4", substitution: "(2 × 4 + 1) / 4 = 9 / 4", result: "9/4" },
+                { label: "3 2/5", substitution: "(3 × 5 + 2) / 5 = 17 / 5", result: "17/5" },
+                { label: "1 7/8", substitution: "(1 × 8 + 7) / 8 = 15 / 8", result: "15/8" },
+            ],
+        },
+        relatedCalculators: [
+            { title: "Fraction to Mixed Number", slug: "fraction-to-mixed-number-calculator", categorySlug: "math-calculators", description: "Convert improper fractions back to mixed numbers" },
+            { title: "Mixed Number Calculator", slug: "mixed-number-calculator", categorySlug: "math-calculators", description: "Add, subtract, multiply mixed numbers" },
+            { title: "Fraction Simplifier", slug: "fraction-simplifier", categorySlug: "math-calculators", description: "Reduce the improper fraction" },
+            { title: "Fraction Calculator", slug: "fraction-calculator", categorySlug: "math-calculators", description: "Perform operations with fractions" },
+            { title: "Compare Fractions", slug: "compare-fractions-calculator", categorySlug: "math-calculators", description: "Compare mixed numbers and fractions" },
+        ],
+    },
+
+    /* ─── 21. SOLVE FOR UNKNOWN FRACTION — RICH CONTENT ─── */
+    "solve-for-unknown-fraction": {
+        subtitle: "Solve for x in a proportion with fractions using cross-multiplication. Find the unknown numerator or denominator with step-by-step work.",
+        contentHTML: `
+            <h2 id="how-to-solve">How to Solve Fractions in Algebraic Equations</h2>
+            <p>When you have a proportion like <strong>a/b = c/d</strong> with one unknown value (x), you can solve for x using <strong>cross-multiplication</strong>. This technique works whether x is a numerator or a denominator.</p>
+
+            <h3 id="step-cross">Step One: Cross Multiply</h3>
+            <p>Multiply each numerator by the opposite denominator. This eliminates the fractions and creates a simple equation.</p>
+            <p><strong>Example:</strong> Solve x/3 = 3/4.</p>
+            <ul>
+                <li>Cross multiply: x × 4 = 3 × 3</li>
+                <li>4x = 9</li>
+            </ul>
+
+            <h3 id="step-solve">Step Two: Solve for x</h3>
+            <p>Isolate x by dividing both sides by the coefficient next to x.</p>
+            <ul>
+                <li>4x = 9</li>
+                <li>x = 9 / 4 = <strong>9/4</strong></li>
+            </ul>
+
+            <h3 id="step-reduce">Step Three: Simplify the Result</h3>
+            <p><a href="/math-calculators/fraction-simplifier">Simplify the fraction</a> if possible, and convert to a <a href="/math-calculators/fraction-to-mixed-number-calculator">mixed number</a> if needed.</p>
+            <ul>
+                <li>9/4 cannot be simplified (GCD = 1)</li>
+                <li>As mixed number: 9 ÷ 4 = 2 remainder 1 → <strong>2 1/4</strong></li>
+            </ul>
+
+            <div class="explanation__highlight">
+                <strong>Cross-multiplication rule:</strong> For a/b = c/d: a × d = b × c. This works because both sides equal the same value when multiplied by both denominators.
+            </div>
+
+            <h2 id="more-examples">More Worked Examples</h2>
+            <p><strong>Example 1:</strong> Solve 5/x = 10/6 (unknown denominator).</p>
+            <ul>
+                <li>Cross multiply: 5 × 6 = 10 × x → 30 = 10x</li>
+                <li>x = 30 / 10 = <strong>3</strong></li>
+                <li>Check: 5/3 = 10/6 ✓ (both equal 1.667)</li>
+            </ul>
+            <p><strong>Example 2:</strong> Solve 1/2 = x/100 (finding an <a href="/math-calculators/equivalent-fractions-calculator">equivalent fraction</a>).</p>
+            <ul>
+                <li>Cross multiply: 1 × 100 = 2 × x → 100 = 2x</li>
+                <li>x = 100 / 2 = <strong>50</strong></li>
+                <li>Check: 1/2 = 50/100 ✓</li>
+            </ul>
+
+            <h2 id="multiples-method">The Multiples Shortcut</h2>
+            <p>For simpler proportions, you can spot the relationship by looking at multiples. If 1/2 = x/100, notice that the denominator went from 2 to 100 (multiplied by 50). So the numerator must also be multiplied by 50: 1 × 50 = <strong>50</strong>.</p>
+            <p>This shortcut works when the unknown is a simple multiple of a known fraction, but cross-multiplication always works.</p>
+
+            <h2 id="faq">Frequently Asked Questions</h2>
+
+            <h3>What is cross-multiplication?</h3>
+            <p><strong>Cross-multiplication</strong> is a method for solving proportions (a/b = c/d). You multiply each numerator by the opposite denominator: a × d = b × c. This converts the proportion into a simple equation without fractions.</p>
+
+            <h3>Can x be a decimal or fraction?</h3>
+            <p>Yes. The unknown value may not always be a whole number. In the example x/3 = 3/4, x = 9/4 = 2.25. The calculator always shows the result as a decimal, fraction, and mixed number.</p>
+
+            <h3>Can I solve for the denominator instead of the numerator?</h3>
+            <p>Absolutely. Cross-multiplication works regardless of which position is unknown. Use the dropdown in our calculator to select which value (numerator or denominator on either side) you want to solve for.</p>
+
+            <h3>What if one of the values is 0?</h3>
+            <p>If the unknown's coefficient turns out to be 0 (e.g., 0/x = something), division by zero is undefined. The calculator will handle this gracefully.</p>
+
+            <h3>How is this related to equivalent fractions?</h3>
+            <p>Solving for x in a proportion is essentially finding an <a href="/math-calculators/equivalent-fractions-calculator">equivalent fraction</a>. If a/b = c/d, then a/b and c/d are equivalent fractions, and cross-multiplication lets you find the missing piece.</p>
+        `,
+        formula: {
+            formula: "a/b = c/d → a × d = b × c → solve for unknown",
+            variables: [
+                { symbol: "a, b", meaning: "Numerator and denominator of the first fraction" },
+                { symbol: "c, d", meaning: "Numerator and denominator of the second fraction" },
+                { symbol: "x", meaning: "The unknown value in one of the four positions" },
+            ],
+            example: [
+                { label: "x/3 = 3/4", substitution: "x × 4 = 3 × 3 → 4x = 9", result: "x = 9/4 = 2 1/4" },
+                { label: "5/x = 10/6", substitution: "5 × 6 = 10 × x → 30 = 10x", result: "x = 3" },
+                { label: "1/2 = x/100", substitution: "1 × 100 = 2 × x → 100 = 2x", result: "x = 50" },
+            ],
+        },
+        relatedCalculators: [
+            { title: "Equivalent Fractions", slug: "equivalent-fractions-calculator", categorySlug: "math-calculators", description: "Find equivalent fractions" },
+            { title: "Fraction Simplifier", slug: "fraction-simplifier", categorySlug: "math-calculators", description: "Reduce the result" },
+            { title: "Fraction Calculator", slug: "fraction-calculator", categorySlug: "math-calculators", description: "Perform operations with fractions" },
+            { title: "GCD Calculator", slug: "gcd-calculator", categorySlug: "math-calculators", description: "Simplify fractions" },
+            { title: "Fraction to Mixed Number", slug: "fraction-to-mixed-number-calculator", categorySlug: "math-calculators", description: "Convert improper fractions" },
+        ],
+    },
+
+    /* ─── 22. FRACTION TO PERCENT — RICH CONTENT ─── */
+    "fraction-to-percent-calculator": {
+        subtitle: "Convert any fraction or mixed number to a percentage. See the step-by-step division and multiplication with a common conversion chart.",
+        contentHTML: `
+            <h2 id="how-to-convert">How to Convert a Fraction to Percent</h2>
+            <p>Converting a fraction to a percentage is a simple two-step process: <strong>divide</strong>, then <strong>multiply by 100</strong>.</p>
+
+            <h3 id="step-decimal">Step One: Convert to a Decimal</h3>
+            <p>Divide the numerator by the denominator to get a decimal value.</p>
+            <p><strong>Example:</strong> Convert 3/4 to a percentage.</p>
+            <ul>
+                <li>3 ÷ 4 = <strong>0.75</strong></li>
+            </ul>
+            <p>The fraction does <em>not</em> need to be in <a href="/math-calculators/fraction-simplifier">simplest form</a> — 6/8 gives the same result (6 ÷ 8 = 0.75).</p>
+
+            <h3 id="step-percent">Step Two: Multiply by 100</h3>
+            <p>Multiply the decimal by 100 (or move the decimal point two places right) and add a percent sign.</p>
+            <ul>
+                <li>0.75 × 100 = <strong>75%</strong></li>
+            </ul>
+            <p>So 3/4 as a percent is <strong>75%</strong>.</p>
+
+            <div class="explanation__highlight">
+                <strong>Quick formula:</strong> Percentage = (numerator ÷ denominator) × 100%. In one step: divide, move decimal two places right.
+            </div>
+
+            <h2 id="mixed-number">How to Convert a Mixed Number to Percent</h2>
+            <p>For a <a href="/math-calculators/mixed-number-calculator">mixed number</a> like 1 3/4, you have two approaches:</p>
+            <p><strong>Method 1: Convert fraction part, add whole part.</strong></p>
+            <ol>
+                <li>Convert 3/4 to percent: 75%</li>
+                <li>Convert whole number: 1 × 100% = 100%</li>
+                <li>Add: 100% + 75% = <strong>175%</strong></li>
+            </ol>
+            <p><strong>Method 2: Convert to <a href="/math-calculators/mixed-number-to-fraction-calculator">improper fraction</a> first.</strong></p>
+            <ol>
+                <li>1 3/4 = 7/4</li>
+                <li>7 ÷ 4 = 1.75</li>
+                <li>1.75 × 100 = <strong>175%</strong></li>
+            </ol>
+
+            <h2 id="chart">Fraction to Percent Conversion Chart</h2>
+            <p>Common fractions and their percent equivalents:</p>
+            <table>
+                <thead><tr><th>Fraction</th><th>Decimal</th><th>Percent</th></tr></thead>
+                <tbody>
+                    <tr><td>1/2</td><td>0.5</td><td>50%</td></tr>
+                    <tr><td>1/3</td><td>0.3333</td><td>33.33%</td></tr>
+                    <tr><td>2/3</td><td>0.6667</td><td>66.67%</td></tr>
+                    <tr><td>1/4</td><td>0.25</td><td>25%</td></tr>
+                    <tr><td>3/4</td><td>0.75</td><td>75%</td></tr>
+                    <tr><td>1/5</td><td>0.2</td><td>20%</td></tr>
+                    <tr><td>2/5</td><td>0.4</td><td>40%</td></tr>
+                    <tr><td>3/5</td><td>0.6</td><td>60%</td></tr>
+                    <tr><td>4/5</td><td>0.8</td><td>80%</td></tr>
+                    <tr><td>1/8</td><td>0.125</td><td>12.5%</td></tr>
+                    <tr><td>3/8</td><td>0.375</td><td>37.5%</td></tr>
+                    <tr><td>5/8</td><td>0.625</td><td>62.5%</td></tr>
+                    <tr><td>7/8</td><td>0.875</td><td>87.5%</td></tr>
+                    <tr><td>1/10</td><td>0.1</td><td>10%</td></tr>
+                </tbody>
+            </table>
+
+            <h2 id="faq">Frequently Asked Questions</h2>
+
+            <h3>What is the formula to convert a fraction to a percent?</h3>
+            <p>The formula is: <strong>Percent = (numerator ÷ denominator) × 100</strong>. Divide the top by the bottom to get a decimal, then multiply by 100 to get the percentage.</p>
+
+            <h3>Can a fraction be more than 100%?</h3>
+            <p>Yes — any <strong>improper fraction</strong> (numerator ≥ denominator) converts to 100% or more. For example, 5/4 = 125%, and 2 1/2 = 250%. This simply means the fraction represents more than one whole.</p>
+
+            <h3>What about repeating decimals like 1/3?</h3>
+            <p>1/3 = 0.3333… = <strong>33.33…%</strong> (repeating). The calculator shows this rounded to a reasonable number of decimal places. The exact value is 33⅓%.</p>
+
+            <h3>Is 1/2 always 50%?</h3>
+            <p>Yes — 1/2 = 0.5 = 50%, always. Any <a href="/math-calculators/equivalent-fractions-calculator">equivalent fraction</a> like 2/4, 3/6, 50/100 also equals 50%.</p>
+
+            <h3>How do I convert a percent back to a fraction?</h3>
+            <p>Divide the percent by 100 to get a decimal, then convert the <a href="/math-calculators/decimal-to-fraction-calculator">decimal to a fraction</a>. For example, 75% = 0.75 = 3/4.</p>
+        `,
+        formula: {
+            formula: "Percentage = (n ÷ d) × 100%",
+            variables: [
+                { symbol: "n", meaning: "Numerator of the fraction" },
+                { symbol: "d", meaning: "Denominator of the fraction" },
+            ],
+            example: [
+                { label: "3/4", substitution: "(3 ÷ 4) × 100 = 0.75 × 100", result: "75%" },
+                { label: "1/3", substitution: "(1 ÷ 3) × 100 = 0.3333 × 100", result: "33.33%" },
+                { label: "1 3/4 (mixed)", substitution: "(7 ÷ 4) × 100 = 1.75 × 100", result: "175%" },
+            ],
+        },
+        relatedCalculators: [
+            { title: "Decimal to Fraction", slug: "decimal-to-fraction-calculator", categorySlug: "math-calculators", description: "Convert percent back to fraction" },
+            { title: "Fraction Simplifier", slug: "fraction-simplifier", categorySlug: "math-calculators", description: "Simplify before converting" },
+            { title: "Equivalent Fractions", slug: "equivalent-fractions-calculator", categorySlug: "math-calculators", description: "Find equivalent percentages" },
+            { title: "Percentage Calculator", slug: "percentage-calculator", categorySlug: "math-calculators", description: "Calculate percentage of a number" },
+            { title: "Mixed Number to Fraction", slug: "mixed-number-to-fraction-calculator", categorySlug: "math-calculators", description: "Convert mixed numbers first" },
+        ],
+    },
+
+    /* ─── 23. SUBTRACT FRACTIONS — RICH CONTENT ─── */
+    "subtract-fractions-calculator": {
+        subtitle: "Subtract fractions with different denominators. See the step-by-step LCD conversion, subtraction, and simplification with the result as a fraction, mixed number, and decimal.",
+        contentHTML: `
+            <h2 id="how-to-subtract">How to Subtract Fractions</h2>
+            <p>Subtracting fractions follows the same principle as <a href="/math-calculators/fraction-calculator">adding fractions</a> — you need a <strong>common denominator</strong> before you can operate on the numerators.</p>
+
+            <h3 id="formula">Fraction Subtraction Formula</h3>
+            <p>The shortcut formula for subtracting two fractions is:</p>
+            <p><strong>a/b − c/d = (a×d − c×b) / (b×d)</strong></p>
+            <p>This works by cross-multiplying to get matching denominators automatically. However, it's often easier to find the <a href="/math-calculators/lcd-calculator">LCD</a> first for smaller numbers.</p>
+
+            <h3 id="step-lcd">Step One: Find a Common Denominator</h3>
+            <p>Find the <strong>Least Common Denominator (LCD)</strong> of both denominators, then convert each fraction to an <a href="/math-calculators/equivalent-fractions-calculator">equivalent fraction</a> with that denominator.</p>
+            <p><strong>Example:</strong> Subtract 1/2 − 1/3.</p>
+            <ul>
+                <li>LCD(2, 3) = 6</li>
+                <li>1/2 = 3/6 (multiply by 3/3)</li>
+                <li>1/3 = 2/6 (multiply by 2/2)</li>
+            </ul>
+
+            <h3 id="step-subtract">Step Two: Subtract the Numerators</h3>
+            <p>With matching denominators, subtract the second numerator from the first. Keep the denominator.</p>
+            <ul>
+                <li>3/6 − 2/6 = (3 − 2) / 6 = <strong>1/6</strong></li>
+            </ul>
+
+            <h3 id="step-simplify">Step Three: Simplify</h3>
+            <p><a href="/math-calculators/fraction-simplifier">Simplify</a> the result by dividing both numerator and denominator by their <a href="/math-calculators/gcd-calculator">GCD</a>. Convert to a <a href="/math-calculators/fraction-to-mixed-number-calculator">mixed number</a> if it's improper.</p>
+            <ul>
+                <li>1/6 — GCD(1, 6) = 1, already simplified ✓</li>
+            </ul>
+
+            <div class="explanation__highlight">
+                <strong>Key rule:</strong> You can only subtract the <em>numerators</em> — never the denominators. The denominator tells you the size of each piece, and the pieces must be the same size before you can subtract.
+            </div>
+
+            <h2 id="mixed-numbers">Subtracting Mixed Numbers</h2>
+            <p>To subtract <a href="/math-calculators/mixed-number-calculator">mixed numbers</a>, first convert them to <a href="/math-calculators/mixed-number-to-fraction-calculator">improper fractions</a>, then follow the same steps.</p>
+            <p><strong>Example:</strong> 3 1/4 − 1 2/3</p>
+            <ol>
+                <li>Convert: 3 1/4 = 13/4, 1 2/3 = 5/3</li>
+                <li>LCD(4, 3) = 12</li>
+                <li>13/4 = 39/12, 5/3 = 20/12</li>
+                <li>39/12 − 20/12 = 19/12</li>
+                <li>As mixed number: <strong>1 7/12</strong></li>
+            </ol>
+
+            <h2 id="negative-results">What if the Result is Negative?</h2>
+            <p>When you subtract a larger fraction from a smaller one, the result is <strong>negative</strong>. This is perfectly valid.</p>
+            <p><strong>Example:</strong> 1/4 − 1/2</p>
+            <ul>
+                <li>1/4 = 1/4, 1/2 = 2/4</li>
+                <li>1/4 − 2/4 = <strong>−1/4</strong></li>
+            </ul>
+
+            <h2 id="faq">Frequently Asked Questions</h2>
+
+            <h3>Can you subtract fractions with different denominators?</h3>
+            <p>Not directly — you must first convert them to <a href="/math-calculators/equivalent-fractions-calculator">equivalent fractions</a> with a <a href="/math-calculators/lcd-calculator">common denominator</a>. Once the denominators match, subtract the numerators and keep the denominator.</p>
+
+            <h3>What are the three rules for subtracting fractions?</h3>
+            <p><strong>1)</strong> Find the LCD and convert both fractions. <strong>2)</strong> Subtract the numerators, keeping the denominator. <strong>3)</strong> <a href="/math-calculators/fraction-simplifier">Simplify</a> the result using the GCD.</p>
+
+            <h3>Why can't you subtract the denominators?</h3>
+            <p>Denominators represent the <em>size of each piece</em>, not a quantity. Subtracting them would change the piece size, which doesn't make mathematical sense. You can only subtract numerators (the <em>number</em> of pieces) once the pieces are the same size.</p>
+
+            <h3>Can you subtract fractions and decimals together?</h3>
+            <p>Yes, but first convert everything to the same format. Either convert the decimal to a <a href="/math-calculators/decimal-to-fraction-calculator">fraction</a> or convert the fraction to a <a href="/math-calculators/fraction-to-percent-calculator">decimal</a>, then subtract.</p>
+
+            <h3>What if the fractions already have the same denominator?</h3>
+            <p>Even easier! Skip Step One and just subtract the numerators directly. For example, 5/8 − 3/8 = (5 − 3)/8 = <strong>2/8 = 1/4</strong>.</p>
+        `,
+        formula: {
+            formula: "a/b − c/d = (a×d − c×b) / (b×d)",
+            variables: [
+                { symbol: "a/b", meaning: "First fraction (minuend)" },
+                { symbol: "c/d", meaning: "Second fraction (subtrahend)" },
+                { symbol: "LCD", meaning: "Least Common Denominator of b and d" },
+            ],
+            example: [
+                { label: "1/2 − 1/3", substitution: "(1×3 − 1×2) / (2×3) = 1/6", result: "1/6" },
+                { label: "3/4 − 1/4", substitution: "(3 − 1) / 4", result: "1/2" },
+                { label: "3 1/4 − 1 2/3", substitution: "13/4 − 5/3 = 39/12 − 20/12 = 19/12", result: "1 7/12" },
+            ],
+        },
+        relatedCalculators: [
+            { title: "Fraction Calculator", slug: "fraction-calculator", categorySlug: "math-calculators", description: "All fraction operations" },
+            { title: "LCD Calculator", slug: "lcd-calculator", categorySlug: "math-calculators", description: "Find the common denominator" },
+            { title: "Fraction Simplifier", slug: "fraction-simplifier", categorySlug: "math-calculators", description: "Simplify the result" },
+            { title: "Mixed Number Calculator", slug: "mixed-number-calculator", categorySlug: "math-calculators", description: "Subtract mixed numbers" },
+            { title: "Equivalent Fractions", slug: "equivalent-fractions-calculator", categorySlug: "math-calculators", description: "Convert to matching denominators" },
+        ],
+    },
 };
 
 export default async function MathCalculatorHubPage({ params }: PageProps) {
