@@ -11988,6 +11988,20 @@
     "keywords": "fraction to percent, fraction to percentage, convert fraction to percent, 3/4 as a percent, fraction percentage calculator, mixed number to percent"
   },
   {
+    "id": "add-fractions-calculator",
+    "category": "math",
+    "title": "Adding Fractions Calculator",
+    "slug": "add-fractions-calculator",
+    "categorySlug": "math-calculators",
+    "icon": "➕",
+    "description": "Add fractions with different denominators, including mixed numbers. See step-by-step LCD conversion, addition, and simplification with the result as a fraction, mixed number, and decimal.",
+    "stars": 5,
+    "calcType": "add-fractions",
+    "defaults": { "amount": 0, "rate": 0, "tenure": 0 },
+    "sliderRanges": { "amount": { "min": 0, "max": 0, "step": 0 }, "rate": { "min": 0, "max": 0, "step": 0 }, "tenure": { "min": 0, "max": 0, "step": 0 } },
+    "keywords": "add fractions, adding fractions calculator, fraction addition, add fractions with different denominators, add mixed numbers, how to add fractions"
+  },
+  {
     "id": "subtract-fractions-calculator",
     "category": "math",
     "title": "Subtracting Fractions Calculator",
@@ -12000,5 +12014,19 @@
     "defaults": { "amount": 0, "rate": 0, "tenure": 0 },
     "sliderRanges": { "amount": { "min": 0, "max": 0, "step": 0 }, "rate": { "min": 0, "max": 0, "step": 0 }, "tenure": { "min": 0, "max": 0, "step": 0 } },
     "keywords": "subtract fractions, subtracting fractions calculator, fraction subtraction, subtract fractions with different denominators, fraction minus fraction"
+  },
+  {
+    "id": "angle-converter-calculator",
+    "category": "math",
+    "title": "Angle Converter",
+    "slug": "angle-converter-calculator",
+    "categorySlug": "math-calculators",
+    "icon": "📐",
+    "description": "Convert angles between degrees, radians, gradians, arcminutes, arcseconds, milliradians, revolutions, and mils. See step-by-step conversion formulas and a full conversion table.",
+    "stars": 5,
+    "calcType": "angle-converter",
+    "defaults": { "amount": 0, "rate": 0, "tenure": 0 },
+    "sliderRanges": { "amount": { "min": 0, "max": 0, "step": 0 }, "rate": { "min": 0, "max": 0, "step": 0 }, "tenure": { "min": 0, "max": 0, "step": 0 } },
+    "keywords": "angle converter, degrees to radians, radians to degrees, angle conversion calculator, degrees to gradians, convert angle units, milliradians to degrees, arcminutes to degrees"
   }
 ]

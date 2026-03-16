@@ -1043,7 +1043,69 @@ function FractionToPercentCalc() {
     </div></div>);
 }
 
-/* 23. Subtract Fractions */
+/* 23. Add Fractions */
+function AddFractionsCalc() {
+    const [w1, setW1] = useState(""); const [n1, setN1] = useState("1"); const [d1, setD1] = useState("3");
+    const [w2, setW2] = useState(""); const [n2, setN2] = useState("1"); const [d2, setD2] = useState("4");
+    const r = useMemo(() => {
+        const whole1 = parseInt(w1) || 0; const num1 = parseInt(n1) || 0; const den1 = parseInt(d1) || 1;
+        const whole2 = parseInt(w2) || 0; const num2 = parseInt(n2) || 0; const den2 = parseInt(d2) || 1;
+        const steps: string[] = [];
+        // Convert mixed to improper
+        const imp1 = whole1 * den1 + (whole1 < 0 ? -Math.abs(num1) : num1);
+        const imp2 = whole2 * den2 + (whole2 < 0 ? -Math.abs(num2) : num2);
+        if (whole1) steps.push(`Convert: ${whole1} ${Math.abs(num1)}/${den1} = (${Math.abs(whole1)}×${den1}${num1 >= 0 ? "+" : "−"}${Math.abs(num1)})/${den1} = ${imp1}/${den1}`);
+        if (whole2) steps.push(`Convert: ${whole2} ${Math.abs(num2)}/${den2} = (${Math.abs(whole2)}×${den2}${num2 >= 0 ? "+" : "−"}${Math.abs(num2)})/${den2} = ${imp2}/${den2}`);
+        steps.push(`${imp1}/${den1} + ${imp2}/${den2}`);
+        // Find LCD
+        const g = gcd(Math.abs(den1), Math.abs(den2));
+        const lcd = (Math.abs(den1) * Math.abs(den2)) / g;
+        const m1 = lcd / Math.abs(den1); const m2 = lcd / Math.abs(den2);
+        const adj1 = imp1 * m1; const adj2 = imp2 * m2;
+        steps.push(`LCD(${den1}, ${den2}) = ${lcd}`);
+        if (m1 !== 1) steps.push(`${imp1}/${den1} = ${imp1}×${m1} / ${den1}×${m1} = ${adj1}/${lcd}`);
+        if (m2 !== 1) steps.push(`${imp2}/${den2} = ${imp2}×${m2} / ${den2}×${m2} = ${adj2}/${lcd}`);
+        // Add
+        const resN = adj1 + adj2;
+        steps.push(`${adj1}/${lcd} + ${adj2}/${lcd} = ${adj1} + ${adj2} = ${resN}`);
+        steps.push(`Result: ${resN}/${lcd}`);
+        // Simplify
+        const sign = (resN < 0) !== (lcd < 0) ? "-" : "";
+        const absN = Math.abs(resN); const absD = Math.abs(lcd);
+        const g2 = gcd(absN, absD);
+        const sn = absN / g2; const sd = absD / g2;
+        if (g2 > 1) steps.push(`Simplify: GCD(${absN},${absD})=${g2} → ${sign}${sn}/${sd}`);
+        // Mixed number
+        let mixed = `${sign}${sn}/${sd}`;
+        if (sn >= sd && sd > 1) {
+            const q = Math.floor(sn / sd); const rem = sn % sd;
+            mixed = rem > 0 ? `${sign}${q} ${rem}/${sd}` : `${sign}${q}`;
+            steps.push(`As mixed number: ${mixed}`);
+        }
+        const decimal = lcd !== 0 ? fmt(resN / lcd, 6) : "0";
+        return { fraction: `${sign}${sn}/${sd}`, mixed, decimal, steps };
+    }, [w1, n1, d1, w2, n2, d2]);
+    return (<div className="con-calc"><h3 className="con-calc__title">➕ Adding Fractions Calculator</h3><div className="con-calc__inputs">
+        <div style={{display:"flex",gap:"var(--s-2)",alignItems:"center"}}>
+            <InputField label="Whole 1 (opt)" value={w1} onChange={setW1} placeholder="0" />
+            <InputField label="Numerator 1" value={n1} onChange={setN1} />
+            <InputField label="Denominator 1" value={d1} onChange={setD1} />
+        </div>
+        <div style={{display:"flex",gap:"var(--s-2)",alignItems:"center"}}>
+            <InputField label="Whole 2 (opt)" value={w2} onChange={setW2} placeholder="0" />
+            <InputField label="Numerator 2" value={n2} onChange={setN2} />
+            <InputField label="Denominator 2" value={d2} onChange={setD2} />
+        </div>
+    </div><div className="con-calc__results"><h4>Result</h4>
+        <ResultRow label="Fraction" value={r.fraction} />
+        <ResultRow label="Mixed Number" value={r.mixed} />
+        <ResultRow label="Decimal" value={r.decimal} />
+        <h4>Steps</h4>
+        {r.steps.map((s, i) => <ResultRow key={i} label={`Step ${i + 1}`} value={s} />)}
+    </div></div>);
+}
+
+/* 24. Subtract Fractions */
 function SubtractFractionsCalc() {
     const [n1, setN1] = useState("1"); const [d1, setD1] = useState("2");
     const [n2, setN2] = useState("1"); const [d2, setD2] = useState("3");
@@ -1094,6 +1156,73 @@ function SubtractFractionsCalc() {
     </div></div>);
 }
 
+/* 25. Angle Converter */
+const ANGLE_UNITS: { id: string; label: string; symbol: string; toDeg: number }[] = [
+    { id: "degree", label: "Degrees", symbol: "°", toDeg: 1 },
+    { id: "radian", label: "Radians", symbol: "rad", toDeg: 180 / Math.PI },
+    { id: "milliradian", label: "Milliradians", symbol: "mrad", toDeg: 180 / (Math.PI * 1000) },
+    { id: "arcminute", label: "Arcminutes", symbol: "′", toDeg: 1 / 60 },
+    { id: "arcsecond", label: "Arcseconds", symbol: "″", toDeg: 1 / 3600 },
+    { id: "gradian", label: "Gradians", symbol: "grad", toDeg: 0.9 },
+    { id: "revolution", label: "Revolutions", symbol: "rev", toDeg: 360 },
+    { id: "circle", label: "Circles", symbol: "circle", toDeg: 360 },
+    { id: "mil", label: "Mils (NATO)", symbol: "mil", toDeg: 360 / 6400 },
+];
+function AngleConverterCalc() {
+    const [value, setValue] = useState("90");
+    const [fromUnit, setFromUnit] = useState("degree");
+    const [toUnit, setToUnit] = useState("radian");
+    const r = useMemo(() => {
+        const v = parseFloat(value) || 0;
+        const from = ANGLE_UNITS.find(u => u.id === fromUnit)!;
+        const to = ANGLE_UNITS.find(u => u.id === toUnit)!;
+        const degrees = v * from.toDeg;
+        const result = degrees / to.toDeg;
+        const factor = from.toDeg / to.toDeg;
+        const steps: string[] = [];
+        steps.push(`${v} ${from.symbol} → convert to ${to.label}`);
+        if (from.id !== "degree" && to.id !== "degree") {
+            steps.push(`Step 1: Convert to degrees: ${v} × ${fmt(from.toDeg, 6)} = ${fmt(degrees, 6)}°`);
+            steps.push(`Step 2: Convert to ${to.label}: ${fmt(degrees, 6)} ÷ ${fmt(to.toDeg, 6)} = ${fmt(result, 6)} ${to.symbol}`);
+        } else if (from.id === "degree") {
+            steps.push(`Multiply: ${v} × (1 ${to.symbol} / ${fmt(to.toDeg, 6)}°) = ${fmt(result, 6)} ${to.symbol}`);
+        } else {
+            steps.push(`Multiply: ${v} × ${fmt(from.toDeg, 6)} = ${fmt(result, 6)}°`);
+        }
+        if (fromUnit === "degree" && toUnit === "radian") {
+            const g = gcd(Math.abs(Math.round(v)), 180);
+            if (g > 0 && Number.isInteger(v)) {
+                const num = Math.round(v) / g;
+                const den = 180 / g;
+                steps.push(`Exact: ${Math.round(v)}° × π/180 = ${num === 1 ? "" : num === -1 ? "-" : num}π${den > 1 ? "/" + den : ""}`);
+            }
+        }
+        if (fromUnit === "radian" && toUnit === "degree") {
+            steps.push(`Formula: degrees = radians × 180/π`);
+        }
+        steps.push(`Conversion factor: 1 ${from.symbol} = ${fmt(factor, 8)} ${to.symbol}`);
+        // All-units table
+        const allConv = ANGLE_UNITS.map(u => ({
+            label: u.label,
+            symbol: u.symbol,
+            value: fmt(degrees / u.toDeg, 6),
+        }));
+        return { result: fmt(result, 8), from, to, steps, allConv, factor: fmt(factor, 8) };
+    }, [value, fromUnit, toUnit]);
+    return (<div className="con-calc"><h3 className="con-calc__title">📐 Angle Converter</h3><div className="con-calc__inputs">
+        <InputField label="Value" value={value} onChange={setValue} placeholder="e.g. 90" />
+        <SelectField label="From" value={fromUnit} onChange={setFromUnit} options={ANGLE_UNITS.map(u => ({ value: u.id, label: `${u.label} (${u.symbol})` }))} />
+        <SelectField label="To" value={toUnit} onChange={setToUnit} options={ANGLE_UNITS.map(u => ({ value: u.id, label: `${u.label} (${u.symbol})` }))} />
+    </div><div className="con-calc__results"><h4>Result</h4>
+        <ResultRow label={`${value} ${r.from.symbol}`} value={`${r.result} ${r.to.symbol}`} />
+        <ResultRow label="Conversion Factor" value={`1 ${r.from.symbol} = ${r.factor} ${r.to.symbol}`} />
+        <h4>Steps</h4>
+        {r.steps.map((s, i) => <ResultRow key={i} label={`Step ${i + 1}`} value={s} />)}
+        <h4>All Units</h4>
+        {r.allConv.map((c, i) => <ResultRow key={i} label={c.label} value={`${c.value} ${c.symbol}`} />)}
+    </div></div>);
+}
+
 /* ──── DISPATCHER ──── */
 const CALC_MAP: Record<string, React.FC> = {
     "percentage": PercentageCalc,
@@ -1118,7 +1247,9 @@ const CALC_MAP: Record<string, React.FC> = {
     "mixed-to-improper": MixedToImproperCalc,
     "solve-unknown-fraction": SolveUnknownFractionCalc,
     "fraction-to-percent": FractionToPercentCalc,
+    "add-fractions": AddFractionsCalc,
     "subtract-fractions": SubtractFractionsCalc,
+    "angle-converter": AngleConverterCalc,
 };
 
 export default function MathCalculatorCore({ calcType }: { calcType: string }) {

@@ -1934,7 +1934,120 @@ const HUB_CONTENT: Record<string, {
         ],
     },
 
-    /* ─── 23. SUBTRACT FRACTIONS — RICH CONTENT ─── */
+    /* ─── 23. ADD FRACTIONS — RICH CONTENT ─── */
+    "add-fractions-calculator": {
+        subtitle: "Add fractions with different denominators — including mixed numbers and negative fractions. See the step-by-step LCD conversion, addition, and simplification with the result as a fraction, mixed number, and decimal.",
+        contentHTML: `
+            <h2 id="how-to-add-fractions">How to Add Fractions</h2>
+            <p>A <strong>fraction</strong> is a numerical value that represents a part of a whole, written as one number over another separated by a line: <em>numerator / denominator</em>. Adding fractions is a bit different from adding regular whole numbers because the fractions must share a <strong>common denominator</strong> before you can combine them.</p>
+            <p>Our calculator above handles the complete process — just enter two fractions (with optional whole numbers for mixed fractions), and it will find the LCD, convert, add, and simplify for you, showing every step.</p>
+
+            <h3 id="fraction-addition-formula">Fraction Addition Formula</h3>
+            <p>The formula for adding two fractions is:</p>
+            <p><strong>a/b + c/d = (a×d + b×c) / (b×d)</strong></p>
+            <p>This formula works by cross-multiplying to ensure both fractions have a common denominator. To add two fractions, complete the following:</p>
+            <ol>
+                <li>Multiply the numerator of the first fraction (<em>a</em>) by the denominator of the second fraction (<em>d</em>).</li>
+                <li>Multiply the denominator of the first fraction (<em>b</em>) by the numerator of the second fraction (<em>c</em>).</li>
+                <li>Add the products from steps 1 and 2 (<em>ad + bc</em>).</li>
+                <li>Divide the sum by the product of both denominators (<em>b × d</em>).</li>
+            </ol>
+            <p>You can also follow the three-step method below, which uses the <a href="/math-calculators/lcd-calculator">Least Common Denominator (LCD)</a> for smaller, more manageable numbers.</p>
+
+            <h3 id="step-lcd">Step One: Convert to Fractions with the LCD</h3>
+            <p>When adding fractions, the first step is to ensure they have the <strong>same denominator</strong>. Find the <a href="/math-calculators/lcd-calculator">Least Common Denominator (LCD)</a> — the smallest number that both denominators divide into evenly. Then convert each fraction to an <a href="/math-calculators/equivalent-fractions-calculator">equivalent fraction</a> with that common denominator.</p>
+            <p>To convert each fraction, divide the LCD by the fraction's denominator to find the <strong>multiplier</strong>, then multiply both the numerator and denominator by that multiplier.</p>
+            <p><strong>Example:</strong> Add 1/3 + 1/4.</p>
+            <ul>
+                <li>Find the LCD of 3 and 4: <strong>LCD = 12</strong></li>
+                <li>Multiplier for 1/3: 12 ÷ 3 = <strong>4</strong> → 1/3 = (1×4)/(3×4) = <strong>4/12</strong></li>
+                <li>Multiplier for 1/4: 12 ÷ 4 = <strong>3</strong> → 1/4 = (1×3)/(4×3) = <strong>3/12</strong></li>
+            </ul>
+
+            <h3 id="step-add-numerators">Step Two: Add the Numerators</h3>
+            <p>Once both fractions have the same denominator, simply <strong>add the numerators</strong> and keep the denominator the same.</p>
+            <p><strong>Continuing the example:</strong></p>
+            <p>4/12 + 3/12 = (4 + 3) / 12 = <strong>7/12</strong></p>
+
+            <h3 id="step-simplify">Step Three: Simplify the Fraction</h3>
+            <p>The final step is to <strong>simplify</strong> (reduce) the fraction to its lowest terms. Find the <a href="/math-calculators/gcd-calculator">Greatest Common Factor (GCF)</a> of the numerator and denominator, then divide both by it. You can also use our <a href="/math-calculators/fraction-simplifier">Fraction Simplifier</a> to reduce any fraction instantly.</p>
+            <p>In our example, 7/12 is already in simplest form because GCF(7, 12) = 1. The answer is <strong>7/12 ≈ 0.5833</strong>.</p>
+
+            <div class="explanation__highlight">
+                <strong>Key rule:</strong> You can only add the <em>numerators</em> — never the denominators. The denominator represents the size of each piece, and the pieces must be the same size before you can add them together.
+            </div>
+
+            <h2 id="mixed-numbers">How to Add Mixed Numbers</h2>
+            <p>A <strong>mixed number</strong> is a number with both a whole number and a proper fraction, like 1 2/3. The process of adding mixed numbers is nearly the same as adding normal fractions, with one extra step at the beginning.</p>
+            <p>First, convert each mixed number to an <a href="/math-calculators/mixed-number-to-fraction-calculator">improper fraction</a>:</p>
+            <ol>
+                <li>Multiply the whole number by the denominator.</li>
+                <li>Add the result to the numerator.</li>
+                <li>Keep the same denominator.</li>
+            </ol>
+            <p><strong>Example:</strong> Add 1 2/3 + 2 1/4.</p>
+            <ul>
+                <li>Convert 1 2/3: (1 × 3) + 2 = 5 → <strong>5/3</strong></li>
+                <li>Convert 2 1/4: (2 × 4) + 1 = 9 → <strong>9/4</strong></li>
+                <li>LCD(3, 4) = 12</li>
+                <li>5/3 = 20/12, 9/4 = 27/12</li>
+                <li>20/12 + 27/12 = <strong>47/12</strong></li>
+                <li>As a mixed number: <strong>3 11/12</strong></li>
+            </ul>
+
+            <h2 id="negative-fractions">How to Add Negative Fractions</h2>
+            <p>A <strong>negative fraction</strong> has a minus sign either in front of the fraction, the numerator, or the denominator. All three representations are equivalent:</p>
+            <p><strong>−a/b = (−a)/b = a/(−b)</strong></p>
+            <p>If <em>both</em> the numerator and the denominator are negative, the fraction is actually <strong>positive</strong> (negative ÷ negative = positive).</p>
+            <p>When adding negative fractions, it's easiest to attach the sign to the numerator, then use the standard addition formula above. The addition and simplification steps are the same — just keep track of the signs.</p>
+
+            <h2 id="faq">Frequently Asked Questions</h2>
+
+            <h3>Can you add fractions and decimals?</h3>
+            <p>Yes, but you need to convert one value to match the other's format first. Either convert the decimal to a <a href="/math-calculators/decimal-to-fraction-calculator">fraction</a> or convert the fraction to a decimal, then add. For example, to add 1/2 + 0.25, convert 0.25 to 1/4, then add: 1/2 + 1/4 = <strong>3/4</strong>.</p>
+
+            <h3>What are the rules to add fractions?</h3>
+            <p>The four rules to add fractions are:</p>
+            <ol>
+                <li>Find a common denominator (the <a href="/math-calculators/lcd-calculator">LCD</a>).</li>
+                <li>Convert both fractions to <a href="/math-calculators/equivalent-fractions-calculator">equivalent fractions</a> with the LCD.</li>
+                <li>Add the numerators and keep the denominator.</li>
+                <li><a href="/math-calculators/fraction-simplifier">Simplify</a> the result.</li>
+            </ol>
+            <p>If you're adding mixed numbers, convert them to improper fractions first.</p>
+
+            <h3>Why can't you add the denominators of fractions?</h3>
+            <p>Denominators represent the <strong>number of equal parts</strong> a whole has been divided into, while numerators represent how many of those parts you have. When fractions have different denominators, the "pieces" are different sizes — you can't simply add denominators because that would change the size of the pieces. You must first make the pieces the same size (common denominator), then count how many you have (add the numerators).</p>
+
+            <h3>Can I add more than two fractions at a time?</h3>
+            <p>Yes! Follow the same process — find a common denominator for <em>all</em> the fractions, convert them, then add all the numerators. Use our <a href="/math-calculators/fraction-calculator">Fraction Calculator</a> for multi-fraction operations, or use this calculator twice (add the first result to the third fraction).</p>
+
+            <h3>What if the fractions already have the same denominator?</h3>
+            <p>Even easier — skip Step One and just add the numerators directly. For example, 2/7 + 3/7 = (2 + 3)/7 = <strong>5/7</strong>.</p>
+        `,
+        formula: {
+            formula: "a/b + c/d = (a×d + b×c) / (b×d)",
+            variables: [
+                { symbol: "a/b", meaning: "First fraction (a = numerator, b = denominator)" },
+                { symbol: "c/d", meaning: "Second fraction (c = numerator, d = denominator)" },
+                { symbol: "LCD", meaning: "Least Common Denominator of b and d" },
+            ],
+            example: [
+                { label: "1/3 + 1/4", substitution: "(1×4 + 3×1) / (3×4) = 7/12", result: "7/12 ≈ 0.5833" },
+                { label: "2/5 + 1/3", substitution: "LCD=15 → 6/15 + 5/15 = 11/15", result: "11/15" },
+                { label: "1 2/3 + 2 1/4", substitution: "5/3 + 9/4 = 20/12 + 27/12 = 47/12", result: "3 11/12" },
+            ],
+        },
+        relatedCalculators: [
+            { title: "Subtract Fractions", slug: "subtract-fractions-calculator", categorySlug: "math-calculators", description: "Subtract fractions with different denominators" },
+            { title: "Fraction Calculator", slug: "fraction-calculator", categorySlug: "math-calculators", description: "All fraction operations (add, subtract, multiply, divide)" },
+            { title: "LCD Calculator", slug: "lcd-calculator", categorySlug: "math-calculators", description: "Find the common denominator" },
+            { title: "Fraction Simplifier", slug: "fraction-simplifier", categorySlug: "math-calculators", description: "Simplify the result" },
+            { title: "Mixed Number Calculator", slug: "mixed-number-calculator", categorySlug: "math-calculators", description: "Add mixed numbers with all operations" },
+        ],
+    },
+
+    /* ─── 24. SUBTRACT FRACTIONS — RICH CONTENT ─── */
     "subtract-fractions-calculator": {
         subtitle: "Subtract fractions with different denominators. See the step-by-step LCD conversion, subtraction, and simplification with the result as a fraction, mixed number, and decimal.",
         contentHTML: `
@@ -2026,6 +2139,123 @@ const HUB_CONTENT: Record<string, {
             { title: "Fraction Simplifier", slug: "fraction-simplifier", categorySlug: "math-calculators", description: "Simplify the result" },
             { title: "Mixed Number Calculator", slug: "mixed-number-calculator", categorySlug: "math-calculators", description: "Subtract mixed numbers" },
             { title: "Equivalent Fractions", slug: "equivalent-fractions-calculator", categorySlug: "math-calculators", description: "Convert to matching denominators" },
+        ],
+    },
+
+    /* ─── 25. ANGLE CONVERTER — RICH CONTENT ─── */
+    "angle-converter-calculator": {
+        subtitle: "Convert angle measurements instantly between degrees, radians, gradians, arcminutes, arcseconds, milliradians, revolutions, and mils. See step-by-step formulas and a complete conversion table for all 9 units.",
+        contentHTML: `
+            <h2 id="what-is-angle">What Is an Angle?</h2>
+            <p>An <strong>angle</strong> measures the amount of rotation between two lines or planes that share a common point (called the <strong>vertex</strong>). Angles are fundamental to geometry, trigonometry, navigation, construction, physics, and engineering.</p>
+            <p>A full rotation around a point is <strong>360 degrees</strong> (°), which is equivalent to <strong>2π radians</strong>, <strong>400 gradians</strong>, or <strong>1 revolution</strong>. Our converter above supports all 9 standard angle units and shows the value in every unit simultaneously.</p>
+
+            <h2 id="angle-units">Angle Units Explained</h2>
+
+            <h3 id="degrees">Degrees (°)</h3>
+            <p>The most common angle unit. A full circle is <strong>360°</strong>. The number 360 was likely chosen by ancient Babylonian astronomers because it has 24 divisors, making it easy to subdivide. Degrees are the <strong>SI accepted</strong> unit for angle and are used in everyday life, education, construction, and navigation.</p>
+            <p>Degrees can be further divided into <strong>arcminutes</strong> (′) and <strong>arcseconds</strong> (″). There are 60 arcminutes in 1 degree and 60 arcseconds in 1 arcminute (so 3,600 arcseconds per degree). This notation — called DMS (degrees, minutes, seconds) — is used in GPS coordinates and astronomy.</p>
+
+            <h3 id="radians">Radians (rad)</h3>
+            <p>The <strong>SI derived unit</strong> for angle. A radian is defined as the angle subtended by an arc whose length equals the radius of the circle. A full circle is <strong>2π ≈ 6.2832 radians</strong>. Radians are essential in calculus, physics, and engineering because trigonometric functions (sin, cos, tan) work most naturally in radians.</p>
+            <p>Key values: <strong>π/6 = 30°</strong>, <strong>π/4 = 45°</strong>, <strong>π/3 = 60°</strong>, <strong>π/2 = 90°</strong>, <strong>π = 180°</strong>, <strong>2π = 360°</strong>.</p>
+
+            <h3 id="gradians">Gradians (grad/gon)</h3>
+            <p>Used primarily in <strong>surveying and land measurement</strong>. A full circle is <strong>400 gradians</strong>, making right angles exactly 100 grad — convenient for survey calculations. Also called <em>gons</em> or <em>grades</em>. One gradian equals 0.9 degrees.</p>
+
+            <h3 id="milliradians">Milliradians (mrad)</h3>
+            <p>One-thousandth of a radian. Used extensively in <strong>military ballistics</strong>, <strong>optics</strong>, and <strong>telescopic sights</strong>. At 1,000 meters, 1 milliradian subtends approximately 1 meter — making distance estimation intuitive. A full circle is approximately 6,283 milliradians.</p>
+
+            <h3 id="mils">Mils (NATO)</h3>
+            <p>The <strong>NATO mil</strong> divides a circle into <strong>6,400 mils</strong>. Used in military artillery and navigation for its practical divisibility. Not to be confused with milliradians — though similar in purpose, they differ slightly in value: 1 NATO mil = 0.05625° (vs. 1 mrad ≈ 0.05730°).</p>
+
+            <h3 id="other-units">Revolutions, Circles, Arcminutes &amp; Arcseconds</h3>
+            <p>A <strong>revolution</strong> (or <strong>circle</strong>) is one complete rotation = 360°. Used in rotational mechanics (RPM = revolutions per minute). <strong>Arcminutes</strong> (1° = 60′) and <strong>arcseconds</strong> (1′ = 60″) provide precision for astronomy, GPS coordinates, and geodesy.</p>
+
+            <h2 id="how-to-convert-degrees-radians">How to Convert Degrees to Radians</h2>
+            <p>Since <strong>π radians = 180°</strong>, the conversion formula is:</p>
+            <p><strong>radians = degrees × π / 180</strong></p>
+            <p><strong>Example:</strong> Convert 90° to radians.</p>
+            <ul>
+                <li>radians = 90 × π / 180</li>
+                <li>radians = 90π / 180</li>
+                <li>Simplify: 90/180 = 1/2</li>
+                <li>radians = <strong>π/2 ≈ 1.5708 rad</strong></li>
+            </ul>
+
+            <h2 id="how-to-convert-radians-degrees">How to Convert Radians to Degrees</h2>
+            <p>The reverse formula is:</p>
+            <p><strong>degrees = radians × 180 / π</strong></p>
+            <p><strong>Example:</strong> Convert 1 radian to degrees.</p>
+            <ul>
+                <li>degrees = 1 × 180 / π</li>
+                <li>degrees = 180 / 3.14159…</li>
+                <li>degrees ≈ <strong>57.2958°</strong></li>
+            </ul>
+
+            <div class="explanation__highlight">
+                <strong>Quick reference:</strong> To convert degrees → radians, multiply by <strong>0.017453</strong>. To convert radians → degrees, multiply by <strong>57.2958</strong>. For gradians, multiply degrees by <strong>10/9</strong>.
+            </div>
+
+            <h2 id="conversion-table">Common Angle Conversion Table</h2>
+            <table>
+                <thead>
+                    <tr><th>Degrees (°)</th><th>Radians (rad)</th><th>Gradians (grad)</th><th>Revolutions</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>0°</td><td>0</td><td>0</td><td>0</td></tr>
+                    <tr><td>30°</td><td>π/6 ≈ 0.5236</td><td>33.333</td><td>1/12</td></tr>
+                    <tr><td>45°</td><td>π/4 ≈ 0.7854</td><td>50</td><td>1/8</td></tr>
+                    <tr><td>60°</td><td>π/3 ≈ 1.0472</td><td>66.667</td><td>1/6</td></tr>
+                    <tr><td>90°</td><td>π/2 ≈ 1.5708</td><td>100</td><td>1/4</td></tr>
+                    <tr><td>120°</td><td>2π/3 ≈ 2.0944</td><td>133.333</td><td>1/3</td></tr>
+                    <tr><td>180°</td><td>π ≈ 3.1416</td><td>200</td><td>1/2</td></tr>
+                    <tr><td>270°</td><td>3π/2 ≈ 4.7124</td><td>300</td><td>3/4</td></tr>
+                    <tr><td>360°</td><td>2π ≈ 6.2832</td><td>400</td><td>1</td></tr>
+                </tbody>
+            </table>
+
+            <h2 id="faq">Frequently Asked Questions</h2>
+
+            <h3>Why are radians used instead of degrees in math?</h3>
+            <p>Radians simplify formulas in calculus and physics. The derivative of sin(x) is cos(x) <em>only</em> when x is in radians. In degrees, there would be an extra factor of π/180 in every derivative and integral. Radians also connect arc length directly to angle: arc length = radius × angle (in radians).</p>
+
+            <h3>How many radians are in a full circle?</h3>
+            <p>A full circle is <strong>2π radians</strong> (approximately 6.2832 radians). This follows from the definition: the circumference of a circle is 2πr, and dividing by the radius r gives 2π.</p>
+
+            <h3>What is a gradian and when is it used?</h3>
+            <p>A gradian (also called a <em>gon</em>) divides a right angle into exactly <strong>100 parts</strong>, making a full circle 400 gradians. This decimal-friendly system is used primarily in <strong>surveying</strong>, <strong>civil engineering</strong>, and in some European countries for land measurement. Many survey calculators and total stations support gradians natively.</p>
+
+            <h3>What is the difference between a mil and a milliradian?</h3>
+            <p>A <strong>milliradian</strong> is exactly 1/1000 of a radian (≈ 0.05730°). A <strong>NATO mil</strong> divides the circle into 6,400 parts (= 0.05625°). They are close but not identical. The NATO mil was chosen for military use because 6,400 is easily divisible by powers of 2, simplifying field calculations.</p>
+
+            <h3>How do arcminutes and arcseconds relate to degrees?</h3>
+            <p><strong>1 degree = 60 arcminutes = 3,600 arcseconds.</strong> This sexagesimal (base-60) system was inherited from Babylonian mathematics. GPS coordinates use DMS notation: 40° 26′ 46″ N means 40 degrees, 26 arcminutes, 46 arcseconds north latitude.</p>
+
+            <h3>Can I measure angles with a protractor?</h3>
+            <p>Yes — a protractor is the standard tool for measuring angles in degrees. Place the center point on the vertex of the angle, align one side with the base line (0°), and read where the other side crosses the scale. Protractors typically measure 0°–180° (half-circle) or 0°–360° (full-circle).</p>
+        `,
+        formula: {
+            formula: "radians = degrees × π / 180",
+            variables: [
+                { symbol: "°", meaning: "Degrees — 360° per full circle" },
+                { symbol: "rad", meaning: "Radians — 2π per full circle (SI derived unit)" },
+                { symbol: "grad", meaning: "Gradians — 400 per full circle (surveying)" },
+                { symbol: "mrad", meaning: "Milliradians — 1/1000 radian (military/optics)" },
+                { symbol: "mil", meaning: "NATO mils — 6400 per full circle (artillery)" },
+            ],
+            example: [
+                { label: "90° → radians", substitution: "90 × π / 180 = π/2", result: "1.5708 rad" },
+                { label: "1 rad → degrees", substitution: "1 × 180 / π", result: "57.2958°" },
+                { label: "45° → gradians", substitution: "45 × (400/360)", result: "50 grad" },
+            ],
+        },
+        relatedCalculators: [
+            { title: "Percentage Calculator", slug: "percentage-calculator", categorySlug: "math-calculators", description: "Calculate percentages and ratios" },
+            { title: "Quadratic Equation Solver", slug: "quadratic-equation-solver", categorySlug: "math-calculators", description: "Solve equations involving angles" },
+            { title: "Exponent Calculator", slug: "exponent-calculator", categorySlug: "math-calculators", description: "Calculate powers for trig values" },
+            { title: "Fraction Calculator", slug: "fraction-calculator", categorySlug: "math-calculators", description: "Work with fractional angle values" },
+            { title: "LCM Calculator", slug: "lcm-calculator", categorySlug: "math-calculators", description: "Find common multiples for unit conversions" },
         ],
     },
 };
