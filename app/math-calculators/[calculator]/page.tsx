@@ -131,42 +131,146 @@ const HUB_CONTENT: Record<string, {
         ],
     },
 
-    /* ─── 3. GCD CALCULATOR ─── */
+    /* ─── 3. GCD CALCULATOR — RICH CONTENT (Competitor-level) ─── */
     "gcd-calculator": {
-        subtitle: "Find the Greatest Common Divisor (GCD) of two or more numbers using the Euclidean algorithm. See step-by-step solution and prime factorization.",
-        explanation: {
-            heading: "What is the Greatest Common Divisor (GCD)?",
-            paragraphs: [
-                "The Greatest Common Divisor (GCD) — also called the Greatest Common Factor (GCF) or Highest Common Factor (HCF) — is the largest positive integer that divides two or more numbers without leaving a remainder. For example, the GCD of 12 and 18 is 6, because 6 is the largest number that divides both 12 and 18 evenly.",
-                "The most efficient method for computing GCD is the Euclidean algorithm, invented by the Greek mathematician Euclid around 300 BCE. It works by repeatedly dividing the larger number by the smaller and taking the remainder until the remainder is zero. The last non-zero remainder is the GCD. This algorithm is remarkably fast — it works in O(log(min(a,b))) time, making it efficient even for very large numbers.",
-                "The GCD has important practical applications: simplifying fractions (divide both numerator and denominator by their GCD), finding the LCM (LCM = |a×b|/GCD), solving modular arithmetic problems in cryptography, and determining the largest tile size that fits a rectangular floor without cutting.",
-            ],
-            highlight: "GCD(48, 36): 48 = 1×36 + 12, then 36 = 3×12 + 0 → GCD = 12. This means 48/36 simplifies to 4/3.",
-        },
+        subtitle: "Find the greatest common divisor (GCD), also known as the greatest common factor (GCF) or highest common factor (HCF), for a set of numbers. See all factors, common factors, prime factorization, and step-by-step solutions using three different methods.",
+        contentHTML: `
+            <h2 id="how-to-find-the-gcd">How to Find the Greatest Common Divisor</h2>
+            <p>The <strong>greatest common divisor (GCD)</strong> of a set of numbers is the largest number that divides evenly into all numbers in the set. The greatest common divisor is sometimes referred to as the <em>greatest common factor (GCF)</em>, <em>highest common factor (HCF)</em>, <em>greatest common denominator</em>, or <em>highest common divisor</em>.</p>
+            <p>A <strong>factor</strong> (or divisor) of a number <em>x</em> is any whole number that can be multiplied by another whole number to produce <em>x</em>. For example, 3 and 5 are both factors of 15, because 3 × 5 = 15.</p>
+            <p>There are three standard methods to find the GCD: using <strong>prime factorization</strong>, <strong>listing all factors</strong>, or <strong>Euclid's algorithm</strong>. Our calculator above uses all three and shows the complete step-by-step solution. Read on to learn each method with a worked example.</p>
+
+            <h3 id="method-prime-factorization">Method One: Find GCD Using Prime Factorization</h3>
+            <p>The prime factorization method works by decomposing each number into its <strong>prime factors</strong> — the building blocks that are themselves only divisible by 1 and themselves. Once you have the prime factors for every number in the set, you identify the primes that are <strong>common to all numbers</strong> and multiply them together to get the GCD.</p>
+            <p>A <em>prime number</em> is a number greater than 1 that has no divisors other than 1 and itself. The first several primes are: 2, 3, 5, 7, 11, 13, 17, 19, 23, 29…</p>
+
+            <p><strong>Example: Find the GCD of 90 and 165 using prime factorization.</strong></p>
+            <p><strong>Step 1 — Find the prime factors of 90:</strong></p>
+            <ul>
+                <li>90 ÷ 2 = 45 → <strong>2</strong> is a prime factor</li>
+                <li>45 ÷ 3 = 15 → <strong>3</strong> is a prime factor</li>
+                <li>15 ÷ 3 = 5 → <strong>3</strong> is a prime factor (again)</li>
+                <li>5 ÷ 5 = 1 → <strong>5</strong> is a prime factor</li>
+            </ul>
+            <p>Prime factors of 90 = <strong>2 × 3 × 3 × 5</strong> (or 2 × 3² × 5)</p>
+
+            <p><strong>Step 2 — Find the prime factors of 165:</strong></p>
+            <ul>
+                <li>165 ÷ 3 = 55 → <strong>3</strong> is a prime factor</li>
+                <li>55 ÷ 5 = 11 → <strong>5</strong> is a prime factor</li>
+                <li>11 ÷ 11 = 1 → <strong>11</strong> is a prime factor</li>
+            </ul>
+            <p>Prime factors of 165 = <strong>3 × 5 × 11</strong></p>
+
+            <p><strong>Step 3 — Find the common prime factors:</strong></p>
+            <p>Both 90 and 165 share the prime factors <strong>3</strong> and <strong>5</strong>.</p>
+
+            <p><strong>Step 4 — Multiply the common prime factors:</strong></p>
+            <p>GCD = 3 × 5 = <strong>15</strong></p>
+
+            <div class="explanation__highlight">
+                <strong>Result:</strong> The greatest common divisor of 90 and 165 is <strong>15</strong>. This means you can simplify the fraction 90/165 to 6/11 by dividing both the numerator and denominator by 15. Use our <a href="/math-calculators/fraction-calculator">Fraction Calculator</a> to simplify any fraction instantly.
+            </div>
+
+            <h3 id="method-listing-factors">Method Two: Find GCD by Listing All Factors</h3>
+            <p>This method involves finding <em>every</em> factor of each number, identifying which factors are common to all numbers, and then selecting the largest one. It is straightforward and easy to understand, though it becomes impractical for very large numbers.</p>
+
+            <p><strong>Example: Find the GCD of 90 and 165 by listing all factors.</strong></p>
+
+            <p><strong>Step 1 — List all factors of 90:</strong></p>
+            <p>Check every integer from 1 up to 90 that divides 90 evenly:</p>
+            <p>Factors of 90 = {1, 2, 3, 5, 6, 9, 10, 15, 18, 30, 45, 90}</p>
+
+            <p><strong>Step 2 — List all factors of 165:</strong></p>
+            <p>Factors of 165 = {1, 3, 5, 11, 15, 33, 55, 165}</p>
+
+            <p><strong>Step 3 — Find the common factors:</strong></p>
+            <p>Numbers that appear in <em>both</em> factor lists:</p>
+            <p>Common factors = {<strong>1, 3, 5, 15</strong>}</p>
+
+            <p><strong>Step 4 — Select the greatest common factor:</strong></p>
+            <p>The largest number in the set of common factors is <strong>15</strong>.</p>
+
+            <div class="explanation__highlight">
+                <strong>Tip:</strong> Listing all factors also reveals useful information beyond the GCD — you can see <em>all</em> common factors, which is helpful when you need to find factor pairs or reduce fractions to intermediate forms. Our calculator above shows the complete list of factors for every number you enter.
+            </div>
+
+            <h3 id="method-euclids-algorithm">Method Three: Find GCD Using Euclid's Algorithm</h3>
+            <p><strong>Euclid's algorithm</strong> is the most efficient method for finding the GCD of two numbers. Invented by the Greek mathematician Euclid around 300 BCE, it is one of the oldest algorithms still in everyday use. The method works by repeatedly dividing and taking remainders until the remainder reaches zero.</p>
+
+            <p><strong>The algorithm:</strong></p>
+            <ol>
+                <li>Divide the larger number by the smaller number. Note the <strong>remainder</strong>.</li>
+                <li>If the remainder is <strong>0</strong>, the divisor in this step is the GCD. Stop here.</li>
+                <li>If the remainder is <strong>not 0</strong>, replace the larger number with the previous divisor, and the smaller number with the remainder. Go back to step 1.</li>
+            </ol>
+
+            <p><strong>Example: Find the GCD of 90 and 165 using Euclid's algorithm.</strong></p>
+            <ul>
+                <li><strong>Step 1:</strong> 165 ÷ 90 = 1 remainder <strong>75</strong></li>
+                <li><strong>Step 2:</strong> 90 ÷ 75 = 1 remainder <strong>15</strong></li>
+                <li><strong>Step 3:</strong> 75 ÷ 15 = 5 remainder <strong>0</strong></li>
+            </ul>
+            <p>The remainder is 0, so the divisor in this final step — <strong>15</strong> — is the GCD.</p>
+
+            <div class="explanation__highlight">
+                <strong>Why Euclid's algorithm is powerful:</strong> It works in O(log n) steps, meaning it can find the GCD of numbers with hundreds of digits almost instantly. This efficiency is why it is used in modern cryptography (RSA encryption), computer science, and engineering. Our <a href="/math-calculators/long-division-calculator">Long Division Calculator</a> uses the same division-and-remainder process.
+            </div>
+
+            <h2 id="gcd-and-lcm-relationship">The Relationship Between GCD and LCM</h2>
+            <p>The GCD and <a href="/math-calculators/lcm-calculator">LCM (Least Common Multiple)</a> are deeply connected by a simple formula:</p>
+            <p><strong>GCD(a, b) × LCM(a, b) = a × b</strong></p>
+            <p>This means once you know the GCD, you can instantly calculate the LCM:</p>
+            <p><strong>LCM(a, b) = (a × b) / GCD(a, b)</strong></p>
+            <p>For example: GCD(90, 165) = 15, so LCM(90, 165) = (90 × 165) / 15 = 14,850 / 15 = <strong>990</strong>.</p>
+            <p>The LCM is essential when you need to <a href="/math-calculators/fraction-calculator">add or subtract fractions</a> with different denominators — the LCD (Least Common Denominator) is simply the LCM of the denominators.</p>
+
+            <h2 id="faq">Frequently Asked Questions</h2>
+
+            <h3>What is the difference between GCD, GCF, and HCF?</h3>
+            <p>They are all <strong>different names for the same concept</strong> — the largest number that divides two or more numbers without a remainder. <strong>GCD</strong> (Greatest Common Divisor) is the term most commonly used in university-level mathematics and computer science. <strong>GCF</strong> (Greatest Common Factor) is the preferred term in American K-12 education. <strong>HCF</strong> (Highest Common Factor) is widely used in British, Indian, and Australian math education. All three terms are interchangeable.</p>
+
+            <h3>How do I find the GCD of more than two numbers?</h3>
+            <p>Apply the GCD function iteratively. First find the GCD of the first two numbers, then find the GCD of that result with the third number, and continue until all numbers have been processed. For example:</p>
+            <p>GCD(12, 18, 24) = GCD(GCD(12, 18), 24) = GCD(6, 24) = <strong>6</strong></p>
+            <p>Our calculator above handles any number of inputs — just enter them separated by commas.</p>
+
+            <h3>What is the greatest common divisor used for?</h3>
+            <p>The GCD has many practical applications:</p>
+            <ul>
+                <li><strong>Simplifying fractions:</strong> Divide both numerator and denominator by their GCD. For example, 48/36 → divide both by GCD(48,36) = 12 → simplified to 4/3. Use our <a href="/math-calculators/fraction-calculator">Fraction Calculator</a> to simplify fractions automatically.</li>
+                <li><strong>Finding the LCM:</strong> LCM(a,b) = (a × b) / GCD(a,b). The <a href="/math-calculators/lcm-calculator">LCM Calculator</a> uses this relationship.</li>
+                <li><strong>Tiling problems:</strong> The largest square tile that fits perfectly into a rectangular room of dimensions a × b (with no cutting) has a side length equal to GCD(a, b).</li>
+                <li><strong>Gear ratios:</strong> In mechanical engineering, the GCD determines the simplest gear ratio between two gears.</li>
+                <li><strong>Cryptography:</strong> RSA encryption — the foundation of internet security — relies heavily on GCD computations and Euclid's extended algorithm.</li>
+            </ul>
+
+            <h3>Can the GCD ever be 1?</h3>
+            <p>Yes. When the GCD of two numbers is 1, the numbers are called <strong>coprime</strong> (or <em>relatively prime</em>). This means they share no common factors other than 1. Examples: GCD(8, 15) = 1, GCD(7, 13) = 1, GCD(25, 36) = 1. Two consecutive integers are always coprime.</p>
+
+            <h3>Is there a GCD function on scientific calculators?</h3>
+            <p>Many scientific calculators have a built-in GCD or "gcd" function. On the TI-84, use <code>math → NUM → gcd(</code>. On Casio calculators, the function is often under the MATH menu. Online tools like our GCD Calculator above provide step-by-step solutions that physical calculators typically do not show.</p>
+        `,
         formula: {
-            formula: "GCD(a, b) = GCD(b, a mod b) until b = 0",
+            formula: "GCD(a, b) = GCD(b, a mod b), repeat until b = 0",
             variables: [
-                { symbol: "a", meaning: "The larger number" },
-                { symbol: "b", meaning: "The smaller number" },
-                { symbol: "a mod b", meaning: "Remainder when a is divided by b" },
-                { symbol: "GCD = a", meaning: "When b reaches 0, a is the GCD" },
+                { symbol: "a", meaning: "The larger of the two numbers" },
+                { symbol: "b", meaning: "The smaller of the two numbers" },
+                { symbol: "a mod b", meaning: "The remainder when a is divided by b" },
+                { symbol: "GCD = a", meaning: "When b reaches 0, the current value of a is the GCD" },
             ],
             example: [
-                { label: "GCD(48, 36)", substitution: "48 = 1×36 + 12 → GCD(36, 12)", result: "36 = 3×12 + 0 → GCD = 12" },
-                { label: "Alternative: prime factorization", substitution: "48 = 2⁴×3, 36 = 2²×3²", result: "Common: 2²×3 = 12" },
+                { label: "GCD(90, 165) — Step 1", substitution: "165 ÷ 90 = 1 R 75 → GCD(90, 75)", result: "Continue…" },
+                { label: "Step 2", substitution: "90 ÷ 75 = 1 R 15 → GCD(75, 15)", result: "Continue…" },
+                { label: "Step 3", substitution: "75 ÷ 15 = 5 R 0 → STOP", result: "GCD = 15" },
             ],
         },
-        faq: [
-            { question: "What is the difference between GCD and GCF?", answer: "They are the same thing. GCD (Greatest Common Divisor) and GCF (Greatest Common Factor) are just different names for the same concept — the largest number that divides two or more numbers evenly. HCF (Highest Common Factor) is another synonym commonly used in British and Indian math education." },
-            { question: "How do I find GCD of more than two numbers?", answer: "Find the GCD of the first two numbers, then find the GCD of that result with the third number, and so on. For example: GCD(12, 18, 24) = GCD(GCD(12, 18), 24) = GCD(6, 24) = 6." },
-            { question: "What is the relationship between GCD and LCM?", answer: "For any two positive integers a and b: GCD(a, b) × LCM(a, b) = a × b. This means LCM = (a × b) / GCD(a, b). This relationship makes computing LCM easy once you know the GCD." },
-            { question: "What is the GCD used for in real life?", answer: "Simplifying fractions, finding the LCM (for adding fractions with different denominators), tiling problems (largest square tile for a rectangle), gear ratios and mechanical engineering, and RSA encryption in computer science." },
-        ],
         relatedCalculators: [
-            { title: "LCM Calculator", slug: "lcm-calculator", categorySlug: "math-calculators", description: "Find the least common multiple using GCD" },
-            { title: "Fraction Calculator", slug: "fraction-calculator", categorySlug: "math-calculators", description: "Simplify fractions using GCD" },
-            { title: "Factorial Calculator", slug: "factorial-calculator", categorySlug: "math-calculators", description: "Calculate n! for combinatorics" },
-            { title: "Long Division", slug: "long-division-calculator", categorySlug: "math-calculators", description: "See division steps (used in Euclidean algorithm)" },
+            { title: "LCM Calculator", slug: "lcm-calculator", categorySlug: "math-calculators", description: "Find the least common multiple — uses GCD internally" },
+            { title: "Fraction Calculator", slug: "fraction-calculator", categorySlug: "math-calculators", description: "Simplify fractions by dividing by GCD" },
+            { title: "Long Division Calculator", slug: "long-division-calculator", categorySlug: "math-calculators", description: "Division with remainder — the core of Euclid's algorithm" },
+            { title: "Factorial Calculator", slug: "factorial-calculator", categorySlug: "math-calculators", description: "Calculate n! for permutations and combinations" },
+            { title: "Percentage Calculator", slug: "percentage-calculator", categorySlug: "math-calculators", description: "Express ratios and proportions as percentages" },
         ],
     },
 
