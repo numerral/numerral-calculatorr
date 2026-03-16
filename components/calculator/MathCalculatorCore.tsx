@@ -1223,6 +1223,67 @@ function AngleConverterCalc() {
     </div></div>);
 }
 
+/* 26. Parallelogram Area */
+function ParallelogramAreaCalc() {
+    const [mode, setMode] = useState("bh");
+    const [base, setBase] = useState("10"); const [height, setHeight] = useState("6");
+    const [sideA, setSideA] = useState("7"); const [sideB, setSideB] = useState("8"); const [angle, setAngle] = useState("60");
+    const [diagC, setDiagC] = useState("9"); const [diagD, setDiagD] = useState("12"); const [dAngle, setDAngle] = useState("30");
+    const r = useMemo(() => {
+        const steps: string[] = [];
+        let area = 0;
+        if (mode === "bh") {
+            const b = parseFloat(base) || 0; const h = parseFloat(height) || 0;
+            area = b * h;
+            steps.push(`Formula: A = base × height`);
+            steps.push(`A = ${b} × ${h} = ${fmt(area, 4)}`);
+        } else if (mode === "sides") {
+            const a = parseFloat(sideA) || 0; const b2 = parseFloat(sideB) || 0; const ang = parseFloat(angle) || 0;
+            const rad = ang * Math.PI / 180;
+            area = a * b2 * Math.sin(rad);
+            steps.push(`Formula: A = side a × side b × sin(α)`);
+            steps.push(`A = ${a} × ${b2} × sin(${ang}°)`);
+            steps.push(`sin(${ang}°) = ${fmt(Math.sin(rad), 6)}`);
+            steps.push(`A = ${a} × ${b2} × ${fmt(Math.sin(rad), 6)} = ${fmt(area, 4)}`);
+        } else {
+            const c = parseFloat(diagC) || 0; const d = parseFloat(diagD) || 0; const ang = parseFloat(dAngle) || 0;
+            const rad = ang * Math.PI / 180;
+            area = 0.5 * c * d * Math.sin(rad);
+            steps.push(`Formula: A = ½ × d₁ × d₂ × sin(θ)`);
+            steps.push(`A = ½ × ${c} × ${d} × sin(${ang}°)`);
+            steps.push(`sin(${ang}°) = ${fmt(Math.sin(rad), 6)}`);
+            steps.push(`A = 0.5 × ${c} × ${d} × ${fmt(Math.sin(rad), 6)} = ${fmt(area, 4)}`);
+        }
+        return { area: fmt(area, 4), sqIn: fmt(area * 144, 2), sqM: fmt(area * 0.092903, 4), sqCm: fmt(area * 929.0304, 2), steps };
+    }, [mode, base, height, sideA, sideB, angle, diagC, diagD, dAngle]);
+    return (<div className="con-calc"><h3 className="con-calc__title">▱ Parallelogram Area Calculator</h3><div className="con-calc__inputs">
+        <SelectField label="Method" value={mode} onChange={setMode} options={[
+            {value:"bh",label:"Base & Height"},
+            {value:"sides",label:"Two Sides & Angle"},
+            {value:"diags",label:"Diagonals & Angle"},
+        ]} />
+        {mode === "bh" && <>
+            <InputField label="Base (b)" value={base} onChange={setBase} />
+            <InputField label="Height (h)" value={height} onChange={setHeight} />
+        </>}
+        {mode === "sides" && <>
+            <InputField label="Side a" value={sideA} onChange={setSideA} />
+            <InputField label="Side b (base)" value={sideB} onChange={setSideB} />
+            <InputField label="Angle α (degrees)" value={angle} onChange={setAngle} />
+        </>}
+        {mode === "diags" && <>
+            <InputField label="Diagonal d₁" value={diagC} onChange={setDiagC} />
+            <InputField label="Diagonal d₂" value={diagD} onChange={setDiagD} />
+            <InputField label="Angle θ (degrees)" value={dAngle} onChange={setDAngle} />
+        </>}
+    </div><div className="con-calc__results"><h4>Result</h4>
+        <ResultRow label="Area" value={`${r.area} sq units`} />
+        <ResultRow label="Sq ft → Sq m" value={`${r.area} ft² = ${r.sqM} m²`} />
+        <h4>Steps</h4>
+        {r.steps.map((s, i) => <ResultRow key={i} label={`Step ${i + 1}`} value={s} />)}
+    </div></div>);
+}
+
 /* ──── DISPATCHER ──── */
 const CALC_MAP: Record<string, React.FC> = {
     "percentage": PercentageCalc,
@@ -1250,6 +1311,7 @@ const CALC_MAP: Record<string, React.FC> = {
     "add-fractions": AddFractionsCalc,
     "subtract-fractions": SubtractFractionsCalc,
     "angle-converter": AngleConverterCalc,
+    "parallelogram-area": ParallelogramAreaCalc,
 };
 
 export default function MathCalculatorCore({ calcType }: { calcType: string }) {

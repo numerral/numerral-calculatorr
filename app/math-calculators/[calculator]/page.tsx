@@ -2258,6 +2258,105 @@ const HUB_CONTENT: Record<string, {
             { title: "LCM Calculator", slug: "lcm-calculator", categorySlug: "math-calculators", description: "Find common multiples for unit conversions" },
         ],
     },
+
+    /* ─── 26. PARALLELOGRAM AREA — RICH CONTENT ─── */
+    "parallelogram-area-calculator": {
+        subtitle: "Calculate the area of a parallelogram using base & height, two sides & the interior angle, or the diagonals & angle between them. See the step-by-step formula and sine calculation for each method.",
+        contentHTML: `
+            <h2 id="how-to-calculate">How to Calculate the Area of a Parallelogram</h2>
+            <p>A <strong>parallelogram</strong> is a four-sided figure (quadrilateral) with two pairs of <strong>parallel sides</strong>. Opposite sides are equal in length, and opposite angles are equal. Rectangles, rhombi, and squares are all special types of parallelograms.</p>
+            <p>There are three ways to calculate the area of a parallelogram, depending on the information you have. Our calculator above supports all three methods — just select the one that matches your available measurements.</p>
+
+            <h3 id="method-base-height">Method 1: Base and Height</h3>
+            <p>The most common and simplest method. The formula is:</p>
+            <p><strong>A = b × h</strong></p>
+            <p>The area <em>A</em> equals the length of the <strong>base</strong> (<em>b</em>) multiplied by the perpendicular <strong>height</strong> (<em>h</em>). The height must be measured at a right angle (90°) to the base — <em>not</em> along the slanted side.</p>
+            <p><strong>Example:</strong> A parallelogram with base = 10 and height = 6.</p>
+            <ul>
+                <li>A = 10 × 6 = <strong>60 square units</strong></li>
+            </ul>
+
+            <div class="explanation__highlight">
+                <strong>Important:</strong> The height is the <em>perpendicular</em> distance between the base and the opposite side — not the length of the slanted side. If you only know the slanted side and the angle, use Method 2 instead.
+            </div>
+
+            <h3 id="method-sides-angle">Method 2: Two Sides and Interior Angle</h3>
+            <p>When you know the lengths of two adjacent sides and the angle between them, use trigonometry:</p>
+            <p><strong>A = a × b × sin(α)</strong></p>
+            <p>The area equals the product of the two side lengths multiplied by the <strong>sine</strong> of the included angle <em>α</em>.</p>
+            <p><strong>Example:</strong> Side a = 7, side b = 8, angle α = 60°.</p>
+            <ul>
+                <li>sin(60°) = 0.866025</li>
+                <li>A = 7 × 8 × 0.866025 = <strong>48.50 square units</strong></li>
+            </ul>
+            <p>This method works because <em>h = a × sin(α)</em>, so the formula is equivalent to <em>b × h</em>. When α = 90°, sin(90°) = 1, and the parallelogram becomes a rectangle.</p>
+
+            <h3 id="method-diagonals">Method 3: Diagonals and Angle Between</h3>
+            <p>If you know the lengths of the two diagonals and the angle where they intersect:</p>
+            <p><strong>A = ½ × d₁ × d₂ × sin(θ)</strong></p>
+            <p>The area equals one-half the product of the two diagonal lengths multiplied by the sine of the angle <em>θ</em> between them.</p>
+            <p><strong>Example:</strong> Diagonal d₁ = 9, diagonal d₂ = 12, angle θ = 30°.</p>
+            <ul>
+                <li>sin(30°) = 0.5</li>
+                <li>A = ½ × 9 × 12 × 0.5 = <strong>27 square units</strong></li>
+            </ul>
+
+            <h2 id="properties">Properties of a Parallelogram</h2>
+            <ul>
+                <li><strong>Opposite sides</strong> are equal and parallel</li>
+                <li><strong>Opposite angles</strong> are equal</li>
+                <li><strong>Consecutive angles</strong> are supplementary (add up to 180°)</li>
+                <li><strong>Diagonals bisect each other</strong> (they cross at their midpoints)</li>
+                <li>The sum of all interior angles is <strong>360°</strong></li>
+            </ul>
+
+            <h2 id="special-cases">Special Cases</h2>
+            <ul>
+                <li><strong>Rectangle:</strong> A parallelogram where all angles are 90° → A = length × width</li>
+                <li><strong>Rhombus:</strong> A parallelogram where all sides are equal → A = ½ × d₁ × d₂</li>
+                <li><strong>Square:</strong> Both a rectangle and a rhombus → A = side²</li>
+            </ul>
+
+            <h2 id="faq">Frequently Asked Questions</h2>
+
+            <h3>What is the difference between base × height and side × side?</h3>
+            <p>The <strong>base</strong> is one side of the parallelogram, but the <strong>height</strong> is the <em>perpendicular</em> distance to the opposite side — not the other side. In a parallelogram that isn't a rectangle, the slanted side is longer than the height. Using side × side would overestimate the area unless you multiply by sin(angle).</p>
+
+            <h3>Do I need to know the angle to calculate area?</h3>
+            <p>If you know the <strong>base and perpendicular height</strong>, no angle is needed (Method 1). If you only know the side lengths or diagonal lengths, then yes — you need an angle to use Method 2 or Method 3.</p>
+
+            <h3>What if my angle is in radians?</h3>
+            <p>Use our <a href="/math-calculators/angle-converter-calculator">Angle Converter</a> to convert radians to degrees first, or enter the angle in degrees directly. The calculator expects angles in degrees.</p>
+
+            <h3>Is a rectangle a parallelogram?</h3>
+            <p>Yes! A <strong>rectangle</strong> is a special parallelogram where all four angles are 90°. Since sin(90°) = 1, the area formula simplifies to A = base × height = length × width.</p>
+
+            <h3>How do I find the height if I only know the sides and angle?</h3>
+            <p>The height can be calculated from the side and angle: <strong>h = a × sin(α)</strong>, where <em>a</em> is the slanted side and <em>α</em> is the interior angle. Then use A = base × h.</p>
+        `,
+        formula: {
+            formula: "A = b × h",
+            variables: [
+                { symbol: "A", meaning: "Area of the parallelogram" },
+                { symbol: "b", meaning: "Length of the base" },
+                { symbol: "h", meaning: "Perpendicular height (not slanted side)" },
+                { symbol: "α", meaning: "Interior angle between sides (for Method 2)" },
+                { symbol: "d₁, d₂", meaning: "Lengths of the two diagonals (for Method 3)" },
+            ],
+            example: [
+                { label: "Base & Height", substitution: "A = 10 × 6", result: "60 sq units" },
+                { label: "Sides & Angle", substitution: "A = 7 × 8 × sin(60°)", result: "48.50 sq units" },
+                { label: "Diagonals & Angle", substitution: "A = ½ × 9 × 12 × sin(30°)", result: "27 sq units" },
+            ],
+        },
+        relatedCalculators: [
+            { title: "Percentage Calculator", slug: "percentage-calculator", categorySlug: "math-calculators", description: "Calculate percentages of areas" },
+            { title: "Angle Converter", slug: "angle-converter-calculator", categorySlug: "math-calculators", description: "Convert angle units for formulas" },
+            { title: "Quadratic Equation Solver", slug: "quadratic-equation-solver", categorySlug: "math-calculators", description: "Solve geometry equations" },
+            { title: "Fraction Calculator", slug: "fraction-calculator", categorySlug: "math-calculators", description: "Work with fractional dimensions" },
+            { title: "Exponent Calculator", slug: "exponent-calculator", categorySlug: "math-calculators", description: "Calculate powers for area units" },
+        ],
+    },
 };
 
 export default async function MathCalculatorHubPage({ params }: PageProps) {

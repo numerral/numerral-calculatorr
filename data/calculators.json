@@ -12028,5 +12028,19 @@
     "defaults": { "amount": 0, "rate": 0, "tenure": 0 },
     "sliderRanges": { "amount": { "min": 0, "max": 0, "step": 0 }, "rate": { "min": 0, "max": 0, "step": 0 }, "tenure": { "min": 0, "max": 0, "step": 0 } },
     "keywords": "angle converter, degrees to radians, radians to degrees, angle conversion calculator, degrees to gradians, convert angle units, milliradians to degrees, arcminutes to degrees"
+  },
+  {
+    "id": "parallelogram-area-calculator",
+    "category": "math",
+    "title": "Parallelogram Area Calculator",
+    "slug": "parallelogram-area-calculator",
+    "categorySlug": "math-calculators",
+    "icon": "▱",
+    "description": "Calculate the area of a parallelogram using base & height, two sides & angle, or diagonals & angle. See step-by-step formulas with sine calculations.",
+    "stars": 5,
+    "calcType": "parallelogram-area",
+    "defaults": { "amount": 0, "rate": 0, "tenure": 0 },
+    "sliderRanges": { "amount": { "min": 0, "max": 0, "step": 0 }, "rate": { "min": 0, "max": 0, "step": 0 }, "tenure": { "min": 0, "max": 0, "step": 0 } },
+    "keywords": "parallelogram area calculator, area of a parallelogram, parallelogram formula, base times height, parallelogram calculator, area using sides and angle, parallelogram area with diagonals"
   }
 ]
