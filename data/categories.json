@@ -78,5 +78,13 @@
         "description": "BMI, calories, body fat, TDEE & fitness tools",
         "count": 72,
         "href": "/health-calculators"
+    },
+    {
+        "key": "math",
+        "icon": "🔢",
+        "name": "Math Calculators",
+        "description": "Percentage, fractions, algebra, statistics & number tools",
+        "count": 10,
+        "href": "/math-calculators"
     }
 ]

@@ -236,5 +236,39 @@
       "label": "Sleep Calculator",
       "href": "/health-calculators/sleep-calculator"
     }
+  ],
+  "math": [
+    {
+      "label": "Percentage Calculator",
+      "href": "/math-calculators/percentage-calculator"
+    },
+    {
+      "label": "Fraction Calculator",
+      "href": "/math-calculators/fraction-calculator"
+    },
+    {
+      "label": "GCD Calculator",
+      "href": "/math-calculators/gcd-calculator"
+    },
+    {
+      "label": "LCM Calculator",
+      "href": "/math-calculators/lcm-calculator"
+    },
+    {
+      "label": "Quadratic Solver",
+      "href": "/math-calculators/quadratic-equation-solver"
+    },
+    {
+      "label": "Average Calculator",
+      "href": "/math-calculators/average-calculator"
+    },
+    {
+      "label": "Std Deviation",
+      "href": "/math-calculators/standard-deviation-calculator"
+    },
+    {
+      "label": "Long Division",
+      "href": "/math-calculators/long-division-calculator"
+    }
   ]
 }
