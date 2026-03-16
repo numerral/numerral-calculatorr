@@ -11818,5 +11818,19 @@
     "defaults": { "amount": 0, "rate": 0, "tenure": 0 },
     "sliderRanges": { "amount": { "min": 0, "max": 0, "step": 0 }, "rate": { "min": 0, "max": 0, "step": 0 }, "tenure": { "min": 0, "max": 0, "step": 0 } },
     "keywords": "long division calculator, division calculator, long division with steps, long division with remainder, division step by step, quotient and remainder"
+  },
+  {
+    "id": "fraction-to-ratio-calculator",
+    "category": "math",
+    "title": "Fraction to Ratio Calculator",
+    "slug": "fraction-to-ratio-calculator",
+    "categorySlug": "math-calculators",
+    "icon": "🔄",
+    "description": "Convert any fraction or mixed number to a ratio. See the step-by-step conversion process including simplification and ratio notation.",
+    "stars": 4,
+    "calcType": "fraction-to-ratio",
+    "defaults": { "amount": 0, "rate": 0, "tenure": 0 },
+    "sliderRanges": { "amount": { "min": 0, "max": 0, "step": 0 }, "rate": { "min": 0, "max": 0, "step": 0 }, "tenure": { "min": 0, "max": 0, "step": 0 } },
+    "keywords": "fraction to ratio calculator, convert fraction to ratio, fraction ratio converter, fraction as ratio, mixed number to ratio, ratio notation"
   }
 ]

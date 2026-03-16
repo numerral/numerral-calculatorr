@@ -653,6 +653,110 @@ const HUB_CONTENT: Record<string, {
             { title: "Average Calculator", slug: "average-calculator", categorySlug: "math-calculators", description: "Division to find the mean" },
         ],
     },
+
+    /* ─── 11. FRACTION TO RATIO CALCULATOR — RICH CONTENT ─── */
+    "fraction-to-ratio-calculator": {
+        subtitle: "Convert any fraction or mixed number to a ratio, or convert a ratio back to a fraction. See the complete step-by-step conversion with simplification.",
+        contentHTML: `
+            <h2 id="how-to-convert">How to Convert a Fraction to a Ratio</h2>
+            <p>A <strong>fraction</strong> and a <strong>ratio</strong> are closely related — they both compare two quantities. A fraction is written as <em>a/b</em> (numerator over denominator), while a ratio is written as <em>a:b</em> (with a colon separating the two values).</p>
+            <p>Converting between the two is straightforward, but there are a few important steps to follow — especially when dealing with mixed numbers or fractions that need simplification.</p>
+
+            <h3 id="step-simplify">Step One: Simplify and Convert to an Improper Fraction</h3>
+            <p>If your fraction is a <strong>mixed number</strong> (like 2 3/4), first convert it to an <strong>improper fraction</strong>:</p>
+            <ol>
+                <li>Multiply the whole number by the denominator.</li>
+                <li>Add the result to the numerator.</li>
+                <li>Keep the same denominator.</li>
+            </ol>
+            <p><strong>Example:</strong> Convert 2 3/4 to an improper fraction.</p>
+            <ul>
+                <li>2 × 4 = 8</li>
+                <li>8 + 3 = 11</li>
+                <li>2 3/4 = <strong>11/4</strong></li>
+            </ul>
+            <p>Next, <strong>simplify</strong> the fraction by dividing both the numerator and denominator by their <a href="/math-calculators/gcd-calculator">Greatest Common Divisor (GCD)</a>. For example, 6/8 → GCD(6,8) = 2 → 3/4.</p>
+
+            <h3 id="step-rewrite">Step Two: Rewrite as a Ratio</h3>
+            <p>Once you have a simplified improper (or proper) fraction, simply replace the fraction bar with a colon:</p>
+            <p><strong>a/b → a:b</strong></p>
+            <p><strong>Example:</strong> Convert 1 1/2 to a ratio.</p>
+            <ul>
+                <li>Convert to improper fraction: 1 1/2 = <strong>3/2</strong></li>
+                <li>Rewrite as ratio: 3/2 = <strong>3:2</strong></li>
+            </ul>
+
+            <div class="explanation__highlight">
+                <strong>Key point:</strong> Always simplify first! The fraction 6/4 would give you the ratio 6:4, but the <em>simplified</em> ratio is 3:2. A ratio should be in its simplest form, just like a fraction.
+            </div>
+
+            <h2 id="ratio-to-fraction">How to Convert a Ratio to a Fraction</h2>
+            <p>Converting in the other direction is equally simple — replace the colon with a fraction bar:</p>
+            <p><strong>a:b → a/b</strong></p>
+            <p><strong>Example:</strong> Convert the ratio 5:3 to a fraction.</p>
+            <ul>
+                <li>5:3 = <strong>5/3</strong></li>
+                <li>As a mixed number: <strong>1 2/3</strong></li>
+                <li>As a decimal: <strong>1.6667</strong></li>
+            </ul>
+            <p>Our calculator above handles both directions — use the dropdown to switch between "Fraction → Ratio" and "Ratio → Fraction".</p>
+
+            <h2 id="understanding-ratios">Understanding Ratios</h2>
+            <p>A <strong>ratio</strong> compares two quantities by division. The ratio 3:2 means "for every 3 of the first quantity, there are 2 of the second." Ratios appear everywhere in daily life:</p>
+            <ul>
+                <li><strong>Cooking:</strong> A recipe might call for ingredients in a 2:1 ratio (e.g., 2 cups flour to 1 cup sugar)</li>
+                <li><strong>Maps and scale models:</strong> A 1:100 scale means 1 cm on the map represents 100 cm in reality</li>
+                <li><strong>Finance:</strong> Debt-to-income ratio, price-to-earnings ratio</li>
+                <li><strong>Science:</strong> Stoichiometric ratios in chemistry, gear ratios in engineering</li>
+                <li><strong>Art and design:</strong> The golden ratio (approximately 1.618:1) and aspect ratios (16:9, 4:3)</li>
+            </ul>
+
+            <h3 id="part-to-part-vs-part-to-whole">Part-to-Part vs. Part-to-Whole Ratios</h3>
+            <p>There are two types of ratios:</p>
+            <ul>
+                <li><strong>Part-to-part:</strong> Compares one part of a group to another part. If a class has 12 boys and 8 girls, the boy-to-girl ratio is 12:8 = 3:2.</li>
+                <li><strong>Part-to-whole:</strong> Compares one part to the total. In the same class, the boy-to-total ratio is 12:20 = 3:5, and as a fraction: 12/20 = 3/5 = 60%.</li>
+            </ul>
+            <p>Use our <a href="/math-calculators/percentage-calculator">Percentage Calculator</a> to convert ratios to percentages.</p>
+
+            <h2 id="faq">Frequently Asked Questions</h2>
+
+            <h3>What is the difference between a fraction and a ratio?</h3>
+            <p>A <strong>fraction</strong> always represents a part of a whole (3/4 means 3 out of 4 equal parts). A <strong>ratio</strong> can compare any two quantities — parts to parts, parts to wholes, or even unrelated quantities (like speed: miles per hour). While 3/4 and 3:4 look similar, a ratio of 3:4 often means "3 of one thing compared to 4 of another" — which is 7 things total, not 4.</p>
+
+            <h3>Can a ratio have more than two parts?</h3>
+            <p>Yes! A ratio can compare three or more quantities. For example, a concrete mix ratio of 1:2:3 means 1 part cement, 2 parts sand, and 3 parts gravel. However, this cannot be directly written as a single fraction — you would need multiple fractions (1/6 cement, 2/6 = 1/3 sand, 3/6 = 1/2 gravel by proportion).</p>
+
+            <h3>How do I simplify a ratio?</h3>
+            <p>Divide both sides of the ratio by their <a href="/math-calculators/gcd-calculator">Greatest Common Divisor (GCD)</a>. For example: 12:8 → GCD(12,8) = 4 → 12÷4 : 8÷4 = <strong>3:2</strong>. This works exactly like simplifying a <a href="/math-calculators/fraction-calculator">fraction</a>.</p>
+
+            <h3>What is the golden ratio?</h3>
+            <p>The golden ratio (φ ≈ 1.618:1) is a mathematical ratio found throughout nature, art, and architecture. Two quantities are in the golden ratio if their ratio equals the ratio of their sum to the larger quantity: (a+b)/a = a/b ≈ 1.618. As a fraction, it is approximately 89/55 or 144/89 (consecutive Fibonacci numbers).</p>
+
+            <h3>How are ratios used in real life?</h3>
+            <p>Ratios are used in cooking (ingredient proportions), finance (P/E ratio, debt ratio), construction (concrete mix 1:2:3), maps (scale 1:50,000), medicine (dosage per weight), chemistry (molar ratios), and technology (screen aspect ratios like 16:9).</p>
+        `,
+        formula: {
+            formula: "Fraction a/b = Ratio a:b (after simplification)",
+            variables: [
+                { symbol: "a/b", meaning: "Fraction form (numerator / denominator)" },
+                { symbol: "a:b", meaning: "Ratio form (first quantity : second quantity)" },
+                { symbol: "GCD(a,b)", meaning: "Divide both by GCD to simplify before converting" },
+            ],
+            example: [
+                { label: "6/8 → Ratio", substitution: "GCD(6,8)=2 → 3/4 → 3:4", result: "3:4" },
+                { label: "2 1/2 → Ratio", substitution: "2 1/2 = 5/2 → 5:2", result: "5:2" },
+                { label: "Ratio 5:3 → Fraction", substitution: "5:3 → 5/3 = 1 2/3", result: "5/3 ≈ 1.667" },
+            ],
+        },
+        relatedCalculators: [
+            { title: "Fraction Calculator", slug: "fraction-calculator", categorySlug: "math-calculators", description: "Add, subtract, multiply, and divide fractions" },
+            { title: "GCD Calculator", slug: "gcd-calculator", categorySlug: "math-calculators", description: "Find the GCD to simplify fractions and ratios" },
+            { title: "Percentage Calculator", slug: "percentage-calculator", categorySlug: "math-calculators", description: "Convert ratios and fractions to percentages" },
+            { title: "LCM Calculator", slug: "lcm-calculator", categorySlug: "math-calculators", description: "Find common multiples for scaling ratios" },
+            { title: "Long Division Calculator", slug: "long-division-calculator", categorySlug: "math-calculators", description: "Divide to convert fractions to decimals" },
+        ],
+    },
 };
 
 export default async function MathCalculatorHubPage({ params }: PageProps) {

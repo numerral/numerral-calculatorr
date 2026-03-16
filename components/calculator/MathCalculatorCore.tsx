@@ -387,6 +387,73 @@ function LongDivisionCalc() {
     </div></div>);
 }
 
+/* 11. Fraction to Ratio Calculator */
+function FractionToRatioCalc() {
+    const [mode, setMode] = useState("fraction-to-ratio");
+    const [whole, setWhole] = useState("");
+    const [num, setNum] = useState("3"); const [den, setDen] = useState("4");
+    // ratio inputs
+    const [ra, setRa] = useState("3"); const [rb, setRb] = useState("4");
+    const r = useMemo(() => {
+        const steps: string[] = [];
+        if (mode === "fraction-to-ratio") {
+            let n = parseInt(num) || 0;
+            let d = parseInt(den) || 1;
+            const w = parseInt(whole) || 0;
+            if (w !== 0) {
+                steps.push(`Convert mixed number ${w} ${Math.abs(n)}/${d} to improper fraction`);
+                n = w * d + (w < 0 ? -Math.abs(n) : Math.abs(n));
+                steps.push(`= ${n}/${d}`);
+            }
+            const g = gcd(Math.abs(n), Math.abs(d));
+            const sn = n / g;
+            const sd = d / g;
+            if (g > 1) steps.push(`Simplify ${n}/${d} by dividing both by GCD(${Math.abs(n)},${Math.abs(d)}) = ${g}`);
+            steps.push(`${sn}/${sd} → write as ratio → ${sn}:${sd}`);
+            const decimal = d !== 0 ? n / d : 0;
+            const percent = decimal * 100;
+            return { ratio: `${sn}:${sd}`, fraction: `${sn}/${sd}`, decimal: fmt(decimal, 6), percent: fmt(percent, 4) + "%", steps };
+        } else {
+            // ratio to fraction
+            const a = parseInt(ra) || 0;
+            const b = parseInt(rb) || 1;
+            steps.push(`Ratio ${a}:${b} → write as fraction → ${a}/${b}`);
+            const g = gcd(Math.abs(a), Math.abs(b));
+            const sn = a / g;
+            const sd = b / g;
+            if (g > 1) steps.push(`Simplify: ${a}/${b} = ${sn}/${sd}`);
+            const decimal = b !== 0 ? a / b : 0;
+            const whole = Math.floor(Math.abs(sn) / Math.abs(sd));
+            const rem = Math.abs(sn) % Math.abs(sd);
+            const mixed = whole > 0 && rem > 0 ? `${sn < 0 ? "-" : ""}${whole} ${rem}/${Math.abs(sd)}` : `${sn}/${sd}`;
+            if (whole > 0 && rem > 0) steps.push(`As mixed number: ${mixed}`);
+            return { ratio: `${a}:${b}`, fraction: `${sn}/${sd}`, decimal: fmt(decimal, 6), percent: fmt(decimal * 100, 4) + "%", mixed, steps };
+        }
+    }, [mode, whole, num, den, ra, rb]);
+    return (<div className="con-calc"><h3 className="con-calc__title">🔄 Fraction ↔ Ratio Converter</h3><div className="con-calc__inputs">
+        <SelectField label="Conversion" value={mode} onChange={setMode} options={[{value:"fraction-to-ratio",label:"Fraction → Ratio"},{value:"ratio-to-fraction",label:"Ratio → Fraction"}]} />
+        {mode === "fraction-to-ratio" ? (<>
+            <InputField label="Whole Number (optional)" value={whole} onChange={setWhole} placeholder="Leave empty for simple fraction" />
+            <div style={{display:"flex",gap:"var(--s-2)",alignItems:"center"}}>
+                <InputField label="Numerator" value={num} onChange={setNum} />
+                <InputField label="Denominator" value={den} onChange={setDen} />
+            </div>
+        </>) : (<>
+            <div style={{display:"flex",gap:"var(--s-2)",alignItems:"center"}}>
+                <InputField label="A (left side)" value={ra} onChange={setRa} />
+                <InputField label="B (right side)" value={rb} onChange={setRb} />
+            </div>
+        </>)}
+    </div><div className="con-calc__results"><h4>Result</h4>
+        <ResultRow label="Ratio" value={r.ratio} />
+        <ResultRow label="Fraction" value={r.fraction} />
+        <ResultRow label="Decimal" value={r.decimal} />
+        <ResultRow label="Percentage" value={r.percent} />
+        <h4>Steps</h4>
+        {r.steps.map((s, i) => <ResultRow key={i} label={`Step ${i + 1}`} value={s} />)}
+    </div></div>);
+}
+
 /* ──── DISPATCHER ──── */
 const CALC_MAP: Record<string, React.FC> = {
     "percentage": PercentageCalc,
@@ -399,6 +466,7 @@ const CALC_MAP: Record<string, React.FC> = {
     "average": AverageCalc,
     "standard-deviation": StdDevCalc,
     "long-division": LongDivisionCalc,
+    "fraction-to-ratio": FractionToRatioCalc,
 };
 
 export default function MathCalculatorCore({ calcType }: { calcType: string }) {
