@@ -92,42 +92,154 @@ const HUB_CONTENT: Record<string, {
         ],
     },
 
-    /* ─── 2. FRACTION CALCULATOR ─── */
+    /* ─── 2. FRACTION CALCULATOR — RICH CONTENT (Competitor-level) ─── */
     "fraction-calculator": {
-        subtitle: "Add, subtract, multiply, and divide fractions and mixed numbers. See step-by-step solutions with LCD calculation, simplification, and decimal conversion.",
-        explanation: {
-            heading: "How to Add, Subtract, Multiply, and Divide Fractions",
-            paragraphs: [
-                "A fraction represents a part of a whole — written as numerator/denominator. The numerator tells how many parts we have, and the denominator tells how many equal parts the whole is divided into. For example, 3/4 means 3 parts out of 4 equal parts.",
-                "Adding and subtracting fractions requires a common denominator. The Least Common Denominator (LCD) is the smallest number that both denominators divide into evenly. Once you have the LCD, convert each fraction so both have the same denominator, then add or subtract the numerators. The result is then simplified by dividing both numerator and denominator by their Greatest Common Divisor (GCD).",
-                "Multiplying fractions is simpler: multiply the numerators together and the denominators together. Dividing fractions uses the 'flip and multiply' rule — invert the second fraction and then multiply. Our calculator handles all four operations and shows every step: finding the LCD, converting fractions, performing the operation, and simplifying the result.",
-            ],
-            highlight: "Example: 2/3 + 3/4 → LCD = 12 → 8/12 + 9/12 = 17/12 = 1 5/12 ≈ 1.4167",
-        },
+        subtitle: "Add, subtract, multiply, and divide fractions and mixed numbers using our fraction calculator. See every step of the solution — from finding the common denominator to simplifying the result.",
+        contentHTML: `
+            <h2 id="how-to-calculate-fractions">How to Calculate Fractions</h2>
+            <p>A <strong>fraction</strong> is a number that represents a part of a whole, written as one number over another separated by a line: <em>numerator / denominator</em>. The <strong>numerator</strong> (top number) tells how many parts you have, and the <strong>denominator</strong> (bottom number) tells how many equal parts the whole is divided into.</p>
+            <p>Our calculator above handles addition, subtraction, multiplication, and division of fractions — including proper fractions, improper fractions, and mixed numbers. It shows the complete step-by-step solution so you can follow along and learn the process.</p>
+            <p>Below you'll find detailed guides for each operation, complete with formulas and worked examples.</p>
+
+            <h2 id="add-subtract-fractions">How to Add & Subtract Fractions</h2>
+            <p>Adding and subtracting fractions is different from adding whole numbers because the fractions must have the <strong>same denominator</strong> before you can combine them. You can use the following formula to add two fractions:</p>
+            <p><strong>a/b + c/d = (a×d + b×c) / (b×d)</strong></p>
+            <p>This formula works by cross-multiplying to create a common denominator. After applying it, you simplify the result. Here are the three steps in detail:</p>
+
+            <h3 id="step-common-denominator">Step One: Convert to Fractions with a Common Denominator</h3>
+            <p>When adding or subtracting fractions with different denominators, you first need to find the <strong>Least Common Denominator (LCD)</strong> — the smallest number that both denominators divide into evenly. The LCD is the same as the <a href="/math-calculators/lcm-calculator">Least Common Multiple (LCM)</a> of the denominators.</p>
+            <p>Once you have the LCD, convert each fraction to an <strong>equivalent fraction</strong> with the LCD as the denominator. To do this, divide the LCD by each fraction's denominator, then multiply both the numerator and denominator by that result.</p>
+            <p><strong>Example:</strong> Add 1/3 + 1/4.</p>
+            <ul>
+                <li>LCD of 3 and 4 = 12</li>
+                <li>1/3 = (1 × 4) / (3 × 4) = <strong>4/12</strong></li>
+                <li>1/4 = (1 × 3) / (4 × 3) = <strong>3/12</strong></li>
+            </ul>
+
+            <h3 id="step-add-numerators">Step Two: Add or Subtract the Numerators</h3>
+            <p>Once both fractions have the same denominator, simply <strong>add</strong> (or subtract) the numerators and keep the denominator the same.</p>
+            <p><strong>Continuing the example:</strong></p>
+            <p>4/12 + 3/12 = (4 + 3) / 12 = <strong>7/12</strong></p>
+
+            <h3 id="step-simplify-add">Step Three: Simplify the Fraction</h3>
+            <p>The final step is to <strong>simplify</strong> the result. Find the <a href="/math-calculators/gcd-calculator">Greatest Common Divisor (GCD)</a> of the numerator and denominator, then divide both by it.</p>
+            <p>In our example, 7/12 is already in its simplest form because GCD(7, 12) = 1. The answer is <strong>7/12 ≈ 0.5833</strong>.</p>
+
+            <div class="explanation__highlight">
+                <strong>Subtraction works the same way</strong> — just subtract the numerators instead of adding them. For example: 3/4 − 1/3 → LCD = 12 → 9/12 − 4/12 = <strong>5/12</strong>.
+            </div>
+
+            <h2 id="multiply-fractions">How to Multiply Fractions</h2>
+            <p>Multiplying fractions is simpler than adding them — no common denominator needed. Use this formula:</p>
+            <p><strong>a/b × c/d = (a × c) / (b × d)</strong></p>
+            <p>Simply multiply the numerators together and multiply the denominators together, then simplify the result.</p>
+
+            <h3 id="step-multiply-num-den">Step One: Multiply the Numerators and Denominators</h3>
+            <p>Multiply the top numbers together to get the new numerator. Multiply the bottom numbers together to get the new denominator.</p>
+            <p><strong>Example:</strong> Multiply 2/3 × 3/4.</p>
+            <p>2/3 × 3/4 = (2 × 3) / (3 × 4) = <strong>6/12</strong></p>
+
+            <h3 id="step-simplify-multiply">Step Two: Simplify the Fraction</h3>
+            <p>Find the <a href="/math-calculators/gcd-calculator">GCD</a> of the numerator and denominator, then divide both by it.</p>
+            <p>GCD(6, 12) = 6. So: 6/12 = (6 ÷ 6) / (12 ÷ 6) = <strong>1/2</strong>.</p>
+
+            <div class="explanation__highlight">
+                <strong>Tip:</strong> You can cross-cancel <em>before</em> multiplying to make the math easier. In 2/3 × 3/4, the 3 in the numerator and the 3 in the denominator cancel out, giving you 2/1 × 1/4 = 2/4 = 1/2. Same answer, simpler arithmetic.
+            </div>
+
+            <h2 id="divide-fractions">How to Divide Fractions</h2>
+            <p>To divide fractions, use the <strong>"keep, change, flip"</strong> method — also called multiplying by the reciprocal:</p>
+            <ol>
+                <li><strong>Keep</strong> the first fraction as it is.</li>
+                <li><strong>Change</strong> the division sign (÷) to multiplication (×).</li>
+                <li><strong>Flip</strong> the second fraction (swap its numerator and denominator to get the reciprocal).</li>
+            </ol>
+            <p>The formula is: <strong>a/b ÷ c/d = a/b × d/c = (a × d) / (b × c)</strong></p>
+
+            <h3 id="step-cross-multiply">Step One: Multiply by the Reciprocal</h3>
+            <p><strong>Example:</strong> Divide 2/3 ÷ 3/4.</p>
+            <p>Flip the second fraction: 3/4 → <strong>4/3</strong></p>
+            <p>Now multiply: 2/3 × 4/3 = (2 × 4) / (3 × 3) = <strong>8/9</strong></p>
+
+            <h3 id="step-simplify-divide">Step Two: Simplify the Fraction</h3>
+            <p>GCD(8, 9) = 1, so 8/9 is already in simplest form. The answer is <strong>8/9 ≈ 0.8889</strong>.</p>
+
+            <div class="explanation__highlight">
+                <strong>Why does "keep, change, flip" work?</strong> Division is the inverse of multiplication. Dividing by a fraction is the same as multiplying by its reciprocal. Think about it: 6 ÷ 2 = 3, and 6 × 1/2 = 3. Same result!
+            </div>
+
+            <h2 id="mixed-numbers">How to Calculate Mixed Numbers</h2>
+            <p>A <strong>mixed number</strong> combines a whole number and a proper fraction, like 2 3/5. To perform arithmetic with mixed numbers, the first step is to convert them to <strong>improper fractions</strong>:</p>
+            <ol>
+                <li>Multiply the whole number by the denominator.</li>
+                <li>Add the result to the numerator.</li>
+                <li>Keep the same denominator.</li>
+            </ol>
+            <p><strong>Example:</strong> Convert 2 3/5 to an improper fraction.</p>
+            <ul>
+                <li>2 × 5 = 10</li>
+                <li>10 + 3 = 13</li>
+                <li>2 3/5 = <strong>13/5</strong></li>
+            </ul>
+            <p>Once you have improper fractions, use any of the formulas above (add, subtract, multiply, or divide) as normal. After calculating, you can convert the result back to a mixed number by dividing the numerator by the denominator — the quotient is the whole number, and the remainder over the denominator is the fraction part.</p>
+
+            <h2 id="negative-fractions">How to Calculate Negative Fractions</h2>
+            <p>A <strong>negative fraction</strong> has a minus sign in front. The negative sign can be placed in front of the entire fraction, in front of the numerator, or in front of the denominator — all three are equivalent:</p>
+            <p><strong>−a/b = (−a)/b = a/(−b)</strong></p>
+            <p>When <em>both</em> the numerator and denominator are negative, the fraction is actually <strong>positive</strong>, because a negative divided by a negative is positive.</p>
+            <p>Key rules for negative fractions:</p>
+            <ul>
+                <li><strong>Positive × Negative = Negative</strong> (e.g., 1/2 × −1/3 = −1/6)</li>
+                <li><strong>Negative × Negative = Positive</strong> (e.g., −2/3 × −3/4 = 6/12 = 1/2)</li>
+                <li>The same rules apply for division — it follows the sign rules of multiplication.</li>
+                <li>For addition and subtraction, attach the negative sign to the numerator and follow the standard steps.</li>
+            </ul>
+
+            <h2 id="types-of-fractions">Types of Fractions</h2>
+            <p>There are three main types of fractions:</p>
+            <ul>
+                <li><strong>Proper fractions:</strong> The numerator is smaller than the denominator (e.g., 3/4, 2/7). The value is always less than 1.</li>
+                <li><strong>Improper fractions:</strong> The numerator is equal to or greater than the denominator (e.g., 7/4, 5/3). The value is 1 or greater.</li>
+                <li><strong>Mixed numbers:</strong> A whole number combined with a proper fraction (e.g., 1 3/4, 2 1/3). Every mixed number can be converted to an improper fraction and vice versa.</li>
+            </ul>
+
+            <h2 id="faq">Frequently Asked Questions</h2>
+
+            <h3>What are the 3 types of fractions?</h3>
+            <p>The three types are <strong>proper fractions</strong> (numerator &lt; denominator, like 3/4), <strong>improper fractions</strong> (numerator ≥ denominator, like 7/4), and <strong>mixed numbers</strong> (a whole number plus a proper fraction, like 1 3/4). You can convert between improper fractions and mixed numbers: 7/4 = 1 3/4.</p>
+
+            <h3>What is the golden rule of fractions?</h3>
+            <p>The golden rule is: <strong>always find a common denominator</strong> before adding or subtracting fractions. This is done by finding the <a href="/math-calculators/lcm-calculator">Least Common Multiple (LCM)</a> of the denominators. Without a common denominator, you cannot directly combine fractions — this is the single most important rule in fraction arithmetic.</p>
+
+            <h3>How do I simplify a fraction?</h3>
+            <p>Find the <a href="/math-calculators/gcd-calculator">Greatest Common Divisor (GCD)</a> of the numerator and denominator, then divide both by it. For example: 18/24 → GCD(18, 24) = 6 → 18/24 = 3/4. If the GCD is 1, the fraction is already in simplest form.</p>
+
+            <h3>How do I convert a fraction to a decimal?</h3>
+            <p>Divide the numerator by the denominator. For example, 3/8 = 3 ÷ 8 = 0.375. Use our <a href="/math-calculators/long-division-calculator">Long Division Calculator</a> to see the full division steps. To convert a fraction to a percentage, multiply the decimal by 100: 3/8 = 0.375 = 37.5%.</p>
+
+            <h3>Why do we use fractions instead of decimals?</h3>
+            <p>Fractions are <strong>exact</strong> — they can represent values like 1/3 precisely, while the decimal 0.333... goes on forever. Fractions are essential in cooking (1/2 cup), construction (3/4 inch), music (time signatures like 3/4), probability, and algebra. Many mathematical operations are simpler with fractions than with decimals.</p>
+        `,
         formula: {
-            formula: "a/b + c/d = (a×d + c×b) / (b×d)",
+            formula: "a/b + c/d = (a×d + b×c) / (b×d)",
             variables: [
-                { symbol: "a/b", meaning: "First fraction" },
-                { symbol: "c/d", meaning: "Second fraction" },
-                { symbol: "b×d", meaning: "Common denominator (then simplify using GCD)" },
+                { symbol: "a/b", meaning: "First fraction (a = numerator, b = denominator)" },
+                { symbol: "c/d", meaning: "Second fraction (c = numerator, d = denominator)" },
+                { symbol: "×", meaning: "Multiply: a/b × c/d = (a×c) / (b×d)" },
+                { symbol: "÷", meaning: "Divide: a/b ÷ c/d = (a×d) / (b×c) — flip & multiply" },
             ],
             example: [
-                { label: "Add: 1/3 + 1/4", substitution: "(1×4 + 1×3) / (3×4) = 7/12", result: "7/12 ≈ 0.5833" },
-                { label: "Multiply: 2/5 × 3/7", substitution: "(2×3) / (5×7) = 6/35", result: "6/35 ≈ 0.1714" },
-                { label: "Divide: 3/4 ÷ 2/5", substitution: "3/4 × 5/2 = 15/8", result: "15/8 = 1 7/8" },
+                { label: "Add: 1/3 + 1/4", substitution: "(1×4 + 3×1) / (3×4) = 7/12", result: "7/12 ≈ 0.5833" },
+                { label: "Multiply: 2/3 × 3/4", substitution: "(2×3) / (3×4) = 6/12", result: "1/2 (simplified)" },
+                { label: "Divide: 2/3 ÷ 3/4", substitution: "(2×4) / (3×3) = 8/9", result: "8/9 ≈ 0.8889" },
             ],
         },
-        faq: [
-            { question: "How do I add fractions with different denominators?", answer: "Find the Least Common Denominator (LCD) — the smallest number both denominators divide into. Convert each fraction to an equivalent fraction with the LCD as the denominator, then add the numerators. Example: 1/3 + 1/4 → LCD=12 → 4/12 + 3/12 = 7/12." },
-            { question: "How do I simplify a fraction?", answer: "Find the GCD (Greatest Common Divisor) of the numerator and denominator, then divide both by it. For example, 12/18: GCD(12,18) = 6, so 12/18 = 2/3." },
-            { question: "How do I convert a fraction to a decimal?", answer: "Divide the numerator by the denominator. For example, 3/8 = 3 ÷ 8 = 0.375." },
-            { question: "What is a mixed number?", answer: "A mixed number combines a whole number and a proper fraction, like 2 3/4. To convert to an improper fraction: (whole × denominator + numerator) / denominator = (2×4+3)/4 = 11/4." },
-        ],
         relatedCalculators: [
-            { title: "GCD Calculator", slug: "gcd-calculator", categorySlug: "math-calculators", description: "Find the greatest common divisor for simplification" },
-            { title: "LCM Calculator", slug: "lcm-calculator", categorySlug: "math-calculators", description: "Find the least common multiple for common denominators" },
+            { title: "GCD Calculator", slug: "gcd-calculator", categorySlug: "math-calculators", description: "Find the GCD to simplify fractions" },
+            { title: "LCM Calculator", slug: "lcm-calculator", categorySlug: "math-calculators", description: "Find the LCD for adding fractions" },
             { title: "Percentage Calculator", slug: "percentage-calculator", categorySlug: "math-calculators", description: "Convert fractions to percentages" },
-            { title: "Long Division", slug: "long-division-calculator", categorySlug: "math-calculators", description: "Convert fractions to decimals with steps" },
+            { title: "Long Division Calculator", slug: "long-division-calculator", categorySlug: "math-calculators", description: "Convert fractions to decimals with steps" },
+            { title: "Average Calculator", slug: "average-calculator", categorySlug: "math-calculators", description: "Calculate the mean of fractional values" },
         ],
     },
 
