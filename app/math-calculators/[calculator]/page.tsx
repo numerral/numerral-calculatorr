@@ -2357,6 +2357,102 @@ const HUB_CONTENT: Record<string, {
             { title: "Exponent Calculator", slug: "exponent-calculator", categorySlug: "math-calculators", description: "Calculate powers for area units" },
         ],
     },
+
+    /* ─── 27. ARC LENGTH — RICH CONTENT ─── */
+    "arc-length-calculator": {
+        subtitle: "Calculate the arc length of a circle sector using the radius and central angle, radius and chord, angle and chord, or sector area and angle. See the step-by-step formula, chord length, and sector area.",
+        contentHTML: `
+            <h2 id="how-to-calculate">How to Calculate Arc Length</h2>
+            <p><strong>Arc length</strong> is the distance along the curved edge of a circle between two points — the curved portion of a <strong>sector</strong> (a pie-shaped slice of a circle). A sector is bounded by two radii and an arc.</p>
+            <p>Our calculator supports four different input combinations to find arc length, plus it computes the <strong>chord length</strong>, <strong>sector area</strong>, and <strong>central angle</strong> automatically.</p>
+
+            <h3 id="arc-length-formula">Arc Length Formula</h3>
+            <p>The fundamental formula for arc length is:</p>
+            <p><strong>s = r × θ</strong></p>
+            <p>The arc length <em>s</em> equals the radius <em>r</em> times the central angle <em>θ</em> <strong>in radians</strong>. The angle must be in radians because radians are "unitless" — ensuring both sides have units of distance.</p>
+            <p>If your angle is in degrees, convert it first:</p>
+            <p><strong>θ (radians) = θ (degrees) × π / 180</strong></p>
+            <p><strong>Example:</strong> Find the arc length of a sector with radius = 7 and central angle = 90°.</p>
+            <ul>
+                <li>Convert: 90° × π/180 = π/2 ≈ 1.5708 rad</li>
+                <li>Arc length: s = 7 × 1.5708 = <strong>10.9956</strong></li>
+            </ul>
+
+            <h3 id="method-radius-chord">Using Radius and Chord Length</h3>
+            <p>If you know the radius and chord but not the angle, find the angle first:</p>
+            <p><strong>θ = 2 × sin⁻¹(a / 2r)</strong></p>
+            <p>The central angle θ (in radians) equals 2 times the inverse sine of the chord length <em>a</em> divided by 2 times the radius <em>r</em>. Then use <em>s = r × θ</em>.</p>
+
+            <h3 id="method-angle-chord">Using Central Angle and Chord Length</h3>
+            <p>If you know the angle and chord but not the radius, find the radius first:</p>
+            <p><strong>r = a / (2 × sin(θ / 2))</strong></p>
+            <p>The radius equals the chord length <em>a</em> divided by (2 × sine of half the central angle). Then use <em>s = r × θ</em>.</p>
+
+            <h3 id="method-area-angle">Using Sector Area and Central Angle</h3>
+            <p>If you know the sector area and angle:</p>
+            <p><strong>r = √(2A / θ)</strong></p>
+            <p>The radius equals the square root of (2 times the sector area divided by the central angle in radians). Then use <em>s = r × θ</em>.</p>
+
+            <h2 id="chord-length">How to Find Chord Length</h2>
+            <p>The <strong>chord</strong> is the straight-line distance between the two points where the arc meets the radii. It is always shorter than the arc length (a straight line vs. a curve).</p>
+            <p><strong>chord (a) = 2r × sin(θ / 2)</strong></p>
+            <p>The chord length equals 2 times the radius times the sine of half the central angle.</p>
+
+            <h2 id="sector-area">How to Find Sector Area</h2>
+            <p>The area enclosed by the two radii and the arc:</p>
+            <p><strong>A = r² × θ / 2</strong></p>
+            <p>The sector area equals the radius squared times the central angle (in radians) divided by 2.</p>
+
+            <h2 id="major-minor-arc">Major Arc vs. Minor Arc</h2>
+            <p>When two points divide a circle into two arcs:</p>
+            <ul>
+                <li><strong>Minor arc:</strong> The shorter arc (central angle &lt; 180°)</li>
+                <li><strong>Major arc:</strong> The longer arc (central angle &gt; 180°)</li>
+                <li><strong>Semicircle:</strong> When both arcs are equal (central angle = 180°)</li>
+            </ul>
+            <p>The calculator computes the arc based on the angle you enter. For the major arc, enter the reflex angle (360° minus the minor angle).</p>
+
+            <div class="explanation__highlight">
+                <strong>Quick check:</strong> The arc length of a full circle (360° = 2π rad) equals the circumference: s = r × 2π = 2πr. A 90° arc is exactly one-quarter of the circumference.
+            </div>
+
+            <h2 id="faq">Frequently Asked Questions</h2>
+
+            <h3>How do you find arc length using a central angle in degrees?</h3>
+            <p>First convert the angle to radians by multiplying by π/180. Then use the formula <strong>s = r × θ</strong> with the angle in radians. For example, for a 60° angle with r = 10: θ = 60 × π/180 = π/3 ≈ 1.0472, so s = 10 × 1.0472 = <strong>10.472</strong>. You can also use our <a href="/math-calculators/angle-converter-calculator">Angle Converter</a> to convert degrees to radians.</p>
+
+            <h3>How do you calculate arc length without the radius?</h3>
+            <p>You need the central angle plus either the chord length or the sector area. With the chord: find the radius using <em>r = a / (2 × sin(θ/2))</em>. With the sector area: find the radius using <em>r = √(2A/θ)</em>. Then use the standard arc length formula.</p>
+
+            <h3>Is arc length the same as the angle?</h3>
+            <p>No. The <strong>angle</strong> measures the rotation between two radii (in degrees or radians), while the <strong>arc length</strong> measures the actual distance along the curve. Arc length depends on both the angle and the radius — a larger circle with the same angle produces a longer arc.</p>
+
+            <h3>What is the arc length of 90 degrees?</h3>
+            <p>A 90° arc is exactly <strong>one-quarter of the circumference</strong>. If the radius is <em>r</em>, then: s = r × π/2 ≈ 1.5708r. For example, with r = 10: s = 10 × π/2 ≈ <strong>15.708</strong>.</p>
+        `,
+        formula: {
+            formula: "s = r × θ",
+            variables: [
+                { symbol: "s", meaning: "Arc length (distance along the curve)" },
+                { symbol: "r", meaning: "Radius of the circle" },
+                { symbol: "θ", meaning: "Central angle in radians" },
+                { symbol: "a", meaning: "Chord length (straight-line distance)" },
+                { symbol: "A", meaning: "Sector area" },
+            ],
+            example: [
+                { label: "r=7, θ=90°", substitution: "s = 7 × (90×π/180) = 7 × 1.5708", result: "10.996" },
+                { label: "r=10, θ=60°", substitution: "s = 10 × (60×π/180) = 10 × 1.0472", result: "10.472" },
+                { label: "Full circle", substitution: "s = r × 2π = 2πr", result: "circumference" },
+            ],
+        },
+        relatedCalculators: [
+            { title: "Angle Converter", slug: "angle-converter-calculator", categorySlug: "math-calculators", description: "Convert degrees to radians" },
+            { title: "Parallelogram Area", slug: "parallelogram-area-calculator", categorySlug: "math-calculators", description: "Calculate parallelogram area" },
+            { title: "Percentage Calculator", slug: "percentage-calculator", categorySlug: "math-calculators", description: "Calculate arc as percentage of circumference" },
+            { title: "Fraction Calculator", slug: "fraction-calculator", categorySlug: "math-calculators", description: "Work with fractional π values" },
+            { title: "Exponent Calculator", slug: "exponent-calculator", categorySlug: "math-calculators", description: "Calculate r² for sector area" },
+        ],
+    },
 };
 
 export default async function MathCalculatorHubPage({ params }: PageProps) {

@@ -12042,5 +12042,19 @@
     "defaults": { "amount": 0, "rate": 0, "tenure": 0 },
     "sliderRanges": { "amount": { "min": 0, "max": 0, "step": 0 }, "rate": { "min": 0, "max": 0, "step": 0 }, "tenure": { "min": 0, "max": 0, "step": 0 } },
     "keywords": "parallelogram area calculator, area of a parallelogram, parallelogram formula, base times height, parallelogram calculator, area using sides and angle, parallelogram area with diagonals"
+  },
+  {
+    "id": "arc-length-calculator",
+    "category": "math",
+    "title": "Arc Length Calculator",
+    "slug": "arc-length-calculator",
+    "categorySlug": "math-calculators",
+    "icon": "⌒",
+    "description": "Calculate arc length, chord length, sector area, and central angle of a circle sector. Supports radius & angle, radius & chord, angle & chord, and sector area & angle methods.",
+    "stars": 5,
+    "calcType": "arc-length",
+    "defaults": { "amount": 0, "rate": 0, "tenure": 0 },
+    "sliderRanges": { "amount": { "min": 0, "max": 0, "step": 0 }, "rate": { "min": 0, "max": 0, "step": 0 }, "tenure": { "min": 0, "max": 0, "step": 0 } },
+    "keywords": "arc length calculator, arc length formula, sector arc length, arc of a circle, chord length calculator, sector area calculator, central angle arc length"
   }
 ]

@@ -1284,6 +1284,85 @@ function ParallelogramAreaCalc() {
     </div></div>);
 }
 
+/* 27. Arc Length */
+function ArcLengthCalc() {
+    const [mode, setMode] = useState("ra");
+    const [radius, setRadius] = useState("7"); const [angleDeg, setAngleDeg] = useState("90");
+    const [chord, setChord] = useState("10"); const [sArea, setSArea] = useState("38.48");
+    const r = useMemo(() => {
+        const steps: string[] = [];
+        let arcLen = 0, chordLen = 0, sectArea = 0, thetaRad = 0, rad = 0;
+        if (mode === "ra") {
+            rad = parseFloat(radius) || 0;
+            const deg = parseFloat(angleDeg) || 0;
+            thetaRad = deg * Math.PI / 180;
+            arcLen = rad * thetaRad;
+            chordLen = 2 * rad * Math.sin(thetaRad / 2);
+            sectArea = (rad * rad * thetaRad) / 2;
+            steps.push(`Convert angle: ${deg}° × π/180 = ${fmt(thetaRad, 6)} rad`);
+            steps.push(`Arc length: s = r × θ = ${rad} × ${fmt(thetaRad, 6)} = ${fmt(arcLen, 6)}`);
+            steps.push(`Chord: a = 2r × sin(θ/2) = 2×${rad} × sin(${fmt(thetaRad/2, 4)}) = ${fmt(chordLen, 6)}`);
+            steps.push(`Sector area: A = r²θ/2 = ${rad}²×${fmt(thetaRad, 4)}/2 = ${fmt(sectArea, 6)}`);
+        } else if (mode === "rc") {
+            rad = parseFloat(radius) || 0;
+            const c = parseFloat(chord) || 0;
+            const ratio = c / (2 * rad);
+            thetaRad = 2 * Math.asin(Math.min(1, Math.max(-1, ratio)));
+            arcLen = rad * thetaRad;
+            chordLen = c;
+            sectArea = (rad * rad * thetaRad) / 2;
+            steps.push(`Find angle: θ = 2×sin⁻¹(a/2r) = 2×sin⁻¹(${c}/${2*rad}) = ${fmt(thetaRad, 6)} rad (${fmt(thetaRad*180/Math.PI, 4)}°)`);
+            steps.push(`Arc length: s = r × θ = ${rad} × ${fmt(thetaRad, 6)} = ${fmt(arcLen, 6)}`);
+            steps.push(`Sector area: A = r²θ/2 = ${fmt(sectArea, 6)}`);
+        } else if (mode === "ac") {
+            const deg = parseFloat(angleDeg) || 0;
+            const c = parseFloat(chord) || 0;
+            thetaRad = deg * Math.PI / 180;
+            rad = thetaRad > 0 ? c / (2 * Math.sin(thetaRad / 2)) : 0;
+            arcLen = rad * thetaRad;
+            chordLen = c;
+            sectArea = (rad * rad * thetaRad) / 2;
+            steps.push(`Convert angle: ${deg}° = ${fmt(thetaRad, 6)} rad`);
+            steps.push(`Find radius: r = a / (2×sin(θ/2)) = ${c} / (2×sin(${fmt(thetaRad/2, 4)})) = ${fmt(rad, 6)}`);
+            steps.push(`Arc length: s = r × θ = ${fmt(rad, 4)} × ${fmt(thetaRad, 4)} = ${fmt(arcLen, 6)}`);
+            steps.push(`Sector area: A = r²θ/2 = ${fmt(sectArea, 6)}`);
+        } else {
+            const deg = parseFloat(angleDeg) || 0;
+            const a = parseFloat(sArea) || 0;
+            thetaRad = deg * Math.PI / 180;
+            rad = thetaRad > 0 ? Math.sqrt((2 * a) / thetaRad) : 0;
+            arcLen = rad * thetaRad;
+            chordLen = 2 * rad * Math.sin(thetaRad / 2);
+            sectArea = a;
+            steps.push(`Convert angle: ${deg}° = ${fmt(thetaRad, 6)} rad`);
+            steps.push(`Find radius: r = √(2A/θ) = √(2×${a}/${fmt(thetaRad, 4)}) = ${fmt(rad, 6)}`);
+            steps.push(`Arc length: s = r × θ = ${fmt(rad, 4)} × ${fmt(thetaRad, 4)} = ${fmt(arcLen, 6)}`);
+            steps.push(`Chord: a = 2r × sin(θ/2) = ${fmt(chordLen, 6)}`);
+        }
+        return { arcLen: fmt(arcLen, 6), chord: fmt(chordLen, 6), sectArea: fmt(sectArea, 6), thetaDeg: fmt(thetaRad * 180 / Math.PI, 4), thetaRad: fmt(thetaRad, 6), radius: fmt(rad, 6), steps };
+    }, [mode, radius, angleDeg, chord, sArea]);
+    return (<div className="con-calc"><h3 className="con-calc__title">⌒ Arc Length Calculator</h3><div className="con-calc__inputs">
+        <SelectField label="Known Values" value={mode} onChange={setMode} options={[
+            {value:"ra", label:"Radius & Central Angle"},
+            {value:"rc", label:"Radius & Chord Length"},
+            {value:"ac", label:"Angle & Chord Length"},
+            {value:"sa", label:"Sector Area & Angle"},
+        ]} />
+        {(mode === "ra" || mode === "rc") && <InputField label="Radius (r)" value={radius} onChange={setRadius} />}
+        {(mode === "ra" || mode === "ac" || mode === "sa") && <InputField label="Central Angle (degrees)" value={angleDeg} onChange={setAngleDeg} />}
+        {(mode === "rc" || mode === "ac") && <InputField label="Chord Length (a)" value={chord} onChange={setChord} />}
+        {mode === "sa" && <InputField label="Sector Area (A)" value={sArea} onChange={setSArea} />}
+    </div><div className="con-calc__results"><h4>Results</h4>
+        <ResultRow label="Arc Length (s)" value={r.arcLen} />
+        <ResultRow label="Chord Length (a)" value={r.chord} />
+        <ResultRow label="Sector Area (A)" value={r.sectArea} />
+        <ResultRow label="Central Angle" value={`${r.thetaDeg}° = ${r.thetaRad} rad`} />
+        <ResultRow label="Radius (r)" value={r.radius} />
+        <h4>Steps</h4>
+        {r.steps.map((s, i) => <ResultRow key={i} label={`Step ${i + 1}`} value={s} />)}
+    </div></div>);
+}
+
 /* ──── DISPATCHER ──── */
 const CALC_MAP: Record<string, React.FC> = {
     "percentage": PercentageCalc,
@@ -1312,6 +1391,7 @@ const CALC_MAP: Record<string, React.FC> = {
     "subtract-fractions": SubtractFractionsCalc,
     "angle-converter": AngleConverterCalc,
     "parallelogram-area": ParallelogramAreaCalc,
+    "arc-length": ArcLengthCalc,
 };
 
 export default function MathCalculatorCore({ calcType }: { calcType: string }) {
