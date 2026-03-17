@@ -212,20 +212,125 @@ const HUB_CONTENT: Record<string, {
         relatedCalculators: [{"title":"FD Calculator","slug":"fd-calculator","categorySlug":"investment-calculators","description":"Compare with fixed deposit returns"},{"title":"SIP Calculator","slug":"sip-calculator","categorySlug":"investment-calculators","description":"Compare with mutual fund SIP returns"},{"title":"PPF Calculator","slug":"ppf-calculator","categorySlug":"investment-calculators","description":"Tax-free long-term savings option"},{"title":"Savings Interest","slug":"savings-interest","categorySlug":"investment-calculators","description":"Calculate savings account interest"}],
     },
     "nps-calculator": {
-        subtitle: "Estimate your National Pension System (NPS) corpus at retirement and the monthly pension you can expect.",
+        subtitle: "Estimate your National Pension System (NPS) corpus at retirement and the monthly pension you can expect based on your contribution, age, and expected returns.",
         explanation: {
             heading: "Understanding NPS Returns and Pension Calculation",
             paragraphs: [
                 "The National Pension System (NPS) is a government-regulated, long-term retirement savings scheme open to all Indian citizens between 18 and 70. You can choose your asset allocation across equity (Tier 1, up to 75% till age 50), corporate bonds, government bonds, and alternative assets. The returns are market-linked and vary based on your chosen mix and the Pension Fund Manager (PFM) selected.",
                 "At retirement (age 60), you must use at least 40% of the corpus to purchase an annuity from an empanelled life insurance company, which provides your monthly pension. The remaining 60% can be withdrawn as a lump sum \u2014 completely tax-free. The annuity amount depends on the annuity rate from the insurer at the time of vesting.",
             ],
-            highlight: "\u20b95,000/month NPS contribution from age 30 to 60 at an assumed 10% return = Final corpus of approximately \u20b91.13 Crores. Using 40% for annuity at 5.5% annuity rate gives approximately \u20b920,600/month lifetime pension.",
+            highlight: "₹5,000/month NPS contribution from age 30 to 60 at an assumed 10% return = Final corpus of approximately ₹1.13 Crores. Using 40% for annuity at 5.5% annuity rate gives approximately ₹20,600/month lifetime pension.",
         },
+        contentHTML: `<h3>What is NPS (National Pension System)?</h3>
+            <p>The <strong>National Pension System (NPS)</strong> is a voluntary, defined-contribution retirement savings scheme launched by the Government of India in 2004 (initially for government employees, extended to all citizens in 2009). It is regulated by the <strong>Pension Fund Regulatory and Development Authority (PFRDA)</strong>.</p>
+            <p>NPS is designed to provide retirement income through systematic savings during your working years. It offers market-linked returns (unlike fixed-return schemes like PPF), with the flexibility to choose your asset allocation and fund manager.</p>
+
+            <h3>NPS Account Types — Tier 1 vs Tier 2</h3>
+            <table>
+                <tr><th>Feature</th><th>Tier 1 (Pension Account)</th><th>Tier 2 (Savings Account)</th></tr>
+                <tr><td><strong>Purpose</strong></td><td>Mandatory retirement account</td><td>Voluntary investment account</td></tr>
+                <tr><td><strong>Lock-in</strong></td><td>Till age 60 (with limited withdrawal)</td><td>No lock-in — withdraw anytime</td></tr>
+                <tr><td><strong>Tax Benefit (80CCD1)</strong></td><td>✅ Up to ₹1.5L under 80C limit</td><td>❌ Not available</td></tr>
+                <tr><td><strong>Tax Benefit (80CCD1B)</strong></td><td>✅ Additional ₹50,000</td><td>❌ Not available</td></tr>
+                <tr><td><strong>Employer Benefit (80CCD2)</strong></td><td>✅ Up to 14% of salary (govt) / 10% (pvt)</td><td>❌ Not available</td></tr>
+                <tr><td><strong>Min. Opening Amount</strong></td><td>₹500</td><td>₹1,000</td></tr>
+                <tr><td><strong>Min. Annual Contribution</strong></td><td>₹1,000/year</td><td>No minimum</td></tr>
+                <tr><td><strong>Exit Rules</strong></td><td>40% must buy annuity; 60% tax-free lump sum</td><td>Full withdrawal anytime, no annuity requirement</td></tr>
+            </table>
+            <p><strong>Key point:</strong> Only Tier 1 gets all the tax benefits. Tier 2 is essentially a low-cost mutual fund without lock-in — useful for flexible investing but with no tax advantage (except for government employees under certain conditions).</p>
+
+            <h3>NPS Asset Classes</h3>
+            <table>
+                <tr><th>Class</th><th>Asset Type</th><th>Risk</th><th>Historical Return (10yr CAGR)</th></tr>
+                <tr><td><strong>E</strong></td><td>Equity (Nifty 50 + index funds)</td><td>High</td><td>12–15%</td></tr>
+                <tr><td><strong>C</strong></td><td>Corporate Bonds (AA+ and above)</td><td>Moderate</td><td>8–10%</td></tr>
+                <tr><td><strong>G</strong></td><td>Government Securities (G-Secs)</td><td>Low</td><td>7–9%</td></tr>
+                <tr><td><strong>A</strong></td><td>Alternative Assets (REITs, InvITs, AIF)</td><td>Moderate-High</td><td>Launched recently</td></tr>
+            </table>
+
+            <h3>Active Choice vs Auto Choice</h3>
+            <p>NPS offers two allocation strategies:</p>
+            <table>
+                <tr><th>Choice</th><th>Who Decides</th><th>Equity Cap</th><th>Best For</th></tr>
+                <tr><td><strong>Active Choice</strong></td><td>You select E, C, G, A split</td><td>75% (age ≤50), reduces by 2.5%/year after 50</td><td>Investors who want control</td></tr>
+                <tr><td><strong>Auto Choice — Aggressive (LC75)</strong></td><td>Auto-rebalanced by age</td><td>75% equity (age 35) → 15% (age 55)</td><td>Young investors (25-35)</td></tr>
+                <tr><td><strong>Auto Choice — Moderate (LC50)</strong></td><td>Auto-rebalanced by age</td><td>50% equity (age 35) → 10% (age 55)</td><td>Moderate risk takers</td></tr>
+                <tr><td><strong>Auto Choice — Conservative (LC25)</strong></td><td>Auto-rebalanced by age</td><td>25% equity (age 35) → 5% (age 55)</td><td>Risk-averse investors</td></tr>
+            </table>
+            <p><strong>Recommendation:</strong> If you're under 40, use Active Choice with 75% equity (E) for maximum growth. After 50, the system automatically reduces equity exposure regardless of your choice.</p>
+
+            <h3>NPS Fund Manager Performance (Equity — Scheme E, Tier 1)</h3>
+            <table>
+                <tr><th>Fund Manager</th><th>5-Year Return</th><th>10-Year Return</th><th>AUM (Cr)</th></tr>
+                <tr><td><strong>SBI Pension Funds</strong></td><td>16.2%</td><td>13.8%</td><td>₹2,80,000+</td></tr>
+                <tr><td><strong>HDFC Pension</strong></td><td>15.8%</td><td>14.2%</td><td>₹52,000+</td></tr>
+                <tr><td><strong>ICICI Pru Pension</strong></td><td>15.5%</td><td>13.5%</td><td>₹48,000+</td></tr>
+                <tr><td><strong>Kotak Pension</strong></td><td>16.0%</td><td>13.9%</td><td>₹35,000+</td></tr>
+                <tr><td><strong>UTI Retirement</strong></td><td>14.8%</td><td>12.9%</td><td>₹18,000+</td></tr>
+                <tr><td><strong>Birla Sun Life Pension</strong></td><td>15.1%</td><td>13.2%</td><td>₹16,000+</td></tr>
+                <tr><td><strong>LIC Pension Fund</strong></td><td>14.5%</td><td>12.5%</td><td>₹55,000+</td></tr>
+            </table>
+            <p><strong>Note:</strong> You can change your fund manager once per year at no cost. Unlike mutual funds, NPS expense ratios are extremely low — 0.01% to 0.09% — making it one of the cheapest investment vehicles in India.</p>
+
+            <h3>NPS Tax Benefits — Complete Breakdown</h3>
+            <table>
+                <tr><th>Section</th><th>Benefit</th><th>Limit</th><th>Tax Saving (30% Slab)</th></tr>
+                <tr><td><strong>80CCD(1)</strong></td><td>Own contribution (within 80C)</td><td>₹1,50,000 (shared with 80C)</td><td>Up to ₹46,800</td></tr>
+                <tr><td><strong>80CCD(1B)</strong></td><td>Additional NPS deduction</td><td>₹50,000 (over and above 80C)</td><td>₹15,600</td></tr>
+                <tr><td><strong>80CCD(2)</strong></td><td>Employer's NPS contribution</td><td>14% of salary (govt) / 10% (pvt)</td><td>Varies — no upper cap</td></tr>
+                <tr><td><strong>Lump sum at 60</strong></td><td>60% withdrawal</td><td>Completely tax-free</td><td>—</td></tr>
+                <tr><td><strong>Annuity purchase</strong></td><td>40% into annuity</td><td>Tax-free at purchase</td><td>—</td></tr>
+                <tr><td><strong>Annuity income</strong></td><td>Monthly pension received</td><td>Taxable at slab rate</td><td>—</td></tr>
+            </table>
+            <p><strong>Maximum annual tax saving from NPS:</strong> ₹62,400 (80CCD1 + 80CCD1B at 30% slab) + employer benefit. This makes NPS one of the most tax-efficient retirement tools — the ₹50,000 exclusive deduction under 80CCD(1B) is available in <strong>both Old and New Tax Regimes</strong> (employer contribution under 80CCD2).</p>
+
+            <h3>What Happens at Retirement (Age 60)?</h3>
+            <ul>
+                <li><strong>Mandatory annuity (40%):</strong> At least 40% of your corpus must be used to purchase an annuity from an empanelled insurer (LIC, SBI Life, ICICI Pru Life, HDFC Life, etc.). This provides a monthly pension for life</li>
+                <li><strong>Tax-free lump sum (60%):</strong> The remaining 60% can be withdrawn as a lump sum — completely tax-free since Budget 2019</li>
+                <li><strong>Deferral option:</strong> You can defer the lump sum withdrawal up to age 75 and continue investing in NPS</li>
+                <li><strong>Annuity rates:</strong> Current annuity rates are approximately 5-6% per annum for a single life annuity (without return of purchase price). For a joint life annuity with return of purchase price, rates are lower (4-5%)</li>
+            </ul>
+            <p><strong>Example:</strong> ₹1 Crore corpus → ₹40 Lakh into annuity (at 5.5% annuity rate = ₹18,333/month pension for life) + ₹60 Lakh tax-free lump sum.</p>
+
+            <h3>Partial Withdrawal Rules</h3>
+            <table>
+                <tr><th>Condition</th><th>Detail</th></tr>
+                <tr><td><strong>Eligibility</strong></td><td>After 3 years of NPS membership</td></tr>
+                <tr><td><strong>Maximum</strong></td><td>25% of own contributions (not employer's)</td></tr>
+                <tr><td><strong>Frequency</strong></td><td>Maximum 3 times during entire NPS tenure</td></tr>
+                <tr><td><strong>Allowed Purposes</strong></td><td>Children's higher education & marriage, residential house purchase/construction, critical illness treatment, skill development</td></tr>
+                <tr><td><strong>Tax Treatment</strong></td><td>Partial withdrawal is tax-free</td></tr>
+            </table>
+
+            <h3>NPS vs PPF vs ELSS vs EPF — Comparison</h3>
+            <table>
+                <tr><th>Feature</th><th>NPS</th><th>PPF</th><th>ELSS</th><th>EPF</th></tr>
+                <tr><td><strong>Returns</strong></td><td>Market-linked (10-14%)</td><td>Fixed (7.1%)</td><td>Market-linked (12-15%)</td><td>Fixed (8.25%)</td></tr>
+                <tr><td><strong>Lock-in</strong></td><td>Till age 60</td><td>15 years</td><td>3 years</td><td>Till retirement/5 years</td></tr>
+                <tr><td><strong>Tax on Maturity</strong></td><td>60% tax-free; annuity taxed</td><td>EEE (fully tax-free)</td><td>LTCG above ₹1.25L at 12.5%</td><td>Tax-free (if 5+ years)</td></tr>
+                <tr><td><strong>80C Deduction</strong></td><td>✅ + extra ₹50K (80CCD1B)</td><td>✅ (within ₹1.5L)</td><td>✅ (within ₹1.5L)</td><td>✅ (within ₹1.5L)</td></tr>
+                <tr><td><strong>Risk</strong></td><td>Low-Moderate (you choose)</td><td>Zero (govt-backed)</td><td>High (equity)</td><td>Zero (govt-backed)</td></tr>
+                <tr><td><strong>Liquidity</strong></td><td>Very low (3 withdrawals max)</td><td>Low (partial from yr 7)</td><td>Moderate (3yr lock-in)</td><td>Low (till retirement)</td></tr>
+                <tr><td><strong>Expense Ratio</strong></td><td>0.01-0.09% (lowest in India)</td><td>N/A</td><td>0.5-1.5%</td><td>N/A</td></tr>
+            </table>
+            <p><strong>Bottom line:</strong> NPS is best for those who want the extra ₹50,000 tax deduction (80CCD1B) and are comfortable with the low-liquidity, long-term retirement commitment. PPF is for risk-free guaranteed returns. ELSS is for maximum growth with shortest lock-in.</p>
+
+            <h3>How to Open an NPS Account</h3>
+            <ol>
+                <li><strong>Online (eNPS):</strong> Visit <em>enps.nsdl.com</em> → Register with PAN, Aadhaar, bank details → KYC via Aadhaar OTP → Choose fund manager and asset allocation → Make initial contribution (min ₹500 for Tier 1)</li>
+                <li><strong>Offline:</strong> Visit any Point of Presence (PoP) — most banks are PoPs → Fill the registration form → Submit KYC documents → Get your Permanent Retirement Account Number (PRAN)</li>
+                <li><strong>Through employer:</strong> Many corporates offer NPS as part of CTC → Employer opens an account and contributes monthly → You get 80CCD(2) tax benefit</li>
+            </ol>`,
         faq: [
-            { question: "What are the tax benefits of NPS in India?", answer: "NPS contributions qualify for deduction under Section 80CCD(1) within the \u20b91.5 lakh 80C limit. Additionally, \u20b950,000 exclusively under Section 80CCD(1B) \u2014 over and above the 80C limit, saving \u20b915,600 additional tax for someone in the 30% bracket. Employer contributions up to 10% of basic+DA are deductible under 80CCD(2) with no upper cap." },
-            { question: "Can I withdraw from NPS before retirement at 60?", answer: "Partial withdrawals up to 25% of own contributions are allowed after 3 years for specific purposes: children's higher education, marriage, purchase or construction of residential house, critical illness treatment. Premature exit before 60 requires investing 80% of the corpus in an annuity, with only 20% as a tax-free lump sum." },
-            { question: "Which NPS fund manager gives the best returns?", answer: "Equity (E scheme) funds managed by SBI Pension Funds, HDFC Pension, and ICICI Pru Pension have historically delivered 12\u201315% CAGR over 10+ years in the equity portion. The G (Government Securities) and C (Corporate Bond) schemes deliver 7\u20138%. Younger investors (below 40) benefit from maximum equity allocation (75%) in the auto or active choice." },
-            { question: "What is the difference between NPS Tier 1 and Tier 2?", answer: "NPS Tier 1 is a mandatory retirement account with lock-in till age 60 \u2014 it gets all the tax benefits. Tier 2 is a voluntary savings account with no lock-in and can be withdrawn anytime, but offers NO tax deduction benefits (except for government employees under certain conditions). Tier 2 acts like a flexible debt fund with lower expense ratios." },
+            { question: "What are the tax benefits of NPS in India?", answer: "NPS contributions qualify for deduction under Section 80CCD(1) within the ₹1.5 lakh 80C limit. Additionally, ₹50,000 exclusively under Section 80CCD(1B) — over and above the 80C limit, saving ₹15,600 additional tax for someone in the 30% bracket. Employer contributions up to 14% of basic+DA (govt) or 10% (pvt) are deductible under 80CCD(2) with no upper cap. The employer NPS benefit is available in BOTH Old and New Tax Regimes." },
+            { question: "Can I withdraw from NPS before retirement at 60?", answer: "Partial withdrawals up to 25% of own contributions are allowed after 3 years for specific purposes: children's higher education, marriage, purchase or construction of residential house, critical illness treatment. Maximum 3 withdrawals allowed during entire NPS tenure. Premature exit before 60 requires investing 80% of the corpus in an annuity, with only 20% as a tax-free lump sum." },
+            { question: "Which NPS fund manager gives the best returns?", answer: "Equity (E scheme) funds managed by SBI Pension Funds, HDFC Pension, and Kotak Pension have historically delivered 14-16% CAGR over 5 years in the equity portion. The G (Government Securities) and C (Corporate Bond) schemes deliver 7-9%. You can change your fund manager once per year at no cost." },
+            { question: "What is the difference between NPS Tier 1 and Tier 2?", answer: "NPS Tier 1 is a mandatory retirement account with lock-in till age 60 — it gets all the tax benefits. Tier 2 is a voluntary savings account with no lock-in and can be withdrawn anytime, but offers NO tax deduction benefits (except for government employees). Tier 2 acts like a low-cost mutual fund with expense ratios of just 0.01-0.09%." },
+            { question: "Is NPS better than PPF for retirement?", answer: "NPS offers higher potential returns (10-14% vs 7.1% for PPF) and an exclusive ₹50,000 tax deduction. However, PPF is fully tax-free (EEE) while NPS annuity income is taxable. For aggressive investors with 20+ year horizon, NPS with maximum equity allocation typically builds a significantly larger corpus. PPF is better for conservative investors who want guaranteed, zero-risk returns." },
+            { question: "What annuity rate will I get from NPS at retirement?", answer: "Current annuity rates range from 5-6% for single life annuity (without return of purchase price) to 4-5% for joint life annuity with return of purchase price. On a ₹40 Lakh annuity purchase, expect ₹16,000-20,000/month pension income. Annuity income is taxable at your slab rate." },
+            { question: "Can I continue NPS after age 60?", answer: "Yes. You can defer the lump sum withdrawal and continue investing up to age 75. You can also defer the annuity purchase. This is useful if you're still earning and don't need the pension income immediately — allowing the corpus to grow further." },
+            { question: "How much should I invest in NPS monthly?", answer: "To build a ₹1 Crore corpus by age 60: Start at 25 → ₹3,000/month, Start at 30 → ₹5,000/month, Start at 35 → ₹9,000/month, Start at 40 → ₹16,000/month (all at 10% assumed return). The earlier you start, the smaller the monthly commitment needed." },
         ],
     
         formula: {"formula":"Corpus = P × [{(1 + r)ⁿ − 1} / r] × (1 + r)","variables":[{"symbol":"Corpus","meaning":"Total accumulated NPS corpus at retirement"},{"symbol":"P","meaning":"Monthly NPS contribution"},{"symbol":"r","meaning":"Expected monthly return (annual / 12 / 100)"},{"symbol":"n","meaning":"Total months until retirement"}],"example":[{"label":"₹5,000/month from age 30 to 60, at 10%","substitution":"Corpus at retirement","result":"₹1,13,02,959 (Invested: ₹18,00,000)"}]},
