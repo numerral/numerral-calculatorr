@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     return { title: calc.title, description: calc.description, keywords: calc.keywords ? calc.keywords.split(", ") : undefined, alternates: { canonical: canonicalUrl(`/health-calculators/${calc.slug}`) } };
 }
 
-const HUB_CONTENT: Record<string, { subtitle: string; explanation?: { heading: string; paragraphs: string[]; highlight: string }; faq?: { question: string; answer: string }[] }> = {
+const HUB_CONTENT: Record<string, { subtitle: string; explanation?: { heading: string; paragraphs?: string[]; contentHTML?: string; highlight?: string }; faq?: { question: string; answer: string }[] }> = {
     "bmi-calculator": {
         subtitle: "Calculate your Body Mass Index from height and weight. See your BMI category and the healthy weight range for your height.",
         explanation: { heading: "How BMI Is Calculated", paragraphs: ["BMI = weight (kg) / height (m)². A BMI of 18.5–24.9 is considered normal weight. Below 18.5 is underweight, 25–29.9 is overweight, and 30+ is obese.", "BMI is a quick screening tool, not a diagnostic measure. It doesn't distinguish between muscle and fat — a muscular athlete may have a high BMI but low body fat. For a more complete picture, combine BMI with body fat percentage and waist-to-hip ratio."], highlight: "A 70 kg person at 170 cm has a BMI of 24.2 (normal weight). Their healthy weight range is 53.5–72.0 kg." },
@@ -67,16 +67,68 @@ const HUB_CONTENT: Record<string, { subtitle: string; explanation?: { heading: s
     },
     "pregnancy-due-date-calculator": {
         subtitle: "Calculate your estimated due date (EDD) using four methods — LMP, conception date, IVF transfer date, or ultrasound. See trimester milestones, key pregnancy dates, and your gestational age in weeks and days.",
-        explanation: { heading: "How the Pregnancy Due Date Calculator Works", paragraphs: [
-            "This pregnancy due date calculator uses Naegele's Rule — the standard method recommended by the American College of Obstetricians and Gynecologists (ACOG) — to estimate your baby's due date. Developed around 1850 by German obstetrician Dr. Franz Karl Naegele, the rule adds 280 days (40 weeks) to the first day of your last menstrual period (LMP). It assumes a standard 28-day menstrual cycle with ovulation occurring on day 14. If your cycle is longer or shorter than 28 days, our calculator adjusts the due date accordingly — a 32-day cycle, for example, shifts your estimated due date by 4 days later.",
-            "We offer four calculation methods to give you the most accurate estimate possible. The Last Menstrual Period (LMP) method is the most commonly used — simply enter the first day of your last period and your average cycle length. The Conception Date method adds 266 days (38 weeks) from your known conception date, which is especially useful for women who track ovulation using basal body temperature, OPKs (ovulation predictor kits), or who conceived through IUI (intrauterine insemination). The IVF Transfer Date method is the most precise — for a Day 3 embryo transfer, 263 days are added to the transfer date; for a Day 5 blastocyst transfer, 261 days are added, because the embryo is 2 days more developed. Finally, the Ultrasound method uses the gestational age measured during an ultrasound scan (typically via crown-rump length in the first trimester) to back-calculate your LMP and estimate your due date. ACOG considers first-trimester ultrasound dating (6–13 weeks) the most accurate method, typically within ±5–7 days.",
-            "Only about 5% of babies are born on their exact estimated due date. According to ACOG, approximately 80% of babies are born between 37 and 42 weeks of gestation. ACOG defines pregnancy timing as follows: Early Term (37 weeks 0 days through 38 weeks 6 days), Full Term (39 weeks 0 days through 40 weeks 6 days), Late Term (41 weeks 0 days through 41 weeks 6 days), and Post-Term (42 weeks 0 days and beyond). Understanding these distinctions matters because babies born at 39–40 weeks generally have the best health outcomes. Your OB-GYN may recommend induction if pregnancy extends past 41 weeks.",
-            "Your due date can change after an ultrasound if there's a significant discrepancy between the LMP-based date and the ultrasound measurement. ACOG guidelines state: in the first trimester, if the ultrasound dating differs by more than 7 days from the LMP date, the ultrasound date should be used. In the second trimester, the threshold is 10–14 days. In the third trimester, it's 21 days. If your OB-GYN changes your due date, it's because ultrasound-measured fetal size provides stronger evidence of gestational age than period-based calculation, especially for women with irregular cycles.",
-            "Pregnancy is divided into three trimesters, each with distinct developmental milestones. The first trimester (weeks 1–12) is when all major organs form — the heart begins beating around week 6, and the nuchal translucency (NT) screening is performed at weeks 11–14. The second trimester (weeks 13–26) is often called the 'honeymoon phase' — morning sickness typically subsides, the anatomy scan is performed between weeks 18–22 (when sex can usually be determined), and most women feel their baby's first movements (quickening) between weeks 18–20. The third trimester (weeks 27–40) involves rapid fetal growth; the baby gains about half its birth weight during the last 8 weeks. The Group B Streptococcus (GBS) test is performed at weeks 35–37, and the baby is considered full-term at 39 weeks.",
-            "It's important to understand the difference between gestational age and fetal age. Gestational age is measured from the first day of your last menstrual period (LMP) — this means it includes approximately 2 weeks before conception actually occurred. Fetal age (also called embryonic age) starts from the actual date of conception and is about 2 weeks less than gestational age. Your doctor always uses gestational age because it's the established medical standard — when they say you're '12 weeks pregnant,' your baby has actually been developing for about 10 weeks since conception.",
-            "The standard US prenatal visit schedule recommended by ACOG is: first prenatal visit at 8–10 weeks, then monthly visits through week 28, every 2 weeks from weeks 28–36, and weekly visits from week 36 until delivery. At each visit, your OB-GYN checks blood pressure, weight gain, fundal height, fetal heart rate, and urine. Key screening tests include the first-trimester combined screening (NT ultrasound + blood tests at 11–14 weeks), the anatomy scan at 18–22 weeks, the glucose tolerance test for gestational diabetes at 24–28 weeks, and the GBS swab at 35–37 weeks.",
-            "Several factors can affect your actual delivery date compared to the estimated due date. Irregular menstrual cycles are the most common cause of inaccurate LMP-based dates. First-time mothers (nulliparas) tend to deliver slightly later (average 1–5 days past their due date), while mothers who have given birth before (multiparas) tend to deliver slightly earlier. Women carrying twins deliver at an average of 36 weeks, and triplets at 32 weeks. Other factors include maternal age (women over 35 face slightly higher rates of post-term pregnancy), pre-existing conditions (gestational diabetes may lead to early induction), and family history of early or late delivery."
-        ], highlight: "LMP of January 1, 28-day cycle: Naegele's Rule gives a due date of October 8. At 8 weeks: you're in the 1st trimester with 224 days (32 weeks) remaining." },
+        explanation: { heading: "How the Pregnancy Due Date Calculator Works", contentHTML: `<p>This pregnancy due date calculator uses <strong>Naegele's Rule</strong> — the standard method recommended by the <strong>American College of Obstetricians and Gynecologists (ACOG)</strong> — to estimate your baby's due date. Developed around 1850 by German obstetrician Dr. Franz Karl Naegele, the rule adds <strong>280 days (40 weeks)</strong> to the first day of your last menstrual period (LMP). It assumes a standard 28-day menstrual cycle with ovulation occurring on day 14. If your cycle is longer or shorter than 28 days, our calculator adjusts the due date accordingly.</p>
+<div class="explanation__highlight">💡 <strong>Naegele's Formula:</strong> Due Date = LMP + 280 days (adjusted for cycle length). A 32-day cycle shifts the due date 4 days later. This same formula is used by OB-GYNs across the United States.</div>
+
+<h3>4 Methods to Calculate Your Estimated Due Date</h3>
+<p>We offer four calculation methods to give you the most accurate estimate possible:</p>
+<ol>
+<li><strong>Last Menstrual Period (LMP)</strong> — The most commonly used method. Enter the first day of your last period and your average cycle length. The calculator applies Naegele's Rule with cycle-length adjustment.</li>
+<li><strong>Conception Date</strong> — Adds 266 days (38 weeks) from your known conception date. Ideal for women who track ovulation using basal body temperature, OPKs (ovulation predictor kits), or who conceived through IUI (intrauterine insemination).</li>
+<li><strong>IVF Transfer Date</strong> — The most precise method available. For a <strong>Day 3 embryo transfer</strong>, 263 days are added. For a <strong>Day 5 blastocyst transfer</strong>, 261 days are added (the embryo is 2 days more developed at transfer).</li>
+<li><strong>Ultrasound Scan</strong> — Uses the gestational age measured during an ultrasound (typically via crown-rump length in the first trimester) to back-calculate your LMP and due date. ACOG considers first-trimester ultrasound dating (6–13 weeks) the most accurate method, typically within <strong>±5–7 days</strong>.</li>
+</ol>
+
+<h3>How Accurate Is Your Due Date?</h3>
+<p>Only about <strong>5% of babies</strong> are born on their exact estimated due date. Approximately 80% are born between 37 and 42 weeks. ACOG defines pregnancy timing with these official categories:</p>
+<table class="comparison-table"><thead><tr><th>Category</th><th>Gestational Age</th><th>Notes</th></tr></thead><tbody>
+<tr><td><strong>Early Term</strong></td><td>37w 0d – 38w 6d</td><td>Baby is developed but benefits from more time</td></tr>
+<tr><td><strong>Full Term</strong></td><td>39w 0d – 40w 6d</td><td>Best health outcomes for baby</td></tr>
+<tr><td><strong>Late Term</strong></td><td>41w 0d – 41w 6d</td><td>OB-GYN may discuss induction</td></tr>
+<tr><td><strong>Post-Term</strong></td><td>42w 0d and beyond</td><td>Increased monitoring recommended</td></tr>
+</tbody></table>
+
+<h3>Can Your Due Date Change?</h3>
+<p>Your due date can change after an ultrasound if there's a significant discrepancy between the LMP-based date and the ultrasound measurement. ACOG guidelines for redating:</p>
+<ul>
+<li><strong>1st Trimester (up to 13w 6d):</strong> Redate if ultrasound differs by more than <strong>7 days</strong></li>
+<li><strong>Early 2nd Trimester (14–15 weeks):</strong> Redate if difference exceeds <strong>10 days</strong></li>
+<li><strong>Mid 2nd Trimester (16–21 weeks):</strong> Redate if difference exceeds <strong>14 days</strong></li>
+<li><strong>Late pregnancy (22+ weeks):</strong> Redate if difference exceeds <strong>21 days</strong></li>
+</ul>
+<p>If your OB-GYN changes your due date, it's because ultrasound-measured fetal size provides stronger evidence of gestational age than period-based calculation, especially for women with irregular cycles.</p>
+
+<h3>Understanding Trimesters: What Happens When</h3>
+<table class="comparison-table"><thead><tr><th>Trimester</th><th>Weeks</th><th>Key Milestones</th></tr></thead><tbody>
+<tr><td><strong>1st Trimester</strong></td><td>Weeks 1–12</td><td>All major organs form · Heart beats at week 6 · NT screening at weeks 11–14</td></tr>
+<tr><td><strong>2nd Trimester</strong></td><td>Weeks 13–26</td><td>Anatomy scan at weeks 18–22 · First movements (quickening) at weeks 18–20 · Sex can usually be determined</td></tr>
+<tr><td><strong>3rd Trimester</strong></td><td>Weeks 27–40</td><td>Rapid growth (baby gains ~½ birth weight in last 8 weeks) · GBS test at weeks 35–37 · Full term at 39 weeks</td></tr>
+</tbody></table>
+
+<h3>Gestational Age vs. Fetal Age</h3>
+<p><strong>Gestational age</strong> is measured from the first day of your last menstrual period — it includes approximately 2 weeks before conception actually occurred. <strong>Fetal age</strong> (embryonic age) starts from the actual date of conception and is about 2 weeks less than gestational age.</p>
+<div class="explanation__highlight">📋 When your doctor says you're <strong>"12 weeks pregnant"</strong> (gestational age), your baby has actually been developing for about <strong>10 weeks since conception</strong> (fetal age). The medical community universally uses gestational age because the LMP date is usually known.</div>
+
+<h3>When to See Your OB-GYN: US Prenatal Visit Schedule</h3>
+<p>The standard prenatal care schedule recommended by ACOG:</p>
+<table class="comparison-table"><thead><tr><th>Period</th><th>Visit Frequency</th><th>Key Screenings</th></tr></thead><tbody>
+<tr><td><strong>First visit</strong></td><td>8–10 weeks</td><td>Initial blood work, health history, early ultrasound</td></tr>
+<tr><td><strong>Weeks 10–28</strong></td><td>Monthly</td><td>NT screening (11–14 wk) · Anatomy scan (18–22 wk) · Glucose test (24–28 wk)</td></tr>
+<tr><td><strong>Weeks 28–36</strong></td><td>Every 2 weeks</td><td>Growth monitoring, blood pressure checks</td></tr>
+<tr><td><strong>Weeks 36–40</strong></td><td>Weekly</td><td>GBS swab (35–37 wk) · Cervical checks · Birth plan review</td></tr>
+</tbody></table>
+<p>At each visit, your OB-GYN checks blood pressure, weight gain, fundal height, fetal heart rate, and urine.</p>
+
+<h3>Factors That Can Affect Your Due Date</h3>
+<ul>
+<li><strong>Irregular menstrual cycles</strong> — The most common cause of inaccurate LMP-based dates</li>
+<li><strong>First-time mothers (nulliparas)</strong> — Tend to deliver 1–5 days past their due date on average</li>
+<li><strong>Previous births (multiparas)</strong> — Tend to deliver slightly earlier</li>
+<li><strong>Multiple pregnancies</strong> — Twins average 36 weeks; triplets average 32 weeks</li>
+<li><strong>Maternal age over 35</strong> — Slightly higher rates of post-term pregnancy</li>
+<li><strong>Gestational diabetes</strong> — May lead to early induction</li>
+<li><strong>Family history</strong> — Pattern of early or late delivery may run in families</li>
+</ul>`, highlight: "LMP of January 1, 28-day cycle: Naegele's Rule gives a due date of October 8. At 8 weeks you're in the 1st trimester with 224 days (32 weeks) remaining." },
         faq: [
             { question: "How accurate is a pregnancy due date calculator?", answer: "A pregnancy due date calculator provides an estimate, not a guarantee. Only about 5% of babies are born on their exact due date. However, approximately 80% arrive within a 2-week window (38–42 weeks). First-trimester ultrasound dating is the most accurate method (±5–7 days), while LMP-based calculation is accurate within ±2 weeks for women with regular 28-day cycles." },
             { question: "What is Naegele's Rule?", answer: "Naegele's Rule is the standard medical formula for estimating a due date. It was developed by German obstetrician Dr. Franz Karl Naegele around 1850. The rule adds 280 days (40 weeks) to the first day of your last menstrual period. An equivalent way to calculate: take your LMP, add 1 year, subtract 3 months, then add 7 days. For example, LMP of June 1 → add 1 year (June 1 next year) → subtract 3 months (March 1) → add 7 days = March 8 due date." },
@@ -426,7 +478,7 @@ export default async function HealthCalculatorHubPage({ params }: PageProps) {
                 <div className="layout-2col__main">
                     <HealthCalculatorCore calcType={calc.calcType || "bmi"} />
                     {content && (<>
-                        <DynamicExplanation heading={content.explanation?.heading} paragraphs={content.explanation?.paragraphs} highlight={content.explanation?.highlight} />
+                        <DynamicExplanation heading={content.explanation?.heading} paragraphs={content.explanation?.paragraphs} contentHTML={content.explanation?.contentHTML} highlight={content.explanation?.highlight} />
                         {content.faq && <FAQAccordion title={`${calc.title} FAQ`} items={content.faq} />}
                     </>)}
                 </div>
