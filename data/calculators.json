@@ -1719,6 +1719,40 @@
     "keywords": "down payment calculator, how much down payment for a house, down payment on house, closing costs calculator, PMI calculator, FHA down payment, VA no down payment, home buying calculator"
   },
   {
+    "id": "apr-calculator",
+    "category": "loan",
+    "title": "APR Calculator",
+    "slug": "apr-calculator",
+    "categorySlug": "loan-calculators",
+    "icon": "📊",
+    "calcType": "aprCalc",
+    "description": "Calculate the true Annual Percentage Rate (APR) of any loan including origination fees, discount points, broker fees, and closing costs. Compare real APR vs stated interest rate.",
+    "stars": 5,
+    "defaults": {
+      "amount": 300000,
+      "rate": 6.5,
+      "tenure": 360
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 50000,
+        "max": 1000000,
+        "step": 5000
+      },
+      "rate": {
+        "min": 2,
+        "max": 12,
+        "step": 0.125
+      },
+      "tenure": {
+        "min": 60,
+        "max": 360,
+        "step": 12
+      }
+    },
+    "keywords": "APR calculator, annual percentage rate calculator, real APR, true cost of loan, APR vs interest rate, APR vs APY, mortgage APR calculator, loan fee calculator"
+  },
+  {
     "id": "interest-rate",
     "category": "utility",
     "title": "Interest Rate Calculator",

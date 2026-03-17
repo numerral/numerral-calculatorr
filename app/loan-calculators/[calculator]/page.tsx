@@ -45,7 +45,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 // Hub page content per calculator type
-const LOAN_TOOL_TYPES = ["mortgage","debtConsolidation","loanAffordability","loanInterestRate","loanPayoff","loanAmortization","ltv","balloonLoan","arm","fixedVsVariable","extraPayment","refinance","mortgageRefinance","rentAffordability","debtRatio","downPayment"];
+const LOAN_TOOL_TYPES = ["mortgage","debtConsolidation","loanAffordability","loanInterestRate","loanPayoff","loanAmortization","ltv","balloonLoan","arm","fixedVsVariable","extraPayment","refinance","mortgageRefinance","rentAffordability","debtRatio","downPayment","aprCalc"];
 
 const HUB_CONTENT: Record<string, {
     subtitle: string;
@@ -1045,6 +1045,89 @@ const HUB_CONTENT: Record<string, {
 <li><strong>Gift funds</strong> — FHA allows 100% of the down payment as a gift from family. Conventional loans also accept gifts with a formal gift letter stating no repayment is required. The donor typically needs to provide bank statements proving the funds</li>
 <li><strong>Retirement accounts</strong> — Roth IRA contributions (not earnings) can be withdrawn anytime without penalty. First-time buyers can withdraw up to $10,000 in earnings penalty-free. 401(k) loans allow borrowing up to $50,000 repaid over 5 years — but this reduces retirement savings growth</li>
 </ol>
+`,
+    },
+    "apr-calculator": {
+        subtitle: "Calculate the true Annual Percentage Rate (APR) of any loan including all fees, points, and charges. Compare the real cost of loans from different lenders side by side.",
+        explanation: {
+            heading: "What Is APR and Why Does It Matter?",
+            paragraphs: [
+                "APR (Annual Percentage Rate) is the all-inclusive annual cost of a loan expressed as a percentage. Unlike the interest rate, which only reflects the cost of borrowing the principal, APR includes additional fees like origination charges, discount points, broker fees, and mortgage insurance. A loan advertised at 6.5% interest could have an APR of 6.8% or higher once fees are factored in.",
+                "In the United States, the Truth in Lending Act (TILA) requires all lenders to disclose the APR so borrowers can compare the true cost of loans across different lenders on an apples-to-apples basis. Without APR disclosure, a lender could advertise a low rate while charging excessive fees, making the loan more expensive overall.",
+                "The APR is calculated using a present value formula that accounts for when fees are paid (upfront vs financed) and how they compound. Fees rolled into the loan balance increase your monthly payment and accrue interest. Upfront fees reduce your net proceeds — the cash you actually receive. Both raise the effective cost above the stated interest rate.",
+            ],
+            highlight: "Example: $300,000 loan at 6.5% with $6,500 in fees. Stated rate: 6.5%. Real APR: 6.72%. Over 30 years, those fees add $9,400 to total cost beyond what the stated rate suggests.",
+        },
+        faq: [
+            { question: "What is APR?", answer: "APR (Annual Percentage Rate) is the true annual cost of a loan including interest AND all mandatory fees expressed as a percentage. It's always equal to or higher than the stated interest rate. Lenders in the US must disclose APR under the Truth in Lending Act (TILA)." },
+            { question: "What's the difference between APR and interest rate?", answer: "Interest rate is the cost of borrowing the principal only. APR includes interest rate PLUS fees (origination, points, broker, mortgage insurance). A 6.5% interest rate with 1% origination fee has an APR around 6.6-6.7%. Always compare APR, not just interest rates." },
+            { question: "What's the difference between APR and APY?", answer: "APR = nominal annual rate (does not account for compounding). APY = effective annual rate (accounts for compounding). A 10% APR compounded monthly = 10.47% APY. Banks advertise APR for loans (looks lower) and APY for savings accounts (looks higher)." },
+            { question: "Which fees are included in mortgage APR?", answer: "Included: origination fees, discount points, broker fees, mortgage insurance, application fee, processing fee, underwriting fee, certain closing costs. NOT included: appraisal fees, title insurance, survey fees, pre-paid items (taxes/insurance escrow), builder warranties, recording fees." },
+            { question: "What is fixed APR vs variable APR?", answer: "Fixed APR stays constant for the loan's life — good for locking in low rates. Variable APR changes with a market index (like the Federal Funds Rate) plus a margin — starts lower but can rise. Variable APRs also include a credit-based margin determined by your creditworthiness." },
+            { question: "How should I use APR to compare loans?", answer: "Compare APRs from at least 3-4 lenders for the same loan amount and term. Lower APR = lower total cost. But also consider: if you'll pay off early, focus on low upfront fees. If keeping the full term, APR is the best comparison metric." },
+        ],
+        steps: [
+            { label: "Loan details", formula: "$300,000 at 6.5% for 30 years", result: "Monthly P&I: $1,896" },
+            { label: "Add all fees", formula: "$1,500 compounded + $2,000 financed + $3,000 upfront", result: "$6,500 total fees" },
+            { label: "Calculate effective loan", formula: "$300,000 + $1,500 + $2,000 = $303,500", result: "New monthly: $1,918" },
+            { label: "Solve for real APR", formula: "Newton-Raphson: PV($1,918, r, 360) = $297,000", result: "Real APR: 6.72%" },
+        ],
+        comparison: [
+            { title: "Lender A: Low APR", value: "6.60% APR", detail: "$4,000 fees | $686K total cost", isWinner: true },
+            { title: "Lender B: Low Fees", value: "6.75% APR", detail: "$2,000 fees | $694K total cost" },
+            { title: "Lender C: Balance", value: "6.68% APR", detail: "$3,000 fees | $690K total cost" },
+        ],
+        insight: { icon: "\u26a0\ufe0f", title: "APR Limitation: Early Payoff", text: "APR assumes you keep the loan for its full term. If you pay off a 30-year mortgage in 7 years (average in the US), upfront fees have a much larger impact than APR suggests. A loan with 6.5% APR and $8,000 in fees is MORE expensive over 7 years than a loan with 6.75% APR and $2,000 in fees — even though the first has a lower APR." },
+        contentHTML: `
+<h3>What Is APR?</h3>
+<p>The Annual Percentage Rate (APR) represents the true annual cost of borrowing money. It combines the interest rate with mandatory fees and charges, expressing the total cost as a single annualized percentage. This standardized metric exists because of the Truth in Lending Act (TILA), which requires US lenders to disclose APR so consumers can make informed comparisons between loan offers.</p>
+<p>Without APR, a lender could advertise a 5.5% interest rate while charging $15,000 in fees, making it more expensive than a competitor's 6.0% rate with $2,000 in fees. APR levels the playing field by folding all costs into one number.</p>
+
+<h3>Fees Included vs Excluded in Mortgage APR</h3>
+<p><strong>Fees typically INCLUDED in APR:</strong></p>
+<ul>
+<li>Loan origination fee (0.5-1% of loan amount)</li>
+<li>Discount points (each point = 1% of loan, buys down rate by ~0.25%)</li>
+<li>Mortgage broker fees</li>
+<li>Private Mortgage Insurance (PMI) premiums</li>
+<li>Application and processing fees</li>
+<li>Underwriting fees</li>
+<li>Certain closing costs</li>
+</ul>
+<p><strong>Fees typically NOT included in APR:</strong></p>
+<ul>
+<li>Appraisal fees ($300-$600)</li>
+<li>Title search and title insurance</li>
+<li>Survey fees</li>
+<li>Pre-paid items (taxes, insurance escrow)</li>
+<li>Builder warranties</li>
+<li>Home inspection fees</li>
+<li>Recording fees</li>
+</ul>
+
+<h3>APR vs Interest Rate vs APY</h3>
+<table><tr><th>Term</th><th>What It Measures</th><th>Includes Fees?</th><th>Includes Compounding?</th></tr>
+<tr><td>Interest Rate</td><td>Cost of borrowing principal only</td><td>No</td><td>No</td></tr>
+<tr><td>APR</td><td>Annual cost including fees</td><td>Yes</td><td>No (simple)</td></tr>
+<tr><td>APY/EAR</td><td>Effective annual rate with compounding</td><td>Varies</td><td>Yes</td></tr></table>
+<p><strong>Conversion formula:</strong> APY = (1 + APR/n)<sup>n</sup> \u2212 1, where n = number of compounding periods per year. Example: 10% APR compounded monthly = (1 + 0.10/12)<sup>12</sup> \u2212 1 = 10.47% APY.</p>
+
+<h3>5 Types of APR</h3>
+<ol>
+<li><strong>Fixed APR</strong> \u2014 Rate stays constant for the loan\u2019s duration. Offers predictability and protection from rate increases</li>
+<li><strong>Variable APR</strong> \u2014 Fluctuates with a market index (Prime Rate, Federal Funds Rate) plus a lender margin. Starts lower but creates payment uncertainty</li>
+<li><strong>Introductory (Promotional) APR</strong> \u2014 Temporarily reduced rate (often 0%) on credit cards for 12-21 months. Reverts to standard APR after the promotional period</li>
+<li><strong>Penalty APR</strong> \u2014 Higher rate triggered by missed payments, typically 25-29.99%. Can apply to existing balances on credit cards</li>
+<li><strong>Cash Advance APR</strong> \u2014 Rate for credit card cash withdrawals, usually 3-5% higher than purchase APR with no grace period</li>
+</ol>
+
+<h3>Limitations of APR</h3>
+<ul>
+<li><strong>Assumes full-term payoff</strong> \u2014 APR spreads upfront fees over the entire loan term. If you pay off early, those fees have a much larger effective impact</li>
+<li><strong>Doesn\u2019t capture all costs</strong> \u2014 Appraisal, title insurance, inspection, and escrow fees are excluded from mortgage APR</li>
+<li><strong>Variable rate uncertainty</strong> \u2014 For variable APR loans, the disclosed APR is based on current index rates and may change significantly</li>
+<li><strong>Different calculation methods</strong> \u2014 Slight differences in how lenders include or exclude certain fees can make comparisons imperfect</li>
+</ul>
 `,
     },
 };

@@ -1186,6 +1186,130 @@ function DownPaymentCalc({defaults}:P){
   </div>);
 }
 
+// ─── 18. APR Calculator ───
+function APRCalc({defaults}:P){
+  const[loan,setLoan]=useState(defaults.amount||300000);
+  const[rate,setRate]=useState(defaults.rate||6.5);
+  const[tenure,setTenure]=useState(defaults.tenure||360);
+  const[feeCompounded,setFeeCompounded]=useState(1500);
+  const[feeFinanced,setFeeFinanced]=useState(2000);
+  const[feePaidUpfront,setFeePaidUpfront]=useState(3000);
+
+  const r=useMemo(()=>{
+    const totalFees=feeCompounded+feeFinanced+feePaidUpfront;
+    // Effective loan: add compounded + financed fees to principal
+    const effectiveLoan=loan+feeCompounded+feeFinanced;
+    const mr=rate/100/12;
+    // Monthly payment on stated rate with actual loan
+    const mp=pmt(mr,tenure,loan);
+    // Monthly payment on effective loan (what you actually pay)
+    const mpEffective=pmt(mr,tenure,effectiveLoan);
+    // Total cost = payments + upfront fees
+    const totalPaid=mpEffective*tenure+feePaidUpfront;
+    const totalInterest=totalPaid-loan;
+    // Newton-Raphson to find real APR
+    // Real APR: solve for r where PV(r,tenure,mpEffective) = loan - feePaidUpfront
+    // i.e., find monthly rate where payments equal net loan proceeds
+    const netProceeds=loan-feePaidUpfront;
+    let aprM=mr;
+    for(let i=0;i<100;i++){
+      const ea=Math.pow(1+aprM,tenure);
+      const pvPayments=mpEffective*(ea-1)/(aprM*ea);
+      const f=pvPayments-netProceeds;
+      // derivative
+      const dp=mpEffective*((tenure*Math.pow(1+aprM,tenure-1)*(aprM*ea)-(ea-1)*(ea+aprM*tenure*Math.pow(1+aprM,tenure-1)))/(aprM*ea)**2);
+      const dApr=f/(dp||1);
+      aprM-=dApr*0.5;
+      if(Math.abs(dApr)<1e-10)break;
+      if(aprM<=0)aprM=0.0001;
+    }
+    const realAPR=aprM*12*100;
+    const rateDiff=realAPR-rate;
+    return{mp,mpEffective,totalFees,totalPaid,totalInterest,realAPR,rateDiff,netProceeds,effectiveLoan};
+  },[loan,rate,tenure,feeCompounded,feeFinanced,feePaidUpfront]);
+
+  return(<div><div className="calc-input-panel">
+    <div style={{display:"grid",gridTemplateColumns:"1fr",gap:"var(--s-3)"}}>
+      <div className="calc-field">
+        <label className="calc-field__label">🏠 LOAN AMOUNT ($)</label>
+        <input type="text" className="calc-field__input" value={loan.toLocaleString("en-US")} inputMode="numeric"
+          onChange={e=>{const v=Number(e.target.value.replace(/,/g,""));if(!isNaN(v))setLoan(v);}}/>
+        <input type="range" className="calc-field__slider" min={50000} max={1000000} step={5000} value={loan} onChange={e=>setLoan(Number(e.target.value))}/>
+      </div>
+      <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:"var(--s-3)"}}>
+        <div className="calc-field">
+          <label className="calc-field__label">% INTEREST RATE</label>
+          <input type="number" className="calc-field__input" value={rate} onChange={e=>setRate(Number(e.target.value))} step={0.125} min={0.5} max={15}/>
+          <input type="range" className="calc-field__slider" min={2} max={12} step={0.125} value={rate} onChange={e=>setRate(Number(e.target.value))}/>
+        </div>
+        <div className="calc-field">
+          <label className="calc-field__label">📅 LOAN TERM (years)</label>
+          <input type="number" className="calc-field__input" value={tenure/12} onChange={e=>setTenure(Number(e.target.value)*12)} step={1} min={1} max={30}/>
+        </div>
+      </div>
+    </div>
+    <hr style={{margin:"var(--s-3) 0",border:"1px solid var(--n-border)"}}/>
+    <p className="calc-field__label" style={{marginBottom:"var(--s-2)"}}>FEES & CHARGES</p>
+    <div style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:"var(--s-3)"}}>
+      <div className="calc-field">
+        <label className="calc-field__label">Compounded Into Loan</label>
+        <input type="text" className="calc-field__input" value={feeCompounded===0?"":feeCompounded.toLocaleString("en-US")} inputMode="numeric" placeholder="$0"
+          onChange={e=>{const v=Number(e.target.value.replace(/,/g,""));if(!isNaN(v))setFeeCompounded(v);}}/>
+        <p className="t-body-sm text-muted" style={{marginTop:"2px"}}>Added to balance & accrues interest</p>
+      </div>
+      <div className="calc-field">
+        <label className="calc-field__label">Financed Into Loan</label>
+        <input type="text" className="calc-field__input" value={feeFinanced===0?"":feeFinanced.toLocaleString("en-US")} inputMode="numeric" placeholder="$0"
+          onChange={e=>{const v=Number(e.target.value.replace(/,/g,""));if(!isNaN(v))setFeeFinanced(v);}}/>
+        <p className="t-body-sm text-muted" style={{marginTop:"2px"}}>Added to balance, no extra interest</p>
+      </div>
+      <div className="calc-field">
+        <label className="calc-field__label">Paid Upfront at Closing</label>
+        <input type="text" className="calc-field__input" value={feePaidUpfront===0?"":feePaidUpfront.toLocaleString("en-US")} inputMode="numeric" placeholder="$0"
+          onChange={e=>{const v=Number(e.target.value.replace(/,/g,""));if(!isNaN(v))setFeePaidUpfront(v);}}/>
+        <p className="t-body-sm text-muted" style={{marginTop:"2px"}}>Paid cash at closing</p>
+      </div>
+    </div>
+  </div>
+
+    {/* Real APR Result */}
+    <div className="calc-card" style={{marginTop:"var(--s-6)",background:"var(--n-surface-alt)"}}>
+      <p className="calc-field__label">REAL APR (Annual Percentage Rate)</p>
+      <p style={{fontSize:"var(--t-h1)",fontWeight:700,color:"var(--n-primary)"}}>{r.realAPR.toFixed(3)}%</p>
+      <p style={{fontSize:"var(--t-body)",fontWeight:600,color:"var(--n-warning)",marginTop:"var(--s-2)"}}>
+        +{r.rateDiff.toFixed(3)}% higher than stated rate of {rate}%
+      </p>
+      <div style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:"var(--s-3)",marginTop:"var(--s-4)"}}>
+        <div><p className="calc-field__label">MONTHLY PAYMENT</p><p style={{fontWeight:700}}>{fmtUSD(r.mpEffective)}</p></div>
+        <div><p className="calc-field__label">TOTAL FEES</p><p style={{fontWeight:700,color:"var(--n-warning)"}}>{fmtUSD(r.totalFees)}</p></div>
+        <div><p className="calc-field__label">TOTAL COST</p><p style={{fontWeight:700}}>{fmtUSD(r.totalPaid)}</p></div>
+      </div>
+    </div>
+
+    {/* Comparison */}
+    <div className="calc-card" style={{marginTop:"var(--s-4)",background:"var(--n-surface)"}}>
+      <p className="calc-field__label" style={{marginBottom:"var(--s-3)"}}>COST COMPARISON: WITH vs WITHOUT FEES</p>
+      <table className="calc-table"><thead><tr><th></th><th>No Fees (Stated Rate)</th><th>With Fees (Real APR)</th><th>Difference</th></tr></thead><tbody>
+        <tr><td>Rate</td><td>{rate}%</td><td style={{fontWeight:600,color:"var(--n-warning)"}}>{r.realAPR.toFixed(3)}%</td><td>+{r.rateDiff.toFixed(3)}%</td></tr>
+        <tr><td>Monthly Payment</td><td>{fmtUSD(r.mp)}</td><td>{fmtUSD(r.mpEffective)}</td><td style={{color:"var(--n-error, #ef4444)"}}>{fmtUSD(r.mpEffective-r.mp)}</td></tr>
+        <tr><td>Total Interest</td><td>{fmtUSD(r.mp*tenure-loan)}</td><td>{fmtUSD(r.totalInterest)}</td><td style={{color:"var(--n-error, #ef4444)"}}>{fmtUSD(r.totalInterest-(r.mp*tenure-loan))}</td></tr>
+        <tr style={{fontWeight:700}}><td>Total Cost</td><td>{fmtUSD(r.mp*tenure)}</td><td>{fmtUSD(r.totalPaid)}</td><td style={{color:"var(--n-error, #ef4444)"}}>{fmtUSD(r.totalPaid-r.mp*tenure)}</td></tr>
+      </tbody></table>
+    </div>
+
+    {/* Fee Breakdown */}
+    <div className="calc-card" style={{marginTop:"var(--s-4)",background:"var(--n-surface)"}}>
+      <p className="calc-field__label" style={{marginBottom:"var(--s-3)"}}>FEE BREAKDOWN</p>
+      <table className="calc-table"><thead><tr><th>Fee Type</th><th>Amount</th><th>How It Affects Your Loan</th></tr></thead><tbody>
+        <tr><td>Compounded Fees</td><td>{fmtUSD(feeCompounded)}</td><td>Added to principal — you pay interest on these fees</td></tr>
+        <tr><td>Financed Fees</td><td>{fmtUSD(feeFinanced)}</td><td>Added to loan balance — increases payment amount</td></tr>
+        <tr><td>Upfront Fees</td><td>{fmtUSD(feePaidUpfront)}</td><td>Paid cash at closing — reduces net loan proceeds</td></tr>
+        <tr style={{fontWeight:700}}><td>Total Fees</td><td>{fmtUSD(r.totalFees)}</td><td>= {(r.totalFees/loan*100).toFixed(2)}% of loan amount</td></tr>
+      </tbody></table>
+    </div>
+  </div>);
+}
+
 // ─── Dispatcher ───
 const CALC_MAP:Record<string,React.FC<P>>={
   mortgage:MortgageCalc, debtConsolidation:DebtConsolidationCalc,
@@ -1195,7 +1319,7 @@ const CALC_MAP:Record<string,React.FC<P>>={
   fixedVsVariable:FixedVsVariableCalc, extraPayment:ExtraPaymentCalc,
   refinance:RefinanceCalc, mortgageRefinance:MortgageRefinanceCalc,
   rentAffordability:RentAffordabilityCalc, debtRatio:DebtRatioCalc,
-  downPayment:DownPaymentCalc,
+  downPayment:DownPaymentCalc, aprCalc:APRCalc,
 };
 
 export default function LoanToolsCore({calcType,defaults,sliderRanges}:{calcType:string;defaults:any;sliderRanges?:any}){
