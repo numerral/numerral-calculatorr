@@ -6637,7 +6637,8 @@ select.con-input__field {
 }
 
 /* Hub content tables — polished, matching calc-table quality */
-.hub-content table {
+.hub-content table,
+.content-section table {
     width: 100%;
     border-collapse: separate;
     border-spacing: 0;
@@ -6649,7 +6650,8 @@ select.con-input__field {
     margin-bottom: var(--s-6);
 }
 
-.hub-content th {
+.hub-content th,
+.content-section th {
     padding: var(--s-3) var(--s-4);
     font-weight: 600;
     text-align: left;
@@ -6661,38 +6663,45 @@ select.con-input__field {
     color: var(--n-text-inverse, #fff);
 }
 
-.hub-content td {
+.hub-content td,
+.content-section td {
     padding: var(--s-3) var(--s-4);
     color: var(--n-text);
     border-top: 1px solid var(--n-border);
     vertical-align: middle;
 }
 
-.hub-content tbody tr:nth-child(even) {
+.hub-content tbody tr:nth-child(even),
+.content-section tbody tr:nth-child(even) {
     background: var(--n-surface-alt);
 }
 
-.hub-content tbody tr:nth-child(odd) {
+.hub-content tbody tr:nth-child(odd),
+.content-section tbody tr:nth-child(odd) {
     background: var(--n-surface);
 }
 
-.hub-content tbody tr:hover {
+.hub-content tbody tr:hover,
+.content-section tbody tr:hover {
     background: var(--n-gold-glow, rgba(245, 158, 11, 0.04));
 }
 
-.hub-content td:first-child {
+.hub-content td:first-child,
+.content-section td:first-child {
     font-weight: 500;
     color: var(--n-text-secondary);
 }
 
 /* Hub content lists */
-.hub-content ul {
+.hub-content ul,
+.content-section ul {
     list-style: none;
     padding-left: 0;
     margin-bottom: var(--s-4);
 }
 
-.hub-content ul li {
+.hub-content ul li,
+.content-section ul li {
     position: relative;
     padding: var(--s-2) 0 var(--s-2) var(--s-6);
     font-size: var(--t-body-sm, 0.9rem);
@@ -6700,7 +6709,8 @@ select.con-input__field {
     line-height: 1.7;
 }
 
-.hub-content ul li::before {
+.hub-content ul li::before,
+.content-section ul li::before {
     content: '▸';
     position: absolute;
     left: var(--s-1);
@@ -6709,31 +6719,83 @@ select.con-input__field {
     font-size: 0.9em;
 }
 
-.hub-content ul li strong {
+.hub-content ul li strong,
+.content-section ul li strong {
+    color: var(--n-text);
+}
+
+/* Hub/Content section ordered lists */
+.content-section ol {
+    padding-left: var(--s-6);
+    margin-bottom: var(--s-4);
+}
+
+.content-section ol li {
+    padding: var(--s-2) 0;
+    font-size: var(--t-body-sm, 0.9rem);
+    color: var(--n-text-secondary);
+    line-height: 1.7;
+}
+
+.content-section ol li strong {
+    color: var(--n-text);
+}
+
+/* Content section headings */
+.content-section h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--n-text);
+    margin-top: var(--s-6);
+    margin-bottom: var(--s-2);
+}
+
+.content-section h4 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--n-text);
+    margin-top: var(--s-4);
+    margin-bottom: var(--s-2);
+}
+
+.content-section p {
+    font-size: var(--t-body-sm, 0.9rem);
+    color: var(--n-text-secondary);
+    line-height: 1.7;
+    margin-bottom: var(--s-3);
+}
+
+.content-section p strong {
     color: var(--n-text);
 }
 
 /* Responsive — mobile table scroll */
 @media (max-width: 640px) {
-    .hub-content {
+    .hub-content,
+    .content-section {
         overflow-x: auto;
     }
 
-    .hub-content table {
+    .hub-content table,
+    .content-section table {
         font-size: var(--t-caption, 0.8rem);
         min-width: 500px;
     }
 
     .hub-content th,
-    .hub-content td {
+    .hub-content td,
+    .content-section th,
+    .content-section td {
         padding: var(--s-2) var(--s-3);
     }
 
-    .hub-content h3 {
+    .hub-content h3,
+    .content-section h3 {
         font-size: 1.1rem;
     }
 
-    .hub-content h4 {
+    .hub-content h4,
+    .content-section h4 {
         font-size: 0.95rem;
     }
 }
