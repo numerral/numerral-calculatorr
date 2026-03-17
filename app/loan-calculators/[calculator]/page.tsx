@@ -633,20 +633,155 @@ const HUB_CONTENT: Record<string, {
         ],
     },
     "refinance-calculator": {
-        subtitle: "Compare your current loan with a refinanced loan. Calculate monthly savings, total interest savings, and break-even period.",
-        contentHTML: `<h3>Should You Refinance?</h3><p>Refinancing makes sense when: (1) the new rate is at least 0.5-1% lower, (2) you plan to hold the loan long enough to pass the break-even point, and (3) closing costs don't eat up the savings.</p><p><strong>Break-even formula:</strong> Closing Costs ÷ Monthly Savings = Months to Break Even. If you plan to keep the loan longer than the break-even period, refinancing saves money.</p><div class="explanation__highlight"><strong>Watch out:</strong> Refinancing to a longer tenure decreases EMI but may increase total interest. Always compare total cost (EMI × tenure + closing costs), not just the monthly payment.</div>`,
+        subtitle: "Compare your current loan with a refinanced loan. Calculate monthly payment savings, total interest savings, and break-even period after closing costs.",
+        explanation: {
+            heading: "What Is Loan Refinancing?",
+            paragraphs: [
+                "Loan refinancing means replacing your current loan with a new one — usually with a lower interest rate, different term, or both. The new loan pays off the old one entirely, and you start making payments on the new loan going forward. Common types include mortgage refinancing, student loan refinancing, auto loan refinancing, and credit card balance transfers. Refinancing is different from debt restructuring, which renegotiates existing terms under financial distress.",
+                "The most critical calculation in any refinance decision is the break-even analysis. Break-even = total closing costs ÷ monthly savings. If closing costs are $4,000 and you save $200/month, the break-even point is 20 months. If you plan to keep the loan past that point, refinancing saves money. If you'll pay it off or move before then, refinancing costs you money.",
+                "Important caveat: refinancing resets your amortization schedule. If you refinance a 30-year mortgage into another 30-year mortgage in year 5, you now have 35 total years of payments. To avoid this trap, refinance to a shorter term (like 20 or 15 years) so you don't extend your total repayment period.",
+            ],
+            highlight: "Example: $300K mortgage at 7.5% refinanced to 6.0%. Monthly savings: $332. With $6,000 closing costs, break-even is 18 months. Total savings over remaining 25 years: $93,600 in interest.",
+        },
         faq: [
-            { question: "What are typical refinancing costs?", answer: "Processing fees (0.5-1% of loan), legal/valuation charges, stamp duty on new agreement, and sometimes a pre-closure penalty on the old loan. Total costs typically range from 1-3% of the loan amount." },
-            { question: "How many times can I refinance?", answer: "No legal limit. However, each refinance incurs costs, so ensure the savings justify the expense. Frequent refinancing can also temporarily impact your credit score." },
+            { question: "When does refinancing make financial sense?", answer: "Refinancing is worth it when: (1) the new rate is 0.75-1% lower than current rate, (2) you'll keep the loan past the break-even point, (3) your credit score has improved significantly, (4) you want to switch from ARM to fixed rate, (5) you need to remove PMI, or (6) you want to consolidate multiple debts into one payment." },
+            { question: "What are typical refinancing costs?", answer: "Mortgage refinance: 2-5% of loan amount ($6,000-$15,000 on $300K). Includes application fee (1%), appraisal ($300-$600), title insurance ($500-$2,000), origination fee (0.5-1.5%), recording fees ($50-$250). Student loan refinance: usually no fees. Auto loan refinance: $50-$300 in admin/transfer fees." },
+            { question: "How many times can I refinance?", answer: "There's no legal limit, but each refinance incurs costs and temporarily drops your credit score (hard inquiry). Some lenders require a 'seasoning period' — waiting 6-12 months between refinances. The key question: do the savings exceed the costs each time?" },
+            { question: "Does refinancing hurt my credit score?", answer: "Temporarily, yes. The lender performs a hard inquiry (5-10 point drop), and the new account lowers your average account age. However, lower monthly payments can improve your debt-to-income ratio long-term, and consistent payments on the new loan rebuild your score within 6-12 months." },
+            { question: "What is a cash-out refinance?", answer: "Cash-out refinancing replaces your mortgage with a larger loan, and you receive the difference in cash. Example: you owe $200K on a home worth $350K. You refinance for $280K and receive $80K cash. Requires at least 20% remaining equity. Common uses: home improvements, debt consolidation, emergency expenses." },
+            { question: "Should I refinance student loans?", answer: "It depends. Federal student loans have benefits (income-driven repayment, forgiveness programs, deferment) that are LOST when refinanced to private loans. Only refinance federal loans if you don't need these protections and can get a significantly lower rate. Private student loans are usually good candidates for refinancing." },
         ],
+        steps: [
+            { label: "Current loan payment", formula: "$300,000 at 7.5%, 25 yrs left", result: "$2,218/month" },
+            { label: "New loan payment", formula: "$300,000 at 6.0%, 25 years", result: "$1,933/month" },
+            { label: "Monthly savings", formula: "$2,218 − $1,933", result: "$285/month saved" },
+            { label: "Break-even point", formula: "$6,000 costs ÷ $285/month", result: "21 months to break even" },
+        ],
+        comparison: [
+            { title: "Rate-and-Term", value: "Most Common", detail: "Lower rate and/or shorter term | Same loan balance", isWinner: true },
+            { title: "Cash-Out", value: "Access Equity", detail: "Higher loan amount | Receive cash difference" },
+            { title: "Streamline (FHA/VA)", value: "Easiest Process", detail: "Minimal paperwork | No appraisal required" },
+        ],
+        insight: { icon: "⚠️", title: "The Hidden Cost of Extending Your Term", text: "Refinancing a 30-year mortgage at year 8 into a new 30-year mortgage means 38 total years of payments instead of 30. Even with a lower rate, you could pay MORE total interest. Solution: refinance to a 20 or 22-year term to maintain your original payoff date. The monthly payment will be slightly higher than a 30-year, but total savings are dramatically better." },
+        contentHTML: `
+<h3>What Is Loan Refinancing?</h3>
+<p>Refinancing involves taking out a new loan to replace an existing one, typically to secure better terms. The new loan pays off the old balance in full, and the borrower begins making payments on the new loan. While most commonly associated with mortgages, refinancing applies to car loans, student loans, personal loans, and even credit card debt (via balance transfers).</p>
+
+<h3>6 Reasons to Refinance</h3>
+<ol>
+<li><strong>Lower interest rate</strong> — The most common reason. If rates have dropped or your credit score improved, a lower rate means less interest over the life of the loan and lower monthly payments</li>
+<li><strong>Cash-out equity</strong> — Borrow against accumulated home equity for renovations, debt consolidation, or emergencies. Requires maintaining at least 20% equity after the new loan</li>
+<li><strong>Lower monthly payment</strong> — Extending the loan term reduces monthly payments, providing breathing room — though you'll pay more total interest</li>
+<li><strong>Shorten the loan term</strong> — Refinancing from a 30-year to 15-year mortgage typically comes with a lower rate AND faster payoff, though monthly payments increase</li>
+<li><strong>Consolidate debts</strong> — Combine multiple loans into one payment, ideally at a lower overall rate. Simplifies finances and may reduce total monthly obligations</li>
+<li><strong>Switch rate type</strong> — Convert from adjustable-rate (ARM) to fixed-rate to lock in certainty, or from fixed to ARM if you plan to sell before the adjustment period</li>
+</ol>
+
+<h3>Types of Refinancing</h3>
+<table><tr><th>Type</th><th>How It Works</th><th>Best For</th></tr>
+<tr><td>Rate-and-Term</td><td>Change rate and/or loan length, same balance</td><td>Lowering rate or shortening term</td></tr>
+<tr><td>Cash-Out</td><td>New loan is larger than old balance; receive difference</td><td>Home improvements, debt consolidation</td></tr>
+<tr><td>Cash-In</td><td>Pay additional cash at closing to reduce new balance</td><td>Removing PMI, qualifying for better rate</td></tr>
+<tr><td>Streamline (FHA/VA)</td><td>Simplified process with reduced documentation</td><td>Existing FHA or VA loan holders</td></tr>
+<tr><td>No-Closing-Cost</td><td>Closing costs rolled into loan or offset by higher rate</td><td>Short-term ownership plans</td></tr></table>
+
+<h3>Refinancing Student Loans</h3>
+<p><strong>Federal student loans</strong> carry unique benefits: income-driven repayment plans, Public Service Loan Forgiveness (PSLF), deferment/forbearance options, and death/disability discharge. Refinancing federal loans into private loans permanently surrenders these protections. Only refinance federal loans if you have stable income, don't qualify for forgiveness, and can secure a meaningfully lower rate.</p>
+<p><strong>Private student loans</strong> lack these protections, making them better candidates for refinancing. Grad PLUS and Parent PLUS loans typically have the highest rates and benefit most from refinancing.</p>
+
+<h3>Refinancing Car Loans</h3>
+<p>Auto loan refinancing can lower your rate if your credit has improved or rates have dropped. Key considerations:</p>
+<ul>
+<li>Check for prepayment penalties on your current loan</li>
+<li>Avoid "upside-down" loans — where you owe more than the car is worth</li>
+<li>Extending the term lowers payments but increases total cost</li>
+<li>Typical costs: $50-$300 (admin fees, lien transfer, state re-registration)</li>
+</ul>
+
+<h3>Refinancing Credit Card Debt</h3>
+<p>Credit card refinancing typically involves a <strong>balance transfer</strong> to a new card with 0% intro APR (usually 12-21 months). Transfer fees of 3-5% apply, but at 0% interest, even with the fee, this saves significantly versus paying 20%+ APR. After the intro period ends, the standard rate applies to remaining balances.</p>
+
+<h3>When NOT to Refinance</h3>
+<ul>
+<li>You're close to paying off the current loan (little interest left to save)</li>
+<li>Closing costs exceed total interest savings</li>
+<li>You plan to sell or move before the break-even point</li>
+<li>Your credit score has declined (you'll get worse terms)</li>
+<li>You'd lose valuable benefits (federal student loan protections)</li>
+</ul>
+`,
     },
     "mortgage-refinance-calculator": {
-        subtitle: "Mortgage-specific refinance analysis with closing costs, PMI impact, and break-even timeline.",
-        contentHTML: `<h3>Mortgage Refinancing Analysis</h3><p>Mortgage refinancing involves replacing your existing home loan with a new one, typically at a lower rate. Beyond rate savings, consider:</p><ul><li><strong>Cash-out refinance:</strong> Borrow more than you owe and receive the difference in cash</li><li><strong>Rate-and-term:</strong> Simply change the rate and/or tenure</li><li><strong>PMI removal:</strong> If your equity has grown past 20%, refinancing can eliminate PMI</li></ul><p>Typical closing costs: 2-5% of loan amount in the US. Break-even analysis is critical — if you plan to move within 3 years, refinancing rarely pays off.</p>`,
+        subtitle: "Mortgage-specific refinance analysis with closing costs, PMI changes, break-even timeline, and total cost comparison over the life of the loan.",
+        explanation: {
+            heading: "Should You Refinance Your Mortgage?",
+            paragraphs: [
+                "Mortgage refinancing replaces your existing home loan with a new one. The most common scenarios: rates have dropped since you took out your mortgage, your credit score has improved, your home has appreciated (enabling PMI removal or cash-out), or you want to switch from an adjustable rate to a fixed rate. In the U.S., mortgage refinancing typically costs 2-5% of the loan amount in closing costs.",
+                "There are four main types: rate-and-term (most common — lower your rate and/or shorten your term), cash-out (borrow more than you owe and pocket the difference), FHA Streamline (simplified refinance for existing FHA loans), and ARM-to-fixed (lock in a stable rate before your ARM adjusts upward).",
+                "The critical decision factor is break-even timing. If refinancing your $300,000 mortgage costs $8,000 in closing costs and saves $250/month, your break-even point is 32 months. If you'll stay in the home longer than 32 months, refinancing saves money. If you plan to move sooner, you'll lose money.",
+            ],
+            highlight: "$300K mortgage: 7.5% → 6.0%. Monthly savings: $332. Closing costs: $8K. Break-even: 24 months. If you stay 10+ years, total savings: $31,840 in interest.",
+        },
         faq: [
-            { question: "When should I refinance my mortgage?", answer: "When rates drop 0.75-1% below your current rate, when your credit score has improved significantly, when you want to switch from ARM to fixed, or when you have enough equity to drop PMI." },
-            { question: "Does refinancing reset my loan?", answer: "Yes, the amortization clock restarts. A 30-year refinance in year 5 of a 30-year loan means 35 total years of payments. Consider refinancing to a shorter term (15-20 years) to avoid this trap." },
+            { question: "What are the types of mortgage refinancing?", answer: "Rate-and-term: change rate/term, same balance. Cash-out: larger loan, receive cash difference (need 20% equity). Cash-in: pay cash to reduce balance (remove PMI or get better rate). FHA Streamline: simplified for FHA holders. VA IRRRL: Interest Rate Reduction Refinance Loan for VA borrowers." },
+            { question: "What fees are involved in mortgage refinancing?", answer: "Application fee (~1% of loan), home appraisal ($300-$600), origination fee (0.5-1.5%), title search ($200-$400), title insurance ($500-$2,000), recording fee ($50-$250), document preparation ($200-$500), flood certification ($15-$25). Total: typically 2-5% of loan amount." },
+            { question: "When should I refinance my mortgage?", answer: "When rates drop 0.75-1% below your current rate, when your credit score has improved significantly (680+ to 740+), when you want to switch from ARM to fixed before adjustment, when you have 20% equity and want to drop PMI, or when you need cash for major expenses (cash-out refi)." },
+            { question: "Does refinancing reset my amortization?", answer: "Yes. A 30-year refinance in year 8 means 38 total years of payments. To avoid this, refinance to a term that matches your remaining payoff timeline (e.g., 22-year term if you had 22 years left). This maintains your original payoff date while capturing the lower rate." },
+            { question: "Can I refinance from FHA to conventional?", answer: "Yes, and it's often smart. FHA loans require mortgage insurance premium (MIP) for the life of the loan. Once you have 20% equity, refinancing to conventional eliminates MIP entirely. This alone can save $100-$300/month depending on loan size." },
+            { question: "What credit score do I need to refinance?", answer: "Conventional: 620 minimum, 740+ for best rates. FHA Streamline: 580+. VA IRRRL: no minimum (but most lenders require 620+). A higher credit score not only qualifies you but gets you a significantly better rate — the difference between 680 and 760 can be 0.5% in rate." },
         ],
+        steps: [
+            { label: "Current mortgage details", formula: "$300K at 7.5%, 25 years remaining", result: "$2,218/month P&I" },
+            { label: "New loan terms", formula: "$300K at 6.0%, 25 years", result: "$1,933/month P&I" },
+            { label: "Monthly savings", formula: "$2,218 − $1,933", result: "$285 saved per month" },
+            { label: "Break-even analysis", formula: "$8,000 closing costs ÷ $285", result: "28 months to recoup costs" },
+        ],
+        comparison: [
+            { title: "Rate-and-Term", value: "Most Popular", detail: "Same balance | Lower rate/shorter term | 2-5% costs", isWinner: true },
+            { title: "Cash-Out", value: "Access Equity", detail: "Larger loan | Receive cash | Need 20% equity" },
+            { title: "FHA Streamline", value: "Easiest", detail: "No appraisal | Reduced docs | FHA-to-FHA only" },
+        ],
+        insight: { icon: "🏠", title: "FHA-to-Conventional: The Hidden PMI Savings", text: "FHA loans charge MIP for the entire life of the loan — even after you pass 20% equity. On a $300K loan, that's roughly $212/month ($2,550/year) that NEVER goes away unless you refinance to conventional. Once you reach 20% equity, refinancing to conventional eliminates MIP entirely. Over 20 remaining years, that saves $51,000. The closing costs ($6-8K) pay for themselves in under 3 years." },
+        contentHTML: `
+<h3>4 Types of Mortgage Refinancing</h3>
+<p>Understanding the different refinance types helps you choose the right approach:</p>
+<ul>
+<li><strong>Rate-and-Term Refinance</strong> — The most common type. You change the interest rate and/or loan length while keeping the same balance. Ideal when rates drop or your credit improves</li>
+<li><strong>Cash-Out Refinance</strong> — Replace your mortgage with a larger loan and receive the difference as cash. Requires at least 20% remaining equity. Common uses: home improvements, paying off high-interest debt, emergency expenses. Rates are typically 0.125-0.25% higher than rate-and-term</li>
+<li><strong>FHA Streamline Refinance</strong> — Available only to existing FHA loan holders. Simplified process with no appraisal required, reduced documentation, and the benefit of net tangible cost must be met. Ideal for FHA borrowers who want a lower rate without the hassle of a full refinance</li>
+<li><strong>ARM-to-Fixed Refinance</strong> — Converts an adjustable-rate mortgage to a fixed rate before the ARM adjustment period begins. Provides payment certainty and protection from rising rates. Most valuable when you plan to stay in the home long-term</li>
+</ul>
+
+<h3>Mortgage Refinance Closing Costs Breakdown</h3>
+<p>Refinancing a mortgage involves several fees, typically totaling 2-5% of the loan amount:</p>
+<table><tr><th>Fee</th><th>Typical Cost</th><th>Notes</th></tr>
+<tr><td>Loan Origination</td><td>0.5-1.5% of loan</td><td>Lender's processing fee; sometimes negotiable</td></tr>
+<tr><td>Home Appraisal</td><td>$300-$600</td><td>Required to confirm current home value</td></tr>
+<tr><td>Title Search</td><td>$200-$400</td><td>Verifies clear title and no liens</td></tr>
+<tr><td>Title Insurance</td><td>$500-$2,000</td><td>Protects lender against title issues</td></tr>
+<tr><td>Recording Fee</td><td>$50-$250</td><td>County charge for deed paperwork</td></tr>
+<tr><td>Application Fee</td><td>$250-$500</td><td>Non-refundable processing charge</td></tr>
+<tr><td>Document Preparation</td><td>$200-$500</td><td>Legal paperwork and disclosures</td></tr>
+<tr><td>Inspection/Survey</td><td>$300-$600</td><td>Property condition and boundary verification</td></tr></table>
+<p>Some lenders offer "no-closing-cost" refinances where costs are either rolled into the loan balance or offset by a slightly higher interest rate. This can make sense if you plan to sell within 5-7 years.</p>
+
+<h3>Removing PMI Through Refinancing</h3>
+<p>If your home has appreciated or you've paid down your balance enough to reach 20% equity, refinancing can eliminate PMI/MIP entirely:</p>
+<ul>
+<li><strong>Conventional PMI:</strong> Automatically drops at 78% LTV, but refinancing can remove it at 80% LTV sooner</li>
+<li><strong>FHA MIP:</strong> Required for the life of the loan (for loans with less than 10% down). The ONLY way to remove it is refinancing to a conventional loan</li>
+<li><strong>Savings:</strong> PMI typically costs 0.3-1.5% of loan annually. On a $250K loan, that's $62-$312/month</li>
+</ul>
+
+<h3>Common Refinancing Mistakes</h3>
+<ol>
+<li><strong>Ignoring the break-even point</strong> — Refinancing costs money upfront. If you move before break-even, you lose</li>
+<li><strong>Extending the term</strong> — A new 30-year mortgage resets your clock. Refinance to your remaining term length instead</li>
+<li><strong>Focusing only on rate</strong> — A 0.5% lower rate with $10,000 in fees may not save as much as a 0.375% drop with $3,000 in fees</li>
+<li><strong>Cash-out for depreciating assets</strong> — Using home equity for vacations or cars turns short-term spending into 30-year debt</li>
+<li><strong>Not shopping multiple lenders</strong> — Rates and fees vary significantly. Get quotes from at least 3-4 lenders within a 14-day window (counts as one credit inquiry)</li>
+</ol>
+`,
     },
     "rent-affordability-calculator": {
         subtitle: "Find out how much rent you can afford based on your income, debts, and the 30% rule. See a full monthly budget breakdown with DTI analysis.",

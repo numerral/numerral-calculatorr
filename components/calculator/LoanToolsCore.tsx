@@ -418,7 +418,7 @@ function LoanInterestRateCalc({defaults}:P){
     <div className="calc-card" style={{marginTop:"var(--s-6)",background:"var(--n-surface-alt)"}}>
       <p className="calc-field__label">EFFECTIVE INTEREST RATE</p>
       <p style={{fontSize:"var(--t-h1)",fontWeight:700,color:"var(--n-primary)"}}>{r.rate.toFixed(2)}% p.a.</p>
-      <p style={{fontSize:"var(--t-body-sm)",color:"var(--n-text-muted)",marginTop:"var(--s-2)"}}>Total paid: {fmt(r.totalPaid)} | Total interest: {fmt(r.totalInt)}</p>
+      <p style={{fontSize:"var(--t-body-sm)",color:"var(--n-text-muted)",marginTop:"var(--s-2)"}}>Total paid: {fmtUSD(r.totalPaid)} | Total interest: {fmtUSD(r.totalInt)}</p>
     </div></div>);
 }
 
@@ -778,11 +778,11 @@ function ExtraPaymentCalc({defaults}:P){
     </div>
   </div>
     <div className="calc-card" style={{marginTop:"var(--s-6)",background:"var(--n-surface-alt)"}}>
-      <p style={{fontSize:"var(--t-h2)",fontWeight:700,color:"var(--n-success)"}}>Save {fmt(r.savedInt)} in interest</p>
+      <p style={{fontSize:"var(--t-h2)",fontWeight:700,color:"var(--n-success)"}}>Save {fmtUSD(r.savedInt)} in interest</p>
       <p style={{fontSize:"var(--t-body)",fontWeight:700,color:"var(--n-success)"}}>Pay off {r.savedMonths} months earlier!</p>
       <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:"var(--s-3)",marginTop:"var(--s-3)"}}>
-        <div><p className="calc-field__label">ORIGINAL</p><p style={{fontWeight:700}}>{r.m1} months | Int: {fmt(r.int1)}</p></div>
-        <div><p className="calc-field__label">WITH EXTRA</p><p style={{fontWeight:700,color:"var(--n-success)"}}>{r.m2} months | Int: {fmt(r.int2)}</p></div>
+        <div><p className="calc-field__label">ORIGINAL</p><p style={{fontWeight:700}}>{r.m1} months | Int: {fmtUSD(r.int1)}</p></div>
+        <div><p className="calc-field__label">WITH EXTRA</p><p style={{fontWeight:700,color:"var(--n-success)"}}>{r.m2} months | Int: {fmtUSD(r.int2)}</p></div>
       </div>
     </div></div>);
 }
@@ -816,12 +816,12 @@ function RefinanceCalc({defaults}:P){
     <F label="💳 CLOSING COSTS" value={closingCost} onChange={setClosing} step={1000}/>
   </div>
     <div className="calc-card" style={{marginTop:"var(--s-6)",background:"var(--n-surface-alt)"}}>
-      <p style={{fontSize:"var(--t-h2)",fontWeight:700,color:worth?"var(--n-success)":"var(--n-error, #ef4444)"}}>{worth?"✅ Refinancing saves "+fmt(r.saving):"❌ Refinancing costs "+fmt(Math.abs(r.saving))+" more"}</p>
+      <p style={{fontSize:"var(--t-h2)",fontWeight:700,color:worth?"var(--n-success)":"var(--n-error, #ef4444)"}}>{worth?"✅ Refinancing saves "+fmtUSD(r.saving):"❌ Refinancing costs "+fmtUSD(Math.abs(r.saving))+" more"}</p>
       <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:"var(--s-3)",marginTop:"var(--s-3)"}}>
-        <div><p className="calc-field__label">CURRENT EMI</p><p style={{fontWeight:700}}>{fmt(r.emi1)}</p></div>
-        <div><p className="calc-field__label">NEW EMI</p><p style={{fontWeight:700,color:"var(--n-success)"}}>{fmt(r.emi2)}</p></div>
+        <div><p className="calc-field__label">CURRENT EMI</p><p style={{fontWeight:700}}>{fmtUSD(r.emi1)}</p></div>
+        <div><p className="calc-field__label">NEW EMI</p><p style={{fontWeight:700,color:"var(--n-success)"}}>{fmtUSD(r.emi2)}</p></div>
       </div>
-      <p style={{fontSize:"var(--t-body-sm)",color:"var(--n-text-muted)",marginTop:"var(--s-3)"}}>Monthly savings: {fmt(r.monthlySave)} | Break-even: {r.breakEven} months</p>
+      <p style={{fontSize:"var(--t-body-sm)",color:"var(--n-text-muted)",marginTop:"var(--s-3)"}}>Monthly savings: {fmtUSD(r.monthlySave)} | Break-even: {r.breakEven} months</p>
     </div></div>);
 }
 
