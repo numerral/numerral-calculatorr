@@ -153,20 +153,131 @@ function WaterIntakeCalc() {
         <ResultRow label="Litres" value={fmt(r.litres)} unit="L/day" /><ResultRow label="Glasses (250 ml)" value={fmt(r.glasses, 0)} unit="glasses" /></div></div>);
 }
 
-/* 9. Pregnancy Due Date */
+/* 9. Pregnancy Due Date — 4 Methods (LMP, Conception, IVF Transfer, Ultrasound) */
 function PregnancyDueDateCalc() {
-    const today = new Date(); const defLmp = new Date(today.getTime() - 56 * 86400000);
+    const today = new Date();
+    const defLmp = new Date(today.getTime() - 56 * 86400000);
+    const [method, setMethod] = useState("lmp");
     const [lmpStr, setLmpStr] = useState(defLmp.toISOString().split("T")[0]);
-    const r = useMemo(() => { const lmp = new Date(lmpStr); const due = new Date(lmp.getTime() + 280 * 86400000);
-        const diff = today.getTime() - lmp.getTime(); const weeks = Math.floor(diff / (7 * 86400000)); const days = Math.floor((diff % (7 * 86400000)) / 86400000);
-        const trim = weeks < 13 ? "1st" : weeks < 27 ? "2nd" : "3rd";
-        return { due: due.toLocaleDateString(), weeks, days, trim }; }, [lmpStr]);
-    return (<div className="con-calc"><h3 className="con-calc__title">🤰 Pregnancy Due Date</h3><div className="con-calc__inputs">
-        <div className="con-input"><label className="con-input__label">Last Menstrual Period</label>
-            <input type="date" className="con-input__field" value={lmpStr} onChange={e => setLmpStr(e.target.value)} /></div>
-    </div><div className="con-calc__results"><h4>Results</h4>
-        <ResultRow label="Estimated Due Date" value={r.due} /><ResultRow label="Currently" value={`${r.weeks} weeks, ${r.days} days`} />
-        <ResultRow label="Trimester" value={r.trim} /></div></div>);
+    const [cycleLen, setCycleLen] = useState(28);
+    const [conceptionStr, setConceptionStr] = useState(new Date(today.getTime() - 42 * 86400000).toISOString().split("T")[0]);
+    const [ivfStr, setIvfStr] = useState(new Date(today.getTime() - 42 * 86400000).toISOString().split("T")[0]);
+    const [ivfDay, setIvfDay] = useState("5");
+    const [usStr, setUsStr] = useState(new Date(today.getTime() - 28 * 86400000).toISOString().split("T")[0]);
+    const [usWeeks, setUsWeeks] = useState(8);
+    const [usDays, setUsDays] = useState(0);
+
+    const r = useMemo(() => {
+        const DAY = 86400000;
+        let dueDate: Date;
+        let conceptionDate: Date;
+        let lmpEquiv: Date;
+
+        if (method === "lmp") {
+            const lmp = new Date(lmpStr);
+            const cycleAdj = cycleLen - 28;
+            dueDate = new Date(lmp.getTime() + (280 + cycleAdj) * DAY);
+            conceptionDate = new Date(lmp.getTime() + (14 + cycleAdj) * DAY);
+            lmpEquiv = lmp;
+        } else if (method === "conception") {
+            conceptionDate = new Date(conceptionStr);
+            dueDate = new Date(conceptionDate.getTime() + 266 * DAY);
+            lmpEquiv = new Date(conceptionDate.getTime() - 14 * DAY);
+        } else if (method === "ivf") {
+            const transfer = new Date(ivfStr);
+            const daysToAdd = ivfDay === "3" ? 263 : 261;
+            dueDate = new Date(transfer.getTime() + daysToAdd * DAY);
+            conceptionDate = new Date(transfer.getTime() - (ivfDay === "3" ? 3 : 5) * DAY);
+            lmpEquiv = new Date(dueDate.getTime() - 280 * DAY);
+        } else {
+            const scanDate = new Date(usStr);
+            const gestAgeDays = usWeeks * 7 + usDays;
+            lmpEquiv = new Date(scanDate.getTime() - gestAgeDays * DAY);
+            dueDate = new Date(lmpEquiv.getTime() + 280 * DAY);
+            conceptionDate = new Date(lmpEquiv.getTime() + 14 * DAY);
+        }
+
+        const diff = today.getTime() - lmpEquiv.getTime();
+        const totalDays = Math.floor(diff / DAY);
+        const weeks = Math.floor(totalDays / 7);
+        const days = totalDays % 7;
+        const trim = weeks < 13 ? "1st Trimester" : weeks < 27 ? "2nd Trimester" : "3rd Trimester";
+        const progress = Math.min(Math.max((totalDays / 280) * 100, 0), 100);
+
+        const fmtD = (d: Date) => d.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
+
+        const milestones = [
+            { label: "End of 1st Trimester", week: 12, date: fmtD(new Date(lmpEquiv.getTime() + 12 * 7 * DAY)) },
+            { label: "Anatomy Scan Window", week: 20, date: `${fmtD(new Date(lmpEquiv.getTime() + 18 * 7 * DAY))} – ${fmtD(new Date(lmpEquiv.getTime() + 22 * 7 * DAY))}` },
+            { label: "Viability Milestone", week: 24, date: fmtD(new Date(lmpEquiv.getTime() + 24 * 7 * DAY)) },
+            { label: "End of 2nd Trimester", week: 26, date: fmtD(new Date(lmpEquiv.getTime() + 26 * 7 * DAY)) },
+            { label: "Early Term", week: 37, date: fmtD(new Date(lmpEquiv.getTime() + 37 * 7 * DAY)) },
+            { label: "Full Term Begins", week: 39, date: fmtD(new Date(lmpEquiv.getTime() + 39 * 7 * DAY)) },
+            { label: "Estimated Due Date", week: 40, date: fmtD(dueDate) },
+            { label: "Late Term", week: 41, date: fmtD(new Date(lmpEquiv.getTime() + 41 * 7 * DAY)) },
+            { label: "Post-Term", week: 42, date: fmtD(new Date(lmpEquiv.getTime() + 42 * 7 * DAY)) },
+        ];
+
+        const daysUntilDue = Math.ceil((dueDate.getTime() - today.getTime()) / DAY);
+
+        return { due: fmtD(dueDate), conception: fmtD(conceptionDate), weeks, days, trim, progress, milestones, daysUntilDue };
+    }, [method, lmpStr, cycleLen, conceptionStr, ivfStr, ivfDay, usStr, usWeeks, usDays]);
+
+    return (<div className="con-calc"><h3 className="con-calc__title">🤰 Pregnancy Due Date Calculator</h3><div className="con-calc__inputs">
+        <SelectField label="Calculation Method" value={method} onChange={setMethod} options={[
+            { value: "lmp", label: "Last Menstrual Period (LMP)" },
+            { value: "conception", label: "Conception Date" },
+            { value: "ivf", label: "IVF Transfer Date" },
+            { value: "ultrasound", label: "Ultrasound Scan" },
+        ]} />
+
+        {method === "lmp" && (<>
+            <div className="con-input"><label className="con-input__label">First Day of Last Period</label>
+                <input type="date" className="con-input__field" value={lmpStr} onChange={e => setLmpStr(e.target.value)} /></div>
+            <InputField label="Cycle Length" value={cycleLen} onChange={setCycleLen} unit="days" min={21} max={45} />
+        </>)}
+
+        {method === "conception" && (
+            <div className="con-input"><label className="con-input__label">Conception Date</label>
+                <input type="date" className="con-input__field" value={conceptionStr} onChange={e => setConceptionStr(e.target.value)} /></div>
+        )}
+
+        {method === "ivf" && (<>
+            <div className="con-input"><label className="con-input__label">IVF Transfer Date</label>
+                <input type="date" className="con-input__field" value={ivfStr} onChange={e => setIvfStr(e.target.value)} /></div>
+            <SelectField label="Embryo Transfer Day" value={ivfDay} onChange={setIvfDay} options={[
+                { value: "3", label: "Day 3 Transfer" },
+                { value: "5", label: "Day 5 Transfer (Blastocyst)" },
+            ]} />
+        </>)}
+
+        {method === "ultrasound" && (<>
+            <div className="con-input"><label className="con-input__label">Ultrasound Date</label>
+                <input type="date" className="con-input__field" value={usStr} onChange={e => setUsStr(e.target.value)} /></div>
+            <InputField label="Gestational Age (Weeks)" value={usWeeks} onChange={setUsWeeks} min={4} max={42} />
+            <InputField label="Gestational Age (Days)" value={usDays} onChange={setUsDays} min={0} max={6} />
+        </>)}
+    </div>
+
+    <div className="con-calc__results"><h4>Your Results</h4>
+        <ResultRow label="Estimated Due Date" value={r.due} />
+        <ResultRow label="Est. Conception Date" value={r.conception} />
+        <ResultRow label="Current Gestational Age" value={`${r.weeks} weeks, ${r.days} days`} />
+        <ResultRow label="Trimester" value={r.trim} />
+        <ResultRow label="Days Until Due" value={r.daysUntilDue > 0 ? `${r.daysUntilDue} days` : "Past due date"} />
+
+        <div style={{ margin: "var(--s-4) 0 var(--s-2)", display: "flex", alignItems: "center", gap: "var(--s-3)" }}>
+            <div style={{ flex: 1, height: 10, borderRadius: 5, background: "var(--n-border)", overflow: "hidden" }}>
+                <div style={{ width: `${r.progress}%`, height: "100%", borderRadius: 5, background: r.progress < 33 ? "#f59e0b" : r.progress < 66 ? "#10b981" : "#6366f1", transition: "width 0.4s ease" }} />
+            </div>
+            <span style={{ fontSize: "var(--t-caption)", fontWeight: 600, color: "var(--n-text-secondary)", whiteSpace: "nowrap" }}>{fmt(r.progress, 0)}%</span>
+        </div>
+
+        <h4 style={{ marginTop: "var(--s-4)" }}>Pregnancy Milestones</h4>
+        {r.milestones.map(m => (
+            <ResultRow key={m.label} label={`${m.label} (Wk ${m.week})`} value={m.date} />
+        ))}
+    </div></div>);
 }
 
 /* 10. Ovulation */
