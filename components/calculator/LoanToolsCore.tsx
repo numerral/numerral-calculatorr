@@ -862,7 +862,135 @@ function MortgageRefinanceCalc({defaults}:P){
     </div></div>);
 }
 
-// ─── 14. Rent Affordability ───
+// ─── 14. Debt-to-Income (DTI) Ratio ───
+function DebtRatioCalc({defaults}:P){
+  const[income,setIncome]=useState(85000);
+  const[housing,setHousing]=useState(1500);
+  const[carLoan,setCarLoan]=useState(350);
+  const[studentLoan,setStudentLoan]=useState(300);
+  const[creditCards,setCreditCards]=useState(200);
+  const[otherDebt,setOtherDebt]=useState(0);
+  const[creditLimit,setCreditLimit]=useState(15000);
+
+  const r=useMemo(()=>{
+    const monthlyGross=income/12;
+    const totalDebt=housing+carLoan+studentLoan+creditCards+otherDebt;
+    const frontEnd=monthlyGross>0?(housing/monthlyGross*100):0;
+    const backEnd=monthlyGross>0?(totalDebt/monthlyGross*100):0;
+    const creditUtil=creditLimit>0?(creditCards/creditLimit*100*12):0; // rough: monthly payment * 12 vs limit
+    // Mortgage qualification
+    const convOk=frontEnd<=28&&backEnd<=36;
+    const fhaOk=frontEnd<=31&&backEnd<=43;
+    const vaOk=backEnd<=41;
+    // Health
+    let health="Excellent";
+    let healthColor="var(--n-success)";
+    if(backEnd>20){health="Good";healthColor="var(--n-success)";}
+    if(backEnd>36){health="Fair";healthColor="var(--n-warning)";}
+    if(backEnd>43){health="Poor";healthColor="var(--n-error)";}
+    if(backEnd>50){health="Critical";healthColor="var(--n-error)";}
+    return{monthlyGross,totalDebt,frontEnd,backEnd,creditUtil:Math.min(creditUtil,100),convOk,fhaOk,vaOk,health,healthColor,remaining:monthlyGross-totalDebt};
+  },[income,housing,carLoan,studentLoan,creditCards,otherDebt,creditLimit]);
+
+  return(<div>
+    <div className="calc-input-panel">
+      <div className="calc-field">
+        <label className="calc-field__label"><span className="calc-field__label-icon">💰</span>Annual Gross Income</label>
+        <input type="range" className="calc-field__slider" min={20000} max={300000} step={5000} value={income} onChange={e=>setIncome(+e.target.value)}/>
+        <input type="text" className="calc-field__input" value={income.toLocaleString("en-US")} inputMode="numeric"
+          onChange={e=>{const v=parseInt(e.target.value.replace(/,/g,""));if(!isNaN(v))setIncome(v);}}/>
+      </div>
+
+      <p className="calc-field__label" style={{marginTop:"var(--s-4)",marginBottom:"var(--s-2)"}}>MONTHLY DEBT PAYMENTS</p>
+
+      <div className="calc-field">
+        <label className="calc-field__label"><span className="calc-field__label-icon">🏠</span>Housing (mortgage/rent)</label>
+        <input type="range" className="calc-field__slider" min={0} max={5000} step={50} value={housing} onChange={e=>setHousing(+e.target.value)}/>
+        <input type="text" className="calc-field__input" style={{maxWidth:"120px"}} value={housing.toLocaleString("en-US")} inputMode="numeric"
+          onChange={e=>{const v=parseInt(e.target.value.replace(/,/g,""));if(!isNaN(v))setHousing(v);}}/>
+      </div>
+
+      <div className="calc-field">
+        <label className="calc-field__label"><span className="calc-field__label-icon">🚗</span>Car Loan</label>
+        <input type="text" className="calc-field__input" style={{maxWidth:"120px"}} value={carLoan===0?"":carLoan.toLocaleString("en-US")} inputMode="numeric" placeholder="$0"
+          onChange={e=>{const v=parseInt(e.target.value.replace(/,/g,""));setCarLoan(isNaN(v)?0:v);}}/>
+      </div>
+
+      <div className="calc-field">
+        <label className="calc-field__label"><span className="calc-field__label-icon">🎓</span>Student Loans</label>
+        <input type="text" className="calc-field__input" style={{maxWidth:"120px"}} value={studentLoan===0?"":studentLoan.toLocaleString("en-US")} inputMode="numeric" placeholder="$0"
+          onChange={e=>{const v=parseInt(e.target.value.replace(/,/g,""));setStudentLoan(isNaN(v)?0:v);}}/>
+      </div>
+
+      <div className="calc-field">
+        <label className="calc-field__label"><span className="calc-field__label-icon">💳</span>Credit Card Min. Payments</label>
+        <input type="text" className="calc-field__input" style={{maxWidth:"120px"}} value={creditCards===0?"":creditCards.toLocaleString("en-US")} inputMode="numeric" placeholder="$0"
+          onChange={e=>{const v=parseInt(e.target.value.replace(/,/g,""));setCreditCards(isNaN(v)?0:v);}}/>
+      </div>
+
+      <div className="calc-field">
+        <label className="calc-field__label"><span className="calc-field__label-icon">📝</span>Other Monthly Debts</label>
+        <input type="text" className="calc-field__input" style={{maxWidth:"120px"}} value={otherDebt===0?"":otherDebt.toLocaleString("en-US")} inputMode="numeric" placeholder="$0"
+          onChange={e=>{const v=parseInt(e.target.value.replace(/,/g,""));setOtherDebt(isNaN(v)?0:v);}}/>
+      </div>
+
+      <div className="calc-field">
+        <label className="calc-field__label"><span className="calc-field__label-icon">🏦</span>Total Credit Card Limit (for utilization)</label>
+        <input type="text" className="calc-field__input" style={{maxWidth:"140px"}} value={creditLimit.toLocaleString("en-US")} inputMode="numeric"
+          onChange={e=>{const v=parseInt(e.target.value.replace(/,/g,""));if(!isNaN(v))setCreditLimit(v);}}/>
+      </div>
+    </div>
+
+    {/* ── Results ── */}
+    <div className="calc-result" aria-live="polite">
+      <p className="calc-result__label">Your Debt-to-Income Ratio</p>
+      <p className="calc-result__emi" style={{color:r.healthColor}}>{r.backEnd.toFixed(1)}%</p>
+      <p className="t-body-sm" style={{textAlign:"center",fontWeight:600,color:r.healthColor,marginBottom:"var(--s-3)"}}>{r.health}</p>
+
+      <div className="calc-result__stats">
+        <div className="calc-result__stat"><p className="calc-result__stat-label">Front-End DTI</p><p className="calc-result__stat-value">{r.frontEnd.toFixed(1)}%</p></div>
+        <div className="calc-result__stat"><p className="calc-result__stat-label">Back-End DTI</p><p className="calc-result__stat-value">{r.backEnd.toFixed(1)}%</p></div>
+        <div className="calc-result__stat"><p className="calc-result__stat-label">Monthly Remaining</p><p className="calc-result__stat-value" style={{color:r.remaining>0?"var(--n-success)":"var(--n-error)"}}>{fmtUSD(r.remaining)}</p></div>
+      </div>
+
+      {/* DTI Gauge */}
+      <div style={{marginTop:"var(--s-4)"}}>
+        <div style={{display:"flex",justifyContent:"space-between",marginBottom:"4px"}}><span className="t-body-sm">Back-End DTI</span><span className="t-body-sm" style={{fontWeight:600}}>{r.backEnd.toFixed(1)}%</span></div>
+        <div style={{background:"var(--n-surface-alt)",borderRadius:"4px",height:"10px",overflow:"hidden",position:"relative"}}>
+          <div style={{width:`${Math.min(r.backEnd/60*100,100)}%`,height:"100%",background:r.backEnd<=36?"var(--n-success)":r.backEnd<=43?"var(--n-warning)":"var(--n-error)",borderRadius:"4px",transition:"width 0.3s"}}/>
+        </div>
+        <div style={{display:"flex",justifyContent:"space-between",marginTop:"2px"}}><span className="t-body-sm text-muted">≤ 20% Excellent</span><span className="t-body-sm text-muted">36% Conv</span><span className="t-body-sm text-muted">43% FHA</span><span className="t-body-sm text-muted">50%+</span></div>
+      </div>
+
+      {/* Mortgage Qualification */}
+      <div style={{marginTop:"var(--s-4)"}}>
+        <p className="calc-field__label">Mortgage Qualification</p>
+        <div style={{display:"flex",gap:"var(--s-3)",marginTop:"var(--s-2)",flexWrap:"wrap"}}>
+          <div style={{padding:"var(--s-2) var(--s-3)",borderRadius:"8px",background:r.convOk?"rgba(34,197,94,0.1)":"rgba(239,68,68,0.1)",border:`1px solid ${r.convOk?"var(--n-success)":"var(--n-error)"}`,fontSize:"var(--t-body-sm)"}}>{r.convOk?"✅":"❌"} Conventional (28/36)</div>
+          <div style={{padding:"var(--s-2) var(--s-3)",borderRadius:"8px",background:r.fhaOk?"rgba(34,197,94,0.1)":"rgba(239,68,68,0.1)",border:`1px solid ${r.fhaOk?"var(--n-success)":"var(--n-error)"}`,fontSize:"var(--t-body-sm)"}}>{r.fhaOk?"✅":"❌"} FHA (31/43)</div>
+          <div style={{padding:"var(--s-2) var(--s-3)",borderRadius:"8px",background:r.vaOk?"rgba(34,197,94,0.1)":"rgba(239,68,68,0.1)",border:`1px solid ${r.vaOk?"var(--n-success)":"var(--n-error)"}`,fontSize:"var(--t-body-sm)"}}>{r.vaOk?"✅":"❌"} VA (41)</div>
+        </div>
+      </div>
+
+      {/* Breakdown Table */}
+      <div style={{marginTop:"var(--s-4)",overflowX:"auto"}}>
+        <table className="comparison-table">
+          <thead><tr><th>Debt Category</th><th>Monthly</th><th>% of Income</th></tr></thead>
+          <tbody>
+            <tr><td>Housing</td><td>{fmtUSD(housing)}</td><td>{(housing/r.monthlyGross*100).toFixed(1)}%</td></tr>
+            {carLoan>0&&<tr><td>Car Loan</td><td>{fmtUSD(carLoan)}</td><td>{(carLoan/r.monthlyGross*100).toFixed(1)}%</td></tr>}
+            {studentLoan>0&&<tr><td>Student Loans</td><td>{fmtUSD(studentLoan)}</td><td>{(studentLoan/r.monthlyGross*100).toFixed(1)}%</td></tr>}
+            {creditCards>0&&<tr><td>Credit Cards</td><td>{fmtUSD(creditCards)}</td><td>{(creditCards/r.monthlyGross*100).toFixed(1)}%</td></tr>}
+            {otherDebt>0&&<tr><td>Other Debts</td><td>{fmtUSD(otherDebt)}</td><td>{(otherDebt/r.monthlyGross*100).toFixed(1)}%</td></tr>}
+            <tr style={{fontWeight:700}}><td>Total</td><td>{fmtUSD(r.totalDebt)}</td><td>{r.backEnd.toFixed(1)}%</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>);
+}
+
+// ─── 15. Rent Affordability ───
 function RentAffordabilityCalc({defaults}:P){
   const[income,setIncome]=useState(55000);
   const[debts,setDebts]=useState(400);
@@ -964,7 +1092,7 @@ const CALC_MAP:Record<string,React.FC<P>>={
   ltv:LTVCalc, balloonLoan:BalloonLoanCalc, arm:ARMCalc,
   fixedVsVariable:FixedVsVariableCalc, extraPayment:ExtraPaymentCalc,
   refinance:RefinanceCalc, mortgageRefinance:MortgageRefinanceCalc,
-  rentAffordability:RentAffordabilityCalc,
+  rentAffordability:RentAffordabilityCalc, debtRatio:DebtRatioCalc,
 };
 
 export default function LoanToolsCore({calcType,defaults,sliderRanges}:{calcType:string;defaults:any;sliderRanges?:any}){

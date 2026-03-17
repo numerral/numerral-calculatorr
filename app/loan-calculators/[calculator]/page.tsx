@@ -737,6 +737,99 @@ const HUB_CONTENT: Record<string, {
 </ul>
 `,
     },
+    "debt-ratio-calculator": {
+        subtitle: "Calculate your debt-to-income (DTI) ratio and see if you qualify for Conventional, FHA, or VA mortgages. Visualize front-end and back-end ratios with a detailed debt breakdown.",
+        explanation: {
+            heading: "What Is Debt-to-Income (DTI) Ratio?",
+            paragraphs: [
+                "Debt-to-income ratio (DTI) is the percentage of your gross monthly income that goes toward monthly debt payments. It's the single most important metric lenders use to determine how much you can borrow. If your gross monthly income is $7,083 and your total monthly debts are $2,350, your DTI is 33.2%. The lower your DTI, the better your financial health and borrowing capacity.",
+                "There are two types of DTI. The front-end ratio (also called the mortgage-to-income ratio) only considers housing costs — mortgage or rent, property taxes, insurance, and HOA fees. The back-end ratio includes ALL recurring monthly debts: housing costs plus car loans, student loans, credit card minimums, child support, and any other debt obligations. Lenders primarily use the back-end ratio.",
+                "DTI is different from the credit utilization ratio, which measures how much of your available credit you're using. Credit utilization (outstanding credit card balances ÷ total credit limit) directly impacts your credit score. DTI measures debt payments vs income and does NOT appear on your credit report — but both ratios matter for mortgage qualification.",
+            ],
+            highlight: "With $85K income ($7,083/mo gross): $1,500 housing + $850 other debts = $2,350 total. Front-end DTI: 21.2% (✅ under 28%). Back-end DTI: 33.2% (✅ under 36%). You'd qualify for Conventional, FHA, AND VA loans.",
+        },
+        faq: [
+            { question: "What is a good DTI ratio?", answer: "≤ 20% = Excellent (strong borrowing power), 21-35% = Good (most lenders approve easily), 36-43% = Fair (may qualify for FHA but not conventional), 44-50% = Poor (limited options), > 50% = Critical (unlikely to get approved). For best mortgage rates, aim for under 36%." },
+            { question: "What is front-end vs back-end DTI?", answer: "Front-end DTI = housing costs only ÷ gross income (includes mortgage/rent, taxes, insurance, HOA). Back-end DTI = ALL debts ÷ gross income (housing + car + student + credit cards + other). Conventional loans require ≤ 28% front-end AND ≤ 36% back-end." },
+            { question: "What DTI do I need for a mortgage?", answer: "Conventional loans: ≤ 28% front-end, ≤ 36% back-end (the 28/36 rule). FHA loans: ≤ 31% front-end, ≤ 43% back-end. VA loans: ≤ 41% back-end (no strict front-end limit). Some lenders allow higher DTI with compensating factors like excellent credit or large savings." },
+            { question: "What is credit utilization and how is it different from DTI?", answer: "Credit utilization = total credit card balances ÷ total credit limits. It impacts your credit SCORE (keep under 30%, ideally under 10%). DTI = total debt payments ÷ gross income. It impacts your borrowing CAPACITY. Both are important but measured differently: utilization is about outstanding balances; DTI is about monthly payment obligations." },
+            { question: "How can I lower my DTI quickly?", answer: "Fastest methods: (1) Pay off credit cards entirely to eliminate minimum payments, (2) Refinance loans to lower monthly payments (extend term), (3) Avoid taking on new debt, (4) Increase income (overtime, side jobs, raises). Paying off a $300/month car loan instantly drops your DTI by ~4% on $85K income." },
+            { question: "Does DTI affect my credit score?", answer: "No, DTI does not directly appear on your credit report or impact your credit score. However, high DTI often correlates with high credit utilization, which DOES hurt your score. Lenders check DTI separately during loan applications — it's a behind-the-scenes metric." },
+        ],
+        steps: [
+            { label: "Calculate gross monthly income", formula: "$85,000 ÷ 12", result: "$7,083/month" },
+            { label: "Calculate front-end DTI", formula: "$1,500 housing ÷ $7,083", result: "21.2% (≤ 28% ✅)" },
+            { label: "Sum all monthly debts", formula: "$1,500 + $350 + $300 + $200", result: "$2,350 total monthly debt" },
+            { label: "Calculate back-end DTI", formula: "$2,350 ÷ $7,083", result: "33.2% (≤ 36% ✅)" },
+        ],
+        comparison: [
+            { title: "Conventional (28/36)", value: "Strictest", detail: "Front ≤ 28% | Back ≤ 36% | Best rates" },
+            { title: "FHA (31/43)", value: "Moderate", detail: "Front ≤ 31% | Back ≤ 43% | Lower barrier", isWinner: false },
+            { title: "VA (41)", value: "Most Flexible", detail: "No front limit | Back ≤ 41% | Veterans only", isWinner: true },
+        ],
+        insight: { icon: "📊", title: "DTI vs. Credit Utilization", text: "These are often confused but serve different purposes. DTI (monthly payments ÷ income) determines how much you can BORROW. Credit utilization (balances ÷ limits) determines your credit SCORE. You can have a low DTI but high utilization (e.g., high balances but low minimum payments) or vice versa. For mortgage approval, you need BOTH: DTI under 36-43% AND credit utilization under 30%." },
+        contentHTML: `
+<h3>Front-End Ratio: Housing Costs Only</h3>
+<p>The front-end debt ratio measures how much of your gross monthly income goes to housing costs. This includes:</p>
+<ul>
+<li>Mortgage principal and interest (or rent payment)</li>
+<li>Property taxes</li>
+<li>Homeowner's insurance</li>
+<li>HOA or condo fees</li>
+<li>PMI (Private Mortgage Insurance) if applicable</li>
+</ul>
+<p><strong>Formula:</strong> Front-End DTI = (Total Monthly Housing Costs ÷ Gross Monthly Income) × 100</p>
+<p>The standard maximum for conventional mortgage qualification is <strong>28%</strong>. On $7,083 monthly income, that means housing costs must stay below $1,983.</p>
+
+<h3>Back-End Ratio: All Monthly Debts</h3>
+<p>The back-end ratio is the comprehensive debt measurement. It includes everything in the front-end ratio plus ALL other recurring monthly debt obligations:</p>
+<ul>
+<li>Car loans and leases</li>
+<li>Student loan payments</li>
+<li>Credit card minimum payments</li>
+<li>Personal loans</li>
+<li>Child support and alimony</li>
+<li>Any other documented recurring debt</li>
+</ul>
+<p><strong>Formula:</strong> Back-End DTI = (Total Monthly Debt Payments ÷ Gross Monthly Income) × 100</p>
+<p>The conventional standard maximum is <strong>36%</strong>, though many lenders today accept 43-45% with compensating factors.</p>
+
+<h3>Mortgage Qualification Thresholds</h3>
+<p>Different loan programs have different DTI requirements:</p>
+<table><tr><th>Loan Type</th><th>Front-End Max</th><th>Back-End Max</th><th>Notes</th></tr>
+<tr><td>Conventional</td><td>28%</td><td>36%</td><td>Standard; some lenders allow 45-50%</td></tr>
+<tr><td>FHA</td><td>31%</td><td>43%</td><td>Government-insured; more flexible</td></tr>
+<tr><td>VA</td><td>No limit</td><td>41%</td><td>Veterans only; no front-end check</td></tr>
+<tr><td>USDA</td><td>29%</td><td>41%</td><td>Rural areas; income limits apply</td></tr></table>
+<p>Important: These are <em>guidelines</em>, not hard rules. Lenders may approve higher DTI with strong compensating factors such as excellent credit (740+), significant cash reserves (6+ months), or a large down payment (20%+).</p>
+
+<h3>Credit Utilization Ratio</h3>
+<p>Often discussed alongside DTI, the credit utilization ratio works differently. It measures your outstanding credit card balances as a percentage of your total credit limit:</p>
+<p><strong>Formula:</strong> Credit Utilization = (Total Credit Card Balances ÷ Total Credit Limits) × 100</p>
+<p>Unlike DTI, credit utilization <strong>directly impacts your credit score</strong> through credit bureaus. Keep utilization under 30% for a good score; under 10% for an excellent score. A person with $2,000 balance on $10,000 total limits has 20% utilization — healthy. The same person with $8,000 balance has 80% — which will significantly lower their credit score.</p>
+
+<h3>DTI Health Benchmarks</h3>
+<ul>
+<li><strong>≤ 20% — Excellent:</strong> Strong financial health. Lenders will offer best terms and rates. Ample room for savings, investments, and emergencies.</li>
+<li><strong>21-35% — Good:</strong> Manageable debt level. Most lenders approve easily. This is where the majority of financially healthy Americans fall.</li>
+<li><strong>36-43% — Fair:</strong> Approaching conventional limits. May qualify for FHA but not conventional. Consider paying down debt before major loan applications.</li>
+<li><strong>44-50% — Poor:</strong> Half or more of income goes to debt. Limited borrowing options and high financial stress. Debt consolidation may help.</li>
+<li><strong>> 50% — Critical:</strong> Unsustainable. Seek credit counseling, explore debt management plans, or consider bankruptcy as a last resort.</li>
+</ul>
+
+<h3>5 Strategies to Lower Your DTI</h3>
+<ol>
+<li><strong>Pay off credit cards</strong> — Eliminating a $200/month minimum payment drops DTI by ~2.8% on $85K income. Target highest-rate cards first (avalanche method) or smallest balances (snowball method)</li>
+<li><strong>Refinance existing loans</strong> — Extending a car loan from 3 to 5 years lowers the monthly payment (and therefore DTI) even though you'll pay more total interest</li>
+<li><strong>Increase income</strong> — A $10,000 raise reduces DTI by approximately 3-4 percentage points on a $2,350/month debt load</li>
+<li><strong>Avoid new debt</strong> — Each new loan application and balance increases your DTI. Freeze credit card spending and pay cash during the months before a mortgage application</li>
+<li><strong>Consolidate debt</strong> — Combining multiple high-rate debts into a single lower-rate loan can reduce total monthly payments significantly</li>
+</ol>
+
+<h3>Beyond Mortgages: DTI in Personal Finance</h3>
+<p>While DTI is primarily used for mortgage qualification, it's also a powerful personal finance tool. Track your DTI monthly to monitor financial health. If it's trending upward, you're taking on debt faster than income is growing — a warning sign. Many financial advisors recommend keeping total DTI under 33% (one-third of income) as a general rule, with housing under 25% for comfortable living.</p>
+`,
+    },
 };
 
 export default async function CalculatorHubPage({ params }: PageProps) {

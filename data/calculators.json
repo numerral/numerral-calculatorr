@@ -1651,6 +1651,40 @@
     "keywords": "rent calculator, how much rent can I afford, rent affordability calculator, 30% rule rent, rent budget calculator, apartment affordability, rental cost calculator"
   },
   {
+    "id": "debt-ratio-calculator",
+    "category": "loan",
+    "title": "Debt-to-Income Ratio Calculator",
+    "slug": "debt-ratio-calculator",
+    "categorySlug": "loan-calculators",
+    "icon": "📊",
+    "calcType": "debtRatio",
+    "description": "Calculate your front-end and back-end debt-to-income ratios. See if you qualify for Conventional, FHA, or VA mortgages with a visual DTI health gauge and detailed debt breakdown.",
+    "stars": 5,
+    "defaults": {
+      "amount": 85000,
+      "rate": 6.5,
+      "tenure": 360
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 20000,
+        "max": 300000,
+        "step": 5000
+      },
+      "rate": {
+        "min": 2,
+        "max": 12,
+        "step": 0.125
+      },
+      "tenure": {
+        "min": 180,
+        "max": 360,
+        "step": 60
+      }
+    },
+    "keywords": "debt to income ratio calculator, DTI calculator, debt ratio calculator, front end ratio, back end ratio, mortgage qualification calculator, 28/36 rule calculator"
+  },
+  {
     "id": "interest-rate",
     "category": "utility",
     "title": "Interest Rate Calculator",
