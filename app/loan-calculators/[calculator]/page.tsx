@@ -45,7 +45,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 // Hub page content per calculator type
-const LOAN_TOOL_TYPES = ["mortgage","debtConsolidation","loanAffordability","loanInterestRate","loanPayoff","loanAmortization","ltv","balloonLoan","arm","fixedVsVariable","extraPayment","refinance","mortgageRefinance","rentAffordability","debtRatio","downPayment","aprCalc","homeEquity","heloc","vaMortgage"];
+const LOAN_TOOL_TYPES = ["mortgage","debtConsolidation","loanAffordability","loanInterestRate","loanPayoff","loanAmortization","ltv","balloonLoan","arm","fixedVsVariable","extraPayment","refinance","mortgageRefinance","rentAffordability","debtRatio","downPayment","aprCalc","homeEquity","heloc","vaMortgage","fhaLoan"];
 
 const HUB_CONTENT: Record<string, {
     subtitle: string;
@@ -1368,6 +1368,83 @@ const HUB_CONTENT: Record<string, {
 <tr><td>Loan Limits</td><td>None (full entitlement)</td><td>$766,550 conforming</td><td>$498,257 \u2013 $1,149,825</td></tr>
 <tr><td>Prepayment Penalty</td><td>None</td><td>Varies</td><td>None</td></tr>
 <tr><td>Occupancy</td><td>Primary only</td><td>Any</td><td>Primary only</td></tr></table>
+`,
+    },
+    "fha-loan-calculator": {
+        subtitle: "Calculate FHA loan payments with automatic MIP (mortgage insurance premium) calculation, PITI breakdown, and side-by-side comparison with conventional and VA mortgages.",
+        explanation: {
+            heading: "What Is an FHA Loan?",
+            paragraphs: [
+                "An FHA loan is a mortgage insured by the Federal Housing Administration (FHA), a government agency established in 1934 after the Great Depression. The FHA doesn't lend money directly \u2014 it insures loans made by approved lenders, reducing their risk and enabling them to offer mortgages to borrowers who might not qualify for conventional loans.",
+                "FHA loans are famous for their low down payment requirement (3.5% with a credit score of 580+, or 10% with 500-579). They also have more flexible debt-to-income (DTI) ratio requirements than conventional loans. The trade-off is mandatory mortgage insurance premiums (MIP): a 1.75% upfront fee plus annual MIP of 0.15-1.05% depending on loan term, LTV, and amount.",
+                "The biggest drawback of FHA loans is that annual MIP is typically required for the entire life of the loan if you put less than 10% down. With 10%+ down, MIP is cancelled after 11 years. This makes FHA loans more expensive long-term than conventional loans, where PMI drops off at 20% equity.",
+            ],
+            highlight: "Example: $350,000 home with 3.5% down ($12,250). Loan: $337,750. Upfront MIP: $5,911 (financed). Annual MIP: 0.55% = $155/mo. Total monthly PITI+MIP: ~$2,631. Over 30 years, total MIP cost: ~$61,600.",
+        },
+        faq: [
+            { question: "What credit score do I need for an FHA loan?", answer: "580+ for 3.5% down payment. 500-579 for 10% down payment. Below 500 does not qualify. These are FHA minimums \u2014 some lenders may require higher scores (620-640)." },
+            { question: "How does FHA mortgage insurance (MIP) work?", answer: "Two parts: (1) Upfront MIP = 1.75% of loan amount, usually financed into the loan. (2) Annual MIP = 0.15-1.05% of loan balance per year, paid monthly. If down payment is less than 10%, MIP is required for the life of the loan. With 10%+ down, MIP drops after 11 years." },
+            { question: "Can I remove FHA mortgage insurance?", answer: "Only if you put 10%+ down \u2014 then MIP is cancelled after 11 years. With less than 10% down, the only way to remove MIP is to refinance into a conventional loan once you have 20%+ equity. This is a common strategy for FHA borrowers." },
+            { question: "What are FHA loan limits?", answer: "FHA loan limits vary by county. In 2024, the floor is $498,257 for low-cost areas and the ceiling is $1,149,825 for high-cost areas. Check HUD's website for your specific county limit." },
+            { question: "What is an FHA 203(k) loan?", answer: "An FHA 203(k) loan lets you finance both the purchase and renovation of a home in one mortgage. Minimum $5,000 in improvements, must be completed within 6 months. There's also a Streamlined 203(k) for smaller projects under $35,000." },
+            { question: "Is an FHA loan better than conventional?", answer: "FHA is better for: credit scores under 680, down payments under 10%, high DTI ratios. Conventional is better for: credit 700+, 20%+ down (no PMI), or if you plan to keep the loan long-term (FHA MIP for life vs PMI that drops at 20%). Compare total costs over your expected time in the home." },
+        ],
+        steps: [
+            { label: "Home price & down payment", formula: "$350,000 \u00d7 3.5% = $12,250 down", result: "Loan: $337,750" },
+            { label: "Upfront MIP (financed)", formula: "$337,750 \u00d7 1.75%", result: "$5,911 \u2192 Total loan: $343,661" },
+            { label: "Annual MIP", formula: "$337,750 \u00d7 0.55% / 12", result: "$155/month" },
+            { label: "Monthly PITI + MIP", formula: "P&I + tax + insurance + MIP", result: "$2,631/month" },
+        ],
+        comparison: [
+            { title: "FHA (3.5% down)", value: "$2,631/mo", detail: "Low credit OK | MIP for life | 3.5% down", isWinner: true },
+            { title: "Conventional (5% down)", value: "$2,595/mo", detail: "620+ credit | PMI drops at 20% | 5% down" },
+            { title: "VA (0% down)", value: "$2,594/mo", detail: "Veterans only | No PMI | 0% down" },
+        ],
+        insight: { icon: "\ud83c\udfe6", title: "FHA MIP: The Hidden Long-Term Cost", text: "With less than 10% down, FHA annual MIP is required for the ENTIRE life of the loan. On a $337,750 loan at 0.55%, that's $155/month or $55,800 over 30 years \u2014 on top of the $5,911 upfront MIP. Strategy: use FHA to get into a home, then refinance to conventional once you have 20% equity to eliminate the ongoing insurance cost." },
+        contentHTML: `
+<h3>FHA Loan Basics</h3>
+<p>FHA loans are government-insured mortgages designed to make homeownership accessible to borrowers with lower credit scores and smaller down payments. The FHA (Federal Housing Administration), part of HUD (Department of Housing and Urban Development), insures these loans \u2014 it doesn't lend money directly. This insurance protects lenders if borrowers default, enabling them to offer more favorable terms.</p>
+
+<h3>FHA Mortgage Insurance Premiums (MIP)</h3>
+<p>FHA loans require two types of mortgage insurance:</p>
+<p><strong>1. Upfront MIP (UFMIP):</strong> 1.75% of the base loan amount, typically financed into the loan. This is the same for all FHA borrowers regardless of credit score or down payment.</p>
+<p><strong>2. Annual MIP:</strong> Varies based on loan term, LTV ratio, and loan amount. Paid monthly as part of your mortgage payment.</p>
+<h4>Annual MIP Rates \u2014 Loan Term > 15 Years</h4>
+<table><tr><th>Base Loan Amount</th><th>LTV \u2264 90%</th><th>LTV 90.01-95%</th><th>LTV > 95%</th></tr>
+<tr><td>\u2264 $726,200</td><td>0.50%</td><td>0.55%</td><td>0.55%</td></tr>
+<tr><td>> $726,200</td><td>0.70%</td><td>0.75%</td><td>0.75%</td></tr></table>
+<h4>Annual MIP Rates \u2014 Loan Term \u2264 15 Years</h4>
+<table><tr><th>Base Loan Amount</th><th>LTV \u2264 78%</th><th>LTV 78.01-90%</th><th>LTV > 90%</th></tr>
+<tr><td>\u2264 $726,200</td><td>0.15%</td><td>0.15%</td><td>0.40%</td></tr>
+<tr><td>> $726,200</td><td>0.15%</td><td>0.40%</td><td>0.65%</td></tr></table>
+<p><strong>MIP cancellation:</strong> If you put 10%+ down (LTV \u2264 90%), annual MIP is cancelled after 11 years. If you put less than 10% down, MIP is required for the <strong>entire life of the loan</strong>.</p>
+
+<h3>FHA Loan Pros and Cons</h3>
+<p><strong>Pros:</strong></p>
+<ul>
+<li>Low down payment: 3.5% with 580+ credit score</li>
+<li>Low credit score acceptance: 500+ can qualify</li>
+<li>No prepayment penalties</li>
+<li>Flexible DTI ratios: up to 43% back-end (57% with compensating factors)</li>
+<li>Seller can contribute up to 6% of price toward closing costs</li>
+<li>Assumable loans \u2014 buyer can take over seller's FHA loan</li>
+</ul>
+<p><strong>Cons:</strong></p>
+<ul>
+<li>MIP for life of loan (if less than 10% down) \u2014 expensive long-term</li>
+<li>Upfront MIP (1.75%) adds to loan balance</li>
+<li>Lower loan limits than conventional ($498,257-$1,149,825)</li>
+<li>Property must meet FHA minimum standards (health and safety)</li>
+<li>FHA stigma \u2014 some sellers prefer conventional offers</li>
+</ul>
+
+<h3>FHA 203(k) Renovation Loans</h3>
+<p>The FHA 203(k) program lets borrowers finance both a home purchase and renovation costs in one loan. Two types:</p>
+<ul>
+<li><strong>Standard 203(k):</strong> For major renovations ($5,000+ minimum, no maximum). Requires HUD-approved consultant. Improvements must be completed within 6 months.</li>
+<li><strong>Streamlined 203(k):</strong> For minor repairs and improvements under $35,000. Simpler process, no consultant required.</li>
+</ul>
+<p>Both types carry the same MIP requirements as regular FHA loans.</p>
 `,
     },
 };

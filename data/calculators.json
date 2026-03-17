@@ -1855,6 +1855,40 @@
     "keywords": "VA mortgage calculator, VA loan calculator, VA funding fee calculator, VA loan vs conventional, VA home loan rates, veteran mortgage, military home loan, VA loan eligibility"
   },
   {
+    "id": "fha-loan-calculator",
+    "category": "loan",
+    "title": "FHA Loan Calculator",
+    "slug": "fha-loan-calculator",
+    "categorySlug": "loan-calculators",
+    "icon": "🏛️",
+    "calcType": "fhaLoan",
+    "description": "Calculate FHA loan payments with automatic MIP calculation. Compare FHA vs conventional vs VA with PITI breakdown, upfront MIP, and annual MIP rates.",
+    "stars": 5,
+    "defaults": {
+      "amount": 350000,
+      "rate": 6.5,
+      "tenure": 360
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 100000,
+        "max": 800000,
+        "step": 5000
+      },
+      "rate": {
+        "min": 3,
+        "max": 10,
+        "step": 0.125
+      },
+      "tenure": {
+        "min": 180,
+        "max": 360,
+        "step": 180
+      }
+    },
+    "keywords": "FHA loan calculator, FHA mortgage calculator, FHA MIP calculator, FHA loan rates, FHA vs conventional, FHA down payment, FHA credit score requirements, FHA 203k loan"
+  },
+  {
     "id": "interest-rate",
     "category": "utility",
     "title": "Interest Rate Calculator",

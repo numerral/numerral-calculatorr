@@ -1807,6 +1807,148 @@ function VAMortgageCalc({defaults}:P){
   </div>);
 }
 
+// ─── 22. FHA Loan Calculator ───
+function FHALoanCalc({defaults}:P){
+  const[homePrice,setHomePrice]=useState(defaults.amount||350000);
+  const[downPct,setDownPct]=useState(3.5);
+  const[rate,setRate]=useState(defaults.rate||6.5);
+  const[tenure,setTenure]=useState(defaults.tenure||360);
+  const[propTax,setPropTax]=useState(3500);
+  const[insurance,setInsurance]=useState(1200);
+
+  const r=useMemo(()=>{
+    const downAmt=homePrice*(downPct/100);
+    const loanBase=homePrice-downAmt;
+    const ltv=homePrice>0?((loanBase/homePrice)*100):0;
+    // Upfront MIP: 1.75% of base loan, financed into loan
+    const upfrontMIP=loanBase*0.0175;
+    const totalLoan=loanBase+upfrontMIP;
+    // Annual MIP rate based on LTV, term, and amount (2024 FHA table)
+    let annualMIPRate=0;
+    if(tenure>180){// >15 years
+      if(loanBase<=726200){
+        annualMIPRate=ltv<=90?0.50:ltv<=95?0.55:0.55;
+      }else{
+        annualMIPRate=ltv<=90?0.70:ltv<=95?0.75:0.75;
+      }
+    }else{// <=15 years
+      if(loanBase<=726200){
+        annualMIPRate=ltv<=90?0.15:0.40;
+      }else{
+        annualMIPRate=ltv<=78?0.15:ltv<=90?0.40:0.65;
+      }
+    }
+    const monthlyMIP=(loanBase*annualMIPRate/100)/12;
+    // MIP cancellation: if down>=10% (LTV<=90), MIP drops after 11 years; else life of loan
+    const mipDropsAfter11=downPct>=10;
+    const mr=rate/100/12;
+    const mp=pmt(mr,tenure,totalLoan);
+    const monthlyTax=propTax/12;
+    const monthlyIns=insurance/12;
+    const piti=mp+monthlyTax+monthlyIns+monthlyMIP;
+    const totalPaid=mp*tenure;
+    const totalInt=totalPaid-totalLoan;
+    // MIP total (simplified: if drops after 11yr, only 132 months of MIP)
+    const mipMonths=mipDropsAfter11?Math.min(132,tenure):tenure;
+    const totalMIP=upfrontMIP+(monthlyMIP*mipMonths);
+    // Conventional comparison
+    const convDown=homePrice*0.05;
+    const convLoan=homePrice-convDown;
+    const convMp=pmt(mr,tenure,convLoan);
+    const convPMI=convLoan*0.005/12;
+    const convPiti=convMp+monthlyTax+monthlyIns+convPMI;
+    return{downAmt,loanBase,ltv,upfrontMIP,totalLoan,annualMIPRate,monthlyMIP,mipDropsAfter11,mipMonths,totalMIP,mp,monthlyTax,monthlyIns,piti,totalPaid,totalInt,convPiti};
+  },[homePrice,downPct,rate,tenure,propTax,insurance]);
+
+  return(<div><div className="calc-input-panel">
+    <div className="calc-field">
+      <label className="calc-field__label">🏠 HOME PRICE ($)</label>
+      <input type="text" className="calc-field__input" value={homePrice.toLocaleString("en-US")} inputMode="numeric"
+        onChange={e=>{const v=Number(e.target.value.replace(/,/g,""));if(!isNaN(v))setHomePrice(v);}}/>
+      <input type="range" className="calc-field__slider" min={100000} max={800000} step={5000} value={homePrice} onChange={e=>setHomePrice(Number(e.target.value))}/>
+    </div>
+    <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:"var(--s-3)"}}>
+      <div className="calc-field">
+        <label className="calc-field__label">⬇️ DOWN PAYMENT (%)</label>
+        <div style={{display:"flex",gap:"var(--s-2)",marginBottom:"var(--s-2)"}}>
+          {[{l:"3.5% (580+)",v:3.5},{l:"10% (500-579)",v:10},{l:"20%",v:20}].map(p=>(
+            <button key={p.v} onClick={()=>setDownPct(p.v)} className="calc-preset-btn" style={{flex:1,padding:"var(--s-2)",fontSize:"var(--t-body-sm)",fontWeight:downPct===p.v?700:400,background:downPct===p.v?"var(--n-primary)":"var(--n-surface-alt)",color:downPct===p.v?"#fff":"var(--n-text)",border:"none",borderRadius:"var(--radius-sm)",cursor:"pointer"}}>{p.l}</button>
+          ))}
+        </div>
+        <input type="range" className="calc-field__slider" min={3.5} max={25} step={0.5} value={downPct} onChange={e=>setDownPct(Number(e.target.value))}/>
+        <p className="t-body-sm text-muted" style={{marginTop:"2px"}}>Down: {fmtUSD(r.downAmt)} | LTV: {r.ltv.toFixed(1)}%</p>
+      </div>
+      <div className="calc-field">
+        <label className="calc-field__label">% INTEREST RATE</label>
+        <input type="number" className="calc-field__input" value={rate} onChange={e=>setRate(Number(e.target.value))} step={0.125}/>
+        <input type="range" className="calc-field__slider" min={3} max={10} step={0.125} value={rate} onChange={e=>setRate(Number(e.target.value))}/>
+      </div>
+    </div>
+    <div style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:"var(--s-3)"}}>
+      <div className="calc-field">
+        <label className="calc-field__label">📅 LOAN TERM</label>
+        <div style={{display:"flex",gap:"var(--s-2)"}}>
+          {[{l:"15yr",v:180},{l:"30yr",v:360}].map(t=>(
+            <button key={t.v} onClick={()=>setTenure(t.v)} className="calc-preset-btn" style={{flex:1,padding:"var(--s-2)",fontWeight:tenure===t.v?700:400,background:tenure===t.v?"var(--n-primary)":"var(--n-surface-alt)",color:tenure===t.v?"#fff":"var(--n-text)",border:"none",borderRadius:"var(--radius-sm)",cursor:"pointer"}}>{t.l}</button>
+          ))}
+        </div>
+      </div>
+      <div className="calc-field">
+        <label className="calc-field__label">🏛️ PROPERTY TAX ($/yr)</label>
+        <input type="text" className="calc-field__input" value={propTax.toLocaleString("en-US")} inputMode="numeric"
+          onChange={e=>{const v=Number(e.target.value.replace(/,/g,""));if(!isNaN(v))setPropTax(v);}}/>
+      </div>
+      <div className="calc-field">
+        <label className="calc-field__label">🛡️ HOME INSURANCE ($/yr)</label>
+        <input type="text" className="calc-field__input" value={insurance.toLocaleString("en-US")} inputMode="numeric"
+          onChange={e=>{const v=Number(e.target.value.replace(/,/g,""));if(!isNaN(v))setInsurance(v);}}/>
+      </div>
+    </div>
+  </div>
+
+    {/* Results */}
+    <div className="calc-card" style={{marginTop:"var(--s-6)",background:"var(--n-surface-alt)"}}>
+      <p className="calc-field__label">MONTHLY PAYMENT (PITI + MIP)</p>
+      <p style={{fontSize:"var(--t-h1)",fontWeight:700,color:"var(--n-primary)"}}>{fmtUSD(r.piti)}/mo</p>
+      <div style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr 1fr 1fr",gap:"var(--s-2)",marginTop:"var(--s-4)"}}>
+        <div><p className="calc-field__label" style={{fontSize:"11px"}}>P&I</p><p style={{fontWeight:700,fontSize:"var(--t-body-sm)"}}>{fmtUSD(r.mp)}</p></div>
+        <div><p className="calc-field__label" style={{fontSize:"11px"}}>PROPERTY TAX</p><p style={{fontWeight:700,fontSize:"var(--t-body-sm)"}}>{fmtUSD(r.monthlyTax)}</p></div>
+        <div><p className="calc-field__label" style={{fontSize:"11px"}}>INSURANCE</p><p style={{fontWeight:700,fontSize:"var(--t-body-sm)"}}>{fmtUSD(r.monthlyIns)}</p></div>
+        <div><p className="calc-field__label" style={{fontSize:"11px"}}>ANNUAL MIP</p><p style={{fontWeight:700,fontSize:"var(--t-body-sm)",color:"var(--n-warning)"}}>{fmtUSD(r.monthlyMIP)}</p></div>
+        <div><p className="calc-field__label" style={{fontSize:"11px"}}>PMI</p><p style={{fontWeight:700,fontSize:"var(--t-body-sm)",color:"var(--n-success)"}}>N/A</p></div>
+      </div>
+    </div>
+
+    {/* FHA MIP Details */}
+    <div className="calc-card" style={{marginTop:"var(--s-4)",background:"var(--n-surface)"}}>
+      <p className="calc-field__label" style={{marginBottom:"var(--s-3)"}}>🏛️ FHA MORTGAGE INSURANCE PREMIUMS</p>
+      <div style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr 1fr",gap:"var(--s-3)"}}>
+        <div><p className="calc-field__label">UPFRONT MIP</p><p style={{fontWeight:700}}>{fmtUSD(r.upfrontMIP)}</p><p className="t-body-sm text-muted">1.75% (financed)</p></div>
+        <div><p className="calc-field__label">ANNUAL MIP RATE</p><p style={{fontWeight:700}}>{r.annualMIPRate}%</p><p className="t-body-sm text-muted">{fmtUSD(r.monthlyMIP)}/mo</p></div>
+        <div><p className="calc-field__label">MIP DURATION</p><p style={{fontWeight:700,color:r.mipDropsAfter11?"var(--n-success)":"var(--n-warning)"}}>{r.mipDropsAfter11?"11 years":"Life of loan"}</p></div>
+        <div><p className="calc-field__label">TOTAL MIP COST</p><p style={{fontWeight:700,color:"var(--n-warning)"}}>{fmtUSD(r.totalMIP)}</p></div>
+      </div>
+      <p className="t-body-sm text-muted" style={{marginTop:"var(--s-3)",padding:"var(--s-2)",background:"rgba(59,130,246,0.05)",borderRadius:"var(--radius-sm)"}}>
+        {r.mipDropsAfter11?"✅ With 10%+ down payment, annual MIP is cancelled after 11 years.":"⚠️ With less than 10% down, annual MIP is required for the entire life of the loan. Consider 10%+ down to save "+fmtUSD(r.monthlyMIP*(r.mipMonths>132?r.mipMonths-132:0))+" in MIP."}
+      </p>
+    </div>
+
+    {/* FHA vs Conv vs VA */}
+    <div className="calc-card" style={{marginTop:"var(--s-4)",background:"var(--n-surface)"}}>
+      <p className="calc-field__label" style={{marginBottom:"var(--s-3)"}}>FHA vs CONVENTIONAL vs VA</p>
+      <table className="calc-table"><thead><tr><th></th><th style={{color:"var(--n-primary)"}}>FHA Loan ✓</th><th>Conventional</th><th>VA Loan</th></tr></thead><tbody>
+        <tr><td>Down Payment</td><td style={{fontWeight:700}}>3.5% (580+) / 10% (500-579)</td><td>5-20%</td><td>0%</td></tr>
+        <tr><td>Credit Score</td><td style={{color:"var(--n-success)",fontWeight:700}}>580+ (3.5%) or 500+ (10%)</td><td>620-680+</td><td>620+ (lender)</td></tr>
+        <tr><td>Mortgage Insurance</td><td>1.75% upfront + {r.annualMIPRate}%/yr</td><td>PMI until 20% equity</td><td>None</td></tr>
+        <tr><td>MIP Cancellation</td><td>{r.mipDropsAfter11?"After 11 years":"Life of loan"}</td><td>At 20% equity</td><td>N/A</td></tr>
+        <tr><td>Monthly (est.)</td><td style={{fontWeight:700}}>{fmtUSD(r.piti)}</td><td>{fmtUSD(r.convPiti)}</td><td>—</td></tr>
+        <tr><td>Loan Limits</td><td>$498,257 – $1,149,825</td><td>$766,550 conforming</td><td>None (full)</td></tr>
+        <tr><td>Best For</td><td>Low credit / low down</td><td>Good credit / 20% down</td><td>Veterans</td></tr>
+      </tbody></table>
+    </div>
+  </div>);
+}
+
 // ─── Dispatcher ───
 const CALC_MAP:Record<string,React.FC<P>>={
   mortgage:MortgageCalc, debtConsolidation:DebtConsolidationCalc,
@@ -1818,7 +1960,7 @@ const CALC_MAP:Record<string,React.FC<P>>={
   rentAffordability:RentAffordabilityCalc, debtRatio:DebtRatioCalc,
   downPayment:DownPaymentCalc, aprCalc:APRCalc,
   homeEquity:HomeEquityCalc, heloc:HELOCCalc,
-  vaMortgage:VAMortgageCalc,
+  vaMortgage:VAMortgageCalc, fhaLoan:FHALoanCalc,
 };
 
 export default function LoanToolsCore({calcType,defaults,sliderRanges}:{calcType:string;defaults:any;sliderRanges?:any}){
