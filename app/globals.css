@@ -1272,6 +1272,88 @@ ol {
     margin-bottom: var(--s-5);
 }
 
+/* Tables inside explanation__html (e.g. calculator contentHTML) */
+.explanation__html table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: var(--t-body-sm, 0.9rem);
+    border-radius: var(--r-md, 8px);
+    overflow: hidden;
+    border: 1px solid var(--n-border);
+    margin-top: var(--s-3);
+    margin-bottom: var(--s-5);
+}
+
+.explanation__html th {
+    padding: var(--s-3) var(--s-4);
+    font-weight: 600;
+    text-align: left;
+    font-size: var(--t-caption, 0.8rem);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    background: var(--n-primary);
+    color: var(--n-text-inverse, #fff);
+}
+
+.explanation__html td {
+    padding: var(--s-3) var(--s-4);
+    color: var(--n-text);
+    border-top: 1px solid var(--n-border);
+    vertical-align: middle;
+}
+
+.explanation__html tbody tr:nth-child(even) {
+    background: var(--n-surface-alt);
+}
+
+.explanation__html tbody tr:nth-child(odd) {
+    background: var(--n-surface);
+}
+
+.explanation__html tbody tr:hover {
+    background: var(--n-gold-glow, rgba(245, 158, 11, 0.04));
+}
+
+.explanation__html td:first-child {
+    font-weight: 500;
+}
+
+/* Ordered lists inside explanation__html */
+.explanation__html ol {
+    counter-reset: none;
+}
+
+.explanation__html ol li {
+    padding-left: var(--s-1);
+}
+
+/* Mobile responsive for explanation__html */
+@media (max-width: 640px) {
+    .explanation__html {
+        overflow-x: auto;
+    }
+
+    .explanation__html table {
+        font-size: var(--t-caption, 0.8rem);
+        min-width: 460px;
+    }
+
+    .explanation__html th,
+    .explanation__html td {
+        padding: var(--s-2) var(--s-3);
+    }
+
+    .explanation__html h3 {
+        font-size: 1.1rem;
+    }
+
+    .explanation__html h4 {
+        font-size: 0.95rem;
+    }
+}
+
 /* ── 14b. FORMULA BLOCK ─────────────────── */
 .formula-block {
     margin-top: var(--s-6);
