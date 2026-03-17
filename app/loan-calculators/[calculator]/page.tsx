@@ -364,6 +364,90 @@ const HUB_CONTENT: Record<string, {
             { title: "15-Year Term", value: "$1,742/mo", detail: "Total interest: $113,539 | Saves $141,550!", isWinner: true },
         ],
         insight: { icon: "⏱️", title: "The Early Prepayment Advantage", text: "A $5,000 extra payment in Year 1 of a 30-year mortgage saves approximately $14,000 in interest. The same $5,000 payment in Year 20 saves only $2,800. The amortization schedule reveals why: in early years, that $5,000 eliminates months of future interest charges. This is why financial planners call the first 5 years the 'golden window' for prepayments." },
+        contentHTML: `
+<h3>The Amortization Formula</h3>
+<p>The fixed monthly payment for a fully amortizing loan is calculated using:</p>
+<p><strong>M = P × [r(1 + r)<sup>n</sup>] / [(1 + r)<sup>n</sup> − 1]</strong></p>
+<p>Where: <strong>M</strong> = monthly payment, <strong>P</strong> = principal (loan amount), <strong>r</strong> = monthly interest rate (annual rate ÷ 12), and <strong>n</strong> = total number of payments (years × 12). This formula ensures that each payment covers the accrued interest for the month and contributes to principal reduction, so the loan is fully paid off by payment <em>n</em>.</p>
+
+<h3>Worked Example: $200,000 Mortgage at 6.5%</h3>
+<p>For a $200,000 loan at 6.5% for 30 years (360 payments):</p>
+<ul>
+<li><strong>Monthly rate:</strong> 6.5% ÷ 12 = 0.5417%</li>
+<li><strong>Monthly payment:</strong> $200,000 × [0.005417 × 1.005417<sup>360</sup>] / [1.005417<sup>360</sup> − 1] = <strong>$1,264.14</strong></li>
+<li><strong>First payment:</strong> $1,083.33 interest + $180.81 principal (86% interest!)</li>
+<li><strong>Final payment:</strong> $6.63 interest + $1,257.51 principal (0.5% interest)</li>
+<li><strong>Total paid:</strong> $455,089 over 30 years ($255,089 in interest alone)</li>
+</ul>
+
+<h3>How Interest Front-Loading Works</h3>
+<p>The single most important concept in amortization is <strong>interest front-loading</strong>. Because interest is calculated on the outstanding balance, early payments are overwhelmingly interest. On our $200K example:</p>
+<ul>
+<li><strong>Year 1:</strong> You pay $15,170 total, but only $2,240 goes to principal. The remaining $12,929 is interest.</li>
+<li><strong>Year 15 (halfway):</strong> You've paid $227,545, but your remaining balance is still $139,920 — you've only paid off 30% of the loan!</li>
+<li><strong>Year 21:</strong> The crossover point — for the first time, more of your monthly payment goes to principal than interest.</li>
+<li><strong>Year 30:</strong> Your final year's payments are almost entirely principal ($14,880 principal vs $488 interest).</li>
+</ul>
+<p>This front-loading effect is why financial advisors emphasize <strong>early prepayments</strong>. Every extra dollar paid in Year 1 eliminates the compounding interest that dollar would have generated over the remaining 29 years.</p>
+
+<h3>Strategies to Pay Off Your Loan Early</h3>
+<p>There are three proven methods to reduce total interest and shorten your loan term:</p>
+<p><strong>1. Extra Monthly Payments</strong></p>
+<p>Adding even a small amount to each monthly payment goes directly to principal. On a $200K loan at 6.5% for 30 years:</p>
+<ul>
+<li>Extra $100/month: Pays off <strong>5 years early</strong>, saves <strong>$51,000</strong> in interest</li>
+<li>Extra $200/month: Pays off <strong>8 years early</strong>, saves <strong>$79,000</strong> in interest</li>
+<li>Extra $500/month: Pays off <strong>14 years early</strong>, saves <strong>$131,000</strong> in interest</li>
+</ul>
+<p><strong>2. Biweekly Payments</strong></p>
+<p>Instead of 12 monthly payments, you make 26 half-payments (equivalent to 13 full payments per year). This one extra payment per year can shave 4–5 years off a 30-year mortgage and save tens of thousands in interest — without dramatically affecting your monthly budget.</p>
+<p><strong>3. Refinancing to a Shorter Term</strong></p>
+<p>Refinancing from a 30-year to a 15-year mortgage typically increases your payment by 35–45% but cuts total interest by 55–65%. On our $200K example: 30-year total interest is $255,089 vs. 15-year total interest of $113,539 — a savings of <strong>$141,550</strong>.</p>
+
+<h3>Amortization in Accounting: Spreading Costs</h3>
+<p>In business accounting, amortization has a second meaning: the systematic allocation of the cost of an <strong>intangible asset</strong> over its useful life. This is distinct from depreciation, which applies to tangible assets like machinery and buildings.</p>
+<p>Under <strong>IRS Section 197</strong>, businesses can amortize certain intangible assets over a 15-year period. These include:</p>
+<ol>
+<li><strong>Goodwill</strong> — the reputation and customer loyalty of a business</li>
+<li><strong>Going-concern value</strong> — the value of a business as a continuing operation</li>
+<li><strong>Workforce in place</strong> — the value of current employees, their training and experience</li>
+<li><strong>Business records and operating systems</strong> — customer lists, databases, information bases</li>
+<li><strong>Patents, copyrights, and formulas</strong> — intellectual property with defined legal lifespans</li>
+<li><strong>Customer-based intangibles</strong> — established customer relationships and bases</li>
+<li><strong>Supplier-based intangibles</strong> — value from existing vendor relationships</li>
+<li><strong>Government licenses and permits</strong> — rights granted by agencies</li>
+<li><strong>Covenants not to compete</strong> — non-compete agreements from acquisitions</li>
+<li><strong>Franchises, trademarks, and trade names</strong> — brand-related assets</li>
+</ol>
+<p>Note: Some intangible assets, such as goodwill that is self-created (not acquired in a purchase), cannot be amortized for tax purposes.</p>
+
+<h3>Amortizing Business Startup Costs</h3>
+<p>In the United States, business startup costs — defined as expenses incurred to investigate, create, or acquire an active business — can be amortized under specific IRS rules. These costs include consulting fees, financial analysis, advertising expenditures, and employee payments incurred before the business becomes active. According to IRS guidelines, qualifying startup costs are amortized over a <strong>180-month (15-year) period</strong> beginning in the month the business starts operating.</p>
+
+<h3>Amortization vs. Depreciation</h3>
+<p>While both concepts involve spreading costs over time, there is an important distinction:</p>
+<ul>
+<li><strong>Amortization</strong> applies to <strong>intangible assets</strong> (patents, trademarks, goodwill, copyrights) and loan repayment schedules</li>
+<li><strong>Depreciation</strong> applies to <strong>tangible assets</strong> (buildings, equipment, vehicles, machinery)</li>
+</ul>
+<p>Both reduce taxable income by recognizing a portion of the asset's cost as an expense each year. The key difference is what type of asset is being written down. Amortization is typically straight-line (equal amounts each year), while depreciation can use accelerated methods like MACRS (Modified Accelerated Cost Recovery System) under U.S. tax law.</p>
+
+<h3>Types of Loans That Use Amortization</h3>
+<p>Standard amortization applies to most common loan types in the U.S.:</p>
+<ul>
+<li><strong>Fixed-rate mortgages</strong> — 15-year and 30-year conventional, FHA, VA loans</li>
+<li><strong>Auto loans</strong> — typically 36–84 month terms</li>
+<li><strong>Personal loans</strong> — usually 12–60 month terms</li>
+<li><strong>Student loans</strong> — federal and private, 10–25 year repayment plans</li>
+</ul>
+<p>Loans that do <strong>not</strong> follow standard amortization include:</p>
+<ul>
+<li><strong>Credit cards</strong> — revolving debt with variable payments</li>
+<li><strong>Interest-only loans</strong> — payments cover interest only with no principal reduction</li>
+<li><strong>Balloon loans</strong> — small payments with a large lump sum due at maturity</li>
+<li><strong>Adjustable-rate mortgages (ARMs)</strong> — payments recalculate when the rate adjusts</li>
+</ul>
+`,
     },
     "ltv-calculator": {
         subtitle: "Calculate your Loan-to-Value ratio to determine borrowing limits, PMI requirements, and interest rate eligibility.",
