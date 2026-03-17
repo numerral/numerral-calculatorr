@@ -384,6 +384,7 @@ export interface GlossaryTerm {
     formula?: string;
     category: string;
     related: string[];
+    contentHTML?: string;
 }
 
 const glossary = glossaryJson as GlossaryTerm[];

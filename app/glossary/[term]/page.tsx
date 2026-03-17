@@ -158,6 +158,13 @@ export default async function GlossaryTermPage({ params }: PageProps) {
                     </div>
                 </section>
 
+                {/* Rich Content (contentHTML) */}
+                {term.contentHTML && (
+                    <section className="calc-card" style={{ marginBottom: "var(--s-8)", padding: "var(--s-6)" }}>
+                        <div className="hub-content" dangerouslySetInnerHTML={{ __html: term.contentHTML }} />
+                    </section>
+                )}
+
                 {/* Formula */}
                 {term.formula && (
                     <section style={{ marginBottom: "var(--s-8)" }}>
