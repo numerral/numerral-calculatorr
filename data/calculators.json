@@ -1617,6 +1617,40 @@
     "keywords": "mortgage refinance calculator, home loan refinance, mortgage refinancing, home loan balance transfer calculator"
   },
   {
+    "id": "rent-affordability-calculator",
+    "category": "loan",
+    "title": "Rent Calculator",
+    "slug": "rent-affordability-calculator",
+    "categorySlug": "loan-calculators",
+    "icon": "🏘️",
+    "calcType": "rentAffordability",
+    "description": "Find out how much rent you can afford based on income, debts, and the 30% rule. See a full monthly budget breakdown with DTI analysis, emergency fund assessment, and annual rent cost.",
+    "stars": 5,
+    "defaults": {
+      "amount": 55000,
+      "rate": 30,
+      "tenure": 12
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 20000,
+        "max": 200000,
+        "step": 5000
+      },
+      "rate": {
+        "min": 20,
+        "max": 40,
+        "step": 1
+      },
+      "tenure": {
+        "min": 6,
+        "max": 24,
+        "step": 6
+      }
+    },
+    "keywords": "rent calculator, how much rent can I afford, rent affordability calculator, 30% rule rent, rent budget calculator, apartment affordability, rental cost calculator"
+  },
+  {
     "id": "interest-rate",
     "category": "utility",
     "title": "Interest Rate Calculator",

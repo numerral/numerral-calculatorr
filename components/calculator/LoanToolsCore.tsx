@@ -862,6 +862,100 @@ function MortgageRefinanceCalc({defaults}:P){
     </div></div>);
 }
 
+// ─── 14. Rent Affordability ───
+function RentAffordabilityCalc({defaults}:P){
+  const[income,setIncome]=useState(55000);
+  const[debts,setDebts]=useState(400);
+  const[rentPct,setRentPct]=useState(30);
+  const[utilities,setUtilities]=useState(200);
+  const[savings,setSavings]=useState(5000);
+
+  const r=useMemo(()=>{
+    const monthlyGross=income/12;
+    const monthlyNet=monthlyGross*0.75; // approx after-tax
+    const maxRent=monthlyGross*rentPct/100;
+    const totalHousing=maxRent+utilities;
+    const remaining=monthlyNet-totalHousing-debts;
+    const annualRent=maxRent*12;
+    const rentDti=monthlyGross>0?(maxRent/monthlyGross*100):0;
+    const totalDti=monthlyGross>0?((maxRent+debts)/monthlyGross*100):0;
+    const monthsEmergency=maxRent>0?(savings/maxRent):0;
+    return{maxRent,totalHousing,remaining:Math.max(0,remaining),annualRent,rentDti,totalDti,monthlyGross,monthlyNet,monthsEmergency};
+  },[income,debts,rentPct,utilities,savings]);
+
+  return(<div>
+    <div className="calc-input-panel">
+      <div className="calc-field">
+        <label className="calc-field__label"><span className="calc-field__label-icon">💰</span>Annual Gross Income</label>
+        <input type="range" className="calc-field__slider" min={20000} max={200000} step={5000} value={income} onChange={e=>setIncome(+e.target.value)}/>
+        <input type="text" className="calc-field__input" value={income.toLocaleString("en-US")} inputMode="numeric"
+          onChange={e=>{const v=parseInt(e.target.value.replace(/,/g,""));if(!isNaN(v))setIncome(v);}}/>
+      </div>
+
+      <div className="calc-field">
+        <label className="calc-field__label"><span className="calc-field__label-icon">💳</span>Monthly Debts (car, student loans, cards)</label>
+        <input type="range" className="calc-field__slider" min={0} max={2000} step={50} value={debts} onChange={e=>setDebts(+e.target.value)}/>
+        <input type="text" className="calc-field__input" style={{maxWidth:"120px"}} value={debts.toLocaleString("en-US")} inputMode="numeric"
+          onChange={e=>{const v=parseInt(e.target.value.replace(/,/g,""));if(!isNaN(v))setDebts(v);}}/>
+      </div>
+
+      <div className="calc-field">
+        <label className="calc-field__label"><span className="calc-field__label-icon">📊</span>Recommended Rent (% of gross income)</label>
+        <input type="range" className="calc-field__slider" min={20} max={40} step={1} value={rentPct} onChange={e=>setRentPct(+e.target.value)}/>
+        <div style={{display:"flex",gap:"var(--s-2)",alignItems:"center"}}>
+          <input type="text" className="calc-field__input" style={{maxWidth:"80px"}} value={rentPct} inputMode="numeric"
+            onChange={e=>{const v=parseInt(e.target.value);if(!isNaN(v))setRentPct(v);}}/>
+          <span className="t-body-sm text-muted">{rentPct<=30?"✅ Within 30% rule":"⚠️ Above 30% guideline"}</span>
+        </div>
+      </div>
+
+      <div className="calc-field">
+        <label className="calc-field__label"><span className="calc-field__label-icon">⚡</span>Estimated Monthly Utilities</label>
+        <input type="text" className="calc-field__input" style={{maxWidth:"120px"}} value={utilities.toLocaleString("en-US")} inputMode="numeric"
+          onChange={e=>{const v=parseInt(e.target.value.replace(/,/g,""));if(!isNaN(v))setUtilities(v);}}/>
+      </div>
+
+      <div className="calc-field">
+        <label className="calc-field__label"><span className="calc-field__label-icon">🏦</span>Current Savings (emergency fund)</label>
+        <input type="text" className="calc-field__input" style={{maxWidth:"140px"}} value={savings.toLocaleString("en-US")} inputMode="numeric"
+          onChange={e=>{const v=parseInt(e.target.value.replace(/,/g,""));if(!isNaN(v))setSavings(v);}}/>
+      </div>
+    </div>
+
+    {/* ── Results ── */}
+    <div className="calc-result" aria-live="polite">
+      <p className="calc-result__label">Maximum Affordable Rent</p>
+      <p className="calc-result__emi">{fmtUSD(r.maxRent)}<span style={{fontSize:"var(--t-body)",fontWeight:400}}>/month</span></p>
+      <div className="calc-result__stats">
+        <div className="calc-result__stat"><p className="calc-result__stat-label">Annual Rent Cost</p><p className="calc-result__stat-value">{fmtUSD(r.annualRent)}</p></div>
+        <div className="calc-result__stat"><p className="calc-result__stat-label">Monthly Remaining</p><p className="calc-result__stat-value" style={{color:r.remaining>0?"var(--n-success)":"var(--n-error)"}}>{fmtUSD(r.remaining)}</p></div>
+        <div className="calc-result__stat"><p className="calc-result__stat-label">Emergency Fund</p><p className="calc-result__stat-value">{r.monthsEmergency.toFixed(1)} months</p></div>
+      </div>
+
+      {/* Monthly Budget Breakdown */}
+      <div style={{marginTop:"var(--s-4)",overflowX:"auto"}}>
+        <table className="comparison-table">
+          <thead><tr><th>Budget Category</th><th>Monthly</th><th>% of Gross</th></tr></thead>
+          <tbody>
+            <tr><td>Rent</td><td>{fmtUSD(r.maxRent)}</td><td>{r.rentDti.toFixed(1)}%</td></tr>
+            <tr><td>Utilities</td><td>{fmtUSD(utilities)}</td><td>{(utilities/r.monthlyGross*100).toFixed(1)}%</td></tr>
+            <tr><td>Debts</td><td>{fmtUSD(debts)}</td><td>{(debts/r.monthlyGross*100).toFixed(1)}%</td></tr>
+            <tr><td>Est. Taxes (~25%)</td><td>{fmtUSD(r.monthlyGross*0.25)}</td><td>25.0%</td></tr>
+            <tr style={{fontWeight:700,color:r.remaining>0?"var(--n-success)":"var(--n-error)"}}><td>Remaining</td><td>{fmtUSD(r.remaining)}</td><td>{(r.remaining/r.monthlyGross*100).toFixed(1)}%</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      {/* DTI Bar */}
+      <div style={{marginTop:"var(--s-4)"}}>
+        <div style={{display:"flex",justifyContent:"space-between",marginBottom:"4px"}}><span className="t-body-sm">Total DTI (rent + debts)</span><span className="t-body-sm" style={{fontWeight:600}}>{r.totalDti.toFixed(1)}%</span></div>
+        <div style={{background:"var(--n-surface-alt)",borderRadius:"4px",height:"8px",overflow:"hidden"}}><div style={{width:`${Math.min(r.totalDti/60*100,100)}%`,height:"100%",background:r.totalDti<=36?"var(--n-success)":r.totalDti<=43?"var(--n-warning)":"var(--n-error)",borderRadius:"4px",transition:"width 0.3s"}}/></div>
+        <div style={{display:"flex",justifyContent:"space-between"}}><span className="t-body-sm text-muted">Ideal: ≤ 30%</span><span className="t-body-sm text-muted">Max: 43%</span></div>
+      </div>
+    </div>
+  </div>);
+}
+
 // ─── Dispatcher ───
 const CALC_MAP:Record<string,React.FC<P>>={
   mortgage:MortgageCalc, debtConsolidation:DebtConsolidationCalc,
@@ -870,6 +964,7 @@ const CALC_MAP:Record<string,React.FC<P>>={
   ltv:LTVCalc, balloonLoan:BalloonLoanCalc, arm:ARMCalc,
   fixedVsVariable:FixedVsVariableCalc, extraPayment:ExtraPaymentCalc,
   refinance:RefinanceCalc, mortgageRefinance:MortgageRefinanceCalc,
+  rentAffordability:RentAffordabilityCalc,
 };
 
 export default function LoanToolsCore({calcType,defaults,sliderRanges}:{calcType:string;defaults:any;sliderRanges?:any}){

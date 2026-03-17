@@ -648,6 +648,95 @@ const HUB_CONTENT: Record<string, {
             { question: "Does refinancing reset my loan?", answer: "Yes, the amortization clock restarts. A 30-year refinance in year 5 of a 30-year loan means 35 total years of payments. Consider refinancing to a shorter term (15-20 years) to avoid this trap." },
         ],
     },
+    "rent-affordability-calculator": {
+        subtitle: "Find out how much rent you can afford based on your income, debts, and the 30% rule. See a full monthly budget breakdown with DTI analysis.",
+        explanation: {
+            heading: "How Much Rent Can I Afford?",
+            paragraphs: [
+                "The most widely used guideline for rent affordability is the 30% rule: your monthly rent should not exceed 30% of your gross monthly income. On a $55,000 salary, that means a maximum rent of $1,375/month. This standard was established by the U.S. Department of Housing and Urban Development (HUD) and remains the benchmark used by landlords, property managers, and financial advisors nationwide.",
+                "However, the 30% rule is just a starting point. Your actual affordable rent depends on your total financial picture — including existing debts, utilities, transportation, and savings goals. A more comprehensive approach uses debt-to-income (DTI) ratios: your total monthly debts (including rent) should ideally stay below 36% of gross income. If you have $400/month in car and student loan payments, that reduces the rent you can comfortably afford.",
+                "Beyond the monthly payment, renting involves significant upfront and hidden costs. Security deposits typically equal 1-2 months' rent. Application fees range from $25-$75. Utilities (electricity, water, gas, internet) add $150-$300/month on average. Renter's insurance costs $15-$30/month. These costs should all factor into your affordability assessment — not just the rent itself.",
+            ],
+            highlight: "$55K salary → $4,583 gross/month → 30% rule = $1,375 max rent. After $400 debts and $200 utilities, you'd have ~$1,453 remaining each month for food, transportation, savings, and discretionary spending.",
+        },
+        faq: [
+            { question: "What is the 30% rule for rent?", answer: "The 30% rule states that you should spend no more than 30% of your gross (before-tax) monthly income on rent. On a $50K salary, that's $1,250/month. On $75K, it's $1,875/month. This guideline was established by HUD and is used by most landlords to qualify tenants." },
+            { question: "Should I use gross or net income for the 30% rule?", answer: "The traditional 30% rule uses gross income. However, many financial advisors recommend using 25-30% of net (after-tax) income for a more conservative and realistic budget. On a $55K salary with ~25% taxes, gross-based max is $1,375 while net-based max is ~$1,031 — a significant difference." },
+            { question: "What costs beyond rent should I budget for?", answer: "Security deposit (1-2 months' rent), application fee ($25-$75), renter's insurance ($15-$30/mo), utilities — electricity ($70-$120), water ($30-$50), gas ($30-$50), internet ($50-$80) — plus moving costs ($300-$1,500). Many apartments also require first and last month's rent at signing." },
+            { question: "How do landlords decide if I qualify?", answer: "Most landlords require: (1) Monthly income ≥ 3× monthly rent (the '3× rule'), (2) Credit score ≥ 620 (some require 700+), (3) No recent evictions, (4) Clean criminal background, (5) Positive rental history. Some landlords accept co-signers or larger security deposits for borderline applicants." },
+            { question: "Is it better to rent or buy?", answer: "Use the '5% Rule': if annual rent is less than 5% of a comparable home's purchase price, renting is likely better. Also consider: do you plan to stay 5+ years? (buying favors long stays), do you have 20% down payment? (avoids PMI), is local appreciation strong? Renting offers flexibility; buying builds equity but has hidden costs (maintenance, taxes, insurance)." },
+            { question: "How can I reduce my rent costs?", answer: "Top strategies: (1) Get a roommate — shared 2BR is ~30% cheaper than a studio, (2) Negotiate with your landlord — especially at lease renewal, (3) Move slightly farther from downtown, (4) Rent during off-peak months (Nov-Feb in most markets), (5) Offer to sign a longer lease for a discount, (6) Look for units with included utilities." },
+        ],
+        steps: [
+            { label: "Calculate gross monthly income", formula: "$55,000 ÷ 12", result: "$4,583/month gross" },
+            { label: "Apply the 30% rule", formula: "$4,583 × 30%", result: "$1,375 max affordable rent" },
+            { label: "Add all housing costs", formula: "$1,375 rent + $200 utilities", result: "$1,575 total housing cost" },
+            { label: "Check total budget", formula: "$4,583 − $1,575 housing − $400 debts − $1,146 taxes", result: "$1,462 remaining for food, transport, savings" },
+        ],
+        comparison: [
+            { title: "Conservative (25%)", value: "$1,146/mo", detail: "More savings buffer | Easier to build wealth" },
+            { title: "Standard (30%)", value: "$1,375/mo", detail: "HUD recommended | Good balance", isWinner: true },
+            { title: "Stretch (35%)", value: "$1,604/mo", detail: "Tighter budget | Higher-end options" },
+        ],
+        insight: { icon: "💡", title: "The 50/30/20 Budget Rule", text: "A popular alternative to the 30% rule is the 50/30/20 budget: 50% of after-tax income for needs (rent, utilities, food, insurance), 30% for wants (entertainment, dining out), 20% for savings and debt repayment. On $55K take-home of ~$41K, that's $1,712/month for ALL needs — rent should be well under this to leave room for groceries, insurance, and transportation." },
+        contentHTML: `
+<h3>What Is Rent?</h3>
+<p>Rent is the periodic payment a tenant makes to a landlord for the use of a residential property. In the United States, rent is typically paid monthly and covers the right to occupy a house, apartment, condo, or room. A <strong>lease</strong> is the legal contract that formalizes the rental arrangement, defining the rent amount, payment schedule, lease duration, security deposit terms, and rules both parties agree to follow.</p>
+
+<h3>The Renting Process in the U.S.</h3>
+<p>Finding and securing a rental varies dramatically by market. In rural areas, it's often as simple as spotting a "For Rent" sign. In competitive urban markets like New York, San Francisco, or Seattle, the process is intense — listings disappear within hours, and applicants race to submit applications.</p>
+<p>The typical process involves:</p>
+<ol>
+<li><strong>Search</strong> — Use listing sites (Zillow, Apartments.com, Craigslist), real estate agents, or local networks</li>
+<li><strong>View the property</strong> — Inspect the unit, test appliances, check water pressure, look for damage</li>
+<li><strong>Submit an application</strong> — Personal info, income verification (pay stubs, tax returns), employment history, references</li>
+<li><strong>Background check</strong> — Landlords typically check credit score, criminal history, and eviction records (application fees of $25-$75 cover this)</li>
+<li><strong>Sign the lease</strong> — Review all terms carefully, paying special attention to early termination clauses, pet policies, and renewal terms</li>
+<li><strong>Pay move-in costs</strong> — First month's rent, security deposit (1-2 months), and sometimes last month's rent</li>
+</ol>
+
+<h3>Rent vs. Buy: When Does Each Make Sense?</h3>
+<p>The decision to rent or buy depends on your financial situation, lifestyle, and local market conditions:</p>
+<ul>
+<li><strong>Rent when:</strong> You plan to stay less than 5 years, can't afford a 10-20% down payment, value flexibility and mobility, or the local market is overpriced relative to rents</li>
+<li><strong>Buy when:</strong> You plan to stay 5+ years, have a stable employment situation, can afford a down payment and closing costs, and local home prices are reasonable compared to rents</li>
+</ul>
+<p>The <strong>5% Rule</strong> provides a quick comparison: if annual rent is less than 5% of a comparable home's purchase price, renting is likely the better financial choice. For example, if a home costs $300,000, the threshold is $15,000/year ($1,250/month). If you can rent a comparable place for $1,100/month, renting wins.</p>
+
+<h3>Important Considerations When Renting</h3>
+<p>Beyond the monthly rent amount, consider these factors:</p>
+<ul>
+<li><strong>Hidden costs:</strong> Security deposits, application fees, renter's insurance, pet deposits ($200-$500), parking fees, and utility setup charges</li>
+<li><strong>Location:</strong> Proximity to work, school districts, public transportation, grocery stores, and safety/crime rates</li>
+<li><strong>Quality:</strong> Building age, appliance condition, HVAC system, insulation quality, and available amenities (gym, pool, laundry)</li>
+<li><strong>Size:</strong> Bedrooms, bathrooms, closet space, and storage. Measure your furniture before signing</li>
+<li><strong>Landlord reputation:</strong> Online reviews, response time for maintenance requests, and history of rent increases</li>
+</ul>
+
+<h3>8 Ways to Reduce Your Rent Costs</h3>
+<ol>
+<li><strong>Get a roommate</strong> — Shared two-bedroom apartments are roughly 30% cheaper per person than one-bedrooms. Use friend networks or roommate-matching services</li>
+<li><strong>Negotiate your lease</strong> — Ask for lower rent in exchange for a longer lease, upfront payment, or handling minor maintenance. The worst they can say is no</li>
+<li><strong>Time your move</strong> — Rents are lowest during winter months (November-February) when demand drops. Avoid moving during peak summer months</li>
+<li><strong>Look beyond downtown</strong> — Moving 10-15 minutes farther from the city center can save 20-30% on rent while still providing reasonable commute times</li>
+<li><strong>Offer maintenance skills</strong> — Some landlords reduce rent for tenants who handle basic maintenance, yard work, or property management duties</li>
+<li><strong>Consider unconventional options</strong> — Basement apartments, house-sitting, live-in aide positions, or co-living spaces can dramatically reduce costs</li>
+<li><strong>Apply for housing assistance</strong> — HUD rental assistance and Section 8 vouchers subsidize rent for qualifying low-income households. Waiting lists can be long (2-5 years), but the savings are substantial — rent is capped at 30% of income</li>
+<li><strong>Use rent-specific credit cards</strong> — Some credit cards offer 2-3% cashback on rent payments, effectively reducing your rent cost by hundreds per year</li>
+</ol>
+
+<h3>Practical Renting Tips</h3>
+<ul>
+<li><strong>Document everything</strong> — Take photos/video of the unit at move-in. Create a detailed condition report and have the landlord sign it. This protects your security deposit</li>
+<li><strong>Get renter's insurance</strong> — For $15-$30/month, it protects your personal property against theft, fire, and water damage. Landlord insurance does NOT cover your belongings</li>
+<li><strong>Read the full lease</strong> — Pay attention to early termination fees, rent increase caps, guest policies, and subletting rules</li>
+<li><strong>Check cell reception</strong> before signing — poor signal is difficult to fix and affects daily life</li>
+<li><strong>Call utility companies</strong> — They can provide average monthly bills for the specific unit, so you know true total costs before committing</li>
+<li><strong>Keep the unit clean</strong> — Repairs beyond normal wear and tear will be charged against your security deposit at move-out</li>
+<li><strong>Build a good relationship with your landlord</strong> — Timely payments and respectful property treatment often lead to smaller rent increases and faster maintenance response</li>
+</ul>
+`,
+    },
 };
 
 export default async function CalculatorHubPage({ params }: PageProps) {
