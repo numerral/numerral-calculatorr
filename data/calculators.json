@@ -1685,6 +1685,40 @@
     "keywords": "debt to income ratio calculator, DTI calculator, debt ratio calculator, front end ratio, back end ratio, mortgage qualification calculator, 28/36 rule calculator"
   },
   {
+    "id": "down-payment-calculator",
+    "category": "loan",
+    "title": "Down Payment Calculator",
+    "slug": "down-payment-calculator",
+    "categorySlug": "loan-calculators",
+    "icon": "🏡",
+    "calcType": "downPayment",
+    "description": "Calculate your down payment, closing costs, total upfront cash, and monthly payment with PMI analysis. Compare 5%, 10%, and 20% down payment scenarios for Conventional, FHA, and VA loans.",
+    "stars": 5,
+    "defaults": {
+      "amount": 350000,
+      "rate": 6.5,
+      "tenure": 360
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 100000,
+        "max": 1000000,
+        "step": 10000
+      },
+      "rate": {
+        "min": 2,
+        "max": 12,
+        "step": 0.125
+      },
+      "tenure": {
+        "min": 180,
+        "max": 360,
+        "step": 60
+      }
+    },
+    "keywords": "down payment calculator, how much down payment for a house, down payment on house, closing costs calculator, PMI calculator, FHA down payment, VA no down payment, home buying calculator"
+  },
+  {
     "id": "interest-rate",
     "category": "utility",
     "title": "Interest Rate Calculator",

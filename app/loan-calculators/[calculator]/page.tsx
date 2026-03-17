@@ -830,6 +830,88 @@ const HUB_CONTENT: Record<string, {
 <p>While DTI is primarily used for mortgage qualification, it's also a powerful personal finance tool. Track your DTI monthly to monitor financial health. If it's trending upward, you're taking on debt faster than income is growing — a warning sign. Many financial advisors recommend keeping total DTI under 33% (one-third of income) as a general rule, with housing under 25% for comfortable living.</p>
 `,
     },
+    "down-payment-calculator": {
+        subtitle: "Calculate your down payment, closing costs, total upfront cash needed, and monthly payment with PMI analysis. Compare 5%, 10%, and 20% down payment scenarios side by side.",
+        explanation: {
+            heading: "How Much Down Payment Do I Need?",
+            paragraphs: [
+                "A down payment is the upfront cash you pay when purchasing a home. For a $350,000 home, a 20% down payment is $70,000 while an FHA-minimum of 3.5% is just $12,250. The down payment amount directly affects your loan size, monthly payment, interest rate, and whether you'll pay Private Mortgage Insurance (PMI). Conventional loans typically require 5-20% down, FHA requires 3.5%, and VA/USDA loans offer 0% down options.",
+                "Beyond the down payment, you'll need cash for closing costs — typically 2-5% of the purchase price. For a $350,000 home, that's $7,000-$17,500 covering appraisal fees, title insurance, attorney fees, origination charges, and prepaid taxes/insurance. Total upfront cash needed = down payment + closing costs, so a 20% down purchase requires roughly 23% of the home price in cash.",
+                "If your down payment is less than 20% on a conventional loan, you'll pay PMI — typically 0.3-1.5% of the loan amount annually. On a $332,500 loan (5% down on $350K), PMI costs roughly $83-$416/month. PMI is automatically removed when you reach 20% equity, which can take 5-10 years depending on appreciation and payments.",
+            ],
+            highlight: "$350K home with 20% down: $70,000 down + $10,500 closing (3%) = $80,500 upfront. Loan: $280,000. Monthly P&I at 6.5%: $1,770. No PMI needed. Compared to 5% down: only $17,500 down but $111/month extra in PMI.",
+        },
+        faq: [
+            { question: "What is the minimum down payment for a house?", answer: "Conventional: 3-5% minimum (Fannie Mae/Freddie Mac programs). FHA: 3.5% with credit score ≥ 580, or 10% with score 500-579. VA: 0% for eligible veterans and active military. USDA: 0% for rural properties meeting income requirements. The 20% guideline is to avoid PMI, not a minimum requirement." },
+            { question: "What is PMI and how much does it cost?", answer: "Private Mortgage Insurance protects the lender if you default. It's required when the down payment is less than 20% on conventional loans. PMI costs 0.3-1.5% of the loan annually ($83-$416/month on a $332K loan). It's automatically cancelled when you reach 20% equity (80% LTV) or you can request removal at 20%." },
+            { question: "What are typical closing costs?", answer: "Closing costs are 2-5% of the home price and include: appraisal ($300-$600), home inspection ($300-$500), title search & insurance ($500-$2,000), attorney fees ($500-$1,500), loan origination (0.5-1% of loan), recording fees ($50-$250), and prepaid taxes & insurance (2-6 months). Some are negotiable." },
+            { question: "Can I use gift money or my 401(k) for a down payment?", answer: "Yes to both. FHA loans allow 100% of the down payment as a gift from family with a gift letter. You can also borrow from your 401(k) — up to $50,000 or 50% of the balance, whichever is less. Roth IRA contributions can be withdrawn tax-free, and first-time buyers can withdraw up to $10,000 in earnings penalty-free." },
+            { question: "Is it better to put 20% down or less?", answer: "20% avoids PMI (saving $100-$400/month), gets better rates, and means lower monthly payments. However, putting all your savings into a down payment leaves no emergency buffer. Many financial advisors recommend 10-15% down as a good compromise — lower PMI cost than 5% but more financial flexibility than 20%." },
+            { question: "Are there down payment assistance programs?", answer: "Yes. Federal: FHA (3.5%), VA (0%), USDA (0%). State/local: Most states offer DPA grants or forgivable loans for first-time buyers — check HUD.gov. Employer programs, community land trusts, and nonprofit organizations like Habitat for Humanity also provide assistance. Many programs require homebuyer education courses." },
+        ],
+        steps: [
+            { label: "Determine home price", formula: "$350,000 purchase price", result: "$350,000" },
+            { label: "Calculate down payment", formula: "$350,000 × 20%", result: "$70,000 down payment" },
+            { label: "Calculate closing costs", formula: "$350,000 × 3%", result: "$10,500 closing costs" },
+            { label: "Total upfront cash needed", formula: "$70,000 + $10,500", result: "$80,500 total cash at closing" },
+        ],
+        comparison: [
+            { title: "5% Down ($17,500)", value: "+PMI +Higher Payment", detail: "Upfront: $28K | Monthly: $2,215 (with PMI)" },
+            { title: "10% Down ($35,000)", value: "+PMI +Moderate", detail: "Upfront: $45.5K | Monthly: $2,101 (with PMI)" },
+            { title: "20% Down ($70,000)", value: "No PMI | Best Rate", detail: "Upfront: $80.5K | Monthly: $1,770", isWinner: true },
+        ],
+        insight: { icon: "💡", title: "The Opportunity Cost of 20% Down", text: "Putting 20% down on a $350K home means tying up $70,000 in home equity — money that could earn 7-10% annually in the stock market. A 5% down payment of $17,500 frees up $52,500 for investing. Even with PMI, the investment returns may exceed PMI costs. Run the numbers for your situation: if PMI is $111/month ($1,332/year) but investing $52K earns 8% ($4,200/year), keeping a smaller down payment could be financially smarter." },
+        contentHTML: `
+<h3>What Is a Down Payment?</h3>
+<p>A down payment is the upfront portion of a home's purchase price that the buyer pays in cash. The remainder is financed through a mortgage loan. For example, on a $350,000 home with a 20% down payment ($70,000), the buyer borrows $280,000. The down payment amount signals financial stability to lenders and directly impacts the loan terms, interest rate, and monthly payment.</p>
+
+<h3>Understanding Closing Costs</h3>
+<p>Beyond the down payment, buyers face closing costs of 2-5% of the purchase price. These include:</p>
+<ul>
+<li><strong>Loan origination fee:</strong> 0.5-1% of the loan amount — the lender's processing charge</li>
+<li><strong>Appraisal:</strong> $300-$600 — confirms the home's market value</li>
+<li><strong>Home inspection:</strong> $300-$500 — identifies potential issues before purchase</li>
+<li><strong>Title search & insurance:</strong> $500-$2,000 — verifies legal ownership and protects against title disputes</li>
+<li><strong>Attorney/escrow fees:</strong> $500-$1,500 — handles legal paperwork and fund transfers</li>
+<li><strong>Prepaid taxes & insurance:</strong> 2-6 months — held in escrow by the lender</li>
+<li><strong>Recording fees:</strong> $50-$250 — county charge to record the new deed</li>
+</ul>
+<p>Some closing costs are negotiable. Sellers may agree to pay a portion (seller concessions), and some lenders offer "no-closing-cost" loans in exchange for a slightly higher interest rate.</p>
+
+<h3>Down Payment Requirements by Loan Type</h3>
+<table><tr><th>Loan Type</th><th>Min Down</th><th>PMI/MIP</th><th>Special Requirements</th></tr>
+<tr><td>Conventional</td><td>3-5%</td><td>Yes, until 20% equity</td><td>Credit score 620+; Fannie Mae HomeReady allows 3%</td></tr>
+<tr><td>FHA</td><td>3.5%</td><td>1.75% upfront MIP + 0.85%/yr</td><td>Credit score 580+; MIP for life of loan unless refinanced</td></tr>
+<tr><td>VA</td><td>0%</td><td>No PMI; funding fee 1.25-3.3%</td><td>Veterans, active military, eligible spouses only</td></tr>
+<tr><td>USDA</td><td>0%</td><td>1% upfront + 0.35%/yr</td><td>Rural areas; income must be ≤ 115% of area median</td></tr></table>
+
+<h3>Large vs. Small Down Payment: Pros and Cons</h3>
+<p><strong>Benefits of a larger down payment (15-20%+):</strong></p>
+<ul>
+<li>Eliminates PMI — saving $100-$400/month on typical loans</li>
+<li>Lower monthly payments and less total interest paid</li>
+<li>Better interest rates — lenders offer 0.125-0.25% lower rates for 20% down</li>
+<li>Stronger offer in competitive markets — sellers prefer well-funded buyers</li>
+<li>Immediate equity cushion protects against home value declines</li>
+</ul>
+<p><strong>Benefits of a smaller down payment (3-10%):</strong></p>
+<ul>
+<li>Enter homeownership sooner — don't wait years to save 20%</li>
+<li>Preserve cash for emergencies, renovations, or investments</li>
+<li>Home appreciation benefits you regardless of down payment size</li>
+<li>Investment opportunity cost — uncommitted funds can earn returns elsewhere</li>
+</ul>
+
+<h3>5 Sources of Down Payment Funds</h3>
+<ol>
+<li><strong>Personal savings</strong> — The most common source. High-yield savings accounts and CDs provide safe growth. Automate monthly transfers to a dedicated "home fund" account. At $1,000/month, you'd save $36,000 in 3 years</li>
+<li><strong>Piggyback loans (80-10-10)</strong> — Two mortgages: 80% first mortgage + 10% second mortgage (HELOC) + 10% down. Avoids PMI without 20% cash. The second loan typically has a higher rate but lower total cost than PMI</li>
+<li><strong>Down payment assistance programs</strong> — Federal (FHA 3.5%, VA/USDA 0%), state housing finance agencies, and local government grants. Many provide forgivable loans that require no repayment if you stay in the home 5+ years. Check HUD.gov for programs in your area</li>
+<li><strong>Gift funds</strong> — FHA allows 100% of the down payment as a gift from family. Conventional loans also accept gifts with a formal gift letter stating no repayment is required. The donor typically needs to provide bank statements proving the funds</li>
+<li><strong>Retirement accounts</strong> — Roth IRA contributions (not earnings) can be withdrawn anytime without penalty. First-time buyers can withdraw up to $10,000 in earnings penalty-free. 401(k) loans allow borrowing up to $50,000 repaid over 5 years — but this reduces retirement savings growth</li>
+</ol>
+`,
+    },
 };
 
 export default async function CalculatorHubPage({ params }: PageProps) {

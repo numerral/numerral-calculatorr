@@ -1084,6 +1084,108 @@ function RentAffordabilityCalc({defaults}:P){
   </div>);
 }
 
+// ─── 16. Down Payment ───
+function DownPaymentCalc({defaults}:P){
+  const[homePrice,setHomePrice]=useState(350000);
+  const[downPct,setDownPct]=useState(20);
+  const[closingPct,setClosingPct]=useState(3);
+  const[rate,setRate]=useState(defaults.rate||6.5);
+  const[termYears]=useState(30);
+
+  const r=useMemo(()=>{
+    const downAmt=homePrice*downPct/100;
+    const closingCosts=homePrice*closingPct/100;
+    const totalUpfront=downAmt+closingCosts;
+    const loanAmt=homePrice-downAmt;
+    const mr=rate/100/12;const n=termYears*12;
+    const monthlyPI=loanAmt>0?loanAmt*mr*Math.pow(1+mr,n)/(Math.pow(1+mr,n)-1):0;
+    const pmiRate=downPct<20?0.005/12:0;
+    const monthlyPMI=loanAmt*pmiRate;
+    const totalMonthly=monthlyPI+monthlyPMI;
+    // Comparison scenarios
+    const scenarios=[5,10,20].map(pct=>{
+      const dp=homePrice*pct/100;
+      const la=homePrice-dp;
+      const pi=la>0?la*mr*Math.pow(1+mr,n)/(Math.pow(1+mr,n)-1):0;
+      const pmi=pct<20?la*0.005/12:0;
+      return{pct,dp,la,pi,pmi,total:pi+pmi,upfront:dp+closingCosts,totalInterest:pi*n-la};
+    });
+    return{downAmt,closingCosts,totalUpfront,loanAmt,monthlyPI,monthlyPMI,totalMonthly,scenarios};
+  },[homePrice,downPct,closingPct,rate,termYears]);
+
+  return(<div>
+    <div className="calc-input-panel">
+      <div className="calc-field">
+        <label className="calc-field__label"><span className="calc-field__label-icon">🏠</span>Home Price</label>
+        <input type="range" className="calc-field__slider" min={100000} max={1000000} step={10000} value={homePrice} onChange={e=>setHomePrice(+e.target.value)}/>
+        <input type="text" className="calc-field__input" value={homePrice.toLocaleString("en-US")} inputMode="numeric"
+          onChange={e=>{const v=parseInt(e.target.value.replace(/,/g,""));if(!isNaN(v))setHomePrice(v);}}/>
+      </div>
+
+      <div className="calc-field">
+        <label className="calc-field__label"><span className="calc-field__label-icon">💰</span>Down Payment (%)</label>
+        <input type="range" className="calc-field__slider" min={0} max={30} step={0.5} value={downPct} onChange={e=>setDownPct(+e.target.value)}/>
+        <div style={{display:"flex",gap:"var(--s-2)",alignItems:"center",flexWrap:"wrap"}}>
+          <input type="text" className="calc-field__input" style={{maxWidth:"80px"}} value={downPct} inputMode="decimal"
+            onChange={e=>{const v=parseFloat(e.target.value);if(!isNaN(v))setDownPct(v);}}/>
+          <span className="t-body-sm" style={{fontWeight:600}}>{fmtUSD(r.downAmt)}</span>
+        </div>
+        <div className="tax-toggle" style={{marginTop:"var(--s-2)"}}>
+          <button className={`tax-toggle__btn${downPct===20?" active":""}`} onClick={()=>setDownPct(20)}>Conv 20%</button>
+          <button className={`tax-toggle__btn${downPct===3.5?" active":""}`} onClick={()=>setDownPct(3.5)}>FHA 3.5%</button>
+          <button className={`tax-toggle__btn${downPct===0?" active":""}`} onClick={()=>setDownPct(0)}>VA 0%</button>
+        </div>
+      </div>
+
+      <div className="calc-field">
+        <label className="calc-field__label"><span className="calc-field__label-icon">📝</span>Closing Costs (%)</label>
+        <input type="text" className="calc-field__input" style={{maxWidth:"80px"}} value={closingPct} inputMode="decimal"
+          onChange={e=>{const v=parseFloat(e.target.value);if(!isNaN(v))setClosingPct(v);}}/>
+      </div>
+
+      <div className="calc-field">
+        <label className="calc-field__label"><span className="calc-field__label-icon">📊</span>Interest Rate (%)</label>
+        <input type="range" className="calc-field__slider" min={2} max={12} step={0.125} value={rate} onChange={e=>setRate(+e.target.value)}/>
+        <input type="text" className="calc-field__input" style={{maxWidth:"100px"}} value={rate} inputMode="decimal"
+          onChange={e=>{const v=parseFloat(e.target.value);if(!isNaN(v))setRate(v);}}/>
+      </div>
+    </div>
+
+    {/* ── Results ── */}
+    <div className="calc-result" aria-live="polite">
+      <p className="calc-result__label">Total Upfront Cash Needed</p>
+      <p className="calc-result__emi">{fmtUSD(r.totalUpfront)}</p>
+      <div className="calc-result__stats">
+        <div className="calc-result__stat"><p className="calc-result__stat-label">Down Payment</p><p className="calc-result__stat-value">{fmtUSD(r.downAmt)}</p></div>
+        <div className="calc-result__stat"><p className="calc-result__stat-label">Closing Costs</p><p className="calc-result__stat-value">{fmtUSD(r.closingCosts)}</p></div>
+        <div className="calc-result__stat"><p className="calc-result__stat-label">Monthly Payment</p><p className="calc-result__stat-value">{fmtUSD(r.totalMonthly)}</p></div>
+      </div>
+
+      {/* PMI Status */}
+      <div style={{marginTop:"var(--s-3)",padding:"var(--s-3)",borderRadius:"8px",background:downPct>=20?"rgba(34,197,94,0.1)":"rgba(234,179,8,0.1)",border:`1px solid ${downPct>=20?"var(--n-success)":"var(--n-warning)"}`}}>
+        <p className="t-body-sm" style={{fontWeight:600}}>{downPct>=20?"✅ No PMI required":`⚠️ PMI required: ${fmtUSD(r.monthlyPMI)}/month (~${fmtUSD(r.monthlyPMI*12)}/year)`}</p>
+        {downPct<20&&<p className="t-body-sm text-muted">PMI is removed once you reach 20% equity. On this loan, that's {fmtUSD(homePrice*0.20)} in equity.</p>}
+      </div>
+
+      {/* Comparison Table */}
+      <div style={{marginTop:"var(--s-4)",overflowX:"auto"}}>
+        <p className="calc-field__label">Down Payment Comparison</p>
+        <table className="comparison-table">
+          <thead><tr><th></th>{r.scenarios.map(s=><th key={s.pct}>{s.pct}% Down</th>)}</tr></thead>
+          <tbody>
+            <tr><td>Down Payment</td>{r.scenarios.map(s=><td key={s.pct}>{fmtUSD(s.dp)}</td>)}</tr>
+            <tr><td>Total Upfront</td>{r.scenarios.map(s=><td key={s.pct}>{fmtUSD(s.upfront)}</td>)}</tr>
+            <tr><td>Loan Amount</td>{r.scenarios.map(s=><td key={s.pct}>{fmtUSD(s.la)}</td>)}</tr>
+            <tr><td>Monthly P&I</td>{r.scenarios.map(s=><td key={s.pct}>{fmtUSD(s.pi)}</td>)}</tr>
+            <tr><td>Monthly PMI</td>{r.scenarios.map(s=><td key={s.pct} style={{color:s.pmi>0?"var(--n-warning)":"var(--n-success)"}}>{s.pmi>0?fmtUSD(s.pmi):"$0"}</td>)}</tr>
+            <tr style={{fontWeight:700}}><td>Total Monthly</td>{r.scenarios.map(s=><td key={s.pct}>{fmtUSD(s.total)}</td>)}</tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>);
+}
+
 // ─── Dispatcher ───
 const CALC_MAP:Record<string,React.FC<P>>={
   mortgage:MortgageCalc, debtConsolidation:DebtConsolidationCalc,
@@ -1093,6 +1195,7 @@ const CALC_MAP:Record<string,React.FC<P>>={
   fixedVsVariable:FixedVsVariableCalc, extraPayment:ExtraPaymentCalc,
   refinance:RefinanceCalc, mortgageRefinance:MortgageRefinanceCalc,
   rentAffordability:RentAffordabilityCalc, debtRatio:DebtRatioCalc,
+  downPayment:DownPaymentCalc,
 };
 
 export default function LoanToolsCore({calcType,defaults,sliderRanges}:{calcType:string;defaults:any;sliderRanges?:any}){
