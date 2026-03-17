@@ -2554,6 +2554,110 @@ const HUB_CONTENT: Record<string, {
             { title: "Exponent Calculator", slug: "exponent-calculator", categorySlug: "math-calculators", description: "Calculate powers for formulas" },
         ],
     },
+
+    /* ─── 29. AREA CALCULATOR — RICH CONTENT ─── */
+    "area-calculator": {
+        subtitle: "Calculate the area of 12 different shapes — square, rectangle, triangle, circle, ellipse, trapezoid, parallelogram, rhombus, sector, ring, and regular polygon. Select a shape to see the formula and step-by-step solution.",
+        contentHTML: `
+            <h2 id="how-to-calculate">How to Calculate Area</h2>
+            <p><strong>Area</strong> is the space inside the boundary of a two-dimensional shape, measured in <strong>square units</strong> (sq ft, m², cm², etc.). It answers the question "how much surface does this shape cover?"</p>
+            <p>Every geometric shape has a unique area formula. Our calculator supports 12 shapes — select one from the dropdown above and enter the required dimensions to get the area instantly with a step-by-step breakdown.</p>
+
+            <h2 id="area-formulas">Area Formulas for All Shapes</h2>
+
+            <h3 id="square">Square</h3>
+            <p><strong>A = a²</strong> — Side length squared. Example: side = 5 → A = 25.</p>
+
+            <h3 id="rectangle">Rectangle</h3>
+            <p><strong>A = length × width</strong>. Example: 10 × 6 = 60.</p>
+
+            <h3 id="triangle-bh">Triangle (Base × Height)</h3>
+            <p><strong>A = ½ × b × h</strong> — Half of base times perpendicular height. Example: b = 8, h = 5 → A = 20.</p>
+
+            <h3 id="triangle-heron">Triangle (Heron's Formula — SSS)</h3>
+            <p>When you know all three sides (a, b, c) but not the height:</p>
+            <p><strong>s = (a + b + c) / 2</strong> (semi-perimeter)</p>
+            <p><strong>A = √(s(s−a)(s−b)(s−c))</strong></p>
+            <p>Example: sides 3, 4, 5 → s = 6, A = √(6×3×2×1) = √36 = <strong>6</strong>.</p>
+
+            <h3 id="circle">Circle</h3>
+            <p><strong>A = πr²</strong>. If you know the diameter: A = π(d/2)². Example: r = 7 → A = 153.94.</p>
+
+            <h3 id="ellipse">Ellipse</h3>
+            <p><strong>A = π × a × b</strong> — where <em>a</em> is the semi-major axis and <em>b</em> is the semi-minor axis. Example: a = 10, b = 6 → A = 188.50.</p>
+
+            <h3 id="trapezoid">Trapezoid</h3>
+            <p><strong>A = ½(a + b) × h</strong> — Average of the two parallel bases times the height. Example: bases 8 and 12, height 5 → A = 50.</p>
+
+            <h3 id="parallelogram">Parallelogram</h3>
+            <p><strong>A = b × h</strong> — Base times perpendicular height (not the slanted side). See our dedicated <a href="/math-calculators/parallelogram-area-calculator">Parallelogram Area Calculator</a> for the sides-and-angle method.</p>
+
+            <h3 id="rhombus">Rhombus</h3>
+            <p><strong>A = a × h</strong> — Edge length times perpendicular height. Alternatively: A = ½ × d₁ × d₂ (half the product of the diagonals).</p>
+
+            <h3 id="sector">Sector</h3>
+            <p><strong>A = ½r²θ</strong> — where θ is in radians. For degrees: A = (θ/360) × πr². See our <a href="/math-calculators/arc-length-calculator">Arc Length Calculator</a> for arc length and chord.</p>
+
+            <h3 id="ring">Ring (Annulus)</h3>
+            <p><strong>A = π(R² − r²)</strong> — Outer circle area minus inner circle area. Example: R = 7, r = 3 → A = π(49−9) = 125.66.</p>
+
+            <h3 id="polygon">Regular Polygon (n-gon)</h3>
+            <p><strong>A = (a² × n) / (4 × tan(π/n))</strong> — Works for any regular polygon with <em>n</em> equal sides of length <em>a</em>. Pentagon (n=5), hexagon (n=6), octagon (n=8), etc. See our <a href="/math-calculators/pentagon-calculator">Pentagon Calculator</a> for dedicated pentagon properties.</p>
+
+            <h2 id="area-vs">Area vs. Perimeter vs. Surface Area</h2>
+            <ul>
+                <li><strong>Area:</strong> The 2D space inside a shape (square units)</li>
+                <li><strong>Perimeter:</strong> The distance around the shape's boundary (linear units)</li>
+                <li><strong>Surface Area:</strong> The total area of all faces of a 3D solid</li>
+            </ul>
+
+            <div class="explanation__highlight">
+                <strong>Why square units?</strong> Area is always in "squared" units (ft², m², cm²) because you're multiplying one dimension by another — length × width. This represents two-dimensional space.
+            </div>
+
+            <h2 id="faq">Frequently Asked Questions</h2>
+
+            <h3>When should I calculate area?</h3>
+            <p>Whenever you need to know how much surface a space covers — flooring, painting walls, landscaping, tiling, concrete pouring, carpet installation, or any material that covers a surface.</p>
+
+            <h3>How do I find the area of an irregular shape?</h3>
+            <p>Break the irregular shape into regular shapes (rectangles, triangles, circles), calculate each area separately, then add them together. For an irregular quadrilateral: draw a diagonal, measure the perpendicular heights to the other two corners, and use A = ½ × d × (h₁ + h₂).</p>
+
+            <h3>What's the difference between base×height and Heron's formula for triangles?</h3>
+            <p>Use <strong>½bh</strong> when you know the base and perpendicular height. Use <strong>Heron's formula</strong> when you know all three side lengths but not the height. Both give the same result — they're just different ways to reach it.</p>
+
+            <h3>How do I convert between area units?</h3>
+            <p>Common conversions: <strong>1 m² = 10.764 ft²</strong>, <strong>1 acre = 43,560 ft²</strong>, <strong>1 hectare = 10,000 m²</strong>. Multiply your area result by the appropriate conversion factor.</p>
+
+            <h3>Does a circle count as a polygon?</h3>
+            <p>No — a polygon must have straight sides. A circle has no straight sides. However, a regular polygon with a very large number of sides (n→∞) approaches a circle, and the polygon area formula approaches πr².</p>
+
+            <h3>What is the easiest way to calculate the area of a room?</h3>
+            <p>Most rooms are rectangular: just measure <strong>length × width</strong>. For L-shaped rooms, divide into two rectangles, calculate each area, and add them together.</p>
+        `,
+        formula: {
+            formula: "A = l × w (rectangle), A = πr² (circle), A = ½bh (triangle)",
+            variables: [
+                { symbol: "A", meaning: "Area in square units" },
+                { symbol: "l, w", meaning: "Length and width (rectangle)" },
+                { symbol: "r", meaning: "Radius (circle, sector)" },
+                { symbol: "b, h", meaning: "Base and height (triangle, parallelogram)" },
+                { symbol: "n", meaning: "Number of sides (regular polygon)" },
+            ],
+            example: [
+                { label: "Rectangle 10×6", substitution: "A = 10 × 6", result: "60 sq units" },
+                { label: "Circle r=7", substitution: "A = π × 7²", result: "153.94 sq units" },
+                { label: "Triangle 8×5", substitution: "A = ½ × 8 × 5", result: "20 sq units" },
+            ],
+        },
+        relatedCalculators: [
+            { title: "Parallelogram Area", slug: "parallelogram-area-calculator", categorySlug: "math-calculators", description: "Dedicated parallelogram calculator with 3 methods" },
+            { title: "Arc Length Calculator", slug: "arc-length-calculator", categorySlug: "math-calculators", description: "Arc length, chord, and sector area" },
+            { title: "Pentagon Calculator", slug: "pentagon-calculator", categorySlug: "math-calculators", description: "All pentagon properties from side length" },
+            { title: "Angle Converter", slug: "angle-converter-calculator", categorySlug: "math-calculators", description: "Convert degrees to radians for sector area" },
+            { title: "Percentage Calculator", slug: "percentage-calculator", categorySlug: "math-calculators", description: "Calculate area percentages and ratios" },
+        ],
+    },
 };
 
 export default async function MathCalculatorHubPage({ params }: PageProps) {

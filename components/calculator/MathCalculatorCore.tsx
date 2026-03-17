@@ -1433,6 +1433,74 @@ function PentagonCalc() {
     </div></div>);
 }
 
+/* 29. Area Calculator — multi-shape */
+const AREA_SHAPES = [
+    { id:"square", label:"Square" }, { id:"rectangle", label:"Rectangle" },
+    { id:"triangle", label:"Triangle (b×h)" }, { id:"triangle-heron", label:"Triangle (Heron's SSS)" },
+    { id:"circle", label:"Circle" }, { id:"ellipse", label:"Ellipse" },
+    { id:"trapezoid", label:"Trapezoid" }, { id:"parallelogram", label:"Parallelogram" },
+    { id:"rhombus", label:"Rhombus" }, { id:"sector", label:"Sector" },
+    { id:"ring", label:"Ring (Annulus)" }, { id:"polygon", label:"Regular Polygon (n-gon)" },
+];
+function AreaCalc() {
+    const [shape, setShape] = useState("rectangle");
+    const [a, setA] = useState("10"); const [b, setB] = useState("6");
+    const [c, setC] = useState("8"); const [h, setH] = useState("5");
+    const [r1, setR1] = useState("7"); const [r2, setR2] = useState("3");
+    const [ang, setAng] = useState("90"); const [n, setN] = useState("6");
+    const res = useMemo(() => {
+        const va = parseFloat(a) || 0, vb = parseFloat(b) || 0, vc = parseFloat(c) || 0;
+        const vh = parseFloat(h) || 0, vr1 = parseFloat(r1) || 0, vr2 = parseFloat(r2) || 0;
+        const vang = parseFloat(ang) || 0, vn = parseInt(n) || 3;
+        const steps: string[] = [];
+        let area = 0;
+        switch (shape) {
+            case "square": area = va * va; steps.push(`A = a² = ${va}² = ${fmt(area, 4)}`); break;
+            case "rectangle": area = va * vb; steps.push(`A = l × w = ${va} × ${vb} = ${fmt(area, 4)}`); break;
+            case "triangle": area = 0.5 * va * vh; steps.push(`A = ½ × b × h = ½ × ${va} × ${vh} = ${fmt(area, 4)}`); break;
+            case "triangle-heron": {
+                const s = (va + vb + vc) / 2;
+                area = Math.sqrt(s * (s - va) * (s - vb) * (s - vc));
+                steps.push(`s = (a+b+c)/2 = (${va}+${vb}+${vc})/2 = ${fmt(s, 4)}`);
+                steps.push(`A = √(s(s−a)(s−b)(s−c)) = √(${fmt(s, 2)}×${fmt(s - va, 2)}×${fmt(s - vb, 2)}×${fmt(s - vc, 2)}) = ${fmt(area, 4)}`);
+                break;
+            }
+            case "circle": area = Math.PI * vr1 * vr1; steps.push(`A = πr² = π × ${vr1}² = ${fmt(area, 4)}`); break;
+            case "ellipse": area = Math.PI * va * vb; steps.push(`A = π × a × b = π × ${va} × ${vb} = ${fmt(area, 4)}`); break;
+            case "trapezoid": area = 0.5 * (va + vb) * vh; steps.push(`A = ½(a+b)×h = ½(${va}+${vb})×${vh} = ${fmt(area, 4)}`); break;
+            case "parallelogram": area = va * vh; steps.push(`A = b × h = ${va} × ${vh} = ${fmt(area, 4)}`); break;
+            case "rhombus": area = va * vh; steps.push(`A = a × h = ${va} × ${vh} = ${fmt(area, 4)}`); break;
+            case "sector": { const rad = vang * Math.PI / 180; area = 0.5 * vr1 * vr1 * rad; steps.push(`A = ½r²θ = ½ × ${vr1}² × ${fmt(rad, 4)} = ${fmt(area, 4)}`); break; }
+            case "ring": area = Math.PI * (vr1 * vr1 - vr2 * vr2); steps.push(`A = π(R²−r²) = π(${vr1}²−${vr2}²) = ${fmt(area, 4)}`); break;
+            case "polygon": { const tanVal = Math.tan(Math.PI / vn); area = (va * va * vn) / (4 * tanVal); steps.push(`A = (a²×n)/(4×tan(π/n)) = (${va}²×${vn})/(4×tan(π/${vn})) = ${fmt(area, 4)}`); break; }
+        }
+        return { area: fmt(area, 6), steps };
+    }, [shape, a, b, c, h, r1, r2, ang, n]);
+    const showA = ["square","rectangle","triangle","triangle-heron","ellipse","trapezoid","parallelogram","rhombus","polygon"].includes(shape);
+    const showB = ["rectangle","triangle-heron","ellipse","trapezoid"].includes(shape);
+    const showC = shape === "triangle-heron";
+    const showH = ["triangle","trapezoid","parallelogram","rhombus"].includes(shape);
+    const showR1 = ["circle","sector","ring"].includes(shape);
+    const showR2 = shape === "ring";
+    const showAng = shape === "sector";
+    const showN = shape === "polygon";
+    return (<div className="con-calc"><h3 className="con-calc__title">📐 Area Calculator</h3><div className="con-calc__inputs">
+        <SelectField label="Shape" value={shape} onChange={setShape} options={AREA_SHAPES.map(s => ({value: s.id, label: s.label}))} />
+        {showA && <InputField label={shape === "square" ? "Side (a)" : shape === "ellipse" ? "Semi-major axis (a)" : shape === "polygon" ? "Side length (a)" : shape === "trapezoid" ? "Base a" : "Base / Length"} value={a} onChange={setA} />}
+        {showB && <InputField label={shape === "ellipse" ? "Semi-minor axis (b)" : shape === "trapezoid" ? "Base b" : shape === "triangle-heron" ? "Side b" : "Width"} value={b} onChange={setB} />}
+        {showC && <InputField label="Side c" value={c} onChange={setC} />}
+        {showH && <InputField label="Height (h)" value={h} onChange={setH} />}
+        {showR1 && <InputField label={shape === "ring" ? "Outer Radius (R)" : "Radius (r)"} value={r1} onChange={setR1} />}
+        {showR2 && <InputField label="Inner Radius (r)" value={r2} onChange={setR2} />}
+        {showAng && <InputField label="Angle (degrees)" value={ang} onChange={setAng} />}
+        {showN && <InputField label="Number of sides (n)" value={n} onChange={setN} />}
+    </div><div className="con-calc__results"><h4>Result</h4>
+        <ResultRow label="Area" value={`${res.area} sq units`} />
+        <h4>Steps</h4>
+        {res.steps.map((s, i) => <ResultRow key={i} label={`Step ${i + 1}`} value={s} />)}
+    </div></div>);
+}
+
 /* ──── DISPATCHER ──── */
 const CALC_MAP: Record<string, React.FC> = {
     "percentage": PercentageCalc,
@@ -1463,6 +1531,7 @@ const CALC_MAP: Record<string, React.FC> = {
     "parallelogram-area": ParallelogramAreaCalc,
     "arc-length": ArcLengthCalc,
     "pentagon": PentagonCalc,
+    "area-calculator": AreaCalc,
 };
 
 export default function MathCalculatorCore({ calcType }: { calcType: string }) {

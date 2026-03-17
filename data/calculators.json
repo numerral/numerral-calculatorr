@@ -12070,5 +12070,19 @@
     "defaults": { "amount": 0, "rate": 0, "tenure": 0 },
     "sliderRanges": { "amount": { "min": 0, "max": 0, "step": 0 }, "rate": { "min": 0, "max": 0, "step": 0 }, "tenure": { "min": 0, "max": 0, "step": 0 } },
     "keywords": "pentagon calculator, area of a pentagon, pentagon perimeter, pentagon diagonal, pentagon height, circumradius pentagon, apothem pentagon, regular pentagon formula"
+  },
+  {
+    "id": "area-calculator",
+    "category": "math",
+    "title": "Area Calculator",
+    "slug": "area-calculator",
+    "categorySlug": "math-calculators",
+    "icon": "📐",
+    "description": "Calculate the area of 12 shapes: square, rectangle, triangle, circle, ellipse, trapezoid, parallelogram, rhombus, sector, ring, and regular polygon. Step-by-step formulas included.",
+    "stars": 5,
+    "calcType": "area-calculator",
+    "defaults": { "amount": 0, "rate": 0, "tenure": 0 },
+    "sliderRanges": { "amount": { "min": 0, "max": 0, "step": 0 }, "rate": { "min": 0, "max": 0, "step": 0 }, "tenure": { "min": 0, "max": 0, "step": 0 } },
+    "keywords": "area calculator, area of a rectangle, area of a circle, area of a triangle, area of a trapezoid, area formula, how to calculate area, area of a polygon, Heron's formula, sector area"
   }
 ]
