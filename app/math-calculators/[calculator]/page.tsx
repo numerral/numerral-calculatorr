@@ -2658,6 +2658,97 @@ const HUB_CONTENT: Record<string, {
             { title: "Percentage Calculator", slug: "percentage-calculator", categorySlug: "math-calculators", description: "Calculate area percentages and ratios" },
         ],
     },
+
+    /* ─── 30. PERIMETER CALCULATOR — RICH CONTENT ─── */
+    "perimeter-calculator": {
+        subtitle: "Calculate the perimeter of 10 different shapes — square, rectangle, triangle, circle (circumference), ellipse, trapezoid, parallelogram, rhombus, sector, and regular polygon. Select a shape and enter the dimensions.",
+        contentHTML: `
+            <h2 id="how-to-find-perimeter">How to Find the Perimeter of a Shape</h2>
+            <p><strong>Perimeter</strong> is the total length of the outer boundary of a two-dimensional shape. The word comes from Greek: <em>peri</em> ("around") + <em>metron</em> ("measure"). Unlike area (which measures surface), perimeter measures <strong>distance around</strong>.</p>
+            <p>For shapes with straight edges, the perimeter is simply the sum of all side lengths. For curved shapes like circles and ellipses, you need a formula.</p>
+
+            <h2 id="perimeter-formulas">Perimeter Formulas</h2>
+
+            <h3 id="square">Square</h3>
+            <p><strong>P = 4a</strong> — Four times the side length. Example: a = 5 → P = 20.</p>
+
+            <h3 id="rectangle">Rectangle</h3>
+            <p><strong>P = 2l + 2w</strong> — Twice the length plus twice the width. Example: 10 + 10 + 6 + 6 = 32.</p>
+
+            <h3 id="triangle">Triangle</h3>
+            <p><strong>P = a + b + c</strong> — Sum of all three sides. Example: 3 + 4 + 5 = 12.</p>
+
+            <h3 id="circle">Circle (Circumference)</h3>
+            <p><strong>C = 2πr</strong> — Two times π times the radius. Alternatively: C = πd (π times the diameter). Example: r = 7 → C = 43.982.</p>
+
+            <h3 id="ellipse">Ellipse</h3>
+            <p>There is no exact closed-form formula for the perimeter of an ellipse. The best approximation is <strong>Ramanujan's formula</strong>:</p>
+            <p><strong>P ≈ π[3(a+b) − √((3a+b)(a+3b))]</strong></p>
+            <p>Where <em>a</em> is the semi-major axis and <em>b</em> is the semi-minor axis. Example: a = 10, b = 6 → P ≈ 51.054.</p>
+
+            <h3 id="trapezoid">Trapezoid</h3>
+            <p><strong>P = a + b + c + d</strong> — Sum of all four sides (two bases + two legs). Example: 8 + 6 + 5 + 5 = 24.</p>
+
+            <h3 id="parallelogram">Parallelogram</h3>
+            <p><strong>P = 2a + 2b</strong> — Since opposite sides are equal. Example: a = 10, b = 6 → P = 32.</p>
+
+            <h3 id="rhombus">Rhombus</h3>
+            <p><strong>P = 4a</strong> — All four sides are equal. Example: a = 7 → P = 28.</p>
+
+            <h3 id="sector">Sector</h3>
+            <p><strong>P = 2r + arc length</strong>, where arc = rθ (θ in radians). This is the two straight edges (radii) plus the curved arc. Example: r = 7, angle = 90° → P = 14 + 10.996 = 24.996.</p>
+
+            <h3 id="polygon">Regular Polygon (n-gon)</h3>
+            <p><strong>P = n × a</strong> — Number of sides times the side length. Works for pentagon (n=5), hexagon (n=6), octagon (n=8), or any regular polygon.</p>
+
+            <h2 id="perimeter-vs-area">Perimeter vs. Area vs. Circumference</h2>
+            <ul>
+                <li><strong>Perimeter:</strong> Distance <em>around</em> a shape (linear units: ft, m, cm)</li>
+                <li><strong>Circumference:</strong> Perimeter of a circle — same concept, different name</li>
+                <li><strong>Area:</strong> Space <em>inside</em> a shape (square units: ft², m²). See our <a href="/math-calculators/area-calculator">Area Calculator</a></li>
+            </ul>
+
+            <div class="explanation__highlight">
+                <strong>Practical uses:</strong> Calculate perimeter for fencing a yard, framing a painting, trimming a room with baseboard, wrapping string around a shape, or buying edge material for any project.
+            </div>
+
+            <h2 id="faq">Frequently Asked Questions</h2>
+
+            <h3>Is perimeter the same as circumference?</h3>
+            <p>Both measure the boundary length, but <strong>perimeter</strong> is used for shapes with straight sides, while <strong>circumference</strong> specifically refers to the boundary of a circle. Mathematically, the circumference <em>is</em> the perimeter of a circle.</p>
+
+            <h3>How do I find the perimeter of an irregular shape?</h3>
+            <p>Measure each edge individually and add them all together. If some edges are curved, you'll need the appropriate formula for each curved section. For a completely irregular shape, measuring with a flexible tape or string is often the easiest approach.</p>
+
+            <h3>Why is perimeter measured in linear units, not squared?</h3>
+            <p>Perimeter is a one-dimensional measurement (distance), so it uses linear units like feet, meters, or centimeters. Area is two-dimensional (length × width), which is why it uses squared units.</p>
+
+            <h3>Why do you calculate perimeter?</h3>
+            <p>Common real-world uses include: calculating <strong>fencing</strong> needed for a yard, <strong>baseboard</strong> trim for a room, <strong>string lights</strong> for windows, <strong>framing</strong> for pictures, and <strong>edging</strong> for garden beds.</p>
+        `,
+        formula: {
+            formula: "P = 2l + 2w (rectangle), C = 2πr (circle), P = na (polygon)",
+            variables: [
+                { symbol: "P", meaning: "Perimeter in linear units" },
+                { symbol: "l, w", meaning: "Length and width (rectangle)" },
+                { symbol: "r", meaning: "Radius (circle, sector)" },
+                { symbol: "a, b, c", meaning: "Side lengths" },
+                { symbol: "n", meaning: "Number of sides (regular polygon)" },
+            ],
+            example: [
+                { label: "Rectangle 10×6", substitution: "P = 2(10) + 2(6)", result: "32 units" },
+                { label: "Circle r=7", substitution: "C = 2π(7)", result: "43.98 units" },
+                { label: "Hexagon a=5", substitution: "P = 6 × 5", result: "30 units" },
+            ],
+        },
+        relatedCalculators: [
+            { title: "Area Calculator", slug: "area-calculator", categorySlug: "math-calculators", description: "Calculate area for 12 shapes" },
+            { title: "Parallelogram Area", slug: "parallelogram-area-calculator", categorySlug: "math-calculators", description: "Dedicated parallelogram calculator" },
+            { title: "Arc Length Calculator", slug: "arc-length-calculator", categorySlug: "math-calculators", description: "Arc length for sector perimeters" },
+            { title: "Pentagon Calculator", slug: "pentagon-calculator", categorySlug: "math-calculators", description: "All pentagon properties" },
+            { title: "Angle Converter", slug: "angle-converter-calculator", categorySlug: "math-calculators", description: "Convert degrees to radians for sector" },
+        ],
+    },
 };
 
 export default async function MathCalculatorHubPage({ params }: PageProps) {

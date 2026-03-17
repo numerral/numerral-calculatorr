@@ -1501,6 +1501,80 @@ function AreaCalc() {
     </div></div>);
 }
 
+/* 30. Perimeter Calculator — multi-shape */
+const PERIM_SHAPES = [
+    { id:"square", label:"Square" }, { id:"rectangle", label:"Rectangle" },
+    { id:"triangle", label:"Triangle" }, { id:"circle", label:"Circle" },
+    { id:"ellipse", label:"Ellipse" }, { id:"trapezoid", label:"Trapezoid" },
+    { id:"parallelogram", label:"Parallelogram" }, { id:"rhombus", label:"Rhombus" },
+    { id:"sector", label:"Sector" }, { id:"polygon", label:"Regular Polygon (n-gon)" },
+];
+function PerimeterCalc() {
+    const [shape, setShape] = useState("rectangle");
+    const [a, setA] = useState("10"); const [b, setB] = useState("6");
+    const [c, setC] = useState("8"); const [d, setD] = useState("5");
+    const [r1, setR1] = useState("7"); const [ang, setAng] = useState("90"); const [n, setN] = useState("6");
+    const res = useMemo(() => {
+        const va = parseFloat(a) || 0, vb = parseFloat(b) || 0, vc = parseFloat(c) || 0, vd = parseFloat(d) || 0;
+        const vr = parseFloat(r1) || 0, vang = parseFloat(ang) || 0, vn = parseInt(n) || 3;
+        const steps: string[] = [];
+        let peri = 0;
+        switch (shape) {
+            case "square": peri = 4 * va; steps.push(`P = 4a = 4 × ${va} = ${fmt(peri, 4)}`); break;
+            case "rectangle": peri = 2 * va + 2 * vb; steps.push(`P = 2l + 2w = 2×${va} + 2×${vb} = ${fmt(peri, 4)}`); break;
+            case "triangle": peri = va + vb + vc; steps.push(`P = a + b + c = ${va} + ${vb} + ${vc} = ${fmt(peri, 4)}`); break;
+            case "circle": peri = 2 * Math.PI * vr; steps.push(`C = 2πr = 2 × π × ${vr} = ${fmt(peri, 6)}`); break;
+            case "ellipse": {
+                // Ramanujan approximation
+                const h3 = 3 * (va + vb);
+                const root = Math.sqrt((3 * va + vb) * (va + 3 * vb));
+                peri = Math.PI * (h3 - root);
+                steps.push(`P ≈ π[3(a+b) − √((3a+b)(a+3b))]`);
+                steps.push(`P ≈ π[${fmt(h3, 2)} − √(${fmt((3*va+vb)*(va+3*vb), 2)})]`);
+                steps.push(`P ≈ π × ${fmt(h3 - root, 4)} = ${fmt(peri, 6)}`);
+                break;
+            }
+            case "trapezoid": peri = va + vb + vc + vd; steps.push(`P = a + b + c + d = ${va} + ${vb} + ${vc} + ${vd} = ${fmt(peri, 4)}`); break;
+            case "parallelogram": peri = 2 * va + 2 * vb; steps.push(`P = 2a + 2b = 2×${va} + 2×${vb} = ${fmt(peri, 4)}`); break;
+            case "rhombus": peri = 4 * va; steps.push(`P = 4a = 4 × ${va} = ${fmt(peri, 4)}`); break;
+            case "sector": {
+                const rad = vang * Math.PI / 180;
+                const arcLen = vr * rad;
+                peri = 2 * vr + arcLen;
+                steps.push(`Arc = rθ = ${vr} × ${fmt(rad, 4)} = ${fmt(arcLen, 4)}`);
+                steps.push(`P = 2r + arc = 2×${vr} + ${fmt(arcLen, 4)} = ${fmt(peri, 6)}`);
+                break;
+            }
+            case "polygon": peri = va * vn; steps.push(`P = a × n = ${va} × ${vn} = ${fmt(peri, 4)}`); break;
+        }
+        return { peri: fmt(peri, 6), steps };
+    }, [shape, a, b, c, d, r1, ang, n]);
+    const showA = ["square","rectangle","triangle","trapezoid","parallelogram","rhombus","polygon"].includes(shape);
+    const showB = ["rectangle","triangle","trapezoid","parallelogram","ellipse"].includes(shape);
+    const showC = ["triangle","trapezoid"].includes(shape);
+    const showD = shape === "trapezoid";
+    const showR = ["circle","sector"].includes(shape);
+    const showAng = shape === "sector";
+    const showN = shape === "polygon";
+    const showElA = shape === "ellipse";
+    return (<div className="con-calc"><h3 className="con-calc__title">📏 Perimeter Calculator</h3><div className="con-calc__inputs">
+        <SelectField label="Shape" value={shape} onChange={setShape} options={PERIM_SHAPES.map(s => ({value: s.id, label: s.label}))} />
+        {showElA && <InputField label="Semi-major axis (a)" value={a} onChange={setA} />}
+        {showA && !showElA && <InputField label={shape === "square" || shape === "rhombus" ? "Side (a)" : shape === "polygon" ? "Side length (a)" : shape === "trapezoid" ? "Base a" : shape === "triangle" ? "Side a" : "Length (l)"} value={a} onChange={setA} />}
+        {showB && !showElA && <InputField label={shape === "triangle" ? "Side b" : shape === "trapezoid" ? "Base b" : "Width / Side b"} value={b} onChange={setB} />}
+        {showElA && <InputField label="Semi-minor axis (b)" value={b} onChange={setB} />}
+        {showC && <InputField label={shape === "trapezoid" ? "Side c" : "Side c"} value={c} onChange={setC} />}
+        {showD && <InputField label="Side d" value={d} onChange={setD} />}
+        {showR && <InputField label="Radius (r)" value={r1} onChange={setR1} />}
+        {showAng && <InputField label="Angle (degrees)" value={ang} onChange={setAng} />}
+        {showN && <InputField label="Number of sides (n)" value={n} onChange={setN} />}
+    </div><div className="con-calc__results"><h4>Result</h4>
+        <ResultRow label={shape === "circle" ? "Circumference" : "Perimeter"} value={`${res.peri} units`} />
+        <h4>Steps</h4>
+        {res.steps.map((s, i) => <ResultRow key={i} label={`Step ${i + 1}`} value={s} />)}
+    </div></div>);
+}
+
 /* ──── DISPATCHER ──── */
 const CALC_MAP: Record<string, React.FC> = {
     "percentage": PercentageCalc,
@@ -1532,6 +1606,7 @@ const CALC_MAP: Record<string, React.FC> = {
     "arc-length": ArcLengthCalc,
     "pentagon": PentagonCalc,
     "area-calculator": AreaCalc,
+    "perimeter-calculator": PerimeterCalc,
 };
 
 export default function MathCalculatorCore({ calcType }: { calcType: string }) {

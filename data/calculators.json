@@ -12084,5 +12084,19 @@
     "defaults": { "amount": 0, "rate": 0, "tenure": 0 },
     "sliderRanges": { "amount": { "min": 0, "max": 0, "step": 0 }, "rate": { "min": 0, "max": 0, "step": 0 }, "tenure": { "min": 0, "max": 0, "step": 0 } },
     "keywords": "area calculator, area of a rectangle, area of a circle, area of a triangle, area of a trapezoid, area formula, how to calculate area, area of a polygon, Heron's formula, sector area"
+  },
+  {
+    "id": "perimeter-calculator",
+    "category": "math",
+    "title": "Perimeter Calculator",
+    "slug": "perimeter-calculator",
+    "categorySlug": "math-calculators",
+    "icon": "📏",
+    "description": "Find the perimeter of 10 shapes: square, rectangle, triangle, circle, ellipse, trapezoid, parallelogram, rhombus, sector, and regular polygon. Step-by-step formulas included.",
+    "stars": 5,
+    "calcType": "perimeter-calculator",
+    "defaults": { "amount": 0, "rate": 0, "tenure": 0 },
+    "sliderRanges": { "amount": { "min": 0, "max": 0, "step": 0 }, "rate": { "min": 0, "max": 0, "step": 0 }, "tenure": { "min": 0, "max": 0, "step": 0 } },
+    "keywords": "perimeter calculator, perimeter of a rectangle, circumference of a circle, perimeter formula, perimeter of a triangle, trapezoid perimeter, perimeter of a polygon, ellipse perimeter"
   }
 ]
