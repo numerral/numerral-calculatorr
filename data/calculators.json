@@ -1313,36 +1313,36 @@
   {
     "id": "loan-payoff-calculator",
     "category": "loan",
-    "title": "Loan Payoff Calculator",
+    "title": "Mortgage Payoff Calculator",
     "slug": "loan-payoff-calculator",
     "categorySlug": "loan-calculators",
     "icon": "🏁",
     "calcType": "loanPayoff",
-    "description": "Calculate when your loan will be fully paid off with regular and extra payments. See how additional monthly payments accelerate payoff and save interest.",
+    "description": "Calculate how extra payments or biweekly payments accelerate your mortgage payoff. See interest savings, time saved, and your new payoff date with side-by-side comparison.",
     "stars": 5,
     "defaults": {
-      "amount": 500000,
-      "rate": 10,
-      "tenure": 60
+      "amount": 300000,
+      "rate": 6.5,
+      "tenure": 300
     },
     "sliderRanges": {
       "amount": {
         "min": 10000,
-        "max": 10000000,
-        "step": 10000
+        "max": 500000,
+        "step": 5000
       },
       "rate": {
-        "min": 3,
-        "max": 24,
-        "step": 0.25
+        "min": 2,
+        "max": 12,
+        "step": 0.125
       },
       "tenure": {
-        "min": 6,
+        "min": 12,
         "max": 360,
-        "step": 6
+        "step": 12
       }
     },
-    "keywords": "loan payoff calculator, loan payoff date, early payoff calculator, loan freedom calculator"
+    "keywords": "mortgage payoff calculator, mortgage payoff, pay off mortgage early, extra mortgage payments, biweekly mortgage payments, mortgage payoff date, early payoff calculator, how to pay off mortgage faster"
   },
   {
     "id": "loan-amortization-calculator",

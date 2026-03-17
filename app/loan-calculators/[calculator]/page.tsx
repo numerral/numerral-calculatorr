@@ -327,12 +327,83 @@ const HUB_CONTENT: Record<string, {
         ],
     },
     "loan-payoff-calculator": {
-        subtitle: "Calculate your loan payoff date with and without extra payments. See exactly how additional payments accelerate your debt freedom.",
-        contentHTML: `<h3>Accelerating Your Loan Payoff</h3><p>Every extra payment goes directly to principal reduction, saving you interest on that amount for the remaining loan tenure. The earlier you make extra payments, the more powerful the impact due to compound interest working in your favor.</p><ul><li>Adding just <strong>10% extra</strong> to each EMI can shorten a 20-year loan by 4-5 years</li><li>One extra EMI per year reduces a 30-year mortgage to ~25 years</li><li>Bi-weekly payments (26 half-payments/year vs 12 full) add one extra payment annually</li></ul>`,
+        subtitle: "Calculate how extra payments or biweekly payments accelerate your mortgage payoff. See exactly how much interest you'll save and when you'll be debt-free.",
+        explanation: {
+            heading: "How to Pay Off Your Mortgage Faster",
+            paragraphs: [
+                "Every mortgage payment consists of two parts: principal (loan repayment) and interest (cost of borrowing). Because interest is calculated on the outstanding balance, early payments are overwhelmingly interest-heavy. On a $300,000 mortgage at 6.5%, your first payment of $1,896 contains $1,625 of interest and just $271 of principal — that's 86% interest. This front-loading is exactly why extra payments are so powerful: every extra dollar goes directly to principal, permanently reducing the balance that generates interest.",
+                "The impact of extra payments is dramatic. Adding $500/month to a $300K mortgage at 6.5% saves approximately $122,000 in interest and pays off the loan nearly 8 years early. Even small amounts matter: just $100/month extra saves $44,000 and shaves off 4.5 years. The key is consistency — starting extra payments in Year 1 has roughly 3× the impact compared to starting in Year 10, because those early dollars eliminate years of compounding interest.",
+                "Biweekly payments offer an effortless payoff acceleration strategy. Instead of 12 monthly payments, you pay half the monthly amount every two weeks. Since there are 52 weeks in a year, this results in 26 half-payments — the equivalent of 13 full monthly payments instead of 12. That one extra payment per year, made automatically, can shave 4-5 years off a 30-year mortgage and save tens of thousands in interest without significantly impacting your budget.",
+            ],
+            highlight: "$300K mortgage at 6.5%, 25 years remaining: Extra $500/month saves $122,306 in interest and pays off 7 years 9 months early. Biweekly payments (pay half every 2 weeks) save $46,000+ and pay off 4+ years early — with zero lifestyle change.",
+        },
         faq: [
-            { question: "Is it better to make extra payments or invest?", answer: "If your loan rate is 9% and your investment returns 12% after tax, investing wins mathematically. But paying off debt gives a guaranteed, risk-free return equal to your loan rate. Choose debt payoff for peace of mind, investing for wealth growth." },
-            { question: "Do banks penalize extra payments?", answer: "In India, RBI mandates zero prepayment penalty on floating-rate individual loans. Fixed-rate and business loans may carry 2-4% penalty. In the US, check for prepayment penalties in your loan agreement." },
+            { question: "How much can I save with extra mortgage payments?", answer: "On a $300K mortgage at 6.5%: $100 extra/month saves $44K (4.5yr early), $300 extra saves $90K (7yr early), $500 extra saves $122K (8yr early). The earlier you start making extra payments, the greater the compounding benefit." },
+            { question: "How do biweekly mortgage payments work?", answer: "You pay half your monthly mortgage every two weeks. Since there are 52 weeks/year, you make 26 half-payments = 13 full payments instead of 12. The extra payment goes entirely to principal. On a 30-year mortgage, biweekly payments typically shave off 4-5 years and save 15-20% of total interest." },
+            { question: "Are there penalties for paying off my mortgage early?", answer: "Most modern conventional mortgages have no prepayment penalties. FHA loans, VA loans, and loans from federally chartered credit unions are prohibited by law from charging prepayment penalties. However, some older or non-standard loans may have penalties in the first 3-5 years — check your loan documents or call your servicer." },
+            { question: "Should I pay off my mortgage or invest instead?", answer: "Compare your mortgage rate to expected investment returns after tax. If your mortgage is 6.5% and you expect 8-10% stock market returns, investing may earn more — but with risk. Paying off the mortgage gives a guaranteed, risk-free return equal to your rate. Most financial advisors recommend: (1) Max out 401k match, (2) Pay off high-interest debt, (3) Build emergency fund, (4) Then split extra between mortgage payoff and investing." },
+            { question: "Can I refinance to pay off my mortgage faster?", answer: "Yes — refinancing from a 30-year to a 15-year mortgage typically saves 55-65% of total interest. For example, $300K at 6.5% for 30 years = $382K interest. Refinanced to 15 years at 5.9% = $163K interest — savings of $219K. However, closing costs (2-5% of loan) must be factored in." },
+            { question: "Is mortgage interest deductible on taxes?", answer: "Yes, in the U.S. you can deduct mortgage interest on up to $750,000 of loan balance ($375K if married filing separately). However, you only benefit if your itemized deductions exceed the standard deduction ($14,600 single / $29,200 married in 2024). Paying off your mortgage faster reduces this deduction." },
         ],
+        steps: [
+            { label: "Current mortgage snapshot", formula: "$300,000 balance, 6.5% rate, $1,896/mo payment", result: "Original payoff: 25 years" },
+            { label: "Add $500/month extra", formula: "New monthly total: $2,396 | Extra goes entirely to principal", result: "New payoff: 17 years 3 months" },
+            { label: "Calculate savings", formula: "Original interest: $269K | New interest: $147K", result: "Save $122,306 in interest" },
+            { label: "Time saved", formula: "25 years − 17 years 3 months", result: "Pay off 7 years 9 months early" },
+        ],
+        comparison: [
+            { title: "Normal Payments", value: "$1,896/mo", detail: "25 years remaining | Total interest: $269,000" },
+            { title: "Extra $500/mo", value: "$2,396/mo", detail: "17yr 3mo remaining | Saves $122,306 interest!", isWinner: true },
+        ],
+        insight: { icon: "💡", title: "The 'Invisible' 13th Payment", text: "Biweekly payments are the easiest payoff strategy because they align with biweekly paychecks. You barely notice the change — paying $948 every two weeks instead of $1,896 once a month — but the math creates one full extra payment per year. Over a 30-year mortgage, this single trick saves $46,000+ in interest and eliminates 4-5 years of payments." },
+        contentHTML: `
+<h3>Principal and Interest: How Your Mortgage Payment Breaks Down</h3>
+<p>Each monthly mortgage payment covers two things: <strong>principal</strong> (repaying what you borrowed) and <strong>interest</strong> (the lender's charge for lending you money). Interest is always calculated on the current outstanding balance, which means the proportion changes dramatically over the life of the loan.</p>
+<p>On a $300,000 mortgage at 6.5% for 30 years ($1,896/month):</p>
+<ul>
+<li><strong>Month 1:</strong> $1,625 interest + $271 principal (86% interest)</li>
+<li><strong>Month 180 (Year 15):</strong> $1,024 interest + $872 principal (54% interest)</li>
+<li><strong>Month 300 (Year 25):</strong> $340 interest + $1,556 principal (18% interest)</li>
+<li><strong>Month 360 (Final):</strong> $10 interest + $1,886 principal (0.5% interest)</li>
+</ul>
+<p>This is why each extra dollar paid early has an outsized impact — it eliminates the interest that dollar would have generated for the rest of the loan term.</p>
+
+<h3>Extra Payments: How Small Amounts Create Big Savings</h3>
+<p>Extra payments go entirely to principal reduction, which permanently shrinks the balance that accrues interest. Here's the impact on a $300K loan at 6.5%:</p>
+<ul>
+<li>Extra <strong>$100/month:</strong> Pays off <strong>4.5 years early</strong>, saves <strong>$44,000</strong></li>
+<li>Extra <strong>$200/month:</strong> Pays off <strong>6.5 years early</strong>, saves <strong>$74,000</strong></li>
+<li>Extra <strong>$500/month:</strong> Pays off <strong>8 years early</strong>, saves <strong>$122,000</strong></li>
+<li>One-time <strong>$10,000 payment</strong> in Year 1: Saves <strong>$23,000</strong> over the loan life</li>
+</ul>
+<p>A one-time additional payment of $1,000 towards a $200,000, 30-year loan at 5% interest can pay off the loan four months earlier, saving $3,420 in interest. Extra monthly payments of just $6 on the same loan will pay it off four payments earlier, saving $2,796.</p>
+
+<h3>Biweekly Payments: The Effortless Strategy</h3>
+<p>Biweekly payments are the simplest and most painless way to accelerate mortgage payoff. Instead of paying $1,896 once a month, you pay <strong>$948 every two weeks</strong>.</p>
+<p>The math: 52 weeks ÷ 2 = <strong>26 half-payments = 13 full payments</strong> per year instead of 12. That one extra payment per year, applied to principal, can shave 4–5 years off a 30-year mortgage. This strategy is especially effective for borrowers who receive biweekly paychecks.</p>
+
+<h3>Refinancing to a Shorter Term</h3>
+<p>Refinancing from a longer term to a shorter one can dramatically reduce your total interest, though your monthly payment will increase. For example, a borrower with $200,000 remaining at 5% interest with 20 years left can refinance to a new loan at 4%, reducing the monthly payment by $108 and saving $25,908 over the life of the loan.</p>
+<p>However, refinancing comes with closing costs (typically 2–5% of the loan amount). Borrowers should calculate their <strong>break-even point</strong> — the month at which refinancing savings exceed the closing costs. Usually, refinancing makes sense if you plan to stay in the home at least 3-5 more years.</p>
+
+<h3>Prepayment Penalties: What You Need to Know</h3>
+<p>Some lenders charge penalties for paying off a mortgage early. Penalties are calculated in various ways: some charge 80% of six months' interest, while others charge a percentage of the remaining balance. These can amount to thousands of dollars, especially in the early years.</p>
+<p>Important protections: <strong>FHA loans, VA loans, and loans from federally chartered credit unions prohibit prepayment penalties by law</strong>. Most modern conventional mortgages also lack prepayment penalties, but it's always wise to review your loan documents. When prepayment penalties do exist, they typically expire after 3-5 years.</p>
+
+<h3>Opportunity Costs: Pay Off Mortgage or Invest?</h3>
+<p>Before making extra mortgage payments, consider the <strong>opportunity cost</strong> — the potential returns you could earn by using that money elsewhere. Mortgages typically carry relatively low interest rates compared to other investment returns:</p>
+<ul>
+<li>If your mortgage rate is <strong>6.5%</strong> and the stock market returns <strong>10% annually</strong>, investing may produce higher returns — but with market risk</li>
+<li>Paying off your mortgage provides a <strong>guaranteed, risk-free return</strong> equal to your interest rate</li>
+<li>Always prioritize: <strong>(1)</strong> Employer 401k match, <strong>(2)</strong> High-interest debt (credit cards at 20%+), <strong>(3)</strong> Emergency fund, <strong>(4)</strong> Then split between mortgage payoff and investing</li>
+</ul>
+<p>Contributing to <strong>tax-advantaged accounts</strong> (401k, IRA, Roth IRA) should generally take priority over extra mortgage payments due to the combination of higher potential returns and significant tax benefits.</p>
+
+<h3>Real-World Scenarios</h3>
+<p><strong>Scenario 1: Christine</strong> — Christine wanted to pay off her mortgage early for peace of mind. But her financial advisor pointed out she had three credit cards with rates as high as 20%, while her mortgage was only 5%. By paying off the credit cards first, Christine eliminated far more interest charges.</p>
+<p><strong>Scenario 2: Bob</strong> — Bob is debt-free except for his mortgage and had extra income to deploy. However, his company was laying off employees. His advisor recommended building a 6-month emergency fund before making extra mortgage payments — financial security should come before debt optimization.</p>
+<p><strong>Scenario 3: Charles</strong> — Near retirement, Charles had maxed out his 401k, built an emergency fund, and had no other debt. With a conservative risk tolerance, his advisor recommended paying off the mortgage to enter retirement with zero housing expenses — a guaranteed return and maximum peace of mind.</p>
+`,
     },
     "loan-amortization-calculator": {
         subtitle: "Generate a complete amortization schedule showing how each payment splits between principal and interest. See annual and monthly breakdowns, add extra payments, and plan your loan payoff strategy.",

@@ -275,32 +275,96 @@ function LoanInterestRateCalc({defaults}:P){
     </div></div>);
 }
 
-// ─── 5. Loan Payoff ───
+// ─── 5. Mortgage Payoff (Enhanced) ───
 function LoanPayoffCalc({defaults}:P){
-  const[bal,setBal]=useState(defaults.amount||500000);
-  const[rate,setRate]=useState(defaults.rate||10);
-  const[emi,setEmi]=useState(12000);
-  const[extra,setExtra]=useState(2000);
+  const[bal,setBal]=useState(defaults.amount||300000);
+  const[rate,setRate]=useState(defaults.rate||6.5);
+  const[emi,setEmi]=useState(1896);
+  const[extra,setExtra]=useState(500);
+  const[biweekly,setBiweekly]=useState(false);
+
   const r=useMemo(()=>{
-    const mr=rate/100/12;let b1=bal,m1=0,int1=0;
-    while(b1>0&&m1<600){const i=b1*mr;int1+=i;b1=b1+i-emi;m1++;if(emi<=i)return{monthsOrig:999,monthsExtra:999,intOrig:0,intExtra:0,saved:0};}
-    let b2=bal,m2=0,int2=0;const totalEmi=emi+extra;
-    while(b2>0&&m2<600){const i=b2*mr;int2+=i;b2=b2+i-totalEmi;m2++;}
-    return{monthsOrig:m1,monthsExtra:m2,intOrig:int1,intExtra:int2,saved:int1-int2};
-  },[bal,rate,emi,extra]);
-  return(<div><div className="calc-input-panel">
-    <F label="💰 OUTSTANDING BALANCE" value={bal} onChange={setBal} step={10000}/>
-    <F label="% INTEREST RATE" value={rate} onChange={setRate} step={0.25}/>
-    <F label="📋 CURRENT EMI" value={emi} onChange={setEmi} step={500}/>
-    <F label="💸 EXTRA MONTHLY PAYMENT" value={extra} onChange={setExtra} step={500}/>
-  </div>
-    <div className="calc-card" style={{marginTop:"var(--s-6)",background:"var(--n-surface-alt)"}}>
-      <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:"var(--s-4)"}}>
-        <div><p className="calc-field__label">WITHOUT EXTRA</p><p style={{fontWeight:700}}>{r.monthsOrig} months ({(r.monthsOrig/12).toFixed(1)} yrs)</p><p style={{fontSize:"12px",color:"var(--n-text-muted)"}}>Interest: {fmt(r.intOrig)}</p></div>
-        <div><p className="calc-field__label">WITH EXTRA</p><p style={{fontWeight:700,color:"var(--n-success)"}}>{r.monthsExtra} months ({(r.monthsExtra/12).toFixed(1)} yrs)</p><p style={{fontSize:"12px",color:"var(--n-success)"}}>Interest: {fmt(r.intExtra)}</p></div>
+    const mr=rate/100/12;
+    // Original payoff
+    let b1=bal,m1=0,int1=0;
+    while(b1>0.5&&m1<600){const i=b1*mr;int1+=i;b1=b1+i-emi;m1++;if(emi<=i)return{monthsOrig:999,monthsNew:999,intOrig:0,intNew:0,saved:0,monthsSaved:0,origDate:"N/A",newDate:"N/A"};}
+    // With extra payments
+    let b2=bal,m2=0,int2=0;
+    const effectiveExtra=biweekly?Math.round(emi/12):extra; // biweekly = 1 extra payment/yr spread monthly
+    const totalPay=emi+effectiveExtra;
+    while(b2>0.5&&m2<600){const i=b2*mr;int2+=i;b2=b2+i-totalPay;m2++;}
+    const now=new Date();
+    const origDate=new Date(now);origDate.setMonth(origDate.getMonth()+m1);
+    const newDate=new Date(now);newDate.setMonth(newDate.getMonth()+m2);
+    const fmtDate=(d:Date)=>d.toLocaleDateString("en-US",{month:"short",year:"numeric"});
+    return{monthsOrig:m1,monthsNew:m2,intOrig:int1,intNew:int2,saved:int1-int2,monthsSaved:m1-m2,origDate:fmtDate(origDate),newDate:fmtDate(newDate)};
+  },[bal,rate,emi,extra,biweekly]);
+
+  return(<div>
+    <div className="calc-input-panel">
+      <div className="calc-field">
+        <label className="calc-field__label"><span className="calc-field__label-icon">💰</span>Outstanding Balance</label>
+        <input type="range" className="calc-field__slider" min={10000} max={500000} step={5000} value={bal} onChange={e=>setBal(+e.target.value)}/>
+        <input type="text" className="calc-field__input" value={bal.toLocaleString("en-US")} inputMode="numeric"
+          onChange={e=>{const v=parseInt(e.target.value.replace(/,/g,""));if(!isNaN(v))setBal(v);}}/>
       </div>
-      <p style={{fontSize:"var(--t-body)",fontWeight:700,color:"var(--n-success)",marginTop:"var(--s-3)"}}>You save {fmt(r.saved)} and {r.monthsOrig-r.monthsExtra} months!</p>
-    </div></div>);
+
+      <div className="calc-field">
+        <label className="calc-field__label"><span className="calc-field__label-icon">📊</span>Interest Rate (%)</label>
+        <input type="range" className="calc-field__slider" min={2} max={12} step={0.125} value={rate} onChange={e=>setRate(+e.target.value)}/>
+        <input type="text" className="calc-field__input" style={{maxWidth:"100px"}} value={rate} inputMode="decimal"
+          onChange={e=>{const v=parseFloat(e.target.value);if(!isNaN(v))setRate(v);}}/>
+      </div>
+
+      <div className="calc-field">
+        <label className="calc-field__label"><span className="calc-field__label-icon">📋</span>Current Monthly Payment</label>
+        <input type="text" className="calc-field__input" value={emi.toLocaleString("en-US")} inputMode="numeric"
+          onChange={e=>{const v=parseInt(e.target.value.replace(/,/g,""));if(!isNaN(v))setEmi(v);}}/>
+      </div>
+
+      <div className="calc-field">
+        <label className="calc-field__label"><span className="calc-field__label-icon">💸</span>Payoff Strategy</label>
+        <div className="tax-toggle" style={{marginBottom:"var(--s-2)"}}>
+          <button className={`tax-toggle__btn${!biweekly?" active":""}`} onClick={()=>setBiweekly(false)}>Extra Monthly</button>
+          <button className={`tax-toggle__btn${biweekly?" active":""}`} onClick={()=>setBiweekly(true)}>Biweekly Payments</button>
+        </div>
+        {!biweekly?(
+          <div>
+            <input type="range" className="calc-field__slider" min={0} max={2000} step={50} value={extra} onChange={e=>setExtra(+e.target.value)}/>
+            <input type="text" className="calc-field__input" style={{maxWidth:"120px"}} value={extra.toLocaleString("en-US")} inputMode="numeric"
+              onChange={e=>{const v=parseInt(e.target.value.replace(/,/g,""));if(!isNaN(v))setExtra(v);}}/>
+          </div>
+        ):(
+          <p className="t-body-sm text-muted">Pay {fmtUSD(Math.round(emi/2))} every 2 weeks = 13 full payments/year (1 extra payment annually)</p>
+        )}
+      </div>
+    </div>
+
+    {/* ── Results ── */}
+    <div className="calc-result" aria-live="polite">
+      <p className="calc-result__label">{biweekly?"Biweekly":"Extra Payment"} Payoff Results</p>
+      <p className="calc-result__emi" style={{color:"var(--n-success)"}}>{Math.round(r.monthsSaved/12)} years earlier</p>
+      <div className="calc-result__stats">
+        <div className="calc-result__stat"><p className="calc-result__stat-label">Interest Saved</p><p className="calc-result__stat-value" style={{color:"var(--n-success)"}}>{fmtUSD(r.saved)}</p></div>
+        <div className="calc-result__stat"><p className="calc-result__stat-label">Time Saved</p><p className="calc-result__stat-value" style={{color:"var(--n-success)"}}>{Math.floor(r.monthsSaved/12)}yr {r.monthsSaved%12}mo</p></div>
+        <div className="calc-result__stat"><p className="calc-result__stat-label">New Payoff Date</p><p className="calc-result__stat-value">{r.newDate}</p></div>
+      </div>
+
+      {/* Comparison Table */}
+      <div style={{marginTop:"var(--s-4)",overflowX:"auto"}}>
+        <table className="comparison-table">
+          <thead><tr><th></th><th>Original</th><th>{biweekly?"Biweekly":"With Extra"}</th></tr></thead>
+          <tbody>
+            <tr><td>Monthly Payment</td><td>{fmtUSD(emi)}</td><td>{biweekly?fmtUSD(Math.round(emi/2))+" × 2/wk":fmtUSD(emi+extra)}</td></tr>
+            <tr><td>Remaining Payments</td><td>{r.monthsOrig} months</td><td>{r.monthsNew} months</td></tr>
+            <tr><td>Payoff Date</td><td>{r.origDate}</td><td style={{color:"var(--n-success)",fontWeight:600}}>{r.newDate}</td></tr>
+            <tr><td>Total Interest</td><td>{fmtUSD(r.intOrig)}</td><td style={{color:"var(--n-success)",fontWeight:600}}>{fmtUSD(r.intNew)}</td></tr>
+            <tr style={{fontWeight:700}}><td>Interest Savings</td><td>—</td><td style={{color:"var(--n-success)"}}>{fmtUSD(r.saved)}</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>);
 }
 
 // ─── 6. Loan Amortization (Enhanced) ───
