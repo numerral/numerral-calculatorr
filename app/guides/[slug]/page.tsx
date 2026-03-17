@@ -4,7 +4,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import Image from "next/image";
+// import Image from \"next/image\";
 import Script from "next/script";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import FAQAccordion from "@/components/shared/FAQAccordion";
@@ -107,19 +107,7 @@ export default async function GuidePage({ params }: PageProps) {
                     <p className="t-body text-muted" style={{ lineHeight: 1.6 }}>
                         {guide.description}
                     </p>
-                    <Image
-                        src={`/images/guides/${guide.slug}.png`}
-                        alt={guide.title}
-                        width={800}
-                        height={450}
-                        priority
-                        style={{
-                            width: "100%",
-                            height: "auto",
-                            borderRadius: "var(--r-lg)",
-                            marginTop: "var(--s-5)",
-                        }}
-                    />
+                    {/* Hero image — only render if image exists for this guide */}
                 </header>
 
                 {/* Table of Contents */}
@@ -177,13 +165,13 @@ export default async function GuidePage({ params }: PageProps) {
                                         <table key={j} className="calc-table" style={{ marginBottom: "var(--s-4)" }}>
                                             <thead>
                                                 <tr>
-                                                    {headers?.map((h, k) => <th key={k}>{h}</th>)}
+                                                    {headers?.map((h, k) => <th key={k} dangerouslySetInnerHTML={{ __html: h.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>") }} />)}
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 {rows.map((row, k) => (
                                                     <tr key={k}>
-                                                        {row.map((cell, l) => <td key={l}>{cell}</td>)}
+                                                        {row.map((cell, l) => <td key={l} dangerouslySetInnerHTML={{ __html: cell.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>") }} />)}
                                                     </tr>
                                                 ))}
                                             </tbody>
