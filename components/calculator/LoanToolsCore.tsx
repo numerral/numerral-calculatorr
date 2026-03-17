@@ -1656,6 +1656,157 @@ function HELOCCalc({defaults}:P){
   </div>);
 }
 
+// ─── 21. VA Mortgage Calculator ───
+function VAMortgageCalc({defaults}:P){
+  const[homePrice,setHomePrice]=useState(defaults.amount||350000);
+  const[downPct,setDownPct]=useState(0);
+  const[rate,setRate]=useState(defaults.rate||6.25);
+  const[tenure,setTenure]=useState(defaults.tenure||360);
+  const[propTax,setPropTax]=useState(3500);
+  const[insurance,setInsurance]=useState(1200);
+  const[firstUse,setFirstUse]=useState(true);
+  const[feeExempt,setFeeExempt]=useState(false);
+
+  const r=useMemo(()=>{
+    const downAmt=homePrice*(downPct/100);
+    const loanBase=homePrice-downAmt;
+    // VA Funding Fee calculation
+    let feePct=0;
+    if(!feeExempt){
+      if(firstUse){
+        if(downPct>=10)feePct=1.25;
+        else if(downPct>=5)feePct=1.5;
+        else feePct=2.15;
+      }else{
+        if(downPct>=10)feePct=1.25;
+        else if(downPct>=5)feePct=1.5;
+        else feePct=3.3;
+      }
+    }
+    const fundingFee=loanBase*(feePct/100);
+    // Funding fee can be financed into loan
+    const totalLoan=loanBase+fundingFee;
+    const mr=rate/100/12;
+    const mp=pmt(mr,tenure,totalLoan);
+    const monthlyTax=propTax/12;
+    const monthlyIns=insurance/12;
+    const piti=mp+monthlyTax+monthlyIns;
+    const totalPaid=mp*tenure;
+    const totalInt=totalPaid-totalLoan;
+    // Conventional comparison (5% down, PMI at 0.55% until 20% equity)
+    const convDown=homePrice*0.05;
+    const convLoan=homePrice-convDown;
+    const convMp=pmt(mr,tenure,convLoan);
+    const convPMI=convLoan*0.0055/12;
+    const convPiti=convMp+monthlyTax+monthlyIns+convPMI;
+    return{downAmt,loanBase,feePct,fundingFee,totalLoan,mp,monthlyTax,monthlyIns,piti,totalPaid,totalInt,convMp,convPMI,convPiti};
+  },[homePrice,downPct,rate,tenure,propTax,insurance,firstUse,feeExempt]);
+
+  return(<div><div className="calc-input-panel">
+    <div className="calc-field">
+      <label className="calc-field__label">🏠 HOME PRICE ($)</label>
+      <input type="text" className="calc-field__input" value={homePrice.toLocaleString("en-US")} inputMode="numeric"
+        onChange={e=>{const v=Number(e.target.value.replace(/,/g,""));if(!isNaN(v))setHomePrice(v);}}/>
+      <input type="range" className="calc-field__slider" min={100000} max={1000000} step={5000} value={homePrice} onChange={e=>setHomePrice(Number(e.target.value))}/>
+    </div>
+    <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:"var(--s-3)"}}>
+      <div className="calc-field">
+        <label className="calc-field__label">⬇️ DOWN PAYMENT (%)</label>
+        <div style={{display:"flex",gap:"var(--s-2)",marginBottom:"var(--s-2)"}}>
+          {[0,5,10].map(v=>(
+            <button key={v} onClick={()=>setDownPct(v)} className="calc-preset-btn" style={{flex:1,padding:"var(--s-2)",fontWeight:downPct===v?700:400,background:downPct===v?"var(--n-primary)":"var(--n-surface-alt)",color:downPct===v?"#fff":"var(--n-text)",border:"none",borderRadius:"var(--radius-sm)",cursor:"pointer"}}>{v}%</button>
+          ))}
+        </div>
+        <input type="range" className="calc-field__slider" min={0} max={20} step={1} value={downPct} onChange={e=>setDownPct(Number(e.target.value))}/>
+        <p className="t-body-sm text-muted" style={{marginTop:"2px"}}>Down: {fmtUSD(r.downAmt)}</p>
+      </div>
+      <div className="calc-field">
+        <label className="calc-field__label">% INTEREST RATE</label>
+        <input type="number" className="calc-field__input" value={rate} onChange={e=>setRate(Number(e.target.value))} step={0.125}/>
+        <input type="range" className="calc-field__slider" min={3} max={10} step={0.125} value={rate} onChange={e=>setRate(Number(e.target.value))}/>
+      </div>
+    </div>
+    <div style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:"var(--s-3)"}}>
+      <div className="calc-field">
+        <label className="calc-field__label">📅 LOAN TERM</label>
+        <div style={{display:"flex",gap:"var(--s-2)"}}>
+          {[{l:"15yr",v:180},{l:"20yr",v:240},{l:"30yr",v:360}].map(t=>(
+            <button key={t.v} onClick={()=>setTenure(t.v)} className="calc-preset-btn" style={{flex:1,padding:"var(--s-2)",fontWeight:tenure===t.v?700:400,background:tenure===t.v?"var(--n-primary)":"var(--n-surface-alt)",color:tenure===t.v?"#fff":"var(--n-text)",border:"none",borderRadius:"var(--radius-sm)",cursor:"pointer"}}>{t.l}</button>
+          ))}
+        </div>
+      </div>
+      <div className="calc-field">
+        <label className="calc-field__label">🏛️ PROPERTY TAX ($/yr)</label>
+        <input type="text" className="calc-field__input" value={propTax.toLocaleString("en-US")} inputMode="numeric"
+          onChange={e=>{const v=Number(e.target.value.replace(/,/g,""));if(!isNaN(v))setPropTax(v);}}/>
+      </div>
+      <div className="calc-field">
+        <label className="calc-field__label">🛡️ HOME INSURANCE ($/yr)</label>
+        <input type="text" className="calc-field__input" value={insurance.toLocaleString("en-US")} inputMode="numeric"
+          onChange={e=>{const v=Number(e.target.value.replace(/,/g,""));if(!isNaN(v))setInsurance(v);}}/>
+      </div>
+    </div>
+    <hr style={{margin:"var(--s-3) 0",border:"1px solid var(--n-border)"}}/>
+    <p className="calc-field__label" style={{marginBottom:"var(--s-2)"}}>🎖️ VA FUNDING FEE OPTIONS</p>
+    <div style={{display:"flex",gap:"var(--s-4)",alignItems:"center"}}>
+      <label style={{display:"flex",alignItems:"center",gap:"var(--s-2)",cursor:"pointer"}}>
+        <input type="checkbox" checked={firstUse} onChange={e=>setFirstUse(e.target.checked)}/> First-time VA loan use
+      </label>
+      <label style={{display:"flex",alignItems:"center",gap:"var(--s-2)",cursor:"pointer"}}>
+        <input type="checkbox" checked={feeExempt} onChange={e=>setFeeExempt(e.target.checked)}/> 10%+ disability (fee exempt)
+      </label>
+    </div>
+  </div>
+
+    {/* Results */}
+    <div className="calc-card" style={{marginTop:"var(--s-6)",background:"var(--n-surface-alt)"}}>
+      <p className="calc-field__label">MONTHLY PAYMENT (PITI)</p>
+      <p style={{fontSize:"var(--t-h1)",fontWeight:700,color:"var(--n-primary)"}}>{fmtUSD(r.piti)}/mo</p>
+      <div style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr 1fr",gap:"var(--s-3)",marginTop:"var(--s-4)"}}>
+        <div><p className="calc-field__label">P&I</p><p style={{fontWeight:700}}>{fmtUSD(r.mp)}</p></div>
+        <div><p className="calc-field__label">PROPERTY TAX</p><p style={{fontWeight:700}}>{fmtUSD(r.monthlyTax)}</p></div>
+        <div><p className="calc-field__label">INSURANCE</p><p style={{fontWeight:700}}>{fmtUSD(r.monthlyIns)}</p></div>
+        <div><p className="calc-field__label">PMI</p><p style={{fontWeight:700,color:"var(--n-success)"}}>$0 ✓</p></div>
+      </div>
+    </div>
+
+    {/* VA Funding Fee */}
+    <div className="calc-card" style={{marginTop:"var(--s-4)",background:feeExempt?"rgba(34,197,94,0.08)":"var(--n-surface)"}}>
+      <p className="calc-field__label" style={{marginBottom:"var(--s-3)"}}>🎖️ VA FUNDING FEE</p>
+      {feeExempt?(<p style={{fontWeight:700,color:"var(--n-success)",fontSize:"var(--t-h3)"}}>$0 — Exempt (10%+ service-connected disability)</p>):(<>
+        <div style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:"var(--s-3)"}}>
+          <div><p className="calc-field__label">FEE RATE</p><p style={{fontWeight:700}}>{r.feePct}%</p></div>
+          <div><p className="calc-field__label">FEE AMOUNT</p><p style={{fontWeight:700,color:"var(--n-warning)"}}>{fmtUSD(r.fundingFee)}</p></div>
+          <div><p className="calc-field__label">TOTAL LOAN (w/ fee)</p><p style={{fontWeight:700}}>{fmtUSD(r.totalLoan)}</p></div>
+        </div>
+        <p className="t-body-sm text-muted" style={{marginTop:"var(--s-2)"}}>
+          {firstUse?"First-time use":"Subsequent use"} | {downPct}% down payment → {r.feePct}% fee. Financed into loan balance.
+        </p>
+      </>)}
+      <table className="calc-table" style={{marginTop:"var(--s-3)"}}>
+        <thead><tr><th>Down Payment</th><th>First Use</th><th>Subsequent Use</th></tr></thead><tbody>
+        <tr style={downPct<5?{background:"var(--n-primary-bg, rgba(59,130,246,0.1))"}:undefined}><td>Less than 5%</td><td>2.15%</td><td>3.30%</td></tr>
+        <tr style={downPct>=5&&downPct<10?{background:"var(--n-primary-bg, rgba(59,130,246,0.1))"}:undefined}><td>5% - 9.99%</td><td>1.50%</td><td>1.50%</td></tr>
+        <tr style={downPct>=10?{background:"var(--n-primary-bg, rgba(59,130,246,0.1))"}:undefined}><td>10% or more</td><td>1.25%</td><td>1.25%</td></tr>
+      </tbody></table>
+    </div>
+
+    {/* VA vs Conv vs FHA */}
+    <div className="calc-card" style={{marginTop:"var(--s-4)",background:"var(--n-surface)"}}>
+      <p className="calc-field__label" style={{marginBottom:"var(--s-3)"}}>VA LOAN vs CONVENTIONAL vs FHA</p>
+      <table className="calc-table"><thead><tr><th></th><th style={{color:"var(--n-primary)"}}>VA Loan ✓</th><th>Conventional</th><th>FHA</th></tr></thead><tbody>
+        <tr><td>Down Payment</td><td style={{color:"var(--n-success)",fontWeight:700}}>0%</td><td>5-20%</td><td>3.5%</td></tr>
+        <tr><td>PMI/MIP</td><td style={{color:"var(--n-success)",fontWeight:700}}>None ✓</td><td>Required &lt;20% down</td><td>Required (life of loan)</td></tr>
+        <tr><td>Funding Fee</td><td>{r.feePct}% ({fmtUSD(r.fundingFee)})</td><td>None</td><td>1.75% upfront + 0.85%/yr</td></tr>
+        <tr><td>Monthly (est.)</td><td style={{fontWeight:700}}>{fmtUSD(r.piti)}</td><td>{fmtUSD(r.convPiti)}</td><td>—</td></tr>
+        <tr><td>Credit Score</td><td>No VA minimum (lenders: 620+)</td><td>620-680+</td><td>580+ (3.5% down)</td></tr>
+        <tr><td>Prepayment Penalty</td><td style={{color:"var(--n-success)"}}>None ✓</td><td>Varies</td><td>None</td></tr>
+        <tr><td>Eligibility</td><td>Veterans/active duty/spouses</td><td>Anyone</td><td>Anyone</td></tr>
+      </tbody></table>
+    </div>
+  </div>);
+}
+
 // ─── Dispatcher ───
 const CALC_MAP:Record<string,React.FC<P>>={
   mortgage:MortgageCalc, debtConsolidation:DebtConsolidationCalc,
@@ -1667,6 +1818,7 @@ const CALC_MAP:Record<string,React.FC<P>>={
   rentAffordability:RentAffordabilityCalc, debtRatio:DebtRatioCalc,
   downPayment:DownPaymentCalc, aprCalc:APRCalc,
   homeEquity:HomeEquityCalc, heloc:HELOCCalc,
+  vaMortgage:VAMortgageCalc,
 };
 
 export default function LoanToolsCore({calcType,defaults,sliderRanges}:{calcType:string;defaults:any;sliderRanges?:any}){

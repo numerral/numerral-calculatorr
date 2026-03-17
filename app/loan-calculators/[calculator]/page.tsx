@@ -45,7 +45,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 // Hub page content per calculator type
-const LOAN_TOOL_TYPES = ["mortgage","debtConsolidation","loanAffordability","loanInterestRate","loanPayoff","loanAmortization","ltv","balloonLoan","arm","fixedVsVariable","extraPayment","refinance","mortgageRefinance","rentAffordability","debtRatio","downPayment","aprCalc","homeEquity","heloc"];
+const LOAN_TOOL_TYPES = ["mortgage","debtConsolidation","loanAffordability","loanInterestRate","loanPayoff","loanAmortization","ltv","balloonLoan","arm","fixedVsVariable","extraPayment","refinance","mortgageRefinance","rentAffordability","debtRatio","downPayment","aprCalc","homeEquity","heloc","vaMortgage"];
 
 const HUB_CONTENT: Record<string, {
     subtitle: string;
@@ -1287,6 +1287,87 @@ const HUB_CONTENT: Record<string, {
 <li><strong>Bridge financing</strong> \u2014 Use HELOC to fund down payment on new home before selling current home</li>
 <li><strong>Business startup costs</strong> \u2014 Draw operating capital as needed during early business phase (high risk \u2014 your home is collateral)</li>
 </ol>
+`,
+    },
+    "va-mortgage-calculator": {
+        subtitle: "Calculate VA loan payments with automatic funding fee calculation, PITI breakdown, and side-by-side comparison with conventional and FHA mortgages.",
+        explanation: {
+            heading: "What Is a VA Loan?",
+            paragraphs: [
+                "A VA loan is a mortgage guaranteed by the U.S. Department of Veterans Affairs, available to veterans, active-duty service members, National Guard members, reservists, and eligible surviving spouses. The VA doesn't lend money directly \u2014 private lenders issue the loans, and the VA guarantees a portion, which reduces lender risk and enables better terms.",
+                "The defining feature of VA loans is the 0% down payment requirement \u2014 one of only a few mortgage programs in the US that allows this. VA loans also have no private mortgage insurance (PMI), no prepayment penalties, and typically lower interest rates than conventional mortgages. Instead of PMI, borrowers pay a one-time VA funding fee (0-3.3% of the loan).",
+                "To qualify, you need a Certificate of Eligibility (COE) proving your military service. The VA has no minimum credit score, but most lenders require 620+. VA loans can only be used for primary residences \u2014 not investment properties or vacation homes.",
+            ],
+            highlight: "Example: $350,000 home with 0% down at 6.25% for 30 years. VA funding fee (first use): 2.15% = $7,525. Total loan: $357,525. Monthly PITI: ~$2,594. Same home conventional (5% down): ~$2,612/mo including PMI.",
+        },
+        faq: [
+            { question: "Who qualifies for a VA loan?", answer: "Veterans with honorable discharge (DD 214), active-duty service members (90+ days), National Guard/Reservists (6+ years or 90 days active duty during wartime), and surviving spouses of veterans who died in service or from service-connected disability. You need a Certificate of Eligibility (COE) from the VA." },
+            { question: "What is the VA funding fee?", answer: "A one-time fee paid to the VA to support the program. First-time use: 2.15% with 0% down, 1.5% with 5%+ down, 1.25% with 10%+ down. Subsequent use: 3.3% with 0% down. The fee is waived for veterans with 10%+ service-connected disability, Purple Heart recipients, and surviving spouses." },
+            { question: "Is there a VA loan limit?", answer: "For veterans with full entitlement, there is NO loan limit \u2014 the VA will guarantee any amount (but the lender may have their own limits). For veterans with partial entitlement (e.g., existing VA loan), county loan limits apply (conforming limit: $766,550 in 2024, higher in high-cost areas)." },
+            { question: "Can I use a VA loan more than once?", answer: "Yes. VA loan benefits are reusable. You can have multiple VA loans simultaneously if you have remaining entitlement. When you sell a home and pay off the VA loan, your full entitlement is restored. The IRRRL (Interest Rate Reduction Refinance Loan) also lets you refinance an existing VA loan." },
+            { question: "Do VA loans require PMI?", answer: "No. VA loans never require private mortgage insurance (PMI), regardless of down payment. This is one of the biggest financial advantages \u2014 conventional loans require PMI until you reach 20% equity, costing $100-$300+/month on a typical loan." },
+            { question: "What are the downsides of VA loans?", answer: "VA funding fee (2.15-3.3% for 0% down), can only buy primary residence, not all sellers/lenders work with VA, more paperwork at closing, VA appraisal requirements are stricter (property must meet Minimum Property Requirements), and cannot be used for fixer-uppers or investment properties." },
+        ],
+        steps: [
+            { label: "Home price & down payment", formula: "$350,000 home \u00d7 0% down", result: "Loan base: $350,000" },
+            { label: "VA funding fee", formula: "$350,000 \u00d7 2.15% (first use, 0% down)", result: "Fee: $7,525" },
+            { label: "Total loan amount", formula: "$350,000 + $7,525 (fee financed)", result: "$357,525" },
+            { label: "Monthly PITI", formula: "P&I + tax/12 + insurance/12", result: "$2,594/month" },
+        ],
+        comparison: [
+            { title: "VA Loan (0% down)", value: "$2,594/mo", detail: "No PMI | 2.15% funding fee | 0% down", isWinner: true },
+            { title: "Conventional (5% down)", value: "$2,612/mo", detail: "PMI required | No funding fee | 5% down" },
+            { title: "FHA (3.5% down)", value: "$2,580/mo", detail: "MIP for life | 1.75% upfront | 3.5% down" },
+        ],
+        insight: { icon: "\ud83c\udf96\ufe0f", title: "VA Funding Fee: The Key Decision Factor", text: "The VA funding fee is the main cost unique to VA loans. For first-time use with 0% down, it's 2.15% ($7,525 on $350K). But you save $150-$300/month by avoiding PMI. Break-even: ~25-50 months. For subsequent use with 0% down, the fee jumps to 3.3% ($11,550) \u2014 consider making 5%+ down to reduce it to 1.5%. Veterans with 10%+ disability pay $0 in funding fees." },
+        contentHTML: `
+<h3>VA Loan Eligibility</h3>
+<p>VA loans are available to those who have served the United States military. Eligibility requires a Certificate of Eligibility (COE) from the VA, which verifies your military service status:</p>
+<table><tr><th>Service Type</th><th>Minimum Service Required</th></tr>
+<tr><td>Active duty</td><td>90 consecutive days during wartime, or 181 days during peacetime</td></tr>
+<tr><td>Post-9/11 service</td><td>90 days active duty</td></tr>
+<tr><td>National Guard/Reserves</td><td>6 years, or 90 days active duty during wartime</td></tr>
+<tr><td>Surviving spouse</td><td>Spouse died in service or from service-connected disability</td></tr></table>
+<p>Honorable discharge is required (DD 214 document). Dishonorable discharge disqualifies applicants.</p>
+
+<h3>VA Funding Fee Structure</h3>
+<table><tr><th>Down Payment</th><th>First Use</th><th>Subsequent Use</th></tr>
+<tr><td>Less than 5%</td><td>2.15%</td><td>3.30%</td></tr>
+<tr><td>5% to 9.99%</td><td>1.50%</td><td>1.50%</td></tr>
+<tr><td>10% or more</td><td>1.25%</td><td>1.25%</td></tr></table>
+<p><strong>Fee exemptions:</strong> Veterans with 10%+ service-connected disability, Purple Heart recipients (active duty), and surviving spouses of veterans who died from service-connected conditions.</p>
+<p><strong>Other VA funding fee rates:</strong> IRRRL (Interest Rate Reduction Refinance): 0.50%. Loan assumptions: 0.50%. Manufactured home loans (not permanently affixed): 1.00%.</p>
+
+<h3>VA Loan Pros and Cons</h3>
+<p><strong>Pros:</strong></p>
+<ul>
+<li>0% down payment required \u2014 no savings needed for down payment</li>
+<li>No PMI ever, regardless of down payment amount</li>
+<li>Lower interest rates than conventional mortgages (typically 0.25-0.5% lower)</li>
+<li>No prepayment penalties \u2014 pay off anytime without fees</li>
+<li>Sellers can pay up to 4% of loan amount toward closing costs</li>
+<li>VA appraisal protects buyers from overpaying</li>
+<li>Benefits are reusable \u2014 can have multiple VA loans</li>
+</ul>
+<p><strong>Cons:</strong></p>
+<ul>
+<li>VA funding fee (2.15-3.3% for 0% down) adds to loan cost</li>
+<li>Primary residence only \u2014 no investment properties or vacation homes</li>
+<li>Not all sellers/lenders work with VA loans</li>
+<li>Stricter appraisal: property must meet VA Minimum Property Requirements (MPR)</li>
+<li>Cannot use for fixer-uppers or homes needing significant repairs</li>
+<li>More paperwork and potentially longer closing times</li>
+</ul>
+
+<h3>VA Loan vs Conventional vs FHA</h3>
+<table><tr><th></th><th>VA Loan</th><th>Conventional</th><th>FHA</th></tr>
+<tr><td>Down Payment</td><td>0%</td><td>5-20%</td><td>3.5%</td></tr>
+<tr><td>PMI/MIP</td><td>None</td><td>Required until 20% equity</td><td>Required for life of loan</td></tr>
+<tr><td>Funding/Guarantee Fee</td><td>0-3.3%</td><td>None</td><td>1.75% upfront + 0.85%/yr</td></tr>
+<tr><td>Credit Score</td><td>No VA min (lenders: 620+)</td><td>620-680+</td><td>580+ (3.5% down)</td></tr>
+<tr><td>Loan Limits</td><td>None (full entitlement)</td><td>$766,550 conforming</td><td>$498,257 \u2013 $1,149,825</td></tr>
+<tr><td>Prepayment Penalty</td><td>None</td><td>Varies</td><td>None</td></tr>
+<tr><td>Occupancy</td><td>Primary only</td><td>Any</td><td>Primary only</td></tr></table>
 `,
     },
 };

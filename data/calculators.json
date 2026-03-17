@@ -1821,6 +1821,40 @@
     "keywords": "HELOC calculator, home equity line of credit calculator, HELOC payment calculator, HELOC vs home equity loan, HELOC draw period, HELOC repayment period, HELOC credit limit, HELOC rates"
   },
   {
+    "id": "va-mortgage-calculator",
+    "category": "loan",
+    "title": "VA Mortgage Calculator",
+    "slug": "va-mortgage-calculator",
+    "categorySlug": "loan-calculators",
+    "icon": "🎖️",
+    "calcType": "vaMortgage",
+    "description": "Calculate VA loan payments with automatic funding fee. Compare VA loan vs conventional vs FHA with PITI breakdown. No PMI, 0% down payment option for veterans.",
+    "stars": 5,
+    "defaults": {
+      "amount": 350000,
+      "rate": 6.25,
+      "tenure": 360
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 100000,
+        "max": 1000000,
+        "step": 5000
+      },
+      "rate": {
+        "min": 3,
+        "max": 10,
+        "step": 0.125
+      },
+      "tenure": {
+        "min": 180,
+        "max": 360,
+        "step": 60
+      }
+    },
+    "keywords": "VA mortgage calculator, VA loan calculator, VA funding fee calculator, VA loan vs conventional, VA home loan rates, veteran mortgage, military home loan, VA loan eligibility"
+  },
+  {
     "id": "interest-rate",
     "category": "utility",
     "title": "Interest Rate Calculator",
