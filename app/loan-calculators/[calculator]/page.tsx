@@ -272,13 +272,35 @@ const HUB_CONTENT: Record<string, {
         ],
     },
     "mortgage-calculator": {
-        subtitle: "Calculate your full monthly mortgage payment including principal, interest, property tax, insurance, and PMI. Plan your home purchase with total cost clarity.",
-        contentHTML: `<h3>How a Mortgage Payment is Calculated</h3><p>Your mortgage payment has four components (PITI): <strong>Principal</strong> (loan repayment), <strong>Interest</strong> (cost of borrowing), <strong>Taxes</strong> (property tax), and <strong>Insurance</strong> (homeowner's insurance). PMI is added when your down payment is less than 20%.</p><p>The P&I portion uses the standard amortization formula: <strong>M = P × r(1+r)^n / ((1+r)^n − 1)</strong>. Property tax and insurance are typically escrowed into the monthly payment by your lender.</p><div class="explanation__highlight"><strong>20% down payment tip:</strong> Putting at least 20% down eliminates PMI, saving you $100-$300/month on a $300K home. If you can't reach 20%, consider lender-paid PMI options where the cost is built into a slightly higher interest rate.</div>`,
+        subtitle: "Calculate your full monthly mortgage payment including principal, interest, property tax, insurance, PMI, and HOA. See your amortization schedule and total cost of homeownership.",
+        explanation: {
+            heading: "How Mortgage Payments Work in the U.S.",
+            paragraphs: [
+                "Your monthly mortgage payment has up to five components, often called PITI+: Principal (paying down the loan balance), Interest (the cost of borrowing), Taxes (property tax escrowed monthly), Insurance (homeowner's insurance), and optional PMI/HOA fees. The principal and interest portion is calculated using the standard amortization formula — M = P × r(1+r)^n / ((1+r)^n − 1) — which keeps your payment fixed while gradually shifting the balance from interest-heavy to principal-heavy over time.",
+                "The 20% down payment threshold is one of the most important numbers in home buying. Putting less than 20% down triggers Private Mortgage Insurance (PMI), which costs 0.3%–1.5% of the loan amount annually — that's $80–$400/month on a $320,000 loan. PMI automatically drops off when your equity reaches 22%. If you can't reach 20%, consider lender-paid PMI (built into a slightly higher rate) or FHA loans (3.5% down, but with mortgage insurance for the life of the loan).",
+                "Choosing between a 15-year and 30-year mortgage is a major decision. A 30-year loan on $320,000 at 6.5% costs $2,023/month but $408,185 in total interest. The same loan at 15 years costs $2,789/month (+$766) but only $181,984 in total interest — saving you $226,201. If you can afford the higher payment, the 15-year option builds equity faster and saves massively on interest.",
+            ],
+            highlight: "$400K home, 20% down ($80K), 6.5% rate, 30 years → Monthly P&I: $2,023 | Property Tax: $400 | Insurance: $125 | Total: ~$2,548/mo. Total interest over 30 years: $408,185 — more than the original loan amount.",
+        },
         faq: [
-            { question: "How much house can I afford?", answer: "The 28/36 rule: your mortgage payment should not exceed 28% of gross monthly income, and total debt payments should stay under 36%. On a $6,000/month income, aim for a max mortgage payment of ~$1,680." },
-            { question: "What is PMI and when can I remove it?", answer: "Private Mortgage Insurance protects the lender when your LTV exceeds 80%. You can request removal once you reach 20% equity. It's automatically cancelled at 22% equity. PMI typically costs 0.3%-1.5% of the loan annually." },
-            { question: "Fixed-rate or adjustable-rate mortgage?", answer: "Fixed-rate offers payment certainty for the full term. ARMs start lower but adjust after 5-10 years. Choose fixed if you plan to stay 10+ years. Choose ARM if you plan to move/refinance within the intro period." },
+            { question: "How much house can I afford?", answer: "Follow the 28/36 rule: your total housing payment (mortgage + taxes + insurance) should not exceed 28% of gross monthly income, and total debt payments should stay under 36%. On a $7,000/month gross income, aim for a max housing payment of ~$1,960." },
+            { question: "What is PMI and when can I remove it?", answer: "Private Mortgage Insurance (PMI) protects the lender when your down payment is less than 20%. It typically costs 0.3%–1.5% of the loan amount per year. You can request removal at 20% equity and it's automatically cancelled at 22% equity. Refinancing is another way to drop PMI once you've built enough equity." },
+            { question: "Should I choose a 15-year or 30-year mortgage?", answer: "A 30-year mortgage gives you lower monthly payments and more budget flexibility. A 15-year mortgage has a higher monthly payment but dramatically lower total interest — you could save $150K–$250K on a typical loan. If you can comfortably afford the 15-year payment, it's almost always the smarter financial choice." },
+            { question: "Fixed-rate or adjustable-rate mortgage (ARM)?", answer: "Fixed-rate offers payment certainty for the full term — ideal if you plan to stay 10+ years. ARMs (like 5/1 ARM) start 0.5–1.5% lower but adjust after the intro period. Choose an ARM only if you plan to sell or refinance before the adjustment date." },
+            { question: "What are typical closing costs?", answer: "Closing costs run 2%–5% of the home purchase price. On a $400,000 home, expect $8,000–$20,000 covering appraisal, title insurance, attorney fees, origination fees, and prepaid taxes/insurance. Some costs are negotiable, and sellers sometimes contribute toward closing costs." },
+            { question: "How does property tax affect my payment?", answer: "Property tax is typically 0.5%–2.5% of your home's assessed value, depending on your state and county. On a $400,000 home at 1.2%, that's $4,800/year or $400/month added to your mortgage payment. This is usually escrowed by your lender and included in your monthly payment." },
         ],
+        steps: [
+            { label: "Calculate loan amount", formula: "$400,000 home − $80,000 down (20%)", result: "Loan: $320,000" },
+            { label: "Monthly interest rate", formula: "r = 6.5% ÷ 12 = 0.005417", result: "Monthly rate: 0.5417%" },
+            { label: "P&I payment (30yr)", formula: "M = $320K × 0.005417 × (1.005417)^360 ÷ ((1.005417)^360 − 1)", result: "P&I: $2,023/mo" },
+            { label: "Add taxes + insurance", formula: "$2,023 + $400 (tax) + $125 (insurance) + $0 (no PMI)", result: "Total: $2,548/mo" },
+        ],
+        comparison: [
+            { title: "30-Year Fixed", value: "$2,023/mo", detail: "6.5% rate | Total interest: $408,185 | Lower payment, higher total cost" },
+            { title: "15-Year Fixed", value: "$2,789/mo", detail: "5.9% rate | Total interest: $181,984 | Saves $226,201!", isWinner: true },
+        ],
+        insight: { icon: "🏠", title: "20% Down Payment Strategy", text: "Putting 20% down on a $400K home ($80K) eliminates PMI, saving $133–$400/month. If it takes you 2 years to save the extra down payment, calculate whether the PMI payments during that time exceed the savings. Sometimes buying sooner with 10% down and refinancing later is cheaper than waiting." },
     },
     "debt-consolidation-calculator": {
         subtitle: "Compare the total cost of your existing debts against a single consolidated loan. See monthly payment reduction and total interest savings.",

@@ -11,43 +11,181 @@ const F=({label,value,onChange,min=0,max=1e7,step=1,prefix=""}:{label:string;val
   <div className="calc-field"><label className="calc-field__label">{label}</label>
   <input type="number" className="calc-field__input" value={value} onChange={e=>onChange(Number(e.target.value))} inputMode="decimal" min={min} step={step}/></div>);
 
-// ─── 1. Mortgage Calculator ───
+// ─── 1. Mortgage Calculator (Enhanced) ───
 function MortgageCalc({defaults}:P){
-  const[price,setPrice]=useState(defaults.amount||300000);
-  const[down,setDown]=useState(60000);
-  const[rate,setRate]=useState(defaults.rate||7);
-  const[tenure,setTenure]=useState(defaults.tenure||360);
-  const[tax,setTax]=useState(250);
-  const[ins,setIns]=useState(100);
-  const[pmiRate,setPmi]=useState(0.5);
+  const[price,setPrice]=useState(defaults.amount||400000);
+  const[downMode,setDownMode]=useState<"percent"|"dollar">("percent");
+  const[downPct,setDownPct]=useState(20);
+  const[downAmt,setDownAmt]=useState(80000);
+  const[rate,setRate]=useState(defaults.rate||6.5);
+  const[termYears,setTermYears]=useState(30);
+  const[taxPct,setTaxPct]=useState(1.2);
+  const[insYr,setInsYr]=useState(1500);
+  const[hoa,setHoa]=useState(0);
+  const[showAmort,setShowAmort]=useState(false);
+
+  const down=downMode==="percent"?Math.round(price*downPct/100):downAmt;
+  const loan=Math.max(price-down,0);
+  const tenure=termYears*12;
+  const ltv=price>0?(loan/price*100):0;
+
   const r=useMemo(()=>{
-    const loan=price-down;const mr=rate/100/12;const mp=pmt(mr,tenure,loan);
-    const ltv=price>0?loan/price*100:0;const pmiM=ltv>80?(loan*pmiRate/100/12):0;
-    const total=mp+tax+ins+pmiM;const totalPaid=mp*tenure;const totalInt=totalPaid-loan;
-    return{loan,mp,tax,ins:ins,pmi:pmiM,total,totalInt,ltv,totalPaid};
-  },[price,down,rate,tenure,tax,ins,pmiRate]);
-  return(<div><div className="calc-input-panel">
-    <F label="🏡 HOME PRICE ($)" value={price} onChange={setPrice} step={5000}/>
-    <F label="💵 DOWN PAYMENT ($)" value={down} onChange={setDown} step={1000}/>
-    <F label="% INTEREST RATE" value={rate} onChange={setRate} step={0.125}/>
-    <F label="📅 LOAN TERM (months)" value={tenure} onChange={setTenure} step={12}/>
-    <div style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:"var(--s-3)"}}>
-      <F label="🏛️ PROPERTY TAX/mo" value={tax} onChange={setTax}/>
-      <F label="🛡️ INSURANCE/mo" value={ins} onChange={setIns}/>
-      <F label="📊 PMI RATE (%)" value={pmiRate} onChange={setPmi} step={0.1}/>
-    </div></div>
-    <div className="calc-card" style={{marginTop:"var(--s-6)",background:"var(--n-surface-alt)"}}>
-      <p className="calc-field__label">TOTAL MONTHLY PAYMENT</p>
-      <p style={{fontSize:"var(--t-h1)",fontWeight:700,color:"var(--n-primary)",marginBottom:"var(--s-4)"}}>{fmtUSD(r.total)}</p>
-      <div style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr 1fr",gap:"var(--s-3)"}}>
-        <div><p className="calc-field__label">PRINCIPAL & INT</p><p style={{fontWeight:700}}>{fmtUSD(r.mp)}</p></div>
-        <div><p className="calc-field__label">PROPERTY TAX</p><p style={{fontWeight:700}}>{fmtUSD(r.tax)}</p></div>
-        <div><p className="calc-field__label">INSURANCE</p><p style={{fontWeight:700}}>{fmtUSD(r.ins)}</p></div>
-        <div><p className="calc-field__label">PMI</p><p style={{fontWeight:700,color:r.pmi>0?"var(--n-error, #ef4444)":"var(--n-text)"}}>{fmtUSD(r.pmi)}{r.pmi>0?" ⚠":"✅"}</p></div>
+    const mr=rate/100/12;const mp=pmt(mr,tenure,loan);
+    const taxMo=Math.round(price*taxPct/100/12);const insMo=Math.round(insYr/12);
+    const pmiMo=ltv>80?Math.round(loan*0.005/12):0;
+    const total=mp+taxMo+insMo+pmiMo+hoa;
+    const totalPaid=mp*tenure;const totalInt=totalPaid-loan;
+    const payoffDate=new Date();payoffDate.setMonth(payoffDate.getMonth()+tenure);
+    const payoffStr=payoffDate.toLocaleDateString("en-US",{month:"short",year:"numeric"});
+    // Yearly amortization
+    const years:{yr:number;prin:number;int:number;bal:number}[]=[];
+    let bal=loan;
+    for(let y=1;y<=termYears;y++){
+      let yPrin=0,yInt=0;
+      for(let m=0;m<12&&bal>0.5;m++){const i=bal*mr;const p=mp-i;yPrin+=p;yInt+=i;bal=Math.max(0,bal-p);}
+      years.push({yr:y,prin:yPrin,int:yInt,bal});
+    }
+    return{loan,mp,taxMo,insMo,pmiMo,total,totalInt,totalPaid,ltv,payoff:payoffStr,years,totalCost:total*tenure};
+  },[price,down,rate,tenure,taxPct,insYr,hoa,ltv,loan]);
+
+  return(<div>
+    <div className="calc-input-panel">
+      {/* Home Price */}
+      <div className="calc-field">
+        <label className="calc-field__label"><span className="calc-field__label-icon">🏡</span>Home Price</label>
+        <input type="range" className="calc-field__slider" min={50000} max={2000000} step={5000} value={price} onChange={e=>setPrice(+e.target.value)}/>
+        <input type="text" className="calc-field__input" value={price.toLocaleString("en-US")} inputMode="numeric"
+          onChange={e=>{const v=parseInt(e.target.value.replace(/,/g,""));if(!isNaN(v))setPrice(v);}}/>
       </div>
-      <p style={{fontSize:"var(--t-body-sm)",color:"var(--n-text-muted)",marginTop:"var(--s-3)"}}>Loan: {fmtUSD(r.loan)} | LTV: {r.ltv.toFixed(1)}% | Total Interest: {fmtUSD(r.totalInt)}</p>
-    </div></div>);
+
+      {/* Down Payment */}
+      <div className="calc-field">
+        <label className="calc-field__label"><span className="calc-field__label-icon">💵</span>Down Payment</label>
+        <div className="tax-toggle" style={{marginBottom:"var(--s-2)"}}>
+          <button className={`tax-toggle__btn${downMode==="percent"?" active":""}`} onClick={()=>setDownMode("percent")}>Percentage</button>
+          <button className={`tax-toggle__btn${downMode==="dollar"?" active":""}`} onClick={()=>setDownMode("dollar")}>Dollar Amount</button>
+        </div>
+        {downMode==="percent"?(
+          <>
+            <input type="range" className="calc-field__slider" min={0} max={50} step={1} value={downPct} onChange={e=>setDownPct(+e.target.value)}/>
+            <div style={{display:"flex",gap:"var(--s-2)",alignItems:"center"}}>
+              <input type="text" className="calc-field__input" style={{maxWidth:"80px"}} value={downPct} inputMode="numeric"
+                onChange={e=>{const v=parseInt(e.target.value);if(!isNaN(v))setDownPct(Math.min(50,Math.max(0,v)));}}/>
+              <span className="t-body-sm text-muted">% = {fmtUSD(down)}</span>
+            </div>
+          </>
+        ):(
+          <>
+            <input type="range" className="calc-field__slider" min={0} max={price} step={5000} value={downAmt} onChange={e=>setDownAmt(+e.target.value)}/>
+            <div style={{display:"flex",gap:"var(--s-2)",alignItems:"center"}}>
+              <input type="text" className="calc-field__input" value={downAmt.toLocaleString("en-US")} inputMode="numeric"
+                onChange={e=>{const v=parseInt(e.target.value.replace(/,/g,""));if(!isNaN(v))setDownAmt(v);}}/>
+              <span className="t-body-sm text-muted">= {price>0?(down/price*100).toFixed(1):0}%</span>
+            </div>
+          </>
+        )}
+        {ltv>80&&<span className="t-body-sm" style={{color:"var(--n-error, #ef4444)",marginTop:"4px",display:"block"}}>⚠ PMI required (LTV {ltv.toFixed(1)}% &gt; 80%)</span>}
+      </div>
+
+      {/* Loan Term */}
+      <div className="calc-field">
+        <label className="calc-field__label"><span className="calc-field__label-icon">📅</span>Loan Term</label>
+        <div className="tax-toggle">
+          {[30,20,15].map(y=>(
+            <button key={y} className={`tax-toggle__btn${termYears===y?" active":""}`} onClick={()=>setTermYears(y)}>{y} Years</button>
+          ))}
+        </div>
+      </div>
+
+      {/* Interest Rate */}
+      <div className="calc-field">
+        <label className="calc-field__label"><span className="calc-field__label-icon">📊</span>Interest Rate (%)</label>
+        <input type="range" className="calc-field__slider" min={2} max={12} step={0.125} value={rate} onChange={e=>setRate(+e.target.value)}/>
+        <input type="text" className="calc-field__input" style={{maxWidth:"100px"}} value={rate} inputMode="decimal"
+          onChange={e=>{const v=parseFloat(e.target.value);if(!isNaN(v))setRate(v);}}/>
+      </div>
+
+      {/* Property Tax, Insurance, HOA */}
+      <div style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:"var(--s-3)"}}>
+        <div className="calc-field">
+          <label className="calc-field__label" style={{fontSize:"0.82rem"}}><span className="calc-field__label-icon">🏛️</span>Property Tax (%)</label>
+          <input type="text" className="calc-field__input" value={taxPct} inputMode="decimal"
+            onChange={e=>{const v=parseFloat(e.target.value);if(!isNaN(v))setTaxPct(v);}}/>
+        </div>
+        <div className="calc-field">
+          <label className="calc-field__label" style={{fontSize:"0.82rem"}}><span className="calc-field__label-icon">🛡️</span>Insurance ($/yr)</label>
+          <input type="text" className="calc-field__input" value={insYr.toLocaleString("en-US")} inputMode="numeric"
+            onChange={e=>{const v=parseInt(e.target.value.replace(/,/g,""));if(!isNaN(v))setInsYr(v);}}/>
+        </div>
+        <div className="calc-field">
+          <label className="calc-field__label" style={{fontSize:"0.82rem"}}><span className="calc-field__label-icon">🏘️</span>HOA ($/mo)</label>
+          <input type="text" className="calc-field__input" value={hoa} inputMode="numeric"
+            onChange={e=>{const v=parseInt(e.target.value);if(!isNaN(v))setHoa(v);}}/>
+        </div>
+      </div>
+    </div>
+
+    {/* ── Results ── */}
+    <div className="calc-result" aria-live="polite">
+      <p className="calc-result__label">Total Monthly Payment</p>
+      <p className="calc-result__emi">{fmtUSD(r.total)}<span style={{fontSize:"0.5em",fontWeight:400}}>/mo</span></p>
+      <div className="calc-result__stats">
+        <div className="calc-result__stat"><p className="calc-result__stat-label">Principal & Interest</p><p className="calc-result__stat-value">{fmtUSD(r.mp)}</p></div>
+        <div className="calc-result__stat"><p className="calc-result__stat-label">Loan Amount</p><p className="calc-result__stat-value">{fmtUSD(r.loan)}</p></div>
+        <div className="calc-result__stat"><p className="calc-result__stat-label">Payoff Date</p><p className="calc-result__stat-value" style={{color:"var(--n-success)"}}>{r.payoff}</p></div>
+      </div>
+
+      {/* PITI Breakdown Table */}
+      <div style={{marginTop:"var(--s-4)",overflowX:"auto"}}>
+        <table className="comparison-table">
+          <thead><tr><th>Component</th><th>Monthly</th><th>Total ({termYears}yr)</th></tr></thead>
+          <tbody>
+            <tr><td>Principal & Interest</td><td>{fmtUSD(r.mp)}</td><td>{fmtUSD(r.mp*tenure)}</td></tr>
+            <tr><td>Property Tax</td><td>{fmtUSD(r.taxMo)}</td><td>{fmtUSD(r.taxMo*tenure)}</td></tr>
+            <tr><td>Home Insurance</td><td>{fmtUSD(r.insMo)}</td><td>{fmtUSD(r.insMo*tenure)}</td></tr>
+            {r.pmiMo>0&&<tr><td>PMI <span style={{fontSize:"0.75em",color:"var(--n-error, #ef4444)"}}>(until 80% LTV)</span></td><td>{fmtUSD(r.pmiMo)}</td><td>—</td></tr>}
+            {hoa>0&&<tr><td>HOA Fee</td><td>{fmtUSD(hoa)}</td><td>{fmtUSD(hoa*tenure)}</td></tr>}
+            <tr style={{fontWeight:700}}><td>Total</td><td>{fmtUSD(r.total)}</td><td>{fmtUSD(r.totalCost)}</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      {/* Loan Summary */}
+      <div className="calc-result__breakdown" style={{marginTop:"var(--s-4)"}}>
+        <p className="calc-result__breakdown-title">Loan Summary</p>
+        <p className="calc-result__breakdown-line">Home Price: {fmtUSD(price)}</p>
+        <p className="calc-result__breakdown-line">Down Payment: {fmtUSD(down)} ({price>0?(down/price*100).toFixed(1):0}%)</p>
+        <p className="calc-result__breakdown-line">Loan Amount: {fmtUSD(r.loan)}</p>
+        <p className="calc-result__breakdown-line">Total Interest Paid: {fmtUSD(r.totalInt)}</p>
+        <p className="calc-result__breakdown-line" style={{fontWeight:600}}>Total of All Payments: {fmtUSD(r.totalPaid)}</p>
+      </div>
+    </div>
+
+    {/* ── Amortization Schedule ── */}
+    <div style={{marginTop:"var(--s-6)"}}>
+      <h3 className="t-h3" style={{marginBottom:"var(--s-4)"}}>Amortization Schedule (Yearly)</h3>
+      <div style={{overflowX:"auto"}}>
+        <table className="comparison-table">
+          <thead><tr><th>Year</th><th>Principal</th><th>Interest</th><th>Ending Balance</th></tr></thead>
+          <tbody>{(showAmort?r.years:r.years.slice(0,10)).map(y=>(
+            <tr key={y.yr}>
+              <td>{y.yr}</td>
+              <td>{fmtUSD(y.prin)}</td>
+              <td>{fmtUSD(y.int)}</td>
+              <td>{fmtUSD(y.bal)}</td>
+            </tr>
+          ))}</tbody>
+        </table>
+        {r.years.length>10&&(
+          <button className="btn btn--ghost" style={{marginTop:"var(--s-2)"}} onClick={()=>setShowAmort(!showAmort)}>
+            {showAmort?`Show Less`:`Show All ${r.years.length} Years`}
+          </button>
+        )}
+      </div>
+    </div>
+  </div>);
 }
+
 
 // ─── 2. Debt Consolidation ───
 function DebtConsolidationCalc({defaults}:P){

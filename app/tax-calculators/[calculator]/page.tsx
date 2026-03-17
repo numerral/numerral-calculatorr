@@ -40,19 +40,22 @@ const HUB_CONTENT: Record<string, {
     faq: { question: string; answer: string }[];
 }> = {
     "income-tax-calculator": {
-        subtitle: "Calculate your income tax liability under Old & New regime for FY 2025-26. Compare both regimes instantly.",
+        subtitle: "Estimate your 2025 federal income tax refund or amount owed. Includes all filing statuses, standard & itemized deductions, credits, and FICA.",
         explanation: {
-            heading: "Understanding Income Tax in India",
+            heading: "Understanding U.S. Federal Income Tax",
             paragraphs: [
-                "India offers two tax regimes — the New Regime with simplified slabs but no deductions, and the Old Regime with higher rates but multiple deduction options under Sections 80C, 80D, 80G, and HRA.",
-                "Under the New Regime (Budget 2025), income up to ₹12 Lakh is effectively tax-free with the Section 87A rebate. The standard deduction of ₹75,000 applies to both regimes, meaning salaried individuals up to ₹12.75 Lakh pay zero tax under the new regime.",
+                "The U.S. uses a progressive federal income tax system with seven marginal tax brackets for 2025: 10%, 12%, 22%, 24%, 32%, 35%, and 37%. Your marginal rate applies only to income within each bracket — not your entire income. For example, a single filer earning $75,000 pays 10% on the first $11,925, 12% on $11,925–$48,475, and 22% on $48,475–$60,000 (after the $15,000 standard deduction).",
+                "Most taxpayers choose the standard deduction — $15,000 for single filers, $30,000 for married filing jointly in 2025. Itemizing makes sense when your mortgage interest, state & local taxes (SALT, capped at $40,000), charitable donations, and medical expenses (above 7.5% of AGI) exceed the standard deduction.",
+                "Beyond income tax, employees pay FICA payroll taxes: 6.2% Social Security (on wages up to $176,100) and 1.45% Medicare (plus 0.9% surtax on wages above $200,000 for single filers). The Child Tax Credit is $2,000 per qualifying child under 17.",
             ],
-            highlight: "₹10 Lakh income → ₹0 tax (New Regime) vs ₹52,500 tax (Old Regime with no deductions). But with ₹3L+ deductions in Old Regime, it can be cheaper. Always compare both!",
+            highlight: "Single filer, $75,000 wages, standard deduction → Taxable income: $60,000 → Federal tax: ~$8,600 → Effective rate: ~11.5%. Add FICA ($5,738) for a total tax burden of ~$14,338 (19.1% of income).",
         },
         faq: [
-            { question: "Which tax regime is better for me?", answer: "It depends on your deductions. If your total deductions (80C + 80D + HRA + others) are less than ₹3.75 Lakh, the New Regime is usually better. For higher deductions, the Old Regime may save more — our calculator compares both instantly." },
-            { question: "What is the standard deduction for FY 2025-26?", answer: "₹75,000 for both regimes. This is automatically deducted from your gross salary before computing taxable income." },
-            { question: "Is income up to ₹12 Lakh really tax-free?", answer: "Yes, under the New Regime. The Section 87A rebate covers tax on income up to ₹12 Lakh. With the ₹75,000 standard deduction, salaried individuals earning up to ₹12,75,000 pay zero tax." },
+            { question: "What are the 2025 federal income tax brackets?", answer: "There are seven brackets: 10% ($0–$11,925), 12% ($11,925–$48,475), 22% ($48,475–$103,350), 24% ($103,350–$197,300), 32% ($197,300–$250,525), 35% ($250,525–$626,350), and 37% (above $626,350) for single filers. Married Filing Jointly brackets are roughly doubled." },
+            { question: "What is the standard deduction for 2025?", answer: "$15,000 for Single and Married Filing Separately, $30,000 for Married Filing Jointly, and $22,500 for Head of Household. Most taxpayers (roughly 90%) choose the standard deduction over itemizing." },
+            { question: "Should I take the standard deduction or itemize?", answer: "Itemize if your total deductible expenses (mortgage interest, charitable donations, state & local taxes up to $40,000, and medical expenses above 7.5% of AGI) exceed the standard deduction. Our calculator compares both and tells you which saves more." },
+            { question: "How is the Child Tax Credit calculated?", answer: "The Child Tax Credit is $2,000 per qualifying child under 17. It begins phasing out at $200,000 AGI for single filers ($400,000 for joint). Up to $1,700 per child may be refundable as the Additional Child Tax Credit." },
+            { question: "What is FICA and how much do I pay?", answer: "FICA stands for Federal Insurance Contributions Act and funds Social Security and Medicare. Employees pay 6.2% for Social Security (on wages up to $176,100) and 1.45% for Medicare (no wage cap). An additional 0.9% Medicare surtax applies to wages above $200,000 for single filers." },
         ],
     },
     "gst-calculator": {

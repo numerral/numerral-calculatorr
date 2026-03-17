@@ -517,3 +517,286 @@ export function calculateProfessionalTax(input: ProfessionalTaxInput): Professio
         slab: slabLabel,
     };
 }
+
+
+// ════════════════════════════════════════════════
+// 7. U.S. FEDERAL INCOME TAX (2025 — OBBBA)
+// ════════════════════════════════════════════════
+
+export type USFilingStatus = "single" | "mfj" | "mfs" | "hoh";
+
+export interface USIncomeTaxInput {
+    filingStatus: USFilingStatus;
+    wages: number;
+    federalWithheld: number;
+    interestIncome: number;
+    shortTermGains: number;
+    longTermGains: number;
+    otherIncome: number;
+    numDependents: number;  // children under 17
+    deductionType: "standard" | "itemized";
+    mortgageInterest: number;
+    charitableDonations: number;
+    saltDeduction: number;     // state & local tax
+    medicalExpenses: number;
+}
+
+export interface USTaxBracketDetail {
+    bracket: string;
+    rate: number;
+    taxableInBracket: number;
+    tax: number;
+}
+
+export interface USIncomeTaxResult {
+    grossIncome: number;
+    agi: number;
+    deductionAmount: number;
+    deductionType: string;
+    taxableIncome: number;
+    ordinaryTax: number;
+    ltcgTax: number;
+    totalIncomeTax: number;
+    childTaxCredit: number;
+    taxAfterCredits: number;
+    socialSecurity: number;
+    medicare: number;
+    totalFICA: number;
+    totalTax: number;
+    federalWithheld: number;
+    refundOrOwed: number;          // positive = refund, negative = owed
+    effectiveRate: number;
+    marginalRate: number;
+    brackets: USTaxBracketDetail[];
+    filingStatus: string;
+    standardDeduction: number;
+    itemizedTotal: number;
+}
+
+// 2025 OBBBA Tax Brackets
+const US_BRACKETS_2025: Record<USFilingStatus, { min: number; max: number; rate: number }[]> = {
+    single: [
+        { min: 0,      max: 11925,   rate: 10 },
+        { min: 11925,  max: 48475,   rate: 12 },
+        { min: 48475,  max: 103350,  rate: 22 },
+        { min: 103350, max: 197300,  rate: 24 },
+        { min: 197300, max: 250525,  rate: 32 },
+        { min: 250525, max: 626350,  rate: 35 },
+        { min: 626350, max: Infinity,rate: 37 },
+    ],
+    mfj: [
+        { min: 0,      max: 23850,   rate: 10 },
+        { min: 23850,  max: 96950,   rate: 12 },
+        { min: 96950,  max: 206700,  rate: 22 },
+        { min: 206700, max: 394600,  rate: 24 },
+        { min: 394600, max: 501050,  rate: 32 },
+        { min: 501050, max: 751600,  rate: 35 },
+        { min: 751600, max: Infinity,rate: 37 },
+    ],
+    mfs: [
+        { min: 0,      max: 11925,   rate: 10 },
+        { min: 11925,  max: 48475,   rate: 12 },
+        { min: 48475,  max: 103350,  rate: 22 },
+        { min: 103350, max: 197300,  rate: 24 },
+        { min: 197300, max: 250525,  rate: 32 },
+        { min: 250525, max: 375800,  rate: 35 },
+        { min: 375800, max: Infinity,rate: 37 },
+    ],
+    hoh: [
+        { min: 0,      max: 17000,   rate: 10 },
+        { min: 17000,  max: 64850,   rate: 12 },
+        { min: 64850,  max: 103350,  rate: 22 },
+        { min: 103350, max: 197300,  rate: 24 },
+        { min: 197300, max: 250500,  rate: 32 },
+        { min: 250500, max: 626350,  rate: 35 },
+        { min: 626350, max: Infinity,rate: 37 },
+    ],
+};
+
+// Standard Deduction 2025
+const US_STANDARD_DEDUCTION: Record<USFilingStatus, number> = {
+    single: 15000,
+    mfj: 30000,
+    mfs: 15000,
+    hoh: 22500,
+};
+
+// SALT cap 2025 OBBBA
+const SALT_CAP = 40000;
+
+// Long-term capital gains brackets 2025
+const LTCG_BRACKETS: Record<USFilingStatus, { max0: number; max15: number }> = {
+    single: { max0: 48350,  max15: 533400 },
+    mfj:    { max0: 96700,  max15: 600050 },
+    mfs:    { max0: 48350,  max15: 300025 },
+    hoh:    { max0: 64750,  max15: 566700 },
+};
+
+// Social Security wage base 2025
+const SS_WAGE_BASE    = 176100;
+const SS_RATE         = 0.062;
+const MEDICARE_RATE   = 0.0145;
+const MEDICARE_SURTAX = 0.009;
+const MEDICARE_SURTAX_THRESHOLDS: Record<USFilingStatus, number> = {
+    single: 200000,
+    mfj:    250000,
+    mfs:    125000,
+    hoh:    200000,
+};
+
+const US_STATUS_LABELS: Record<USFilingStatus, string> = {
+    single: "Single",
+    mfj: "Married Filing Jointly",
+    mfs: "Married Filing Separately",
+    hoh: "Head of Household",
+};
+
+function usBracketLabel(min: number, max: number): string {
+    const fmt = (n: number) => "$" + n.toLocaleString("en-US");
+    if (max === Infinity) return `Above ${fmt(min)}`;
+    return `${fmt(min)} – ${fmt(max)}`;
+}
+
+function calcUSBracketTax(taxableIncome: number, brackets: typeof US_BRACKETS_2025.single): { tax: number; details: USTaxBracketDetail[]; marginalRate: number } {
+    let remaining = taxableIncome;
+    let totalTax = 0;
+    let marginalRate = 10;
+    const details: USTaxBracketDetail[] = [];
+
+    for (const b of brackets) {
+        const width = b.max === Infinity ? remaining : b.max - b.min;
+        const taxableInBracket = Math.min(Math.max(remaining, 0), width);
+        const tax = Math.round(taxableInBracket * b.rate / 100);
+        details.push({
+            bracket: usBracketLabel(b.min, b.max),
+            rate: b.rate,
+            taxableInBracket,
+            tax,
+        });
+        if (taxableInBracket > 0) marginalRate = b.rate;
+        totalTax += tax;
+        remaining -= taxableInBracket;
+        if (remaining <= 0) break;
+    }
+
+    return { tax: totalTax, details, marginalRate };
+}
+
+function calcLTCGTax(ltcg: number, ordinaryTaxableIncome: number, filingStatus: USFilingStatus): number {
+    if (ltcg <= 0) return 0;
+    const thresholds = LTCG_BRACKETS[filingStatus];
+    const combinedIncome = ordinaryTaxableIncome + ltcg;
+    let tax = 0;
+
+    // 0% bracket
+    const zeroEnd = Math.max(thresholds.max0 - ordinaryTaxableIncome, 0);
+    const at0 = Math.min(ltcg, zeroEnd);
+
+    // 15% bracket
+    const fifteenEnd = Math.max(thresholds.max15 - ordinaryTaxableIncome, 0);
+    const at15 = Math.min(ltcg - at0, Math.max(fifteenEnd - zeroEnd, 0));
+
+    // 20% bracket
+    const at20 = Math.max(ltcg - at0 - at15, 0);
+
+    tax = Math.round(at0 * 0) + Math.round(at15 * 0.15) + Math.round(at20 * 0.20);
+    return tax;
+}
+
+export function calculateUSIncomeTax(input: USIncomeTaxInput): USIncomeTaxResult {
+    const {
+        filingStatus,
+        wages,
+        federalWithheld = 0,
+        interestIncome = 0,
+        shortTermGains = 0,
+        longTermGains = 0,
+        otherIncome = 0,
+        numDependents = 0,
+        deductionType = "standard",
+        mortgageInterest = 0,
+        charitableDonations = 0,
+        saltDeduction = 0,
+        medicalExpenses = 0,
+    } = input;
+
+    // 1. Gross Income (ordinary + LTCG kept separate)
+    const ordinaryIncome = wages + interestIncome + shortTermGains + otherIncome;
+    const grossIncome = ordinaryIncome + Math.max(longTermGains, 0);
+    const agi = grossIncome; // simplified — no ATL deductions in this version
+
+    // 2. Deductions
+    const standardDeduction = US_STANDARD_DEDUCTION[filingStatus];
+    const saltCapped = Math.min(saltDeduction, SALT_CAP);
+    // Medical: only amount exceeding 7.5% of AGI
+    const medicalDeductible = Math.max(medicalExpenses - Math.round(agi * 0.075), 0);
+    const itemizedTotal = mortgageInterest + charitableDonations + saltCapped + medicalDeductible;
+
+    const deductionAmount = deductionType === "standard"
+        ? standardDeduction
+        : Math.max(itemizedTotal, 0);
+
+    // 3. Taxable Income
+    const ordinaryTaxable = Math.max(ordinaryIncome - deductionAmount, 0);
+    const taxableIncome = ordinaryTaxable + Math.max(longTermGains, 0);
+
+    // 4. Ordinary income tax
+    const brackets = US_BRACKETS_2025[filingStatus];
+    const { tax: ordinaryTax, details: bracketDetails, marginalRate } = calcUSBracketTax(ordinaryTaxable, brackets);
+
+    // 5. Long-term capital gains tax
+    const ltcgTax = calcLTCGTax(Math.max(longTermGains, 0), ordinaryTaxable, filingStatus);
+
+    const totalIncomeTax = ordinaryTax + ltcgTax;
+
+    // 6. Child Tax Credit (under 17)
+    const childCredit = Math.min(numDependents * 2000, totalIncomeTax);  // non-refundable portion simplified
+    const taxAfterCredits = Math.max(totalIncomeTax - childCredit, 0);
+
+    // 7. FICA
+    const ssWages = Math.min(wages, SS_WAGE_BASE);
+    const socialSecurity = Math.round(ssWages * SS_RATE);
+    const medicareThreshold = MEDICARE_SURTAX_THRESHOLDS[filingStatus];
+    const baseMedicare = Math.round(wages * MEDICARE_RATE);
+    const additionalMedicare = wages > medicareThreshold
+        ? Math.round((wages - medicareThreshold) * MEDICARE_SURTAX)
+        : 0;
+    const medicare = baseMedicare + additionalMedicare;
+    const totalFICA = socialSecurity + medicare;
+
+    // 8. Total tax
+    const totalTax = taxAfterCredits + totalFICA;
+
+    // 9. Refund or Owed
+    const refundOrOwed = federalWithheld - taxAfterCredits;  // positive = refund
+
+    // 10. Effective rate
+    const effectiveRate = grossIncome > 0
+        ? Math.round((taxAfterCredits / grossIncome) * 10000) / 100
+        : 0;
+
+    return {
+        grossIncome,
+        agi,
+        deductionAmount,
+        deductionType: deductionType === "standard" ? "Standard Deduction" : "Itemized Deductions",
+        taxableIncome,
+        ordinaryTax,
+        ltcgTax,
+        totalIncomeTax,
+        childTaxCredit: childCredit,
+        taxAfterCredits,
+        socialSecurity,
+        medicare,
+        totalFICA,
+        totalTax,
+        federalWithheld,
+        refundOrOwed,
+        effectiveRate,
+        marginalRate,
+        brackets: bracketDetails,
+        filingStatus: US_STATUS_LABELS[filingStatus],
+        standardDeduction,
+        itemizedTotal,
+    };
+}

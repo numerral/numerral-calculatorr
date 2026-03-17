@@ -10,6 +10,7 @@ import {
     calculateTDS,
     calculateCapitalGains,
     calculateProfessionalTax,
+    calculateUSIncomeTax,
     PT_STATES,
     type IncomeTaxResult,
     type GSTResult,
@@ -19,6 +20,8 @@ import {
     type ProfessionalTaxResult,
     type TDSIncomeType,
     type AssetType,
+    type USFilingStatus,
+    type USIncomeTaxResult,
 } from "@/lib/calculators/taxes";
 
 interface TaxCalculatorCoreProps {
@@ -31,118 +34,230 @@ function formatINR(num: number): string {
     return "₹" + num.toLocaleString("en-IN");
 }
 
-/* ── Income Tax ── */
-function IncomeTaxForm() {
-    const [income, setIncome] = useState(1000000);
-    const [regime, setRegime] = useState<"old" | "new">("new");
-    const [ded80C, setDed80C] = useState(150000);
-    const [ded80D, setDed80D] = useState(25000);
-    const [dedHRA, setDedHRA] = useState(0);
-    const [dedOther, setDedOther] = useState(0);
+function formatUSD(num: number): string {
+    if (num >= 1000000) return "$" + (num / 1000000).toFixed(2) + "M";
+    return "$" + Math.round(num).toLocaleString("en-US");
+}
 
-    const result: IncomeTaxResult = useMemo(
-        () => calculateIncomeTax({ annualIncome: income, regime, deductions80C: ded80C, deductions80D: ded80D, deductionHRA: dedHRA, otherDeductions: dedOther }),
-        [income, regime, ded80C, ded80D, dedHRA, dedOther]
+/* ── US Income Tax ── */
+function USIncomeTaxForm() {
+    const [filing, setFiling] = useState<USFilingStatus>("single");
+    const [wages, setWages] = useState(75000);
+    const [withheld, setWithheld] = useState(8000);
+    const [interest, setInterest] = useState(0);
+    const [stGains, setStGains] = useState(0);
+    const [ltGains, setLtGains] = useState(0);
+    const [otherIncome, setOtherIncome] = useState(0);
+    const [dependents, setDependents] = useState(0);
+    const [dedType, setDedType] = useState<"standard" | "itemized">("standard");
+    const [mortgage, setMortgage] = useState(0);
+    const [charity, setCharity] = useState(0);
+    const [salt, setSalt] = useState(0);
+    const [medical, setMedical] = useState(0);
+
+    const result: USIncomeTaxResult = useMemo(
+        () => calculateUSIncomeTax({
+            filingStatus: filing, wages, federalWithheld: withheld,
+            interestIncome: interest, shortTermGains: stGains, longTermGains: ltGains,
+            otherIncome, numDependents: dependents, deductionType: dedType,
+            mortgageInterest: mortgage, charitableDonations: charity,
+            saltDeduction: salt, medicalExpenses: medical,
+        }),
+        [filing, wages, withheld, interest, stGains, ltGains, otherIncome, dependents, dedType, mortgage, charity, salt, medical]
     );
-    const other = useMemo(
-        () => calculateIncomeTax({ annualIncome: income, regime: regime === "new" ? "old" : "new", deductions80C: ded80C, deductions80D: ded80D, deductionHRA: dedHRA, otherDeductions: dedOther }),
-        [income, regime, ded80C, ded80D, dedHRA, dedOther]
-    );
+
+    const isRefund = result.refundOrOwed >= 0;
 
     return (
         <div>
             <div className="calc-input-panel">
+                {/* Filing Status */}
                 <div className="calc-field">
-                    <label className="calc-field__label"><span className="calc-field__label-icon">₹</span>Annual Income</label>
-                    <input type="range" className="calc-field__slider" min={0} max={50000000} step={50000} value={income} onChange={e => setIncome(+e.target.value)} />
-                    <input type="text" className="calc-field__input" value={income.toLocaleString("en-IN")} inputMode="numeric"
-                        onChange={e => { const v = parseInt(e.target.value.replace(/,/g, "")); if (!isNaN(v)) setIncome(v); }} />
+                    <label className="calc-field__label"><span className="calc-field__label-icon">📋</span>Filing Status</label>
+                    <div className="tax-toggle" style={{ flexWrap: "wrap" }}>
+                        {([
+                            ["single", "Single"],
+                            ["mfj", "Married Filing Jointly"],
+                            ["hoh", "Head of Household"],
+                            ["mfs", "Married Filing Separately"],
+                        ] as [USFilingStatus, string][]).map(([val, lbl]) => (
+                            <button key={val} className={`tax-toggle__btn${filing === val ? " active" : ""}`}
+                                onClick={() => setFiling(val)} style={{ fontSize: "0.82rem" }}>{lbl}</button>
+                        ))}
+                    </div>
                 </div>
+
+                {/* Annual Wages */}
                 <div className="calc-field">
-                    <label className="calc-field__label"><span className="calc-field__label-icon">📋</span>Tax Regime</label>
+                    <label className="calc-field__label"><span className="calc-field__label-icon">💵</span>Annual Wages (W-2)</label>
+                    <input type="range" className="calc-field__slider" min={0} max={1000000} step={1000} value={wages} onChange={e => setWages(+e.target.value)} />
+                    <input type="text" className="calc-field__input" value={wages.toLocaleString("en-US")} inputMode="numeric"
+                        onChange={e => { const v = parseInt(e.target.value.replace(/,/g, "")); if (!isNaN(v)) setWages(v); }} />
+                </div>
+
+                {/* Federal Tax Withheld */}
+                <div className="calc-field">
+                    <label className="calc-field__label"><span className="calc-field__label-icon">🏛️</span>Federal Tax Withheld</label>
+                    <input type="text" className="calc-field__input" value={withheld.toLocaleString("en-US")} inputMode="numeric"
+                        onChange={e => { const v = parseInt(e.target.value.replace(/,/g, "")); if (!isNaN(v)) setWithheld(v); }} />
+                </div>
+
+                {/* Other Income section */}
+                <div className="calc-field">
+                    <label className="calc-field__label"><span className="calc-field__label-icon">📈</span>Interest Income</label>
+                    <input type="text" className="calc-field__input" value={interest.toLocaleString("en-US")} inputMode="numeric"
+                        onChange={e => { const v = parseInt(e.target.value.replace(/,/g, "")); if (!isNaN(v)) setInterest(v); }} />
+                </div>
+
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "var(--s-3)" }}>
+                    <div className="calc-field">
+                        <label className="calc-field__label" style={{ fontSize: "0.82rem" }}><span className="calc-field__label-icon">📊</span>Short-Term Gains</label>
+                        <input type="text" className="calc-field__input" value={stGains.toLocaleString("en-US")} inputMode="numeric"
+                            onChange={e => { const v = parseInt(e.target.value.replace(/,/g, "")); if (!isNaN(v)) setStGains(v); }} />
+                    </div>
+                    <div className="calc-field">
+                        <label className="calc-field__label" style={{ fontSize: "0.82rem" }}><span className="calc-field__label-icon">📊</span>Long-Term Gains</label>
+                        <input type="text" className="calc-field__input" value={ltGains.toLocaleString("en-US")} inputMode="numeric"
+                            onChange={e => { const v = parseInt(e.target.value.replace(/,/g, "")); if (!isNaN(v)) setLtGains(v); }} />
+                    </div>
+                </div>
+
+                <div className="calc-field">
+                    <label className="calc-field__label"><span className="calc-field__label-icon">💰</span>Other Income</label>
+                    <input type="text" className="calc-field__input" value={otherIncome.toLocaleString("en-US")} inputMode="numeric"
+                        onChange={e => { const v = parseInt(e.target.value.replace(/,/g, "")); if (!isNaN(v)) setOtherIncome(v); }} />
+                </div>
+
+                {/* Dependents */}
+                <div className="calc-field">
+                    <label className="calc-field__label"><span className="calc-field__label-icon">👶</span>Dependents Under 17</label>
+                    <input type="text" className="calc-field__input" value={dependents} inputMode="numeric" style={{ maxWidth: "100px" }}
+                        onChange={e => { const v = parseInt(e.target.value); if (!isNaN(v)) setDependents(Math.max(0, v)); }} />
+                </div>
+
+                {/* Deduction Type */}
+                <div className="calc-field">
+                    <label className="calc-field__label"><span className="calc-field__label-icon">📝</span>Deduction Type</label>
                     <div className="tax-toggle">
-                        <button className={`tax-toggle__btn${regime === "new" ? " active" : ""}`} onClick={() => setRegime("new")}>New Regime</button>
-                        <button className={`tax-toggle__btn${regime === "old" ? " active" : ""}`} onClick={() => setRegime("old")}>Old Regime</button>
+                        <button className={`tax-toggle__btn${dedType === "standard" ? " active" : ""}`} onClick={() => setDedType("standard")}>
+                            Standard ({formatUSD(result.standardDeduction)})
+                        </button>
+                        <button className={`tax-toggle__btn${dedType === "itemized" ? " active" : ""}`} onClick={() => setDedType("itemized")}>
+                            Itemized
+                        </button>
                     </div>
                 </div>
-                {regime === "old" && (<>
+
+                {/* Itemized Deduction Fields */}
+                {dedType === "itemized" && (<>
                     <div className="calc-field">
-                        <label className="calc-field__label"><span className="calc-field__label-icon">🏦</span>80C (max ₹1.5L)</label>
-                        <input type="text" className="calc-field__input" value={ded80C.toLocaleString("en-IN")} inputMode="numeric"
-                            onChange={e => { const v = parseInt(e.target.value.replace(/,/g, "")); if (!isNaN(v)) setDed80C(Math.min(v, 150000)); }} />
+                        <label className="calc-field__label"><span className="calc-field__label-icon">🏠</span>Mortgage Interest</label>
+                        <input type="text" className="calc-field__input" value={mortgage.toLocaleString("en-US")} inputMode="numeric"
+                            onChange={e => { const v = parseInt(e.target.value.replace(/,/g, "")); if (!isNaN(v)) setMortgage(v); }} />
                     </div>
                     <div className="calc-field">
-                        <label className="calc-field__label"><span className="calc-field__label-icon">🏥</span>80D (Health Insurance)</label>
-                        <input type="text" className="calc-field__input" value={ded80D.toLocaleString("en-IN")} inputMode="numeric"
-                            onChange={e => { const v = parseInt(e.target.value.replace(/,/g, "")); if (!isNaN(v)) setDed80D(v); }} />
+                        <label className="calc-field__label"><span className="calc-field__label-icon">❤️</span>Charitable Donations</label>
+                        <input type="text" className="calc-field__input" value={charity.toLocaleString("en-US")} inputMode="numeric"
+                            onChange={e => { const v = parseInt(e.target.value.replace(/,/g, "")); if (!isNaN(v)) setCharity(v); }} />
                     </div>
                     <div className="calc-field">
-                        <label className="calc-field__label"><span className="calc-field__label-icon">🏠</span>HRA Exemption</label>
-                        <input type="text" className="calc-field__input" value={dedHRA.toLocaleString("en-IN")} inputMode="numeric"
-                            onChange={e => { const v = parseInt(e.target.value.replace(/,/g, "")); if (!isNaN(v)) setDedHRA(v); }} />
+                        <label className="calc-field__label"><span className="calc-field__label-icon">🏛️</span>State & Local Tax (SALT)</label>
+                        <input type="text" className="calc-field__input" value={salt.toLocaleString("en-US")} inputMode="numeric"
+                            onChange={e => { const v = parseInt(e.target.value.replace(/,/g, "")); if (!isNaN(v)) setSalt(v); }} />
+                        <span className="t-body-sm text-muted" style={{ marginTop: "4px", fontSize: "0.75rem" }}>Capped at $40,000</span>
                     </div>
                     <div className="calc-field">
-                        <label className="calc-field__label"><span className="calc-field__label-icon">📝</span>Other (80G, 80E…)</label>
-                        <input type="text" className="calc-field__input" value={dedOther.toLocaleString("en-IN")} inputMode="numeric"
-                            onChange={e => { const v = parseInt(e.target.value.replace(/,/g, "")); if (!isNaN(v)) setDedOther(v); }} />
+                        <label className="calc-field__label"><span className="calc-field__label-icon">🏥</span>Medical Expenses</label>
+                        <input type="text" className="calc-field__input" value={medical.toLocaleString("en-US")} inputMode="numeric"
+                            onChange={e => { const v = parseInt(e.target.value.replace(/,/g, "")); if (!isNaN(v)) setMedical(v); }} />
+                        <span className="t-body-sm text-muted" style={{ marginTop: "4px", fontSize: "0.75rem" }}>Only amounts exceeding 7.5% of AGI</span>
                     </div>
                 </>)}
             </div>
 
+            {/* Results */}
             <div className="calc-result" aria-live="polite">
-                <p className="calc-result__label">Total Tax ({result.regime})</p>
-                <p className="calc-result__emi">{formatINR(result.totalTax)}</p>
+                <p className="calc-result__label">{isRefund ? "Estimated Refund" : "Estimated Amount Owed"}</p>
+                <p className="calc-result__emi" style={{ color: isRefund ? "var(--n-success)" : "var(--n-error)" }}>
+                    {isRefund ? "+" : "−"}{formatUSD(Math.abs(result.refundOrOwed))}
+                </p>
                 <div className="calc-result__stats">
-                    <div className="calc-result__stat"><p className="calc-result__stat-label">Taxable Income</p><p className="calc-result__stat-value">{formatINR(result.taxableIncome)}</p></div>
+                    <div className="calc-result__stat"><p className="calc-result__stat-label">Federal Tax</p><p className="calc-result__stat-value">{formatUSD(result.taxAfterCredits)}</p></div>
                     <div className="calc-result__stat"><p className="calc-result__stat-label">Effective Rate</p><p className="calc-result__stat-value" style={{ color: "var(--n-success)" }}>{result.effectiveRate}%</p></div>
-                    <div className="calc-result__stat"><p className="calc-result__stat-label">Deductions</p><p className="calc-result__stat-value">{formatINR(result.totalDeductions)}</p></div>
+                    <div className="calc-result__stat"><p className="calc-result__stat-label">Marginal Rate</p><p className="calc-result__stat-value">{result.marginalRate}%</p></div>
                 </div>
                 <div className="calc-result__breakdown">
-                    <p className="calc-result__breakdown-title">Breakdown</p>
-                    <p className="calc-result__breakdown-line">Income Tax: {formatINR(result.incomeTax)}</p>
-                    {result.surcharge > 0 && <p className="calc-result__breakdown-line">Surcharge: {formatINR(result.surcharge)}</p>}
-                    <p className="calc-result__breakdown-line">Cess (4%): {formatINR(result.cess)}</p>
+                    <p className="calc-result__breakdown-title">Tax Breakdown</p>
+                    <p className="calc-result__breakdown-line">Gross Income: {formatUSD(result.grossIncome)}</p>
+                    <p className="calc-result__breakdown-line">{result.deductionType}: −{formatUSD(result.deductionAmount)}</p>
+                    <p className="calc-result__breakdown-line">Taxable Income: {formatUSD(result.taxableIncome)}</p>
+                    <p className="calc-result__breakdown-line">Income Tax: {formatUSD(result.ordinaryTax)}</p>
+                    {result.ltcgTax > 0 && <p className="calc-result__breakdown-line">LTCG Tax: {formatUSD(result.ltcgTax)}</p>}
+                    {result.childTaxCredit > 0 && <p className="calc-result__breakdown-line">Child Tax Credit: −{formatUSD(result.childTaxCredit)}</p>}
+                    <p className="calc-result__breakdown-line" style={{ fontWeight: 600 }}>Federal Tax: {formatUSD(result.taxAfterCredits)}</p>
                 </div>
+                <div className="calc-result__breakdown" style={{ marginTop: "var(--s-3)" }}>
+                    <p className="calc-result__breakdown-title">FICA (Payroll Tax)</p>
+                    <p className="calc-result__breakdown-line">Social Security (6.2%): {formatUSD(result.socialSecurity)}</p>
+                    <p className="calc-result__breakdown-line">Medicare (1.45%): {formatUSD(result.medicare)}</p>
+                    <p className="calc-result__breakdown-line" style={{ fontWeight: 600 }}>Total FICA: {formatUSD(result.totalFICA)}</p>
+                </div>
+                <p className="t-body-sm" style={{ marginTop: "var(--s-3)", fontWeight: 600 }}>
+                    Total Tax Burden: {formatUSD(result.totalTax)} ({result.grossIncome > 0 ? Math.round((result.totalTax / result.grossIncome) * 10000) / 100 : 0}% of income)
+                </p>
             </div>
 
-            {/* Slab table */}
+            {/* Federal Tax Bracket Table */}
             <div style={{ marginTop: "var(--s-6)" }}>
-                <h3 className="t-h3" style={{ marginBottom: "var(--s-4)" }}>Slab Breakdown</h3>
+                <h3 className="t-h3" style={{ marginBottom: "var(--s-4)" }}>2025 Tax Bracket Breakdown — {result.filingStatus}</h3>
                 <div style={{ overflowX: "auto" }}>
                     <table className="comparison-table">
-                        <thead><tr><th>Slab</th><th>Rate</th><th>Taxable</th><th>Tax</th></tr></thead>
-                        <tbody>{result.slabs.map((s, i) => <tr key={i}><td>{s.slab}</td><td>{s.rate}%</td><td>{formatINR(s.taxableIncome)}</td><td>{formatINR(s.tax)}</td></tr>)}</tbody>
+                        <thead><tr><th>Bracket</th><th>Rate</th><th>Taxable</th><th>Tax</th></tr></thead>
+                        <tbody>{result.brackets.map((b, i) => (
+                            <tr key={i}>
+                                <td>{b.bracket}</td>
+                                <td>{b.rate}%</td>
+                                <td>{formatUSD(b.taxableInBracket)}</td>
+                                <td>{formatUSD(b.tax)}</td>
+                            </tr>
+                        ))}</tbody>
                     </table>
                 </div>
             </div>
 
-            {/* Regime comparison */}
+            {/* Standard vs Itemized comparison */}
             <div style={{ marginTop: "var(--s-6)" }}>
-                <h3 className="t-h3" style={{ marginBottom: "var(--s-4)" }}>Old vs New Regime</h3>
+                <h3 className="t-h3" style={{ marginBottom: "var(--s-4)" }}>Standard vs Itemized Deduction</h3>
                 <div style={{ overflowX: "auto" }}>
                     <table className="comparison-table">
-                        <thead><tr><th>Metric</th><th>{result.regime}</th><th>{other.regime}</th></tr></thead>
+                        <thead><tr><th>Deduction</th><th>Amount</th></tr></thead>
                         <tbody>
-                            <tr><td>Taxable Income</td><td>{formatINR(result.taxableIncome)}</td><td>{formatINR(other.taxableIncome)}</td></tr>
-                            <tr><td>Income Tax</td><td>{formatINR(result.incomeTax)}</td><td>{formatINR(other.incomeTax)}</td></tr>
-                            <tr><td>Cess</td><td>{formatINR(result.cess)}</td><td>{formatINR(other.cess)}</td></tr>
-                            <tr>
-                                <td><strong>Total Tax</strong></td>
-                                <td style={result.totalTax <= other.totalTax ? { color: "var(--n-success)" } : undefined}><strong>{formatINR(result.totalTax)}</strong>{result.totalTax < other.totalTax && " ✓"}</td>
-                                <td style={other.totalTax <= result.totalTax ? { color: "var(--n-success)" } : undefined}><strong>{formatINR(other.totalTax)}</strong>{other.totalTax < result.totalTax && " ✓"}</td>
+                            <tr style={dedType === "standard" ? { fontWeight: 600 } : undefined}>
+                                <td>Standard Deduction</td>
+                                <td>{formatUSD(result.standardDeduction)}{dedType === "standard" && " ✓"}</td>
+                            </tr>
+                            <tr style={dedType === "itemized" ? { fontWeight: 600 } : undefined}>
+                                <td>Itemized Total</td>
+                                <td>{formatUSD(result.itemizedTotal)}{dedType === "itemized" && " ✓"}</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
-                {result.totalTax !== other.totalTax && (
+                {result.standardDeduction > result.itemizedTotal && dedType === "itemized" && (
+                    <p className="t-body-sm" style={{ marginTop: "var(--s-3)", color: "var(--n-warning)", fontWeight: 600 }}>
+                        💡 Standard deduction ({formatUSD(result.standardDeduction)}) is higher — consider switching for {formatUSD(result.standardDeduction - result.itemizedTotal)} more in deductions.
+                    </p>
+                )}
+                {result.itemizedTotal > result.standardDeduction && dedType === "standard" && (
                     <p className="t-body-sm" style={{ marginTop: "var(--s-3)", color: "var(--n-success)", fontWeight: 600 }}>
-                        💡 Save {formatINR(Math.abs(result.totalTax - other.totalTax))} with {result.totalTax < other.totalTax ? result.regime : other.regime}.
+                        💡 Your itemized deductions ({formatUSD(result.itemizedTotal)}) exceed the standard — consider itemizing to save {formatUSD(result.itemizedTotal - result.standardDeduction)}.
                     </p>
                 )}
             </div>
         </div>
     );
 }
+
 
 /* ── GST ── */
 function GSTForm() {
@@ -435,7 +550,7 @@ function ProfessionalTaxForm() {
 /* ── Dispatcher ── */
 export default function TaxCalculatorCore({ calcType }: TaxCalculatorCoreProps) {
     switch (calcType) {
-        case "income-tax": return <IncomeTaxForm />;
+        case "income-tax": return <USIncomeTaxForm />;
         case "gst": return <GSTForm />;
         case "hra": return <HRAForm />;
         case "tds": return <TDSForm />;
