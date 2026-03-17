@@ -335,12 +335,35 @@ const HUB_CONTENT: Record<string, {
         ],
     },
     "loan-amortization-calculator": {
-        subtitle: "Generate a complete month-by-month amortization schedule showing the principal and interest split for every single payment.",
-        contentHTML: `<h3>Reading Your Amortization Schedule</h3><p>An amortization schedule reveals the hidden structure of your loan. In early years, 60-80% of your EMI goes to interest. In later years, 80-90% goes to principal. This is why early prepayments are so powerful — they eliminate the high-interest early payments from the schedule entirely.</p><div class="explanation__highlight"><strong>Key insight:</strong> On a 20-year home loan at 8.5%, you pay more in interest than principal for the first 12 years. Only in year 13 does principal repayment finally exceed interest. This is why financial planners say "the first half of your loan is the bank's money."</div>`,
+        subtitle: "Generate a complete amortization schedule showing how each payment splits between principal and interest. See annual and monthly breakdowns, add extra payments, and plan your loan payoff strategy.",
+        explanation: {
+            heading: "What Is Loan Amortization?",
+            paragraphs: [
+                "Amortization is the process of gradually paying off a loan through scheduled periodic payments. Each payment consists of two parts: interest (the cost of borrowing) and principal (repayment of the actual loan balance). The standard amortization formula — M = P × r(1+r)^n / ((1+r)^n − 1) — produces a fixed monthly payment that fully retires the loan by the end of the term. This is how mortgages, car loans, personal loans, and student loans work in the U.S.",
+                "What surprises most borrowers is how heavily front-loaded the interest is. On a 30-year mortgage at 6.5%, your first payment of $1,264 contains $1,083 of interest and only $181 of principal — that's 86% interest! By year 15 (the halfway point), you've paid $199,000 but only reduced the balance by $60,000. The crossover point where principal exceeds interest doesn't happen until month 248 of 360. This is the key insight that makes early prepayments so powerful.",
+                "Smart borrowers use three strategies to minimize interest: (1) Extra monthly payments — even $100/month extra on a $200K loan at 6.5% saves $51,000 in interest and pays off 5 years early. (2) Biweekly payments — paying half the monthly amount every two weeks results in one extra payment per year, shaving 4-5 years off a 30-year mortgage. (3) Refinancing to a shorter term — moving from 30 years to 15 years roughly doubles your monthly payment but cuts total interest by 55-65%.",
+            ],
+            highlight: "$200K loan at 6.5% for 30 years: Monthly payment $1,264. Total interest: $255,089 — that's 128% of the original loan. The same loan at 15 years: $1,742/mo, total interest $113,539. You pay $478 more per month but save $141,550 in interest.",
+        },
         faq: [
-            { question: "Why is more interest charged in early months?", answer: "Interest is calculated on outstanding balance. At the start, your balance is highest, so interest is highest. As you pay down principal, less interest accrues each month, and more of your fixed EMI goes to principal." },
-            { question: "Can I get my amortization schedule from the bank?", answer: "Yes, banks are required to provide a loan amortization schedule upon request. Most net banking portals show this under your loan account details." },
+            { question: "What is an amortization schedule?", answer: "An amortization schedule (or amortization table) is a complete list of all loan payments, showing exactly how much of each payment goes to interest vs. principal, plus the remaining balance after each payment. It proves that early payments are heavily interest-loaded while later payments are mostly principal." },
+            { question: "Why do I pay more interest at the beginning of a loan?", answer: "Because interest is calculated on the outstanding balance. At the start, your full loan amount is outstanding, so interest is at its maximum. As you pay down principal month after month, interest decreases and more of your fixed payment goes toward principal. On a 30-year mortgage, the interest-to-principal crossover happens around year 21." },
+            { question: "How do extra payments affect my amortization schedule?", answer: "Extra payments go directly to principal reduction, which shrinks the balance that accrues interest. This creates a compounding benefit: $200/month extra on a $200K loan at 6.5% for 30 years saves $79,000 in interest and pays off the loan 8 years early. The earlier you start making extra payments, the greater the impact." },
+            { question: "What is the difference between amortization and depreciation?", answer: "Both spread costs over time, but amortization applies to loan repayment (tangible debt) or intangible assets (patents, goodwill), while depreciation applies to tangible assets (equipment, buildings). In accounting, amortization of intangible assets under IRS Section 197 is typically 15 years." },
+            { question: "Does amortization work the same for all loan types?", answer: "No. Standard amortization applies to fixed-rate loans (mortgages, car loans, personal loans). Adjustable-rate mortgages (ARMs) recalculate the payment when rates change. Credit cards use revolving debt (not amortized). Interest-only loans and balloon loans have different payment structures entirely." },
+            { question: "How do I read an amortization table?", answer: "Each row represents one payment period (month or year). The columns show: Payment number, Payment amount, Principal portion, Interest portion, and Remaining balance. Watch how the principal portion grows and interest shrinks over time — this is the amortization curve in action." },
         ],
+        steps: [
+            { label: "Identify loan parameters", formula: "$200,000 loan, 6.5% annual rate, 30-year term", result: "Monthly rate: 0.5417%, 360 payments" },
+            { label: "Calculate monthly payment", formula: "M = $200K × 0.005417 × 1.005417^360 ÷ (1.005417^360 − 1)", result: "Monthly payment: $1,264" },
+            { label: "First month breakdown", formula: "Interest: $200K × 0.5417% = $1,083 | Principal: $1,264 − $1,083", result: "$1,083 interest + $181 principal" },
+            { label: "Total cost over 30 years", formula: "$1,264 × 360 months", result: "Total: $455,089 ($255,089 interest)" },
+        ],
+        comparison: [
+            { title: "30-Year Term", value: "$1,264/mo", detail: "Total interest: $255,089 | Lower payment, much higher total cost" },
+            { title: "15-Year Term", value: "$1,742/mo", detail: "Total interest: $113,539 | Saves $141,550!", isWinner: true },
+        ],
+        insight: { icon: "⏱️", title: "The Early Prepayment Advantage", text: "A $5,000 extra payment in Year 1 of a 30-year mortgage saves approximately $14,000 in interest. The same $5,000 payment in Year 20 saves only $2,800. The amortization schedule reveals why: in early years, that $5,000 eliminates months of future interest charges. This is why financial planners call the first 5 years the 'golden window' for prepayments." },
     },
     "ltv-calculator": {
         subtitle: "Calculate your Loan-to-Value ratio to determine borrowing limits, PMI requirements, and interest rate eligibility.",

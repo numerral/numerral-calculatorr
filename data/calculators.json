@@ -1347,28 +1347,28 @@
   {
     "id": "loan-amortization-calculator",
     "category": "loan",
-    "title": "Loan Amortization Calculator",
+    "title": "Amortization Calculator",
     "slug": "loan-amortization-calculator",
     "categorySlug": "loan-calculators",
     "icon": "📋",
     "calcType": "loanAmortization",
-    "description": "Generate a full month-by-month amortization schedule showing principal, interest, and remaining balance for every payment of your loan.",
+    "description": "Free amortization calculator with annual and monthly schedules. See how each payment splits between principal and interest, add extra payments, and visualize your loan payoff timeline.",
     "stars": 5,
     "defaults": {
-      "amount": 1000000,
-      "rate": 9,
-      "tenure": 120
+      "amount": 200000,
+      "rate": 6.5,
+      "tenure": 360
     },
     "sliderRanges": {
       "amount": {
-        "min": 50000,
-        "max": 10000000,
-        "step": 50000
+        "min": 10000,
+        "max": 1000000,
+        "step": 5000
       },
       "rate": {
-        "min": 3,
-        "max": 24,
-        "step": 0.25
+        "min": 2,
+        "max": 15,
+        "step": 0.125
       },
       "tenure": {
         "min": 12,
@@ -1376,7 +1376,7 @@
         "step": 12
       }
     },
-    "keywords": "loan amortization calculator, amortization schedule, amortization table, loan payment schedule, EMI schedule"
+    "keywords": "amortization calculator, amortization schedule, amortization table, loan amortization, mortgage amortization, amortization calculator with extra payments, loan payment schedule, amortization formula, how amortization works"
   },
   {
     "id": "ltv-calculator",

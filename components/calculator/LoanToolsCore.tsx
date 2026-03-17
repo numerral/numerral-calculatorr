@@ -303,33 +303,132 @@ function LoanPayoffCalc({defaults}:P){
     </div></div>);
 }
 
-// ─── 6. Loan Amortization ───
+// ─── 6. Loan Amortization (Enhanced) ───
 function LoanAmortizationCalc({defaults}:P){
-  const[loan,setLoan]=useState(defaults.amount||1000000);
-  const[rate,setRate]=useState(defaults.rate||9);
-  const[tenure,setTenure]=useState(defaults.tenure||120);
+  const[loan,setLoan]=useState(defaults.amount||200000);
+  const[rate,setRate]=useState(defaults.rate||6.5);
+  const[termYears,setTermYears]=useState(Math.round((defaults.tenure||360)/12));
+  const[extra,setExtra]=useState(0);
+  const[view,setView]=useState<"annual"|"monthly">("annual");
   const[showAll,setShowAll]=useState(false);
+  const tenure=termYears*12;
+
   const r=useMemo(()=>{
-    const mr=rate/100/12;const mp=pmt(mr,tenure,loan);const rows:any[]=[];let bal=loan;
-    for(let i=1;i<=tenure;i++){const intP=bal*mr;const prinP=mp-intP;bal=Math.max(0,bal-prinP);rows.push({m:i,emi:mp,prin:prinP,int:intP,bal});}
-    return{mp,rows,totalInt:rows.reduce((s,r)=>s+r.int,0)};
-  },[loan,rate,tenure]);
-  const display=showAll?r.rows:r.rows.slice(0,12);
-  return(<div><div className="calc-input-panel">
-    <F label="💰 LOAN AMOUNT" value={loan} onChange={setLoan} step={50000}/>
-    <F label="% INTEREST RATE" value={rate} onChange={setRate} step={0.25}/>
-    <F label="📅 TENURE (months)" value={tenure} onChange={setTenure} step={12}/>
-  </div>
-    <div className="calc-card" style={{marginTop:"var(--s-6)",background:"var(--n-surface-alt)"}}>
-      <p className="calc-field__label">MONTHLY EMI</p>
-      <p style={{fontSize:"var(--t-h1)",fontWeight:700,color:"var(--n-primary)",marginBottom:"var(--s-2)"}}>{fmt(r.mp)}</p>
-      <p style={{fontSize:"var(--t-body-sm)",color:"var(--n-text-muted)"}}>Total interest: {fmt(r.totalInt)}</p>
+    const mr=rate/100/12;const mp=pmt(mr,tenure,loan);
+    // Monthly rows
+    const rows:{m:number;pmt:number;prin:number;int:number;bal:number}[]=[];
+    let bal=loan,totalInt=0,actualMonths=0;
+    for(let i=1;i<=tenure&&bal>0.5;i++){
+      const intP=bal*mr;const prinP=mp-intP+extra;const actualPrin=Math.min(prinP,bal);
+      bal=Math.max(0,bal-actualPrin);totalInt+=intP;actualMonths=i;
+      rows.push({m:i,pmt:mp+extra,prin:actualPrin,int:intP,bal});
+    }
+    // Yearly summary
+    const years:{yr:number;prin:number;int:number;bal:number}[]=[];
+    let yBal=loan;
+    for(let y=1;y<=termYears&&yBal>0.5;y++){
+      let yPrin=0,yInt=0;
+      for(let m=0;m<12&&yBal>0.5;m++){const i=yBal*mr;const p=mp-i+extra;const ap=Math.min(p,yBal);yPrin+=ap;yInt+=i;yBal=Math.max(0,yBal-ap);}
+      years.push({yr:y,prin:yPrin,int:yInt,bal:yBal});
+    }
+    const totalPaid=rows.reduce((s,r)=>s+r.pmt,0);
+    const payoffDate=new Date();payoffDate.setMonth(payoffDate.getMonth()+actualMonths);
+    const payoff=payoffDate.toLocaleDateString("en-US",{month:"short",year:"numeric"});
+    const intRatio=totalPaid>0?(totalInt/totalPaid*100):0;
+    return{mp,totalInt,totalPaid,rows,years,payoff,actualMonths,intRatio};
+  },[loan,rate,tenure,extra]);
+
+  const displayRows=view==="annual"
+    ?(showAll?r.years:r.years.slice(0,10))
+    :(showAll?r.rows:r.rows.slice(0,24));
+
+  return(<div>
+    <div className="calc-input-panel">
+      {/* Loan Amount */}
+      <div className="calc-field">
+        <label className="calc-field__label"><span className="calc-field__label-icon">💰</span>Loan Amount</label>
+        <input type="range" className="calc-field__slider" min={10000} max={1000000} step={5000} value={loan} onChange={e=>setLoan(+e.target.value)}/>
+        <input type="text" className="calc-field__input" value={loan.toLocaleString("en-US")} inputMode="numeric"
+          onChange={e=>{const v=parseInt(e.target.value.replace(/,/g,""));if(!isNaN(v))setLoan(v);}}/>
+      </div>
+
+      {/* Loan Term */}
+      <div className="calc-field">
+        <label className="calc-field__label"><span className="calc-field__label-icon">📅</span>Loan Term (Years)</label>
+        <input type="range" className="calc-field__slider" min={1} max={30} step={1} value={termYears} onChange={e=>setTermYears(+e.target.value)}/>
+        <div style={{display:"flex",gap:"var(--s-2)",alignItems:"center"}}>
+          <input type="text" className="calc-field__input" style={{maxWidth:"80px"}} value={termYears} inputMode="numeric"
+            onChange={e=>{const v=parseInt(e.target.value);if(!isNaN(v)&&v>0&&v<=30)setTermYears(v);}}/>
+          <span className="t-body-sm text-muted">years = {tenure} months</span>
+        </div>
+      </div>
+
+      {/* Interest Rate */}
+      <div className="calc-field">
+        <label className="calc-field__label"><span className="calc-field__label-icon">📊</span>Interest Rate (%)</label>
+        <input type="range" className="calc-field__slider" min={2} max={15} step={0.125} value={rate} onChange={e=>setRate(+e.target.value)}/>
+        <input type="text" className="calc-field__input" style={{maxWidth:"100px"}} value={rate} inputMode="decimal"
+          onChange={e=>{const v=parseFloat(e.target.value);if(!isNaN(v))setRate(v);}}/>
+      </div>
+
+      {/* Extra Monthly Payment */}
+      <div className="calc-field">
+        <label className="calc-field__label"><span className="calc-field__label-icon">💸</span>Extra Monthly Payment (optional)</label>
+        <input type="text" className="calc-field__input" value={extra===0?"":extra.toLocaleString("en-US")} inputMode="numeric" placeholder="$0"
+          onChange={e=>{const v=parseInt(e.target.value.replace(/,/g,""));setExtra(isNaN(v)?0:v);}}/>
+      </div>
     </div>
-    <div style={{marginTop:"var(--s-4)",overflowX:"auto"}}>
-      <table className="comparison-table"><thead><tr><th>Month</th><th>EMI</th><th>Principal</th><th>Interest</th><th>Balance</th></tr></thead>
-      <tbody>{display.map(row=>(<tr key={row.m}><td>{row.m}</td><td>{fmt(row.emi)}</td><td>{fmt(row.prin)}</td><td>{fmt(row.int)}</td><td>{fmt(row.bal)}</td></tr>))}</tbody></table>
-      {r.rows.length>12&&<button className="btn btn--ghost" style={{marginTop:"var(--s-2)"}} onClick={()=>setShowAll(!showAll)}>{showAll?"Show Less":"Show All "+r.rows.length+" Months"}</button>}
-    </div></div>);
+
+    {/* ── Results ── */}
+    <div className="calc-result" aria-live="polite">
+      <p className="calc-result__label">Monthly Payment</p>
+      <p className="calc-result__emi">{fmtUSD(r.mp+extra)}<span style={{fontSize:"0.5em",fontWeight:400}}>/mo</span></p>
+      <div className="calc-result__stats">
+        <div className="calc-result__stat"><p className="calc-result__stat-label">Total of {r.actualMonths} Payments</p><p className="calc-result__stat-value">{fmtUSD(r.totalPaid)}</p></div>
+        <div className="calc-result__stat"><p className="calc-result__stat-label">Total Interest</p><p className="calc-result__stat-value" style={{color:"var(--n-error, #ef4444)"}}>{fmtUSD(r.totalInt)}</p></div>
+        <div className="calc-result__stat"><p className="calc-result__stat-label">Payoff Date</p><p className="calc-result__stat-value" style={{color:"var(--n-success)"}}>{r.payoff}</p></div>
+      </div>
+      {extra>0&&<div className="calc-result__breakdown" style={{marginTop:"var(--s-3)"}}>
+        <p className="calc-result__breakdown-line" style={{color:"var(--n-success)",fontWeight:600}}>💡 Extra ${extra}/mo saves {fmtUSD(pmt(rate/100/12,tenure,loan)*tenure-loan-r.totalInt)} in interest and pays off {Math.round((tenure-r.actualMonths)/12)} years early!</p>
+      </div>}
+      <div className="calc-result__breakdown" style={{marginTop:"var(--s-3)"}}>
+        <p className="calc-result__breakdown-line">Interest-to-Principal Ratio: {r.intRatio.toFixed(1)}% interest / {(100-r.intRatio).toFixed(1)}% principal</p>
+      </div>
+    </div>
+
+    {/* ── Amortization Schedule ── */}
+    <div style={{marginTop:"var(--s-6)"}}>
+      <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:"var(--s-4)"}}>
+        <h3 className="t-h3">Amortization Schedule</h3>
+        <div className="tax-toggle">
+          <button className={`tax-toggle__btn${view==="annual"?" active":""}`} onClick={()=>{setView("annual");setShowAll(false);}}>Annual</button>
+          <button className={`tax-toggle__btn${view==="monthly"?" active":""}`} onClick={()=>{setView("monthly");setShowAll(false);}}>Monthly</button>
+        </div>
+      </div>
+      <div style={{overflowX:"auto"}}>
+        {view==="annual"?(
+          <table className="comparison-table">
+            <thead><tr><th>Year</th><th>Principal</th><th>Interest</th><th>Ending Balance</th></tr></thead>
+            <tbody>{(displayRows as typeof r.years).map(y=>(
+              <tr key={y.yr}><td>{y.yr}</td><td>{fmtUSD(y.prin)}</td><td>{fmtUSD(y.int)}</td><td>{fmtUSD(y.bal)}</td></tr>
+            ))}</tbody>
+          </table>
+        ):(
+          <table className="comparison-table">
+            <thead><tr><th>Month</th><th>Payment</th><th>Principal</th><th>Interest</th><th>Balance</th></tr></thead>
+            <tbody>{(displayRows as typeof r.rows).map(row=>(
+              <tr key={row.m}><td>{row.m}</td><td>{fmtUSD(row.pmt)}</td><td>{fmtUSD(row.prin)}</td><td>{fmtUSD(row.int)}</td><td>{fmtUSD(row.bal)}</td></tr>
+            ))}</tbody>
+          </table>
+        )}
+        {(view==="annual"?r.years.length>10:r.rows.length>24)&&(
+          <button className="btn btn--ghost" style={{marginTop:"var(--s-2)"}} onClick={()=>setShowAll(!showAll)}>
+            {showAll?"Show Less":`Show All ${view==="annual"?r.years.length:r.rows.length} ${view==="annual"?"Years":"Months"}`}
+          </button>
+        )}
+      </div>
+    </div>
+  </div>);
 }
 
 // ─── 7. LTV Calculator ───
