@@ -4,7 +4,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-// import Image from \"next/image\";
+import Image from "next/image";
 import Script from "next/script";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import FAQAccordion from "@/components/shared/FAQAccordion";
@@ -107,7 +107,19 @@ export default async function GuidePage({ params }: PageProps) {
                     <p className="t-body text-muted" style={{ lineHeight: 1.6 }}>
                         {guide.description}
                     </p>
-                    {/* Hero image — only render if image exists for this guide */}
+                    <Image
+                        src={`/images/guides/${guide.slug}.png`}
+                        alt={guide.title}
+                        width={800}
+                        height={450}
+                        priority
+                        style={{
+                            width: "100%",
+                            height: "auto",
+                            borderRadius: "var(--r-lg)",
+                            marginTop: "var(--s-5)",
+                        }}
+                    />
                 </header>
 
                 {/* Table of Contents */}
@@ -178,7 +190,35 @@ export default async function GuidePage({ params }: PageProps) {
                                         </table>
                                     );
                                 }
-                                // Check if it's a list
+                                // Sub-header + bullet list (e.g. "**Tier 1 — ...**:\n• item\n• item")
+                                const subHeaderMatch = para.match(/^\*\*(.+?)\*\*:?\s*\n([•\-]\s)/m);
+                                if (subHeaderMatch) {
+                                    const lines = para.split("\n");
+                                    const headerLine = lines[0];
+                                    const bulletLines = lines.slice(1).filter((l) => l.trim());
+                                    return (
+                                        <div key={j} style={{
+                                            background: "var(--n-surface)",
+                                            border: "1px solid var(--n-border)",
+                                            borderRadius: "var(--r-md)",
+                                            padding: "var(--s-4) var(--s-5)",
+                                            marginBottom: "var(--s-4)",
+                                        }}>
+                                            <p style={{ fontWeight: 700, color: "var(--n-text)", marginBottom: "var(--s-2)", fontSize: "var(--t-body)" }}
+                                                dangerouslySetInnerHTML={{ __html: headerLine.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>") }} />
+                                            <ul style={{ paddingLeft: "var(--s-6)", marginBottom: 0, lineHeight: 1.8 }}>
+                                                {bulletLines.map((item, k) => (
+                                                    <li key={k} dangerouslySetInnerHTML={{
+                                                        __html: item
+                                                            .replace(/^[•\-]\s*/, "")
+                                                            .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
+                                                    }} />
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    );
+                                }
+                                // Check if it's a plain list
                                 if (para.match(/^[•\-]\s/m)) {
                                     const items = para.split("\n").filter((l) => l.trim());
                                     return (
