@@ -1613,6 +1613,76 @@ function CircleCalc() {
     </div></div>);
 }
 
+/* 32. Regular Polygon Calculator */
+const POLY_NAMES: Record<number, string> = { 3:"Triangle",4:"Square",5:"Pentagon",6:"Hexagon",7:"Heptagon",8:"Octagon",9:"Nonagon",10:"Decagon",11:"Hendecagon",12:"Dodecagon",15:"Pentadecagon",20:"Icosagon" };
+function RegularPolygonCalc() {
+    const [n, setN] = useState("6");
+    const [mode, setMode] = useState("side");
+    const [val, setVal] = useState("5");
+    const res = useMemo(() => {
+        const vn = Math.max(3, parseInt(n) || 3);
+        const v = parseFloat(val) || 0;
+        const steps: string[] = [];
+        let a = 0;
+        if (mode === "side") { a = v; steps.push(`Side length: a = ${v}`); }
+        else if (mode === "perimeter") { a = v / vn; steps.push(`Side from perimeter: a = P/n = ${v}/${vn} = ${fmt(a, 6)}`); }
+        else if (mode === "area") {
+            const k = vn / (4 * Math.tan(Math.PI / vn));
+            a = Math.sqrt(v / k);
+            steps.push(`Side from area: a = √(A / (n/(4tan(π/n)))) = ${fmt(a, 6)}`);
+        } else if (mode === "circumradius") {
+            a = v * 2 * Math.sin(Math.PI / vn);
+            steps.push(`Side from circumradius: a = 2R×sin(π/n) = ${fmt(a, 6)}`);
+        } else if (mode === "inradius") {
+            a = v * 2 * Math.tan(Math.PI / vn);
+            steps.push(`Side from apothem: a = 2r×tan(π/n) = ${fmt(a, 6)}`);
+        }
+        const area = (vn * a * a) / (4 * Math.tan(Math.PI / vn));
+        const peri = vn * a;
+        const intAngle = ((vn - 2) * 180) / vn;
+        const extAngle = 360 / vn;
+        const circumR = a / (2 * Math.sin(Math.PI / vn));
+        const inR = a / (2 * Math.tan(Math.PI / vn));
+        const diags = (vn * (vn - 3)) / 2;
+        const angleSum = (vn - 2) * 180;
+        const name = POLY_NAMES[vn] || `${vn}-gon`;
+        steps.push(`Shape: ${name} (${vn} sides)`);
+        steps.push(`Area: A = (n×a²)/(4×tan(π/n)) = ${fmt(area, 6)}`);
+        steps.push(`Perimeter: P = n×a = ${vn}×${fmt(a, 4)} = ${fmt(peri, 6)}`);
+        steps.push(`Interior angle: α = (n−2)×180/n = ${fmt(intAngle, 4)}°`);
+        steps.push(`Exterior angle: β = 360/n = ${fmt(extAngle, 4)}°`);
+        steps.push(`Angle sum: ${angleSum}°`);
+        steps.push(`Circumradius: R = a/(2×sin(π/n)) = ${fmt(circumR, 6)}`);
+        steps.push(`Inradius (apothem): r = a/(2×tan(π/n)) = ${fmt(inR, 6)}`);
+        steps.push(`Diagonals: n(n−3)/2 = ${diags}`);
+        return { name, a: fmt(a, 6), area: fmt(area, 6), peri: fmt(peri, 6), intAngle: fmt(intAngle, 4), extAngle: fmt(extAngle, 4), angleSum: String(angleSum), circumR: fmt(circumR, 6), inR: fmt(inR, 6), diags: String(diags), steps };
+    }, [n, mode, val]);
+    return (<div className="con-calc"><h3 className="con-calc__title">⬡ Regular Polygon Calculator</h3><div className="con-calc__inputs">
+        <InputField label="Number of Sides (n)" value={n} onChange={setN} />
+        <SelectField label="Known Value" value={mode} onChange={setMode} options={[
+            {value:"side",label:"Side Length (a)"},
+            {value:"perimeter",label:"Perimeter (P)"},
+            {value:"area",label:"Area (A)"},
+            {value:"circumradius",label:"Circumradius (R)"},
+            {value:"inradius",label:"Inradius / Apothem (r)"},
+        ]} />
+        <InputField label={mode === "side" ? "Side Length (a)" : mode === "perimeter" ? "Perimeter (P)" : mode === "area" ? "Area (A)" : mode === "circumradius" ? "Circumradius (R)" : "Inradius (r)"} value={val} onChange={setVal} />
+    </div><div className="con-calc__results"><h4>{res.name} Properties</h4>
+        <ResultRow label="Shape" value={res.name} />
+        <ResultRow label="Side Length (a)" value={res.a} />
+        <ResultRow label="Area (A)" value={res.area} />
+        <ResultRow label="Perimeter (P)" value={res.peri} />
+        <ResultRow label="Interior Angle (α)" value={`${res.intAngle}°`} />
+        <ResultRow label="Exterior Angle (β)" value={`${res.extAngle}°`} />
+        <ResultRow label="Angle Sum" value={`${res.angleSum}°`} />
+        <ResultRow label="Circumradius (R)" value={res.circumR} />
+        <ResultRow label="Apothem / Inradius (r)" value={res.inR} />
+        <ResultRow label="Diagonals" value={res.diags} />
+        <h4>Steps</h4>
+        {res.steps.map((s, i) => <ResultRow key={i} label={`Step ${i + 1}`} value={s} />)}
+    </div></div>);
+}
+
 /* ──── DISPATCHER ──── */
 const CALC_MAP: Record<string, React.FC> = {
     "percentage": PercentageCalc,
@@ -1646,6 +1716,7 @@ const CALC_MAP: Record<string, React.FC> = {
     "area-calculator": AreaCalc,
     "perimeter-calculator": PerimeterCalc,
     "circle-area": CircleCalc,
+    "polygon-calculator": RegularPolygonCalc,
 };
 
 export default function MathCalculatorCore({ calcType }: { calcType: string }) {

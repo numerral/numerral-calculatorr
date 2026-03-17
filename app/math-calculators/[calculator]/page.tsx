@@ -2833,6 +2833,105 @@ const HUB_CONTENT: Record<string, {
             { title: "Parallelogram Area", slug: "parallelogram-area-calculator", categorySlug: "math-calculators", description: "πr² proof uses parallelogram concept" },
         ],
     },
+
+    /* ─── 32. POLYGON CALCULATOR — RICH CONTENT ─── */
+    "polygon-calculator": {
+        subtitle: "Calculate all properties of any regular polygon — area, perimeter, interior and exterior angles, circumradius, inradius (apothem), and diagonals. Enter the number of sides and any known measurement.",
+        contentHTML: `
+            <h2 id="what-is-polygon">What Is a Regular Polygon?</h2>
+            <p>A <strong>polygon</strong> is a two-dimensional shape made up of straight line segments. A <strong>regular polygon</strong> is one where all sides are equal in length and all interior angles are equal. Examples include equilateral triangles, squares, pentagons, hexagons, and octagons.</p>
+            <p>Our calculator works for any regular polygon with 3 or more sides. Enter the number of sides and any one known value (side length, area, perimeter, circumradius, or apothem) to compute all properties.</p>
+
+            <h2 id="formulas">Polygon Formulas</h2>
+
+            <h3 id="area">Area</h3>
+            <p><strong>A = (n × a²) / (4 × tan(π/n))</strong></p>
+            <p>Where <em>n</em> is the number of sides and <em>a</em> is the side length.</p>
+            <p><strong>Example (hexagon, n=6, a=5):</strong> A = (6 × 25) / (4 × tan(π/6)) = 150 / 2.309 = <strong>64.952</strong></p>
+
+            <h3 id="perimeter">Perimeter</h3>
+            <p><strong>P = n × a</strong></p>
+            <p>Simply the number of sides times the side length. Hexagon with a=5: P = 6 × 5 = <strong>30</strong>.</p>
+
+            <h3 id="angles">Interior &amp; Exterior Angles</h3>
+            <p><strong>Interior angle: α = (n − 2) × 180° / n</strong></p>
+            <p><strong>Exterior angle: β = 360° / n</strong></p>
+            <p>The sum of all interior angles is always <strong>(n − 2) × 180°</strong>. Interior + exterior = 180° for each vertex.</p>
+            <p>Hexagon: α = (6−2)×180/6 = <strong>120°</strong>, β = 360/6 = <strong>60°</strong>.</p>
+
+            <h3 id="circumradius">Circumradius (R)</h3>
+            <p>The circumradius is the radius of the circle that passes through all vertices:</p>
+            <p><strong>R = a / (2 × sin(π/n))</strong></p>
+            <p>Hexagon with a=5: R = 5 / (2 × sin(π/6)) = 5 / 1 = <strong>5</strong>. (For a hexagon, R = a!)</p>
+
+            <h3 id="inradius">Inradius / Apothem (r)</h3>
+            <p>The apothem is the perpendicular distance from the center to the midpoint of a side (inscribed circle radius):</p>
+            <p><strong>r = a / (2 × tan(π/n))</strong></p>
+            <p>Hexagon with a=5: r = 5 / (2 × tan(π/6)) = 5 / 1.155 = <strong>4.330</strong>.</p>
+
+            <h3 id="diagonals">Number of Diagonals</h3>
+            <p><strong>Diagonals = n(n − 3) / 2</strong></p>
+            <p>Hexagon: 6(6−3)/2 = <strong>9 diagonals</strong>.</p>
+
+            <h2 id="polygon-names">Common Polygon Names</h2>
+            <table><thead><tr><th>Sides</th><th>Name</th><th>Interior Angle</th></tr></thead><tbody>
+                <tr><td>3</td><td>Triangle</td><td>60°</td></tr>
+                <tr><td>4</td><td>Square</td><td>90°</td></tr>
+                <tr><td>5</td><td>Pentagon</td><td>108°</td></tr>
+                <tr><td>6</td><td>Hexagon</td><td>120°</td></tr>
+                <tr><td>7</td><td>Heptagon</td><td>128.57°</td></tr>
+                <tr><td>8</td><td>Octagon</td><td>135°</td></tr>
+                <tr><td>9</td><td>Nonagon</td><td>140°</td></tr>
+                <tr><td>10</td><td>Decagon</td><td>144°</td></tr>
+                <tr><td>12</td><td>Dodecagon</td><td>150°</td></tr>
+                <tr><td>20</td><td>Icosagon</td><td>162°</td></tr>
+            </tbody></table>
+
+            <div class="explanation__highlight">
+                <strong>As n → ∞:</strong> A regular polygon approaches a circle. The interior angle approaches 180°, the area formula approaches πr², and the circumradius and inradius converge.
+            </div>
+
+            <h2 id="faq">Frequently Asked Questions</h2>
+
+            <h3>What's the difference between regular and irregular polygons?</h3>
+            <p>A <strong>regular polygon</strong> has all sides and all angles equal. An <strong>irregular polygon</strong> has sides or angles of different sizes. Our calculator works for regular polygons only, since irregular polygons need all individual side lengths and angles to solve.</p>
+
+            <h3>What is the difference between circumradius and apothem?</h3>
+            <p>The <strong>circumradius (R)</strong> goes from the center to a vertex. The <strong>apothem (r)</strong> goes from the center to the midpoint of a side. The circumradius is always larger than the apothem.</p>
+
+            <h3>How do interior and exterior angles relate?</h3>
+            <p>At each vertex, <strong>interior + exterior = 180°</strong>. The sum of all exterior angles is always 360° for any convex polygon, regardless of the number of sides.</p>
+
+            <h3>Why does a regular hexagon have R = a?</h3>
+            <p>A regular hexagon can be divided into 6 equilateral triangles. The circumradius equals the side length because each triangle has sides equal to the hexagon's side. This makes hexagons uniquely simple — R = a exactly.</p>
+
+            <h3>Can this calculator handle very large numbers of sides?</h3>
+            <p>Yes — enter any number ≥ 3. With very large n values (e.g., 100+), the polygon closely approximates a circle, and you'll see the area approach πR² and the angles approach 180°.</p>
+        `,
+        formula: {
+            formula: "A = (n × a²) / (4 × tan(π/n))",
+            variables: [
+                { symbol: "n", meaning: "Number of sides (≥ 3)" },
+                { symbol: "a", meaning: "Side length" },
+                { symbol: "α", meaning: "Interior angle = (n−2)×180/n" },
+                { symbol: "β", meaning: "Exterior angle = 360/n" },
+                { symbol: "R", meaning: "Circumradius = a / (2sin(π/n))" },
+                { symbol: "r", meaning: "Inradius/apothem = a / (2tan(π/n))" },
+            ],
+            example: [
+                { label: "Hexagon a=5", substitution: "A = (6×25)/(4×tan(30°))", result: "64.952" },
+                { label: "Octagon a=4", substitution: "A = (8×16)/(4×tan(22.5°))", result: "77.255" },
+                { label: "Pentagon a=6", substitution: "A = (5×36)/(4×tan(36°))", result: "61.937" },
+            ],
+        },
+        relatedCalculators: [
+            { title: "Pentagon Calculator", slug: "pentagon-calculator", categorySlug: "math-calculators", description: "Dedicated pentagon properties with golden ratio" },
+            { title: "Area Calculator", slug: "area-calculator", categorySlug: "math-calculators", description: "Area of 12 shapes including regular polygons" },
+            { title: "Perimeter Calculator", slug: "perimeter-calculator", categorySlug: "math-calculators", description: "Perimeter of 10 shapes including n-gons" },
+            { title: "Circle Area Calculator", slug: "circle-area-calculator", categorySlug: "math-calculators", description: "Circle — the limit of regular polygons" },
+            { title: "Angle Converter", slug: "angle-converter-calculator", categorySlug: "math-calculators", description: "Convert angle units for polygon calculations" },
+        ],
+    },
 };
 
 export default async function MathCalculatorHubPage({ params }: PageProps) {

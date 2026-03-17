@@ -12112,5 +12112,19 @@
     "defaults": { "amount": 0, "rate": 0, "tenure": 0 },
     "sliderRanges": { "amount": { "min": 0, "max": 0, "step": 0 }, "rate": { "min": 0, "max": 0, "step": 0 }, "tenure": { "min": 0, "max": 0, "step": 0 } },
     "keywords": "circle area calculator, area of a circle, circle calculator, circumference calculator, pi r squared, circle radius, circle diameter, area from circumference"
+  },
+  {
+    "id": "polygon-calculator",
+    "category": "math",
+    "title": "Polygon Calculator",
+    "slug": "polygon-calculator",
+    "categorySlug": "math-calculators",
+    "icon": "⬡",
+    "description": "Calculate all properties of any regular polygon: area, perimeter, interior and exterior angles, circumradius, inradius (apothem), and number of diagonals. Enter the number of sides and any known value.",
+    "stars": 5,
+    "calcType": "polygon-calculator",
+    "defaults": { "amount": 0, "rate": 0, "tenure": 0 },
+    "sliderRanges": { "amount": { "min": 0, "max": 0, "step": 0 }, "rate": { "min": 0, "max": 0, "step": 0 }, "tenure": { "min": 0, "max": 0, "step": 0 } },
+    "keywords": "polygon calculator, regular polygon area, polygon perimeter, interior angle polygon, exterior angle, circumradius polygon, apothem, hexagon calculator, octagon calculator"
   }
 ]
