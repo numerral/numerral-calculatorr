@@ -224,32 +224,179 @@ function DebtConsolidationCalc({defaults}:P){
     </div></div>);
 }
 
-// ─── 3. Loan Affordability ───
+// ─── 3. House Affordability (Enhanced) ───
 function LoanAffordabilityCalc({defaults}:P){
-  const[income,setIncome]=useState(defaults.amount||80000);
-  const[expenses,setExpenses]=useState(30000);
-  const[existEmi,setExistEmi]=useState(10000);
-  const[dti,setDti]=useState(40);
-  const[rate,setRate]=useState(defaults.rate||8.5);
-  const[tenure,setTenure]=useState(defaults.tenure||240);
+  const[income,setIncome]=useState(85000);
+  const[debts,setDebts]=useState(500);
+  const[downPct,setDownPct]=useState(20);
+  const[rate,setRate]=useState(defaults.rate||6.5);
+  const[termYears,setTermYears]=useState(30);
+  const[propTax,setPropTax]=useState(1.2);
+  const[insurance,setInsurance]=useState(1500);
+  const[hoa,setHoa]=useState(0);
+  const[loanType,setLoanType]=useState<"conv"|"fha"|"va">("conv");
+
   const r=useMemo(()=>{
-    const maxEmi=income*dti/100-existEmi;const mr=rate/100/12;
-    const maxLoan=maxEmi>0?maxEmi*(Math.pow(1+mr,tenure)-1)/(mr*Math.pow(1+mr,tenure)):0;
-    return{maxEmi:Math.max(0,maxEmi),maxLoan:Math.max(0,maxLoan),usedDti:income>0?(existEmi/income*100):0};
-  },[income,expenses,existEmi,dti,rate,tenure]);
-  return(<div><div className="calc-input-panel">
-    <F label="💰 MONTHLY INCOME" value={income} onChange={setIncome} step={5000}/>
-    <F label="🏠 MONTHLY EXPENSES" value={expenses} onChange={setExpenses} step={1000}/>
-    <F label="📋 EXISTING EMIs" value={existEmi} onChange={setExistEmi} step={500}/>
-    <F label="📊 MAX DEBT-TO-INCOME %" value={dti} onChange={setDti} min={10} max={60} step={5}/>
-    <F label="% INTEREST RATE" value={rate} onChange={setRate} step={0.25}/>
-    <F label="📅 TENURE (months)" value={tenure} onChange={setTenure} step={12}/>
-  </div>
-    <div className="calc-card" style={{marginTop:"var(--s-6)",background:"var(--n-surface-alt)"}}>
-      <p className="calc-field__label">MAXIMUM AFFORDABLE LOAN</p>
-      <p style={{fontSize:"var(--t-h1)",fontWeight:700,color:"var(--n-primary)"}}>₹{r.maxLoan.toLocaleString("en-IN",{maximumFractionDigits:0})}</p>
-      <p style={{fontSize:"var(--t-body-sm)",color:"var(--n-text-muted)",marginTop:"var(--s-2)"}}>Max new EMI: {fmt(r.maxEmi)} | Current DTI: {r.usedDti.toFixed(1)}%</p>
-    </div></div>);
+    // DTI limits by loan type
+    const limits={conv:{front:28,back:36},fha:{front:31,back:43},va:{front:50,back:41}};
+    const lim=limits[loanType];
+    const monthlyIncome=income/12;
+    // Back-end: total debts (housing + other) <= back% of income
+    const maxTotalDebt=monthlyIncome*lim.back/100;
+    const maxHousingFromBack=maxTotalDebt-debts;
+    // Front-end: housing only <= front% of income
+    const maxHousingFromFront=monthlyIncome*lim.front/100;
+    // Use the lower of front-end and back-end
+    const maxHousing=Math.max(0,Math.min(maxHousingFromFront,maxHousingFromBack));
+    // Subtract non-P&I housing costs
+    const monthlyTax=propTax/100; // will be applied per dollar of home price
+    const monthlyIns=insurance/12;
+    // We need to solve: P&I + (homePrice * propTax%/12) + insurance/12 + hoa + pmi <= maxHousing
+    // P&I = pmt(mr, n, loanAmount) where loanAmount = homePrice * (1-downPct/100)
+    const mr=rate/100/12;const n=termYears*12;
+    const pmtFactor=mr*Math.pow(1+mr,n)/(Math.pow(1+mr,n)-1);
+    const loanRatio=1-downPct/100;
+    // PMI: ~0.5% of loan/yr if down < 20%
+    const pmiRate=downPct<20?0.005/12:0;
+    // homePrice * loanRatio * pmtFactor + homePrice * monthlyTax/12 + monthlyIns + hoa + homePrice * loanRatio * pmiRate <= maxHousing
+    // homePrice * (loanRatio * pmtFactor + monthlyTax/12 + loanRatio * pmiRate) <= maxHousing - monthlyIns - hoa
+    const perDollar=loanRatio*pmtFactor + propTax/100/12 + loanRatio*pmiRate;
+    const available=maxHousing-monthlyIns-hoa;
+    const maxHome=available>0&&perDollar>0?available/perDollar:0;
+    const maxLoan=maxHome*loanRatio;
+    const pi=maxLoan*pmtFactor;
+    const tax=maxHome*propTax/100/12;
+    const pmi=maxLoan*pmiRate;
+    const totalMonthly=pi+tax+monthlyIns+hoa+pmi;
+    const frontDti=monthlyIncome>0?(totalMonthly/monthlyIncome*100):0;
+    const backDti=monthlyIncome>0?((totalMonthly+debts)/monthlyIncome*100):0;
+    return{maxHome,maxLoan,pi,tax,ins:monthlyIns,hoa,pmi,totalMonthly,frontDti,backDti,downAmt:maxHome*downPct/100,lim};
+  },[income,debts,downPct,rate,termYears,propTax,insurance,hoa,loanType]);
+
+  return(<div>
+    <div className="calc-input-panel">
+      {/* Loan Type */}
+      <div className="calc-field">
+        <label className="calc-field__label"><span className="calc-field__label-icon">🏦</span>Loan Type</label>
+        <div className="tax-toggle">
+          <button className={`tax-toggle__btn${loanType==="conv"?" active":""}`} onClick={()=>setLoanType("conv")}>Conventional</button>
+          <button className={`tax-toggle__btn${loanType==="fha"?" active":""}`} onClick={()=>setLoanType("fha")}>FHA</button>
+          <button className={`tax-toggle__btn${loanType==="va"?" active":""}`} onClick={()=>setLoanType("va")}>VA</button>
+        </div>
+        <p className="t-body-sm text-muted" style={{marginTop:"var(--s-1)"}}>
+          {loanType==="conv"?"28/36 Rule: Housing ≤ 28%, Total debt ≤ 36%":loanType==="fha"?"FHA: Housing ≤ 31%, Total debt ≤ 43%":"VA: Total debt ≤ 41% (no front-end limit)"}
+        </p>
+      </div>
+
+      {/* Annual Income */}
+      <div className="calc-field">
+        <label className="calc-field__label"><span className="calc-field__label-icon">💰</span>Annual Household Income</label>
+        <input type="range" className="calc-field__slider" min={30000} max={300000} step={5000} value={income} onChange={e=>setIncome(+e.target.value)}/>
+        <input type="text" className="calc-field__input" value={income.toLocaleString("en-US")} inputMode="numeric"
+          onChange={e=>{const v=parseInt(e.target.value.replace(/,/g,""));if(!isNaN(v))setIncome(v);}}/>
+      </div>
+
+      {/* Monthly Debts */}
+      <div className="calc-field">
+        <label className="calc-field__label"><span className="calc-field__label-icon">💳</span>Monthly Debts (car, student, credit cards)</label>
+        <input type="range" className="calc-field__slider" min={0} max={3000} step={50} value={debts} onChange={e=>setDebts(+e.target.value)}/>
+        <input type="text" className="calc-field__input" style={{maxWidth:"120px"}} value={debts.toLocaleString("en-US")} inputMode="numeric"
+          onChange={e=>{const v=parseInt(e.target.value.replace(/,/g,""));if(!isNaN(v))setDebts(v);}}/>
+      </div>
+
+      {/* Down Payment */}
+      <div className="calc-field">
+        <label className="calc-field__label"><span className="calc-field__label-icon">🏠</span>Down Payment (%)</label>
+        <input type="range" className="calc-field__slider" min={loanType==="va"?0:loanType==="fha"?3.5:3} max={30} step={0.5} value={downPct} onChange={e=>setDownPct(+e.target.value)}/>
+        <div style={{display:"flex",gap:"var(--s-2)",alignItems:"center"}}>
+          <input type="text" className="calc-field__input" style={{maxWidth:"80px"}} value={downPct} inputMode="decimal"
+            onChange={e=>{const v=parseFloat(e.target.value);if(!isNaN(v))setDownPct(v);}}/>
+          <span className="t-body-sm text-muted">{downPct<20?"⚠️ PMI required":"✅ No PMI"}</span>
+        </div>
+      </div>
+
+      {/* Interest Rate */}
+      <div className="calc-field">
+        <label className="calc-field__label"><span className="calc-field__label-icon">📊</span>Interest Rate (%)</label>
+        <input type="range" className="calc-field__slider" min={2} max={12} step={0.125} value={rate} onChange={e=>setRate(+e.target.value)}/>
+        <input type="text" className="calc-field__input" style={{maxWidth:"100px"}} value={rate} inputMode="decimal"
+          onChange={e=>{const v=parseFloat(e.target.value);if(!isNaN(v))setRate(v);}}/>
+      </div>
+
+      {/* Loan Term */}
+      <div className="calc-field">
+        <label className="calc-field__label"><span className="calc-field__label-icon">📅</span>Loan Term</label>
+        <div className="tax-toggle">
+          <button className={`tax-toggle__btn${termYears===15?" active":""}`} onClick={()=>setTermYears(15)}>15 Years</button>
+          <button className={`tax-toggle__btn${termYears===30?" active":""}`} onClick={()=>setTermYears(30)}>30 Years</button>
+        </div>
+      </div>
+
+      {/* Property Tax */}
+      <div className="calc-field">
+        <label className="calc-field__label"><span className="calc-field__label-icon">🏛️</span>Property Tax (% / year)</label>
+        <input type="text" className="calc-field__input" style={{maxWidth:"100px"}} value={propTax} inputMode="decimal"
+          onChange={e=>{const v=parseFloat(e.target.value);if(!isNaN(v))setPropTax(v);}}/>
+      </div>
+
+      {/* Home Insurance */}
+      <div className="calc-field">
+        <label className="calc-field__label"><span className="calc-field__label-icon">🛡️</span>Home Insurance ($/year)</label>
+        <input type="text" className="calc-field__input" style={{maxWidth:"120px"}} value={insurance.toLocaleString("en-US")} inputMode="numeric"
+          onChange={e=>{const v=parseInt(e.target.value.replace(/,/g,""));if(!isNaN(v))setInsurance(v);}}/>
+      </div>
+
+      {/* HOA */}
+      <div className="calc-field">
+        <label className="calc-field__label"><span className="calc-field__label-icon">🏘️</span>HOA Fee ($/month)</label>
+        <input type="text" className="calc-field__input" style={{maxWidth:"120px"}} value={hoa===0?"":hoa.toLocaleString("en-US")} inputMode="numeric" placeholder="$0"
+          onChange={e=>{const v=parseInt(e.target.value.replace(/,/g,""));setHoa(isNaN(v)?0:v);}}/>
+      </div>
+    </div>
+
+    {/* ── Results ── */}
+    <div className="calc-result" aria-live="polite">
+      <p className="calc-result__label">You Can Afford a Home Up To</p>
+      <p className="calc-result__emi">{fmtUSD(r.maxHome)}</p>
+      <div className="calc-result__stats">
+        <div className="calc-result__stat"><p className="calc-result__stat-label">Loan Amount</p><p className="calc-result__stat-value">{fmtUSD(r.maxLoan)}</p></div>
+        <div className="calc-result__stat"><p className="calc-result__stat-label">Down Payment</p><p className="calc-result__stat-value">{fmtUSD(r.downAmt)}</p></div>
+        <div className="calc-result__stat"><p className="calc-result__stat-label">Monthly Payment</p><p className="calc-result__stat-value">{fmtUSD(r.totalMonthly)}</p></div>
+      </div>
+
+      {/* PITI Breakdown */}
+      <div style={{marginTop:"var(--s-4)",overflowX:"auto"}}>
+        <table className="comparison-table">
+          <thead><tr><th>Component</th><th>Monthly</th></tr></thead>
+          <tbody>
+            <tr><td>Principal & Interest</td><td>{fmtUSD(r.pi)}</td></tr>
+            <tr><td>Property Tax</td><td>{fmtUSD(r.tax)}</td></tr>
+            <tr><td>Home Insurance</td><td>{fmtUSD(r.ins)}</td></tr>
+            {r.pmi>0&&<tr><td>PMI (private mortgage ins.)</td><td style={{color:"var(--n-warning)"}}>{fmtUSD(r.pmi)}</td></tr>}
+            {r.hoa>0&&<tr><td>HOA Fee</td><td>{fmtUSD(r.hoa)}</td></tr>}
+            <tr style={{fontWeight:700}}><td>Total Housing Payment</td><td>{fmtUSD(r.totalMonthly)}</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      {/* DTI Visualization */}
+      <div style={{marginTop:"var(--s-4)"}}>
+        <p className="calc-field__label">Debt-to-Income Ratios</p>
+        <div style={{display:"flex",gap:"var(--s-4)",marginTop:"var(--s-2)"}}>
+          <div style={{flex:1}}>
+            <div style={{display:"flex",justifyContent:"space-between",marginBottom:"4px"}}><span className="t-body-sm">Front-end (housing)</span><span className="t-body-sm" style={{fontWeight:600}}>{r.frontDti.toFixed(1)}%</span></div>
+            <div style={{background:"var(--n-surface-alt)",borderRadius:"4px",height:"8px",overflow:"hidden"}}><div style={{width:`${Math.min(r.frontDti/50*100,100)}%`,height:"100%",background:r.frontDti<=r.lim.front?"var(--n-success)":"var(--n-error)",borderRadius:"4px",transition:"width 0.3s"}}/></div>
+            <span className="t-body-sm text-muted">Limit: {r.lim.front}%</span>
+          </div>
+          <div style={{flex:1}}>
+            <div style={{display:"flex",justifyContent:"space-between",marginBottom:"4px"}}><span className="t-body-sm">Back-end (total debt)</span><span className="t-body-sm" style={{fontWeight:600}}>{r.backDti.toFixed(1)}%</span></div>
+            <div style={{background:"var(--n-surface-alt)",borderRadius:"4px",height:"8px",overflow:"hidden"}}><div style={{width:`${Math.min(r.backDti/50*100,100)}%`,height:"100%",background:r.backDti<=r.lim.back?"var(--n-success)":"var(--n-error)",borderRadius:"4px",transition:"width 0.3s"}}/></div>
+            <span className="t-body-sm text-muted">Limit: {r.lim.back}%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>);
 }
 
 // ─── 4. Loan Interest Rate (reverse calc) ───

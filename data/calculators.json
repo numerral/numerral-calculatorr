@@ -1245,36 +1245,36 @@
   {
     "id": "loan-affordability-calculator",
     "category": "loan",
-    "title": "Loan Affordability Calculator",
+    "title": "House Affordability Calculator",
     "slug": "loan-affordability-calculator",
     "categorySlug": "loan-calculators",
     "icon": "💵",
     "calcType": "loanAffordability",
-    "description": "Find out how much loan you can afford based on your monthly income, expenses, and desired debt-to-income ratio. Plan your borrowing capacity.",
-    "stars": 4,
+    "description": "Find out how much house you can afford based on income, debts, and loan type. Compare Conventional (28/36 rule), FHA, and VA loan limits with full PITI breakdown and DTI analysis.",
+    "stars": 5,
     "defaults": {
-      "amount": 80000,
-      "rate": 8.5,
-      "tenure": 240
+      "amount": 85000,
+      "rate": 6.5,
+      "tenure": 360
     },
     "sliderRanges": {
       "amount": {
-        "min": 10000,
-        "max": 500000,
+        "min": 30000,
+        "max": 300000,
         "step": 5000
       },
       "rate": {
-        "min": 3,
-        "max": 20,
-        "step": 0.25
+        "min": 2,
+        "max": 12,
+        "step": 0.125
       },
       "tenure": {
-        "min": 12,
+        "min": 180,
         "max": 360,
-        "step": 12
+        "step": 60
       }
     },
-    "keywords": "loan affordability calculator, how much loan can I afford, loan capacity calculator, borrowing capacity calculator"
+    "keywords": "house affordability calculator, how much house can I afford, home affordability, mortgage affordability calculator, 28/36 rule, FHA loan calculator, VA loan calculator, DTI ratio calculator, home buying calculator"
   },
   {
     "id": "loan-interest-rate-calculator",

@@ -311,12 +311,84 @@ const HUB_CONTENT: Record<string, {
         ],
     },
     "loan-affordability-calculator": {
-        subtitle: "Determine how much loan you can comfortably afford based on your income, expenses, and target debt-to-income ratio.",
-        contentHTML: `<h3>Understanding Loan Affordability</h3><p>Lenders use the <strong>debt-to-income (DTI) ratio</strong> to determine how much you can borrow. DTI = (Total Monthly Debt Payments ÷ Gross Monthly Income) × 100. Most lenders prefer DTI under 43%, with 36% considered ideal.</p><div class="explanation__highlight"><strong>Conservative approach:</strong> Financial advisors recommend keeping total EMIs (including the new loan) below 35-40% of take-home income — not gross. This ensures you have a comfortable buffer for emergencies, investments, and lifestyle expenses.</div>`,
+        subtitle: "Find out how much house you can afford based on your income, debts, and loan type. Compare Conventional, FHA, and VA loan limits with DTI ratio analysis.",
+        explanation: {
+            heading: "How Much House Can I Afford?",
+            paragraphs: [
+                "Mortgage lenders use debt-to-income (DTI) ratios to determine the maximum home price you can afford. DTI compares your monthly debt obligations to your gross monthly income. There are two types: the front-end ratio (housing costs only ÷ income) and the back-end ratio (all debts including housing ÷ income). Lenders use both to assess risk, and different loan programs have different thresholds.",
+                "The most widely used standard is the 28/36 Rule for conventional loans: your housing costs (principal, interest, taxes, insurance) should not exceed 28% of gross monthly income (front-end), and your total monthly debts should not exceed 36% of gross income (back-end). On an $85,000 salary, this means a maximum housing payment of $1,983/month. With a 20% down payment at 6.5% for 30 years, that translates to approximately $315,000 in home value.",
+                "FHA and VA loans offer more flexibility. FHA loans allow a 31/43 split (31% front-end, 43% back-end) and require as little as 3.5% down, making homeownership accessible with lower savings. VA loans for veterans have no front-end limit and a 41% back-end threshold with 0% down payment — the most generous program available. However, FHA requires mortgage insurance premiums (MIP) and VA charges a funding fee.",
+            ],
+            highlight: "With $85K income, $500/mo debts, 20% down at 6.5%: Conventional allows ~$313K house | FHA allows ~$362K | VA allows ~$377K. Higher DTI limits mean a bigger home, but also tighter monthly budgets.",
+        },
         faq: [
-            { question: "What DTI ratio do lenders prefer?", answer: "Most mortgage lenders want DTI below 43%. For personal loans, banks prefer below 50%. The lower your DTI, the better your rate and approval chances. Below 36% is considered excellent." },
-            { question: "Does income include bonuses and rental income?", answer: "Salaried: banks consider base salary + consistent allowances. Bonuses may be counted at 50%. Self-employed: ITR-filed income over 2-3 years. Rental income is typically counted at 50-75% of actual rent." },
+            { question: "What is the 28/36 rule?", answer: "The 28/36 rule is the standard guideline for conventional mortgage loans. It states: your monthly housing payment (PITI — principal, interest, taxes, insurance) should be ≤ 28% of gross monthly income, and your total monthly debt (housing + car + student + credit cards) should be ≤ 36% of gross income. If your income is $7,000/month, housing max = $1,960 and total debt max = $2,520." },
+            { question: "What is the difference between FHA, VA, and conventional loans?", answer: "Conventional loans follow the 28/36 rule and typically require 3-20% down. FHA loans (insured by the Federal Housing Administration) use 31/43 DTI limits with 3.5% minimum down, but require mortgage insurance premiums. VA loans (for veterans) have no front-end limit, 41% back-end limit, and 0% down payment — the most favorable terms available." },
+            { question: "What is PMI and when is it required?", answer: "Private Mortgage Insurance (PMI) is required on conventional loans when the down payment is less than 20%. PMI costs 0.3-1.5% of the loan amount annually, added to your monthly payment. Once you reach 20% equity, you can request PMI removal. FHA has its own version called MIP (Mortgage Insurance Premium) that lasts for the life of the loan if down payment < 10%." },
+            { question: "How does my credit score affect affordability?", answer: "Higher credit scores qualify you for lower interest rates, directly increasing your buying power. A 740+ score might get 6.0% while a 620 score might get 7.5%. On a $300K loan for 30 years, that 1.5% difference means $300+ more per month — which reduces the home you can afford by $45,000 or more." },
+            { question: "How much should I save for a down payment?", answer: "Conventional: 3-20% (20% avoids PMI). FHA: 3.5% minimum (10% with credit score 500-579). VA: 0% down for eligible veterans. On a $300K home: 20% = $60,000, 10% = $30,000, 3.5% = $10,500. A larger down payment reduces your loan, lowers monthly payments, and may secure a better interest rate." },
+            { question: "What if I can't afford the house I want?", answer: "Five strategies to increase affordability: (1) Reduce other debts to lower your back-end DTI, (2) Improve your credit score for better rates, (3) Save a larger down payment to eliminate PMI, (4) Increase income through career moves or side income, (5) Consider a less expensive area or smaller home. Many first-time buyer programs also offer down payment assistance." },
         ],
+        steps: [
+            { label: "Determine monthly income", formula: "$85,000 annual ÷ 12", result: "$7,083 gross monthly income" },
+            { label: "Apply 28/36 rule (Conventional)", formula: "Front-end: $7,083 × 28% = $1,983 max housing", result: "Back-end: $7,083 × 36% = $2,550 max total debt" },
+            { label: "Subtract existing debts", formula: "$2,550 − $500 monthly debts = $2,050 available for housing", result: "Lower of $1,983 and $2,050 → $1,983 max housing" },
+            { label: "Calculate max home price", formula: "Subtract tax/ins/HOA, reverse P&I with 6.5% for 30yr", result: "Max home ≈ $313,000 with 20% down" },
+        ],
+        comparison: [
+            { title: "Conventional (28/36)", value: "~$313K", detail: "Strictest DTI | 3-20% down | No MI with 20% down" },
+            { title: "FHA (31/43)", value: "~$362K", detail: "Moderate DTI | 3.5% down | MIP required", isWinner: false },
+            { title: "VA (41% back)", value: "~$377K", detail: "Most generous | 0% down | For veterans", isWinner: true },
+        ],
+        insight: { icon: "🏠", title: "The True Cost of Homeownership", text: "Your mortgage payment is just the beginning. Budget an additional 1-3% of home value per year for maintenance, 1-2% for property taxes, plus insurance, utilities, and HOA fees. On a $300K home, that's $6,000-$15,000/year beyond your mortgage. Financial advisors suggest total housing costs should stay below 30% of take-home pay — not gross income." },
+        contentHTML: `
+<h3>Front-End Ratio: Housing Costs Only</h3>
+<p>The front-end debt ratio (also called the mortgage-to-income ratio) measures your housing costs as a percentage of gross monthly income. Housing costs include <strong>PITI</strong>: principal, interest, property taxes, and homeowner's insurance, plus HOA fees and PMI/MIP if applicable.</p>
+<p><strong>Formula:</strong> Front-End DTI = (Total Monthly Housing Costs ÷ Gross Monthly Income) × 100</p>
+<p>Conventional loans cap this at <strong>28%</strong>. FHA allows <strong>31%</strong>. VA loans generally don't enforce a front-end limit, focusing instead on the back-end ratio.</p>
+
+<h3>Back-End Ratio: All Monthly Debts</h3>
+<p>The back-end ratio includes everything in the front-end ratio plus all other recurring monthly debts: car payments, student loans, credit card minimums, personal loans, child support, and alimony.</p>
+<p><strong>Formula:</strong> Back-End DTI = (Total Monthly Debts ÷ Gross Monthly Income) × 100</p>
+<p>This is the primary ratio lenders examine. Conventional loans cap it at <strong>36%</strong>, FHA at <strong>43%</strong>, and VA at <strong>41%</strong>.</p>
+
+<h3>Conventional Loans and the 28/36 Rule</h3>
+<p>A conventional loan is a mortgage not insured by the federal government, generally following guidelines set by Fannie Mae and Freddie Mac. These can be <strong>conforming</strong> (meeting agency limits) or <strong>non-conforming</strong> (jumbo loans exceeding limits).</p>
+<p>The <strong>28/36 Rule</strong> is the standard qualification guideline: no more than 28% of gross income on housing, no more than 36% on total debt. While widely used, this rule is sometimes relaxed in competitive markets — some lenders approve DTI ratios as high as 45-50% with strong compensating factors (high credit score, significant savings, large down payment).</p>
+
+<h3>FHA Loans: Lower Barriers to Entry</h3>
+<p>FHA loans, insured by the Federal Housing Administration, use a <strong>31/43 DTI standard</strong> — more lenient than conventional. Key features:</p>
+<ul>
+<li><strong>Minimum down payment:</strong> 3.5% (with credit score ≥ 580)</li>
+<li><strong>Credit score:</strong> As low as 500 (with 10% down)</li>
+<li><strong>Mortgage Insurance Premium (MIP):</strong> 1.75% upfront + 0.55% annual</li>
+<li><strong>MIP duration:</strong> Life of loan if down payment < 10%; 11 years if ≥ 10%</li>
+</ul>
+<p>FHA loans are popular with first-time homebuyers due to lower entry requirements, but the mandatory MIP increases monthly costs compared to conventional loans with 20% down.</p>
+
+<h3>VA Loans: Best Terms for Veterans</h3>
+<p>VA loans, guaranteed by the U.S. Department of Veterans Affairs, use a <strong>41% back-end DTI</strong> with no specific front-end limit. They offer:</p>
+<ul>
+<li><strong>0% down payment</strong> — the only major loan program with no down payment</li>
+<li><strong>No PMI/MIP</strong> — saving hundreds per month</li>
+<li><strong>Competitive rates</strong> — typically 0.25-0.5% lower than conventional</li>
+<li><strong>VA Funding Fee:</strong> 1.25-3.3% of loan amount (can be rolled into the loan)</li>
+</ul>
+<p>VA loans are available to veterans, active-duty service members, National Guard/Reserve members, and eligible surviving spouses.</p>
+
+<h3>How to Increase Your Home Affordability</h3>
+<p>If you can't immediately afford the home you want, here are proven strategies:</p>
+<ol>
+<li><strong>Reduce existing debt</strong> — Pay off credit cards and car loans to lower your back-end DTI. Every $200/month of eliminated debt increases your home buying power by approximately $30,000.</li>
+<li><strong>Improve your credit score</strong> — Moving from 660 to 740 could save 0.5-1.0% on your rate, increasing your purchase power by $20,000-$40,000.</li>
+<li><strong>Save a larger down payment</strong> — 20% down eliminates PMI and gets you better rates. Plus, every dollar of down payment directly adds to your max home price.</li>
+<li><strong>Increase income</strong> — A $10,000 raise increases affordable home price by $25,000-$35,000 depending on the loan type.</li>
+<li><strong>Consider location</strong> — Property taxes vary dramatically: New Jersey averages 2.5% while Hawaii averages 0.3%. Moving to a low-tax state can increase your affordable home price by $50,000+.</li>
+</ol>
+
+<h3>When Renting Makes More Financial Sense</h3>
+<p>Homeownership isn't always the right choice. Renting may be smarter when: (1) you plan to move within 3-5 years (closing costs won't be recouped), (2) local rent-to-price ratios favor renting, (3) you have high-interest debt that should be paid first, or (4) the housing market is overheated. Use the "5% Rule": if annual rent is less than 5% of the home's purchase price, renting is likely the better financial decision.</p>
+`,
     },
     "loan-interest-rate-calculator": {
         subtitle: "Reverse-calculate the effective interest rate on any loan from the EMI amount, principal, and tenure.",
