@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Script from "next/script";
 import Breadcrumb from "@/components/layout/Breadcrumb";
+import AuthorBadge from "@/components/shared/AuthorBadge";
 import HealthCalculatorCore from "@/components/calculator/HealthCalculatorCore";
 import DynamicExplanation from "@/components/shared/DynamicExplanation";
 import FAQAccordion from "@/components/shared/FAQAccordion";
@@ -474,6 +475,7 @@ export default async function HealthCalculatorHubPage({ params }: PageProps) {
             <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Health Calculators", href: "/health-calculators" }, { label: calc.title.replace(" Calculator", "") }]} />
             <h1 className="t-h1" style={{ marginBottom: "var(--s-2)" }}>{calc.title}</h1>
             {content && <p className="t-body text-muted" style={{ marginBottom: "var(--s-6)" }}>{content.subtitle}</p>}
+            <AuthorBadge categoryKey="health" />
             <div className="layout-2col">
                 <div className="layout-2col__main">
                     <HealthCalculatorCore calcType={calc.calcType || "bmi"} />

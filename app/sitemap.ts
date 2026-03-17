@@ -16,6 +16,7 @@ import { AR_CALCULATORS } from "@/data/ar-calculators";
 import { ID_CALCULATORS } from "@/data/id-calculators";
 import { TR_CALCULATORS } from "@/data/tr-calculators";
 import { DE_CALCULATORS } from "@/data/de-calculators";
+import { getAllAuthors } from "@/data/authors";
 
 export default function sitemap(): MetadataRoute.Sitemap {
     const now = new Date();
@@ -36,6 +37,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
         { url: canonicalUrl("/privacy"), lastModified: now, changeFrequency: "yearly", priority: 0.3 },
         { url: canonicalUrl("/cookie-policy"), lastModified: now, changeFrequency: "yearly", priority: 0.3 },
         { url: canonicalUrl("/site-map"), lastModified: now, changeFrequency: "weekly", priority: 0.5 },
+        { url: canonicalUrl("/authors"), lastModified: now, changeFrequency: "monthly", priority: 0.6 },
+        { url: canonicalUrl("/editorial-policy"), lastModified: now, changeFrequency: "yearly", priority: 0.5 },
     ];
 
     // ─── Loan calculator hubs ───
@@ -214,6 +217,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: 0.7,
     }));
 
+    // ─── Author profile pages ───
+    const authorPages: MetadataRoute.Sitemap = getAllAuthors().map((a) => ({
+        url: canonicalUrl(`/authors/${a.slug}`),
+        lastModified: now,
+        changeFrequency: "monthly" as const,
+        priority: 0.5,
+    }));
+
     return [
         ...staticPages,
         ...loanHubs,
@@ -239,5 +250,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
         ...trPages,
         ...deHub,
         ...dePages,
+        ...authorPages,
     ];
 }

@@ -5,6 +5,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Script from "next/script";
 import Breadcrumb from "@/components/layout/Breadcrumb";
+import AuthorBadge from "@/components/shared/AuthorBadge";
 import MathCalculatorCore from "@/components/calculator/MathCalculatorCore";
 import DynamicExplanation from "@/components/shared/DynamicExplanation";
 import FAQAccordion from "@/components/shared/FAQAccordion";
@@ -2973,6 +2974,7 @@ export default async function MathCalculatorHubPage({ params }: PageProps) {
                     {content.subtitle}
                 </p>
             )}
+            <AuthorBadge categoryKey="math" />
 
             <div className="layout-2col">
                 <div className="layout-2col__main">

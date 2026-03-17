@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Script from "next/script";
 import Breadcrumb from "@/components/layout/Breadcrumb";
+import AuthorBadge from "@/components/shared/AuthorBadge";
 import ConstructionCalculatorCore from "@/components/calculator/ConstructionCalculatorCore";
 import DynamicExplanation from "@/components/shared/DynamicExplanation";
 import FAQAccordion from "@/components/shared/FAQAccordion";
@@ -2510,6 +2511,7 @@ export default async function ConstructionCalculatorHubPage({ params }: PageProp
                     {content.subtitle}
                 </p>
             )}
+            <AuthorBadge categoryKey="construction" />
 
             <div className="layout-2col">
                 <div className="layout-2col__main">

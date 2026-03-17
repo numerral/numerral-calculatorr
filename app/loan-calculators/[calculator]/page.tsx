@@ -6,6 +6,7 @@ import { notFound } from "next/navigation";
 import Script from "next/script";
 import Link from "next/link";
 import Breadcrumb from "@/components/layout/Breadcrumb";
+import AuthorBadge from "@/components/shared/AuthorBadge";
 import CalculatorCore from "@/components/calculator/CalculatorCore";
 import LoanToolsCore from "@/components/calculator/LoanToolsCore";
 import DynamicExplanation from "@/components/shared/DynamicExplanation";
@@ -1568,6 +1569,7 @@ export default async function CalculatorHubPage({ params }: PageProps) {
                     {content.subtitle}
                 </p>
             )}
+            <AuthorBadge categoryKey="loan" />
 
             <div className="layout-2col">
                 <div className="layout-2col__main">

@@ -38,6 +38,8 @@ export default function MegaFooter() {
                 <div className="mega-footer__col">
                     <h4 className="mega-footer__col-title">Resources</h4>
                     <Link href="/about" className="mega-footer__link">About Numerral</Link>
+                    <Link href="/authors" className="mega-footer__link">Our Editorial Team</Link>
+                    <Link href="/editorial-policy" className="mega-footer__link">Editorial Policy</Link>
                     <Link href="/guides" className="mega-footer__link">Financial Guides</Link>
                     <Link href="/glossary" className="mega-footer__link">Glossary</Link>
                     <Link href="/site-map" className="mega-footer__link">Site Map</Link>

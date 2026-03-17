@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Script from "next/script";
 import Breadcrumb from "@/components/layout/Breadcrumb";
+import AuthorBadge from "@/components/shared/AuthorBadge";
 import UtilityCalculatorCore from "@/components/calculator/UtilityCalculatorCore";
 import DynamicExplanation from "@/components/shared/DynamicExplanation";
 import FAQAccordion from "@/components/shared/FAQAccordion";
@@ -279,6 +280,7 @@ export default async function UtilityCalculatorHubPage({ params }: PageProps) {
 
             <h1 className="t-h1" style={{ marginBottom: "var(--s-2)" }}>{calc.title}</h1>
             <p className="t-body text-muted" style={{ marginBottom: "var(--s-6)" }}>{hub.subtitle}</p>
+            <AuthorBadge categoryKey="utility" />
 
             <div className="calculator-layout">
                 <div className="calculator-layout__main">
