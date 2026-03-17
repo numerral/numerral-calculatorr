@@ -1464,6 +1464,198 @@ function HomeEquityCalc({defaults}:P){
   </div>);
 }
 
+// ─── 20. HELOC Calculator ───
+function HELOCCalc({defaults}:P){
+  const[mode,setMode]=useState<"payment"|"limit">("payment");
+  // Payment mode
+  const[creditLimit,setCreditLimit]=useState(defaults.amount||150000);
+  const[amtDrawn,setAmtDrawn]=useState(100000);
+  const[drawRate,setDrawRate]=useState(defaults.rate||8.25);
+  const[drawYears,setDrawYears]=useState(10);
+  const[repayRate,setRepayRate]=useState(9.0);
+  const[repayYears,setRepayYears]=useState(20);
+  const[closingCost,setClosing]=useState(1500);
+  const[annualFee,setAnnualFee]=useState(50);
+  // Limit mode
+  const[homeVal,setHomeVal]=useState(500000);
+  const[mtgBal,setMtgBal]=useState(250000);
+  const[maxLTV,setMaxLTV]=useState(85);
+
+  const payR=useMemo(()=>{
+    // Draw period: interest-only payments
+    const drawMr=drawRate/100/12;
+    const drawMonths=drawYears*12;
+    const drawPayment=amtDrawn*drawMr;
+    const drawTotalInterest=drawPayment*drawMonths;
+    const drawTotalAnnualFees=annualFee*drawYears;
+    // Repayment period: fully amortizing P&I on remaining balance
+    const repayMr=repayRate/100/12;
+    const repayMonths=repayYears*12;
+    const repayPayment=pmt(repayMr,repayMonths,amtDrawn);
+    const repayTotalPaid=repayPayment*repayMonths;
+    const repayTotalInterest=repayTotalPaid-amtDrawn;
+    const repayTotalAnnualFees=annualFee*repayYears;
+    // Totals
+    const totalInterest=drawTotalInterest+repayTotalInterest;
+    const totalFees=closingCost+drawTotalAnnualFees+repayTotalAnnualFees;
+    const totalCost=amtDrawn+totalInterest+totalFees;
+    return{drawPayment,drawTotalInterest,drawTotalAnnualFees,drawMonths,repayPayment,repayTotalPaid,repayTotalInterest,repayTotalAnnualFees,repayMonths,totalInterest,totalFees,totalCost};
+  },[amtDrawn,drawRate,drawYears,repayRate,repayYears,closingCost,annualFee]);
+
+  const limR=useMemo(()=>{
+    const maxCredit=homeVal*(maxLTV/100)-mtgBal;
+    const equity=homeVal-mtgBal;
+    const eqPct=homeVal>0?(equity/homeVal*100):0;
+    const curLTV=homeVal>0?(mtgBal/homeVal*100):0;
+    return{maxCredit:Math.max(0,maxCredit),equity,eqPct,curLTV};
+  },[homeVal,mtgBal,maxLTV]);
+
+  return(<div>
+    <div style={{display:"flex",gap:"var(--s-2)",marginBottom:"var(--s-4)"}}>
+      {(["payment","limit"] as const).map(m=>(
+        <button key={m} onClick={()=>setMode(m)} className="calc-preset-btn" style={{flex:1,padding:"var(--s-3)",fontWeight:mode===m?700:400,background:mode===m?"var(--n-primary)":"var(--n-surface-alt)",color:mode===m?"#fff":"var(--n-text)",border:"none",borderRadius:"var(--radius-md)",cursor:"pointer"}}>
+          {m==="payment"?"💰 Payment Calculator":"🏠 Credit Limit"}
+        </button>
+      ))}
+    </div>
+
+    {mode==="payment"?(<>
+      <div className="calc-input-panel">
+        <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:"var(--s-3)"}}>
+          <div className="calc-field">
+            <label className="calc-field__label">💳 CREDIT LIMIT ($)</label>
+            <input type="text" className="calc-field__input" value={creditLimit.toLocaleString("en-US")} inputMode="numeric"
+              onChange={e=>{const v=Number(e.target.value.replace(/,/g,""));if(!isNaN(v))setCreditLimit(v);}}/>
+            <input type="range" className="calc-field__slider" min={10000} max={500000} step={5000} value={creditLimit} onChange={e=>setCreditLimit(Number(e.target.value))}/>
+          </div>
+          <div className="calc-field">
+            <label className="calc-field__label">💰 AMOUNT DRAWN ($)</label>
+            <input type="text" className="calc-field__input" value={amtDrawn.toLocaleString("en-US")} inputMode="numeric"
+              onChange={e=>{const v=Number(e.target.value.replace(/,/g,""));if(!isNaN(v))setAmtDrawn(Math.min(v,creditLimit));}}/>
+            <input type="range" className="calc-field__slider" min={5000} max={creditLimit} step={5000} value={amtDrawn} onChange={e=>setAmtDrawn(Number(e.target.value))}/>
+          </div>
+        </div>
+        <hr style={{margin:"var(--s-3) 0",border:"1px solid var(--n-border)"}}/>
+        <p className="calc-field__label" style={{marginBottom:"var(--s-2)"}}>📅 DRAW PERIOD (Interest-Only)</p>
+        <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:"var(--s-3)"}}>
+          <div className="calc-field">
+            <label className="calc-field__label">% Draw Period Rate</label>
+            <input type="number" className="calc-field__input" value={drawRate} onChange={e=>setDrawRate(Number(e.target.value))} step={0.25}/>
+          </div>
+          <div className="calc-field">
+            <label className="calc-field__label">Draw Period (years)</label>
+            <input type="number" className="calc-field__input" value={drawYears} onChange={e=>setDrawYears(Number(e.target.value))} step={1} min={1} max={15}/>
+          </div>
+        </div>
+        <hr style={{margin:"var(--s-3) 0",border:"1px solid var(--n-border)"}}/>
+        <p className="calc-field__label" style={{marginBottom:"var(--s-2)"}}>📅 REPAYMENT PERIOD (Principal + Interest)</p>
+        <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:"var(--s-3)"}}>
+          <div className="calc-field">
+            <label className="calc-field__label">% Repayment Rate</label>
+            <input type="number" className="calc-field__input" value={repayRate} onChange={e=>setRepayRate(Number(e.target.value))} step={0.25}/>
+          </div>
+          <div className="calc-field">
+            <label className="calc-field__label">Repayment Period (years)</label>
+            <input type="number" className="calc-field__input" value={repayYears} onChange={e=>setRepayYears(Number(e.target.value))} step={1} min={5} max={25}/>
+          </div>
+        </div>
+        <hr style={{margin:"var(--s-3) 0",border:"1px solid var(--n-border)"}}/>
+        <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:"var(--s-3)"}}>
+          <div className="calc-field">
+            <label className="calc-field__label">💳 CLOSING COSTS ($)</label>
+            <input type="text" className="calc-field__input" value={closingCost.toLocaleString("en-US")} inputMode="numeric"
+              onChange={e=>{const v=Number(e.target.value.replace(/,/g,""));if(!isNaN(v))setClosing(v);}}/>
+          </div>
+          <div className="calc-field">
+            <label className="calc-field__label">📆 ANNUAL FEE ($/yr)</label>
+            <input type="number" className="calc-field__input" value={annualFee} onChange={e=>setAnnualFee(Number(e.target.value))} step={25}/>
+          </div>
+        </div>
+      </div>
+
+      {/* Results */}
+      <div className="calc-card" style={{marginTop:"var(--s-6)",background:"var(--n-surface-alt)"}}>
+        <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:"var(--s-4)"}}>
+          <div style={{borderRight:"1px solid var(--n-border)",paddingRight:"var(--s-4)"}}>
+            <p className="calc-field__label" style={{color:"var(--n-warning)"}}>DRAW PERIOD ({drawYears} years)</p>
+            <p style={{fontSize:"var(--t-h2)",fontWeight:700,color:"var(--n-primary)"}}>{fmtUSD(payR.drawPayment)}/mo</p>
+            <p className="t-body-sm text-muted">Interest-only payments</p>
+          </div>
+          <div>
+            <p className="calc-field__label" style={{color:"var(--n-success)"}}>REPAYMENT PERIOD ({repayYears} years)</p>
+            <p style={{fontSize:"var(--t-h2)",fontWeight:700,color:"var(--n-primary)"}}>{fmtUSD(payR.repayPayment)}/mo</p>
+            <p className="t-body-sm text-muted">Principal + Interest</p>
+          </div>
+        </div>
+        <div style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:"var(--s-3)",marginTop:"var(--s-4)"}}>
+          <div><p className="calc-field__label">TOTAL INTEREST</p><p style={{fontWeight:700}}>{fmtUSD(payR.totalInterest)}</p></div>
+          <div><p className="calc-field__label">TOTAL FEES</p><p style={{fontWeight:700,color:"var(--n-warning)"}}>{fmtUSD(payR.totalFees)}</p></div>
+          <div><p className="calc-field__label">TOTAL COST</p><p style={{fontWeight:700}}>{fmtUSD(payR.totalCost)}</p></div>
+        </div>
+      </div>
+
+      {/* Period comparison */}
+      <div className="calc-card" style={{marginTop:"var(--s-4)",background:"var(--n-surface)"}}>
+        <p className="calc-field__label" style={{marginBottom:"var(--s-3)"}}>PERIOD BREAKDOWN</p>
+        <table className="calc-table"><thead><tr><th></th><th>Draw Period</th><th>Repayment Period</th><th>Total</th></tr></thead><tbody>
+          <tr><td>Duration</td><td>{drawYears} years ({payR.drawMonths} mo)</td><td>{repayYears} years ({payR.repayMonths} mo)</td><td>{drawYears+repayYears} years</td></tr>
+          <tr><td>Payment Type</td><td>Interest-only</td><td>Principal + Interest</td><td>—</td></tr>
+          <tr><td>Monthly Payment</td><td>{fmtUSD(payR.drawPayment)}</td><td>{fmtUSD(payR.repayPayment)}</td><td>—</td></tr>
+          <tr><td>Interest Rate</td><td>{drawRate}% (variable)</td><td>{repayRate}% (variable)</td><td>—</td></tr>
+          <tr><td>Total Interest</td><td>{fmtUSD(payR.drawTotalInterest)}</td><td>{fmtUSD(payR.repayTotalInterest)}</td><td style={{fontWeight:700}}>{fmtUSD(payR.totalInterest)}</td></tr>
+          <tr><td>Annual Fees</td><td>{fmtUSD(payR.drawTotalAnnualFees)}</td><td>{fmtUSD(payR.repayTotalAnnualFees)}</td><td>{fmtUSD(payR.drawTotalAnnualFees+payR.repayTotalAnnualFees)}</td></tr>
+        </tbody></table>
+      </div>
+    </>):(<>
+      <div className="calc-input-panel">
+        <div className="calc-field">
+          <label className="calc-field__label">🏠 CURRENT HOME VALUE ($)</label>
+          <input type="text" className="calc-field__input" value={homeVal.toLocaleString("en-US")} inputMode="numeric"
+            onChange={e=>{const v=Number(e.target.value.replace(/,/g,""));if(!isNaN(v))setHomeVal(v);}}/>
+          <input type="range" className="calc-field__slider" min={100000} max={2000000} step={10000} value={homeVal} onChange={e=>setHomeVal(Number(e.target.value))}/>
+        </div>
+        <div className="calc-field">
+          <label className="calc-field__label">🏦 REMAINING MORTGAGE ($)</label>
+          <input type="text" className="calc-field__input" value={mtgBal.toLocaleString("en-US")} inputMode="numeric"
+            onChange={e=>{const v=Number(e.target.value.replace(/,/g,""));if(!isNaN(v))setMtgBal(v);}}/>
+          <input type="range" className="calc-field__slider" min={0} max={homeVal} step={5000} value={mtgBal} onChange={e=>setMtgBal(Number(e.target.value))}/>
+        </div>
+        <div className="calc-field">
+          <label className="calc-field__label">📊 MAX LTV RATIO</label>
+          <div style={{display:"flex",gap:"var(--s-2)",marginBottom:"var(--s-2)"}}>
+            {[75,80,85,90].map(v=>(
+              <button key={v} onClick={()=>setMaxLTV(v)} className="calc-preset-btn" style={{flex:1,padding:"var(--s-2)",fontWeight:maxLTV===v?700:400,background:maxLTV===v?"var(--n-primary)":"var(--n-surface-alt)",color:maxLTV===v?"#fff":"var(--n-text)",border:"none",borderRadius:"var(--radius-sm)",cursor:"pointer"}}>{v}%</button>
+            ))}
+          </div>
+        </div>
+      </div>
+      <div className="calc-card" style={{marginTop:"var(--s-6)",background:"var(--n-surface-alt)"}}>
+        <p className="calc-field__label">MAX HELOC CREDIT LINE</p>
+        <p style={{fontSize:"var(--t-h1)",fontWeight:700,color:limR.maxCredit>0?"var(--n-success)":"var(--n-error, #ef4444)"}}>{fmtUSD(limR.maxCredit)}</p>
+        <div style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:"var(--s-3)",marginTop:"var(--s-4)"}}>
+          <div><p className="calc-field__label">HOME EQUITY</p><p style={{fontWeight:700}}>{fmtUSD(limR.equity)} ({limR.eqPct.toFixed(1)}%)</p></div>
+          <div><p className="calc-field__label">CURRENT LTV</p><p style={{fontWeight:700}}>{limR.curLTV.toFixed(1)}%</p></div>
+          <div><p className="calc-field__label">MAX LTV</p><p style={{fontWeight:700}}>{maxLTV}%</p></div>
+        </div>
+        <p style={{fontSize:"var(--t-body-sm)",color:"var(--n-text-muted)",marginTop:"var(--s-3)"}}>Formula: ({fmtUSD(homeVal)} × {maxLTV}%) − {fmtUSD(mtgBal)} = {fmtUSD(limR.maxCredit)}</p>
+      </div>
+      <div className="calc-card" style={{marginTop:"var(--s-4)",background:"var(--n-surface)"}}>
+        <p className="calc-field__label" style={{marginBottom:"var(--s-3)"}}>CREDIT LIMIT AT DIFFERENT LTV RATIOS</p>
+        <table className="calc-table"><thead><tr><th>LTV</th><th>Max HELOC</th><th>Typical Lender</th></tr></thead><tbody>
+          {[75,80,85,90].map(ltv=>{
+            const mx=Math.max(0,homeVal*(ltv/100)-mtgBal);
+            return(<tr key={ltv} style={ltv===maxLTV?{background:"var(--n-primary-bg, rgba(59,130,246,0.1))"}:undefined}>
+              <td style={{fontWeight:ltv===maxLTV?700:400}}>{ltv}%{ltv===maxLTV?" ←":""}</td>
+              <td>{fmtUSD(mx)}</td>
+              <td>{ltv<=75?"Conservative":ltv<=80?"Most lenders":ltv<=85?"Some lenders":"Fewer lenders"}</td>
+            </tr>);
+          })}
+        </tbody></table>
+      </div>
+    </>)}
+  </div>);
+}
+
 // ─── Dispatcher ───
 const CALC_MAP:Record<string,React.FC<P>>={
   mortgage:MortgageCalc, debtConsolidation:DebtConsolidationCalc,
@@ -1474,7 +1666,7 @@ const CALC_MAP:Record<string,React.FC<P>>={
   refinance:RefinanceCalc, mortgageRefinance:MortgageRefinanceCalc,
   rentAffordability:RentAffordabilityCalc, debtRatio:DebtRatioCalc,
   downPayment:DownPaymentCalc, aprCalc:APRCalc,
-  homeEquity:HomeEquityCalc,
+  homeEquity:HomeEquityCalc, heloc:HELOCCalc,
 };
 
 export default function LoanToolsCore({calcType,defaults,sliderRanges}:{calcType:string;defaults:any;sliderRanges?:any}){

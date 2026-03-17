@@ -1787,6 +1787,40 @@
     "keywords": "home equity loan calculator, second mortgage calculator, home equity loan rates, HELOC vs home equity loan, LTV calculator, home equity borrowing power, equity loan payment"
   },
   {
+    "id": "heloc-calculator",
+    "category": "loan",
+    "title": "HELOC Calculator",
+    "slug": "heloc-calculator",
+    "categorySlug": "loan-calculators",
+    "icon": "💳",
+    "calcType": "heloc",
+    "description": "Calculate HELOC payments across draw and repayment periods. Estimate maximum credit line based on home value and LTV. Compare HELOC vs home equity loan vs cash-out refinance.",
+    "stars": 5,
+    "defaults": {
+      "amount": 150000,
+      "rate": 8.25,
+      "tenure": 120
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 10000,
+        "max": 500000,
+        "step": 5000
+      },
+      "rate": {
+        "min": 3,
+        "max": 15,
+        "step": 0.25
+      },
+      "tenure": {
+        "min": 60,
+        "max": 180,
+        "step": 12
+      }
+    },
+    "keywords": "HELOC calculator, home equity line of credit calculator, HELOC payment calculator, HELOC vs home equity loan, HELOC draw period, HELOC repayment period, HELOC credit limit, HELOC rates"
+  },
+  {
     "id": "interest-rate",
     "category": "utility",
     "title": "Interest Rate Calculator",

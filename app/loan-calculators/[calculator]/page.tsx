@@ -45,7 +45,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 // Hub page content per calculator type
-const LOAN_TOOL_TYPES = ["mortgage","debtConsolidation","loanAffordability","loanInterestRate","loanPayoff","loanAmortization","ltv","balloonLoan","arm","fixedVsVariable","extraPayment","refinance","mortgageRefinance","rentAffordability","debtRatio","downPayment","aprCalc","homeEquity"];
+const LOAN_TOOL_TYPES = ["mortgage","debtConsolidation","loanAffordability","loanInterestRate","loanPayoff","loanAmortization","ltv","balloonLoan","arm","fixedVsVariable","extraPayment","refinance","mortgageRefinance","rentAffordability","debtRatio","downPayment","aprCalc","homeEquity","heloc"];
 
 const HUB_CONTENT: Record<string, {
     subtitle: string;
@@ -1206,6 +1206,87 @@ const HUB_CONTENT: Record<string, {
 
 <h3>Tax Deductibility Rules (Post-2017)</h3>
 <p>Under the Tax Cuts and Jobs Act, home equity loan interest is only deductible when the loan proceeds are used to <strong>buy, build, or substantially improve</strong> the home securing the loan. The combined mortgage + HEL balance must not exceed $750,000 ($375,000 if married filing separately). Interest on home equity loans used for debt consolidation, education, medical bills, or other purposes is <strong>not tax deductible</strong>.</p>
+`,
+    },
+    "heloc-calculator": {
+        subtitle: "Calculate HELOC payments across draw and repayment periods, estimate your maximum credit line, and compare costs with home equity loans and cash-out refinancing.",
+        explanation: {
+            heading: "What Is a HELOC (Home Equity Line of Credit)?",
+            paragraphs: [
+                "A HELOC is a revolving line of credit secured by your home, similar to a credit card but with much lower interest rates. Unlike a home equity loan that gives you a lump sum, a HELOC lets you draw funds as needed up to your credit limit during a draw period (typically 5-10 years). You only pay interest on the amount you've actually borrowed, not the full credit line.",
+                "HELOCs have two distinct phases: the draw period (5-10 years) where you make interest-only payments and can borrow/repay/reborrow, and the repayment period (10-20 years) where you can no longer borrow and must pay both principal and interest. This structure makes HELOCs ideal for ongoing expenses like home renovations over time or college tuition payments.",
+                "The biggest risk with HELOCs is the variable interest rate. Your rate is tied to an index (usually the Prime Rate) plus a margin. If the Prime Rate rises from 5.5% to 8%, your HELOC rate rises the same amount. Additionally, the payment shock when transitioning from interest-only (draw period) to P&I payments (repayment period) can be significant.",
+            ],
+            highlight: "Example: $100,000 HELOC at 8.25%. During draw period: $687/mo (interest-only). When repayment starts at 9% for 20 years: $900/mo (P&I). That's a 31% payment increase — plan for it.",
+        },
+        faq: [
+            { question: "How does a HELOC work?", answer: "A HELOC has two phases: (1) Draw period (5-10 years) — borrow up to your limit as needed, make interest-only payments, can repay and reborrow. (2) Repayment period (10-20 years) — no more borrowing, pay principal + interest monthly until balance is zero. Total term is typically 20-30 years." },
+            { question: "What's the difference between a HELOC and home equity loan?", answer: "HELOC = revolving credit line, variable rate, draw as needed, interest-only during draw period. Home equity loan = lump sum, fixed rate, fixed P&I payments from day one. HELOC is better for ongoing/uncertain costs; HEL is better for one-time known expenses." },
+            { question: "What is HELOC payment shock?", answer: "Payment shock occurs when the draw period ends and repayment begins. During draw period, you pay interest-only (e.g., $687/mo on $100K at 8.25%). At repayment, you pay P&I (e.g., $900/mo at 9% for 20 years) — a potential 30%+ increase. If rates also rose during the draw period, the shock can be even larger." },
+            { question: "Are HELOC interest payments tax deductible?", answer: "Under the Tax Cuts and Jobs Act (2017), HELOC interest is only tax deductible if funds are used to buy, build, or substantially improve the home securing the HELOC. Interest on HELOC funds used for debt consolidation, education, or other purposes is NOT deductible. Combined mortgage + HELOC balance must not exceed $750K." },
+            { question: "What credit score do I need for a HELOC?", answer: "Most lenders require 620-680 minimum. For the best rates (under 7%), you need 740+. Lenders also check DTI (under 43%), home equity (at least 15-20%), and employment history. Some lenders cap HELOCs at $1 million." },
+            { question: "Can I freeze or reduce my HELOC?", answer: "Lenders can freeze or reduce your HELOC credit line if your home value drops significantly, your financial situation changes, or you miss payments. During the 2008 crisis, many lenders froze HELOCs. This is a risk unique to HELOCs vs home equity loans." },
+        ],
+        steps: [
+            { label: "Determine credit limit", formula: "$500,000 home × 85% LTV − $250,000 mortgage", result: "HELOC limit: $175,000" },
+            { label: "Draw period payment", formula: "$100,000 drawn × (8.25% / 12)", result: "$687/mo (interest-only)" },
+            { label: "Repayment period payment", formula: "PMT(9%/12, 240 months, $100,000)", result: "$900/mo (P&I)" },
+            { label: "Total cost over 30 years", formula: "$687×120 + $900×240 + $1,500 closing + $50×30 annual", result: "$300,940 total" },
+        ],
+        comparison: [
+            { title: "HELOC", value: "8.25% variable", detail: "Draw as needed | Interest-only initially | 10+20 yr", isWinner: true },
+            { title: "Home Equity Loan", value: "8.5% fixed", detail: "Lump sum | Fixed P&I | 15 yr" },
+            { title: "Cash-Out Refinance", value: "6.8% fixed", detail: "Replaces mortgage | Full closing costs" },
+        ],
+        insight: { icon: "\u26a0\ufe0f", title: "Payment Shock Warning", text: "The transition from interest-only payments (draw period) to full P&I payments (repayment period) can increase your monthly payment by 30-50% or more. If rates have also risen during the draw period, the shock is compounded. Always calculate your repayment period payment at a rate 2-3% higher than today's rate to stress-test affordability." },
+        contentHTML: `
+<h3>How a HELOC Works: Two Phases</h3>
+<p>A HELOC operates in two distinct phases, each with different rules and payment structures:</p>
+<table><tr><th></th><th>Draw Period</th><th>Repayment Period</th></tr>
+<tr><td>Duration</td><td>5-10 years (typically 10)</td><td>10-20 years (typically 20)</td></tr>
+<tr><td>Borrowing</td><td>Draw up to limit, repay, reborrow</td><td>No new draws allowed</td></tr>
+<tr><td>Payment</td><td>Interest-only (minimum)</td><td>Principal + Interest</td></tr>
+<tr><td>Rate</td><td>Variable (Prime + margin)</td><td>Variable (Prime + margin)</td></tr>
+<tr><td>Balance</td><td>Can stay flat or grow</td><td>Must reach $0 by end</td></tr></table>
+
+<h3>HELOC Interest Rate Structure</h3>
+<p>HELOC rates are variable and typically calculated as: <strong>HELOC Rate = Prime Rate + Margin</strong>. The Prime Rate (currently ~8.5% as of 2024) is set by major banks and moves with the Federal Funds Rate. The margin (0.5-2%) is set by the lender based on your creditworthiness. If the Fed raises rates by 0.25%, your HELOC rate increases 0.25%.</p>
+<p>Most HELOCs have rate caps: a <strong>lifetime cap</strong> (maximum rate ever, typically 18-21%), a <strong>periodic cap</strong> (max increase per period, typically 2% per year), and sometimes a <strong>floor</strong> (minimum rate, often the initial rate).</p>
+
+<h3>Costs of a HELOC</h3>
+<p><strong>Upfront costs (1-5% of credit limit):</strong></p>
+<ul>
+<li>Appraisal fee: $300-$600</li>
+<li>Application fee: $0-$500</li>
+<li>Title search: $100-$250</li>
+<li>Origination fee: 0-1% (many lenders waive this)</li>
+</ul>
+<p><strong>Ongoing costs:</strong></p>
+<ul>
+<li>Annual fee: $25-$100/year (some lenders waive)</li>
+<li>Transaction fees: $0-$25 per draw (rare)</li>
+<li>Early termination fee: $300-$500 if closed within 2-3 years</li>
+<li>Inactivity fee: some lenders charge if you don't use the line</li>
+</ul>
+
+<h3>HELOC vs Home Equity Loan vs Cash-Out Refinance</h3>
+<table><tr><th></th><th>HELOC</th><th>Home Equity Loan</th><th>Cash-Out Refi</th></tr>
+<tr><td>Disbursement</td><td>Draw as needed</td><td>One-time lump sum</td><td>One-time lump sum</td></tr>
+<tr><td>Rate</td><td>Variable (7-9%)</td><td>Fixed (8-10%)</td><td>Fixed (6-8%)</td></tr>
+<tr><td>Payment</td><td>Interest-only then P&I</td><td>Fixed P&I from start</td><td>Fixed P&I from start</td></tr>
+<tr><td>Closing costs</td><td>0-2% (often waived)</td><td>2-5%</td><td>2-6%</td></tr>
+<tr><td>Flexibility</td><td>High (draw/repay/redraw)</td><td>None (fixed amount)</td><td>None (fixed amount)</td></tr>
+<tr><td>Risk</td><td>Variable rate + payment shock</td><td>Predictable payments</td><td>Replaces existing mortgage</td></tr>
+<tr><td>Best for</td><td>Ongoing/uncertain expenses</td><td>One-time known expenses</td><td>Low rates + need cash</td></tr></table>
+
+<h3>5 Smart Uses for a HELOC</h3>
+<ol>
+<li><strong>Phased home renovations</strong> \u2014 Draw funds as each phase of renovation starts, pay interest only on amount used</li>
+<li><strong>Education costs</strong> \u2014 Draw tuition payments semester by semester instead of borrowing full amount upfront</li>
+<li><strong>Emergency fund backup</strong> \u2014 Open a HELOC as standby credit (no cost if unused) for unexpected large expenses</li>
+<li><strong>Bridge financing</strong> \u2014 Use HELOC to fund down payment on new home before selling current home</li>
+<li><strong>Business startup costs</strong> \u2014 Draw operating capital as needed during early business phase (high risk \u2014 your home is collateral)</li>
+</ol>
 `,
     },
 };
