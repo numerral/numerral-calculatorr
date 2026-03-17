@@ -62,6 +62,7 @@ export interface PageEntry {
         highlight: string;
     };
     faq: { question: string; answer: string }[];
+    contentHTML?: string;
 }
 
 export interface InvestPageEntry {

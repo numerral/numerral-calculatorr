@@ -116,6 +116,12 @@ export default async function AmountPage({ params }: PageProps) {
                         highlight={page.explanation.highlight}
                     />
 
+                    {page.contentHTML && (
+                        <section className="calc-card" style={{ marginTop: "var(--s-6)", padding: "var(--s-6)" }}>
+                            <div className="hub-content" dangerouslySetInnerHTML={{ __html: page.contentHTML }} />
+                        </section>
+                    )}
+
                     <RelatedCalculations
                         calculatorId={calc.id}
                         baseUrl={`/loan-calculators/${calc.slug}`}
