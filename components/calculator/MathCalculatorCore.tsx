@@ -1575,6 +1575,44 @@ function PerimeterCalc() {
     </div></div>);
 }
 
+/* 31. Circle Area / Properties Calculator */
+function CircleCalc() {
+    const [mode, setMode] = useState("radius");
+    const [val, setVal] = useState("7");
+    const res = useMemo(() => {
+        const v = parseFloat(val) || 0;
+        const steps: string[] = [];
+        let r = 0;
+        if (mode === "radius") { r = v; steps.push(`Radius: r = ${v}`); }
+        else if (mode === "diameter") { r = v / 2; steps.push(`Radius: r = d/2 = ${v}/2 = ${fmt(r, 6)}`); }
+        else if (mode === "circumference") { r = v / (2 * Math.PI); steps.push(`Radius: r = C/(2π) = ${v}/(2π) = ${fmt(r, 6)}`); }
+        else { r = Math.sqrt(v / Math.PI); steps.push(`Radius: r = √(A/π) = √(${v}/π) = ${fmt(r, 6)}`); }
+        const area = Math.PI * r * r;
+        const circ = 2 * Math.PI * r;
+        const diam = 2 * r;
+        steps.push(`Area: A = πr² = π × ${fmt(r, 4)}² = ${fmt(area, 6)}`);
+        steps.push(`Circumference: C = 2πr = 2 × π × ${fmt(r, 4)} = ${fmt(circ, 6)}`);
+        steps.push(`Diameter: d = 2r = 2 × ${fmt(r, 4)} = ${fmt(diam, 6)}`);
+        return { r: fmt(r, 6), area: fmt(area, 6), circ: fmt(circ, 6), diam: fmt(diam, 6), steps };
+    }, [mode, val]);
+    return (<div className="con-calc"><h3 className="con-calc__title">⊙ Circle Calculator</h3><div className="con-calc__inputs">
+        <SelectField label="Known Value" value={mode} onChange={setMode} options={[
+            {value:"radius", label:"Radius (r)"},
+            {value:"diameter", label:"Diameter (d)"},
+            {value:"circumference", label:"Circumference (C)"},
+            {value:"area", label:"Area (A)"},
+        ]} />
+        <InputField label={mode === "radius" ? "Radius (r)" : mode === "diameter" ? "Diameter (d)" : mode === "circumference" ? "Circumference (C)" : "Area (A)"} value={val} onChange={setVal} />
+    </div><div className="con-calc__results"><h4>Circle Properties</h4>
+        <ResultRow label="Radius (r)" value={res.r} />
+        <ResultRow label="Diameter (d)" value={res.diam} />
+        <ResultRow label="Area (A)" value={`${res.area} sq units`} />
+        <ResultRow label="Circumference (C)" value={`${res.circ} units`} />
+        <h4>Steps</h4>
+        {res.steps.map((s, i) => <ResultRow key={i} label={`Step ${i + 1}`} value={s} />)}
+    </div></div>);
+}
+
 /* ──── DISPATCHER ──── */
 const CALC_MAP: Record<string, React.FC> = {
     "percentage": PercentageCalc,
@@ -1607,6 +1645,7 @@ const CALC_MAP: Record<string, React.FC> = {
     "pentagon": PentagonCalc,
     "area-calculator": AreaCalc,
     "perimeter-calculator": PerimeterCalc,
+    "circle-area": CircleCalc,
 };
 
 export default function MathCalculatorCore({ calcType }: { calcType: string }) {

@@ -12098,5 +12098,19 @@
     "defaults": { "amount": 0, "rate": 0, "tenure": 0 },
     "sliderRanges": { "amount": { "min": 0, "max": 0, "step": 0 }, "rate": { "min": 0, "max": 0, "step": 0 }, "tenure": { "min": 0, "max": 0, "step": 0 } },
     "keywords": "perimeter calculator, perimeter of a rectangle, circumference of a circle, perimeter formula, perimeter of a triangle, trapezoid perimeter, perimeter of a polygon, ellipse perimeter"
+  },
+  {
+    "id": "circle-area-calculator",
+    "category": "math",
+    "title": "Circle Area Calculator",
+    "slug": "circle-area-calculator",
+    "categorySlug": "math-calculators",
+    "icon": "⊙",
+    "description": "Calculate the area, circumference, diameter, and radius of a circle. Enter any one value — radius, diameter, circumference, or area — and get all circle properties with step-by-step formulas.",
+    "stars": 5,
+    "calcType": "circle-area",
+    "defaults": { "amount": 0, "rate": 0, "tenure": 0 },
+    "sliderRanges": { "amount": { "min": 0, "max": 0, "step": 0 }, "rate": { "min": 0, "max": 0, "step": 0 }, "tenure": { "min": 0, "max": 0, "step": 0 } },
+    "keywords": "circle area calculator, area of a circle, circle calculator, circumference calculator, pi r squared, circle radius, circle diameter, area from circumference"
   }
 ]

@@ -2749,6 +2749,90 @@ const HUB_CONTENT: Record<string, {
             { title: "Angle Converter", slug: "angle-converter-calculator", categorySlug: "math-calculators", description: "Convert degrees to radians for sector" },
         ],
     },
+
+    /* ─── 31. CIRCLE AREA — RICH CONTENT ─── */
+    "circle-area-calculator": {
+        subtitle: "Calculate the area, circumference, diameter, and radius of a circle from any known value. Enter the radius, diameter, circumference, or area to compute all circle properties with step-by-step formulas.",
+        contentHTML: `
+            <h2 id="how-to-calculate">How to Calculate the Area of a Circle</h2>
+            <p>A <strong>circle</strong> is a round, two-dimensional shape with no corners or edges. Every point along its edge is equidistant from the center. The <strong>area</strong> of a circle is the amount of space the shape occupies — the region enclosed within its boundary.</p>
+            <p>You can find the area using the radius, diameter, or circumference. Our calculator accepts any one of these values and computes all circle properties automatically.</p>
+
+            <h2 id="formulas">Circle Area Formulas</h2>
+
+            <h3 id="using-radius">Using Radius</h3>
+            <p>The most common formula:</p>
+            <p><strong>A = πr²</strong></p>
+            <p>The area equals pi (≈ 3.14159) times the radius squared.</p>
+            <p><strong>Example:</strong> r = 7 → A = π × 49 = <strong>153.938</strong></p>
+
+            <h3 id="using-diameter">Using Diameter</h3>
+            <p>The diameter is twice the radius (d = 2r). If you know the diameter:</p>
+            <p><strong>A = π × (d/2)²</strong></p>
+            <p><strong>Example:</strong> d = 14 → A = π × 7² = <strong>153.938</strong></p>
+
+            <h3 id="using-circumference">Using Circumference</h3>
+            <p>The circumference is the distance around the circle (C = 2πr). From circumference:</p>
+            <p><strong>A = π × (C/2π)² = C²/(4π)</strong></p>
+            <p><strong>Example:</strong> C = 43.982 → r = 43.982/(2π) = 7 → A = <strong>153.938</strong></p>
+
+            <h2 id="circumference-formula">Circumference Formula</h2>
+            <p>The circumference (perimeter of a circle) is:</p>
+            <p><strong>C = 2πr = πd</strong></p>
+            <p>See our <a href="/math-calculators/perimeter-calculator">Perimeter Calculator</a> for circumference alongside other shape perimeters.</p>
+
+            <h2 id="why-pi-r-squared">Why Is the Area πr²?</h2>
+            <p>If you divide a circle into many thin slices (like a pizza) and rearrange them alternately, the shape approximates a <strong>parallelogram</strong>. The height of this parallelogram equals the radius <em>r</em>, and the base equals half the circumference (πr). So:</p>
+            <p>Area = base × height = πr × r = <strong>πr²</strong></p>
+            <p>As you use more and more slices, the approximation becomes exact — proving that A = πr².</p>
+
+            <h2 id="what-is-pi">What Is π (Pi)?</h2>
+            <p><strong>π ≈ 3.14159265…</strong> is an irrational number — its decimal digits go on forever without repeating. It represents the ratio of any circle's circumference to its diameter: C/d = π. Pi appears throughout mathematics, physics, and engineering.</p>
+
+            <div class="explanation__highlight">
+                <strong>Quick reference:</strong> π ≈ 3.14159. For rough estimates, use 3.14. For precision, use 3.14159265. Most calculators and programming languages have a built-in π constant.
+            </div>
+
+            <h2 id="faq">Frequently Asked Questions</h2>
+
+            <h3>What number does π represent?</h3>
+            <p>π is approximately <strong>3.14159265</strong>. It's an irrational number — its decimal representation is infinite and non-repeating. It's the ratio of a circle's circumference to its diameter and appears naturally in geometry, trigonometry, and calculus.</p>
+
+            <h3>How do you solve πr²?</h3>
+            <p>Multiply π (use 3.14159) by the radius squared. For example, if r = 2: A = 3.14159 × 2² = 3.14159 × 4 = <strong>12.566</strong>.</p>
+
+            <h3>Why is pi used to find the area of a circle?</h3>
+            <p>Pi is a naturally occurring constant that arises from the relationship between a circle's dimensions. When mathematicians derived the area formula, they found the area equals a specific constant times r² — that constant turned out to be π.</p>
+
+            <h3>Is area the same as circumference?</h3>
+            <p>No. <strong>Area</strong> is the 2D space <em>inside</em> the circle (measured in square units). <strong>Circumference</strong> is the distance <em>around</em> the circle (measured in linear units). They're related through the radius, but they measure fundamentally different things.</p>
+
+            <h3>How do I find the radius if I know the area?</h3>
+            <p>Rearrange the formula: <strong>r = √(A/π)</strong>. For example, if A = 100: r = √(100/3.14159) = √31.831 ≈ <strong>5.642</strong>. Our calculator supports this — just select "Area" as the input mode.</p>
+        `,
+        formula: {
+            formula: "A = πr²",
+            variables: [
+                { symbol: "A", meaning: "Area of the circle (square units)" },
+                { symbol: "r", meaning: "Radius — distance from center to edge" },
+                { symbol: "d", meaning: "Diameter — distance across through center (= 2r)" },
+                { symbol: "C", meaning: "Circumference — distance around (= 2πr)" },
+                { symbol: "π", meaning: "Pi ≈ 3.14159265…" },
+            ],
+            example: [
+                { label: "Radius = 7", substitution: "A = π × 7² = π × 49", result: "153.938" },
+                { label: "Diameter = 14", substitution: "A = π × (14/2)² = π × 49", result: "153.938" },
+                { label: "Circumference = 44", substitution: "A = 44²/(4π) = 1936/12.566", result: "154.062" },
+            ],
+        },
+        relatedCalculators: [
+            { title: "Area Calculator", slug: "area-calculator", categorySlug: "math-calculators", description: "Area of 12 shapes including circles" },
+            { title: "Perimeter Calculator", slug: "perimeter-calculator", categorySlug: "math-calculators", description: "Circumference and perimeters of 10 shapes" },
+            { title: "Arc Length Calculator", slug: "arc-length-calculator", categorySlug: "math-calculators", description: "Arc length and sector area from radius" },
+            { title: "Pentagon Calculator", slug: "pentagon-calculator", categorySlug: "math-calculators", description: "All regular pentagon properties" },
+            { title: "Parallelogram Area", slug: "parallelogram-area-calculator", categorySlug: "math-calculators", description: "πr² proof uses parallelogram concept" },
+        ],
+    },
 };
 
 export default async function MathCalculatorHubPage({ params }: PageProps) {
