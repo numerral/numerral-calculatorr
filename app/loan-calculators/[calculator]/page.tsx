@@ -45,7 +45,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 // Hub page content per calculator type
-const LOAN_TOOL_TYPES = ["mortgage","debtConsolidation","loanAffordability","loanInterestRate","loanPayoff","loanAmortization","ltv","balloonLoan","arm","fixedVsVariable","extraPayment","refinance","mortgageRefinance","rentAffordability","debtRatio","downPayment","aprCalc"];
+const LOAN_TOOL_TYPES = ["mortgage","debtConsolidation","loanAffordability","loanInterestRate","loanPayoff","loanAmortization","ltv","balloonLoan","arm","fixedVsVariable","extraPayment","refinance","mortgageRefinance","rentAffordability","debtRatio","downPayment","aprCalc","homeEquity"];
 
 const HUB_CONTENT: Record<string, {
     subtitle: string;
@@ -1128,6 +1128,84 @@ const HUB_CONTENT: Record<string, {
 <li><strong>Variable rate uncertainty</strong> \u2014 For variable APR loans, the disclosed APR is based on current index rates and may change significantly</li>
 <li><strong>Different calculation methods</strong> \u2014 Slight differences in how lenders include or exclude certain fees can make comparisons imperfect</li>
 </ul>
+`,
+    },
+    "home-equity-loan-calculator": {
+        subtitle: "Calculate home equity loan payments, total costs, and maximum borrowing power based on your home value, mortgage balance, and LTV ratio.",
+        explanation: {
+            heading: "What Is a Home Equity Loan?",
+            paragraphs: [
+                "A home equity loan (also called a second mortgage) lets you borrow a lump sum using your home as collateral. You receive the full amount upfront and repay it over a fixed term with fixed monthly payments at a fixed interest rate. Because your home secures the loan, interest rates are typically lower than credit cards (15-25%) or personal loans (10-15%), making it an efficient way to access large sums.",
+                "Lenders limit how much you can borrow based on your Loan-to-Value (LTV) ratio. Most lenders set the maximum combined LTV at 80%, meaning your existing mortgage plus the home equity loan cannot exceed 80% of your home's appraised value. Some lenders allow up to 85-90% LTV for borrowers with excellent credit (750+).",
+                "Home equity loans are best for one-time, large expenses where you know the exact amount needed — major home renovations, debt consolidation, medical bills, or education costs. For ongoing or uncertain expenses, a HELOC (Home Equity Line of Credit) offers more flexibility.",
+            ],
+            highlight: "Example: Home worth $500,000 with $250,000 mortgage balance. At 80% LTV: ($500,000 × 80%) − $250,000 = $150,000 maximum home equity loan. At 8.5% for 15 years, monthly payment would be $1,477.",
+        },
+        faq: [
+            { question: "How much can I borrow with a home equity loan?", answer: "Most lenders let you borrow up to 80% of your home's value minus your existing mortgage balance. Example: $400,000 home with $200,000 mortgage → max loan = ($400,000 × 80%) − $200,000 = $120,000. Some lenders allow up to 85-90% LTV with excellent credit." },
+            { question: "What is the difference between a home equity loan and a HELOC?", answer: "Home equity loan = lump sum, fixed rate, fixed payments. HELOC = revolving credit line, variable rate, draw as needed during a 5-10 year draw period. HEL is better for one-time expenses; HELOC is better for ongoing costs like home remodeling over time." },
+            { question: "Are home equity loan interest payments tax deductible?", answer: "Under the Tax Cuts and Jobs Act (2017), home equity loan interest is only deductible if the loan is used to buy, build, or substantially improve the home that secures the loan. Interest on HEL used for debt consolidation, education, or other purposes is NOT deductible." },
+            { question: "What credit score do I need for a home equity loan?", answer: "Most lenders require a minimum credit score of 620-680. For the best rates (under 8%), you typically need 740+. Below 620 may not qualify. Lenders also check DTI ratio (ideally under 43%) and require adequate home equity (at least 15-20%)." },
+            { question: "What are the closing costs on a home equity loan?", answer: "Closing costs typically range from 2-5% of the loan amount and may include: appraisal fee ($300-$600), origination fee (0.5-1%), title search ($100-$250), recording fees, and attorney fees. Some lenders offer no-closing-cost loans in exchange for a higher interest rate." },
+            { question: "Can I lose my home with a home equity loan?", answer: "Yes. A home equity loan uses your home as collateral. If you fail to make payments, the lender can foreclose on your property. This is why financial advisors strongly warn against using home equity for non-essential expenses, vacations, or speculative investments." },
+        ],
+        steps: [
+            { label: "Determine home equity", formula: "$500,000 (home value) − $250,000 (mortgage)", result: "Equity: $250,000 (50%)" },
+            { label: "Calculate max borrowable", formula: "$500,000 × 80% LTV − $250,000 mortgage", result: "Max loan: $150,000" },
+            { label: "Monthly payment", formula: "PMT(8.5%/12, 180 months, $100,000)", result: "$985/month" },
+            { label: "Total cost", formula: "$985 × 180 + $3,000 closing costs", result: "$180,300 total" },
+        ],
+        comparison: [
+            { title: "Home Equity Loan", value: "8.5% fixed", detail: "Lump sum | Fixed payment | 15-year term", isWinner: true },
+            { title: "HELOC", value: "7.5% variable", detail: "Draw as needed | Rate can change | 10+20 yr" },
+            { title: "Cash-Out Refinance", value: "6.8% fixed", detail: "Replaces mortgage | Closing costs 2-6%" },
+        ],
+        insight: { icon: "\u26a0\ufe0f", title: "Risk Warning: Your Home Is Collateral", text: "A home equity loan puts your homeownership at risk. If you can't make payments, the lender can foreclose. Never borrow against your home for non-essential expenses, speculative investments, or vacations. Only use home equity for value-building purposes like home improvements (which can increase property value), strategic debt consolidation (replacing 20%+ credit card rates), or essential large expenses." },
+        contentHTML: `
+<h3>How Home Equity Loans Work</h3>
+<p>A home equity loan is a second mortgage that lets you borrow against the equity you've built in your home. Equity = Home Value − Mortgage Balance. If your home is worth $500,000 and you owe $250,000, you have $250,000 in equity (50%). Lenders typically let you borrow up to 80% of your home's value (combined with your existing mortgage), meaning you could access up to $150,000.</p>
+<p>Unlike a HELOC (Home Equity Line of Credit), a home equity loan gives you the full amount as a lump sum with a fixed interest rate and fixed monthly payments for the life of the loan — typically 5 to 30 years.</p>
+
+<h3>LTV Formula and Qualification</h3>
+<p><strong>Max Loan = (Home Value × Max LTV%) − Existing Mortgage Balance</strong></p>
+<table><tr><th>Requirement</th><th>Typical Range</th><th>Best Rate Threshold</th></tr>
+<tr><td>Credit Score</td><td>620-680 minimum</td><td>740+ for best rates</td></tr>
+<tr><td>Combined LTV</td><td>80% maximum</td><td>70% or less</td></tr>
+<tr><td>Debt-to-Income (DTI)</td><td>43% maximum</td><td>36% or less</td></tr>
+<tr><td>Home Equity</td><td>15-20% minimum</td><td>30%+ preferred</td></tr></table>
+
+<h3>Costs of a Home Equity Loan</h3>
+<p><strong>Upfront/Closing Costs (2-5% of loan):</strong></p>
+<ul>
+<li>Appraisal fee: $300-$600</li>
+<li>Origination fee: 0.5-1% of loan amount</li>
+<li>Title search and insurance: $100-$400</li>
+<li>Recording fees: $25-$250</li>
+<li>Attorney/notary fees: varies by state</li>
+</ul>
+<p><strong>Ongoing costs:</strong> Fixed monthly payments (principal + interest). At the beginning of the loan, most of each payment goes to interest. Over time, the principal portion increases — standard amortization.</p>
+
+<h3>5 Common Uses of Home Equity Loans</h3>
+<ol>
+<li><strong>Major home improvements</strong> — Kitchen remodel ($25K-$75K), roof replacement ($8K-$15K), additions. May increase home value and qualify for tax-deductible interest</li>
+<li><strong>Debt consolidation</strong> — Replace 15-25% credit card rates with 8-10% HEL rate. Can save thousands in interest. But converts unsecured debt to secured (home at risk)</li>
+<li><strong>Education costs</strong> — College tuition when federal student loans are insufficient. Compare HEL rates vs private student loan rates</li>
+<li><strong>Medical expenses</strong> — Large medical bills, elective procedures not covered by insurance</li>
+<li><strong>Emergency large expenses</strong> — Major car repair, unexpected home damage not covered by insurance</li>
+</ol>
+
+<h3>Home Equity Loan vs HELOC vs Cash-Out Refinance</h3>
+<table><tr><th></th><th>Home Equity Loan</th><th>HELOC</th><th>Cash-Out Refinance</th></tr>
+<tr><td>Type</td><td>Installment (lump sum)</td><td>Revolving credit line</td><td>New primary mortgage</td></tr>
+<tr><td>Rate</td><td>Fixed (8-10%)</td><td>Variable (7-9%)</td><td>Fixed or variable (6-8%)</td></tr>
+<tr><td>Payment</td><td>Fixed monthly</td><td>Interest-only during draw</td><td>Fixed monthly</td></tr>
+<tr><td>Closing Costs</td><td>2-5%</td><td>0-2%</td><td>2-6%</td></tr>
+<tr><td>Tax Deductible</td><td>If for home improvement</td><td>If for home improvement</td><td>All mortgage interest (up to $750K)</td></tr>
+<tr><td>Risk</td><td>Second lien on home</td><td>Second lien on home</td><td>Replaces existing mortgage</td></tr>
+<tr><td>Best for</td><td>One-time large known expense</td><td>Ongoing/uncertain costs</td><td>Lower rate + need cash</td></tr></table>
+
+<h3>Tax Deductibility Rules (Post-2017)</h3>
+<p>Under the Tax Cuts and Jobs Act, home equity loan interest is only deductible when the loan proceeds are used to <strong>buy, build, or substantially improve</strong> the home securing the loan. The combined mortgage + HEL balance must not exceed $750,000 ($375,000 if married filing separately). Interest on home equity loans used for debt consolidation, education, medical bills, or other purposes is <strong>not tax deductible</strong>.</p>
 `,
     },
 };

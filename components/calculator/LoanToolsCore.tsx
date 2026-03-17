@@ -1310,6 +1310,160 @@ function APRCalc({defaults}:P){
   </div>);
 }
 
+// ─── 19. Home Equity Loan Calculator ───
+function HomeEquityCalc({defaults}:P){
+  const[mode,setMode]=useState<"payment"|"borrow">("payment");
+  // Payment mode
+  const[loanAmt,setLoanAmt]=useState(defaults.amount||100000);
+  const[rate,setRate]=useState(defaults.rate||8.5);
+  const[tenure,setTenure]=useState(defaults.tenure||180);
+  const[closingCost,setClosing]=useState(3000);
+  // Borrow mode
+  const[homeVal,setHomeVal]=useState(500000);
+  const[mtgBalance,setMtgBal]=useState(250000);
+  const[maxLTV,setMaxLTV]=useState(80);
+
+  const payR=useMemo(()=>{
+    const mr=rate/100/12;
+    const mp=pmt(mr,tenure,loanAmt);
+    const totalPaid=mp*tenure;
+    const totalInt=totalPaid-loanAmt;
+    // APR with closing costs
+    let aprM=mr;
+    const net=loanAmt-closingCost;
+    if(net>0){
+      for(let i=0;i<100;i++){
+        const ea=Math.pow(1+aprM,tenure);
+        const pv=mp*(ea-1)/(aprM*ea);
+        const f=pv-net;
+        const dp2=mp*((tenure*Math.pow(1+aprM,tenure-1)*(aprM*ea)-(ea-1)*(ea+aprM*tenure*Math.pow(1+aprM,tenure-1)))/(aprM*ea)**2);
+        const d=f/(dp2||1);
+        aprM-=d*0.5;
+        if(Math.abs(d)<1e-10)break;
+        if(aprM<=0)aprM=0.0001;
+      }
+    }
+    const apr=aprM*12*100;
+    return{mp,totalPaid,totalInt,apr};
+  },[loanAmt,rate,tenure,closingCost]);
+
+  const borR=useMemo(()=>{
+    const maxBorrow=homeVal*(maxLTV/100)-mtgBalance;
+    const equity=homeVal-mtgBalance;
+    const eqPct=homeVal>0?(equity/homeVal*100):0;
+    const currentLTV=homeVal>0?(mtgBalance/homeVal*100):0;
+    return{maxBorrow:Math.max(0,maxBorrow),equity,eqPct,currentLTV};
+  },[homeVal,mtgBalance,maxLTV]);
+
+  return(<div>
+    {/* Mode toggle */}
+    <div style={{display:"flex",gap:"var(--s-2)",marginBottom:"var(--s-4)"}}>
+      {(["payment","borrow"] as const).map(m=>(
+        <button key={m} onClick={()=>setMode(m)} className="calc-preset-btn" style={{flex:1,padding:"var(--s-3)",fontWeight:mode===m?700:400,background:mode===m?"var(--n-primary)":"var(--n-surface-alt)",color:mode===m?"#fff":"var(--n-text)",border:"none",borderRadius:"var(--radius-md)",cursor:"pointer"}}>
+          {m==="payment"?"💰 Payment Calculator":"🏠 Borrowing Power"}
+        </button>
+      ))}
+    </div>
+
+    {mode==="payment"?(<>
+      <div className="calc-input-panel">
+        <div className="calc-field">
+          <label className="calc-field__label">💰 LOAN AMOUNT ($)</label>
+          <input type="text" className="calc-field__input" value={loanAmt.toLocaleString("en-US")} inputMode="numeric"
+            onChange={e=>{const v=Number(e.target.value.replace(/,/g,""));if(!isNaN(v))setLoanAmt(v);}}/>
+          <input type="range" className="calc-field__slider" min={10000} max={500000} step={5000} value={loanAmt} onChange={e=>setLoanAmt(Number(e.target.value))}/>
+        </div>
+        <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:"var(--s-3)"}}>
+          <div className="calc-field">
+            <label className="calc-field__label">% INTEREST RATE</label>
+            <input type="number" className="calc-field__input" value={rate} onChange={e=>setRate(Number(e.target.value))} step={0.25} min={3} max={15}/>
+            <input type="range" className="calc-field__slider" min={3} max={15} step={0.25} value={rate} onChange={e=>setRate(Number(e.target.value))}/>
+          </div>
+          <div className="calc-field">
+            <label className="calc-field__label">📅 LOAN TERM (years)</label>
+            <input type="number" className="calc-field__input" value={tenure/12} onChange={e=>setTenure(Number(e.target.value)*12)} step={1} min={5} max={30}/>
+          </div>
+        </div>
+        <div className="calc-field">
+          <label className="calc-field__label">💳 CLOSING COSTS ($)</label>
+          <input type="text" className="calc-field__input" value={closingCost.toLocaleString("en-US")} inputMode="numeric"
+            onChange={e=>{const v=Number(e.target.value.replace(/,/g,""));if(!isNaN(v))setClosing(v);}}/>
+        </div>
+      </div>
+      <div className="calc-card" style={{marginTop:"var(--s-6)",background:"var(--n-surface-alt)"}}>
+        <p className="calc-field__label">MONTHLY PAYMENT</p>
+        <p style={{fontSize:"var(--t-h1)",fontWeight:700,color:"var(--n-primary)"}}>{fmtUSD(payR.mp)}/mo</p>
+        <div style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr 1fr",gap:"var(--s-3)",marginTop:"var(--s-4)"}}>
+          <div><p className="calc-field__label">TOTAL INTEREST</p><p style={{fontWeight:700}}>{fmtUSD(payR.totalInt)}</p></div>
+          <div><p className="calc-field__label">CLOSING COSTS</p><p style={{fontWeight:700,color:"var(--n-warning)"}}>{fmtUSD(closingCost)}</p></div>
+          <div><p className="calc-field__label">TOTAL COST</p><p style={{fontWeight:700}}>{fmtUSD(payR.totalPaid+closingCost)}</p></div>
+          <div><p className="calc-field__label">EFFECTIVE APR</p><p style={{fontWeight:700,color:"var(--n-warning)"}}>{payR.apr.toFixed(3)}%</p></div>
+        </div>
+      </div>
+      {/* Comparison with alternatives */}
+      <div className="calc-card" style={{marginTop:"var(--s-4)",background:"var(--n-surface)"}}>
+        <p className="calc-field__label" style={{marginBottom:"var(--s-3)"}}>HOME EQUITY LOAN vs ALTERNATIVES</p>
+        <table className="calc-table"><thead><tr><th>Feature</th><th>Home Equity Loan</th><th>HELOC</th><th>Cash-Out Refinance</th></tr></thead><tbody>
+          <tr><td>Rate Type</td><td style={{color:"var(--n-success)"}}>Fixed ✓</td><td>Variable</td><td>Fixed or Variable</td></tr>
+          <tr><td>Disbursement</td><td>Lump sum</td><td>Draw as needed</td><td>Lump sum</td></tr>
+          <tr><td>Typical Rate</td><td>8-10%</td><td>7-9%</td><td>6-8%</td></tr>
+          <tr><td>Closing Costs</td><td>2-5%</td><td>0-2%</td><td>2-6%</td></tr>
+          <tr><td>Tax Deductible</td><td>If for home improvement</td><td>If for home improvement</td><td>Mortgage interest</td></tr>
+          <tr><td>Best For</td><td>One-time large expense</td><td>Ongoing expenses</td><td>Lower rate + cash</td></tr>
+        </tbody></table>
+      </div>
+    </>):(<>
+      <div className="calc-input-panel">
+        <div className="calc-field">
+          <label className="calc-field__label">🏠 CURRENT HOME VALUE ($)</label>
+          <input type="text" className="calc-field__input" value={homeVal.toLocaleString("en-US")} inputMode="numeric"
+            onChange={e=>{const v=Number(e.target.value.replace(/,/g,""));if(!isNaN(v))setHomeVal(v);}}/>
+          <input type="range" className="calc-field__slider" min={100000} max={2000000} step={10000} value={homeVal} onChange={e=>setHomeVal(Number(e.target.value))}/>
+        </div>
+        <div className="calc-field">
+          <label className="calc-field__label">🏦 REMAINING MORTGAGE BALANCE ($)</label>
+          <input type="text" className="calc-field__input" value={mtgBalance.toLocaleString("en-US")} inputMode="numeric"
+            onChange={e=>{const v=Number(e.target.value.replace(/,/g,""));if(!isNaN(v))setMtgBal(v);}}/>
+          <input type="range" className="calc-field__slider" min={0} max={homeVal} step={5000} value={mtgBalance} onChange={e=>setMtgBal(Number(e.target.value))}/>
+        </div>
+        <div className="calc-field">
+          <label className="calc-field__label">📊 MAX LOAN-TO-VALUE (LTV) RATIO</label>
+          <div style={{display:"flex",gap:"var(--s-2)",marginBottom:"var(--s-2)"}}>
+            {[70,80,85,90].map(v=>(
+              <button key={v} onClick={()=>setMaxLTV(v)} className="calc-preset-btn" style={{flex:1,padding:"var(--s-2)",fontWeight:maxLTV===v?700:400,background:maxLTV===v?"var(--n-primary)":"var(--n-surface-alt)",color:maxLTV===v?"#fff":"var(--n-text)",border:"none",borderRadius:"var(--radius-sm)",cursor:"pointer"}}>{v}%</button>
+            ))}
+          </div>
+          <input type="range" className="calc-field__slider" min={60} max={95} step={5} value={maxLTV} onChange={e=>setMaxLTV(Number(e.target.value))}/>
+        </div>
+      </div>
+      <div className="calc-card" style={{marginTop:"var(--s-6)",background:"var(--n-surface-alt)"}}>
+        <p className="calc-field__label">MAX HOME EQUITY LOAN AMOUNT</p>
+        <p style={{fontSize:"var(--t-h1)",fontWeight:700,color:borR.maxBorrow>0?"var(--n-success)":"var(--n-error, #ef4444)"}}>{fmtUSD(borR.maxBorrow)}</p>
+        <div style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:"var(--s-3)",marginTop:"var(--s-4)"}}>
+          <div><p className="calc-field__label">HOME EQUITY</p><p style={{fontWeight:700}}>{fmtUSD(borR.equity)} ({borR.eqPct.toFixed(1)}%)</p></div>
+          <div><p className="calc-field__label">CURRENT LTV</p><p style={{fontWeight:700}}>{borR.currentLTV.toFixed(1)}%</p></div>
+          <div><p className="calc-field__label">MAX LTV ALLOWED</p><p style={{fontWeight:700}}>{maxLTV}%</p></div>
+        </div>
+        <p style={{fontSize:"var(--t-body-sm)",color:"var(--n-text-muted)",marginTop:"var(--s-3)"}}>Formula: ({fmtUSD(homeVal)} × {maxLTV}%) − {fmtUSD(mtgBalance)} = {fmtUSD(borR.maxBorrow)}</p>
+      </div>
+      {/* LTV comparison */}
+      <div className="calc-card" style={{marginTop:"var(--s-4)",background:"var(--n-surface)"}}>
+        <p className="calc-field__label" style={{marginBottom:"var(--s-3)"}}>BORROWING AT DIFFERENT LTV RATIOS</p>
+        <table className="calc-table"><thead><tr><th>LTV Ratio</th><th>Max Loan Amount</th><th>Risk Level</th></tr></thead><tbody>
+          {[70,80,85,90].map(ltv=>{
+            const mx=Math.max(0,homeVal*(ltv/100)-mtgBalance);
+            return(<tr key={ltv} style={ltv===maxLTV?{background:"var(--n-primary-bg, rgba(59,130,246,0.1))"}:undefined}>
+              <td style={{fontWeight:ltv===maxLTV?700:400}}>{ltv}%{ltv===maxLTV?" ←":""}</td>
+              <td>{fmtUSD(mx)}</td>
+              <td>{ltv<=75?"Low":ltv<=80?"Moderate":ltv<=85?"Higher":"High"}</td>
+            </tr>);
+          })}
+        </tbody></table>
+      </div>
+    </>)}
+  </div>);
+}
+
 // ─── Dispatcher ───
 const CALC_MAP:Record<string,React.FC<P>>={
   mortgage:MortgageCalc, debtConsolidation:DebtConsolidationCalc,
@@ -1320,6 +1474,7 @@ const CALC_MAP:Record<string,React.FC<P>>={
   refinance:RefinanceCalc, mortgageRefinance:MortgageRefinanceCalc,
   rentAffordability:RentAffordabilityCalc, debtRatio:DebtRatioCalc,
   downPayment:DownPaymentCalc, aprCalc:APRCalc,
+  homeEquity:HomeEquityCalc,
 };
 
 export default function LoanToolsCore({calcType,defaults,sliderRanges}:{calcType:string;defaults:any;sliderRanges?:any}){

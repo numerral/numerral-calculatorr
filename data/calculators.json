@@ -1753,6 +1753,40 @@
     "keywords": "APR calculator, annual percentage rate calculator, real APR, true cost of loan, APR vs interest rate, APR vs APY, mortgage APR calculator, loan fee calculator"
   },
   {
+    "id": "home-equity-loan-calculator",
+    "category": "loan",
+    "title": "Home Equity Loan Calculator",
+    "slug": "home-equity-loan-calculator",
+    "categorySlug": "loan-calculators",
+    "icon": "🏡",
+    "calcType": "homeEquity",
+    "description": "Calculate home equity loan payments, total costs, and maximum borrowing power. Compare home equity loan vs HELOC vs cash-out refinance with LTV-based analysis.",
+    "stars": 5,
+    "defaults": {
+      "amount": 100000,
+      "rate": 8.5,
+      "tenure": 180
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 10000,
+        "max": 500000,
+        "step": 5000
+      },
+      "rate": {
+        "min": 3,
+        "max": 15,
+        "step": 0.25
+      },
+      "tenure": {
+        "min": 60,
+        "max": 360,
+        "step": 12
+      }
+    },
+    "keywords": "home equity loan calculator, second mortgage calculator, home equity loan rates, HELOC vs home equity loan, LTV calculator, home equity borrowing power, equity loan payment"
+  },
+  {
     "id": "interest-rate",
     "category": "utility",
     "title": "Interest Rate Calculator",
