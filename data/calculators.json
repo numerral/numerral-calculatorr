@@ -1889,6 +1889,40 @@
     "keywords": "FHA loan calculator, FHA mortgage calculator, FHA MIP calculator, FHA loan rates, FHA vs conventional, FHA down payment, FHA credit score requirements, FHA 203k loan"
   },
   {
+    "id": "rental-property-calculator",
+    "category": "loan",
+    "title": "Rental Property Calculator",
+    "slug": "rental-property-calculator",
+    "categorySlug": "loan-calculators",
+    "icon": "🏘️",
+    "calcType": "rentalProperty",
+    "description": "Analyze rental property investments with cash flow projections, cap rate, cash-on-cash return, NOI, and investment rule screening (1% rule, 50% rule, GRM).",
+    "stars": 5,
+    "defaults": {
+      "amount": 300000,
+      "rate": 7.0,
+      "tenure": 360
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 50000,
+        "max": 1000000,
+        "step": 5000
+      },
+      "rate": {
+        "min": 3,
+        "max": 12,
+        "step": 0.25
+      },
+      "tenure": {
+        "min": 180,
+        "max": 360,
+        "step": 180
+      }
+    },
+    "keywords": "rental property calculator, rental property ROI calculator, cap rate calculator, cash flow calculator, rental investment calculator, NOI calculator, cash on cash return, 1 percent rule real estate"
+  },
+  {
     "id": "interest-rate",
     "category": "utility",
     "title": "Interest Rate Calculator",

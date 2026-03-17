@@ -45,7 +45,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 // Hub page content per calculator type
-const LOAN_TOOL_TYPES = ["mortgage","debtConsolidation","loanAffordability","loanInterestRate","loanPayoff","loanAmortization","ltv","balloonLoan","arm","fixedVsVariable","extraPayment","refinance","mortgageRefinance","rentAffordability","debtRatio","downPayment","aprCalc","homeEquity","heloc","vaMortgage","fhaLoan"];
+const LOAN_TOOL_TYPES = ["mortgage","debtConsolidation","loanAffordability","loanInterestRate","loanPayoff","loanAmortization","ltv","balloonLoan","arm","fixedVsVariable","extraPayment","refinance","mortgageRefinance","rentAffordability","debtRatio","downPayment","aprCalc","homeEquity","heloc","vaMortgage","fhaLoan","rentalProperty"];
 
 const HUB_CONTENT: Record<string, {
     subtitle: string;
@@ -1445,6 +1445,82 @@ const HUB_CONTENT: Record<string, {
 <li><strong>Streamlined 203(k):</strong> For minor repairs and improvements under $35,000. Simpler process, no consultant required.</li>
 </ul>
 <p>Both types carry the same MIP requirements as regular FHA loans.</p>
+`,
+    },
+    "rental-property-calculator": {
+        subtitle: "Analyze rental property investments with cash flow projections, NOI, cap rate, cash-on-cash return, and investment rule screening (1% rule, 50% rule, GRM).",
+        explanation: {
+            heading: "What Is Rental Property Investing?",
+            paragraphs: [
+                "Rental property investing involves purchasing real estate to generate income through tenant rent payments and long-term property appreciation. Unlike stocks or bonds, rental properties provide tangible assets with monthly cash flow, tax advantages, and the ability to use leverage (mortgages) to amplify returns.",
+                "The key to profitable rental property investing is running the numbers before purchasing. You need to analyze: Net Operating Income (NOI = rental income minus operating expenses), Cap Rate (NOI / purchase price), Cash-on-Cash Return (annual cash flow / total cash invested), and monthly cash flow (NOI minus mortgage payments).",
+                "Operating expenses typically run 40-50% of gross rental income (the 50% Rule). These include property taxes, insurance, maintenance (budget 10% of rent), property management (8-12% if hired), vacancy (5-10%), and other costs. The mortgage payment comes out of the remaining 50%.",
+            ],
+            highlight: "Example: $300,000 property with 20% down ($60,000). Rent $2,000/mo. Expenses ~$9,600/yr. NOI: $13,200/yr. Mortgage: $11,960/yr. Cash flow: $1,240/yr ($103/mo). Cap rate: 4.4%. Cash-on-cash: 2.1%.",
+        },
+        faq: [
+            { question: "What is a good cap rate for rental property?", answer: "Generally, 5-10% is considered good. 4-5% is typical in expensive markets (NYC, SF). 8-12% is possible in lower-cost markets but may come with higher risk. Cap rate = NOI / Purchase Price. A higher cap rate means higher return but often higher risk." },
+            { question: "What is the 1% rule in real estate?", answer: "Monthly rent should be at least 1% of the purchase price. Example: $300,000 property should rent for $3,000+/month. Properties meeting this rule are more likely to cash flow positively. In expensive markets, 0.5-0.8% is common. In affordable markets, 1-2% is achievable." },
+            { question: "What is cash-on-cash return?", answer: "Annual pre-tax cash flow divided by total cash invested. Example: $1,240 annual cash flow / $60,000 down payment = 2.1%. Target 8%+ for a good investment. This metric shows the actual return on your out-of-pocket investment, accounting for leverage." },
+            { question: "How much should I budget for maintenance?", answer: "Budget 1-2% of property value per year, or 10% of monthly rent. Older properties (50+ years) may need 15-20%. Common expenses: HVAC ($5K-$10K), roof ($8K-$15K), water heater ($1K-$2K), appliances ($500-$2K each). Having a reserve fund is critical." },
+            { question: "Should I hire a property manager?", answer: "Property management typically costs 8-12% of monthly rent. Worth it if: you own 3+ properties, live far from the property, don't want tenant calls, or your time is worth more than the management fee. Self-managing saves $2,400-$3,600/year on a $2,000/month rental." },
+            { question: "What are the tax benefits of rental property?", answer: "Key benefits: (1) Depreciation \u2014 deduct ~3.6% of building value annually for 27.5 years, even if the property appreciates. (2) Expense deductions \u2014 mortgage interest, repairs, insurance, taxes, management fees. (3) 1031 Exchange \u2014 defer capital gains by reinvesting proceeds into a like-kind property." },
+        ],
+        steps: [
+            { label: "Calculate gross income", formula: "$2,000 rent \u00d7 12 months", result: "Gross: $24,000/yr" },
+            { label: "Subtract vacancy & expenses", formula: "$24,000 \u2212 $1,200 vacancy \u2212 $9,600 expenses", result: "NOI: $13,200" },
+            { label: "Subtract mortgage", formula: "$13,200 \u2212 $1,597/mo \u00d7 12", result: "Cash flow: -$5,964/yr" },
+            { label: "Calculate returns", formula: "Cap rate = NOI/Price, CoC = CF/Cash invested", result: "Cap: 4.4%, CoC: varies" },
+        ],
+        comparison: [
+            { title: "Rental Property", value: "4-10% cap rate", detail: "Active income | Leverage | Tax benefits", isWinner: true },
+            { title: "REITs", value: "4-8% yield", detail: "Passive | Liquid | Diversified" },
+            { title: "House Flipping", value: "10-20% per flip", detail: "Active | Short-term | Higher risk" },
+        ],
+        insight: { icon: "\ud83d\udcca", title: "The Numbers Don't Lie", text: "Most rental property failures come from not running the numbers properly before purchasing. Always stress-test: What if vacancy is 10% instead of 5%? What if a $10K repair hits in year 1? What if interest rates rise when you refinance? If the deal still works under pessimistic assumptions, it's likely a solid investment." },
+        contentHTML: `
+<h3>Key Rental Property Metrics</h3>
+<table><tr><th>Metric</th><th>Formula</th><th>Good Target</th><th>What It Tells You</th></tr>
+<tr><td>Cap Rate</td><td>NOI / Purchase Price</td><td>5-10%</td><td>Return before financing</td></tr>
+<tr><td>Cash-on-Cash</td><td>Annual Cash Flow / Cash Invested</td><td>8%+</td><td>Return on your actual cash</td></tr>
+<tr><td>NOI</td><td>Effective Income \u2212 Operating Expenses</td><td>Positive</td><td>Property profitability before mortgage</td></tr>
+<tr><td>GRM</td><td>Price / Gross Annual Rent</td><td>\u2264 15x</td><td>Quick price-to-rent comparison</td></tr></table>
+
+<h3>Quick Screening Rules</h3>
+<ul>
+<li><strong>1% Rule:</strong> Monthly rent \u2265 1% of purchase price. $300K property \u2192 needs \u2265 $3,000/month rent</li>
+<li><strong>50% Rule:</strong> Operating expenses \u2248 50% of gross income. The other 50% covers mortgage + profit</li>
+<li><strong>70% Rule (flipping):</strong> Purchase price \u2264 70% of After-Repair Value (ARV) minus repair costs</li>
+<li><strong>2% Rule:</strong> More aggressive version of 1% rule. Harder to find but excellent cash flow</li>
+</ul>
+
+<h3>Operating Expense Breakdown</h3>
+<p>Typical operating expenses for a rental property run 40-50% of gross rental income:</p>
+<table><tr><th>Expense</th><th>Typical %</th><th>Example ($2K/mo rent)</th></tr>
+<tr><td>Property Tax</td><td>Varies by location</td><td>$3,600/yr</td></tr>
+<tr><td>Insurance</td><td>~5%</td><td>$1,200/yr</td></tr>
+<tr><td>Maintenance/Repairs</td><td>10%</td><td>$2,400/yr</td></tr>
+<tr><td>Property Management</td><td>8-12%</td><td>$2,400/yr</td></tr>
+<tr><td>Vacancy</td><td>5-10%</td><td>$1,200/yr</td></tr>
+<tr><td>HOA (if applicable)</td><td>Varies</td><td>$0-$500/mo</td></tr>
+<tr><td><strong>Total</strong></td><td><strong>40-50%</strong></td><td><strong>$10,800+/yr</strong></td></tr></table>
+
+<h3>Tax Benefits of Rental Property</h3>
+<ul>
+<li><strong>Depreciation:</strong> Deduct the building value (not land) over 27.5 years. On a $300K property with $240K building value, that's $8,727/year in paper losses \u2014 reducing taxable income even if the property appreciates</li>
+<li><strong>Expense deductions:</strong> Mortgage interest, property taxes, insurance, repairs, management fees, travel to property, and professional services are all deductible</li>
+<li><strong>1031 Exchange:</strong> Defer capital gains taxes by reinvesting sale proceeds into a like-kind property within 180 days</li>
+<li><strong>Pass-through deduction:</strong> Rental income may qualify for the 20% Qualified Business Income (QBI) deduction</li>
+</ul>
+
+<h3>Other Real Estate Investment Options</h3>
+<table><tr><th></th><th>Rental Property</th><th>REITs</th><th>House Flipping</th><th>Wholesaling</th></tr>
+<tr><td>Capital Needed</td><td>High ($50K+)</td><td>Low ($100+)</td><td>Medium ($30K+)</td><td>Low ($0-$5K)</td></tr>
+<tr><td>Time Commitment</td><td>Medium-High</td><td>None (passive)</td><td>High</td><td>High</td></tr>
+<tr><td>Cash Flow</td><td>Monthly rent</td><td>Quarterly dividends</td><td>One-time profit</td><td>One-time fee</td></tr>
+<tr><td>Appreciation</td><td>Yes</td><td>Yes (share price)</td><td>No (sold quickly)</td><td>No</td></tr>
+<tr><td>Tax Benefits</td><td>Excellent</td><td>Good</td><td>Ordinary income</td><td>Ordinary income</td></tr>
+<tr><td>Liquidity</td><td>Very low</td><td>High</td><td>Medium</td><td>High</td></tr></table>
 `,
     },
 };

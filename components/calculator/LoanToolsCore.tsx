@@ -1949,6 +1949,168 @@ function FHALoanCalc({defaults}:P){
   </div>);
 }
 
+// ─── 23. Rental Property Calculator ───
+function RentalPropertyCalc({defaults}:P){
+  const[price,setPrice]=useState(defaults.amount||300000);
+  const[downPct,setDownPct]=useState(20);
+  const[rate,setRate]=useState(defaults.rate||7.0);
+  const[tenure,setTenure]=useState(defaults.tenure||360);
+  const[rent,setRent]=useState(2000);
+  const[vacancyPct,setVacancy]=useState(5);
+  // Operating expenses
+  const[propTaxYr,setPropTax]=useState(3600);
+  const[insYr,setIns]=useState(1200);
+  const[maintPct,setMaint]=useState(10); // % of rent
+  const[mgmtPct,setMgmt]=useState(10); // % of rent
+  const[hoa,setHoa]=useState(0);
+  const[otherExp,setOther]=useState(0);
+
+  const r=useMemo(()=>{
+    const downAmt=price*(downPct/100);
+    const loanAmt=price-downAmt;
+    const mr=rate/100/12;
+    const mortPmt=loanAmt>0?pmt(mr,tenure,loanAmt):0;
+    // Income
+    const grossAnnual=rent*12;
+    const vacancyLoss=grossAnnual*(vacancyPct/100);
+    const effectiveIncome=grossAnnual-vacancyLoss;
+    // Expenses
+    const maintYr=grossAnnual*(maintPct/100);
+    const mgmtYr=grossAnnual*(mgmtPct/100);
+    const totalOpEx=propTaxYr+insYr+maintYr+mgmtYr+(hoa*12)+(otherExp*12);
+    // NOI, Cash Flow
+    const noi=effectiveIncome-totalOpEx;
+    const annualMort=mortPmt*12;
+    const annualCashFlow=noi-annualMort;
+    const monthlyCashFlow=annualCashFlow/12;
+    // Metrics
+    const capRate=price>0?(noi/price*100):0;
+    const totalCashInvested=downAmt; // simplified: closing costs not included
+    const cashOnCash=totalCashInvested>0?(annualCashFlow/totalCashInvested*100):0;
+    const onePercentRule=price>0?(rent/(price)*100):0;
+    const fiftyPercentTest=effectiveIncome>0?(totalOpEx/effectiveIncome*100):0;
+    const grm=rent>0?(price/grossAnnual):0;
+    return{downAmt,loanAmt,mortPmt,grossAnnual,vacancyLoss,effectiveIncome,maintYr,mgmtYr,totalOpEx,noi,annualMort,annualCashFlow,monthlyCashFlow,capRate,cashOnCash,onePercentRule,fiftyPercentTest,grm};
+  },[price,downPct,rate,tenure,rent,vacancyPct,propTaxYr,insYr,maintPct,mgmtPct,hoa,otherExp]);
+
+  const good=(v:boolean)=>v?"var(--n-success)":"var(--n-error, #ef4444)";
+
+  return(<div><div className="calc-input-panel">
+    <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:"var(--s-3)"}}>
+      <div className="calc-field">
+        <label className="calc-field__label">🏠 PURCHASE PRICE ($)</label>
+        <input type="text" className="calc-field__input" value={price.toLocaleString("en-US")} inputMode="numeric"
+          onChange={e=>{const v=Number(e.target.value.replace(/,/g,""));if(!isNaN(v))setPrice(v);}}/>
+        <input type="range" className="calc-field__slider" min={50000} max={1000000} step={5000} value={price} onChange={e=>setPrice(Number(e.target.value))}/>
+      </div>
+      <div className="calc-field">
+        <label className="calc-field__label">💰 MONTHLY RENT ($)</label>
+        <input type="text" className="calc-field__input" value={rent.toLocaleString("en-US")} inputMode="numeric"
+          onChange={e=>{const v=Number(e.target.value.replace(/,/g,""));if(!isNaN(v))setRent(v);}}/>
+        <input type="range" className="calc-field__slider" min={500} max={10000} step={50} value={rent} onChange={e=>setRent(Number(e.target.value))}/>
+      </div>
+    </div>
+    <div style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:"var(--s-3)"}}>
+      <div className="calc-field">
+        <label className="calc-field__label">⬇️ DOWN PAYMENT (%)</label>
+        <input type="number" className="calc-field__input" value={downPct} onChange={e=>setDownPct(Number(e.target.value))} step={5}/>
+        <input type="range" className="calc-field__slider" min={0} max={100} step={5} value={downPct} onChange={e=>setDownPct(Number(e.target.value))}/>
+        <p className="t-body-sm text-muted">{fmtUSD(r.downAmt)}</p>
+      </div>
+      <div className="calc-field">
+        <label className="calc-field__label">% MORTGAGE RATE</label>
+        <input type="number" className="calc-field__input" value={rate} onChange={e=>setRate(Number(e.target.value))} step={0.25}/>
+      </div>
+      <div className="calc-field">
+        <label className="calc-field__label">📅 LOAN TERM</label>
+        <div style={{display:"flex",gap:"var(--s-2)"}}>
+          {[{l:"15yr",v:180},{l:"30yr",v:360}].map(t=>(
+            <button key={t.v} onClick={()=>setTenure(t.v)} className="calc-preset-btn" style={{flex:1,padding:"var(--s-2)",fontWeight:tenure===t.v?700:400,background:tenure===t.v?"var(--n-primary)":"var(--n-surface-alt)",color:tenure===t.v?"#fff":"var(--n-text)",border:"none",borderRadius:"var(--radius-sm)",cursor:"pointer"}}>{t.l}</button>
+          ))}
+        </div>
+      </div>
+    </div>
+    <div className="calc-field">
+      <label className="calc-field__label">📊 VACANCY RATE (%)</label>
+      <input type="range" className="calc-field__slider" min={0} max={20} step={1} value={vacancyPct} onChange={e=>setVacancy(Number(e.target.value))}/>
+      <p className="t-body-sm text-muted">{vacancyPct}% — Loss: {fmtUSD(r.vacancyLoss)}/yr</p>
+    </div>
+    <hr style={{margin:"var(--s-3) 0",border:"1px solid var(--n-border)"}}/>
+    <p className="calc-field__label" style={{marginBottom:"var(--s-2)"}}>📋 OPERATING EXPENSES</p>
+    <div style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:"var(--s-3)"}}>
+      <div className="calc-field">
+        <label className="calc-field__label">🏛️ Property Tax ($/yr)</label>
+        <input type="text" className="calc-field__input" value={propTaxYr.toLocaleString("en-US")} inputMode="numeric"
+          onChange={e=>{const v=Number(e.target.value.replace(/,/g,""));if(!isNaN(v))setPropTax(v);}}/>
+      </div>
+      <div className="calc-field">
+        <label className="calc-field__label">🛡️ Insurance ($/yr)</label>
+        <input type="text" className="calc-field__input" value={insYr.toLocaleString("en-US")} inputMode="numeric"
+          onChange={e=>{const v=Number(e.target.value.replace(/,/g,""));if(!isNaN(v))setIns(v);}}/>
+      </div>
+      <div className="calc-field">
+        <label className="calc-field__label">🔧 Maintenance (% rent)</label>
+        <input type="number" className="calc-field__input" value={maintPct} onChange={e=>setMaint(Number(e.target.value))} step={1}/>
+      </div>
+    </div>
+    <div style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:"var(--s-3)"}}>
+      <div className="calc-field">
+        <label className="calc-field__label">👤 Property Mgmt (% rent)</label>
+        <input type="number" className="calc-field__input" value={mgmtPct} onChange={e=>setMgmt(Number(e.target.value))} step={1}/>
+      </div>
+      <div className="calc-field">
+        <label className="calc-field__label">🏢 HOA ($/mo)</label>
+        <input type="number" className="calc-field__input" value={hoa} onChange={e=>setHoa(Number(e.target.value))} step={25}/>
+      </div>
+      <div className="calc-field">
+        <label className="calc-field__label">📦 Other ($/mo)</label>
+        <input type="number" className="calc-field__input" value={otherExp} onChange={e=>setOther(Number(e.target.value))} step={25}/>
+      </div>
+    </div>
+  </div>
+
+    {/* Cash Flow Results */}
+    <div className="calc-card" style={{marginTop:"var(--s-6)",background:r.monthlyCashFlow>=0?"rgba(34,197,94,0.08)":"rgba(239,68,68,0.08)"}}>
+      <p className="calc-field__label">MONTHLY CASH FLOW</p>
+      <p style={{fontSize:"var(--t-h1)",fontWeight:700,color:r.monthlyCashFlow>=0?"var(--n-success)":"var(--n-error, #ef4444)"}}>{fmtUSD(r.monthlyCashFlow)}/mo</p>
+      <p className="t-body-sm text-muted">{fmtUSD(r.annualCashFlow)}/year | {r.monthlyCashFlow>=0?"✅ Positive cash flow":"❌ Negative cash flow"}</p>
+    </div>
+
+    {/* Income & Expense Breakdown */}
+    <div className="calc-card" style={{marginTop:"var(--s-4)",background:"var(--n-surface)"}}>
+      <p className="calc-field__label" style={{marginBottom:"var(--s-3)"}}>INCOME & EXPENSE BREAKDOWN (Annual)</p>
+      <table className="calc-table"><tbody>
+        <tr style={{background:"rgba(34,197,94,0.05)"}}><td><strong>Gross Rental Income</strong></td><td style={{textAlign:"right",fontWeight:700,color:"var(--n-success)"}}>{fmtUSD(r.grossAnnual)}</td></tr>
+        <tr><td>− Vacancy Loss ({vacancyPct}%)</td><td style={{textAlign:"right",color:"var(--n-error, #ef4444)"}}>({fmtUSD(r.vacancyLoss)})</td></tr>
+        <tr style={{borderTop:"2px solid var(--n-border)"}}><td><strong>Effective Income</strong></td><td style={{textAlign:"right",fontWeight:700}}>{fmtUSD(r.effectiveIncome)}</td></tr>
+        <tr><td>− Property Tax</td><td style={{textAlign:"right"}}>({fmtUSD(propTaxYr)})</td></tr>
+        <tr><td>− Insurance</td><td style={{textAlign:"right"}}>({fmtUSD(insYr)})</td></tr>
+        <tr><td>− Maintenance ({maintPct}%)</td><td style={{textAlign:"right"}}>({fmtUSD(r.maintYr)})</td></tr>
+        <tr><td>− Management ({mgmtPct}%)</td><td style={{textAlign:"right"}}>({fmtUSD(r.mgmtYr)})</td></tr>
+        {hoa>0&&<tr><td>− HOA</td><td style={{textAlign:"right"}}>({fmtUSD(hoa*12)})</td></tr>}
+        {otherExp>0&&<tr><td>− Other</td><td style={{textAlign:"right"}}>({fmtUSD(otherExp*12)})</td></tr>}
+        <tr style={{borderTop:"2px solid var(--n-border)"}}><td><strong>Total Operating Expenses</strong></td><td style={{textAlign:"right",fontWeight:700,color:"var(--n-warning)"}}>{fmtUSD(r.totalOpEx)}</td></tr>
+        <tr style={{background:"rgba(59,130,246,0.05)"}}><td><strong>Net Operating Income (NOI)</strong></td><td style={{textAlign:"right",fontWeight:700,color:"var(--n-primary)"}}>{fmtUSD(r.noi)}</td></tr>
+        <tr><td>− Mortgage Payment</td><td style={{textAlign:"right"}}>({fmtUSD(r.annualMort)})</td></tr>
+        <tr style={{borderTop:"2px solid var(--n-border)",background:r.annualCashFlow>=0?"rgba(34,197,94,0.05)":"rgba(239,68,68,0.05)"}}><td><strong>Net Cash Flow</strong></td><td style={{textAlign:"right",fontWeight:700,color:r.annualCashFlow>=0?"var(--n-success)":"var(--n-error, #ef4444)"}}>{fmtUSD(r.annualCashFlow)}</td></tr>
+      </tbody></table>
+    </div>
+
+    {/* Investment Metrics */}
+    <div className="calc-card" style={{marginTop:"var(--s-4)",background:"var(--n-surface)"}}>
+      <p className="calc-field__label" style={{marginBottom:"var(--s-3)"}}>📊 INVESTMENT METRICS</p>
+      <table className="calc-table"><thead><tr><th>Metric</th><th>Value</th><th>Target</th><th>Status</th></tr></thead><tbody>
+        <tr><td>Cap Rate</td><td style={{fontWeight:700}}>{r.capRate.toFixed(2)}%</td><td>≥ 5%</td><td style={{color:good(r.capRate>=5)}}>{r.capRate>=5?"✅ Good":"⚠️ Low"}</td></tr>
+        <tr><td>Cash-on-Cash Return</td><td style={{fontWeight:700}}>{r.cashOnCash.toFixed(2)}%</td><td>≥ 8%</td><td style={{color:good(r.cashOnCash>=8)}}>{r.cashOnCash>=8?"✅ Good":"⚠️ Low"}</td></tr>
+        <tr><td>1% Rule (Rent/Price)</td><td style={{fontWeight:700}}>{r.onePercentRule.toFixed(2)}%</td><td>≥ 1%</td><td style={{color:good(r.onePercentRule>=1)}}>{r.onePercentRule>=1?"✅ Pass":"❌ Fail"}</td></tr>
+        <tr><td>50% Rule (OpEx/Income)</td><td style={{fontWeight:700}}>{r.fiftyPercentTest.toFixed(1)}%</td><td>≤ 50%</td><td style={{color:good(r.fiftyPercentTest<=50)}}>{r.fiftyPercentTest<=50?"✅ Pass":"⚠️ High"}</td></tr>
+        <tr><td>GRM (Price/Gross Rent)</td><td style={{fontWeight:700}}>{r.grm.toFixed(1)}x</td><td>≤ 15x</td><td style={{color:good(r.grm<=15)}}>{r.grm<=15?"✅ Good":"⚠️ High"}</td></tr>
+        <tr><td>Monthly Mortgage</td><td style={{fontWeight:700}}>{fmtUSD(r.mortPmt)}</td><td>—</td><td>—</td></tr>
+      </tbody></table>
+    </div>
+  </div>);
+}
+
 // ─── Dispatcher ───
 const CALC_MAP:Record<string,React.FC<P>>={
   mortgage:MortgageCalc, debtConsolidation:DebtConsolidationCalc,
@@ -1961,6 +2123,7 @@ const CALC_MAP:Record<string,React.FC<P>>={
   downPayment:DownPaymentCalc, aprCalc:APRCalc,
   homeEquity:HomeEquityCalc, heloc:HELOCCalc,
   vaMortgage:VAMortgageCalc, fhaLoan:FHALoanCalc,
+  rentalProperty:RentalPropertyCalc,
 };
 
 export default function LoanToolsCore({calcType,defaults,sliderRanges}:{calcType:string;defaults:any;sliderRanges?:any}){
