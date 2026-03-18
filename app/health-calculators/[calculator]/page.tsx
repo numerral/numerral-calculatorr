@@ -416,8 +416,94 @@ const HUB_CONTENT: Record<string, { subtitle: string; explanation?: { heading: s
     },
     "miles-to-steps-calculator": {
         subtitle: "Convert miles to steps based on your height and stride length. See how many steps are in a mile for your specific body dimensions.",
-        explanation: { heading: "How Miles Convert to Steps", paragraphs: ["Steps per mile depends on stride length, which correlates with height. Average stride = height × 0.415. A 170cm person has a stride of ~70.5cm, meaning ~2,282 steps per mile.", "The commonly cited '2,000 steps per mile' is an average. Taller people take fewer steps and shorter people take more. Running strides are 40-60% longer than walking strides — conversion differs for runners."], highlight: "170cm person walking 3 miles: stride 70.5cm → 2,282 steps/mile → 6,846 total steps." },
-        faq: [{ question: "How many steps is 1 mile?", answer: "For average adults: 2,000-2,500 steps per mile walking. More precisely: 5'4\" = ~2,400 steps, 5'8\" = ~2,250, 6'0\" = ~2,100, 6'4\" = ~1,950. Running reduces this by 30-40%." }, { question: "Are running steps the same as walking steps?", answer: "No. Running strides are significantly longer (typically 40-60% longer than walking). A mile of running takes ~1,400-1,700 steps compared to ~2,000-2,500 walking." }],
+        explanation: { heading: "How to Convert Miles to Steps", contentHTML: `<p>The number of steps in a mile depends on your <strong>stride length</strong>, which varies by height, pace, and whether you're walking or running. The commonly cited "2,000 steps per mile" is just an average — your actual count could range from 1,400 to 2,600+ depending on these factors.</p>
+
+<h3>The Stride Length Formula</h3>
+<p>Stride length can be estimated using your height:</p>
+<p><strong>Walking Stride = Height × 0.415</strong></p>
+<p><strong>Running Stride = Height × 0.60</strong></p>
+<p>Once you have your stride length, the steps formula is simple:</p>
+<p><strong>Steps = Distance (in same unit) ÷ Stride Length</strong></p>
+<p>For miles: Steps = (Miles × 5,280 feet × 12 inches) ÷ Stride Length (in inches)</p>
+
+<h3>Steps Per Mile by Height — Walking vs Running</h3>
+<table><thead><tr><th>Height</th><th>Walking Stride</th><th>Steps/Mile (Walking)</th><th>Running Stride</th><th>Steps/Mile (Running)</th></tr></thead><tbody>
+<tr><td>5'0" (152 cm)</td><td>24.9 in (63 cm)</td><td>2,546</td><td>36.0 in (91 cm)</td><td>1,760</td></tr>
+<tr><td>5'2" (157 cm)</td><td>25.6 in (65 cm)</td><td>2,475</td><td>37.1 in (94 cm)</td><td>1,707</td></tr>
+<tr><td>5'4" (163 cm)</td><td>26.7 in (68 cm)</td><td>2,373</td><td>38.6 in (98 cm)</td><td>1,642</td></tr>
+<tr><td>5'6" (168 cm)</td><td>27.5 in (70 cm)</td><td>2,304</td><td>39.8 in (101 cm)</td><td>1,593</td></tr>
+<tr><td>5'8" (173 cm)</td><td>28.3 in (72 cm)</td><td>2,241</td><td>40.9 in (104 cm)</td><td>1,549</td></tr>
+<tr><td>5'10" (178 cm)</td><td>29.1 in (74 cm)</td><td>2,178</td><td>42.1 in (107 cm)</td><td>1,506</td></tr>
+<tr><td>6'0" (183 cm)</td><td>30.0 in (76 cm)</td><td>2,112</td><td>43.3 in (110 cm)</td><td>1,464</td></tr>
+<tr><td>6'2" (188 cm)</td><td>30.8 in (78 cm)</td><td>2,060</td><td>44.4 in (113 cm)</td><td>1,429</td></tr>
+<tr><td>6'4" (193 cm)</td><td>31.6 in (80 cm)</td><td>2,006</td><td>45.6 in (116 cm)</td><td>1,391</td></tr>
+</tbody></table>
+
+<h3>Miles to Steps Conversion Chart</h3>
+<p>This chart uses the average stride length (2,250 steps/mile walking, 1,550 steps/mile running):</p>
+<table><thead><tr><th>Distance</th><th>Steps (Walking)</th><th>Steps (Running)</th><th>Time (Walking 3 mph)</th><th>Approx. Calories</th></tr></thead><tbody>
+<tr><td>0.25 miles</td><td>563</td><td>388</td><td>5 min</td><td>25 kcal</td></tr>
+<tr><td>0.5 miles</td><td>1,125</td><td>775</td><td>10 min</td><td>50 kcal</td></tr>
+<tr><td>1 mile</td><td>2,250</td><td>1,550</td><td>20 min</td><td>100 kcal</td></tr>
+<tr><td>2 miles</td><td>4,500</td><td>3,100</td><td>40 min</td><td>200 kcal</td></tr>
+<tr><td>3 miles</td><td>6,750</td><td>4,650</td><td>60 min</td><td>300 kcal</td></tr>
+<tr><td>5 miles</td><td>11,250</td><td>7,750</td><td>1 hr 40 min</td><td>500 kcal</td></tr>
+<tr><td>10 miles</td><td>22,500</td><td>15,500</td><td>3 hr 20 min</td><td>1,000 kcal</td></tr>
+<tr><td>13.1 miles (half marathon)</td><td>29,475</td><td>20,305</td><td>4 hr 22 min</td><td>1,310 kcal</td></tr>
+<tr><td>26.2 miles (marathon)</td><td>58,950</td><td>40,610</td><td>8 hr 44 min</td><td>2,620 kcal</td></tr>
+</tbody></table>
+<p><em>Calorie estimates based on a 155 lb (70 kg) person at moderate pace.</em></p>
+
+<h3>Walking vs Running — How Pace Affects Steps Per Mile</h3>
+<p>Research published in the <strong>ACSM's Health & Fitness Journal</strong> found significant variation in steps per mile based on pace:</p>
+<table><thead><tr><th>Pace</th><th>Speed</th><th>Steps/Mile</th><th>Activity</th></tr></thead><tbody>
+<tr><td>Slow walk</td><td>2.0 mph</td><td>2,500–2,650</td><td>Casual stroll</td></tr>
+<tr><td>Moderate walk</td><td>3.0 mph</td><td>2,100–2,350</td><td>Brisk walk</td></tr>
+<tr><td>Fast walk</td><td>4.0 mph</td><td>1,900–2,100</td><td>Power walk</td></tr>
+<tr><td>Slow jog</td><td>5.0 mph (12 min/mi)</td><td>1,800–2,000</td><td>Easy jog</td></tr>
+<tr><td>Moderate run</td><td>6.0 mph (10 min/mi)</td><td>1,600–1,800</td><td>Comfortable run</td></tr>
+<tr><td>Fast run</td><td>8.0 mph (7:30 min/mi)</td><td>1,350–1,500</td><td>Tempo run</td></tr>
+<tr><td>Sprint</td><td>10+ mph</td><td>1,100–1,300</td><td>Racing pace</td></tr>
+</tbody></table>
+
+<h3>How Many Miles is 10,000 Steps?</h3>
+<p>The popular 10,000-step daily goal translates to roughly <strong>4.2–5.0 miles</strong> of walking, depending on your height:</p>
+<table><thead><tr><th>Height</th><th>10,000 Steps =</th></tr></thead><tbody>
+<tr><td>5'0"</td><td>3.92 miles (6.31 km)</td></tr>
+<tr><td>5'4"</td><td>4.21 miles (6.78 km)</td></tr>
+<tr><td>5'8"</td><td>4.46 miles (7.18 km)</td></tr>
+<tr><td>6'0"</td><td>4.73 miles (7.61 km)</td></tr>
+<tr><td>6'4"</td><td>4.98 miles (8.02 km)</td></tr>
+</tbody></table>
+<p>Research from Harvard Medical School suggests that health benefits are significant even at <strong>7,000–8,000 steps/day</strong>, with the mortality benefit plateauing around 7,500 steps for older adults. The 10,000 figure originated from a 1960s Japanese marketing campaign for a pedometer called "manpo-kei" (10,000 steps meter) rather than from clinical research.</p>
+
+<h3>Health Benefits of Walking by Distance</h3>
+<p>Regular walking is one of the most effective forms of exercise. Here's what research shows:</p>
+<ul>
+<li><strong>1 mile/day (2,000 steps)</strong> — Reduces cardiovascular disease risk by 12% (American Heart Association)</li>
+<li><strong>2 miles/day (4,500 steps)</strong> — Lowers Type 2 diabetes risk by 25% (CDC recommendation meets this threshold)</li>
+<li><strong>3 miles/day (6,750 steps)</strong> — Significant weight management benefits; burns ~300 kcal/day = 1 lb/week loss when combined with diet</li>
+<li><strong>5+ miles/day (11,000 steps)</strong> — Associated with reduced all-cause mortality by 51% in adults under 60 (JAMA study, 2022)</li>
+</ul>
+<p>The CDC recommends 150 minutes of moderate-intensity activity per week, which equals approximately <strong>2.5 miles of brisk walking per day, 5 days a week</strong>.</p>
+
+<h3>Tips for Accurate Step Counting</h3>
+<ul>
+<li><strong>Calibrate your tracker</strong> — Walk a known distance (a football field = 100 yards) and compare to your tracker's reading. Adjust stride length in settings if off.</li>
+<li><strong>Measure your actual stride</strong> — Walk 20 steps at normal pace, measure the total distance in feet, divide by 20. This is more accurate than the height formula.</li>
+<li><strong>Account for terrain</strong> — Uphill walking shortens stride by 10–20%; uneven trail walking adds 5–15% more steps per mile.</li>
+<li><strong>Phone vs wrist tracker</strong> — Wrist-based trackers are 5–10% less accurate than waist-mounted pedometers. Phone step counters in your pocket tend to be more accurate than wrist devices.</li>
+</ul>` },
+        faq: [
+            { question: "How many steps are in 1 mile?", answer: "For average adults: approximately 2,000-2,500 steps per mile when walking. More precisely: 5'0\" = ~2,546 steps, 5'4\" = ~2,373, 5'8\" = ~2,241, 6'0\" = ~2,112, 6'4\" = ~2,006 steps per mile. Running reduces this significantly — about 1,400-1,750 steps per mile." },
+            { question: "Are running steps the same as walking steps?", answer: "No. Running strides are approximately 40-60% longer than walking strides because of the flight phase (both feet off the ground). A mile of running takes ~1,400-1,700 steps compared to ~2,000-2,500 walking. The faster you run, the longer your stride and the fewer steps per mile." },
+            { question: "How accurate is the height × 0.415 stride formula?", answer: "The formula estimates stride length within about 10% accuracy for most adults walking at normal pace (3 mph). For more precision, measure your actual stride: walk 20 steps at your normal pace, measure the total distance, and divide by 20. This gives your personal stride length." },
+            { question: "How many miles is 10,000 steps?", answer: "Approximately 4.2–5.0 miles depending on your height. A 5'4\" person covers about 4.2 miles in 10,000 steps; a 6'0\" person covers about 4.7 miles. At an average walking pace of 3 mph, 10,000 steps takes about 80-100 minutes of walking." },
+            { question: "How many steps should I walk per day?", answer: "Research suggests 7,000-10,000 steps/day for most adults. A 2022 JAMA study found that 8,000 steps/day was associated with 51% lower all-cause mortality for adults under 60. The CDC recommends 150 min/week of moderate activity, roughly equivalent to 7,000-8,000 steps/day. Start where you are and add 500-1,000 steps per week." },
+            { question: "Does walking speed affect step count?", answer: "Yes significantly. Walking at 2 mph (slow stroll) takes about 2,500+ steps per mile. Brisk walking at 3.5 mph takes about 2,100 steps/mile. Power walking at 4+ mph takes under 2,000 steps/mile. Faster paces lengthen your stride, reducing steps per mile." },
+            { question: "Does terrain affect steps per mile?", answer: "Yes. Walking uphill shortens your stride by 10-20%, adding more steps per mile. Trail walking on uneven ground adds 5-15% more steps. Sand or snow can increase steps by 20-30% compared to flat pavement. Downhill walking slightly lengthens stride, reducing step count." },
+            { question: "Why does my fitness tracker show different steps than the calculator?", answer: "Fitness trackers use default stride lengths or accelerometer algorithms that may not match your actual stride. Wrist-based trackers are typically 5-10% less accurate than waist-mounted pedometers. Calibrate by entering your measured stride length in the tracker's settings, or walk a known distance and compare." }
+        ],
     },
     "navy-prt-calculator": {
         subtitle: "Score your Navy Physical Readiness Test — push-ups, forearm plank, and 1.5-mile run. See category from Fail to Outstanding.",
