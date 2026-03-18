@@ -958,5 +958,94 @@
                 "answer": "Not as a priority. At ₹30K salary, your tax liability is zero — NPS tax deduction (80CCD1B) has no value. Focus on SIP + PPF first. Once your salary crosses ₹7-8L/year and you enter a tax bracket, NPS becomes valuable for the extra ₹50K deduction."
             }
         ]
+    },
+    {
+        "slug": "advance-tax-guide-india",
+        "title": "Advance Tax in India — Complete Guide to Due Dates, Calculation & Payment (FY 2025-26)",
+        "description": "Everything about advance tax in India: who must pay, FY 2025-26 due dates and installments, how to calculate with examples, online payment steps, penalties under Section 234B/234C, and practical tips for salaried, freelancers & businesses.",
+        "category": "tax",
+        "icon": "🏛️",
+        "readTime": "14 min",
+        "relatedCalculators": [
+            "income-tax-calculator",
+            "tds-calculator",
+            "salary-after-tax"
+        ],
+        "sections": [
+            {
+                "heading": "What is Advance Tax?",
+                "content": "Advance tax is income tax paid **in installments during the financial year** in which the income is earned, rather than as a lump sum after the year ends. It is sometimes called **\"pay-as-you-earn\"** tax.\n\nThe provisions governing advance tax are covered under **Sections 207 to 219** of the Income Tax Act, 1961.\n\n**How it works:**\n• You estimate your total income for the financial year (April–March)\n• You calculate the tax liability on that estimated income\n• You pay tax in **4 quarterly installments** on specified due dates\n• At the time of filing your ITR, you adjust advance tax already paid against total tax liability\n\n**Key point**: Advance tax is not an additional tax — it is simply your regular income tax paid in advance, in installments, instead of one shot at year-end.\n\nThe government collects advance tax to ensure **steady cash flow** throughout the year rather than receiving all tax revenue in March–July. For taxpayers, it prevents the burden of paying a large sum at once."
+            },
+            {
+                "heading": "Who Must Pay Advance Tax?",
+                "content": "As per **Section 208** of the Income Tax Act, advance tax is applicable if your **estimated tax liability for the financial year exceeds ₹10,000** (after deducting TDS/TCS).\n\n| Who Must Pay | Condition |\n|---|---|\n| **Salaried Individuals** | Only if tax liability after TDS exceeds ₹10,000 (rare — most employers deduct full tax as TDS) |\n| **Freelancers & Consultants** | Almost always — since TDS is only 10% on professional income, remaining tax must be paid as advance tax |\n| **Businesspersons** | If estimated profit results in tax >₹10,000 after TDS/TCS |\n| **Rental Income Earners** | If rental income + other income creates tax liability >₹10,000 |\n| **Capital Gains Earners** | Tax on capital gains (stocks, property, mutual funds) must be paid as advance tax |\n| **Interest/Dividend Earners** | If interest from FDs, dividends, etc. creates tax >₹10,000 after TDS |\n| **NRIs** | If income earned/accruing in India creates tax liability >₹10,000 |\n\n**Who is EXEMPT from advance tax:**\n• **Senior citizens (60+ years)** who do NOT have income from business or profession — they can pay entire tax as self-assessment tax at the time of filing ITR\n• Any person whose estimated tax liability (after TDS) is ₹10,000 or less\n\n**Important**: Even if you are salaried and your employer deducts TDS, if you earn additional income from freelancing, capital gains, rent, or FD interest that pushes your remaining tax above ₹10,000, you must pay advance tax on that additional income."
+            },
+            {
+                "heading": "Advance Tax Due Dates & Installments for FY 2025-26",
+                "content": "The Income Tax Department requires advance tax to be paid in **4 installments** during the financial year. Each installment is a cumulative percentage of your total estimated tax:\n\n| Installment | Due Date | Cumulative % of Tax Due | What to Pay |\n|---|---|---|---|\n| 1st Installment | **15th June 2025** | 15% | 15% of total tax liability |\n| 2nd Installment | **15th September 2025** | 45% | 30% more (total 45% paid so far) |\n| 3rd Installment | **15th December 2025** | 75% | 30% more (total 75% paid so far) |\n| 4th Installment | **15th March 2026** | 100% | Remaining 25% (total 100%) |\n\n**Example**: If your total estimated tax for FY 2025-26 is ₹1,00,000:\n• By 15th June: Pay ₹15,000 (15%)\n• By 15th September: Pay ₹30,000 more (total ₹45,000)\n• By 15th December: Pay ₹30,000 more (total ₹75,000)\n• By 15th March: Pay ₹25,000 more (total ₹1,00,000)\n\n**Grace note**: No interest under Section 234C is levied if you have paid at least **12% by June 15** and at least **36% by September 15** — giving you slight flexibility in the first two installments.\n\n**If a due date falls on a weekend/holiday**: The payment can be made on the next working day without penalty."
+            },
+            {
+                "heading": "Advance Tax for Presumptive Taxation (Section 44AD/44ADA)",
+                "content": "Freelancers and small businesses who opt for the **Presumptive Taxation Scheme** under Sections 44AD or 44ADA have a **simplified advance tax schedule**:\n\n| Taxpayer Type | Due Date | Amount to Pay |\n|---|---|---|\n| **Sec 44AD** (Small business, turnover ≤₹3 Cr) | **15th March** | 100% of tax in single installment |\n| **Sec 44ADA** (Professionals, receipts ≤₹75L) | **15th March** | 100% of tax in single installment |\n| **Sec 44AE** (Goods transport operators) | **Regular 4 installments** | Same as regular taxpayers |\n\n**What this means**: If you're a freelancer earning ₹50L/year and opted for 44ADA (presumptive income = 50% of receipts = ₹25L), you can pay your entire advance tax in one shot by March 15 — no need to worry about quarterly installments.\n\n**Advantage**: Simpler compliance — one payment instead of four. No interest under 234C if paid by March 15.\n\n**Caution**: If your actual income exceeds the presumptive limits, you lose the benefit and must maintain regular books of accounts. Switch to regular quarterly advance tax payments in that case."
+            },
+            {
+                "heading": "How to Calculate Advance Tax — Step-by-Step with Example",
+                "content": "**Step-by-step calculation process:**\n• **Step 1**: Estimate your total gross income for the financial year (salary + freelance + rental + interest + capital gains)\n• **Step 2**: Deduct all eligible exemptions and deductions (HRA, 80C, 80D, standard deduction, etc.)\n• **Step 3**: Calculate tax on the net taxable income using the applicable tax slab (old or new regime)\n• **Step 4**: Add surcharge (if income >₹50L) and 4% Health & Education Cess\n• **Step 5**: Subtract TDS/TCS already deducted during the year\n• **Step 6**: If remaining tax >₹10,000, that amount is your advance tax liability\n\n**Practical Example — Freelance Consultant earning ₹12L/year:**\n\n| Item | Amount |\n|---|---|\n| Gross Professional Income | ₹12,00,000 |\n| Less: Business Expenses (estimated) | ₹3,00,000 |\n| Less: Standard Deduction (New Regime) | ₹75,000 |\n| **Net Taxable Income** | **₹8,25,000** |\n\n**Tax Calculation (New Regime FY 2025-26):**\n\n| Slab | Income | Tax |\n|---|---|---|\n| 0 – ₹4,00,000 | ₹4,00,000 | Nil |\n| ₹4,00,001 – ₹8,00,000 | ₹4,00,000 | ₹20,000 (5%) |\n| ₹8,00,001 – ₹8,25,000 | ₹25,000 | ₹2,500 (10%) |\n| **Total Tax** | | **₹22,500** |\n| Add: 4% Cess | | ₹900 |\n| **Gross Tax Liability** | | **₹23,400** |\n| Less: TDS deducted by clients (10% on ₹5L) | | ₹50,000 |\n| **Net Tax Payable** | | **Nil (Refund ₹26,600)** |\n\nIn this case, TDS covers the entire tax liability — no advance tax needed!\n\n**But if this freelancer had no TDS** (clients didn't deduct TDS):\n• Tax liability = ₹23,400 → exceeds ₹10,000 threshold\n• Must pay advance tax: ₹3,510 by June 15, ₹7,020 by Sep 15, ₹7,020 by Dec 15, ₹5,850 by Mar 15\n\nUse our Income Tax Calculator to compute your exact tax liability."
+            },
+            {
+                "heading": "How to Pay Advance Tax Online — Step-by-Step",
+                "content": "Advance tax is paid online through the **Income Tax e-Filing Portal** (incometax.gov.in). Here are both methods:\n\n**Method 1 — Without Login (Quick Pay):**\n• **Step 1**: Visit incometax.gov.in → Click \"e-Pay Tax\" under Quick Links\n• **Step 2**: Enter your PAN number (twice for confirmation) and mobile number → Click Continue\n• **Step 3**: Enter the OTP received on your mobile → Verify\n• **Step 4**: Select \"Income Tax\" and click Proceed\n• **Step 5**: Select Assessment Year as **2026-27** (for FY 2025-26) and Type of Payment as **Advance Tax (100)**\n• **Step 6**: Enter tax amount, surcharge, cess, and interest (if any)\n• **Step 7**: Choose payment method — Net Banking, Debit Card, UPI, or Pay at Bank Counter\n• **Step 8**: Complete payment → Save the challan receipt (BSR code + Challan Serial Number)\n\n**Method 2 — With Login:**\n• **Step 1**: Login to incometax.gov.in with PAN and password\n• **Step 2**: Go to e-File → e-Pay Tax → New Payment\n• **Step 3**: Select \"Income Tax\" → Proceed\n• **Step 4**: Choose AY 2026-27, Minor Head: **Advance Tax (100)**\n• **Step 5**: Enter tax details → Choose payment mode → Pay\n\n**Important details to remember:**\n• Assessment Year for FY 2025-26 is **AY 2026-27** (always FY + 1)\n• Minor Head Code for Advance Tax is **100** (Self-Assessment Tax is 300)\n• Save BSR Code and Challan Serial Number — you'll need these while filing ITR\n• Payment reflects in **Form 26AS** within 3-7 days\n• Keep the challan receipt as proof — download PDF from the portal"
+            },
+            {
+                "heading": "Penalty for Late or Non-Payment — Sections 234B & 234C",
+                "content": "Missing advance tax payments attracts **interest** (not a fine, but it's effectively a penalty):\n\n**Section 234B — Non-payment or under-payment of advance tax:**\n\n| Condition | Interest Rate | Applied On |\n|---|---|---|\n| Advance tax paid is **less than 90%** of assessed tax | **1% per month** (simple interest) | Shortfall amount (assessed tax minus advance tax paid) |\n| Applied from **1st April** of the assessment year to date of actual payment | Per month or part of month | — |\n\n**Section 234C — Deferment of advance tax installments:**\n\n| Condition | Interest Rate | Applied On |\n|---|---|---|\n| Installment paid **less than required %** by due date | **1% per month** for **3 months** | Shortfall in each installment |\n| Each installment checked independently | Per installment | — |\n\n**Penalty Example:**\nSuppose your total tax for FY 2025-26 is ₹2,00,000. You paid zero advance tax.\n• **234C interest**: 1% × 3 months on each shortfall (₹30,000 + ₹60,000 + ₹90,000 + ... varies)\n• **234B interest**: 1% per month from April 2026 until you pay. If you pay in July 2026 (4 months): ₹2,00,000 × 1% × 4 = ₹8,000 interest\n• **Total penalty**: Could be ₹15,000–25,000+ on ₹2L tax — that's 7-12% extra just for not paying on time\n\n**Pro tip**: Even if you can't calculate exact tax, pay an approximate amount by the due dates. You can always adjust in the next installment. Paying something is always better than paying nothing — it significantly reduces 234C interest."
+            },
+            {
+                "heading": "Advance Tax Tips for Different Taxpayer Types",
+                "content": "**Salaried Employees:**\n• Your employer deducts TDS on salary monthly — this usually covers your tax liability\n• Pay advance tax only on **additional income** (freelancing, capital gains, FD interest, rental income)\n• Declare all income sources to your employer via Form 12BB to maximize TDS coverage\n• If you sell property or stocks mid-year, pay advance tax on the gain in the next installment\n\n**Freelancers & Consultants:**\n• Clients deduct 10% TDS under Section 194J/194JB — this may NOT cover your full tax\n• If you earn ₹15L+ as a freelancer, your tax rate is 20-30% but TDS is only 10% — pay the difference as advance tax\n• Track expenses throughout the year for accurate income estimation\n• Consider opting for **Section 44ADA** (presumptive taxation) if receipts are ≤₹75L — pay 100% tax by March 15 in one shot\n\n**Business Owners:**\n• Use previous year's profit as a baseline for estimating current year income\n• Factor in seasonal variations — retail businesses earn more in Q3/Q4 (Diwali, holidays)\n• Keep quarterly books updated to avoid over or under-estimation\n• GST returns (GSTR-3B) can help track actual revenue quarter-by-quarter\n\n**Capital Gains (Stocks/Property/MF):**\n• Capital gains are difficult to predict in advance — pay tax on gains in the installment following the transaction\n• If you sell shares in October, pay advance tax on the gain by December 15 (3rd installment)\n• No interest under 234C for capital gains if tax is paid in the same or next installment after the gain arises\n• Long-term capital gains on equity above ₹1.25L are taxed at 12.5% — short-term at 20%"
+            }
+        ],
+        "faq": [
+            {
+                "question": "What is the ₹10,000 threshold for advance tax?",
+                "answer": "If your estimated income tax liability for the financial year, after subtracting TDS and TCS already deducted, exceeds ₹10,000, you are required to pay advance tax. If it's ₹10,000 or below, no advance tax is needed — you can pay the entire amount as self-assessment tax while filing your ITR."
+            },
+            {
+                "question": "Do salaried employees need to pay advance tax?",
+                "answer": "Usually no — your employer deducts TDS on salary monthly, which covers your tax liability. However, if you earn significant additional income (freelancing >₹1L, capital gains, FD interest, rental income) and the remaining tax after TDS exceeds ₹10,000, you must pay advance tax on that additional income."
+            },
+            {
+                "question": "What happens if I miss an advance tax installment?",
+                "answer": "You'll be charged interest under Section 234C at 1% per month for 3 months on the shortfall amount. For example, if you were supposed to pay ₹45,000 by September 15 but paid nothing, interest = ₹45,000 × 1% × 3 = ₹1,350. You should pay the cumulative amount in the next installment to minimize further interest."
+            },
+            {
+                "question": "Can senior citizens skip advance tax?",
+                "answer": "Yes, but only if they are 60 years or older AND do not have any income from business or profession. They can pay their entire tax as self-assessment tax at the time of filing ITR. Senior citizens with business/professional income must still pay advance tax in quarterly installments."
+            },
+            {
+                "question": "Do NRIs have to pay advance tax in India?",
+                "answer": "Yes. If an NRI has income accruing or arising in India (rental income, capital gains from Indian property/stocks, interest income, etc.) and the tax liability after TDS exceeds ₹10,000, they must pay advance tax. The same 4-installment schedule applies."
+            },
+            {
+                "question": "What is the difference between advance tax and self-assessment tax?",
+                "answer": "Advance tax (Code 100) is paid in installments DURING the financial year before the income is fully earned. Self-assessment tax (Code 300) is paid AFTER the financial year ends, when you file your ITR and find remaining tax due. Advance tax avoids interest penalties; self-assessment tax may attract interest under 234B if advance tax obligations were missed."
+            },
+            {
+                "question": "How do I pay advance tax on capital gains from stocks?",
+                "answer": "Since capital gains are unpredictable, the Income Tax Act provides relief: pay advance tax on capital gains in the installment immediately following the date of the gain. If you sell shares in August, include the gain in your September 15 installment. No 234C interest is charged if you pay in the same or next installment after the gain occurs."
+            },
+            {
+                "question": "Can I pay advance tax after the due date?",
+                "answer": "Yes, you can pay advance tax at any time. However, you'll incur interest under Section 234C (1% per month for 3 months on each missed installment) and potentially 234B (1% per month from April of the assessment year until payment). It's always better to pay late than not at all — it reduces the interest accumulation."
+            },
+            {
+                "question": "How do I check if my advance tax payment is reflected?",
+                "answer": "Advance tax payments reflect in Form 26AS within 3-7 days of payment. Login to incometax.gov.in → Go to e-File → Income Tax Returns → View Form 26AS (or AIS/TIS). You can also check through the TRACES portal. Keep your challan receipt (BSR code + serial number) as backup proof."
+            },
+            {
+                "question": "What if I overpay advance tax?",
+                "answer": "If you pay more advance tax than your actual tax liability, the excess amount will be refunded to you after you file your ITR. The Income Tax Department pays interest at 0.5% per month (6% p.a.) on the refund amount from April of the assessment year to the date of refund. The refund is credited directly to your bank account linked to your PAN."
+            }
+        ]
     }
 ]
