@@ -37,7 +37,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 // Hub content per salary calculator
 const HUB_CONTENT: Record<string, {
     subtitle: string;
-    explanation: { heading: string; paragraphs: string[]; highlight: string };
+    explanation: { heading: string; paragraphs?: string[]; contentHTML?: string; highlight?: string };
     faq: { question: string; answer: string }[];
     contentHTML?: string;
 }> = {
@@ -513,19 +513,89 @@ const HUB_CONTENT: Record<string, {
         ],
     },
     "bonus-calculator": {
-        subtitle: "Calculate your statutory bonus under the Payment of Bonus Act (8.33% to 20%) and understand your eligibility and capping rules.",
-        explanation: {
-            heading: "Demystifying Statutory Bonus in India",
-            paragraphs: [
-                "Under the Payment of Bonus Act, 1965, eligible employees are entitled to a mandatory annual statutory bonus ranging from a minimum of 8.33% to a maximum of 20% of their salary.",
-                "However, there is a strict calculation ceiling. For the purpose of calculating this bonus, the salary is capped at ₹7,000 per month or the minimum wage, whichever is higher. In most practical implementations today, companies calculate the minimum bonus (8.33%) capping the basic salary at ₹21,000 per month.",
-            ],
-            highlight: "If your Basic Salary is ₹50,000/month, your statutory bonus is NOT 8.33% of ₹50,000. It is calculated on a maximum cap of ₹21,000 — meaning your minimum guaranteed annual bonus is roughly ₹21,000 × 8.33% × 12 = ₹21,000/year.",
-        },
+        subtitle: "Calculate your statutory bonus under the Payment of Bonus Act, 1965. Check eligibility, salary capping rules, and bonus from 8.33% to 20%.",
+        explanation: { heading: "Statutory Bonus in India — Complete Guide (Payment of Bonus Act, 1965)", contentHTML: `<p>The <strong>Payment of Bonus Act, 1965</strong> mandates that eligible employees in India receive an annual bonus ranging from <strong>8.33% (minimum) to 20% (maximum)</strong> of their salary. This is a statutory right, not a discretionary benefit — employers are legally required to pay it.</p>
+
+<h3>What is Statutory Bonus?</h3>
+<p>Statutory bonus is a mandatory annual payment to employees governed by the <strong>Payment of Bonus Act, 1965</strong> (as amended in 2015). The Act applies to every factory and establishment with <strong>20 or more employees</strong> on any day during the accounting year. Key points:</p>
+<ul>
+<li>It is <strong>not a performance bonus</strong> — it is a legal entitlement irrespective of individual performance</li>
+<li>The minimum bonus (8.33%) must be paid even if the employer has <strong>no profits or incurs losses</strong></li>
+<li>Maximum bonus (20%) is linked to the employer's <strong>allocable surplus</strong> (available profits)</li>
+<li>Bonus must be paid within <strong>8 months</strong> of the close of the accounting year</li>
+</ul>
+
+<h3>Who is Eligible for Statutory Bonus?</h3>
+<table><thead><tr><th>Criterion</th><th>Requirement</th><th>Details</th></tr></thead><tbody>
+<tr><td><strong>Salary Ceiling</strong></td><td>Basic + DA ≤ ₹21,000/month</td><td>Employees earning above ₹21,000 (Basic + DA) are excluded from the Act</td></tr>
+<tr><td><strong>Minimum Working Days</strong></td><td>At least 30 days in the FY</td><td>Even if resigned or terminated, bonus is payable if 30+ days worked</td></tr>
+<tr><td><strong>Establishment Size</strong></td><td>20+ employees</td><td>Applies to factories and establishments with 20+ employees on any day during the year</td></tr>
+<tr><td><strong>Employee Type</strong></td><td>All types eligible</td><td>Manual, clerical, supervisory, and technical staff — except managerial positions</td></tr>
+<tr><td><strong>Age</strong></td><td>Must have completed 15 years</td><td>Disqualified if below 15 years of age</td></tr>
+</tbody></table>
+
+<h3>Statutory Bonus Calculation Formula</h3>
+<p>The calculation has a critical nuance — there is a <strong>salary cap</strong> for computation:</p>
+<p><strong>Bonus = Calculation Salary × Bonus % × (Days Worked ÷ Total Working Days in Year)</strong></p>
+<p>The <strong>Calculation Salary</strong> is determined as follows:</p>
+<table><thead><tr><th>Employee's Basic + DA</th><th>Calculation Salary Used</th><th>Why</th></tr></thead><tbody>
+<tr><td>Up to ₹7,000/month</td><td>Actual Basic + DA</td><td>Below the statutory cap</td></tr>
+<tr><td>₹7,001 – ₹21,000/month</td><td>₹7,000/month (or Minimum Wage, whichever is higher)</td><td>Salary is capped at ₹7,000 for calculation</td></tr>
+<tr><td>Above ₹21,000/month</td><td>NOT eligible for statutory bonus</td><td>Excluded under the Act</td></tr>
+</tbody></table>
+<p><em>Note: In scheduled employments, if the <strong>minimum wage</strong> exceeds ₹7,000, the minimum wage is used as the calculation base instead of ₹7,000.</em></p>
+
+<h3>Worked Examples — Bonus at Different Salary Levels</h3>
+<table><thead><tr><th>Scenario</th><th>Basic + DA</th><th>Calculation Salary</th><th>Bonus @ 8.33%</th><th>Bonus @ 20%</th></tr></thead><tbody>
+<tr><td>Low salary employee</td><td>₹5,000/month</td><td>₹5,000 (actual)</td><td>₹4,998/year</td><td>₹12,000/year</td></tr>
+<tr><td>Mid-range employee</td><td>₹15,000/month</td><td>₹7,000 (capped)</td><td>₹6,997/year</td><td>₹16,800/year</td></tr>
+<tr><td>Near ceiling employee</td><td>₹21,000/month</td><td>₹7,000 (capped)</td><td>₹6,997/year</td><td>₹16,800/year</td></tr>
+<tr><td>Above ceiling (₹25K)</td><td>₹25,000/month</td><td>Not eligible</td><td>₹0</td><td>₹0</td></tr>
+</tbody></table>
+<p><strong>Key insight</strong>: An employee earning ₹15,000 and one earning ₹21,000 receive the <strong>same statutory bonus amount</strong> because the calculation base is capped at ₹7,000. The bonus difference only matters below ₹7,000.</p>
+
+<h3>Minimum vs Maximum Bonus</h3>
+<table><thead><tr><th>Type</th><th>Percentage</th><th>When Applicable</th><th>Annual Amount (on ₹7,000 cap)</th></tr></thead><tbody>
+<tr><td><strong>Minimum Bonus</strong></td><td>8.33%</td><td>Mandatory — regardless of profit or loss</td><td>₹6,997/year (₹583/month)</td></tr>
+<tr><td><strong>Maximum Bonus</strong></td><td>20%</td><td>When allocable surplus is sufficient</td><td>₹16,800/year (₹1,400/month)</td></tr>
+</tbody></table>
+<p>The actual bonus percentage depends on the employer's <strong>allocable surplus</strong> — the available profit after specified deductions. If surplus exists beyond 8.33%, employers can pay up to 20%.</p>
+
+<h3>Compliance Requirements for Employers</h3>
+<ul>
+<li><strong>Payment deadline</strong>: Bonus must be paid within <strong>8 months</strong> of the accounting year's close (i.e., by Nov 30 for March-ending FY)</li>
+<li><strong>Records to maintain</strong>: Form A (computation of gross profits), Form B (computation of available surplus), Form C (bonus paid), Form D (deduction register)</li>
+<li><strong>Penalty for non-compliance</strong>: Imprisonment up to <strong>6 months</strong>, fine up to <strong>₹1,000</strong>, or both</li>
+<li><strong>Set-off and carry forward</strong>: If bonus paid exceeds allocable surplus, employer can set off excess against future years (up to 4 years)</li>
+<li><strong>Adjustment against ex-gratia</strong>: Any customary or interim bonus (Diwali bonus, festival bonus) already paid can be adjusted against statutory bonus liability</li>
+</ul>
+
+<h3>Who is Excluded from Statutory Bonus?</h3>
+<ul>
+<li>Employees earning above <strong>₹21,000/month</strong> (Basic + DA)</li>
+<li>Apprentices under the <strong>Apprentices Act, 1961</strong></li>
+<li>Employees of <strong>LIC, RBI, UIDAI, hospitals, educational institutions, chambers of commerce</strong>, and other bodies listed under Section 32</li>
+<li>Employees dismissed for <strong>fraud, misconduct, theft, or sabotage</strong> (bonus forfeited)</li>
+<li>Employees of <strong>new establishments</strong> — exempted for the first 5 years (for first 6 years if establishment starts with losses)</li>
+</ul>
+
+<h3>Tax Treatment of Bonus</h3>
+<p>Statutory bonus is <strong>fully taxable</strong> as "Income from Salary" under the Income Tax Act. It is taxed at your applicable slab rate. Key points:</p>
+<ul>
+<li>Employer deducts <strong>TDS</strong> on bonus along with salary</li>
+<li>Bonus is shown in <strong>Form 16</strong> and your salary slip</li>
+<li>For the employer, bonus paid is a <strong>deductible business expense</strong> under Section 36(1)(ii)</li>
+<li>If bonus is received as <strong>arrears</strong> for multiple years, you can claim relief under <strong>Section 89(1)</strong></li>
+</ul>` },
         faq: [
-            { question: "Who is eligible for a statutory bonus?", answer: "Employees drawing a salary/wage of up to ₹21,000 per month and who have worked for at least 30 days in the accounting year are eligible under the Act. However, many companies apply the rule universally across the CTC structure." },
-            { question: "What is the minimum and maximum bonus percentage?", answer: "The statutory minimum bonus is 8.33% of the salary (capped at ₹21,000/mth). The maximum bonus that can be paid under the act, based on the employer's allocable surplus, is 20%." },
-            { question: "Is the statutory bonus taxable?", answer: "Yes, the bonus received is fully taxable as it forms a part of your 'Income from Salary'. It will be taxed according to your applicable income tax slab rate." },
+            { question: "Who is eligible for a statutory bonus?", answer: "Employees drawing Basic + DA of up to ₹21,000/month and who have worked for at least 30 days in the accounting year in an establishment with 20+ employees. This applies to manual, clerical, supervisory, and technical staff — but excludes managerial positions." },
+            { question: "What is the minimum and maximum bonus percentage?", answer: "The statutory minimum is 8.33% (mandatory even in loss-making years). The maximum under the Act is 20%, payable when the employer has sufficient allocable surplus. Any amount above 20% is considered ex-gratia." },
+            { question: "Is the statutory bonus taxable?", answer: "Yes, fully taxable under 'Income from Salary'. TDS is deducted by the employer. It appears in your Form 16 and salary slip. If received as arrears for multiple years, you may claim relief under Section 89(1) of the Income Tax Act." },
+            { question: "Can I get bonus if I resigned mid-year?", answer: "Yes. If you worked for at least 30 days in the accounting year, you are entitled to proportionate bonus. For example, if you worked 6 months out of 12, you receive 50% of the annual bonus amount. This applies even if you resign voluntarily." },
+            { question: "Why is bonus calculated on ₹7,000 when my salary is ₹20,000?", answer: "Under the Act, bonus is calculated on ₹7,000/month (or the minimum wage, whichever is higher) — not on your actual salary. This cap applies to all employees earning between ₹7,001 and ₹21,000. So an employee earning ₹20,000 gets the same bonus as one earning ₹10,000." },
+            { question: "Is Diwali bonus the same as statutory bonus?", answer: "Not necessarily. Many companies pay a 'Diwali bonus' or 'festival bonus' which may be ex-gratia (discretionary). However, employers can adjust this against the statutory bonus obligation. If your Diwali bonus equals or exceeds the statutory minimum, the employer may treat it as fulfilling the statutory requirement." },
+            { question: "Do government employees get statutory bonus?", answer: "Government employees are generally not covered under the Payment of Bonus Act. However, the government separately announces ad-hoc bonus/productivity-linked bonus (PLB) for central government employees, typically around ₹7,000 for Group C and D staff." },
+            { question: "Is bonus payable during the probation period?", answer: "Yes. The Act does not distinguish between probationary and confirmed employees. As long as the employee has worked for 30+ days and meets the salary ceiling (≤₹21,000 Basic+DA), they are eligible — even during probation." }
         ],
     },
 };
@@ -587,6 +657,7 @@ export default async function SalaryCalculatorHubPage({ params }: PageProps) {
             <DynamicExplanation
                 heading={hub.explanation.heading}
                 paragraphs={hub.explanation.paragraphs}
+                contentHTML={hub.explanation.contentHTML}
                 highlight={hub.explanation.highlight}
             />
 
