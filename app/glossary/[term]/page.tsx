@@ -6,6 +6,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import Script from "next/script";
 import Breadcrumb from "@/components/layout/Breadcrumb";
+import FAQAccordion from "@/components/shared/FAQAccordion";
 import { getAllGlossaryTerms, getGlossaryTermBySlug, getCalculatorById, getGlossaryTermsByCategory, getGuidesByCategory } from "@/lib/data";
 import { canonicalUrl, breadcrumbSchema, faqSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
@@ -66,6 +67,7 @@ export default async function GlossaryTermPage({ params }: PageProps) {
         faqSchema([
             { question: `What is ${term.term}?`, answer: term.definition },
             ...(term.formula ? [{ question: `What is the formula for ${term.term}?`, answer: `The formula is: ${term.formula}` }] : []),
+            ...(term.faq ? term.faq.map((f: { question: string; answer: string }) => ({ question: f.question, answer: f.answer })) : []),
         ]),
     ];
 
@@ -278,6 +280,11 @@ export default async function GlossaryTermPage({ params }: PageProps) {
                             ))}
                         </div>
                     </section>
+                )}
+
+                {/* FAQ */}
+                {term.faq && term.faq.length > 0 && (
+                    <FAQAccordion title={`${term.term} — Frequently Asked Questions`} items={term.faq} />
                 )}
 
                 {/* Back link */}
