@@ -3181,6 +3181,40 @@
     "keywords": "Celsius to Fahrenheit, C to F, degrees Celsius to Fahrenheit, temperature converter, convert Celsius, °C to °F"
   },
   {
+    "id": "f-to-k-converter",
+    "category": "convert",
+    "title": "Fahrenheit to Kelvin Converter (°F to K)",
+    "slug": "f-to-k-converter",
+    "categorySlug": "convert",
+    "icon": "🌡️",
+    "calcType": "f-to-k",
+    "description": "Convert Fahrenheit to Kelvin (°F to K). See results in Kelvin, Celsius, and Rankine. Includes a quick reference table from absolute zero to oven temperatures.",
+    "stars": 5,
+    "defaults": {
+      "amount": 72,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": -460,
+        "max": 1000,
+        "step": 1
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "Fahrenheit to Kelvin, F to K, degrees Fahrenheit to Kelvin, temperature converter, convert Fahrenheit to Kelvin, °F to K"
+  },
+  {
     "id": "retirement-corpus",
     "category": "invest",
     "title": "Retirement Corpus Calculator",

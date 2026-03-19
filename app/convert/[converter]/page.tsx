@@ -2999,6 +2999,83 @@ const HUB_CONTENT: Record<string, {
             { question: "Is Fahrenheit better for weather than Celsius?", answer: "It's subjective. Fahrenheit covers 0–100°F as a practical range for most US weather (very cold to very hot). Celsius users argue 0–40°C is equally practical. Each °F is a smaller increment (0.56°C), technically offering finer resolution without decimals — but in practice, both scales work fine." },
         ],
     },
+    "f-to-k-converter": {
+        subtitle: "Convert Fahrenheit to Kelvin (°F to K). See results in Kelvin, Celsius, and Rankine. Includes a quick reference table from absolute zero to oven temperatures.",
+        contentHTML: `
+            <h3>How to Convert Fahrenheit to Kelvin</h3>
+            <p>First convert to Celsius, then add 273.15:</p>
+            <div class="explanation__highlight">
+                <strong>K = (°F − 32) × 5/9 + 273.15</strong><br/><br/>
+                Example: 72°F (room temperature)<br/>
+                = (72 − 32) × 5/9 + 273.15 = 22.22 + 273.15 = <strong>295.37 K</strong><br/><br/>
+                Example: 32°F (water freezes)<br/>
+                = (32 − 32) × 5/9 + 273.15 = 0 + 273.15 = <strong>273.15 K</strong><br/><br/>
+                Example: -459.67°F (absolute zero)<br/>
+                = (-459.67 − 32) × 5/9 + 273.15 = -273.15 + 273.15 = <strong>0 K</strong>
+            </div>
+
+            <h3>Fahrenheit to Kelvin — Conversion Chart</h3>
+            <table>
+                <thead><tr><th>°F</th><th>K</th><th>°C</th><th>Significance</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>-459.67°F</strong></td><td><strong>0 K</strong></td><td>-273.15°C</td><td><strong>Absolute zero</strong></td></tr>
+                    <tr><td>-40°F</td><td>233.15 K</td><td>-40°C</td><td>F = C crossover</td></tr>
+                    <tr><td>0°F</td><td>255.37 K</td><td>-17.78°C</td><td>Very cold winter day</td></tr>
+                    <tr><td><strong>32°F</strong></td><td><strong>273.15 K</strong></td><td>0°C</td><td><strong>Water freezes</strong></td></tr>
+                    <tr><td>68°F</td><td>293.15 K</td><td>20°C</td><td>Room temperature</td></tr>
+                    <tr><td><strong>98.6°F</strong></td><td><strong>310.15 K</strong></td><td>37°C</td><td><strong>Body temperature</strong></td></tr>
+                    <tr><td><strong>212°F</strong></td><td><strong>373.15 K</strong></td><td>100°C</td><td><strong>Water boils</strong></td></tr>
+                    <tr><td>450°F</td><td>505.37 K</td><td>232.2°C</td><td>Oven: pizza</td></tr>
+                    <tr><td>1000°F</td><td>810.93 K</td><td>537.8°C</td><td>Red-hot metal</td></tr>
+                </tbody>
+            </table>
+
+            <h3>What Is Absolute Zero?</h3>
+            <p><strong>Absolute zero</strong> (0 K = -459.67°F = -273.15°C) is the lowest possible temperature. At absolute zero, molecular motion theoretically stops completely. The Third Law of Thermodynamics states that reaching exactly 0 K is physically impossible, though scientists have cooled materials to within billionths of a degree.</p>
+            <p>For Americans, -459.67°F is hard to visualize — it's 460 degrees below zero Fahrenheit, or about 500°F colder than the coldest temperature ever recorded on Earth (-128.6°F in Antarctica).</p>
+
+            <h3>Notable Temperatures in Science</h3>
+            <table>
+                <thead><tr><th>Event</th><th>K</th><th>°F</th><th>°C</th></tr></thead>
+                <tbody>
+                    <tr><td>Absolute zero</td><td>0 K</td><td>-459.67°F</td><td>-273.15°C</td></tr>
+                    <tr><td>Liquid nitrogen boils</td><td>77 K</td><td>-320.4°F</td><td>-196°C</td></tr>
+                    <tr><td>Dry ice sublimes</td><td>195 K</td><td>-109.3°F</td><td>-78.5°C</td></tr>
+                    <tr><td>Water's triple point</td><td>273.16 K</td><td>32.02°F</td><td>0.01°C</td></tr>
+                    <tr><td>Human body</td><td>310.15 K</td><td>98.6°F</td><td>37°C</td></tr>
+                    <tr><td>Water boils</td><td>373.15 K</td><td>212°F</td><td>100°C</td></tr>
+                    <tr><td>Iron melts</td><td>1811 K</td><td>2800°F</td><td>1538°C</td></tr>
+                    <tr><td>Sun's surface</td><td>5778 K</td><td>9941°F</td><td>5505°C</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Where Americans Encounter Kelvin</h3>
+            <table>
+                <thead><tr><th>Context</th><th>Kelvin Value</th><th>What It Means</th></tr></thead>
+                <tbody>
+                    <tr><td>Light bulb packaging</td><td>2700K – 6500K</td><td>Color temperature: warm (2700K) to daylight (6500K)</td></tr>
+                    <tr><td>Photography / video</td><td>3200K – 5600K</td><td>White balance: tungsten (3200K) to daylight (5600K)</td></tr>
+                    <tr><td>LED smart bulbs</td><td>2000K – 6500K</td><td>Adjustable color temperature range</td></tr>
+                    <tr><td>Science class (AP/college)</td><td>Various</td><td>Gas laws (PV = nRT), thermodynamics</td></tr>
+                    <tr><td>Weather science</td><td>Various</td><td>Blackbody radiation, atmospheric science</td></tr>
+                </tbody>
+            </table>
+
+            <h3>What Is Fahrenheit?</h3>
+            <p><strong>Fahrenheit</strong> (°F) is a temperature scale used primarily in the United States. Water freezes at 32°F and boils at 212°F. It was developed by Daniel Gabriel Fahrenheit in 1724.</p>
+
+            <h3>What Is Kelvin?</h3>
+            <p><strong>Kelvin</strong> (K) is the SI base unit of temperature used in science worldwide. It starts at absolute zero (0 K) — the coldest possible temperature. Each kelvin is the same size as one degree Celsius, but the scale starts at absolute zero instead of water's freezing point. Note: Kelvin uses no degree symbol — it's "295 K" not "295°K".</p>
+        `,
+        faq: [
+            { question: "What is the formula to convert Fahrenheit to Kelvin?", answer: "K = (°F − 32) × 5/9 + 273.15. This is a two-step process: first convert to Celsius by subtracting 32 and multiplying by 5/9, then add 273.15 to convert Celsius to Kelvin. Example: 72°F = (72 − 32) × 5/9 + 273.15 = 295.37 K." },
+            { question: "What is absolute zero in Fahrenheit?", answer: "Absolute zero = 0 K = -459.67°F = -273.15°C. It's the coldest possible temperature, where molecular motion theoretically stops. No temperature below 0 K can exist in physics." },
+            { question: "Why is Kelvin used in science instead of Fahrenheit?", answer: "Kelvin starts at absolute zero (0 K), making it ideal for scientific calculations. Gas laws (PV = nRT) require an absolute temperature scale. Kelvin also has no negative values, which simplifies thermodynamic calculations. The size of each kelvin equals one degree Celsius." },
+            { question: "Why doesn't Kelvin use a degree symbol?", answer: "The kelvin was redefined in 1967 as a base SI unit, not a 'degree.' It's written as '295 K' (no degree symbol), just like other SI units such as meters (m) or kilograms (kg). This was done to distinguish it from relative temperature scales (°F, °C) since Kelvin is an absolute scale." },
+            { question: "Where do Americans use Kelvin in everyday life?", answer: "The most common place is light bulb packaging — color temperature is measured in Kelvin (2700K = warm white, 5000K = daylight). Photographers also use Kelvin for white balance settings. US science students encounter Kelvin in chemistry (gas laws), physics (thermodynamics), and astronomy." },
+            { question: "What is room temperature in Kelvin?", answer: "Room temperature (72°F / 22°C) = approximately 295 K. In science, 'standard temperature' is defined as 273.15 K (0°C / 32°F), while 'room temperature' in lab settings is typically 293–298 K (68–77°F / 20–25°C)." },
+        ],
+    },
 };
 
 export default async function ConvertHubPage({ params }: PageProps) {

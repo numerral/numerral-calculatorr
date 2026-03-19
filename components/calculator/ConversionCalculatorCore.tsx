@@ -2660,6 +2660,71 @@ function CelToFahCalc() {
     );
 }
 
+// ─── Fahrenheit to Kelvin ───
+function FahToKelCalc() {
+    const [fah, setFah] = useState(72);
+
+    const cel = (fah - 32) * 5 / 9;
+    const kelvin = cel + 273.15;
+    const rankine = fah + 459.67;
+
+    const quickRef = [-459.67, -40, 0, 32, 68, 72, 98.6, 100, 212, 350, 400, 450, 500, 1000];
+
+    return (
+        <div className="calc-card">
+            <div className="calc-field">
+                <label className="calc-field__label">🌡️ FAHRENHEIT (°F)</label>
+                <input type="range" className="calc-field__slider" min={-460} max={1000} step={1}
+                    value={fah} onChange={(e) => setFah(Number(e.target.value))} />
+                <div style={{ display: "flex", gap: "var(--s-2)", alignItems: "center" }}>
+                    <input type="number" className="calc-field__input" value={fah}
+                        onChange={(e) => setFah(Number(e.target.value))} style={{ flex: 1 }} />
+                    <span className="t-body-sm text-muted">°F</span>
+                </div>
+            </div>
+
+            <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
+                <p className="calc-field__label">TEMPERATURE IN KELVIN</p>
+                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+                    {kelvin.toFixed(2)} K
+                </p>
+                <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "var(--s-3)" }}>
+                    <div><p className="calc-field__label">CELSIUS</p><p style={{ fontWeight: 700 }}>{cel.toFixed(2)} °C</p></div>
+                    <div><p className="calc-field__label">RANKINE</p><p style={{ fontWeight: 700 }}>{rankine.toFixed(2)} °R</p></div>
+                    <div><p className="calc-field__label">ABS ZERO?</p><p style={{ fontWeight: 700 }}>{kelvin <= 0 ? "⚠️ Below!" : kelvin < 10 ? "🧊 Near" : "✅ Above"}</p></div>
+                    <div><p className="calc-field__label">FORMULA</p><p style={{ fontWeight: 700, fontSize: "var(--t-body-sm)" }}>({fah}−32)×⅝+273</p></div>
+                </div>
+            </div>
+
+            {/* Quick Reference Table */}
+            <div style={{ marginTop: "var(--s-4)" }}>
+                <h3 className="t-h3" style={{ marginBottom: "var(--s-3)" }}>Fahrenheit to Kelvin — Quick Reference</h3>
+                <table className="calc-table">
+                    <thead>
+                        <tr><th>°F</th><th>K</th><th>°C</th><th>Context</th></tr>
+                    </thead>
+                    <tbody>
+                        {quickRef.map((f) => {
+                            const c = (f - 32) * 5 / 9;
+                            const k = c + 273.15;
+                            const ctx = f === -459.67 ? "Absolute zero" : f === -40 ? "F = C crossover" : f === 0 ? "Cold winter" : f === 32 ? "Water freezes" : f === 68 ? "Room temp (20°C)" : f === 72 ? "Room temp (22°C)" : f === 98.6 ? "Body temperature" : f === 100 ? "Hot summer day" : f === 212 ? "Water boils" : f === 350 ? "Oven: baking" : f === 400 ? "Oven: roasting" : f === 450 ? "Oven: pizza" : f === 500 ? "Oven: max" : "Red-hot metal";
+                            return (
+                                <tr key={f} style={f === fah ? { background: "var(--n-primary-light)" } : {}}>
+                                    <td>{f}°F</td>
+                                    <td>{k.toFixed(2)} K</td>
+                                    <td>{c.toFixed(1)}°C</td>
+                                    <td>{ctx}</td>
+                                </tr>
+                            );
+                        })}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    );
+}
+
 // ─── Dispatcher ───
 interface Props { calcType: string; }
 
@@ -2698,6 +2763,7 @@ const CALCULATORS: Record<string, React.FC> = {
     "cc-to-m3": CcToM3Calc,
     "f-to-c": FahToCelCalc,
     "c-to-f": CelToFahCalc,
+    "f-to-k": FahToKelCalc,
 };
 
 export default function ConversionCalculatorCore({ calcType }: Props) {
