@@ -2637,6 +2637,40 @@
     "keywords": "minutes to hours, min to hr, minutes to hours converter, how many hours is 90 minutes, convert minutes to hours and minutes, time conversion, decimal hours"
   },
   {
+    "id": "inch-to-foot-converter",
+    "category": "convert",
+    "title": "Inches to Feet Converter (in to ft)",
+    "slug": "inch-to-foot-converter",
+    "categorySlug": "convert",
+    "icon": "📏",
+    "calcType": "inch-to-foot",
+    "description": "Convert inches to feet and inches (in to ft). See results in decimal feet, feet & inches format, yards, and centimeters. Includes a quick reference table.",
+    "stars": 5,
+    "defaults": {
+      "amount": 36,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 1,
+        "max": 240,
+        "step": 1
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "inches to feet, in to ft, inches to feet converter, how many feet is 36 inches, convert inches to feet and inches, length conversion, imperial length"
+  },
+  {
     "id": "retirement-corpus",
     "category": "invest",
     "title": "Retirement Corpus Calculator",

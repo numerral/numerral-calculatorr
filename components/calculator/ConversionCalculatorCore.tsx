@@ -1508,6 +1508,74 @@ function MinToHourCalc() {
     );
 }
 
+// ─── Inches to Feet ───
+function InchToFootCalc() {
+    const [inches, setInches] = useState(36);
+
+    const decimalFeet = inches / 12;
+    const wholeFeet = Math.floor(decimalFeet);
+    const remainingInches = Math.round((decimalFeet - wholeFeet) * 12 * 100) / 100;
+    const yards = inches / 36;
+    const cm = inches * 2.54;
+    const meters = cm / 100;
+
+    const quickRef = [1, 3, 6, 12, 18, 24, 30, 36, 48, 60, 72, 84, 96, 120];
+
+    return (
+        <div className="calc-card">
+            <div className="calc-field">
+                <label className="calc-field__label">📏 INCHES</label>
+                <input type="range" className="calc-field__slider" min={1} max={240} step={0.5}
+                    value={inches} onChange={(e) => setInches(Number(e.target.value))} />
+                <div style={{ display: "flex", gap: "var(--s-2)", alignItems: "center" }}>
+                    <input type="number" className="calc-field__input" value={inches}
+                        onChange={(e) => setInches(Number(e.target.value))} style={{ flex: 1 }} />
+                    <span className="t-body-sm text-muted">in</span>
+                </div>
+            </div>
+
+            <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
+                <p className="calc-field__label">LENGTH IN FEET & INCHES</p>
+                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+                    {wholeFeet}&prime; {remainingInches}&Prime;
+                </p>
+                <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "var(--s-3)" }}>
+                    <div><p className="calc-field__label">DECIMAL FEET</p><p style={{ fontWeight: 700 }}>{decimalFeet.toFixed(4)} ft</p></div>
+                    <div><p className="calc-field__label">YARDS</p><p style={{ fontWeight: 700 }}>{yards.toFixed(4)} yd</p></div>
+                    <div><p className="calc-field__label">CENTIMETERS</p><p style={{ fontWeight: 700 }}>{cm.toFixed(2)} cm</p></div>
+                    <div><p className="calc-field__label">METERS</p><p style={{ fontWeight: 700 }}>{meters.toFixed(4)} m</p></div>
+                </div>
+            </div>
+
+            {/* Quick Reference Table */}
+            <div style={{ marginTop: "var(--s-4)" }}>
+                <h3 className="t-h3" style={{ marginBottom: "var(--s-3)" }}>Inches to Feet — Quick Reference</h3>
+                <table className="calc-table">
+                    <thead>
+                        <tr><th>Inches</th><th>Feet & Inches</th><th>Decimal Feet</th><th>Centimeters</th></tr>
+                    </thead>
+                    <tbody>
+                        {quickRef.map((i) => {
+                            const df = i / 12;
+                            const wf = Math.floor(df);
+                            const ri = Math.round((df - wf) * 12);
+                            return (
+                                <tr key={i} style={i === inches ? { background: "var(--n-primary-light)" } : {}}>
+                                    <td>{i}&Prime;</td>
+                                    <td>{wf}&prime; {ri}&Prime;</td>
+                                    <td>{df.toFixed(2)} ft</td>
+                                    <td>{(i * 2.54).toFixed(1)} cm</td>
+                                </tr>
+                            );
+                        })}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    );
+}
+
 // ─── Dispatcher ───
 interface Props { calcType: string; }
 
@@ -1530,6 +1598,7 @@ const CALCULATORS: Record<string, React.FC> = {
     "liter-to-gram": LiterToGramCalc,
     "cup-to-gram": CupToGramCalc,
     "min-to-hour": MinToHourCalc,
+    "inch-to-foot": InchToFootCalc,
 };
 
 export default function ConversionCalculatorCore({ calcType }: Props) {

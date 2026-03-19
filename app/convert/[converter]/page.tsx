@@ -1580,6 +1580,101 @@ const HUB_CONTENT: Record<string, {
             { question: "How do I enter time on a timesheet in decimal format?", answer: "Convert the minutes portion to a decimal by dividing by 60. Example: If you worked 7 hours 45 minutes, enter 7.75 (because 45 ÷ 60 = 0.75). Common conversions: :15 = .25, :30 = .50, :45 = .75." },
         ],
     },
+    "inch-to-foot-converter": {
+        subtitle: "Convert inches to feet and inches (in to ft). See results in decimal feet, feet & inches format, yards, and centimeters. Includes a quick reference table.",
+        contentHTML: `
+            <h3>How to Convert Inches to Feet</h3>
+            <p>Since there are <strong>12 inches in 1 foot</strong>, divide the total inches by 12:</p>
+            <div class="explanation__highlight">
+                <strong>feet = inches ÷ 12</strong><br/><br/>
+                <strong>Step 1:</strong> Divide to get decimal feet<br/>
+                32 ÷ 12 = <strong>2.6667 feet</strong><br/><br/>
+                <strong>Step 2:</strong> Convert to feet & inches<br/>
+                Whole feet = 2<br/>
+                Remaining inches = (2.6667 − 2) × 12 = 8<br/>
+                = <strong>2 feet 8 inches</strong> (2' 8")
+            </div>
+
+            <h3>Inches to Feet — Conversion Table</h3>
+            <table>
+                <thead><tr><th>Inches</th><th>Feet & In</th><th>Decimal Ft</th><th>Yards</th><th>Centimeters</th></tr></thead>
+                <tbody>
+                    <tr><td>1"</td><td>0' 1"</td><td>0.083 ft</td><td>0.028 yd</td><td>2.54 cm</td></tr>
+                    <tr><td>6"</td><td>0' 6"</td><td>0.50 ft</td><td>0.167 yd</td><td>15.24 cm</td></tr>
+                    <tr><td>12"</td><td>1' 0"</td><td>1.00 ft</td><td>0.333 yd</td><td>30.48 cm</td></tr>
+                    <tr><td>18"</td><td>1' 6"</td><td>1.50 ft</td><td>0.500 yd</td><td>45.72 cm</td></tr>
+                    <tr><td>24"</td><td>2' 0"</td><td>2.00 ft</td><td>0.667 yd</td><td>60.96 cm</td></tr>
+                    <tr><td>30"</td><td>2' 6"</td><td>2.50 ft</td><td>0.833 yd</td><td>76.20 cm</td></tr>
+                    <tr><td>36"</td><td>3' 0"</td><td>3.00 ft</td><td>1.000 yd</td><td>91.44 cm</td></tr>
+                    <tr><td>48"</td><td>4' 0"</td><td>4.00 ft</td><td>1.333 yd</td><td>121.92 cm</td></tr>
+                    <tr><td>60"</td><td>5' 0"</td><td>5.00 ft</td><td>1.667 yd</td><td>152.40 cm</td></tr>
+                    <tr><td>72"</td><td>6' 0"</td><td>6.00 ft</td><td>2.000 yd</td><td>182.88 cm</td></tr>
+                    <tr><td>84"</td><td>7' 0"</td><td>7.00 ft</td><td>2.333 yd</td><td>213.36 cm</td></tr>
+                    <tr><td>96"</td><td>8' 0"</td><td>8.00 ft</td><td>2.667 yd</td><td>243.84 cm</td></tr>
+                    <tr><td>120"</td><td>10' 0"</td><td>10.00 ft</td><td>3.333 yd</td><td>304.80 cm</td></tr>
+                </tbody>
+            </table>
+
+            <h3>US Imperial Length Hierarchy</h3>
+            <table>
+                <thead><tr><th>Unit</th><th>Equivalent</th><th>In Inches</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>1 inch (in)</strong></td><td>2.54 centimeters</td><td>1 in</td></tr>
+                    <tr><td><strong>1 foot (ft)</strong></td><td>12 inches</td><td>12 in</td></tr>
+                    <tr><td><strong>1 yard (yd)</strong></td><td>3 feet = 36 inches</td><td>36 in</td></tr>
+                    <tr><td><strong>1 mile (mi)</strong></td><td>5,280 feet = 1,760 yards</td><td>63,360 in</td></tr>
+                </tbody>
+            </table>
+            <p>The US customary system is one of only three countries (along with Liberia and Myanmar) that hasn't officially adopted the metric system for everyday use.</p>
+
+            <h3>Common Objects — Inches vs. Feet</h3>
+            <table>
+                <thead><tr><th>Object</th><th>Inches</th><th>Feet & Inches</th></tr></thead>
+                <tbody>
+                    <tr><td>Credit card (width)</td><td>3.37"</td><td>0' 3.4"</td></tr>
+                    <tr><td>Standard ruler</td><td>12"</td><td>1' 0"</td></tr>
+                    <tr><td>Laptop screen (15")</td><td>15"</td><td>1' 3"</td></tr>
+                    <tr><td>Baseball bat</td><td>34"</td><td>2' 10"</td></tr>
+                    <tr><td>Standard door (height)</td><td>80"</td><td>6' 8"</td></tr>
+                    <tr><td>King-size bed (length)</td><td>80"</td><td>6' 8"</td></tr>
+                    <tr><td>Ceiling height (standard)</td><td>96"</td><td>8' 0"</td></tr>
+                    <tr><td>Garage door (height)</td><td>84"</td><td>7' 0"</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Height Chart — Inches to Feet & Inches</h3>
+            <p>Human heights in the US are expressed in feet and inches:</p>
+            <table>
+                <thead><tr><th>Height (inches)</th><th>Feet & Inches</th><th>Centimeters</th></tr></thead>
+                <tbody>
+                    <tr><td>58"</td><td>4' 10"</td><td>147.3 cm</td></tr>
+                    <tr><td>60"</td><td>5' 0"</td><td>152.4 cm</td></tr>
+                    <tr><td>62"</td><td>5' 2"</td><td>157.5 cm</td></tr>
+                    <tr><td>64"</td><td>5' 4" (avg US woman)</td><td>162.6 cm</td></tr>
+                    <tr><td>66"</td><td>5' 6"</td><td>167.6 cm</td></tr>
+                    <tr><td>68"</td><td>5' 8"</td><td>172.7 cm</td></tr>
+                    <tr><td>69"</td><td>5' 9" (avg US man)</td><td>175.3 cm</td></tr>
+                    <tr><td>72"</td><td>6' 0"</td><td>182.9 cm</td></tr>
+                    <tr><td>74"</td><td>6' 2"</td><td>188.0 cm</td></tr>
+                    <tr><td>78"</td><td>6' 6"</td><td>198.1 cm</td></tr>
+                </tbody>
+            </table>
+
+            <h3>What Is an Inch?</h3>
+            <p>An <strong>inch</strong> (in or ") is a US customary and imperial unit of length equal to exactly 2.54 centimeters or 1/12 of a foot. The inch is widely used in the United States for everyday measurements including screen sizes (TVs, phones), construction lumber dimensions, and personal heights on driver's licenses.</p>
+
+            <h3>What Is a Foot?</h3>
+            <p>A <strong>foot</strong> (ft or ') is a US customary and imperial unit of length equal to 12 inches, 1/3 of a yard, or 30.48 centimeters. In the US, feet are the primary unit for expressing room dimensions, building heights, elevation, and personal height. Real estate listings in America exclusively use square feet (sq ft) for property size.</p>
+        `,
+        faq: [
+            { question: "How many feet is 36 inches?", answer: "Exactly 3 feet (1 yard). 36 ÷ 12 = 3.0 feet. This is also the length of a standard yardstick." },
+            { question: "How do I convert inches to feet and inches?", answer: "Divide by 12. The whole number is feet, the remainder is inches. Example: 65 inches → 65 ÷ 12 = 5 remainder 5 → 5 feet 5 inches (5' 5\"). This is the format used for height in the US." },
+            { question: "How tall is 72 inches in feet?", answer: "Exactly 6 feet (72 ÷ 12 = 6.0). This is a common height milestone — 6 feet = 182.88 cm = 1.83 meters." },
+            { question: "What is 5'4\" in inches?", answer: "64 inches. Multiply feet by 12 and add inches: (5 × 12) + 4 = 64 inches. This is approximately the average height of an adult woman in the US (163 cm)." },
+            { question: "How many inches in a foot?", answer: "Exactly 12 inches = 1 foot. This has been the standard since the International Yard and Pound Agreement of 1959, which defined 1 inch = exactly 2.54 centimeters." },
+            { question: "How do I read decimal feet?", answer: "Decimal feet express the inches as a decimal fraction. For example, 5.5 feet = 5 feet 6 inches (0.5 × 12 = 6). Common decimals: .25 ft = 3\", .50 ft = 6\", .75 ft = 9\". Surveyors and engineers prefer decimal feet over feet-and-inches notation." },
+        ],
+    },
 };
 
 export default async function ConvertHubPage({ params }: PageProps) {
