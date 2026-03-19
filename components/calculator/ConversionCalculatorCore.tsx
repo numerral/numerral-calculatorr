@@ -1350,6 +1350,97 @@ function LiterToGramCalc() {
     );
 }
 
+// ─── Cups to Grams ───
+function CupToGramCalc() {
+    const [cups, setCups] = useState(1);
+    const [substanceIdx, setSubstanceIdx] = useState(0);
+    const [customDensity, setCustomDensity] = useState(1.0);
+
+    const substance = SUBSTANCES[substanceIdx];
+    const density = substance.label === "Custom" ? customDensity : substance.density;
+    const ML_PER_CUP = 236.588;
+    // grams = cups × 236.588 × density
+    const grams = cups * ML_PER_CUP * density;
+    const oz = grams / 28.3495;
+    const tbsp = cups * 16;
+    const ml = cups * ML_PER_CUP;
+
+    const quickRef = [0.25, 0.333, 0.5, 0.667, 0.75, 1, 1.5, 2, 3, 4];
+    const fracLabels: Record<number, string> = { 0.25: "¼", 0.333: "⅓", 0.5: "½", 0.667: "⅔", 0.75: "¾" };
+
+    return (
+        <div className="calc-card">
+            <div className="calc-field">
+                <label className="calc-field__label">🥤 US CUPS</label>
+                <input type="range" className="calc-field__slider" min={0.25} max={10} step={0.25}
+                    value={cups} onChange={(e) => setCups(Number(e.target.value))} />
+                <div style={{ display: "flex", gap: "var(--s-2)", alignItems: "center" }}>
+                    <input type="number" className="calc-field__input" value={cups}
+                        onChange={(e) => setCups(Number(e.target.value))} style={{ flex: 1 }} />
+                    <span className="t-body-sm text-muted">cups</span>
+                </div>
+            </div>
+            <div className="calc-field">
+                <label className="calc-field__label">🏷️ SUBSTANCE / INGREDIENT</label>
+                <select className="calc-field__input" value={substanceIdx}
+                    onChange={(e) => setSubstanceIdx(Number(e.target.value))}>
+                    {SUBSTANCES.map((s, i) => (
+                        <option key={i} value={i}>{s.label} ({s.density} g/mL)</option>
+                    ))}
+                </select>
+            </div>
+
+            {substance.label === "Custom" && (
+                <div className="calc-field">
+                    <label className="calc-field__label">⚙️ CUSTOM DENSITY (g/mL)</label>
+                    <input type="range" className="calc-field__slider" min={0.1} max={3.0} step={0.01}
+                        value={customDensity} onChange={(e) => setCustomDensity(Number(e.target.value))} />
+                    <input type="number" className="calc-field__input" value={customDensity}
+                        onChange={(e) => setCustomDensity(Number(e.target.value))} />
+                </div>
+            )}
+
+            <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
+                <p className="calc-field__label">WEIGHT IN GRAMS</p>
+                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+                    {grams.toLocaleString("en-US", { maximumFractionDigits: 1 })} g
+                </p>
+                <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "var(--s-3)" }}>
+                    <div><p className="calc-field__label">OUNCES</p><p style={{ fontWeight: 700 }}>{oz.toFixed(2)} oz</p></div>
+                    <div><p className="calc-field__label">TABLESPOONS</p><p style={{ fontWeight: 700 }}>{tbsp.toFixed(0)} tbsp</p></div>
+                    <div><p className="calc-field__label">MILLILITERS</p><p style={{ fontWeight: 700 }}>{ml.toFixed(1)} mL</p></div>
+                    <div><p className="calc-field__label">FORMULA</p><p style={{ fontWeight: 700, fontSize: "var(--t-body-sm)" }}>{cups}×236.6×{density}</p></div>
+                </div>
+            </div>
+
+            {/* Quick Reference Table */}
+            <div style={{ marginTop: "var(--s-4)" }}>
+                <h3 className="t-h3" style={{ marginBottom: "var(--s-3)" }}>Quick Reference — {substance.label}</h3>
+                <table className="calc-table">
+                    <thead>
+                        <tr><th>Cups</th><th>Grams</th><th>Ounces</th><th>Tablespoons</th></tr>
+                    </thead>
+                    <tbody>
+                        {quickRef.map((c) => {
+                            const g = c * ML_PER_CUP * density;
+                            const label = fracLabels[c] || String(c);
+                            return (
+                                <tr key={c} style={Math.abs(c - cups) < 0.01 ? { background: "var(--n-primary-light)" } : {}}>
+                                    <td>{label} cup{c > 1 ? "s" : ""}</td>
+                                    <td>{g.toFixed(1)} g</td>
+                                    <td>{(g / 28.3495).toFixed(2)} oz</td>
+                                    <td>{(c * 16).toFixed(0)} tbsp</td>
+                                </tr>
+                            );
+                        })}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    );
+}
+
 // ─── Dispatcher ───
 interface Props { calcType: string; }
 
@@ -1370,6 +1461,7 @@ const CALCULATORS: Record<string, React.FC> = {
     "gram-to-liter": GramToLiterCalc,
     "ml-to-mg": MlToMgCalc,
     "liter-to-gram": LiterToGramCalc,
+    "cup-to-gram": CupToGramCalc,
 };
 
 export default function ConversionCalculatorCore({ calcType }: Props) {

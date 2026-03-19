@@ -2569,6 +2569,40 @@
     "keywords": "liters to grams, L to g converter, liter to gram calculator, how many grams in a liter, volume to weight, density conversion, 1 liter of water in grams"
   },
   {
+    "id": "cup-to-gram-converter",
+    "category": "convert",
+    "title": "Cups to Grams Converter (c to g)",
+    "slug": "cup-to-gram-converter",
+    "categorySlug": "convert",
+    "icon": "🥤",
+    "calcType": "cup-to-gram",
+    "description": "Convert US cups to grams (c to g) for any ingredient. Select from 20 common substances or enter a custom density. Includes a fractional cup reference table.",
+    "stars": 5,
+    "defaults": {
+      "amount": 1,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 10,
+        "step": 1
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "cups to grams, cup to gram converter, how many grams in a cup, 1 cup flour in grams, cup to g calculator, baking cup to gram, cooking measurements"
+  },
+  {
     "id": "retirement-corpus",
     "category": "invest",
     "title": "Retirement Corpus Calculator",

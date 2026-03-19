@@ -1396,6 +1396,90 @@ const HUB_CONTENT: Record<string, {
             { question: "Does 1 liter always equal 1 kilogram?", answer: "Only for water (at ~4°C). For any other substance, 1 liter weighs more or less than 1 kg depending on density. Honey: 1L = 1.43 kg. Oil: 1L = 0.91 kg. Flour: 1L = only 0.53 kg. You must know the density to convert accurately." },
         ],
     },
+    "cup-to-gram-converter": {
+        subtitle: "Convert US cups to grams (c to g) for any ingredient. Select from 20 common substances or enter a custom density. Includes a fractional cup reference table for baking.",
+        contentHTML: `
+            <h3>How to Convert Cups to Grams</h3>
+            <p>Cups measure <strong>volume</strong> while grams measure <strong>weight</strong>. To convert, multiply the cup measurement by the cup volume in mL (236.588) and by the ingredient's density:</p>
+            <div class="explanation__highlight">
+                <strong>grams = cups × 236.588 × density (g/mL)</strong><br/><br/>
+                Example: 1 cup of water (density 1.00 g/mL)<br/>
+                = 1 × 236.588 × 1.00 = <strong>236.6 grams</strong><br/><br/>
+                Example: 1 cup of all-purpose flour (density 0.53 g/mL)<br/>
+                = 1 × 236.588 × 0.53 = <strong>125.4 grams</strong><br/><br/>
+                Example: 1 cup of granulated sugar (density 0.85 g/mL)<br/>
+                = 1 × 236.588 × 0.85 = <strong>201.1 grams</strong>
+            </div>
+
+            <h3>One Cup in Grams — Common Baking Ingredients</h3>
+            <p>The most searched baking conversions — how much does 1 cup weigh?</p>
+            <table>
+                <thead><tr><th>Ingredient</th><th>Density</th><th>¼ cup</th><th>½ cup</th><th>1 cup</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>All-Purpose Flour</strong></td><td>0.53 g/mL</td><td>31 g</td><td>63 g</td><td>125 g</td></tr>
+                    <tr><td><strong>Granulated Sugar</strong></td><td>0.85 g/mL</td><td>50 g</td><td>101 g</td><td>201 g</td></tr>
+                    <tr><td><strong>Brown Sugar (packed)</strong></td><td>0.93 g/mL</td><td>55 g</td><td>110 g</td><td>220 g</td></tr>
+                    <tr><td><strong>Powdered Sugar</strong></td><td>0.56 g/mL</td><td>33 g</td><td>66 g</td><td>132 g</td></tr>
+                    <tr><td><strong>Butter</strong></td><td>0.91 g/mL</td><td>54 g</td><td>108 g</td><td>215 g</td></tr>
+                    <tr><td><strong>Whole Milk</strong></td><td>1.03 g/mL</td><td>61 g</td><td>122 g</td><td>244 g</td></tr>
+                    <tr><td><strong>Olive Oil</strong></td><td>0.91 g/mL</td><td>54 g</td><td>108 g</td><td>215 g</td></tr>
+                    <tr><td><strong>Honey</strong></td><td>1.43 g/mL</td><td>85 g</td><td>169 g</td><td>338 g</td></tr>
+                    <tr><td><strong>Rice (uncooked)</strong></td><td>0.82 g/mL</td><td>49 g</td><td>97 g</td><td>194 g</td></tr>
+                    <tr><td><strong>Oats (rolled)</strong></td><td>0.34 g/mL</td><td>20 g</td><td>40 g</td><td>80 g</td></tr>
+                </tbody>
+            </table>
+            <p><strong>Key insight:</strong> 1 cup of flour (125g) and 1 cup of sugar (201g) are very different weights — this is exactly why professional bakers weigh ingredients in grams.</p>
+
+            <h3>Why Cup Measures Vary by Ingredient</h3>
+            <p>A cup is a <strong>volume</strong> measurement — it always holds exactly 236.588 mL of space. But different ingredients fill that space differently:</p>
+            <ul>
+                <li><strong>Flour</strong> is fluffy with lots of air → 1 cup = only 125g</li>
+                <li><strong>Sugar</strong> is denser, granules pack tighter → 1 cup = 201g</li>
+                <li><strong>Honey</strong> is a thick liquid → 1 cup = 338g</li>
+                <li><strong>Oats</strong> are very airy → 1 cup = only 80g</li>
+            </ul>
+            <p>This is why "1 cup" can mean anything from 80g to 338g depending on the ingredient.</p>
+
+            <h3>Scooping vs. Weighing — Why Grams Win</h3>
+            <p>How you scoop flour into a cup drastically changes the weight:</p>
+            <table>
+                <thead><tr><th>Method</th><th>1 Cup of Flour</th><th>Difference</th></tr></thead>
+                <tbody>
+                    <tr><td>Spoon-and-level (standard)</td><td>~125 g</td><td>Baseline</td></tr>
+                    <tr><td>Scoop directly from bag</td><td>~140–160 g</td><td>+12% to +28%</td></tr>
+                    <tr><td>Sifted, then spooned</td><td>~110–115 g</td><td>-8% to -12%</td></tr>
+                    <tr><td>Kitchen scale (grams)</td><td>Exactly 125 g</td><td>0% error</td></tr>
+                </tbody>
+            </table>
+            <p>That 28% difference between scooping and spoon-leveling can mean the difference between a light, fluffy cake and a dense brick. This is the #1 reason why bakers recommend weighing ingredients.</p>
+
+            <h3>US Cup vs. Metric Cup vs. Imperial Cup</h3>
+            <table>
+                <thead><tr><th>Cup Standard</th><th>Volume</th><th>Where Used</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>US Customary Cup</strong></td><td>236.588 mL (8 US fl oz)</td><td>United States</td></tr>
+                    <tr><td><strong>Metric Cup</strong></td><td>250 mL</td><td>Australia, Canada, NZ</td></tr>
+                    <tr><td><strong>Imperial Cup</strong></td><td>284.131 mL (10 imp fl oz)</td><td>UK (historical)</td></tr>
+                    <tr><td><strong>Japanese Cup</strong></td><td>200 mL</td><td>Japan</td></tr>
+                </tbody>
+            </table>
+            <p>When following a recipe, always check which "cup" is intended. A metric cup is 5.7% larger than a US cup.</p>
+
+            <h3>What Is a Cup?</h3>
+            <p>A <strong>US customary cup</strong> is a unit of volume equal to 236.588 mL, 8 US fluid ounces, 16 tablespoons, or 48 teaspoons. It is the standard volume measure used in American home cooking and baking recipes.</p>
+
+            <h3>What Is a Gram?</h3>
+            <p>A <strong>gram</strong> (g) is a metric unit of mass equal to 1/1,000 of a kilogram or approximately 0.035 ounces. In baking, grams are the preferred measurement because they are precise and not affected by how you scoop or level your ingredients.</p>
+        `,
+        faq: [
+            { question: "How many grams is 1 cup of flour?", answer: "Approximately 125 grams when spooned and leveled (the standard method). If scooped directly from the bag, it can be 140–160g due to compaction. For baking accuracy, always weigh flour on a kitchen scale." },
+            { question: "How many grams is 1 cup of sugar?", answer: "About 201 grams for granulated (white) sugar. Brown sugar (packed) is heavier at ~220g per cup. Powdered/confectioner's sugar is lighter at ~132g per cup. Each type of sugar has a different density." },
+            { question: "How many grams in a cup of butter?", answer: "About 215 grams (7.6 oz). In the US butter stick system, 1 cup = 2 sticks = 226.8g. The slight difference is because stick measurements are exact (by weight) while cup measurements depend on how tightly the butter is packed." },
+            { question: "Why do bakers prefer grams over cups?", answer: "Because cups measure volume, and volume varies depending on how you fill the cup. Scooping flour directly can give you 28% more flour than spooning-and-leveling. Grams always give the exact weight regardless of technique. This consistency produces better, more reproducible baking results." },
+            { question: "Is a US cup the same as a metric cup?", answer: "No. A US cup = 236.588 mL, while a metric cup (Australia, Canada) = 250 mL — about 5.7% larger. A recipe calling for '2 metric cups' of flour would be 250g, while '2 US cups' would be about 236g. Always check which standard your recipe uses." },
+            { question: "How many tablespoons in a cup?", answer: "16 tablespoons = 1 US cup. Other equivalents: 1 cup = 48 teaspoons = 8 fluid ounces = 236.588 mL = approximately ¼ of a quart." },
+        ],
+    },
 };
 
 export default async function ConvertHubPage({ params }: PageProps) {
