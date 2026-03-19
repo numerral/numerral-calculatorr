@@ -2189,6 +2189,71 @@ function GramFlourToCupCalc() {
     );
 }
 
+// ─── Inch-Pounds to Foot-Pounds ───
+function InLbToFtLbCalc() {
+    const [inlbs, setInlbs] = useState(120);
+
+    const ftlbs = inlbs / 12;
+    const nm = inlbs * 0.112985;
+    const kgcm = inlbs * 1.15212;
+
+    const quickRef = [1, 5, 12, 24, 36, 48, 72, 96, 120, 240, 360, 600];
+
+    return (
+        <div className="calc-card">
+            <div className="calc-field">
+                <label className="calc-field__label">🔧 INCH-POUNDS (in-lbs)</label>
+                <input type="range" className="calc-field__slider" min={1} max={1200} step={1}
+                    value={inlbs} onChange={(e) => setInlbs(Number(e.target.value))} />
+                <div style={{ display: "flex", gap: "var(--s-2)", alignItems: "center" }}>
+                    <input type="number" className="calc-field__input" value={inlbs}
+                        onChange={(e) => setInlbs(Number(e.target.value))} style={{ flex: 1 }} />
+                    <span className="t-body-sm text-muted">in-lbs</span>
+                </div>
+            </div>
+
+            <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
+                <p className="calc-field__label">TORQUE IN FOOT-POUNDS</p>
+                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+                    {ftlbs.toFixed(2)} ft-lbs
+                </p>
+                <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "var(--s-3)" }}>
+                    <div><p className="calc-field__label">NEWTON-METERS</p><p style={{ fontWeight: 700 }}>{nm.toFixed(2)} N·m</p></div>
+                    <div><p className="calc-field__label">KG-CM</p><p style={{ fontWeight: 700 }}>{kgcm.toFixed(1)} kg·cm</p></div>
+                    <div><p className="calc-field__label">INCH-OUNCES</p><p style={{ fontWeight: 700 }}>{(inlbs * 16).toLocaleString()} in-oz</p></div>
+                    <div><p className="calc-field__label">FORMULA</p><p style={{ fontWeight: 700, fontSize: "var(--t-body-sm)" }}>{inlbs} ÷ 12</p></div>
+                </div>
+            </div>
+
+            {/* Quick Reference Table */}
+            <div style={{ marginTop: "var(--s-4)" }}>
+                <h3 className="t-h3" style={{ marginBottom: "var(--s-3)" }}>Inch-Pounds to Foot-Pounds — Quick Reference</h3>
+                <table className="calc-table">
+                    <thead>
+                        <tr><th>in-lbs</th><th>ft-lbs</th><th>N·m</th><th>Common Use</th></tr>
+                    </thead>
+                    <tbody>
+                        {quickRef.map((v) => {
+                            const fl = v / 12;
+                            const n = v * 0.112985;
+                            const use = v <= 5 ? "Electronics screw" : v <= 12 ? "Small bolt" : v <= 36 ? "Plumbing fitting" : v <= 72 ? "Spark plug" : v <= 120 ? "Scope mount" : v <= 240 ? "Wheel stud (bicycle)" : v <= 360 ? "Engine bolt" : "Heavy fastener";
+                            return (
+                                <tr key={v} style={v === inlbs ? { background: "var(--n-primary-light)" } : {}}>
+                                    <td>{v} in-lbs</td>
+                                    <td>{fl.toFixed(2)} ft-lbs</td>
+                                    <td>{n.toFixed(1)} N·m</td>
+                                    <td>{use}</td>
+                                </tr>
+                            );
+                        })}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    );
+}
+
 // ─── Dispatcher ───
 interface Props { calcType: string; }
 
@@ -2220,6 +2285,7 @@ const CALCULATORS: Record<string, React.FC> = {
     "oz-to-ml": OzToMlCalc,
     "rpm-to-rads": RpmToRadCalc,
     "gram-flour-to-cup": GramFlourToCupCalc,
+    "inlb-to-ftlb": InLbToFtLbCalc,
 };
 
 export default function ConversionCalculatorCore({ calcType }: Props) {

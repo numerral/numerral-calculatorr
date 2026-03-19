@@ -2943,6 +2943,40 @@
     "keywords": "grams of flour to cups, flour grams to cups, how many cups is 250g flour, flour conversion, baking measurement, all purpose flour grams to cups"
   },
   {
+    "id": "inlb-to-ftlb-converter",
+    "category": "convert",
+    "title": "Inch-Pounds to Foot-Pounds Converter (in-lbs to ft-lbs)",
+    "slug": "inlb-to-ftlb-converter",
+    "categorySlug": "convert",
+    "icon": "🔧",
+    "calcType": "inlb-to-ftlb",
+    "description": "Convert inch-pounds to foot-pounds (in-lbs to ft-lbs). See results in foot-pounds, Newton-meters, and kilogram-centimeters. Includes a quick reference table with common torque specs.",
+    "stars": 5,
+    "defaults": {
+      "amount": 120,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 1,
+        "max": 1200,
+        "step": 1
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "inch-pounds to foot-pounds, in-lbs to ft-lbs, torque converter, inch pound to foot pound, torque conversion, bolt torque"
+  },
+  {
     "id": "retirement-corpus",
     "category": "invest",
     "title": "Retirement Corpus Calculator",

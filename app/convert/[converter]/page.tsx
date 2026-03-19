@@ -2384,6 +2384,89 @@ const HUB_CONTENT: Record<string, {
             { question: "Why is almond flour measured differently?", answer: "Almond flour is made from ground almonds, not wheat, so it has very different density (96 g/cup vs 125 g for AP flour). It's also gluten-free and much higher in fat and protein. You cannot swap almond flour 1:1 for wheat flour — recipes need to be specifically designed for it." },
         ],
     },
+    "inlb-to-ftlb-converter": {
+        subtitle: "Convert inch-pounds to foot-pounds (in-lbs to ft-lbs). See results in foot-pounds, Newton-meters, and kilogram-centimeters. Includes a quick reference table with common torque specs.",
+        contentHTML: `
+            <h3>How to Convert Inch-Pounds to Foot-Pounds</h3>
+            <p>Since there are <strong>12 inches in 1 foot</strong>, divide the torque in inch-pounds by 12:</p>
+            <div class="explanation__highlight">
+                <strong>ft-lbs = in-lbs ÷ 12</strong><br/><br/>
+                Example: 120 in-lbs<br/>
+                = 120 ÷ 12 = <strong>10.00 ft-lbs</strong><br/><br/>
+                Example: 360 in-lbs (typical engine bolt)<br/>
+                = 360 ÷ 12 = <strong>30.00 ft-lbs</strong><br/><br/>
+                Example: 24 in-lbs (plumbing fitting)<br/>
+                = 24 ÷ 12 = <strong>2.00 ft-lbs</strong>
+            </div>
+
+            <h3>Torque Unit Comparison</h3>
+            <table>
+                <thead><tr><th>Unit</th><th>Symbol</th><th>1 ft-lb =</th><th>Used In</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Inch-pound</strong></td><td>in-lbs</td><td>12 in-lbs</td><td>Small fasteners, precision</td></tr>
+                    <tr><td><strong>Foot-pound</strong></td><td>ft-lbs</td><td>1 ft-lb</td><td>Automotive, construction</td></tr>
+                    <tr><td><strong>Newton-meter</strong></td><td>N·m</td><td>1.3558 N·m</td><td>International, metric tools</td></tr>
+                    <tr><td>Kilogram-centimeter</td><td>kg·cm</td><td>13.825 kg·cm</td><td>Some Asian tools</td></tr>
+                    <tr><td>Inch-ounce</td><td>in-oz</td><td>192 in-oz</td><td>Very small electronics</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Inch-Pounds to Foot-Pounds — Conversion Table</h3>
+            <table>
+                <thead><tr><th>in-lbs</th><th>ft-lbs</th><th>N·m</th><th>Common Application</th></tr></thead>
+                <tbody>
+                    <tr><td>1 in-lb</td><td>0.083</td><td>0.11</td><td>Electronics, circuit board</td></tr>
+                    <tr><td>5 in-lbs</td><td>0.417</td><td>0.56</td><td>Computer case screw</td></tr>
+                    <tr><td>12 in-lbs</td><td>1.000</td><td>1.36</td><td>Small machine screw</td></tr>
+                    <tr><td>24 in-lbs</td><td>2.000</td><td>2.71</td><td>Plumbing compression fitting</td></tr>
+                    <tr><td>48 in-lbs</td><td>4.000</td><td>5.42</td><td>Electrical panel connection</td></tr>
+                    <tr><td>72 in-lbs</td><td>6.000</td><td>8.13</td><td>Bicycle stem bolt</td></tr>
+                    <tr><td>96 in-lbs</td><td>8.000</td><td>10.84</td><td>Rifle scope mount</td></tr>
+                    <tr><td>120 in-lbs</td><td>10.000</td><td>13.56</td><td>Valve cover bolt</td></tr>
+                    <tr><td>180 in-lbs</td><td>15.000</td><td>20.34</td><td>Thermostat housing</td></tr>
+                    <tr><td>240 in-lbs</td><td>20.000</td><td>27.12</td><td>Intake manifold bolt</td></tr>
+                    <tr><td>360 in-lbs</td><td>30.000</td><td>40.67</td><td>Spark plug (aluminum head)</td></tr>
+                    <tr><td>600 in-lbs</td><td>50.000</td><td>67.79</td><td>Suspension bolt</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Common US Automotive Torque Specs</h3>
+            <table>
+                <thead><tr><th>Component</th><th>in-lbs</th><th>ft-lbs</th><th>N·m</th></tr></thead>
+                <tbody>
+                    <tr><td>Spark plug (aluminum head)</td><td>144–180</td><td>12–15</td><td>16–20</td></tr>
+                    <tr><td>Spark plug (iron head)</td><td>300–360</td><td>25–30</td><td>34–41</td></tr>
+                    <tr><td>Oil drain plug</td><td>240–360</td><td>20–30</td><td>27–41</td></tr>
+                    <tr><td>Valve cover bolt</td><td>72–120</td><td>6–10</td><td>8–14</td></tr>
+                    <tr><td>Wheel lug nut (car)</td><td>960–1,200</td><td>80–100</td><td>108–136</td></tr>
+                    <tr><td>Wheel lug nut (truck)</td><td>1,560–1,800</td><td>130–150</td><td>176–203</td></tr>
+                    <tr><td>Head bolt (typical)</td><td>540–780</td><td>45–65</td><td>61–88</td></tr>
+                </tbody>
+            </table>
+            <p><strong>Always check your vehicle's service manual</strong> for exact torque specifications — values vary by manufacturer, model year, and bolt size.</p>
+
+            <h3>When to Use Inch-Pounds vs. Foot-Pounds</h3>
+            <ul>
+                <li><strong>Use inch-pounds (in-lbs)</strong> for: small bolts, precision fasteners, electronics, plumbing fittings, scope mounts, bicycle parts — anything under ~75 ft-lbs (900 in-lbs)</li>
+                <li><strong>Use foot-pounds (ft-lbs)</strong> for: lug nuts, engine bolts, suspension, structural bolts — larger automotive and construction fasteners</li>
+                <li><strong>Rule of thumb:</strong> If the torque value would be less than 5 ft-lbs, express it in in-lbs for better precision (e.g., "24 in-lbs" is clearer than "2 ft-lbs")</li>
+            </ul>
+
+            <h3>What Is an Inch-Pound?</h3>
+            <p>An <strong>inch-pound</strong> (in-lb) is a US unit of torque equal to the force of 1 pound applied at a distance of 1 inch from the pivot point. It provides finer resolution than foot-pounds, making it ideal for small fasteners where over-tightening can strip threads or crack components.</p>
+
+            <h3>What Is a Foot-Pound?</h3>
+            <p>A <strong>foot-pound</strong> (ft-lb) is a US unit of torque equal to the force of 1 pound applied at a distance of 1 foot (12 inches) from the pivot point. It is the standard torque unit used in American automotive repair, construction, and manufacturing. Most US torque wrenches display ft-lbs as the primary unit.</p>
+        `,
+        faq: [
+            { question: "How do I convert inch-pounds to foot-pounds?", answer: "Divide by 12. Since there are 12 inches in a foot: ft-lbs = in-lbs ÷ 12. Example: 120 in-lbs ÷ 12 = 10.00 ft-lbs. To reverse: ft-lbs × 12 = in-lbs." },
+            { question: "How many inch-pounds is 1 foot-pound?", answer: "Exactly 12 inch-pounds = 1 foot-pound. This is simply because there are 12 inches in 1 foot." },
+            { question: "What torque wrench do I need for inch-pounds?", answer: "You need an inch-pound (in-lb) torque wrench, typically ranging from 20–200 in-lbs. Standard torque wrenches measure in ft-lbs and don't have the precision needed for small in-lb values. Brands like Tekton, CDI, and Park Tool make dedicated in-lb torque wrenches." },
+            { question: "How tight is 25 inch-pounds?", answer: "25 in-lbs (≈ 2.1 ft-lbs or 2.8 N·m) is quite light — roughly the torque of snugging a plumbing fitting with two fingers on a short wrench. Over-tightening at this range is easy and can strip soft brass or plastic fittings." },
+            { question: "What torque for spark plugs?", answer: "For aluminum cylinder heads: 12–15 ft-lbs (144–180 in-lbs). For cast iron heads: 25–30 ft-lbs (300–360 in-lbs). Always check your vehicle manual — incorrect spark plug torque can crack the head or cause a misfire." },
+            { question: "Why do mechanics use both inch-pounds and foot-pounds?", answer: "Inch-pounds provide finer resolution for small, precision fasteners (electronics, scope mounts, bicycle parts). Foot-pounds are better for larger bolts (lug nuts, engine bolts) where higher torque values make in-lbs impractical. A 100 ft-lb lug nut = 1,200 in-lbs — easier to read as ft-lbs." },
+        ],
+    },
 };
 
 export default async function ConvertHubPage({ params }: PageProps) {
