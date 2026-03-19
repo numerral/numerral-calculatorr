@@ -978,6 +978,87 @@ const HUB_CONTENT: Record<string, {
             { question: "Is a US cup the same as a metric cup?", answer: "No. A US cup = 236.588 mL, while a metric cup (used in Australia, Canada) = 250 mL. The metric cup is about 5.4% larger. A Japanese cup is even smaller at 200 mL. Always check which cup standard your recipe uses." },
         ],
     },
+    "butter-tsp-to-gram-converter": {
+        subtitle: "Convert teaspoons of butter to grams (tsp to g). See exact results in grams, ounces, tablespoons, sticks, and cups. Includes a complete butter conversion reference table.",
+        contentHTML: `
+            <h3>How to Convert Teaspoons of Butter to Grams</h3>
+            <p>One teaspoon of butter weighs approximately <strong>4.73 grams</strong>. To convert teaspoons to grams:</p>
+            <div class="explanation__highlight">
+                <strong>grams = teaspoons × 4.73</strong><br/><br/>
+                Example: 3 teaspoons of butter<br/>
+                = 3 × 4.73 = <strong>14.19 grams</strong> (1 tablespoon)<br/><br/>
+                Example: 24 teaspoons of butter<br/>
+                = 24 × 4.73 = <strong>113.52 grams</strong> (1 stick)
+            </div>
+            <p>This conversion is specific to <strong>butter</strong> (density ~0.959 g/mL). Other fats like oil or lard have slightly different weights per teaspoon.</p>
+
+            <h3>The US Butter Stick — Complete Anatomy</h3>
+            <p>In the United States, butter is sold in "sticks" — a format unique to America. Here's how one stick breaks down:</p>
+            <table>
+                <thead><tr><th>Measurement</th><th>Per Stick</th><th>Per ½ Stick</th><th>Per ¼ Stick</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Grams</strong></td><td>113.4 g</td><td>56.7 g</td><td>28.35 g</td></tr>
+                    <tr><td><strong>Ounces</strong></td><td>4 oz</td><td>2 oz</td><td>1 oz</td></tr>
+                    <tr><td><strong>Tablespoons</strong></td><td>8 tbsp</td><td>4 tbsp</td><td>2 tbsp</td></tr>
+                    <tr><td><strong>Teaspoons</strong></td><td>24 tsp</td><td>12 tsp</td><td>6 tsp</td></tr>
+                    <tr><td><strong>Cups</strong></td><td>½ cup</td><td>¼ cup</td><td>⅛ cup</td></tr>
+                    <tr><td><strong>Pounds</strong></td><td>¼ lb</td><td>⅛ lb</td><td>1/16 lb</td></tr>
+                </tbody>
+            </table>
+            <p><strong>Tip:</strong> A standard US butter box contains 4 sticks = 1 pound = 454 grams = 2 cups.</p>
+
+            <h3>Butter Measurement Quick Reference</h3>
+            <table>
+                <thead><tr><th>Common Amount</th><th>Teaspoons</th><th>Tablespoons</th><th>Grams</th><th>Ounces</th></tr></thead>
+                <tbody>
+                    <tr><td>A pat of butter</td><td>~1 tsp</td><td>⅓ tbsp</td><td>~5 g</td><td>~0.17 oz</td></tr>
+                    <tr><td>1 tablespoon</td><td>3 tsp</td><td>1 tbsp</td><td>14.2 g</td><td>0.5 oz</td></tr>
+                    <tr><td>2 tablespoons</td><td>6 tsp</td><td>2 tbsp</td><td>28.4 g</td><td>1.0 oz</td></tr>
+                    <tr><td>¼ cup</td><td>12 tsp</td><td>4 tbsp</td><td>56.7 g</td><td>2.0 oz</td></tr>
+                    <tr><td>⅓ cup</td><td>16 tsp</td><td>5⅓ tbsp</td><td>75.7 g</td><td>2.67 oz</td></tr>
+                    <tr><td>½ cup (1 stick)</td><td>24 tsp</td><td>8 tbsp</td><td>113.4 g</td><td>4.0 oz</td></tr>
+                    <tr><td>⅔ cup</td><td>32 tsp</td><td>10⅔ tbsp</td><td>151.2 g</td><td>5.33 oz</td></tr>
+                    <tr><td>¾ cup</td><td>36 tsp</td><td>12 tbsp</td><td>170.1 g</td><td>6.0 oz</td></tr>
+                    <tr><td>1 cup (2 sticks)</td><td>48 tsp</td><td>16 tbsp</td><td>226.8 g</td><td>8.0 oz</td></tr>
+                    <tr><td>1 lb (4 sticks)</td><td>96 tsp</td><td>32 tbsp</td><td>453.6 g</td><td>16.0 oz</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Butter vs. Common Substitutes</h3>
+            <p>If you're substituting butter in a recipe, the weight per teaspoon differs slightly:</p>
+            <table>
+                <thead><tr><th>Fat / Spread</th><th>Grams per Teaspoon</th><th>Density (g/mL)</th><th>Notes</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Butter</strong></td><td>4.73 g</td><td>0.959</td><td>Standard dairy butter</td></tr>
+                    <tr><td><strong>Margarine</strong></td><td>4.73 g</td><td>~0.96</td><td>Nearly identical to butter</td></tr>
+                    <tr><td><strong>Coconut Oil (solid)</strong></td><td>4.51 g</td><td>0.915</td><td>Slightly lighter than butter</td></tr>
+                    <tr><td><strong>Ghee (clarified butter)</strong></td><td>4.54 g</td><td>0.921</td><td>Water removed, so denser fat</td></tr>
+                    <tr><td><strong>Olive Oil</strong></td><td>4.49 g</td><td>0.911</td><td>Liquid — use a measuring spoon</td></tr>
+                    <tr><td><strong>Lard</strong></td><td>4.52 g</td><td>0.917</td><td>Animal fat, similar to butter</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Why Americans Measure Butter in Sticks</h3>
+            <p>The butter "stick" is an American invention from the early 1900s when butter companies began packaging butter in pre-formed 4-oz bars for convenience. Most other countries sell butter in 250g blocks. The stick system makes it easy to estimate amounts using the tablespoon markings printed on the wrapper — but for precise baking, weighing in grams is always more accurate.</p>
+
+            <h3>Reading Butter Wrapper Markings</h3>
+            <p>Each US butter stick wrapper has tablespoon markings printed on it. To measure a specific amount:</p>
+            <ul>
+                <li><strong>Each marking = 1 tablespoon = 3 teaspoons = 14.2 grams</strong></li>
+                <li>The full stick has 8 markings (8 tablespoons = ½ cup)</li>
+                <li>Half the stick (4 markings) = ¼ cup</li>
+                <li>For teaspoon amounts: 1 marking = 3 teaspoons, so half a marking ≈ 1½ teaspoons</li>
+            </ul>
+        `,
+        faq: [
+            { question: "How many grams is 1 teaspoon of butter?", answer: "Approximately 4.73 grams. Butter has a density of about 0.959 g/mL, and a US teaspoon is 4.929 mL. So 4.929 × 0.959 = 4.73 grams per teaspoon." },
+            { question: "How many teaspoons of butter is 1 stick?", answer: "24 teaspoons. One US stick of butter = 8 tablespoons = 24 teaspoons = 113.4 grams = 4 ounces = ½ cup. A standard butter box has 4 sticks = 1 pound." },
+            { question: "How many grams of butter is 1 tablespoon?", answer: "About 14.2 grams. Since 1 tablespoon = 3 teaspoons, and each teaspoon of butter is 4.73 grams: 3 × 4.73 = 14.19 grams. This is a key number to memorize for baking." },
+            { question: "How do I measure a teaspoon of butter?", answer: "The easiest method: use the wrapper markings on a butter stick. Each marking = 1 tablespoon = 3 teaspoons. Cut off ⅓ of a marking for 1 teaspoon (~5g). Alternatively, use a kitchen scale — 1 tsp = 4.73g." },
+            { question: "Can I substitute oil for butter teaspoon-for-teaspoon?", answer: "By volume, yes — 1 teaspoon of oil can replace 1 teaspoon of melted butter. But by weight, oil is slightly lighter (4.49g vs 4.73g per tsp). For baking precision, it's better to convert to grams first. Butter also contains water (~15%) while oil is 100% fat, which affects texture." },
+            { question: "How many tablespoons in a stick of butter?", answer: "8 tablespoons in one US butter stick. That's also 24 teaspoons, ½ cup, 4 ounces, or 113.4 grams. Each tablespoon marking on the butter wrapper equals 14.2 grams." },
+        ],
+    },
 };
 
 export default async function ConvertHubPage({ params }: PageProps) {

@@ -2399,6 +2399,40 @@
     "keywords": "teaspoons to cups, tsp to cups, teaspoon to cup converter, how many teaspoons in a cup, tsp to cup calculator, 48 teaspoons, cooking volume conversion"
   },
   {
+    "id": "butter-tsp-to-gram-converter",
+    "category": "convert",
+    "title": "Teaspoons of Butter to Grams Converter (tsp to g)",
+    "slug": "butter-tsp-to-gram-converter",
+    "categorySlug": "convert",
+    "icon": "🧈",
+    "calcType": "butter-tsp-to-gram",
+    "description": "Convert teaspoons of butter to grams (tsp to g). See results in grams, ounces, tablespoons, sticks, and cups. Includes a complete butter conversion reference table.",
+    "stars": 5,
+    "defaults": {
+      "amount": 1,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 96,
+        "step": 1
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "teaspoon butter to grams, tsp butter to g, how many grams in a teaspoon of butter, butter conversion, butter stick grams, butter tsp calculator, baking butter measurement"
+  },
+  {
     "id": "retirement-corpus",
     "category": "invest",
     "title": "Retirement Corpus Calculator",

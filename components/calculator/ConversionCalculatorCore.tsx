@@ -950,6 +950,74 @@ function TspToCupCalc() {
     );
 }
 
+// ─── Butter: Teaspoons to Grams ───
+function ButterTspToGramCalc() {
+    const [tsp, setTsp] = useState(1);
+
+    // 1 tsp butter = 4.73g (density ~0.959 g/mL)
+    const BUTTER_G_PER_TSP = 4.73;
+    const grams = tsp * BUTTER_G_PER_TSP;
+    const oz = grams / 28.3495;
+    const tbsp = tsp / 3;
+    const sticks = grams / 113.4; // 1 stick = 113.4g = 4 oz = 8 tbsp
+    const cups = tsp / 48;
+
+    const quickRef = [0.5, 1, 1.5, 2, 3, 4, 6, 8, 12, 16, 24, 32, 48, 96];
+
+    return (
+        <div className="calc-card">
+            <div className="calc-field">
+                <label className="calc-field__label">🧈 TEASPOONS OF BUTTER</label>
+                <input type="range" className="calc-field__slider" min={0.25} max={96} step={0.25}
+                    value={tsp} onChange={(e) => setTsp(Number(e.target.value))} />
+                <div style={{ display: "flex", gap: "var(--s-2)", alignItems: "center" }}>
+                    <input type="number" className="calc-field__input" value={tsp}
+                        onChange={(e) => setTsp(Number(e.target.value))} style={{ flex: 1 }} />
+                    <span className="t-body-sm text-muted">tsp</span>
+                </div>
+            </div>
+
+            <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
+                <p className="calc-field__label">WEIGHT IN GRAMS</p>
+                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+                    {grams.toFixed(2)} g
+                </p>
+                <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "var(--s-3)" }}>
+                    <div><p className="calc-field__label">OUNCES</p><p style={{ fontWeight: 700 }}>{oz.toFixed(3)} oz</p></div>
+                    <div><p className="calc-field__label">TABLESPOONS</p><p style={{ fontWeight: 700 }}>{tbsp.toFixed(2)} tbsp</p></div>
+                    <div><p className="calc-field__label">STICKS</p><p style={{ fontWeight: 700 }}>{sticks.toFixed(3)} sticks</p></div>
+                    <div><p className="calc-field__label">CUPS</p><p style={{ fontWeight: 700 }}>{cups.toFixed(3)} cups</p></div>
+                </div>
+            </div>
+
+            {/* Quick Reference Table */}
+            <div style={{ marginTop: "var(--s-4)" }}>
+                <h3 className="t-h3" style={{ marginBottom: "var(--s-3)" }}>Butter — Teaspoons to Grams</h3>
+                <table className="calc-table">
+                    <thead>
+                        <tr><th>Teaspoons</th><th>Grams</th><th>Ounces</th><th>Tbsp</th><th>Sticks</th></tr>
+                    </thead>
+                    <tbody>
+                        {quickRef.map((t) => {
+                            const g = t * BUTTER_G_PER_TSP;
+                            return (
+                                <tr key={t} style={t === tsp ? { background: "var(--n-primary-light)" } : {}}>
+                                    <td>{t} tsp</td>
+                                    <td>{g.toFixed(1)} g</td>
+                                    <td>{(g / 28.3495).toFixed(2)} oz</td>
+                                    <td>{(t / 3).toFixed(1)} tbsp</td>
+                                    <td>{(g / 113.4).toFixed(2)} sticks</td>
+                                </tr>
+                            );
+                        })}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    );
+}
+
 // ─── Dispatcher ───
 interface Props { calcType: string; }
 
@@ -965,6 +1033,7 @@ const CALCULATORS: Record<string, React.FC> = {
     "mg-to-ml": MgToMlCalc,
     "gram-to-tsp": GramToTspCalc,
     "tsp-to-cup": TspToCupCalc,
+    "butter-tsp-to-gram": ButterTspToGramCalc,
 };
 
 export default function ConversionCalculatorCore({ calcType }: Props) {
