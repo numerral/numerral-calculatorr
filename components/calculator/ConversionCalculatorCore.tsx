@@ -1742,6 +1742,73 @@ function GalToLbCalc() {
     );
 }
 
+// ─── Seconds to Minutes ───
+function SecToMinCalc() {
+    const [seconds, setSeconds] = useState(90);
+
+    const decimalMinutes = seconds / 60;
+    const wholeMinutes = Math.floor(decimalMinutes);
+    const remainingSeconds = Math.round(seconds - wholeMinutes * 60);
+    const hours = seconds / 3600;
+    const milliseconds = seconds * 1000;
+
+    const quickRef = [1, 5, 10, 15, 30, 45, 60, 90, 120, 180, 300, 600, 3600, 86400];
+
+    return (
+        <div className="calc-card">
+            <div className="calc-field">
+                <label className="calc-field__label">⏱️ SECONDS</label>
+                <input type="range" className="calc-field__slider" min={1} max={86400} step={1}
+                    value={seconds} onChange={(e) => setSeconds(Number(e.target.value))} />
+                <div style={{ display: "flex", gap: "var(--s-2)", alignItems: "center" }}>
+                    <input type="number" className="calc-field__input" value={seconds}
+                        onChange={(e) => setSeconds(Number(e.target.value))} style={{ flex: 1 }} />
+                    <span className="t-body-sm text-muted">sec</span>
+                </div>
+            </div>
+
+            <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
+                <p className="calc-field__label">TIME IN MINUTES & SECONDS</p>
+                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+                    {wholeMinutes}m {remainingSeconds}s
+                </p>
+                <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "var(--s-3)" }}>
+                    <div><p className="calc-field__label">DECIMAL MINUTES</p><p style={{ fontWeight: 700 }}>{decimalMinutes.toFixed(4)} min</p></div>
+                    <div><p className="calc-field__label">HOURS</p><p style={{ fontWeight: 700 }}>{hours.toFixed(4)} hr</p></div>
+                    <div><p className="calc-field__label">MILLISECONDS</p><p style={{ fontWeight: 700 }}>{milliseconds.toLocaleString()} ms</p></div>
+                    <div><p className="calc-field__label">FORMULA</p><p style={{ fontWeight: 700, fontSize: "var(--t-body-sm)" }}>{seconds} ÷ 60</p></div>
+                </div>
+            </div>
+
+            {/* Quick Reference Table */}
+            <div style={{ marginTop: "var(--s-4)" }}>
+                <h3 className="t-h3" style={{ marginBottom: "var(--s-3)" }}>Seconds to Minutes — Quick Reference</h3>
+                <table className="calc-table">
+                    <thead>
+                        <tr><th>Seconds</th><th>Min & Sec</th><th>Decimal Min</th><th>Hours</th></tr>
+                    </thead>
+                    <tbody>
+                        {quickRef.map((s) => {
+                            const dm = s / 60;
+                            const wm = Math.floor(dm);
+                            const rs = Math.round(s - wm * 60);
+                            return (
+                                <tr key={s} style={s === seconds ? { background: "var(--n-primary-light)" } : {}}>
+                                    <td>{s.toLocaleString()} s</td>
+                                    <td>{wm}m {rs}s</td>
+                                    <td>{dm.toFixed(2)} min</td>
+                                    <td>{(s / 3600).toFixed(4)} hr</td>
+                                </tr>
+                            );
+                        })}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    );
+}
+
 // ─── Dispatcher ───
 interface Props { calcType: string; }
 
@@ -1767,6 +1834,7 @@ const CALCULATORS: Record<string, React.FC> = {
     "inch-to-foot": InchToFootCalc,
     "kiloohm-to-ohm": KiloohmToOhmCalc,
     "gal-to-lb": GalToLbCalc,
+    "sec-to-min": SecToMinCalc,
 };
 
 export default function ConversionCalculatorCore({ calcType }: Props) {

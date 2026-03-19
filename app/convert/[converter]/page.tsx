@@ -1832,6 +1832,99 @@ const HUB_CONTENT: Record<string, {
             { question: "Does a pint weigh a pound?", answer: "Almost! The saying 'a pint's a pound the world around' is approximately true for water: 1 US pint of water weighs ~1.044 lbs. For denser liquids like honey (1.49 lbs/pint) or lighter ones like oil (0.95 lbs/pint), the saying doesn't hold." },
         ],
     },
+    "sec-to-min-converter": {
+        subtitle: "Convert seconds to minutes and seconds (s to min). See results in decimal minutes, MM:SS format, hours, and milliseconds. Includes a quick reference table.",
+        contentHTML: `
+            <h3>How to Convert Seconds to Minutes</h3>
+            <p>Since there are <strong>60 seconds in 1 minute</strong>, divide the number of seconds by 60:</p>
+            <div class="explanation__highlight">
+                <strong>minutes = seconds ÷ 60</strong><br/><br/>
+                <strong>Step 1:</strong> Divide to get decimal minutes<br/>
+                90 ÷ 60 = <strong>1.5 minutes</strong><br/><br/>
+                <strong>Step 2:</strong> Convert to minutes & seconds<br/>
+                Whole minutes = 1<br/>
+                Remaining seconds = (1.5 − 1) × 60 = 30<br/>
+                = <strong>1 minute 30 seconds</strong> (1:30)
+            </div>
+
+            <h3>Seconds to Minutes — Conversion Table</h3>
+            <table>
+                <thead><tr><th>Seconds</th><th>Min & Sec</th><th>Decimal Min</th><th>Hours</th></tr></thead>
+                <tbody>
+                    <tr><td>1 s</td><td>0m 1s</td><td>0.0167 min</td><td>0.000278 hr</td></tr>
+                    <tr><td>5 s</td><td>0m 5s</td><td>0.0833 min</td><td>0.001389 hr</td></tr>
+                    <tr><td>10 s</td><td>0m 10s</td><td>0.1667 min</td><td>0.002778 hr</td></tr>
+                    <tr><td>15 s</td><td>0m 15s</td><td>0.25 min</td><td>0.004167 hr</td></tr>
+                    <tr><td>30 s</td><td>0m 30s</td><td>0.50 min</td><td>0.008333 hr</td></tr>
+                    <tr><td>45 s</td><td>0m 45s</td><td>0.75 min</td><td>0.012500 hr</td></tr>
+                    <tr><td>60 s</td><td>1m 0s</td><td>1.00 min</td><td>0.016667 hr</td></tr>
+                    <tr><td>90 s</td><td>1m 30s</td><td>1.50 min</td><td>0.025000 hr</td></tr>
+                    <tr><td>120 s</td><td>2m 0s</td><td>2.00 min</td><td>0.033333 hr</td></tr>
+                    <tr><td>180 s</td><td>3m 0s</td><td>3.00 min</td><td>0.050000 hr</td></tr>
+                    <tr><td>300 s</td><td>5m 0s</td><td>5.00 min</td><td>0.083333 hr</td></tr>
+                    <tr><td>600 s</td><td>10m 0s</td><td>10.00 min</td><td>0.166667 hr</td></tr>
+                    <tr><td>3,600 s</td><td>60m 0s</td><td>60.00 min</td><td>1.000000 hr</td></tr>
+                    <tr><td>86,400 s</td><td>1,440m 0s</td><td>1,440.00 min</td><td>24.000000 hr</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Time Sub-Units — Smaller Than a Second</h3>
+            <table>
+                <thead><tr><th>Unit</th><th>Symbol</th><th>In Seconds</th><th>Use Case</th></tr></thead>
+                <tbody>
+                    <tr><td>Nanosecond</td><td>ns</td><td>0.000000001 s</td><td>CPU clock cycles, GPS timing</td></tr>
+                    <tr><td>Microsecond</td><td>μs</td><td>0.000001 s</td><td>Camera shutter speed, signals</td></tr>
+                    <tr><td>Millisecond</td><td>ms</td><td>0.001 s</td><td>Web page load time, ping</td></tr>
+                    <tr><td><strong>Second</strong></td><td><strong>s</strong></td><td><strong>1 s</strong></td><td><strong>Base SI unit of time</strong></td></tr>
+                    <tr><td><strong>Minute</strong></td><td><strong>min</strong></td><td><strong>60 s</strong></td><td><strong>Everyday timing</strong></td></tr>
+                </tbody>
+            </table>
+
+            <h3>How Fast Are Everyday Events?</h3>
+            <table>
+                <thead><tr><th>Event</th><th>Seconds</th><th>Minutes</th></tr></thead>
+                <tbody>
+                    <tr><td>Eye blink</td><td>0.3–0.4 s</td><td>~0.006 min</td></tr>
+                    <tr><td>Human reaction time</td><td>0.2–0.3 s</td><td>~0.004 min</td></tr>
+                    <tr><td>Microwave beep interval</td><td>1 s</td><td>0.017 min</td></tr>
+                    <tr><td>Traffic light yellow</td><td>3–6 s</td><td>0.05–0.10 min</td></tr>
+                    <tr><td>Elevator ride (10 floors)</td><td>~20 s</td><td>0.33 min</td></tr>
+                    <tr><td>TV commercial</td><td>15–60 s</td><td>0.25–1.0 min</td></tr>
+                    <tr><td>Brewing espresso shot</td><td>25–30 s</td><td>0.42–0.50 min</td></tr>
+                    <tr><td>Boiling a 3-min egg</td><td>180 s</td><td>3.00 min</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Sports & Media Timing</h3>
+            <table>
+                <thead><tr><th>Context</th><th>Duration</th><th>In Seconds</th></tr></thead>
+                <tbody>
+                    <tr><td>100m sprint (world record)</td><td>9.58 s</td><td>0.16 min</td></tr>
+                    <tr><td>NBA shot clock</td><td>24 s</td><td>0.40 min</td></tr>
+                    <tr><td>NFL play clock</td><td>40 s</td><td>0.67 min</td></tr>
+                    <tr><td>TikTok video (short)</td><td>15–60 s</td><td>0.25–1.0 min</td></tr>
+                    <tr><td>YouTube Shorts</td><td>≤60 s</td><td>≤1.0 min</td></tr>
+                    <tr><td>Instagram Reel</td><td>≤90 s</td><td>≤1.5 min</td></tr>
+                    <tr><td>Pop song (average)</td><td>~210 s</td><td>~3.5 min</td></tr>
+                    <tr><td>NFL quarter</td><td>900 s</td><td>15 min</td></tr>
+                </tbody>
+            </table>
+
+            <h3>What Is a Second?</h3>
+            <p>A <strong>second</strong> (s) is the base SI unit of time. Since 1967, it has been defined as the duration of 9,192,631,770 periods of the radiation corresponding to the transition between two energy levels of the cesium-133 atom. In everyday life, a second is roughly the duration of a heartbeat at rest.</p>
+
+            <h3>What Is a Minute?</h3>
+            <p>A <strong>minute</strong> (min) is a unit of time equal to 60 seconds. The word comes from the Latin "pars minuta prima" meaning "first small part." Minutes are the standard unit for measuring short durations in everyday American life — cooking times, workout intervals, commute estimates, and meeting lengths.</p>
+        `,
+        faq: [
+            { question: "How many minutes is 120 seconds?", answer: "Exactly 2 minutes. 120 ÷ 60 = 2.0 minutes. This is a common conversion — 120 seconds = 2 minutes with zero remaining seconds." },
+            { question: "How do I convert seconds to minutes and seconds?", answer: "Divide by 60. The whole number is minutes; multiply the decimal by 60 for remaining seconds. Example: 200 seconds → 200 ÷ 60 = 3.3333 → 3 minutes and (0.3333 × 60) = 20 seconds → 3:20." },
+            { question: "How many seconds are in a minute?", answer: "Exactly 60 seconds = 1 minute. This has been the standard since ancient Babylonian mathematics, which used a base-60 (sexagesimal) number system." },
+            { question: "How many seconds are in an hour?", answer: "3,600 seconds. 1 hour = 60 minutes × 60 seconds = 3,600 seconds. In a full day: 24 × 3,600 = 86,400 seconds." },
+            { question: "How many seconds is a 3-minute song?", answer: "180 seconds. 3 × 60 = 180 seconds. The average pop song is about 3.5 minutes (210 seconds), though songs have been getting shorter in the streaming era." },
+            { question: "What are milliseconds?", answer: "A millisecond (ms) is 1/1,000 of a second (0.001 seconds). Common uses: web page load times (under 3,000ms is good), ping/latency in online gaming (under 50ms is excellent), and camera shutter speeds." },
+        ],
+    },
 };
 
 export default async function ConvertHubPage({ params }: PageProps) {
