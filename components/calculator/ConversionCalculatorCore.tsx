@@ -1018,6 +1018,74 @@ function ButterTspToGramCalc() {
     );
 }
 
+// ─── Kilograms to Stone & Pounds ───
+function KgToStoneCalc() {
+    const [kg, setKg] = useState(70);
+
+    const KG_PER_STONE = 6.35029;
+    const totalStones = kg / KG_PER_STONE;
+    const wholeStones = Math.floor(totalStones);
+    const remainingLbs = (totalStones - wholeStones) * 14;
+    const totalLbs = kg * 2.20462;
+    const totalOz = totalLbs * 16;
+
+    const quickRef = [40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 100, 120, 150];
+
+    return (
+        <div className="calc-card">
+            <div className="calc-field">
+                <label className="calc-field__label">⚖️ KILOGRAMS</label>
+                <input type="range" className="calc-field__slider" min={1} max={250} step={0.5}
+                    value={kg} onChange={(e) => setKg(Number(e.target.value))} />
+                <div style={{ display: "flex", gap: "var(--s-2)", alignItems: "center" }}>
+                    <input type="number" className="calc-field__input" value={kg}
+                        onChange={(e) => setKg(Number(e.target.value))} style={{ flex: 1 }} />
+                    <span className="t-body-sm text-muted">kg</span>
+                </div>
+            </div>
+
+            <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
+                <p className="calc-field__label">WEIGHT IN STONE & POUNDS</p>
+                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+                    {wholeStones} st {remainingLbs.toFixed(1)} lbs
+                </p>
+                <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "var(--s-3)" }}>
+                    <div><p className="calc-field__label">DECIMAL STONE</p><p style={{ fontWeight: 700 }}>{totalStones.toFixed(4)} st</p></div>
+                    <div><p className="calc-field__label">TOTAL POUNDS</p><p style={{ fontWeight: 700 }}>{totalLbs.toFixed(2)} lbs</p></div>
+                    <div><p className="calc-field__label">TOTAL OUNCES</p><p style={{ fontWeight: 700 }}>{totalOz.toFixed(0)} oz</p></div>
+                    <div><p className="calc-field__label">FORMULA</p><p style={{ fontWeight: 700, fontSize: "var(--t-body-sm)" }}>{kg} ÷ 6.35</p></div>
+                </div>
+            </div>
+
+            {/* Quick Reference Table */}
+            <div style={{ marginTop: "var(--s-4)" }}>
+                <h3 className="t-h3" style={{ marginBottom: "var(--s-3)" }}>Common Body Weights — kg to Stone & Pounds</h3>
+                <table className="calc-table">
+                    <thead>
+                        <tr><th>Kilograms</th><th>Stone & Pounds</th><th>Total Pounds</th><th>Decimal Stone</th></tr>
+                    </thead>
+                    <tbody>
+                        {quickRef.map((w) => {
+                            const st = w / KG_PER_STONE;
+                            const ws = Math.floor(st);
+                            const rl = (st - ws) * 14;
+                            return (
+                                <tr key={w} style={w === kg ? { background: "var(--n-primary-light)" } : {}}>
+                                    <td>{w} kg</td>
+                                    <td>{ws} st {rl.toFixed(1)} lbs</td>
+                                    <td>{(w * 2.20462).toFixed(1)} lbs</td>
+                                    <td>{st.toFixed(2)} st</td>
+                                </tr>
+                            );
+                        })}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    );
+}
+
 // ─── Dispatcher ───
 interface Props { calcType: string; }
 
@@ -1034,6 +1102,7 @@ const CALCULATORS: Record<string, React.FC> = {
     "gram-to-tsp": GramToTspCalc,
     "tsp-to-cup": TspToCupCalc,
     "butter-tsp-to-gram": ButterTspToGramCalc,
+    "kg-to-stone": KgToStoneCalc,
 };
 
 export default function ConversionCalculatorCore({ calcType }: Props) {

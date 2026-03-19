@@ -2433,6 +2433,40 @@
     "keywords": "teaspoon butter to grams, tsp butter to g, how many grams in a teaspoon of butter, butter conversion, butter stick grams, butter tsp calculator, baking butter measurement"
   },
   {
+    "id": "kg-to-stone-converter",
+    "category": "convert",
+    "title": "Kilograms to Stone & Pounds Converter (kg to st)",
+    "slug": "kg-to-stone-converter",
+    "categorySlug": "convert",
+    "icon": "🪨",
+    "calcType": "kg-to-stone",
+    "description": "Convert kilograms to stone and pounds (kg to st & lbs). See your weight in stone + remaining pounds, total pounds, and ounces. Includes a body weight reference table.",
+    "stars": 5,
+    "defaults": {
+      "amount": 70,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 1,
+        "max": 250,
+        "step": 1
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "kg to stone, kilograms to stone, kg to st and lbs, kilogram to stone converter, how many stone is 70 kg, body weight converter, kg to stone and pounds"
+  },
+  {
     "id": "retirement-corpus",
     "category": "invest",
     "title": "Retirement Corpus Calculator",

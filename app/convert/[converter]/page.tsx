@@ -1059,6 +1059,95 @@ const HUB_CONTENT: Record<string, {
             { question: "How many tablespoons in a stick of butter?", answer: "8 tablespoons in one US butter stick. That's also 24 teaspoons, ½ cup, 4 ounces, or 113.4 grams. Each tablespoon marking on the butter wrapper equals 14.2 grams." },
         ],
     },
+    "kg-to-stone-converter": {
+        subtitle: "Convert kilograms to stone and pounds (kg to st & lbs). See your weight in stone + remaining pounds, total pounds, and ounces. Includes a body weight reference table.",
+        contentHTML: `
+            <h3>How to Convert Kilograms to Stone & Pounds</h3>
+            <p>One stone equals <strong>6.35029 kilograms</strong>, or equivalently, one kilogram equals <strong>0.157473 stone</strong>. To convert:</p>
+            <div class="explanation__highlight">
+                <strong>Step 1:</strong> Divide kg by 6.35029 to get decimal stone<br/>
+                <strong>Step 2:</strong> Take the whole number = stone<br/>
+                <strong>Step 3:</strong> Multiply the decimal remainder × 14 = remaining pounds<br/><br/>
+                Example: 75 kg<br/>
+                = 75 ÷ 6.35029 = 11.811 stone<br/>
+                = <strong>11 stone 11.4 pounds</strong> (or 165.3 lbs total)
+            </div>
+
+            <h3>Kilograms to Stone & Pounds — Body Weight Chart</h3>
+            <table>
+                <thead><tr><th>Kilograms</th><th>Stone & Pounds</th><th>Total Pounds</th><th>Decimal Stone</th></tr></thead>
+                <tbody>
+                    <tr><td>45 kg</td><td>7 st 1.5 lbs</td><td>99.2 lbs</td><td>7.09 st</td></tr>
+                    <tr><td>50 kg</td><td>7 st 12.2 lbs</td><td>110.2 lbs</td><td>7.87 st</td></tr>
+                    <tr><td>55 kg</td><td>8 st 9.0 lbs</td><td>121.3 lbs</td><td>8.66 st</td></tr>
+                    <tr><td>60 kg</td><td>9 st 5.7 lbs</td><td>132.3 lbs</td><td>9.45 st</td></tr>
+                    <tr><td>65 kg</td><td>10 st 2.4 lbs</td><td>143.3 lbs</td><td>10.24 st</td></tr>
+                    <tr><td>70 kg</td><td>11 st 0.2 lbs</td><td>154.3 lbs</td><td>11.02 st</td></tr>
+                    <tr><td>75 kg</td><td>11 st 11.4 lbs</td><td>165.3 lbs</td><td>11.81 st</td></tr>
+                    <tr><td>80 kg</td><td>12 st 8.4 lbs</td><td>176.4 lbs</td><td>12.60 st</td></tr>
+                    <tr><td>85 kg</td><td>13 st 5.3 lbs</td><td>187.4 lbs</td><td>13.39 st</td></tr>
+                    <tr><td>90 kg</td><td>14 st 2.2 lbs</td><td>198.4 lbs</td><td>14.17 st</td></tr>
+                    <tr><td>95 kg</td><td>14 st 13.1 lbs</td><td>209.4 lbs</td><td>14.96 st</td></tr>
+                    <tr><td>100 kg</td><td>15 st 10.0 lbs</td><td>220.5 lbs</td><td>15.75 st</td></tr>
+                    <tr><td>110 kg</td><td>17 st 4.8 lbs</td><td>242.5 lbs</td><td>17.32 st</td></tr>
+                    <tr><td>120 kg</td><td>18 st 12.9 lbs</td><td>264.6 lbs</td><td>18.90 st</td></tr>
+                    <tr><td>130 kg</td><td>20 st 6.4 lbs</td><td>286.6 lbs</td><td>20.47 st</td></tr>
+                    <tr><td>140 kg</td><td>22 st 0.6 lbs</td><td>308.6 lbs</td><td>22.05 st</td></tr>
+                    <tr><td>150 kg</td><td>23 st 8.8 lbs</td><td>330.7 lbs</td><td>23.62 st</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Imperial Weight Units — Complete Hierarchy</h3>
+            <table>
+                <thead><tr><th>Unit</th><th>In Pounds</th><th>In Kilograms</th></tr></thead>
+                <tbody>
+                    <tr><td>1 grain (gr)</td><td>1/7000 lb</td><td>0.0000648 kg</td></tr>
+                    <tr><td>1 ounce (oz)</td><td>1/16 lb</td><td>0.02835 kg</td></tr>
+                    <tr><td>1 pound (lb)</td><td>1 lb</td><td>0.4536 kg</td></tr>
+                    <tr><td><strong>1 stone (st)</strong></td><td><strong>14 lbs</strong></td><td><strong>6.350 kg</strong></td></tr>
+                    <tr><td>1 hundredweight (cwt)</td><td>112 lbs (UK) / 100 lbs (US)</td><td>50.80 / 45.36 kg</td></tr>
+                    <tr><td>1 ton</td><td>2,240 lbs (UK long) / 2,000 lbs (US short)</td><td>1,016 / 907 kg</td></tr>
+                </tbody>
+            </table>
+
+            <h3>What Is a Kilogram?</h3>
+            <p>The <strong>kilogram</strong> (kg) is the SI base unit of mass. It equals 1,000 grams, approximately 2.205 pounds, or 0.157 stone. Since 2019, the kilogram is defined using the Planck constant. The kilogram is used worldwide — it's the standard unit for body weight in most countries outside the US, UK, and a few others.</p>
+
+            <h3>What Is a Stone?</h3>
+            <p>A <strong>stone</strong> (st) is an imperial unit of weight equal to exactly <strong>14 pounds</strong> or approximately 6.35 kilograms. It originated in medieval England as a unit for weighing commodities like wool. Today it's primarily used for body weight in the United Kingdom and Ireland. One stone is 14 pounds — making it a convenient "package" of pounds for expressing human weight.</p>
+
+            <h3>Where Is Stone Still Used?</h3>
+            <ul>
+                <li><strong>United Kingdom</strong>: Most British people express body weight in stone and pounds (e.g., "I weigh 11 stone 6").</li>
+                <li><strong>Ireland</strong>: Same convention as the UK — stone and pounds for body weight.</li>
+                <li><strong>Australia</strong>: Older Australians may still use stone, though kilograms are now the official standard.</li>
+                <li><strong>United States</strong>: Stone is <em>not</em> commonly used in the US — Americans typically use pounds only. However, Americans may encounter stone when communicating with British or Irish people.</li>
+            </ul>
+
+            <h3>Why Americans Use Pounds Instead of Stone</h3>
+            <p>While both the US and UK inherited the imperial system from Britain, the US dropped the stone as a commonly used unit by the mid-1800s. Americans simplified body weight to "just pounds" — so a 154-pound person in the US would be described as "11 stone" in the UK. Neither system uses kilograms in everyday conversation, though medical records in both countries increasingly record weight in kg.</p>
+
+            <h3>BMI Reference — Multiple Units</h3>
+            <p>Body Mass Index (BMI) categories using a 5'10" (178 cm) person as an example:</p>
+            <table>
+                <thead><tr><th>BMI Category</th><th>BMI Range</th><th>Weight (kg)</th><th>Weight (st & lbs)</th><th>Weight (lbs)</th></tr></thead>
+                <tbody>
+                    <tr><td>Underweight</td><td>< 18.5</td><td>< 58.7 kg</td><td>< 9 st 3.6 lbs</td><td>< 129.4 lbs</td></tr>
+                    <tr><td>Normal</td><td>18.5–24.9</td><td>58.7–79.0 kg</td><td>9 st 3.6 – 12 st 6.0</td><td>129.4–174.2 lbs</td></tr>
+                    <tr><td>Overweight</td><td>25.0–29.9</td><td>79.0–94.8 kg</td><td>12 st 6.0 – 14 st 13.0</td><td>174.2–209.0 lbs</td></tr>
+                    <tr><td>Obese</td><td>≥ 30.0</td><td>≥ 94.8 kg</td><td>≥ 14 st 13.0</td><td>≥ 209.0 lbs</td></tr>
+                </tbody>
+            </table>
+        `,
+        faq: [
+            { question: "How many stone is 70 kg?", answer: "70 kg = 11 stone 0.2 pounds (11.02 stone total). To calculate: 70 ÷ 6.35029 = 11.02 stone. The whole number (11) is stone. The decimal (0.02 × 14) = 0.2 remaining pounds." },
+            { question: "How do I convert kg to stone and pounds?", answer: "Divide your weight in kg by 6.35029 to get decimal stone. The whole number is your stone. Multiply the decimal part by 14 to get remaining pounds. Example: 80 kg ÷ 6.35029 = 12.598 → 12 stone and (0.598 × 14) = 8.4 pounds = 12 st 8.4 lbs." },
+            { question: "How many pounds is 1 stone?", answer: "Exactly 14 pounds. The stone is defined as 14 avoirdupois pounds. So 10 stone = 140 lbs, 11 stone = 154 lbs, 12 stone = 168 lbs, etc." },
+            { question: "Is stone used in the United States?", answer: "No — stone is virtually never used in the US. Americans express body weight in pounds only (e.g., '165 lbs' not '11 stone 11'). However, Americans may encounter stone when communicating with people from the UK or Ireland, where stone is the standard for body weight." },
+            { question: "How many kg is 1 stone?", answer: "1 stone = 6.35029 kilograms (approximately 6.35 kg). Since 1 stone = 14 pounds, and 1 pound = 0.453592 kg: 14 × 0.453592 = 6.35029 kg." },
+            { question: "What is 100 kg in stone?", answer: "100 kg = 15 stone 10.0 pounds (15.75 stone total). To calculate: 100 ÷ 6.35029 = 15.747 → 15 stone and (0.747 × 14) = 10.5 remaining pounds." },
+        ],
+    },
 };
 
 export default async function ConvertHubPage({ params }: PageProps) {
