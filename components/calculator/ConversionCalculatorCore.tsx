@@ -1653,6 +1653,95 @@ function KiloohmToOhmCalc() {
     );
 }
 
+// ─── Gallons to Pounds ───
+function GalToLbCalc() {
+    const [gallons, setGallons] = useState(1);
+    const [substanceIdx, setSubstanceIdx] = useState(0);
+    const [customDensity, setCustomDensity] = useState(1.0);
+
+    const substance = SUBSTANCES[substanceIdx];
+    const density = substance.label === "Custom" ? customDensity : substance.density;
+    const LB_PER_GAL_WATER = 8.3454;
+    // pounds = gallons × 8.3454 × density
+    const lbs = gallons * LB_PER_GAL_WATER * density;
+    const oz = lbs * 16;
+    const kg = lbs * 0.453592;
+    const liters = gallons * 3.78541;
+
+    const quickRef = [0.25, 0.5, 1, 1.5, 2, 3, 4, 5, 7.5, 10];
+
+    return (
+        <div className="calc-card">
+            <div className="calc-field">
+                <label className="calc-field__label">🪣 US GALLONS</label>
+                <input type="range" className="calc-field__slider" min={0.25} max={100} step={0.25}
+                    value={gallons} onChange={(e) => setGallons(Number(e.target.value))} />
+                <div style={{ display: "flex", gap: "var(--s-2)", alignItems: "center" }}>
+                    <input type="number" className="calc-field__input" value={gallons}
+                        onChange={(e) => setGallons(Number(e.target.value))} style={{ flex: 1 }} />
+                    <span className="t-body-sm text-muted">gal</span>
+                </div>
+            </div>
+            <div className="calc-field">
+                <label className="calc-field__label">🏷️ SUBSTANCE / LIQUID</label>
+                <select className="calc-field__input" value={substanceIdx}
+                    onChange={(e) => setSubstanceIdx(Number(e.target.value))}>
+                    {SUBSTANCES.map((s, i) => (
+                        <option key={i} value={i}>{s.label} ({s.density} g/mL)</option>
+                    ))}
+                </select>
+            </div>
+
+            {substance.label === "Custom" && (
+                <div className="calc-field">
+                    <label className="calc-field__label">⚙️ CUSTOM DENSITY (g/mL)</label>
+                    <input type="range" className="calc-field__slider" min={0.1} max={3.0} step={0.01}
+                        value={customDensity} onChange={(e) => setCustomDensity(Number(e.target.value))} />
+                    <input type="number" className="calc-field__input" value={customDensity}
+                        onChange={(e) => setCustomDensity(Number(e.target.value))} />
+                </div>
+            )}
+
+            <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
+                <p className="calc-field__label">WEIGHT IN POUNDS</p>
+                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+                    {lbs.toFixed(2)} lbs
+                </p>
+                <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "var(--s-3)" }}>
+                    <div><p className="calc-field__label">OUNCES</p><p style={{ fontWeight: 700 }}>{oz.toFixed(1)} oz</p></div>
+                    <div><p className="calc-field__label">KILOGRAMS</p><p style={{ fontWeight: 700 }}>{kg.toFixed(2)} kg</p></div>
+                    <div><p className="calc-field__label">LITERS</p><p style={{ fontWeight: 700 }}>{liters.toFixed(2)} L</p></div>
+                    <div><p className="calc-field__label">FORMULA</p><p style={{ fontWeight: 700, fontSize: "var(--t-body-sm)" }}>{gallons}×8.35×{density}</p></div>
+                </div>
+            </div>
+
+            {/* Quick Reference Table */}
+            <div style={{ marginTop: "var(--s-4)" }}>
+                <h3 className="t-h3" style={{ marginBottom: "var(--s-3)" }}>Quick Reference — {substance.label}</h3>
+                <table className="calc-table">
+                    <thead>
+                        <tr><th>Gallons</th><th>Pounds</th><th>Ounces</th><th>Kilograms</th></tr>
+                    </thead>
+                    <tbody>
+                        {quickRef.map((g) => {
+                            const p = g * LB_PER_GAL_WATER * density;
+                            return (
+                                <tr key={g} style={g === gallons ? { background: "var(--n-primary-light)" } : {}}>
+                                    <td>{g} gal</td>
+                                    <td>{p.toFixed(2)} lbs</td>
+                                    <td>{(p * 16).toFixed(0)} oz</td>
+                                    <td>{(p * 0.453592).toFixed(2)} kg</td>
+                                </tr>
+                            );
+                        })}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    );
+}
+
 // ─── Dispatcher ───
 interface Props { calcType: string; }
 
@@ -1677,6 +1766,7 @@ const CALCULATORS: Record<string, React.FC> = {
     "min-to-hour": MinToHourCalc,
     "inch-to-foot": InchToFootCalc,
     "kiloohm-to-ohm": KiloohmToOhmCalc,
+    "gal-to-lb": GalToLbCalc,
 };
 
 export default function ConversionCalculatorCore({ calcType }: Props) {

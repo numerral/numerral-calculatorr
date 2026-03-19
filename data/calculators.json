@@ -2705,6 +2705,40 @@
     "keywords": "kiloohms to ohms, kΩ to Ω, kiloohm to ohm converter, how many ohms in a kiloohm, resistance conversion, Ohm's Law, electrical resistance"
   },
   {
+    "id": "gal-to-lb-converter",
+    "category": "convert",
+    "title": "Gallons to Pounds Converter (gal to lb)",
+    "slug": "gal-to-lb-converter",
+    "categorySlug": "convert",
+    "icon": "🪣",
+    "calcType": "gal-to-lb",
+    "description": "Convert US gallons to pounds (gal to lb) for any substance. Select from 20 common liquids or enter a custom density. See results in pounds, ounces, and kilograms.",
+    "stars": 5,
+    "defaults": {
+      "amount": 1,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 100,
+        "step": 1
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "gallons to pounds, gal to lb, how much does a gallon of water weigh, gallon to pound converter, gallons to lbs, water weight per gallon, liquid weight calculator"
+  },
+  {
     "id": "retirement-corpus",
     "category": "invest",
     "title": "Retirement Corpus Calculator",

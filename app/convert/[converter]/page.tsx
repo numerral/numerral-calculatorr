@@ -1745,6 +1745,93 @@ const HUB_CONTENT: Record<string, {
             { question: "Why do resistors come in odd values like 4.7kΩ and 2.2kΩ?", answer: "Resistors follow the E-series (E12, E24, E96) — logarithmically spaced values that ensure any needed resistance can be approximated within a percentage tolerance. The E24 series has 24 values per decade: 1.0, 1.1, 1.2, 1.3, 1.5, 1.6, 1.8, 2.0, 2.2, 2.4, 2.7, 3.0, 3.3, 3.6, 3.9, 4.3, 4.7, 5.1, 5.6, 6.2, 6.8, 7.5, 8.2, 9.1." },
         ],
     },
+    "gal-to-lb-converter": {
+        subtitle: "Convert US gallons to pounds (gal to lb) for any substance. Select from 20 common liquids or enter a custom density. See results in pounds, ounces, and kilograms.",
+        contentHTML: `
+            <h3>How to Convert Gallons to Pounds</h3>
+            <p>Gallons measure <strong>volume</strong> while pounds measure <strong>weight</strong>. To convert, multiply by 8.3454 (the weight of 1 gallon of water in pounds) and the substance's density:</p>
+            <div class="explanation__highlight">
+                <strong>pounds = gallons × 8.3454 × density (g/mL)</strong><br/><br/>
+                Example: 1 gallon of water (density 1.00 g/mL)<br/>
+                = 1 × 8.3454 × 1.00 = <strong>8.35 lbs</strong><br/><br/>
+                Example: 1 gallon of milk (density 1.03 g/mL)<br/>
+                = 1 × 8.3454 × 1.03 = <strong>8.60 lbs</strong><br/><br/>
+                Example: 5 gallons of gasoline (density 0.74 g/mL)<br/>
+                = 5 × 8.3454 × 0.74 = <strong>30.88 lbs</strong>
+            </div>
+
+            <h3>How Much Does a Gallon Weigh? — By Substance</h3>
+            <table>
+                <thead><tr><th>Liquid</th><th>Density</th><th>1 Gallon =</th><th>5 Gallons =</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Water</strong></td><td>1.00 g/mL</td><td>8.35 lbs</td><td>41.73 lbs</td></tr>
+                    <tr><td><strong>Whole Milk</strong></td><td>1.03 g/mL</td><td>8.60 lbs</td><td>42.98 lbs</td></tr>
+                    <tr><td><strong>Honey</strong></td><td>1.43 g/mL</td><td>11.93 lbs</td><td>59.67 lbs</td></tr>
+                    <tr><td><strong>Olive Oil</strong></td><td>0.91 g/mL</td><td>7.59 lbs</td><td>37.97 lbs</td></tr>
+                    <tr><td><strong>Vegetable Oil</strong></td><td>0.92 g/mL</td><td>7.68 lbs</td><td>38.39 lbs</td></tr>
+                    <tr><td><strong>Gasoline</strong></td><td>0.74 g/mL</td><td>6.18 lbs</td><td>30.88 lbs</td></tr>
+                    <tr><td><strong>Diesel Fuel</strong></td><td>0.85 g/mL</td><td>7.09 lbs</td><td>35.47 lbs</td></tr>
+                    <tr><td><strong>Maple Syrup</strong></td><td>1.33 g/mL</td><td>11.10 lbs</td><td>55.50 lbs</td></tr>
+                    <tr><td><strong>Heavy Cream</strong></td><td>1.01 g/mL</td><td>8.43 lbs</td><td>42.14 lbs</td></tr>
+                    <tr><td><strong>Rubbing Alcohol</strong></td><td>0.79 g/mL</td><td>6.59 lbs</td><td>32.96 lbs</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Common US Containers — How Much Do They Weigh?</h3>
+            <table>
+                <thead><tr><th>Container</th><th>Volume</th><th>Water Weight</th><th>Actual Liquid</th></tr></thead>
+                <tbody>
+                    <tr><td>Milk jug</td><td>1 gallon</td><td>8.35 lbs</td><td>8.60 lbs (milk)</td></tr>
+                    <tr><td>Gas can (small)</td><td>2 gallons</td><td>16.69 lbs</td><td>12.35 lbs (gas)</td></tr>
+                    <tr><td>Paint bucket</td><td>5 gallons</td><td>41.73 lbs</td><td>~50 lbs (latex paint)</td></tr>
+                    <tr><td>Water cooler bottle</td><td>5 gallons</td><td>41.73 lbs</td><td>41.73 lbs (water)</td></tr>
+                    <tr><td>Gas can (large)</td><td>5 gallons</td><td>41.73 lbs</td><td>30.88 lbs (gas)</td></tr>
+                    <tr><td>Trash can (typical)</td><td>32 gallons</td><td>267.1 lbs</td><td>—</td></tr>
+                    <tr><td>Bathtub (full)</td><td>~60 gallons</td><td>500.7 lbs</td><td>—</td></tr>
+                    <tr><td>Water heater (standard)</td><td>40–50 gallons</td><td>334–418 lbs</td><td>—</td></tr>
+                </tbody>
+            </table>
+
+            <h3>US Volume Unit Hierarchy</h3>
+            <table>
+                <thead><tr><th>Unit</th><th>Equivalent</th><th>Water Weight</th></tr></thead>
+                <tbody>
+                    <tr><td>1 fluid ounce</td><td>2 tablespoons</td><td>0.065 lbs</td></tr>
+                    <tr><td>1 cup</td><td>8 fluid ounces</td><td>0.522 lbs</td></tr>
+                    <tr><td>1 pint</td><td>2 cups = 16 fl oz</td><td>1.044 lbs</td></tr>
+                    <tr><td>1 quart</td><td>2 pints = 32 fl oz</td><td>2.087 lbs</td></tr>
+                    <tr><td><strong>1 gallon</strong></td><td><strong>4 quarts = 128 fl oz</strong></td><td><strong>8.345 lbs</strong></td></tr>
+                </tbody>
+            </table>
+
+            <h3>"A Pint's a Pound the World Around"</h3>
+            <p>This classic American saying is approximately true: 1 US pint of water weighs about 1.044 pounds — close enough to 1 pound for quick kitchen estimates. However, it only works for water-like liquids. A pint of honey weighs about 1.49 lbs, while a pint of oil weighs only ~0.95 lbs.</p>
+
+            <h3>US Gallon vs. Imperial Gallon</h3>
+            <table>
+                <thead><tr><th>Gallon Type</th><th>Volume</th><th>Water Weight</th><th>Where Used</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>US Gallon</strong></td><td>3.785 liters (128 fl oz)</td><td>8.345 lbs</td><td>United States</td></tr>
+                    <tr><td><strong>Imperial Gallon</strong></td><td>4.546 liters (160 imp fl oz)</td><td>10.022 lbs</td><td>UK (historical)</td></tr>
+                </tbody>
+            </table>
+            <p>An Imperial gallon is 20% larger than a US gallon. This converter uses the <strong>US gallon</strong> (3.785 liters).</p>
+
+            <h3>What Is a Gallon?</h3>
+            <p>A <strong>US gallon</strong> (gal) is a unit of volume equal to 128 US fluid ounces, 4 quarts, 8 pints, or 3.785 liters. It is the standard unit for measuring fuel, milk, paint, and large liquid volumes in the United States. Gas pumps, milk jugs, and paint buckets are all sized in gallons.</p>
+
+            <h3>What Is a Pound?</h3>
+            <p>A <strong>pound</strong> (lb) is a US customary and imperial unit of weight equal to 16 ounces or approximately 453.592 grams. It is the primary unit of weight used in the United States for groceries, shipping, body weight, and everyday commerce. The abbreviation "lb" comes from the Latin "libra."</p>
+        `,
+        faq: [
+            { question: "How much does a gallon of water weigh?", answer: "A US gallon of water weighs approximately 8.345 pounds (8 lbs 5.5 oz) at room temperature. This is one of the most commonly searched conversions in the US. For quick math: 8 gallons of water ≈ 67 pounds." },
+            { question: "How much does a gallon of milk weigh?", answer: "About 8.6 pounds. Milk is slightly denser than water (1.03 g/mL vs 1.00 g/mL) because of dissolved sugars, proteins, and fat. So a gallon of milk weighs about 0.25 lbs more than a gallon of water." },
+            { question: "How much does a gallon of gasoline weigh?", answer: "About 6.18 pounds. Gasoline has a density of approximately 0.74 g/mL, making it significantly lighter than water. This is why gasoline floats on water. A full 15-gallon gas tank weighs about 93 lbs of fuel." },
+            { question: "How much does a 5-gallon bucket of water weigh?", answer: "About 41.7 pounds (just the water). Add ~2 lbs for the bucket itself, so roughly 44 pounds total. This is why OSHA guidelines recommend caution when lifting 5-gallon containers." },
+            { question: "Is a US gallon the same as an Imperial gallon?", answer: "No. A US gallon = 3.785 liters (8.345 lbs of water), while an Imperial gallon = 4.546 liters (10.022 lbs of water). The Imperial gallon is 20% larger. If a UK recipe calls for 'a gallon,' it means the Imperial gallon." },
+            { question: "Does a pint weigh a pound?", answer: "Almost! The saying 'a pint's a pound the world around' is approximately true for water: 1 US pint of water weighs ~1.044 lbs. For denser liquids like honey (1.49 lbs/pint) or lighter ones like oil (0.95 lbs/pint), the saying doesn't hold." },
+        ],
+    },
 };
 
 export default async function ConvertHubPage({ params }: PageProps) {
