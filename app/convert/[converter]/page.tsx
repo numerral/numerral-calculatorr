@@ -291,6 +291,88 @@ const HUB_CONTENT: Record<string, {
             { question: "How much does a full aquarium weigh?", answer: "Multiply the volume in liters by 1.0 kg/L (for water). A 100-liter (26.4-gallon) tank holds 100 kg (220 lbs) of water, plus the weight of the tank, gravel, and decorations. Always check your floor's load capacity for large tanks." },
         ],
     },
+    "gram-to-cup-converter": {
+        subtitle: "Convert grams (g) to US cups for any ingredient. Select from 20 common cooking and baking ingredients or enter a custom density. See results in cups, tablespoons, and teaspoons instantly.",
+        contentHTML: `
+            <h3>How to Convert Grams to Cups</h3>
+            <p>Grams (g) measure <strong>weight</strong>. US cups measure <strong>volume</strong>. Since different ingredients have different densities, the same weight of two ingredients fills different amounts of a measuring cup.</p>
+            <p>The conversion is a two-step process:</p>
+            <div class="explanation__highlight">
+                <strong>Step 1:</strong> Convert grams to milliliters: <strong>mL = grams ÷ density (g/mL)</strong><br/>
+                <strong>Step 2:</strong> Convert milliliters to cups: <strong>cups = mL ÷ 236.588</strong><br/><br/>
+                <strong>Combined formula: cups = grams ÷ (density × 236.588)</strong><br/><br/>
+                Example: 250g of all-purpose flour = 250 ÷ (0.53 × 236.588) = 250 ÷ 125.39 = <strong>1.99 cups</strong> (≈ 2 cups)
+            </div>
+
+            <h3>How Many Cups Is…? — Popular Answers</h3>
+            <p>These are the most commonly searched gram-to-cup conversions for baking and cooking:</p>
+            <table>
+                <thead><tr><th>Ingredient</th><th>50g</th><th>100g</th><th>150g</th><th>200g</th><th>250g</th><th>500g</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>All-Purpose Flour</strong></td><td>0.40 cups</td><td>0.80 cups</td><td>1.20 cups</td><td>1.59 cups</td><td>1.99 cups</td><td>3.99 cups</td></tr>
+                    <tr><td><strong>Granulated Sugar</strong></td><td>0.25 cups</td><td>0.50 cups</td><td>0.75 cups</td><td>0.99 cups</td><td>1.24 cups</td><td>2.49 cups</td></tr>
+                    <tr><td><strong>Powdered Sugar</strong></td><td>0.38 cups</td><td>0.75 cups</td><td>1.13 cups</td><td>1.51 cups</td><td>1.89 cups</td><td>3.77 cups</td></tr>
+                    <tr><td><strong>Brown Sugar (packed)</strong></td><td>0.23 cups</td><td>0.45 cups</td><td>0.68 cups</td><td>0.91 cups</td><td>1.14 cups</td><td>2.27 cups</td></tr>
+                    <tr><td><strong>Butter</strong></td><td>0.23 cups</td><td>0.46 cups</td><td>0.70 cups</td><td>0.93 cups</td><td>1.16 cups</td><td>2.32 cups</td></tr>
+                    <tr><td><strong>Honey</strong></td><td>0.15 cups</td><td>0.30 cups</td><td>0.45 cups</td><td>0.59 cups</td><td>0.74 cups</td><td>1.49 cups</td></tr>
+                    <tr><td><strong>Cocoa Powder</strong></td><td>0.41 cups</td><td>0.81 cups</td><td>1.22 cups</td><td>1.63 cups</td><td>2.03 cups</td><td>4.06 cups</td></tr>
+                    <tr><td><strong>Rolled Oats</strong></td><td>0.59 cups</td><td>1.17 cups</td><td>1.76 cups</td><td>2.35 cups</td><td>2.94 cups</td><td>5.87 cups</td></tr>
+                    <tr><td><strong>Rice (uncooked)</strong></td><td>0.25 cups</td><td>0.50 cups</td><td>0.75 cups</td><td>0.99 cups</td><td>1.24 cups</td><td>2.49 cups</td></tr>
+                    <tr><td><strong>Water</strong></td><td>0.21 cups</td><td>0.42 cups</td><td>0.63 cups</td><td>0.85 cups</td><td>1.06 cups</td><td>2.11 cups</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Cup Subdivisions — Quick Reference</h3>
+            <p>US recipes often use fractions of cups. Here's how they convert to other volume units:</p>
+            <table>
+                <thead><tr><th>Measurement</th><th>Cups</th><th>Tablespoons</th><th>Teaspoons</th><th>Milliliters</th></tr></thead>
+                <tbody>
+                    <tr><td>1 cup</td><td>1</td><td>16</td><td>48</td><td>236.59 mL</td></tr>
+                    <tr><td>3/4 cup</td><td>0.75</td><td>12</td><td>36</td><td>177.44 mL</td></tr>
+                    <tr><td>2/3 cup</td><td>0.667</td><td>10⅔</td><td>32</td><td>157.73 mL</td></tr>
+                    <tr><td>1/2 cup</td><td>0.5</td><td>8</td><td>24</td><td>118.29 mL</td></tr>
+                    <tr><td>1/3 cup</td><td>0.333</td><td>5⅓</td><td>16</td><td>78.86 mL</td></tr>
+                    <tr><td>1/4 cup</td><td>0.25</td><td>4</td><td>12</td><td>59.15 mL</td></tr>
+                    <tr><td>1/8 cup</td><td>0.125</td><td>2</td><td>6</td><td>29.57 mL</td></tr>
+                </tbody>
+            </table>
+
+            <h3>US Cup vs. Metric Cup vs. Japanese Cup</h3>
+            <p>Not all "cups" are the same:</p>
+            <ul>
+                <li><strong>US customary cup</strong> = 236.588 mL (used in American recipes — this is what our calculator uses)</li>
+                <li><strong>US legal cup</strong> = 240 mL (used on US nutrition labels)</li>
+                <li><strong>Metric cup</strong> = 250 mL (used in Australia, New Zealand, Canada)</li>
+                <li><strong>Japanese cup</strong> = 200 mL (used in Japanese cooking)</li>
+                <li><strong>Imperial cup</strong> = 284.131 mL (historical British measurement, rarely used today)</li>
+            </ul>
+            <p>This matters: 200g of flour is 1.59 US cups, but only 1.51 metric cups, and 1.89 Japanese cups. Always check which cup standard your recipe uses.</p>
+
+            <h3>When to Convert Grams to Cups</h3>
+            <ul>
+                <li><strong>Following metric recipes with US measuring tools</strong>: European, Australian, and professional baking recipes specify ingredients in grams. If you only own a set of measuring cups and spoons, you need to convert grams to cups.</li>
+                <li><strong>Scaling baking recipes</strong>: A recipe might call for "2 cups of flour," but if you're halving or doubling it, calculating in grams first (then converting back to cups) prevents rounding errors.</li>
+                <li><strong>Comparing nutritional information</strong>: US nutrition labels specify serving sizes in grams, but your mental reference might be in cups. Knowing that a 30g serving of cereal = about 1 cup helps you visualize portion sizes.</li>
+                <li><strong>Meal planning and portioning</strong>: When you have a 500g bag of flour and need to know how many cups that gives you (about 4 cups), gram-to-cup conversion helps plan how many batches you can make.</li>
+            </ul>
+
+            <h3>Common Mistakes When Converting Grams to Cups</h3>
+            <ul>
+                <li><strong>"1 cup = 240g for everything"</strong> — This only works for water. 1 cup of flour is about 126g, and 1 cup of honey is about 337g. The weight per cup varies wildly by ingredient.</li>
+                <li><strong>Using the wrong cup size</strong> — If an Australian recipe says "1 cup," they mean 250 mL (metric cup), not 236.59 mL (US cup). That's a 5.7% difference, which matters in precision baking.</li>
+                <li><strong>Not accounting for how you scoop</strong> — A "cup of flour" can weigh 120g (spooned and leveled) or 150g (scooped and packed). Professional recipes in grams eliminate this ambiguity entirely.</li>
+                <li><strong>Confusing weight ounces and fluid ounces</strong> — 1 cup = 8 fluid ounces (volume). But 1 cup of flour weighs about 4.4 ounces (weight). These are different measurements.</li>
+            </ul>
+        `,
+        faq: [
+            { question: "How many cups is 100 grams of flour?", answer: "100 grams of all-purpose flour is approximately 0.80 cups (about ¾ cup + 1 tablespoon). This is based on flour's density of 0.53 g/mL. The formula: 100 ÷ (0.53 × 236.588) = 0.797 cups." },
+            { question: "How many cups is 200 grams of sugar?", answer: "200 grams of granulated sugar is approximately 0.99 cups — essentially 1 cup. Sugar's density (0.85 g/mL) makes it heavier per cup than flour, so 200g fills almost exactly one measuring cup." },
+            { question: "How do I convert grams to cups without a scale?", answer: "Use our calculator above — select the ingredient, enter the weight in grams, and get the cup measurement instantly. If you don't have a specific ingredient's density, use the Custom option to enter any density between 0.1 and 3.0 g/mL." },
+            { question: "Is 250g of flour 2 cups?", answer: "Very close. 250 grams of all-purpose flour equals approximately 1.99 cups — essentially 2 cups. This is why many baking recipes round 250g of flour to 2 cups for convenience." },
+            { question: "Why doesn't 1 cup of flour weigh the same as 1 cup of sugar?", answer: "Because flour and sugar have different densities. Flour (0.53 g/mL) is less dense — it's lighter and fluffier. Sugar (0.85 g/mL) is denser — the granules pack tighter. So 1 cup of flour weighs about 126g while 1 cup of sugar weighs about 201g." },
+            { question: "What is the difference between US cups and metric cups?", answer: "A US customary cup = 236.588 mL. A metric cup (used in Australia, Canada) = 250 mL — about 5.7% larger. US nutrition labels use 240 mL. Japanese cups are only 200 mL. Always check which standard your recipe uses." },
+        ],
+    },
 };
 
 export default async function ConvertHubPage({ params }: PageProps) {

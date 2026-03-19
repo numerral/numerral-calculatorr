@@ -2127,6 +2127,40 @@
     "keywords": "liters to kilograms, liters to kg, L to kg converter, liters to kg calculator, volume to weight, liquid weight calculator, water weight per liter"
   },
   {
+    "id": "gram-to-cup-converter",
+    "category": "convert",
+    "title": "Grams to Cups Converter (g to cups)",
+    "slug": "gram-to-cup-converter",
+    "categorySlug": "convert",
+    "icon": "🥛",
+    "calcType": "gram-to-cup",
+    "description": "Convert grams to US cups for any ingredient. Select from 20 common cooking ingredients or enter a custom density. See results in cups, tablespoons, and teaspoons instantly.",
+    "stars": 5,
+    "defaults": {
+      "amount": 100,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 1,
+        "max": 1000,
+        "step": 1
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "grams to cups, g to cups converter, grams to cups calculator, how many cups, baking conversion, flour grams to cups, sugar grams to cups, weight to cup converter"
+  },
+  {
     "id": "retirement-corpus",
     "category": "invest",
     "title": "Retirement Corpus Calculator",
