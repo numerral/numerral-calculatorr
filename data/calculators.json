@@ -2501,6 +2501,40 @@
     "keywords": "grams to liters, g to L converter, gram to liter calculator, how many liters is 500 grams, weight to volume, density conversion, cooking grams to liters"
   },
   {
+    "id": "ml-to-mg-converter",
+    "category": "convert",
+    "title": "Milliliters to Milligrams Converter (mL to mg)",
+    "slug": "ml-to-mg-converter",
+    "categorySlug": "convert",
+    "icon": "💊",
+    "calcType": "ml-to-mg",
+    "description": "Convert milliliters to milligrams (mL to mg) for any substance. Select from 20 common ingredients or enter a custom density. Ideal for medication dosing and lab work.",
+    "stars": 5,
+    "defaults": {
+      "amount": 5,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 1000,
+        "step": 1
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "mL to mg, milliliters to milligrams, mL to mg converter, how many mg in 1 mL, medication dosing mL to mg, mL to mg calculator, volume to weight"
+  },
+  {
     "id": "retirement-corpus",
     "category": "invest",
     "title": "Retirement Corpus Calculator",

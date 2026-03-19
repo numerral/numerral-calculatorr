@@ -1229,6 +1229,91 @@ const HUB_CONTENT: Record<string, {
             { question: "Why does 500g of flour take up more space than 500g of water?", answer: "Because flour is less dense than water. Flour has a density of ~0.53 g/mL vs water's 1.00 g/mL. This means flour particles have a lot of air trapped between them, making 500g of flour occupy almost twice the volume (943 mL vs 500 mL)." },
         ],
     },
+    "ml-to-mg-converter": {
+        subtitle: "Convert milliliters to milligrams (mL to mg) for any substance. Select from 20 common ingredients or enter a custom density. Ideal for medication dosing and lab work.",
+        contentHTML: `
+            <h3>How to Convert Milliliters to Milligrams</h3>
+            <p>Milliliters measure <strong>volume</strong> while milligrams measure <strong>weight</strong>. To convert between them, you need the substance's density:</p>
+            <div class="explanation__highlight">
+                <strong>milligrams = milliliters × density (g/mL) × 1,000</strong><br/><br/>
+                Example: 5 mL of water (density 1.00 g/mL)<br/>
+                = 5 × 1.00 × 1,000 = <strong>5,000 mg</strong><br/><br/>
+                Example: 5 mL of olive oil (density 0.91 g/mL)<br/>
+                = 5 × 0.91 × 1,000 = <strong>4,550 mg</strong><br/><br/>
+                Example: 5 mL of honey (density 1.43 g/mL)<br/>
+                = 5 × 1.43 × 1,000 = <strong>7,150 mg</strong>
+            </div>
+
+            <h3>Milliliters to Milligrams — By Substance</h3>
+            <table>
+                <thead><tr><th>Substance</th><th>Density (g/mL)</th><th>1 mL =</th><th>5 mL =</th><th>10 mL =</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Water</strong></td><td>1.00</td><td>1,000 mg</td><td>5,000 mg</td><td>10,000 mg</td></tr>
+                    <tr><td><strong>Whole Milk</strong></td><td>1.03</td><td>1,030 mg</td><td>5,150 mg</td><td>10,300 mg</td></tr>
+                    <tr><td><strong>Olive Oil</strong></td><td>0.91</td><td>910 mg</td><td>4,550 mg</td><td>9,100 mg</td></tr>
+                    <tr><td><strong>Honey</strong></td><td>1.43</td><td>1,430 mg</td><td>7,150 mg</td><td>14,300 mg</td></tr>
+                    <tr><td><strong>Rubbing Alcohol</strong></td><td>0.79</td><td>790 mg</td><td>3,950 mg</td><td>7,900 mg</td></tr>
+                    <tr><td><strong>Glycerin</strong></td><td>1.26</td><td>1,260 mg</td><td>6,300 mg</td><td>12,600 mg</td></tr>
+                    <tr><td><strong>Maple Syrup</strong></td><td>1.33</td><td>1,330 mg</td><td>6,650 mg</td><td>13,300 mg</td></tr>
+                    <tr><td><strong>Coconut Oil (liquid)</strong></td><td>0.92</td><td>920 mg</td><td>4,600 mg</td><td>9,200 mg</td></tr>
+                    <tr><td><strong>Soy Sauce</strong></td><td>1.20</td><td>1,200 mg</td><td>6,000 mg</td><td>12,000 mg</td></tr>
+                    <tr><td><strong>Vanilla Extract</strong></td><td>0.88</td><td>880 mg</td><td>4,400 mg</td><td>8,800 mg</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Medication Dosing — mL to mg Reference</h3>
+            <p>Many liquid medications are labeled in mg but measured in mL. Common US OTC medications:</p>
+            <table>
+                <thead><tr><th>Medication</th><th>Concentration</th><th>5 mL dose =</th><th>10 mL dose =</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Children's Tylenol</strong></td><td>160 mg per 5 mL</td><td>160 mg</td><td>320 mg</td></tr>
+                    <tr><td><strong>Children's Motrin</strong></td><td>100 mg per 5 mL</td><td>100 mg</td><td>200 mg</td></tr>
+                    <tr><td><strong>Benadryl Liquid</strong></td><td>12.5 mg per 5 mL</td><td>12.5 mg</td><td>25 mg</td></tr>
+                    <tr><td><strong>NyQuil</strong></td><td>650 mg/30 mL dose</td><td>108 mg</td><td>217 mg</td></tr>
+                    <tr><td><strong>Amoxicillin Susp.</strong></td><td>250 mg per 5 mL</td><td>250 mg</td><td>500 mg</td></tr>
+                </tbody>
+            </table>
+            <p><strong>⚠️ Important:</strong> This table is for reference only. Always follow your doctor's or pharmacist's instructions for medication dosing.</p>
+
+            <h3>mL vs. cc — Are They the Same?</h3>
+            <p>Yes. <strong>1 mL = 1 cc</strong> (cubic centimeter). In medical and pharmaceutical settings, you'll see both abbreviations used interchangeably. A "3 cc syringe" holds exactly 3 mL. The term "cc" is more common in medical jargon, while "mL" is the standard SI unit used on medication labels.</p>
+
+            <h3>Measuring Small Volumes</h3>
+            <table>
+                <thead><tr><th>Tool</th><th>Typical Size</th><th>Best For</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Oral syringe</strong></td><td>1 mL, 5 mL, 10 mL</td><td>Most accurate for medication</td></tr>
+                    <tr><td><strong>Medicine dropper</strong></td><td>~1 mL (20 drops)</td><td>Essential oils, infant doses</td></tr>
+                    <tr><td><strong>Dosing cup</strong></td><td>5 mL – 30 mL</td><td>Liquid cold/flu medicine</td></tr>
+                    <tr><td><strong>Teaspoon</strong></td><td>~5 mL</td><td>Kitchen — NOT precise for meds</td></tr>
+                    <tr><td><strong>Tablespoon</strong></td><td>~15 mL</td><td>Kitchen — NOT precise for meds</td></tr>
+                </tbody>
+            </table>
+
+            <h3>What Is a Milliliter?</h3>
+            <p>A <strong>milliliter</strong> (mL) is a metric unit of volume equal to one thousandth of a liter (1/1,000 L) or one cubic centimeter (1 cc). In medicine, mL is the standard unit for liquid dosing. One US teaspoon equals approximately 4.929 mL, though for medication labeling the FDA uses 5 mL per teaspoon.</p>
+
+            <h3>What Is a Milligram?</h3>
+            <p>A <strong>milligram</strong> (mg) is a metric unit of mass equal to one thousandth of a gram (1/1,000 g) or one millionth of a kilogram. Drug dosages are almost always expressed in milligrams. For water-based solutions (density ~1.0 g/mL), 1 mL = 1,000 mg — a clean conversion specific to water.</p>
+
+            <h3>When to Convert mL to mg</h3>
+            <ul>
+                <li><strong>Medication dosing</strong>: A prescription says "take 10 mL" — you want to know how many mg of active ingredient that contains.</li>
+                <li><strong>Supplement drops</strong>: Vitamin D drops are measured in mL but labeled in IU/mg.</li>
+                <li><strong>Lab chemistry</strong>: Converting between measured volumes and required masses for solutions.</li>
+                <li><strong>Cooking</strong>: A recipe uses mL for a flavoring but the label shows mg per serving.</li>
+                <li><strong>Essential oils</strong>: Dosing by drops (volume) while safety limits are given in mg.</li>
+            </ul>
+        `,
+        faq: [
+            { question: "How many mg is 1 mL?", answer: "For water: 1 mL = 1,000 mg (1 gram). But this only applies to substances with a density of 1.0 g/mL. For other substances, multiply 1 mL by the density in g/mL and then by 1,000. Example: 1 mL of olive oil (0.91 g/mL) = 910 mg." },
+            { question: "How many mg is 5 mL of medicine?", answer: "That depends on the medication's concentration, not just the volume. For example, Children's Tylenol is 160 mg per 5 mL, while Benadryl Liquid is 12.5 mg per 5 mL. Check the label for the 'mg per mL' concentration, then multiply by the volume in mL." },
+            { question: "Is 1 mL the same as 1 cc?", answer: "Yes, exactly. 1 milliliter (mL) = 1 cubic centimeter (cc). They are interchangeable. Medical professionals often use 'cc' while pharmacists and medication labels typically use 'mL'. A 5 cc syringe holds exactly 5 mL." },
+            { question: "How many mg is 10 mL of water?", answer: "10,000 mg (10 grams). Since water has a density of 1.00 g/mL: 10 mL × 1.00 g/mL × 1,000 = 10,000 mg. This is the simplest conversion because water's density is exactly 1." },
+            { question: "Should I use a teaspoon to measure medication?", answer: "No — the FDA and pediatricians recommend using an oral syringe or dosing cup instead of kitchen spoons. Kitchen teaspoons can vary from 3 mL to 7 mL, potentially causing under- or over-dosing. An oral syringe measures precisely to 0.1 mL." },
+            { question: "How do I convert mL to mg for a liquid medication?", answer: "You need the drug's concentration (found on the label). Formula: mg = mL × concentration (mg/mL). Example: If a cough syrup is 50 mg/5 mL (= 10 mg/mL), then 15 mL = 15 × 10 = 150 mg of active ingredient." },
+        ],
+    },
 };
 
 export default async function ConvertHubPage({ params }: PageProps) {
