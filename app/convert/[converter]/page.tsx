@@ -2554,6 +2554,92 @@ const HUB_CONTENT: Record<string, {
             { question: "Is the 3,500 calorie rule accurate?", answer: "It's a useful approximation but not perfectly accurate. The rule assumes all weight loss comes from pure fat, but in reality you also lose some water and muscle. Actual weight loss may be faster initially (water loss) and slower later (metabolic adaptation). For planning purposes, it's still the best simple estimate." },
         ],
     },
+    "cup-butter-to-gram-converter": {
+        subtitle: "Convert cups of butter to grams. See results in grams, ounces, sticks, and tablespoons. Includes a quick reference table for common butter amounts.",
+        contentHTML: `
+            <h3>How to Convert Cups of Butter to Grams</h3>
+            <p>One US cup of butter weighs <strong>227 grams</strong> (8 oz, 2 sticks):</p>
+            <div class="explanation__highlight">
+                <strong>grams = cups × 227</strong><br/><br/>
+                Example: 1 cup of butter<br/>
+                = 1 × 227 = <strong>227 g (2 sticks)</strong><br/><br/>
+                Example: ½ cup of butter<br/>
+                = 0.5 × 227 = <strong>113.5 g (1 stick)</strong><br/><br/>
+                Example: ¼ cup of butter<br/>
+                = 0.25 × 227 = <strong>56.75 g (½ stick)</strong>
+            </div>
+
+            <h3>US Butter Packaging — Complete Reference</h3>
+            <p>US butter is sold in 1-pound boxes containing <strong>4 sticks</strong>. Each stick has tablespoon markings on the wrapper:</p>
+            <table>
+                <thead><tr><th>Amount</th><th>Sticks</th><th>Cups</th><th>Tbsp</th><th>Grams</th><th>Ounces</th></tr></thead>
+                <tbody>
+                    <tr><td>1 tablespoon</td><td>⅛ stick</td><td>1/16 cup</td><td>1 tbsp</td><td>14.2 g</td><td>0.5 oz</td></tr>
+                    <tr><td>2 tablespoons</td><td>¼ stick</td><td>⅛ cup</td><td>2 tbsp</td><td>28.4 g</td><td>1.0 oz</td></tr>
+                    <tr><td>¼ cup</td><td>½ stick</td><td>¼ cup</td><td>4 tbsp</td><td>56.7 g</td><td>2.0 oz</td></tr>
+                    <tr><td>⅓ cup</td><td>⅔ stick</td><td>⅓ cup</td><td>5⅓ tbsp</td><td>75.7 g</td><td>2.7 oz</td></tr>
+                    <tr><td><strong>½ cup (1 stick)</strong></td><td><strong>1 stick</strong></td><td><strong>½ cup</strong></td><td><strong>8 tbsp</strong></td><td><strong>113.5 g</strong></td><td><strong>4.0 oz</strong></td></tr>
+                    <tr><td>¾ cup</td><td>1½ sticks</td><td>¾ cup</td><td>12 tbsp</td><td>170.1 g</td><td>6.0 oz</td></tr>
+                    <tr><td><strong>1 cup (2 sticks)</strong></td><td><strong>2 sticks</strong></td><td><strong>1 cup</strong></td><td><strong>16 tbsp</strong></td><td><strong>227 g</strong></td><td><strong>8.0 oz</strong></td></tr>
+                    <tr><td>1½ cups</td><td>3 sticks</td><td>1½ cups</td><td>24 tbsp</td><td>340.5 g</td><td>12.0 oz</td></tr>
+                    <tr><td><strong>2 cups (1 lb)</strong></td><td><strong>4 sticks</strong></td><td><strong>2 cups</strong></td><td><strong>32 tbsp</strong></td><td><strong>454 g</strong></td><td><strong>16.0 oz</strong></td></tr>
+                </tbody>
+            </table>
+
+            <h3>Common Baking Recipes — Butter Amounts</h3>
+            <table>
+                <thead><tr><th>Recipe</th><th>Butter</th><th>Cups</th><th>Grams</th></tr></thead>
+                <tbody>
+                    <tr><td>Cookies (1 batch)</td><td>1–2 sticks</td><td>½–1 cup</td><td>113–227 g</td></tr>
+                    <tr><td>Pie crust (single)</td><td>1 stick + 2 tbsp</td><td>~⅔ cup</td><td>142 g</td></tr>
+                    <tr><td>Cake (9" layer)</td><td>1–2 sticks</td><td>½–1 cup</td><td>113–227 g</td></tr>
+                    <tr><td>Buttercream frosting</td><td>2–3 sticks</td><td>1–1½ cups</td><td>227–340 g</td></tr>
+                    <tr><td>Pound cake</td><td>2 sticks (1 lb total)</td><td>1 cup</td><td>227 g</td></tr>
+                    <tr><td>Croissants (12)</td><td>5–6 sticks</td><td>2½–3 cups</td><td>567–681 g</td></tr>
+                    <tr><td>Garlic bread</td><td>½ stick</td><td>¼ cup</td><td>57 g</td></tr>
+                </tbody>
+            </table>
+
+            <h3>US vs. European Butter</h3>
+            <table>
+                <thead><tr><th>Feature</th><th>US Butter</th><th>European Butter</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Fat content</strong></td><td>80% minimum (USDA)</td><td>82–86%</td></tr>
+                    <tr><td><strong>Water content</strong></td><td>~16%</td><td>~14%</td></tr>
+                    <tr><td><strong>Sold as</strong></td><td>Sticks (4 oz/113g each)</td><td>Blocks (250g typical)</td></tr>
+                    <tr><td><strong>1 cup weighs</strong></td><td>227 g</td><td>~227 g (same density)</td></tr>
+                    <tr><td><strong>Effect on baking</strong></td><td>Standard results</td><td>Flakier pastries, richer flavor</td></tr>
+                    <tr><td><strong>Common brands</strong></td><td>Land O'Lakes, Challenge</td><td>Kerrygold, Plugrá, Lurpak</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Butter Substitutes — Cup Equivalents</h3>
+            <table>
+                <thead><tr><th>Substitute</th><th>Use Instead Of</th><th>Notes</th></tr></thead>
+                <tbody>
+                    <tr><td>Margarine</td><td>1:1 (1 cup = 1 cup)</td><td>Look for "baking margarine" with 80% fat</td></tr>
+                    <tr><td>Coconut oil</td><td>1:1 (1 cup = 1 cup)</td><td>Solid at room temp; gives slight coconut flavor</td></tr>
+                    <tr><td>Vegetable oil</td><td>¾ cup oil per 1 cup butter</td><td>Only for recipes where texture isn't critical</td></tr>
+                    <tr><td>Applesauce</td><td>½ cup per 1 cup butter</td><td>Reduces fat; works in muffins and quick breads</td></tr>
+                    <tr><td>Greek yogurt</td><td>½ cup per 1 cup butter</td><td>Adds moisture and protein</td></tr>
+                </tbody>
+            </table>
+
+            <h3>What Is a Cup?</h3>
+            <p>A <strong>US cup</strong> is a unit of volume equal to 8 fluid ounces or 236.6 mL. For butter, 1 cup = 2 sticks = 16 tablespoons = 227 grams. The cup measurement is unique to US recipes — most international recipes measure butter by weight (grams).</p>
+
+            <h3>What Is a Gram?</h3>
+            <p>A <strong>gram</strong> (g) is a metric unit of weight equal to 1/1,000 of a kilogram. Grams are the preferred unit for measuring butter in international recipes and by professional bakers because weight is more precise than volume.</p>
+        `,
+        faq: [
+            { question: "How many grams is 1 cup of butter?", answer: "227 grams = 1 cup of butter = 2 sticks = 16 tablespoons = 8 ounces. This is the standard US measurement. A 1-pound box of butter (4 sticks) = 2 cups = 454 grams." },
+            { question: "How many sticks of butter is 1 cup?", answer: "2 sticks = 1 cup. Each US butter stick is ½ cup (113.5g, 4 oz, 8 tbsp). The markings on the butter wrapper make it easy to measure tablespoons without extra tools." },
+            { question: "Can I substitute margarine for butter in baking?", answer: "Yes, use a 1:1 ratio — but choose margarine with at least 80% fat content (labeled 'baking margarine'). Light or reduced-fat margarine has too much water and will change the texture. Butter gives better flavor and browning." },
+            { question: "Why do US recipes use sticks instead of grams?", answer: "US butter is packaged in sticks with tablespoon markings, making it easy to measure without a scale. This tradition dates back to the early 1900s when standardized stick packaging was introduced. Most of the world uses grams because it's more precise." },
+            { question: "How do I measure butter without a scale?", answer: "Use the stick markings: each stick has 8 tablespoon marks. For odd amounts, use the water displacement method: fill a measuring cup to the 1-cup line, then add butter until the water reaches the target. Example: for ⅓ cup butter, fill to 1 cup, add butter until it reads 1⅓ cups." },
+            { question: "Is European butter the same weight per cup?", answer: "Yes, the weight per cup is approximately the same (~227g) because the density is similar. However, European butter has higher fat (82–86% vs US 80%) and less water. This means European butter produces flakier pastries and richer flavors, even though the cup-to-gram conversion is identical." },
+        ],
+    },
 };
 
 export default async function ConvertHubPage({ params }: PageProps) {

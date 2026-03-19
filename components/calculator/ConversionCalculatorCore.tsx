@@ -2329,6 +2329,72 @@ function CalToKgCalc() {
     );
 }
 
+// ─── Cups of Butter to Grams ───
+function CupButterToGramCalc() {
+    const [cups, setCups] = useState(1);
+
+    // 1 cup butter = 227g = 2 sticks = 16 tbsp = 8 oz
+    const grams = cups * 227;
+    const oz = cups * 8;
+    const sticks = cups * 2;
+    const tbsp = cups * 16;
+    const lbs = oz / 16;
+
+    const quickRef = [0.125, 0.25, 0.333, 0.5, 0.667, 0.75, 1, 1.5, 2, 3];
+
+    return (
+        <div className="calc-card">
+            <div className="calc-field">
+                <label className="calc-field__label">🧈 CUPS OF BUTTER</label>
+                <input type="range" className="calc-field__slider" min={0.0625} max={5} step={0.0625}
+                    value={cups} onChange={(e) => setCups(Number(e.target.value))} />
+                <div style={{ display: "flex", gap: "var(--s-2)", alignItems: "center" }}>
+                    <input type="number" className="calc-field__input" value={cups}
+                        onChange={(e) => setCups(Number(e.target.value))} style={{ flex: 1 }} />
+                    <span className="t-body-sm text-muted">cups</span>
+                </div>
+            </div>
+
+            <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
+                <p className="calc-field__label">WEIGHT IN GRAMS</p>
+                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+                    {grams.toFixed(0)} g
+                </p>
+                <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "var(--s-3)" }}>
+                    <div><p className="calc-field__label">STICKS</p><p style={{ fontWeight: 700 }}>{sticks.toFixed(1)} sticks</p></div>
+                    <div><p className="calc-field__label">TABLESPOONS</p><p style={{ fontWeight: 700 }}>{tbsp.toFixed(0)} tbsp</p></div>
+                    <div><p className="calc-field__label">OUNCES</p><p style={{ fontWeight: 700 }}>{oz.toFixed(1)} oz</p></div>
+                    <div><p className="calc-field__label">POUNDS</p><p style={{ fontWeight: 700 }}>{lbs.toFixed(2)} lbs</p></div>
+                </div>
+            </div>
+
+            {/* Quick Reference Table */}
+            <div style={{ marginTop: "var(--s-4)" }}>
+                <h3 className="t-h3" style={{ marginBottom: "var(--s-3)" }}>Cups of Butter — Quick Reference</h3>
+                <table className="calc-table">
+                    <thead>
+                        <tr><th>Cups</th><th>Grams</th><th>Sticks</th><th>Tbsp</th></tr>
+                    </thead>
+                    <tbody>
+                        {quickRef.map((c) => {
+                            const g = c * 227;
+                            return (
+                                <tr key={c} style={c === cups ? { background: "var(--n-primary-light)" } : {}}>
+                                    <td>{c < 1 ? c.toFixed(3).replace(/0+$/, '').replace(/\.$/, '') : c.toFixed(1)} cups</td>
+                                    <td>{g.toFixed(0)} g</td>
+                                    <td>{(c * 2).toFixed(1)} sticks</td>
+                                    <td>{(c * 16).toFixed(0)} tbsp</td>
+                                </tr>
+                            );
+                        })}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    );
+}
+
 // ─── Dispatcher ───
 interface Props { calcType: string; }
 
@@ -2362,6 +2428,7 @@ const CALCULATORS: Record<string, React.FC> = {
     "gram-flour-to-cup": GramFlourToCupCalc,
     "inlb-to-ftlb": InLbToFtLbCalc,
     "cal-to-kg": CalToKgCalc,
+    "cup-butter-to-gram": CupButterToGramCalc,
 };
 
 export default function ConversionCalculatorCore({ calcType }: Props) {

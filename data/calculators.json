@@ -3011,6 +3011,40 @@
     "keywords": "calories to kilograms, kcal to kg, calories burned to weight loss, how many calories to lose 1 kg, calorie deficit weight loss, convert calories to kg"
   },
   {
+    "id": "cup-butter-to-gram-converter",
+    "category": "convert",
+    "title": "Cups of Butter to Grams Converter",
+    "slug": "cup-butter-to-gram-converter",
+    "categorySlug": "convert",
+    "icon": "🧈",
+    "calcType": "cup-butter-to-gram",
+    "description": "Convert cups of butter to grams. See results in grams, ounces, sticks, and tablespoons. Includes a quick reference table for common butter amounts.",
+    "stars": 5,
+    "defaults": {
+      "amount": 1,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 5,
+        "step": 1
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "cups of butter to grams, butter cups to grams, how many grams in a cup of butter, butter conversion, baking butter measurement, 1 cup butter in grams"
+  },
+  {
     "id": "retirement-corpus",
     "category": "invest",
     "title": "Retirement Corpus Calculator",
