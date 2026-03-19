@@ -3215,6 +3215,40 @@
     "keywords": "Fahrenheit to Kelvin, F to K, degrees Fahrenheit to Kelvin, temperature converter, convert Fahrenheit to Kelvin, °F to K"
   },
   {
+    "id": "c-to-k-converter",
+    "category": "convert",
+    "title": "Celsius to Kelvin Converter (°C to K)",
+    "slug": "c-to-k-converter",
+    "categorySlug": "convert",
+    "icon": "🌡️",
+    "calcType": "c-to-k",
+    "description": "Convert Celsius to Kelvin (°C to K). The simplest temperature conversion: just add 273.15. See results in Kelvin, Fahrenheit, and Rankine.",
+    "stars": 5,
+    "defaults": {
+      "amount": 22,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": -273,
+        "max": 6000,
+        "step": 1
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "Celsius to Kelvin, C to K, degrees Celsius to Kelvin, temperature converter, convert Celsius to Kelvin, °C to K"
+  },
+  {
     "id": "retirement-corpus",
     "category": "invest",
     "title": "Retirement Corpus Calculator",

@@ -3076,6 +3076,98 @@ const HUB_CONTENT: Record<string, {
             { question: "What is room temperature in Kelvin?", answer: "Room temperature (72°F / 22°C) = approximately 295 K. In science, 'standard temperature' is defined as 273.15 K (0°C / 32°F), while 'room temperature' in lab settings is typically 293–298 K (68–77°F / 20–25°C)." },
         ],
     },
+    "c-to-k-converter": {
+        subtitle: "Convert Celsius to Kelvin (°C to K). The simplest temperature conversion: just add 273.15. See results in Kelvin, Fahrenheit, and Rankine.",
+        contentHTML: `
+            <h3>How to Convert Celsius to Kelvin</h3>
+            <p>This is the simplest temperature conversion — just <strong>add 273.15</strong>:</p>
+            <div class="explanation__highlight">
+                <strong>K = °C + 273.15</strong><br/><br/>
+                Example: 0°C (water freezes)<br/>
+                = 0 + 273.15 = <strong>273.15 K</strong><br/><br/>
+                Example: 22°C (room temperature)<br/>
+                = 22 + 273.15 = <strong>295.15 K</strong><br/><br/>
+                Example: 100°C (water boils)<br/>
+                = 100 + 273.15 = <strong>373.15 K</strong>
+            </div>
+            <p><strong>Why is it so simple?</strong> Because Celsius and Kelvin use the same degree size — a 1°C change equals a 1 K change. The only difference is the starting point: Kelvin starts at absolute zero (-273.15°C) instead of water's freezing point.</p>
+
+            <h3>Celsius to Kelvin — Conversion Chart</h3>
+            <table>
+                <thead><tr><th>°C</th><th>K</th><th>°F</th><th>Significance</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>-273.15°C</strong></td><td><strong>0 K</strong></td><td>-459.67°F</td><td><strong>Absolute zero</strong></td></tr>
+                    <tr><td>-196°C</td><td>77.15 K</td><td>-320.8°F</td><td>Liquid nitrogen boils</td></tr>
+                    <tr><td>-78.5°C</td><td>194.65 K</td><td>-109.3°F</td><td>Dry ice sublimes</td></tr>
+                    <tr><td>-40°C</td><td>233.15 K</td><td>-40°F</td><td>°F = °C crossover</td></tr>
+                    <tr><td><strong>0°C</strong></td><td><strong>273.15 K</strong></td><td>32°F</td><td><strong>Water freezes</strong></td></tr>
+                    <tr><td>20°C</td><td>293.15 K</td><td>68°F</td><td>Room temperature</td></tr>
+                    <tr><td><strong>37°C</strong></td><td><strong>310.15 K</strong></td><td>98.6°F</td><td><strong>Body temperature</strong></td></tr>
+                    <tr><td><strong>100°C</strong></td><td><strong>373.15 K</strong></td><td>212°F</td><td><strong>Water boils</strong></td></tr>
+                    <tr><td>1538°C</td><td>1811.15 K</td><td>2800°F</td><td>Iron melts</td></tr>
+                    <tr><td>5505°C</td><td>5778.15 K</td><td>9941°F</td><td>Sun's surface</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Why 273.15?</h3>
+            <p>In 1848, Lord Kelvin (William Thomson) proposed an absolute temperature scale starting at the point where molecular motion theoretically ceases. Through experiments with gas expansion, scientists determined that this "absolute zero" occurs at <strong>-273.15°C</strong>. Adding 273.15 to any Celsius temperature shifts the scale so that 0 represents absolute zero — the coldest possible temperature in the universe.</p>
+
+            <h3>Why Does Science Use Kelvin?</h3>
+            <table>
+                <thead><tr><th>Reason</th><th>Explanation</th><th>Example</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>No negative values</strong></td><td>Temperature is always ≥ 0 K</td><td>Simplifies thermodynamic equations</td></tr>
+                    <tr><td><strong>Absolute scale</strong></td><td>0 K = actual zero energy</td><td>Required for gas laws (PV = nRT)</td></tr>
+                    <tr><td><strong>Proportional</strong></td><td>Doubling K = doubling thermal energy</td><td>200 K has exactly 2× the energy of 100 K</td></tr>
+                    <tr><td><strong>SI standard</strong></td><td>International System base unit</td><td>Used in all scientific publications</td></tr>
+                    <tr><td><strong>Same degree size</strong></td><td>1 K = 1°C change</td><td>Easy to convert: just add 273.15</td></tr>
+                </tbody>
+            </table>
+
+            <h3>US Courses That Use Kelvin</h3>
+            <table>
+                <thead><tr><th>Course</th><th>Level</th><th>Kelvin Used For</th></tr></thead>
+                <tbody>
+                    <tr><td>AP Chemistry</td><td>High school</td><td>Gas laws, thermochemistry, equilibrium</td></tr>
+                    <tr><td>AP Physics</td><td>High school</td><td>Thermodynamics, thermal radiation</td></tr>
+                    <tr><td>General Chemistry</td><td>College</td><td>Ideal gas law (PV = nRT), calorimetry</td></tr>
+                    <tr><td>Organic Chemistry</td><td>College</td><td>Reaction kinetics, Arrhenius equation</td></tr>
+                    <tr><td>Physics I & II</td><td>College</td><td>Heat transfer, entropy, blackbody radiation</td></tr>
+                    <tr><td>Astronomy</td><td>College</td><td>Star temperatures, cosmic microwave background</td></tr>
+                    <tr><td>Engineering Thermo</td><td>College</td><td>Carnot efficiency, Rankine cycle</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Cosmic Temperature Scale</h3>
+            <table>
+                <thead><tr><th>Object / Event</th><th>K</th><th>°C</th><th>Notes</th></tr></thead>
+                <tbody>
+                    <tr><td>Cosmic microwave background</td><td>2.725 K</td><td>-270.4°C</td><td>Coldest natural temperature</td></tr>
+                    <tr><td>Outer space (average)</td><td>~3 K</td><td>-270°C</td><td>Near absolute zero</td></tr>
+                    <tr><td>Pluto's surface</td><td>~44 K</td><td>-229°C</td><td>Distant dwarf planet</td></tr>
+                    <tr><td>Mars (average)</td><td>~210 K</td><td>-63°C</td><td>Red planet</td></tr>
+                    <tr><td>Earth (average)</td><td>~288 K</td><td>15°C</td><td>Our planet</td></tr>
+                    <tr><td>Venus (surface)</td><td>~737 K</td><td>464°C</td><td>Hottest planet</td></tr>
+                    <tr><td>Sun's surface</td><td>5,778 K</td><td>5,505°C</td><td>Yellow dwarf star</td></tr>
+                    <tr><td>Sun's core</td><td>~15,000,000 K</td><td>~15,000,000°C</td><td>Nuclear fusion</td></tr>
+                </tbody>
+            </table>
+
+            <h3>What Is Celsius?</h3>
+            <p><strong>Celsius</strong> (°C) is a temperature scale where 0°C = water's freezing point and 100°C = water's boiling point (at standard pressure). It is used by virtually every country in the world for everyday temperature, and in science when an absolute scale isn't required.</p>
+
+            <h3>What Is Kelvin?</h3>
+            <p><strong>Kelvin</strong> (K) is the SI base unit of temperature. It starts at absolute zero (0 K = -273.15°C), the coldest possible temperature. Each kelvin equals one degree Celsius in size. Kelvin is used in science, engineering, and astronomy worldwide. Remember: no degree symbol — write "295 K" not "295°K".</p>
+        `,
+        faq: [
+            { question: "How do you convert Celsius to Kelvin?", answer: "Simply add 273.15: K = °C + 273.15. For example, 25°C = 25 + 273.15 = 298.15 K. This is the simplest temperature conversion because both scales use the same degree size — they only differ in their starting point." },
+            { question: "Why do you add 273.15 to convert Celsius to Kelvin?", answer: "Because absolute zero (the coldest possible temperature) occurs at -273.15°C. Adding 273.15 shifts the scale so that 0 represents absolute zero. This value was determined experimentally by measuring how gases contract as they cool — all gases would theoretically reach zero volume at -273.15°C." },
+            { question: "Is a degree Celsius the same size as a kelvin?", answer: "Yes, exactly. A change of 1°C equals a change of 1 K. The only difference is the zero point: 0°C = water freezes (273.15 K), while 0 K = absolute zero (-273.15°C). This is why the conversion is just adding a constant." },
+            { question: "What is 0°C in Kelvin?", answer: "0°C = 273.15 K. This is water's freezing point at standard atmospheric pressure. It's one of the most important reference points in temperature conversion." },
+            { question: "Can you have negative Kelvin?", answer: "No — 0 K (absolute zero) is the lowest possible temperature. Negative Kelvin values are physically impossible because Kelvin measures absolute thermal energy. This is one reason science uses Kelvin: it prevents meaningless negative values in thermodynamic equations." },
+            { question: "When do US students need Celsius to Kelvin conversion?", answer: "Most commonly in AP Chemistry and AP Physics (high school), and in college-level General Chemistry, Organic Chemistry, and Physics courses. The ideal gas law (PV = nRT) requires temperature in Kelvin. It's also used in astronomy, engineering thermodynamics, and materials science." },
+        ],
+    },
 };
 
 export default async function ConvertHubPage({ params }: PageProps) {
