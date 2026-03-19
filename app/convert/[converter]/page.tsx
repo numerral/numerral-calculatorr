@@ -724,6 +724,92 @@ const HUB_CONTENT: Record<string, {
             { question: "Why does density matter for kg to liter conversion?", answer: "Because kilograms measure mass (weight) and liters measure volume (space). The connection between mass and volume is density — how tightly packed the substance's molecules are. Oil molecules are spaced farther apart than honey molecules, so the same weight of oil takes up more space." },
         ],
     },
+    "mg-to-ml-converter": {
+        subtitle: "Convert milligrams to milliliters (mg to mL) for any substance. Select from 20 common ingredients or enter a custom density. See results in mL, teaspoons, fluid ounces, and drops.",
+        contentHTML: `
+            <h3>How to Convert Milligrams to Milliliters</h3>
+            <p>Milligrams (mg) measure <strong>weight</strong>, while milliliters (mL) measure <strong>volume</strong>. To convert between them, you need the substance's density. The formula is:</p>
+            <div class="explanation__highlight">
+                <strong>mL = mg ÷ (density in g/mL × 1,000)</strong><br/><br/>
+                Or equivalently: <strong>mL = mg ÷ density in mg/mL</strong><br/><br/>
+                Example: 500 mg of water (density 1.00 g/mL)<br/>
+                = 500 ÷ (1.00 × 1000) = 500 ÷ 1000 = <strong>0.5 mL</strong><br/><br/>
+                Example: 500 mg of olive oil (density 0.91 g/mL)<br/>
+                = 500 ÷ (0.91 × 1000) = 500 ÷ 910 = <strong>0.5495 mL</strong>
+            </div>
+            <p>For water and water-based solutions (like most liquid medications), 1 mg ≈ 0.001 mL, or equivalently, 1 mL ≈ 1,000 mg. This is because water has a density of approximately 1.00 g/mL.</p>
+
+            <h3>Common mg to mL Conversions</h3>
+            <p>Quick reference for how many milliliters common milligram amounts equal (for water-density substances like most medications):</p>
+            <table>
+                <thead><tr><th>Milligrams</th><th>Milliliters (water)</th><th>Teaspoons</th><th>Drops (~20/mL)</th></tr></thead>
+                <tbody>
+                    <tr><td>10 mg</td><td>0.01 mL</td><td>0.002 tsp</td><td>0.2 drops</td></tr>
+                    <tr><td>25 mg</td><td>0.025 mL</td><td>0.005 tsp</td><td>0.5 drops</td></tr>
+                    <tr><td>50 mg</td><td>0.05 mL</td><td>0.01 tsp</td><td>1.0 drops</td></tr>
+                    <tr><td>100 mg</td><td>0.1 mL</td><td>0.02 tsp</td><td>2.0 drops</td></tr>
+                    <tr><td>200 mg</td><td>0.2 mL</td><td>0.04 tsp</td><td>4.0 drops</td></tr>
+                    <tr><td>250 mg</td><td>0.25 mL</td><td>0.05 tsp</td><td>5.0 drops</td></tr>
+                    <tr><td>500 mg</td><td>0.5 mL</td><td>0.1 tsp</td><td>10.0 drops</td></tr>
+                    <tr><td>1,000 mg (1 g)</td><td>1.0 mL</td><td>0.2 tsp</td><td>20.0 drops</td></tr>
+                    <tr><td>2,000 mg (2 g)</td><td>2.0 mL</td><td>0.4 tsp</td><td>40.0 drops</td></tr>
+                    <tr><td>5,000 mg (5 g)</td><td>5.0 mL</td><td>1.0 tsp</td><td>100.0 drops</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Medication Dosing Reference</h3>
+            <p>One of the most common reasons Americans convert mg to mL is for medication dosing. Here's how common US OTC medications relate:</p>
+            <table>
+                <thead><tr><th>Medication</th><th>Typical Dose</th><th>Concentration</th><th>Volume to Take</th></tr></thead>
+                <tbody>
+                    <tr><td>Children's Tylenol (acetaminophen)</td><td>160 mg</td><td>160 mg/5 mL</td><td>5.0 mL (1 tsp)</td></tr>
+                    <tr><td>Children's Advil (ibuprofen)</td><td>100 mg</td><td>100 mg/5 mL</td><td>5.0 mL (1 tsp)</td></tr>
+                    <tr><td>Children's Benadryl (diphenhydramine)</td><td>12.5 mg</td><td>12.5 mg/5 mL</td><td>5.0 mL (1 tsp)</td></tr>
+                    <tr><td>NyQuil (dextromethorphan)</td><td>30 mg</td><td>15 mg/15 mL</td><td>30.0 mL (2 tbsp)</td></tr>
+                    <tr><td>Amoxicillin suspension</td><td>250 mg</td><td>250 mg/5 mL</td><td>5.0 mL (1 tsp)</td></tr>
+                </tbody>
+            </table>
+            <p><strong>⚠️ Important:</strong> This table is for educational reference only. Always follow your doctor's dosing instructions and read the medication label carefully. Medication concentrations vary by brand and formulation.</p>
+
+            <h3>Measuring Small Volumes</h3>
+            <p>When dealing with milligrams, the resulting volumes are often very small. Here are the most common measuring tools:</p>
+            <table>
+                <thead><tr><th>Measurement Tool</th><th>Volume</th><th>Equivalent</th></tr></thead>
+                <tbody>
+                    <tr><td>Standard medical dropper</td><td>~1 mL (20 drops)</td><td>1 cc</td></tr>
+                    <tr><td>1/4 teaspoon</td><td>~1.23 mL</td><td>—</td></tr>
+                    <tr><td>1/2 teaspoon</td><td>~2.46 mL</td><td>—</td></tr>
+                    <tr><td>1 teaspoon</td><td>~4.93 mL</td><td>~5 mL (medical standard)</td></tr>
+                    <tr><td>1 tablespoon</td><td>~14.79 mL</td><td>~15 mL (medical standard)</td></tr>
+                    <tr><td>Oral syringe (common sizes)</td><td>1, 3, 5, or 10 mL</td><td>Most accurate for small doses</td></tr>
+                </tbody>
+            </table>
+            <p><strong>Tip:</strong> 1 mL = 1 cc (cubic centimeter). In medical settings, mL and cc are used interchangeably.</p>
+
+            <h3>What Is a Milligram?</h3>
+            <p>A <strong>milligram</strong> (mg) is a metric unit of mass equal to one thousandth of a gram (1/1,000 g), or one millionth of a kilogram. "Milli-" means thousandth. Milligrams are commonly used for medication dosages, nutritional supplement amounts, and in chemistry for small quantities of substances.</p>
+
+            <h3>What Is a Milliliter?</h3>
+            <p>A <strong>milliliter</strong> (mL) is a metric unit of volume equal to one thousandth of a liter (1/1,000 L), or exactly 1 cubic centimeter (cc). Milliliters are used for measuring liquid medications, small cooking quantities, and laboratory solutions. In medical contexts, mL and cc are interchangeable.</p>
+
+            <h3>When to Convert mg to mL</h3>
+            <ul>
+                <li><strong>Medication dosing</strong>: Prescriptions are often written in milligrams, but liquid medications are measured in milliliters. Knowing the concentration (e.g., 100 mg/5 mL) lets you calculate the correct volume.</li>
+                <li><strong>Vitamin and supplement dosing</strong>: Liquid vitamins and supplements list amounts in mg but are measured with droppers in mL.</li>
+                <li><strong>Laboratory work</strong>: Preparing chemical solutions requires converting between mass (mg of solute) and volume (mL of solution).</li>
+                <li><strong>Essential oils and flavorings</strong>: Recipes may specify mg of a flavoring, but you dispense with a dropper measured in mL.</li>
+                <li><strong>Pet medications</strong>: Veterinary doses are calculated by the pet's weight in mg, then measured in mL from a liquid formulation.</li>
+            </ul>
+        `,
+        faq: [
+            { question: "How many mL is 500 mg?", answer: "For water or water-based liquids (density ~1 g/mL): 500 mg = 0.5 mL. For liquids with different densities, divide 500 by (density in g/mL × 1000). For example, 500 mg of olive oil = 0.549 mL because oil is less dense than water." },
+            { question: "Is 1 mg the same as 1 mL?", answer: "No — they measure different things. Milligrams (mg) measure weight/mass, while milliliters (mL) measure volume. For water, 1 mg = 0.001 mL (or 1,000 mg = 1 mL). For other substances, the ratio depends on density." },
+            { question: "How do I convert mg to mL for medication?", answer: "You need to know the medication's concentration (usually printed on the label, e.g., '100 mg/5 mL'). Then: volume (mL) = prescribed dose (mg) ÷ concentration (mg/mL). For example: 200 mg prescribed, concentration 100 mg/5 mL = 100/5 = 20 mg/mL. So 200 ÷ 20 = 10 mL." },
+            { question: "What does 1 mL equal in drops?", answer: "Approximately 20 drops from a standard medical dropper. However, drop size varies depending on the dropper tip and the liquid's viscosity. For precise dosing, always use an oral syringe rather than counting drops." },
+            { question: "Is 5 mL the same as 1 teaspoon?", answer: "Approximately yes. A US teaspoon is 4.929 mL, but in medical/pharmaceutical contexts, 1 teaspoon is standardized to 5 mL for simplicity. This small difference rarely matters for medication dosing, but always use the measuring device provided with your medication." },
+            { question: "How many mg in 1 mL of water?", answer: "1,000 mg (= 1 gram). Since water has a density of 1.00 g/mL, 1 milliliter of water weighs exactly 1 gram = 1,000 milligrams. This is also true for dilute water-based solutions like most liquid medications." },
+        ],
+    },
 };
 
 export default async function ConvertHubPage({ params }: PageProps) {

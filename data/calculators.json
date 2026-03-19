@@ -2297,6 +2297,40 @@
     "keywords": "kg to liters, kilograms to liters, kg to L converter, kilogram to liter calculator, how many liters in a kg, weight to volume, density conversion"
   },
   {
+    "id": "mg-to-ml-converter",
+    "category": "convert",
+    "title": "Milligrams to Milliliters Converter (mg to mL)",
+    "slug": "mg-to-ml-converter",
+    "categorySlug": "convert",
+    "icon": "💊",
+    "calcType": "mg-to-ml",
+    "description": "Convert milligrams to milliliters (mg to mL) for any substance. Select from 20 common ingredients or enter a custom density. See results in mL, teaspoons, fluid ounces, and drops.",
+    "stars": 5,
+    "defaults": {
+      "amount": 500,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 1,
+        "max": 5000,
+        "step": 1
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "mg to mL, milligrams to milliliters, mg to mL converter, how many mL is 500mg, medication dosing, mg to mL calculator, milligram to milliliter"
+  },
+  {
     "id": "retirement-corpus",
     "category": "invest",
     "title": "Retirement Corpus Calculator",
