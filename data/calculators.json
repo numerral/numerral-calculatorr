@@ -2807,6 +2807,40 @@
     "keywords": "fluid ounces to milliliters, fl oz to mL, fluid ounce to milliliter converter, how many mL in a fluid ounce, volume conversion, US fluid ounce"
   },
   {
+    "id": "sqm-to-sqft-converter",
+    "category": "convert",
+    "title": "Square Meters to Square Feet Converter (m² to ft²)",
+    "slug": "sqm-to-sqft-converter",
+    "categorySlug": "convert",
+    "icon": "📐",
+    "calcType": "sqm-to-sqft",
+    "description": "Convert square meters to square feet (m² to ft²). See results in square feet, acres, square yards, and square inches. Includes a quick reference table with room sizes.",
+    "stars": 5,
+    "defaults": {
+      "amount": 100,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 1,
+        "max": 10000,
+        "step": 1
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "square meters to square feet, m2 to sq ft, square meter to square foot converter, how many square feet in a square meter, area conversion, real estate"
+  },
+  {
     "id": "retirement-corpus",
     "category": "invest",
     "title": "Retirement Corpus Calculator",

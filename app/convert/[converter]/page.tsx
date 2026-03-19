@@ -2024,6 +2024,98 @@ const HUB_CONTENT: Record<string, {
             { question: "How do I convert a recipe from fluid ounces to mL?", answer: "Multiply each fl oz measurement by 29.5735 (or round to 30 for simplicity). Key equivalents to memorize: 1 fl oz ≈ 30 mL, 8 fl oz (1 cup) ≈ 237 mL, 16 fl oz (1 pint) ≈ 473 mL." },
         ],
     },
+    "sqm-to-sqft-converter": {
+        subtitle: "Convert square meters to square feet (m² to ft²). See results in square feet, acres, square yards, and square inches. Includes a quick reference table with room sizes.",
+        contentHTML: `
+            <h3>How to Convert Square Meters to Square Feet</h3>
+            <p>Multiply the area in square meters by <strong>10.7639</strong>:</p>
+            <div class="explanation__highlight">
+                <strong>sq ft = sq m × 10.7639</strong><br/><br/>
+                Example: 100 m² apartment<br/>
+                = 100 × 10.7639 = <strong>1,076 sq ft</strong><br/><br/>
+                Example: 200 m² house<br/>
+                = 200 × 10.7639 = <strong>2,153 sq ft</strong><br/><br/>
+                Example: 4,047 m² (1 acre)<br/>
+                = 4,047 × 10.7639 = <strong>43,560 sq ft</strong>
+            </div>
+
+            <h3>Square Meters to Square Feet — Conversion Table</h3>
+            <table>
+                <thead><tr><th>m²</th><th>ft²</th><th>Acres</th><th>What It Looks Like</th></tr></thead>
+                <tbody>
+                    <tr><td>1 m²</td><td>10.76 ft²</td><td>0.000247 ac</td><td>Small desk area</td></tr>
+                    <tr><td>10 m²</td><td>107.6 ft²</td><td>0.00247 ac</td><td>Small bedroom</td></tr>
+                    <tr><td>20 m²</td><td>215.3 ft²</td><td>0.00494 ac</td><td>Studio apartment</td></tr>
+                    <tr><td>50 m²</td><td>538.2 ft²</td><td>0.01236 ac</td><td>1-bedroom apartment</td></tr>
+                    <tr><td>93 m²</td><td>1,001 ft²</td><td>0.02299 ac</td><td>≈ 1,000 sq ft (benchmark)</td></tr>
+                    <tr><td>100 m²</td><td>1,076 ft²</td><td>0.02471 ac</td><td>Small house / large apt</td></tr>
+                    <tr><td>150 m²</td><td>1,615 ft²</td><td>0.03707 ac</td><td>Average US house</td></tr>
+                    <tr><td>200 m²</td><td>2,153 ft²</td><td>0.04942 ac</td><td>Above-average house</td></tr>
+                    <tr><td>300 m²</td><td>3,229 ft²</td><td>0.07413 ac</td><td>Large US house</td></tr>
+                    <tr><td>500 m²</td><td>5,382 ft²</td><td>0.12355 ac</td><td>McMansion / luxury home</td></tr>
+                    <tr><td>1,000 m²</td><td>10,764 ft²</td><td>0.24711 ac</td><td>Commercial space</td></tr>
+                    <tr><td>4,047 m²</td><td>43,560 ft²</td><td>1.0000 ac</td><td>Exactly 1 acre</td></tr>
+                </tbody>
+            </table>
+
+            <h3>US Area Unit Hierarchy</h3>
+            <table>
+                <thead><tr><th>Unit</th><th>Equivalent</th><th>In Square Feet</th></tr></thead>
+                <tbody>
+                    <tr><td>1 square inch (in²)</td><td>6.452 cm²</td><td>0.00694 ft²</td></tr>
+                    <tr><td><strong>1 square foot (ft²)</strong></td><td><strong>0.0929 m²</strong></td><td><strong>1 ft²</strong></td></tr>
+                    <tr><td>1 square yard (yd²)</td><td>0.8361 m²</td><td>9 ft²</td></tr>
+                    <tr><td>1 acre</td><td>4,047 m²</td><td>43,560 ft²</td></tr>
+                    <tr><td>1 square mile (mi²)</td><td>2.59 km²</td><td>27,878,400 ft²</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Average US Home Sizes</h3>
+            <p>The median US single-family home is approximately <strong>2,014 sq ft</strong> (187 m²) as of 2023:</p>
+            <table>
+                <thead><tr><th>Home Type</th><th>Avg. Size (ft²)</th><th>In m²</th></tr></thead>
+                <tbody>
+                    <tr><td>Studio apartment</td><td>400–600 ft²</td><td>37–56 m²</td></tr>
+                    <tr><td>1-bedroom apartment</td><td>600–800 ft²</td><td>56–74 m²</td></tr>
+                    <tr><td>2-bedroom apartment</td><td>900–1,100 ft²</td><td>84–102 m²</td></tr>
+                    <tr><td>Small house</td><td>1,000–1,400 ft²</td><td>93–130 m²</td></tr>
+                    <tr><td>Average house</td><td>1,500–2,000 ft²</td><td>139–186 m²</td></tr>
+                    <tr><td>Large house</td><td>2,500–3,500 ft²</td><td>232–325 m²</td></tr>
+                    <tr><td>McMansion</td><td>4,000–6,000 ft²</td><td>372–557 m²</td></tr>
+                </tbody>
+            </table>
+
+            <h3>US Real Estate — Price Per Square Foot by City</h3>
+            <table>
+                <thead><tr><th>City</th><th>Avg. Price/ft²</th><th>Avg. Price/m²</th></tr></thead>
+                <tbody>
+                    <tr><td>New York City</td><td>~$750/ft²</td><td>~$8,073/m²</td></tr>
+                    <tr><td>San Francisco</td><td>~$700/ft²</td><td>~$7,535/m²</td></tr>
+                    <tr><td>Los Angeles</td><td>~$500/ft²</td><td>~$5,382/m²</td></tr>
+                    <tr><td>Miami</td><td>~$400/ft²</td><td>~$4,306/m²</td></tr>
+                    <tr><td>Chicago</td><td>~$250/ft²</td><td>~$2,691/m²</td></tr>
+                    <tr><td>Austin</td><td>~$300/ft²</td><td>~$3,229/m²</td></tr>
+                    <tr><td>Houston</td><td>~$175/ft²</td><td>~$1,884/m²</td></tr>
+                    <tr><td>National average</td><td>~$225/ft²</td><td>~$2,422/m²</td></tr>
+                </tbody>
+            </table>
+            <p>US real estate listings use <strong>square feet exclusively</strong>. International listings (Europe, Asia) use square meters, making this conversion essential for Americans buying property overseas.</p>
+
+            <h3>What Is a Square Meter?</h3>
+            <p>A <strong>square meter</strong> (m²) is the SI unit of area equal to a square with sides of 1 meter (3.281 feet). It is the standard unit for property size, floor area, and land measurement in every country except the United States, Myanmar, and Liberia.</p>
+
+            <h3>What Is a Square Foot?</h3>
+            <p>A <strong>square foot</strong> (ft² or sq ft) is a US customary and imperial unit of area equal to a square with sides of 1 foot (12 inches). It is the primary unit for expressing property size, room dimensions, flooring, and retail space in the United States. MLS listings, appraisals, and building codes all use square feet.</p>
+        `,
+        faq: [
+            { question: "How many square feet is 100 square meters?", answer: "1,076 square feet. 100 × 10.7639 = 1,076.39 ft². This is roughly the size of a small US house or large apartment." },
+            { question: "How many square feet in 1 square meter?", answer: "10.7639 square feet. For quick estimates, round to ~10.8 sq ft per sq m. To reverse: 1 sq ft = 0.0929 sq m." },
+            { question: "How many square meters is a 2,000 sq ft house?", answer: "About 186 square meters. 2,000 ÷ 10.7639 = 185.8 m². The median US single-family home is approximately this size." },
+            { question: "How many square feet in an acre?", answer: "Exactly 43,560 square feet = 1 acre = 4,047 square meters. An acre is roughly the size of a football field without the end zones (which is 48,000 sq ft)." },
+            { question: "Why does the US use square feet instead of square meters?", answer: "The US uses the customary system inherited from British imperial units. While most of the world adopted the metric system, the US retained feet, pounds, and gallons. Real estate, construction, and building codes are all standardized in square feet." },
+            { question: "How do I convert price per square meter to price per square foot?", answer: "Divide the $/m² price by 10.7639. Example: if a European property is listed at €3,000/m², that equals €3,000 ÷ 10.7639 = €278.7/ft². This helps Americans compare international property prices." },
+        ],
+    },
 };
 
 export default async function ConvertHubPage({ params }: PageProps) {

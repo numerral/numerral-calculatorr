@@ -1874,6 +1874,72 @@ function FlOzToMlCalc() {
     );
 }
 
+// ─── Square Meters to Square Feet ───
+function SqMToSqFtCalc() {
+    const [sqm, setSqm] = useState(100);
+
+    const SQFT_PER_SQM = 10.7639;
+    const sqft = sqm * SQFT_PER_SQM;
+    const acres = sqft / 43560;
+    const sqyd = sqft / 9;
+    const sqin = sqft * 144;
+
+    const quickRef = [1, 5, 10, 20, 50, 100, 150, 200, 300, 500, 750, 1000];
+
+    return (
+        <div className="calc-card">
+            <div className="calc-field">
+                <label className="calc-field__label">📐 SQUARE METERS (m²)</label>
+                <input type="range" className="calc-field__slider" min={1} max={10000} step={1}
+                    value={sqm} onChange={(e) => setSqm(Number(e.target.value))} />
+                <div style={{ display: "flex", gap: "var(--s-2)", alignItems: "center" }}>
+                    <input type="number" className="calc-field__input" value={sqm}
+                        onChange={(e) => setSqm(Number(e.target.value))} style={{ flex: 1 }} />
+                    <span className="t-body-sm text-muted">m²</span>
+                </div>
+            </div>
+
+            <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
+                <p className="calc-field__label">AREA IN SQUARE FEET</p>
+                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+                    {sqft.toLocaleString("en-US", { maximumFractionDigits: 1 })} ft²
+                </p>
+                <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "var(--s-3)" }}>
+                    <div><p className="calc-field__label">ACRES</p><p style={{ fontWeight: 700 }}>{acres.toFixed(4)} ac</p></div>
+                    <div><p className="calc-field__label">SQUARE YARDS</p><p style={{ fontWeight: 700 }}>{sqyd.toFixed(1)} yd²</p></div>
+                    <div><p className="calc-field__label">SQUARE INCHES</p><p style={{ fontWeight: 700 }}>{sqin.toLocaleString()} in²</p></div>
+                    <div><p className="calc-field__label">FORMULA</p><p style={{ fontWeight: 700, fontSize: "var(--t-body-sm)" }}>{sqm} × 10.764</p></div>
+                </div>
+            </div>
+
+            {/* Quick Reference Table */}
+            <div style={{ marginTop: "var(--s-4)" }}>
+                <h3 className="t-h3" style={{ marginBottom: "var(--s-3)" }}>Square Meters to Square Feet — Quick Reference</h3>
+                <table className="calc-table">
+                    <thead>
+                        <tr><th>m²</th><th>ft²</th><th>Acres</th><th>Approx. Room</th></tr>
+                    </thead>
+                    <tbody>
+                        {quickRef.map((s) => {
+                            const f = s * SQFT_PER_SQM;
+                            const roomLabel = s <= 10 ? "Small room" : s <= 30 ? "Bedroom" : s <= 50 ? "Living room" : s <= 100 ? "Apartment" : s <= 200 ? "House" : s <= 500 ? "Large house" : "Commercial";
+                            return (
+                                <tr key={s} style={s === sqm ? { background: "var(--n-primary-light)" } : {}}>
+                                    <td>{s.toLocaleString()} m²</td>
+                                    <td>{f.toLocaleString(undefined, { maximumFractionDigits: 0 })} ft²</td>
+                                    <td>{(f / 43560).toFixed(4)} ac</td>
+                                    <td>{roomLabel}</td>
+                                </tr>
+                            );
+                        })}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    );
+}
+
 // ─── Dispatcher ───
 interface Props { calcType: string; }
 
@@ -1901,6 +1967,7 @@ const CALCULATORS: Record<string, React.FC> = {
     "gal-to-lb": GalToLbCalc,
     "sec-to-min": SecToMinCalc,
     "floz-to-ml": FlOzToMlCalc,
+    "sqm-to-sqft": SqMToSqFtCalc,
 };
 
 export default function ConversionCalculatorCore({ calcType }: Props) {
