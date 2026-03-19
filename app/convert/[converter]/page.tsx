@@ -1480,6 +1480,106 @@ const HUB_CONTENT: Record<string, {
             { question: "How many tablespoons in a cup?", answer: "16 tablespoons = 1 US cup. Other equivalents: 1 cup = 48 teaspoons = 8 fluid ounces = 236.588 mL = approximately ¼ of a quart." },
         ],
     },
+    "min-to-hour-converter": {
+        subtitle: "Convert minutes to hours and minutes (min to hr). See results in decimal hours, HH:MM format, seconds, and percentage of day. Includes a quick reference table.",
+        contentHTML: `
+            <h3>How to Convert Minutes to Hours</h3>
+            <p>Since there are <strong>60 minutes in 1 hour</strong>, divide the number of minutes by 60:</p>
+            <div class="explanation__highlight">
+                <strong>hours = minutes ÷ 60</strong><br/><br/>
+                <strong>Step 1:</strong> Divide to get decimal hours<br/>
+                90 ÷ 60 = <strong>1.5 hours</strong><br/><br/>
+                <strong>Step 2:</strong> Convert to hours & minutes<br/>
+                Whole hours = 1<br/>
+                Remaining minutes = (1.5 − 1) × 60 = 30<br/>
+                = <strong>1 hour 30 minutes</strong> (1:30)
+            </div>
+
+            <h3>Minutes to Hours — Conversion Table</h3>
+            <table>
+                <thead><tr><th>Minutes</th><th>Hours & Min</th><th>Decimal Hours</th><th>Seconds</th></tr></thead>
+                <tbody>
+                    <tr><td>1 min</td><td>0h 1m</td><td>0.0167 hr</td><td>60 s</td></tr>
+                    <tr><td>5 min</td><td>0h 5m</td><td>0.0833 hr</td><td>300 s</td></tr>
+                    <tr><td>10 min</td><td>0h 10m</td><td>0.1667 hr</td><td>600 s</td></tr>
+                    <tr><td>15 min</td><td>0h 15m</td><td>0.25 hr</td><td>900 s</td></tr>
+                    <tr><td>20 min</td><td>0h 20m</td><td>0.3333 hr</td><td>1,200 s</td></tr>
+                    <tr><td>30 min</td><td>0h 30m</td><td>0.50 hr</td><td>1,800 s</td></tr>
+                    <tr><td>45 min</td><td>0h 45m</td><td>0.75 hr</td><td>2,700 s</td></tr>
+                    <tr><td>60 min</td><td>1h 0m</td><td>1.00 hr</td><td>3,600 s</td></tr>
+                    <tr><td>90 min</td><td>1h 30m</td><td>1.50 hr</td><td>5,400 s</td></tr>
+                    <tr><td>120 min</td><td>2h 0m</td><td>2.00 hr</td><td>7,200 s</td></tr>
+                    <tr><td>150 min</td><td>2h 30m</td><td>2.50 hr</td><td>9,000 s</td></tr>
+                    <tr><td>180 min</td><td>3h 0m</td><td>3.00 hr</td><td>10,800 s</td></tr>
+                    <tr><td>240 min</td><td>4h 0m</td><td>4.00 hr</td><td>14,400 s</td></tr>
+                    <tr><td>300 min</td><td>5h 0m</td><td>5.00 hr</td><td>18,000 s</td></tr>
+                    <tr><td>360 min</td><td>6h 0m</td><td>6.00 hr</td><td>21,600 s</td></tr>
+                    <tr><td>480 min</td><td>8h 0m</td><td>8.00 hr</td><td>28,800 s</td></tr>
+                    <tr><td>720 min</td><td>12h 0m</td><td>12.00 hr</td><td>43,200 s</td></tr>
+                    <tr><td>1,440 min</td><td>24h 0m</td><td>24.00 hr</td><td>86,400 s</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Time Unit Hierarchy</h3>
+            <table>
+                <thead><tr><th>Unit</th><th>Equivalent</th><th>In Seconds</th></tr></thead>
+                <tbody>
+                    <tr><td>1 millisecond</td><td>0.001 seconds</td><td>0.001 s</td></tr>
+                    <tr><td>1 second</td><td>1,000 milliseconds</td><td>1 s</td></tr>
+                    <tr><td><strong>1 minute</strong></td><td><strong>60 seconds</strong></td><td><strong>60 s</strong></td></tr>
+                    <tr><td><strong>1 hour</strong></td><td><strong>60 minutes</strong></td><td><strong>3,600 s</strong></td></tr>
+                    <tr><td>1 day</td><td>24 hours = 1,440 minutes</td><td>86,400 s</td></tr>
+                    <tr><td>1 week</td><td>7 days = 10,080 minutes</td><td>604,800 s</td></tr>
+                    <tr><td>1 month (avg)</td><td>30.437 days ≈ 43,829 min</td><td>~2,629,746 s</td></tr>
+                    <tr><td>1 year</td><td>365.25 days ≈ 525,960 min</td><td>~31,557,600 s</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Decimal Hours for Payroll & Timesheets</h3>
+            <p>Many US employers require <strong>decimal hours</strong> on timesheets instead of hours:minutes. Here's how common clock times convert:</p>
+            <table>
+                <thead><tr><th>Clock Time Worked</th><th>Minutes</th><th>Decimal Hours</th></tr></thead>
+                <tbody>
+                    <tr><td>7:30 AM – 12:00 PM</td><td>270 min</td><td>4.50 hrs</td></tr>
+                    <tr><td>8:00 AM – 5:00 PM (w/ 1hr lunch)</td><td>480 min</td><td>8.00 hrs</td></tr>
+                    <tr><td>9:00 AM – 5:30 PM (w/ 30min lunch)</td><td>480 min</td><td>8.00 hrs</td></tr>
+                    <tr><td>6:45 AM – 3:15 PM (w/ 30min lunch)</td><td>480 min</td><td>8.00 hrs</td></tr>
+                    <tr><td>Part-time: 4h 15m</td><td>255 min</td><td>4.25 hrs</td></tr>
+                    <tr><td>Overtime: 10h 45m</td><td>645 min</td><td>10.75 hrs</td></tr>
+                </tbody>
+            </table>
+            <p><strong>Quick trick:</strong> Divide the minutes past the hour by 60. So 7 hours 45 minutes = 7 + (45÷60) = 7.75 decimal hours.</p>
+
+            <h3>Common Time Durations in Daily Life</h3>
+            <table>
+                <thead><tr><th>Activity</th><th>Typical Duration</th><th>In Hours</th></tr></thead>
+                <tbody>
+                    <tr><td>TV commercial break</td><td>2–4 minutes</td><td>0.03–0.07 hr</td></tr>
+                    <tr><td>Average shower</td><td>8 minutes</td><td>0.13 hr</td></tr>
+                    <tr><td>Coffee break</td><td>15 minutes</td><td>0.25 hr</td></tr>
+                    <tr><td>Lunch break</td><td>30–60 minutes</td><td>0.5–1.0 hr</td></tr>
+                    <tr><td>Movie</td><td>90–150 minutes</td><td>1.5–2.5 hr</td></tr>
+                    <tr><td>Cross-country flight (US)</td><td>300–360 minutes</td><td>5–6 hr</td></tr>
+                    <tr><td>Full work day</td><td>480 minutes</td><td>8 hr</td></tr>
+                    <tr><td>Sleep (recommended)</td><td>420–540 minutes</td><td>7–9 hr</td></tr>
+                </tbody>
+            </table>
+
+            <h3>What Is a Minute?</h3>
+            <p>A <strong>minute</strong> (min) is a unit of time equal to 60 seconds or 1/60 of an hour. The word comes from the Latin "pars minuta prima" meaning "first small part." Minutes became widely used after the invention of mechanical clocks in the 14th century. Today, minutes are the most common unit for expressing durations under an hour.</p>
+
+            <h3>What Is an Hour?</h3>
+            <p>An <strong>hour</strong> (hr) is a unit of time equal to 60 minutes or 3,600 seconds. The concept of dividing the day into 24 hours dates back to ancient Egypt. Hours are the primary unit for expressing work schedules, travel times, and daily planning in the United States and worldwide.</p>
+        `,
+        faq: [
+            { question: "How many hours is 90 minutes?", answer: "1.5 hours, or 1 hour and 30 minutes. To calculate: 90 ÷ 60 = 1.5 hours. The whole number (1) is the hours, and the decimal (0.5 × 60) = 30 remaining minutes." },
+            { question: "How do I convert minutes to decimal hours?", answer: "Divide the minutes by 60. Examples: 15 min = 0.25 hr, 30 min = 0.50 hr, 45 min = 0.75 hr, 90 min = 1.50 hr. For payroll/timesheets, this decimal format is usually required." },
+            { question: "How many minutes are in a day?", answer: "Exactly 1,440 minutes. A day has 24 hours × 60 minutes = 1,440 minutes. That's also 86,400 seconds." },
+            { question: "How do I convert minutes to hours and minutes?", answer: "Step 1: Divide by 60 to get decimal hours (e.g., 135 ÷ 60 = 2.25). Step 2: Take the whole number as hours (2). Step 3: Multiply the decimal by 60 for remaining minutes (0.25 × 60 = 15). Result: 2 hours 15 minutes." },
+            { question: "What is 480 minutes in hours?", answer: "Exactly 8 hours. 480 ÷ 60 = 8.0 hours. This is the standard US full-time work day (8 hours = 480 minutes), not counting lunch breaks." },
+            { question: "How do I enter time on a timesheet in decimal format?", answer: "Convert the minutes portion to a decimal by dividing by 60. Example: If you worked 7 hours 45 minutes, enter 7.75 (because 45 ÷ 60 = 0.75). Common conversions: :15 = .25, :30 = .50, :45 = .75." },
+        ],
+    },
 };
 
 export default async function ConvertHubPage({ params }: PageProps) {

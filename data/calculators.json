@@ -2603,6 +2603,40 @@
     "keywords": "cups to grams, cup to gram converter, how many grams in a cup, 1 cup flour in grams, cup to g calculator, baking cup to gram, cooking measurements"
   },
   {
+    "id": "min-to-hour-converter",
+    "category": "convert",
+    "title": "Minutes to Hours Converter (min to hr)",
+    "slug": "min-to-hour-converter",
+    "categorySlug": "convert",
+    "icon": "⏱️",
+    "calcType": "min-to-hour",
+    "description": "Convert minutes to hours and minutes (min to hr). See results in decimal hours, HH:MM format, seconds, and percentage of day. Includes a quick reference table.",
+    "stars": 5,
+    "defaults": {
+      "amount": 90,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 1,
+        "max": 1440,
+        "step": 1
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "minutes to hours, min to hr, minutes to hours converter, how many hours is 90 minutes, convert minutes to hours and minutes, time conversion, decimal hours"
+  },
+  {
     "id": "retirement-corpus",
     "category": "invest",
     "title": "Retirement Corpus Calculator",
