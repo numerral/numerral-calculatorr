@@ -28,8 +28,16 @@
         "icon": "⚡",
         "name": "Utility Calculators",
         "description": "Age, percentage, unit & date converters",
-        "count": 9,
+        "count": 8,
         "href": "/utility-calculators"
+    },
+    {
+        "key": "convert",
+        "icon": "🔄",
+        "name": "Conversion Calculators",
+        "description": "mL, grams, ounces, cups & unit converters",
+        "count": 2,
+        "href": "/convert"
     },
     {
         "key": "salary",

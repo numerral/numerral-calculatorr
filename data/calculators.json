@@ -2026,10 +2026,10 @@
   },
   {
     "id": "ml-to-gram-converter",
-    "category": "utility",
+    "category": "convert",
     "title": "Milliliters to Grams Converter (mL to g)",
     "slug": "ml-to-gram-converter",
-    "categorySlug": "utility-calculators",
+    "categorySlug": "convert",
     "icon": "⚗️",
     "calcType": "ml-to-gram",
     "description": "Convert milliliters to grams for any ingredient or substance. Select from 20 common cooking ingredients (flour, sugar, honey, oil, milk) or enter a custom density. Includes instant conversion table and ounce output.",
@@ -2057,6 +2057,40 @@
       }
     },
     "keywords": "ml to grams, milliliters to grams, ml to g converter, mL to grams calculator, cooking conversion, baking conversion, volume to weight converter, ingredient weight calculator"
+  },
+  {
+    "id": "gram-to-ml-converter",
+    "category": "convert",
+    "title": "Grams to Milliliters Converter (g to mL)",
+    "slug": "gram-to-ml-converter",
+    "categorySlug": "convert",
+    "icon": "⚖️",
+    "calcType": "gram-to-ml",
+    "description": "Convert grams to milliliters for any ingredient or substance. Select from 20 common cooking ingredients or enter a custom density. See results in mL, fluid ounces, and US cups instantly.",
+    "stars": 5,
+    "defaults": {
+      "amount": 100,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 1,
+        "max": 1000,
+        "step": 1
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "grams to ml, grams to milliliters, g to mL converter, grams to mL calculator, weight to volume converter, cooking conversion, baking weight to volume, gram to cup converter"
   },
   {
     "id": "retirement-corpus",
