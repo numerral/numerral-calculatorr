@@ -2263,6 +2263,40 @@
     "keywords": "tablespoons to grams, tbsp to g converter, tablespoon to gram calculator, how many grams in a tablespoon, tbsp flour grams, tbsp sugar grams, tbsp butter grams, cooking measurement"
   },
   {
+    "id": "kg-to-liter-converter",
+    "category": "convert",
+    "title": "Kilograms to Liters Converter (kg to L)",
+    "slug": "kg-to-liter-converter",
+    "categorySlug": "convert",
+    "icon": "🧪",
+    "calcType": "kg-to-liter",
+    "description": "Convert kilograms to liters (kg to L) for any substance. Select from 20 common ingredients or enter a custom density. See results in liters, US gallons, and US quarts.",
+    "stars": 5,
+    "defaults": {
+      "amount": 1,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 100,
+        "step": 1
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "kg to liters, kilograms to liters, kg to L converter, kilogram to liter calculator, how many liters in a kg, weight to volume, density conversion"
+  },
+  {
     "id": "retirement-corpus",
     "category": "invest",
     "title": "Retirement Corpus Calculator",

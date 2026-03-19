@@ -646,6 +646,84 @@ const HUB_CONTENT: Record<string, {
             { question: "What is the difference between a US tablespoon and a metric tablespoon?", answer: "A US tablespoon = 14.787 mL. A metric tablespoon (used in Australia, UK) = 20 mL — about 35% larger. The Australian tablespoon is the largest standard tablespoon in the world. Always check which standard your recipe uses." },
         ],
     },
+    "kg-to-liter-converter": {
+        subtitle: "Convert kilograms to liters (kg to L) for any substance. Select from 20 common ingredients or enter a custom density. See results in liters, US gallons, and US quarts.",
+        contentHTML: `
+            <h3>How to Convert Kilograms to Liters</h3>
+            <p>To convert kilograms to liters, <strong>divide the weight by the substance's density</strong>. Different substances occupy different volumes for the same weight because they have different densities.</p>
+            <div class="explanation__highlight">
+                <strong>liters = kilograms ÷ density (kg/L)</strong><br/><br/>
+                Example: 5 kg of olive oil (density 0.91 kg/L)<br/>
+                = 5 ÷ 0.91 = <strong>5.495 liters</strong> (1.452 US gallons)<br/><br/>
+                Example: 5 kg of honey (density 1.43 kg/L)<br/>
+                = 5 ÷ 1.43 = <strong>3.497 liters</strong> (0.924 US gallons)
+            </div>
+            <p>Notice how 5 kg of oil takes up more space than 5 kg of honey — because oil is less dense. This is why you can't simply say "1 kg = 1 liter" for anything except water.</p>
+
+            <h3>Kilograms to Liters — Common Substances</h3>
+            <p>How much volume does 1 kg of each substance occupy?</p>
+            <table>
+                <thead><tr><th>Substance</th><th>Density (kg/L)</th><th>1 kg =</th><th>5 kg =</th><th>10 kg =</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Water</strong></td><td>1.00</td><td>1.000 L</td><td>5.000 L</td><td>10.000 L</td></tr>
+                    <tr><td><strong>Whole Milk</strong></td><td>1.03</td><td>0.971 L</td><td>4.854 L</td><td>9.709 L</td></tr>
+                    <tr><td><strong>Olive Oil</strong></td><td>0.91</td><td>1.099 L</td><td>5.495 L</td><td>10.989 L</td></tr>
+                    <tr><td><strong>Honey</strong></td><td>1.43</td><td>0.699 L</td><td>3.497 L</td><td>6.993 L</td></tr>
+                    <tr><td><strong>All-Purpose Flour</strong></td><td>0.53</td><td>1.887 L</td><td>9.434 L</td><td>18.868 L</td></tr>
+                    <tr><td><strong>Granulated Sugar</strong></td><td>0.85</td><td>1.176 L</td><td>5.882 L</td><td>11.765 L</td></tr>
+                    <tr><td><strong>Rice (uncooked)</strong></td><td>0.82</td><td>1.220 L</td><td>6.098 L</td><td>12.195 L</td></tr>
+                    <tr><td><strong>Salt (table)</strong></td><td>1.20</td><td>0.833 L</td><td>4.167 L</td><td>8.333 L</td></tr>
+                    <tr><td><strong>Vegetable Oil</strong></td><td>0.91</td><td>1.099 L</td><td>5.495 L</td><td>10.989 L</td></tr>
+                    <tr><td><strong>Cream (heavy)</strong></td><td>1.01</td><td>0.990 L</td><td>4.950 L</td><td>9.901 L</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Why 1 Kilogram Is Not Always 1 Liter</h3>
+            <p>Only for <strong>water at 4°C</strong> does 1 kg = exactly 1 liter. For every other substance, the relationship depends on density:</p>
+            <ul>
+                <li><strong>Less dense than water</strong> (oil, flour, butter): 1 kg occupies <em>more</em> than 1 liter</li>
+                <li><strong>Denser than water</strong> (honey, salt, corn syrup): 1 kg occupies <em>less</em> than 1 liter</li>
+            </ul>
+            <p>For Americans: think of it like this — a gallon of water weighs about 8.34 pounds (3.78 kg), but a gallon of honey weighs about 12 pounds (5.4 kg). Same volume, very different weights.</p>
+
+            <h3>US Volume Equivalents</h3>
+            <p>Since Americans commonly use gallons, quarts, and cups:</p>
+            <table>
+                <thead><tr><th>Liters</th><th>US Gallons</th><th>US Quarts</th><th>US Cups</th><th>Fluid Ounces</th></tr></thead>
+                <tbody>
+                    <tr><td>0.5 L</td><td>0.132 gal</td><td>0.528 qt</td><td>2.113 cups</td><td>16.907 fl oz</td></tr>
+                    <tr><td>1.0 L</td><td>0.264 gal</td><td>1.057 qt</td><td>4.227 cups</td><td>33.814 fl oz</td></tr>
+                    <tr><td>2.0 L</td><td>0.528 gal</td><td>2.113 qt</td><td>8.454 cups</td><td>67.628 fl oz</td></tr>
+                    <tr><td>3.785 L</td><td>1.000 gal</td><td>4.000 qt</td><td>16.000 cups</td><td>128.000 fl oz</td></tr>
+                    <tr><td>5.0 L</td><td>1.321 gal</td><td>5.283 qt</td><td>21.134 cups</td><td>169.070 fl oz</td></tr>
+                    <tr><td>10.0 L</td><td>2.642 gal</td><td>10.567 qt</td><td>42.268 cups</td><td>338.140 fl oz</td></tr>
+                </tbody>
+            </table>
+
+            <h3>What Is a Kilogram?</h3>
+            <p>The <strong>kilogram</strong> (kg) is the SI base unit of mass, equal to 1,000 grams or approximately 2.205 pounds. Since 2019, it has been defined using the Planck constant rather than a physical artifact. In cooking, kilograms are used worldwide for measuring ingredients by weight — the most accurate method for baking.</p>
+
+            <h3>What Is a Liter?</h3>
+            <p>A <strong>liter</strong> (L) is a metric unit of volume equal to 1,000 milliliters, 1,000 cubic centimeters, or approximately 0.264 US gallons. For Americans: 1 liter is slightly more than 1 US quart (1 L = 1.057 qt). A standard 2-liter bottle of soda holds 2 liters (about half a gallon).</p>
+
+            <h3>When to Convert Kilograms to Liters</h3>
+            <ul>
+                <li><strong>Cooking and baking</strong>: A recipe says "500g flour" but you only have measuring cups. 500g flour ÷ 0.53 kg/L = 0.943 L ≈ about 4 US cups.</li>
+                <li><strong>Shipping and freight</strong>: Carriers charge by either weight or volume (dimensional weight). Converting between kg and liters helps determine which measurement results in higher shipping costs.</li>
+                <li><strong>Chemistry and labs</strong>: Mixing chemicals requires precise mass-to-volume conversions. A reaction calling for 2 kg of a reagent needs to know the volume to select the right container.</li>
+                <li><strong>Fuel calculations</strong>: Fuel is sold by the liter in most countries but sometimes measured by weight. 1 kg of gasoline ≈ 1.37 liters (density ~0.73 kg/L).</li>
+                <li><strong>Water storage and tanks</strong>: A 200-liter barrel holds 200 kg of water. But the same barrel holds only 182 kg of cooking oil (density 0.91 kg/L).</li>
+            </ul>
+        `,
+        faq: [
+            { question: "How many liters is 1 kg?", answer: "It depends on the substance. For water, 1 kg = exactly 1 liter. For olive oil (density 0.91 kg/L), 1 kg = 1.099 liters. For honey (density 1.43 kg/L), 1 kg = only 0.699 liters. You must know the density to convert accurately." },
+            { question: "Is 1 kg equal to 1 liter?", answer: "Only for water (at approximately 4°C). The reason is that water's density is 1.00 kg/L. For all other substances, 1 kg does NOT equal 1 liter. Lighter substances (like oil) take up more than 1 liter per kg, while heavier substances (like honey) take up less." },
+            { question: "How do I convert kg to liters?", answer: "Divide the weight in kilograms by the substance's density in kg/L. Formula: liters = kg ÷ density. For example: 5 kg of milk ÷ 1.03 kg/L = 4.854 liters." },
+            { question: "How many liters is 5 kg of flour?", answer: "About 9.43 liters. Flour has a density of approximately 0.53 kg/L, so 5 ÷ 0.53 = 9.43 liters. That's roughly 40 US cups of flour. Flour is very low-density because of trapped air between particles." },
+            { question: "How many US gallons is 1 liter?", answer: "1 liter = 0.264172 US gallons, or about 1.057 US quarts. To think of it another way: 1 US gallon = 3.785 liters. A standard 2-liter soda bottle holds about 0.528 gallons." },
+            { question: "Why does density matter for kg to liter conversion?", answer: "Because kilograms measure mass (weight) and liters measure volume (space). The connection between mass and volume is density — how tightly packed the substance's molecules are. Oil molecules are spaced farther apart than honey molecules, so the same weight of oil takes up more space." },
+        ],
+    },
 };
 
 export default async function ConvertHubPage({ params }: PageProps) {
