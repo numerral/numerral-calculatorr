@@ -2195,6 +2195,40 @@
     "keywords": "inches to cm, inches to centimeters, in to cm converter, inch to centimeter calculator, how many cm in an inch, convert inches, length conversion"
   },
   {
+    "id": "stone-to-kg-converter",
+    "category": "convert",
+    "title": "Stones & Pounds to Kilograms Converter (st to kg)",
+    "slug": "stone-to-kg-converter",
+    "categorySlug": "convert",
+    "icon": "🪨",
+    "calcType": "stone-to-kg",
+    "description": "Convert stones and pounds to kilograms (st & lbs to kg). Enter stones and additional pounds to see results in kg, grams, and total pounds instantly.",
+    "stars": 5,
+    "defaults": {
+      "amount": 10,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 50,
+        "step": 1
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "stone to kg, stones to kilograms, st to kg converter, stone to kilogram calculator, how many kg in a stone, stone pounds to kg, body weight converter"
+  },
+  {
     "id": "retirement-corpus",
     "category": "invest",
     "title": "Retirement Corpus Calculator",

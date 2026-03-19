@@ -473,6 +473,94 @@ const HUB_CONTENT: Record<string, {
             { question: "Is 1 inch exactly 2.54 cm?", answer: "Yes — exactly, by definition. Since 1959, the international inch has been defined as exactly 25.4 millimeters (2.54 cm). This is not a rounded or approximate value — it's mathematically precise." },
         ],
     },
+    "stone-to-kg-converter": {
+        subtitle: "Convert stones and pounds to kilograms (st & lbs to kg). Enter stones and additional pounds for instant results in kg, grams, and total pounds.",
+        contentHTML: `
+            <h3>How to Convert Stones to Kilograms</h3>
+            <p>One <strong>stone</strong> equals exactly <strong>14 pounds</strong>, or <strong>6.350293 kilograms</strong>. To convert stones (with optional additional pounds) to kilograms:</p>
+            <div class="explanation__highlight">
+                <strong>Step 1:</strong> Convert to total pounds: <strong>total lbs = (stone × 14) + additional pounds</strong><br/>
+                <strong>Step 2:</strong> Convert pounds to kilograms: <strong>kg = total lbs × 0.453592</strong><br/><br/>
+                <strong>Or directly: kg = stone × 6.350293</strong><br/><br/>
+                Example: 11 stone 4 lbs = (11 × 14) + 4 = 158 lbs = 158 × 0.453592 = <strong>71.67 kg</strong>
+            </div>
+
+            <h3>Stones to Kilograms Conversion Chart</h3>
+            <p>Quick reference for common stone-to-kg conversions:</p>
+            <table>
+                <thead><tr><th>Stones</th><th>Pounds</th><th>Kilograms</th><th>Approximate BMI Context</th></tr></thead>
+                <tbody>
+                    <tr><td>7 st</td><td>98 lbs</td><td>44.45 kg</td><td>Lightweight adult</td></tr>
+                    <tr><td>8 st</td><td>112 lbs</td><td>50.80 kg</td><td>Small adult</td></tr>
+                    <tr><td>9 st</td><td>126 lbs</td><td>57.15 kg</td><td>Average woman (UK)</td></tr>
+                    <tr><td>10 st</td><td>140 lbs</td><td>63.50 kg</td><td>—</td></tr>
+                    <tr><td>11 st</td><td>154 lbs</td><td>69.85 kg</td><td>Average man (UK)</td></tr>
+                    <tr><td>12 st</td><td>168 lbs</td><td>76.20 kg</td><td>—</td></tr>
+                    <tr><td>13 st</td><td>182 lbs</td><td>82.55 kg</td><td>Average man (US)</td></tr>
+                    <tr><td>14 st</td><td>196 lbs</td><td>88.90 kg</td><td>—</td></tr>
+                    <tr><td>15 st</td><td>210 lbs</td><td>95.25 kg</td><td>—</td></tr>
+                    <tr><td>16 st</td><td>224 lbs</td><td>101.61 kg</td><td>—</td></tr>
+                    <tr><td>18 st</td><td>252 lbs</td><td>114.31 kg</td><td>—</td></tr>
+                    <tr><td>20 st</td><td>280 lbs</td><td>127.01 kg</td><td>—</td></tr>
+                    <tr><td>25 st</td><td>350 lbs</td><td>158.76 kg</td><td>—</td></tr>
+                    <tr><td>30 st</td><td>420 lbs</td><td>190.51 kg</td><td>—</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Stone + Pounds — Common Body Weights</h3>
+            <p>Since body weight is rarely a round number of stones, here are common weights with pounds included:</p>
+            <table>
+                <thead><tr><th>Stone & Pounds</th><th>Total Pounds</th><th>Kilograms</th></tr></thead>
+                <tbody>
+                    <tr><td>8 st 7 lbs</td><td>119 lbs</td><td>53.98 kg</td></tr>
+                    <tr><td>9 st 4 lbs</td><td>130 lbs</td><td>58.97 kg</td></tr>
+                    <tr><td>10 st 0 lbs</td><td>140 lbs</td><td>63.50 kg</td></tr>
+                    <tr><td>10 st 7 lbs</td><td>147 lbs</td><td>66.68 kg</td></tr>
+                    <tr><td>11 st 0 lbs</td><td>154 lbs</td><td>69.85 kg</td></tr>
+                    <tr><td>11 st 7 lbs</td><td>161 lbs</td><td>73.03 kg</td></tr>
+                    <tr><td>12 st 0 lbs</td><td>168 lbs</td><td>76.20 kg</td></tr>
+                    <tr><td>12 st 7 lbs</td><td>175 lbs</td><td>79.38 kg</td></tr>
+                    <tr><td>13 st 0 lbs</td><td>182 lbs</td><td>82.55 kg</td></tr>
+                    <tr><td>14 st 0 lbs</td><td>196 lbs</td><td>88.90 kg</td></tr>
+                    <tr><td>15 st 7 lbs</td><td>217 lbs</td><td>98.43 kg</td></tr>
+                </tbody>
+            </table>
+
+            <h3>What Is a Stone?</h3>
+            <p>The <strong>stone</strong> (abbreviation: <strong>st</strong>) is an imperial unit of weight equal to <strong>14 pounds</strong> (6.35 kg). It's primarily used in the <strong>United Kingdom and Ireland</strong> to measure body weight. When a British person says "I weigh 11 stone," they mean 154 pounds (69.85 kg).</p>
+            <p>The stone has ancient origins — it was historically the weight of a literal stone used as a counterweight on balance scales. Different trades used different "stone" weights until 1824, when the UK Weights and Measures Act standardized it at 14 pounds.</p>
+            <p>Today, the stone is <strong>not recognized in the US</strong>, where pounds are used exclusively for body weight. It's also not an official SI unit, but remains deeply embedded in British and Irish culture.</p>
+
+            <h3>What Is a Kilogram?</h3>
+            <p>The <strong>kilogram</strong> (abbreviation: <strong>kg</strong>) is the SI base unit of mass, equal to 1,000 grams or approximately 2.205 pounds. Since 2019, the kilogram has been defined by the Planck constant (replacing the physical platinum-iridium prototype stored in France since 1889).</p>
+            <p>Kilograms are used worldwide for body weight — except in the US (which uses pounds) and UK/Ireland (which use stones and pounds). Most medical records globally use kilograms.</p>
+
+            <h3>US vs. UK vs. Metric Weight Systems</h3>
+            <ul>
+                <li><strong>United States</strong>: Body weight measured in <strong>pounds (lbs)</strong>. "I weigh 175 pounds."</li>
+                <li><strong>United Kingdom & Ireland</strong>: Body weight measured in <strong>stones & pounds</strong>. "I weigh 12 stone 7." (= 175 lbs = 79.4 kg)</li>
+                <li><strong>Most other countries</strong>: Body weight measured in <strong>kilograms</strong>. "I weigh 79 kg."</li>
+            </ul>
+            <p>This creates frequent conversion needs when Americans encounter British weight references (TV shows, sports, news), or when filling out international medical forms.</p>
+
+            <h3>When to Convert Stones to Kilograms</h3>
+            <ul>
+                <li><strong>Understanding British body weight references</strong>: UK TV shows, news, and fitness content use stones. "She lost 2 stone" = she lost 28 lbs (12.7 kg).</li>
+                <li><strong>Medical and fitness tracking</strong>: International health apps and medical records use kilograms. If you know your weight in stones, you need to convert for BMI calculations, medication dosing, or gym programs.</li>
+                <li><strong>International travel</strong>: Airline baggage limits, visa medical exams, and hotel scales in Europe all use kilograms.</li>
+                <li><strong>Combat sports</strong>: Boxing and MMA weight classes are listed in pounds in the US but sometimes in stones in the UK (e.g., "welterweight" = 10 st 7 lbs = 147 lbs = 66.7 kg).</li>
+                <li><strong>Immigration and visas</strong>: Medical examination forms for UK and US visas require weight in specific units — converting between systems is often necessary.</li>
+            </ul>
+        `,
+        faq: [
+            { question: "How many kilograms is 1 stone?", answer: "1 stone = 6.350293 kilograms (exactly 14 pounds). This is the standard conversion factor. So 10 stone = 63.50 kg, and 15 stone = 95.25 kg." },
+            { question: "How do I convert stone and pounds to kg?", answer: "First convert to total pounds: (stone × 14) + additional pounds. Then multiply by 0.453592 to get kilograms. Example: 12 stone 7 lbs = (12 × 14) + 7 = 175 lbs × 0.453592 = 79.38 kg." },
+            { question: "How many pounds is 1 stone?", answer: "Exactly 14 pounds. This has been the standard since the UK Weights and Measures Act of 1824. So 10 stone = 140 lbs, 11 stone = 154 lbs, and 15 stone = 210 lbs." },
+            { question: "What does '11 stone 4' mean?", answer: "It means 11 stones and 4 additional pounds, which equals (11 × 14) + 4 = 158 pounds, or 71.67 kilograms. This is the standard British way to express body weight — the 'pounds' part is understood to be 0–13 (since 14 pounds = another stone)." },
+            { question: "Do Americans use stones?", answer: "No. The stone is not used in the United States. Americans measure body weight in pounds only (e.g., '175 pounds'). The stone is primarily used in the United Kingdom and Ireland. Most other countries use kilograms." },
+            { question: "Is 13 stone overweight?", answer: "It depends on height. 13 stone = 182 lbs (82.55 kg). For a 5'10\" (178 cm) person, that gives a BMI of about 26.1, which is in the 'overweight' range. For a 6'2\" (188 cm) person, it's a BMI of 23.4, which is 'normal.' BMI alone doesn't account for muscle mass or body composition." },
+        ],
+    },
 };
 
 export default async function ConvertHubPage({ params }: PageProps) {

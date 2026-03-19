@@ -453,6 +453,81 @@ function InchToCmCalc() {
     );
 }
 
+// ─── Stones & Pounds to Kilograms ───
+function StonesToKgCalc() {
+    const [stone, setStone] = useState(10);
+    const [lbs, setLbs] = useState(0);
+
+    const totalLbs = stone * 14 + lbs;
+    const kg = totalLbs * 0.453592;
+    const grams = kg * 1000;
+    const poundsOnly = totalLbs;
+
+    const quickRef = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 15, 20, 30];
+
+    return (
+        <div className="calc-card">
+            <div className="calc-field">
+                <label className="calc-field__label">🪨 STONES</label>
+                <input type="range" className="calc-field__slider" min={0} max={50} step={1}
+                    value={stone} onChange={(e) => setStone(Number(e.target.value))} />
+                <div style={{ display: "flex", gap: "var(--s-2)", alignItems: "center" }}>
+                    <input type="number" className="calc-field__input" value={stone}
+                        onChange={(e) => setStone(Number(e.target.value))} style={{ flex: 1 }} />
+                    <span className="t-body-sm text-muted">st</span>
+                </div>
+            </div>
+            <div className="calc-field">
+                <label className="calc-field__label">⚖️ ADDITIONAL POUNDS</label>
+                <input type="range" className="calc-field__slider" min={0} max={13} step={1}
+                    value={lbs} onChange={(e) => setLbs(Number(e.target.value))} />
+                <div style={{ display: "flex", gap: "var(--s-2)", alignItems: "center" }}>
+                    <input type="number" className="calc-field__input" value={lbs}
+                        onChange={(e) => setLbs(Number(e.target.value))} style={{ flex: 1 }} />
+                    <span className="t-body-sm text-muted">lbs (0–13)</span>
+                </div>
+            </div>
+
+            <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
+                <p className="calc-field__label">WEIGHT IN KILOGRAMS</p>
+                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+                    {kg.toLocaleString("en-US", { maximumFractionDigits: 2 })} kg
+                </p>
+                <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "var(--s-3)" }}>
+                    <div><p className="calc-field__label">GRAMS</p><p style={{ fontWeight: 700 }}>{grams.toFixed(0)} g</p></div>
+                    <div><p className="calc-field__label">TOTAL POUNDS</p><p style={{ fontWeight: 700 }}>{poundsOnly} lbs</p></div>
+                    <div><p className="calc-field__label">STONE + LBS</p><p style={{ fontWeight: 700 }}>{stone} st {lbs} lbs</p></div>
+                    <div><p className="calc-field__label">FORMULA</p><p style={{ fontWeight: 700, fontSize: "var(--t-body-sm)" }}>{totalLbs} × 0.4536</p></div>
+                </div>
+            </div>
+
+            {/* Quick Reference Table */}
+            <div style={{ marginTop: "var(--s-4)" }}>
+                <h3 className="t-h3" style={{ marginBottom: "var(--s-3)" }}>Stones to Kilograms — Reference Table</h3>
+                <table className="calc-table">
+                    <thead>
+                        <tr><th>Stones</th><th>Pounds</th><th>Kilograms</th><th>Grams</th></tr>
+                    </thead>
+                    <tbody>
+                        {quickRef.map((s) => {
+                            const k = s * 6.350293;
+                            return (
+                                <tr key={s} style={s === stone && lbs === 0 ? { background: "var(--n-primary-light)" } : {}}>
+                                    <td>{s} st</td>
+                                    <td>{s * 14} lbs</td>
+                                    <td>{k.toFixed(2)} kg</td>
+                                    <td>{(k * 1000).toFixed(0)} g</td>
+                                </tr>
+                            );
+                        })}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    );
+}
+
 // ─── Dispatcher ───
 interface Props { calcType: string; }
 
@@ -462,6 +537,7 @@ const CALCULATORS: Record<string, React.FC> = {
     "liter-to-kg": LiterToKgCalc,
     "gram-to-cup": GramToCupCalc,
     "inch-to-cm": InchToCmCalc,
+    "stone-to-kg": StonesToKgCalc,
 };
 
 export default function ConversionCalculatorCore({ calcType }: Props) {
