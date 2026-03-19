@@ -2104,6 +2104,91 @@ function RpmToRadCalc() {
     );
 }
 
+// ─── Grams of Flour to Cups ───
+const FLOUR_TYPES = [
+    { label: "All-Purpose Flour", gPerCup: 125 },
+    { label: "Bread Flour", gPerCup: 130 },
+    { label: "Cake Flour", gPerCup: 114 },
+    { label: "Whole Wheat Flour", gPerCup: 120 },
+    { label: "Almond Flour", gPerCup: 96 },
+    { label: "Coconut Flour", gPerCup: 128 },
+    { label: "Self-Rising Flour", gPerCup: 125 },
+];
+
+function GramFlourToCupCalc() {
+    const [grams, setGrams] = useState(250);
+    const [flourIdx, setFlourIdx] = useState(0);
+
+    const flour = FLOUR_TYPES[flourIdx];
+    const cups = grams / flour.gPerCup;
+    const tbsp = cups * 16;
+    const oz = grams / 28.3495;
+    const lbs = oz / 16;
+
+    const quickRef = [25, 50, 100, 125, 150, 200, 250, 300, 400, 500];
+
+    return (
+        <div className="calc-card">
+            <div className="calc-field">
+                <label className="calc-field__label">⚖️ GRAMS OF FLOUR</label>
+                <input type="range" className="calc-field__slider" min={1} max={1000} step={1}
+                    value={grams} onChange={(e) => setGrams(Number(e.target.value))} />
+                <div style={{ display: "flex", gap: "var(--s-2)", alignItems: "center" }}>
+                    <input type="number" className="calc-field__input" value={grams}
+                        onChange={(e) => setGrams(Number(e.target.value))} style={{ flex: 1 }} />
+                    <span className="t-body-sm text-muted">g</span>
+                </div>
+            </div>
+            <div className="calc-field">
+                <label className="calc-field__label">🌾 FLOUR TYPE</label>
+                <select className="calc-field__input" value={flourIdx}
+                    onChange={(e) => setFlourIdx(Number(e.target.value))}>
+                    {FLOUR_TYPES.map((f, i) => (
+                        <option key={i} value={i}>{f.label} ({f.gPerCup} g/cup)</option>
+                    ))}
+                </select>
+            </div>
+
+            <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
+                <p className="calc-field__label">VOLUME IN CUPS</p>
+                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+                    {cups.toFixed(2)} cups
+                </p>
+                <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "var(--s-3)" }}>
+                    <div><p className="calc-field__label">TABLESPOONS</p><p style={{ fontWeight: 700 }}>{tbsp.toFixed(0)} tbsp</p></div>
+                    <div><p className="calc-field__label">OUNCES</p><p style={{ fontWeight: 700 }}>{oz.toFixed(1)} oz</p></div>
+                    <div><p className="calc-field__label">POUNDS</p><p style={{ fontWeight: 700 }}>{lbs.toFixed(2)} lbs</p></div>
+                    <div><p className="calc-field__label">FORMULA</p><p style={{ fontWeight: 700, fontSize: "var(--t-body-sm)" }}>{grams}÷{flour.gPerCup}</p></div>
+                </div>
+            </div>
+
+            {/* Quick Reference Table */}
+            <div style={{ marginTop: "var(--s-4)" }}>
+                <h3 className="t-h3" style={{ marginBottom: "var(--s-3)" }}>Grams to Cups — {flour.label}</h3>
+                <table className="calc-table">
+                    <thead>
+                        <tr><th>Grams</th><th>Cups</th><th>Tbsp</th><th>Ounces</th></tr>
+                    </thead>
+                    <tbody>
+                        {quickRef.map((g) => {
+                            const c = g / flour.gPerCup;
+                            return (
+                                <tr key={g} style={g === grams ? { background: "var(--n-primary-light)" } : {}}>
+                                    <td>{g} g</td>
+                                    <td>{c.toFixed(2)} cups</td>
+                                    <td>{(c * 16).toFixed(0)} tbsp</td>
+                                    <td>{(g / 28.3495).toFixed(1)} oz</td>
+                                </tr>
+                            );
+                        })}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    );
+}
+
 // ─── Dispatcher ───
 interface Props { calcType: string; }
 
@@ -2134,6 +2219,7 @@ const CALCULATORS: Record<string, React.FC> = {
     "sqm-to-sqft": SqMToSqFtCalc,
     "oz-to-ml": OzToMlCalc,
     "rpm-to-rads": RpmToRadCalc,
+    "gram-flour-to-cup": GramFlourToCupCalc,
 };
 
 export default function ConversionCalculatorCore({ calcType }: Props) {

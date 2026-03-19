@@ -2909,6 +2909,40 @@
     "keywords": "RPM to radians per second, RPM to rad/s, angular velocity converter, revolutions per minute to rad/s, rotation speed, angular speed"
   },
   {
+    "id": "gram-flour-to-cup-converter",
+    "category": "convert",
+    "title": "Grams of Flour to Cups Converter",
+    "slug": "gram-flour-to-cup-converter",
+    "categorySlug": "convert",
+    "icon": "🌾",
+    "calcType": "gram-flour-to-cup",
+    "description": "Convert grams of flour to cups for 7 flour types (all-purpose, bread, cake, whole wheat, almond, coconut, self-rising). See results in cups, tablespoons, and ounces.",
+    "stars": 5,
+    "defaults": {
+      "amount": 250,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 1,
+        "max": 1000,
+        "step": 1
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "grams of flour to cups, flour grams to cups, how many cups is 250g flour, flour conversion, baking measurement, all purpose flour grams to cups"
+  },
+  {
     "id": "retirement-corpus",
     "category": "invest",
     "title": "Retirement Corpus Calculator",

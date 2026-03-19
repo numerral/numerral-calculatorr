@@ -2286,6 +2286,104 @@ const HUB_CONTENT: Record<string, {
             { question: "How fast does a car engine spin?", answer: "A typical car engine idles at 600–1,000 RPM (62.8–104.7 rad/s) and cruises at 2,000–3,000 RPM (209–314 rad/s) on the highway. Redline (maximum safe RPM) is typically 6,000–7,000 RPM for most US passenger vehicles." },
         ],
     },
+    "gram-flour-to-cup-converter": {
+        subtitle: "Convert grams of flour to cups for 7 flour types (all-purpose, bread, cake, whole wheat, almond, coconut, self-rising). See results in cups, tablespoons, and ounces.",
+        contentHTML: `
+            <h3>How to Convert Grams of Flour to Cups</h3>
+            <p>Divide the weight in grams by the grams-per-cup for your flour type:</p>
+            <div class="explanation__highlight">
+                <strong>cups = grams ÷ grams per cup</strong><br/><br/>
+                Example: 250g all-purpose flour (125 g/cup)<br/>
+                = 250 ÷ 125 = <strong>2.00 cups</strong><br/><br/>
+                Example: 250g cake flour (114 g/cup)<br/>
+                = 250 ÷ 114 = <strong>2.19 cups</strong><br/><br/>
+                Example: 250g almond flour (96 g/cup)<br/>
+                = 250 ÷ 96 = <strong>2.60 cups</strong>
+            </div>
+            <p><strong>Key:</strong> The same weight of flour produces different cup amounts because each flour type has a different density!</p>
+
+            <h3>Flour Types — Grams per Cup Comparison</h3>
+            <table>
+                <thead><tr><th>Flour Type</th><th>g/cup</th><th>100g =</th><th>250g =</th><th>500g =</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>All-Purpose Flour</strong></td><td>125 g</td><td>0.80 cups</td><td>2.00 cups</td><td>4.00 cups</td></tr>
+                    <tr><td><strong>Bread Flour</strong></td><td>130 g</td><td>0.77 cups</td><td>1.92 cups</td><td>3.85 cups</td></tr>
+                    <tr><td><strong>Cake Flour</strong></td><td>114 g</td><td>0.88 cups</td><td>2.19 cups</td><td>4.39 cups</td></tr>
+                    <tr><td><strong>Whole Wheat Flour</strong></td><td>120 g</td><td>0.83 cups</td><td>2.08 cups</td><td>4.17 cups</td></tr>
+                    <tr><td><strong>Almond Flour</strong></td><td>96 g</td><td>1.04 cups</td><td>2.60 cups</td><td>5.21 cups</td></tr>
+                    <tr><td><strong>Coconut Flour</strong></td><td>128 g</td><td>0.78 cups</td><td>1.95 cups</td><td>3.91 cups</td></tr>
+                    <tr><td><strong>Self-Rising Flour</strong></td><td>125 g</td><td>0.80 cups</td><td>2.00 cups</td><td>4.00 cups</td></tr>
+                </tbody>
+            </table>
+
+            <h3>All-Purpose Flour — Grams to Cups Reference</h3>
+            <table>
+                <thead><tr><th>Grams</th><th>Cups</th><th>Tablespoons</th><th>Ounces</th></tr></thead>
+                <tbody>
+                    <tr><td>25 g</td><td>⅕ cup</td><td>3 tbsp</td><td>0.9 oz</td></tr>
+                    <tr><td>50 g</td><td>⅖ cup</td><td>6 tbsp</td><td>1.8 oz</td></tr>
+                    <tr><td>100 g</td><td>⅘ cup</td><td>13 tbsp</td><td>3.5 oz</td></tr>
+                    <tr><td>125 g</td><td>1 cup</td><td>16 tbsp</td><td>4.4 oz</td></tr>
+                    <tr><td>150 g</td><td>1⅕ cups</td><td>19 tbsp</td><td>5.3 oz</td></tr>
+                    <tr><td>200 g</td><td>1⅗ cups</td><td>26 tbsp</td><td>7.1 oz</td></tr>
+                    <tr><td>250 g</td><td>2 cups</td><td>32 tbsp</td><td>8.8 oz</td></tr>
+                    <tr><td>300 g</td><td>2⅖ cups</td><td>38 tbsp</td><td>10.6 oz</td></tr>
+                    <tr><td>400 g</td><td>3⅕ cups</td><td>51 tbsp</td><td>14.1 oz</td></tr>
+                    <tr><td>500 g</td><td>4 cups</td><td>64 tbsp</td><td>17.6 oz</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Why Do Different Flours Weigh Different Amounts per Cup?</h3>
+            <p>Flour weight per cup depends on <strong>protein content, particle size, and how finely it's milled</strong>:</p>
+            <ul>
+                <li><strong>Cake flour</strong> (114 g/cup) — lowest protein, very finely milled, sifted → lighter and fluffier</li>
+                <li><strong>All-purpose flour</strong> (125 g/cup) — medium protein, standard grind</li>
+                <li><strong>Bread flour</strong> (130 g/cup) — highest protein (12–14%), slightly denser</li>
+                <li><strong>Almond flour</strong> (96 g/cup) — ground almonds are much less dense than wheat flour</li>
+                <li><strong>Coconut flour</strong> (128 g/cup) — very absorbent; use ¼ to ⅓ the amount of all-purpose</li>
+            </ul>
+
+            <h3>⚠️ Why Cup Measurements Vary — The Scooping Problem</h3>
+            <p>How you scoop flour into a cup dramatically affects the weight:</p>
+            <table>
+                <thead><tr><th>Method</th><th>Typical Result</th><th>Accuracy</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Spoon & level</strong> (recommended)</td><td>~125 g/cup</td><td>Most accurate for cups</td></tr>
+                    <tr><td>Scoop & pack</td><td>~140–160 g/cup</td><td>Up to 28% more flour!</td></tr>
+                    <tr><td>Shake & settle</td><td>~130–140 g/cup</td><td>10–12% more flour</td></tr>
+                    <tr><td><strong>Kitchen scale</strong> (best)</td><td>Exact grams</td><td>Perfect every time ✅</td></tr>
+                </tbody>
+            </table>
+            <p><strong>Pro tip:</strong> A cup of scooped flour can weigh up to 155g vs 125g when spooned — that extra 30g per cup can ruin a recipe. This is why professional bakers and most international recipes use grams.</p>
+
+            <h3>Common US Recipe Flour Amounts</h3>
+            <table>
+                <thead><tr><th>Recipe</th><th>Flour Amount</th><th>In Cups (AP)</th></tr></thead>
+                <tbody>
+                    <tr><td>Pancakes (serves 4)</td><td>150 g</td><td>1.2 cups</td></tr>
+                    <tr><td>Cookies (1 batch)</td><td>250–300 g</td><td>2–2.4 cups</td></tr>
+                    <tr><td>Cake (9" round)</td><td>300–360 g</td><td>2.4–2.9 cups</td></tr>
+                    <tr><td>Pizza dough</td><td>350–400 g</td><td>2.8–3.2 cups</td></tr>
+                    <tr><td>Bread loaf</td><td>450–550 g</td><td>3.6–4.4 cups</td></tr>
+                    <tr><td>Pie crust (double)</td><td>300 g</td><td>2.4 cups</td></tr>
+                </tbody>
+            </table>
+
+            <h3>What Is a Gram?</h3>
+            <p>A <strong>gram</strong> (g) is a metric unit of weight equal to 1/1,000 of a kilogram. It is the preferred unit for measuring ingredients in professional baking and in recipes from Europe, Asia, and most of the world. Grams provide precise, consistent results because weight doesn't change with scooping technique.</p>
+
+            <h3>What Is a Cup?</h3>
+            <p>A <strong>US cup</strong> is a unit of volume equal to 8 fluid ounces or 236.6 mL. In US cooking, cups are the traditional unit for measuring dry ingredients like flour, sugar, and oats — though weight (grams/ounces) is more accurate for baking.</p>
+        `,
+        faq: [
+            { question: "How many cups is 250 grams of flour?", answer: "For all-purpose flour: 2.00 cups (250 ÷ 125). For cake flour: 2.19 cups (250 ÷ 114). For bread flour: 1.92 cups (250 ÷ 130). The answer depends on the flour type because each has a different density." },
+            { question: "How many grams is 1 cup of all-purpose flour?", answer: "125 grams when measured using the spoon-and-level method. If you scoop directly from the bag, you may pack in 140–155g per cup — which can make your baked goods dense and dry." },
+            { question: "Why is my recipe giving flour amounts in grams?", answer: "Grams are more accurate than cups for baking. A cup of flour can vary by 20–30% depending on how you scoop it (125g vs 155g). Most modern recipes, especially from professional bakers and international sources, use grams for consistency." },
+            { question: "Can I substitute different flour types?", answer: "Not directly cup-for-cup. Different flours have different protein content, absorption rates, and behaviors. Cake flour produces tender crumbs; bread flour gives chewy structure. If substituting, adjust the amount: use 2 tbsp less cake flour per cup of AP flour, or 1 tbsp more bread flour." },
+            { question: "How do I measure flour in cups correctly?", answer: "Use the spoon-and-level method: (1) Stir flour in the bag to aerate it, (2) Spoon flour into the measuring cup, (3) Level off with a straight edge. Never scoop directly from the bag — this packs the flour and adds 20–30% more." },
+            { question: "Why is almond flour measured differently?", answer: "Almond flour is made from ground almonds, not wheat, so it has very different density (96 g/cup vs 125 g for AP flour). It's also gluten-free and much higher in fat and protein. You cannot swap almond flour 1:1 for wheat flour — recipes need to be specifically designed for it." },
+        ],
+    },
 };
 
 export default async function ConvertHubPage({ params }: PageProps) {
