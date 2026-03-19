@@ -1925,6 +1925,105 @@ const HUB_CONTENT: Record<string, {
             { question: "What are milliseconds?", answer: "A millisecond (ms) is 1/1,000 of a second (0.001 seconds). Common uses: web page load times (under 3,000ms is good), ping/latency in online gaming (under 50ms is excellent), and camera shutter speeds." },
         ],
     },
+    "floz-to-ml-converter": {
+        subtitle: "Convert US fluid ounces to milliliters (fl oz to mL). See results in milliliters, liters, cups, and tablespoons. Includes a quick reference table.",
+        contentHTML: `
+            <h3>How to Convert Fluid Ounces to Milliliters</h3>
+            <p>Multiply the number of US fluid ounces by <strong>29.5735</strong>:</p>
+            <div class="explanation__highlight">
+                <strong>mL = fluid ounces × 29.5735</strong><br/><br/>
+                Example: 8 fl oz (1 cup)<br/>
+                = 8 × 29.5735 = <strong>236.6 mL</strong><br/><br/>
+                Example: 16 fl oz (1 pint)<br/>
+                = 16 × 29.5735 = <strong>473.2 mL</strong><br/><br/>
+                Example: 2 fl oz (medicine dose)<br/>
+                = 2 × 29.5735 = <strong>59.1 mL</strong>
+            </div>
+
+            <h3>Fluid Ounces to Milliliters — Conversion Table</h3>
+            <table>
+                <thead><tr><th>Fluid Ounces</th><th>Milliliters</th><th>Cups</th><th>Common Use</th></tr></thead>
+                <tbody>
+                    <tr><td>0.5 fl oz</td><td>14.8 mL</td><td>1/16 cup</td><td>1 tablespoon</td></tr>
+                    <tr><td>1 fl oz</td><td>29.6 mL</td><td>1/8 cup</td><td>Shot glass, medicine dose</td></tr>
+                    <tr><td>2 fl oz</td><td>59.1 mL</td><td>¼ cup</td><td>Double shot, cough syrup</td></tr>
+                    <tr><td>4 fl oz</td><td>118.3 mL</td><td>½ cup</td><td>Small juice glass</td></tr>
+                    <tr><td>6 fl oz</td><td>177.4 mL</td><td>¾ cup</td><td>Standard tea cup</td></tr>
+                    <tr><td>8 fl oz</td><td>236.6 mL</td><td>1 cup</td><td>Standard measuring cup</td></tr>
+                    <tr><td>12 fl oz</td><td>354.9 mL</td><td>1.5 cups</td><td>Soda can</td></tr>
+                    <tr><td>16 fl oz</td><td>473.2 mL</td><td>2 cups (1 pint)</td><td>Water bottle</td></tr>
+                    <tr><td>20 fl oz</td><td>591.5 mL</td><td>2.5 cups</td><td>Large water bottle</td></tr>
+                    <tr><td>32 fl oz</td><td>946.4 mL</td><td>4 cups (1 quart)</td><td>Large Gatorade</td></tr>
+                    <tr><td>64 fl oz</td><td>1,892.7 mL</td><td>8 cups (½ gal)</td><td>Half-gallon jug</td></tr>
+                    <tr><td>128 fl oz</td><td>3,785.4 mL</td><td>16 cups (1 gal)</td><td>Gallon jug</td></tr>
+                </tbody>
+            </table>
+
+            <h3>US Volume Unit Hierarchy</h3>
+            <table>
+                <thead><tr><th>Unit</th><th>Fluid Ounces</th><th>Milliliters</th></tr></thead>
+                <tbody>
+                    <tr><td>1 teaspoon</td><td>⅙ fl oz</td><td>4.929 mL</td></tr>
+                    <tr><td>1 tablespoon</td><td>½ fl oz</td><td>14.787 mL</td></tr>
+                    <tr><td><strong>1 fluid ounce</strong></td><td><strong>1 fl oz</strong></td><td><strong>29.574 mL</strong></td></tr>
+                    <tr><td>1 cup</td><td>8 fl oz</td><td>236.588 mL</td></tr>
+                    <tr><td>1 pint</td><td>16 fl oz</td><td>473.176 mL</td></tr>
+                    <tr><td>1 quart</td><td>32 fl oz</td><td>946.353 mL</td></tr>
+                    <tr><td>1 gallon</td><td>128 fl oz</td><td>3,785.41 mL</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Common US Containers — Fluid Ounces & Milliliters</h3>
+            <table>
+                <thead><tr><th>Container</th><th>Fl Oz</th><th>mL</th></tr></thead>
+                <tbody>
+                    <tr><td>Medicine cup</td><td>1 fl oz</td><td>30 mL</td></tr>
+                    <tr><td>Shot glass</td><td>1.5 fl oz</td><td>44 mL</td></tr>
+                    <tr><td>Espresso (double)</td><td>2 fl oz</td><td>59 mL</td></tr>
+                    <tr><td>Juice box</td><td>6.75 fl oz</td><td>200 mL</td></tr>
+                    <tr><td>Soda can</td><td>12 fl oz</td><td>355 mL</td></tr>
+                    <tr><td>Starbucks Grande</td><td>16 fl oz</td><td>473 mL</td></tr>
+                    <tr><td>Standard water bottle</td><td>16.9 fl oz</td><td>500 mL</td></tr>
+                    <tr><td>Starbucks Venti (iced)</td><td>24 fl oz</td><td>710 mL</td></tr>
+                    <tr><td>Wine bottle</td><td>25.4 fl oz</td><td>750 mL</td></tr>
+                    <tr><td>2-liter soda</td><td>67.6 fl oz</td><td>2,000 mL</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Fluid Ounce vs. Weight Ounce — Not the Same!</h3>
+            <p>A <strong>fluid ounce</strong> (fl oz) measures <strong>volume</strong>, while an <strong>ounce</strong> (oz) measures <strong>weight</strong>. They are completely different units that happen to share the word "ounce":</p>
+            <ul>
+                <li>1 fl oz of water weighs approximately 1.043 oz — close but not exact</li>
+                <li>1 fl oz of honey weighs about 1.5 oz (honey is denser than water)</li>
+                <li>1 fl oz of oil weighs about 0.95 oz (oil is lighter than water)</li>
+            </ul>
+            <p><strong>In recipes:</strong> "2 oz of chocolate" means weight (use a scale), while "2 fl oz of vanilla" means volume (use a measuring cup).</p>
+
+            <h3>US Fluid Ounce vs. Imperial Fluid Ounce</h3>
+            <table>
+                <thead><tr><th>Type</th><th>Volume</th><th>Where Used</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>US Fluid Ounce</strong></td><td>29.5735 mL</td><td>United States</td></tr>
+                    <tr><td><strong>Imperial Fluid Ounce</strong></td><td>28.4131 mL</td><td>UK (historical)</td></tr>
+                </tbody>
+            </table>
+            <p>A US fluid ounce is about 4% larger than an Imperial fluid ounce. This converter uses the <strong>US fluid ounce</strong>.</p>
+
+            <h3>What Is a Fluid Ounce?</h3>
+            <p>A <strong>US fluid ounce</strong> (fl oz) is a unit of volume equal to 1/128 of a US gallon, 1/8 of a cup, or 29.5735 milliliters. It is the standard unit for measuring liquid volumes on nutrition labels, beverage containers, and medicine dosages in the United States.</p>
+
+            <h3>What Is a Milliliter?</h3>
+            <p>A <strong>milliliter</strong> (mL) is a metric unit of volume equal to 1/1,000 of a liter or 1 cubic centimeter (cc). It is used worldwide for measuring small liquid volumes, especially in medicine, science, and international cooking. Most US medicine doses are now labeled in both fl oz and mL.</p>
+        `,
+        faq: [
+            { question: "How many mL is 8 fluid ounces?", answer: "236.6 mL. 8 fl oz × 29.5735 = 236.6 mL. This is exactly 1 US cup — the standard measuring cup used in American cooking." },
+            { question: "How many mL in 1 fluid ounce?", answer: "29.5735 mL. For quick estimates, round to 30 mL — this is what medicine cups use. The 30 mL = 1 fl oz approximation is accurate to within 1.4%." },
+            { question: "How many fluid ounces is a 500 mL water bottle?", answer: "About 16.9 fl oz. 500 ÷ 29.5735 = 16.907 fl oz. This is the standard water bottle size sold in the US, often labeled as '16.9 fl oz (500 mL)'." },
+            { question: "Is a fluid ounce the same as an ounce?", answer: "No! A fluid ounce (fl oz) measures volume, while a regular ounce (oz) measures weight. 1 fl oz of water weighs approximately 1.043 oz. For denser liquids like honey, the weight difference is even greater." },
+            { question: "How many fluid ounces in a soda can?", answer: "12 fl oz, which equals 354.9 mL or about 355 mL. This has been the standard US soda can size since the 1960s." },
+            { question: "How do I convert a recipe from fluid ounces to mL?", answer: "Multiply each fl oz measurement by 29.5735 (or round to 30 for simplicity). Key equivalents to memorize: 1 fl oz ≈ 30 mL, 8 fl oz (1 cup) ≈ 237 mL, 16 fl oz (1 pint) ≈ 473 mL." },
+        ],
+    },
 };
 
 export default async function ConvertHubPage({ params }: PageProps) {

@@ -1809,6 +1809,71 @@ function SecToMinCalc() {
     );
 }
 
+// ─── Fluid Ounces to Milliliters ───
+function FlOzToMlCalc() {
+    const [floz, setFloz] = useState(8);
+
+    const ML_PER_FLOZ = 29.5735;
+    const ml = floz * ML_PER_FLOZ;
+    const liters = ml / 1000;
+    const cups = floz / 8;
+    const tbsp = floz * 2;
+
+    const quickRef = [0.5, 1, 2, 4, 6, 8, 12, 16, 24, 32, 64, 128];
+
+    return (
+        <div className="calc-card">
+            <div className="calc-field">
+                <label className="calc-field__label">🥛 US FLUID OUNCES</label>
+                <input type="range" className="calc-field__slider" min={0.5} max={128} step={0.5}
+                    value={floz} onChange={(e) => setFloz(Number(e.target.value))} />
+                <div style={{ display: "flex", gap: "var(--s-2)", alignItems: "center" }}>
+                    <input type="number" className="calc-field__input" value={floz}
+                        onChange={(e) => setFloz(Number(e.target.value))} style={{ flex: 1 }} />
+                    <span className="t-body-sm text-muted">fl oz</span>
+                </div>
+            </div>
+
+            <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
+                <p className="calc-field__label">VOLUME IN MILLILITERS</p>
+                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+                    {ml.toFixed(1)} mL
+                </p>
+                <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "var(--s-3)" }}>
+                    <div><p className="calc-field__label">LITERS</p><p style={{ fontWeight: 700 }}>{liters.toFixed(4)} L</p></div>
+                    <div><p className="calc-field__label">US CUPS</p><p style={{ fontWeight: 700 }}>{cups.toFixed(2)} cups</p></div>
+                    <div><p className="calc-field__label">TABLESPOONS</p><p style={{ fontWeight: 700 }}>{tbsp.toFixed(0)} tbsp</p></div>
+                    <div><p className="calc-field__label">FORMULA</p><p style={{ fontWeight: 700, fontSize: "var(--t-body-sm)" }}>{floz} × 29.57</p></div>
+                </div>
+            </div>
+
+            {/* Quick Reference Table */}
+            <div style={{ marginTop: "var(--s-4)" }}>
+                <h3 className="t-h3" style={{ marginBottom: "var(--s-3)" }}>Fluid Ounces to Milliliters — Quick Reference</h3>
+                <table className="calc-table">
+                    <thead>
+                        <tr><th>Fl Oz</th><th>Milliliters</th><th>Cups</th><th>Liters</th></tr>
+                    </thead>
+                    <tbody>
+                        {quickRef.map((f) => {
+                            const m = f * ML_PER_FLOZ;
+                            return (
+                                <tr key={f} style={f === floz ? { background: "var(--n-primary-light)" } : {}}>
+                                    <td>{f} fl oz</td>
+                                    <td>{m.toFixed(1)} mL</td>
+                                    <td>{(f / 8).toFixed(2)} cups</td>
+                                    <td>{(m / 1000).toFixed(3)} L</td>
+                                </tr>
+                            );
+                        })}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    );
+}
+
 // ─── Dispatcher ───
 interface Props { calcType: string; }
 
@@ -1835,6 +1900,7 @@ const CALCULATORS: Record<string, React.FC> = {
     "kiloohm-to-ohm": KiloohmToOhmCalc,
     "gal-to-lb": GalToLbCalc,
     "sec-to-min": SecToMinCalc,
+    "floz-to-ml": FlOzToMlCalc,
 };
 
 export default function ConversionCalculatorCore({ calcType }: Props) {

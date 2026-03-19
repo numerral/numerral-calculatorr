@@ -2773,6 +2773,40 @@
     "keywords": "seconds to minutes, s to min, seconds to minutes converter, how many minutes is 120 seconds, convert seconds to minutes and seconds, time conversion"
   },
   {
+    "id": "floz-to-ml-converter",
+    "category": "convert",
+    "title": "Fluid Ounces to Milliliters Converter (fl oz to mL)",
+    "slug": "floz-to-ml-converter",
+    "categorySlug": "convert",
+    "icon": "🥛",
+    "calcType": "floz-to-ml",
+    "description": "Convert US fluid ounces to milliliters (fl oz to mL). See results in milliliters, liters, cups, and tablespoons. Includes a quick reference table.",
+    "stars": 5,
+    "defaults": {
+      "amount": 8,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 128,
+        "step": 1
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "fluid ounces to milliliters, fl oz to mL, fluid ounce to milliliter converter, how many mL in a fluid ounce, volume conversion, US fluid ounce"
+  },
+  {
     "id": "retirement-corpus",
     "category": "invest",
     "title": "Retirement Corpus Calculator",
