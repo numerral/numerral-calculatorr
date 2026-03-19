@@ -2093,6 +2093,40 @@
     "keywords": "grams to ml, grams to milliliters, g to mL converter, grams to mL calculator, weight to volume converter, cooking conversion, baking weight to volume, gram to cup converter"
   },
   {
+    "id": "liter-to-kg-converter",
+    "category": "convert",
+    "title": "Liters to Kilograms Converter (L to kg)",
+    "slug": "liter-to-kg-converter",
+    "categorySlug": "convert",
+    "icon": "🧴",
+    "calcType": "liter-to-kg",
+    "description": "Convert liters to kilograms for any substance. Select from 20 common ingredients or enter a custom density. See results in kg, pounds, and US gallons instantly.",
+    "stars": 5,
+    "defaults": {
+      "amount": 1,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0.1,
+        "max": 100,
+        "step": 0.1
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "liters to kilograms, liters to kg, L to kg converter, liters to kg calculator, volume to weight, liquid weight calculator, water weight per liter"
+  },
+  {
     "id": "retirement-corpus",
     "category": "invest",
     "title": "Retirement Corpus Calculator",

@@ -211,6 +211,86 @@ const HUB_CONTENT: Record<string, {
             { question: "What is the most accurate way to measure ingredients?", answer: "Using a digital kitchen scale to measure in grams. This is 100% consistent regardless of how you scoop, pack, or level the ingredient. Volume measurements (cups, tablespoons) can vary by 20% or more depending on technique." },
         ],
     },
+    "liter-to-kg-converter": {
+        subtitle: "Convert liters (L) to kilograms (kg) for any substance. Select from 20 common ingredients or enter a custom density for instant, accurate volume-to-weight conversion at liter scale.",
+        contentHTML: `
+            <h3>How to Convert Liters to Kilograms</h3>
+            <p>Liters (L) measure <strong>volume</strong> — one liter equals 1,000 milliliters or about 0.264 US gallons. Kilograms (kg) measure <strong>mass</strong>. The conversion requires knowing the <strong>density</strong> of the substance.</p>
+            <p>The conversion formula is:</p>
+            <div class="explanation__highlight">
+                <strong>kilograms = liters × density (kg/L)</strong><br/>
+                For example: 5 liters of water = 5 × 1.0 = <strong>5 kg</strong> (11.02 lbs), while 5 liters of olive oil = 5 × 0.92 = <strong>4.6 kg</strong> (10.14 lbs).
+            </div>
+            <p><strong>Key insight:</strong> The density in kg/L is numerically the same as g/mL. Water has a density of 1.0 kg/L (= 1.0 g/mL), so 1 liter of water weighs exactly 1 kilogram. For any other substance, the weight per liter differs.</p>
+
+            <h3>Why 1 Liter Does NOT Always Weigh 1 Kilogram</h3>
+            <p>The original definition of the kilogram was based on water — 1 kg was the mass of 1 liter of water at 4°C. This is why people often assume 1 L = 1 kg. But this only holds for water:</p>
+            <ul>
+                <li><strong>1 liter of honey</strong> = 1.42 kg (3.13 lbs) — 42% heavier than water</li>
+                <li><strong>1 liter of olive oil</strong> = 0.92 kg (2.03 lbs) — 8% lighter than water</li>
+                <li><strong>1 liter of flour</strong> = 0.53 kg (1.17 lbs) — almost half the weight of water</li>
+                <li><strong>1 liter of rolled oats</strong> = 0.36 kg (0.79 lbs) — barely a third of water's weight</li>
+            </ul>
+
+            <h3>Liter to Kilogram Reference Table — Common Substances</h3>
+            <table>
+                <thead><tr><th>Substance</th><th>Density (kg/L)</th><th>1 L =</th><th>5 L =</th><th>10 L =</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Water</strong></td><td>1.00</td><td>1.00 kg</td><td>5.00 kg</td><td>10.00 kg</td></tr>
+                    <tr><td><strong>Whole Milk</strong></td><td>1.03</td><td>1.03 kg</td><td>5.15 kg</td><td>10.30 kg</td></tr>
+                    <tr><td><strong>Heavy Cream</strong></td><td>1.01</td><td>1.01 kg</td><td>5.05 kg</td><td>10.10 kg</td></tr>
+                    <tr><td><strong>All-Purpose Flour</strong></td><td>0.53</td><td>0.53 kg</td><td>2.65 kg</td><td>5.30 kg</td></tr>
+                    <tr><td><strong>Granulated Sugar</strong></td><td>0.85</td><td>0.85 kg</td><td>4.25 kg</td><td>8.50 kg</td></tr>
+                    <tr><td><strong>Honey</strong></td><td>1.42</td><td>1.42 kg</td><td>7.10 kg</td><td>14.20 kg</td></tr>
+                    <tr><td><strong>Maple Syrup</strong></td><td>1.33</td><td>1.33 kg</td><td>6.65 kg</td><td>13.30 kg</td></tr>
+                    <tr><td><strong>Olive Oil</strong></td><td>0.92</td><td>0.92 kg</td><td>4.60 kg</td><td>9.20 kg</td></tr>
+                    <tr><td><strong>Vegetable Oil</strong></td><td>0.92</td><td>0.92 kg</td><td>4.60 kg</td><td>9.20 kg</td></tr>
+                    <tr><td><strong>Butter (melted)</strong></td><td>0.91</td><td>0.91 kg</td><td>4.55 kg</td><td>9.10 kg</td></tr>
+                    <tr><td><strong>Table Salt</strong></td><td>1.22</td><td>1.22 kg</td><td>6.10 kg</td><td>12.20 kg</td></tr>
+                    <tr><td><strong>Rice (uncooked)</strong></td><td>0.85</td><td>0.85 kg</td><td>4.25 kg</td><td>8.50 kg</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Liters to US Customary Units</h3>
+            <p>Since this converter is designed for a US audience, here's how liters relate to common US volume measurements:</p>
+            <table>
+                <thead><tr><th>Liters</th><th>US Gallons</th><th>US Quarts</th><th>US Pints</th><th>US Cups</th><th>Fluid Ounces</th></tr></thead>
+                <tbody>
+                    <tr><td>0.5 L</td><td>0.132</td><td>0.528</td><td>1.057</td><td>2.113</td><td>16.907</td></tr>
+                    <tr><td>1 L</td><td>0.264</td><td>1.057</td><td>2.113</td><td>4.227</td><td>33.814</td></tr>
+                    <tr><td>2 L</td><td>0.528</td><td>2.113</td><td>4.227</td><td>8.454</td><td>67.628</td></tr>
+                    <tr><td>3.785 L</td><td>1.000</td><td>4.000</td><td>8.000</td><td>16.000</td><td>128.000</td></tr>
+                    <tr><td>5 L</td><td>1.321</td><td>5.283</td><td>10.567</td><td>21.134</td><td>169.070</td></tr>
+                    <tr><td>10 L</td><td>2.642</td><td>10.567</td><td>21.134</td><td>42.268</td><td>338.140</td></tr>
+                    <tr><td>20 L</td><td>5.283</td><td>21.134</td><td>42.268</td><td>84.535</td><td>676.280</td></tr>
+                </tbody>
+            </table>
+            <p><em>Note: 1 US gallon = 3.785 liters. This is different from an Imperial (UK) gallon, which is 4.546 liters.</em></p>
+
+            <h3>When You Need Liter-to-Kilogram Conversion</h3>
+            <ul>
+                <li><strong>Cooking and catering at scale</strong>: Restaurant and catering recipes often specify liquids in liters but dry goods in kilograms. Converting between the two ensures accurate bulk preparation.</li>
+                <li><strong>Aquariums and water features</strong>: Knowing that 1 liter of water = 1 kg helps you calculate the total weight of a filled aquarium. A 200-liter (53-gallon) tank weighs 200 kg (441 lbs) of water alone — plus the tank itself.</li>
+                <li><strong>Shipping and freight</strong>: Carriers charge by weight, not volume. If you're shipping 50 liters of olive oil, you need to know it weighs 46 kg (101 lbs), not 50 kg — which could affect your shipping bracket.</li>
+                <li><strong>Chemistry and industrial applications</strong>: Chemical reactions require precise mass inputs. When working with large volumes of liquids, converting liters to kg ensures stoichiometric accuracy.</li>
+                <li><strong>Homebrewing and winemaking</strong>: Brewers often measure ingredients by volume (liters) but need weights for shipping, recipe scaling, and gravity calculations.</li>
+                <li><strong>Fuel and automotive</strong>: Gasoline has a density of about 0.74 kg/L. A full 60-liter (16-gallon) tank holds about 44.4 kg (98 lbs) of fuel.</li>
+            </ul>
+
+            <h3>What Is a Liter? What Is a Kilogram?</h3>
+            <p>A <strong>liter</strong> is a metric unit of volume equal to 1,000 cubic centimeters (cm³), 1,000 milliliters, or about 0.264 US gallons. It's abbreviated as <strong>L</strong> (capitalized to distinguish it from the number "1").</p>
+            <p>A <strong>kilogram</strong> is the SI base unit of mass, equal to 1,000 grams or about 2.205 pounds. Since 2019, it's formally defined using the Planck constant rather than a physical artifact. The prefix "kilo-" means 1,000, so 1 kg = 1,000 g. It's abbreviated as <strong>kg</strong>.</p>
+            <p>Historically, the kilogram was defined as the mass of 1 liter of water at 4°C — which is why water's density of exactly 1.0 kg/L serves as the universal baseline for volume-to-weight conversions.</p>
+        `,
+        faq: [
+            { question: "How many kilograms is 1 liter?", answer: "It depends on the substance. 1 liter of water weighs exactly 1 kg. But 1 liter of honey weighs 1.42 kg, and 1 liter of flour weighs only 0.53 kg. The formula is: kg = liters × density (kg/L). Use our converter above for instant results." },
+            { question: "How much does 1 liter of water weigh?", answer: "Exactly 1 kilogram (2.205 pounds). This is by definition — the kilogram was originally defined as the mass of 1 liter of water at 4°C. This makes water the universal baseline for volume-to-weight conversions." },
+            { question: "How do I convert liters to pounds?", answer: "First convert liters to kg (multiply by density), then multiply by 2.20462 to get pounds. For example: 5 liters of milk = 5 × 1.03 = 5.15 kg × 2.20462 = 11.35 pounds. Our calculator does both conversions instantly." },
+            { question: "How many liters in a US gallon?", answer: "1 US gallon = 3.785 liters. This is different from an Imperial (UK) gallon, which is 4.546 liters. A US gallon of water weighs about 3.785 kg (8.34 lbs)." },
+            { question: "Does 1 liter of oil weigh 1 kilogram?", answer: "No — most cooking oils have a density of about 0.92 kg/L, so 1 liter of oil weighs about 0.92 kg (2.03 lbs). This is why oil floats on water — it's less dense." },
+            { question: "How much does a full aquarium weigh?", answer: "Multiply the volume in liters by 1.0 kg/L (for water). A 100-liter (26.4-gallon) tank holds 100 kg (220 lbs) of water, plus the weight of the tank, gravel, and decorations. Always check your floor's load capacity for large tanks." },
+        ],
+    },
 };
 
 export default async function ConvertHubPage({ params }: PageProps) {
