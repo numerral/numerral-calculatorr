@@ -3147,6 +3147,40 @@
     "keywords": "Fahrenheit to Celsius, F to C, degrees Fahrenheit to Celsius, temperature converter, convert Fahrenheit, °F to °C"
   },
   {
+    "id": "c-to-f-converter",
+    "category": "convert",
+    "title": "Celsius to Fahrenheit Converter (°C to °F)",
+    "slug": "c-to-f-converter",
+    "categorySlug": "convert",
+    "icon": "🌡️",
+    "calcType": "c-to-f",
+    "description": "Convert Celsius to Fahrenheit (°C to °F). See results in Fahrenheit, Kelvin, and Rankine. Includes a quick reference table with weather, body temp, and oven temperatures.",
+    "stars": 5,
+    "defaults": {
+      "amount": 22,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": -50,
+        "max": 300,
+        "step": 1
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "Celsius to Fahrenheit, C to F, degrees Celsius to Fahrenheit, temperature converter, convert Celsius, °C to °F"
+  },
+  {
     "id": "retirement-corpus",
     "category": "invest",
     "title": "Retirement Corpus Calculator",

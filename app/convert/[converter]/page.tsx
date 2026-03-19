@@ -2906,6 +2906,99 @@ const HUB_CONTENT: Record<string, {
             { question: "How do I convert oven temperatures from Fahrenheit to Celsius?", answer: "Use the formula °C = (°F − 32) × 5/9. Common conversions: 350°F = 177°C (baking), 375°F = 191°C (general cooking), 400°F = 204°C (roasting), 425°F = 218°C (high heat), 450°F = 232°C (pizza). Most European recipes use Celsius, so American bakers converting international recipes need this frequently." },
         ],
     },
+    "c-to-f-converter": {
+        subtitle: "Convert Celsius to Fahrenheit (°C to °F). See results in Fahrenheit, Kelvin, and Rankine. Includes a quick reference table with weather, body temp, and oven temperatures.",
+        contentHTML: `
+            <h3>How to Convert Celsius to Fahrenheit</h3>
+            <p>Multiply the Celsius temperature by 9/5 (or 1.8), then add 32:</p>
+            <div class="explanation__highlight">
+                <strong>°F = (°C × 9/5) + 32</strong><br/><br/>
+                Example: 22°C (room temperature)<br/>
+                = (22 × 1.8) + 32 = 39.6 + 32 = <strong>71.6°F</strong><br/><br/>
+                Example: 37°C (body temperature)<br/>
+                = (37 × 1.8) + 32 = 66.6 + 32 = <strong>98.6°F</strong><br/><br/>
+                Example: 180°C (oven for baking)<br/>
+                = (180 × 1.8) + 32 = 324 + 32 = <strong>356°F</strong>
+            </div>
+            <p><strong>Mental math shortcut:</strong> Double it and add 30. Example: 22°C → (22 × 2) + 30 = 74°F (actual: 71.6°F). Good enough for a quick estimate!</p>
+
+            <h3>Celsius to Fahrenheit — Conversion Chart</h3>
+            <table>
+                <thead><tr><th>°C</th><th>°F</th><th>Kelvin</th><th>What It Means</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>-40°C</strong></td><td><strong>-40°F</strong></td><td>233.15 K</td><td>F = C crossover point</td></tr>
+                    <tr><td>-18°C</td><td>0°F</td><td>255.2 K</td><td>0°F equivalent</td></tr>
+                    <tr><td><strong>0°C</strong></td><td><strong>32°F</strong></td><td>273.15 K</td><td><strong>Water freezes</strong></td></tr>
+                    <tr><td>10°C</td><td>50°F</td><td>283.15 K</td><td>Cool autumn day</td></tr>
+                    <tr><td>20°C</td><td>68°F</td><td>293.15 K</td><td>Room temperature (low)</td></tr>
+                    <tr><td><strong>22°C</strong></td><td><strong>71.6°F</strong></td><td>295.15 K</td><td><strong>Ideal room temperature</strong></td></tr>
+                    <tr><td>25°C</td><td>77°F</td><td>298.15 K</td><td>Warm comfortable day</td></tr>
+                    <tr><td>30°C</td><td>86°F</td><td>303.15 K</td><td>Hot summer day</td></tr>
+                    <tr><td><strong>37°C</strong></td><td><strong>98.6°F</strong></td><td>310.15 K</td><td><strong>Normal body temperature</strong></td></tr>
+                    <tr><td>38°C</td><td>100.4°F</td><td>311.15 K</td><td>Fever threshold</td></tr>
+                    <tr><td><strong>100°C</strong></td><td><strong>212°F</strong></td><td>373.15 K</td><td><strong>Water boils</strong></td></tr>
+                    <tr><td>180°C</td><td>356°F</td><td>453.15 K</td><td>Oven: baking</td></tr>
+                    <tr><td>200°C</td><td>392°F</td><td>473.15 K</td><td>Oven: roasting</td></tr>
+                    <tr><td>230°C</td><td>446°F</td><td>503.15 K</td><td>Oven: pizza</td></tr>
+                </tbody>
+            </table>
+
+            <h3>International Travel — Temperature Reference for Americans</h3>
+            <p>When you see Celsius on a weather app abroad, here's what it means in Fahrenheit:</p>
+            <table>
+                <thead><tr><th>°C Forecast</th><th>°F</th><th>What It Feels Like</th><th>Pack This</th></tr></thead>
+                <tbody>
+                    <tr><td>-10°C</td><td>14°F</td><td>Bitter cold</td><td>Heavy coat, thermals, hat</td></tr>
+                    <tr><td>0°C</td><td>32°F</td><td>Freezing</td><td>Winter coat, gloves, scarf</td></tr>
+                    <tr><td>10°C</td><td>50°F</td><td>Chilly</td><td>Jacket, long pants</td></tr>
+                    <tr><td>15°C</td><td>59°F</td><td>Cool/mild</td><td>Light jacket, layers</td></tr>
+                    <tr><td>20°C</td><td>68°F</td><td>Comfortable</td><td>T-shirt, light layers</td></tr>
+                    <tr><td>25°C</td><td>77°F</td><td>Warm</td><td>Shorts, sunglasses</td></tr>
+                    <tr><td>30°C</td><td>86°F</td><td>Hot</td><td>Light clothing, sunscreen</td></tr>
+                    <tr><td>35°C</td><td>95°F</td><td>Very hot</td><td>Stay hydrated, seek shade</td></tr>
+                    <tr><td>40°C</td><td>104°F</td><td>Extreme heat</td><td>Stay indoors, AC essential</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Cooking Conversion — European Recipes for US Ovens</h3>
+            <table>
+                <thead><tr><th>European Recipe</th><th>°C</th><th>US Oven (°F)</th><th>Gas Mark</th></tr></thead>
+                <tbody>
+                    <tr><td>Low / slow cook</td><td>120°C</td><td>250°F</td><td>½</td></tr>
+                    <tr><td>Moderate low</td><td>150°C</td><td>300°F</td><td>2</td></tr>
+                    <tr><td>Moderate</td><td>170–180°C</td><td>340–350°F</td><td>4</td></tr>
+                    <tr><td>Moderately hot</td><td>190–200°C</td><td>375–400°F</td><td>5–6</td></tr>
+                    <tr><td>Hot</td><td>210–220°C</td><td>410–425°F</td><td>7</td></tr>
+                    <tr><td>Very hot</td><td>230–240°C</td><td>450–475°F</td><td>8–9</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Temperature Scale Comparison</h3>
+            <table>
+                <thead><tr><th>Scale</th><th>Freezing Point</th><th>Boiling Point</th><th>Absolute Zero</th><th>Used By</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Fahrenheit (°F)</strong></td><td>32°F</td><td>212°F</td><td>-459.67°F</td><td>USA, a few territories</td></tr>
+                    <tr><td><strong>Celsius (°C)</strong></td><td>0°C</td><td>100°C</td><td>-273.15°C</td><td>Rest of the world</td></tr>
+                    <tr><td>Kelvin (K)</td><td>273.15 K</td><td>373.15 K</td><td>0 K</td><td>Science worldwide</td></tr>
+                    <tr><td>Rankine (°R)</td><td>491.67°R</td><td>671.67°R</td><td>0°R</td><td>US engineering (rare)</td></tr>
+                </tbody>
+            </table>
+
+            <h3>What Is Celsius?</h3>
+            <p><strong>Celsius</strong> (°C), formerly called centigrade, is the world's most widely used temperature scale. It was designed by Anders Celsius in 1742 with 0°C as the freezing point and 100°C as the boiling point of water — a clean, logical 100-degree range. Every country except the US and a few territories uses Celsius for weather, cooking, and everyday temperature.</p>
+
+            <h3>What Is Fahrenheit?</h3>
+            <p><strong>Fahrenheit</strong> (°F) was developed by Daniel Gabriel Fahrenheit in 1724. Water freezes at 32°F and boils at 212°F. While less intuitive than Celsius, Fahrenheit provides finer granularity per degree — the 180-degree range (32–212) vs. 100-degree range (0–100) means each °F is a smaller change than each °C, which some argue makes it better for describing weather.</p>
+        `,
+        faq: [
+            { question: "What is the formula to convert Celsius to Fahrenheit?", answer: "°F = (°C × 9/5) + 32, or equivalently °F = (°C × 1.8) + 32. Example: 25°C = (25 × 1.8) + 32 = 77°F. For a quick mental estimate: double the Celsius and add 30." },
+            { question: "What is 0°C in Fahrenheit?", answer: "0°C = 32°F. This is the freezing point of water. It's the most important temperature to remember when converting — water freezes at 0°C/32°F and boils at 100°C/212°F." },
+            { question: "What is 37°C in Fahrenheit?", answer: "37°C = 98.6°F. This is normal human body temperature. When traveling internationally, if a doctor says your temperature is 37°C, that's perfectly normal. A fever is typically 38°C (100.4°F) or higher." },
+            { question: "How do I convert European oven temperatures to Fahrenheit?", answer: "Multiply by 1.8 and add 32: 150°C = 300°F, 170°C = 340°F, 180°C = 356°F (round to 350°F), 190°C = 375°F, 200°C = 392°F (round to 400°F), 220°C = 428°F (round to 425°F). When converting recipes, round to the nearest 25°F that your US oven supports." },
+            { question: "Why does Celsius make more sense for science?", answer: "Celsius is based on water's phase transitions (0° = freezing, 100° = boiling), making it intuitive for chemistry and physics. It also directly relates to Kelvin (K = °C + 273.15), the SI standard. Fahrenheit's reference points (32° and 212°) are less convenient for calculations." },
+            { question: "Is Fahrenheit better for weather than Celsius?", answer: "It's subjective. Fahrenheit covers 0–100°F as a practical range for most US weather (very cold to very hot). Celsius users argue 0–40°C is equally practical. Each °F is a smaller increment (0.56°C), technically offering finer resolution without decimals — but in practice, both scales work fine." },
+        ],
+    },
 };
 
 export default async function ConvertHubPage({ params }: PageProps) {
