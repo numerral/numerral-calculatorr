@@ -2028,6 +2028,82 @@ function OzToMlCalc() {
     );
 }
 
+// ─── RPM to Radians per Second ───
+function RpmToRadCalc() {
+    const [rpm, setRpm] = useState(3600);
+    const [radius, setRadius] = useState(0.1); // meters
+
+    const rads = rpm * 2 * Math.PI / 60;
+    const degsPerSec = rpm * 360 / 60;
+    const hz = rpm / 60;
+    // linear velocity v = ω × r
+    const linearVel = rads * radius;
+
+    const quickRef = [1, 10, 60, 100, 300, 600, 1000, 1800, 3600, 7200, 10000, 15000];
+
+    return (
+        <div className="calc-card">
+            <div className="calc-field">
+                <label className="calc-field__label">🔄 REVOLUTIONS PER MINUTE (RPM)</label>
+                <input type="range" className="calc-field__slider" min={1} max={20000} step={1}
+                    value={rpm} onChange={(e) => setRpm(Number(e.target.value))} />
+                <div style={{ display: "flex", gap: "var(--s-2)", alignItems: "center" }}>
+                    <input type="number" className="calc-field__input" value={rpm}
+                        onChange={(e) => setRpm(Number(e.target.value))} style={{ flex: 1 }} />
+                    <span className="t-body-sm text-muted">RPM</span>
+                </div>
+            </div>
+            <div className="calc-field">
+                <label className="calc-field__label">📏 RADIUS (for linear velocity)</label>
+                <input type="range" className="calc-field__slider" min={0.01} max={2} step={0.01}
+                    value={radius} onChange={(e) => setRadius(Number(e.target.value))} />
+                <div style={{ display: "flex", gap: "var(--s-2)", alignItems: "center" }}>
+                    <input type="number" className="calc-field__input" value={radius}
+                        onChange={(e) => setRadius(Number(e.target.value))} style={{ flex: 1 }} />
+                    <span className="t-body-sm text-muted">m</span>
+                </div>
+            </div>
+
+            <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
+                <p className="calc-field__label">ANGULAR VELOCITY</p>
+                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+                    {rads.toFixed(3)} rad/s
+                </p>
+                <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "var(--s-3)" }}>
+                    <div><p className="calc-field__label">DEGREES/SEC</p><p style={{ fontWeight: 700 }}>{degsPerSec.toFixed(1)} °/s</p></div>
+                    <div><p className="calc-field__label">HERTZ (rev/s)</p><p style={{ fontWeight: 700 }}>{hz.toFixed(2)} Hz</p></div>
+                    <div><p className="calc-field__label">LINEAR VEL (v=ωr)</p><p style={{ fontWeight: 700 }}>{linearVel.toFixed(2)} m/s</p></div>
+                    <div><p className="calc-field__label">FORMULA</p><p style={{ fontWeight: 700, fontSize: "var(--t-body-sm)" }}>{rpm}×2π/60</p></div>
+                </div>
+            </div>
+
+            {/* Quick Reference Table */}
+            <div style={{ marginTop: "var(--s-4)" }}>
+                <h3 className="t-h3" style={{ marginBottom: "var(--s-3)" }}>RPM to Radians/Second — Quick Reference</h3>
+                <table className="calc-table">
+                    <thead>
+                        <tr><th>RPM</th><th>rad/s</th><th>°/s</th><th>Hz</th></tr>
+                    </thead>
+                    <tbody>
+                        {quickRef.map((r) => {
+                            const rs = r * 2 * Math.PI / 60;
+                            return (
+                                <tr key={r} style={r === rpm ? { background: "var(--n-primary-light)" } : {}}>
+                                    <td>{r.toLocaleString()} RPM</td>
+                                    <td>{rs.toFixed(3)} rad/s</td>
+                                    <td>{(r * 6).toLocaleString()} °/s</td>
+                                    <td>{(r / 60).toFixed(2)} Hz</td>
+                                </tr>
+                            );
+                        })}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    );
+}
+
 // ─── Dispatcher ───
 interface Props { calcType: string; }
 
@@ -2057,6 +2133,7 @@ const CALCULATORS: Record<string, React.FC> = {
     "floz-to-ml": FlOzToMlCalc,
     "sqm-to-sqft": SqMToSqFtCalc,
     "oz-to-ml": OzToMlCalc,
+    "rpm-to-rads": RpmToRadCalc,
 };
 
 export default function ConversionCalculatorCore({ calcType }: Props) {

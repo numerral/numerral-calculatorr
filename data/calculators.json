@@ -2875,6 +2875,40 @@
     "keywords": "ounces to milliliters, oz to mL, ounce to milliliter converter, how many mL in an ounce, weight to volume, cooking conversion, baking measurement"
   },
   {
+    "id": "rpm-to-rads-converter",
+    "category": "convert",
+    "title": "RPM to Radians per Second Converter (RPM to rad/s)",
+    "slug": "rpm-to-rads-converter",
+    "categorySlug": "convert",
+    "icon": "🔄",
+    "calcType": "rpm-to-rads",
+    "description": "Convert revolutions per minute to radians per second (RPM to rad/s). See results in rad/s, degrees/second, Hertz, and linear velocity. Includes a quick reference table.",
+    "stars": 5,
+    "defaults": {
+      "amount": 3600,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 1,
+        "max": 20000,
+        "step": 1
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "RPM to radians per second, RPM to rad/s, angular velocity converter, revolutions per minute to rad/s, rotation speed, angular speed"
+  },
+  {
     "id": "retirement-corpus",
     "category": "invest",
     "title": "Retirement Corpus Calculator",

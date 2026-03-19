@@ -2200,6 +2200,92 @@ const HUB_CONTENT: Record<string, {
             { question: "How is this different from the fluid ounces to mL converter?", answer: "This converter handles WEIGHT ounces (oz) to mL, which requires knowing the substance's density. Our fluid ounces to mL converter handles VOLUME (fl oz) to mL, which is a direct conversion (1 fl oz = 29.57 mL) regardless of substance." },
         ],
     },
+    "rpm-to-rads-converter": {
+        subtitle: "Convert revolutions per minute to radians per second (RPM to rad/s). See results in rad/s, degrees/second, Hertz, and linear velocity. Includes a quick reference table.",
+        contentHTML: `
+            <h3>How to Convert RPM to Radians per Second</h3>
+            <p>One revolution = 2π radians, and one minute = 60 seconds. So:</p>
+            <div class="explanation__highlight">
+                <strong>rad/s = RPM × 2π ÷ 60</strong><br/>
+                <strong>rad/s = RPM × 0.10472</strong><br/><br/>
+                Example: 3,600 RPM<br/>
+                = 3,600 × 0.10472 = <strong>376.99 rad/s</strong><br/><br/>
+                Example: 1,800 RPM (standard US motor)<br/>
+                = 1,800 × 0.10472 = <strong>188.50 rad/s</strong><br/><br/>
+                Example: 60 RPM (1 revolution per second)<br/>
+                = 60 × 0.10472 = <strong>6.283 rad/s</strong> (= 2π)
+            </div>
+
+            <h3>Angular Velocity Units Compared</h3>
+            <table>
+                <thead><tr><th>Unit</th><th>Symbol</th><th>1 RPM =</th><th>Used In</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Revolutions/minute</strong></td><td>RPM</td><td>1 RPM</td><td>Motors, engines, tools</td></tr>
+                    <tr><td><strong>Radians/second</strong></td><td>rad/s</td><td>0.10472 rad/s</td><td>Physics, engineering</td></tr>
+                    <tr><td>Degrees/second</td><td>°/s</td><td>6 °/s</td><td>Gyroscopes, robotics</td></tr>
+                    <tr><td>Hertz (rev/second)</td><td>Hz</td><td>0.01667 Hz</td><td>Frequency measurement</td></tr>
+                </tbody>
+            </table>
+
+            <h3>RPM to rad/s — Conversion Table</h3>
+            <table>
+                <thead><tr><th>RPM</th><th>rad/s</th><th>°/s</th><th>Hz</th><th>Common Example</th></tr></thead>
+                <tbody>
+                    <tr><td>1 RPM</td><td>0.105</td><td>6</td><td>0.017</td><td>Rotisserie motor</td></tr>
+                    <tr><td>33 RPM</td><td>3.456</td><td>198</td><td>0.550</td><td>Vinyl record (LP)</td></tr>
+                    <tr><td>60 RPM</td><td>6.283</td><td>360</td><td>1.000</td><td>Clock second hand</td></tr>
+                    <tr><td>300 RPM</td><td>31.42</td><td>1,800</td><td>5.000</td><td>Washing machine spin</td></tr>
+                    <tr><td>900 RPM</td><td>94.25</td><td>5,400</td><td>15.00</td><td>US ceiling fan (high)</td></tr>
+                    <tr><td>1,800 RPM</td><td>188.5</td><td>10,800</td><td>30.00</td><td>US 4-pole motor (60Hz)</td></tr>
+                    <tr><td>3,600 RPM</td><td>377.0</td><td>21,600</td><td>60.00</td><td>US 2-pole motor (60Hz)</td></tr>
+                    <tr><td>5,400 RPM</td><td>565.5</td><td>32,400</td><td>90.00</td><td>Laptop hard drive</td></tr>
+                    <tr><td>7,200 RPM</td><td>753.9</td><td>43,200</td><td>120.0</td><td>Desktop hard drive</td></tr>
+                    <tr><td>10,000 RPM</td><td>1,047</td><td>60,000</td><td>166.7</td><td>High-perf hard drive</td></tr>
+                    <tr><td>15,000 RPM</td><td>1,571</td><td>90,000</td><td>250.0</td><td>Dental drill</td></tr>
+                    <tr><td>20,000 RPM</td><td>2,094</td><td>120,000</td><td>333.3</td><td>Turbocharger</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Linear Velocity from RPM (v = ω × r)</h3>
+            <p>If an object rotates at ω rad/s and has radius r meters, the edge moves at:</p>
+            <div class="explanation__highlight">
+                <strong>v = ω × r</strong> (meters per second)<br/><br/>
+                Example: A 26" bicycle wheel at 300 RPM<br/>
+                ω = 300 × 0.10472 = 31.42 rad/s<br/>
+                r = 26" × 0.0254 ÷ 2 = 0.3302 m<br/>
+                v = 31.42 × 0.3302 = <strong>10.37 m/s ≈ 23.2 mph</strong>
+            </div>
+
+            <h3>Common Motors & Engines — RPM in the US</h3>
+            <table>
+                <thead><tr><th>Device</th><th>Typical RPM</th><th>rad/s</th></tr></thead>
+                <tbody>
+                    <tr><td>Ceiling fan (low)</td><td>100–200 RPM</td><td>10.5–20.9</td></tr>
+                    <tr><td>Washing machine (spin)</td><td>800–1,600 RPM</td><td>83.8–167.5</td></tr>
+                    <tr><td>Car engine (idle)</td><td>600–1,000 RPM</td><td>62.8–104.7</td></tr>
+                    <tr><td>Car engine (highway)</td><td>2,000–3,000 RPM</td><td>209.4–314.2</td></tr>
+                    <tr><td>Power drill</td><td>500–3,000 RPM</td><td>52.4–314.2</td></tr>
+                    <tr><td>Circular saw</td><td>3,000–5,000 RPM</td><td>314.2–523.6</td></tr>
+                    <tr><td>Blender</td><td>6,000–20,000 RPM</td><td>628.3–2,094</td></tr>
+                    <tr><td>Jet engine turbine</td><td>10,000–25,000 RPM</td><td>1,047–2,618</td></tr>
+                </tbody>
+            </table>
+
+            <h3>What Are Revolutions per Minute (RPM)?</h3>
+            <p><strong>RPM</strong> is a unit of rotational speed indicating how many full 360° turns an object completes in one minute. It is the most commonly used unit for expressing motor speed, engine speed, and tool speed in the United States. Tachometers in cars, spec sheets for power tools, and hard drive speeds all use RPM.</p>
+
+            <h3>What Are Radians per Second (rad/s)?</h3>
+            <p>A <strong>radian per second</strong> (rad/s) is the SI unit of angular velocity. One radian is approximately 57.3° — the angle where the arc length equals the radius. Radians are dimensionless, making rad/s the preferred unit in physics and engineering calculations involving torque, angular momentum, and rotational kinetic energy.</p>
+        `,
+        faq: [
+            { question: "How do I convert RPM to radians per second?", answer: "Multiply RPM by 2π/60 (≈ 0.10472). Example: 3,600 RPM × 0.10472 = 376.99 rad/s. This works because 1 revolution = 2π radians and 1 minute = 60 seconds." },
+            { question: "What is 1 RPM in radians per second?", answer: "1 RPM = 0.10472 rad/s. This is equal to 2π/60, since one revolution covers 2π radians and takes 60 seconds at 1 RPM." },
+            { question: "Why are 1,800 and 3,600 RPM common motor speeds?", answer: "US electrical power runs at 60 Hz. AC motors synchronize to the power frequency: 2-pole motors spin at 3,600 RPM (60 Hz × 60 s/min) and 4-pole motors at 1,800 RPM (3,600 ÷ 2). These are the most common industrial motor speeds in the US." },
+            { question: "How do I find linear velocity from RPM?", answer: "Convert RPM to rad/s (multiply by 0.10472), then use v = ω × r, where r is the radius in meters. Example: 1,000 RPM with a 0.5m radius → ω = 104.72 rad/s → v = 104.72 × 0.5 = 52.36 m/s." },
+            { question: "What is the relationship between RPM and Hertz?", answer: "Hz = RPM ÷ 60. Hertz measures complete cycles per second, while RPM measures complete revolutions per minute. Since 1 minute = 60 seconds: 60 RPM = 1 Hz, 3,600 RPM = 60 Hz." },
+            { question: "How fast does a car engine spin?", answer: "A typical car engine idles at 600–1,000 RPM (62.8–104.7 rad/s) and cruises at 2,000–3,000 RPM (209–314 rad/s) on the highway. Redline (maximum safe RPM) is typically 6,000–7,000 RPM for most US passenger vehicles." },
+        ],
+    },
 };
 
 export default async function ConvertHubPage({ params }: PageProps) {
