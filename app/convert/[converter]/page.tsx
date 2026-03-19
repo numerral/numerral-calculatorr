@@ -2737,6 +2737,81 @@ const HUB_CONTENT: Record<string, {
             { question: "How many business days are in a month?", answer: "Approximately 21–23 business days (weekdays excluding federal holidays). The average US work month has about 21.7 business days. This varies by month — February has fewer, and months with federal holidays (like November with Thanksgiving) also have fewer." },
         ],
     },
+    "cc-to-m3-converter": {
+        subtitle: "Convert cubic centimeters to cubic meters (cm³ to m³). See results in cubic meters, liters, US gallons, and cubic feet. Includes a quick reference table.",
+        contentHTML: `
+            <h3>How to Convert Cubic Centimeters to Cubic Meters</h3>
+            <p>There are <strong>1,000,000 cubic centimeters in 1 cubic meter</strong>. Divide by 1,000,000 (or multiply by 10⁻⁶):</p>
+            <div class="explanation__highlight">
+                <strong>m³ = cm³ ÷ 1,000,000</strong><br/><br/>
+                Example: 1,000,000 cm³<br/>
+                = 1,000,000 ÷ 1,000,000 = <strong>1.000 m³</strong><br/><br/>
+                Example: 5,000 cm³ (a 5-liter engine)<br/>
+                = 5,000 ÷ 1,000,000 = <strong>0.005 m³ (5 liters)</strong><br/><br/>
+                Example: 100 cm³<br/>
+                = 100 ÷ 1,000,000 = <strong>0.0001 m³ (0.1 liters)</strong>
+            </div>
+            <p><strong>Why 1,000,000?</strong> Because 1 meter = 100 cm, so 1 m³ = 100 × 100 × 100 = 1,000,000 cm³.</p>
+
+            <h3>Volume Unit Comparison</h3>
+            <table>
+                <thead><tr><th>Unit</th><th>Symbol</th><th>= cm³</th><th>= m³</th><th>US Equivalent</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Cubic centimeter</strong></td><td>cm³ / cc</td><td>1</td><td>0.000001</td><td>0.061 in³</td></tr>
+                    <tr><td>Milliliter</td><td>mL</td><td>1</td><td>0.000001</td><td>0.034 fl oz</td></tr>
+                    <tr><td><strong>Liter</strong></td><td>L</td><td>1,000</td><td>0.001</td><td>0.264 gal</td></tr>
+                    <tr><td>US gallon</td><td>gal</td><td>3,785</td><td>0.003785</td><td>1 gal</td></tr>
+                    <tr><td>Cubic foot</td><td>ft³</td><td>28,317</td><td>0.02832</td><td>7.48 gal</td></tr>
+                    <tr><td><strong>Cubic meter</strong></td><td>m³</td><td>1,000,000</td><td>1</td><td>264.2 gal / 35.3 ft³</td></tr>
+                    <tr><td>Cubic yard</td><td>yd³</td><td>764,555</td><td>0.7646</td><td>202 gal</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Engine Displacement — CC to Liters</h3>
+            <p>In automotive, engine size is measured in cubic centimeters (cc) or liters. Americans often use liters:</p>
+            <table>
+                <thead><tr><th>Engine</th><th>cc</th><th>Liters</th><th>m³</th><th>Common In</th></tr></thead>
+                <tbody>
+                    <tr><td>Motorcycle (small)</td><td>250 cc</td><td>0.25 L</td><td>0.00025</td><td>Honda CRF250</td></tr>
+                    <tr><td>Motorcycle (sport)</td><td>600 cc</td><td>0.6 L</td><td>0.0006</td><td>Yamaha YZF-R6</td></tr>
+                    <tr><td>Motorcycle (cruiser)</td><td>1,200 cc</td><td>1.2 L</td><td>0.0012</td><td>Harley Sportster</td></tr>
+                    <tr><td>Economy car</td><td>1,500 cc</td><td>1.5 L</td><td>0.0015</td><td>Honda Civic</td></tr>
+                    <tr><td>Midsize sedan</td><td>2,000 cc</td><td>2.0 L</td><td>0.002</td><td>Toyota Camry</td></tr>
+                    <tr><td>V6 truck</td><td>3,500 cc</td><td>3.5 L</td><td>0.0035</td><td>Ford F-150 EcoBoost</td></tr>
+                    <tr><td>V8 muscle car</td><td>5,000 cc</td><td>5.0 L</td><td>0.005</td><td>Ford Mustang GT</td></tr>
+                    <tr><td>V8 truck</td><td>6,200 cc</td><td>6.2 L</td><td>0.0062</td><td>Chevy Silverado</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Common Volumes in Cubic Centimeters</h3>
+            <table>
+                <thead><tr><th>Object</th><th>cm³</th><th>Liters</th><th>m³</th></tr></thead>
+                <tbody>
+                    <tr><td>Sugar cube</td><td>~1 cm³</td><td>0.001</td><td>0.000001</td></tr>
+                    <tr><td>Standard dice</td><td>~8 cm³</td><td>0.008</td><td>0.000008</td></tr>
+                    <tr><td>Tennis ball</td><td>~143 cm³</td><td>0.143</td><td>0.000143</td></tr>
+                    <tr><td>Soda can (12 oz)</td><td>~355 cm³</td><td>0.355</td><td>0.000355</td></tr>
+                    <tr><td>Basketball</td><td>~7,100 cm³</td><td>7.1</td><td>0.0071</td></tr>
+                    <tr><td>Bathtub (full)</td><td>~300,000 cm³</td><td>300</td><td>0.3</td></tr>
+                    <tr><td>Average room (12×12×8 ft)</td><td>~32,600,000 cm³</td><td>32,600</td><td>32.6</td></tr>
+                </tbody>
+            </table>
+
+            <h3>What Is a Cubic Centimeter?</h3>
+            <p>A <strong>cubic centimeter</strong> (cm³ or cc) is a metric unit of volume equal to a cube measuring 1 cm × 1 cm × 1 cm. It is exactly equal to 1 milliliter (mL). In the US, "cc" is commonly used in medicine (dosing) and automotive (engine displacement).</p>
+
+            <h3>What Is a Cubic Meter?</h3>
+            <p>A <strong>cubic meter</strong> (m³) is the SI unit of volume equal to a cube measuring 1 m × 1 m × 1 m = 1,000 liters = 264.2 US gallons = 35.3 cubic feet. It is used in construction, HVAC, shipping, and scientific applications. In the US, cubic feet are more common for everyday use, but m³ appears in science and engineering specifications.</p>
+        `,
+        faq: [
+            { question: "How many cubic centimeters are in 1 cubic meter?", answer: "Exactly 1,000,000 cm³ = 1 m³. This is because 1 meter = 100 centimeters, so 1 m³ = 100 × 100 × 100 = 1,000,000 cm³. Conversely, 1 cm³ = 0.000001 m³ (one millionth of a cubic meter)." },
+            { question: "Is a cubic centimeter the same as a milliliter?", answer: "Yes, 1 cm³ = 1 mL exactly. They are interchangeable. In medicine, 'cc' is commonly used (e.g., '5 cc of medication'), while in cooking, 'mL' is more common. Both equal 1/1,000 of a liter." },
+            { question: "What does CC mean for engines?", answer: "CC stands for cubic centimeters and measures engine displacement — the total volume swept by all pistons. A 2,000 cc engine = 2.0 liters. In the US, car engines are usually described in liters (a '5.0L V8'), while motorcycles use cc ('600cc sportbike')." },
+            { question: "How do I convert cubic meters to cubic feet?", answer: "Multiply by 35.3147: ft³ = m³ × 35.3147. For example, 1 m³ = 35.3 ft³. Cubic feet are the standard volume unit in US construction and HVAC." },
+            { question: "How big is 1 cubic meter in real life?", answer: "1 cubic meter is about the size of a large washing machine or a standard pallet of goods. It equals 1,000 liters (264 US gallons), which would fill about 13 standard bathtubs. A typical US bedroom (12×12×8 ft) has about 32.6 m³ of volume." },
+            { question: "Why is the conversion factor 1 million?", answer: "Because volume scales cubically. When you convert 1 meter to centimeters (×100), the volume conversion is 100³ = 1,000,000. This is why small linear differences create enormous volume differences — doubling each dimension makes the volume 8× larger (2³ = 8)." },
+        ],
+    },
 };
 
 export default async function ConvertHubPage({ params }: PageProps) {

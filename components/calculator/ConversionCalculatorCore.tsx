@@ -2463,6 +2463,73 @@ function DayToMonthCalc() {
     );
 }
 
+// ─── Cubic Centimeters to Cubic Meters ───
+function CcToM3Calc() {
+    const [cc, setCc] = useState(1000000);
+
+    const m3 = cc / 1000000;
+    const liters = cc / 1000;
+    const gallons = liters * 0.264172;
+    const cuFt = m3 * 35.3147;
+    const cuIn = cc * 0.0610237;
+
+    const quickRef = [1, 10, 100, 1000, 5000, 10000, 100000, 500000, 1000000, 5000000];
+
+    return (
+        <div className="calc-card">
+            <div className="calc-field">
+                <label className="calc-field__label">📐 CUBIC CENTIMETERS (cm³ / cc)</label>
+                <input type="range" className="calc-field__slider" min={1} max={10000000} step={1000}
+                    value={cc} onChange={(e) => setCc(Number(e.target.value))} />
+                <div style={{ display: "flex", gap: "var(--s-2)", alignItems: "center" }}>
+                    <input type="number" className="calc-field__input" value={cc}
+                        onChange={(e) => setCc(Number(e.target.value))} style={{ flex: 1 }} />
+                    <span className="t-body-sm text-muted">cm³</span>
+                </div>
+            </div>
+
+            <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
+                <p className="calc-field__label">VOLUME IN CUBIC METERS</p>
+                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+                    {m3 < 0.001 ? m3.toExponential(4) : m3.toFixed(6)} m³
+                </p>
+                <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "var(--s-3)" }}>
+                    <div><p className="calc-field__label">LITERS</p><p style={{ fontWeight: 700 }}>{liters.toFixed(3)} L</p></div>
+                    <div><p className="calc-field__label">US GALLONS</p><p style={{ fontWeight: 700 }}>{gallons.toFixed(2)} gal</p></div>
+                    <div><p className="calc-field__label">CUBIC FEET</p><p style={{ fontWeight: 700 }}>{cuFt.toFixed(4)} ft³</p></div>
+                    <div><p className="calc-field__label">FORMULA</p><p style={{ fontWeight: 700, fontSize: "var(--t-body-sm)" }}>{cc.toLocaleString()}÷10⁶</p></div>
+                </div>
+            </div>
+
+            {/* Quick Reference Table */}
+            <div style={{ marginTop: "var(--s-4)" }}>
+                <h3 className="t-h3" style={{ marginBottom: "var(--s-3)" }}>Cubic Centimeters to Cubic Meters — Quick Reference</h3>
+                <table className="calc-table">
+                    <thead>
+                        <tr><th>cm³</th><th>m³</th><th>Liters</th><th>Example</th></tr>
+                    </thead>
+                    <tbody>
+                        {quickRef.map((v) => {
+                            const mv = v / 1000000;
+                            const lv = v / 1000;
+                            const ex = v <= 1 ? "Sugar cube" : v <= 10 ? "Dice" : v <= 100 ? "Tennis ball" : v <= 1000 ? "1 liter bottle" : v <= 5000 ? "Large jug" : v <= 10000 ? "Office water cooler" : v <= 100000 ? "Large barrel" : v <= 500000 ? "Hot tub" : v <= 1000000 ? "1 cubic meter" : "Small pool";
+                            return (
+                                <tr key={v} style={v === cc ? { background: "var(--n-primary-light)" } : {}}>
+                                    <td>{v.toLocaleString()} cm³</td>
+                                    <td>{mv < 0.001 ? mv.toExponential(2) : mv.toFixed(4)}</td>
+                                    <td>{lv.toFixed(1)} L</td>
+                                    <td>{ex}</td>
+                                </tr>
+                            );
+                        })}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    );
+}
+
 // ─── Dispatcher ───
 interface Props { calcType: string; }
 
@@ -2498,6 +2565,7 @@ const CALCULATORS: Record<string, React.FC> = {
     "cal-to-kg": CalToKgCalc,
     "cup-butter-to-gram": CupButterToGramCalc,
     "day-to-month": DayToMonthCalc,
+    "cc-to-m3": CcToM3Calc,
 };
 
 export default function ConversionCalculatorCore({ calcType }: Props) {

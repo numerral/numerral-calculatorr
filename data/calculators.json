@@ -3079,6 +3079,40 @@
     "keywords": "days to months, convert days to months, how many months is 90 days, day to month converter, time conversion, days in a month"
   },
   {
+    "id": "cc-to-m3-converter",
+    "category": "convert",
+    "title": "Cubic Centimeters to Cubic Meters Converter (cm³ to m³)",
+    "slug": "cc-to-m3-converter",
+    "categorySlug": "convert",
+    "icon": "📐",
+    "calcType": "cc-to-m3",
+    "description": "Convert cubic centimeters to cubic meters (cm³ to m³). See results in cubic meters, liters, US gallons, and cubic feet. Includes a quick reference table.",
+    "stars": 5,
+    "defaults": {
+      "amount": 1000000,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 1,
+        "max": 10000000,
+        "step": 1000
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "cubic centimeters to cubic meters, cm3 to m3, cc to cubic meters, volume conversion, cubic centimeter converter, cm³ to m³"
+  },
+  {
     "id": "retirement-corpus",
     "category": "invest",
     "title": "Retirement Corpus Calculator",
