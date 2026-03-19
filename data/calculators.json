@@ -2229,6 +2229,40 @@
     "keywords": "stone to kg, stones to kilograms, st to kg converter, stone to kilogram calculator, how many kg in a stone, stone pounds to kg, body weight converter"
   },
   {
+    "id": "tbsp-to-gram-converter",
+    "category": "convert",
+    "title": "Tablespoons to Grams Converter (tbsp to g)",
+    "slug": "tbsp-to-gram-converter",
+    "categorySlug": "convert",
+    "icon": "🥄",
+    "calcType": "tbsp-to-gram",
+    "description": "Convert tablespoons to grams (tbsp to g) for any ingredient. Select from 20 common cooking ingredients or enter a custom density. See results in grams, ounces, and teaspoons.",
+    "stars": 5,
+    "defaults": {
+      "amount": 1,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 50,
+        "step": 1
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "tablespoons to grams, tbsp to g converter, tablespoon to gram calculator, how many grams in a tablespoon, tbsp flour grams, tbsp sugar grams, tbsp butter grams, cooking measurement"
+  },
+  {
     "id": "retirement-corpus",
     "category": "invest",
     "title": "Retirement Corpus Calculator",

@@ -561,6 +561,91 @@ const HUB_CONTENT: Record<string, {
             { question: "Is 13 stone overweight?", answer: "It depends on height. 13 stone = 182 lbs (82.55 kg). For a 5'10\" (178 cm) person, that gives a BMI of about 26.1, which is in the 'overweight' range. For a 6'2\" (188 cm) person, it's a BMI of 23.4, which is 'normal.' BMI alone doesn't account for muscle mass or body composition." },
         ],
     },
+    "tbsp-to-gram-converter": {
+        subtitle: "Convert tablespoons to grams (tbsp to g) for any ingredient. Select from 20 common cooking and baking ingredients or enter a custom density. See results in grams, ounces, and teaspoons.",
+        contentHTML: `
+            <h3>How to Convert Tablespoons to Grams</h3>
+            <p>One US tablespoon equals <strong>14.787 milliliters</strong>. The weight in grams depends on the ingredient's density — a tablespoon of honey weighs much more than a tablespoon of flour because honey is denser.</p>
+            <div class="explanation__highlight">
+                <strong>grams = tablespoons × 14.787 × density (g/mL)</strong><br/><br/>
+                Example: 2 tablespoons of butter (density 0.91 g/mL)<br/>
+                = 2 × 14.787 × 0.91 = <strong>26.91 grams</strong><br/><br/>
+                Example: 3 tablespoons of all-purpose flour (density 0.53 g/mL)<br/>
+                = 3 × 14.787 × 0.53 = <strong>23.51 grams</strong>
+            </div>
+
+            <h3>How Many Grams in a Tablespoon?</h3>
+            <p>This is the most commonly asked question. The answer depends entirely on the ingredient:</p>
+            <table>
+                <thead><tr><th>Ingredient</th><th>1 tbsp (grams)</th><th>2 tbsp (grams)</th><th>3 tbsp (grams)</th><th>Density (g/mL)</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Water</strong></td><td>14.79 g</td><td>29.57 g</td><td>44.36 g</td><td>1.00</td></tr>
+                    <tr><td><strong>Whole Milk</strong></td><td>15.23 g</td><td>30.46 g</td><td>45.69 g</td><td>1.03</td></tr>
+                    <tr><td><strong>Butter</strong></td><td>13.46 g</td><td>26.91 g</td><td>40.37 g</td><td>0.91</td></tr>
+                    <tr><td><strong>Olive Oil</strong></td><td>13.46 g</td><td>26.91 g</td><td>40.37 g</td><td>0.91</td></tr>
+                    <tr><td><strong>Honey</strong></td><td>21.14 g</td><td>42.28 g</td><td>63.42 g</td><td>1.43</td></tr>
+                    <tr><td><strong>All-Purpose Flour</strong></td><td>7.84 g</td><td>15.67 g</td><td>23.51 g</td><td>0.53</td></tr>
+                    <tr><td><strong>Granulated Sugar</strong></td><td>12.57 g</td><td>25.14 g</td><td>37.70 g</td><td>0.85</td></tr>
+                    <tr><td><strong>Powdered Sugar</strong></td><td>8.87 g</td><td>17.75 g</td><td>26.62 g</td><td>0.60</td></tr>
+                    <tr><td><strong>Cocoa Powder</strong></td><td>7.69 g</td><td>15.39 g</td><td>23.08 g</td><td>0.52</td></tr>
+                    <tr><td><strong>Salt (table)</strong></td><td>17.74 g</td><td>35.49 g</td><td>53.23 g</td><td>1.20</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Tablespoon Size Reference</h3>
+            <p>Understanding how US tablespoons relate to other volume units:</p>
+            <table>
+                <thead><tr><th>Measurement</th><th>Equivalent</th><th>Milliliters</th></tr></thead>
+                <tbody>
+                    <tr><td>1 tablespoon (tbsp)</td><td>3 teaspoons</td><td>14.787 mL</td></tr>
+                    <tr><td>1/2 tablespoon</td><td>1.5 teaspoons</td><td>7.394 mL</td></tr>
+                    <tr><td>2 tablespoons</td><td>1 fluid ounce</td><td>29.574 mL</td></tr>
+                    <tr><td>4 tablespoons</td><td>1/4 cup</td><td>59.147 mL</td></tr>
+                    <tr><td>8 tablespoons</td><td>1/2 cup</td><td>118.294 mL</td></tr>
+                    <tr><td>16 tablespoons</td><td>1 cup</td><td>236.588 mL</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Why Does a Tablespoon of Flour Weigh Less Than a Tablespoon of Sugar?</h3>
+            <p>Because <strong>flour is less dense</strong> than sugar. Flour particles are irregular and trap air, so a tablespoon of flour only weighs about 7.8 grams. Sugar crystals are denser and pack together tighter, so a tablespoon weighs about 12.6 grams.</p>
+            <p>Honey is even denser at 1.43 g/mL — one tablespoon weighs over 21 grams. This is why precision baking recipes always specify ingredients by weight (grams), not volume (tablespoons).</p>
+
+            <h3>When to Convert Tablespoons to Grams</h3>
+            <ul>
+                <li><strong>Following metric baking recipes</strong>: European and professional baking recipes list ingredients in grams. If you only have measuring spoons, you need to convert to know how many tablespoons to use.</li>
+                <li><strong>Tracking nutrition accurately</strong>: Nutrition labels list serving sizes in grams. Knowing that 1 tbsp of peanut butter = ~16g helps you log calories and macros accurately.</li>
+                <li><strong>Scaling recipes precisely</strong>: When you need "35 grams of butter," knowing that's about 2.6 tablespoons makes portioning easy without a scale.</li>
+                <li><strong>Medication dosing</strong>: Some liquid medications are prescribed in milliliters or grams, but you may only have kitchen tablespoons for measuring. 1 tbsp = 14.79 mL (for water-like liquids).</li>
+                <li><strong>Comparing products</strong>: A "2 tbsp serving" of brand A peanut butter vs. "32g" of brand B — is that the same amount? (Yes, approximately.)</li>
+            </ul>
+
+            <h3>Common Baking Conversions</h3>
+            <p>These are the amounts you'll encounter most often in American baking recipes:</p>
+            <table>
+                <thead><tr><th>Recipe calls for…</th><th>That's about…</th><th>In grams</th></tr></thead>
+                <tbody>
+                    <tr><td>1 tbsp butter</td><td>~1/2 oz</td><td>13.5 g</td></tr>
+                    <tr><td>2 tbsp flour</td><td>—</td><td>15.7 g</td></tr>
+                    <tr><td>1 tbsp sugar</td><td>—</td><td>12.6 g</td></tr>
+                    <tr><td>1 tbsp honey</td><td>~3/4 oz</td><td>21.1 g</td></tr>
+                    <tr><td>1 tbsp olive oil</td><td>~1/2 oz</td><td>13.5 g</td></tr>
+                    <tr><td>1 tbsp cocoa powder</td><td>—</td><td>7.7 g</td></tr>
+                    <tr><td>1 tbsp vanilla extract</td><td>—</td><td>13.0 g</td></tr>
+                    <tr><td>1 tbsp salt</td><td>—</td><td>17.7 g</td></tr>
+                    <tr><td>1 tbsp baking powder</td><td>—</td><td>13.8 g</td></tr>
+                    <tr><td>1 tbsp milk</td><td>—</td><td>15.2 g</td></tr>
+                </tbody>
+            </table>
+        `,
+        faq: [
+            { question: "How many grams is 1 tablespoon of flour?", answer: "Approximately 7.8 grams. All-purpose flour has a density of about 0.53 g/mL, so 1 tablespoon (14.787 mL) × 0.53 = 7.84 grams. This is much less than a tablespoon of sugar (12.6g) because flour is fluffier and less dense." },
+            { question: "How many grams is 1 tablespoon of butter?", answer: "Approximately 13.5 grams, or about half an ounce. Butter has a density of 0.91 g/mL. In US recipes, one stick of butter = 8 tablespoons = 113.4 grams = 4 ounces." },
+            { question: "How many grams is 1 tablespoon of sugar?", answer: "Approximately 12.6 grams of granulated sugar. Sugar is denser than flour (0.85 g/mL vs 0.53 g/mL), which is why the same volume of sugar weighs more. For powdered sugar, 1 tablespoon is only about 8.9 grams." },
+            { question: "Is 1 tablespoon always 15 grams?", answer: "No — only for water (and liquids with similar density). 1 tablespoon = 14.787 mL, and water weighs about 1 g/mL, so 1 tbsp of water ≈ 14.8g. But 1 tbsp of flour is only 7.8g, and 1 tbsp of honey is 21.1g. The weight depends on the ingredient's density." },
+            { question: "How many tablespoons is 30 grams of butter?", answer: "About 2.2 tablespoons. Using the formula: tbsp = grams ÷ (14.787 × density) = 30 ÷ (14.787 × 0.91) = 30 ÷ 13.46 = 2.23 tablespoons." },
+            { question: "What is the difference between a US tablespoon and a metric tablespoon?", answer: "A US tablespoon = 14.787 mL. A metric tablespoon (used in Australia, UK) = 20 mL — about 35% larger. The Australian tablespoon is the largest standard tablespoon in the world. Always check which standard your recipe uses." },
+        ],
+    },
 };
 
 export default async function ConvertHubPage({ params }: PageProps) {
