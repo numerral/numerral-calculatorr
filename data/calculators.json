@@ -3113,6 +3113,40 @@
     "keywords": "cubic centimeters to cubic meters, cm3 to m3, cc to cubic meters, volume conversion, cubic centimeter converter, cm³ to m³"
   },
   {
+    "id": "f-to-c-converter",
+    "category": "convert",
+    "title": "Fahrenheit to Celsius Converter (°F to °C)",
+    "slug": "f-to-c-converter",
+    "categorySlug": "convert",
+    "icon": "🌡️",
+    "calcType": "f-to-c",
+    "description": "Convert Fahrenheit to Celsius (°F to °C). See results in Celsius, Kelvin, and Rankine. Includes a quick reference table with weather, body temp, and oven temperatures.",
+    "stars": 5,
+    "defaults": {
+      "amount": 72,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": -100,
+        "max": 500,
+        "step": 1
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "Fahrenheit to Celsius, F to C, degrees Fahrenheit to Celsius, temperature converter, convert Fahrenheit, °F to °C"
+  },
+  {
     "id": "retirement-corpus",
     "category": "invest",
     "title": "Retirement Corpus Calculator",

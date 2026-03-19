@@ -2812,6 +2812,100 @@ const HUB_CONTENT: Record<string, {
             { question: "Why is the conversion factor 1 million?", answer: "Because volume scales cubically. When you convert 1 meter to centimeters (×100), the volume conversion is 100³ = 1,000,000. This is why small linear differences create enormous volume differences — doubling each dimension makes the volume 8× larger (2³ = 8)." },
         ],
     },
+    "f-to-c-converter": {
+        subtitle: "Convert Fahrenheit to Celsius (°F to °C). See results in Celsius, Kelvin, and Rankine. Includes a quick reference table with weather, body temp, and oven temperatures.",
+        contentHTML: `
+            <h3>How to Convert Fahrenheit to Celsius</h3>
+            <p>Subtract 32 from the Fahrenheit temperature, then multiply by 5/9:</p>
+            <div class="explanation__highlight">
+                <strong>°C = (°F − 32) × 5/9</strong><br/><br/>
+                Example: 72°F (room temperature)<br/>
+                = (72 − 32) × 5/9 = 40 × 0.5556 = <strong>22.22°C</strong><br/><br/>
+                Example: 98.6°F (body temperature)<br/>
+                = (98.6 − 32) × 5/9 = 66.6 × 0.5556 = <strong>37.00°C</strong><br/><br/>
+                Example: 350°F (oven for baking)<br/>
+                = (350 − 32) × 5/9 = 318 × 0.5556 = <strong>176.67°C</strong>
+            </div>
+            <p><strong>Mental math shortcut:</strong> Subtract 30, then divide by 2. Example: 72°F → (72−30)/2 = 21°C (actual: 22.2°C). Close enough for everyday use!</p>
+
+            <h3>Fahrenheit to Celsius — Conversion Chart</h3>
+            <table>
+                <thead><tr><th>°F</th><th>°C</th><th>Kelvin</th><th>What It Means</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>-40°F</strong></td><td><strong>-40°C</strong></td><td>233.15 K</td><td>F = C crossover point</td></tr>
+                    <tr><td>0°F</td><td>-17.8°C</td><td>255.4 K</td><td>Very cold winter day</td></tr>
+                    <tr><td><strong>32°F</strong></td><td><strong>0°C</strong></td><td>273.15 K</td><td><strong>Water freezes</strong></td></tr>
+                    <tr><td>50°F</td><td>10°C</td><td>283.2 K</td><td>Cool autumn day</td></tr>
+                    <tr><td>68°F</td><td>20°C</td><td>293.2 K</td><td>Room temperature (low)</td></tr>
+                    <tr><td><strong>72°F</strong></td><td><strong>22.2°C</strong></td><td>295.4 K</td><td><strong>Ideal room temperature</strong></td></tr>
+                    <tr><td>77°F</td><td>25°C</td><td>298.2 K</td><td>Warm comfortable day</td></tr>
+                    <tr><td><strong>98.6°F</strong></td><td><strong>37°C</strong></td><td>310.2 K</td><td><strong>Normal body temperature</strong></td></tr>
+                    <tr><td>100°F</td><td>37.8°C</td><td>310.9 K</td><td>Hot summer day / low fever</td></tr>
+                    <tr><td><strong>212°F</strong></td><td><strong>100°C</strong></td><td>373.15 K</td><td><strong>Water boils</strong></td></tr>
+                    <tr><td>350°F</td><td>176.7°C</td><td>449.8 K</td><td>Oven: baking</td></tr>
+                    <tr><td>400°F</td><td>204.4°C</td><td>477.6 K</td><td>Oven: roasting</td></tr>
+                    <tr><td>450°F</td><td>232.2°C</td><td>505.4 K</td><td>Oven: pizza</td></tr>
+                    <tr><td>500°F</td><td>260°C</td><td>533.2 K</td><td>Oven: maximum</td></tr>
+                </tbody>
+            </table>
+
+            <h3>US Weather Temperature Guide</h3>
+            <table>
+                <thead><tr><th>°F Range</th><th>°C Range</th><th>Conditions</th><th>What to Wear</th></tr></thead>
+                <tbody>
+                    <tr><td>Below 0°F</td><td>Below -18°C</td><td>Dangerously cold</td><td>Full winter gear, limit exposure</td></tr>
+                    <tr><td>0–20°F</td><td>-18 to -7°C</td><td>Bitter cold</td><td>Heavy coat, hat, gloves, layers</td></tr>
+                    <tr><td>20–32°F</td><td>-7 to 0°C</td><td>Freezing</td><td>Winter coat, potentially snow</td></tr>
+                    <tr><td>32–50°F</td><td>0 to 10°C</td><td>Cold</td><td>Jacket, long sleeves</td></tr>
+                    <tr><td>50–65°F</td><td>10 to 18°C</td><td>Cool</td><td>Light jacket or sweater</td></tr>
+                    <tr><td>65–75°F</td><td>18 to 24°C</td><td>Comfortable</td><td>T-shirt, light layers</td></tr>
+                    <tr><td>75–85°F</td><td>24 to 29°C</td><td>Warm</td><td>Shorts, t-shirt, sunscreen</td></tr>
+                    <tr><td>85–100°F</td><td>29 to 38°C</td><td>Hot</td><td>Light clothing, stay hydrated</td></tr>
+                    <tr><td>Above 100°F</td><td>Above 38°C</td><td>Dangerous heat</td><td>Stay indoors, AC, water</td></tr>
+                </tbody>
+            </table>
+
+            <h3>US Oven Temperatures</h3>
+            <table>
+                <thead><tr><th>Setting</th><th>°F</th><th>°C</th><th>Used For</th></tr></thead>
+                <tbody>
+                    <tr><td>Warm</td><td>200°F</td><td>93°C</td><td>Keeping food warm</td></tr>
+                    <tr><td>Low</td><td>250°F</td><td>121°C</td><td>Slow cooking, dehydrating</td></tr>
+                    <tr><td>Moderate</td><td>325–350°F</td><td>163–177°C</td><td>Cakes, cookies, casseroles</td></tr>
+                    <tr><td>Hot</td><td>375–400°F</td><td>191–204°C</td><td>Roasting chicken, pastries</td></tr>
+                    <tr><td>Very hot</td><td>425–450°F</td><td>218–232°C</td><td>Pizza, bread, searing</td></tr>
+                    <tr><td>Broil</td><td>500–550°F</td><td>260–288°C</td><td>Broiling, charring</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Body Temperature Guide</h3>
+            <table>
+                <thead><tr><th>Reading</th><th>°F</th><th>°C</th><th>Meaning</th></tr></thead>
+                <tbody>
+                    <tr><td>Hypothermia</td><td>Below 95°F</td><td>Below 35°C</td><td>⚠️ Seek medical attention</td></tr>
+                    <tr><td>Normal (low)</td><td>97.0°F</td><td>36.1°C</td><td>Healthy range</td></tr>
+                    <tr><td><strong>Normal (average)</strong></td><td><strong>98.6°F</strong></td><td><strong>37.0°C</strong></td><td>Standard body temp</td></tr>
+                    <tr><td>Low-grade fever</td><td>99.1–100.4°F</td><td>37.3–38°C</td><td>Monitor, rest</td></tr>
+                    <tr><td>Fever</td><td>100.4–103°F</td><td>38–39.4°C</td><td>Contact doctor if persistent</td></tr>
+                    <tr><td>High fever</td><td>Above 103°F</td><td>Above 39.4°C</td><td>⚠️ Seek immediate medical care</td></tr>
+                </tbody>
+            </table>
+
+            <h3>What Is Fahrenheit?</h3>
+            <p><strong>Fahrenheit</strong> (°F) is a temperature scale developed by Daniel Gabriel Fahrenheit in 1724. Water freezes at 32°F and boils at 212°F (a 180-degree range). The US, Bahamas, Cayman Islands, Palau, and the Federated States of Micronesia are the only countries that primarily use Fahrenheit.</p>
+
+            <h3>What Is Celsius?</h3>
+            <p><strong>Celsius</strong> (°C), also called centigrade, is a temperature scale based on water: 0°C = freezing point, 100°C = boiling point. It is the standard temperature scale used by every country except the US and a handful of territories. All scientific work worldwide uses Celsius (or Kelvin).</p>
+        `,
+        faq: [
+            { question: "What is the formula to convert Fahrenheit to Celsius?", answer: "°C = (°F − 32) × 5/9. Subtract 32 from the Fahrenheit temperature, then multiply by 5/9 (or divide by 1.8). Example: 72°F = (72 − 32) × 5/9 = 22.22°C. For a quick mental estimate: subtract 30, divide by 2." },
+            { question: "What is 72°F in Celsius?", answer: "72°F = 22.22°C. This is considered the ideal indoor room temperature in the US. Most US thermostats are set between 68–72°F (20–22°C)." },
+            { question: "At what temperature are Fahrenheit and Celsius equal?", answer: "Fahrenheit and Celsius are equal at -40 degrees. That is, -40°F = -40°C. This is the only temperature where both scales read the same number." },
+            { question: "Why does the US use Fahrenheit?", answer: "The US adopted Fahrenheit before Celsius was widely standardized. While Congress authorized the metric system in 1866 and the Metric Conversion Act of 1975 encouraged a switch, adoption was voluntary and never took hold. Today, Americans learn Fahrenheit from birth and have an intuitive sense of what 72°F or 90°F 'feels like.'" },
+            { question: "What is normal body temperature in Fahrenheit and Celsius?", answer: "Normal body temperature is 98.6°F (37.0°C), though individual variation is normal (97.0–99.0°F / 36.1–37.2°C). A fever is generally defined as 100.4°F (38.0°C) or higher. Modern research suggests average body temperature has dropped slightly to around 97.9°F (36.6°C)." },
+            { question: "How do I convert oven temperatures from Fahrenheit to Celsius?", answer: "Use the formula °C = (°F − 32) × 5/9. Common conversions: 350°F = 177°C (baking), 375°F = 191°C (general cooking), 400°F = 204°C (roasting), 425°F = 218°C (high heat), 450°F = 232°C (pizza). Most European recipes use Celsius, so American bakers converting international recipes need this frequently." },
+        ],
+    },
 };
 
 export default async function ConvertHubPage({ params }: PageProps) {
