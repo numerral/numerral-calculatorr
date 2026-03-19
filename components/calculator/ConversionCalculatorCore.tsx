@@ -2790,6 +2790,72 @@ function CelToKelCalc() {
     );
 }
 
+// ─── MPH to KM/H ───
+function MphToKmhCalc() {
+    const [mph, setMph] = useState(60);
+
+    const kmh = mph * 1.60934;
+    const ms = kmh / 3.6;
+    const fts = mph * 1.46667;
+    const knots = mph * 0.868976;
+
+    const quickRef = [5, 15, 25, 30, 35, 45, 55, 60, 65, 70, 75, 100];
+
+    return (
+        <div className="calc-card">
+            <div className="calc-field">
+                <label className="calc-field__label">🚗 MILES PER HOUR (mph)</label>
+                <input type="range" className="calc-field__slider" min={0} max={250} step={1}
+                    value={mph} onChange={(e) => setMph(Number(e.target.value))} />
+                <div style={{ display: "flex", gap: "var(--s-2)", alignItems: "center" }}>
+                    <input type="number" className="calc-field__input" value={mph}
+                        onChange={(e) => setMph(Number(e.target.value))} style={{ flex: 1 }} />
+                    <span className="t-body-sm text-muted">mph</span>
+                </div>
+            </div>
+
+            <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
+                <p className="calc-field__label">SPEED IN KM/H</p>
+                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+                    {kmh.toFixed(2)} km/h
+                </p>
+                <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "var(--s-3)" }}>
+                    <div><p className="calc-field__label">METERS/SEC</p><p style={{ fontWeight: 700 }}>{ms.toFixed(2)} m/s</p></div>
+                    <div><p className="calc-field__label">FEET/SEC</p><p style={{ fontWeight: 700 }}>{fts.toFixed(2)} ft/s</p></div>
+                    <div><p className="calc-field__label">KNOTS</p><p style={{ fontWeight: 700 }}>{knots.toFixed(2)} kn</p></div>
+                    <div><p className="calc-field__label">FORMULA</p><p style={{ fontWeight: 700, fontSize: "var(--t-body-sm)" }}>{mph}×1.609</p></div>
+                </div>
+            </div>
+
+            {/* Quick Reference Table */}
+            <div style={{ marginTop: "var(--s-4)" }}>
+                <h3 className="t-h3" style={{ marginBottom: "var(--s-3)" }}>MPH to KM/H — Quick Reference</h3>
+                <table className="calc-table">
+                    <thead>
+                        <tr><th>mph</th><th>km/h</th><th>m/s</th><th>Context</th></tr>
+                    </thead>
+                    <tbody>
+                        {quickRef.map((m) => {
+                            const k = m * 1.60934;
+                            const s = k / 3.6;
+                            const ctx = m === 5 ? "Parking lot" : m === 15 ? "School zone" : m === 25 ? "Residential street" : m === 30 ? "City street" : m === 35 ? "Urban road" : m === 45 ? "Suburban road" : m === 55 ? "Rural highway" : m === 60 ? "US highway" : m === 65 ? "Interstate (common)" : m === 70 ? "Interstate (standard)" : m === 75 ? "Interstate (Texas/West)" : "NASCAR straightaway";
+                            return (
+                                <tr key={m} style={m === mph ? { background: "var(--n-primary-light)" } : {}}>
+                                    <td>{m} mph</td>
+                                    <td>{k.toFixed(1)} km/h</td>
+                                    <td>{s.toFixed(1)} m/s</td>
+                                    <td>{ctx}</td>
+                                </tr>
+                            );
+                        })}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    );
+}
+
 // ─── Dispatcher ───
 interface Props { calcType: string; }
 
@@ -2830,6 +2896,7 @@ const CALCULATORS: Record<string, React.FC> = {
     "c-to-f": CelToFahCalc,
     "f-to-k": FahToKelCalc,
     "c-to-k": CelToKelCalc,
+    "mph-to-kmh": MphToKmhCalc,
 };
 
 export default function ConversionCalculatorCore({ calcType }: Props) {

@@ -3249,6 +3249,40 @@
     "keywords": "Celsius to Kelvin, C to K, degrees Celsius to Kelvin, temperature converter, convert Celsius to Kelvin, °C to K"
   },
   {
+    "id": "mph-to-kmh-converter",
+    "category": "convert",
+    "title": "Miles per Hour to Kilometers per Hour Converter (mph to km/h)",
+    "slug": "mph-to-kmh-converter",
+    "categorySlug": "convert",
+    "icon": "🚗",
+    "calcType": "mph-to-kmh",
+    "description": "Convert miles per hour to kilometers per hour (mph to km/h). See results in km/h, m/s, ft/s, and knots. Includes a quick reference table with US speed limits.",
+    "stars": 5,
+    "defaults": {
+      "amount": 60,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 250,
+        "step": 1
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "mph to km/h, miles per hour to kilometers per hour, speed converter, convert mph to kmh, mph to kph, speed conversion"
+  },
+  {
     "id": "retirement-corpus",
     "category": "invest",
     "title": "Retirement Corpus Calculator",

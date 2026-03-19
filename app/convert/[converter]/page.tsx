@@ -3168,6 +3168,82 @@ const HUB_CONTENT: Record<string, {
             { question: "When do US students need Celsius to Kelvin conversion?", answer: "Most commonly in AP Chemistry and AP Physics (high school), and in college-level General Chemistry, Organic Chemistry, and Physics courses. The ideal gas law (PV = nRT) requires temperature in Kelvin. It's also used in astronomy, engineering thermodynamics, and materials science." },
         ],
     },
+    "mph-to-kmh-converter": {
+        subtitle: "Convert miles per hour to kilometers per hour (mph to km/h). See results in km/h, m/s, ft/s, and knots. Includes US speed limits and sports speeds.",
+        contentHTML: `
+            <h3>How to Convert MPH to KM/H</h3>
+            <p>Multiply by <strong>1.60934</strong> (since 1 mile = 1.60934 kilometers):</p>
+            <div class="explanation__highlight">
+                <strong>km/h = mph × 1.60934</strong><br/><br/>
+                Example: 60 mph (US highway)<br/>
+                = 60 × 1.60934 = <strong>96.56 km/h</strong><br/><br/>
+                Example: 70 mph (interstate)<br/>
+                = 70 × 1.60934 = <strong>112.65 km/h</strong><br/><br/>
+                Example: 100 mph (NASCAR)<br/>
+                = 100 × 1.60934 = <strong>160.93 km/h</strong>
+            </div>
+            <p><strong>Quick estimate:</strong> Multiply by 1.6 for a fast approximation. 60 mph × 1.6 = 96 km/h (actual: 96.56).</p>
+
+            <h3>US Speed Limits — MPH to KM/H</h3>
+            <table>
+                <thead><tr><th>Zone</th><th>mph</th><th>km/h</th><th>Where</th></tr></thead>
+                <tbody>
+                    <tr><td>Parking lot</td><td>5 mph</td><td>8 km/h</td><td>Malls, garages</td></tr>
+                    <tr><td>School zone</td><td>15–20 mph</td><td>24–32 km/h</td><td>Near schools (during hours)</td></tr>
+                    <tr><td>Residential</td><td>25 mph</td><td>40 km/h</td><td>Neighborhoods</td></tr>
+                    <tr><td>City street</td><td>30–35 mph</td><td>48–56 km/h</td><td>Urban areas</td></tr>
+                    <tr><td>Suburban road</td><td>40–45 mph</td><td>64–72 km/h</td><td>Arterial roads</td></tr>
+                    <tr><td>Rural highway</td><td>55 mph</td><td>89 km/h</td><td>Two-lane roads</td></tr>
+                    <tr><td>US highway</td><td>55–60 mph</td><td>89–97 km/h</td><td>Non-interstate highways</td></tr>
+                    <tr><td>Interstate (urban)</td><td>55–65 mph</td><td>89–105 km/h</td><td>Cities like NYC, LA</td></tr>
+                    <tr><td>Interstate (standard)</td><td>65–70 mph</td><td>105–113 km/h</td><td>Most states</td></tr>
+                    <tr><td>Interstate (rural)</td><td>70–75 mph</td><td>113–121 km/h</td><td>Western states</td></tr>
+                    <tr><td>Texas toll roads</td><td>80–85 mph</td><td>129–137 km/h</td><td>Highest US speed limit</td></tr>
+                </tbody>
+            </table>
+
+            <h3>US Sports Speeds</h3>
+            <table>
+                <thead><tr><th>Sport</th><th>mph</th><th>km/h</th><th>Context</th></tr></thead>
+                <tbody>
+                    <tr><td>NFL — running back</td><td>~22 mph</td><td>~35 km/h</td><td>Top sprint speed</td></tr>
+                    <tr><td>MLB — fastball</td><td>~100 mph</td><td>~161 km/h</td><td>Elite pitcher speed</td></tr>
+                    <tr><td>NBA — fast break</td><td>~18 mph</td><td>~29 km/h</td><td>Player sprint</td></tr>
+                    <tr><td>NHL — slap shot</td><td>~100 mph</td><td>~161 km/h</td><td>Puck speed</td></tr>
+                    <tr><td>NASCAR — race speed</td><td>~200 mph</td><td>~322 km/h</td><td>Superspeedway</td></tr>
+                    <tr><td>F1 — top speed</td><td>~230 mph</td><td>~370 km/h</td><td>Grand Prix straight</td></tr>
+                    <tr><td>PGA — golf drive</td><td>~185 mph</td><td>~298 km/h</td><td>Ball speed off tee</td></tr>
+                    <tr><td>Usain Bolt</td><td>27.8 mph</td><td>44.7 km/h</td><td>Fastest human ever</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Speed Unit Comparison</h3>
+            <table>
+                <thead><tr><th>Unit</th><th>= 1 mph</th><th>Used By</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Miles per hour (mph)</strong></td><td>1.000</td><td>USA, UK (roads), Liberia, Myanmar</td></tr>
+                    <tr><td><strong>Kilometers per hour (km/h)</strong></td><td>1.60934</td><td>Rest of the world</td></tr>
+                    <tr><td>Meters per second (m/s)</td><td>0.44704</td><td>Science, physics</td></tr>
+                    <tr><td>Feet per second (ft/s)</td><td>1.46667</td><td>US engineering, ballistics</td></tr>
+                    <tr><td>Knots (kn)</td><td>0.86898</td><td>Aviation, maritime (worldwide)</td></tr>
+                </tbody>
+            </table>
+
+            <h3>What Is Miles per Hour?</h3>
+            <p><strong>Miles per hour</strong> (mph) is a speed unit used primarily in the United States and the United Kingdom (for road signs). 1 mph = 1.60934 km/h. All US speed limit signs, speedometers, and weather reports use mph.</p>
+
+            <h3>What Is Kilometers per Hour?</h3>
+            <p><strong>Kilometers per hour</strong> (km/h) is the standard speed unit used by most countries worldwide. It's based on the metric system: 1 km/h = traveling 1 kilometer in 1 hour. Americans encounter km/h when renting cars abroad, watching international sports, or reading metric speedometers.</p>
+        `,
+        faq: [
+            { question: "How do you convert mph to km/h?", answer: "Multiply by 1.60934: km/h = mph × 1.60934. For a quick estimate, multiply by 1.6. Example: 60 mph × 1.6 = 96 km/h (exact: 96.56 km/h)." },
+            { question: "What is 60 mph in km/h?", answer: "60 mph = 96.56 km/h. This is a typical US highway speed. Most other countries have highway limits of 100–120 km/h, which corresponds to 62–75 mph." },
+            { question: "What is 100 mph in km/h?", answer: "100 mph = 160.93 km/h. This is roughly the speed of an MLB fastball or an NHL slap shot. On the road, this is well above all US speed limits (the highest is 85 mph on a Texas toll road)." },
+            { question: "Why does the US use miles per hour?", answer: "The US inherited the mile from the British Imperial system. While the UK has since adopted km for many uses, both the US and UK still use mph for road speed. The US Metric Conversion Act of 1975 was voluntary, so mph remains the legal standard for all US road signs and speed limits." },
+            { question: "What speed do I need when driving abroad?", answer: "When renting a car abroad, convert: 30 mph ≈ 50 km/h (city), 50 mph ≈ 80 km/h (suburban), 65 mph ≈ 105 km/h (highway), 75 mph ≈ 120 km/h (autobahn standard). Most rental car speedometers show both units. European speed cameras enforce km/h limits strictly." },
+            { question: "What is the fastest speed limit in the US?", answer: "85 mph (137 km/h) on State Highway 130 in Texas, a toll road between Austin and San Antonio. The most common US interstate speed limits are 65–75 mph (105–121 km/h), varying by state. Montana and Nevada had no speed limits on rural highways until the late 1990s." },
+        ],
+    },
 };
 
 export default async function ConvertHubPage({ params }: PageProps) {
