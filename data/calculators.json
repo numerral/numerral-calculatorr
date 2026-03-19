@@ -2467,6 +2467,40 @@
     "keywords": "kg to stone, kilograms to stone, kg to st and lbs, kilogram to stone converter, how many stone is 70 kg, body weight converter, kg to stone and pounds"
   },
   {
+    "id": "gram-to-liter-converter",
+    "category": "convert",
+    "title": "Grams to Liters Converter (g to L)",
+    "slug": "gram-to-liter-converter",
+    "categorySlug": "convert",
+    "icon": "🧪",
+    "calcType": "gram-to-liter",
+    "description": "Convert grams to liters (g to L) for any substance. Select from 20 common ingredients or enter a custom density. See results in liters, US gallons, and milliliters.",
+    "stars": 5,
+    "defaults": {
+      "amount": 500,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 1,
+        "max": 5000,
+        "step": 1
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "grams to liters, g to L converter, gram to liter calculator, how many liters is 500 grams, weight to volume, density conversion, cooking grams to liters"
+  },
+  {
     "id": "retirement-corpus",
     "category": "invest",
     "title": "Retirement Corpus Calculator",

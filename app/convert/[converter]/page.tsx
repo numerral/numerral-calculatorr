@@ -1148,6 +1148,87 @@ const HUB_CONTENT: Record<string, {
             { question: "What is 100 kg in stone?", answer: "100 kg = 15 stone 10.0 pounds (15.75 stone total). To calculate: 100 ÷ 6.35029 = 15.747 → 15 stone and (0.747 × 14) = 10.5 remaining pounds." },
         ],
     },
+    "gram-to-liter-converter": {
+        subtitle: "Convert grams to liters (g to L) for any substance. Select from 20 common ingredients or enter a custom density. See results in liters, US gallons, quarts, and milliliters.",
+        contentHTML: `
+            <h3>How to Convert Grams to Liters</h3>
+            <p>Grams measure <strong>weight</strong>, while liters measure <strong>volume</strong>. To convert between them, you need the substance's density:</p>
+            <div class="explanation__highlight">
+                <strong>liters = grams ÷ (density in g/mL × 1,000)</strong><br/><br/>
+                Example: 500 grams of water (density 1.00 g/mL)<br/>
+                = 500 ÷ (1.00 × 1000) = <strong>0.5 liters</strong> (about 2.1 cups)<br/><br/>
+                Example: 500 grams of flour (density 0.53 g/mL)<br/>
+                = 500 ÷ (0.53 × 1000) = <strong>0.943 liters</strong> (about 4 cups)<br/><br/>
+                Example: 500 grams of olive oil (density 0.91 g/mL)<br/>
+                = 500 ÷ (0.91 × 1000) = <strong>0.549 liters</strong>
+            </div>
+            <p>Notice how 500g of flour takes up almost twice as much space as 500g of water — because flour is much less dense.</p>
+
+            <h3>Grams to Liters — By Substance</h3>
+            <p>How much volume does each substance occupy per weight?</p>
+            <table>
+                <thead><tr><th>Substance</th><th>Density (g/mL)</th><th>100g =</th><th>500g =</th><th>1,000g =</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Water</strong></td><td>1.00</td><td>0.100 L</td><td>0.500 L</td><td>1.000 L</td></tr>
+                    <tr><td><strong>Whole Milk</strong></td><td>1.03</td><td>0.097 L</td><td>0.485 L</td><td>0.971 L</td></tr>
+                    <tr><td><strong>Olive Oil</strong></td><td>0.91</td><td>0.110 L</td><td>0.549 L</td><td>1.099 L</td></tr>
+                    <tr><td><strong>Honey</strong></td><td>1.43</td><td>0.070 L</td><td>0.350 L</td><td>0.699 L</td></tr>
+                    <tr><td><strong>All-Purpose Flour</strong></td><td>0.53</td><td>0.189 L</td><td>0.943 L</td><td>1.887 L</td></tr>
+                    <tr><td><strong>Granulated Sugar</strong></td><td>0.85</td><td>0.118 L</td><td>0.588 L</td><td>1.176 L</td></tr>
+                    <tr><td><strong>Rice (uncooked)</strong></td><td>0.82</td><td>0.122 L</td><td>0.610 L</td><td>1.220 L</td></tr>
+                    <tr><td><strong>Salt (table)</strong></td><td>1.20</td><td>0.083 L</td><td>0.417 L</td><td>0.833 L</td></tr>
+                    <tr><td><strong>Butter</strong></td><td>0.91</td><td>0.110 L</td><td>0.549 L</td><td>1.099 L</td></tr>
+                    <tr><td><strong>Heavy Cream</strong></td><td>1.01</td><td>0.099 L</td><td>0.495 L</td><td>0.990 L</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Why the Metric System Makes This Easy</h3>
+            <p>The metric system was designed so that <strong>1 gram of water = 1 milliliter = 1 cubic centimeter</strong> (at 4°C). This elegant relationship means:</p>
+            <ul>
+                <li>1,000 grams (1 kg) of water = 1,000 mL = <strong>1 liter</strong></li>
+                <li>500 grams of water = 500 mL = <strong>0.5 liters</strong></li>
+                <li>250 grams of water = 250 mL = <strong>0.25 liters</strong></li>
+            </ul>
+            <p>For any other substance, just divide by its density. The closer the density is to 1.0, the closer the grams-to-mL ratio is to 1:1.</p>
+
+            <h3>US Volume Equivalents</h3>
+            <p>Since Americans commonly use gallons, quarts, and cups:</p>
+            <table>
+                <thead><tr><th>Liters</th><th>US Gallons</th><th>US Quarts</th><th>US Cups</th></tr></thead>
+                <tbody>
+                    <tr><td>0.1 L (100 mL)</td><td>0.026 gal</td><td>0.106 qt</td><td>0.423 cups</td></tr>
+                    <tr><td>0.25 L (250 mL)</td><td>0.066 gal</td><td>0.264 qt</td><td>1.057 cups</td></tr>
+                    <tr><td>0.5 L (500 mL)</td><td>0.132 gal</td><td>0.528 qt</td><td>2.113 cups</td></tr>
+                    <tr><td>1.0 L</td><td>0.264 gal</td><td>1.057 qt</td><td>4.227 cups</td></tr>
+                    <tr><td>2.0 L</td><td>0.528 gal</td><td>2.113 qt</td><td>8.454 cups</td></tr>
+                    <tr><td>3.785 L</td><td>1.000 gal</td><td>4.000 qt</td><td>16.000 cups</td></tr>
+                </tbody>
+            </table>
+
+            <h3>What Is a Gram?</h3>
+            <p>A <strong>gram</strong> (g) is a metric unit of mass equal to one thousandth of a kilogram (1/1,000 kg), or approximately 0.035 ounces. In the metric system, grams are the standard unit for measuring recipe ingredients and food labels. One gram of water occupies exactly 1 milliliter at 4°C — this was a deliberate design choice in the metric system.</p>
+
+            <h3>What Is a Liter?</h3>
+            <p>A <strong>liter</strong> (L) is a metric unit of volume equal to 1,000 milliliters, 1,000 cubic centimeters, or approximately 0.264 US gallons. For Americans: 1 liter is slightly more than 1 US quart (1 L ≈ 1.057 qt). A 2-liter soda bottle holds about half a gallon.</p>
+
+            <h3>When to Convert Grams to Liters</h3>
+            <ul>
+                <li><strong>Cooking and recipes</strong>: A European recipe lists 500g of flour — using this converter you'd find that's about 0.943 liters (≈ 4 US cups).</li>
+                <li><strong>Shipping and packaging</strong>: You know a product weighs 2,000g but need to pick a container by volume.</li>
+                <li><strong>Chemistry</strong>: Dissolving a known mass of solute into a solution requires knowing the volume relationship.</li>
+                <li><strong>Beverages</strong>: A recipe yields 1,500g of juice. At a density near water, that's about 1.5 liters (~0.4 gallons).</li>
+                <li><strong>Gardening</strong>: Soil and fertilizer are often measured by weight but applied by volume.</li>
+            </ul>
+        `,
+        faq: [
+            { question: "How many liters is 500 grams?", answer: "It depends on the substance. For water (density 1.0 g/mL): 500g = 0.5 liters. For flour (density 0.53 g/mL): 500g = 0.943 liters. For honey (density 1.43 g/mL): 500g = only 0.35 liters. You must know the density." },
+            { question: "Is 1 gram equal to 1 milliliter?", answer: "Only for water (at approximately 4°C). Since water has a density of 1.00 g/mL, 1 gram of water = exactly 1 milliliter. For other substances, the ratio depends on density. Flour is only 0.53 g/mL, so 1 gram of flour = 1.89 mL." },
+            { question: "How do I convert grams to liters?", answer: "Divide the weight in grams by (density in g/mL × 1000). Formula: liters = grams ÷ (density × 1000). Example: 750g of milk ÷ (1.03 × 1000) = 0.728 liters." },
+            { question: "How many grams of flour is 1 liter?", answer: "Approximately 530 grams. Flour has a density of ~0.53 g/mL, so 1 liter (1000 mL) of flour weighs about 530 grams. That's roughly 4.2 US cups of flour." },
+            { question: "How many US cups is 1 liter?", answer: "Approximately 4.227 US cups. Or think of it this way: 1 US cup ≈ 236.6 mL, so 1,000 mL ÷ 236.6 = 4.227 cups. A 2-liter soda bottle holds about 8.45 cups." },
+            { question: "Why does 500g of flour take up more space than 500g of water?", answer: "Because flour is less dense than water. Flour has a density of ~0.53 g/mL vs water's 1.00 g/mL. This means flour particles have a lot of air trapped between them, making 500g of flour occupy almost twice the volume (943 mL vs 500 mL)." },
+        ],
+    },
 };
 
 export default async function ConvertHubPage({ params }: PageProps) {
