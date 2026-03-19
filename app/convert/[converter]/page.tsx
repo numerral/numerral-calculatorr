@@ -1675,6 +1675,76 @@ const HUB_CONTENT: Record<string, {
             { question: "How do I read decimal feet?", answer: "Decimal feet express the inches as a decimal fraction. For example, 5.5 feet = 5 feet 6 inches (0.5 × 12 = 6). Common decimals: .25 ft = 3\", .50 ft = 6\", .75 ft = 9\". Surveyors and engineers prefer decimal feet over feet-and-inches notation." },
         ],
     },
+    "kiloohm-to-ohm-converter": {
+        subtitle: "Convert kiloohms to ohms (kΩ to Ω) with Ohm's Law current calculation. See results in ohms, megaohms, milliohms, and milliamps at your chosen voltage.",
+        contentHTML: `
+            <h3>How to Convert Kiloohms to Ohms</h3>
+            <p>The prefix "kilo" means 1,000, so <strong>1 kiloohm = 1,000 ohms</strong>. Simply multiply by 1,000:</p>
+            <div class="explanation__highlight">
+                <strong>ohms = kiloohms × 1,000</strong><br/><br/>
+                Example: 4.7 kΩ = 4.7 × 1,000 = <strong>4,700 Ω</strong><br/><br/>
+                Example: 0.47 kΩ = 0.47 × 1,000 = <strong>470 Ω</strong><br/><br/>
+                Example: 100 kΩ = 100 × 1,000 = <strong>100,000 Ω</strong>
+            </div>
+
+            <h3>Ohm's Law — V = I × R</h3>
+            <p>Ohm's Law is the fundamental relationship between voltage (V), current (I), and resistance (R):</p>
+            <table>
+                <thead><tr><th>Find</th><th>Formula</th><th>Example (4.7 kΩ, 5V)</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Voltage (V)</strong></td><td>V = I × R</td><td>V = 0.001064A × 4700Ω = 5V</td></tr>
+                    <tr><td><strong>Current (I)</strong></td><td>I = V / R</td><td>I = 5V / 4700Ω = 1.064 mA</td></tr>
+                    <tr><td><strong>Resistance (R)</strong></td><td>R = V / I</td><td>R = 5V / 0.001064A = 4700Ω</td></tr>
+                </tbody>
+            </table>
+            <p>This calculator automatically shows the current at your chosen voltage using I = V/R.</p>
+
+            <h3>Resistance Unit Prefixes</h3>
+            <table>
+                <thead><tr><th>Unit</th><th>Symbol</th><th>In Ohms</th><th>Example</th></tr></thead>
+                <tbody>
+                    <tr><td>Milliohm</td><td>mΩ</td><td>0.001 Ω</td><td>Wire resistance</td></tr>
+                    <tr><td><strong>Ohm</strong></td><td><strong>Ω</strong></td><td><strong>1 Ω</strong></td><td><strong>Base unit</strong></td></tr>
+                    <tr><td><strong>Kiloohm</strong></td><td><strong>kΩ</strong></td><td><strong>1,000 Ω</strong></td><td><strong>Most resistors</strong></td></tr>
+                    <tr><td>Megaohm</td><td>MΩ</td><td>1,000,000 Ω</td><td>Insulation testing</td></tr>
+                    <tr><td>Gigaohm</td><td>GΩ</td><td>1,000,000,000 Ω</td><td>Air insulation</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Common Resistor Values (E24 Series)</h3>
+            <p>Standard resistors come in preferred values. Here are the most common kΩ resistors used in electronics:</p>
+            <table>
+                <thead><tr><th>kΩ Value</th><th>Ohms</th><th>Typical Use</th></tr></thead>
+                <tbody>
+                    <tr><td>0.1 kΩ</td><td>100 Ω</td><td>Current sensing, LED with 3.3V</td></tr>
+                    <tr><td>0.22 kΩ</td><td>220 Ω</td><td>Standard LED resistor (5V)</td></tr>
+                    <tr><td>0.47 kΩ</td><td>470 Ω</td><td>Signal line termination</td></tr>
+                    <tr><td>1 kΩ</td><td>1,000 Ω</td><td>General purpose, voltage dividers</td></tr>
+                    <tr><td>2.2 kΩ</td><td>2,200 Ω</td><td>I²C bus pull-ups (3.3V)</td></tr>
+                    <tr><td>4.7 kΩ</td><td>4,700 Ω</td><td>I²C bus pull-ups (5V), biasing</td></tr>
+                    <tr><td>10 kΩ</td><td>10,000 Ω</td><td>Pull-up/pull-down, potentiometers</td></tr>
+                    <tr><td>47 kΩ</td><td>47,000 Ω</td><td>Audio circuits, filters</td></tr>
+                    <tr><td>100 kΩ</td><td>100,000 Ω</td><td>High-impedance inputs, biasing</td></tr>
+                    <tr><td>470 kΩ</td><td>470,000 Ω</td><td>Timing circuits, high-Z sensing</td></tr>
+                    <tr><td>1,000 kΩ</td><td>1,000,000 Ω (1 MΩ)</td><td>ESD protection, input impedance</td></tr>
+                </tbody>
+            </table>
+
+            <h3>What Is a Kiloohm?</h3>
+            <p>A <strong>kiloohm</strong> (kΩ) is a unit of electrical resistance equal to 1,000 ohms. It is the most commonly used unit for expressing resistor values in electronics. The majority of through-hole and surface-mount resistors used in hobby projects, Arduino circuits, and consumer electronics fall in the 0.1kΩ–100kΩ range.</p>
+
+            <h3>What Is an Ohm?</h3>
+            <p>An <strong>ohm</strong> (Ω) is the SI unit of electrical resistance, named after German physicist Georg Simon Ohm. One ohm is defined as the resistance that allows one ampere of current to flow when one volt is applied. The ohm is used in every branch of electrical engineering, from household wiring to semiconductor design.</p>
+        `,
+        faq: [
+            { question: "How many ohms in 1 kiloohm?", answer: "Exactly 1,000 ohms. The prefix 'kilo' means 1,000 in the metric system, so 1 kΩ = 1,000 Ω. To convert, multiply the kΩ value by 1,000." },
+            { question: "What is a 4.7 kΩ resistor in ohms?", answer: "4,700 ohms. 4.7 × 1,000 = 4,700 Ω. This is one of the most commonly used resistor values — it's the standard pull-up resistor for I²C communication at 5V." },
+            { question: "What is Ohm's Law?", answer: "Ohm's Law states that V = I × R, where V is voltage (volts), I is current (amps), and R is resistance (ohms). From this: I = V/R (find current) and R = V/I (find resistance). It's the foundational equation of electrical engineering." },
+            { question: "How much current flows through a 10 kΩ resistor at 5V?", answer: "0.5 mA (milliamps). Using Ohm's Law: I = V/R = 5V ÷ 10,000Ω = 0.0005A = 0.5 mA. This is a very small current, typical for signal-level circuits." },
+            { question: "What is the difference between kΩ and MΩ?", answer: "1 MΩ (megaohm) = 1,000 kΩ = 1,000,000 Ω. Kiloohms are used for most common resistors (0.1–100 kΩ). Megaohms are used for high-impedance applications like insulation testing, ESD protection, and sensitive analog inputs." },
+            { question: "Why do resistors come in odd values like 4.7kΩ and 2.2kΩ?", answer: "Resistors follow the E-series (E12, E24, E96) — logarithmically spaced values that ensure any needed resistance can be approximated within a percentage tolerance. The E24 series has 24 values per decade: 1.0, 1.1, 1.2, 1.3, 1.5, 1.6, 1.8, 2.0, 2.2, 2.4, 2.7, 3.0, 3.3, 3.6, 3.9, 4.3, 4.7, 5.1, 5.6, 6.2, 6.8, 7.5, 8.2, 9.1." },
+        ],
+    },
 };
 
 export default async function ConvertHubPage({ params }: PageProps) {

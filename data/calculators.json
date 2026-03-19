@@ -2671,6 +2671,40 @@
     "keywords": "inches to feet, in to ft, inches to feet converter, how many feet is 36 inches, convert inches to feet and inches, length conversion, imperial length"
   },
   {
+    "id": "kiloohm-to-ohm-converter",
+    "category": "convert",
+    "title": "Kiloohms to Ohms Converter (kΩ to Ω)",
+    "slug": "kiloohm-to-ohm-converter",
+    "categorySlug": "convert",
+    "icon": "⚡",
+    "calcType": "kiloohm-to-ohm",
+    "description": "Convert kiloohms to ohms (kΩ to Ω) with Ohm's Law current calculation. See results in ohms, megaohms, milliohms, and milliamps at your chosen voltage.",
+    "stars": 5,
+    "defaults": {
+      "amount": 4.7,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 1000,
+        "step": 1
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "kiloohms to ohms, kΩ to Ω, kiloohm to ohm converter, how many ohms in a kiloohm, resistance conversion, Ohm's Law, electrical resistance"
+  },
+  {
     "id": "retirement-corpus",
     "category": "invest",
     "title": "Retirement Corpus Calculator",

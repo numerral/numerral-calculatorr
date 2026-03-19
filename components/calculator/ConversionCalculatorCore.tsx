@@ -1576,6 +1576,83 @@ function InchToFootCalc() {
     );
 }
 
+// ─── Kiloohms to Ohms ───
+function KiloohmToOhmCalc() {
+    const [kohms, setKohms] = useState(4.7);
+    const [voltage, setVoltage] = useState(5);
+
+    const ohms = kohms * 1000;
+    const megaohms = kohms / 1000;
+    const milliohms = ohms * 1000;
+    // Ohm's Law: I = V / R
+    const currentA = voltage / ohms;
+    const currentMA = currentA * 1000;
+
+    const quickRef = [0.1, 0.22, 0.47, 1, 2.2, 4.7, 10, 22, 47, 100, 220, 470];
+
+    return (
+        <div className="calc-card">
+            <div className="calc-field">
+                <label className="calc-field__label">⚡ KILOOHMS (kΩ)</label>
+                <input type="range" className="calc-field__slider" min={0.001} max={1000} step={0.001}
+                    value={kohms} onChange={(e) => setKohms(Number(e.target.value))} />
+                <div style={{ display: "flex", gap: "var(--s-2)", alignItems: "center" }}>
+                    <input type="number" className="calc-field__input" value={kohms}
+                        onChange={(e) => setKohms(Number(e.target.value))} style={{ flex: 1 }} />
+                    <span className="t-body-sm text-muted">kΩ</span>
+                </div>
+            </div>
+            <div className="calc-field">
+                <label className="calc-field__label">🔋 VOLTAGE (for Ohm&apos;s Law)</label>
+                <input type="range" className="calc-field__slider" min={0.1} max={240} step={0.1}
+                    value={voltage} onChange={(e) => setVoltage(Number(e.target.value))} />
+                <div style={{ display: "flex", gap: "var(--s-2)", alignItems: "center" }}>
+                    <input type="number" className="calc-field__input" value={voltage}
+                        onChange={(e) => setVoltage(Number(e.target.value))} style={{ flex: 1 }} />
+                    <span className="t-body-sm text-muted">V</span>
+                </div>
+            </div>
+
+            <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
+                <p className="calc-field__label">RESISTANCE IN OHMS</p>
+                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+                    {ohms.toLocaleString("en-US", { maximumFractionDigits: 1 })} Ω
+                </p>
+                <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "var(--s-3)" }}>
+                    <div><p className="calc-field__label">MEGAOHMS</p><p style={{ fontWeight: 700 }}>{megaohms.toFixed(4)} MΩ</p></div>
+                    <div><p className="calc-field__label">MILLIOHMS</p><p style={{ fontWeight: 700 }}>{milliohms.toLocaleString()} mΩ</p></div>
+                    <div><p className="calc-field__label">CURRENT (I=V/R)</p><p style={{ fontWeight: 700 }}>{currentMA.toFixed(3)} mA</p></div>
+                    <div><p className="calc-field__label">FORMULA</p><p style={{ fontWeight: 700, fontSize: "var(--t-body-sm)" }}>{kohms} × 1000</p></div>
+                </div>
+            </div>
+
+            {/* Quick Reference Table */}
+            <div style={{ marginTop: "var(--s-4)" }}>
+                <h3 className="t-h3" style={{ marginBottom: "var(--s-3)" }}>Kiloohms to Ohms — Quick Reference</h3>
+                <table className="calc-table">
+                    <thead>
+                        <tr><th>Kiloohms</th><th>Ohms</th><th>Megaohms</th><th>Current at {voltage}V</th></tr>
+                    </thead>
+                    <tbody>
+                        {quickRef.map((k) => {
+                            const o = k * 1000;
+                            return (
+                                <tr key={k} style={Math.abs(k - kohms) < 0.01 ? { background: "var(--n-primary-light)" } : {}}>
+                                    <td>{k} kΩ</td>
+                                    <td>{o.toLocaleString()} Ω</td>
+                                    <td>{(k / 1000).toFixed(4)} MΩ</td>
+                                    <td>{((voltage / o) * 1000).toFixed(3)} mA</td>
+                                </tr>
+                            );
+                        })}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    );
+}
+
 // ─── Dispatcher ───
 interface Props { calcType: string; }
 
@@ -1599,6 +1676,7 @@ const CALCULATORS: Record<string, React.FC> = {
     "cup-to-gram": CupToGramCalc,
     "min-to-hour": MinToHourCalc,
     "inch-to-foot": InchToFootCalc,
+    "kiloohm-to-ohm": KiloohmToOhmCalc,
 };
 
 export default function ConversionCalculatorCore({ calcType }: Props) {
