@@ -810,6 +810,95 @@ const HUB_CONTENT: Record<string, {
             { question: "How many mg in 1 mL of water?", answer: "1,000 mg (= 1 gram). Since water has a density of 1.00 g/mL, 1 milliliter of water weighs exactly 1 gram = 1,000 milligrams. This is also true for dilute water-based solutions like most liquid medications." },
         ],
     },
+    "gram-to-tsp-converter": {
+        subtitle: "Convert grams to teaspoons (g to tsp) for any ingredient. Select from 20 common cooking and baking ingredients or enter a custom density. See results in teaspoons, tablespoons, and cups.",
+        contentHTML: `
+            <h3>How to Convert Grams to Teaspoons</h3>
+            <p>A US teaspoon holds <strong>4.929 milliliters</strong>. Since different ingredients have different densities, the same weight occupies different volumes. To convert grams to teaspoons:</p>
+            <div class="explanation__highlight">
+                <strong>teaspoons = grams ÷ (4.929 × density in g/mL)</strong><br/><br/>
+                Example: 7 grams of active dry yeast (density 0.63 g/mL)<br/>
+                = 7 ÷ (4.929 × 0.63) = 7 ÷ 3.105 = <strong>2.25 tsp</strong><br/><br/>
+                That's why a standard 7g yeast packet = 2¼ teaspoons!<br/><br/>
+                Example: 5 grams of salt (density 1.20 g/mL)<br/>
+                = 5 ÷ (4.929 × 1.20) = 5 ÷ 5.915 = <strong>0.85 tsp</strong>
+            </div>
+
+            <h3>How Many Teaspoons per Gram? — By Ingredient</h3>
+            <p>The answer depends entirely on what you're measuring:</p>
+            <table>
+                <thead><tr><th>Ingredient</th><th>Grams per Teaspoon</th><th>5g =</th><th>10g =</th><th>25g =</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Water</strong></td><td>4.93 g/tsp</td><td>1.01 tsp</td><td>2.03 tsp</td><td>5.07 tsp</td></tr>
+                    <tr><td><strong>Granulated Sugar</strong></td><td>4.19 g/tsp</td><td>1.19 tsp</td><td>2.39 tsp</td><td>5.97 tsp</td></tr>
+                    <tr><td><strong>Table Salt</strong></td><td>5.91 g/tsp</td><td>0.85 tsp</td><td>1.69 tsp</td><td>4.23 tsp</td></tr>
+                    <tr><td><strong>All-Purpose Flour</strong></td><td>2.61 g/tsp</td><td>1.91 tsp</td><td>3.83 tsp</td><td>9.57 tsp</td></tr>
+                    <tr><td><strong>Butter</strong></td><td>4.49 g/tsp</td><td>1.12 tsp</td><td>2.23 tsp</td><td>5.57 tsp</td></tr>
+                    <tr><td><strong>Honey</strong></td><td>7.05 g/tsp</td><td>0.71 tsp</td><td>1.42 tsp</td><td>3.55 tsp</td></tr>
+                    <tr><td><strong>Cocoa Powder</strong></td><td>2.56 g/tsp</td><td>1.95 tsp</td><td>3.90 tsp</td><td>9.74 tsp</td></tr>
+                    <tr><td><strong>Powdered Sugar</strong></td><td>2.96 g/tsp</td><td>1.69 tsp</td><td>3.38 tsp</td><td>8.45 tsp</td></tr>
+                    <tr><td><strong>Olive Oil</strong></td><td>4.49 g/tsp</td><td>1.12 tsp</td><td>2.23 tsp</td><td>5.57 tsp</td></tr>
+                    <tr><td><strong>Baking Powder</strong></td><td>4.60 g/tsp</td><td>1.09 tsp</td><td>2.17 tsp</td><td>5.43 tsp</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Common Baking Conversions</h3>
+            <p>Quick answers for the most frequently searched baking amounts:</p>
+            <table>
+                <thead><tr><th>Recipe says…</th><th>That's about…</th><th>Density used</th></tr></thead>
+                <tbody>
+                    <tr><td>7g yeast</td><td>2¼ tsp (1 packet)</td><td>0.63 g/mL</td></tr>
+                    <tr><td>5g salt</td><td>~1 tsp</td><td>1.20 g/mL</td></tr>
+                    <tr><td>4g baking powder</td><td>~1 tsp</td><td>0.93 g/mL</td></tr>
+                    <tr><td>5g sugar</td><td>~1¼ tsp</td><td>0.85 g/mL</td></tr>
+                    <tr><td>10g flour</td><td>~3¾ tsp</td><td>0.53 g/mL</td></tr>
+                    <tr><td>15g butter</td><td>~3⅓ tsp (1 tbsp)</td><td>0.91 g/mL</td></tr>
+                    <tr><td>20g honey</td><td>~2¾ tsp</td><td>1.43 g/mL</td></tr>
+                    <tr><td>3g vanilla extract</td><td>~⅔ tsp</td><td>0.88 g/mL</td></tr>
+                    <tr><td>2g cinnamon</td><td>~¾ tsp</td><td>0.56 g/mL</td></tr>
+                    <tr><td>30g cocoa powder</td><td>~11¾ tsp (4 tbsp)</td><td>0.52 g/mL</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Teaspoon Size Reference</h3>
+            <table>
+                <thead><tr><th>Measurement</th><th>Equivalent</th><th>Milliliters</th></tr></thead>
+                <tbody>
+                    <tr><td>1 teaspoon (tsp)</td><td>⅓ tablespoon</td><td>4.929 mL</td></tr>
+                    <tr><td>3 teaspoons</td><td>1 tablespoon</td><td>14.787 mL</td></tr>
+                    <tr><td>6 teaspoons</td><td>2 tablespoons (1 fl oz)</td><td>29.574 mL</td></tr>
+                    <tr><td>12 teaspoons</td><td>¼ cup</td><td>59.147 mL</td></tr>
+                    <tr><td>24 teaspoons</td><td>½ cup</td><td>118.294 mL</td></tr>
+                    <tr><td>48 teaspoons</td><td>1 cup</td><td>236.588 mL</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Why Grams Are More Accurate Than Teaspoons</h3>
+            <p>Professional bakers always weigh ingredients in grams rather than using teaspoons because:</p>
+            <ul>
+                <li><strong>Teaspoons vary by packing</strong>: A "heaped" teaspoon of flour can weigh 50% more than a "level" teaspoon.</li>
+                <li><strong>Humidity affects volume</strong>: Flour absorbs moisture, becoming denser. The same cup of flour can weigh 120g or 145g depending on humidity.</li>
+                <li><strong>Small amounts amplify errors</strong>: In baking, even 1 gram of baking powder too much can change the result. A teaspoon measurement is rarely that precise.</li>
+            </ul>
+            <p>However, most home cooks in the US use teaspoons — so this converter bridges the gap between metric recipes and American measuring spoons.</p>
+
+            <h3>Reading Nutrition Labels in Teaspoons</h3>
+            <p>Nutrition labels in the US list sugar, salt, and fat in grams — but Americans think in teaspoons. Quick conversions:</p>
+            <ul>
+                <li><strong>4 grams of sugar = ~1 teaspoon</strong>. A can of soda with 39g of sugar contains nearly 10 teaspoons!</li>
+                <li><strong>6 grams of salt = ~1 teaspoon</strong>. The FDA recommends less than 2,300 mg (about ⅓ tsp) of sodium per day.</li>
+                <li><strong>5 grams of fat = ~1 teaspoon</strong> (for oils with density ~0.91 g/mL).</li>
+            </ul>
+        `,
+        faq: [
+            { question: "How many teaspoons is 1 gram?", answer: "It depends on the ingredient. For sugar: 1 gram ≈ 0.24 tsp. For salt: 1 gram ≈ 0.17 tsp. For flour: 1 gram ≈ 0.38 tsp. The difference is because each ingredient has a different density — flour is fluffy (less dense), salt is heavy (more dense)." },
+            { question: "How many grams is 1 teaspoon of sugar?", answer: "Approximately 4.2 grams. Granulated sugar has a density of 0.85 g/mL, and a US teaspoon holds 4.929 mL, so 1 tsp of sugar = 4.929 × 0.85 = 4.19 grams. This is a widely used rule of thumb: 4 grams of sugar ≈ 1 teaspoon." },
+            { question: "How many grams is 1 teaspoon of salt?", answer: "Approximately 5.9 grams. Table salt is quite dense (1.20 g/mL), so a teaspoon holds more weight compared to lighter ingredients. Note: kosher salt is less dense and can weigh as little as 3g per teaspoon depending on the brand." },
+            { question: "How many teaspoons is 7 grams of yeast?", answer: "About 2¼ teaspoons. Active dry yeast has a density of approximately 0.63 g/mL. So 7 ÷ (4.929 × 0.63) = 2.25 teaspoons. This is why a standard 7g yeast packet in recipes is described as '2¼ teaspoons.'" },
+            { question: "How many teaspoons is 5 grams of baking powder?", answer: "About 1.1 teaspoons. Baking powder has a density of approximately 0.93 g/mL. So 5 ÷ (4.929 × 0.93) = 1.09 tsp. A common rule of thumb is that 1 teaspoon of baking powder weighs about 4.6 grams." },
+            { question: "Why do different ingredients have different grams per teaspoon?", answer: "Because ingredients have different densities — how tightly packed their particles are. Salt crystals are heavy and pack tightly (5.9g/tsp). Flour particles are light and trap air (2.6g/tsp). Honey is a dense liquid (7.1g/tsp). The teaspoon measures volume, but grams measure weight." },
+        ],
+    },
 };
 
 export default async function ConvertHubPage({ params }: PageProps) {
