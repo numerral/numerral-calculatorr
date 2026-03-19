@@ -3045,6 +3045,40 @@
     "keywords": "cups of butter to grams, butter cups to grams, how many grams in a cup of butter, butter conversion, baking butter measurement, 1 cup butter in grams"
   },
   {
+    "id": "day-to-month-converter",
+    "category": "convert",
+    "title": "Days to Months Converter",
+    "slug": "day-to-month-converter",
+    "categorySlug": "convert",
+    "icon": "📅",
+    "calcType": "day-to-month",
+    "description": "Convert days to months. See results in months, weeks, hours, and a year/month/day breakdown. Includes a quick reference table with common durations.",
+    "stars": 5,
+    "defaults": {
+      "amount": 90,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 1,
+        "max": 1825,
+        "step": 1
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "days to months, convert days to months, how many months is 90 days, day to month converter, time conversion, days in a month"
+  },
+  {
     "id": "retirement-corpus",
     "category": "invest",
     "title": "Retirement Corpus Calculator",

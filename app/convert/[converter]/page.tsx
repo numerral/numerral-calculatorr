@@ -2640,6 +2640,103 @@ const HUB_CONTENT: Record<string, {
             { question: "Is European butter the same weight per cup?", answer: "Yes, the weight per cup is approximately the same (~227g) because the density is similar. However, European butter has higher fat (82–86% vs US 80%) and less water. This means European butter produces flakier pastries and richer flavors, even though the cup-to-gram conversion is identical." },
         ],
     },
+    "day-to-month-converter": {
+        subtitle: "Convert days to months. See results in months, weeks, hours, and a year/month/day breakdown. Includes a quick reference table with common durations.",
+        contentHTML: `
+            <h3>How to Convert Days to Months</h3>
+            <p>Divide the number of days by <strong>30.4375</strong> (the average number of days per month, calculated as 365.25 ÷ 12):</p>
+            <div class="explanation__highlight">
+                <strong>months = days ÷ 30.4375</strong><br/><br/>
+                Example: 90 days<br/>
+                = 90 ÷ 30.4375 = <strong>2.96 months (~3 months)</strong><br/><br/>
+                Example: 365 days<br/>
+                = 365 ÷ 30.4375 = <strong>11.99 months (~1 year)</strong><br/><br/>
+                Example: 180 days<br/>
+                = 180 ÷ 30.4375 = <strong>5.91 months (~6 months)</strong>
+            </div>
+            <p><strong>Note:</strong> Calendar months vary from 28 to 31 days. The 30.4375-day average accounts for this variation, including leap years.</p>
+
+            <h3>Days to Months — Conversion Table</h3>
+            <table>
+                <thead><tr><th>Days</th><th>Months</th><th>Weeks</th><th>Common Reference</th></tr></thead>
+                <tbody>
+                    <tr><td>1 day</td><td>0.03 mo</td><td>0.1 wk</td><td>1 day</td></tr>
+                    <tr><td>7 days</td><td>0.23 mo</td><td>1.0 wk</td><td>1 week</td></tr>
+                    <tr><td>14 days</td><td>0.46 mo</td><td>2.0 wks</td><td>2 weeks</td></tr>
+                    <tr><td>30 days</td><td>0.99 mo</td><td>4.3 wks</td><td>~1 month</td></tr>
+                    <tr><td>60 days</td><td>1.97 mo</td><td>8.6 wks</td><td>~2 months</td></tr>
+                    <tr><td><strong>90 days</strong></td><td><strong>2.96 mo</strong></td><td><strong>12.9 wks</strong></td><td><strong>~1 quarter</strong></td></tr>
+                    <tr><td>120 days</td><td>3.94 mo</td><td>17.1 wks</td><td>~4 months</td></tr>
+                    <tr><td><strong>180 days</strong></td><td><strong>5.91 mo</strong></td><td><strong>25.7 wks</strong></td><td><strong>~6 months (half year)</strong></td></tr>
+                    <tr><td>270 days</td><td>8.87 mo</td><td>38.6 wks</td><td>~9 months</td></tr>
+                    <tr><td><strong>365 days</strong></td><td><strong>11.99 mo</strong></td><td><strong>52.1 wks</strong></td><td><strong>~1 year</strong></td></tr>
+                    <tr><td>548 days</td><td>18.00 mo</td><td>78.3 wks</td><td>~1.5 years</td></tr>
+                    <tr><td><strong>730 days</strong></td><td><strong>23.98 mo</strong></td><td><strong>104.3 wks</strong></td><td><strong>~2 years</strong></td></tr>
+                </tbody>
+            </table>
+
+            <h3>Days Per Month — Calendar Reference</h3>
+            <table>
+                <thead><tr><th>Month</th><th>Days</th><th>Notes</th></tr></thead>
+                <tbody>
+                    <tr><td>January</td><td>31</td><td></td></tr>
+                    <tr><td>February</td><td>28 or 29</td><td>29 in leap years (2024, 2028, 2032)</td></tr>
+                    <tr><td>March</td><td>31</td><td></td></tr>
+                    <tr><td>April</td><td>30</td><td></td></tr>
+                    <tr><td>May</td><td>31</td><td></td></tr>
+                    <tr><td>June</td><td>30</td><td></td></tr>
+                    <tr><td>July</td><td>31</td><td></td></tr>
+                    <tr><td>August</td><td>31</td><td></td></tr>
+                    <tr><td>September</td><td>30</td><td></td></tr>
+                    <tr><td>October</td><td>31</td><td></td></tr>
+                    <tr><td>November</td><td>30</td><td></td></tr>
+                    <tr><td>December</td><td>31</td><td></td></tr>
+                    <tr><td><strong>Average</strong></td><td><strong>30.4375</strong></td><td>365.25 ÷ 12</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Common US Durations in Days</h3>
+            <table>
+                <thead><tr><th>Duration</th><th>Days</th><th>Months</th><th>Context</th></tr></thead>
+                <tbody>
+                    <tr><td>30-day notice</td><td>30</td><td>~1 mo</td><td>Landlord notice, credit card billing</td></tr>
+                    <tr><td>60-day return window</td><td>60</td><td>~2 mo</td><td>Many electronics retailers</td></tr>
+                    <tr><td>90-day probation</td><td>90</td><td>~3 mo</td><td>New job trial period</td></tr>
+                    <tr><td>FMLA leave</td><td>84</td><td>~2.8 mo</td><td>Up to 12 weeks unpaid leave</td></tr>
+                    <tr><td>180-day deployment</td><td>180</td><td>~6 mo</td><td>Military deployment</td></tr>
+                    <tr><td>US passport processing</td><td>42–56</td><td>~1.5–1.8 mo</td><td>Routine processing time</td></tr>
+                    <tr><td>Pregnancy</td><td>280</td><td>9.2 mo</td><td>40 weeks from last period</td></tr>
+                    <tr><td>Car warranty</td><td>1,095</td><td>36 mo</td><td>Typical 3yr/36k miles</td></tr>
+                    <tr><td>Statute of limitations</td><td>730–2,190</td><td>24–72 mo</td><td>Varies by state and claim type</td></tr>
+                </tbody>
+            </table>
+
+            <h3>US Fiscal Quarters</h3>
+            <table>
+                <thead><tr><th>Quarter</th><th>Months</th><th>Days</th><th>Tax/Business Use</th></tr></thead>
+                <tbody>
+                    <tr><td>Q1</td><td>Jan–Mar</td><td>90 days (91 in leap year)</td><td>IRS quarterly estimated taxes due Apr 15</td></tr>
+                    <tr><td>Q2</td><td>Apr–Jun</td><td>91 days</td><td>Due Jun 15</td></tr>
+                    <tr><td>Q3</td><td>Jul–Sep</td><td>92 days</td><td>Due Sep 15</td></tr>
+                    <tr><td>Q4</td><td>Oct–Dec</td><td>92 days</td><td>Due Jan 15 (next year)</td></tr>
+                </tbody>
+            </table>
+
+            <h3>What Is a Day?</h3>
+            <p>A <strong>day</strong> is a unit of time equal to 24 hours, 1,440 minutes, or 86,400 seconds. It corresponds to one full rotation of the Earth on its axis. In the US, a "business day" typically refers to Monday–Friday, excluding federal holidays.</p>
+
+            <h3>What Is a Month?</h3>
+            <p>A <strong>month</strong> is a unit of time based on the lunar cycle, averaging 30.4375 days (365.25 ÷ 12). Calendar months range from 28 to 31 days. In legal and financial contexts in the US, a "month" usually means a calendar month (e.g., January 15 to February 15), not exactly 30 or 30.44 days.</p>
+        `,
+        faq: [
+            { question: "How many months is 90 days?", answer: "90 days = 2.96 months (approximately 3 months). This is commonly used as a business quarter (Q1 = Jan–Mar = 90 days). In legal contexts, '90 days' and '3 months' are often used interchangeably but may differ by 1–2 days depending on the calendar months." },
+            { question: "How many days are in a month?", answer: "It varies: 28 days (February), 29 days (February in leap years), 30 days (April, June, September, November), or 31 days (January, March, May, July, August, October, December). The average is 30.4375 days." },
+            { question: "Is 30 days the same as 1 month?", answer: "Not exactly — 30 days is only 0.99 months using the average. Calendar months range from 28–31 days. In legal and business contexts, '1 month' usually means 1 calendar month, which could be 28, 29, 30, or 31 days depending on which month it falls in." },
+            { question: "How many months is a pregnancy?", answer: "A full-term pregnancy is 280 days (40 weeks) from the last menstrual period = 9.2 months. While we commonly say '9 months,' it's actually slightly longer. The three trimesters are: 1st (days 1–90), 2nd (days 91–180), 3rd (days 181–280)." },
+            { question: "Why isn't there an exact days-to-months conversion?", answer: "Because calendar months have different lengths (28–31 days), there's no single conversion factor. The 30.4375 average (365.25 ÷ 12) accounts for all months and leap years. For precise date calculations, always use a calendar rather than a fixed conversion factor." },
+            { question: "How many business days are in a month?", answer: "Approximately 21–23 business days (weekdays excluding federal holidays). The average US work month has about 21.7 business days. This varies by month — February has fewer, and months with federal holidays (like November with Thanksgiving) also have fewer." },
+        ],
+    },
 };
 
 export default async function ConvertHubPage({ params }: PageProps) {

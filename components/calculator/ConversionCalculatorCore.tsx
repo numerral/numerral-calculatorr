@@ -2395,6 +2395,74 @@ function CupButterToGramCalc() {
     );
 }
 
+// ─── Days to Months ───
+function DayToMonthCalc() {
+    const [days, setDays] = useState(90);
+
+    // average month = 365.25/12 = 30.4375 days
+    const months = days / 30.4375;
+    const weeks = days / 7;
+    const hours = days * 24;
+    const years = Math.floor(months / 12);
+    const remMonths = Math.floor(months % 12);
+    const remDays = Math.round(days - (years * 365.25) - (remMonths * 30.4375));
+
+    const quickRef = [1, 7, 14, 30, 60, 90, 120, 180, 270, 365, 548, 730];
+
+    return (
+        <div className="calc-card">
+            <div className="calc-field">
+                <label className="calc-field__label">📅 DAYS</label>
+                <input type="range" className="calc-field__slider" min={1} max={1825} step={1}
+                    value={days} onChange={(e) => setDays(Number(e.target.value))} />
+                <div style={{ display: "flex", gap: "var(--s-2)", alignItems: "center" }}>
+                    <input type="number" className="calc-field__input" value={days}
+                        onChange={(e) => setDays(Number(e.target.value))} style={{ flex: 1 }} />
+                    <span className="t-body-sm text-muted">days</span>
+                </div>
+            </div>
+
+            <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
+                <p className="calc-field__label">TIME IN MONTHS</p>
+                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+                    {months.toFixed(2)} months
+                </p>
+                <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "var(--s-3)" }}>
+                    <div><p className="calc-field__label">BREAKDOWN</p><p style={{ fontWeight: 700 }}>{years > 0 ? `${years}y ` : ""}{remMonths}m {remDays > 0 ? `${remDays}d` : ""}</p></div>
+                    <div><p className="calc-field__label">WEEKS</p><p style={{ fontWeight: 700 }}>{weeks.toFixed(1)} wks</p></div>
+                    <div><p className="calc-field__label">HOURS</p><p style={{ fontWeight: 700 }}>{hours.toLocaleString()} hrs</p></div>
+                    <div><p className="calc-field__label">FORMULA</p><p style={{ fontWeight: 700, fontSize: "var(--t-body-sm)" }}>{days}÷30.44</p></div>
+                </div>
+            </div>
+
+            {/* Quick Reference Table */}
+            <div style={{ marginTop: "var(--s-4)" }}>
+                <h3 className="t-h3" style={{ marginBottom: "var(--s-3)" }}>Days to Months — Quick Reference</h3>
+                <table className="calc-table">
+                    <thead>
+                        <tr><th>Days</th><th>Months</th><th>Weeks</th><th>Common Duration</th></tr>
+                    </thead>
+                    <tbody>
+                        {quickRef.map((d) => {
+                            const m = d / 30.4375;
+                            const use = d === 1 ? "1 day" : d === 7 ? "1 week" : d === 14 ? "2 weeks" : d === 30 ? "~1 month" : d === 60 ? "~2 months" : d === 90 ? "~3 months (quarter)" : d === 120 ? "~4 months" : d === 180 ? "~6 months (half year)" : d === 270 ? "~9 months (pregnancy)" : d === 365 ? "~1 year" : d === 548 ? "~1.5 years" : "~2 years";
+                            return (
+                                <tr key={d} style={d === days ? { background: "var(--n-primary-light)" } : {}}>
+                                    <td>{d} days</td>
+                                    <td>{m.toFixed(2)} mo</td>
+                                    <td>{(d / 7).toFixed(1)} wks</td>
+                                    <td>{use}</td>
+                                </tr>
+                            );
+                        })}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    );
+}
+
 // ─── Dispatcher ───
 interface Props { calcType: string; }
 
@@ -2429,6 +2497,7 @@ const CALCULATORS: Record<string, React.FC> = {
     "inlb-to-ftlb": InLbToFtLbCalc,
     "cal-to-kg": CalToKgCalc,
     "cup-butter-to-gram": CupButterToGramCalc,
+    "day-to-month": DayToMonthCalc,
 };
 
 export default function ConversionCalculatorCore({ calcType }: Props) {
