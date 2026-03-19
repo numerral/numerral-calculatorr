@@ -2161,6 +2161,40 @@
     "keywords": "grams to cups, g to cups converter, grams to cups calculator, how many cups, baking conversion, flour grams to cups, sugar grams to cups, weight to cup converter"
   },
   {
+    "id": "inch-to-cm-converter",
+    "category": "convert",
+    "title": "Inches to Centimeters Converter (in to cm)",
+    "slug": "inch-to-cm-converter",
+    "categorySlug": "convert",
+    "icon": "📏",
+    "calcType": "inch-to-cm",
+    "description": "Convert inches to centimeters (in to cm) with fractional inch support. See results in cm, mm, meters, and feet. Includes a 20-row reference table for common lengths.",
+    "stars": 5,
+    "defaults": {
+      "amount": 12,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 120,
+        "step": 1
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "inches to cm, inches to centimeters, in to cm converter, inch to centimeter calculator, how many cm in an inch, convert inches, length conversion"
+  },
+  {
     "id": "retirement-corpus",
     "category": "invest",
     "title": "Retirement Corpus Calculator",

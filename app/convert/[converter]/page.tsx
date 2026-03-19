@@ -373,6 +373,106 @@ const HUB_CONTENT: Record<string, {
             { question: "What is the difference between US cups and metric cups?", answer: "A US customary cup = 236.588 mL. A metric cup (used in Australia, Canada) = 250 mL — about 5.7% larger. US nutrition labels use 240 mL. Japanese cups are only 200 mL. Always check which standard your recipe uses." },
         ],
     },
+    "inch-to-cm-converter": {
+        subtitle: "Convert inches to centimeters (in to cm) instantly. Supports fractional inches (1/16″ to 15/16″). See results in cm, mm, meters, and feet with a comprehensive reference table.",
+        contentHTML: `
+            <h3>How to Convert Inches to Centimeters</h3>
+            <p>There are exactly <strong>2.54 centimeters in one inch</strong>. This is an exact conversion factor established by international agreement in 1959, when the international yard was defined as exactly 0.9144 meters.</p>
+            <p>The conversion formula is:</p>
+            <div class="explanation__highlight">
+                <strong>centimeters = inches × 2.54</strong><br/><br/>
+                For example: 12 inches = 12 × 2.54 = <strong>30.48 cm</strong> (1 foot).<br/>
+                And: 5.5 inches = 5.5 × 2.54 = <strong>13.97 cm</strong>.
+            </div>
+            <p>To convert back from centimeters to inches, divide by 2.54: <strong>inches = cm ÷ 2.54</strong>. For example, 10 cm = 10 ÷ 2.54 = 3.937 inches.</p>
+
+            <h3>Inches to Centimeters Conversion Chart</h3>
+            <p>This reference table covers the most commonly searched inch-to-cm conversions:</p>
+            <table>
+                <thead><tr><th>Inches</th><th>Centimeters</th><th>Millimeters</th><th>Feet + Inches</th></tr></thead>
+                <tbody>
+                    <tr><td>1/4″</td><td>0.635 cm</td><td>6.35 mm</td><td>—</td></tr>
+                    <tr><td>1/2″</td><td>1.27 cm</td><td>12.7 mm</td><td>—</td></tr>
+                    <tr><td>1″</td><td>2.54 cm</td><td>25.4 mm</td><td>—</td></tr>
+                    <tr><td>2″</td><td>5.08 cm</td><td>50.8 mm</td><td>—</td></tr>
+                    <tr><td>3″</td><td>7.62 cm</td><td>76.2 mm</td><td>—</td></tr>
+                    <tr><td>6″</td><td>15.24 cm</td><td>152.4 mm</td><td>0′ 6″</td></tr>
+                    <tr><td>12″</td><td>30.48 cm</td><td>304.8 mm</td><td>1′ 0″</td></tr>
+                    <tr><td>18″</td><td>45.72 cm</td><td>457.2 mm</td><td>1′ 6″</td></tr>
+                    <tr><td>24″</td><td>60.96 cm</td><td>609.6 mm</td><td>2′ 0″</td></tr>
+                    <tr><td>36″</td><td>91.44 cm</td><td>914.4 mm</td><td>3′ 0″ (1 yard)</td></tr>
+                    <tr><td>48″</td><td>121.92 cm</td><td>1219.2 mm</td><td>4′ 0″</td></tr>
+                    <tr><td>60″</td><td>152.40 cm</td><td>1524.0 mm</td><td>5′ 0″</td></tr>
+                    <tr><td>72″</td><td>182.88 cm</td><td>1828.8 mm</td><td>6′ 0″</td></tr>
+                    <tr><td>84″</td><td>213.36 cm</td><td>2133.6 mm</td><td>7′ 0″</td></tr>
+                    <tr><td>96″</td><td>243.84 cm</td><td>2438.4 mm</td><td>8′ 0″</td></tr>
+                    <tr><td>120″</td><td>304.80 cm</td><td>3048.0 mm</td><td>10′ 0″</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Fractional Inches to Centimeters</h3>
+            <p>US measurements frequently use fractional inches (like 3/8″ or 5/16″). Here's every 16th of an inch in centimeters:</p>
+            <table>
+                <thead><tr><th>Fraction</th><th>Decimal Inches</th><th>Centimeters</th><th>Millimeters</th></tr></thead>
+                <tbody>
+                    <tr><td>1/16″</td><td>0.0625</td><td>0.159 cm</td><td>1.588 mm</td></tr>
+                    <tr><td>1/8″</td><td>0.125</td><td>0.318 cm</td><td>3.175 mm</td></tr>
+                    <tr><td>3/16″</td><td>0.1875</td><td>0.476 cm</td><td>4.763 mm</td></tr>
+                    <tr><td>1/4″</td><td>0.25</td><td>0.635 cm</td><td>6.350 mm</td></tr>
+                    <tr><td>5/16″</td><td>0.3125</td><td>0.794 cm</td><td>7.938 mm</td></tr>
+                    <tr><td>3/8″</td><td>0.375</td><td>0.953 cm</td><td>9.525 mm</td></tr>
+                    <tr><td>7/16″</td><td>0.4375</td><td>1.111 cm</td><td>11.113 mm</td></tr>
+                    <tr><td>1/2″</td><td>0.5</td><td>1.270 cm</td><td>12.700 mm</td></tr>
+                    <tr><td>9/16″</td><td>0.5625</td><td>1.429 cm</td><td>14.288 mm</td></tr>
+                    <tr><td>5/8″</td><td>0.625</td><td>1.588 cm</td><td>15.875 mm</td></tr>
+                    <tr><td>11/16″</td><td>0.6875</td><td>1.746 cm</td><td>17.463 mm</td></tr>
+                    <tr><td>3/4″</td><td>0.75</td><td>1.905 cm</td><td>19.050 mm</td></tr>
+                    <tr><td>13/16″</td><td>0.8125</td><td>2.064 cm</td><td>20.638 mm</td></tr>
+                    <tr><td>7/8″</td><td>0.875</td><td>2.223 cm</td><td>22.225 mm</td></tr>
+                    <tr><td>15/16″</td><td>0.9375</td><td>2.381 cm</td><td>23.813 mm</td></tr>
+                    <tr><td>1″</td><td>1.0</td><td>2.540 cm</td><td>25.400 mm</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Common Objects — Size Reference</h3>
+            <p>Visualizing lengths is easier when you compare to everyday objects:</p>
+            <ul>
+                <li><strong>1 inch (2.54 cm)</strong> — Width of a US quarter dollar coin (24.26 mm ≈ 0.955″)</li>
+                <li><strong>6 inches (15.24 cm)</strong> — Standard dollar bill width (6.14″)</li>
+                <li><strong>12 inches (30.48 cm)</strong> — Standard ruler length (1 foot)</li>
+                <li><strong>14 inches (35.56 cm)</strong> — Common laptop screen diagonal</li>
+                <li><strong>27 inches (68.58 cm)</strong> — Common desktop monitor diagonal</li>
+                <li><strong>55 inches (139.7 cm)</strong> — Popular TV screen size</li>
+                <li><strong>72 inches (182.88 cm)</strong> — Standard interior door height (6 feet)</li>
+                <li><strong>96 inches (243.84 cm)</strong> — Standard ceiling height (8 feet)</li>
+            </ul>
+
+            <h3>What Is an Inch?</h3>
+            <p>An <strong>inch</strong> (abbreviation: <strong>in</strong> or <strong>″</strong>) is a unit of length in the US customary and Imperial systems. One inch is defined as exactly 1/12 of a foot, or 1/36 of a yard. Since the international yard equals exactly 0.9144 meters, one inch is exactly <strong>2.54 centimeters</strong> — by definition, not approximation.</p>
+            <p>The inch has been used in various forms since at least the 7th century. The modern standardized inch was established in 1959 when the US, UK, Canada, Australia, New Zealand, and South Africa agreed on the international yard.</p>
+
+            <h3>What Is a Centimeter?</h3>
+            <p>A <strong>centimeter</strong> (abbreviation: <strong>cm</strong>) is a metric unit of length equal to one hundredth of a meter (1/100 m), or 10 millimeters. The prefix "centi-" means one hundredth. Centimeters are part of the International System of Units (SI) and are widely used worldwide for everyday measurements.</p>
+            <p>A standard No. 2 pencil is about 1 cm in diameter, giving a quick real-world reference for the unit.</p>
+
+            <h3>When to Convert Inches to Centimeters</h3>
+            <ul>
+                <li><strong>International shipping</strong>: Package dimensions must often be in centimeters for international carriers. A 12″ × 8″ × 6″ box is 30.48 × 20.32 × 15.24 cm.</li>
+                <li><strong>Screen sizes</strong>: Monitors, TVs, and phones are advertised in inches in the US but in cm in most other countries. A 27-inch monitor = 68.58 cm diagonal.</li>
+                <li><strong>Height conversion</strong>: Converting US height (e.g., 5′ 10″ = 70″) to metric (177.8 cm) for medical records, passports, or international forms.</li>
+                <li><strong>DIY and construction</strong>: Converting plans between imperial and metric, especially when ordering materials manufactured in metric countries.</li>
+                <li><strong>Academic and scientific work</strong>: All scientific measurements use the metric system. Converting lab measurements from US tools (in inches) to cm/mm for publication.</li>
+            </ul>
+        `,
+        faq: [
+            { question: "How many centimeters is 1 inch?", answer: "Exactly 2.54 centimeters. This is a precise, mathematically exact value — not a rounded approximation. It was established in 1959 by international agreement when the yard was defined as exactly 0.9144 meters." },
+            { question: "How do I convert inches to cm?", answer: "Multiply the number of inches by 2.54. For example: 10 inches × 2.54 = 25.4 cm. For fractional inches like 5 3/4″, first convert to decimal (5.75), then multiply: 5.75 × 2.54 = 14.605 cm." },
+            { question: "How tall is 5 feet 10 inches in cm?", answer: "5 feet 10 inches = 70 inches total (5 × 12 + 10). 70 × 2.54 = 177.8 cm. This is a very common height conversion for medical forms and passports." },
+            { question: "How many inches in a centimeter?", answer: "There are approximately 0.3937 inches in 1 centimeter (1 ÷ 2.54 = 0.3937). To convert cm to inches, divide by 2.54 or multiply by 0.3937." },
+            { question: "What is 12 inches in cm?", answer: "12 inches = 30.48 cm exactly. 12 inches equals 1 foot. This is one of the most common conversions — a standard ruler is 12 inches (30.48 cm) long." },
+            { question: "Is 1 inch exactly 2.54 cm?", answer: "Yes — exactly, by definition. Since 1959, the international inch has been defined as exactly 25.4 millimeters (2.54 cm). This is not a rounded or approximate value — it's mathematically precise." },
+        ],
+    },
 };
 
 export default async function ConvertHubPage({ params }: PageProps) {
