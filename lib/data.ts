@@ -353,6 +353,7 @@ export interface GuideDef {
     icon: string;
     readTime: string;
     relatedCalculators: string[];
+    quotation?: string;
     sections: GuideSection[];
     faq: { question: string; answer: string }[];
 }

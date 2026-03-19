@@ -122,6 +122,40 @@ export default async function GuidePage({ params }: PageProps) {
                     />
                 </header>
 
+                {/* Quotation — styled user question for semantic search & UX */}
+                {guide.quotation && (
+                    <blockquote
+                        style={{
+                            margin: "0 0 var(--s-8) 0",
+                            padding: "var(--s-5) var(--s-6)",
+                            borderLeft: "4px solid var(--n-primary)",
+                            background: "var(--n-surface)",
+                            borderRadius: "0 var(--r-md) var(--r-md) 0",
+                            fontStyle: "italic",
+                            fontSize: "var(--t-h4)",
+                            lineHeight: 1.6,
+                            color: "var(--n-text)",
+                            position: "relative",
+                        }}
+                    >
+                        <span
+                            style={{
+                                fontSize: "2rem",
+                                position: "absolute",
+                                top: "var(--s-3)",
+                                left: "var(--s-3)",
+                                opacity: 0.15,
+                                lineHeight: 1,
+                            }}
+                        >
+                            &#x201C;
+                        </span>
+                        <p style={{ margin: 0, paddingLeft: "var(--s-4)" }}>
+                            {guide.quotation}
+                        </p>
+                    </blockquote>
+                )}
+
                 {/* Table of Contents */}
                 <nav
                     style={{
