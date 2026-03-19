@@ -2116,6 +2116,90 @@ const HUB_CONTENT: Record<string, {
             { question: "How do I convert price per square meter to price per square foot?", answer: "Divide the $/m² price by 10.7639. Example: if a European property is listed at €3,000/m², that equals €3,000 ÷ 10.7639 = €278.7/ft². This helps Americans compare international property prices." },
         ],
     },
+    "oz-to-ml-converter": {
+        subtitle: "Convert weight ounces to milliliters (oz to mL) for any ingredient. Select a substance or enter a custom density. See results in mL, liters, fluid ounces, and cups.",
+        contentHTML: `
+            <h3>How to Convert Ounces (Weight) to Milliliters</h3>
+            <p>This converter is for <strong>weight ounces (oz)</strong>, not fluid ounces. Since oz measures weight and mL measures volume, you need the substance's <strong>density</strong>:</p>
+            <div class="explanation__highlight">
+                <strong>mL = ounces × 28.3495 ÷ density (g/mL)</strong><br/><br/>
+                Example: 5 oz of water (density 1.00 g/mL)<br/>
+                = 5 × 28.3495 ÷ 1.00 = <strong>141.7 mL</strong><br/><br/>
+                Example: 5 oz of olive oil (density 0.91 g/mL)<br/>
+                = 5 × 28.3495 ÷ 0.91 = <strong>155.8 mL</strong><br/><br/>
+                Example: 5 oz of honey (density 1.43 g/mL)<br/>
+                = 5 × 28.3495 ÷ 1.43 = <strong>99.1 mL</strong>
+            </div>
+            <p><strong>Key insight:</strong> Heavier substances (higher density) produce <em>fewer</em> mL per ounce, while lighter substances produce <em>more</em> mL.</p>
+
+            <h3>Ounces to Milliliters — By Ingredient (for 1 oz)</h3>
+            <table>
+                <thead><tr><th>Ingredient</th><th>Density</th><th>1 oz =</th><th>8 oz =</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Water</strong></td><td>1.00 g/mL</td><td>28.3 mL</td><td>226.8 mL</td></tr>
+                    <tr><td><strong>Whole Milk</strong></td><td>1.03 g/mL</td><td>27.5 mL</td><td>220.2 mL</td></tr>
+                    <tr><td><strong>All-purpose Flour</strong></td><td>0.53 g/mL</td><td>53.5 mL</td><td>428.0 mL</td></tr>
+                    <tr><td><strong>Granulated Sugar</strong></td><td>0.85 g/mL</td><td>33.4 mL</td><td>266.8 mL</td></tr>
+                    <tr><td><strong>Butter</strong></td><td>0.91 g/mL</td><td>31.2 mL</td><td>249.2 mL</td></tr>
+                    <tr><td><strong>Olive Oil</strong></td><td>0.91 g/mL</td><td>31.2 mL</td><td>249.2 mL</td></tr>
+                    <tr><td><strong>Honey</strong></td><td>1.43 g/mL</td><td>19.8 mL</td><td>158.6 mL</td></tr>
+                    <tr><td><strong>Cocoa Powder</strong></td><td>0.52 g/mL</td><td>54.5 mL</td><td>436.1 mL</td></tr>
+                    <tr><td><strong>Vegetable Oil</strong></td><td>0.92 g/mL</td><td>30.8 mL</td><td>246.5 mL</td></tr>
+                    <tr><td><strong>Heavy Cream</strong></td><td>1.01 g/mL</td><td>28.1 mL</td><td>224.6 mL</td></tr>
+                </tbody>
+            </table>
+
+            <h3>⚠️ Weight Ounce vs. Fluid Ounce — Critical Difference</h3>
+            <p>US recipes use two completely different units that share the word "ounce":</p>
+            <table>
+                <thead><tr><th>Feature</th><th>Weight Ounce (oz)</th><th>Fluid Ounce (fl oz)</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Measures</strong></td><td>Weight / mass</td><td>Volume</td></tr>
+                    <tr><td><strong>Tool needed</strong></td><td>Kitchen scale</td><td>Measuring cup</td></tr>
+                    <tr><td><strong>1 unit of water =</strong></td><td>28.35 mL</td><td>29.57 mL</td></tr>
+                    <tr><td><strong>Depends on density?</strong></td><td>Yes — changes by ingredient</td><td>No — always the same</td></tr>
+                    <tr><td><strong>More accurate?</strong></td><td>✅ Yes — professional bakers prefer this</td><td>Less accurate for dry goods</td></tr>
+                    <tr><td><strong>Example in recipe</strong></td><td>"4 oz chocolate" (weigh it)</td><td>"4 fl oz vanilla" (pour it)</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Common Baking Ingredients — oz to mL</h3>
+            <table>
+                <thead><tr><th>Ingredient</th><th>4 oz =</th><th>8 oz =</th><th>16 oz (1 lb) =</th></tr></thead>
+                <tbody>
+                    <tr><td>All-purpose flour</td><td>214 mL</td><td>428 mL</td><td>856 mL</td></tr>
+                    <tr><td>Granulated sugar</td><td>133 mL</td><td>267 mL</td><td>534 mL</td></tr>
+                    <tr><td>Brown sugar (packed)</td><td>130 mL</td><td>260 mL</td><td>519 mL</td></tr>
+                    <tr><td>Butter</td><td>125 mL</td><td>249 mL</td><td>499 mL</td></tr>
+                    <tr><td>Chocolate chips</td><td>118 mL</td><td>236 mL</td><td>472 mL</td></tr>
+                    <tr><td>Cocoa powder</td><td>218 mL</td><td>436 mL</td><td>872 mL</td></tr>
+                    <tr><td>Cream cheese</td><td>113 mL</td><td>227 mL</td><td>454 mL</td></tr>
+                </tbody>
+            </table>
+
+            <h3>When to Use Weight vs. Volume in US Recipes</h3>
+            <ul>
+                <li><strong>Use weight (oz)</strong> for: flour, sugar, chocolate, cheese, meat, butter — anywhere precision matters</li>
+                <li><strong>Use volume (fl oz)</strong> for: water, milk, oil, juice — pourable liquids</li>
+                <li><strong>Professional bakeries always weigh</strong> — measuring by volume can cause 10–20% variation in flour, drastically affecting results</li>
+                <li><strong>European and Asian recipes</strong> typically use grams (weight), so knowing oz↔mL helps when converting international recipes</li>
+            </ul>
+
+            <h3>What Is an Ounce?</h3>
+            <p>An <strong>ounce</strong> (oz) is a US customary unit of weight equal to 1/16 of a pound or 28.3495 grams. In cooking, "ounces" without the "fluid" prefix typically means weight — check your recipe carefully. Most US kitchen scales can toggle between ounces and grams.</p>
+
+            <h3>What Is a Milliliter?</h3>
+            <p>A <strong>milliliter</strong> (mL) is a metric unit of volume equal to 1/1,000 of a liter or 1 cubic centimeter. It is the international standard for measuring small liquid volumes in cooking, medicine, and science.</p>
+        `,
+        faq: [
+            { question: "How many mL is 1 ounce?", answer: "It depends on the substance! For water: 1 oz ≈ 28.3 mL. For flour: 1 oz ≈ 53.5 mL (flour is much less dense). For honey: 1 oz ≈ 19.8 mL (honey is very dense). This is why you need density for weight-to-volume conversions." },
+            { question: "Is 1 oz the same as 1 fl oz?", answer: "No! 1 oz (weight) ≠ 1 fl oz (volume). For water they're close: 1 oz = 28.35 mL while 1 fl oz = 29.57 mL. But for other substances, the difference can be huge. 1 oz of flour is 53.5 mL, while 1 fl oz is always 29.57 mL regardless of what's in it." },
+            { question: "How do I convert ounces to mL for baking?", answer: "Use the formula: mL = oz × 28.3495 ÷ density. For common ingredients: flour (density 0.53), sugar (0.85), butter (0.91), honey (1.43). Professional bakers prefer gram/ounce measurements over cup measurements because they're more precise." },
+            { question: "How many ounces in a cup of flour?", answer: "About 4.25 oz (120g). Since 1 cup = 236.6 mL and flour has a density of 0.53 g/mL: 236.6 × 0.53 = 125.4g = 4.42 oz. However, this varies widely based on how the flour is scooped — which is why weight is more accurate." },
+            { question: "Why do baking recipes sometimes list ounces and sometimes cups?", answer: "Older American recipes use volume (cups/tablespoons) because it's traditional and doesn't require a scale. Modern and professional recipes use weight (ounces or grams) because it's more precise. A cup of flour can vary by 20% depending on scooping technique." },
+            { question: "How is this different from the fluid ounces to mL converter?", answer: "This converter handles WEIGHT ounces (oz) to mL, which requires knowing the substance's density. Our fluid ounces to mL converter handles VOLUME (fl oz) to mL, which is a direct conversion (1 fl oz = 29.57 mL) regardless of substance." },
+        ],
+    },
 };
 
 export default async function ConvertHubPage({ params }: PageProps) {

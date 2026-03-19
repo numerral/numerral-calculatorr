@@ -2841,6 +2841,40 @@
     "keywords": "square meters to square feet, m2 to sq ft, square meter to square foot converter, how many square feet in a square meter, area conversion, real estate"
   },
   {
+    "id": "oz-to-ml-converter",
+    "category": "convert",
+    "title": "Ounces to Milliliters Converter (oz to mL)",
+    "slug": "oz-to-ml-converter",
+    "categorySlug": "convert",
+    "icon": "⚖️",
+    "calcType": "oz-to-ml",
+    "description": "Convert weight ounces to milliliters (oz to mL) for any ingredient. Select a substance or enter a custom density. See results in mL, liters, fluid ounces, and cups.",
+    "stars": 5,
+    "defaults": {
+      "amount": 5,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 100,
+        "step": 1
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "ounces to milliliters, oz to mL, ounce to milliliter converter, how many mL in an ounce, weight to volume, cooking conversion, baking measurement"
+  },
+  {
     "id": "retirement-corpus",
     "category": "invest",
     "title": "Retirement Corpus Calculator",

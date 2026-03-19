@@ -1940,6 +1940,94 @@ function SqMToSqFtCalc() {
     );
 }
 
+// ─── Ounces (weight) to Milliliters ───
+function OzToMlCalc() {
+    const [oz, setOz] = useState(5);
+    const [substanceIdx, setSubstanceIdx] = useState(0);
+    const [customDensity, setCustomDensity] = useState(1.0);
+
+    const substance = SUBSTANCES[substanceIdx];
+    const density = substance.label === "Custom" ? customDensity : substance.density;
+    // mL = oz × 28.3495 / density
+    const ml = oz * 28.3495 / density;
+    const liters = ml / 1000;
+    const floz = ml / 29.5735;
+    const cups = floz / 8;
+
+    const quickRef = [0.5, 1, 2, 3, 4, 5, 8, 10, 12, 16];
+
+    return (
+        <div className="calc-card">
+            <div className="calc-field">
+                <label className="calc-field__label">⚖️ OUNCES (weight oz)</label>
+                <input type="range" className="calc-field__slider" min={0.1} max={100} step={0.1}
+                    value={oz} onChange={(e) => setOz(Number(e.target.value))} />
+                <div style={{ display: "flex", gap: "var(--s-2)", alignItems: "center" }}>
+                    <input type="number" className="calc-field__input" value={oz}
+                        onChange={(e) => setOz(Number(e.target.value))} style={{ flex: 1 }} />
+                    <span className="t-body-sm text-muted">oz</span>
+                </div>
+            </div>
+            <div className="calc-field">
+                <label className="calc-field__label">🏷️ SUBSTANCE / INGREDIENT</label>
+                <select className="calc-field__input" value={substanceIdx}
+                    onChange={(e) => setSubstanceIdx(Number(e.target.value))}>
+                    {SUBSTANCES.map((s, i) => (
+                        <option key={i} value={i}>{s.label} ({s.density} g/mL)</option>
+                    ))}
+                </select>
+            </div>
+
+            {substance.label === "Custom" && (
+                <div className="calc-field">
+                    <label className="calc-field__label">⚙️ CUSTOM DENSITY (g/mL)</label>
+                    <input type="range" className="calc-field__slider" min={0.1} max={3.0} step={0.01}
+                        value={customDensity} onChange={(e) => setCustomDensity(Number(e.target.value))} />
+                    <input type="number" className="calc-field__input" value={customDensity}
+                        onChange={(e) => setCustomDensity(Number(e.target.value))} />
+                </div>
+            )}
+
+            <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
+                <p className="calc-field__label">VOLUME IN MILLILITERS</p>
+                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+                    {ml.toFixed(1)} mL
+                </p>
+                <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "var(--s-3)" }}>
+                    <div><p className="calc-field__label">LITERS</p><p style={{ fontWeight: 700 }}>{liters.toFixed(4)} L</p></div>
+                    <div><p className="calc-field__label">FLUID OUNCES</p><p style={{ fontWeight: 700 }}>{floz.toFixed(2)} fl oz</p></div>
+                    <div><p className="calc-field__label">CUPS</p><p style={{ fontWeight: 700 }}>{cups.toFixed(2)} cups</p></div>
+                    <div><p className="calc-field__label">FORMULA</p><p style={{ fontWeight: 700, fontSize: "var(--t-body-sm)" }}>{oz}×28.35÷{density}</p></div>
+                </div>
+            </div>
+
+            {/* Quick Reference Table */}
+            <div style={{ marginTop: "var(--s-4)" }}>
+                <h3 className="t-h3" style={{ marginBottom: "var(--s-3)" }}>Ounces to Milliliters — {substance.label}</h3>
+                <table className="calc-table">
+                    <thead>
+                        <tr><th>Ounces</th><th>Milliliters</th><th>Fluid Oz</th><th>Cups</th></tr>
+                    </thead>
+                    <tbody>
+                        {quickRef.map((o) => {
+                            const m = o * 28.3495 / density;
+                            return (
+                                <tr key={o} style={o === oz ? { background: "var(--n-primary-light)" } : {}}>
+                                    <td>{o} oz</td>
+                                    <td>{m.toFixed(1)} mL</td>
+                                    <td>{(m / 29.5735).toFixed(2)} fl oz</td>
+                                    <td>{(m / 29.5735 / 8).toFixed(2)} cups</td>
+                                </tr>
+                            );
+                        })}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    );
+}
+
 // ─── Dispatcher ───
 interface Props { calcType: string; }
 
@@ -1968,6 +2056,7 @@ const CALCULATORS: Record<string, React.FC> = {
     "sec-to-min": SecToMinCalc,
     "floz-to-ml": FlOzToMlCalc,
     "sqm-to-sqft": SqMToSqFtCalc,
+    "oz-to-ml": OzToMlCalc,
 };
 
 export default function ConversionCalculatorCore({ calcType }: Props) {
