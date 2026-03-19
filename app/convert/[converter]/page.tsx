@@ -899,6 +899,85 @@ const HUB_CONTENT: Record<string, {
             { question: "Why do different ingredients have different grams per teaspoon?", answer: "Because ingredients have different densities — how tightly packed their particles are. Salt crystals are heavy and pack tightly (5.9g/tsp). Flour particles are light and trap air (2.6g/tsp). Honey is a dense liquid (7.1g/tsp). The teaspoon measures volume, but grams measure weight." },
         ],
     },
+    "tsp-to-cup-converter": {
+        subtitle: "Convert teaspoons to cups (tsp to cups) instantly. See results in cups, tablespoons, fluid ounces, and milliliters. Includes a complete conversion table.",
+        contentHTML: `
+            <h3>How to Convert Teaspoons to Cups</h3>
+            <p>There are exactly <strong>48 teaspoons in 1 US cup</strong>. To convert teaspoons to cups, simply divide by 48:</p>
+            <div class="explanation__highlight">
+                <strong>cups = teaspoons ÷ 48</strong><br/><br/>
+                Example: 12 teaspoons ÷ 48 = <strong>0.25 cups (¼ cup)</strong><br/><br/>
+                Example: 24 teaspoons ÷ 48 = <strong>0.5 cups (½ cup)</strong><br/><br/>
+                Example: 36 teaspoons ÷ 48 = <strong>0.75 cups (¾ cup)</strong>
+            </div>
+            <p>This is a <strong>fixed ratio</strong> — it does not depend on the ingredient. Whether you're measuring water, flour, or sugar, 48 teaspoons always equals 1 cup by volume.</p>
+
+            <h3>Teaspoons to Cups Conversion Table</h3>
+            <table>
+                <thead><tr><th>Teaspoons</th><th>Cups</th><th>Tablespoons</th><th>Fluid Ounces</th><th>Milliliters</th></tr></thead>
+                <tbody>
+                    <tr><td>1 tsp</td><td>0.021 cups</td><td>⅓ tbsp</td><td>⅙ fl oz</td><td>4.93 mL</td></tr>
+                    <tr><td>3 tsp</td><td>0.063 cups</td><td>1 tbsp</td><td>½ fl oz</td><td>14.79 mL</td></tr>
+                    <tr><td>6 tsp</td><td>⅛ cup</td><td>2 tbsp</td><td>1 fl oz</td><td>29.57 mL</td></tr>
+                    <tr><td>8 tsp</td><td>⅙ cup</td><td>2⅔ tbsp</td><td>1⅓ fl oz</td><td>39.43 mL</td></tr>
+                    <tr><td>12 tsp</td><td><strong>¼ cup</strong></td><td>4 tbsp</td><td>2 fl oz</td><td>59.15 mL</td></tr>
+                    <tr><td>16 tsp</td><td>⅓ cup</td><td>5⅓ tbsp</td><td>2⅔ fl oz</td><td>78.86 mL</td></tr>
+                    <tr><td>24 tsp</td><td><strong>½ cup</strong></td><td>8 tbsp</td><td>4 fl oz</td><td>118.29 mL</td></tr>
+                    <tr><td>32 tsp</td><td>⅔ cup</td><td>10⅔ tbsp</td><td>5⅓ fl oz</td><td>157.73 mL</td></tr>
+                    <tr><td>36 tsp</td><td><strong>¾ cup</strong></td><td>12 tbsp</td><td>6 fl oz</td><td>177.44 mL</td></tr>
+                    <tr><td>48 tsp</td><td><strong>1 cup</strong></td><td>16 tbsp</td><td>8 fl oz</td><td>236.59 mL</td></tr>
+                    <tr><td>72 tsp</td><td>1½ cups</td><td>24 tbsp</td><td>12 fl oz</td><td>354.88 mL</td></tr>
+                    <tr><td>96 tsp</td><td>2 cups (1 pint)</td><td>32 tbsp</td><td>16 fl oz</td><td>473.18 mL</td></tr>
+                    <tr><td>144 tsp</td><td>3 cups</td><td>48 tbsp</td><td>24 fl oz</td><td>709.76 mL</td></tr>
+                    <tr><td>192 tsp</td><td>4 cups (1 quart)</td><td>64 tbsp</td><td>32 fl oz</td><td>946.35 mL</td></tr>
+                    <tr><td>768 tsp</td><td>16 cups (1 gallon)</td><td>256 tbsp</td><td>128 fl oz</td><td>3,785.41 mL</td></tr>
+                </tbody>
+            </table>
+
+            <h3>US Customary Volume Units — Complete Hierarchy</h3>
+            <p>Understanding how all US cooking volume units relate:</p>
+            <table>
+                <thead><tr><th>Unit</th><th>In Teaspoons</th><th>In mL</th></tr></thead>
+                <tbody>
+                    <tr><td>1 teaspoon (tsp)</td><td>1 tsp</td><td>4.929 mL</td></tr>
+                    <tr><td>1 tablespoon (tbsp)</td><td>3 tsp</td><td>14.787 mL</td></tr>
+                    <tr><td>1 fluid ounce (fl oz)</td><td>6 tsp</td><td>29.574 mL</td></tr>
+                    <tr><td>1 cup</td><td>48 tsp</td><td>236.588 mL</td></tr>
+                    <tr><td>1 pint (2 cups)</td><td>96 tsp</td><td>473.176 mL</td></tr>
+                    <tr><td>1 quart (4 cups)</td><td>192 tsp</td><td>946.353 mL</td></tr>
+                    <tr><td>1 gallon (16 cups)</td><td>768 tsp</td><td>3,785.41 mL</td></tr>
+                </tbody>
+            </table>
+
+            <h3>US Cup vs. Metric Cup</h3>
+            <p>Be aware that the <strong>US cup</strong> (236.588 mL) is different from the <strong>metric cup</strong> (250 mL) used in Australia, Canada, and some other countries. The US cup is about 5.4% smaller. If following an Australian recipe that says "1 cup," using a US measuring cup will give you slightly less volume.</p>
+            <p>The <strong>Japanese cup</strong> is even smaller at 200 mL. Always check which cup standard your recipe uses.</p>
+
+            <h3>What Is a Teaspoon?</h3>
+            <p>A <strong>teaspoon</strong> (tsp) is a US customary unit of volume equal to ⅓ of a tablespoon, ⅙ of a fluid ounce, or approximately 4.929 milliliters. In nutrition labeling, the FDA standardizes 1 teaspoon to exactly 5 mL. Teaspoons are the smallest standard US measuring spoon and are used for spices, baking powder, vanilla extract, and liquid medications.</p>
+
+            <h3>What Is a Cup?</h3>
+            <p>A <strong>US cup</strong> is a customary unit of volume equal to 8 fluid ounces, 16 tablespoons, 48 teaspoons, or approximately 236.588 milliliters. It's the most commonly used volume measurement in American home cooking. Standard US measuring cup sets include 1 cup, ¾ cup, ⅔ cup, ½ cup, ⅓ cup, and ¼ cup sizes.</p>
+
+            <h3>Kitchen Conversion Shortcuts</h3>
+            <ul>
+                <li><strong>¼ cup</strong> = 12 teaspoons = 4 tablespoons</li>
+                <li><strong>⅓ cup</strong> = 16 teaspoons = 5⅓ tablespoons</li>
+                <li><strong>½ cup</strong> = 24 teaspoons = 8 tablespoons</li>
+                <li><strong>⅔ cup</strong> = 32 teaspoons = 10⅔ tablespoons</li>
+                <li><strong>¾ cup</strong> = 36 teaspoons = 12 tablespoons</li>
+                <li><strong>1 cup</strong> = 48 teaspoons = 16 tablespoons = 8 fl oz</li>
+            </ul>
+        `,
+        faq: [
+            { question: "How many teaspoons are in a cup?", answer: "There are exactly 48 teaspoons in 1 US cup. This is derived from the fact that 1 cup = 16 tablespoons, and 1 tablespoon = 3 teaspoons, so 16 × 3 = 48 teaspoons." },
+            { question: "How many teaspoons is ¼ cup?", answer: "12 teaspoons. Since 1 cup = 48 teaspoons, ¼ cup = 48 ÷ 4 = 12 teaspoons. That's also equal to 4 tablespoons or 2 fluid ounces." },
+            { question: "How many teaspoons is ½ cup?", answer: "24 teaspoons. Since 1 cup = 48 teaspoons, ½ cup = 48 ÷ 2 = 24 teaspoons. That's also equal to 8 tablespoons or 4 fluid ounces." },
+            { question: "How many teaspoons is ⅓ cup?", answer: "16 teaspoons. Since 1 cup = 48 teaspoons, ⅓ cup = 48 ÷ 3 = 16 teaspoons. That's also equal to 5⅓ tablespoons or 2⅔ fluid ounces." },
+            { question: "How many tablespoons are in a cup?", answer: "16 tablespoons in 1 US cup. Since 1 tablespoon = 3 teaspoons, and 1 cup = 48 teaspoons: 48 ÷ 3 = 16 tablespoons. This is one of the most important kitchen conversion facts to memorize." },
+            { question: "Is a US cup the same as a metric cup?", answer: "No. A US cup = 236.588 mL, while a metric cup (used in Australia, Canada) = 250 mL. The metric cup is about 5.4% larger. A Japanese cup is even smaller at 200 mL. Always check which cup standard your recipe uses." },
+        ],
+    },
 };
 
 export default async function ConvertHubPage({ params }: PageProps) {

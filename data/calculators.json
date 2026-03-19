@@ -2365,6 +2365,40 @@
     "keywords": "grams to teaspoons, g to tsp converter, grams to tsp calculator, how many teaspoons in a gram, grams of sugar to tsp, grams of salt to tsp, grams of flour to tsp, cooking conversion"
   },
   {
+    "id": "tsp-to-cup-converter",
+    "category": "convert",
+    "title": "Teaspoons to Cups Converter (tsp to cups)",
+    "slug": "tsp-to-cup-converter",
+    "categorySlug": "convert",
+    "icon": "☕",
+    "calcType": "tsp-to-cup",
+    "description": "Convert teaspoons to cups (tsp to cups) instantly. See results in cups, tablespoons, fluid ounces, and milliliters. Includes a 14-row quick reference table.",
+    "stars": 5,
+    "defaults": {
+      "amount": 12,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 192,
+        "step": 1
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "teaspoons to cups, tsp to cups, teaspoon to cup converter, how many teaspoons in a cup, tsp to cup calculator, 48 teaspoons, cooking volume conversion"
+  },
+  {
     "id": "retirement-corpus",
     "category": "invest",
     "title": "Retirement Corpus Calculator",

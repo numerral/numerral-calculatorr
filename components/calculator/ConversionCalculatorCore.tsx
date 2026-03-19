@@ -880,6 +880,76 @@ function GramToTspCalc() {
     );
 }
 
+// ─── Teaspoons to Cups ───
+function TspToCupCalc() {
+    const [tsp, setTsp] = useState(12);
+
+    const cups = tsp / 48;
+    const tbsp = tsp / 3;
+    const flOz = tsp / 6;
+    const ml = tsp * 4.929;
+
+    const quickRef = [1, 2, 3, 4, 6, 8, 12, 16, 24, 32, 36, 48, 72, 96];
+    const fractionLabel = (val: number) => {
+        if (val === 0.25) return "¼";
+        if (val === 0.5) return "½";
+        if (val === 0.75) return "¾";
+        if (val === 0.333) return "⅓";
+        if (val === 0.667) return "⅔";
+        if (Number.isInteger(val)) return val.toString();
+        return val.toFixed(3);
+    };
+
+    return (
+        <div className="calc-card">
+            <div className="calc-field">
+                <label className="calc-field__label">🥄 TEASPOONS</label>
+                <input type="range" className="calc-field__slider" min={0.25} max={192} step={0.25}
+                    value={tsp} onChange={(e) => setTsp(Number(e.target.value))} />
+                <div style={{ display: "flex", gap: "var(--s-2)", alignItems: "center" }}>
+                    <input type="number" className="calc-field__input" value={tsp}
+                        onChange={(e) => setTsp(Number(e.target.value))} style={{ flex: 1 }} />
+                    <span className="t-body-sm text-muted">tsp</span>
+                </div>
+            </div>
+
+            <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
+                <p className="calc-field__label">VOLUME IN CUPS</p>
+                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+                    {cups.toFixed(3)} cups
+                </p>
+                <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "var(--s-3)" }}>
+                    <div><p className="calc-field__label">TABLESPOONS</p><p style={{ fontWeight: 700 }}>{tbsp.toFixed(2)} tbsp</p></div>
+                    <div><p className="calc-field__label">FLUID OUNCES</p><p style={{ fontWeight: 700 }}>{flOz.toFixed(2)} fl oz</p></div>
+                    <div><p className="calc-field__label">MILLILITERS</p><p style={{ fontWeight: 700 }}>{ml.toFixed(1)} mL</p></div>
+                    <div><p className="calc-field__label">FORMULA</p><p style={{ fontWeight: 700, fontSize: "var(--t-body-sm)" }}>{tsp} ÷ 48</p></div>
+                </div>
+            </div>
+
+            {/* Quick Reference Table */}
+            <div style={{ marginTop: "var(--s-4)" }}>
+                <h3 className="t-h3" style={{ marginBottom: "var(--s-3)" }}>Teaspoons to Cups — Quick Reference</h3>
+                <table className="calc-table">
+                    <thead>
+                        <tr><th>Teaspoons</th><th>Cups</th><th>Tablespoons</th><th>Fluid Ounces</th></tr>
+                    </thead>
+                    <tbody>
+                        {quickRef.map((t) => (
+                            <tr key={t} style={t === tsp ? { background: "var(--n-primary-light)" } : {}}>
+                                <td>{t} tsp</td>
+                                <td>{(t / 48).toFixed(3)} cups</td>
+                                <td>{(t / 3).toFixed(1)} tbsp</td>
+                                <td>{(t / 6).toFixed(2)} fl oz</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    );
+}
+
 // ─── Dispatcher ───
 interface Props { calcType: string; }
 
@@ -894,6 +964,7 @@ const CALCULATORS: Record<string, React.FC> = {
     "kg-to-liter": KgToLiterCalc,
     "mg-to-ml": MgToMlCalc,
     "gram-to-tsp": GramToTspCalc,
+    "tsp-to-cup": TspToCupCalc,
 };
 
 export default function ConversionCalculatorCore({ calcType }: Props) {
