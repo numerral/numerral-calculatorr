@@ -2535,6 +2535,40 @@
     "keywords": "mL to mg, milliliters to milligrams, mL to mg converter, how many mg in 1 mL, medication dosing mL to mg, mL to mg calculator, volume to weight"
   },
   {
+    "id": "liter-to-gram-converter",
+    "category": "convert",
+    "title": "Liters to Grams Converter (L to g)",
+    "slug": "liter-to-gram-converter",
+    "categorySlug": "convert",
+    "icon": "🧴",
+    "calcType": "liter-to-gram",
+    "description": "Convert liters to grams (L to g) for any substance. Select from 20 common ingredients or enter a custom density. See results in grams, kilograms, and pounds.",
+    "stars": 5,
+    "defaults": {
+      "amount": 1,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 20,
+        "step": 1
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "liters to grams, L to g converter, liter to gram calculator, how many grams in a liter, volume to weight, density conversion, 1 liter of water in grams"
+  },
+  {
     "id": "retirement-corpus",
     "category": "invest",
     "title": "Retirement Corpus Calculator",

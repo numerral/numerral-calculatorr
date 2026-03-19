@@ -1314,6 +1314,88 @@ const HUB_CONTENT: Record<string, {
             { question: "How do I convert mL to mg for a liquid medication?", answer: "You need the drug's concentration (found on the label). Formula: mg = mL × concentration (mg/mL). Example: If a cough syrup is 50 mg/5 mL (= 10 mg/mL), then 15 mL = 15 × 10 = 150 mg of active ingredient." },
         ],
     },
+    "liter-to-gram-converter": {
+        subtitle: "Convert liters to grams (L to g) for any substance. Select from 20 common ingredients or enter a custom density. See results in grams, kilograms, and pounds.",
+        contentHTML: `
+            <h3>How to Convert Liters to Grams</h3>
+            <p>Liters measure <strong>volume</strong> while grams measure <strong>weight</strong>. To convert, multiply the volume by the substance's density:</p>
+            <div class="explanation__highlight">
+                <strong>grams = liters × density (g/mL) × 1,000</strong><br/><br/>
+                Example: 1 liter of water (density 1.00 g/mL)<br/>
+                = 1 × 1.00 × 1,000 = <strong>1,000 grams</strong> (1 kg / 2.2 lbs)<br/><br/>
+                Example: 1 liter of olive oil (density 0.91 g/mL)<br/>
+                = 1 × 0.91 × 1,000 = <strong>910 grams</strong><br/><br/>
+                Example: 1 liter of honey (density 1.43 g/mL)<br/>
+                = 1 × 1.43 × 1,000 = <strong>1,430 grams</strong> (3.15 lbs)
+            </div>
+            <p>The density factor means 1 liter of honey weighs 43% more than 1 liter of water!</p>
+
+            <h3>Liters to Grams — By Substance</h3>
+            <table>
+                <thead><tr><th>Substance</th><th>Density (g/mL)</th><th>0.5 L =</th><th>1 L =</th><th>2 L =</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Water</strong></td><td>1.00</td><td>500 g</td><td>1,000 g</td><td>2,000 g</td></tr>
+                    <tr><td><strong>Whole Milk</strong></td><td>1.03</td><td>515 g</td><td>1,030 g</td><td>2,060 g</td></tr>
+                    <tr><td><strong>Olive Oil</strong></td><td>0.91</td><td>455 g</td><td>910 g</td><td>1,820 g</td></tr>
+                    <tr><td><strong>Honey</strong></td><td>1.43</td><td>715 g</td><td>1,430 g</td><td>2,860 g</td></tr>
+                    <tr><td><strong>All-Purpose Flour</strong></td><td>0.53</td><td>265 g</td><td>530 g</td><td>1,060 g</td></tr>
+                    <tr><td><strong>Granulated Sugar</strong></td><td>0.85</td><td>425 g</td><td>850 g</td><td>1,700 g</td></tr>
+                    <tr><td><strong>Vegetable Oil</strong></td><td>0.92</td><td>460 g</td><td>920 g</td><td>1,840 g</td></tr>
+                    <tr><td><strong>Heavy Cream</strong></td><td>1.01</td><td>505 g</td><td>1,010 g</td><td>2,020 g</td></tr>
+                    <tr><td><strong>Maple Syrup</strong></td><td>1.33</td><td>665 g</td><td>1,330 g</td><td>2,660 g</td></tr>
+                    <tr><td><strong>Rubbing Alcohol</strong></td><td>0.79</td><td>395 g</td><td>790 g</td><td>1,580 g</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Common US Container Sizes — How Much Do They Weigh?</h3>
+            <p>Americans encounter liters primarily with beverages. Here's what common containers weigh when filled with water:</p>
+            <table>
+                <thead><tr><th>Container</th><th>Volume</th><th>Water Weight</th><th>Milk Weight</th></tr></thead>
+                <tbody>
+                    <tr><td>Water bottle (standard)</td><td>0.5 L (16.9 fl oz)</td><td>500 g (1.1 lbs)</td><td>515 g</td></tr>
+                    <tr><td>Soda bottle (large)</td><td>1 L (33.8 fl oz)</td><td>1,000 g (2.2 lbs)</td><td>1,030 g</td></tr>
+                    <tr><td>2-Liter soda bottle</td><td>2 L (67.6 fl oz)</td><td>2,000 g (4.4 lbs)</td><td>2,060 g</td></tr>
+                    <tr><td>US gallon jug</td><td>3.785 L (128 fl oz)</td><td>3,785 g (8.3 lbs)</td><td>3,899 g</td></tr>
+                    <tr><td>5-gallon water cooler</td><td>18.93 L</td><td>18,930 g (41.7 lbs)</td><td>—</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Liters to US Volume Units</h3>
+            <table>
+                <thead><tr><th>Liters</th><th>US Gallons</th><th>US Quarts</th><th>US Cups</th><th>Fluid Ounces</th></tr></thead>
+                <tbody>
+                    <tr><td>0.25 L</td><td>0.066 gal</td><td>0.264 qt</td><td>1.06 cups</td><td>8.45 fl oz</td></tr>
+                    <tr><td>0.5 L</td><td>0.132 gal</td><td>0.528 qt</td><td>2.11 cups</td><td>16.91 fl oz</td></tr>
+                    <tr><td>1 L</td><td>0.264 gal</td><td>1.057 qt</td><td>4.23 cups</td><td>33.81 fl oz</td></tr>
+                    <tr><td>2 L</td><td>0.528 gal</td><td>2.113 qt</td><td>8.45 cups</td><td>67.63 fl oz</td></tr>
+                    <tr><td>3.785 L</td><td>1.000 gal</td><td>4.000 qt</td><td>16.00 cups</td><td>128.00 fl oz</td></tr>
+                </tbody>
+            </table>
+
+            <h3>What Is a Liter?</h3>
+            <p>A <strong>liter</strong> (L) is a metric unit of volume equal to 1,000 milliliters or 1,000 cubic centimeters. For Americans: 1 liter ≈ 1.057 US quarts, or about 4.23 US cups. The most familiar liter container in the US is the 2-liter soda bottle, which holds approximately half a gallon.</p>
+
+            <h3>What Is a Gram?</h3>
+            <p>A <strong>gram</strong> (g) is a metric unit of mass equal to 1/1,000 of a kilogram or approximately 0.035 ounces. The metric system was designed so that 1 gram of water = 1 mL at 4°C. This means 1 liter of water weighs exactly 1,000 grams (1 kg). For other substances, the weight per liter varies based on density.</p>
+
+            <h3>When to Convert Liters to Grams</h3>
+            <ul>
+                <li><strong>Cooking</strong>: An American recipe calls for "1 liter of broth" — you need to know how much that weighs for shipping or portioning.</li>
+                <li><strong>Shipping</strong>: Freight costs are based on weight. Converting a 5-liter container of oil to grams helps calculate shipping fees.</li>
+                <li><strong>Nutrition</strong>: Understanding how much a 2-liter bottle of soda weighs helps visualize calorie density.</li>
+                <li><strong>Chemistry</strong>: Lab work often requires knowing the mass of a measured volume of solution.</li>
+                <li><strong>Water storage</strong>: Planning emergency water reserves requires converting gallons/liters to weight for shelf and floor capacity.</li>
+            </ul>
+        `,
+        faq: [
+            { question: "How many grams is 1 liter of water?", answer: "Exactly 1,000 grams (1 kilogram or 2.2 pounds). This is by design — the metric system defined the gram so that 1 mL of water = 1 gram. Therefore 1,000 mL (1 liter) = 1,000 grams." },
+            { question: "How many grams is 1 liter of milk?", answer: "Approximately 1,030 grams. Milk is slightly denser than water (1.03 g/mL vs 1.00 g/mL) due to dissolved sugars, proteins, and fats. So 1 liter of whole milk weighs about 30g more than 1 liter of water." },
+            { question: "How many grams is 1 liter of oil?", answer: "About 910 grams for olive oil (density 0.91 g/mL) or 920 grams for vegetable oil (density 0.92 g/mL). Oil is lighter than water, which is why oil floats on water — and why 1 liter of oil weighs less than 1 liter of water." },
+            { question: "How many pounds does a 2-liter bottle weigh?", answer: "About 4.4 pounds when filled with water (2,000 grams = 2 kg ≈ 4.41 lbs). A 2-liter soda bottle weighs slightly more due to the sugar content — a Cola with ~108g of sugar in 2L has a density of about 1.04 g/mL, so it weighs ~2,080g (4.59 lbs)." },
+            { question: "How heavy is a gallon of water?", answer: "About 8.34 pounds (3,785 grams). One US gallon = 3.785 liters, and since water weighs 1,000 grams per liter: 3.785 × 1,000 = 3,785 grams. The old saying 'a pint's a pound the world around' is approximately true (1 pint ≈ 473g ≈ 1.04 lbs)." },
+            { question: "Does 1 liter always equal 1 kilogram?", answer: "Only for water (at ~4°C). For any other substance, 1 liter weighs more or less than 1 kg depending on density. Honey: 1L = 1.43 kg. Oil: 1L = 0.91 kg. Flour: 1L = only 0.53 kg. You must know the density to convert accurately." },
+        ],
+    },
 };
 
 export default async function ConvertHubPage({ params }: PageProps) {
