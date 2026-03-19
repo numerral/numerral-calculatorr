@@ -2977,6 +2977,40 @@
     "keywords": "inch-pounds to foot-pounds, in-lbs to ft-lbs, torque converter, inch pound to foot pound, torque conversion, bolt torque"
   },
   {
+    "id": "cal-to-kg-converter",
+    "category": "convert",
+    "title": "Calories to Kilograms Converter (kcal to kg)",
+    "slug": "cal-to-kg-converter",
+    "categorySlug": "convert",
+    "icon": "🔥",
+    "calcType": "cal-to-kg",
+    "description": "Convert calories burned to kilograms of weight loss (kcal to kg). See results in kg, pounds, and grams. Includes a timeline at your daily calorie deficit.",
+    "stars": 5,
+    "defaults": {
+      "amount": 7700,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 100,
+        "max": 50000,
+        "step": 100
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "calories to kilograms, kcal to kg, calories burned to weight loss, how many calories to lose 1 kg, calorie deficit weight loss, convert calories to kg"
+  },
+  {
     "id": "retirement-corpus",
     "category": "invest",
     "title": "Retirement Corpus Calculator",

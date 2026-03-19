@@ -2254,6 +2254,81 @@ function InLbToFtLbCalc() {
     );
 }
 
+// ─── Calories Burned to Kilograms ───
+function CalToKgCalc() {
+    const [cals, setCals] = useState(7700);
+    const [deficit, setDeficit] = useState(500); // daily kcal deficit
+
+    const kg = cals / 7700;
+    const lbs = kg * 2.20462;
+    const grams = kg * 1000;
+    const weeksAtDeficit = deficit > 0 ? cals / (deficit * 7) : 0;
+
+    const quickRef = [500, 1000, 2000, 3500, 5000, 7700, 10000, 15000, 23100, 38500];
+
+    return (
+        <div className="calc-card">
+            <div className="calc-field">
+                <label className="calc-field__label">🔥 CALORIES BURNED (kcal)</label>
+                <input type="range" className="calc-field__slider" min={100} max={50000} step={100}
+                    value={cals} onChange={(e) => setCals(Number(e.target.value))} />
+                <div style={{ display: "flex", gap: "var(--s-2)", alignItems: "center" }}>
+                    <input type="number" className="calc-field__input" value={cals}
+                        onChange={(e) => setCals(Number(e.target.value))} style={{ flex: 1 }} />
+                    <span className="t-body-sm text-muted">kcal</span>
+                </div>
+            </div>
+            <div className="calc-field">
+                <label className="calc-field__label">📉 DAILY CALORIE DEFICIT (for timeline)</label>
+                <input type="range" className="calc-field__slider" min={100} max={1500} step={50}
+                    value={deficit} onChange={(e) => setDeficit(Number(e.target.value))} />
+                <div style={{ display: "flex", gap: "var(--s-2)", alignItems: "center" }}>
+                    <input type="number" className="calc-field__input" value={deficit}
+                        onChange={(e) => setDeficit(Number(e.target.value))} style={{ flex: 1 }} />
+                    <span className="t-body-sm text-muted">kcal/day</span>
+                </div>
+            </div>
+
+            <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
+                <p className="calc-field__label">WEIGHT EQUIVALENT</p>
+                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+                    {kg.toFixed(2)} kg ({lbs.toFixed(1)} lbs)
+                </p>
+                <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "var(--s-3)" }}>
+                    <div><p className="calc-field__label">GRAMS</p><p style={{ fontWeight: 700 }}>{grams.toFixed(0)} g</p></div>
+                    <div><p className="calc-field__label">POUNDS</p><p style={{ fontWeight: 700 }}>{lbs.toFixed(2)} lbs</p></div>
+                    <div><p className="calc-field__label">WEEKS (at {deficit} kcal/day)</p><p style={{ fontWeight: 700 }}>{weeksAtDeficit.toFixed(1)} wks</p></div>
+                    <div><p className="calc-field__label">FORMULA</p><p style={{ fontWeight: 700, fontSize: "var(--t-body-sm)" }}>{cals.toLocaleString()}÷7700</p></div>
+                </div>
+            </div>
+
+            {/* Quick Reference Table */}
+            <div style={{ marginTop: "var(--s-4)" }}>
+                <h3 className="t-h3" style={{ marginBottom: "var(--s-3)" }}>Calories to Weight Loss — Quick Reference</h3>
+                <table className="calc-table">
+                    <thead>
+                        <tr><th>Calories</th><th>Kilograms</th><th>Pounds</th><th>At {deficit} kcal/day</th></tr>
+                    </thead>
+                    <tbody>
+                        {quickRef.map((c) => {
+                            const k = c / 7700;
+                            return (
+                                <tr key={c} style={c === cals ? { background: "var(--n-primary-light)" } : {}}>
+                                    <td>{c.toLocaleString()} kcal</td>
+                                    <td>{k.toFixed(2)} kg</td>
+                                    <td>{(k * 2.20462).toFixed(1)} lbs</td>
+                                    <td>{(c / (deficit * 7)).toFixed(1)} weeks</td>
+                                </tr>
+                            );
+                        })}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    );
+}
+
 // ─── Dispatcher ───
 interface Props { calcType: string; }
 
@@ -2286,6 +2361,7 @@ const CALCULATORS: Record<string, React.FC> = {
     "rpm-to-rads": RpmToRadCalc,
     "gram-flour-to-cup": GramFlourToCupCalc,
     "inlb-to-ftlb": InLbToFtLbCalc,
+    "cal-to-kg": CalToKgCalc,
 };
 
 export default function ConversionCalculatorCore({ calcType }: Props) {

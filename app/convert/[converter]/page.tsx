@@ -2467,6 +2467,93 @@ const HUB_CONTENT: Record<string, {
             { question: "Why do mechanics use both inch-pounds and foot-pounds?", answer: "Inch-pounds provide finer resolution for small, precision fasteners (electronics, scope mounts, bicycle parts). Foot-pounds are better for larger bolts (lug nuts, engine bolts) where higher torque values make in-lbs impractical. A 100 ft-lb lug nut = 1,200 in-lbs — easier to read as ft-lbs." },
         ],
     },
+    "cal-to-kg-converter": {
+        subtitle: "Convert calories burned to kilograms of weight loss (kcal to kg). See results in kg, pounds, and grams. Includes a timeline at your daily calorie deficit.",
+        contentHTML: `
+            <h3>How to Convert Calories to Kilograms</h3>
+            <p>One kilogram of body fat contains approximately <strong>7,700 calories</strong> (kcal). To find how many kilograms a calorie deficit represents:</p>
+            <div class="explanation__highlight">
+                <strong>kg = calories ÷ 7,700</strong><br/><br/>
+                Example: 7,700 kcal deficit<br/>
+                = 7,700 ÷ 7,700 = <strong>1.00 kg (2.2 lbs)</strong><br/><br/>
+                Example: 3,500 kcal deficit<br/>
+                = 3,500 ÷ 7,700 = <strong>0.45 kg (1.0 lb)</strong><br/><br/>
+                Example: 38,500 kcal deficit<br/>
+                = 38,500 ÷ 7,700 = <strong>5.00 kg (11.0 lbs)</strong>
+            </div>
+            <p><strong>Note:</strong> In the US, the "3,500 calorie rule" is widely used: 3,500 kcal = 1 pound of body fat. Both rules yield the same result (7,700 kcal/kg ≈ 3,500 kcal/lb).</p>
+
+            <h3>Calories to Weight Loss — Reference Table</h3>
+            <table>
+                <thead><tr><th>Calories</th><th>Kilograms</th><th>Pounds</th><th>Weeks (500 kcal/day deficit)</th></tr></thead>
+                <tbody>
+                    <tr><td>500 kcal</td><td>0.06 kg</td><td>0.14 lbs</td><td>0.1 wks</td></tr>
+                    <tr><td>1,000 kcal</td><td>0.13 kg</td><td>0.29 lbs</td><td>0.3 wks</td></tr>
+                    <tr><td>3,500 kcal</td><td>0.45 kg</td><td><strong>1.0 lb</strong></td><td>1.0 wk</td></tr>
+                    <tr><td>7,700 kcal</td><td><strong>1.00 kg</strong></td><td>2.2 lbs</td><td>2.2 wks</td></tr>
+                    <tr><td>15,400 kcal</td><td>2.00 kg</td><td>4.4 lbs</td><td>4.4 wks</td></tr>
+                    <tr><td>23,100 kcal</td><td>3.00 kg</td><td>6.6 lbs</td><td>6.6 wks</td></tr>
+                    <tr><td>38,500 kcal</td><td>5.00 kg</td><td>11.0 lbs</td><td>11.0 wks</td></tr>
+                    <tr><td>77,000 kcal</td><td>10.00 kg</td><td>22.0 lbs</td><td>22.0 wks</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Calories Burned per Hour — Exercise Chart</h3>
+            <p>Approximate calories burned per hour for a 155 lb (70 kg) person:</p>
+            <table>
+                <thead><tr><th>Activity</th><th>kcal/hour</th><th>Hours to Burn 1 lb</th><th>Hours to Burn 1 kg</th></tr></thead>
+                <tbody>
+                    <tr><td>Walking (3.5 mph)</td><td>298</td><td>11.7 hrs</td><td>25.8 hrs</td></tr>
+                    <tr><td>Cycling (moderate)</td><td>520</td><td>6.7 hrs</td><td>14.8 hrs</td></tr>
+                    <tr><td>Swimming (laps)</td><td>446</td><td>7.8 hrs</td><td>17.3 hrs</td></tr>
+                    <tr><td>Running (6 mph)</td><td>596</td><td>5.9 hrs</td><td>12.9 hrs</td></tr>
+                    <tr><td>HIIT</td><td>600</td><td>5.8 hrs</td><td>12.8 hrs</td></tr>
+                    <tr><td>Weight lifting</td><td>224</td><td>15.6 hrs</td><td>34.4 hrs</td></tr>
+                    <tr><td>Yoga</td><td>298</td><td>11.7 hrs</td><td>25.8 hrs</td></tr>
+                    <tr><td>Elliptical</td><td>480</td><td>7.3 hrs</td><td>16.0 hrs</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Safe Weight Loss Rate — CDC Recommendations</h3>
+            <p>The <strong>CDC recommends losing 1–2 pounds (0.45–0.9 kg) per week</strong> for sustainable weight loss:</p>
+            <table>
+                <thead><tr><th>Daily Deficit</th><th>Weekly Loss</th><th>Monthly Loss</th><th>Safety</th></tr></thead>
+                <tbody>
+                    <tr><td>250 kcal/day</td><td>0.5 lb / 0.23 kg</td><td>2.0 lbs / 0.9 kg</td><td>✅ Very safe</td></tr>
+                    <tr><td>500 kcal/day</td><td>1.0 lb / 0.45 kg</td><td>4.0 lbs / 1.8 kg</td><td>✅ Recommended</td></tr>
+                    <tr><td>750 kcal/day</td><td>1.5 lbs / 0.68 kg</td><td>6.0 lbs / 2.7 kg</td><td>⚠️ Moderate</td></tr>
+                    <tr><td>1,000 kcal/day</td><td>2.0 lbs / 0.9 kg</td><td>8.0 lbs / 3.6 kg</td><td>⚠️ Maximum recommended</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Common US Foods — Calorie Context</h3>
+            <table>
+                <thead><tr><th>Food</th><th>Calories</th><th>Weight Equivalent</th></tr></thead>
+                <tbody>
+                    <tr><td>1 can of soda (12 oz)</td><td>140 kcal</td><td>18 g / 0.6 oz body fat</td></tr>
+                    <tr><td>Big Mac</td><td>550 kcal</td><td>71 g / 2.5 oz body fat</td></tr>
+                    <tr><td>Slice of pizza</td><td>285 kcal</td><td>37 g / 1.3 oz body fat</td></tr>
+                    <tr><td>1 Starbucks Frappuccino (Grande)</td><td>380 kcal</td><td>49 g / 1.7 oz body fat</td></tr>
+                    <tr><td>1 lb of chicken breast</td><td>748 kcal</td><td>97 g / 3.4 oz body fat</td></tr>
+                    <tr><td>1 avocado</td><td>322 kcal</td><td>42 g / 1.5 oz body fat</td></tr>
+                </tbody>
+            </table>
+
+            <h3>What Is a Calorie?</h3>
+            <p>A <strong>calorie</strong> (kcal, kilocalorie) is a unit of energy. In nutrition, it represents the energy needed to raise 1 kilogram of water by 1°C. When we say "calories" in the US, we mean kilocalories (kcal). Food labels in the US list Calories (capital C) which are kilocalories. Your body burns calories through basal metabolism, physical activity, and digestion.</p>
+
+            <h3>What Is a Kilogram?</h3>
+            <p>A <strong>kilogram</strong> (kg) is the SI base unit of mass equal to 2.20462 pounds. In the context of weight loss, 1 kg of body fat stores approximately 7,700 kcal of energy. While Americans typically think in pounds, kilograms are used internationally and by medical professionals.</p>
+        `,
+        faq: [
+            { question: "How many calories do I need to burn to lose 1 kg?", answer: "Approximately 7,700 calories (kcal). Since 1 kg of body fat contains about 7,700 kcal of stored energy, you need a total deficit of 7,700 kcal to lose 1 kg. At a 500 kcal/day deficit, this takes about 15 days (2.2 weeks)." },
+            { question: "How many calories is 1 pound of fat?", answer: "Approximately 3,500 calories = 1 pound of body fat. This is the widely-used rule in the US. It's consistent with the metric equivalent: 7,700 kcal/kg ÷ 2.205 lbs/kg ≈ 3,493 kcal/lb." },
+            { question: "How fast can I safely lose weight?", answer: "The CDC recommends 1–2 pounds (0.45–0.9 kg) per week, which requires a daily deficit of 500–1,000 kcal. Faster weight loss can cause muscle loss, nutrient deficiencies, and gallstones. Very low calorie diets (under 1,200 kcal/day for women, 1,500 for men) should only be done under medical supervision." },
+            { question: "Does exercise or diet matter more for weight loss?", answer: "Diet creates the largest calorie deficit. Running for 1 hour burns ~600 kcal, but skipping a Big Mac saves 550 kcal. Most experts recommend 80% diet, 20% exercise for weight loss. However, exercise is crucial for maintaining muscle mass, cardiovascular health, and keeping weight off long-term." },
+            { question: "Why does weight loss slow down over time?", answer: "As you lose weight, your body needs fewer calories (lower basal metabolic rate). A 200-lb person burns ~2,400 kcal/day at rest, but at 170 lbs they burn ~2,100 kcal/day. This means the same 500 kcal deficit produces slower results. You need to readjust your intake or increase exercise." },
+            { question: "Is the 3,500 calorie rule accurate?", answer: "It's a useful approximation but not perfectly accurate. The rule assumes all weight loss comes from pure fat, but in reality you also lose some water and muscle. Actual weight loss may be faster initially (water loss) and slower later (metabolic adaptation). For planning purposes, it's still the best simple estimate." },
+        ],
+    },
 };
 
 export default async function ConvertHubPage({ params }: PageProps) {
