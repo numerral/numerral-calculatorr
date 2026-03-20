@@ -2072,6 +2072,72 @@ function SqMiToSqKmCalc() {
     );
 }
 
+// ─── Square Kilometers to Square Miles ───
+function SqKmToSqMiCalc() {
+    const [sqkm, setSqkm] = useState(10);
+
+    const SQMI_PER_SQKM = 0.386102;
+    const sqmi = sqkm * SQMI_PER_SQKM;
+    const acres = sqmi * 640;
+    const hectares = sqkm * 100;
+    const sqm = sqkm * 1000000;
+
+    const quickRef = [0.01, 0.1, 0.5, 1, 2.59, 5, 10, 50, 100, 500, 1000, 5000, 10000, 20000];
+
+    return (
+        <div className="calc-card">
+            <div className="calc-field">
+                <label className="calc-field__label">🗺️ SQUARE KILOMETERS (km²)</label>
+                <input type="range" className="calc-field__slider" min={0.01} max={20000} step={0.01}
+                    value={sqkm} onChange={(e) => setSqkm(Number(e.target.value))} />
+                <div style={{ display: "flex", gap: "var(--s-2)", alignItems: "center" }}>
+                    <input type="number" className="calc-field__input" value={sqkm}
+                        onChange={(e) => setSqkm(Number(e.target.value))} style={{ flex: 1 }} />
+                    <span className="t-body-sm text-muted">km²</span>
+                </div>
+            </div>
+
+            <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
+                <p className="calc-field__label">AREA IN SQUARE MILES</p>
+                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+                    {sqmi.toLocaleString("en-US", { maximumFractionDigits: 4 })} mi²
+                </p>
+                <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "var(--s-3)" }}>
+                    <div><p className="calc-field__label">ACRES</p><p style={{ fontWeight: 700 }}>{acres.toLocaleString(undefined, { maximumFractionDigits: 0 })} ac</p></div>
+                    <div><p className="calc-field__label">HECTARES</p><p style={{ fontWeight: 700 }}>{hectares.toLocaleString(undefined, { maximumFractionDigits: 1 })} ha</p></div>
+                    <div><p className="calc-field__label">SQUARE METERS</p><p style={{ fontWeight: 700 }}>{sqm.toLocaleString(undefined, { maximumFractionDigits: 0 })} m²</p></div>
+                    <div><p className="calc-field__label">FORMULA</p><p style={{ fontWeight: 700, fontSize: "var(--t-body-sm)" }}>{sqkm} × 0.3861</p></div>
+                </div>
+            </div>
+
+            {/* Quick Reference Table */}
+            <div style={{ marginTop: "var(--s-4)" }}>
+                <h3 className="t-h3" style={{ marginBottom: "var(--s-3)" }}>Square Kilometers to Square Miles — Quick Reference</h3>
+                <table className="calc-table">
+                    <thead>
+                        <tr><th>km²</th><th>mi²</th><th>Acres</th><th>Approx. Size</th></tr>
+                    </thead>
+                    <tbody>
+                        {quickRef.map((k) => {
+                            const m = k * SQMI_PER_SQKM;
+                            const sizeLabel = k <= 0.05 ? "City block" : k <= 0.3 ? "Small park" : k <= 1 ? "Large park" : k <= 3 ? "≈ 1 square mile" : k <= 10 ? "Small town" : k <= 100 ? "Small city" : k <= 1000 ? "Large city" : k <= 5000 ? "US county" : k <= 10000 ? "Small US state" : "Large region";
+                            return (
+                                <tr key={k} style={k === sqkm ? { background: "var(--n-primary-light)" } : {}}>
+                                    <td>{k.toLocaleString()} km²</td>
+                                    <td>{m.toLocaleString(undefined, { maximumFractionDigits: 4 })} mi²</td>
+                                    <td>{(m * 640).toLocaleString(undefined, { maximumFractionDigits: 0 })} ac</td>
+                                    <td>{sizeLabel}</td>
+                                </tr>
+                            );
+                        })}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    );
+}
+
 // ─── Ounces (weight) to Milliliters ───
 function OzToMlCalc() {
     const [oz, setOz] = useState(5);
@@ -3950,6 +4016,7 @@ const CALCULATORS: Record<string, React.FC> = {
     "sqm-to-sqft": SqMToSqFtCalc,
     "sqft-to-sqm": SqFtToSqMCalc,
     "sqmi-to-sqkm": SqMiToSqKmCalc,
+    "sqkm-to-sqmi": SqKmToSqMiCalc,
     "oz-to-ml": OzToMlCalc,
     "rpm-to-rads": RpmToRadCalc,
     "gram-flour-to-cup": GramFlourToCupCalc,

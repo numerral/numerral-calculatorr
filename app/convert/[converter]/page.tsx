@@ -2327,6 +2327,113 @@ const HUB_CONTENT: Record<string, {
             { question: "How do I convert square miles to hectares?", answer: "Multiply square miles by 258.999. Since 1 sq mi = 2.589988 km² and 1 km² = 100 hectares, 1 sq mi = 258.999 hectares. For example, 5 sq mi = 1,295 hectares." },
         ],
     },
+    "sqkm-to-sqmi-converter": {
+        subtitle: "Convert square kilometers to square miles (sq km to sq mi) instantly. Learn the formula, see world country area comparisons, and understand how metric and US customary land area units relate.",
+        contentHTML: `
+            <h3>How to Convert Square Kilometers to Square Miles</h3>
+            <p>To convert square kilometers to square miles, multiply the area by <strong>0.386102</strong>:</p>
+            <div class="explanation__highlight">
+                <strong>square miles = square kilometers × 0.386102</strong><br/><br/>
+                Example: 100 km²<br/>
+                = 100 × 0.386102 = <strong>38.61 sq mi</strong><br/><br/>
+                Example: France (643,801 km²)<br/>
+                = 643,801 × 0.386102 = <strong>248,573 sq mi</strong>
+            </div>
+            <p>The conversion factor <strong>0.386102</strong> is the reciprocal of 2.589988 (sq km per sq mi). Since 1 mile = 1.609344 km by international agreement, 1 mi² = 1.609344² = 2.589988 km², so 1 km² = 1 ÷ 2.589988 = <strong>0.386102 square miles</strong>.</p>
+
+            <h3>Square Kilometers to Square Miles — Conversion Table</h3>
+            <table>
+                <thead><tr><th>Square Kilometers</th><th>Square Miles</th><th>Acres</th><th>Approx. Size</th></tr></thead>
+                <tbody>
+                    <tr><td>1 km²</td><td>0.3861 mi²</td><td>247 ac</td><td>Small town center</td></tr>
+                    <tr><td>2.59 km²</td><td>1.000 mi²</td><td>640 ac</td><td>Exactly 1 square mile</td></tr>
+                    <tr><td>10 km²</td><td>3.861 mi²</td><td>2,471 ac</td><td>Small city</td></tr>
+                    <tr><td>59 km²</td><td>22.78 mi²</td><td>14,580 ac</td><td>Manhattan, NYC</td></tr>
+                    <tr><td>177 km²</td><td>68.34 mi²</td><td>43,738 ac</td><td>Washington, D.C.</td></tr>
+                    <tr><td>784 km²</td><td>302.7 mi²</td><td>193,728 ac</td><td>New York City</td></tr>
+                    <tr><td>1,302 km²</td><td>502.7 mi²</td><td>321,728 ac</td><td>Los Angeles city limits</td></tr>
+                    <tr><td>3,144 km²</td><td>1,214 mi²</td><td>776,960 ac</td><td>Rhode Island</td></tr>
+                    <tr><td>9,834 km²</td><td>3,797 mi²</td><td>2,430,080 ac</td><td>Puerto Rico</td></tr>
+                    <tr><td>28,311 km²</td><td>10,931 mi²</td><td>6,996,000 ac</td><td>Massachusetts</td></tr>
+                    <tr><td>170,312 km²</td><td>65,758 mi²</td><td>42,085,120 ac</td><td>Florida</td></tr>
+                    <tr><td>695,662 km²</td><td>268,596 mi²</td><td>171,901,440 ac</td><td>Texas</td></tr>
+                    <tr><td>1,717,854 km²</td><td>663,268 mi²</td><td>424,491,520 ac</td><td>Alaska</td></tr>
+                    <tr><td>9,147,593 km²</td><td>3,531,905 mi²</td><td>2.26 billion ac</td><td>Entire United States</td></tr>
+                </tbody>
+            </table>
+
+            <h3>What Is a Square Kilometer?</h3>
+            <p>A <strong>square kilometer</strong> (symbol: <strong>km²</strong> or <strong>sq km</strong>) is a metric unit of area equal to the area of a square with sides of 1 kilometer (1,000 meters) in length. It is derived from the square meter, the SI base unit of area.</p>
+            <ul>
+                <li>1 square kilometer = <strong>0.386102 square miles</strong></li>
+                <li>1 square kilometer = <strong>100 hectares</strong></li>
+                <li>1 square kilometer = <strong>1,000,000 square meters</strong></li>
+                <li>1 square kilometer = <strong>247.105 acres</strong></li>
+                <li>In the metric system, "kilo" = 10³, so 1 km = 1,000 m and 1 km² = 1,000,000 m²</li>
+            </ul>
+            <p>Square kilometers are the international standard for reporting large land areas. The United Nations, CIA World Factbook, World Bank, and virtually all international organizations report country and region areas in square kilometers.</p>
+
+            <h3>What Is a Square Mile?</h3>
+            <p>A <strong>square mile</strong> (symbol: <strong>mi²</strong> or <strong>sq mi</strong>) is a US customary and imperial unit of area equal to the area of a square with sides of 1 mile (5,280 feet or 1,760 yards) in length.</p>
+            <ul>
+                <li>1 square mile = <strong>2.589988 square kilometers</strong></li>
+                <li>1 square mile = <strong>640 acres</strong></li>
+                <li>1 square mile = <strong>27,878,400 square feet</strong></li>
+                <li>1 square mile = <strong>1 section</strong> in the US Public Land Survey System (PLSS)</li>
+            </ul>
+            <p>Square miles are the standard unit for large land areas in the United States. Census data, state/county areas, city limits, and federal land surveys all use square miles.</p>
+
+            <h3>World's Largest Countries — Area in km² and sq mi</h3>
+            <p>When Americans encounter international area data, it's almost always in square kilometers. Here are the world's 10 largest countries for quick reference:</p>
+            <table>
+                <thead><tr><th>Country</th><th>Area (km²)</th><th>Area (sq mi)</th></tr></thead>
+                <tbody>
+                    <tr><td>Russia</td><td>17,098,242 km²</td><td>6,601,668 mi²</td></tr>
+                    <tr><td>Canada</td><td>9,984,670 km²</td><td>3,855,100 mi²</td></tr>
+                    <tr><td>United States</td><td>9,833,520 km²</td><td>3,796,742 mi²</td></tr>
+                    <tr><td>China</td><td>9,596,961 km²</td><td>3,705,407 mi²</td></tr>
+                    <tr><td>Brazil</td><td>8,515,767 km²</td><td>3,287,957 mi²</td></tr>
+                    <tr><td>Australia</td><td>7,692,024 km²</td><td>2,969,907 mi²</td></tr>
+                    <tr><td>India</td><td>3,287,263 km²</td><td>1,269,219 mi²</td></tr>
+                    <tr><td>Argentina</td><td>2,780,400 km²</td><td>1,073,518 mi²</td></tr>
+                    <tr><td>Kazakhstan</td><td>2,724,900 km²</td><td>1,052,090 mi²</td></tr>
+                    <tr><td>Algeria</td><td>2,381,741 km²</td><td>919,595 mi²</td></tr>
+                </tbody>
+            </table>
+
+            <h3>When Americans Need to Convert km² to Square Miles</h3>
+            <ul>
+                <li><strong>Reading international news</strong> — "The Amazon lost 10,000 km² of forest" means 3,861 sq mi — roughly the size of Connecticut. Converting helps Americans grasp the scale.</li>
+                <li><strong>Wikipedia and encyclopedias</strong> — Country and city articles use km² first. An American reading "Tokyo: 2,194 km²" needs to know that's 847 sq mi to compare with their home city.</li>
+                <li><strong>Scientific and environmental reports</strong> — Climate studies, deforestation data, and UN reports are all in km². A researcher at a US university needs sq mi for local context.</li>
+                <li><strong>International travel planning</strong> — Guidebooks describe countries and national parks in km². Knowing Iceland (103,000 km²) = 39,769 sq mi ≈ Virginia helps plan itineraries.</li>
+                <li><strong>Business and real estate</strong> — International development projects, mining concessions, and agricultural holdings outside the US are measured in km² or hectares.</li>
+                <li><strong>Geography education</strong> — US students learn area in square miles but encounter km² in international comparisons, atlases, and standardized tests.</li>
+            </ul>
+
+            <h3>Related Area Units</h3>
+            <table>
+                <thead><tr><th>Unit</th><th>In Square Kilometers</th><th>In Square Miles</th></tr></thead>
+                <tbody>
+                    <tr><td>1 square meter</td><td>0.000001 km²</td><td>3.861 × 10⁻⁷ mi²</td></tr>
+                    <tr><td>1 hectare</td><td>0.01 km²</td><td>0.003861 mi²</td></tr>
+                    <tr><td>1 acre</td><td>0.00405 km²</td><td>0.0015625 mi²</td></tr>
+                    <tr><td><strong>1 square kilometer</strong></td><td><strong>1 km²</strong></td><td><strong>0.386102 mi²</strong></td></tr>
+                    <tr><td><strong>1 square mile</strong></td><td><strong>2.589988 km²</strong></td><td><strong>1 mi²</strong></td></tr>
+                    <tr><td>1 township (PLSS)</td><td>93.24 km²</td><td>36 mi²</td></tr>
+                </tbody>
+            </table>
+        `,
+        faq: [
+            { question: "How many square miles is 1 square kilometer?", answer: "1 square kilometer = 0.386102 square miles. This is the reciprocal of 2.589988 (the number of km² in 1 sq mi). The value is derived from the international mile definition: 1 mi = 1.609344 km." },
+            { question: "What is the formula to convert square kilometers to square miles?", answer: "Square miles = square kilometers × 0.386102. For example, 500 km² × 0.386102 = 193.05 sq mi. To convert the other way (sq mi to km²), multiply by 2.589988." },
+            { question: "How many square kilometers is the United States?", answer: "The total area of the United States (including water) is approximately 9,833,520 km² (3,796,742 sq mi). The land area alone is about 9,147,593 km² (3,531,905 sq mi), making it the 3rd or 4th largest country by area." },
+            { question: "How big is 1 square kilometer in acres?", answer: "1 square kilometer = 247.105 acres. For comparison, 1 square mile = 640 acres. Since 1 km² is smaller than 1 mi², it contains fewer acres." },
+            { question: "Is 1 square mile bigger than 1 square kilometer?", answer: "Yes — 1 square mile is about 2.59 times larger than 1 square kilometer. One square mile = 2.589988 km². To put it another way, you'd need about 2.59 square kilometers to equal the area of 1 square mile." },
+            { question: "How do I convert hectares to square miles?", answer: "Divide hectares by 258.999. Since 1 sq mi = 2.589988 km² = 258.999 hectares, to get sq mi from hectares: sq mi = hectares ÷ 258.999. For example, 1,000 hectares = 3.861 sq mi." },
+            { question: "What is a hectare compared to a square kilometer?", answer: "1 hectare = 0.01 km² (one hundredth of a square kilometer). Equivalently, 100 hectares = 1 km². A hectare is 10,000 square meters — roughly the area of 2.47 acres or about 2 football fields." },
+        ],
+    },
     "oz-to-ml-converter": {
         subtitle: "Convert weight ounces to milliliters (oz to mL) for any ingredient. Select a substance or enter a custom density. See results in mL, liters, fluid ounces, and cups.",
         contentHTML: `
