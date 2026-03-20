@@ -3838,6 +3838,86 @@ const HUB_CONTENT: Record<string, {
             { question: "How do I compare US and Indian car fuel economy?", answer: "India uses 'kmpl' (kilometers per liter), which is the same as km/L. To convert your US car's MPG to Indian kmpl: multiply by 0.42514. Indian cars typically achieve 15–25 kmpl because they're smaller and lighter. A Maruti Suzuki Alto gets 22 kmpl (52 mpg) — far higher than most US cars." },
         ],
     },
+    "megaohm-to-ohm-converter": {
+        subtitle: "Convert megaohms to ohms (MΩ to Ω). See results in ohms, kilohms, and gigaohms. Essential for insulation testing, electrical safety, and high-impedance circuits in the US.",
+        contentHTML: `
+            <h3>How to Convert Megaohms to Ohms</h3>
+            <p>Multiply by <strong>1,000,000</strong> (one million):</p>
+            <div class="explanation__highlight">
+                <strong>Ω = MΩ × 1,000,000</strong><br/><br/>
+                Example: 1 MΩ (insulation test threshold)<br/>
+                = 1 × 1,000,000 = <strong>1,000,000 Ω</strong><br/><br/>
+                Example: 0.1 MΩ (sensor circuit)<br/>
+                = 0.1 × 1,000,000 = <strong>100,000 Ω</strong><br/><br/>
+                Example: 10 MΩ (transformer insulation)<br/>
+                = 10 × 1,000,000 = <strong>10,000,000 Ω</strong>
+            </div>
+            <p><strong>Remember:</strong> "Mega" means million. 1 MΩ = 1,000 kΩ = 1,000,000 Ω. Megaohms are used when resistance values are extremely high — typically in insulation testing and high-impedance circuits.</p>
+
+            <h3>Resistance Unit Hierarchy</h3>
+            <table>
+                <thead><tr><th>Unit</th><th>Symbol</th><th>= How Many Ω</th><th>Typical Use</th></tr></thead>
+                <tbody>
+                    <tr><td>Milliohm</td><td>mΩ</td><td>0.001</td><td>Wire resistance, contact resistance</td></tr>
+                    <tr><td><strong>Ohm</strong></td><td><strong>Ω</strong></td><td>1</td><td><strong>Standard resistors, speakers</strong></td></tr>
+                    <tr><td>Kilohm</td><td>kΩ</td><td>1,000</td><td>Pull-up resistors, voltage dividers</td></tr>
+                    <tr><td><strong>Megaohm</strong></td><td><strong>MΩ</strong></td><td>1,000,000</td><td><strong>Insulation testing, high-Z circuits</strong></td></tr>
+                    <tr><td>Gigaohm</td><td>GΩ</td><td>1,000,000,000</td><td>PCB leakage, ultra-high-Z</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Insulation Resistance Standards (US)</h3>
+            <table>
+                <thead><tr><th>Equipment</th><th>Min Insulation (MΩ)</th><th>In Ohms</th><th>Standard</th></tr></thead>
+                <tbody>
+                    <tr><td>Electric motors (< 1kV)</td><td>1 MΩ minimum</td><td>1,000,000 Ω</td><td>IEEE 43</td></tr>
+                    <tr><td>Electric motors (> 1kV)</td><td>1 MΩ per kV + 1</td><td>Varies</td><td>IEEE 43</td></tr>
+                    <tr><td>Power cables (600V)</td><td>1–5 MΩ</td><td>1–5 million Ω</td><td>NETA MTS</td></tr>
+                    <tr><td>Transformers</td><td>2–100+ MΩ</td><td>2–100+ million Ω</td><td>IEEE C57.12</td></tr>
+                    <tr><td>Switchgear</td><td>100+ MΩ</td><td>100+ million Ω</td><td>NFPA 70B</td></tr>
+                    <tr><td>Residential wiring</td><td>1+ MΩ</td><td>1+ million Ω</td><td>NEC</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Megger Testing Guide</h3>
+            <table>
+                <thead><tr><th>Reading</th><th>In MΩ</th><th>In Ω</th><th>Verdict</th></tr></thead>
+                <tbody>
+                    <tr><td>0–0.5 MΩ</td><td>< 0.5</td><td>< 500,000</td><td>🔴 Bad — replace immediately</td></tr>
+                    <tr><td>0.5–1 MΩ</td><td>0.5–1</td><td>500k–1M</td><td>🟡 Questionable — investigate</td></tr>
+                    <tr><td>1–5 MΩ</td><td>1–5</td><td>1M–5M</td><td>🟢 Acceptable — monitor</td></tr>
+                    <tr><td>5–100 MΩ</td><td>5–100</td><td>5M–100M</td><td>🟢 Good</td></tr>
+                    <tr><td>100+ MΩ</td><td>100+</td><td>100M+</td><td>🟢 Excellent</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Common US Electrical Applications</h3>
+            <table>
+                <thead><tr><th>Application</th><th>Typical Range</th><th>In Ohms</th><th>Why MΩ</th></tr></thead>
+                <tbody>
+                    <tr><td>Multimeter input impedance</td><td>10 MΩ</td><td>10,000,000 Ω</td><td>Avoids loading the circuit</td></tr>
+                    <tr><td>Oscilloscope probe</td><td>1–10 MΩ</td><td>1M–10M Ω</td><td>High-impedance measurement</td></tr>
+                    <tr><td>ESD protection</td><td>1–100 MΩ</td><td>1M–100M Ω</td><td>Static dissipation</td></tr>
+                    <tr><td>Humidity sensor</td><td>0.1–100 MΩ</td><td>100k–100M Ω</td><td>Varies with moisture</td></tr>
+                    <tr><td>Photoresistor (dark)</td><td>1–10 MΩ</td><td>1M–10M Ω</td><td>High in dark, low in light</td></tr>
+                </tbody>
+            </table>
+
+            <h3>What Is a Megaohm (MΩ)?</h3>
+            <p><strong>Megaohm</strong> (MΩ) = 1,000,000 ohms = 1,000 kilohms. It's the standard unit for measuring insulation resistance, used by electricians and maintenance technicians across the US. Megger testers (insulation resistance testers) display readings in MΩ. Per the NEC and IEEE standards, insulation must meet minimum MΩ thresholds to be considered safe.</p>
+
+            <h3>What Is an Ohm (Ω)?</h3>
+            <p><strong>Ohm</strong> (Ω) is the SI unit of electrical resistance, named after Georg Simon Ohm. It measures how much a material resists the flow of electric current. Per Ohm's Law: V = I × R, where V is voltage (volts), I is current (amps), and R is resistance (ohms). A 1 Ω resistor allows 1 amp to flow when 1 volt is applied.</p>
+        `,
+        faq: [
+            { question: "How do you convert megaohms to ohms?", answer: "Multiply by 1,000,000: Ω = MΩ × 1,000,000. For example, 5 MΩ = 5 × 1,000,000 = 5,000,000 ohms. 'Mega' means million, so 1 megaohm is literally one million ohms." },
+            { question: "What is a Megger test?", answer: "A Megger test (insulation resistance test) uses a specialized instrument to measure the resistance of electrical insulation in megaohms (MΩ). It applies a high DC voltage (typically 500V or 1000V) and measures how much current leaks through the insulation. Results below 1 MΩ typically indicate failed insulation that needs replacement." },
+            { question: "What is the minimum insulation resistance for motors?", answer: "Per IEEE 43, the minimum insulation resistance for electric motors rated below 1 kV is 1 MΩ (1,000,000 Ω). For motors rated above 1 kV, the minimum is (kV rating + 1) MΩ. For example, a 4.16 kV motor needs at least 5.16 MΩ. New motors typically read 100+ MΩ." },
+            { question: "Why do multimeters have 10 MΩ input impedance?", answer: "A 10 MΩ (10,000,000 Ω) input impedance is high enough that the multimeter draws negligible current from the circuit being measured, avoiding measurement errors. This is an industry standard for digital multimeters. Oscilloscope probes similarly use 1–10 MΩ input impedance." },
+            { question: "What causes insulation resistance to drop?", answer: "Common causes include: moisture absorption, chemical contamination, physical damage, aging/heat degradation, and electrical stress. In the US, the NEC requires periodic insulation testing for critical equipment. A reading that drops below 1 MΩ typically warrants investigation or replacement." },
+            { question: "What is the difference between kΩ and MΩ?", answer: "1 MΩ = 1,000 kΩ. Kilohms (kΩ) are commonly used for resistors in electronic circuits (1 kΩ to 1,000 kΩ), while megaohms (MΩ) are used for insulation resistance and high-impedance measurements (1 MΩ and above). The prefix 'kilo' means thousand, 'mega' means million." },
+        ],
+    },
 };
 
 export default async function ConvertHubPage({ params }: PageProps) {
