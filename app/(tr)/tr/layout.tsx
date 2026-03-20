@@ -4,7 +4,6 @@ import Script from "next/script";
 import TrHeader from "@/components/tr/TrHeader";
 import TrFooter from "@/components/tr/TrFooter";
 import { SITE_URL } from "@/lib/constants";
-import "../../globals.css";
 
 export const metadata: Metadata = {
     metadataBase: new URL(SITE_URL),
@@ -27,26 +26,22 @@ export default function TrLayout({
     children: React.ReactNode;
 }) {
     return (
-        <html lang="tr" dir="ltr">
-            <head>
-                <Script
-                    src="https://www.googletagmanager.com/gtag/js?id=G-XVZQHV08SG"
-                    strategy="afterInteractive"
-                />
-                <Script id="ga4-init-tr" strategy="afterInteractive">
-                    {`
-                        window.dataLayer = window.dataLayer || [];
-                        function gtag(){dataLayer.push(arguments);}
-                        gtag('js', new Date());
-                        gtag('config', 'G-XVZQHV08SG');
-                    `}
-                </Script>
-            </head>
-            <body className="ar-body">
-                <TrHeader />
-                {children}
-                <TrFooter />
-            </body>
-        </html>
+        <div lang="tr" dir="ltr">
+            <Script
+                src="https://www.googletagmanager.com/gtag/js?id=G-XVZQHV08SG"
+                strategy="afterInteractive"
+            />
+            <Script id="ga4-init-tr" strategy="afterInteractive">
+                {`
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){dataLayer.push(arguments);}
+                    gtag('js', new Date());
+                    gtag('config', 'G-XVZQHV08SG');
+                `}
+            </Script>
+            <TrHeader />
+            {children}
+            <TrFooter />
+        </div>
     );
 }

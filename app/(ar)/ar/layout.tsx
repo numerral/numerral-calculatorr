@@ -7,7 +7,6 @@ import { Noto_Kufi_Arabic } from "next/font/google";
 import ArHeader from "@/components/ar/ArHeader";
 import ArFooter from "@/components/ar/ArFooter";
 import { SITE_URL } from "@/lib/constants";
-import "../../globals.css";
 
 const kufi = Noto_Kufi_Arabic({
     subsets: ["arabic"],
@@ -37,27 +36,23 @@ export default function ArLayout({
     children: React.ReactNode;
 }) {
     return (
-        <html lang="ar" dir="rtl">
-            <head>
-                {/* Google Analytics GA4 */}
-                <Script
-                    src="https://www.googletagmanager.com/gtag/js?id=G-XVZQHV08SG"
-                    strategy="afterInteractive"
-                />
-                <Script id="ga4-init-ar" strategy="afterInteractive">
-                    {`
-                        window.dataLayer = window.dataLayer || [];
-                        function gtag(){dataLayer.push(arguments);}
-                        gtag('js', new Date());
-                        gtag('config', 'G-XVZQHV08SG');
-                    `}
-                </Script>
-            </head>
-            <body className={`${kufi.className} ${kufi.variable} ar-body`}>
-                <ArHeader />
-                {children}
-                <ArFooter />
-            </body>
-        </html>
+        <div lang="ar" dir="rtl" className={`${kufi.className} ${kufi.variable} ar-body`}>
+            {/* Google Analytics GA4 */}
+            <Script
+                src="https://www.googletagmanager.com/gtag/js?id=G-XVZQHV08SG"
+                strategy="afterInteractive"
+            />
+            <Script id="ga4-init-ar" strategy="afterInteractive">
+                {`
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){dataLayer.push(arguments);}
+                    gtag('js', new Date());
+                    gtag('config', 'G-XVZQHV08SG');
+                `}
+            </Script>
+            <ArHeader />
+            {children}
+            <ArFooter />
+        </div>
     );
 }

@@ -4,7 +4,6 @@ import Script from "next/script";
 import DeHeader from "@/components/de/DeHeader";
 import DeFooter from "@/components/de/DeFooter";
 import { SITE_URL } from "@/lib/constants";
-import "../../globals.css";
 
 export const metadata: Metadata = {
     metadataBase: new URL(SITE_URL),
@@ -27,26 +26,22 @@ export default function DeLayout({
     children: React.ReactNode;
 }) {
     return (
-        <html lang="de-DE" dir="ltr">
-            <head>
-                <Script
-                    src="https://www.googletagmanager.com/gtag/js?id=G-XVZQHV08SG"
-                    strategy="afterInteractive"
-                />
-                <Script id="ga4-init-de" strategy="afterInteractive">
-                    {`
-                        window.dataLayer = window.dataLayer || [];
-                        function gtag(){dataLayer.push(arguments);}
-                        gtag('js', new Date());
-                        gtag('config', 'G-XVZQHV08SG');
-                    `}
-                </Script>
-            </head>
-            <body className="ar-body">
-                <DeHeader />
-                {children}
-                <DeFooter />
-            </body>
-        </html>
+        <div lang="de" dir="ltr">
+            <Script
+                src="https://www.googletagmanager.com/gtag/js?id=G-XVZQHV08SG"
+                strategy="afterInteractive"
+            />
+            <Script id="ga4-init-de" strategy="afterInteractive">
+                {`
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){dataLayer.push(arguments);}
+                    gtag('js', new Date());
+                    gtag('config', 'G-XVZQHV08SG');
+                `}
+            </Script>
+            <DeHeader />
+            {children}
+            <DeFooter />
+        </div>
     );
 }

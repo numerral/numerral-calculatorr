@@ -4,8 +4,7 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import { Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/layout/Header";
-import MegaFooter from "@/components/layout/MegaFooter";
+import LocaleAwareShell from "@/components/layout/LocaleAwareShell";
 import { SITE_NAME, SITE_URL } from "@/lib/constants";
 
 const jakarta = Plus_Jakarta_Sans({
@@ -71,9 +70,9 @@ export default function RootLayout({
         </Script>
       </head>
       <body className={`${jakarta.className} ${jakarta.variable} ${jetbrains.variable}`}>
-        <Header />
-        {children}
-        <MegaFooter />
+        <LocaleAwareShell>
+          {children}
+        </LocaleAwareShell>
       </body>
     </html>
   );
