@@ -3379,6 +3379,71 @@ function MegaohmToOhmCalc() {
     );
 }
 
+// ─── Ohm to Kiloohm ───
+function OhmToKiloohmCalc() {
+    const [ohm, setOhm] = useState(4700);
+
+    const kohm = ohm / 1000;
+    const mohm = ohm / 1000000;
+    const milliohm = ohm * 1000;
+
+    const quickRef = [1, 10, 47, 100, 220, 470, 1000, 4700, 10000, 100000];
+
+    return (
+        <div className="calc-card">
+            <div className="calc-field">
+                <label className="calc-field__label">🔌 OHMS (Ω)</label>
+                <input type="range" className="calc-field__slider" min={1} max={100000} step={1}
+                    value={ohm} onChange={(e) => setOhm(Number(e.target.value))} />
+                <div style={{ display: "flex", gap: "var(--s-2)", alignItems: "center" }}>
+                    <input type="number" className="calc-field__input" value={ohm}
+                        onChange={(e) => setOhm(Number(e.target.value))} style={{ flex: 1 }} />
+                    <span className="t-body-sm text-muted">Ω</span>
+                </div>
+            </div>
+
+            <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
+                <p className="calc-field__label">RESISTANCE IN KILOHMS</p>
+                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+                    {kohm.toFixed(kohm < 1 ? 3 : kohm < 10 ? 2 : 1)} kΩ
+                </p>
+                <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "var(--s-3)" }}>
+                    <div><p className="calc-field__label">MEGAOHMS</p><p style={{ fontWeight: 700 }}>{mohm.toFixed(6)} MΩ</p></div>
+                    <div><p className="calc-field__label">MILLIOHMS</p><p style={{ fontWeight: 700 }}>{milliohm.toLocaleString()} mΩ</p></div>
+                    <div><p className="calc-field__label">CONDUCTANCE</p><p style={{ fontWeight: 700 }}>{(1/ohm * 1000).toFixed(3)} mS</p></div>
+                    <div><p className="calc-field__label">FORMULA</p><p style={{ fontWeight: 700, fontSize: "var(--t-body-sm)" }}>{ohm.toLocaleString()}÷1000</p></div>
+                </div>
+            </div>
+
+            {/* Quick Reference Table */}
+            <div style={{ marginTop: "var(--s-4)" }}>
+                <h3 className="t-h3" style={{ marginBottom: "var(--s-3)" }}>Ω to kΩ — Quick Reference</h3>
+                <table className="calc-table">
+                    <thead>
+                        <tr><th>Ω</th><th>kΩ</th><th>MΩ</th><th>Common Use</th></tr>
+                    </thead>
+                    <tbody>
+                        {quickRef.map((o) => {
+                            const k = o / 1000;
+                            const m = o / 1000000;
+                            const ctx = o <= 1 ? "Current sense resistor" : o <= 10 ? "LED current limiter (low)" : o <= 47 ? "LED current limiter (5V)" : o <= 100 ? "Signal termination" : o <= 220 ? "LED series (3.3V)" : o <= 470 ? "Logic level shifter" : o <= 1000 ? "General purpose (1kΩ)" : o <= 4700 ? "Pull-up / pull-down (Arduino)" : o <= 10000 ? "Pull-up (I²C bus)" : "Voltage divider (high-Z)";
+                            return (
+                                <tr key={o} style={o === ohm ? { background: "var(--n-primary-light)" } : {}}>
+                                    <td>{o.toLocaleString()} Ω</td>
+                                    <td>{k < 1 ? k.toFixed(3) : k.toFixed(1)} kΩ</td>
+                                    <td>{m.toFixed(6)} MΩ</td>
+                                    <td>{ctx}</td>
+                                </tr>
+                            );
+                        })}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    );
+}
+
 // ─── Dispatcher ───
 interface Props { calcType: string; }
 
@@ -3428,6 +3493,7 @@ const CALCULATORS: Record<string, React.FC> = {
     "kml-to-mpg": KmPerLToMpgCalc,
     "mpg-to-kml": MpgToKmPerLCalc,
     "megaohm-to-ohm": MegaohmToOhmCalc,
+    "ohm-to-kiloohm": OhmToKiloohmCalc,
 };
 
 export default function ConversionCalculatorCore({ calcType }: Props) {

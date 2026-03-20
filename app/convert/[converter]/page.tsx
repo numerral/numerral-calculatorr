@@ -3918,6 +3918,88 @@ const HUB_CONTENT: Record<string, {
             { question: "What is the difference between kΩ and MΩ?", answer: "1 MΩ = 1,000 kΩ. Kilohms (kΩ) are commonly used for resistors in electronic circuits (1 kΩ to 1,000 kΩ), while megaohms (MΩ) are used for insulation resistance and high-impedance measurements (1 MΩ and above). The prefix 'kilo' means thousand, 'mega' means million." },
         ],
     },
+    "ohm-to-kiloohm-converter": {
+        subtitle: "Convert ohms to kilohms (Ω to kΩ). See results in kilohms, megaohms, and milliohms. Essential for electronics, Arduino projects, and resistor selection.",
+        contentHTML: `
+            <h3>How to Convert Ohms to Kilohms</h3>
+            <p>Divide by <strong>1,000</strong>:</p>
+            <div class="explanation__highlight">
+                <strong>kΩ = Ω ÷ 1,000</strong><br/><br/>
+                Example: 4,700 Ω (common pull-up resistor)<br/>
+                = 4,700 ÷ 1,000 = <strong>4.7 kΩ</strong><br/><br/>
+                Example: 10,000 Ω (I²C pull-up)<br/>
+                = 10,000 ÷ 1,000 = <strong>10 kΩ</strong><br/><br/>
+                Example: 220 Ω (LED current limiter)<br/>
+                = 220 ÷ 1,000 = <strong>0.22 kΩ</strong>
+            </div>
+            <p><strong>Remember:</strong> "Kilo" means thousand. 1 kΩ = 1,000 Ω. Schematics and datasheets often use kΩ to keep numbers small and readable. A "4.7k" resistor means 4,700 Ω.</p>
+
+            <h3>E12 Standard Resistor Values</h3>
+            <table>
+                <thead><tr><th>Ω Value</th><th>kΩ</th><th>Color Code</th><th>Common Use</th></tr></thead>
+                <tbody>
+                    <tr><td>100 Ω</td><td>0.1 kΩ</td><td>Brown-Black-Brown</td><td>Signal termination</td></tr>
+                    <tr><td>220 Ω</td><td>0.22 kΩ</td><td>Red-Red-Brown</td><td>LED current limiter (5V)</td></tr>
+                    <tr><td>330 Ω</td><td>0.33 kΩ</td><td>Orange-Orange-Brown</td><td>LED series (3.3V)</td></tr>
+                    <tr><td>470 Ω</td><td>0.47 kΩ</td><td>Yellow-Violet-Brown</td><td>Logic level shifter</td></tr>
+                    <tr><td><strong>1,000 Ω</strong></td><td><strong>1 kΩ</strong></td><td>Brown-Black-Red</td><td><strong>General purpose</strong></td></tr>
+                    <tr><td>2,200 Ω</td><td>2.2 kΩ</td><td>Red-Red-Red</td><td>Audio circuits</td></tr>
+                    <tr><td><strong>4,700 Ω</strong></td><td><strong>4.7 kΩ</strong></td><td>Yellow-Violet-Red</td><td><strong>Pull-up (Arduino default)</strong></td></tr>
+                    <tr><td>10,000 Ω</td><td>10 kΩ</td><td>Brown-Black-Orange</td><td>I²C pull-up, voltage divider</td></tr>
+                    <tr><td>47,000 Ω</td><td>47 kΩ</td><td>Yellow-Violet-Orange</td><td>Audio tone control</td></tr>
+                    <tr><td>100,000 Ω</td><td>100 kΩ</td><td>Brown-Black-Yellow</td><td>High-impedance input</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Common Arduino/Maker Resistor Values</h3>
+            <table>
+                <thead><tr><th>Project</th><th>Resistor (Ω)</th><th>In kΩ</th><th>Why This Value</th></tr></thead>
+                <tbody>
+                    <tr><td>LED on 5V Arduino</td><td>220 Ω</td><td>0.22 kΩ</td><td>Limits to ~15mA for standard LED</td></tr>
+                    <tr><td>LED on 3.3V ESP32</td><td>100 Ω</td><td>0.1 kΩ</td><td>Limits to ~13mA</td></tr>
+                    <tr><td>Push button pull-down</td><td>10,000 Ω</td><td>10 kΩ</td><td>Prevents floating input</td></tr>
+                    <tr><td>I²C pull-up (3.3V)</td><td>4,700 Ω</td><td>4.7 kΩ</td><td>Standard I²C specification</td></tr>
+                    <tr><td>Voltage divider (sensors)</td><td>10,000 Ω × 2</td><td>10 kΩ × 2</td><td>Divides voltage by 2</td></tr>
+                    <tr><td>Piezo buzzer</td><td>100 Ω</td><td>0.1 kΩ</td><td>Current limiter</td></tr>
+                    <tr><td>Potentiometer (volume)</td><td>10,000 Ω</td><td>10 kΩ</td><td>Audio taper standard</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Resistance Unit Scale</h3>
+            <table>
+                <thead><tr><th>Unit</th><th>Symbol</th><th>= How Many Ω</th><th>Typical Range</th></tr></thead>
+                <tbody>
+                    <tr><td>Milliohm</td><td>mΩ</td><td>0.001 Ω</td><td>Wire & contact resistance</td></tr>
+                    <tr><td><strong>Ohm</strong></td><td><strong>Ω</strong></td><td>1 Ω</td><td><strong>Speakers, power resistors</strong></td></tr>
+                    <tr><td><strong>Kilohm</strong></td><td><strong>kΩ</strong></td><td>1,000 Ω</td><td><strong>Most circuit resistors</strong></td></tr>
+                    <tr><td>Megaohm</td><td>MΩ</td><td>1,000,000 Ω</td><td>Insulation, high-Z</td></tr>
+                    <tr><td>Gigaohm</td><td>GΩ</td><td>1,000,000,000 Ω</td><td>PCB leakage</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Ohm's Law Quick Reference</h3>
+            <p>Ohm's Law relates voltage (V), current (I), and resistance (R):</p>
+            <div class="explanation__highlight">
+                <strong>V = I × R</strong> &nbsp;&nbsp;|&nbsp;&nbsp; <strong>I = V ÷ R</strong> &nbsp;&nbsp;|&nbsp;&nbsp; <strong>R = V ÷ I</strong><br/><br/>
+                Example: What current flows through a 4.7 kΩ (4,700 Ω) resistor at 5V?<br/>
+                I = 5V ÷ 4,700 Ω = <strong>0.00106 A = 1.06 mA</strong>
+            </div>
+
+            <h3>What Is a Kiloohm (kΩ)?</h3>
+            <p><strong>Kiloohm</strong> (kΩ) = 1,000 ohms. It's the most common unit for resistors in electronic circuits. When you see "4.7k" or "10k" on a schematic, it means 4.7 kΩ (4,700 Ω) or 10 kΩ (10,000 Ω). The kilohm range (1 kΩ – 100 kΩ) covers most resistors used in Arduino, Raspberry Pi, and general electronics projects.</p>
+
+            <h3>What Is an Ohm (Ω)?</h3>
+            <p><strong>Ohm</strong> (Ω) is the SI unit of electrical resistance. Named after Georg Simon Ohm, it measures opposition to current flow. Low-value resistors (under 1 kΩ) are typically expressed in ohms: 100 Ω, 220 Ω, 470 Ω. High-value resistors use kΩ or MΩ for readability.</p>
+        `,
+        faq: [
+            { question: "How do you convert ohms to kilohms?", answer: "Divide by 1,000: kΩ = Ω ÷ 1,000. For example, 4,700 Ω ÷ 1,000 = 4.7 kΩ. 'Kilo' means thousand, so 1 kilohm = 1,000 ohms. On schematics, '4.7k' means 4,700 Ω." },
+            { question: "What does '4.7k' mean on a schematic?", answer: "4.7k means 4.7 kilohms = 4,700 ohms. The 'k' suffix is shorthand for kilohms (×1,000). Similarly, '10k' = 10,000 Ω, '100k' = 100,000 Ω, and '1M' = 1,000,000 Ω (1 megaohm). This notation is standard in US electronics." },
+            { question: "What resistor value do I need for an LED?", answer: "For a standard LED on a 5V Arduino: R = (5V - 2V) / 0.015A = 200 Ω → use 220 Ω (0.22 kΩ). For 3.3V: R = (3.3V - 2V) / 0.015A = 87 Ω → use 100 Ω (0.1 kΩ). The forward voltage drop varies by LED color (red ~2V, blue ~3.2V)." },
+            { question: "Why is 10 kΩ used for pull-up/pull-down resistors?", answer: "10 kΩ (10,000 Ω) is a standard choice because it's high enough to limit wasted current (only 0.5 mA at 5V) but low enough to reliably pull the pin to a defined logic level. Too low wastes power; too high makes the pin susceptible to noise. 4.7 kΩ is also common for I²C buses." },
+            { question: "How do I read resistor color codes?", answer: "For a 4-band resistor: Band 1 = first digit, Band 2 = second digit, Band 3 = multiplier, Band 4 = tolerance. Example: Yellow (4) - Violet (7) - Red (×100) = 4,700 Ω = 4.7 kΩ. Gold tolerance band = ±5%. Use our converter to verify: enter 4700 Ω → see 4.7 kΩ." },
+            { question: "What's the difference between Ω, kΩ, and MΩ?", answer: "They're all units of resistance, differing by factors of 1,000: 1 kΩ = 1,000 Ω, 1 MΩ = 1,000 kΩ = 1,000,000 Ω. Ohms for low resistance (speakers, LED limiters), kilohms for most electronics (pull-ups, dividers), megaohms for insulation and high-impedance circuits." },
+        ],
+    },
 };
 
 export default async function ConvertHubPage({ params }: PageProps) {
