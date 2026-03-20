@@ -3515,6 +3515,77 @@ function DegToRadCalc() {
     );
 }
 
+// ─── Radian to Degree ───
+function RadToDegCalc() {
+    const [rad, setRad] = useState(1.5708);
+
+    const deg = rad * (180 / Math.PI);
+    const turns = rad / (2 * Math.PI);
+    const sinVal = Math.sin(rad);
+    const cosVal = Math.cos(rad);
+
+    const quickRef = [0, 0.5236, 0.7854, 1.0472, 1.5708, 2.0944, 2.3562, 3.1416, 4.7124, 6.2832];
+
+    const exactLabel = (r: number) => {
+        const map: Record<string, string> = { "0": "0", "0.5236": "π/6 = 30°", "0.7854": "π/4 = 45°", "1.0472": "π/3 = 60°", "1.5708": "π/2 = 90°", "2.0944": "2π/3 = 120°", "2.3562": "3π/4 = 135°", "3.1416": "π = 180°", "4.7124": "3π/2 = 270°", "6.2832": "2π = 360°" };
+        return map[r.toFixed(4)] || `${(r * 180 / Math.PI).toFixed(2)}°`;
+    };
+
+    return (
+        <div className="calc-card">
+            <div className="calc-field">
+                <label className="calc-field__label">📐 RADIANS (rad)</label>
+                <input type="range" className="calc-field__slider" min={0} max={6.2832} step={0.0001}
+                    value={rad} onChange={(e) => setRad(Number(e.target.value))} />
+                <div style={{ display: "flex", gap: "var(--s-2)", alignItems: "center" }}>
+                    <input type="number" className="calc-field__input" value={rad}
+                        onChange={(e) => setRad(Number(e.target.value))} style={{ flex: 1 }} step={0.0001} />
+                    <span className="t-body-sm text-muted">rad</span>
+                </div>
+            </div>
+
+            <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
+                <p className="calc-field__label">ANGLE IN DEGREES</p>
+                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+                    {deg.toFixed(4)}°
+                </p>
+                <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "var(--s-3)" }}>
+                    <div><p className="calc-field__label">EXACT</p><p style={{ fontWeight: 700, fontSize: "var(--t-body-sm)" }}>{exactLabel(rad)}</p></div>
+                    <div><p className="calc-field__label">TURNS</p><p style={{ fontWeight: 700 }}>{turns.toFixed(4)}</p></div>
+                    <div><p className="calc-field__label">SIN</p><p style={{ fontWeight: 700 }}>{sinVal.toFixed(6)}</p></div>
+                    <div><p className="calc-field__label">COS</p><p style={{ fontWeight: 700 }}>{cosVal.toFixed(6)}</p></div>
+                </div>
+            </div>
+
+            {/* Quick Reference Table */}
+            <div style={{ marginTop: "var(--s-4)" }}>
+                <h3 className="t-h3" style={{ marginBottom: "var(--s-3)" }}>Radians to Degrees — Key Values</h3>
+                <table className="calc-table">
+                    <thead>
+                        <tr><th>Radians</th><th>Exact (π)</th><th>Degrees</th><th>sin</th><th>cos</th></tr>
+                    </thead>
+                    <tbody>
+                        {quickRef.map((r) => {
+                            const d = r * 180 / Math.PI;
+                            const piLabels: Record<string, string> = { "0.0000": "0", "0.5236": "π/6", "0.7854": "π/4", "1.0472": "π/3", "1.5708": "π/2", "2.0944": "2π/3", "2.3562": "3π/4", "3.1416": "π", "4.7124": "3π/2", "6.2832": "2π" };
+                            return (
+                                <tr key={r} style={Math.abs(r - rad) < 0.001 ? { background: "var(--n-primary-light)" } : {}}>
+                                    <td>{r.toFixed(4)}</td>
+                                    <td>{piLabels[r.toFixed(4)] || r.toFixed(4)}</td>
+                                    <td>{d.toFixed(2)}°</td>
+                                    <td>{Math.sin(r).toFixed(4)}</td>
+                                    <td>{Math.cos(r).toFixed(4)}</td>
+                                </tr>
+                            );
+                        })}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    );
+}
+
 // ─── Dispatcher ───
 interface Props { calcType: string; }
 
@@ -3566,6 +3637,7 @@ const CALCULATORS: Record<string, React.FC> = {
     "megaohm-to-ohm": MegaohmToOhmCalc,
     "ohm-to-kiloohm": OhmToKiloohmCalc,
     "deg-to-rad": DegToRadCalc,
+    "rad-to-deg": RadToDegCalc,
 };
 
 export default function ConversionCalculatorCore({ calcType }: Props) {

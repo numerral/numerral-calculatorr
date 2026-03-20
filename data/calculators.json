@@ -3623,6 +3623,40 @@
     "keywords": "degrees to radians, degree to radian, deg to rad, angle conversion, trigonometry, pi radians"
   },
   {
+    "id": "rad-to-deg-converter",
+    "category": "convert",
+    "title": "Radians to Degrees Converter (rad to °)",
+    "slug": "rad-to-deg-converter",
+    "categorySlug": "convert",
+    "icon": "📐",
+    "calcType": "rad-to-deg",
+    "description": "Convert radians to degrees (rad to °). See exact degree values, π fractions, sin/cos. Essential for converting programming output to human-readable angles.",
+    "stars": 5,
+    "defaults": {
+      "amount": 1.5708,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 6.2832,
+        "step": 0.0001
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "radians to degrees, radian to degree, rad to deg, angle conversion, pi to degrees, trigonometry"
+  },
+  {
     "id": "retirement-corpus",
     "category": "invest",
     "title": "Retirement Corpus Calculator",

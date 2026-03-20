@@ -4085,6 +4085,82 @@ const HUB_CONTENT: Record<string, {
             { question: "How do I convert radians to degrees?", answer: "Multiply by 180/π: degrees = radians × (180/π). For example, π/3 radians = (π/3) × (180/π) = 60°. This is the reverse of the degrees-to-radians formula. You can also use our Radians to Degrees converter for instant results." },
         ],
     },
+    "rad-to-deg-converter": {
+        subtitle: "Convert radians to degrees (rad to °). See exact degree values, π fractions, and sin/cos. Essential for interpreting programming output, physics calculations, and engineering.",
+        contentHTML: `
+            <h3>How to Convert Radians to Degrees</h3>
+            <p>Multiply by <strong>180/π</strong> (approximately 57.2958):</p>
+            <div class="explanation__highlight">
+                <strong>degrees = radians × (180 ÷ π)</strong><br/><br/>
+                Example: π/2 rad (right angle)<br/>
+                = 1.5708 × 57.2958 = <strong>90°</strong><br/><br/>
+                Example: π/4 rad (diagonal)<br/>
+                = 0.7854 × 57.2958 = <strong>45°</strong><br/><br/>
+                Example: 1 radian<br/>
+                = 1 × 57.2958 = <strong>57.2958°</strong>
+            </div>
+            <p><strong>Why 180/π?</strong> A full circle = 2π radians = 360°. So 1 radian = 360/(2π) = 180/π ≈ 57.2958°. This is the exact inverse of the degrees-to-radians formula (×π/180).</p>
+
+            <h3>Key Radian Values in Degrees</h3>
+            <table>
+                <thead><tr><th>Radians</th><th>Exact (π)</th><th>Degrees</th><th>sin</th><th>cos</th><th>Where You See It</th></tr></thead>
+                <tbody>
+                    <tr><td>0.0000</td><td>0</td><td><strong>0°</strong></td><td>0</td><td>1</td><td>Starting angle</td></tr>
+                    <tr><td>0.5236</td><td>π/6</td><td><strong>30°</strong></td><td>0.5</td><td>0.866</td><td>Special angle</td></tr>
+                    <tr><td>0.7854</td><td>π/4</td><td><strong>45°</strong></td><td>0.707</td><td>0.707</td><td>Diagonal, atan2(1,1)</td></tr>
+                    <tr><td>1.0472</td><td>π/3</td><td><strong>60°</strong></td><td>0.866</td><td>0.5</td><td>Hexagon angle</td></tr>
+                    <tr><td><strong>1.5708</strong></td><td><strong>π/2</strong></td><td><strong>90°</strong></td><td>1</td><td>0</td><td><strong>Right angle, "up"</strong></td></tr>
+                    <tr><td>2.0944</td><td>2π/3</td><td><strong>120°</strong></td><td>0.866</td><td>−0.5</td><td>Triangle vertex</td></tr>
+                    <tr><td><strong>3.1416</strong></td><td><strong>π</strong></td><td><strong>180°</strong></td><td>0</td><td>−1</td><td><strong>Straight line, "behind"</strong></td></tr>
+                    <tr><td>4.7124</td><td>3π/2</td><td><strong>270°</strong></td><td>−1</td><td>0</td><td>"Down" direction</td></tr>
+                    <tr><td><strong>6.2832</strong></td><td><strong>2π</strong></td><td><strong>360°</strong></td><td>0</td><td>1</td><td><strong>Full rotation</strong></td></tr>
+                    <tr><td>1.0000</td><td>—</td><td><strong>57.30°</strong></td><td>0.841</td><td>0.540</td><td>1 radian (radius arc)</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Common Radian Values from Programming</h3>
+            <table>
+                <thead><tr><th>Code Output</th><th>Radians</th><th>Degrees</th><th>Meaning</th></tr></thead>
+                <tbody>
+                    <tr><td>Math.atan2(1, 0)</td><td>1.5708</td><td>90°</td><td>Pointing straight up</td></tr>
+                    <tr><td>Math.atan2(0, -1)</td><td>3.1416</td><td>180°</td><td>Pointing left</td></tr>
+                    <tr><td>Math.atan2(-1, 0)</td><td>−1.5708</td><td>−90°</td><td>Pointing down</td></tr>
+                    <tr><td>Math.atan2(1, 1)</td><td>0.7854</td><td>45°</td><td>Diagonal upper-right</td></tr>
+                    <tr><td>Math.PI</td><td>3.14159</td><td>180°</td><td>Half rotation</td></tr>
+                    <tr><td>Math.PI * 2</td><td>6.28318</td><td>360°</td><td>Full rotation</td></tr>
+                    <tr><td>Math.asin(0.5)</td><td>0.5236</td><td>30°</td><td>Arc sine of 0.5</td></tr>
+                    <tr><td>Math.acos(0)</td><td>1.5708</td><td>90°</td><td>Arc cosine of 0</td></tr>
+                </tbody>
+            </table>
+            <p><strong>Every trig function</strong> in JavaScript, Python, C++, Java, and C# returns radians. To display angles to users, you must convert to degrees: <code>degrees = radians * 180 / Math.PI</code>.</p>
+
+            <h3>Interpreting Radians in Real-World contexts</h3>
+            <table>
+                <thead><tr><th>Context</th><th>Radian Value</th><th>In Degrees</th><th>What It Means</th></tr></thead>
+                <tbody>
+                    <tr><td>Game dev: sprite rotation</td><td>0 to 2π</td><td>0° to 360°</td><td>Full sprite rotation</td></tr>
+                    <tr><td>Robotics: servo angle</td><td>0 to π</td><td>0° to 180°</td><td>Standard servo range</td></tr>
+                    <tr><td>CSS transform: rotate()</td><td>1.5708rad</td><td>90°</td><td>Quarter turn clockwise</td></tr>
+                    <tr><td>Physics: angular velocity</td><td>rad/s</td><td>°/s × π/180</td><td>Rotation speed</td></tr>
+                    <tr><td>Navigation: heading</td><td>0 to 2π</td><td>0° to 360°</td><td>Compass bearing</td></tr>
+                </tbody>
+            </table>
+
+            <h3>What Is a Radian?</h3>
+            <p>A <strong>radian</strong> is the angle where the arc length equals the radius. One full circle = 2π ≈ 6.2832 radians. Radians are the SI angle unit and are used by all programming languages for trig functions. The value 1 radian ≈ 57.3° — not an intuitive number, which is why developers often convert to degrees for display.</p>
+
+            <h3>What Is a Degree?</h3>
+            <p>A <strong>degree</strong> (°) is 1/360th of a full rotation. Degrees are intuitive for humans: 90° = right angle, 180° = half turn, 360° = full circle. In the US, degrees are the standard for construction, navigation, weather, and everyday use. Radians are only used in math, physics, and programming.</p>
+        `,
+        faq: [
+            { question: "How do you convert radians to degrees?", answer: "Multiply by 180/π: degrees = radians × (180/π). For example, π/2 = 1.5708 × 57.2958 = 90°. This works because a full circle is 2π radians = 360°, so 1 radian = 180/π ≈ 57.2958°." },
+            { question: "What is 1 radian in degrees?", answer: "1 radian = 180/π ≈ 57.2958°. This isn't a 'clean' number because radians and degrees are based on different systems — radians on π (circle geometry), degrees on the Babylonian base-60 system (360 = 6 × 60). One radian is the angle where the arc length equals the radius." },
+            { question: "Why does Math.atan2() return radians?", answer: "All major programming languages (JavaScript, Python, C++, Java) return radians from trig functions because radians are the mathematical standard. To get degrees: degrees = Math.atan2(y, x) * 180 / Math.PI. For example, atan2(1, 0) returns 1.5708 rad = 90° (pointing up)." },
+            { question: "How do I convert radians to degrees in JavaScript?", answer: "Use: degrees = radians * (180 / Math.PI). For example: let deg = Math.atan2(1, 1) * 180 / Math.PI; // 45. There's no built-in function — you must multiply manually. Python has math.degrees(), but JavaScript requires the formula." },
+            { question: "What is π radians in degrees?", answer: "π radians = 180° (a straight line / half rotation). This is a fundamental relationship: π rad = 180°, 2π rad = 360°, π/2 rad = 90°. The entire degree-radian conversion system is built on this relationship." },
+            { question: "When should I use radians vs degrees?", answer: "Use radians for: programming (all trig functions), calculus, physics, and engineering formulas. Use degrees for: UI display, user input, construction, navigation, and everyday communication. Most apps convert internally (radians) → display (degrees)." },
+        ],
+    },
 };
 
 export default async function ConvertHubPage({ params }: PageProps) {
