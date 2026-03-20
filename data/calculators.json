@@ -14269,5 +14269,76 @@
     "defaults": { "amount": 0, "rate": 0, "tenure": 0 },
     "sliderRanges": { "amount": { "min": 0, "max": 0, "step": 0 }, "rate": { "min": 0, "max": 0, "step": 0 }, "tenure": { "min": 0, "max": 0, "step": 0 } },
     "keywords": "polygon calculator, regular polygon area, polygon perimeter, interior angle polygon, exterior angle, circumradius polygon, apothem, hexagon calculator, octagon calculator"
+  },
+  {
+    "id": "dog-age-calculator",
+    "category": "pet",
+    "title": "Dog Age Calculator — Dog Years to Human Years",
+    "slug": "dog-age-calculator",
+    "categorySlug": "pet-calculators",
+    "icon": "🐕",
+    "calcType": "dog-age",
+    "description": "Calculate your dog's age in human years using the AVMA method. See how breed size affects aging and find your pup's equivalent human age.",
+    "stars": 5,
+    "defaults": { "amount": 5, "rate": 0, "tenure": 0 },
+    "sliderRanges": { "amount": { "min": 0.5, "max": 20, "step": 0.5 }, "rate": { "min": 0, "max": 0, "step": 0 }, "tenure": { "min": 0, "max": 0, "step": 0 } },
+    "keywords": "dog age calculator, dog years to human years, how old is my dog, puppy age chart, dog aging, AVMA dog age"
+  },
+  {
+    "id": "cat-age-calculator",
+    "category": "pet",
+    "title": "Cat Age Calculator — Cat Years to Human Years",
+    "slug": "cat-age-calculator",
+    "categorySlug": "pet-calculators",
+    "icon": "🐱",
+    "calcType": "cat-age",
+    "description": "Calculate your cat's age in human years using veterinary guidelines. Learn how fast cats age and see indoor vs outdoor lifespan differences.",
+    "stars": 5,
+    "defaults": { "amount": 5, "rate": 0, "tenure": 0 },
+    "sliderRanges": { "amount": { "min": 0.5, "max": 25, "step": 0.5 }, "rate": { "min": 0, "max": 0, "step": 0 }, "tenure": { "min": 0, "max": 0, "step": 0 } },
+    "keywords": "cat age calculator, cat years to human years, how old is my cat, kitten age chart, cat aging, cat lifespan"
+  },
+  {
+    "id": "dog-chocolate-toxicity-calculator",
+    "category": "pet",
+    "title": "Dog Chocolate Toxicity Calculator",
+    "slug": "dog-chocolate-toxicity-calculator",
+    "categorySlug": "pet-calculators",
+    "icon": "🍫",
+    "calcType": "dog-chocolate",
+    "description": "Calculate if the chocolate your dog ate is dangerous. Enter dog weight, chocolate type, and amount to see the toxicity risk level instantly.",
+    "stars": 5,
+    "defaults": { "amount": 30, "rate": 0, "tenure": 0 },
+    "sliderRanges": { "amount": { "min": 1, "max": 150, "step": 1 }, "rate": { "min": 0, "max": 0, "step": 0 }, "tenure": { "min": 0, "max": 0, "step": 0 } },
+    "keywords": "dog chocolate toxicity calculator, can dogs eat chocolate, chocolate poisoning dog, theobromine dog, how much chocolate is toxic to dogs"
+  },
+  {
+    "id": "dog-calorie-calculator",
+    "category": "pet",
+    "title": "Dog Calorie Calculator — Daily Calorie Needs",
+    "slug": "dog-calorie-calculator",
+    "categorySlug": "pet-calculators",
+    "icon": "🍖",
+    "calcType": "dog-calorie",
+    "description": "Calculate how many calories your dog needs per day based on weight, age, activity level, and spay/neuter status. Uses the RER and DER formulas.",
+    "stars": 5,
+    "defaults": { "amount": 30, "rate": 0, "tenure": 0 },
+    "sliderRanges": { "amount": { "min": 2, "max": 200, "step": 1 }, "rate": { "min": 0, "max": 0, "step": 0 }, "tenure": { "min": 0, "max": 0, "step": 0 } },
+    "keywords": "dog calorie calculator, how many calories does my dog need, dog food calculator, dog nutrition, RER DER dog"
+  },
+  {
+    "id": "dog-water-intake-calculator",
+    "category": "pet",
+    "title": "Dog Water Intake Calculator",
+    "slug": "dog-water-intake-calculator",
+    "categorySlug": "pet-calculators",
+    "icon": "💧",
+    "calcType": "dog-water",
+    "description": "Calculate how much water your dog should drink daily based on weight, activity level, and weather. Know the signs of dehydration in dogs.",
+    "stars": 5,
+    "defaults": { "amount": 30, "rate": 0, "tenure": 0 },
+    "sliderRanges": { "amount": { "min": 2, "max": 200, "step": 1 }, "rate": { "min": 0, "max": 0, "step": 0 }, "tenure": { "min": 0, "max": 0, "step": 0 } },
+    "keywords": "dog water intake calculator, how much water should my dog drink, dog hydration, dog water needs, dehydration in dogs"
   }
 ]
+

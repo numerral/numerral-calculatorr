@@ -94,5 +94,13 @@
         "description": "Percentage, fractions, algebra, statistics & number tools",
         "count": 32,
         "href": "/math-calculators"
+    },
+    {
+        "key": "pet",
+        "icon": "🐾",
+        "name": "Pet Calculators",
+        "description": "Dog age, cat age, chocolate toxicity & pet nutrition tools",
+        "count": 5,
+        "href": "/pet-calculators"
     }
 ]
