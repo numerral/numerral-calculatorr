@@ -3752,6 +3752,92 @@ const HUB_CONTENT: Record<string, {
             { question: "How do I convert km/L to L/100km?", answer: "Divide 100 by the km/L value: L/100km = 100 ÷ km/L. For example, 15 km/L = 100 ÷ 15 = 6.67 L/100km. This is useful when comparing Japanese car specs (km/L) with European specs (L/100km)." },
         ],
     },
+    "mpg-to-kml-converter": {
+        subtitle: "Convert miles per gallon to kilometers per liter (MPG to km/L). See results in km/L, L/100km, and UK MPG. Essential for US expats in Japan, India, South Korea, and Asia.",
+        contentHTML: `
+            <h3>How to Convert MPG to km/L</h3>
+            <p>Multiply by <strong>0.42514</strong>:</p>
+            <div class="explanation__highlight">
+                <strong>km/L = MPG × 0.42514</strong><br/><br/>
+                Example: 30 mpg (standard sedan)<br/>
+                = 30 × 0.42514 = <strong>12.8 km/L</strong><br/><br/>
+                Example: 50 mpg (hybrid)<br/>
+                = 50 × 0.42514 = <strong>21.3 km/L</strong><br/><br/>
+                Example: 20 mpg (SUV)<br/>
+                = 20 × 0.42514 = <strong>8.5 km/L</strong>
+            </div>
+            <p><strong>Simple math:</strong> Both MPG and km/L measure efficiency (higher = better), so conversion is a straightforward multiplication. Divide by the same factor (2.35215) to go the other way: km/L × 2.35215 = MPG.</p>
+
+            <h3>MPG to km/L — Conversion Chart</h3>
+            <table>
+                <thead><tr><th>US MPG</th><th>km/L</th><th>L/100km</th><th>Vehicle Type</th></tr></thead>
+                <tbody>
+                    <tr><td>10 mpg</td><td>4.3 km/L</td><td>23.5 L/100km</td><td>Heavy truck / RV</td></tr>
+                    <tr><td>15 mpg</td><td>6.4 km/L</td><td>15.7 L/100km</td><td>Full-size SUV / pickup</td></tr>
+                    <tr><td>20 mpg</td><td>8.5 km/L</td><td>11.8 L/100km</td><td>Midsize SUV</td></tr>
+                    <tr><td>25 mpg</td><td>10.6 km/L</td><td>9.4 L/100km</td><td>Crossover / small SUV</td></tr>
+                    <tr><td><strong>30 mpg</strong></td><td><strong>12.8 km/L</strong></td><td>7.8 L/100km</td><td><strong>Standard sedan</strong></td></tr>
+                    <tr><td>35 mpg</td><td>14.9 km/L</td><td>6.7 L/100km</td><td>Efficient sedan</td></tr>
+                    <tr><td>40 mpg</td><td>17.0 km/L</td><td>5.9 L/100km</td><td>Compact car</td></tr>
+                    <tr><td>50 mpg</td><td>21.3 km/L</td><td>4.7 L/100km</td><td>Hybrid sedan</td></tr>
+                    <tr><td>60 mpg</td><td>25.5 km/L</td><td>3.9 L/100km</td><td>Plug-in hybrid</td></tr>
+                    <tr><td>80 mpg</td><td>34.0 km/L</td><td>2.9 L/100km</td><td>Full hybrid (best)</td></tr>
+                </tbody>
+            </table>
+
+            <h3>US Best-Sellers in km/L</h3>
+            <table>
+                <thead><tr><th>Vehicle (2024)</th><th>US MPG</th><th>km/L</th><th>Asian Market Equivalent</th></tr></thead>
+                <tbody>
+                    <tr><td>Ford F-150</td><td>21 mpg</td><td>8.9 km/L</td><td>Not sold (too large)</td></tr>
+                    <tr><td>Toyota RAV4</td><td>30 mpg</td><td>12.8 km/L</td><td>Japan: ~15 km/L (JC08)</td></tr>
+                    <tr><td>Honda CR-V</td><td>29 mpg</td><td>12.3 km/L</td><td>Japan: ~14 km/L</td></tr>
+                    <tr><td>Toyota Camry</td><td>33 mpg</td><td>14.0 km/L</td><td>Japan: ~18 km/L</td></tr>
+                    <tr><td>Toyota Corolla</td><td>35 mpg</td><td>14.9 km/L</td><td>Japan: ~20 km/L</td></tr>
+                    <tr><td>Honda Civic</td><td>35 mpg</td><td>14.9 km/L</td><td>Japan: ~20 km/L</td></tr>
+                    <tr><td>Toyota Prius</td><td>53 mpg</td><td>22.5 km/L</td><td>Japan: ~32 km/L</td></tr>
+                </tbody>
+            </table>
+            <p><strong>Note:</strong> Japanese km/L ratings are typically 15–25% higher than the US EPA MPG equivalent due to different test cycles (JC08/WLTC vs EPA).</p>
+
+            <h3>Fuel Economy Systems Worldwide</h3>
+            <table>
+                <thead><tr><th>System</th><th>Unit</th><th>Higher = ?</th><th>Countries</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>MPG (US)</strong></td><td>miles/US gal</td><td>Better</td><td>United States</td></tr>
+                    <tr><td>MPG (UK)</td><td>miles/imp gal</td><td>Better</td><td>United Kingdom</td></tr>
+                    <tr><td><strong>km/L</strong></td><td>km/liter</td><td>Better</td><td>Japan, India, S. Korea, Brazil</td></tr>
+                    <tr><td>L/100km</td><td>liters/100km</td><td>Worse</td><td>Europe, Canada, Australia</td></tr>
+                </tbody>
+            </table>
+
+            <h3>US Expat & Military Guide</h3>
+            <p>If you're a US expat or military member stationed in Japan, South Korea, or India, here's a quick guide:</p>
+            <table>
+                <thead><tr><th>Your US Car</th><th>US MPG</th><th>Local km/L</th><th>What Locals Drive</th></tr></thead>
+                <tbody>
+                    <tr><td>Subcompact (Civic)</td><td>35 mpg</td><td>14.9 km/L</td><td>Locals: 18–25 km/L</td></tr>
+                    <tr><td>Midsize (Camry)</td><td>33 mpg</td><td>14.0 km/L</td><td>Locals: 15–20 km/L</td></tr>
+                    <tr><td>Compact SUV (RAV4)</td><td>30 mpg</td><td>12.8 km/L</td><td>Locals: 14–18 km/L</td></tr>
+                    <tr><td>Full-size truck (F-150)</td><td>21 mpg</td><td>8.9 km/L</td><td>Not common in Asia</td></tr>
+                </tbody>
+            </table>
+
+            <h3>What Is Miles per Gallon (MPG)?</h3>
+            <p><strong>Miles per gallon</strong> (MPG) measures how far a vehicle travels on one US gallon (3.785 liters). Higher = better. The US EPA rates every new car in MPG. It's the standard US fuel economy measure.</p>
+
+            <h3>What Is km/L?</h3>
+            <p><strong>Kilometers per liter</strong> (km/L) measures how far a vehicle travels on one liter of fuel. Higher = better. Used in Japan (JC08/WLTC cycles), India (ARAI kmpl), South Korea, Brazil, and Thailand. It's conceptually identical to MPG — just with metric units.</p>
+        `,
+        faq: [
+            { question: "How do you convert MPG to km/L?", answer: "Multiply by 0.42514: km/L = MPG × 0.42514. For example, 30 mpg × 0.42514 = 12.8 km/L. Both units measure distance per fuel unit (higher = better), so the conversion is a simple multiplication." },
+            { question: "What is 30 MPG in km/L?", answer: "30 MPG = 30 × 0.42514 = 12.8 km/L. This is typical for a standard US sedan like a Toyota Camry or Honda Accord. In Japan, the same car might be rated at 15–18 km/L due to different test cycles." },
+            { question: "Why are Japanese km/L ratings higher than US MPG equivalents?", answer: "Japan's test cycles (JC08 and now WLTC) involve more city driving at lower speeds with more idling, which favors Japanese cars' efficient designs. The US EPA cycle includes higher highway speeds and more aggressive acceleration. Real-world difference is typically 15–25%." },
+            { question: "Is km/L the same concept as MPG?", answer: "Yes! Both measure fuel EFFICIENCY — distance traveled per unit of fuel. km/L uses kilometers and liters, MPG uses miles and gallons. Higher = better in both cases. This makes conversion simple (multiply by 0.42514). Unlike L/100km, which measures CONSUMPTION (lower = better)." },
+            { question: "What do US expats in Japan need to know about km/L?", answer: "Japanese fuel economy is rated in km/L. A car rated at 20 km/L is about 47 mpg — very efficient by US standards. Japanese kei cars (660cc engines) can get 25–35 km/L (59–82 mpg). Fuel costs ¥160–180/liter (about $4.50/gallon), so efficiency matters more than in the US." },
+            { question: "How do I compare US and Indian car fuel economy?", answer: "India uses 'kmpl' (kilometers per liter), which is the same as km/L. To convert your US car's MPG to Indian kmpl: multiply by 0.42514. Indian cars typically achieve 15–25 kmpl because they're smaller and lighter. A Maruti Suzuki Alto gets 22 kmpl (52 mpg) — far higher than most US cars." },
+        ],
+    },
 };
 
 export default async function ConvertHubPage({ params }: PageProps) {
