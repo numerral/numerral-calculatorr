@@ -3444,6 +3444,77 @@ function OhmToKiloohmCalc() {
     );
 }
 
+// ─── Degree to Radian ───
+function DegToRadCalc() {
+    const [deg, setDeg] = useState(45);
+
+    const rad = deg * (Math.PI / 180);
+    const turns = deg / 360;
+    const grad = deg * (10 / 9);
+    const sinVal = Math.sin(rad);
+    const cosVal = Math.cos(rad);
+
+    const quickRef = [0, 30, 45, 60, 90, 120, 135, 150, 180, 270, 360, 720];
+
+    const exactFrac = (d: number) => {
+        const map: Record<number, string> = { 0: "0", 30: "π/6", 45: "π/4", 60: "π/3", 90: "π/2", 120: "2π/3", 135: "3π/4", 150: "5π/6", 180: "π", 270: "3π/2", 360: "2π", 720: "4π" };
+        return map[d] || (d * Math.PI / 180).toFixed(4);
+    };
+
+    return (
+        <div className="calc-card">
+            <div className="calc-field">
+                <label className="calc-field__label">📐 DEGREES (°)</label>
+                <input type="range" className="calc-field__slider" min={0} max={720} step={1}
+                    value={deg} onChange={(e) => setDeg(Number(e.target.value))} />
+                <div style={{ display: "flex", gap: "var(--s-2)", alignItems: "center" }}>
+                    <input type="number" className="calc-field__input" value={deg}
+                        onChange={(e) => setDeg(Number(e.target.value))} style={{ flex: 1 }} />
+                    <span className="t-body-sm text-muted">°</span>
+                </div>
+            </div>
+
+            <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
+                <p className="calc-field__label">ANGLE IN RADIANS</p>
+                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+                    {rad.toFixed(6)} rad
+                </p>
+                <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "var(--s-3)" }}>
+                    <div><p className="calc-field__label">EXACT</p><p style={{ fontWeight: 700 }}>{exactFrac(deg)}</p></div>
+                    <div><p className="calc-field__label">TURNS</p><p style={{ fontWeight: 700 }}>{turns.toFixed(4)}</p></div>
+                    <div><p className="calc-field__label">SIN({deg}°)</p><p style={{ fontWeight: 700 }}>{sinVal.toFixed(6)}</p></div>
+                    <div><p className="calc-field__label">COS({deg}°)</p><p style={{ fontWeight: 700 }}>{cosVal.toFixed(6)}</p></div>
+                </div>
+            </div>
+
+            {/* Quick Reference Table */}
+            <div style={{ marginTop: "var(--s-4)" }}>
+                <h3 className="t-h3" style={{ marginBottom: "var(--s-3)" }}>Degrees to Radians — Key Angles</h3>
+                <table className="calc-table">
+                    <thead>
+                        <tr><th>Degrees</th><th>Radians (exact)</th><th>Radians (decimal)</th><th>sin</th><th>cos</th></tr>
+                    </thead>
+                    <tbody>
+                        {quickRef.map((d) => {
+                            const r = d * Math.PI / 180;
+                            return (
+                                <tr key={d} style={d === deg ? { background: "var(--n-primary-light)" } : {}}>
+                                    <td>{d}°</td>
+                                    <td>{exactFrac(d)}</td>
+                                    <td>{r.toFixed(4)}</td>
+                                    <td>{Math.sin(r).toFixed(4)}</td>
+                                    <td>{Math.cos(r).toFixed(4)}</td>
+                                </tr>
+                            );
+                        })}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    );
+}
+
 // ─── Dispatcher ───
 interface Props { calcType: string; }
 
@@ -3494,6 +3565,7 @@ const CALCULATORS: Record<string, React.FC> = {
     "mpg-to-kml": MpgToKmPerLCalc,
     "megaohm-to-ohm": MegaohmToOhmCalc,
     "ohm-to-kiloohm": OhmToKiloohmCalc,
+    "deg-to-rad": DegToRadCalc,
 };
 
 export default function ConversionCalculatorCore({ calcType }: Props) {

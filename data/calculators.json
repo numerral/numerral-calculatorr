@@ -3589,6 +3589,40 @@
     "keywords": "ohm to kiloohm, Ω to kΩ, resistance conversion, resistor calculator, ohm to k, electronics resistance"
   },
   {
+    "id": "deg-to-rad-converter",
+    "category": "convert",
+    "title": "Degrees to Radians Converter (° to rad)",
+    "slug": "deg-to-rad-converter",
+    "categorySlug": "convert",
+    "icon": "📐",
+    "calcType": "deg-to-rad",
+    "description": "Convert degrees to radians (° to rad). See exact π fractions, decimal radians, sin/cos values. Essential for trigonometry, calculus, and programming.",
+    "stars": 5,
+    "defaults": {
+      "amount": 45,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 720,
+        "step": 1
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "degrees to radians, degree to radian, deg to rad, angle conversion, trigonometry, pi radians"
+  },
+  {
     "id": "retirement-corpus",
     "category": "invest",
     "title": "Retirement Corpus Calculator",

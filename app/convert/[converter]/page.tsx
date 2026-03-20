@@ -4000,6 +4000,91 @@ const HUB_CONTENT: Record<string, {
             { question: "What's the difference between Ω, kΩ, and MΩ?", answer: "They're all units of resistance, differing by factors of 1,000: 1 kΩ = 1,000 Ω, 1 MΩ = 1,000 kΩ = 1,000,000 Ω. Ohms for low resistance (speakers, LED limiters), kilohms for most electronics (pull-ups, dividers), megaohms for insulation and high-impedance circuits." },
         ],
     },
+    "deg-to-rad-converter": {
+        subtitle: "Convert degrees to radians (° to rad). See exact π fractions, decimal radians, and sin/cos values. Essential for trigonometry, calculus, programming, and engineering.",
+        contentHTML: `
+            <h3>How to Convert Degrees to Radians</h3>
+            <p>Multiply by <strong>π/180</strong> (approximately 0.01745):</p>
+            <div class="explanation__highlight">
+                <strong>radians = degrees × (π ÷ 180)</strong><br/><br/>
+                Example: 45° (diagonal)<br/>
+                = 45 × π/180 = <strong>π/4 ≈ 0.7854 rad</strong><br/><br/>
+                Example: 90° (right angle)<br/>
+                = 90 × π/180 = <strong>π/2 ≈ 1.5708 rad</strong><br/><br/>
+                Example: 180° (straight line)<br/>
+                = 180 × π/180 = <strong>π ≈ 3.1416 rad</strong>
+            </div>
+            <p><strong>Why π/180?</strong> A full circle = 360° = 2π radians. So 1° = 2π/360 = π/180 radians. The radian is the "natural" angle unit because an arc of length equal to the radius subtends exactly 1 radian.</p>
+
+            <h3>Key Angles — Degrees to Radians</h3>
+            <table>
+                <thead><tr><th>Degrees</th><th>Radians (exact)</th><th>Radians (decimal)</th><th>sin</th><th>cos</th><th>tan</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>0°</strong></td><td>0</td><td>0.0000</td><td>0</td><td>1</td><td>0</td></tr>
+                    <tr><td><strong>30°</strong></td><td>π/6</td><td>0.5236</td><td>1/2</td><td>√3/2</td><td>√3/3</td></tr>
+                    <tr><td><strong>45°</strong></td><td>π/4</td><td>0.7854</td><td>√2/2</td><td>√2/2</td><td>1</td></tr>
+                    <tr><td><strong>60°</strong></td><td>π/3</td><td>1.0472</td><td>√3/2</td><td>1/2</td><td>√3</td></tr>
+                    <tr><td><strong>90°</strong></td><td>π/2</td><td>1.5708</td><td>1</td><td>0</td><td>∞</td></tr>
+                    <tr><td>120°</td><td>2π/3</td><td>2.0944</td><td>√3/2</td><td>−1/2</td><td>−√3</td></tr>
+                    <tr><td>135°</td><td>3π/4</td><td>2.3562</td><td>√2/2</td><td>−√2/2</td><td>−1</td></tr>
+                    <tr><td>150°</td><td>5π/6</td><td>2.6180</td><td>1/2</td><td>−√3/2</td><td>−√3/3</td></tr>
+                    <tr><td><strong>180°</strong></td><td>π</td><td>3.1416</td><td>0</td><td>−1</td><td>0</td></tr>
+                    <tr><td>270°</td><td>3π/2</td><td>4.7124</td><td>−1</td><td>0</td><td>∞</td></tr>
+                    <tr><td><strong>360°</strong></td><td>2π</td><td>6.2832</td><td>0</td><td>1</td><td>0</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Radians in Programming Languages</h3>
+            <table>
+                <thead><tr><th>Language</th><th>Trig Functions Use</th><th>Convert Degrees → Radians</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>JavaScript</strong></td><td>Radians</td><td>Math.sin(degrees * Math.PI / 180)</td></tr>
+                    <tr><td><strong>Python</strong></td><td>Radians</td><td>math.radians(degrees) or numpy.deg2rad()</td></tr>
+                    <tr><td><strong>C / C++</strong></td><td>Radians</td><td>sin(degrees * M_PI / 180.0)</td></tr>
+                    <tr><td><strong>Java</strong></td><td>Radians</td><td>Math.toRadians(degrees)</td></tr>
+                    <tr><td><strong>C#</strong></td><td>Radians</td><td>degrees * Math.PI / 180</td></tr>
+                    <tr><td><strong>CSS</strong></td><td>Both</td><td>transform: rotate(1.5708rad) or rotate(90deg)</td></tr>
+                </tbody>
+            </table>
+            <p><strong>Every major programming language</strong> uses radians for trigonometric functions. If you pass degrees to Math.sin() or sin(), you'll get wrong results. Always convert first!</p>
+
+            <h3>Unit Circle — Quadrant Reference</h3>
+            <table>
+                <thead><tr><th>Quadrant</th><th>Degrees</th><th>Radians</th><th>sin</th><th>cos</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>I</strong></td><td>0°–90°</td><td>0–π/2</td><td>+</td><td>+</td></tr>
+                    <tr><td><strong>II</strong></td><td>90°–180°</td><td>π/2–π</td><td>+</td><td>−</td></tr>
+                    <tr><td><strong>III</strong></td><td>180°–270°</td><td>π–3π/2</td><td>−</td><td>−</td></tr>
+                    <tr><td><strong>IV</strong></td><td>270°–360°</td><td>3π/2–2π</td><td>−</td><td>+</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Angle Measurement Systems</h3>
+            <table>
+                <thead><tr><th>System</th><th>Full Circle</th><th>Right Angle</th><th>Used By</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Degrees (°)</strong></td><td>360°</td><td>90°</td><td>Navigation, construction, everyday</td></tr>
+                    <tr><td><strong>Radians (rad)</strong></td><td>2π</td><td>π/2</td><td>Math, physics, programming</td></tr>
+                    <tr><td>Gradians (gon)</td><td>400 gon</td><td>100 gon</td><td>European surveying</td></tr>
+                    <tr><td>Turns</td><td>1 turn</td><td>0.25 turns</td><td>Engineering, astronomy</td></tr>
+                </tbody>
+            </table>
+
+            <h3>What Is a Degree (°)?</h3>
+            <p>A <strong>degree</strong> is 1/360th of a full rotation. The 360-degree system dates back to ancient Babylonians (who used base-60 math). Degrees are used in everyday life for navigation, construction, weather (wind direction), and education. In the US, degrees are taught first in geometry class before students encounter radians in precalculus or AP Calculus.</p>
+
+            <h3>What Is a Radian?</h3>
+            <p>A <strong>radian</strong> is the angle subtended by an arc equal in length to the radius of the circle. One full circle = 2π radians ≈ 6.2832 rad. Radians are the SI unit for angles and are required by virtually all programming languages and scientific calculations. They make calculus formulas cleaner: d/dx sin(x) = cos(x) only works when x is in radians.</p>
+        `,
+        faq: [
+            { question: "How do you convert degrees to radians?", answer: "Multiply by π/180: radians = degrees × (π/180). For example, 90° = 90 × π/180 = π/2 ≈ 1.5708 radians. This works because a full circle is 360° = 2π radians, so 1° = π/180 radians." },
+            { question: "Why do programming languages use radians?", answer: "All major programming languages (JavaScript, Python, C++, Java) use radians for Math.sin(), Math.cos(), etc. Radians are the mathematically 'natural' unit — calculus derivatives of trig functions only work correctly in radians. If you pass degrees to Math.sin(90), you'll get 0.894 instead of 1.0." },
+            { question: "What is π/4 in degrees?", answer: "π/4 radians = 45°. This is one of the 'special angles' where sin and cos both equal √2/2 ≈ 0.7071. The special angles (π/6 = 30°, π/4 = 45°, π/3 = 60°, π/2 = 90°) are memorized by every US precalculus and AP Calculus student." },
+            { question: "How many radians are in a circle?", answer: "A full circle = 2π radians ≈ 6.2832 radians. Half circle = π radians. Quarter circle (right angle) = π/2 radians. The circumference of a circle with radius r is 2πr, and since a radian is defined by arc length = radius, there are exactly 2π radians in a full rotation." },
+            { question: "When do US students learn radians?", answer: "US students first encounter radians in precalculus (typically 11th or 12th grade) or AP Calculus. Before that, angles are always taught in degrees. Radians become essential in calculus, physics, and engineering. The College Board's AP Calculus AB/BC exams require radians for all trig problems." },
+            { question: "How do I convert radians to degrees?", answer: "Multiply by 180/π: degrees = radians × (180/π). For example, π/3 radians = (π/3) × (180/π) = 60°. This is the reverse of the degrees-to-radians formula. You can also use our Radians to Degrees converter for instant results." },
+        ],
+    },
 };
 
 export default async function ConvertHubPage({ params }: PageProps) {
