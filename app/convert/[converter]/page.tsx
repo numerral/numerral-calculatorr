@@ -4324,6 +4324,94 @@ const HUB_CONTENT: Record<string, {
             { question: "Why would I convert mrad to degrees?", answer: "Common reasons: (1) comparing scope data with compass headings, (2) entering angles into surveying equipment that reads degrees, (3) understanding the tiny angles involved in shooting — 1000-yard holdover is often less than 1 degree total, (4) educational purposes to visualize how small milliradian adjustments really are." },
         ],
     },
+    "angle-converters": {
+        subtitle: "Convert between all angle units: degrees, radians, milliradians, NATO mils, MOA, gradians, and turns. Master angle converter with links to specialized tools for math, programming, shooting, and engineering.",
+        contentHTML: `
+            <h3>Angle Measurement Systems</h3>
+            <p>There are 7 major systems for measuring angles, each used in different fields:</p>
+            <table>
+                <thead><tr><th>Unit</th><th>Symbol</th><th>Full Circle</th><th>Right Angle</th><th>Primary Users</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Degree</strong></td><td>°</td><td>360</td><td>90</td><td>Everyone — everyday, construction, navigation</td></tr>
+                    <tr><td><strong>Radian</strong></td><td>rad</td><td>2π (6.2832)</td><td>π/2 (1.5708)</td><td>Math, physics, programming (all trig functions)</td></tr>
+                    <tr><td><strong>Milliradian</strong></td><td>mrad</td><td>6,283.2</td><td>1,570.8</td><td>Military snipers, PRS shooting, mil-dot scopes</td></tr>
+                    <tr><td><strong>NATO Mil</strong></td><td>mil</td><td>6,400</td><td>1,600</td><td>US Army artillery, NATO forces</td></tr>
+                    <tr><td><strong>Minute of Arc</strong></td><td>MOA / ′</td><td>21,600</td><td>5,400</td><td>Hunting scopes, astronomy, benchrest shooting</td></tr>
+                    <tr><td><strong>Gradian</strong></td><td>gon / grad</td><td>400</td><td>100</td><td>Surveying, European civil engineering</td></tr>
+                    <tr><td><strong>Turn</strong></td><td>rev / τ</td><td>1</td><td>0.25</td><td>Mechanical engineering, rotational physics</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Conversion Formulas — Quick Reference</h3>
+            <table>
+                <thead><tr><th>From → To</th><th>Formula</th><th>Example</th></tr></thead>
+                <tbody>
+                    <tr><td>Degrees → Radians</td><td>rad = deg × π/180</td><td>90° = 1.5708 rad</td></tr>
+                    <tr><td>Radians → Degrees</td><td>deg = rad × 180/π</td><td>π rad = 180°</td></tr>
+                    <tr><td>Degrees → Milliradians</td><td>mrad = deg × 17.4533</td><td>1° = 17.45 mrad</td></tr>
+                    <tr><td>Milliradians → Degrees</td><td>deg = mrad ÷ 17.4533</td><td>1 mrad = 0.0573°</td></tr>
+                    <tr><td>Degrees → NATO Mils</td><td>mil = deg × 17.778</td><td>1° = 17.78 mil</td></tr>
+                    <tr><td>Degrees → MOA</td><td>MOA = deg × 60</td><td>1° = 60 MOA</td></tr>
+                    <tr><td>Degrees → Gradians</td><td>grad = deg × 10/9</td><td>90° = 100 grad</td></tr>
+                    <tr><td>Degrees → Turns</td><td>turns = deg ÷ 360</td><td>360° = 1 turn</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Key Angle Values — All Units</h3>
+            <table>
+                <thead><tr><th>Degrees</th><th>Radians</th><th>mrad</th><th>MOA</th><th>Gradians</th><th>sin</th><th>cos</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>0°</strong></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td></tr>
+                    <tr><td><strong>30°</strong></td><td>π/6 (0.5236)</td><td>523.6</td><td>1,800</td><td>33.33</td><td>0.500</td><td>0.866</td></tr>
+                    <tr><td><strong>45°</strong></td><td>π/4 (0.7854)</td><td>785.4</td><td>2,700</td><td>50.00</td><td>0.707</td><td>0.707</td></tr>
+                    <tr><td><strong>60°</strong></td><td>π/3 (1.0472)</td><td>1,047.2</td><td>3,600</td><td>66.67</td><td>0.866</td><td>0.500</td></tr>
+                    <tr><td><strong>90°</strong></td><td>π/2 (1.5708)</td><td>1,570.8</td><td>5,400</td><td>100.00</td><td>1</td><td>0</td></tr>
+                    <tr><td><strong>120°</strong></td><td>2π/3 (2.0944)</td><td>2,094.4</td><td>7,200</td><td>133.33</td><td>0.866</td><td>−0.500</td></tr>
+                    <tr><td><strong>180°</strong></td><td>π (3.1416)</td><td>3,141.6</td><td>10,800</td><td>200.00</td><td>0</td><td>−1</td></tr>
+                    <tr><td><strong>270°</strong></td><td>3π/2 (4.7124)</td><td>4,712.4</td><td>16,200</td><td>300.00</td><td>−1</td><td>0</td></tr>
+                    <tr><td><strong>360°</strong></td><td>2π (6.2832)</td><td>6,283.2</td><td>21,600</td><td>400.00</td><td>0</td><td>1</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Who Uses Each Angle Unit?</h3>
+            <table>
+                <thead><tr><th>Audience</th><th>Primary Unit</th><th>Why</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Students (US)</strong></td><td>Degrees → Radians</td><td>AP Calculus, precalculus, trigonometry courses</td></tr>
+                    <tr><td><strong>Programmers</strong></td><td>Radians</td><td>All trig functions (Math.sin, cos, atan2) use radians</td></tr>
+                    <tr><td><strong>Military snipers</strong></td><td>Milliradians</td><td>1 mrad = 3.6" at 100yd — easy range estimation</td></tr>
+                    <tr><td><strong>US Army artillery</strong></td><td>NATO mils</td><td>6,400 per circle — divisible by powers of 2</td></tr>
+                    <tr><td><strong>Hunters (US)</strong></td><td>MOA</td><td>1 MOA ≈ 1" at 100yd — intuitive for zeroing</td></tr>
+                    <tr><td><strong>Surveyors</strong></td><td>Gradians</td><td>Right angle = 100 grad — metric-friendly</td></tr>
+                    <tr><td><strong>Game developers</strong></td><td>Radians → Degrees</td><td>Engine uses radians, UI displays degrees</td></tr>
+                    <tr><td><strong>Navigators</strong></td><td>Degrees (+ DMS)</td><td>Compass bearings: 0°–360°</td></tr>
+                </tbody>
+            </table>
+
+            <h3>What Is an Angle?</h3>
+            <p>An <strong>angle</strong> is the measure of rotation between two lines (or rays) that share a common endpoint (called the vertex). Angles are fundamental to geometry, trigonometry, physics, engineering, and navigation. They describe everything from the tilt of a roof to the trajectory of a bullet to the rotation of a 3D game character.</p>
+            <p>The most common way to measure angles is in <strong>degrees</strong>, where a full rotation = 360°. The Babylonians chose 360 because it has many divisors (1, 2, 3, 4, 5, 6, 8, 9, 10, 12, 15, 18, 20, 24, 30, 36, 40, 45, 60, 72, 90, 120, 180, 360), making division easy.</p>
+            <p>In mathematics and programming, <strong>radians</strong> are preferred because they simplify calculus — the derivative of sin(x) is cos(x) only when x is in radians. In military applications, <strong>milliradians</strong> are preferred because 1 mrad subtends exactly 1 unit per 1,000 units of distance.</p>
+
+            <h3>How to Measure Angles</h3>
+            <p>Common tools for measuring angles in the US:</p>
+            <ul>
+                <li><strong>Protractor</strong> — measures 0°–180° (semicircular) or 0°–360° (full circle). Standard school tool.</li>
+                <li><strong>Speed square</strong> — triangle-shaped tool used by US carpenters for marking 0°–90° angles.</li>
+                <li><strong>Digital angle finder</strong> — electronic tool showing angles to 0.1° precision. Used in construction.</li>
+                <li><strong>Mil-dot scope reticle</strong> — measures angles in milliradians for range estimation. Used in shooting.</li>
+                <li><strong>Smartphone apps</strong> — accelerometer-based tools for measuring angles and incline.</li>
+            </ul>
+        `,
+        faq: [
+            { question: "What are the different angle units?", answer: "The 7 main angle units are: degrees (360 per circle — everyday use), radians (2π per circle — math/programming), milliradians (6,283 per circle — military shooting), NATO mils (6,400 per circle — artillery), MOA (21,600 per circle — hunting), gradians (400 per circle — surveying), and turns (1 per circle — mechanical engineering)." },
+            { question: "How do you convert degrees to radians?", answer: "Multiply by π/180: radians = degrees × π/180. For example, 90° = 90 × π/180 = π/2 ≈ 1.5708 radians. This works because a full circle is 360° = 2π radians, so 1° = π/180 radians." },
+            { question: "Why do math and programming use radians instead of degrees?", answer: "Radians simplify calculus: the derivative of sin(x) is cos(x) only in radians. Also, radians connect angle to arc length directly (arc = radius × angle in radians), making them the natural unit. All programming languages — JavaScript, Python, C++, Java — use radians for trig functions." },
+            { question: "What is a milliradian (mrad)?", answer: "A milliradian is 1/1000 of a radian (≈ 0.0573°). At any distance, 1 mrad subtends 1 unit per 1,000 units — so 1 mrad = 3.6 inches at 100 yards. This makes milliradians ideal for mil-dot scopes and military range estimation." },
+            { question: "What is the difference between MOA and mrad?", answer: "MOA (minute of arc) = 1/60th of a degree. 1 MOA ≈ 1.047 inches at 100 yards. mrad (milliradian) = 1/1000th of a radian. 1 mrad = 3.6 inches at 100 yards. MOA is popular with US hunters (1 MOA ≈ 1 inch at 100yd); mrad is preferred by military and PRS shooters (easier metric math)." },
+            { question: "What are gradians used for?", answer: "Gradians (gon) divide a circle into 400 parts, so a right angle = 100 gradians. They're used in surveying and European civil engineering because the metric-friendly base makes right-angle calculations simpler. Most scientific calculators have a DEG/RAD/GRAD mode switch." },
+        ],
+    },
 };
 
 export default async function ConvertHubPage({ params }: PageProps) {

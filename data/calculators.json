@@ -3725,6 +3725,40 @@
     "keywords": "milliradians to degrees, mrad to degree, mrad to deg, scope adjustment, ballistic angle, mil to degree"
   },
   {
+    "id": "angle-converters",
+    "category": "convert",
+    "title": "Angle Converter — Degrees, Radians, Milliradians & More",
+    "slug": "angle-converters",
+    "categorySlug": "convert",
+    "icon": "📐",
+    "calcType": "angle-hub",
+    "description": "Convert between angle units: degrees, radians, milliradians, NATO mils, MOA, gradians, and turns. Master angle converter with links to specialized tools.",
+    "stars": 5,
+    "defaults": {
+      "amount": 45,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 720,
+        "step": 0.1
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "angle converter, degrees to radians, radians to degrees, milliradians, mrad, MOA, gradian, angle conversion calculator"
+  },
+  {
     "id": "retirement-corpus",
     "category": "invest",
     "title": "Retirement Corpus Calculator",

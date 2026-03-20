@@ -3721,6 +3721,73 @@ function MradToDegCalc() {
     );
 }
 
+// ─── Angle Converter Hub ───
+function AngleHubCalc() {
+    const [deg, setDeg] = useState(45);
+
+    const rad = deg * (Math.PI / 180);
+    const mrad = deg * 17.4533;
+    const natoMil = deg * (6400 / 360);
+    const moa = deg * 60;
+    const turns = deg / 360;
+    const grad = deg * (10 / 9);
+    const sinVal = Math.sin(rad);
+    const cosVal = Math.cos(rad);
+
+    const converters = [
+        { title: "Degrees → Radians", slug: "deg-to-rad-converter", desc: "° to rad for math, calculus, and programming" },
+        { title: "Radians → Degrees", slug: "rad-to-deg-converter", desc: "rad to ° for interpreting code output" },
+        { title: "Degrees → Milliradians", slug: "deg-to-mrad-converter", desc: "° to mrad for mil-dot scopes and military" },
+        { title: "Milliradians → Degrees", slug: "mrad-to-deg-converter", desc: "mrad to ° for ballistic data interpretation" },
+    ];
+
+    return (
+        <div className="calc-card">
+            <div className="calc-field">
+                <label className="calc-field__label">📐 ENTER ANGLE IN DEGREES (°)</label>
+                <input type="range" className="calc-field__slider" min={0} max={720} step={0.1}
+                    value={deg} onChange={(e) => setDeg(Number(e.target.value))} />
+                <div style={{ display: "flex", gap: "var(--s-2)", alignItems: "center" }}>
+                    <input type="number" className="calc-field__input" value={deg}
+                        onChange={(e) => setDeg(Number(e.target.value))} style={{ flex: 1 }} step={0.1} />
+                    <span className="t-body-sm text-muted">°</span>
+                </div>
+            </div>
+
+            <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
+                <p className="calc-field__label">ALL ANGLE UNITS</p>
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "var(--s-3)", marginTop: "var(--s-2)" }}>
+                    <div><p className="calc-field__label">RADIANS</p><p style={{ fontWeight: 700, color: "var(--n-primary)" }}>{rad.toFixed(6)}</p></div>
+                    <div><p className="calc-field__label">MILLIRADIANS</p><p style={{ fontWeight: 700, color: "var(--n-primary)" }}>{mrad.toFixed(2)}</p></div>
+                    <div><p className="calc-field__label">NATO MILS</p><p style={{ fontWeight: 700 }}>{natoMil.toFixed(2)}</p></div>
+                    <div><p className="calc-field__label">MOA</p><p style={{ fontWeight: 700 }}>{moa.toFixed(1)}</p></div>
+                </div>
+                <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "var(--s-3)" }}>
+                    <div><p className="calc-field__label">GRADIANS</p><p style={{ fontWeight: 700 }}>{grad.toFixed(2)}</p></div>
+                    <div><p className="calc-field__label">TURNS</p><p style={{ fontWeight: 700 }}>{turns.toFixed(6)}</p></div>
+                    <div><p className="calc-field__label">SIN({deg}°)</p><p style={{ fontWeight: 700 }}>{sinVal.toFixed(6)}</p></div>
+                    <div><p className="calc-field__label">COS({deg}°)</p><p style={{ fontWeight: 700 }}>{cosVal.toFixed(6)}</p></div>
+                </div>
+            </div>
+
+            {/* Links to individual converters */}
+            <div style={{ marginTop: "var(--s-4)" }}>
+                <h3 className="t-h3" style={{ marginBottom: "var(--s-3)" }}>Angle Conversion Calculators</h3>
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "var(--s-3)" }}>
+                    {converters.map((c) => (
+                        <a key={c.slug} href={`/convert/${c.slug}`}
+                            style={{ display: "block", padding: "var(--s-3)", border: "1px solid var(--n-border)", borderRadius: "var(--s-2)", textDecoration: "none", color: "inherit", transition: "border-color 0.2s" }}>
+                            <p style={{ fontWeight: 700, marginBottom: "var(--s-1)" }}>📐 {c.title}</p>
+                            <p className="t-body-sm text-muted">{c.desc}</p>
+                        </a>
+                    ))}
+                </div>
+            </div>
+        </div>
+    );
+}
+
 // ─── Dispatcher ───
 interface Props { calcType: string; }
 
@@ -3775,6 +3842,7 @@ const CALCULATORS: Record<string, React.FC> = {
     "rad-to-deg": RadToDegCalc,
     "deg-to-mrad": DegToMradCalc,
     "mrad-to-deg": MradToDegCalc,
+    "angle-hub": AngleHubCalc,
 };
 
 export default function ConversionCalculatorCore({ calcType }: Props) {
