@@ -2213,6 +2213,120 @@ const HUB_CONTENT: Record<string, {
             { question: "How many square feet in an acre?", answer: "Exactly 43,560 square feet = 1 acre = 4,046.86 square meters. An acre is approximately 90% the size of a standard American football field (including end zones). 640 acres = 1 square mile." },
         ],
     },
+    "sqmi-to-sqkm-converter": {
+        subtitle: "Convert square miles to square kilometers (sq mi to sq km) instantly. Learn the formula, see US state and city area comparisons, and understand how American and metric land area units relate.",
+        contentHTML: `
+            <h3>How to Convert Square Miles to Square Kilometers</h3>
+            <p>To convert square miles to square kilometers, multiply the area by <strong>2.589988</strong>:</p>
+            <div class="explanation__highlight">
+                <strong>square kilometers = square miles × 2.589988</strong><br/><br/>
+                Example: 10 square miles<br/>
+                = 10 × 2.589988 = <strong>25.90 km²</strong><br/><br/>
+                Example: Manhattan (22.82 sq mi)<br/>
+                = 22.82 × 2.589988 = <strong>59.10 km²</strong>
+            </div>
+            <p>The conversion factor comes from the relationship between miles and kilometers. Since 1 mile = 1.609344 kilometers (by international agreement), 1 square mile = 1.609344 × 1.609344 = <strong>2.589988 square kilometers</strong>. This is an exact value — not a rounded approximation.</p>
+
+            <h3>Square Miles to Square Kilometers — Conversion Table</h3>
+            <table>
+                <thead><tr><th>Square Miles</th><th>Square Kilometers</th><th>Acres</th><th>Approx. Size</th></tr></thead>
+                <tbody>
+                    <tr><td>0.1 sq mi</td><td>0.259 km²</td><td>64 ac</td><td>Small neighborhood</td></tr>
+                    <tr><td>0.5 sq mi</td><td>1.295 km²</td><td>320 ac</td><td>Large park</td></tr>
+                    <tr><td>1 sq mi</td><td>2.590 km²</td><td>640 ac</td><td>1 section of land</td></tr>
+                    <tr><td>5 sq mi</td><td>12.950 km²</td><td>3,200 ac</td><td>Small town</td></tr>
+                    <tr><td>10 sq mi</td><td>25.900 km²</td><td>6,400 ac</td><td>Small city</td></tr>
+                    <tr><td>22.82 sq mi</td><td>59.10 km²</td><td>14,605 ac</td><td>Manhattan, NYC</td></tr>
+                    <tr><td>36 sq mi</td><td>93.24 km²</td><td>23,040 ac</td><td>1 township (PLSS)</td></tr>
+                    <tr><td>68.34 sq mi</td><td>176.99 km²</td><td>43,738 ac</td><td>Washington, D.C.</td></tr>
+                    <tr><td>302.6 sq mi</td><td>783.8 km²</td><td>193,664 ac</td><td>New York City (5 boroughs)</td></tr>
+                    <tr><td>640 sq mi</td><td>1,657.6 km²</td><td>409,600 ac</td><td>Typical large US county</td></tr>
+                    <tr><td>1,214 sq mi</td><td>3,144 km²</td><td>776,960 ac</td><td>Rhode Island (smallest state)</td></tr>
+                    <tr><td>10,931 sq mi</td><td>28,311 km²</td><td>6,995,840 ac</td><td>Massachusetts</td></tr>
+                    <tr><td>268,596 sq mi</td><td>695,662 km²</td><td>171,901,440 ac</td><td>Texas</td></tr>
+                    <tr><td>663,268 sq mi</td><td>1,717,854 km²</td><td>424,491,520 ac</td><td>Alaska (largest state)</td></tr>
+                </tbody>
+            </table>
+
+            <h3>What Is a Square Mile?</h3>
+            <p>A <strong>square mile</strong> (symbol: <strong>mi²</strong> or <strong>sq mi</strong>) is a US customary and imperial unit of area equal to the area of a square with sides of 1 mile (5,280 feet) in length.</p>
+            <ul>
+                <li>1 square mile = <strong>640 acres</strong></li>
+                <li>1 square mile = <strong>2.589988 square kilometers</strong></li>
+                <li>1 square mile = <strong>27,878,400 square feet</strong></li>
+                <li>1 square mile = <strong>3,097,600 square yards</strong></li>
+                <li>1 square mile = <strong>1 section</strong> in the US Public Land Survey System (PLSS)</li>
+                <li>36 square miles = <strong>1 township</strong> (6 miles × 6 miles)</li>
+            </ul>
+            <p>Square miles are the standard unit for measuring large land areas in the United States. US Census data, state areas, county sizes, city limits, and federal land measurements all use square miles. When Americans read "Texas is 268,596 square miles," they're using this unit.</p>
+
+            <h3>What Is a Square Kilometer?</h3>
+            <p>A <strong>square kilometer</strong> (symbol: <strong>km²</strong> or <strong>sq km</strong>) is a metric unit of area equal to the area of a square with sides of 1 kilometer (1,000 meters) in length. It is a multiple of the square meter, which is the SI derived unit of area.</p>
+            <ul>
+                <li>1 square kilometer = <strong>0.386102 square miles</strong></li>
+                <li>1 square kilometer = <strong>100 hectares</strong></li>
+                <li>1 square kilometer = <strong>1,000,000 square meters</strong></li>
+                <li>1 square kilometer = <strong>247.105 acres</strong></li>
+            </ul>
+            <p>Square kilometers are used internationally for reporting country areas, geographic regions, and large-scale land measurements. The United Nations, World Bank, and CIA World Factbook all report country areas in square kilometers.</p>
+
+            <h3>US National Parks — Area in Square Miles and Square Kilometers</h3>
+            <p>National Parks are among the most recognizable large areas Americans know. Here's how some of the most popular ones compare:</p>
+            <table>
+                <thead><tr><th>National Park</th><th>Square Miles</th><th>Square Kilometers</th><th>State</th></tr></thead>
+                <tbody>
+                    <tr><td>Yellowstone</td><td>3,471 sq mi</td><td>8,991 km²</td><td>WY / MT / ID</td></tr>
+                    <tr><td>Grand Canyon</td><td>1,904 sq mi</td><td>4,931 km²</td><td>Arizona</td></tr>
+                    <tr><td>Yosemite</td><td>1,187 sq mi</td><td>3,074 km²</td><td>California</td></tr>
+                    <tr><td>Glacier</td><td>1,584 sq mi</td><td>4,101 km²</td><td>Montana</td></tr>
+                    <tr><td>Great Smoky Mountains</td><td>816 sq mi</td><td>2,114 km²</td><td>TN / NC</td></tr>
+                    <tr><td>Zion</td><td>229 sq mi</td><td>593 km²</td><td>Utah</td></tr>
+                    <tr><td>Acadia</td><td>76 sq mi</td><td>198 km²</td><td>Maine</td></tr>
+                </tbody>
+            </table>
+
+            <h3>When Americans Need to Convert Square Miles to Square Kilometers</h3>
+            <ul>
+                <li><strong>International comparisons</strong> — News articles comparing US areas to other countries often need conversion. "Is Texas bigger than France?" Texas = 268,596 mi² (695,662 km²); France = 248,573 mi² (643,801 km²). Yes.</li>
+                <li><strong>Geography and education</strong> — US school geography textbooks use square miles, but international curricula and Wikipedia use square kilometers.</li>
+                <li><strong>Environmental and scientific research</strong> — Research papers, UN reports, and environmental studies report land use, deforestation, and habitat areas in square kilometers.</li>
+                <li><strong>Travel and tourism</strong> — International travel guides describe country and city sizes in km². Knowing that New York City (302.6 mi²) = 783.8 km² helps Americans relate to international city sizes.</li>
+                <li><strong>Real estate and land management</strong> — Large ranch and agricultural land in the western US is sometimes sold in sections (1 sq mi = 640 acres = 2.59 km²).</li>
+                <li><strong>Military and government</strong> — NATO and international defense agreements use metric units for area calculations.</li>
+            </ul>
+
+            <h3>US Land Area — Key Facts</h3>
+            <ul>
+                <li>Total US land area: <strong>3,531,905 sq mi</strong> (9,147,593 km²) — 3rd or 4th largest country by area, depending on how coastal/territorial waters are counted.</li>
+                <li>Largest state: <strong>Alaska — 663,268 sq mi</strong> (1,717,854 km²)</li>
+                <li>Smallest state: <strong>Rhode Island — 1,214 sq mi</strong> (3,144 km²)</li>
+                <li>1 section (PLSS): <strong>1 sq mi = 640 acres</strong> — the basic land survey unit used across 30 US states</li>
+                <li>1 township: <strong>36 sq mi</strong> (6 × 6 miles) — still used in property descriptions in Midwest and Western states</li>
+            </ul>
+
+            <h3>Related Area Units</h3>
+            <table>
+                <thead><tr><th>Unit</th><th>In Square Miles</th><th>In Square Kilometers</th></tr></thead>
+                <tbody>
+                    <tr><td>1 acre</td><td>0.0015625 mi²</td><td>0.00405 km²</td></tr>
+                    <tr><td>1 square foot</td><td>3.587 × 10⁻⁸ mi²</td><td>9.290 × 10⁻⁸ km²</td></tr>
+                    <tr><td>1 hectare</td><td>0.003861 mi²</td><td>0.01 km²</td></tr>
+                    <tr><td><strong>1 square mile</strong></td><td><strong>1 mi²</strong></td><td><strong>2.589988 km²</strong></td></tr>
+                    <tr><td><strong>1 square kilometer</strong></td><td><strong>0.386102 mi²</strong></td><td><strong>1 km²</strong></td></tr>
+                    <tr><td>1 township (PLSS)</td><td>36 mi²</td><td>93.24 km²</td></tr>
+                </tbody>
+            </table>
+        `,
+        faq: [
+            { question: "How many square kilometers is 1 square mile?", answer: "1 square mile = 2.589988 square kilometers. This is exact, derived from the international mile definition (1 mi = 1.609344 km), so 1 mi² = 1.609344² = 2.589988 km²." },
+            { question: "What is the formula to convert square miles to square kilometers?", answer: "Square kilometers = square miles × 2.589988. For example, 100 square miles × 2.589988 = 258.9988 km². To convert the other direction (km² to mi²), multiply by 0.386102." },
+            { question: "How many acres are in a square mile?", answer: "Exactly 640 acres = 1 square mile. This relationship dates back to the US Public Land Survey System (PLSS), where 1 section of land = 1 square mile = 640 acres. A township = 36 sections = 36 square miles." },
+            { question: "How big is a square mile?", answer: "A square mile is the area of a square measuring 1 mile (5,280 feet) on each side. It equals 2.59 km², 640 acres, or 27,878,400 square feet. For reference, Manhattan is about 22.82 square miles." },
+            { question: "Is 1 square kilometer bigger than 1 square mile?", answer: "No — 1 square mile is larger. One square mile = 2.59 square kilometers. So a square mile is about 2.59 times the area of a square kilometer." },
+            { question: "How big is the United States in square miles?", answer: "The total land area of the United States is approximately 3,531,905 square miles (9,147,593 km²). Alaska alone is 663,268 sq mi (1,717,854 km²), making it by far the largest state." },
+            { question: "How do I convert square miles to hectares?", answer: "Multiply square miles by 258.999. Since 1 sq mi = 2.589988 km² and 1 km² = 100 hectares, 1 sq mi = 258.999 hectares. For example, 5 sq mi = 1,295 hectares." },
+        ],
+    },
     "oz-to-ml-converter": {
         subtitle: "Convert weight ounces to milliliters (oz to mL) for any ingredient. Select a substance or enter a custom density. See results in mL, liters, fluid ounces, and cups.",
         contentHTML: `

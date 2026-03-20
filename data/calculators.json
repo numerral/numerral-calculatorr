@@ -2875,6 +2875,40 @@
     "keywords": "square feet to square meters, sq ft to sq m, square foot to square meter converter, how many square meters in a square foot, area conversion, convert sq ft to m2, real estate area conversion"
   },
   {
+    "id": "sqmi-to-sqkm-converter",
+    "category": "convert",
+    "title": "Square Miles to Square Kilometers Converter (sq mi to sq km)",
+    "slug": "sqmi-to-sqkm-converter",
+    "categorySlug": "convert",
+    "icon": "🗺️",
+    "calcType": "sqmi-to-sqkm",
+    "description": "Convert square miles to square kilometers (sq mi to sq km) instantly. See results in square kilometers, hectares, acres, and square meters. Includes US state and city area comparisons.",
+    "stars": 5,
+    "defaults": {
+      "amount": 1,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0.01,
+        "max": 10000,
+        "step": 0.01
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "square miles to square kilometers, sq mi to sq km, square mile to square kilometer converter, how many square kilometers in a square mile, area conversion, land area, us state area"
+  },
+  {
     "id": "oz-to-ml-converter",
     "category": "convert",
     "title": "Ounces to Milliliters Converter (oz to mL)",

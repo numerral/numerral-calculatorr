@@ -72,7 +72,7 @@ const CATEGORIES: CategoryGroup[] = [
         emoji: "📏",
         color: "hsl(152, 60%, 42%)",
         ids: [
-            "inch-to-cm-converter", "inch-to-foot-converter", "sqm-to-sqft-converter", "sqft-to-sqm-converter",
+            "inch-to-cm-converter", "inch-to-foot-converter", "sqm-to-sqft-converter", "sqft-to-sqm-converter", "sqmi-to-sqkm-converter",
             "inlb-to-ftlb-converter",
         ],
     },
