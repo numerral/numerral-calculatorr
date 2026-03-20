@@ -2,6 +2,7 @@
 // Clean footer: Brand + Quick Links + Legal + Language Selector + Semantic content
 
 import Link from "next/link";
+import { TOTAL_CALCULATORS, TOTAL_CATEGORIES } from "@/lib/constants";
 
 const LANGUAGES = [
     { label: "English", href: "/", code: "en" },
@@ -31,7 +32,7 @@ export default function MegaFooter() {
                         </svg>
                         <span>Numer<span style={{ color: '#a5b4fc' }}>ral</span></span>
                     </Link>
-                    <p>Free online calculator platform — 346+ tools for finance, construction, health, EV, and everyday math.</p>
+                    <p>Free online calculator platform — {TOTAL_CALCULATORS}+ tools for finance, construction, health, EV, and everyday math.</p>
                 </div>
 
                 {/* Quick Links */}
@@ -74,7 +75,7 @@ export default function MegaFooter() {
             {/* Semantic footer text — NLP-rich context for search engines */}
             <div className="mega-footer__semantic">
                 <p>
-                    Numerral is a free online calculator platform offering 346+ calculators across 10 specialized categories.
+                    Numerral is a free online calculator platform offering {TOTAL_CALCULATORS}+ calculators across {TOTAL_CATEGORIES} specialized categories.
                     Our finance calculators cover loan EMI estimation using the reducing balance method, SIP and mutual fund
                     return projection with compound interest, fixed deposit maturity calculation, PPF and NPS corpus estimation,
                     and complete income tax computation under both old and new tax regimes for FY 2025-26. Construction

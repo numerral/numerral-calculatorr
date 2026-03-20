@@ -14,12 +14,12 @@ import {
   type CategoryDef,
 } from "@/lib/data";
 import { canonicalUrl } from "@/lib/seo";
-import { SITE_NAME, SITE_URL } from "@/lib/constants";
+import { SITE_NAME, SITE_URL, TOTAL_CALCULATORS, TOTAL_CATEGORIES } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: `346+ Free Online Calculators — Finance, Construction, Health & More | ${SITE_NAME}`,
+  title: `${TOTAL_CALCULATORS}+ Free Online Calculators — Finance, Construction, Health & More | ${SITE_NAME}`,
   description:
-    "Numerral offers 346+ free online calculators across finance, construction, health, EV, and everyday math. Instant results, transparent formulas, zero data collection. Available in 6 languages.",
+    `Numerral offers ${TOTAL_CALCULATORS}+ free online calculators across finance, construction, health, EV, and everyday math. Instant results, transparent formulas, zero data collection. Available in 6 languages.`,
   keywords:
     "online calculators, free calculators, loan EMI calculator, SIP calculator, construction calculator, BMI calculator, EV calculator, tax calculator, health calculator, financial calculator, compound interest calculator, mortgage calculator",
   alternates: { canonical: canonicalUrl("/") },
@@ -43,7 +43,7 @@ const orgSchema = JSON.stringify({
   name: SITE_NAME,
   url: SITE_URL,
   description:
-    "Free online calculator platform with 346+ tools covering loan EMI, investment returns, income tax, construction material estimation, health metrics, EV cost analysis, and everyday math. Available in 6 languages.",
+    `Free online calculator platform with ${TOTAL_CALCULATORS}+ tools covering loan EMI, investment returns, income tax, construction material estimation, health metrics, EV cost analysis, and everyday math. Available in 6 languages.`,
   sameAs: [],
 });
 
@@ -51,12 +51,12 @@ const homepageFaqs = [
   {
     question: "What is Numerral?",
     answer:
-      "Numerral is a free online calculator platform with 346+ calculators across 10 categories — including finance (loan EMI, SIP, FD, tax), construction (concrete, lumber, roofing, flooring), health (BMI, TDEE, calories, body fat), electric vehicles (charging cost, range, TCO), and everyday utility tools. All calculators produce instant results using standard, transparent formulas.",
+      `Numerral is a free online calculator platform with ${TOTAL_CALCULATORS}+ calculators across ${TOTAL_CATEGORIES} categories — including finance (loan EMI, SIP, FD, tax), construction (concrete, lumber, roofing, flooring), health (BMI, TDEE, calories, body fat), electric vehicles (charging cost, range, TCO), and everyday utility tools. All calculators produce instant results using standard, transparent formulas.`,
   },
   {
     question: "How many calculators does Numerral have?",
     answer:
-      "Numerral currently offers 346+ calculators organized into 10 categories: Loan Calculators (23), Investment Calculators (17), Tax Calculators (8), Utility Calculators (8), Salary Calculators (6), Business Calculators (13), Time & Date Calculators (15), Construction Calculators (162), EV Calculators (22), and Health Calculators (72). New calculators are added regularly.",
+      `Numerral currently offers ${TOTAL_CALCULATORS}+ calculators organized into ${TOTAL_CATEGORIES} categories. New calculators are added regularly across finance, construction, health, EV, math, conversion, and pet care.`,
   },
   {
     question: "Are all calculators on Numerral free to use?",
@@ -81,12 +81,12 @@ const homepageFaqs = [
   {
     question: "Can I use Numerral on my phone?",
     answer:
-      "Yes. Numerral is a fully responsive web application that works on smartphones, tablets, and desktops. No app download required — open numerral.com in any modern browser to access all 346+ calculators instantly.",
+      `Yes. Numerral is a fully responsive web application that works on smartphones, tablets, and desktops. No app download required — open numerral.com in any modern browser to access all ${TOTAL_CALCULATORS}+ calculators instantly.`,
   },
   {
     question: "How accurate are the construction calculators?",
     answer:
-      "Numerral's 162 construction calculators use standard material estimation formulas with configurable waste factors. They cover concrete volume, lumber board feet, roofing squares, flooring coverage, drywall sheets, paint area, gravel tonnage, insulation R-value, and 150+ other building project types. Results match industry estimating practices used by contractors and builders.",
+      "Numerral's construction calculators use standard material estimation formulas with configurable waste factors. They cover concrete volume, lumber board feet, roofing squares, flooring coverage, drywall sheets, paint area, gravel tonnage, insulation R-value, and 150+ other building project types. Results match industry estimating practices used by contractors and builders.",
   },
 ];
 
@@ -158,7 +158,7 @@ export default function HomePage() {
         <div className="hp-trust__inner container">
           <div className="hp-trust__logos">
             <span className="hp-trust__brand"><strong>{totalCalcs}+</strong> Calculators</span>
-            <span className="hp-trust__brand"><strong>10</strong> Categories</span>
+            <span className="hp-trust__brand"><strong>{categories.length}</strong> Categories</span>
             <span className="hp-trust__brand"><strong>6</strong> Languages</span>
             <span className="hp-trust__brand"><strong>0</strong> Data Collected</span>
             <span className="hp-trust__brand"><strong>100%</strong> Free</span>
@@ -186,7 +186,7 @@ export default function HomePage() {
         <h2 className="hp-about__title">About Numerral</h2>
         <div className="hp-about__content">
           <p>
-            Numerral is a free online calculator platform offering {totalCalcs}+ tools across 10 specialized categories.
+            Numerral is a free online calculator platform offering {totalCalcs}+ tools across {categories.length} specialized categories.
             Our finance calculators use the reducing balance EMI formula, compound interest computation, XIRR for 
             irregular cash flows, and current FY 2025-26 Indian income tax slabs. Construction calculators cover 
             material estimation for concrete volume, lumber board feet, roofing squares, flooring coverage, 
