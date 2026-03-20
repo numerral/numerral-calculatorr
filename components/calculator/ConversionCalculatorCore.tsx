@@ -2856,6 +2856,72 @@ function MphToKmhCalc() {
     );
 }
 
+// ─── Million BTU to MWh ───
+function MmBtuToMwhCalc() {
+    const [mmbtu, setMmbtu] = useState(10);
+
+    const mwh = mmbtu * 0.29307107;
+    const kwh = mwh * 1000;
+    const gj = mmbtu * 1.05506;
+    const therms = mmbtu * 10;
+
+    const quickRef = [0.1, 0.5, 1, 3, 5, 10, 20, 50, 100, 1000];
+
+    return (
+        <div className="calc-card">
+            <div className="calc-field">
+                <label className="calc-field__label">⚡ MILLION BTU (MMBtu)</label>
+                <input type="range" className="calc-field__slider" min={0.1} max={1000} step={0.1}
+                    value={mmbtu} onChange={(e) => setMmbtu(Number(e.target.value))} />
+                <div style={{ display: "flex", gap: "var(--s-2)", alignItems: "center" }}>
+                    <input type="number" className="calc-field__input" value={mmbtu}
+                        onChange={(e) => setMmbtu(Number(e.target.value))} style={{ flex: 1 }} />
+                    <span className="t-body-sm text-muted">MMBtu</span>
+                </div>
+            </div>
+
+            <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
+                <p className="calc-field__label">ENERGY IN MEGAWATT HOURS</p>
+                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+                    {mwh.toFixed(4)} MWh
+                </p>
+                <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "var(--s-3)" }}>
+                    <div><p className="calc-field__label">KILOWATT HOURS</p><p style={{ fontWeight: 700 }}>{kwh.toFixed(1)} kWh</p></div>
+                    <div><p className="calc-field__label">GIGAJOULES</p><p style={{ fontWeight: 700 }}>{gj.toFixed(4)} GJ</p></div>
+                    <div><p className="calc-field__label">THERMS</p><p style={{ fontWeight: 700 }}>{therms.toFixed(1)}</p></div>
+                    <div><p className="calc-field__label">FORMULA</p><p style={{ fontWeight: 700, fontSize: "var(--t-body-sm)" }}>{mmbtu}×0.2931</p></div>
+                </div>
+            </div>
+
+            {/* Quick Reference Table */}
+            <div style={{ marginTop: "var(--s-4)" }}>
+                <h3 className="t-h3" style={{ marginBottom: "var(--s-3)" }}>MMBtu to MWh — Quick Reference</h3>
+                <table className="calc-table">
+                    <thead>
+                        <tr><th>MMBtu</th><th>MWh</th><th>kWh</th><th>Context</th></tr>
+                    </thead>
+                    <tbody>
+                        {quickRef.map((m) => {
+                            const w = m * 0.29307107;
+                            const k = w * 1000;
+                            const ctx = m <= 0.1 ? "Gas stove (1 hour)" : m <= 0.5 ? "Water heater (1 day)" : m <= 1 ? "1 therm × 10" : m <= 3 ? "Home heating (1 day)" : m <= 5 ? "Small home (1 month)" : m <= 10 ? "Avg home (1 month)" : m <= 20 ? "Large home (1 month)" : m <= 50 ? "Small business (1 month)" : m <= 100 ? "Commercial building" : "Industrial facility";
+                            return (
+                                <tr key={m} style={m === mmbtu ? { background: "var(--n-primary-light)" } : {}}>
+                                    <td>{m} MMBtu</td>
+                                    <td>{w.toFixed(4)} MWh</td>
+                                    <td>{k.toFixed(0)} kWh</td>
+                                    <td>{ctx}</td>
+                                </tr>
+                            );
+                        })}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    );
+}
+
 // ─── Dispatcher ───
 interface Props { calcType: string; }
 
@@ -2897,6 +2963,7 @@ const CALCULATORS: Record<string, React.FC> = {
     "f-to-k": FahToKelCalc,
     "c-to-k": CelToKelCalc,
     "mph-to-kmh": MphToKmhCalc,
+    "mmbtu-to-mwh": MmBtuToMwhCalc,
 };
 
 export default function ConversionCalculatorCore({ calcType }: Props) {

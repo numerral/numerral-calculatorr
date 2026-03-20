@@ -3244,6 +3244,93 @@ const HUB_CONTENT: Record<string, {
             { question: "What is the fastest speed limit in the US?", answer: "85 mph (137 km/h) on State Highway 130 in Texas, a toll road between Austin and San Antonio. The most common US interstate speed limits are 65–75 mph (105–121 km/h), varying by state. Montana and Nevada had no speed limits on rural highways until the late 1990s." },
         ],
     },
+    "mmbtu-to-mwh-converter": {
+        subtitle: "Convert million BTU to megawatt hours (MMBtu to MWh). See results in MWh, kWh, gigajoules, and therms. Essential for US natural gas, utility billing, and HVAC.",
+        contentHTML: `
+            <h3>How to Convert MMBtu to MWh</h3>
+            <p>Multiply by <strong>0.29307107</strong>:</p>
+            <div class="explanation__highlight">
+                <strong>MWh = MMBtu × 0.29307107</strong><br/><br/>
+                Example: 10 MMBtu (average US home monthly gas)<br/>
+                = 10 × 0.29307107 = <strong>2.9307 MWh</strong><br/><br/>
+                Example: 1 MMBtu<br/>
+                = 1 × 0.29307107 = <strong>0.2931 MWh = 293.07 kWh</strong><br/><br/>
+                Example: 100 MMBtu (commercial building)<br/>
+                = 100 × 0.29307107 = <strong>29.307 MWh</strong>
+            </div>
+            <p><strong>Key relationship:</strong> 1 MMBtu = 10 therms = 293.07 kWh = 0.2931 MWh. These units appear on US gas and electric bills.</p>
+
+            <h3>MMBtu to MWh — Conversion Chart</h3>
+            <table>
+                <thead><tr><th>MMBtu</th><th>MWh</th><th>kWh</th><th>Therms</th><th>US Context</th></tr></thead>
+                <tbody>
+                    <tr><td>0.1</td><td>0.0293</td><td>29.3</td><td>1</td><td>Gas stove running 1 hour</td></tr>
+                    <tr><td>0.5</td><td>0.1465</td><td>146.5</td><td>5</td><td>Water heater (1 day)</td></tr>
+                    <tr><td>1</td><td>0.2931</td><td>293.1</td><td>10</td><td>Gas furnace (cold day)</td></tr>
+                    <tr><td>3</td><td>0.8792</td><td>879.2</td><td>30</td><td>Home heating (1 week, winter)</td></tr>
+                    <tr><td>5</td><td>1.4654</td><td>1,465</td><td>50</td><td>Small home (1 month)</td></tr>
+                    <tr><td><strong>10</strong></td><td><strong>2.9307</strong></td><td>2,931</td><td>100</td><td><strong>Avg US home (1 month, winter)</strong></td></tr>
+                    <tr><td>20</td><td>5.8614</td><td>5,861</td><td>200</td><td>Large home / cold climate</td></tr>
+                    <tr><td>50</td><td>14.654</td><td>14,654</td><td>500</td><td>Small commercial building</td></tr>
+                    <tr><td>100</td><td>29.307</td><td>29,307</td><td>1,000</td><td>Large commercial building</td></tr>
+                    <tr><td>1,000</td><td>293.07</td><td>293,071</td><td>10,000</td><td>Industrial facility</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Understanding US Natural Gas Pricing</h3>
+            <p>In the US, natural gas is priced per MMBtu at the wholesale level (Henry Hub benchmark) and per therm or CCF on residential utility bills:</p>
+            <table>
+                <thead><tr><th>Level</th><th>Unit</th><th>Typical Price</th><th>Who Uses It</th></tr></thead>
+                <tbody>
+                    <tr><td>Wholesale (Henry Hub)</td><td>$/MMBtu</td><td>$2–$6/MMBtu</td><td>Traders, utilities, power plants</td></tr>
+                    <tr><td>Residential utility</td><td>$/therm</td><td>$0.50–$1.50/therm</td><td>Homeowners (gas bills)</td></tr>
+                    <tr><td>Residential utility</td><td>$/CCF</td><td>$0.50–$1.50/CCF</td><td>Homeowners (some utilities)</td></tr>
+                    <tr><td>Electricity equivalent</td><td>$/kWh</td><td>$0.10–$0.20/kWh</td><td>Electric bills for comparison</td></tr>
+                    <tr><td>Electricity wholesale</td><td>$/MWh</td><td>$30–$80/MWh</td><td>Power grid operators, ISOs</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Energy Unit Comparison</h3>
+            <table>
+                <thead><tr><th>Unit</th><th>Abbreviation</th><th>= How Many BTU</th><th>Common Use</th></tr></thead>
+                <tbody>
+                    <tr><td>British Thermal Unit</td><td>BTU</td><td>1</td><td>HVAC ratings, appliances</td></tr>
+                    <tr><td>Therm</td><td>therm</td><td>100,000</td><td>US gas utility bills</td></tr>
+                    <tr><td>Million BTU</td><td>MMBtu</td><td>1,000,000</td><td>Natural gas wholesale, EIA</td></tr>
+                    <tr><td>Kilowatt hour</td><td>kWh</td><td>3,412</td><td>Electric utility bills</td></tr>
+                    <tr><td>Megawatt hour</td><td>MWh</td><td>3,412,142</td><td>Power grid, wholesale electricity</td></tr>
+                    <tr><td>Gigajoule</td><td>GJ</td><td>947,817</td><td>International energy markets</td></tr>
+                </tbody>
+            </table>
+
+            <h3>US Household Energy Usage</h3>
+            <table>
+                <thead><tr><th>Appliance / System</th><th>MMBtu/year</th><th>MWh/year</th><th>% of Avg Home</th></tr></thead>
+                <tbody>
+                    <tr><td>Gas furnace (heating)</td><td>40–60</td><td>11.7–17.6</td><td>45–55%</td></tr>
+                    <tr><td>Gas water heater</td><td>15–25</td><td>4.4–7.3</td><td>15–20%</td></tr>
+                    <tr><td>Gas dryer</td><td>3–5</td><td>0.9–1.5</td><td>3–5%</td></tr>
+                    <tr><td>Gas stove / oven</td><td>2–4</td><td>0.6–1.2</td><td>2–4%</td></tr>
+                    <tr><td>Gas fireplace</td><td>5–15</td><td>1.5–4.4</td><td>5–10%</td></tr>
+                    <tr><td><strong>Total avg US home</strong></td><td><strong>60–100</strong></td><td><strong>17.6–29.3</strong></td><td><strong>100%</strong></td></tr>
+                </tbody>
+            </table>
+
+            <h3>What Is a Million BTU (MMBtu)?</h3>
+            <p><strong>MMBtu</strong> stands for one million British Thermal Units. The "MM" comes from the Roman numeral for 1,000 × 1,000. It's the standard unit for pricing natural gas in the US — Henry Hub prices, EIA reports, and commercial energy contracts all use $/MMBtu. One MMBtu equals 10 therms or approximately 1,000 cubic feet (MCF) of natural gas.</p>
+
+            <h3>What Is a Megawatt Hour (MWh)?</h3>
+            <p><strong>MWh</strong> (megawatt hour) equals 1,000 kilowatt hours. It's the standard unit for wholesale electricity trading in the US. Regional grid operators (ERCOT, PJM, CAISO, MISO, etc.) price electricity in $/MWh. One MWh can power about 30 average US homes for one hour, or one home for about 30 hours.</p>
+        `,
+        faq: [
+            { question: "How do you convert MMBtu to MWh?", answer: "Multiply by 0.29307107: MWh = MMBtu × 0.29307107. This means 1 MMBtu equals approximately 293 kWh or 0.293 MWh. For quick estimates, multiply by 0.293." },
+            { question: "What does MMBtu stand for?", answer: "MMBtu stands for 'one million BTU' (British Thermal Units). The 'MM' comes from the Roman numeral M (1,000) doubled: M × M = 1,000,000. It's the standard energy unit for US natural gas wholesale pricing (Henry Hub) and EIA energy reports." },
+            { question: "How is natural gas billed in the US?", answer: "Residential: per therm (100,000 BTU) or per CCF (100 cubic feet ≈ 1 therm). Wholesale/commercial: per MMBtu (1,000,000 BTU). Typical residential prices are $0.50–$1.50 per therm. Henry Hub wholesale prices range from $2–$6 per MMBtu depending on market conditions." },
+            { question: "How many kWh are in 1 MMBtu?", answer: "1 MMBtu = 293.07 kWh. This conversion is useful for comparing natural gas costs to electricity costs. If gas costs $5/MMBtu and electricity costs $0.12/kWh, then gas energy costs about $0.017/kWh — roughly 7× cheaper than electricity per unit of energy." },
+            { question: "How much natural gas does an average US home use?", answer: "According to the EIA, the average US home uses about 60–100 MMBtu of natural gas per year (17.6–29.3 MWh), varying significantly by climate. Cold-climate states like Minnesota or Wisconsin may use 80–120 MMBtu, while mild-climate states like Florida or California may use 20–40 MMBtu." },
+            { question: "Why convert between MMBtu and MWh?", answer: "Energy professionals need to compare natural gas (priced in $/MMBtu) with electricity (priced in $/MWh) to determine the most cost-effective fuel for power generation, heating, or industrial processes. This conversion is essential for utility planning, energy trading, and HVAC system design." },
+        ],
+    },
 };
 
 export default async function ConvertHubPage({ params }: PageProps) {

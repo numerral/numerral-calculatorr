@@ -3283,6 +3283,40 @@
     "keywords": "mph to km/h, miles per hour to kilometers per hour, speed converter, convert mph to kmh, mph to kph, speed conversion"
   },
   {
+    "id": "mmbtu-to-mwh-converter",
+    "category": "convert",
+    "title": "Million BTU to Megawatt Hours Converter (MMBtu to MWh)",
+    "slug": "mmbtu-to-mwh-converter",
+    "categorySlug": "convert",
+    "icon": "⚡",
+    "calcType": "mmbtu-to-mwh",
+    "description": "Convert million BTU to megawatt hours (MMBtu to MWh). See results in MWh, kWh, gigajoules, and therms. Includes a quick reference table for US natural gas and energy.",
+    "stars": 5,
+    "defaults": {
+      "amount": 10,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 1000,
+        "step": 1
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "MMBtu to MWh, million BTU to megawatt hours, energy conversion, natural gas BTU, convert MMBtu, BTU to MWh"
+  },
+  {
     "id": "retirement-corpus",
     "category": "invest",
     "title": "Retirement Corpus Calculator",
