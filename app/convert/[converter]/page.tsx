@@ -3496,6 +3496,93 @@ const HUB_CONTENT: Record<string, {
             { question: "How do international food labels differ from US labels?", answer: "International labels typically show energy in both kJ (kilojoules) and kcal. US labels show only 'Calories' (which means kcal). To convert: 1 kcal = 4.184 kJ. A food with 200 kcal has about 837 kJ. Australia and New Zealand primarily use kJ on labels." },
         ],
     },
+    "l100km-to-mpg-converter": {
+        subtitle: "Convert liters per 100km to miles per gallon (L/100km to MPG). See results in US MPG, UK MPG, and km/L. Essential for comparing international car reviews and renting abroad.",
+        contentHTML: `
+            <h3>How to Convert L/100km to MPG</h3>
+            <p>This is a <strong>division</strong>, not multiplication (because L/100km and MPG are inversely related):</p>
+            <div class="explanation__highlight">
+                <strong>US MPG = 235.215 ÷ L/100km</strong><br/><br/>
+                Example: 8 L/100km (midsize SUV)<br/>
+                = 235.215 ÷ 8 = <strong>29.4 mpg</strong><br/><br/>
+                Example: 5 L/100km (compact car)<br/>
+                = 235.215 ÷ 5 = <strong>47.0 mpg</strong><br/><br/>
+                Example: 12 L/100km (full-size truck)<br/>
+                = 235.215 ÷ 12 = <strong>19.6 mpg</strong>
+            </div>
+            <p><strong>Why divide?</strong> L/100km measures fuel <em>used</em> (lower = better), while MPG measures distance <em>traveled</em> (higher = better). They're inverse relationships, so you divide rather than multiply.</p>
+
+            <h3>L/100km to MPG — Conversion Chart</h3>
+            <table>
+                <thead><tr><th>L/100km</th><th>US MPG</th><th>UK MPG</th><th>Vehicle Type</th></tr></thead>
+                <tbody>
+                    <tr><td>3 L/100km</td><td>78.4 mpg</td><td>94.2 mpg</td><td>Hybrid / plug-in hybrid</td></tr>
+                    <tr><td>4 L/100km</td><td>58.8 mpg</td><td>70.6 mpg</td><td>Hybrid sedan</td></tr>
+                    <tr><td>5 L/100km</td><td>47.0 mpg</td><td>56.5 mpg</td><td>Efficient compact car</td></tr>
+                    <tr><td>6 L/100km</td><td>39.2 mpg</td><td>47.1 mpg</td><td>Midsize sedan</td></tr>
+                    <tr><td>7 L/100km</td><td>33.6 mpg</td><td>40.4 mpg</td><td>Standard sedan / compact SUV</td></tr>
+                    <tr><td><strong>8 L/100km</strong></td><td><strong>29.4 mpg</strong></td><td>35.3 mpg</td><td><strong>Crossover / small SUV</strong></td></tr>
+                    <tr><td>10 L/100km</td><td>23.5 mpg</td><td>28.2 mpg</td><td>Midsize SUV / V6</td></tr>
+                    <tr><td>12 L/100km</td><td>19.6 mpg</td><td>23.5 mpg</td><td>Full-size SUV / pickup</td></tr>
+                    <tr><td>15 L/100km</td><td>15.7 mpg</td><td>18.8 mpg</td><td>Heavy-duty truck</td></tr>
+                    <tr><td>20 L/100km</td><td>11.8 mpg</td><td>14.1 mpg</td><td>RV / large work truck</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Popular US Cars — Both Units</h3>
+            <table>
+                <thead><tr><th>Vehicle (2024)</th><th>L/100km</th><th>US MPG (combined)</th><th>Type</th></tr></thead>
+                <tbody>
+                    <tr><td>Toyota Prius</td><td>4.4</td><td>53 mpg</td><td>Hybrid</td></tr>
+                    <tr><td>Honda Civic</td><td>6.7</td><td>35 mpg</td><td>Sedan</td></tr>
+                    <tr><td>Toyota Camry</td><td>7.1</td><td>33 mpg</td><td>Sedan</td></tr>
+                    <tr><td>Toyota RAV4</td><td>7.8</td><td>30 mpg</td><td>Compact SUV</td></tr>
+                    <tr><td>Honda CR-V</td><td>8.1</td><td>29 mpg</td><td>Compact SUV</td></tr>
+                    <tr><td>Ford Explorer</td><td>9.8</td><td>24 mpg</td><td>Midsize SUV</td></tr>
+                    <tr><td>Ford F-150</td><td>11.2</td><td>21 mpg</td><td>Pickup truck</td></tr>
+                    <tr><td>Chevrolet Tahoe</td><td>12.4</td><td>19 mpg</td><td>Full-size SUV</td></tr>
+                </tbody>
+            </table>
+
+            <h3>US MPG vs UK MPG — Why the Numbers Differ</h3>
+            <table>
+                <thead><tr><th>Feature</th><th>US MPG</th><th>UK MPG (Imperial)</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Gallon size</strong></td><td>3.785 liters</td><td>4.546 liters</td></tr>
+                    <tr><td><strong>Result for same car</strong></td><td>Lower number</td><td>~20% higher number</td></tr>
+                    <tr><td>Formula from L/100km</td><td>235.215 ÷ L/100km</td><td>282.481 ÷ L/100km</td></tr>
+                    <tr><td>Example: 8 L/100km</td><td>29.4 mpg</td><td>35.3 mpg</td></tr>
+                </tbody>
+            </table>
+            <p><strong>Always check which gallon!</strong> A car rated at "40 mpg" in the UK is only about 33 mpg in the US. British gallons are 20% larger than American gallons.</p>
+
+            <h3>Renting a Car Abroad — Quick Guide</h3>
+            <table>
+                <thead><tr><th>Their Rating</th><th>Your MPG</th><th>What It Means</th></tr></thead>
+                <tbody>
+                    <tr><td>4 L/100km</td><td>59 mpg</td><td>Excellent — small European diesel/hybrid</td></tr>
+                    <tr><td>6 L/100km</td><td>39 mpg</td><td>Good — European compact</td></tr>
+                    <tr><td>8 L/100km</td><td>29 mpg</td><td>Average — midsize car</td></tr>
+                    <tr><td>10 L/100km</td><td>24 mpg</td><td>Below average — larger car or van</td></tr>
+                    <tr><td>12+ L/100km</td><td><20 mpg</td><td>Gas guzzler — SUV or minibus</td></tr>
+                </tbody>
+            </table>
+
+            <h3>What Is L/100km?</h3>
+            <p><strong>Liters per 100 kilometers</strong> (L/100km) measures fuel consumption — how many liters of fuel a vehicle uses to travel 100 km. Lower = better. It's used in Europe, Canada, Australia, and most of the world. Unlike MPG, it measures <em>consumption</em> not <em>efficiency</em>, so the scale goes in the opposite direction.</p>
+
+            <h3>What Is Miles per Gallon (MPG)?</h3>
+            <p><strong>Miles per gallon</strong> (MPG) measures fuel efficiency — how far a vehicle travels on one gallon of fuel. Higher = better. It's used in the US and UK (but with different gallon sizes). The US EPA rates all new cars sold in America in MPG.</p>
+        `,
+        faq: [
+            { question: "How do you convert L/100km to MPG?", answer: "Divide 235.215 by the L/100km value: US MPG = 235.215 ÷ L/100km. For example, 8 L/100km = 235.215 ÷ 8 = 29.4 mpg. Note: this gives US MPG. For UK (Imperial) MPG, divide 282.481 by L/100km instead." },
+            { question: "Why do you divide instead of multiply?", answer: "Because L/100km and MPG measure opposite things: L/100km measures fuel USED (lower = better), while MPG measures distance TRAVELED (higher = better). They have an inverse relationship — doubling your L/100km halves your MPG, and vice versa." },
+            { question: "What is considered good fuel economy in L/100km?", answer: "For a standard gasoline car: under 6 L/100km (39+ mpg) is excellent, 6–8 L/100km (29–39 mpg) is good, 8–12 L/100km (20–29 mpg) is average, and over 12 L/100km (under 20 mpg) is poor. Hybrids can achieve 3–4 L/100km (59–78 mpg)." },
+            { question: "What's the difference between US and UK MPG?", answer: "The UK uses Imperial gallons (4.546 liters) while the US uses US gallons (3.785 liters). Since Imperial gallons are about 20% larger, UK MPG numbers are always about 20% higher than US MPG for the same car. A car at 30 US MPG = 36 UK MPG." },
+            { question: "How do I compare international car reviews to US ratings?", answer: "European and Australian car reviews use L/100km. Divide 235.215 by their number to get US MPG. Also note that international test cycles (WLTP) often give more optimistic results than the US EPA cycle, so real-world US MPG may be 10–15% lower than the converted WLTP rating." },
+            { question: "What should I expect when renting a car in Europe?", answer: "European rental cars typically range from 5–8 L/100km (29–47 mpg). Fuel is priced per liter (usually €1.50–€2.00/L vs ~$3.50/gallon in the US). A car rated at 6 L/100km costs about €9–€12 per 100km in fuel (roughly the same as 39 mpg at US gas prices)." },
+        ],
+    },
 };
 
 export default async function ConvertHubPage({ params }: PageProps) {
