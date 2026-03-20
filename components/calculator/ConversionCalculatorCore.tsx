@@ -3119,6 +3119,71 @@ function Lper100kmToMpgCalc() {
     );
 }
 
+// ─── MPG to L/100km ───
+function MpgToLper100kmCalc() {
+    const [mpg, setMpg] = useState(30);
+
+    const lper100 = 235.215 / mpg;
+    const ukMpg = mpg * 1.20095;
+    const kmPerL = 100 / lper100;
+
+    const quickRef = [10, 15, 20, 25, 30, 35, 40, 50, 60, 80];
+
+    return (
+        <div className="calc-card">
+            <div className="calc-field">
+                <label className="calc-field__label">⛽ US MILES PER GALLON (MPG)</label>
+                <input type="range" className="calc-field__slider" min={5} max={100} step={1}
+                    value={mpg} onChange={(e) => setMpg(Number(e.target.value))} />
+                <div style={{ display: "flex", gap: "var(--s-2)", alignItems: "center" }}>
+                    <input type="number" className="calc-field__input" value={mpg}
+                        onChange={(e) => setMpg(Number(e.target.value))} style={{ flex: 1 }} />
+                    <span className="t-body-sm text-muted">mpg</span>
+                </div>
+            </div>
+
+            <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
+                <p className="calc-field__label">FUEL CONSUMPTION IN L/100KM</p>
+                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+                    {lper100.toFixed(1)} L/100km
+                </p>
+                <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "var(--s-3)" }}>
+                    <div><p className="calc-field__label">UK MPG</p><p style={{ fontWeight: 700 }}>{ukMpg.toFixed(1)} mpg (imp)</p></div>
+                    <div><p className="calc-field__label">KM PER LITER</p><p style={{ fontWeight: 700 }}>{kmPerL.toFixed(1)} km/L</p></div>
+                    <div><p className="calc-field__label">EFFICIENCY</p><p style={{ fontWeight: 700 }}>{lper100 <= 6 ? "🟢 Great" : lper100 <= 10 ? "🟡 Average" : "🔴 Poor"}</p></div>
+                    <div><p className="calc-field__label">FORMULA</p><p style={{ fontWeight: 700, fontSize: "var(--t-body-sm)" }}>235.215÷{mpg}</p></div>
+                </div>
+            </div>
+
+            {/* Quick Reference Table */}
+            <div style={{ marginTop: "var(--s-4)" }}>
+                <h3 className="t-h3" style={{ marginBottom: "var(--s-3)" }}>MPG to L/100km — Quick Reference</h3>
+                <table className="calc-table">
+                    <thead>
+                        <tr><th>US MPG</th><th>L/100km</th><th>km/L</th><th>Vehicle Type</th></tr>
+                    </thead>
+                    <tbody>
+                        {quickRef.map((m) => {
+                            const l = 235.215 / m;
+                            const k = 100 / l;
+                            const ctx = m <= 10 ? "Heavy-duty truck / RV" : m <= 15 ? "Full-size SUV / pickup" : m <= 20 ? "Midsize SUV / V6" : m <= 25 ? "Crossover / small SUV" : m <= 30 ? "Standard sedan" : m <= 35 ? "Efficient sedan" : m <= 40 ? "Compact car" : m <= 50 ? "Hybrid sedan" : m <= 60 ? "Plug-in hybrid" : "Full hybrid / EV-assist";
+                            return (
+                                <tr key={m} style={m === mpg ? { background: "var(--n-primary-light)" } : {}}>
+                                    <td>{m} mpg</td>
+                                    <td>{l.toFixed(1)} L/100km</td>
+                                    <td>{k.toFixed(1)} km/L</td>
+                                    <td>{ctx}</td>
+                                </tr>
+                            );
+                        })}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    );
+}
+
 // ─── Dispatcher ───
 interface Props { calcType: string; }
 
@@ -3164,6 +3229,7 @@ const CALCULATORS: Record<string, React.FC> = {
     "mwh-to-kwh": MwhToKwhCalc,
     "kcal-to-cal": KcalToCalCalc,
     "l100km-to-mpg": Lper100kmToMpgCalc,
+    "mpg-to-l100km": MpgToLper100kmCalc,
 };
 
 export default function ConversionCalculatorCore({ calcType }: Props) {

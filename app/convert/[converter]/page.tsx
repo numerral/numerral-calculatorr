@@ -3583,6 +3583,94 @@ const HUB_CONTENT: Record<string, {
             { question: "What should I expect when renting a car in Europe?", answer: "European rental cars typically range from 5–8 L/100km (29–47 mpg). Fuel is priced per liter (usually €1.50–€2.00/L vs ~$3.50/gallon in the US). A car rated at 6 L/100km costs about €9–€12 per 100km in fuel (roughly the same as 39 mpg at US gas prices)." },
         ],
     },
+    "mpg-to-l100km-converter": {
+        subtitle: "Convert miles per gallon to liters per 100 kilometers (MPG to L/100km). See results in L/100km, UK MPG, and km/L. Essential for US expats, car exporters, and international comparisons.",
+        contentHTML: `
+            <h3>How to Convert MPG to L/100km</h3>
+            <p>This is a <strong>division</strong>, not multiplication (because MPG and L/100km are inversely related):</p>
+            <div class="explanation__highlight">
+                <strong>L/100km = 235.215 ÷ MPG</strong><br/><br/>
+                Example: 30 mpg (standard sedan)<br/>
+                = 235.215 ÷ 30 = <strong>7.8 L/100km</strong><br/><br/>
+                Example: 50 mpg (hybrid)<br/>
+                = 235.215 ÷ 50 = <strong>4.7 L/100km</strong><br/><br/>
+                Example: 15 mpg (pickup truck)<br/>
+                = 235.215 ÷ 15 = <strong>15.7 L/100km</strong>
+            </div>
+            <p><strong>Key insight:</strong> MPG measures how <em>far</em> you go (higher = better), while L/100km measures how much fuel you <em>use</em> (lower = better). They move in opposite directions.</p>
+
+            <h3>MPG to L/100km — Conversion Chart</h3>
+            <table>
+                <thead><tr><th>US MPG</th><th>L/100km</th><th>UK MPG</th><th>Vehicle Type</th></tr></thead>
+                <tbody>
+                    <tr><td>10 mpg</td><td>23.5 L/100km</td><td>12.0 mpg</td><td>Heavy-duty truck / RV</td></tr>
+                    <tr><td>15 mpg</td><td>15.7 L/100km</td><td>18.0 mpg</td><td>Full-size SUV / pickup</td></tr>
+                    <tr><td>20 mpg</td><td>11.8 L/100km</td><td>24.0 mpg</td><td>Midsize SUV</td></tr>
+                    <tr><td>25 mpg</td><td>9.4 L/100km</td><td>30.0 mpg</td><td>Crossover / small SUV</td></tr>
+                    <tr><td><strong>30 mpg</strong></td><td><strong>7.8 L/100km</strong></td><td>36.0 mpg</td><td><strong>Standard sedan</strong></td></tr>
+                    <tr><td>35 mpg</td><td>6.7 L/100km</td><td>42.0 mpg</td><td>Efficient sedan</td></tr>
+                    <tr><td>40 mpg</td><td>5.9 L/100km</td><td>48.0 mpg</td><td>Compact car</td></tr>
+                    <tr><td>50 mpg</td><td>4.7 L/100km</td><td>60.0 mpg</td><td>Hybrid sedan</td></tr>
+                    <tr><td>60 mpg</td><td>3.9 L/100km</td><td>72.1 mpg</td><td>Plug-in hybrid</td></tr>
+                    <tr><td>80 mpg</td><td>2.9 L/100km</td><td>96.1 mpg</td><td>Full hybrid / EV-assist</td></tr>
+                </tbody>
+            </table>
+
+            <h3>US Best-Selling Vehicles — Both Units</h3>
+            <table>
+                <thead><tr><th>Vehicle (2024)</th><th>US MPG</th><th>L/100km</th><th>Type</th></tr></thead>
+                <tbody>
+                    <tr><td>Ford F-150</td><td>21 mpg</td><td>11.2 L/100km</td><td>#1 US vehicle</td></tr>
+                    <tr><td>Chevrolet Silverado</td><td>20 mpg</td><td>11.8 L/100km</td><td>#2 US vehicle</td></tr>
+                    <tr><td>RAM 1500</td><td>22 mpg</td><td>10.7 L/100km</td><td>#3 US vehicle</td></tr>
+                    <tr><td>Toyota RAV4</td><td>30 mpg</td><td>7.8 L/100km</td><td>Top-selling SUV</td></tr>
+                    <tr><td>Tesla Model Y</td><td>123 MPGe</td><td>~2 L/100km equiv</td><td>Top-selling EV</td></tr>
+                    <tr><td>Honda CR-V</td><td>29 mpg</td><td>8.1 L/100km</td><td>Compact SUV</td></tr>
+                    <tr><td>Toyota Camry</td><td>33 mpg</td><td>7.1 L/100km</td><td>Top-selling car</td></tr>
+                    <tr><td>Toyota Corolla</td><td>35 mpg</td><td>6.7 L/100km</td><td>Compact sedan</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Why the World Uses L/100km Instead of MPG</h3>
+            <table>
+                <thead><tr><th>Feature</th><th>L/100km</th><th>MPG</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Measures</strong></td><td>Fuel consumed</td><td>Distance traveled</td></tr>
+                    <tr><td><strong>Better = </strong></td><td>Lower number</td><td>Higher number</td></tr>
+                    <tr><td><strong>Linear scale?</strong></td><td>Yes — proportional</td><td>No — diminishing returns</td></tr>
+                    <tr><td><strong>Fuel savings</strong></td><td>Easy to calculate</td><td>Misleading at high values</td></tr>
+                    <tr><td><strong>Used by</strong></td><td>Europe, Canada, Australia</td><td>USA, UK</td></tr>
+                </tbody>
+            </table>
+            <p><strong>The MPG illusion:</strong> Going from 15→20 mpg saves more fuel than going from 35→50 mpg (for the same distance). L/100km makes fuel savings obvious: 15.7→11.8 = saves 3.9L vs 6.7→4.7 = saves 2.0L per 100km.</p>
+
+            <h3>US Gas Prices vs International Fuel Prices</h3>
+            <table>
+                <thead><tr><th>Country</th><th>Price</th><th>$/gallon equiv</th><th>Cost per 100 miles at 30mpg</th></tr></thead>
+                <tbody>
+                    <tr><td>USA</td><td>$3.50/gal</td><td>$3.50</td><td>$11.67</td></tr>
+                    <tr><td>Canada</td><td>C$1.60/L</td><td>~$4.50</td><td>$15.00</td></tr>
+                    <tr><td>UK</td><td>£1.40/L</td><td>~$6.70</td><td>$22.33</td></tr>
+                    <tr><td>Germany</td><td>€1.70/L</td><td>~$6.90</td><td>$23.00</td></tr>
+                    <tr><td>Norway</td><td>kr18/L</td><td>~$6.50</td><td>$21.67</td></tr>
+                </tbody>
+            </table>
+
+            <h3>What Is Miles per Gallon (MPG)?</h3>
+            <p><strong>Miles per gallon</strong> (MPG) measures fuel efficiency — how far a vehicle travels on one US gallon (3.785 liters) of fuel. Higher MPG = better fuel economy. The US EPA rates every new car in MPG. US gas is sold by the gallon, so MPG directly tells Americans their cost per mile.</p>
+
+            <h3>What Is L/100km?</h3>
+            <p><strong>Liters per 100 kilometers</strong> (L/100km) measures fuel consumption — how many liters a vehicle needs to travel 100 km. Lower = better. It's the global standard used in Europe, Canada, Australia, Japan, and most of the world. Fuel is sold by the liter internationally, so L/100km directly shows fuel cost per trip.</p>
+        `,
+        faq: [
+            { question: "How do you convert MPG to L/100km?", answer: "Divide 235.215 by the MPG value: L/100km = 235.215 ÷ MPG. For example, 30 mpg = 235.215 ÷ 30 = 7.8 L/100km. The constant 235.215 accounts for converting miles to kilometers and gallons to liters simultaneously." },
+            { question: "What is 25 MPG in L/100km?", answer: "25 MPG = 235.215 ÷ 25 = 9.4 L/100km. This is typical for a crossover SUV or small SUV in the US. In European terms, 9.4 L/100km would be considered average for a larger vehicle." },
+            { question: "Why is the MPG scale misleading?", answer: "MPG uses a non-linear scale. Improving from 15→20 mpg saves 1.67 gallons per 100 miles, while improving from 35→50 mpg only saves 0.86 gallons. L/100km avoids this illusion because it uses a linear scale — every 1 L/100km reduction saves the same amount of fuel regardless of your starting point." },
+            { question: "What is MPGe for electric vehicles?", answer: "MPGe (miles per gallon equivalent) is an EPA rating that converts EV electricity consumption to an equivalent MPG number. It uses the energy content of 1 gallon of gasoline (33.7 kWh). A Tesla Model 3 at 132 MPGe uses about 25 kWh per 100 miles, equivalent to about 1.8 L/100km of gasoline." },
+            { question: "Why do Americans need to know L/100km?", answer: "For several reasons: renting cars abroad (fuel economy listed in L/100km), reading international car reviews, comparing US cars to European/Asian models, understanding Canadian fuel labels, or shipping/selling vehicles internationally. European and Australian buyers expect L/100km specs." },
+            { question: "How much does fuel cost per 100km at different MPG levels?", answer: "At $3.50/gallon US gas: 15 mpg = $23.40/100mi ($14.50/100km), 25 mpg = $14.00/100mi ($8.70/100km), 35 mpg = $10.00/100mi ($6.20/100km), 50 mpg = $7.00/100mi ($4.35/100km). In Europe at €1.70/L: 7.8 L/100km = €13.26/100km." },
+        ],
+    },
 };
 
 export default async function ConvertHubPage({ params }: PageProps) {
