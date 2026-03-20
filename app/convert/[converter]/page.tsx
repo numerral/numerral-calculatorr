@@ -2116,6 +2116,103 @@ const HUB_CONTENT: Record<string, {
             { question: "How do I convert price per square meter to price per square foot?", answer: "Divide the $/m² price by 10.7639. Example: if a European property is listed at €3,000/m², that equals €3,000 ÷ 10.7639 = €278.7/ft². This helps Americans compare international property prices." },
         ],
     },
+    "sqft-to-sqm-converter": {
+        subtitle: "Convert square feet to square meters (sq ft to sq m) instantly. Learn the square foot to square meter formula, see a full conversion table, and understand how US and metric area units compare.",
+        contentHTML: `
+            <h3>How to Convert Square Feet to Square Meters</h3>
+            <p>To convert a measurement in square feet to square meters, multiply the area by <strong>0.092903</strong>:</p>
+            <div class="explanation__highlight">
+                <strong>square meters = square feet × 0.092903</strong><br/><br/>
+                Example: 1,500 sq ft house<br/>
+                = 1,500 × 0.092903 = <strong>139.35 m²</strong><br/><br/>
+                Example: 2,500 sq ft house<br/>
+                = 2,500 × 0.092903 = <strong>232.26 m²</strong>
+            </div>
+            <p>The conversion factor <strong>0.092903</strong> comes from the relationship between feet and meters. Since 1 foot = 0.3048 meters (by definition), 1 square foot = 0.3048 × 0.3048 = <strong>0.09290304 square meters</strong>. This is exact — not an approximation.</p>
+
+            <h3>Square Feet to Square Meters — Conversion Table</h3>
+            <table>
+                <thead><tr><th>Square Feet</th><th>Square Meters</th><th>Approx. Space</th></tr></thead>
+                <tbody>
+                    <tr><td>1 sq ft</td><td>0.0929 m²</td><td>One floor tile</td></tr>
+                    <tr><td>10 sq ft</td><td>0.929 m²</td><td>Small closet</td></tr>
+                    <tr><td>50 sq ft</td><td>4.645 m²</td><td>Walk-in closet</td></tr>
+                    <tr><td>100 sq ft</td><td>9.290 m²</td><td>Small bathroom</td></tr>
+                    <tr><td>200 sq ft</td><td>18.58 m²</td><td>Large bedroom</td></tr>
+                    <tr><td>400 sq ft</td><td>37.16 m²</td><td>Studio apartment</td></tr>
+                    <tr><td>500 sq ft</td><td>46.45 m²</td><td>1-bedroom apartment</td></tr>
+                    <tr><td>750 sq ft</td><td>69.68 m²</td><td>2-bedroom apartment</td></tr>
+                    <tr><td>1,000 sq ft</td><td>92.90 m²</td><td>Small house / large condo</td></tr>
+                    <tr><td>1,500 sq ft</td><td>139.35 m²</td><td>Average US house</td></tr>
+                    <tr><td>2,000 sq ft</td><td>185.81 m²</td><td>Median US single-family home</td></tr>
+                    <tr><td>2,500 sq ft</td><td>232.26 m²</td><td>Above-average house</td></tr>
+                    <tr><td>3,000 sq ft</td><td>278.71 m²</td><td>Large house</td></tr>
+                    <tr><td>5,000 sq ft</td><td>464.52 m²</td><td>Luxury home</td></tr>
+                    <tr><td>10,000 sq ft</td><td>929.03 m²</td><td>Small commercial space</td></tr>
+                    <tr><td>43,560 sq ft</td><td>4,046.86 m²</td><td>Exactly 1 acre</td></tr>
+                </tbody>
+            </table>
+
+            <h3>What Is a Square Foot?</h3>
+            <p>A <strong>square foot</strong> (symbol: <strong>ft²</strong> or <strong>sq ft</strong>) is a unit of area in the US customary and imperial measurement systems. One square foot is the area of a square with sides that are each 1 foot (12 inches) in length.</p>
+            <ul>
+                <li>1 square foot = <strong>144 square inches</strong> (12 × 12)</li>
+                <li>1 square foot = <strong>0.092903 square meters</strong></li>
+                <li>1 square foot = <strong>0.111111 square yards</strong> (1/9 of a square yard)</li>
+                <li>9 square feet = 1 square yard</li>
+                <li>43,560 square feet = 1 acre</li>
+            </ul>
+            <p>Square feet are the standard unit for measuring property area in the United States. Real estate listings (MLS), building permits, property appraisals, flooring materials, and HVAC sizing all use square feet. When Americans say a house is "2,000 square feet," they mean the total finished living area measured in ft².</p>
+
+            <h3>What Is a Square Meter?</h3>
+            <p>A <strong>square meter</strong> (symbol: <strong>m²</strong> or <strong>sq m</strong>) is the SI (International System of Units) derived unit of area. One square meter is the area of a square with sides of 1 meter (100 centimeters) in length.</p>
+            <ul>
+                <li>1 square meter = <strong>10.7639 square feet</strong></li>
+                <li>1 square meter = <strong>10,000 square centimeters</strong></li>
+                <li>1 square meter = <strong>1,000,000 square millimeters</strong></li>
+                <li>10,000 square meters = 1 hectare</li>
+            </ul>
+            <p>Square meters are used by most countries worldwide for measuring property, land, and floor area. International real estate listings, scientific measurements, and construction standards outside the US all use square meters.</p>
+
+            <h3>How Big Is a Square Meter Compared to a Square Foot?</h3>
+            <p>One square meter is approximately <strong>10.76 times larger</strong> than one square foot. To visualize this: a square meter is roughly the size of a large bath towel laid flat on the floor, while a square foot is about the size of a sheet of notebook paper.</p>
+            <p>Alternatively: stand with your arms spread wide. The area between your feet and your fingertips is roughly 1 square meter. A single floor tile (typically 12" × 12") is 1 square foot.</p>
+
+            <h3>When Americans Need Square Meters</h3>
+            <p>Although the US uses square feet domestically, there are several common situations where Americans need to convert to square meters:</p>
+            <ul>
+                <li><strong>International real estate</strong> — Property listings in Europe, Asia, South America, and Australia are in square meters. A "90 m² apartment" in Paris = 969 sq ft — knowing this helps Americans compare with familiar US sizes.</li>
+                <li><strong>Immigration and visa applications</strong> — Some immigration forms and housing requirements specify minimum dwelling sizes in square meters.</li>
+                <li><strong>International shipping</strong> — Freight and warehouse space is quoted in square meters in most countries. A US company exporting goods needs to convert warehouse dimensions.</li>
+                <li><strong>Manufacturing and engineering</strong> — International technical specifications, ISO standards, and EU regulations use SI units. A factory floor plan from Germany will be in square meters.</li>
+                <li><strong>Academic and scientific work</strong> — All scientific publications use SI units. Land area studies, ecological surveys, and research data are reported in square meters or hectares.</li>
+                <li><strong>Military and government</strong> — NATO standardization and international defense contracts use metric measurements.</li>
+            </ul>
+
+            <h3>Related Area Units</h3>
+            <table>
+                <thead><tr><th>Unit</th><th>In Square Feet</th><th>In Square Meters</th></tr></thead>
+                <tbody>
+                    <tr><td>1 square inch</td><td>0.00694 ft²</td><td>0.000645 m²</td></tr>
+                    <tr><td><strong>1 square foot</strong></td><td><strong>1 ft²</strong></td><td><strong>0.092903 m²</strong></td></tr>
+                    <tr><td>1 square yard</td><td>9 ft²</td><td>0.8361 m²</td></tr>
+                    <tr><td><strong>1 square meter</strong></td><td><strong>10.7639 ft²</strong></td><td><strong>1 m²</strong></td></tr>
+                    <tr><td>1 acre</td><td>43,560 ft²</td><td>4,046.86 m²</td></tr>
+                    <tr><td>1 hectare</td><td>107,639 ft²</td><td>10,000 m²</td></tr>
+                    <tr><td>1 square mile</td><td>27,878,400 ft²</td><td>2,589,988 m²</td></tr>
+                </tbody>
+            </table>
+        `,
+        faq: [
+            { question: "How many square meters is 1 square foot?", answer: "1 square foot = 0.092903 square meters. This is an exact value derived from the definition of the international foot (1 ft = 0.3048 m), so 1 ft² = 0.3048 × 0.3048 = 0.09290304 m²." },
+            { question: "What is the formula to convert square feet to square meters?", answer: "Square meters = square feet × 0.092903. For example, 1,500 sq ft × 0.092903 = 139.35 m². To convert the other direction (sq m to sq ft), multiply by 10.7639." },
+            { question: "How many square feet is 100 square meters?", answer: "1,076.39 square feet. 100 × 10.7639 = 1,076.39 ft². This is roughly the size of a small US house or large 2-bedroom apartment." },
+            { question: "What size is a 2,000 square foot house in square meters?", answer: "About 185.81 square meters. 2,000 × 0.092903 = 185.81 m². The median US single-family home is approximately 2,000 sq ft (186 m²)." },
+            { question: "Is 1 square meter bigger than 1 square foot?", answer: "Yes — 1 square meter is about 10.76 times larger than 1 square foot. One square meter equals 10.7639 square feet. Think of it this way: you'd need almost 11 floor tiles (1 ft × 1 ft each) to cover 1 square meter." },
+            { question: "Why does the US use square feet instead of square meters?", answer: "The United States uses the US customary system, which is derived from British imperial units. While most countries adopted the metric system during the 19th and 20th centuries, the US retained feet, inches, and pounds for everyday use. All US real estate, building codes, and construction standards are based on square feet." },
+            { question: "How many square feet in an acre?", answer: "Exactly 43,560 square feet = 1 acre = 4,046.86 square meters. An acre is approximately 90% the size of a standard American football field (including end zones). 640 acres = 1 square mile." },
+        ],
+    },
     "oz-to-ml-converter": {
         subtitle: "Convert weight ounces to milliliters (oz to mL) for any ingredient. Select a substance or enter a custom density. See results in mL, liters, fluid ounces, and cups.",
         contentHTML: `

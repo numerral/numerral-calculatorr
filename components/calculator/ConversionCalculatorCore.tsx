@@ -1940,6 +1940,72 @@ function SqMToSqFtCalc() {
     );
 }
 
+// ─── Square Feet to Square Meters ───
+function SqFtToSqMCalc() {
+    const [sqft, setSqft] = useState(1000);
+
+    const SQM_PER_SQFT = 0.092903;
+    const sqm = sqft * SQM_PER_SQFT;
+    const sqcm = sqm * 10000;
+    const acres = sqft / 43560;
+    const sqyd = sqft / 9;
+
+    const quickRef = [1, 10, 50, 100, 200, 500, 750, 1000, 1500, 2000, 2500, 3000, 5000, 10000];
+
+    return (
+        <div className="calc-card">
+            <div className="calc-field">
+                <label className="calc-field__label">📐 SQUARE FEET (ft²)</label>
+                <input type="range" className="calc-field__slider" min={1} max={100000} step={1}
+                    value={sqft} onChange={(e) => setSqft(Number(e.target.value))} />
+                <div style={{ display: "flex", gap: "var(--s-2)", alignItems: "center" }}>
+                    <input type="number" className="calc-field__input" value={sqft}
+                        onChange={(e) => setSqft(Number(e.target.value))} style={{ flex: 1 }} />
+                    <span className="t-body-sm text-muted">ft²</span>
+                </div>
+            </div>
+
+            <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
+                <p className="calc-field__label">AREA IN SQUARE METERS</p>
+                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+                    {sqm.toLocaleString("en-US", { maximumFractionDigits: 2 })} m²
+                </p>
+                <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "var(--s-3)" }}>
+                    <div><p className="calc-field__label">SQUARE CM</p><p style={{ fontWeight: 700 }}>{sqcm.toLocaleString(undefined, { maximumFractionDigits: 0 })} cm²</p></div>
+                    <div><p className="calc-field__label">ACRES</p><p style={{ fontWeight: 700 }}>{acres.toFixed(4)} ac</p></div>
+                    <div><p className="calc-field__label">SQUARE YARDS</p><p style={{ fontWeight: 700 }}>{sqyd.toFixed(1)} yd²</p></div>
+                    <div><p className="calc-field__label">FORMULA</p><p style={{ fontWeight: 700, fontSize: "var(--t-body-sm)" }}>{sqft.toLocaleString()} × 0.0929</p></div>
+                </div>
+            </div>
+
+            {/* Quick Reference Table */}
+            <div style={{ marginTop: "var(--s-4)" }}>
+                <h3 className="t-h3" style={{ marginBottom: "var(--s-3)" }}>Square Feet to Square Meters — Quick Reference</h3>
+                <table className="calc-table">
+                    <thead>
+                        <tr><th>ft²</th><th>m²</th><th>Acres</th><th>Approx. Space</th></tr>
+                    </thead>
+                    <tbody>
+                        {quickRef.map((f) => {
+                            const m = f * SQM_PER_SQFT;
+                            const spaceLabel = f <= 10 ? "Small closet" : f <= 100 ? "Bathroom" : f <= 250 ? "Bedroom" : f <= 500 ? "Studio apt" : f <= 1000 ? "1-BR apartment" : f <= 1500 ? "Small house" : f <= 2000 ? "Average US house" : f <= 3000 ? "Large house" : f <= 5000 ? "McMansion" : "Commercial";
+                            return (
+                                <tr key={f} style={f === sqft ? { background: "var(--n-primary-light)" } : {}}>
+                                    <td>{f.toLocaleString()} ft²</td>
+                                    <td>{m.toFixed(2)} m²</td>
+                                    <td>{(f / 43560).toFixed(4)} ac</td>
+                                    <td>{spaceLabel}</td>
+                                </tr>
+                            );
+                        })}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    );
+}
+
 // ─── Ounces (weight) to Milliliters ───
 function OzToMlCalc() {
     const [oz, setOz] = useState(5);
@@ -3816,6 +3882,7 @@ const CALCULATORS: Record<string, React.FC> = {
     "sec-to-min": SecToMinCalc,
     "floz-to-ml": FlOzToMlCalc,
     "sqm-to-sqft": SqMToSqFtCalc,
+    "sqft-to-sqm": SqFtToSqMCalc,
     "oz-to-ml": OzToMlCalc,
     "rpm-to-rads": RpmToRadCalc,
     "gram-flour-to-cup": GramFlourToCupCalc,

@@ -2841,6 +2841,40 @@
     "keywords": "square meters to square feet, m2 to sq ft, square meter to square foot converter, how many square feet in a square meter, area conversion, real estate"
   },
   {
+    "id": "sqft-to-sqm-converter",
+    "category": "convert",
+    "title": "Square Feet to Square Meters Converter (sq ft to sq m)",
+    "slug": "sqft-to-sqm-converter",
+    "categorySlug": "convert",
+    "icon": "📐",
+    "calcType": "sqft-to-sqm",
+    "description": "Convert square feet to square meters (sq ft to sq m) instantly. See results in square meters, square centimeters, and acres. Includes a conversion table and US real estate context.",
+    "stars": 5,
+    "defaults": {
+      "amount": 1000,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 1,
+        "max": 100000,
+        "step": 1
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "square feet to square meters, sq ft to sq m, square foot to square meter converter, how many square meters in a square foot, area conversion, convert sq ft to m2, real estate area conversion"
+  },
+  {
     "id": "oz-to-ml-converter",
     "category": "convert",
     "title": "Ounces to Milliliters Converter (oz to mL)",
