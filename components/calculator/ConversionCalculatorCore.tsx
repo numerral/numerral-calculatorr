@@ -2988,6 +2988,72 @@ function MwhToKwhCalc() {
     );
 }
 
+// ─── Kilocalorie to Calorie ───
+function KcalToCalCalc() {
+    const [kcal, setKcal] = useState(2000);
+
+    const cal = kcal * 1000;
+    const kj = kcal * 4.184;
+    const btu = kcal * 3.96832;
+    const foodCal = kcal; // In US, "Calorie" (capital C) = 1 kcal
+
+    const quickRef = [1, 5, 10, 50, 100, 200, 500, 1000, 2000, 3000];
+
+    return (
+        <div className="calc-card">
+            <div className="calc-field">
+                <label className="calc-field__label">🔥 KILOCALORIES (kcal)</label>
+                <input type="range" className="calc-field__slider" min={0} max={5000} step={1}
+                    value={kcal} onChange={(e) => setKcal(Number(e.target.value))} />
+                <div style={{ display: "flex", gap: "var(--s-2)", alignItems: "center" }}>
+                    <input type="number" className="calc-field__input" value={kcal}
+                        onChange={(e) => setKcal(Number(e.target.value))} style={{ flex: 1 }} />
+                    <span className="t-body-sm text-muted">kcal</span>
+                </div>
+            </div>
+
+            <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
+                <p className="calc-field__label">ENERGY IN CALORIES</p>
+                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+                    {cal.toLocaleString()} cal
+                </p>
+                <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "var(--s-3)" }}>
+                    <div><p className="calc-field__label">FOOD CALORIES</p><p style={{ fontWeight: 700 }}>{foodCal.toLocaleString()} Cal</p></div>
+                    <div><p className="calc-field__label">KILOJOULES</p><p style={{ fontWeight: 700 }}>{kj.toFixed(1)} kJ</p></div>
+                    <div><p className="calc-field__label">BTU</p><p style={{ fontWeight: 700 }}>{btu.toFixed(1)}</p></div>
+                    <div><p className="calc-field__label">FORMULA</p><p style={{ fontWeight: 700, fontSize: "var(--t-body-sm)" }}>{kcal}×1,000</p></div>
+                </div>
+            </div>
+
+            {/* Quick Reference Table */}
+            <div style={{ marginTop: "var(--s-4)" }}>
+                <h3 className="t-h3" style={{ marginBottom: "var(--s-3)" }}>Kilocalories to Calories — Quick Reference</h3>
+                <table className="calc-table">
+                    <thead>
+                        <tr><th>kcal</th><th>cal</th><th>kJ</th><th>US Food Context</th></tr>
+                    </thead>
+                    <tbody>
+                        {quickRef.map((k) => {
+                            const c = k * 1000;
+                            const j = k * 4.184;
+                            const ctx = k === 1 ? "1 stick of gum" : k === 5 ? "Cup of black coffee" : k === 10 ? "1 celery stalk" : k === 50 ? "1 medium apple" : k === 100 ? "1 slice of bread" : k === 200 ? "1 candy bar" : k === 500 ? "Fast food burger" : k === 1000 ? "Large restaurant meal" : k === 2000 ? "Daily recommended (avg)" : "Active adult / athlete";
+                            return (
+                                <tr key={k} style={k === kcal ? { background: "var(--n-primary-light)" } : {}}>
+                                    <td>{k.toLocaleString()} kcal</td>
+                                    <td>{c.toLocaleString()} cal</td>
+                                    <td>{j.toFixed(0)} kJ</td>
+                                    <td>{ctx}</td>
+                                </tr>
+                            );
+                        })}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    );
+}
+
 // ─── Dispatcher ───
 interface Props { calcType: string; }
 
@@ -3031,6 +3097,7 @@ const CALCULATORS: Record<string, React.FC> = {
     "mph-to-kmh": MphToKmhCalc,
     "mmbtu-to-mwh": MmBtuToMwhCalc,
     "mwh-to-kwh": MwhToKwhCalc,
+    "kcal-to-cal": KcalToCalCalc,
 };
 
 export default function ConversionCalculatorCore({ calcType }: Props) {

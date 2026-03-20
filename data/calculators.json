@@ -3351,6 +3351,40 @@
     "keywords": "MWh to kWh, megawatt hours to kilowatt hours, energy conversion, convert MWh, electricity units, power conversion"
   },
   {
+    "id": "kcal-to-cal-converter",
+    "category": "convert",
+    "title": "Kilocalories to Calories Converter (kcal to cal)",
+    "slug": "kcal-to-cal-converter",
+    "categorySlug": "convert",
+    "icon": "🔥",
+    "calcType": "kcal-to-cal",
+    "description": "Convert kilocalories to calories (kcal to cal). See results in calories, kilojoules, and BTU. Clarifies the confusing Calorie vs calorie naming on US food labels.",
+    "stars": 5,
+    "defaults": {
+      "amount": 2000,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 5000,
+        "step": 1
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "kcal to cal, kilocalories to calories, food calorie conversion, nutrition calories, kcal vs cal, calorie converter"
+  },
+  {
     "id": "retirement-corpus",
     "category": "invest",
     "title": "Retirement Corpus Calculator",

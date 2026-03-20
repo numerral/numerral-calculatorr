@@ -3414,6 +3414,88 @@ const HUB_CONTENT: Record<string, {
             { question: "How much electricity does an EV need?", answer: "A typical EV (like a Tesla Model 3) has a ~60 kWh battery (0.06 MWh). Driving 12,000 miles per year requires about 3,000–4,000 kWh (3–4 MWh) of electricity, which adds roughly $420–$560/year to your electric bill at the US average rate." },
         ],
     },
+    "kcal-to-cal-converter": {
+        subtitle: "Convert kilocalories to calories (kcal to cal). Clarifies the confusing Calorie vs calorie naming on US food labels. See results in calories, kilojoules, and BTU.",
+        contentHTML: `
+            <h3>How to Convert Kilocalories to Calories</h3>
+            <p>Multiply by <strong>1,000</strong>:</p>
+            <div class="explanation__highlight">
+                <strong>cal = kcal × 1,000</strong><br/><br/>
+                Example: 200 kcal (candy bar)<br/>
+                = 200 × 1,000 = <strong>200,000 calories</strong><br/><br/>
+                Example: 2,000 kcal (daily recommended intake)<br/>
+                = 2,000 × 1,000 = <strong>2,000,000 calories</strong><br/><br/>
+                Example: 500 kcal (fast food burger)<br/>
+                = 500 × 1,000 = <strong>500,000 calories</strong>
+            </div>
+
+            <h3>⚠️ The Calorie Confusion — What Americans Need to Know</h3>
+            <p>This is one of the most confusing unit conversions in science because of how the US uses the word "Calorie":</p>
+            <table>
+                <thead><tr><th>Term</th><th>Symbol</th><th>Definition</th><th>Where You See It</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>calorie</strong> (small c)</td><td>cal</td><td>Energy to heat 1g water by 1°C</td><td>Chemistry, physics</td></tr>
+                    <tr><td><strong>Calorie</strong> (capital C)</td><td>Cal</td><td>= 1 kilocalorie (kcal) = 1,000 cal</td><td><strong>US food labels, nutrition</strong></td></tr>
+                    <tr><td><strong>kilocalorie</strong></td><td>kcal</td><td>= 1,000 calories = 1 Cal</td><td>International nutrition, science</td></tr>
+                </tbody>
+            </table>
+            <p><strong>Bottom line:</strong> When a US food label says "200 Calories," it means 200 kcal = 200,000 small calories. The "Calorie" on American food labels is always a kilocalorie.</p>
+
+            <h3>Common US Foods — kcal to cal</h3>
+            <table>
+                <thead><tr><th>Food</th><th>kcal (=Cal)</th><th>cal (small)</th><th>kJ</th></tr></thead>
+                <tbody>
+                    <tr><td>1 stick of gum</td><td>5 kcal</td><td>5,000 cal</td><td>21 kJ</td></tr>
+                    <tr><td>1 medium apple</td><td>95 kcal</td><td>95,000 cal</td><td>397 kJ</td></tr>
+                    <tr><td>1 egg</td><td>78 kcal</td><td>78,000 cal</td><td>326 kJ</td></tr>
+                    <tr><td>1 slice of pizza</td><td>285 kcal</td><td>285,000 cal</td><td>1,192 kJ</td></tr>
+                    <tr><td>Chicken breast (6 oz)</td><td>280 kcal</td><td>280,000 cal</td><td>1,171 kJ</td></tr>
+                    <tr><td>Big Mac</td><td>550 kcal</td><td>550,000 cal</td><td>2,301 kJ</td></tr>
+                    <tr><td>Starbucks Grande Latte</td><td>190 kcal</td><td>190,000 cal</td><td>795 kJ</td></tr>
+                    <tr><td>Chipotle burrito</td><td>1,000 kcal</td><td>1,000,000 cal</td><td>4,184 kJ</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Macronutrient Energy Values (The 4-4-9 Rule)</h3>
+            <table>
+                <thead><tr><th>Macronutrient</th><th>kcal per gram</th><th>cal per gram</th><th>kJ per gram</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Protein</strong></td><td>4 kcal/g</td><td>4,000 cal/g</td><td>16.7 kJ/g</td></tr>
+                    <tr><td><strong>Carbohydrates</strong></td><td>4 kcal/g</td><td>4,000 cal/g</td><td>16.7 kJ/g</td></tr>
+                    <tr><td><strong>Fat</strong></td><td>9 kcal/g</td><td>9,000 cal/g</td><td>37.7 kJ/g</td></tr>
+                    <tr><td>Alcohol</td><td>7 kcal/g</td><td>7,000 cal/g</td><td>29.3 kJ/g</td></tr>
+                    <tr><td>Fiber</td><td>~2 kcal/g</td><td>~2,000 cal/g</td><td>~8.4 kJ/g</td></tr>
+                </tbody>
+            </table>
+
+            <h3>US Daily Calorie Recommendations</h3>
+            <table>
+                <thead><tr><th>Group</th><th>Activity</th><th>kcal/day</th><th>cal/day</th></tr></thead>
+                <tbody>
+                    <tr><td>Women 19–30</td><td>Sedentary</td><td>1,800–2,000</td><td>1.8–2.0 million</td></tr>
+                    <tr><td>Women 19–30</td><td>Active</td><td>2,200–2,400</td><td>2.2–2.4 million</td></tr>
+                    <tr><td>Men 19–30</td><td>Sedentary</td><td>2,200–2,400</td><td>2.2–2.4 million</td></tr>
+                    <tr><td>Men 19–30</td><td>Active</td><td>2,800–3,200</td><td>2.8–3.2 million</td></tr>
+                    <tr><td>Children 4–8</td><td>Moderate</td><td>1,400–1,600</td><td>1.4–1.6 million</td></tr>
+                    <tr><td>Teens 14–18</td><td>Active</td><td>2,400–3,200</td><td>2.4–3.2 million</td></tr>
+                </tbody>
+            </table>
+
+            <h3>What Is a Kilocalorie (kcal)?</h3>
+            <p><strong>Kilocalorie</strong> (kcal) = 1,000 calories = the energy needed to raise 1 kilogram (1 liter) of water by 1°C. In the US, this is exactly what food labels call a "Calorie" (capital C). International food labels use "kcal" directly, which is more technically accurate.</p>
+
+            <h3>What Is a Calorie (cal)?</h3>
+            <p><strong>Calorie</strong> (cal, small c) = the energy needed to raise 1 gram of water by 1°C. It's a very small unit — too small for nutrition. That's why food uses kilocalories (1,000 cal). The US FDA chose to label food energy as "Calories" (capital C) instead of "kilocalories" to keep labels simpler, creating the ongoing confusion.</p>
+        `,
+        faq: [
+            { question: "How do you convert kilocalories to calories?", answer: "Multiply by 1,000: cal = kcal × 1,000. For example, 200 kcal = 200,000 calories. However, in everyday US nutrition, 'Calories' on food labels already means kilocalories — so 200 'Calories' on a label = 200 kcal = 200,000 small calories." },
+            { question: "Are kcal and Calories the same thing?", answer: "Yes! In US nutrition, 1 kcal = 1 Calorie (capital C) = 1,000 calories (small c). When a US food label says '200 Calories,' it means 200 kilocalories. The capital C 'Calorie' is a kilocalorie. This naming convention was adopted by the FDA to simplify food labels." },
+            { question: "Why does the US use 'Calories' instead of 'kcal' on food labels?", answer: "The FDA chose 'Calories' (capital C) for simplicity. Internationally, food labels use 'kcal' or 'kJ' (kilojoules). The US convention dates back decades and persists because changing it would confuse consumers accustomed to the current labeling. It's technically a kilocalorie but labeled as a Calorie." },
+            { question: "How many kcal should I eat per day?", answer: "The FDA recommends a 2,000 kcal (2,000 Calorie) daily diet as a general guideline for nutrition labeling. Actual needs vary: sedentary women may need 1,600–1,800 kcal, active men may need 2,800–3,200 kcal. Factors include age, sex, weight, height, and physical activity level." },
+            { question: "What is the 4-4-9 rule in calories?", answer: "It's a quick way to calculate calories from macronutrients: protein provides 4 kcal per gram, carbohydrates provide 4 kcal per gram, and fat provides 9 kcal per gram. Alcohol provides 7 kcal/g. Example: 10g protein + 20g carbs + 5g fat = 40 + 80 + 45 = 165 kcal." },
+            { question: "How do international food labels differ from US labels?", answer: "International labels typically show energy in both kJ (kilojoules) and kcal. US labels show only 'Calories' (which means kcal). To convert: 1 kcal = 4.184 kJ. A food with 200 kcal has about 837 kJ. Australia and New Zealand primarily use kJ on labels." },
+        ],
+    },
 };
 
 export default async function ConvertHubPage({ params }: PageProps) {
