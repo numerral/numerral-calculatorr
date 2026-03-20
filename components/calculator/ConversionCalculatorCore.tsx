@@ -3586,6 +3586,72 @@ function RadToDegCalc() {
     );
 }
 
+// ─── Degree to Milliradian ───
+function DegToMradCalc() {
+    const [deg, setDeg] = useState(1);
+
+    const mrad = deg * 17.4533;
+    const rad = deg * (Math.PI / 180);
+    const natoMil = deg * (6400 / 360);
+    const moa = deg * 60;
+
+    const quickRef = [0.1, 0.25, 0.5, 1, 2, 5, 10, 15, 30, 45, 90, 360];
+
+    return (
+        <div className="calc-card">
+            <div className="calc-field">
+                <label className="calc-field__label">📐 DEGREES (°)</label>
+                <input type="range" className="calc-field__slider" min={0} max={360} step={0.01}
+                    value={deg} onChange={(e) => setDeg(Number(e.target.value))} />
+                <div style={{ display: "flex", gap: "var(--s-2)", alignItems: "center" }}>
+                    <input type="number" className="calc-field__input" value={deg}
+                        onChange={(e) => setDeg(Number(e.target.value))} style={{ flex: 1 }} step={0.01} />
+                    <span className="t-body-sm text-muted">°</span>
+                </div>
+            </div>
+
+            <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
+                <p className="calc-field__label">ANGLE IN MILLIRADIANS</p>
+                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+                    {mrad.toFixed(4)} mrad
+                </p>
+                <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "var(--s-3)" }}>
+                    <div><p className="calc-field__label">NATO MILS</p><p style={{ fontWeight: 700 }}>{natoMil.toFixed(2)}</p></div>
+                    <div><p className="calc-field__label">RADIANS</p><p style={{ fontWeight: 700 }}>{rad.toFixed(6)}</p></div>
+                    <div><p className="calc-field__label">MOA</p><p style={{ fontWeight: 700 }}>{moa.toFixed(1)}</p></div>
+                    <div><p className="calc-field__label">FORMULA</p><p style={{ fontWeight: 700, fontSize: "var(--t-body-sm)" }}>{deg}×17.45</p></div>
+                </div>
+            </div>
+
+            {/* Quick Reference Table */}
+            <div style={{ marginTop: "var(--s-4)" }}>
+                <h3 className="t-h3" style={{ marginBottom: "var(--s-3)" }}>Degrees to Milliradians — Quick Reference</h3>
+                <table className="calc-table">
+                    <thead>
+                        <tr><th>Degrees</th><th>mrad</th><th>NATO mils</th><th>Application</th></tr>
+                    </thead>
+                    <tbody>
+                        {quickRef.map((d) => {
+                            const m = d * 17.4533;
+                            const nm = d * (6400 / 360);
+                            const ctx = d <= 0.1 ? "1-click scope adjustment" : d <= 0.25 ? "Fine scope correction" : d <= 0.5 ? "Scope zeroing increment" : d <= 1 ? "Standard mil-dot spacing" : d <= 2 ? "Small target correction" : d <= 5 ? "Wind hold (moderate)" : d <= 10 ? "Holdover at range" : d <= 15 ? "Target lead (moving)" : d <= 30 ? "Wide field of view" : d <= 45 ? "Quadrant angle" : d <= 90 ? "Right angle (90°)" : "Full rotation";
+                            return (
+                                <tr key={d} style={d === deg ? { background: "var(--n-primary-light)" } : {}}>
+                                    <td>{d}°</td>
+                                    <td>{m.toFixed(2)} mrad</td>
+                                    <td>{nm.toFixed(1)} mil</td>
+                                    <td>{ctx}</td>
+                                </tr>
+                            );
+                        })}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    );
+}
+
 // ─── Dispatcher ───
 interface Props { calcType: string; }
 
@@ -3638,6 +3704,7 @@ const CALCULATORS: Record<string, React.FC> = {
     "ohm-to-kiloohm": OhmToKiloohmCalc,
     "deg-to-rad": DegToRadCalc,
     "rad-to-deg": RadToDegCalc,
+    "deg-to-mrad": DegToMradCalc,
 };
 
 export default function ConversionCalculatorCore({ calcType }: Props) {

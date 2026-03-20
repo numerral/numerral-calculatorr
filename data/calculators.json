@@ -3657,6 +3657,40 @@
     "keywords": "radians to degrees, radian to degree, rad to deg, angle conversion, pi to degrees, trigonometry"
   },
   {
+    "id": "deg-to-mrad-converter",
+    "category": "convert",
+    "title": "Degrees to Milliradians Converter (° to mrad)",
+    "slug": "deg-to-mrad-converter",
+    "categorySlug": "convert",
+    "icon": "🎯",
+    "calcType": "deg-to-mrad",
+    "description": "Convert degrees to milliradians (° to mrad). See results in mrad, NATO mils, MOA. Essential for long-range shooting, mil-dot scopes, and military applications.",
+    "stars": 5,
+    "defaults": {
+      "amount": 1,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 360,
+        "step": 0.01
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "degrees to milliradians, degree to mrad, mil-dot, mrad scope, long range shooting, military angle"
+  },
+  {
     "id": "retirement-corpus",
     "category": "invest",
     "title": "Retirement Corpus Calculator",

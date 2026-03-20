@@ -4161,6 +4161,86 @@ const HUB_CONTENT: Record<string, {
             { question: "When should I use radians vs degrees?", answer: "Use radians for: programming (all trig functions), calculus, physics, and engineering formulas. Use degrees for: UI display, user input, construction, navigation, and everyday communication. Most apps convert internally (radians) → display (degrees)." },
         ],
     },
+    "deg-to-mrad-converter": {
+        subtitle: "Convert degrees to milliradians (° to mrad). See results in mrad, NATO mils, and MOA. Essential for long-range shooting, mil-dot scopes, and US military applications.",
+        contentHTML: `
+            <h3>How to Convert Degrees to Milliradians</h3>
+            <p>Multiply by <strong>17.4533</strong>:</p>
+            <div class="explanation__highlight">
+                <strong>mrad = degrees × 17.4533</strong><br/><br/>
+                Example: 1° (standard mil-dot spacing)<br/>
+                = 1 × 17.4533 = <strong>17.4533 mrad</strong><br/><br/>
+                Example: 0.1° (fine scope adjustment)<br/>
+                = 0.1 × 17.4533 = <strong>1.7453 mrad</strong><br/><br/>
+                Example: 0.057° (1 mrad)<br/>
+                = 0.057 × 17.4533 ≈ <strong>1.0 mrad</strong>
+            </div>
+            <p><strong>Why 17.4533?</strong> 1 degree = π/180 radians = π/180 × 1000 milliradians = 1000π/180 ≈ 17.4533 mrad. A milliradian is 1/1000th of a radian.</p>
+
+            <h3>mrad vs MOA — Which Should You Use?</h3>
+            <table>
+                <thead><tr><th>Feature</th><th>mrad (Mil)</th><th>MOA</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Full name</strong></td><td>Milliradian</td><td>Minute of Angle</td></tr>
+                    <tr><td><strong>Per degree</strong></td><td>17.4533 mrad</td><td>60 MOA</td></tr>
+                    <tr><td><strong>@ 100 yards</strong></td><td>1 mrad = 3.6"</td><td>1 MOA = 1.047"</td></tr>
+                    <tr><td><strong>Click value</strong></td><td>0.1 mrad (typical)</td><td>1/4 MOA (typical)</td></tr>
+                    <tr><td><strong>Click @ 100yd</strong></td><td>0.36"</td><td>0.262"</td></tr>
+                    <tr><td><strong>Math system</strong></td><td>Metric (base 10)</td><td>Base 60</td></tr>
+                    <tr><td><strong>Popular with</strong></td><td>Military, PRS, tactical</td><td>Hunting, benchrest</td></tr>
+                    <tr><td><strong>Range estimation</strong></td><td>Easy (metric formula)</td><td>More complex</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Angular Measurement Systems</h3>
+            <table>
+                <thead><tr><th>System</th><th>Full Circle</th><th>1 Degree =</th><th>Used By</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Degrees</strong></td><td>360°</td><td>1°</td><td>Everyday, navigation</td></tr>
+                    <tr><td><strong>Radians</strong></td><td>2π (6.2832)</td><td>0.01745 rad</td><td>Math, physics, code</td></tr>
+                    <tr><td><strong>Milliradians</strong></td><td>6,283.2</td><td>17.4533 mrad</td><td>Military, long-range shooting</td></tr>
+                    <tr><td>NATO mils</td><td>6,400</td><td>17.778 mil</td><td>US Army, NATO artillery</td></tr>
+                    <tr><td>MOA</td><td>21,600</td><td>60 MOA</td><td>Hunting, benchrest shooting</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Mil-Dot Range Estimation</h3>
+            <p>The mil-dot reticle uses milliradians to estimate target distance:</p>
+            <div class="explanation__highlight">
+                <strong>Range (yards) = Target size (inches) × 27.78 ÷ mrad reading</strong><br/><br/>
+                Example: 18" target measures 2.0 mrad in scope<br/>
+                = 18 × 27.78 ÷ 2.0 = <strong>250 yards</strong><br/><br/>
+                Example: 40" target (deer chest) measures 1.5 mrad<br/>
+                = 40 × 27.78 ÷ 1.5 = <strong>741 yards</strong>
+            </div>
+
+            <h3>Popular US mrad Scopes</h3>
+            <table>
+                <thead><tr><th>Scope</th><th>Click Value</th><th>Reticle</th><th>Price Range</th></tr></thead>
+                <tbody>
+                    <tr><td>Vortex Viper PST Gen II</td><td>0.1 mrad</td><td>EBR-7C (mrad)</td><td>$700–900</td></tr>
+                    <tr><td>Nightforce ATACR 5-25×56</td><td>0.1 mrad</td><td>Mil-XT</td><td>$2,500+</td></tr>
+                    <tr><td>Leupold Mark 5HD</td><td>0.1 mrad</td><td>Impact-60 MOA or Mil</td><td>$2,000+</td></tr>
+                    <tr><td>Primary Arms PLx 6-30×56</td><td>0.1 mrad</td><td>Athena BPR (mrad)</td><td>$1,600</td></tr>
+                    <tr><td>Athlon Ares ETR 4.5-30×56</td><td>0.1 mrad</td><td>APRS6 (mrad)</td><td>$800–1,000</td></tr>
+                </tbody>
+            </table>
+
+            <h3>What Is a Milliradian (mrad)?</h3>
+            <p>A <strong>milliradian</strong> (mrad) is 1/1000th of a radian. At any distance, 1 mrad subtends 1 unit per 1,000 units: 1 mrad = 3.6 inches at 100 yards, or 10 cm at 100 meters. This makes mental math easy for range estimation and holdover calculations. Used by the US military, Precision Rifle Series (PRS), and tactical shooters.</p>
+
+            <h3>What Is a Degree (°)?</h3>
+            <p>A <strong>degree</strong> is 1/360th of a full rotation. While degrees are intuitive for everyday angles, they're too coarse for precision shooting — 1° = 17.45 mrad = about 62.8 inches at 100 yards. That's why shooters use milliradians or MOA for fine adjustments.</p>
+        `,
+        faq: [
+            { question: "How do you convert degrees to milliradians?", answer: "Multiply by 17.4533: mrad = degrees × 17.4533. For example, 1° = 17.4533 mrad. This is because 1 milliradian = 1/1000 of a radian, and 1 degree = π/180 radians, so 1° = (π/180) × 1000 = 17.4533 mrad." },
+            { question: "What is the difference between mrad and MOA?", answer: "mrad (milliradian) and MOA (minute of angle) are both angular units used in shooting. 1 mrad = 3.6 inches at 100 yards; 1 MOA = 1.047 inches at 100 yards. mrad uses base-10 math (easier for metric calculations), MOA uses base-60. Military and PRS shooters prefer mrad; traditional hunters often use MOA." },
+            { question: "What is a mil-dot scope?", answer: "A mil-dot scope has a reticle marked in milliradians (mrad). The dots or hash marks are spaced 1 mrad apart, allowing shooters to estimate range, calculate holdover, and make wind corrections without dialing turrets. The standard mil-dot reticle was developed for US Marine Corps snipers." },
+            { question: "How many milliradians are in a degree?", answer: "1 degree = 17.4533 milliradians (mrad). Conversely, 1 mrad = 0.05730° (about 3.44 minutes of arc). A full circle contains 6,283.2 milliradians (2π × 1000)." },
+            { question: "What are NATO mils vs true milliradians?", answer: "NATO mils divide a circle into 6,400 parts (1 NATO mil = 0.05625°). True milliradians divide a circle into 6,283.2 parts (1 mrad = 0.05730°). The difference is about 1.9%. Most modern US rifle scopes use true milliradians, while US Army artillery fire direction uses NATO mils." },
+            { question: "Why do military snipers use milliradians?", answer: "Milliradians are preferred because 1 mrad = 1 unit per 1,000 units of distance (e.g., 1 meter at 1 km, or 1 yard at 1,000 yards). This makes range estimation simple: measure target size in mrad through the scope, then divide known size by mrad reading × 1,000. No complex math needed in the field." },
+        ],
+    },
 };
 
 export default async function ConvertHubPage({ params }: PageProps) {
