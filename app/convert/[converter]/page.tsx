@@ -3331,6 +3331,89 @@ const HUB_CONTENT: Record<string, {
             { question: "Why convert between MMBtu and MWh?", answer: "Energy professionals need to compare natural gas (priced in $/MMBtu) with electricity (priced in $/MWh) to determine the most cost-effective fuel for power generation, heating, or industrial processes. This conversion is essential for utility planning, energy trading, and HVAC system design." },
         ],
     },
+    "mwh-to-kwh-converter": {
+        subtitle: "Convert megawatt hours to kilowatt hours (MWh to kWh). See results in kWh, Wh, MMBtu, and gigajoules. Essential for US electricity bills, solar panels, and EV charging.",
+        contentHTML: `
+            <h3>How to Convert MWh to kWh</h3>
+            <p>Multiply by <strong>1,000</strong> — the simplest energy conversion:</p>
+            <div class="explanation__highlight">
+                <strong>kWh = MWh × 1,000</strong><br/><br/>
+                Example: 1 MWh<br/>
+                = 1 × 1,000 = <strong>1,000 kWh</strong><br/><br/>
+                Example: 10.7 MWh (avg US home annual electricity)<br/>
+                = 10.7 × 1,000 = <strong>10,700 kWh</strong><br/><br/>
+                Example: 0.05 MWh (Tesla Model 3 full charge)<br/>
+                = 0.05 × 1,000 = <strong>50 kWh</strong>
+            </div>
+            <p><strong>Remember:</strong> "Mega" means million, "Kilo" means thousand. So 1 MWh = 1,000 kWh, just like 1 megabyte = 1,000 kilobytes.</p>
+
+            <h3>Electricity Unit Hierarchy</h3>
+            <table>
+                <thead><tr><th>Unit</th><th>Symbol</th><th>= How Many Wh</th><th>Typical Use</th></tr></thead>
+                <tbody>
+                    <tr><td>Watt hour</td><td>Wh</td><td>1</td><td>Phone battery, LED bulb</td></tr>
+                    <tr><td><strong>Kilowatt hour</strong></td><td><strong>kWh</strong></td><td>1,000</td><td><strong>Home electric bills</strong></td></tr>
+                    <tr><td><strong>Megawatt hour</strong></td><td><strong>MWh</strong></td><td>1,000,000</td><td><strong>Wholesale electricity, solar farms</strong></td></tr>
+                    <tr><td>Gigawatt hour</td><td>GWh</td><td>1,000,000,000</td><td>Power plant output, city usage</td></tr>
+                    <tr><td>Terawatt hour</td><td>TWh</td><td>1,000,000,000,000</td><td>National electricity production</td></tr>
+                </tbody>
+            </table>
+
+            <h3>US Electricity Prices by State (Average $/kWh)</h3>
+            <table>
+                <thead><tr><th>State</th><th>$/kWh</th><th>1 MWh Cost</th><th>Rank</th></tr></thead>
+                <tbody>
+                    <tr><td>Hawaii</td><td>$0.33</td><td>$330</td><td>Most expensive</td></tr>
+                    <tr><td>Connecticut</td><td>$0.25</td><td>$250</td><td>2nd most</td></tr>
+                    <tr><td>California</td><td>$0.23</td><td>$230</td><td>3rd most</td></tr>
+                    <tr><td>New York</td><td>$0.20</td><td>$200</td><td>High cost</td></tr>
+                    <tr><td><strong>US Average</strong></td><td><strong>$0.14</strong></td><td><strong>$140</strong></td><td><strong>National avg</strong></td></tr>
+                    <tr><td>Texas</td><td>$0.12</td><td>$120</td><td>Below average</td></tr>
+                    <tr><td>Idaho</td><td>$0.09</td><td>$90</td><td>Low cost</td></tr>
+                    <tr><td>Louisiana</td><td>$0.09</td><td>$90</td><td>Low cost</td></tr>
+                </tbody>
+            </table>
+
+            <h3>US Appliance Electricity Usage</h3>
+            <table>
+                <thead><tr><th>Appliance</th><th>kWh/year</th><th>MWh/year</th><th>% of Avg Home</th></tr></thead>
+                <tbody>
+                    <tr><td>Central AC</td><td>2,000–3,500</td><td>2.0–3.5</td><td>20–30%</td></tr>
+                    <tr><td>Electric water heater</td><td>2,000–3,000</td><td>2.0–3.0</td><td>15–25%</td></tr>
+                    <tr><td>Refrigerator</td><td>400–600</td><td>0.4–0.6</td><td>4–6%</td></tr>
+                    <tr><td>Electric dryer</td><td>600–900</td><td>0.6–0.9</td><td>5–8%</td></tr>
+                    <tr><td>Lighting (whole home)</td><td>500–1,000</td><td>0.5–1.0</td><td>5–10%</td></tr>
+                    <tr><td>EV charging (12k mi/yr)</td><td>3,000–4,000</td><td>3.0–4.0</td><td>25–35% (added load)</td></tr>
+                    <tr><td><strong>Total avg US home</strong></td><td><strong>10,700</strong></td><td><strong>10.7</strong></td><td><strong>100%</strong></td></tr>
+                </tbody>
+            </table>
+
+            <h3>Solar Panel Output Context</h3>
+            <table>
+                <thead><tr><th>System Size</th><th>Annual Output</th><th>MWh/year</th><th>Homes Powered</th></tr></thead>
+                <tbody>
+                    <tr><td>5 kW (small residential)</td><td>6,000–8,000 kWh</td><td>6–8 MWh</td><td>~0.7 homes</td></tr>
+                    <tr><td>10 kW (large residential)</td><td>12,000–16,000 kWh</td><td>12–16 MWh</td><td>~1.3 homes</td></tr>
+                    <tr><td>1 MW (commercial)</td><td>1,200–1,600 MWh</td><td>1,200–1,600 MWh</td><td>~130 homes</td></tr>
+                    <tr><td>100 MW (utility scale)</td><td>120,000–200,000 MWh</td><td>120–200 GWh</td><td>~15,000 homes</td></tr>
+                </tbody>
+            </table>
+
+            <h3>What Is a Megawatt Hour (MWh)?</h3>
+            <p><strong>MWh</strong> (megawatt hour) = 1,000 kWh. It's the standard unit for wholesale electricity trading in the US. Power plants measure output in MWh, and regional grid operators (ERCOT, PJM, CAISO) price electricity in $/MWh. Solar and wind farms report generation in MWh.</p>
+
+            <h3>What Is a Kilowatt Hour (kWh)?</h3>
+            <p><strong>kWh</strong> (kilowatt hour) is the energy unit on every US electric bill. Running a 1,000-watt appliance for 1 hour uses 1 kWh. The average US home uses about 30 kWh per day or ~900 kWh per month, though this varies widely by state and climate.</p>
+        `,
+        faq: [
+            { question: "How do you convert MWh to kWh?", answer: "Multiply by 1,000: kWh = MWh × 1,000. This is because 'mega' means million and 'kilo' means thousand — 1 megawatt hour = 1,000 kilowatt hours. Example: 5 MWh = 5,000 kWh." },
+            { question: "How much electricity does an average US home use?", answer: "About 10,700 kWh (10.7 MWh) per year, or roughly 900 kWh per month. This varies widely: Hawaii averages 6,200 kWh/year, while Louisiana averages 14,800 kWh/year. AC usage in hot climates and electric heating in cold climates are the biggest factors." },
+            { question: "What is the difference between kW and kWh?", answer: "kW (kilowatt) is power — how fast energy is used. kWh (kilowatt hour) is energy — how much total energy is consumed. A 2 kW heater running for 3 hours uses 6 kWh. Think of kW as speed and kWh as distance." },
+            { question: "How much does 1 MWh of electricity cost?", answer: "At the US average residential rate of about $0.14/kWh, 1 MWh costs $140. Wholesale prices are lower — typically $30–$80/MWh depending on the grid region and time of day. Prices range from $90/MWh (Idaho) to $330/MWh (Hawaii)." },
+            { question: "How many homes can 1 MWh power?", answer: "1 MWh (1,000 kWh) can power about 1 average US home for roughly 1 month (since the average is ~900 kWh/month). Alternatively, it can power about 33 homes for one hour. Large power plants produce hundreds of MWh per hour." },
+            { question: "How much electricity does an EV need?", answer: "A typical EV (like a Tesla Model 3) has a ~60 kWh battery (0.06 MWh). Driving 12,000 miles per year requires about 3,000–4,000 kWh (3–4 MWh) of electricity, which adds roughly $420–$560/year to your electric bill at the US average rate." },
+        ],
+    },
 };
 
 export default async function ConvertHubPage({ params }: PageProps) {

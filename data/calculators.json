@@ -3317,6 +3317,40 @@
     "keywords": "MMBtu to MWh, million BTU to megawatt hours, energy conversion, natural gas BTU, convert MMBtu, BTU to MWh"
   },
   {
+    "id": "mwh-to-kwh-converter",
+    "category": "convert",
+    "title": "Megawatt Hours to Kilowatt Hours Converter (MWh to kWh)",
+    "slug": "mwh-to-kwh-converter",
+    "categorySlug": "convert",
+    "icon": "⚡",
+    "calcType": "mwh-to-kwh",
+    "description": "Convert megawatt hours to kilowatt hours (MWh to kWh). See results in kWh, Wh, MMBtu, and gigajoules. Includes a quick reference table for US electricity usage.",
+    "stars": 5,
+    "defaults": {
+      "amount": 1,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 1000,
+        "step": 1
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "MWh to kWh, megawatt hours to kilowatt hours, energy conversion, convert MWh, electricity units, power conversion"
+  },
+  {
     "id": "retirement-corpus",
     "category": "invest",
     "title": "Retirement Corpus Calculator",
