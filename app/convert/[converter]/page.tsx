@@ -4241,6 +4241,89 @@ const HUB_CONTENT: Record<string, {
             { question: "Why do military snipers use milliradians?", answer: "Milliradians are preferred because 1 mrad = 1 unit per 1,000 units of distance (e.g., 1 meter at 1 km, or 1 yard at 1,000 yards). This makes range estimation simple: measure target size in mrad through the scope, then divide known size by mrad reading × 1,000. No complex math needed in the field." },
         ],
     },
+    "mrad-to-deg-converter": {
+        subtitle: "Convert milliradians to degrees (mrad to °). See results in degrees, MOA, NATO mils, and size at 100 yards. Essential for interpreting scope adjustments, ballistic data, and military applications.",
+        contentHTML: `
+            <h3>How to Convert Milliradians to Degrees</h3>
+            <p>Divide by <strong>17.4533</strong> (or multiply by 0.05730):</p>
+            <div class="explanation__highlight">
+                <strong>degrees = mrad ÷ 17.4533</strong><br/><br/>
+                Example: 1 mrad (standard mil-dot)<br/>
+                = 1 ÷ 17.4533 = <strong>0.05730°</strong><br/><br/>
+                Example: 0.1 mrad (one scope click)<br/>
+                = 0.1 ÷ 17.4533 = <strong>0.00573°</strong><br/><br/>
+                Example: 17.4533 mrad (= 1 degree)<br/>
+                = 17.4533 ÷ 17.4533 = <strong>1.0°</strong>
+            </div>
+            <p><strong>Practical tip:</strong> Most shooters don't convert to degrees — they work directly in mrad. But understanding the relationship helps when cross-referencing degree-based instruments (compasses, inclinometers) with scope adjustments.</p>
+
+            <h3>mrad to Size at Distance</h3>
+            <table>
+                <thead><tr><th>mrad</th><th>@ 100 yd</th><th>@ 200 yd</th><th>@ 500 yd</th><th>@ 1000 yd</th></tr></thead>
+                <tbody>
+                    <tr><td>0.1 mrad</td><td>0.36"</td><td>0.72"</td><td>1.80"</td><td>3.60"</td></tr>
+                    <tr><td>0.2 mrad</td><td>0.72"</td><td>1.44"</td><td>3.60"</td><td>7.20"</td></tr>
+                    <tr><td>0.5 mrad</td><td>1.80"</td><td>3.60"</td><td>9.00"</td><td>18.0"</td></tr>
+                    <tr><td><strong>1.0 mrad</strong></td><td><strong>3.60"</strong></td><td><strong>7.20"</strong></td><td><strong>18.0"</strong></td><td><strong>36.0"</strong></td></tr>
+                    <tr><td>2.0 mrad</td><td>7.20"</td><td>14.4"</td><td>36.0"</td><td>72.0"</td></tr>
+                    <tr><td>5.0 mrad</td><td>18.0"</td><td>36.0"</td><td>90.0"</td><td>180"</td></tr>
+                </tbody>
+            </table>
+            <p><strong>Rule of thumb:</strong> 1 mrad = 3.6 inches per 100 yards. Scales linearly — at 200 yards it's 7.2", at 300 yards it's 10.8", etc.</p>
+
+            <h3>Scope Turret Click Guide</h3>
+            <table>
+                <thead><tr><th>Clicks (0.1 mrad)</th><th>mrad</th><th>Degrees</th><th>@ 100yd</th><th>Typical Use</th></tr></thead>
+                <tbody>
+                    <tr><td>1 click</td><td>0.1</td><td>0.00573°</td><td>0.36"</td><td>Fine zero adjustment</td></tr>
+                    <tr><td>2 clicks</td><td>0.2</td><td>0.01146°</td><td>0.72"</td><td>Small wind correction</td></tr>
+                    <tr><td>5 clicks</td><td>0.5</td><td>0.02865°</td><td>1.80"</td><td>Moderate hold</td></tr>
+                    <tr><td>10 clicks</td><td>1.0</td><td>0.05730°</td><td>3.60"</td><td>1 mil-dot holdover</td></tr>
+                    <tr><td>20 clicks</td><td>2.0</td><td>0.11459°</td><td>7.20"</td><td>200yd elevation</td></tr>
+                    <tr><td>50 clicks</td><td>5.0</td><td>0.28648°</td><td>18.0"</td><td>500yd elevation</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Interpreting Ballistic Software Output</h3>
+            <table>
+                <thead><tr><th>Software</th><th>Outputs In</th><th>To Get Degrees</th></tr></thead>
+                <tbody>
+                    <tr><td>Applied Ballistics</td><td>mrad or MOA</td><td>÷ 17.4533</td></tr>
+                    <tr><td>Strelok Pro</td><td>mrad, MOA, clicks</td><td>÷ 17.4533</td></tr>
+                    <tr><td>Kestrel 5700 Elite</td><td>mrad or MOA</td><td>÷ 17.4533</td></tr>
+                    <tr><td>Hornady 4DOF</td><td>mrad or MOA</td><td>÷ 17.4533</td></tr>
+                    <tr><td>JBM Ballistics</td><td>mrad, MOA, inches</td><td>÷ 17.4533</td></tr>
+                </tbody>
+            </table>
+
+            <h3>.308 Win & 6.5 Creedmoor Holdover (mrad → degrees)</h3>
+            <table>
+                <thead><tr><th>Range</th><th>.308 Win (mrad)</th><th>.308 (degrees)</th><th>6.5 CM (mrad)</th><th>6.5 CM (degrees)</th></tr></thead>
+                <tbody>
+                    <tr><td>200 yd</td><td>0.5 mrad</td><td>0.029°</td><td>0.4 mrad</td><td>0.023°</td></tr>
+                    <tr><td>400 yd</td><td>2.3 mrad</td><td>0.132°</td><td>1.8 mrad</td><td>0.103°</td></tr>
+                    <tr><td>600 yd</td><td>4.8 mrad</td><td>0.275°</td><td>3.7 mrad</td><td>0.212°</td></tr>
+                    <tr><td>800 yd</td><td>8.2 mrad</td><td>0.470°</td><td>6.1 mrad</td><td>0.350°</td></tr>
+                    <tr><td>1000 yd</td><td>12.8 mrad</td><td>0.733°</td><td>9.0 mrad</td><td>0.516°</td></tr>
+                </tbody>
+            </table>
+            <p><strong>Note:</strong> Values are approximate for 100-yard zero. Actual holdover depends on altitude, temperature, and specific load. Always verify with your ballistic solver.</p>
+
+            <h3>What Is a Milliradian (mrad)?</h3>
+            <p>A <strong>milliradian</strong> (mrad) = 1/1000 of a radian = 0.05730°. At 100 yards, 1 mrad subtends 3.6 inches. Used by US military snipers, PRS competitors, and tactical shooters for precision adjustments. Most modern mil-dot scopes use 0.1 mrad clicks.</p>
+
+            <h3>What Is a Degree (°)?</h3>
+            <p>A <strong>degree</strong> = 1/360 of a full rotation. While degrees are universal for everyday angles, they're too coarse for shooting — 1° = 62.8 inches at 100 yards. That's why milliradians and MOA exist: they subdivide the degree into practical shooting increments.</p>
+        `,
+        faq: [
+            { question: "How do you convert milliradians to degrees?", answer: "Divide by 17.4533: degrees = mrad ÷ 17.4533. For example, 1 mrad = 1 ÷ 17.4533 = 0.05730°. This is because 1 degree = 17.4533 mrad, so 1 mrad = 1/17.4533 degrees." },
+            { question: "How many inches is 1 mrad at 100 yards?", answer: "1 mrad = 3.6 inches at 100 yards. This scales linearly: 7.2 inches at 200 yards, 18 inches at 500 yards, 36 inches at 1,000 yards. One scope click (0.1 mrad) = 0.36 inches at 100 yards." },
+            { question: "What is 0.1 mrad in degrees?", answer: "0.1 mrad = 0.00573° = 0.344 MOA. This is the standard click value on most mil-dot scopes. At 100 yards, 0.1 mrad = 0.36 inches — fine enough for precision zeroing." },
+            { question: "How do I convert mrad scope clicks to degrees?", answer: "Most mrad scopes have 0.1 mrad clicks. Multiply clicks × 0.1 to get mrad, then divide by 17.4533 for degrees. Example: 15 clicks = 1.5 mrad = 0.08595°. But in practice, shooters work in mrad directly rather than converting to degrees." },
+            { question: "What is the difference between mrad and NATO mils?", answer: "True milliradians divide a circle into 6,283.2 parts (2π × 1000). NATO mils divide a circle into 6,400 parts. 1 NATO mil = 0.9817 true mrad. Most US rifle scopes use true milliradians; the US Army uses NATO mils for artillery. The difference is about 1.9%." },
+            { question: "Why would I convert mrad to degrees?", answer: "Common reasons: (1) comparing scope data with compass headings, (2) entering angles into surveying equipment that reads degrees, (3) understanding the tiny angles involved in shooting — 1000-yard holdover is often less than 1 degree total, (4) educational purposes to visualize how small milliradian adjustments really are." },
+        ],
+    },
 };
 
 export default async function ConvertHubPage({ params }: PageProps) {
