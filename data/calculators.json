@@ -3453,6 +3453,40 @@
     "keywords": "MPG to L/100km, miles per gallon to liters per 100km, fuel economy converter, fuel consumption, gas mileage, mpg to metric"
   },
   {
+    "id": "kml-to-mpg-converter",
+    "category": "convert",
+    "title": "Kilometers per Liter to Miles per Gallon Converter (km/L to MPG)",
+    "slug": "kml-to-mpg-converter",
+    "categorySlug": "convert",
+    "icon": "⛽",
+    "calcType": "kml-to-mpg",
+    "description": "Convert kilometers per liter to miles per gallon (km/L to MPG). See results in US MPG, UK MPG, and L/100km. Used in Japan, India, and parts of Asia.",
+    "stars": 5,
+    "defaults": {
+      "amount": 12,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 1,
+        "max": 40,
+        "step": 1
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "km/L to MPG, kilometers per liter to miles per gallon, fuel economy, kml to mpg, fuel efficiency converter, km per liter"
+  },
+  {
     "id": "retirement-corpus",
     "category": "invest",
     "title": "Retirement Corpus Calculator",

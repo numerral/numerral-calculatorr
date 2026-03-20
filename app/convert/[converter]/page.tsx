@@ -3671,6 +3671,87 @@ const HUB_CONTENT: Record<string, {
             { question: "How much does fuel cost per 100km at different MPG levels?", answer: "At $3.50/gallon US gas: 15 mpg = $23.40/100mi ($14.50/100km), 25 mpg = $14.00/100mi ($8.70/100km), 35 mpg = $10.00/100mi ($6.20/100km), 50 mpg = $7.00/100mi ($4.35/100km). In Europe at €1.70/L: 7.8 L/100km = €13.26/100km." },
         ],
     },
+    "kml-to-mpg-converter": {
+        subtitle: "Convert kilometers per liter to miles per gallon (km/L to MPG). See results in US MPG, UK MPG, and L/100km. Used in Japan, India, South Korea, and Brazil.",
+        contentHTML: `
+            <h3>How to Convert km/L to MPG</h3>
+            <p>Multiply by <strong>2.35215</strong>:</p>
+            <div class="explanation__highlight">
+                <strong>US MPG = km/L × 2.35215</strong><br/><br/>
+                Example: 12 km/L (standard sedan)<br/>
+                = 12 × 2.35215 = <strong>28.2 mpg</strong><br/><br/>
+                Example: 20 km/L (hybrid)<br/>
+                = 20 × 2.35215 = <strong>47.0 mpg</strong><br/><br/>
+                Example: 8 km/L (SUV)<br/>
+                = 8 × 2.35215 = <strong>18.8 mpg</strong>
+            </div>
+            <p><strong>Good news:</strong> Unlike L/100km (which requires division), km/L converts to MPG with simple multiplication. Both km/L and MPG measure <em>efficiency</em> — higher = better — so the conversion is straightforward.</p>
+
+            <h3>km/L to MPG — Conversion Chart</h3>
+            <table>
+                <thead><tr><th>km/L</th><th>US MPG</th><th>L/100km</th><th>Vehicle Type</th></tr></thead>
+                <tbody>
+                    <tr><td>5 km/L</td><td>11.8 mpg</td><td>20.0 L/100km</td><td>Heavy truck / old vehicle</td></tr>
+                    <tr><td>8 km/L</td><td>18.8 mpg</td><td>12.5 L/100km</td><td>Full-size SUV / pickup</td></tr>
+                    <tr><td>10 km/L</td><td>23.5 mpg</td><td>10.0 L/100km</td><td>Midsize SUV</td></tr>
+                    <tr><td><strong>12 km/L</strong></td><td><strong>28.2 mpg</strong></td><td>8.3 L/100km</td><td><strong>Standard sedan</strong></td></tr>
+                    <tr><td>14 km/L</td><td>32.9 mpg</td><td>7.1 L/100km</td><td>Efficient sedan</td></tr>
+                    <tr><td>16 km/L</td><td>37.6 mpg</td><td>6.3 L/100km</td><td>Compact car</td></tr>
+                    <tr><td>18 km/L</td><td>42.3 mpg</td><td>5.6 L/100km</td><td>Subcompact / kei car</td></tr>
+                    <tr><td>20 km/L</td><td>47.0 mpg</td><td>5.0 L/100km</td><td>Hybrid sedan</td></tr>
+                    <tr><td>25 km/L</td><td>58.8 mpg</td><td>4.0 L/100km</td><td>Plug-in hybrid</td></tr>
+                    <tr><td>30 km/L</td><td>70.6 mpg</td><td>3.3 L/100km</td><td>Full hybrid (best)</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Countries That Use km/L</h3>
+            <table>
+                <thead><tr><th>Country</th><th>Unit</th><th>Fuel Price Unit</th><th>Notes</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Japan</strong></td><td>km/L</td><td>¥/liter</td><td>JC08 / WLTC test cycle</td></tr>
+                    <tr><td><strong>India</strong></td><td>km/L (kmpl)</td><td>₹/liter</td><td>ARAI certified mileage</td></tr>
+                    <tr><td><strong>South Korea</strong></td><td>km/L</td><td>₩/liter</td><td>Korean test cycle</td></tr>
+                    <tr><td><strong>Brazil</strong></td><td>km/L</td><td>R$/liter</td><td>INMETRO certification</td></tr>
+                    <tr><td><strong>Thailand</strong></td><td>km/L</td><td>฿/liter</td><td>Common usage</td></tr>
+                    <tr><td>Europe</td><td>L/100km</td><td>€/liter</td><td>Inverse of km/L</td></tr>
+                    <tr><td>USA</td><td>MPG</td><td>$/gallon</td><td>EPA test cycle</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Popular Japanese Cars — km/L to MPG</h3>
+            <table>
+                <thead><tr><th>Vehicle</th><th>Japan (km/L)</th><th>US MPG (equiv)</th><th>Type</th></tr></thead>
+                <tbody>
+                    <tr><td>Toyota Yaris Hybrid</td><td>35.8 km/L</td><td>84.2 mpg</td><td>Subcompact hybrid</td></tr>
+                    <tr><td>Toyota Aqua (Prius C)</td><td>35.0 km/L</td><td>82.3 mpg</td><td>Compact hybrid</td></tr>
+                    <tr><td>Honda Fit / Jazz</td><td>29.4 km/L</td><td>69.1 mpg</td><td>Subcompact hybrid</td></tr>
+                    <tr><td>Toyota Corolla</td><td>25.0 km/L</td><td>58.8 mpg</td><td>Sedan hybrid</td></tr>
+                    <tr><td>Suzuki Swift</td><td>23.0 km/L</td><td>54.1 mpg</td><td>Subcompact</td></tr>
+                    <tr><td>Toyota RAV4</td><td>15.2 km/L</td><td>35.7 mpg</td><td>Compact SUV</td></tr>
+                    <tr><td>Nissan Note e-Power</td><td>28.4 km/L</td><td>66.8 mpg</td><td>Series hybrid</td></tr>
+                    <tr><td>Suzuki Jimny</td><td>13.2 km/L</td><td>31.0 mpg</td><td>Mini off-road SUV</td></tr>
+                </tbody>
+            </table>
+            <p><strong>Note:</strong> Japanese km/L ratings (JC08/WLTC cycle) tend to be more optimistic than US EPA ratings. Real-world US MPG may be 15–25% lower than the converted Japanese rating.</p>
+
+            <h3>Why km/L Is Easier for Americans</h3>
+            <p>Unlike L/100km (which inverts the scale — lower = better), <strong>km/L works the same way as MPG</strong>: higher = better. Both measure how <em>far</em> you travel per unit of fuel. The only difference is the units: kilometers instead of miles, liters instead of gallons. This makes km/L more intuitive for Americans to understand than L/100km.</p>
+
+            <h3>What Is km/L?</h3>
+            <p><strong>Kilometers per liter</strong> (km/L) measures fuel efficiency — how many kilometers a vehicle can travel on one liter of fuel. Higher = better. It's used primarily in Japan, India, South Korea, Brazil, and Thailand. To convert to L/100km: L/100km = 100 ÷ km/L.</p>
+
+            <h3>What Is Miles per Gallon (MPG)?</h3>
+            <p><strong>Miles per gallon</strong> (MPG) measures how far a vehicle travels on one US gallon (3.785 liters). Higher = better. The US EPA rates every new car in MPG. Both km/L and MPG measure the same concept (distance per fuel unit), making the conversion a simple multiplication.</p>
+        `,
+        faq: [
+            { question: "How do you convert km/L to MPG?", answer: "Multiply by 2.35215: US MPG = km/L × 2.35215. For example, 15 km/L = 15 × 2.35215 = 35.3 mpg. This is a simple multiplication because both km/L and MPG measure the same thing — distance traveled per unit of fuel." },
+            { question: "Why is km/L to MPG simpler than L/100km to MPG?", answer: "Because km/L and MPG both measure EFFICIENCY (distance per fuel, higher = better), so you just multiply. L/100km measures CONSUMPTION (fuel per distance, lower = better), which is the inverse, requiring division. km/L × 2.35215 = MPG is straightforward math." },
+            { question: "Which countries use km/L?", answer: "Primarily Japan, India, South Korea, Brazil, and Thailand. Japan's test cycles (JC08, now WLTC) rate cars in km/L. India uses 'kmpl' (kilometers per liter). The rest of Asia and Latin America also commonly uses km/L. Europe uses L/100km, and the US/UK use MPG." },
+            { question: "Are Japanese km/L ratings accurate for US driving?", answer: "Japanese ratings tend to be 15–25% more optimistic than US EPA ratings due to different test cycles. The Japanese JC08 cycle involves more idling and lower speeds. The newer WLTC cycle is closer to real-world driving but still tends to give higher numbers than the US EPA cycle." },
+            { question: "What is good fuel economy in km/L?", answer: "For gasoline cars: 15+ km/L (35+ mpg) is good, 20+ km/L (47+ mpg) is excellent. Japanese kei cars and hybrids commonly achieve 25–35 km/L (59–82 mpg). For comparison, the average US car gets about 12–13 km/L (28–30 mpg)." },
+            { question: "How do I convert km/L to L/100km?", answer: "Divide 100 by the km/L value: L/100km = 100 ÷ km/L. For example, 15 km/L = 100 ÷ 15 = 6.67 L/100km. This is useful when comparing Japanese car specs (km/L) with European specs (L/100km)." },
+        ],
+    },
 };
 
 export default async function ConvertHubPage({ params }: PageProps) {
