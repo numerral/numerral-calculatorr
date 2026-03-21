@@ -20371,5 +20371,2143 @@
         "volts-to-watts-calculator"
       ]
     }
+  },
+  {
+    "id": "acceleration-calculator",
+    "category": "physics",
+    "title": "Acceleration Calculator",
+    "slug": "acceleration-calculator",
+    "categorySlug": "physics-calculators",
+    "icon": "🚀",
+    "description": "Calculate acceleration from initial velocity, final velocity, and time using a = (v₂ − v₁) / t. Results in m/s², ft/s², and g-force.",
+    "stars": 5,
+    "calcType": "acceleration",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "acceleration calculator, calculate acceleration, a = delta v / t, acceleration formula, m/s squared, rate of change of velocity, physics acceleration",
+    "links": {
+      "related": [
+        "velocity-calculator",
+        "force-calculator",
+        "displacement-calculator",
+        "magnitude-of-acceleration-calculator"
+      ]
+    }
+  },
+  {
+    "id": "angular-acceleration-calculator",
+    "category": "physics",
+    "title": "Angular Acceleration Calculator",
+    "slug": "angular-acceleration-calculator",
+    "categorySlug": "physics-calculators",
+    "icon": "🔄",
+    "description": "Calculate angular acceleration (α) from initial and final angular velocity and time. Convert between rad/s², RPM/s, and deg/s².",
+    "stars": 4,
+    "calcType": "angular-acceleration",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "angular acceleration calculator, alpha calc, rad/s² calculator, rotational acceleration, angular velocity change, angular acceleration formula",
+    "links": {
+      "related": [
+        "angular-velocity-calculator",
+        "acceleration-calculator",
+        "centripetal-force-calculator"
+      ]
+    }
+  },
+  {
+    "id": "angular-velocity-calculator",
+    "category": "physics",
+    "title": "Angular Velocity Calculator",
+    "slug": "angular-velocity-calculator",
+    "categorySlug": "physics-calculators",
+    "icon": "🔄",
+    "description": "Calculate angular velocity (ω) from RPM or angle and time. Convert between rad/s, RPM, and degrees/s.",
+    "stars": 4,
+    "calcType": "angular-velocity",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "angular velocity calculator, omega calculator, RPM to rad/s, angular speed, rotational velocity, convert RPM to radians per second",
+    "links": {
+      "related": [
+        "angular-acceleration-calculator",
+        "centripetal-force-calculator",
+        "centrifugal-force-calculator"
+      ]
+    }
+  },
+  {
+    "id": "average-velocity-calculator",
+    "category": "physics",
+    "title": "Average Velocity Calculator",
+    "slug": "average-velocity-calculator",
+    "categorySlug": "physics-calculators",
+    "icon": "📏",
+    "description": "Calculate average velocity from displacement and time using v = Δx/Δt. Results in m/s, km/h, and mph.",
+    "stars": 4,
+    "calcType": "average-velocity",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "average velocity calculator, displacement over time, v = delta x / delta t, mean velocity, average speed vs velocity, kinematics",
+    "links": {
+      "related": [
+        "velocity-calculator",
+        "speed-calculator",
+        "displacement-calculator",
+        "acceleration-calculator"
+      ]
+    }
+  },
+  {
+    "id": "centrifugal-force-calculator",
+    "category": "physics",
+    "title": "Centrifugal Force Calculator",
+    "slug": "centrifugal-force-calculator",
+    "categorySlug": "physics-calculators",
+    "icon": "🌀",
+    "description": "Calculate centrifugal force for rotating objects using F = mv²/r. Enter mass, velocity, and radius of rotation.",
+    "stars": 4,
+    "calcType": "centrifugal-force",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "centrifugal force calculator, F = mv²/r, outward force, rotating force, centrifugal acceleration, circular motion force",
+    "links": {
+      "related": [
+        "centripetal-force-calculator",
+        "angular-velocity-calculator",
+        "force-calculator"
+      ]
+    }
+  },
+  {
+    "id": "centripetal-force-calculator",
+    "category": "physics",
+    "title": "Centripetal Force Calculator",
+    "slug": "centripetal-force-calculator",
+    "categorySlug": "physics-calculators",
+    "icon": "🌀",
+    "description": "Calculate centripetal force for circular motion using F = mv²/r. Find the inward force and centripetal acceleration.",
+    "stars": 5,
+    "calcType": "centripetal-force",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "centripetal force calculator, centripetal acceleration, F = mv²/r, circular motion, inward force, car turning force, physics circular motion",
+    "links": {
+      "related": [
+        "centrifugal-force-calculator",
+        "angular-velocity-calculator",
+        "force-calculator",
+        "friction-force-calculator"
+      ]
+    }
+  },
+  {
+    "id": "coefficient-of-friction-calculator",
+    "category": "physics",
+    "title": "Coefficient of Friction Calculator",
+    "slug": "coefficient-of-friction-calculator",
+    "categorySlug": "physics-calculators",
+    "icon": "🔥",
+    "description": "Calculate the coefficient of friction (μ) from friction force and normal force. Includes reference table for common surface pairs.",
+    "stars": 4,
+    "calcType": "coefficient-of-friction",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "coefficient of friction calculator, mu calculator, static friction, kinetic friction, friction coefficient table, surface friction",
+    "links": {
+      "related": [
+        "friction-force-calculator",
+        "normal-force-calculator",
+        "force-calculator"
+      ]
+    }
+  },
+  {
+    "id": "displacement-calculator",
+    "category": "physics",
+    "title": "Displacement Calculator",
+    "slug": "displacement-calculator",
+    "categorySlug": "physics-calculators",
+    "icon": "📐",
+    "description": "Calculate displacement using the SUVAT equation s = v₀t + ½at². Enter initial velocity, acceleration, and time.",
+    "stars": 5,
+    "calcType": "displacement",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "displacement calculator, s = v0t + 1/2at², SUVAT equation, kinematics displacement, distance under acceleration, free fall distance",
+    "links": {
+      "related": [
+        "velocity-calculator",
+        "acceleration-calculator",
+        "average-velocity-calculator"
+      ]
+    }
+  },
+  {
+    "id": "elastic-potential-energy-calculator",
+    "category": "physics",
+    "title": "Elastic Potential Energy Calculator",
+    "slug": "elastic-potential-energy-calculator",
+    "categorySlug": "physics-calculators",
+    "icon": "🔧",
+    "description": "Calculate elastic potential energy stored in a spring using PE = ½kx². Enter spring constant and displacement.",
+    "stars": 4,
+    "calcType": "elastic-potential-energy",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "elastic potential energy calculator, PE = 1/2kx², spring energy, Hooke's Law energy, spring potential energy, elastic energy",
+    "links": {
+      "related": [
+        "spring-constant-calculator",
+        "kinetic-energy-calculator",
+        "gravitational-potential-energy-calculator"
+      ]
+    }
+  },
+  {
+    "id": "force-calculator",
+    "category": "physics",
+    "title": "Force Calculator",
+    "slug": "force-calculator",
+    "categorySlug": "physics-calculators",
+    "icon": "💪",
+    "description": "Calculate force using Newton's Second Law: F = ma. Convert between newtons, pounds-force, and kilonewtons. Includes weight reference table.",
+    "stars": 5,
+    "calcType": "force",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "force calculator, F = ma, Newton's second law, calculate force, newtons calculator, weight calculator, force formula physics",
+    "links": {
+      "related": [
+        "mass-calculator",
+        "acceleration-calculator",
+        "friction-force-calculator",
+        "net-force-calculator"
+      ]
+    }
+  },
+  {
+    "id": "frequency-calculator",
+    "category": "physics",
+    "title": "Frequency Calculator",
+    "slug": "frequency-calculator",
+    "categorySlug": "physics-calculators",
+    "icon": "🔊",
+    "description": "Calculate frequency from period (f = 1/T) or wave speed and wavelength (f = v/λ). Convert between Hz, kHz, and MHz.",
+    "stars": 5,
+    "calcType": "frequency",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "frequency calculator, f = 1/T, f = v/lambda, Hz calculator, period to frequency, wave frequency, sound frequency calculator",
+    "links": {
+      "related": [
+        "wavelength-calculator",
+        "speed-calculator"
+      ]
+    }
+  },
+  {
+    "id": "friction-force-calculator",
+    "category": "physics",
+    "title": "Friction Force Calculator",
+    "slug": "friction-force-calculator",
+    "categorySlug": "physics-calculators",
+    "icon": "🔥",
+    "description": "Calculate friction force using F_f = μ × F_n. Enter coefficient of friction and normal force.",
+    "stars": 4,
+    "calcType": "friction-force",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "friction force calculator, F = mu × N, friction formula, friction equation, static friction force, kinetic friction force",
+    "links": {
+      "related": [
+        "coefficient-of-friction-calculator",
+        "normal-force-calculator",
+        "force-calculator",
+        "net-force-calculator"
+      ]
+    }
+  },
+  {
+    "id": "gravitational-force-calculator",
+    "category": "physics",
+    "title": "Gravitational Force Calculator",
+    "slug": "gravitational-force-calculator",
+    "categorySlug": "physics-calculators",
+    "icon": "🌍",
+    "description": "Calculate gravitational force between two masses using Newton's Law of Universal Gravitation: F = Gm₁m₂/r².",
+    "stars": 5,
+    "calcType": "gravitational-force",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "gravitational force calculator, F = Gm1m2/r², universal gravitation, gravity between masses, Newton's law of gravity, gravitational constant",
+    "links": {
+      "related": [
+        "gravitational-potential-energy-calculator",
+        "force-calculator",
+        "mass-calculator"
+      ]
+    }
+  },
+  {
+    "id": "gravitational-potential-energy-calculator",
+    "category": "physics",
+    "title": "Gravitational Potential Energy Calculator",
+    "slug": "gravitational-potential-energy-calculator",
+    "categorySlug": "physics-calculators",
+    "icon": "⬆️",
+    "description": "Calculate gravitational potential energy using PE = mgh. Results in joules, kilojoules, and foot-pounds.",
+    "stars": 5,
+    "calcType": "gravitational-potential-energy",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "gravitational potential energy calculator, PE = mgh, potential energy formula, height energy, gravitational PE, stored energy from height",
+    "links": {
+      "related": [
+        "kinetic-energy-calculator",
+        "elastic-potential-energy-calculator",
+        "gravitational-force-calculator"
+      ]
+    }
+  },
+  {
+    "id": "kinetic-energy-calculator",
+    "category": "physics",
+    "title": "Kinetic Energy Calculator",
+    "slug": "kinetic-energy-calculator",
+    "categorySlug": "physics-calculators",
+    "icon": "⚡",
+    "description": "Calculate kinetic energy using KE = ½mv². See how doubling speed quadruples energy. Includes vehicle comparison table.",
+    "stars": 5,
+    "calcType": "kinetic-energy",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "kinetic energy calculator, KE = 1/2mv², kinetic energy formula, energy of motion, vehicle kinetic energy, stopping distance energy",
+    "links": {
+      "related": [
+        "gravitational-potential-energy-calculator",
+        "elastic-potential-energy-calculator",
+        "momentum-calculator",
+        "velocity-calculator"
+      ]
+    }
+  },
+  {
+    "id": "magnitude-of-acceleration-calculator",
+    "category": "physics",
+    "title": "Magnitude of Acceleration Calculator",
+    "slug": "magnitude-of-acceleration-calculator",
+    "categorySlug": "physics-calculators",
+    "icon": "📐",
+    "description": "Calculate the magnitude of acceleration from x and y components using |a| = √(ax² + ay²). Find resultant acceleration and direction.",
+    "stars": 3,
+    "calcType": "magnitude-of-acceleration",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "magnitude of acceleration calculator, resultant acceleration, acceleration vector, ax ay components, Pythagorean acceleration",
+    "links": {
+      "related": [
+        "acceleration-calculator",
+        "net-force-calculator",
+        "velocity-calculator"
+      ]
+    }
+  },
+  {
+    "id": "mass-calculator",
+    "category": "physics",
+    "title": "Mass Calculator",
+    "slug": "mass-calculator",
+    "categorySlug": "physics-calculators",
+    "icon": "⚖️",
+    "description": "Calculate mass from force and acceleration (m = F/a) or from density and volume (m = ρV). Convert between kg and lbs.",
+    "stars": 4,
+    "calcType": "mass",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "mass calculator, m = F/a, m = density × volume, calculate mass, mass from force, mass from density, kg to lbs",
+    "links": {
+      "related": [
+        "force-calculator",
+        "momentum-calculator",
+        "kinetic-energy-calculator"
+      ]
+    }
+  },
+  {
+    "id": "momentum-calculator",
+    "category": "physics",
+    "title": "Momentum Calculator",
+    "slug": "momentum-calculator",
+    "categorySlug": "physics-calculators",
+    "icon": "🏈",
+    "description": "Calculate linear momentum using p = mv. Results in kg⋅m/s. Includes impulse-momentum theorem and real-world examples.",
+    "stars": 5,
+    "calcType": "momentum",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "momentum calculator, p = mv, linear momentum, impulse momentum, conservation of momentum, collision physics, momentum formula",
+    "links": {
+      "related": [
+        "kinetic-energy-calculator",
+        "force-calculator",
+        "mass-calculator",
+        "velocity-calculator"
+      ]
+    }
+  },
+  {
+    "id": "net-force-calculator",
+    "category": "physics",
+    "title": "Net Force Calculator",
+    "slug": "net-force-calculator",
+    "categorySlug": "physics-calculators",
+    "icon": "🎯",
+    "description": "Calculate the net (resultant) force from multiple forces at different angles. Dynamically add and remove force vectors.",
+    "stars": 4,
+    "calcType": "net-force",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "net force calculator, resultant force, vector addition force, sum of forces, equilibrium force, multiple forces calculator",
+    "links": {
+      "related": [
+        "force-calculator",
+        "friction-force-calculator",
+        "normal-force-calculator",
+        "acceleration-calculator"
+      ]
+    }
+  },
+  {
+    "id": "normal-force-calculator",
+    "category": "physics",
+    "title": "Normal Force Calculator",
+    "slug": "normal-force-calculator",
+    "categorySlug": "physics-calculators",
+    "icon": "⬇️",
+    "description": "Calculate normal force on flat and inclined surfaces using F_n = mg cos(θ). See weight, normal, and parallel force components.",
+    "stars": 4,
+    "calcType": "normal-force",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "normal force calculator, Fn = mg cos theta, incline normal force, weight on slope, perpendicular force, contact force",
+    "links": {
+      "related": [
+        "friction-force-calculator",
+        "coefficient-of-friction-calculator",
+        "force-calculator"
+      ]
+    }
+  },
+  {
+    "id": "specific-heat-calculator",
+    "category": "physics",
+    "title": "Specific Heat Calculator",
+    "slug": "specific-heat-calculator",
+    "categorySlug": "physics-calculators",
+    "icon": "🌡️",
+    "description": "Calculate heat energy using Q = mcΔT. Enter mass, specific heat capacity, and temperature change. Reference table included.",
+    "stars": 5,
+    "calcType": "specific-heat",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "specific heat calculator, Q = mcΔT, heat energy calculator, specific heat capacity, thermal energy, calorimetry, heat transfer",
+    "links": {
+      "related": [
+        "kinetic-energy-calculator",
+        "gravitational-potential-energy-calculator"
+      ]
+    }
+  },
+  {
+    "id": "speed-calculator",
+    "category": "physics",
+    "title": "Speed Calculator",
+    "slug": "speed-calculator",
+    "categorySlug": "physics-calculators",
+    "icon": "🏎️",
+    "description": "Calculate speed from distance and time. Results in m/s, km/h, and mph. Includes speed reference table from walking to light speed.",
+    "stars": 5,
+    "calcType": "speed",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "speed calculator, speed = distance / time, mph calculator, km/h calculator, average speed, how fast, speed formula",
+    "links": {
+      "related": [
+        "velocity-calculator",
+        "average-velocity-calculator",
+        "acceleration-calculator",
+        "displacement-calculator"
+      ]
+    }
+  },
+  {
+    "id": "spring-constant-calculator",
+    "category": "physics",
+    "title": "Spring Constant Calculator",
+    "slug": "spring-constant-calculator",
+    "categorySlug": "physics-calculators",
+    "icon": "🔧",
+    "description": "Calculate the spring constant (k) using Hooke's Law: k = F/x. Enter force and displacement to find stiffness in N/m.",
+    "stars": 4,
+    "calcType": "spring-constant",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "spring constant calculator, k = F/x, Hooke's Law, spring stiffness, spring rate, N/m calculator, restoring force",
+    "links": {
+      "related": [
+        "elastic-potential-energy-calculator",
+        "force-calculator"
+      ]
+    }
+  },
+  {
+    "id": "terminal-velocity-calculator",
+    "category": "physics",
+    "title": "Terminal Velocity Calculator",
+    "slug": "terminal-velocity-calculator",
+    "categorySlug": "physics-calculators",
+    "icon": "🪂",
+    "description": "Calculate terminal velocity using vt = √(2mg/ρACd). Enter mass, drag coefficient, area, and air density. Includes skydiver examples.",
+    "stars": 4,
+    "calcType": "terminal-velocity",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "terminal velocity calculator, vt = sqrt(2mg/rhoACd), skydiver terminal velocity, drag force, free fall maximum speed, air resistance",
+    "links": {
+      "related": [
+        "velocity-calculator",
+        "force-calculator",
+        "acceleration-calculator"
+      ]
+    }
+  },
+  {
+    "id": "velocity-calculator",
+    "category": "physics",
+    "title": "Velocity Calculator",
+    "slug": "velocity-calculator",
+    "categorySlug": "physics-calculators",
+    "icon": "🚀",
+    "description": "Calculate final velocity using the kinematic equation v = v₀ + at. Enter initial velocity, acceleration, and time.",
+    "stars": 5,
+    "calcType": "velocity",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "velocity calculator, v = v0 + at, final velocity, kinematics velocity, velocity from acceleration, SUVAT equations",
+    "links": {
+      "related": [
+        "acceleration-calculator",
+        "displacement-calculator",
+        "average-velocity-calculator",
+        "speed-calculator"
+      ]
+    }
+  },
+  {
+    "id": "wavelength-calculator",
+    "category": "physics",
+    "title": "Wavelength Calculator",
+    "slug": "wavelength-calculator",
+    "categorySlug": "physics-calculators",
+    "icon": "🌊",
+    "description": "Calculate wavelength from wave speed and frequency using λ = v/f. Works for sound, light, and any wave. Musical note reference table.",
+    "stars": 5,
+    "calcType": "wavelength",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "wavelength calculator, lambda = v/f, wavelength formula, sound wavelength, light wavelength, wave equation, wavelength frequency",
+    "links": {
+      "related": [
+        "frequency-calculator",
+        "speed-calculator"
+      ]
+    }
+  },
+  {
+    "id": "atoms-to-moles-calculator",
+    "category": "chemistry",
+    "title": "Atoms to Moles Calculator",
+    "slug": "atoms-to-moles-calculator",
+    "categorySlug": "chemistry-calculators",
+    "icon": "⚛️",
+    "description": "Convert atoms or molecules to moles using Avogadro's number (6.022 × 10²³). Enter the number of particles to find moles.",
+    "stars": 4,
+    "calcType": "atoms-to-moles",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "atoms to moles calculator, Avogadro's number, convert atoms to moles, 6.022e23, particles to moles",
+    "links": {
+      "related": [
+        "grams-to-moles-calculator",
+        "mole-calculator",
+        "molar-mass-calculator"
+      ]
+    }
+  },
+  {
+    "id": "grams-to-moles-calculator",
+    "category": "chemistry",
+    "title": "Grams to Moles Calculator",
+    "slug": "grams-to-moles-calculator",
+    "categorySlug": "chemistry-calculators",
+    "icon": "⚖️",
+    "description": "Convert grams to moles using molar mass. Enter mass and molar mass to calculate moles, atoms, and molecules.",
+    "stars": 5,
+    "calcType": "grams-to-moles",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "grams to moles calculator, mass to moles, n = m/M, mole conversion, chemistry moles",
+    "links": {
+      "related": [
+        "atoms-to-moles-calculator",
+        "molar-mass-calculator",
+        "mole-calculator",
+        "molarity-calculator"
+      ]
+    }
+  },
+  {
+    "id": "half-life-calculator",
+    "category": "chemistry",
+    "title": "Half-Life Calculator",
+    "slug": "half-life-calculator",
+    "categorySlug": "chemistry-calculators",
+    "icon": "☢️",
+    "description": "Calculate radioactive decay using the half-life formula N = N₀ × (½)^(t/t½). Find remaining quantity and percent decayed.",
+    "stars": 5,
+    "calcType": "half-life",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "half-life calculator, radioactive decay, carbon-14 dating, half life formula, exponential decay, nuclear decay",
+    "links": {
+      "related": [
+        "percent-yield-calculator",
+        "mole-calculator"
+      ]
+    }
+  },
+  {
+    "id": "liters-to-moles-calculator",
+    "category": "chemistry",
+    "title": "Liters to Moles Calculator",
+    "slug": "liters-to-moles-calculator",
+    "categorySlug": "chemistry-calculators",
+    "icon": "🧪",
+    "description": "Convert liters of gas to moles at STP (22.414 L/mol) or custom temperature and pressure using the ideal gas law PV = nRT.",
+    "stars": 4,
+    "calcType": "liters-to-moles",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "liters to moles calculator, gas to moles, ideal gas law, PV=nRT, STP molar volume, 22.414 liters per mole",
+    "links": {
+      "related": [
+        "mole-calculator",
+        "grams-to-moles-calculator"
+      ]
+    }
+  },
+  {
+    "id": "mgl-to-ppm-converter",
+    "category": "chemistry",
+    "title": "mg/L to PPM Converter",
+    "slug": "mgl-to-ppm-converter",
+    "categorySlug": "chemistry-calculators",
+    "icon": "💧",
+    "description": "Convert milligrams per liter (mg/L) to parts per million (ppm). For water: 1 mg/L ≈ 1 ppm.",
+    "stars": 4,
+    "calcType": "mgl-to-ppm",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "mg/L to ppm, milligrams per liter to parts per million, water quality conversion, concentration converter",
+    "links": {
+      "related": [
+        "ppm-to-mgl-converter",
+        "ppm-calculator",
+        "ppm-converter"
+      ]
+    }
+  },
+  {
+    "id": "molality-calculator",
+    "category": "chemistry",
+    "title": "Molality Calculator",
+    "slug": "molality-calculator",
+    "categorySlug": "chemistry-calculators",
+    "icon": "🧪",
+    "description": "Calculate molality (mol solute / kg solvent). Temperature-independent concentration unit for colligative properties.",
+    "stars": 4,
+    "calcType": "molality",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "molality calculator, mol/kg, molality formula, colligative properties, molality vs molarity",
+    "links": {
+      "related": [
+        "molarity-calculator",
+        "mole-fraction-calculator",
+        "mole-calculator"
+      ]
+    }
+  },
+  {
+    "id": "molar-mass-calculator",
+    "category": "chemistry",
+    "title": "Molar Mass Calculator",
+    "slug": "molar-mass-calculator",
+    "categorySlug": "chemistry-calculators",
+    "icon": "🔬",
+    "description": "Calculate molar mass (g/mol) from mass and moles. Reference table of common elements and compounds included.",
+    "stars": 5,
+    "calcType": "molar-mass",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "molar mass calculator, molecular weight calculator, g/mol, formula weight, atomic mass, periodic table mass",
+    "links": {
+      "related": [
+        "grams-to-moles-calculator",
+        "mole-calculator",
+        "molarity-calculator"
+      ]
+    }
+  },
+  {
+    "id": "molarity-calculator",
+    "category": "chemistry",
+    "title": "Molarity Calculator",
+    "slug": "molarity-calculator",
+    "categorySlug": "chemistry-calculators",
+    "icon": "🧪",
+    "description": "Calculate molarity (M = mol/L) — the most common concentration unit in chemistry. Includes dilution formula M₁V₁ = M₂V₂.",
+    "stars": 5,
+    "calcType": "molarity",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "molarity calculator, mol/L, concentration calculator, M1V1=M2V2, dilution, moles per liter",
+    "links": {
+      "related": [
+        "molality-calculator",
+        "mole-calculator",
+        "grams-to-moles-calculator",
+        "mole-fraction-calculator"
+      ]
+    }
+  },
+  {
+    "id": "mole-calculator",
+    "category": "chemistry",
+    "title": "Mole Calculator",
+    "slug": "mole-calculator",
+    "categorySlug": "chemistry-calculators",
+    "icon": "⚛️",
+    "description": "Universal mole converter — convert between grams, atoms/molecules, and liters (at STP). The central concept of chemistry.",
+    "stars": 5,
+    "calcType": "mole",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "mole calculator, mole conversion, grams to moles, atoms to moles, liters to moles, Avogadro, chemistry moles",
+    "links": {
+      "related": [
+        "grams-to-moles-calculator",
+        "atoms-to-moles-calculator",
+        "liters-to-moles-calculator",
+        "molar-mass-calculator"
+      ]
+    }
+  },
+  {
+    "id": "mole-fraction-calculator",
+    "category": "chemistry",
+    "title": "Mole Fraction Calculator",
+    "slug": "mole-fraction-calculator",
+    "categorySlug": "chemistry-calculators",
+    "icon": "📊",
+    "description": "Calculate mole fraction (χ) for a mixture. Mole fractions are dimensionless and always sum to 1.",
+    "stars": 4,
+    "calcType": "mole-fraction",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "mole fraction calculator, chi, partial mole fraction, Raoult's law, Dalton's law, mixture composition",
+    "links": {
+      "related": [
+        "molarity-calculator",
+        "molality-calculator",
+        "mole-calculator"
+      ]
+    }
+  },
+  {
+    "id": "percent-to-ppm-converter",
+    "category": "chemistry",
+    "title": "Percent to PPM Converter",
+    "slug": "percent-to-ppm-converter",
+    "categorySlug": "chemistry-calculators",
+    "icon": "📊",
+    "description": "Convert percentage (%) to parts per million (ppm). 1% = 10,000 ppm.",
+    "stars": 3,
+    "calcType": "percent-to-ppm",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "percent to ppm converter, % to ppm, percentage to parts per million, concentration conversion",
+    "links": {
+      "related": [
+        "ppm-to-percent-converter",
+        "ppm-calculator",
+        "ppm-converter"
+      ]
+    }
+  },
+  {
+    "id": "percent-yield-calculator",
+    "category": "chemistry",
+    "title": "Percent Yield Calculator",
+    "slug": "percent-yield-calculator",
+    "categorySlug": "chemistry-calculators",
+    "icon": "🧪",
+    "description": "Calculate percent yield from actual and theoretical yield. Evaluate reaction efficiency in lab experiments.",
+    "stars": 5,
+    "calcType": "percent-yield",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "percent yield calculator, reaction yield, actual vs theoretical yield, chemistry yield, efficiency of reaction",
+    "links": {
+      "related": [
+        "theoretical-yield-calculator",
+        "mole-calculator",
+        "grams-to-moles-calculator"
+      ]
+    }
+  },
+  {
+    "id": "ph-calculator",
+    "category": "chemistry",
+    "title": "pH Calculator",
+    "slug": "ph-calculator",
+    "categorySlug": "chemistry-calculators",
+    "icon": "🧪",
+    "description": "Calculate pH from [H⁺] concentration or vice versa. See pOH, [OH⁻], and a reference table of common substances.",
+    "stars": 5,
+    "calcType": "ph",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "pH calculator, pH scale, hydrogen ion concentration, pOH, acid base, acidity calculator, pH formula",
+    "links": {
+      "related": [
+        "molarity-calculator",
+        "mole-calculator"
+      ]
+    }
+  },
+  {
+    "id": "ppb-to-ppm-converter",
+    "category": "chemistry",
+    "title": "PPB to PPM Converter",
+    "slug": "ppb-to-ppm-converter",
+    "categorySlug": "chemistry-calculators",
+    "icon": "📊",
+    "description": "Convert parts per billion (ppb) to parts per million (ppm). 1,000 ppb = 1 ppm.",
+    "stars": 3,
+    "calcType": "ppb-to-ppm",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "ppb to ppm converter, parts per billion to parts per million, ppb ppm conversion, trace concentration",
+    "links": {
+      "related": [
+        "ppm-to-ppb-converter",
+        "ppm-calculator",
+        "ppm-converter"
+      ]
+    }
+  },
+  {
+    "id": "ppm-calculator",
+    "category": "chemistry",
+    "title": "PPM Calculator",
+    "slug": "ppm-calculator",
+    "categorySlug": "chemistry-calculators",
+    "icon": "📊",
+    "description": "Calculate parts per million (ppm) from a part-to-whole ratio. Used in water quality, air quality, and manufacturing.",
+    "stars": 5,
+    "calcType": "ppm",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "ppm calculator, parts per million, concentration calculator, ppm formula, water quality ppm",
+    "links": {
+      "related": [
+        "ppm-converter",
+        "ppm-to-percent-converter",
+        "mgl-to-ppm-converter",
+        "ppb-to-ppm-converter"
+      ]
+    }
+  },
+  {
+    "id": "ppm-converter",
+    "category": "chemistry",
+    "title": "PPM Converter",
+    "slug": "ppm-converter",
+    "categorySlug": "chemistry-calculators",
+    "icon": "🔄",
+    "description": "Universal PPM converter — convert between ppm, percent (%), ppb, and mg/L in one tool with quick reference table.",
+    "stars": 5,
+    "calcType": "ppm-converter",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "ppm converter, ppm to percent, ppm to ppb, ppm to mg/L, concentration converter, universal ppm tool",
+    "links": {
+      "related": [
+        "ppm-calculator",
+        "ppm-to-percent-converter",
+        "ppm-to-ppb-converter",
+        "ppm-to-mgl-converter"
+      ]
+    }
+  },
+  {
+    "id": "ppm-to-mgl-converter",
+    "category": "chemistry",
+    "title": "PPM to mg/L Converter",
+    "slug": "ppm-to-mgl-converter",
+    "categorySlug": "chemistry-calculators",
+    "icon": "💧",
+    "description": "Convert parts per million (ppm) to milligrams per liter (mg/L). For water: 1 ppm = 1 mg/L.",
+    "stars": 4,
+    "calcType": "ppm-to-mgl",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "ppm to mg/L converter, ppm to milligrams per liter, water quality, concentration conversion",
+    "links": {
+      "related": [
+        "mgl-to-ppm-converter",
+        "ppm-calculator",
+        "ppm-converter"
+      ]
+    }
+  },
+  {
+    "id": "ppm-to-percent-converter",
+    "category": "chemistry",
+    "title": "PPM to Percent Converter",
+    "slug": "ppm-to-percent-converter",
+    "categorySlug": "chemistry-calculators",
+    "icon": "📊",
+    "description": "Convert parts per million (ppm) to percentage. 10,000 ppm = 1%.",
+    "stars": 3,
+    "calcType": "ppm-to-percent",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "ppm to percent converter, ppm to %, parts per million to percentage",
+    "links": {
+      "related": [
+        "percent-to-ppm-converter",
+        "ppm-calculator",
+        "ppm-converter"
+      ]
+    }
+  },
+  {
+    "id": "ppm-to-ppb-converter",
+    "category": "chemistry",
+    "title": "PPM to PPB Converter",
+    "slug": "ppm-to-ppb-converter",
+    "categorySlug": "chemistry-calculators",
+    "icon": "📊",
+    "description": "Convert parts per million (ppm) to parts per billion (ppb). 1 ppm = 1,000 ppb.",
+    "stars": 3,
+    "calcType": "ppm-to-ppb",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "ppm to ppb converter, parts per million to parts per billion, concentration conversion",
+    "links": {
+      "related": [
+        "ppb-to-ppm-converter",
+        "ppm-calculator",
+        "ppm-converter"
+      ]
+    }
+  },
+  {
+    "id": "theoretical-yield-calculator",
+    "category": "chemistry",
+    "title": "Theoretical Yield Calculator",
+    "slug": "theoretical-yield-calculator",
+    "categorySlug": "chemistry-calculators",
+    "icon": "⚗️",
+    "description": "Calculate theoretical yield from reactant mass, molar masses, and stoichiometric ratio. Find the maximum possible product mass.",
+    "stars": 5,
+    "calcType": "theoretical-yield",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "theoretical yield calculator, stoichiometry, maximum product, reaction yield, limiting reagent, balanced equation",
+    "links": {
+      "related": [
+        "percent-yield-calculator",
+        "grams-to-moles-calculator",
+        "molar-mass-calculator"
+      ]
+    }
+  },
+  {
+    "id": "ping-pong-balls-pool-calculator",
+    "category": "density",
+    "title": "Ping Pong Balls to Fill a Pool Calculator",
+    "slug": "ping-pong-balls-pool-calculator",
+    "categorySlug": "density-calculators",
+    "icon": "🏊",
+    "description": "Calculate how many ping pong balls you need to fill a swimming pool. Enter pool dimensions and ball size.",
+    "stars": 4,
+    "calcType": "ping-pong-balls-pool",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "ping pong balls to fill a pool, balls in pool, sphere packing, pool volume, fun math calculator",
+    "links": {
+      "related": [
+        "density-calculator",
+        "water-weight-calculator"
+      ]
+    }
+  },
+  {
+    "id": "density-calculator",
+    "category": "density",
+    "title": "Density Calculator",
+    "slug": "density-calculator",
+    "categorySlug": "density-calculators",
+    "icon": "🔬",
+    "description": "Calculate density, mass, or volume using ρ = m/V. Solve for any variable with a reference table of common material densities.",
+    "stars": 5,
+    "calcType": "density",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "density calculator, density formula, rho = m/V, mass volume density, material density, kg/m³, density table",
+    "links": {
+      "related": [
+        "metal-weight-calculator",
+        "water-weight-calculator",
+        "mass-calculator"
+      ]
+    }
+  },
+  {
+    "id": "metal-weight-calculator",
+    "category": "density",
+    "title": "Metal Weight Calculator",
+    "slug": "metal-weight-calculator",
+    "categorySlug": "density-calculators",
+    "icon": "🔧",
+    "description": "Calculate weight of metal by shape (plate, round bar, tube) and alloy. Supports 12 metals: steel, aluminum, copper, titanium, and more.",
+    "stars": 5,
+    "calcType": "metal-weight",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "metal weight calculator, steel weight calculator, aluminum weight, copper weight, metal density, weight by shape",
+    "links": {
+      "related": [
+        "density-calculator",
+        "water-weight-calculator"
+      ]
+    }
+  },
+  {
+    "id": "snow-water-equivalent-calculator",
+    "category": "density",
+    "title": "Snow Water Equivalent Calculator",
+    "slug": "snow-water-equivalent-calculator",
+    "categorySlug": "density-calculators",
+    "icon": "❄️",
+    "description": "Calculate snow water equivalent (SWE) from snow depth and snow-to-water ratio. Used in hydrology and flood forecasting.",
+    "stars": 4,
+    "calcType": "snow-water-equivalent",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "snow water equivalent calculator, SWE, snow density, snow depth to water, hydrology, snowpack water content",
+    "links": {
+      "related": [
+        "snow-weight-calculator",
+        "water-weight-calculator",
+        "density-calculator"
+      ]
+    }
+  },
+  {
+    "id": "snow-weight-calculator",
+    "category": "density",
+    "title": "Snow Weight Calculator",
+    "slug": "snow-weight-calculator",
+    "categorySlug": "density-calculators",
+    "icon": "❄️",
+    "description": "Calculate total weight of snow on a roof or surface. Enter area, depth, and snow type for load estimate in lbs and tons.",
+    "stars": 5,
+    "calcType": "snow-weight",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "snow weight calculator, snow load on roof, roof snow weight, snow weight per square foot, snow density weight, snow removal",
+    "links": {
+      "related": [
+        "snow-water-equivalent-calculator",
+        "density-calculator",
+        "water-weight-calculator"
+      ]
+    }
+  },
+  {
+    "id": "water-weight-calculator",
+    "category": "density",
+    "title": "Water Weight Calculator",
+    "slug": "water-weight-calculator",
+    "categorySlug": "density-calculators",
+    "icon": "💧",
+    "description": "Calculate water weight by volume in gallons, liters, cubic feet, or cubic meters. Quick reference table for common volumes.",
+    "stars": 5,
+    "calcType": "water-weight",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "water weight calculator, how much does water weigh, weight of gallon of water, water weight per gallon, water weight by volume",
+    "links": {
+      "related": [
+        "density-calculator",
+        "snow-weight-calculator",
+        "metal-weight-calculator"
+      ]
+    }
   }
 ]

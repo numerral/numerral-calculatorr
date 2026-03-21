@@ -110,5 +110,29 @@
         "description": "Amps, watts, volts, kVA & power conversion tools",
         "count": 39,
         "href": "/electrical-calculators"
+    },
+    {
+        "key": "physics",
+        "icon": "⚛️",
+        "name": "Physics Calculators",
+        "description": "Force, energy, velocity, acceleration & mechanics tools",
+        "count": 26,
+        "href": "/physics-calculators"
+    },
+    {
+        "key": "chemistry",
+        "icon": "🧪",
+        "name": "Chemistry Calculators",
+        "description": "Moles, molarity, pH, PPM & stoichiometry tools",
+        "count": 20,
+        "href": "/chemistry-calculators"
+    },
+    {
+        "key": "density",
+        "icon": "⚗️",
+        "name": "Density Calculators",
+        "description": "Density, metal weight, water weight & material tools",
+        "count": 6,
+        "href": "/density-calculators"
     }
 ]
