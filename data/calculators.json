@@ -18733,5 +18733,1643 @@
         "cat-age-calculator"
       ]
     }
+  },
+  {
+    "id": "amps-to-watts-calculator",
+    "category": "electrical",
+    "title": "Amps to Watts Calculator",
+    "slug": "amps-to-watts",
+    "categorySlug": "electrical-calculators",
+    "icon": "⚡",
+    "description": "Convert amps to watts for DC and AC circuits. Enter current (amps) and voltage to calculate power in watts using Watt's Law. Supports single-phase and three-phase AC.",
+    "stars": 5,
+    "calcType": "amps-to-watts",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "amps to watts, amps to watts calculator, convert amps to watts, how many watts in an amp, ampere to watt conversion, electrical conversion calculator, watts law formula",
+    "links": {
+      "related": [
+        "watts-to-amps-calculator",
+        "volts-to-watts-calculator",
+        "amps-to-volts-calculator",
+        "amps-to-kva-calculator"
+      ]
+    }
+  },
+  {
+    "id": "watts-to-amps-calculator",
+    "category": "electrical",
+    "title": "Watts to Amps Calculator",
+    "slug": "watts-to-amps",
+    "categorySlug": "electrical-calculators",
+    "icon": "💡",
+    "description": "Convert watts to amps for DC and AC circuits. Enter power (watts) and voltage to calculate current in amps. Supports single-phase and three-phase AC with power factor.",
+    "stars": 5,
+    "calcType": "watts-to-amps",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "watts to amps, watts to amps calculator, convert watts to amps, how many amps in a watt, 1500 watts to amps, watt to ampere conversion, electrical calculator",
+    "links": {
+      "related": [
+        "amps-to-watts-calculator",
+        "watts-to-volts-calculator",
+        "watts-to-kwh-calculator",
+        "volts-to-amps-calculator"
+      ]
+    }
+  },
+  {
+    "id": "volts-to-watts-calculator",
+    "category": "electrical",
+    "title": "Volts to Watts Calculator",
+    "slug": "volts-to-watts",
+    "categorySlug": "electrical-calculators",
+    "icon": "🔌",
+    "description": "Convert volts to watts using current or resistance. Learn the formulas for DC and AC circuits with power factor. Includes voltage-to-wattage conversion table.",
+    "stars": 5,
+    "calcType": "volts-to-watts",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "volts to watts, volts to watts calculator, convert volts to watts, voltage to wattage, 120 volts to watts, volt watt conversion, electrical power calculator",
+    "links": {
+      "related": [
+        "watts-to-volts-calculator",
+        "amps-to-watts-calculator",
+        "volts-to-amps-calculator",
+        "watts-to-kwh-calculator"
+      ]
+    }
+  },
+  {
+    "id": "watts-to-volts-calculator",
+    "category": "electrical",
+    "title": "Watts to Volts Calculator",
+    "slug": "watts-to-volts",
+    "categorySlug": "electrical-calculators",
+    "icon": "🔋",
+    "description": "Convert watts to volts for DC and AC circuits. Enter power (watts) and current (amps) to find voltage. Supports power factor for AC circuit calculations.",
+    "stars": 4,
+    "calcType": "watts-to-volts",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "watts to volts, watts to volts calculator, convert watts to volts, wattage to voltage, power to voltage conversion, electrical voltage calculator",
+    "links": {
+      "related": [
+        "volts-to-watts-calculator",
+        "watts-to-amps-calculator",
+        "amps-to-volts-calculator",
+        "kwh-to-watts-calculator"
+      ]
+    }
+  },
+  {
+    "id": "amps-to-volts-calculator",
+    "category": "electrical",
+    "title": "Amps to Volts Calculator",
+    "slug": "amps-to-volts",
+    "categorySlug": "electrical-calculators",
+    "icon": "🔧",
+    "description": "Convert amps to volts using Ohm's Law (with resistance) or Watt's Law (with power). Supports DC, single-phase AC, and three-phase AC circuits.",
+    "stars": 4,
+    "calcType": "amps-to-volts",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "amps to volts, amps to volts calculator, convert amps to volts, ampere to volt, ohms law calculator, current to voltage, electrical conversion",
+    "links": {
+      "related": [
+        "volts-to-amps-calculator",
+        "amps-to-watts-calculator",
+        "amps-to-kva-calculator",
+        "volts-to-watts-calculator"
+      ]
+    }
+  },
+  {
+    "id": "volts-to-amps-calculator",
+    "category": "electrical",
+    "title": "Volts to Amps Calculator",
+    "slug": "volts-to-amps",
+    "categorySlug": "electrical-calculators",
+    "icon": "📐",
+    "description": "Convert volts to amps using Ohm's Law (with resistance) or Watt's Law (with power). Calculate current draw for any DC or AC electrical circuit.",
+    "stars": 4,
+    "calcType": "volts-to-amps",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "volts to amps, volts to amps calculator, convert volts to amps, voltage to amperage, 120v to amps, ohms law, current calculator",
+    "links": {
+      "related": [
+        "amps-to-volts-calculator",
+        "volts-to-watts-calculator",
+        "watts-to-amps-calculator",
+        "kva-to-amps-calculator"
+      ]
+    }
+  },
+  {
+    "id": "kva-to-amps-calculator",
+    "category": "electrical",
+    "title": "kVA to Amps Calculator",
+    "slug": "kva-to-amps",
+    "categorySlug": "electrical-calculators",
+    "icon": "🔋",
+    "description": "Convert kilovolt-amps (kVA) to amps for single-phase and three-phase AC circuits. Essential for generator sizing and transformer calculations.",
+    "stars": 5,
+    "calcType": "kva-to-amps",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "kva to amps, kva to amps calculator, convert kva to amps, kilovolt amps to amps, generator sizing, transformer amps, three phase kva to amps",
+    "links": {
+      "related": [
+        "amps-to-kva-calculator",
+        "amps-to-watts-calculator",
+        "volts-to-amps-calculator",
+        "watts-to-amps-calculator"
+      ]
+    }
+  },
+  {
+    "id": "amps-to-kva-calculator",
+    "category": "electrical",
+    "title": "Amps to kVA Calculator",
+    "slug": "amps-to-kva",
+    "categorySlug": "electrical-calculators",
+    "icon": "⚙️",
+    "description": "Convert amps to kilovolt-amps (kVA) for single-phase and three-phase circuits. Calculate apparent power for generator and transformer sizing.",
+    "stars": 4,
+    "calcType": "amps-to-kva",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "amps to kva, amps to kva calculator, convert amps to kva, amperes to kilovolt amps, apparent power calculator, generator kva calculator",
+    "links": {
+      "related": [
+        "kva-to-amps-calculator",
+        "amps-to-watts-calculator",
+        "amps-to-volts-calculator",
+        "watts-to-kwh-calculator"
+      ]
+    }
+  },
+  {
+    "id": "watts-to-kwh-calculator",
+    "category": "electrical",
+    "title": "Watts to kWh Calculator",
+    "slug": "watts-to-kwh",
+    "categorySlug": "electrical-calculators",
+    "icon": "📊",
+    "description": "Convert watts to kilowatt-hours (kWh) to calculate energy consumption and electricity costs. See how much power your appliances use per day, month, or year.",
+    "stars": 5,
+    "calcType": "watts-to-kwh",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "watts to kwh, watts to kwh calculator, convert watts to kilowatt hours, electricity consumption calculator, energy usage calculator, power to energy conversion, electricity cost calculator",
+    "links": {
+      "related": [
+        "kwh-to-watts-calculator",
+        "amps-to-watts-calculator",
+        "volts-to-watts-calculator",
+        "watts-to-amps-calculator"
+      ]
+    }
+  },
+  {
+    "id": "kwh-to-watts-calculator",
+    "category": "electrical",
+    "title": "kWh to Watts Calculator",
+    "slug": "kwh-to-watts",
+    "categorySlug": "electrical-calculators",
+    "icon": "⏱️",
+    "description": "Convert kilowatt-hours (kWh) to watts to find the power consumption of any device. Calculate how many watts your appliances draw from your energy bill.",
+    "stars": 4,
+    "calcType": "kwh-to-watts",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "kwh to watts, kwh to watts calculator, convert kilowatt hours to watts, energy to power conversion, electricity bill calculator, appliance wattage calculator",
+    "links": {
+      "related": [
+        "watts-to-kwh-calculator",
+        "watts-to-amps-calculator",
+        "watts-to-volts-calculator",
+        "amps-to-watts-calculator"
+      ]
+    }
+  },
+  {
+    "id": "kw-to-amps-calculator",
+    "category": "electrical",
+    "title": "kW to Amps Calculator",
+    "slug": "kw-to-amps",
+    "categorySlug": "electrical-calculators",
+    "icon": "⚡",
+    "description": "Convert kilowatts (kW) to amps for DC and AC circuits. Enter power in kW and voltage to calculate current draw. Supports single-phase and three-phase AC with power factor.",
+    "stars": 5,
+    "calcType": "kw-to-amps",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "kw to amps, kilowatts to amps calculator, convert kw to amps, how many amps in a kilowatt, kw to ampere conversion",
+    "links": {
+      "related": [
+        "amps-to-kw-calculator",
+        "kw-to-kva-calculator",
+        "watts-to-amps-calculator",
+        "kw-to-kwh-calculator"
+      ]
+    }
+  },
+  {
+    "id": "kw-to-kva-calculator",
+    "category": "electrical",
+    "title": "kW to kVA Calculator",
+    "slug": "kw-to-kva",
+    "categorySlug": "electrical-calculators",
+    "icon": "🔋",
+    "description": "Convert kilowatts (kW) to kilovolt-amps (kVA) using power factor. Essential for generator and transformer sizing in commercial and industrial applications.",
+    "stars": 5,
+    "calcType": "kw-to-kva",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "kw to kva, kilowatts to kva calculator, convert kw to kva, real power to apparent power, generator sizing, power factor conversion",
+    "links": {
+      "related": [
+        "kva-to-kw-calculator",
+        "kw-to-amps-calculator",
+        "kw-to-va-calculator",
+        "kva-to-amps-calculator"
+      ]
+    }
+  },
+  {
+    "id": "kw-to-kwh-calculator",
+    "category": "electrical",
+    "title": "kW to kWh Calculator",
+    "slug": "kw-to-kwh",
+    "categorySlug": "electrical-calculators",
+    "icon": "📊",
+    "description": "Convert kilowatts (kW) to kilowatt-hours (kWh) to calculate energy consumption over time. Estimate daily, monthly, and yearly electricity costs.",
+    "stars": 5,
+    "calcType": "kw-to-kwh",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "kw to kwh, kilowatts to kilowatt hours, convert kw to kwh, energy consumption calculator, electricity cost estimator",
+    "links": {
+      "related": [
+        "kwh-to-kw-calculator",
+        "watts-to-kwh-calculator",
+        "kw-to-amps-calculator",
+        "kwh-to-watts-calculator"
+      ]
+    }
+  },
+  {
+    "id": "kw-to-va-calculator",
+    "category": "electrical",
+    "title": "kW to VA Calculator",
+    "slug": "kw-to-va",
+    "categorySlug": "electrical-calculators",
+    "icon": "🔌",
+    "description": "Convert kilowatts (kW) to volt-amps (VA) using power factor. Calculate the apparent power in VA needed for your electrical equipment.",
+    "stars": 4,
+    "calcType": "kw-to-va",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "kw to va, kilowatts to volt amps, convert kw to va, real to apparent power, ups sizing calculator",
+    "links": {
+      "related": [
+        "va-to-kw-calculator",
+        "kw-to-kva-calculator",
+        "kva-to-va-calculator",
+        "watts-to-kva-calculator"
+      ]
+    }
+  },
+  {
+    "id": "kwh-to-kw-calculator",
+    "category": "electrical",
+    "title": "kWh to kW Calculator",
+    "slug": "kwh-to-kw",
+    "categorySlug": "electrical-calculators",
+    "icon": "⏱️",
+    "description": "Convert kilowatt-hours (kWh) to kilowatts (kW) to determine average power consumption from energy usage data. Useful for analyzing electricity bills.",
+    "stars": 4,
+    "calcType": "kwh-to-kw",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "kwh to kw, kilowatt hours to kilowatts, convert kwh to kw, energy to power, average power calculator, electricity bill analysis",
+    "links": {
+      "related": [
+        "kw-to-kwh-calculator",
+        "kwh-to-watts-calculator",
+        "kwh-to-ah-calculator",
+        "watts-to-kwh-calculator"
+      ]
+    }
+  },
+  {
+    "id": "kva-to-hp-calculator",
+    "category": "electrical",
+    "title": "kVA to HP Calculator",
+    "slug": "kva-to-hp",
+    "categorySlug": "electrical-calculators",
+    "icon": "🏋️",
+    "description": "Convert kilovolt-amps (kVA) to horsepower (HP) for electric motor sizing. Includes power factor and motor efficiency adjustments.",
+    "stars": 4,
+    "calcType": "kva-to-hp",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "kva to hp, kva to horsepower calculator, convert kva to hp, motor sizing, apparent power to mechanical power",
+    "links": {
+      "related": [
+        "hp-to-kva-calculator",
+        "kva-to-kw-calculator",
+        "hp-to-amps-calculator",
+        "kva-to-amps-calculator"
+      ]
+    }
+  },
+  {
+    "id": "kva-to-kw-calculator",
+    "category": "electrical",
+    "title": "kVA to kW Calculator",
+    "slug": "kva-to-kw",
+    "categorySlug": "electrical-calculators",
+    "icon": "⚡",
+    "description": "Convert kilovolt-amps (kVA) to kilowatts (kW) using power factor. Find the real power output of generators, transformers, and UPS systems.",
+    "stars": 5,
+    "calcType": "kva-to-kw",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "kva to kw, kva to kilowatts calculator, convert kva to kw, apparent to real power, generator output, power factor",
+    "links": {
+      "related": [
+        "kw-to-kva-calculator",
+        "kva-to-watts-calculator",
+        "kva-to-amps-calculator",
+        "kva-to-va-calculator"
+      ]
+    }
+  },
+  {
+    "id": "kva-to-va-calculator",
+    "category": "electrical",
+    "title": "kVA to VA Calculator",
+    "slug": "kva-to-va",
+    "categorySlug": "electrical-calculators",
+    "icon": "🔋",
+    "description": "Convert kilovolt-amps (kVA) to volt-amps (VA). Simple unit conversion multiplying by 1,000. Useful for UPS and power supply specifications.",
+    "stars": 3,
+    "calcType": "kva-to-va",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "kva to va, kilovolt amps to volt amps, convert kva to va, apparent power unit conversion",
+    "links": {
+      "related": [
+        "va-to-kva-calculator",
+        "kva-to-kw-calculator",
+        "kva-to-watts-calculator",
+        "kva-to-amps-calculator"
+      ]
+    }
+  },
+  {
+    "id": "kva-to-watts-calculator",
+    "category": "electrical",
+    "title": "kVA to Watts Calculator",
+    "slug": "kva-to-watts",
+    "categorySlug": "electrical-calculators",
+    "icon": "💡",
+    "description": "Convert kilovolt-amps (kVA) to watts using power factor. Calculate the real power in watts delivered by a generator, transformer, or UPS.",
+    "stars": 4,
+    "calcType": "kva-to-watts",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "kva to watts, kva to watts calculator, convert kva to watts, apparent power to real power, generator wattage",
+    "links": {
+      "related": [
+        "watts-to-kva-calculator",
+        "kva-to-kw-calculator",
+        "kva-to-amps-calculator",
+        "amps-to-watts-calculator"
+      ]
+    }
+  },
+  {
+    "id": "ah-to-kwh-calculator",
+    "category": "electrical",
+    "title": "Ah to kWh Calculator",
+    "slug": "ah-to-kwh",
+    "categorySlug": "electrical-calculators",
+    "icon": "🔋",
+    "description": "Convert amp-hours (Ah) to kilowatt-hours (kWh) for battery capacity calculations. Essential for solar, RV, and EV battery system design.",
+    "stars": 5,
+    "calcType": "ah-to-kwh",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "ah to kwh, amp hours to kilowatt hours, convert ah to kwh, battery capacity calculator, solar battery sizing, ev battery kwh",
+    "links": {
+      "related": [
+        "kwh-to-ah-calculator",
+        "ah-to-wh-calculator",
+        "watts-to-kwh-calculator",
+        "mah-to-wh-calculator"
+      ]
+    }
+  },
+  {
+    "id": "ah-to-wh-calculator",
+    "category": "electrical",
+    "title": "Ah to Wh Calculator",
+    "slug": "ah-to-wh",
+    "categorySlug": "electrical-calculators",
+    "icon": "🔋",
+    "description": "Convert amp-hours (Ah) to watt-hours (Wh) to find the energy capacity of batteries. Multiply Ah by voltage to get Wh.",
+    "stars": 4,
+    "calcType": "ah-to-wh",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "ah to wh, amp hours to watt hours, convert ah to wh, battery energy calculator, battery watt hours",
+    "links": {
+      "related": [
+        "wh-to-ah-calculator",
+        "ah-to-kwh-calculator",
+        "mah-to-wh-calculator",
+        "wh-to-mah-calculator"
+      ]
+    }
+  },
+  {
+    "id": "wh-to-ah-calculator",
+    "category": "electrical",
+    "title": "Wh to Ah Calculator",
+    "slug": "wh-to-ah",
+    "categorySlug": "electrical-calculators",
+    "icon": "🔋",
+    "description": "Convert watt-hours (Wh) to amp-hours (Ah) for battery capacity. Divide Wh by voltage to determine the Ah rating needed.",
+    "stars": 4,
+    "calcType": "wh-to-ah",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "wh to ah, watt hours to amp hours, convert wh to ah, battery ah rating, battery capacity from wh",
+    "links": {
+      "related": [
+        "ah-to-wh-calculator",
+        "wh-to-mah-calculator",
+        "kwh-to-ah-calculator",
+        "mah-to-wh-calculator"
+      ]
+    }
+  },
+  {
+    "id": "wh-to-mah-calculator",
+    "category": "electrical",
+    "title": "Wh to mAh Calculator",
+    "slug": "wh-to-mah",
+    "categorySlug": "electrical-calculators",
+    "icon": "📱",
+    "description": "Convert watt-hours (Wh) to milliamp-hours (mAh) for smartphone, laptop, and portable device battery comparisons. Uses nominal voltage.",
+    "stars": 4,
+    "calcType": "wh-to-mah",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "wh to mah, watt hours to milliamp hours, convert wh to mah, battery mah calculator, phone battery capacity",
+    "links": {
+      "related": [
+        "mah-to-wh-calculator",
+        "wh-to-ah-calculator",
+        "ah-to-wh-calculator",
+        "ah-to-kwh-calculator"
+      ]
+    }
+  },
+  {
+    "id": "mah-to-wh-calculator",
+    "category": "electrical",
+    "title": "mAh to Wh Calculator",
+    "slug": "mah-to-wh",
+    "categorySlug": "electrical-calculators",
+    "icon": "📱",
+    "description": "Convert milliamp-hours (mAh) to watt-hours (Wh) to compare battery energy across devices. Essential for understanding smartphone and laptop battery life.",
+    "stars": 4,
+    "calcType": "mah-to-wh",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "mah to wh, milliamp hours to watt hours, convert mah to wh, battery wh calculator, phone battery wh, laptop battery capacity",
+    "links": {
+      "related": [
+        "wh-to-mah-calculator",
+        "ah-to-wh-calculator",
+        "ah-to-kwh-calculator",
+        "wh-to-ah-calculator"
+      ]
+    }
+  },
+  {
+    "id": "kwh-to-ah-calculator",
+    "category": "electrical",
+    "title": "kWh to Ah Calculator",
+    "slug": "kwh-to-ah",
+    "categorySlug": "electrical-calculators",
+    "icon": "🔋",
+    "description": "Convert kilowatt-hours (kWh) to amp-hours (Ah) for battery bank sizing. Find how many Ah of battery capacity you need for a given energy requirement.",
+    "stars": 4,
+    "calcType": "kwh-to-ah",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "kwh to ah, kilowatt hours to amp hours, convert kwh to ah, battery bank sizing, solar battery ah calculator",
+    "links": {
+      "related": [
+        "ah-to-kwh-calculator",
+        "kwh-to-kw-calculator",
+        "kwh-to-watts-calculator",
+        "wh-to-ah-calculator"
+      ]
+    }
+  },
+  {
+    "id": "amps-to-va-calculator",
+    "category": "electrical",
+    "title": "Amps to VA Calculator",
+    "slug": "amps-to-va",
+    "categorySlug": "electrical-calculators",
+    "icon": "⚡",
+    "description": "Convert amps to volt-amps (VA) for single-phase and three-phase circuits. Calculate apparent power for UPS and power supply sizing.",
+    "stars": 4,
+    "calcType": "amps-to-va",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "amps to va, amps to volt amps calculator, convert amps to va, current to apparent power, ups sizing",
+    "links": {
+      "related": [
+        "va-to-amps-calculator",
+        "amps-to-watts-calculator",
+        "amps-to-kva-calculator",
+        "amps-to-kw-calculator"
+      ]
+    }
+  },
+  {
+    "id": "va-to-amps-calculator",
+    "category": "electrical",
+    "title": "VA to Amps Calculator",
+    "slug": "va-to-amps",
+    "categorySlug": "electrical-calculators",
+    "icon": "🔌",
+    "description": "Convert volt-amps (VA) to amps for single-phase and three-phase circuits. Determine current draw from apparent power ratings.",
+    "stars": 4,
+    "calcType": "va-to-amps",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "va to amps, volt amps to amps calculator, convert va to amps, apparent power to current, ups amps calculator",
+    "links": {
+      "related": [
+        "amps-to-va-calculator",
+        "va-to-kw-calculator",
+        "va-to-kva-calculator",
+        "watts-to-amps-calculator"
+      ]
+    }
+  },
+  {
+    "id": "va-to-kva-calculator",
+    "category": "electrical",
+    "title": "VA to kVA Calculator",
+    "slug": "va-to-kva",
+    "categorySlug": "electrical-calculators",
+    "icon": "🔋",
+    "description": "Convert volt-amps (VA) to kilovolt-amps (kVA). Simple unit conversion dividing by 1,000. Commonly used for transformer and UPS ratings.",
+    "stars": 3,
+    "calcType": "va-to-kva",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "va to kva, volt amps to kilovolt amps, convert va to kva, apparent power conversion, transformer rating",
+    "links": {
+      "related": [
+        "kva-to-va-calculator",
+        "va-to-kw-calculator",
+        "va-to-amps-calculator",
+        "kva-to-kw-calculator"
+      ]
+    }
+  },
+  {
+    "id": "va-to-kw-calculator",
+    "category": "electrical",
+    "title": "VA to kW Calculator",
+    "slug": "va-to-kw",
+    "categorySlug": "electrical-calculators",
+    "icon": "💡",
+    "description": "Convert volt-amps (VA) to kilowatts (kW) using power factor. Find the real power from a VA-rated UPS, transformer, or generator.",
+    "stars": 4,
+    "calcType": "va-to-kw",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "va to kw, volt amps to kilowatts, convert va to kw, apparent to real power, ups real power output",
+    "links": {
+      "related": [
+        "kw-to-va-calculator",
+        "va-to-amps-calculator",
+        "va-to-kva-calculator",
+        "kva-to-kw-calculator"
+      ]
+    }
+  },
+  {
+    "id": "amps-to-hp-calculator",
+    "category": "electrical",
+    "title": "Amps to HP Calculator",
+    "slug": "amps-to-hp",
+    "categorySlug": "electrical-calculators",
+    "icon": "🏋️",
+    "description": "Convert amps to horsepower (HP) for electric motors. Enter current, voltage, power factor, and motor efficiency to calculate mechanical horsepower output.",
+    "stars": 4,
+    "calcType": "amps-to-hp",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "amps to hp, amps to horsepower calculator, convert amps to hp, motor horsepower from amps, electric motor sizing",
+    "links": {
+      "related": [
+        "hp-to-amps-calculator",
+        "amps-to-watts-calculator",
+        "amps-to-kw-calculator",
+        "hp-to-kva-calculator"
+      ]
+    }
+  },
+  {
+    "id": "hp-to-amps-calculator",
+    "category": "electrical",
+    "title": "HP to Amps Calculator",
+    "slug": "hp-to-amps",
+    "categorySlug": "electrical-calculators",
+    "icon": "🏋️",
+    "description": "Convert horsepower (HP) to amps for electric motors. Calculate current draw for DC, single-phase AC, and three-phase AC motors with efficiency and power factor.",
+    "stars": 5,
+    "calcType": "hp-to-amps",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "hp to amps, horsepower to amps calculator, convert hp to amps, motor full load amps, motor current draw, fla calculator",
+    "links": {
+      "related": [
+        "amps-to-hp-calculator",
+        "hp-to-kva-calculator",
+        "kw-to-amps-calculator",
+        "watts-to-amps-calculator"
+      ]
+    }
+  },
+  {
+    "id": "hp-to-kva-calculator",
+    "category": "electrical",
+    "title": "HP to kVA Calculator",
+    "slug": "hp-to-kva",
+    "categorySlug": "electrical-calculators",
+    "icon": "⚙️",
+    "description": "Convert horsepower (HP) to kilovolt-amps (kVA) for generator and transformer sizing. Includes power factor and motor efficiency for accurate results.",
+    "stars": 4,
+    "calcType": "hp-to-kva",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "hp to kva, horsepower to kva calculator, convert hp to kva, motor kva requirement, generator sizing for motor",
+    "links": {
+      "related": [
+        "kva-to-hp-calculator",
+        "hp-to-amps-calculator",
+        "amps-to-kva-calculator",
+        "kw-to-kva-calculator"
+      ]
+    }
+  },
+  {
+    "id": "volts-to-joules-calculator",
+    "category": "electrical",
+    "title": "Volts to Joules Calculator",
+    "slug": "volts-to-joules",
+    "categorySlug": "electrical-calculators",
+    "icon": "⚡",
+    "description": "Convert volts to joules using electric charge (coulombs). Calculate the energy in joules transferred by a voltage across a charge. J = V × C.",
+    "stars": 4,
+    "calcType": "volts-to-joules",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "volts to joules, volts to joules calculator, convert volts to joules, voltage to energy, electrical energy calculator",
+    "links": {
+      "related": [
+        "joules-to-volts-calculator",
+        "watts-to-joules-calculator",
+        "volts-to-watts-calculator",
+        "joules-to-watts-calculator"
+      ]
+    }
+  },
+  {
+    "id": "watts-to-joules-calculator",
+    "category": "electrical",
+    "title": "Watts to Joules Calculator",
+    "slug": "watts-to-joules",
+    "categorySlug": "electrical-calculators",
+    "icon": "💡",
+    "description": "Convert watts to joules by multiplying power by time in seconds. Calculate energy output from any power source. J = W × s.",
+    "stars": 4,
+    "calcType": "watts-to-joules",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "watts to joules, watts to joules calculator, convert watts to joules, power to energy, watt seconds, energy conversion",
+    "links": {
+      "related": [
+        "joules-to-watts-calculator",
+        "volts-to-joules-calculator",
+        "watts-to-kwh-calculator",
+        "watts-to-kva-calculator"
+      ]
+    }
+  },
+  {
+    "id": "joules-to-volts-calculator",
+    "category": "electrical",
+    "title": "Joules to Volts Calculator",
+    "slug": "joules-to-volts",
+    "categorySlug": "electrical-calculators",
+    "icon": "🔌",
+    "description": "Convert joules to volts using electric charge (coulombs). Calculate the voltage from energy and charge: V = J / C.",
+    "stars": 3,
+    "calcType": "joules-to-volts",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "joules to volts, joules to volts calculator, convert joules to volts, energy to voltage, capacitor voltage calculator",
+    "links": {
+      "related": [
+        "volts-to-joules-calculator",
+        "joules-to-watts-calculator",
+        "watts-to-volts-calculator",
+        "capacitance-to-charge-calculator"
+      ]
+    }
+  },
+  {
+    "id": "joules-to-watts-calculator",
+    "category": "electrical",
+    "title": "Joules to Watts Calculator",
+    "slug": "joules-to-watts",
+    "categorySlug": "electrical-calculators",
+    "icon": "💡",
+    "description": "Convert joules to watts by dividing energy by time in seconds. Find the power output from a given energy transfer: W = J / s.",
+    "stars": 3,
+    "calcType": "joules-to-watts",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "joules to watts, joules to watts calculator, convert joules to watts, energy to power, joules per second",
+    "links": {
+      "related": [
+        "watts-to-joules-calculator",
+        "joules-to-volts-calculator",
+        "kwh-to-watts-calculator",
+        "volts-to-joules-calculator"
+      ]
+    }
+  },
+  {
+    "id": "watts-to-kva-calculator",
+    "category": "electrical",
+    "title": "Watts to kVA Calculator",
+    "slug": "watts-to-kva",
+    "categorySlug": "electrical-calculators",
+    "icon": "🔋",
+    "description": "Convert watts to kilovolt-amps (kVA) using power factor. Calculate the apparent power rating needed for your electrical load.",
+    "stars": 4,
+    "calcType": "watts-to-kva",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "watts to kva, watts to kva calculator, convert watts to kva, real power to apparent power, ups sizing from watts",
+    "links": {
+      "related": [
+        "kva-to-watts-calculator",
+        "watts-to-amps-calculator",
+        "kw-to-kva-calculator",
+        "watts-to-kwh-calculator"
+      ]
+    }
+  },
+  {
+    "id": "amps-to-kw-calculator",
+    "category": "electrical",
+    "title": "Amps to kW Calculator",
+    "slug": "amps-to-kw",
+    "categorySlug": "electrical-calculators",
+    "icon": "⚡",
+    "description": "Convert amps to kilowatts (kW) for DC and AC circuits. Enter current (amps) and voltage to calculate real power in kilowatts.",
+    "stars": 5,
+    "calcType": "amps-to-kw",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "amps to kw, amps to kilowatts calculator, convert amps to kw, current to power in kw, ampere to kilowatt",
+    "links": {
+      "related": [
+        "kw-to-amps-calculator",
+        "amps-to-watts-calculator",
+        "amps-to-kva-calculator",
+        "amps-to-hp-calculator"
+      ]
+    }
+  },
+  {
+    "id": "capacitance-to-charge-calculator",
+    "category": "electrical",
+    "title": "Capacitance to Charge Calculator",
+    "slug": "capacitance-to-charge",
+    "categorySlug": "electrical-calculators",
+    "icon": "🔋",
+    "description": "Calculate electric charge (coulombs) from capacitance and voltage using Q = C × V. Supports pF, nF, μF, mF, and F units.",
+    "stars": 3,
+    "calcType": "capacitance-to-charge",
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "capacitance to charge, capacitance charge calculator, Q=CV calculator, capacitor charge, coulombs from capacitance, farad to coulomb",
+    "links": {
+      "related": [
+        "volts-to-joules-calculator",
+        "joules-to-volts-calculator",
+        "watts-to-joules-calculator",
+        "volts-to-watts-calculator"
+      ]
+    }
   }
 ]

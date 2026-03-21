@@ -102,5 +102,13 @@
         "description": "Dog age, cat age, chocolate toxicity & pet nutrition tools",
         "count": 5,
         "href": "/pet-calculators"
+    },
+    {
+        "key": "electrical",
+        "icon": "⚡",
+        "name": "Electrical Calculators",
+        "description": "Amps, watts, volts, kVA & power conversion tools",
+        "count": 39,
+        "href": "/electrical-calculators"
     }
 ]
