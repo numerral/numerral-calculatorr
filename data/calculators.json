@@ -2523,6 +2523,502 @@
     }
   },
   {
+    "id": "apy-calculator",
+    "category": "loan",
+    "title": "APY Calculator",
+    "slug": "apy-calculator",
+    "categorySlug": "loan-calculators",
+    "icon": "💰",
+    "calcType": "apyCalc",
+    "description": "Calculate Annual Percentage Yield (APY) from nominal interest rate and compounding frequency. Compare savings accounts, CDs, and investment returns.",
+    "stars": 5,
+    "defaults": {
+      "amount": 10000,
+      "rate": 5,
+      "tenure": 12
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 100,
+        "max": 1000000,
+        "step": 100
+      },
+      "rate": {
+        "min": 0.1,
+        "max": 25,
+        "step": 0.1
+      },
+      "tenure": {
+        "min": 1,
+        "max": 365,
+        "step": 1
+      }
+    },
+    "keywords": "APY calculator, annual percentage yield, compound interest APY, savings account APY, high yield savings calculator, APY vs APR",
+    "links": {
+      "related": [
+        "apr-calculator",
+        "apr-to-apy-calculator",
+        "compound-interest-calculator",
+        "cd-calculator"
+      ]
+    }
+  },
+  {
+    "id": "apr-to-apy-calculator",
+    "category": "loan",
+    "title": "APR to APY Calculator",
+    "slug": "apr-to-apy-calculator",
+    "categorySlug": "loan-calculators",
+    "icon": "🔄",
+    "calcType": "aprToApy",
+    "description": "Convert between APR and APY instantly. Understand the difference between nominal and effective interest rates with any compounding frequency.",
+    "stars": 5,
+    "defaults": {
+      "amount": 10000,
+      "rate": 5,
+      "tenure": 12
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 100,
+        "max": 1000000,
+        "step": 100
+      },
+      "rate": {
+        "min": 0.1,
+        "max": 30,
+        "step": 0.1
+      },
+      "tenure": {
+        "min": 1,
+        "max": 365,
+        "step": 1
+      }
+    },
+    "keywords": "APR to APY converter, APY to APR, convert APR APY, nominal vs effective rate, compounding frequency calculator",
+    "links": {
+      "related": [
+        "apr-calculator",
+        "apy-calculator",
+        "compound-interest-calculator"
+      ]
+    }
+  },
+  {
+    "id": "daily-compound-interest-calculator",
+    "category": "loan",
+    "title": "Daily Compound Interest Calculator",
+    "slug": "daily-compound-interest-calculator",
+    "categorySlug": "loan-calculators",
+    "icon": "📅",
+    "calcType": "dailyCompoundInterest",
+    "description": "Calculate daily compound interest for savings accounts, money market funds, and high-yield accounts. See how daily compounding accelerates growth.",
+    "stars": 5,
+    "defaults": {
+      "amount": 10000,
+      "rate": 5,
+      "tenure": 60
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 100,
+        "max": 1000000,
+        "step": 100
+      },
+      "rate": {
+        "min": 0.1,
+        "max": 20,
+        "step": 0.1
+      },
+      "tenure": {
+        "min": 1,
+        "max": 600,
+        "step": 1
+      }
+    },
+    "keywords": "daily compound interest calculator, daily compounding, savings account interest, money market interest, high yield savings calculator",
+    "links": {
+      "related": [
+        "compound-interest-calculator",
+        "apy-calculator",
+        "cd-calculator",
+        "interest-calculator"
+      ]
+    }
+  },
+  {
+    "id": "interest-calculator",
+    "category": "loan",
+    "title": "Interest Calculator",
+    "slug": "interest-calculator",
+    "categorySlug": "loan-calculators",
+    "icon": "🧮",
+    "calcType": "interestCalc",
+    "description": "Calculate interest earned or paid on any amount. Supports both simple and compound interest with flexible time periods and compounding options.",
+    "stars": 5,
+    "defaults": {
+      "amount": 10000,
+      "rate": 5,
+      "tenure": 60
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 100,
+        "max": 1000000,
+        "step": 100
+      },
+      "rate": {
+        "min": 0.1,
+        "max": 30,
+        "step": 0.1
+      },
+      "tenure": {
+        "min": 1,
+        "max": 600,
+        "step": 1
+      }
+    },
+    "keywords": "interest calculator, calculate interest, interest earned, interest paid, loan interest calculator, savings interest calculator",
+    "links": {
+      "related": [
+        "simple-interest-calculator",
+        "compound-interest-calculator",
+        "interest-rate-calculator",
+        "apr-calculator"
+      ]
+    }
+  },
+  {
+    "id": "interest-rate-calc",
+    "category": "loan",
+    "title": "Interest Rate Calculator",
+    "slug": "interest-rate-calc",
+    "categorySlug": "loan-calculators",
+    "icon": "🔍",
+    "calcType": "interestRateCalc",
+    "description": "Reverse-calculate the interest rate from known principal, final amount, and time period. Find the hidden rate on any loan or investment.",
+    "stars": 5,
+    "defaults": {
+      "amount": 10000,
+      "rate": 5,
+      "tenure": 60
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 100,
+        "max": 1000000,
+        "step": 100
+      },
+      "rate": {
+        "min": 0.1,
+        "max": 30,
+        "step": 0.1
+      },
+      "tenure": {
+        "min": 1,
+        "max": 600,
+        "step": 1
+      }
+    },
+    "keywords": "interest rate calculator, find interest rate, reverse interest calculator, hidden interest rate, effective rate calculator",
+    "links": {
+      "related": [
+        "apr-calculator",
+        "interest-calculator",
+        "loan-interest-rate-calculator"
+      ]
+    }
+  },
+  {
+    "id": "cd-calculator",
+    "category": "loan",
+    "title": "CD Calculator",
+    "slug": "cd-calculator",
+    "categorySlug": "loan-calculators",
+    "icon": "🏦",
+    "calcType": "cdCalc",
+    "description": "Calculate Certificate of Deposit (CD) earnings at maturity. Compare CD terms, rates, and compounding frequencies. FDIC-insured investment planning.",
+    "stars": 5,
+    "defaults": {
+      "amount": 10000,
+      "rate": 4.5,
+      "tenure": 12
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 500,
+        "max": 500000,
+        "step": 500
+      },
+      "rate": {
+        "min": 0.1,
+        "max": 10,
+        "step": 0.1
+      },
+      "tenure": {
+        "min": 1,
+        "max": 60,
+        "step": 1
+      }
+    },
+    "keywords": "CD calculator, certificate of deposit calculator, CD interest calculator, CD maturity calculator, CD rate calculator, FDIC insured savings",
+    "links": {
+      "related": [
+        "apy-calculator",
+        "compound-interest-calculator",
+        "daily-compound-interest-calculator"
+      ]
+    }
+  },
+  {
+    "id": "credit-card-interest-calculator",
+    "category": "loan",
+    "title": "Credit Card Interest Calculator",
+    "slug": "credit-card-interest-calculator",
+    "categorySlug": "loan-calculators",
+    "icon": "💳",
+    "calcType": "creditCardInterest",
+    "description": "Calculate how much interest you pay on credit card balances. See daily periodic rate, monthly interest charges, and the true cost of minimum payments.",
+    "stars": 5,
+    "defaults": {
+      "amount": 5000,
+      "rate": 22,
+      "tenure": 60
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 100,
+        "max": 100000,
+        "step": 100
+      },
+      "rate": {
+        "min": 5,
+        "max": 36,
+        "step": 0.1
+      },
+      "tenure": {
+        "min": 1,
+        "max": 360,
+        "step": 1
+      }
+    },
+    "keywords": "credit card interest calculator, credit card APR calculator, credit card cost calculator, daily periodic rate, minimum payment calculator, credit card debt calculator",
+    "links": {
+      "related": [
+        "credit-card-payoff-calculator",
+        "apr-calculator",
+        "debt-consolidation-calculator"
+      ]
+    }
+  },
+  {
+    "id": "credit-card-payoff-calculator",
+    "category": "loan",
+    "title": "Credit Card Payoff Calculator",
+    "slug": "credit-card-payoff-calculator",
+    "categorySlug": "loan-calculators",
+    "icon": "🎯",
+    "calcType": "creditCardPayoff",
+    "description": "Calculate how long it takes to pay off credit card debt and how much interest you'll pay. Find the optimal monthly payment to become debt-free faster.",
+    "stars": 5,
+    "defaults": {
+      "amount": 5000,
+      "rate": 22,
+      "tenure": 60
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 100,
+        "max": 100000,
+        "step": 100
+      },
+      "rate": {
+        "min": 5,
+        "max": 36,
+        "step": 0.1
+      },
+      "tenure": {
+        "min": 1,
+        "max": 360,
+        "step": 1
+      }
+    },
+    "keywords": "credit card payoff calculator, pay off credit card, credit card debt calculator, credit card payment calculator, debt free calculator, minimum payment payoff time",
+    "links": {
+      "related": [
+        "credit-card-interest-calculator",
+        "debt-consolidation-calculator",
+        "loan-payoff-calculator"
+      ]
+    }
+  },
+  {
+    "id": "future-value-calculator",
+    "category": "loan",
+    "title": "Future Value Calculator",
+    "slug": "future-value-calculator",
+    "categorySlug": "loan-calculators",
+    "icon": "🔮",
+    "calcType": "futureValue",
+    "description": "Calculate the future value of an investment with regular contributions and compound interest. Plan for retirement, college savings, or any financial goal.",
+    "stars": 5,
+    "defaults": {
+      "amount": 10000,
+      "rate": 7,
+      "tenure": 240
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 100,
+        "max": 1000000,
+        "step": 100
+      },
+      "rate": {
+        "min": 0.1,
+        "max": 20,
+        "step": 0.1
+      },
+      "tenure": {
+        "min": 12,
+        "max": 600,
+        "step": 12
+      }
+    },
+    "keywords": "future value calculator, investment growth calculator, FV calculator, retirement savings calculator, future value of annuity, investment projection",
+    "links": {
+      "related": [
+        "present-value-calculator",
+        "compound-interest-calculator",
+        "rule-of-72-calculator"
+      ]
+    }
+  },
+  {
+    "id": "present-value-calculator",
+    "category": "loan",
+    "title": "Present Value Calculator",
+    "slug": "present-value-calculator",
+    "categorySlug": "loan-calculators",
+    "icon": "⏳",
+    "calcType": "presentValue",
+    "description": "Calculate the present value of a future sum or annuity. Discount future cash flows to today's dollars using the time value of money principle.",
+    "stars": 5,
+    "defaults": {
+      "amount": 100000,
+      "rate": 7,
+      "tenure": 120
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 100,
+        "max": 10000000,
+        "step": 100
+      },
+      "rate": {
+        "min": 0.1,
+        "max": 20,
+        "step": 0.1
+      },
+      "tenure": {
+        "min": 12,
+        "max": 600,
+        "step": 12
+      }
+    },
+    "keywords": "present value calculator, PV calculator, discount future value, time value of money, present value of annuity, NPV calculator",
+    "links": {
+      "related": [
+        "future-value-calculator",
+        "compound-interest-calculator",
+        "rule-of-72-calculator"
+      ]
+    }
+  },
+  {
+    "id": "rule-of-72-calculator",
+    "category": "loan",
+    "title": "Rule of 72 Calculator",
+    "slug": "rule-of-72-calculator",
+    "categorySlug": "loan-calculators",
+    "icon": "🎲",
+    "calcType": "ruleOf72",
+    "description": "Use the Rule of 72 to quickly estimate how long an investment takes to double. Enter an interest rate to see the doubling time, or enter a time period to find the required rate.",
+    "stars": 5,
+    "defaults": {
+      "amount": 10000,
+      "rate": 7,
+      "tenure": 120
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 100,
+        "max": 1000000,
+        "step": 100
+      },
+      "rate": {
+        "min": 0.1,
+        "max": 50,
+        "step": 0.1
+      },
+      "tenure": {
+        "min": 1,
+        "max": 600,
+        "step": 1
+      }
+    },
+    "keywords": "rule of 72 calculator, doubling time calculator, investment doubling, rule of 72 formula, how long to double money, compound growth estimator",
+    "links": {
+      "related": [
+        "compound-interest-calculator",
+        "future-value-calculator",
+        "apy-calculator"
+      ]
+    }
+  },
+  {
+    "id": "student-loan-payoff-calculator",
+    "category": "loan",
+    "title": "Student Loan Payoff Calculator",
+    "slug": "student-loan-payoff-calculator",
+    "categorySlug": "loan-calculators",
+    "icon": "🎓",
+    "calcType": "studentLoanPayoff",
+    "description": "Calculate your student loan payoff timeline and total interest. Compare standard, graduated, and income-driven repayment plans. See the impact of extra payments.",
+    "stars": 5,
+    "defaults": {
+      "amount": 35000,
+      "rate": 5.5,
+      "tenure": 120
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 1000,
+        "max": 200000,
+        "step": 1000
+      },
+      "rate": {
+        "min": 1,
+        "max": 15,
+        "step": 0.1
+      },
+      "tenure": {
+        "min": 12,
+        "max": 300,
+        "step": 12
+      }
+    },
+    "keywords": "student loan payoff calculator, student loan calculator, student loan repayment, federal student loan calculator, student loan interest, student loan payment plan, PSLF calculator",
+    "links": {
+      "related": [
+        "loan-payoff-calculator",
+        "refinance-calculator",
+        "interest-calculator",
+        "debt-consolidation-calculator"
+      ]
+    }
+  },
+  {
     "id": "interest-rate",
     "category": "utility",
     "title": "Interest Rate Calculator",

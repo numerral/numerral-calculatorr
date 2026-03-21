@@ -49,7 +49,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 // Hub page content per calculator type
-const LOAN_TOOL_TYPES = ["mortgage","debtConsolidation","loanAffordability","loanInterestRate","loanPayoff","loanAmortization","ltv","balloonLoan","arm","fixedVsVariable","extraPayment","refinance","mortgageRefinance","rentAffordability","debtRatio","downPayment","aprCalc","homeEquity","heloc","vaMortgage","fhaLoan","rentalProperty"];
+const LOAN_TOOL_TYPES = ["mortgage","debtConsolidation","loanAffordability","loanInterestRate","loanPayoff","loanAmortization","ltv","balloonLoan","arm","fixedVsVariable","extraPayment","refinance","mortgageRefinance","rentAffordability","debtRatio","downPayment","aprCalc","homeEquity","heloc","vaMortgage","fhaLoan","rentalProperty","apyCalc","aprToApy","simpleInterest","compoundInterest","dailyCompoundInterest","interestCalc","interestRateCalc","cdCalc","creditCardInterest","creditCardPayoff","futureValue","presentValue","ruleOf72","studentLoanPayoff"];
 
 const HUB_CONTENT: Record<string, {
     subtitle: string;
@@ -1526,6 +1526,130 @@ const HUB_CONTENT: Record<string, {
 <tr><td>Tax Benefits</td><td>Excellent</td><td>Good</td><td>Ordinary income</td><td>Ordinary income</td></tr>
 <tr><td>Liquidity</td><td>Very low</td><td>High</td><td>Medium</td><td>High</td></tr></table>
 `,
+    },
+
+    "apy-calculator": {
+        subtitle: "Calculate the Annual Percentage Yield (APY) from any nominal interest rate and compounding frequency — compare savings accounts and CDs side by side.",
+        contentHTML: `<h2>What Is APY (Annual Percentage Yield)?</h2><p>Annual Percentage Yield (APY) measures the <strong>real rate of return</strong> on a deposit or investment after accounting for the effect of <strong>compounding interest</strong>. Unlike the nominal interest rate (APR), APY includes how frequently interest is added to your balance throughout the year.</p><p>Banks, credit unions, and online savings platforms in the United States are <strong>required by the Truth in Savings Act (TISA)</strong> to disclose the APY on every deposit product, making it the most reliable number for comparing savings accounts, money market accounts, and certificates of deposit.</p><h3>APY vs. APR — What's the Difference?</h3><p>APR states the <em>flat</em> interest rate without compounding. APY converts that rate into the <em>effective</em> yearly return by factoring in how often interest compounds. The more frequently interest compounds, the higher the APY relative to the APR.</p><h3>How to Calculate APY</h3><p>The formula is: <strong>APY = (1 + r/n)<sup>n</sup> − 1</strong>, where <em>r</em> is the nominal rate and <em>n</em> is the number of compounding periods per year.</p><h3>Worked Example</h3><p>A savings account offers 5.00% APR compounded daily (n = 365):</p><ul><li>APY = (1 + 0.05/365)<sup>365</sup> − 1 = <strong>5.127%</strong></li><li>On $10,000, you earn $512.67 in one year instead of $500</li></ul><h3>Why APY Matters for Savers</h3><p>High-yield savings accounts in the US currently advertise APYs between <strong>4.00% and 5.25%</strong>. Even a 0.25% APY difference on $50,000 equals $125 more per year.</p>`,
+        faq: [
+            { question: "What is a good APY for a savings account in 2025?", answer: "Competitive high-yield savings accounts offer APYs between 4.00% and 5.25%. Traditional banks typically offer 0.01%–0.10%." },
+            { question: "How does compounding frequency affect APY?", answer: "The more often interest compounds, the higher the APY. 5% APR compounded daily gives 5.127% APY, while monthly gives 5.116% APY." },
+            { question: "Is APY the same as interest rate?", answer: "No. APR is nominal rate before compounding. APY is the effective annual rate after compounding. APY is always ≥ the stated rate." },
+            { question: "Is APY guaranteed?", answer: "For CDs, APY is locked for the term. For savings accounts, APY is variable and the bank can change it at any time." },
+        ],
+    },
+    "apr-to-apy-calculator": {
+        subtitle: "Convert between APR and APY instantly. See how compounding frequency impacts the effective interest rate on loans and savings.",
+        contentHTML: `<h2>What Is the Difference Between APR and APY?</h2><p>APR and APY are two ways to express interest rates. <strong>APR</strong> represents borrowing cost <em>without</em> compounding. <strong>APY</strong> reflects <em>actual</em> return after compounding.</p><h3>APR to APY Formula</h3><p><strong>APY = (1 + APR/n)<sup>n</sup> − 1</strong></p><h3>APY to APR Formula</h3><p><strong>APR = n × [(1 + APY)<sup>1/n</sup> − 1]</strong></p><h3>Worked Example</h3><p>Convert 6% APR with monthly compounding to APY:</p><ul><li>APY = (1 + 0.06/12)<sup>12</sup> − 1 = <strong>6.168%</strong></li></ul><h3>When Does This Matter?</h3><p>Lenders advertise the lower APR; banks advertise the higher APY. Converting between them helps you see through marketing.</p>`,
+        faq: [
+            { question: "Why is APY always higher than APR?", answer: "APY accounts for compounding — earning interest on interest. With annual compounding, APR equals APY." },
+            { question: "When should I use APR vs. APY?", answer: "Use APR for loans (mortgages, car loans). Use APY for savings products (savings accounts, CDs)." },
+            { question: "Does the formula change for continuous compounding?", answer: "Yes. For continuous compounding, APY = e^APR − 1, giving the maximum possible APY for any APR." },
+        ],
+    },
+    "simple-interest-calculator": {
+        subtitle: "Calculate simple interest using I = P × r × t. Find interest earned or owed on loans, bonds, and short-term investments without compounding.",
+        contentHTML: `<h2>What Is Simple Interest?</h2><p>Simple interest is charged only on the <strong>original principal</strong>. Formula: <strong>I = P × r × t</strong>.</p><h3>Where Simple Interest Is Used</h3><ul><li><strong>Auto loans</strong> — many US car loans use simple interest</li><li><strong>US Treasury bonds</strong> — T-bills use a form of simple interest</li><li><strong>Student loans</strong> — interest accrues simply during deferment</li></ul><h3>Worked Example</h3><p>$5,000 at 6% for 2.5 years:</p><ul><li>I = $5,000 × 0.06 × 2.5 = <strong>$750</strong></li><li>Total returned: <strong>$5,750</strong></li></ul><h3>Simple vs. Compound Interest</h3><p>$10,000 at 5% for 10 years: simple earns $5,000; monthly compound earns $6,470 — a <strong>$1,470 difference</strong>.</p>`,
+        faq: [
+            { question: "What is the simple interest formula?", answer: "I = P × r × t. Rate is a decimal (5% = 0.05), time is in years." },
+            { question: "Do banks use simple or compound interest?", answer: "Most US savings accounts and CDs use compound. Simple interest is common in auto loans and Treasury bonds." },
+            { question: "Is simple interest better for borrowers?", answer: "Yes — you pay less total interest than with compound interest on the same loan." },
+        ],
+    },
+    "compound-interest-calculator": {
+        subtitle: "See the power of compound interest with contributions and multiple compounding frequencies. Plan for retirement, college savings, or any goal.",
+        contentHTML: `<h2>What Is Compound Interest?</h2><p>Compound interest is <strong>interest on principal plus accumulated interest</strong>. It creates exponential growth.</p><h3>Formula</h3><p><strong>A = P(1 + r/n)<sup>nt</sup></strong></p><h3>Compounding Frequency Matters</h3><table><tr><th>Frequency</th><th>$10,000 at 7% for 20yr</th></tr><tr><td>Annually</td><td>$38,697</td></tr><tr><td>Monthly</td><td>$39,827</td></tr><tr><td>Daily</td><td>$40,252</td></tr></table><h3>Worked Example</h3><p>$10,000 at 7% monthly + $200/mo for 20 years = <strong>$144,806</strong></p><h3>Start Early</h3><p>Investing at 25 vs. 35 can result in <strong>twice the balance</strong> at 65.</p>`,
+        faq: [
+            { question: "What is the Rule of 72?", answer: "Years to Double ≈ 72 / Rate. At 8%, money doubles in ~9 years." },
+            { question: "How much does $10,000 grow in 30 years at 7%?", answer: "Compounded annually: $76,123. Monthly: $81,165. With $200/mo: $323,183." },
+            { question: "Can compound interest work against me?", answer: "Yes — credit card debt at 22% APR with minimum payments takes 24 years and costs $8,609 in interest on $5,000." },
+        ],
+    },
+    "daily-compound-interest-calculator": {
+        subtitle: "Calculate daily compound interest on savings accounts, money market funds, and high-yield accounts. See how daily compounding accelerates growth.",
+        contentHTML: `<h2>What Is Daily Compound Interest?</h2><p>Interest calculated and added <strong>every day</strong> — 365 times/year. Each day earns interest on the new, slightly larger balance.</p><h3>Formula</h3><p><strong>A = P × (1 + r/365)<sup>365t</sup></strong></p><h3>Who Uses Daily Compounding?</h3><ul><li>High-yield savings accounts</li><li>Money market accounts</li><li>Credit cards (compounds against you)</li><li>Premium CDs</li></ul><h3>Daily vs. Monthly Compounding</h3><p>$50,000 at 5% for 5 years: Daily = $64,080; Monthly = $64,031. Difference: <strong>$49</strong>.</p>`,
+        faq: [
+            { question: "Do high-yield savings accounts compound daily?", answer: "Most online HYSAs compound daily and credit monthly. Marcus, Ally, and Discover all use daily compounding." },
+            { question: "Is daily compounding really better?", answer: "Yes, but marginally. On $10,000 at 5%, daily earns ~$5.50 more/year than monthly." },
+            { question: "Does my credit card compound daily?", answer: "Yes — DPR = APR/365. This is why CC debt grows so quickly." },
+        ],
+    },
+    "interest-calculator": {
+        subtitle: "Calculate interest earned or paid on any amount — supports both simple and compound interest with flexible compounding options.",
+        contentHTML: `<h2>How to Calculate Interest</h2><p>This calculator supports both <strong>simple interest</strong> (I = P × r × t) and <strong>compound interest</strong> (A = P × (1 + r/n)<sup>nt</sup>).</p><h3>Types of Interest</h3><ul><li><strong>Simple</strong> — charged on principal only</li><li><strong>Compound</strong> — charged on principal + accumulated interest</li></ul><h3>How Banks Calculate Interest</h3><p>US banks use the <strong>daily balance method</strong>: interest calculated daily, summed at month-end.</p><h3>Interest Rate Environment</h3><p>The Federal Reserve's funds rate influences all consumer rates. Higher Fed rates = better savings APYs but costlier loans.</p>`,
+        faq: [
+            { question: "How much interest will I earn on $10,000?", answer: "At 5% APY compounded monthly for 1 year: ~$512. At a traditional bank 0.05%: just $5." },
+            { question: "Is interest taxable?", answer: "Yes — savings interest is taxed as ordinary income. Banks issue 1099-INT for interest exceeding $10/year." },
+        ],
+    },
+    "interest-rate-calc": {
+        subtitle: "Reverse-calculate the hidden interest rate from known principal, final amount, and time period.",
+        contentHTML: `<h2>How to Find the Interest Rate</h2><p>This calculator <strong>reverse-engineers</strong> the rate using both simple and compound interest formulas.</p><h3>Simple Rate: r = (A − P) / (P × t)</h3><h3>Compound Rate: r = (A/P)<sup>1/t</sup> − 1</h3><h3>Worked Example</h3><p>Investment grew from $8,000 to $12,500 in 4 years:</p><ul><li>Simple rate: <strong>14.06%/year</strong></li><li>Compound rate: <strong>11.82%/year</strong></li></ul>`,
+        faq: [
+            { question: "Why are simple and compound rates different?", answer: "Compound rate accounts for reinvested interest and is always lower because compounding accelerates growth." },
+            { question: "Can I find my loan's real rate?", answer: "Yes — enter loan amount, total repaid, and time period to calculate the effective annual rate." },
+        ],
+    },
+    "cd-calculator": {
+        subtitle: "Calculate Certificate of Deposit earnings at maturity. Compare rates, terms, and compounding for FDIC-insured investments.",
+        contentHTML: `<h2>What Is a Certificate of Deposit (CD)?</h2><p>A CD is a <strong>time-bound savings product</strong> with a guaranteed fixed rate. Deposit for a set term (3 months to 5 years), earn higher rates than savings accounts.</p><h3>Why CDs Are Popular</h3><ul><li><strong>FDIC insured</strong> up to $250,000</li><li><strong>Guaranteed rate</strong> — unaffected by market drops</li><li><strong>Higher than savings</strong> — typically 0.5–1% more APY</li></ul><h3>CD Laddering</h3><p>Split deposits across multiple terms. As each matures, reinvest or use the cash — balancing liquidity with higher rates.</p><h3>Worked Example</h3><p>$25,000 in 2-year CD at 4.75% daily:</p><ul><li>APY: <strong>4.866%</strong></li><li>Maturity: <strong>$27,471</strong></li><li>Interest: <strong>$2,471</strong></li></ul>`,
+        faq: [
+            { question: "Are CDs safe?", answer: "Yes — FDIC insured up to $250,000 per depositor per bank." },
+            { question: "What is a good CD rate in 2025?", answer: "Top rates: 4.25%–5.00% APY for 1-year terms. Online banks offer the highest." },
+            { question: "Do I pay taxes on CD interest?", answer: "Yes — taxed as ordinary income in the year earned. Banks report via 1099-INT." },
+            { question: "What is a CD ladder?", answer: "Split money across multiple CD terms. As each matures, reinvest for regular cash access with higher rates." },
+        ],
+    },
+    "credit-card-interest-calculator": {
+        subtitle: "Calculate how much interest you pay on credit card balances. See daily periodic rate, monthly charges, and the true cost of minimum payments.",
+        contentHTML: `<h2>How Credit Card Interest Works</h2><p>Credit card interest uses the <strong>daily periodic rate (DPR)</strong> method. APR / 365 = DPR, applied to your average daily balance. Interest <strong>compounds daily</strong>.</p><h3>Example: 22% APR on $5,000</h3><p>DPR = 0.0603%. Daily interest: $3.01. With 2% minimum payments:</p><ul><li>Payoff time: <strong>24 years</strong></li><li>Total interest: <strong>$8,609</strong></li></ul><h3>Average US Credit Card APR (2025)</h3><p>Approximately <strong>20.7% to 24.6%</strong>. Rewards cards have higher rates.</p>`,
+        faq: [
+            { question: "How is credit card interest calculated?", answer: "Interest = Avg Daily Balance × DPR × Days. DPR = APR/365. Compounds daily." },
+            { question: "Can I negotiate a lower APR?", answer: "Yes — issuers often reduce rates 1–5% for customers with good payment history." },
+            { question: "What is a balance transfer?", answer: "Moves debt to a 0% intro APR card (12–21 months). Transfer fee: 3–5%." },
+        ],
+    },
+    "credit-card-payoff-calculator": {
+        subtitle: "Calculate how long to pay off credit card debt and the total interest cost. Find the optimal monthly payment to become debt-free faster.",
+        contentHTML: `<h2>How to Pay Off Credit Card Debt Faster</h2><p>Pay <strong>more than the minimum</strong>. Small increases dramatically reduce payoff time.</p><h3>$5,000 at 22% APR — Payment Impact</h3><table><tr><th>Payment</th><th>Payoff Time</th><th>Total Interest</th></tr><tr><td>$100 (min)</td><td>9yr 3mo</td><td>$6,121</td></tr><tr><td>$200</td><td>2yr 8mo</td><td>$1,459</td></tr><tr><td>$350</td><td>1yr 4mo</td><td>$755</td></tr><tr><td>$500</td><td>11mo</td><td>$514</td></tr></table><h3>Strategies</h3><ul><li><strong>Avalanche</strong> — highest rate first (saves most)</li><li><strong>Snowball</strong> — smallest balance first (momentum)</li><li><strong>Balance Transfer</strong> — 0% intro APR card</li></ul>`,
+        faq: [
+            { question: "Fastest way to pay off CC debt?", answer: "Aggressive payments + balance transfer to 0% APR card. Avalanche method targets highest rate first." },
+            { question: "Should I use savings to pay off CC debt?", answer: "Usually yes if savings earns 4–5% but card charges 22%. Keep $1,000 emergency fund, direct rest to debt." },
+            { question: "Will paying off my card hurt my credit score?", answer: "No — it almost always improves your score by reducing credit utilization." },
+        ],
+    },
+    "future-value-calculator": {
+        subtitle: "Calculate the future value of investments with regular contributions and compound interest. Plan for retirement, college funds, or any goal.",
+        contentHTML: `<h2>What Is Future Value?</h2><p>Future Value (FV) projects what your money will be worth at a specific future date.</p><h3>Formula</h3><p>Lump sum: <strong>FV = PV × (1 + r/n)<sup>nt</sup></strong></p><p>With contributions: add <strong>PMT × [(1 + r/n)<sup>nt</sup> − 1] / (r/n)</strong></p><h3>Retirement Planning</h3><p>$500/month at 7% from age 25:</p><ul><li>Age 45: <strong>$264,012</strong></li><li>Age 55: <strong>$610,453</strong></li><li>Age 65: <strong>$1,312,689</strong></li></ul>`,
+        faq: [
+            { question: "How much should I save for retirement?", answer: "10–15% of gross income. Fidelity: 1× salary by 30, 3× by 40, 6× by 50, 10× by 67." },
+            { question: "What rate of return to assume?", answer: "Stocks: 7% after inflation (10% nominal, S&P 500 historical). Bonds: 3–5%. Blended: 6–8%." },
+        ],
+    },
+    "present-value-calculator": {
+        subtitle: "Calculate the present value of future cash flows. Discount future money to today's dollars using the time value of money.",
+        contentHTML: `<h2>What Is Present Value?</h2><p>PV is the current worth of a future sum, discounted at a specific rate. <strong>A dollar today > a dollar tomorrow</strong> because today's can be invested.</p><h3>Formula</h3><p>Lump sum: <strong>PV = FV / (1 + r)<sup>n</sup></strong></p><h3>Applications</h3><ul><li>Lottery: lump sum vs. annual payments</li><li>Pension buyouts</li><li>Business valuation</li></ul><h3>Example</h3><p>$100,000 in 10 years at 7%: PV = <strong>$50,835</strong></p>`,
+        faq: [
+            { question: "Why is a dollar today worth more?", answer: "It can be invested. $1 at 7% = $1.07 in one year. This is the time value of money." },
+            { question: "What discount rate to use?", answer: "Alternative investment return of similar risk. Low-risk: Treasury ~4.5%. Stocks: 7–10%." },
+        ],
+    },
+    "rule-of-72-calculator": {
+        subtitle: "Use the Rule of 72 to quickly estimate doubling time — or what rate you need to double in a specific timeframe.",
+        contentHTML: `<h2>What Is the Rule of 72?</h2><p>Mental math shortcut: <strong>Years to Double ≈ 72 / Rate</strong>. Accurate for rates between 2% and 15%.</p><h3>Quick Reference</h3><table><tr><th>Rate</th><th>Rule of 72</th><th>Exact</th></tr><tr><td>3%</td><td>24.0yr</td><td>23.4yr</td></tr><tr><td>5%</td><td>14.4yr</td><td>14.2yr</td></tr><tr><td>7%</td><td>10.3yr</td><td>10.2yr</td></tr><tr><td>10%</td><td>7.2yr</td><td>7.3yr</td></tr><tr><td>12%</td><td>6.0yr</td><td>6.1yr</td></tr></table><h3>Reverse</h3><p>Double in 5 years? Rate ≈ 72/5 = <strong>14.4%</strong></p><h3>Practical</h3><ul><li>S&P 500 ~10%: doubles every <strong>7.2yr</strong></li><li>Inflation 3%: costs double every <strong>24yr</strong></li></ul>`,
+        faq: [
+            { question: "How accurate is the Rule of 72?", answer: "Very accurate for 2–15%. At 7%, estimates 10.3yr; exact is 10.24yr (<1% error)." },
+            { question: "Can it be used for debt?", answer: "Yes — at 22% APR, debt doubles in 72/22 ≈ 3.3 years if unpaid." },
+        ],
+    },
+    "student-loan-payoff-calculator": {
+        subtitle: "Plan your student loan payoff with custom payments and extra contributions. Compare against the standard 10-year plan.",
+        contentHTML: `<h2>Student Loan Debt in America</h2><p>Total US student debt: <strong>$1.77 trillion</strong> across 43 million borrowers. Average: <strong>$37,000</strong>.</p><h3>Federal Repayment Plans</h3><ul><li><strong>Standard</strong> — 10 years, fixed; lowest interest</li><li><strong>Graduated</strong> — starts low, increases every 2 years</li><li><strong>Income-Driven (IDR)</strong> — SAVE, REPAYE, PAYE, IBR</li><li><strong>Extended</strong> — up to 25 years</li></ul><h3>Extra Payment Impact</h3><p>$35,000 at 5.5% + $100/mo extra:</p><ul><li>Standard: 120mo, $5,123 interest</li><li>With extra: 83mo, $3,337 interest</li><li>Savings: <strong>$1,786 + 37 months earlier</strong></li></ul><h3>PSLF</h3><p>Federal forgiveness after 120 qualifying payments for public service workers.</p>`,
+        faq: [
+            { question: "Pay off loans or invest?", answer: "Compare loan rate to expected returns. Many split: 401(k) match first, then loans." },
+            { question: "What is the SAVE plan?", answer: "Caps payments at 5–10% of discretionary income. Forgiveness after 20–25 years." },
+            { question: "Can student loans be discharged in bankruptcy?", answer: "Difficult but possible via 'undue hardship' test. Recent policy has eased this somewhat." },
+        ],
     },
 };
 

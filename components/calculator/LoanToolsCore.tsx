@@ -2111,6 +2111,452 @@ function RentalPropertyCalc({defaults}:P){
   </div>);
 }
 
+// ─── APY Calculator ───
+function APYCalc({defaults}:P){
+  const[principal,setPrincipal]=useState(defaults.amount||10000);
+  const[rate,setRate]=useState(defaults.rate||5);
+  const[compFreq,setCompFreq]=useState(12);
+  const[years,setYears]=useState(5);
+  const r=useMemo(()=>{
+    const apy=(Math.pow(1+rate/100/compFreq,compFreq)-1)*100;
+    const fv=principal*Math.pow(1+rate/100/compFreq,compFreq*years);
+    const totalInt=fv-principal;
+    return{apy,fv,totalInt};
+  },[principal,rate,compFreq,years]);
+  return(<div><div className="calc-input-panel">
+    <F label="💰 Initial Deposit" value={principal} onChange={setPrincipal} step={1000}/>
+    <F label="📊 Nominal Rate (%)" value={rate} onChange={setRate} step={0.1}/>
+    <div className="calc-field"><label className="calc-field__label">🔄 Compounding Frequency</label>
+      <div className="tax-toggle">{[{l:"Daily",v:365},{l:"Monthly",v:12},{l:"Quarterly",v:4},{l:"Annually",v:1}].map(o=>(<button key={o.v} className={`tax-toggle__btn${compFreq===o.v?" active":""}`} onClick={()=>setCompFreq(o.v)}>{o.l}</button>))}</div></div>
+    <F label="📅 Years" value={years} onChange={setYears} step={1} min={1}/>
+  </div>
+    <div className="calc-result" aria-live="polite">
+      <p className="calc-result__label">Annual Percentage Yield (APY)</p>
+      <p className="calc-result__emi">{r.apy.toFixed(3)}%</p>
+      <div className="calc-result__stats">
+        <div className="calc-result__stat"><p className="calc-result__stat-label">Future Value</p><p className="calc-result__stat-value">{fmtUSD(r.fv)}</p></div>
+        <div className="calc-result__stat"><p className="calc-result__stat-label">Total Interest</p><p className="calc-result__stat-value" style={{color:"var(--n-success)"}}>{fmtUSD(r.totalInt)}</p></div>
+        <div className="calc-result__stat"><p className="calc-result__stat-label">APR vs APY</p><p className="calc-result__stat-value">{rate}% → {r.apy.toFixed(3)}%</p></div>
+      </div>
+    </div></div>);
+}
+
+// ─── APR to APY Converter ───
+function APRtoAPYCalc({defaults}:P){
+  const[apr,setApr]=useState(defaults.rate||5);
+  const[compFreq,setCompFreq]=useState(12);
+  const[mode,setMode]=useState<"aprToApy"|"apyToApr">("aprToApy");
+  const r=useMemo(()=>{
+    if(mode==="aprToApy"){const apy=(Math.pow(1+apr/100/compFreq,compFreq)-1)*100;return{result:apy,from:apr,label:"APY"};}
+    else{const aprResult=compFreq*(Math.pow(1+apr/100,1/compFreq)-1)*100;return{result:aprResult,from:apr,label:"APR"};}
+  },[apr,compFreq,mode]);
+  return(<div><div className="calc-input-panel">
+    <div className="calc-field"><label className="calc-field__label">🔄 Conversion Direction</label>
+      <div className="tax-toggle"><button className={`tax-toggle__btn${mode==="aprToApy"?" active":""}`} onClick={()=>setMode("aprToApy")}>APR → APY</button>
+        <button className={`tax-toggle__btn${mode==="apyToApr"?" active":""}`} onClick={()=>setMode("apyToApr")}>APY → APR</button></div></div>
+    <F label={mode==="aprToApy"?"📊 APR (%)":"📊 APY (%)"} value={apr} onChange={setApr} step={0.1}/>
+    <div className="calc-field"><label className="calc-field__label">🔄 Compounding Frequency</label>
+      <div className="tax-toggle">{[{l:"Daily",v:365},{l:"Monthly",v:12},{l:"Quarterly",v:4},{l:"Semi-Annually",v:2}].map(o=>(<button key={o.v} className={`tax-toggle__btn${compFreq===o.v?" active":""}`} onClick={()=>setCompFreq(o.v)}>{o.l}</button>))}</div></div>
+  </div>
+    <div className="calc-result" aria-live="polite">
+      <p className="calc-result__label">{r.label}</p>
+      <p className="calc-result__emi">{r.result.toFixed(4)}%</p>
+      <div className="calc-result__breakdown" style={{marginTop:"var(--s-3)"}}><p className="calc-result__breakdown-line">{mode==="aprToApy"?`APR ${apr}% with ${compFreq}x/year compounding = APY ${r.result.toFixed(4)}%`:`APY ${apr}% with ${compFreq}x/year compounding = APR ${r.result.toFixed(4)}%`}</p></div>
+    </div></div>);
+}
+
+// ─── Simple Interest Calculator ───
+function SimpleInterestCalc({defaults}:P){
+  const[principal,setPrincipal]=useState(defaults.amount||10000);
+  const[rate,setRate]=useState(defaults.rate||5);
+  const[months,setMonths]=useState(defaults.tenure||36);
+  const r=useMemo(()=>{
+    const years=months/12;const interest=principal*rate/100*years;const total=principal+interest;
+    return{interest,total,years};
+  },[principal,rate,months]);
+  return(<div><div className="calc-input-panel">
+    <F label="💰 Principal Amount" value={principal} onChange={setPrincipal} step={1000}/>
+    <F label="📊 Annual Interest Rate (%)" value={rate} onChange={setRate} step={0.1}/>
+    <F label="📅 Time Period (months)" value={months} onChange={setMonths} step={1} min={1}/>
+  </div>
+    <div className="calc-result" aria-live="polite">
+      <p className="calc-result__label">Simple Interest</p>
+      <p className="calc-result__emi">{fmtUSD(r.interest)}</p>
+      <div className="calc-result__stats">
+        <div className="calc-result__stat"><p className="calc-result__stat-label">Principal</p><p className="calc-result__stat-value">{fmtUSD(principal)}</p></div>
+        <div className="calc-result__stat"><p className="calc-result__stat-label">Total Amount</p><p className="calc-result__stat-value">{fmtUSD(r.total)}</p></div>
+        <div className="calc-result__stat"><p className="calc-result__stat-label">Duration</p><p className="calc-result__stat-value">{r.years.toFixed(1)} years</p></div>
+      </div>
+      <div className="calc-result__breakdown" style={{marginTop:"var(--s-3)"}}><p className="calc-result__breakdown-line">Formula: I = P × r × t = {fmtUSD(principal)} × {rate}% × {r.years.toFixed(2)} = {fmtUSD(r.interest)}</p></div>
+    </div></div>);
+}
+
+// ─── Compound Interest Calculator ───
+function CompoundInterestCalc({defaults}:P){
+  const[principal,setPrincipal]=useState(defaults.amount||10000);
+  const[rate,setRate]=useState(defaults.rate||7);
+  const[years,setYears]=useState(Math.round((defaults.tenure||120)/12));
+  const[contribution,setContrib]=useState(200);
+  const[compFreq,setCompFreq]=useState(12);
+  const r=useMemo(()=>{
+    const n=compFreq;const rr=rate/100/n;const t=years;
+    const pvGrowth=principal*Math.pow(1+rr,n*t);
+    const pmtGrowth=contribution>0?contribution*((Math.pow(1+rr,n*t)-1)/rr):0;
+    const fv=pvGrowth+pmtGrowth;
+    const totalContrib=principal+contribution*n*t;
+    const totalInt=fv-totalContrib;
+    const yearly:{yr:number;bal:number;contrib:number;interest:number}[]=[];
+    let bal=principal;
+    for(let y=1;y<=t;y++){const startBal=bal;for(let m=0;m<n;m++){const i=bal*rr;bal+=i+contribution;}
+      yearly.push({yr:y,bal,contrib:startBal===principal?principal+contribution*n:contribution*n,interest:bal-startBal-contribution*n});}
+    return{fv,totalContrib,totalInt,yearly};
+  },[principal,rate,years,contribution,compFreq]);
+  return(<div><div className="calc-input-panel">
+    <F label="💰 Initial Investment" value={principal} onChange={setPrincipal} step={1000}/>
+    <F label="📊 Annual Interest Rate (%)" value={rate} onChange={setRate} step={0.1}/>
+    <F label="📅 Years" value={years} onChange={setYears} step={1} min={1}/>
+    <F label="💵 Monthly Contribution" value={contribution} onChange={setContrib} step={50}/>
+    <div className="calc-field"><label className="calc-field__label">🔄 Compounding</label>
+      <div className="tax-toggle">{[{l:"Daily",v:365},{l:"Monthly",v:12},{l:"Quarterly",v:4},{l:"Annually",v:1}].map(o=>(<button key={o.v} className={`tax-toggle__btn${compFreq===o.v?" active":""}`} onClick={()=>setCompFreq(o.v)}>{o.l}</button>))}</div></div>
+  </div>
+    <div className="calc-result" aria-live="polite">
+      <p className="calc-result__label">Future Value</p>
+      <p className="calc-result__emi">{fmtUSD(r.fv)}</p>
+      <div className="calc-result__stats">
+        <div className="calc-result__stat"><p className="calc-result__stat-label">Total Contributions</p><p className="calc-result__stat-value">{fmtUSD(r.totalContrib)}</p></div>
+        <div className="calc-result__stat"><p className="calc-result__stat-label">Total Interest</p><p className="calc-result__stat-value" style={{color:"var(--n-success)"}}>{fmtUSD(r.totalInt)}</p></div>
+        <div className="calc-result__stat"><p className="calc-result__stat-label">Growth</p><p className="calc-result__stat-value">{r.totalContrib>0?((r.fv/r.totalContrib-1)*100).toFixed(1):0}%</p></div>
+      </div>
+    </div>
+    <div style={{marginTop:"var(--s-6)",overflowX:"auto"}}>
+      <h3 className="t-h3" style={{marginBottom:"var(--s-3)"}}>Balance by Year</h3>
+      <table className="comparison-table"><thead><tr><th>Year</th><th>Balance</th><th>Interest</th></tr></thead>
+        <tbody>{r.yearly.slice(0,15).map(y=>(<tr key={y.yr}><td>{y.yr}</td><td>{fmtUSD(y.bal)}</td><td style={{color:"var(--n-success)"}}>{fmtUSD(y.interest)}</td></tr>))}</tbody></table>
+    </div></div>);
+}
+
+// ─── Daily Compound Interest Calculator ───
+function DailyCompoundInterestCalc({defaults}:P){
+  const[principal,setPrincipal]=useState(defaults.amount||10000);
+  const[rate,setRate]=useState(defaults.rate||5);
+  const[months,setMonths]=useState(defaults.tenure||60);
+  const r=useMemo(()=>{
+    const days=Math.round(months*30.4375);const dailyRate=rate/100/365;
+    const fv=principal*Math.pow(1+dailyRate,days);
+    const interest=fv-principal;const apy=(Math.pow(1+dailyRate,365)-1)*100;
+    return{fv,interest,apy,days};
+  },[principal,rate,months]);
+  return(<div><div className="calc-input-panel">
+    <F label="💰 Initial Deposit" value={principal} onChange={setPrincipal} step={1000}/>
+    <F label="📊 Annual Interest Rate (%)" value={rate} onChange={setRate} step={0.1}/>
+    <F label="📅 Time Period (months)" value={months} onChange={setMonths} step={1} min={1}/>
+  </div>
+    <div className="calc-result" aria-live="polite">
+      <p className="calc-result__label">Total Interest (Daily Compounding)</p>
+      <p className="calc-result__emi">{fmtUSD(r.interest)}</p>
+      <div className="calc-result__stats">
+        <div className="calc-result__stat"><p className="calc-result__stat-label">Future Value</p><p className="calc-result__stat-value">{fmtUSD(r.fv)}</p></div>
+        <div className="calc-result__stat"><p className="calc-result__stat-label">APY</p><p className="calc-result__stat-value">{r.apy.toFixed(3)}%</p></div>
+        <div className="calc-result__stat"><p className="calc-result__stat-label">Days</p><p className="calc-result__stat-value">{r.days.toLocaleString()}</p></div>
+      </div>
+    </div></div>);
+}
+
+// ─── Interest Calculator (General) ───
+function InterestCalcTool({defaults}:P){
+  const[principal,setPrincipal]=useState(defaults.amount||10000);
+  const[rate,setRate]=useState(defaults.rate||5);
+  const[months,setMonths]=useState(defaults.tenure||60);
+  const[mode,setMode]=useState<"simple"|"compound">("compound");
+  const[compFreq,setCompFreq]=useState(12);
+  const r=useMemo(()=>{
+    const years=months/12;
+    if(mode==="simple"){const int=principal*rate/100*years;return{interest:int,total:principal+int,effectiveRate:rate};}
+    const fv=principal*Math.pow(1+rate/100/compFreq,compFreq*years);const int=fv-principal;
+    const effectiveRate=(Math.pow(1+rate/100/compFreq,compFreq)-1)*100;
+    return{interest:int,total:fv,effectiveRate};
+  },[principal,rate,months,mode,compFreq]);
+  return(<div><div className="calc-input-panel">
+    <div className="calc-field"><label className="calc-field__label">Interest Type</label>
+      <div className="tax-toggle"><button className={`tax-toggle__btn${mode==="simple"?" active":""}`} onClick={()=>setMode("simple")}>Simple</button>
+        <button className={`tax-toggle__btn${mode==="compound"?" active":""}`} onClick={()=>setMode("compound")}>Compound</button></div></div>
+    <F label="💰 Principal" value={principal} onChange={setPrincipal} step={1000}/>
+    <F label="📊 Annual Rate (%)" value={rate} onChange={setRate} step={0.1}/>
+    <F label="📅 Period (months)" value={months} onChange={setMonths} step={1} min={1}/>
+    {mode==="compound"&&<div className="calc-field"><label className="calc-field__label">🔄 Compounding</label>
+      <div className="tax-toggle">{[{l:"Daily",v:365},{l:"Monthly",v:12},{l:"Quarterly",v:4},{l:"Annually",v:1}].map(o=>(<button key={o.v} className={`tax-toggle__btn${compFreq===o.v?" active":""}`} onClick={()=>setCompFreq(o.v)}>{o.l}</button>))}</div></div>}
+  </div>
+    <div className="calc-result" aria-live="polite">
+      <p className="calc-result__label">Total Interest ({mode==="simple"?"Simple":"Compound"})</p>
+      <p className="calc-result__emi">{fmtUSD(r.interest)}</p>
+      <div className="calc-result__stats">
+        <div className="calc-result__stat"><p className="calc-result__stat-label">Total Amount</p><p className="calc-result__stat-value">{fmtUSD(r.total)}</p></div>
+        <div className="calc-result__stat"><p className="calc-result__stat-label">Effective Rate</p><p className="calc-result__stat-value">{r.effectiveRate.toFixed(3)}%</p></div>
+      </div>
+    </div></div>);
+}
+
+// ─── Interest Rate Calculator (Reverse) ───
+function InterestRateCalcTool({defaults}:P){
+  const[principal,setPrincipal]=useState(10000);
+  const[futureVal,setFutureVal]=useState(15000);
+  const[months,setMonths]=useState(60);
+  const r=useMemo(()=>{
+    const years=months/12;if(years<=0||principal<=0)return{simpleRate:0,compoundRate:0,interest:0};
+    const simpleRate=((futureVal-principal)/(principal*years))*100;
+    const compoundRate=(Math.pow(futureVal/principal,1/years)-1)*100;
+    return{simpleRate,compoundRate,interest:futureVal-principal};
+  },[principal,futureVal,months]);
+  return(<div><div className="calc-input-panel">
+    <F label="💰 Starting Amount" value={principal} onChange={setPrincipal} step={1000}/>
+    <F label="🎯 Ending Amount" value={futureVal} onChange={setFutureVal} step={1000}/>
+    <F label="📅 Time Period (months)" value={months} onChange={setMonths} step={1} min={1}/>
+  </div>
+    <div className="calc-result" aria-live="polite">
+      <p className="calc-result__label">Required Interest Rate</p>
+      <p className="calc-result__emi">{r.compoundRate.toFixed(2)}% <span style={{fontSize:"0.5em",fontWeight:400}}>compound</span></p>
+      <div className="calc-result__stats">
+        <div className="calc-result__stat"><p className="calc-result__stat-label">Simple Rate</p><p className="calc-result__stat-value">{r.simpleRate.toFixed(2)}%</p></div>
+        <div className="calc-result__stat"><p className="calc-result__stat-label">Compound Rate</p><p className="calc-result__stat-value" style={{color:"var(--n-primary)"}}>{r.compoundRate.toFixed(2)}%</p></div>
+        <div className="calc-result__stat"><p className="calc-result__stat-label">Total Growth</p><p className="calc-result__stat-value">{fmtUSD(r.interest)}</p></div>
+      </div>
+    </div></div>);
+}
+
+// ─── CD Calculator ───
+function CDCalc({defaults}:P){
+  const[deposit,setDeposit]=useState(defaults.amount||10000);
+  const[rate,setRate]=useState(defaults.rate||4.5);
+  const[termMonths,setTermMonths]=useState(defaults.tenure||12);
+  const[compFreq,setCompFreq]=useState(365);
+  const r=useMemo(()=>{
+    const years=termMonths/12;const apy=(Math.pow(1+rate/100/compFreq,compFreq)-1)*100;
+    const maturityVal=deposit*Math.pow(1+rate/100/compFreq,compFreq*years);
+    const interest=maturityVal-deposit;
+    return{maturityVal,interest,apy};
+  },[deposit,rate,termMonths,compFreq]);
+  return(<div><div className="calc-input-panel">
+    <F label="💰 Deposit Amount" value={deposit} onChange={setDeposit} step={500}/>
+    <F label="📊 APR (%)" value={rate} onChange={setRate} step={0.05}/>
+    <div className="calc-field"><label className="calc-field__label">📅 CD Term</label>
+      <div className="tax-toggle">{[{l:"3 mo",v:3},{l:"6 mo",v:6},{l:"1 yr",v:12},{l:"2 yr",v:24},{l:"5 yr",v:60}].map(o=>(<button key={o.v} className={`tax-toggle__btn${termMonths===o.v?" active":""}`} onClick={()=>setTermMonths(o.v)}>{o.l}</button>))}</div></div>
+    <div className="calc-field"><label className="calc-field__label">🔄 Compounding</label>
+      <div className="tax-toggle">{[{l:"Daily",v:365},{l:"Monthly",v:12},{l:"Quarterly",v:4}].map(o=>(<button key={o.v} className={`tax-toggle__btn${compFreq===o.v?" active":""}`} onClick={()=>setCompFreq(o.v)}>{o.l}</button>))}</div></div>
+  </div>
+    <div className="calc-result" aria-live="polite">
+      <p className="calc-result__label">CD Maturity Value</p>
+      <p className="calc-result__emi">{fmtUSD(r.maturityVal)}</p>
+      <div className="calc-result__stats">
+        <div className="calc-result__stat"><p className="calc-result__stat-label">Interest Earned</p><p className="calc-result__stat-value" style={{color:"var(--n-success)"}}>{fmtUSD(r.interest)}</p></div>
+        <div className="calc-result__stat"><p className="calc-result__stat-label">APY</p><p className="calc-result__stat-value">{r.apy.toFixed(3)}%</p></div>
+        <div className="calc-result__stat"><p className="calc-result__stat-label">Term</p><p className="calc-result__stat-value">{termMonths} months</p></div>
+      </div>
+      <div className="calc-result__breakdown" style={{marginTop:"var(--s-3)"}}><p className="calc-result__breakdown-line">🛡️ CDs are FDIC insured up to $250,000 per depositor per bank</p></div>
+    </div></div>);
+}
+
+// ─── Credit Card Interest Calculator ───
+function CreditCardInterestCalc({defaults}:P){
+  const[balance,setBalance]=useState(defaults.amount||5000);
+  const[apr,setApr]=useState(defaults.rate||22);
+  const[minPctPay,setMinPctPay]=useState(2);
+  const r=useMemo(()=>{
+    const dpr=apr/100/365;const monthlyRate=apr/100/12;
+    const monthlyInterest=balance*monthlyRate;const minPayment=Math.max(balance*minPctPay/100,25);
+    let bal=balance,totalInt=0,totalPaid=0,months=0;
+    while(bal>0.5&&months<600){const int=bal*monthlyRate;const payment=Math.max(bal*minPctPay/100,25);
+      const prin=Math.min(payment-int,bal);bal=Math.max(0,bal-prin);totalInt+=int;totalPaid+=payment;months++;}
+    return{dpr,monthlyInterest,minPayment,months,totalInt,totalPaid,years:Math.round(months/12*10)/10};
+  },[balance,apr,minPctPay]);
+  return(<div><div className="calc-input-panel">
+    <F label="💳 Credit Card Balance" value={balance} onChange={setBalance} step={100}/>
+    <F label="📊 APR (%)" value={apr} onChange={setApr} step={0.1}/>
+    <F label="📋 Minimum Payment (%)" value={minPctPay} onChange={setMinPctPay} step={0.5} min={1}/>
+  </div>
+    <div className="calc-result" aria-live="polite">
+      <p className="calc-result__label">Monthly Interest Charge</p>
+      <p className="calc-result__emi" style={{color:"var(--n-error, #ef4444)"}}>{fmtUSD(r.monthlyInterest)}</p>
+      <div className="calc-result__stats">
+        <div className="calc-result__stat"><p className="calc-result__stat-label">Payoff Time (min payments)</p><p className="calc-result__stat-value" style={{color:"var(--n-error, #ef4444)"}}>{r.years} years</p></div>
+        <div className="calc-result__stat"><p className="calc-result__stat-label">Total Interest</p><p className="calc-result__stat-value" style={{color:"var(--n-error, #ef4444)"}}>{fmtUSD(r.totalInt)}</p></div>
+        <div className="calc-result__stat"><p className="calc-result__stat-label">Total Paid</p><p className="calc-result__stat-value">{fmtUSD(r.totalPaid)}</p></div>
+      </div>
+      <div className="calc-result__breakdown" style={{marginTop:"var(--s-3)"}}>
+        <p className="calc-result__breakdown-line">Daily Periodic Rate: {(r.dpr*100).toFixed(4)}%</p>
+        <p className="calc-result__breakdown-line">Minimum Payment: {fmtUSD(r.minPayment)}</p>
+      </div>
+    </div></div>);
+}
+
+// ─── Credit Card Payoff Calculator ───
+function CreditCardPayoffCalc({defaults}:P){
+  const[balance,setBalance]=useState(defaults.amount||5000);
+  const[apr,setApr]=useState(defaults.rate||22);
+  const[payment,setPayment]=useState(200);
+  const r=useMemo(()=>{
+    const mr=apr/100/12;if(payment<=balance*mr)return{months:999,totalInt:0,totalPaid:0,payoffDate:"Never"};
+    let bal=balance,months=0,totalInt=0;
+    while(bal>0.5&&months<600){const int=bal*mr;bal=bal+int-payment;totalInt+=int;months++;}
+    const totalPaid=payment*months;
+    const payoffDate=new Date();payoffDate.setMonth(payoffDate.getMonth()+months);
+    return{months,totalInt,totalPaid,payoffDate:payoffDate.toLocaleDateString("en-US",{month:"short",year:"numeric"})};
+  },[balance,apr,payment]);
+  const minPayment=Math.round(balance*apr/100/12)+1;
+  return(<div><div className="calc-input-panel">
+    <F label="💳 Current Balance" value={balance} onChange={setBalance} step={100}/>
+    <F label="📊 APR (%)" value={apr} onChange={setApr} step={0.1}/>
+    <div className="calc-field">
+      <label className="calc-field__label">💵 Monthly Payment</label>
+      <input type="range" className="calc-field__slider" min={Math.max(25,minPayment)} max={Math.max(balance,500)} step={25} value={payment} onChange={e=>setPayment(+e.target.value)}/>
+      <input type="text" className="calc-field__input" value={payment.toLocaleString("en-US")} inputMode="numeric"
+        onChange={e=>{const v=parseInt(e.target.value.replace(/,/g,""));if(!isNaN(v))setPayment(v);}}/>
+    </div>
+  </div>
+    <div className="calc-result" aria-live="polite">
+      <p className="calc-result__label">Debt-Free Date</p>
+      <p className="calc-result__emi" style={{color:r.months<999?"var(--n-success)":"var(--n-error, #ef4444)"}}>{r.payoffDate}</p>
+      <div className="calc-result__stats">
+        <div className="calc-result__stat"><p className="calc-result__stat-label">Months to Payoff</p><p className="calc-result__stat-value">{r.months<999?r.months:"∞"}</p></div>
+        <div className="calc-result__stat"><p className="calc-result__stat-label">Total Interest</p><p className="calc-result__stat-value" style={{color:"var(--n-error, #ef4444)"}}>{fmtUSD(r.totalInt)}</p></div>
+        <div className="calc-result__stat"><p className="calc-result__stat-label">Total Paid</p><p className="calc-result__stat-value">{fmtUSD(r.totalPaid)}</p></div>
+      </div>
+    </div></div>);
+}
+
+// ─── Future Value Calculator ───
+function FutureValueCalc({defaults}:P){
+  const[principal,setPrincipal]=useState(defaults.amount||10000);
+  const[rate,setRate]=useState(defaults.rate||7);
+  const[years,setYears]=useState(Math.round((defaults.tenure||240)/12));
+  const[contribution,setContrib]=useState(500);
+  const[compFreq,setCompFreq]=useState(12);
+  const r=useMemo(()=>{
+    const n=compFreq;const rr=rate/100/n;const t=years;
+    const pvGrowth=principal*Math.pow(1+rr,n*t);
+    const pmtGrowth=contribution>0?contribution*((Math.pow(1+rr,n*t)-1)/rr):0;
+    const fv=pvGrowth+pmtGrowth;const totalContrib=principal+contribution*n*t;const totalInt=fv-totalContrib;
+    return{fv,totalContrib,totalInt};
+  },[principal,rate,years,contribution,compFreq]);
+  return(<div><div className="calc-input-panel">
+    <F label="💰 Starting Amount" value={principal} onChange={setPrincipal} step={1000}/>
+    <F label="📊 Expected Return (%)" value={rate} onChange={setRate} step={0.1}/>
+    <F label="📅 Time Horizon (years)" value={years} onChange={setYears} step={1} min={1}/>
+    <F label="💵 Monthly Contribution" value={contribution} onChange={setContrib} step={50}/>
+  </div>
+    <div className="calc-result" aria-live="polite">
+      <p className="calc-result__label">Future Value</p>
+      <p className="calc-result__emi">{fmtUSD(r.fv)}</p>
+      <div className="calc-result__stats">
+        <div className="calc-result__stat"><p className="calc-result__stat-label">Total Contributions</p><p className="calc-result__stat-value">{fmtUSD(r.totalContrib)}</p></div>
+        <div className="calc-result__stat"><p className="calc-result__stat-label">Interest Earned</p><p className="calc-result__stat-value" style={{color:"var(--n-success)"}}>{fmtUSD(r.totalInt)}</p></div>
+        <div className="calc-result__stat"><p className="calc-result__stat-label">Growth Multiple</p><p className="calc-result__stat-value">{r.totalContrib>0?(r.fv/r.totalContrib).toFixed(2):0}×</p></div>
+      </div>
+    </div></div>);
+}
+
+// ─── Present Value Calculator ───
+function PresentValueCalc({defaults}:P){
+  const[futureVal,setFutureVal]=useState(defaults.amount||100000);
+  const[rate,setRate]=useState(defaults.rate||7);
+  const[years,setYears]=useState(Math.round((defaults.tenure||120)/12));
+  const[payments,setPayments]=useState(0);
+  const r=useMemo(()=>{
+    const pv=futureVal/Math.pow(1+rate/100,years);
+    const pvAnnuity=payments>0?payments*((1-Math.pow(1+rate/100/12,-years*12))/(rate/100/12)):0;
+    const discount=futureVal-pv;
+    return{pv:pv+pvAnnuity,discount,inflationAdjusted:futureVal/Math.pow(1.03,years)};
+  },[futureVal,rate,years,payments]);
+  return(<div><div className="calc-input-panel">
+    <F label="🎯 Future Value" value={futureVal} onChange={setFutureVal} step={1000}/>
+    <F label="📊 Discount Rate (%)" value={rate} onChange={setRate} step={0.1}/>
+    <F label="📅 Years" value={years} onChange={setYears} step={1} min={1}/>
+    <F label="💵 Monthly Payments (annuity)" value={payments} onChange={setPayments} step={100}/>
+  </div>
+    <div className="calc-result" aria-live="polite">
+      <p className="calc-result__label">Present Value</p>
+      <p className="calc-result__emi">{fmtUSD(r.pv)}</p>
+      <div className="calc-result__stats">
+        <div className="calc-result__stat"><p className="calc-result__stat-label">Total Discount</p><p className="calc-result__stat-value">{fmtUSD(r.discount)}</p></div>
+        <div className="calc-result__stat"><p className="calc-result__stat-label">Inflation-Adjusted (3%)</p><p className="calc-result__stat-value">{fmtUSD(r.inflationAdjusted)}</p></div>
+      </div>
+      <div className="calc-result__breakdown" style={{marginTop:"var(--s-3)"}}><p className="calc-result__breakdown-line">PV = FV / (1 + r)^n = {fmtUSD(futureVal)} / (1 + {rate}%)^{years} = {fmtUSD(r.pv)}</p></div>
+    </div></div>);
+}
+
+// ─── Rule of 72 Calculator ───
+function RuleOf72Calc({defaults}:P){
+  const[rate,setRate]=useState(defaults.rate||7);
+  const[mode,setMode]=useState<"rateToYears"|"yearsToRate">("rateToYears");
+  const[targetYears,setTargetYears]=useState(10);
+  const[principal,setPrincipal]=useState(defaults.amount||10000);
+  const r=useMemo(()=>{
+    if(mode==="rateToYears"){const approx=72/rate;const exact=Math.log(2)/Math.log(1+rate/100);return{approx,exact,rate,doubled:principal*2};}
+    else{const approxRate=72/targetYears;const exactRate=(Math.pow(2,1/targetYears)-1)*100;return{approx:targetYears,exact:targetYears,rate:approxRate,exactRate,doubled:principal*2};}
+  },[rate,mode,targetYears,principal]);
+  return(<div><div className="calc-input-panel">
+    <div className="calc-field"><label className="calc-field__label">🔄 Mode</label>
+      <div className="tax-toggle"><button className={`tax-toggle__btn${mode==="rateToYears"?" active":""}`} onClick={()=>setMode("rateToYears")}>Rate → Years</button>
+        <button className={`tax-toggle__btn${mode==="yearsToRate"?" active":""}`} onClick={()=>setMode("yearsToRate")}>Years → Rate</button></div></div>
+    <F label="💰 Starting Amount" value={principal} onChange={setPrincipal} step={1000}/>
+    {mode==="rateToYears"?<F label="📊 Annual Return (%)" value={rate} onChange={setRate} step={0.5}/>
+      :<F label="📅 Double in (years)" value={targetYears} onChange={setTargetYears} step={1} min={1}/>}
+  </div>
+    <div className="calc-result" aria-live="polite">
+      <p className="calc-result__label">{mode==="rateToYears"?"Years to Double":"Required Rate"}</p>
+      <p className="calc-result__emi">{mode==="rateToYears"?`${r.approx.toFixed(1)} years`:`${r.rate.toFixed(1)}%`}</p>
+      <div className="calc-result__stats">
+        <div className="calc-result__stat"><p className="calc-result__stat-label">Rule of 72 Estimate</p><p className="calc-result__stat-value">{mode==="rateToYears"?`${r.approx.toFixed(1)} years`:`${r.rate.toFixed(2)}%`}</p></div>
+        <div className="calc-result__stat"><p className="calc-result__stat-label">Exact Calculation</p><p className="calc-result__stat-value">{mode==="rateToYears"?`${r.exact.toFixed(2)} years`:`${(r as any).exactRate?.toFixed(2)||r.rate.toFixed(2)}%`}</p></div>
+        <div className="calc-result__stat"><p className="calc-result__stat-label">Doubled Amount</p><p className="calc-result__stat-value" style={{color:"var(--n-success)"}}>{fmtUSD(r.doubled)}</p></div>
+      </div>
+      <div className="calc-result__breakdown" style={{marginTop:"var(--s-3)"}}><p className="calc-result__breakdown-line">Rule of 72: Years ≈ 72 / Rate. Simple, accurate for rates between 2% and 15%.</p></div>
+    </div></div>);
+}
+
+// ─── Student Loan Payoff Calculator ───
+function StudentLoanPayoffCalc({defaults}:P){
+  const[balance,setBalance]=useState(defaults.amount||35000);
+  const[rate,setRate]=useState(defaults.rate||5.5);
+  const[payment,setPayment]=useState(400);
+  const[extra,setExtra]=useState(0);
+  const r=useMemo(()=>{
+    const mr=rate/100/12;const totalPay=payment+extra;
+    if(totalPay<=balance*mr)return{months:999,totalInt:0,totalPaid:0,payoffDate:"Never",standardMonths:120,standardInt:0,saved:0};
+    // Standard 10-year plan
+    const stdPmt=pmt(mr,120,balance);let stdBal=balance,stdInt=0;
+    for(let i=0;i<120&&stdBal>0.5;i++){const int=stdBal*mr;stdInt+=int;stdBal=stdBal+int-stdPmt;}
+    // Custom plan
+    let bal=balance,months=0,totalInt=0;
+    while(bal>0.5&&months<600){const int=bal*mr;bal=bal+int-totalPay;totalInt+=int;months++;}
+    const payoffDate=new Date();payoffDate.setMonth(payoffDate.getMonth()+months);
+    return{months,totalInt,totalPaid:totalPay*months,payoffDate:payoffDate.toLocaleDateString("en-US",{month:"short",year:"numeric"}),
+      standardMonths:120,standardPmt:stdPmt,standardInt:stdInt,saved:stdInt-totalInt};
+  },[balance,rate,payment,extra]);
+  return(<div><div className="calc-input-panel">
+    <F label="🎓 Student Loan Balance" value={balance} onChange={setBalance} step={1000}/>
+    <F label="📊 Interest Rate (%)" value={rate} onChange={setRate} step={0.1}/>
+    <div className="calc-field">
+      <label className="calc-field__label">💵 Monthly Payment</label>
+      <input type="range" className="calc-field__slider" min={100} max={2000} step={25} value={payment} onChange={e=>setPayment(+e.target.value)}/>
+      <input type="text" className="calc-field__input" value={payment.toLocaleString("en-US")} inputMode="numeric"
+        onChange={e=>{const v=parseInt(e.target.value.replace(/,/g,""));if(!isNaN(v))setPayment(v);}}/>
+    </div>
+    <F label="💸 Extra Monthly Payment" value={extra} onChange={setExtra} step={25}/>
+  </div>
+    <div className="calc-result" aria-live="polite">
+      <p className="calc-result__label">Payoff Date</p>
+      <p className="calc-result__emi" style={{color:r.months<999?"var(--n-success)":"var(--n-error, #ef4444)"}}>{r.payoffDate}</p>
+      <div className="calc-result__stats">
+        <div className="calc-result__stat"><p className="calc-result__stat-label">Months to Payoff</p><p className="calc-result__stat-value">{r.months<999?r.months:"∞"}</p></div>
+        <div className="calc-result__stat"><p className="calc-result__stat-label">Total Interest</p><p className="calc-result__stat-value">{fmtUSD(r.totalInt)}</p></div>
+        <div className="calc-result__stat"><p className="calc-result__stat-label">Interest Saved vs Standard</p><p className="calc-result__stat-value" style={{color:"var(--n-success)"}}>{fmtUSD(r.saved)}</p></div>
+      </div>
+      {r.standardPmt&&<div className="calc-result__breakdown" style={{marginTop:"var(--s-3)"}}>
+        <p className="calc-result__breakdown-line">Standard 10-year payment: {fmtUSD(r.standardPmt)}/mo | Total interest: {fmtUSD(r.standardInt)}</p>
+      </div>}
+    </div></div>);
+}
+
 // ─── Dispatcher ───
 const CALC_MAP:Record<string,React.FC<P>>={
   mortgage:MortgageCalc, debtConsolidation:DebtConsolidationCalc,
@@ -2124,6 +2570,14 @@ const CALC_MAP:Record<string,React.FC<P>>={
   homeEquity:HomeEquityCalc, heloc:HELOCCalc,
   vaMortgage:VAMortgageCalc, fhaLoan:FHALoanCalc,
   rentalProperty:RentalPropertyCalc,
+  apyCalc:APYCalc, aprToApy:APRtoAPYCalc,
+  simpleInterest:SimpleInterestCalc, compoundInterest:CompoundInterestCalc,
+  dailyCompoundInterest:DailyCompoundInterestCalc,
+  interestCalc:InterestCalcTool, interestRateCalc:InterestRateCalcTool,
+  cdCalc:CDCalc, creditCardInterest:CreditCardInterestCalc,
+  creditCardPayoff:CreditCardPayoffCalc, futureValue:FutureValueCalc,
+  presentValue:PresentValueCalc, ruleOf72:RuleOf72Calc,
+  studentLoanPayoff:StudentLoanPayoffCalc,
 };
 
 export default function LoanToolsCore({calcType,defaults,sliderRanges}:{calcType:string;defaults:any;sliderRanges?:any}){
