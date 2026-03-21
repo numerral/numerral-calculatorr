@@ -20,6 +20,9 @@ import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 import { amountToLabel } from "@/lib/slug";
 import { CIBIL_FAQS } from "@/lib/cibilConfig";
+import RelatedCalculators from "@/components/shared/RelatedCalculators";
+import GuideCTA from "@/components/shared/GuideCTA";
+import GlossaryChip from "@/components/shared/GlossaryChip";
 
 interface PageProps {
     params: Promise<{ calculator: string }>;
@@ -1652,8 +1655,10 @@ export default async function CalculatorHubPage({ params }: PageProps) {
                             )}
                         </>
                     )}
+                    <RelatedCalculators calcId={calc.id} />
+                    <GuideCTA calcId={calc.id} />
+                    <GlossaryChip calcId={calc.id} />
                 </div>
-
                 <aside className="layout-2col__sidebar">
                     <TrendingCalculations variant="sidebar" />
                 </aside>

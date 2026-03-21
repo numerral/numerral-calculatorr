@@ -10,6 +10,9 @@ import TrendingCalculations from "@/components/shared/TrendingCalculations";
 import { getCalculatorsByCategory } from "@/lib/data";
 import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
+import RelatedCalculators from "@/components/shared/RelatedCalculators";
+import GuideCTA from "@/components/shared/GuideCTA";
+import GlossaryChip from "@/components/shared/GlossaryChip";
 
 interface PageProps {
     params: Promise<{ calculator: string }>;
@@ -278,8 +281,10 @@ export default async function TimeCalculatorHubPage({ params }: PageProps) {
                             {content.faq && <FAQAccordion title={`${calc.title} FAQ`} items={content.faq} />}
                         </>
                     )}
+                    <RelatedCalculators calcId={calc.id} />
+                    <GuideCTA calcId={calc.id} />
+                    <GlossaryChip calcId={calc.id} />
                 </div>
-
                 <aside className="layout-2col__sidebar">
                     <TrendingCalculations variant="sidebar" />
                 </aside>

@@ -22,6 +22,13 @@ import guidesJson from "@/data/guides.json";
 
 // ---- Types (reflecting JSON shape) ----
 
+export interface CalculatorLinks {
+    related: string[];
+    crossCluster?: string;
+    guides?: string[];
+    glossary?: string;
+}
+
 export interface CalculatorDef {
     id: string;
     category: string;
@@ -35,6 +42,7 @@ export interface CalculatorDef {
     sliderRanges: SliderRanges;
     calcType?: string;
     keywords?: string;
+    links?: CalculatorLinks;
 }
 
 export interface VariantEntry {
@@ -162,6 +170,65 @@ export function getCalculatorsByCategory(category: string): CalculatorDef[] {
 /** Get a single calculator by its ID. */
 export function getCalculatorById(id: string): CalculatorDef | undefined {
     return calculators.find((c) => c.id === id);
+}
+
+// ---- Internal link resolution ----
+
+interface LinkedCalc {
+    title: string;
+    slug: string;
+    categorySlug: string;
+    description: string;
+}
+
+/** Resolve a calculator's links.related + links.crossCluster IDs into renderable objects. */
+export function getLinkedCalculators(calcId: string): LinkedCalc[] {
+    const calc = getCalculatorById(calcId);
+    if (!calc?.links) return [];
+    const ids = [...(calc.links.related || [])];
+    if (calc.links.crossCluster) ids.push(calc.links.crossCluster);
+    const seen = new Set<string>();
+    const result: LinkedCalc[] = [];
+    for (const id of ids) {
+        if (seen.has(id)) continue;
+        seen.add(id);
+        const c = getCalculatorById(id);
+        if (c) result.push({ title: c.title, slug: c.slug, categorySlug: c.categorySlug, description: c.description });
+    }
+    return result;
+}
+
+interface LinkedGuide {
+    title: string;
+    slug: string;
+    readTime: string;
+    description: string;
+}
+
+/** Resolve a calculator's links.guides slugs into guide objects. */
+export function getLinkedGuides(calcId: string): LinkedGuide[] {
+    const calc = getCalculatorById(calcId);
+    if (!calc?.links?.guides) return [];
+    return calc.links.guides
+        .map((slug) => {
+            const g = getGuideBySlug(slug);
+            return g ? { title: g.title, slug: g.slug, readTime: g.readTime, description: g.description } : null;
+        })
+        .filter((g): g is LinkedGuide => g !== null);
+}
+
+interface LinkedGlossary {
+    term: string;
+    slug: string;
+    definition: string;
+}
+
+/** Resolve a calculator's links.glossary slug into a glossary term object. */
+export function getLinkedGlossary(calcId: string): LinkedGlossary | null {
+    const calc = getCalculatorById(calcId);
+    if (!calc?.links?.glossary) return null;
+    const t = getGlossaryTermBySlug(calc.links.glossary);
+    return t ? { term: t.term, slug: t.slug, definition: t.definition } : null;
 }
 
 // ---- Variant getters ----

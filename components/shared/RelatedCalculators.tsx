@@ -1,7 +1,8 @@
 // RelatedCalculators — Contextual calculator links for topical authority
-// Server component
+// Server component — supports both explicit calculators[] prop and data-driven calcId prop
 
 import Link from "next/link";
+import { getLinkedCalculators } from "@/lib/data";
 
 interface RelatedCalc {
     title: string;
@@ -12,17 +13,24 @@ interface RelatedCalc {
 
 interface RelatedCalculatorsProps {
     title?: string;
-    calculators: RelatedCalc[];
+    calculators?: RelatedCalc[];
+    calcId?: string;
 }
 
-export default function RelatedCalculators({ title = "Related Calculators", calculators }: RelatedCalculatorsProps) {
-    if (!calculators || calculators.length === 0) return null;
+export default function RelatedCalculators({ title = "Related Calculators", calculators, calcId }: RelatedCalculatorsProps) {
+    const items = calculators && calculators.length > 0
+        ? calculators
+        : calcId
+            ? getLinkedCalculators(calcId)
+            : [];
+
+    if (items.length === 0) return null;
 
     return (
         <section className="related-calcs">
             <h2 className="t-h2" style={{ marginBottom: "var(--s-4)" }}>🔗 {title}</h2>
             <div className="related-calcs__grid">
-                {calculators.map((calc, i) => (
+                {items.map((calc, i) => (
                     <Link
                         key={i}
                         href={`/${calc.categorySlug}/${calc.slug}`}

@@ -1520,6 +1520,103 @@ ol {
     line-height: 1.4;
 }
 
+/* ── 14d. GUIDE CTA ────────────────────── */
+.guide-cta {
+    margin-top: var(--s-6);
+}
+
+.guide-cta__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--s-3);
+}
+
+.guide-cta__card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-1);
+    padding: var(--s-4) var(--s-5);
+    background: linear-gradient(135deg, rgba(79, 70, 229, 0.03) 0%, rgba(16, 185, 129, 0.03) 100%);
+    border: 1px solid var(--n-border);
+    border-left: 3px solid var(--n-primary);
+    border-radius: var(--r-md);
+    text-decoration: none;
+    transition: all var(--ease-default);
+}
+
+.guide-cta__card:hover {
+    border-color: var(--n-primary);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-1px);
+}
+
+.guide-cta__title {
+    font-size: var(--t-body-sm);
+    font-weight: 600;
+    color: var(--n-text);
+}
+
+.guide-cta__card:hover .guide-cta__title {
+    color: var(--n-primary);
+}
+
+.guide-cta__meta {
+    font-size: var(--t-caption);
+    color: var(--n-primary);
+    font-weight: 500;
+}
+
+.guide-cta__desc {
+    font-size: var(--t-caption);
+    color: var(--n-text-muted);
+    line-height: 1.4;
+}
+
+/* ── 14e. GLOSSARY CHIP ────────────────── */
+.glossary-chip {
+    margin-top: var(--s-6);
+}
+
+.glossary-chip__card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-2);
+    padding: var(--s-4) var(--s-5);
+    background: var(--n-surface);
+    border: 1px solid var(--n-border);
+    border-radius: var(--r-md);
+    text-decoration: none;
+    transition: all var(--ease-default);
+}
+
+.glossary-chip__card:hover {
+    border-color: var(--n-primary);
+    box-shadow: var(--shadow-md);
+}
+
+.glossary-chip__term {
+    font-size: var(--t-body);
+    font-weight: 700;
+    color: var(--n-text);
+}
+
+.glossary-chip__def {
+    font-size: var(--t-body-sm);
+    color: var(--n-text-secondary);
+    line-height: 1.6;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.glossary-chip__cta {
+    font-size: var(--t-caption);
+    font-weight: 600;
+    color: var(--n-primary);
+}
+
 /* ── 15. FAQ ACCORDION ─────────────────── */
 .faq {
     margin-top: var(--s-8);

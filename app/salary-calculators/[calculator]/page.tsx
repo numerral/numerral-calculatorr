@@ -10,6 +10,9 @@ import SalaryCalculatorCore from "@/components/calculator/SalaryCalculatorCore";
 import DynamicExplanation from "@/components/shared/DynamicExplanation";
 import FAQAccordion from "@/components/shared/FAQAccordion";
 import TrendingCalculations from "@/components/shared/TrendingCalculations";
+import RelatedCalculators from "@/components/shared/RelatedCalculators";
+import GuideCTA from "@/components/shared/GuideCTA";
+import GlossaryChip from "@/components/shared/GlossaryChip";
 import { getCalculatorsByCategory } from "@/lib/data";
 import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
@@ -668,6 +671,9 @@ export default async function SalaryCalculatorHubPage({ params }: PageProps) {
             )}
 
             <FAQAccordion title={`${calc.title} FAQ`} items={hub.faq} />
+            <RelatedCalculators calcId={calc.id} />
+            <GuideCTA calcId={calc.id} />
+            <GlossaryChip calcId={calc.id} />
         </main >
     );
 }
