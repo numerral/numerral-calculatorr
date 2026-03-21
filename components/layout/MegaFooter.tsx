@@ -39,8 +39,11 @@ export default function MegaFooter() {
                 <div className="mega-footer__col">
                     <h4 className="mega-footer__col-title">Resources</h4>
                     <Link href="/about" className="mega-footer__link">About Numerral</Link>
+                    <Link href="/methodology" className="mega-footer__link">Our Methodology</Link>
+                    <Link href="/how-we-calculate" className="mega-footer__link">How We Calculate</Link>
                     <Link href="/authors" className="mega-footer__link">Our Editorial Team</Link>
                     <Link href="/editorial-policy" className="mega-footer__link">Editorial Policy</Link>
+                    <Link href="/contact" className="mega-footer__link">Contact Us</Link>
                     <Link href="/guides" className="mega-footer__link">Financial Guides</Link>
                     <Link href="/glossary" className="mega-footer__link">Glossary</Link>
                     <Link href="/site-map" className="mega-footer__link">Site Map</Link>
@@ -100,6 +103,7 @@ export default function MegaFooter() {
                     <Link href="/privacy">Privacy</Link>
                     <Link href="/cookie-policy">Cookies</Link>
                     <Link href="/about">About</Link>
+                    <Link href="/contact">Contact</Link>
                 </div>
             </div>
         </footer>

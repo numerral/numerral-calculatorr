@@ -30,6 +30,9 @@ export async function GET() {
 
         // Resource pages
         { loc: canonicalUrl("/about"), lastmod: now },
+        { loc: canonicalUrl("/methodology"), lastmod: now },
+        { loc: canonicalUrl("/how-we-calculate"), lastmod: now },
+        { loc: canonicalUrl("/contact"), lastmod: now },
         { loc: canonicalUrl("/site-map"), lastmod: now },
         { loc: canonicalUrl("/authors"), lastmod: now },
         { loc: canonicalUrl("/editorial-policy"), lastmod: now },
