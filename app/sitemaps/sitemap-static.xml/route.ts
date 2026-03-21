@@ -26,7 +26,7 @@ export async function GET() {
         { loc: canonicalUrl("/math-calculators"), lastmod: now },
         { loc: canonicalUrl("/pet-calculators"), lastmod: now },
         { loc: canonicalUrl("/time-calculators"), lastmod: now },
-        { loc: canonicalUrl("/converter-tools"), lastmod: now },
+        { loc: canonicalUrl("/convert"), lastmod: now },
 
         // Resource pages
         { loc: canonicalUrl("/about"), lastmod: now },

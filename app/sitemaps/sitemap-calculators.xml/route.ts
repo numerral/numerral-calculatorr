@@ -39,7 +39,7 @@ function buildEntries(): SitemapEntry[] {
         { cat: "math", slug: "math-calculators" },
         { cat: "pet", slug: "pet-calculators" },
         { cat: "time", slug: "time-calculators" },
-        { cat: "convert", slug: "converter-tools" },
+        { cat: "convert", slug: "convert" },
     ];
 
     for (const { cat, slug } of categories) {
