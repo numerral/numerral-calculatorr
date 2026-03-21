@@ -40,6 +40,12 @@ function buildEntries(): SitemapEntry[] {
         { cat: "pet", slug: "pet-calculators" },
         { cat: "time", slug: "time-calculators" },
         { cat: "convert", slug: "convert" },
+        { cat: "vehicle", slug: "vehicle-loan-calculators" },
+        { cat: "physics", slug: "physics-calculators" },
+        { cat: "chemistry", slug: "chemistry-calculators" },
+        { cat: "density", slug: "density-calculators" },
+        { cat: "electrical", slug: "electrical-calculators" },
+        { cat: "business", slug: "business-calculators" },
     ];
 
     for (const { cat, slug } of categories) {

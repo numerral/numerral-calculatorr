@@ -27,6 +27,12 @@ export async function GET() {
         { loc: canonicalUrl("/pet-calculators"), lastmod: now },
         { loc: canonicalUrl("/time-calculators"), lastmod: now },
         { loc: canonicalUrl("/convert"), lastmod: now },
+        { loc: canonicalUrl("/vehicle-loan-calculators"), lastmod: now },
+        { loc: canonicalUrl("/physics-calculators"), lastmod: now },
+        { loc: canonicalUrl("/chemistry-calculators"), lastmod: now },
+        { loc: canonicalUrl("/density-calculators"), lastmod: now },
+        { loc: canonicalUrl("/electrical-calculators"), lastmod: now },
+        { loc: canonicalUrl("/business-calculators"), lastmod: now },
 
         // Resource pages
         { loc: canonicalUrl("/about"), lastmod: now },
