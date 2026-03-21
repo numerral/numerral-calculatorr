@@ -1,5 +1,5 @@
 // Glossary Hub — /glossary/ (Server Component)
-// A-Z index of 100+ financial terms with links to individual pages
+// A-Z index of all glossary terms with links to individual pages
 
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -10,9 +10,9 @@ import { canonicalUrl, breadcrumbSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
-    title: "Financial Glossary — 100+ Key Finance and Banking Terms Explained",
+    title: "Glossary — 150+ Key Terms Explained Across Finance, Health, Construction & More",
     description:
-        "Comprehensive glossary of financial terms: EMI, SIP, CAGR, CIBIL Score, GST, Section 80C, and 100+ more. Simple, jargon-free definitions.",
+        "Comprehensive glossary of finance, health, construction, electrical & more: EMI, SIP, BMI, TDEE, Concrete PSI, Amps, Watts and 150+ terms explained simply.",
     alternates: { canonical: canonicalUrl("/glossary") },
 };
 
@@ -32,7 +32,7 @@ export default function GlossaryHubPage() {
     const schemaData = JSON.stringify(
         breadcrumbSchema([
             { name: "Home", url: `${SITE_URL}/` },
-            { name: "Financial Glossary" },
+            { name: "Glossary" },
         ])
     );
 
@@ -41,6 +41,14 @@ export default function GlossaryHubPage() {
         invest: "var(--n-cat-invest)",
         tax: "var(--n-cat-tax)",
         utility: "var(--n-cat-utility)",
+        construction: "#e67e22",
+        health: "#e74c3c",
+        electrical: "#f1c40f",
+        math: "#3498db",
+        physics: "#9b59b6",
+        chemistry: "#1abc9c",
+        ev: "#2ecc71",
+        business: "#e91e63",
     };
 
     return (
@@ -51,13 +59,13 @@ export default function GlossaryHubPage() {
                 dangerouslySetInnerHTML={{ __html: schemaData }}
             />
 
-            <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Financial Glossary" }]} />
+            <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Glossary" }]} />
 
             <h1 className="t-h1" style={{ marginBottom: "var(--s-2)" }}>
-                📖 Financial Glossary
+                📖 Glossary
             </h1>
             <p className="t-body text-muted" style={{ marginBottom: "var(--s-6)", maxWidth: "var(--w-narrow)" }}>
-                {terms.length} financial terms explained in plain language. From EMI to XIRR, Section 80C to GSTIN — everything you need to understand Indian finance.
+                {terms.length} terms explained in plain language — covering finance, health, construction, electrical, and more.
             </p>
 
             {/* A-Z Navigation */}
