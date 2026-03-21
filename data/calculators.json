@@ -23005,5 +23005,302 @@
         "metal-weight-calculator"
       ]
     }
+  },
+  {
+    "id": "auto-loan-calculator",
+    "category": "vehicle",
+    "title": "Auto Loan Calculator",
+    "slug": "auto-loan-calculator",
+    "categorySlug": "vehicle-loan-calculators",
+    "icon": "🚗",
+    "calcType": "autoLoan",
+    "description": "Calculate your monthly car payment including trade-in value, down payment, sales tax, and extended warranty. Compare loan terms and find the true cost of financing a new or used vehicle.",
+    "stars": 5,
+    "defaults": {
+      "amount": 35000,
+      "rate": 6.5,
+      "tenure": 60
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 5000,
+        "max": 150000,
+        "step": 500
+      },
+      "rate": {
+        "min": 1,
+        "max": 20,
+        "step": 0.1
+      },
+      "tenure": {
+        "min": 12,
+        "max": 84,
+        "step": 12
+      }
+    },
+    "keywords": "auto loan calculator, car payment calculator, car loan calculator, vehicle loan calculator, monthly car payment, auto loan interest, car financing calculator",
+    "links": {
+      "related": [
+        "car-lease-calculator",
+        "lease-vs-buy-calculator",
+        "motorcycle-loan-calculator",
+        "boat-loan-calculator"
+      ],
+      "crossCluster": "apr-calculator",
+      "glossary": "auto-loan"
+    }
+  },
+  {
+    "id": "car-lease-calculator",
+    "category": "vehicle",
+    "title": "Car Lease Calculator",
+    "slug": "car-lease-calculator",
+    "categorySlug": "vehicle-loan-calculators",
+    "icon": "📋",
+    "calcType": "carLease",
+    "description": "Calculate your monthly lease payment using MSRP, residual value, money factor, and down payment. Understand depreciation cost, capitalized cost reduction, and total lease expense.",
+    "stars": 5,
+    "defaults": {
+      "amount": 40000,
+      "rate": 3,
+      "tenure": 36
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 15000,
+        "max": 100000,
+        "step": 1000
+      },
+      "rate": {
+        "min": 0.5,
+        "max": 10,
+        "step": 0.1
+      },
+      "tenure": {
+        "min": 24,
+        "max": 48,
+        "step": 12
+      }
+    },
+    "keywords": "car lease calculator, lease payment calculator, auto lease calculator, lease vs buy, monthly lease payment, residual value, money factor",
+    "links": {
+      "related": [
+        "auto-loan-calculator",
+        "lease-vs-buy-calculator",
+        "rv-loan-calculator"
+      ],
+      "glossary": "car-lease"
+    }
+  },
+  {
+    "id": "lease-vs-buy-calculator",
+    "category": "vehicle",
+    "title": "Lease vs. Buy Car Calculator",
+    "slug": "lease-vs-buy-calculator",
+    "categorySlug": "vehicle-loan-calculators",
+    "icon": "⚖️",
+    "calcType": "leaseVsBuy",
+    "description": "Compare the total cost of leasing vs buying a car side by side. See monthly payments, total cost of ownership, depreciation impact, and which option saves you more money.",
+    "stars": 5,
+    "defaults": {
+      "amount": 40000,
+      "rate": 6.5,
+      "tenure": 60
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 15000,
+        "max": 100000,
+        "step": 1000
+      },
+      "rate": {
+        "min": 1,
+        "max": 15,
+        "step": 0.1
+      },
+      "tenure": {
+        "min": 24,
+        "max": 84,
+        "step": 12
+      }
+    },
+    "keywords": "lease vs buy calculator, should I lease or buy, lease vs finance, car lease or buy comparison, total cost of ownership car",
+    "links": {
+      "related": [
+        "auto-loan-calculator",
+        "car-lease-calculator",
+        "motorcycle-loan-calculator"
+      ],
+      "glossary": "lease-vs-buy"
+    }
+  },
+  {
+    "id": "boat-loan-calculator",
+    "category": "vehicle",
+    "title": "Boat Loan Calculator",
+    "slug": "boat-loan-calculator",
+    "categorySlug": "vehicle-loan-calculators",
+    "icon": "🚤",
+    "calcType": "boatLoan",
+    "description": "Calculate your monthly boat loan payment including sales tax, trade-in, and down payment. See total interest cost and an amortization schedule for marine financing.",
+    "stars": 4,
+    "defaults": {
+      "amount": 25000,
+      "rate": 7.5,
+      "tenure": 60
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 5000,
+        "max": 500000,
+        "step": 1000
+      },
+      "rate": {
+        "min": 2,
+        "max": 15,
+        "step": 0.1
+      },
+      "tenure": {
+        "min": 24,
+        "max": 240,
+        "step": 12
+      }
+    },
+    "keywords": "boat loan calculator, boat payment calculator, marine loan calculator, boat financing calculator, monthly boat payment",
+    "links": {
+      "related": [
+        "auto-loan-calculator",
+        "rv-loan-calculator",
+        "atv-loan-calculator",
+        "motorcycle-loan-calculator"
+      ],
+      "glossary": "boat-loan"
+    }
+  },
+  {
+    "id": "motorcycle-loan-calculator",
+    "category": "vehicle",
+    "title": "Motorcycle Loan Calculator",
+    "slug": "motorcycle-loan-calculator",
+    "categorySlug": "vehicle-loan-calculators",
+    "icon": "🏍️",
+    "calcType": "motorcycleLoan",
+    "description": "Calculate your monthly motorcycle payment including trade-in, down payment, and sales tax. Find the best loan term for new or used bike financing.",
+    "stars": 4,
+    "defaults": {
+      "amount": 15000,
+      "rate": 7,
+      "tenure": 48
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 2000,
+        "max": 50000,
+        "step": 500
+      },
+      "rate": {
+        "min": 2,
+        "max": 18,
+        "step": 0.1
+      },
+      "tenure": {
+        "min": 12,
+        "max": 84,
+        "step": 12
+      }
+    },
+    "keywords": "motorcycle loan calculator, bike loan calculator, motorcycle payment calculator, motorcycle financing, monthly motorcycle payment",
+    "links": {
+      "related": [
+        "auto-loan-calculator",
+        "atv-loan-calculator",
+        "boat-loan-calculator"
+      ],
+      "glossary": "motorcycle-loan"
+    }
+  },
+  {
+    "id": "rv-loan-calculator",
+    "category": "vehicle",
+    "title": "RV Loan Calculator",
+    "slug": "rv-loan-calculator",
+    "categorySlug": "vehicle-loan-calculators",
+    "icon": "🏕️",
+    "calcType": "rvLoan",
+    "description": "Calculate your monthly payment for an RV, camper, or motorhome loan. Compare loan terms up to 20 years and see total interest cost with amortization schedule.",
+    "stars": 4,
+    "defaults": {
+      "amount": 45000,
+      "rate": 6.5,
+      "tenure": 120
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 10000,
+        "max": 500000,
+        "step": 1000
+      },
+      "rate": {
+        "min": 3,
+        "max": 15,
+        "step": 0.1
+      },
+      "tenure": {
+        "min": 36,
+        "max": 240,
+        "step": 12
+      }
+    },
+    "keywords": "rv loan calculator, rv payment calculator, camper loan calculator, motorhome loan calculator, rv financing calculator",
+    "links": {
+      "related": [
+        "boat-loan-calculator",
+        "auto-loan-calculator",
+        "atv-loan-calculator"
+      ],
+      "glossary": "rv-loan"
+    }
+  },
+  {
+    "id": "atv-loan-calculator",
+    "category": "vehicle",
+    "title": "ATV Loan Calculator",
+    "slug": "atv-loan-calculator",
+    "categorySlug": "vehicle-loan-calculators",
+    "icon": "🏎️",
+    "calcType": "atvLoan",
+    "description": "Calculate your monthly ATV or UTV loan payment. Enter price, down payment, interest rate, and loan term to find your payment and total financing cost.",
+    "stars": 4,
+    "defaults": {
+      "amount": 12000,
+      "rate": 8,
+      "tenure": 48
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 2000,
+        "max": 40000,
+        "step": 500
+      },
+      "rate": {
+        "min": 3,
+        "max": 20,
+        "step": 0.1
+      },
+      "tenure": {
+        "min": 12,
+        "max": 84,
+        "step": 12
+      }
+    },
+    "keywords": "atv loan calculator, atv payment calculator, utv loan calculator, atv financing calculator, four wheeler loan calculator",
+    "links": {
+      "related": [
+        "motorcycle-loan-calculator",
+        "boat-loan-calculator",
+        "rv-loan-calculator"
+      ],
+      "glossary": "atv-loan"
+    }
   }
 ]

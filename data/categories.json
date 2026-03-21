@@ -134,5 +134,13 @@
         "description": "Density, metal weight, water weight & material tools",
         "count": 6,
         "href": "/density-calculators"
+    },
+    {
+        "key": "vehicle",
+        "icon": "🚗",
+        "name": "Vehicle Loan Calculators",
+        "description": "Car, boat, motorcycle, RV & ATV loan payment tools",
+        "count": 7,
+        "href": "/vehicle-loan-calculators"
     }
 ]
