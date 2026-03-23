@@ -208,24 +208,53 @@ function ConcreteBlockCalc() {
 
 /* ──────────── 3. FLOORING CALCULATOR ──────────── */
 function FlooringCalc() {
+    const TYPES: Record<string, { price: number; waste: number; box: number }> = {
+        hardwood: { price: 8, waste: 10, box: 20 },
+        laminate: { price: 2.5, waste: 10, box: 22 },
+        lvp: { price: 3.5, waste: 10, box: 24 },
+        engineered: { price: 6, waste: 10, box: 20 },
+        bamboo: { price: 5, waste: 10, box: 22 },
+        tile: { price: 4, waste: 15, box: 15 },
+    };
+
+    const [floorType, setFloorType] = useState("hardwood");
     const [length, setLength] = useState(12);
     const [width, setWidth] = useState(10);
     const [waste, setWaste] = useState(10);
     const [boxCoverage, setBoxCoverage] = useState(20);
-    const [pricePerSqFt, setPricePerSqFt] = useState(3);
+    const [pricePerSqFt, setPricePerSqFt] = useState(8);
+
+    const handleType = (v: string) => {
+        setFloorType(v);
+        const t = TYPES[v];
+        if (t) { setPricePerSqFt(t.price); setWaste(t.waste); setBoxCoverage(t.box); }
+    };
 
     const result = useMemo(() => {
         const area = length * width;
         const withWaste = area * (1 + waste / 100);
-        const boxes = boxCoverage > 0 ? withWaste / boxCoverage : 0;
+        const boxes = boxCoverage > 0 ? Math.ceil(withWaste / boxCoverage) : 0;
         const cost = withWaste * pricePerSqFt;
-        return { area, withWaste, boxes, cost };
+        // Underlayment: standard roll = 200 sq ft
+        const underlaymentRolls = Math.ceil(withWaste / 200);
+        // Trim/baseboard: perimeter minus one doorway (~3 ft)
+        const perimeter = 2 * (length + width);
+        const trimLf = Math.max(0, perimeter - 3);
+        return { area, withWaste, boxes, cost, underlaymentRolls, trimLf, perimeter };
     }, [length, width, waste, boxCoverage, pricePerSqFt]);
 
     return (
         <div className="con-calc">
             <h3 className="con-calc__title">🪵 Flooring Calculator</h3>
             <div className="con-calc__inputs">
+                <SelectField label="Flooring Type" value={floorType} onChange={handleType} options={[
+                    { value: "hardwood", label: "Hardwood" },
+                    { value: "laminate", label: "Laminate" },
+                    { value: "lvp", label: "Vinyl Plank (LVP)" },
+                    { value: "engineered", label: "Engineered Wood" },
+                    { value: "bamboo", label: "Bamboo" },
+                    { value: "tile", label: "Tile" },
+                ]} />
                 <InputField label="Room Length" value={length} onChange={setLength} unit="ft" min={1} />
                 <InputField label="Room Width" value={width} onChange={setWidth} unit="ft" min={1} />
                 <InputField label="Waste Factor" value={waste} onChange={setWaste} unit="%" min={0} max={30} />
@@ -233,11 +262,16 @@ function FlooringCalc() {
                 <InputField label="Price per sq ft" value={pricePerSqFt} onChange={setPricePerSqFt} unit="$" min={0} step={0.1} />
             </div>
             <div className="con-calc__results">
-                <h4>Results</h4>
+                <h4>Area &amp; Material</h4>
                 <ResultRow label="Room Area" value={fmt(result.area)} unit="sq ft" />
                 <ResultRow label="Material Needed (+ waste)" value={fmt(result.withWaste)} unit="sq ft" />
                 <ResultRow label="Boxes Needed" value={fmtInt(result.boxes)} unit="boxes" />
-                <ResultRow label="Estimated Cost" value={`$${fmt(result.cost)}`} />
+                <h4>Underlayment &amp; Trim</h4>
+                <ResultRow label="Underlayment Rolls" value={fmtInt(result.underlaymentRolls)} unit="rolls (200 sq ft)" />
+                <ResultRow label="Baseboard / Trim" value={fmt(result.trimLf)} unit="linear ft" />
+                <ResultRow label="Room Perimeter" value={fmt(result.perimeter)} unit="ft" />
+                <h4>Cost</h4>
+                <ResultRow label="Estimated Material Cost" value={`$${fmt(result.cost, 2)}`} />
             </div>
         </div>
     );

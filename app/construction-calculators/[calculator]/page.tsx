@@ -254,18 +254,101 @@ const HUB_CONTENT: Record<string, {
         ],
     },
     "flooring-calculator": {
-        subtitle: "Calculate exactly how much flooring you need for any room. Supports hardwood, laminate, vinyl plank, and engineered wood with waste factor and cost estimation.",
+        subtitle: "Calculate how much flooring material you need for any room. Choose from 6 flooring types — hardwood, laminate, vinyl plank, engineered wood, bamboo, or tile — and get square footage, boxes, underlayment rolls, trim, and cost estimate.",
         explanation: {
             heading: "How to Calculate Flooring Material",
             paragraphs: [
-                "The basic flooring calculation is Length × Width to get the room's square footage. But you should never order just the exact amount — cuts, fitting around obstacles, and pattern matching require extra material. Industry standard is 10% waste for rectangular rooms with straight-lay patterns.",
-                "Flooring is sold by the box, with each box covering a specific square footage (typically 15–25 sq ft per box depending on the product). Divide your total needed area (including waste) by the box coverage to get the number of boxes. Always round up — you can't buy a fraction of a box.",
+                "The basic flooring calculation is Length × Width to get the room's square footage. But never order just the exact amount — cuts, fitting around obstacles, and pattern matching require extra material. Industry standard is 10% waste for straight-lay and 15–20% for diagonal, herringbone, or parquet patterns.",
+                "Flooring is sold by the box, with each box covering a specific square footage (typically 15–25 sq ft depending on product). Divide your total area (including waste) by the box coverage and round up — you can't buy a fraction of a box. Don't forget underlayment (sold in 200 sq ft rolls) and baseboard/trim (sold by the linear foot).",
             ],
-            highlight: "12×10 ft room = 120 sq ft. With 10% waste = 132 sq ft. At 20 sq ft/box, you need 7 boxes. At $3/sq ft, budget $396 for materials.",
+            highlight: "12 × 10 ft room = 120 sq ft. With 10% waste = 132 sq ft. At 20 sq ft/box: 7 boxes. Underlayment: 1 roll. Trim: ~41 linear feet. At $8/sq ft hardwood: $1,056 for material.",
         },
+        contentHTML: `
+<h2>How to Measure Your Room for Flooring</h2>
+<p>Accurate measurements are the foundation of a successful flooring project. Here's how to measure like a pro:</p>
+<ul>
+<li><strong>Use a quality tape measure</strong> (or laser measurer for large rooms). Measure wall to wall, not baseboard to baseboard — you'll be removing baseboards before installation.</li>
+<li><strong>Measure at the widest points.</strong> Walls are rarely perfectly straight. Measure at multiple spots and use the largest number.</li>
+<li><strong>Break complex rooms into rectangles.</strong> For L-shaped, T-shaped, or rooms with bump-outs, divide the space into simple rectangles, calculate each separately, and add them together.</li>
+<li><strong>Account for closets.</strong> Don't forget walk-in closets, alcoves, and pantries — they add significant square footage.</li>
+<li><strong>Convert all measurements to feet</strong> before calculating. If you measured in inches, divide by 12.</li>
+</ul>
+
+<h2>Room Area Formulas</h2>
+<table>
+<thead><tr><th>Room Shape</th><th>Formula</th><th>Example</th></tr></thead>
+<tbody>
+<tr><td><strong>Rectangle</strong></td><td>Length × Width</td><td>12 × 10 = 120 sq ft</td></tr>
+<tr><td><strong>L-Shape</strong></td><td>(L1 × W1) + (L2 × W2)</td><td>(12 × 10) + (6 × 4) = 144 sq ft</td></tr>
+<tr><td><strong>Circle</strong></td><td>π × radius²</td><td>π × 5² = 78.5 sq ft</td></tr>
+<tr><td><strong>Triangle</strong></td><td>½ × base × height</td><td>½ × 10 × 8 = 40 sq ft</td></tr>
+</tbody>
+</table>
+<p>For rooms with angled walls or curved sections, measure the bounding rectangle and use the larger area. It's better to have extra material than to come up short mid-installation.</p>
+
+<h2>Flooring Types Comparison</h2>
+<table>
+<thead><tr><th>Type</th><th>Material $/sq ft</th><th>Installed $/sq ft</th><th>Durability</th><th>DIY Difficulty</th><th>Best For</th></tr></thead>
+<tbody>
+<tr><td><strong>Solid Hardwood</strong></td><td>$4–$12</td><td>$8–$18</td><td>25–100 years</td><td>Hard</td><td>Living rooms, bedrooms, dining</td></tr>
+<tr><td><strong>Engineered Wood</strong></td><td>$3–$10</td><td>$6–$15</td><td>20–40 years</td><td>Moderate</td><td>Basements, over concrete, radiant heat</td></tr>
+<tr><td><strong>Laminate</strong></td><td>$0.75–$4</td><td>$3–$8</td><td>15–25 years</td><td>Easy</td><td>Budget-friendly, high-traffic areas</td></tr>
+<tr><td><strong>Vinyl Plank (LVP)</strong></td><td>$1.50–$5</td><td>$3–$10</td><td>10–20 years</td><td>Easy</td><td>Kitchens, bathrooms, basements</td></tr>
+<tr><td><strong>Bamboo</strong></td><td>$3–$8</td><td>$5–$12</td><td>20–35 years</td><td>Moderate</td><td>Eco-friendly, modern aesthetic</td></tr>
+<tr><td><strong>Ceramic/Porcelain Tile</strong></td><td>$1–$15</td><td>$5–$20</td><td>50+ years</td><td>Hard</td><td>Bathrooms, kitchens, entryways</td></tr>
+</tbody>
+</table>
+
+<h2>Flooring Cost (2025 US Pricing)</h2>
+<table>
+<thead><tr><th>Cost Component</th><th>Typical Range</th></tr></thead>
+<tbody>
+<tr><td><strong>Flooring material</strong></td><td>$0.75–$15 per sq ft (varies by type)</td></tr>
+<tr><td><strong>Underlayment</strong></td><td>$0.15–$0.50 per sq ft ($30–$100 per 200 sq ft roll)</td></tr>
+<tr><td><strong>Baseboard / trim</strong></td><td>$0.60–$2.00 per linear foot</td></tr>
+<tr><td><strong>Transition strips</strong></td><td>$5–$20 each</td></tr>
+<tr><td><strong>Adhesive (glue-down)</strong></td><td>$30–$60 per gallon (covers ~40–60 sq ft)</td></tr>
+<tr><td><strong>Professional installation</strong></td><td>$2–$8 per sq ft labor</td></tr>
+<tr><td><strong>Old flooring removal</strong></td><td>$1–$3 per sq ft</td></tr>
+<tr><td><strong>Average 200 sq ft room (laminate, DIY)</strong></td><td>$400–$1,200 total</td></tr>
+<tr><td><strong>Average 200 sq ft room (hardwood, pro install)</strong></td><td>$2,000–$4,500 total</td></tr>
+</tbody>
+</table>
+
+<h2>Installation Tips for a Professional-Quality Floor</h2>
+<ul>
+<li><strong>Acclimate the flooring:</strong> Store flooring in the room where it will be installed for 48–72 hours before beginning. This allows the planks to adjust to the room's temperature and humidity, preventing gaps or buckling.</li>
+<li><strong>Always use underlayment:</strong> Underlayment provides moisture protection, sound dampening, and minor subfloor leveling. Most floating floors (laminate, LVP, engineered) require it. Some planks come with attached underlayment — don't double up.</li>
+<li><strong>Leave expansion gaps:</strong> Wood and laminate expand and contract with humidity. Leave a ¼-inch to ½-inch gap between the flooring and all walls, covered by baseboard trim.</li>
+<li><strong>Stagger the seams:</strong> For plank flooring, stagger end joints by at least 6 inches between rows. This creates a more natural look and makes the floor structurally stronger.</li>
+<li><strong>Start from the longest, most visible wall:</strong> Run planks parallel to the longest wall or toward the room's main light source. This makes the space look larger.</li>
+<li><strong>Check subfloor flatness:</strong> The subfloor should be flat within 3/16 inch per 10-foot span. Use self-leveling compound for low spots and sand down high spots. An uneven subfloor causes squeaking and premature wear.</li>
+</ul>
+
+<h2>Waste Factor Guide</h2>
+<table>
+<thead><tr><th>Installation Pattern</th><th>Recommended Waste %</th></tr></thead>
+<tbody>
+<tr><td>Straight-lay (standard)</td><td>10%</td></tr>
+<tr><td>Diagonal (45°)</td><td>15%</td></tr>
+<tr><td>Herringbone / Chevron</td><td>15–20%</td></tr>
+<tr><td>Parquet</td><td>20%</td></tr>
+<tr><td>Complex room shapes</td><td>15%</td></tr>
+<tr><td>First-time DIY installer</td><td>15–20%</td></tr>
+</tbody>
+</table>
+`,
         faq: [
-            { question: "How much extra flooring should I buy?", answer: "10% for standard rectangular rooms with straight-lay. 15% for diagonal or herringbone patterns, L-shaped rooms, or many obstacles. 20% if you're a first-time installer. Keep leftover boxes for future repairs." },
-            { question: "How do I account for closets and irregular areas?", answer: "Break the room into rectangles. Calculate each section separately, then add them together. For odd shapes, draw the room on graph paper and count the full and partial squares." },
+            { question: "How much extra flooring should I buy?", answer: "10% for standard rectangular rooms with straight-lay patterns. 15% for diagonal or herringbone patterns, L-shaped rooms, or rooms with many obstacles. 20% for parquet or if you're a first-time installer. Always keep leftover boxes for future repairs — matching dye lots later is nearly impossible." },
+            { question: "Do I need underlayment for my floor?", answer: "Yes for most floating floors (laminate, engineered wood, LVP). Underlayment provides moisture protection, sound dampening, and minor subfloor leveling. Skip it only if your planks have attached underlayment (check the back of the plank). Never double up underlayment — it makes the floor bouncy and can void your warranty." },
+            { question: "How long should flooring acclimate before installation?", answer: "48–72 hours minimum. Remove the flooring from boxes and lay it flat in the room where it will be installed. The room should be at normal living temperature (60–80°F) and humidity (30–50%). Acclimation prevents post-installation gaps, buckling, and cupping." },
+            { question: "Should I run flooring parallel or perpendicular to the longest wall?", answer: "Generally parallel to the longest wall or toward the room's main light source. This makes the room look larger and more cohesive. For hallways, always run planks lengthwise. For rooms that open to hallways, match the hallway direction for visual flow." },
+            { question: "How much does it cost to install flooring?", answer: "DIY material only: laminate $0.75–$4/sq ft, LVP $1.50–$5, engineered $3–$10, hardwood $4–$12. Professional installation adds $2–$8/sq ft for labor. A 200 sq ft room with laminate costs $400–$1,200 DIY or $1,000–$2,400 professionally installed." },
+            { question: "Can I install new flooring over old flooring?", answer: "It depends. Floating floors (laminate, LVP, some engineered) can go over existing hard, flat surfaces like vinyl sheet, tile, or old hardwood. You cannot install over carpet, damaged subfloor, or uneven surfaces. Adding a new floor on top raises floor height — check that doors still open and transitions to other rooms work." },
+            { question: "What is the difference between laminate and vinyl plank?", answer: "Laminate has a fiberboard core with a printed design layer and melamine top — it looks like wood but is damaged by standing water. Vinyl plank (LVP) has a 100% waterproof PVC core — it can go in kitchens, bathrooms, and basements. LVP is also quieter underfoot and more forgiving on uneven subfloors." },
+            { question: "How do I account for closets and irregular areas?", answer: "Break the room into simple rectangles. Measure each section (main room, closet, alcove) separately, calculate the square footage of each, and add them together. For odd shapes, measure the bounding rectangle and use a waste factor of 15% instead of 10% to cover extra cuts." },
+            { question: "How much baseboard trim do I need?", answer: "Measure the room's perimeter in linear feet using a tape measure. Subtract 3 feet for each standard doorway (no trim needed where there's an opening). Add 10% for waste — mitre cuts at corners create some scrap. Trim is sold in 8-ft, 12-ft, and 16-ft lengths." },
+            { question: "What tools do I need for a DIY flooring installation?", answer: "For floating floors: tape measure, spacers (¼ inch), tapping block, pull bar, rubber mallet, utility knife or miter saw, and a carpenter's square. For nail-down hardwood: add a pneumatic flooring nailer. For glue-down: add a trowel and adhesive. A miter saw is essential for clean, accurate cuts." },
         ],
     },
     "tile-calculator": {
