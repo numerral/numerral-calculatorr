@@ -1488,35 +1488,71 @@ function InsulationCalc() {
 }
 
 /* ──────────── 19. CARPET CALCULATOR ──────────── */
+const CARPET_TYPES: { value: string; label: string; costSqYd: number; padCostSqYd: number }[] = [
+    { value: "polyester", label: "Polyester (economy)", costSqYd: 15, padCostSqYd: 3 },
+    { value: "nylon", label: "Nylon (mid-range)", costSqYd: 30, padCostSqYd: 4 },
+    { value: "olefin", label: "Olefin / Polypropylene", costSqYd: 18, padCostSqYd: 3 },
+    { value: "triexta", label: "Triexta (SmartStrand)", costSqYd: 35, padCostSqYd: 4 },
+    { value: "wool", label: "Wool (luxury)", costSqYd: 65, padCostSqYd: 5 },
+    { value: "berber", label: "Berber (loop pile)", costSqYd: 22, padCostSqYd: 4 },
+    { value: "custom", label: "Custom / Other", costSqYd: 25, padCostSqYd: 4 },
+];
+
 function CarpetCalc() {
+    const [carpetType, setCarpetType] = useState("nylon");
+    const [rollWidth, setRollWidth] = useState(12);
     const [length, setLength] = useState(12);
     const [width, setWidth] = useState(10);
     const [waste, setWaste] = useState(10);
-    const [pricePerSqYd, setPricePerSqYd] = useState(25);
+    const [pricePerSqYd, setPricePerSqYd] = useState(30);
+    const [padPrice, setPadPrice] = useState(4);
+    const [laborPerSqFt, setLaborPerSqFt] = useState(1);
+
+    const handleType = (v: string) => {
+        setCarpetType(v);
+        const t = CARPET_TYPES.find(c => c.value === v);
+        if (t && v !== "custom") { setPricePerSqYd(t.costSqYd); setPadPrice(t.padCostSqYd); }
+    };
 
     const result = useMemo(() => {
         const sqFt = length * width;
         const withWaste = sqFt * (1 + waste / 100);
         const sqYd = withWaste / 9;
-        const cost = sqYd * pricePerSqYd;
-        return { sqFt, withWaste, sqYd, cost };
-    }, [length, width, waste, pricePerSqYd]);
+        const seams = width > rollWidth ? Math.ceil(width / rollWidth) - 1 : 0;
+        const carpetCost = sqYd * pricePerSqYd;
+        const paddingCost = sqYd * padPrice;
+        const laborCost = withWaste * laborPerSqFt;
+        const totalCost = carpetCost + paddingCost + laborCost;
+        return { sqFt, withWaste, sqYd, seams, carpetCost, paddingCost, laborCost, totalCost };
+    }, [length, width, waste, pricePerSqYd, padPrice, laborPerSqFt, rollWidth]);
 
     return (
         <div className="con-calc">
             <h3 className="con-calc__title">🟫 Carpet Calculator</h3>
             <div className="con-calc__inputs">
+                <SelectField label="Carpet Type" value={carpetType} onChange={handleType}
+                    options={CARPET_TYPES.map(c => ({ value: c.value, label: c.label }))} />
+                <SelectField label="Roll Width" value={String(rollWidth)} onChange={(v) => setRollWidth(Number(v))}
+                    options={[{ value: "12", label: "12 ft (standard)" }, { value: "15", label: "15 ft (wide)" }]} />
                 <InputField label="Room Length" value={length} onChange={setLength} unit="ft" min={1} />
                 <InputField label="Room Width" value={width} onChange={setWidth} unit="ft" min={1} />
                 <InputField label="Waste Factor" value={waste} onChange={setWaste} unit="%" min={0} max={30} />
-                <InputField label="Price per sq yd" value={pricePerSqYd} onChange={setPricePerSqYd} unit="$" min={0} step={1} />
+                <InputField label="Carpet Price" value={pricePerSqYd} onChange={setPricePerSqYd} unit="$/sq yd" min={0} step={1} />
+                <InputField label="Padding Price" value={padPrice} onChange={setPadPrice} unit="$/sq yd" min={0} step={0.5} />
+                <InputField label="Labor Cost" value={laborPerSqFt} onChange={setLaborPerSqFt} unit="$/sq ft" min={0} step={0.25} />
             </div>
             <div className="con-calc__results">
-                <h4>Results</h4>
+                <h4 className="con-calc__group-label">AREA</h4>
                 <ResultRow label="Room Area" value={fmt(result.sqFt)} unit="sq ft" />
-                <ResultRow label="Carpet Needed (+ waste)" value={fmt(result.withWaste)} unit="sq ft" />
+                <ResultRow label="With Waste" value={fmt(result.withWaste)} unit="sq ft" />
+                <h4 className="con-calc__group-label">MATERIAL</h4>
                 <ResultRow label="Carpet Needed" value={fmt(result.sqYd, 1)} unit="sq yd" />
-                <ResultRow label="Estimated Cost" value={`$${fmt(result.cost)}`} />
+                <ResultRow label="Seams Required" value={fmtInt(result.seams)} />
+                <h4 className="con-calc__group-label">COST BREAKDOWN</h4>
+                <ResultRow label="Carpet" value={`$${fmt(result.carpetCost)}`} />
+                <ResultRow label="Padding" value={`$${fmt(result.paddingCost)}`} />
+                <ResultRow label="Labor" value={`$${fmt(result.laborCost)}`} />
+                <ResultRow label="Total Estimated" value={`$${fmt(result.totalCost)}`} />
             </div>
         </div>
     );

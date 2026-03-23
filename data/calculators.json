@@ -7740,7 +7740,7 @@
     "categorySlug": "construction-calculators",
     "icon": "🟫",
     "calcType": "carpet",
-    "description": "Calculate how much carpet you need for any room. Get results in square feet, square yards, and total cost with waste factor included.",
+    "description": "Calculate carpet, padding, and installation cost for any room. Choose from 6 carpet types with pricing, roll width, and seam estimation.",
     "stars": 5,
     "defaults": {
       "amount": 12,

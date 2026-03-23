@@ -1687,18 +1687,96 @@ const HUB_CONTENT: Record<string, {
         ],
     },
     "carpet-calculator": {
-        subtitle: "Calculate how much carpet you need for any room. Get results in square feet, square yards, and total cost including waste factor.",
+        subtitle: "Calculate carpet, padding, and installation cost for any room. Choose from 6 carpet types with pricing, roll width, and seam estimation.",
         explanation: {
             heading: "How to Calculate Carpet Needs",
             paragraphs: [
                 "Carpet is sold by the square yard (9 sq ft). To calculate: measure the room length and width in feet, multiply for square footage, add waste factor (10% minimum), then divide by 9 to convert to square yards. Carpet comes in standard widths (12 ft or 15 ft), so seam placement may require additional material.",
                 "Professional installers always add 10–15% waste for seaming, pattern matching, and fitting around obstacles. For patterned carpet, add 15–20% because patterns must align at seams. Always buy from the same dye lot to ensure color consistency.",
             ],
-            highlight: "A 12×10 ft room = 120 sq ft. With 10% waste = 132 sq ft ÷ 9 = 14.7 sq yd. At $25/sq yd = $367 for materials.",
+            highlight: "A 12×10 ft room = 120 sq ft. With 10% waste = 132 sq ft ÷ 9 = 14.7 sq yd. At $30/sq yd carpet + $4/sq yd pad + $1/sq ft labor = $630 total.",
         },
+        contentHTML: `
+<p>Carpet remains one of the most popular <strong>US flooring choices</strong>, installed in an estimated 50% of American homes. It offers warmth, comfort, sound insulation, and a wide range of styles and price points. Accurately estimating carpet, padding, and installation costs is essential for budgeting any flooring project.</p>
+<p>The calculator above supports <strong>6 carpet types</strong> with auto-filled pricing, <strong>padding cost</strong>, <strong>labor cost</strong>, roll width selection (12 ft or 15 ft), and <strong>seam estimation</strong> — giving you a complete cost breakdown before visiting the store.</p>
+
+<h2>Carpet Types Comparison</h2>
+<table>
+<thead><tr><th>Type</th><th>Fiber</th><th>Pile Style</th><th>Durability</th><th>Cost/sq yd</th></tr></thead>
+<tbody>
+<tr><td><strong>Polyester</strong></td><td>Synthetic</td><td>Cut pile, plush</td><td>3–5 years</td><td>$10–$25</td></tr>
+<tr><td><strong>Nylon</strong></td><td>Synthetic</td><td>Cut pile, textured</td><td>10–15 years</td><td>$20–$45</td></tr>
+<tr><td><strong>Olefin (Polypropylene)</strong></td><td>Synthetic</td><td>Loop, Berber</td><td>5–8 years</td><td>$12–$25</td></tr>
+<tr><td><strong>Triexta (SmartStrand)</strong></td><td>Synthetic</td><td>Cut pile, textured</td><td>10–15 years</td><td>$25–$50</td></tr>
+<tr><td><strong>Wool</strong></td><td>Natural</td><td>Cut or loop</td><td>15–20+ years</td><td>$50–$100+</td></tr>
+<tr><td><strong>Berber (loop pile)</strong></td><td>Olefin/Nylon</td><td>Level loop</td><td>10–15 years</td><td>$15–$35</td></tr>
+</tbody>
+</table>
+<p><strong>Best value:</strong> Nylon is the most popular US carpet fiber — it combines durability, stain resistance, and reasonable cost. Triexta (Mohawk SmartStrand) is the newest option, offering built-in stain resistance without chemical treatments.</p>
+
+<h2>Step-by-Step Carpet Estimation</h2>
+<h3>Step 1: Measure the Room</h3>
+<p>Measure <strong>wall-to-wall</strong> (not baseboard-to-baseboard) since carpet goes under the baseboard. Measure in feet. For complex rooms, break into rectangles and add them together.</p>
+<p><strong>Pro tip:</strong> Measure at the widest point of each dimension — walls aren't always perfectly straight.</p>
+
+<h3>Step 2: Calculate Square Yards</h3>
+<p>Multiply length × width for <strong>square feet</strong>. Add waste (10–20%). Divide by 9 to get <strong>square yards</strong>.</p>
+<p><strong>Example:</strong> 15 ft × 12 ft = 180 sq ft × 1.10 = 198 sq ft ÷ 9 = <strong>22 sq yd</strong></p>
+
+<h3>Step 3: Estimate Total Cost</h3>
+<p>Add carpet cost + padding cost + labor cost:</p>
+<ul>
+<li><strong>Carpet:</strong> 22 sq yd × $30/sq yd = $660</li>
+<li><strong>Padding:</strong> 22 sq yd × $4/sq yd = $88</li>
+<li><strong>Labor:</strong> 198 sq ft × $1/sq ft = $198</li>
+<li><strong>Total: $946</strong></li>
+</ul>
+
+<h2>Seams and Pattern Matching</h2>
+<p>Carpet comes in <strong>12 ft</strong> (standard) or <strong>15 ft</strong> (wide) rolls. If your room is wider than the roll width, you'll need a seam:</p>
+<ul>
+<li><strong>Room ≤ 12 ft wide:</strong> No seam needed with standard roll</li>
+<li><strong>Room 13–15 ft wide:</strong> Choose 15 ft roll (no seam) or accept one seam with 12 ft roll</li>
+<li><strong>Room 16–24 ft wide:</strong> One seam minimum with either roll width</li>
+</ul>
+<p><strong>Seam placement tips:</strong> Place seams in low-traffic areas, never in doorways. Seams should run parallel to the primary light source. With patterned carpet, add 15–20% waste for pattern matching at seams.</p>
+<p><strong>Nap direction:</strong> All carpet pieces must run in the same nap direction — different directions create visible color differences at seams. Mark the nap direction before cutting.</p>
+
+<h2>Carpet Padding Guide</h2>
+<table>
+<thead><tr><th>Padding Type</th><th>Thickness</th><th>Density</th><th>Best For</th><th>Cost/sq yd</th></tr></thead>
+<tbody>
+<tr><td><strong>Rebond (bonded urethane)</strong></td><td>⅜"–½"</td><td>6–8 lbs</td><td>Most residential, best value</td><td>$2–$4</td></tr>
+<tr><td><strong>Memory foam</strong></td><td>¼"–⅜"</td><td>8–10 lbs</td><td>Premium comfort, bedrooms</td><td>$4–$7</td></tr>
+<tr><td><strong>Fiber (felt)</strong></td><td>¼"–⅜"</td><td>Varies</td><td>Berber/loop carpet, low pile</td><td>$3–$5</td></tr>
+<tr><td><strong>Rubber (waffle or flat)</strong></td><td>Varies</td><td>High</td><td>Commercial, high-traffic areas</td><td>$5–$10</td></tr>
+</tbody>
+</table>
+<p><strong>Important:</strong> Too thick padding (over ½") can cause carpet to wrinkle and wear unevenly. Most carpet warranties require specific padding density — check your warranty before choosing.</p>
+
+<h2>2025 US Carpet Cost Guide</h2>
+<table>
+<thead><tr><th>Category</th><th>Material (per sq yd)</th><th>Installed (per sq ft)</th><th>12×15 Room</th></tr></thead>
+<tbody>
+<tr><td><strong>Economy</strong></td><td>$10–$20</td><td>$2–$4</td><td>$360–$720</td></tr>
+<tr><td><strong>Mid-Range</strong></td><td>$20–$40</td><td>$4–$7</td><td>$720–$1,260</td></tr>
+<tr><td><strong>Premium</strong></td><td>$40–$70</td><td>$7–$11</td><td>$1,260–$1,980</td></tr>
+<tr><td><strong>Luxury (Wool)</strong></td><td>$50–$100+</td><td>$9–$15+</td><td>$1,620–$2,700+</td></tr>
+</tbody>
+</table>
+<p><strong>Additional costs to budget:</strong> Old carpet removal: $1–$2/sq ft. Furniture moving: $25–$75/room. Stair carpet: $10–$25/step. Transitions/thresholds: $3–$5 per linear foot.</p>
+`,
         faq: [
-            { question: "How much does carpet installation cost?", answer: "Carpet materials: $1–$10+ per sq ft depending on quality. Installation labor: $0.50–$1.50 per sq ft. Padding: $0.30–$0.60 per sq ft. Total installed cost for a 12×10 room: $250–$1,500+ depending on carpet quality." },
-            { question: "How long does carpet last?", answer: "Economy carpet: 3–5 years. Mid-grade: 5–10 years. Premium: 10–15+ years. Lifespan depends heavily on traffic, maintenance, and padding quality. High-quality padding extends carpet life significantly." },
+            { question: "How much carpet do I need for a room?", answer: "Measure length × width in feet for square footage. Add 10% waste (15–20% for patterned carpet). Divide by 9 to get square yards. Example: 12×15 ft room = 180 sq ft × 1.10 = 198 sq ft ÷ 9 = 22 sq yd. Always round up — carpet is cut from rolls." },
+            { question: "How much does carpet installation cost?", answer: "Total installed cost: $2–$15/sq ft depending on quality. Carpet material: $1–$10+/sq ft. Padding: $0.25–$0.75/sq ft. Installation labor: $0.50–$1.50/sq ft. A standard 12×15 room costs $360–$2,700+ fully installed." },
+            { question: "What's the best carpet for high-traffic areas?", answer: "Nylon is the most durable carpet fiber — it resists matting, crushing, and staining. Look for nylon with a face weight of 35–45 oz/sq yd. Berber (loop pile) in nylon or olefin also performs well in hallways and stairs. Avoid polyester in high-traffic areas — it mats quickly." },
+            { question: "How long does carpet last?", answer: "Polyester: 3–5 years. Olefin: 5–8 years. Nylon: 10–15 years. Triexta: 10–15 years. Berber: 10–15 years. Wool: 15–20+ years. Lifespan depends on traffic, maintenance, padding quality, and fiber type. Quality padding extends life by 3–5 years." },
+            { question: "What carpet padding should I use?", answer: "Rebond (bonded urethane) is the best value for residential: ⅜\"–½\" thick, 6–8 lb density. For Berber/loop: use thinner, firmer padding (¼\"–⅜\"). Too-thick padding voids warranties. Memory foam is luxury but unnecessary for most rooms. Always check carpet warranty requirements." },
+            { question: "What's the difference between 12 ft and 15 ft carpet rolls?", answer: "12 ft is standard — available in all styles. 15 ft is wide-width — eliminates seams in rooms up to 15 ft wide but has fewer style options. Choose 15 ft rolls to avoid seams if your room width allows. 15 ft rolls may cost 5–10% more per sq yd." },
+            { question: "How do I convert square feet to square yards?", answer: "Divide square feet by 9. One square yard = 3 ft × 3 ft = 9 sq ft. Examples: 100 sq ft = 11.1 sq yd. 200 sq ft = 22.2 sq yd. 500 sq ft = 55.6 sq yd. Always round up when ordering from a roll." },
+            { question: "Should I remove old carpet before installing new?", answer: "Yes — installing over old carpet voids most warranties, traps allergens, and creates an uneven surface. Old carpet removal costs $1–$2/sq ft. Some installers include removal in their installation price. Old padding should also be removed and replaced with new." },
+            { question: "How much waste should I add for carpet?", answer: "10% for simple rectangular rooms. 15% for L-shaped rooms or rooms with closets. 20% for patterned carpet that requires pattern matching at seams. For stairs: each step requires a separate piece cut from the roll, so waste is 20–30%." },
+            { question: "Is carpet cheaper than hardwood?", answer: "Yes — carpet is typically the most affordable flooring option. Carpet installed: $2–$7/sq ft (most homes). Hardwood installed: $8–$15/sq ft. Luxury vinyl plank (LVP): $4–$8/sq ft. Tile: $5–$12/sq ft. However, carpet requires replacement every 10–15 years vs. 25+ years for hardwood." },
         ],
     },
     "sand-calculator": {
