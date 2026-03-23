@@ -13241,7 +13241,7 @@
     "categorySlug": "construction-calculators",
     "icon": "🔧",
     "calcType": "pipe-volume",
-    "description": "Calculate the internal volume of a pipe from diameter and length. Outputs gallons, liters, and cubic feet.",
+    "description": "Calculate pipe volume by size and material. Get gallons, liters, cubic feet, water weight, and gallons per foot. Supports multiple pipes.",
     "stars": 5,
     "defaults": {
       "amount": 2,

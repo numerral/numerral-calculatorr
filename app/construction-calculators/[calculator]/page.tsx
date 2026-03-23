@@ -3952,18 +3952,90 @@ Net lawn area: 10,890 − 1,900 = <strong>8,990 sq ft</strong></p>
         ],
     },
     "pipe-volume-calculator": {
-        subtitle: "Calculate the internal volume of a pipe from diameter and length. Get results in gallons, liters, cubic feet, and cubic inches.",
+        subtitle: "Calculate pipe volume from standard US pipe sizes and materials. Get gallons, liters, cubic feet, water weight, and gallons per foot. Supports multiple pipes.",
         explanation: {
             heading: "How to Calculate Pipe Volume",
             paragraphs: [
-                "Pipe volume = π × r² × length, where r = inner radius. Use internal diameter (ID), not outer diameter (OD). The wall thickness reduces the usable volume inside the pipe.",
-                "Common uses: calculating water content for draining/filling systems, determining antifreeze amounts, sizing expansion tanks, and calculating head loss in plumbing systems.",
+                "Volume = π × (ID/2)² × length. The calculator uses actual inner diameters for 8 standard US pipe sizes across 5 materials (copper, PEX, CPVC, PVC, galvanized). Nominal size ≠ actual ID.",
+                "Results include gallons, liters, cubic feet, cubic inches, water weight (8.34 lbs/gal), and gallons per foot. Multi-pipe mode calculates total system volume and weight.",
             ],
-            highlight: "A 2\" ID pipe × 100 ft long: volume = 1.63 cu ft = 12.2 gallons = 46.2 liters.",
+            highlight: "1\" copper (1.049\" ID) × 100 ft: 4.24 gal, 16.1 L, 0.567 cu ft, 35.4 lbs water. Same size in PEX (0.863\" ID): 2.87 gal — 32% less!",
         },
+        contentHTML: `
+<p>Pipe volume is the <strong>internal capacity of a pipe</strong>, typically calculated for plumbing, HVAC, fire sprinkler, and irrigation systems. Knowing the volume is essential for <strong>filling, draining, flushing, sizing expansion tanks, calculating antifreeze amounts, and estimating water weight</strong>.</p>
+<p>The calculator above uses <strong>actual inner diameters</strong> for 8 standard US pipe sizes across 5 pipe materials, calculates <strong>water weight</strong>, and supports <strong>multi-pipe systems</strong>.</p>
+
+<h2>Pipe Volume Formula</h2>
+<p><strong>Volume = π × r² × L</strong> — or equivalently: <strong>Volume = π × (D/2)² × L</strong></p>
+<p>Where r = inner radius, D = inner diameter, L = length. All measurements must be in the same units.</p>
+<p><strong>For US gallons:</strong> Calculate volume in cubic inches, then divide by 231 (1 US gallon = 231 cubic inches).</p>
+<p><strong>Example:</strong> 1" copper pipe (1.049" ID) × 100 ft (1,200"):<br/>V = π × (1.049/2)² × 1,200 = π × 0.275 × 1,200 = <strong>1,037 cu in = 4.49 gal</strong></p>
+
+<h2>Gallons Per Foot by Pipe Size</h2>
+<table>
+<thead><tr><th>Nominal Size</th><th>Copper (Type L)</th><th>PEX</th><th>PVC (Sch 40)</th><th>Gal/100 ft (Copper)</th></tr></thead>
+<tbody>
+<tr><td><strong>½"</strong></td><td>0.0160 gal/ft</td><td>0.0093 gal/ft</td><td>0.0160 gal/ft</td><td>1.60</td></tr>
+<tr><td><strong>¾"</strong></td><td>0.0280 gal/ft</td><td>0.0191 gal/ft</td><td>0.0280 gal/ft</td><td>2.80</td></tr>
+<tr><td><strong>1"</strong></td><td>0.0449 gal/ft</td><td>0.0304 gal/ft</td><td>0.0449 gal/ft</td><td>4.49</td></tr>
+<tr><td><strong>1¼"</strong></td><td>0.0764 gal/ft</td><td>0.0496 gal/ft</td><td>0.0778 gal/ft</td><td>7.64</td></tr>
+<tr><td><strong>1½"</strong></td><td>0.1059 gal/ft</td><td>0.0753 gal/ft</td><td>0.1059 gal/ft</td><td>10.59</td></tr>
+<tr><td><strong>2"</strong></td><td>0.1746 gal/ft</td><td>0.1209 gal/ft</td><td>0.1746 gal/ft</td><td>17.46</td></tr>
+<tr><td><strong>3"</strong></td><td>0.3844 gal/ft</td><td>—</td><td>0.3844 gal/ft</td><td>38.44</td></tr>
+<tr><td><strong>4"</strong></td><td>0.6623 gal/ft</td><td>—</td><td>0.6623 gal/ft</td><td>66.23</td></tr>
+</tbody>
+</table>
+<p><strong>Key insight:</strong> PEX pipes hold <strong>30–40% less water</strong> than copper pipes of the same nominal size due to thicker walls and smaller ID.</p>
+
+<h2>Water Weight per 100 Feet</h2>
+<table>
+<thead><tr><th>Pipe Size (Copper)</th><th>Gallons/100 ft</th><th>Water Weight</th></tr></thead>
+<tbody>
+<tr><td><strong>½"</strong></td><td>1.60 gal</td><td>13.3 lbs</td></tr>
+<tr><td><strong>¾"</strong></td><td>2.80 gal</td><td>23.4 lbs</td></tr>
+<tr><td><strong>1"</strong></td><td>4.49 gal</td><td>37.4 lbs</td></tr>
+<tr><td><strong>1½"</strong></td><td>10.59 gal</td><td>88.3 lbs</td></tr>
+<tr><td><strong>2"</strong></td><td>17.46 gal</td><td>145.6 lbs</td></tr>
+<tr><td><strong>3"</strong></td><td>38.44 gal</td><td>320.6 lbs</td></tr>
+<tr><td><strong>4"</strong></td><td>66.23 gal</td><td>552.4 lbs</td></tr>
+</tbody>
+</table>
+<p><strong>Water weighs 8.34 lbs per gallon</strong> at 60°F. For hot water (140°F), weight decreases ~1% to 8.26 lbs/gal. For structural load calculations, use the higher cold-water weight.</p>
+
+<h2>Nominal Size vs. Actual Inner Diameter</h2>
+<p>Nominal pipe size is a trade designation — <strong>NOT the actual measurement</strong>. The actual ID varies significantly by material:</p>
+<table>
+<thead><tr><th>Nominal</th><th>Copper L</th><th>PEX</th><th>CPVC</th><th>PVC Sch 40</th></tr></thead>
+<tbody>
+<tr><td><strong>½"</strong></td><td>0.622"</td><td>0.475"</td><td>0.536"</td><td>0.622"</td></tr>
+<tr><td><strong>¾"</strong></td><td>0.824"</td><td>0.681"</td><td>0.720"</td><td>0.824"</td></tr>
+<tr><td><strong>1"</strong></td><td>1.049"</td><td>0.863"</td><td>0.920"</td><td>1.049"</td></tr>
+<tr><td><strong>2"</strong></td><td>2.067"</td><td>1.720"</td><td>1.935"</td><td>2.067"</td></tr>
+</tbody>
+</table>
+<p><strong>Always use actual ID</strong> for volume calculations. Using nominal size will give incorrect results — a "1-inch" PEX pipe holds 32% less water than a "1-inch" copper pipe.</p>
+
+<h2>Common Applications</h2>
+<ul>
+<li><strong>Drain-down volume:</strong> How much water you'll drain from a system (winterization, repair)</li>
+<li><strong>Fill volume:</strong> How much water to add when filling a new system or after repairs</li>
+<li><strong>Antifreeze calculation:</strong> Volume needed for glycol mix in radiant heating systems</li>
+<li><strong>Expansion tank sizing:</strong> Total system volume determines expansion tank size</li>
+<li><strong>Water hammer analysis:</strong> More water = more potential energy = worse water hammer</li>
+<li><strong>Structural load:</strong> Water weight for floor/ceiling support calculations</li>
+</ul>
+`,
         faq: [
-            { question: "How many gallons of water in 100 feet of pipe?", answer: "1/2\" pipe: 1.0 gal. 3/4\" pipe: 2.3 gal. 1\" pipe: 4.1 gal. 1.5\" pipe: 9.2 gal. 2\" pipe: 16.3 gal. 3\" pipe: 36.7 gal. 4\" pipe: 65.3 gal." },
-            { question: "Should I use ID or OD for pipe volume?", answer: "Always use the inner diameter (ID). Nominal pipe sizes don't match actual dimensions. For example, a 1\" nominal copper pipe has an ID of 1.055\" and OD of 1.125\"." },
+            { question: "How many gallons of water in 100 feet of pipe?", answer: "Copper: ½\" = 1.6 gal, ¾\" = 2.8 gal, 1\" = 4.5 gal, 1½\" = 10.6 gal, 2\" = 17.5 gal, 3\" = 38.4 gal, 4\" = 66.2 gal. PEX holds 30–40% less due to smaller inner diameter at the same nominal size." },
+            { question: "Should I use ID or OD for pipe volume?", answer: "Always use inner diameter (ID). Nominal sizes don't match actual dimensions. A 1\" copper pipe has 1.049\" ID; a 1\" PEX has 0.863\" ID — using OD or nominal size gives wrong results. The calculator automatically uses correct IDs for each material." },
+            { question: "How much does the water in a pipe weigh?", answer: "Water weighs 8.34 lbs/gallon at 60°F. A 100-ft run of 1\" copper holds 4.5 gal = 37.4 lbs. A 100-ft run of 2\" copper holds 17.5 gal = 145.6 lbs. For structural calculations (ceilings, floors), always use cold-water weight." },
+            { question: "Why does PEX hold less water than copper?", answer: "PEX has thicker walls relative to its nominal size, resulting in a smaller inner diameter. A ¾\" PEX has 0.681\" ID vs ¾\" copper at 0.824\" ID — 17% smaller diameter means 32% less cross-sectional area and volume. This matters for antifreeze calculations and system fill volumes." },
+            { question: "How do I calculate pipe volume in gallons?", answer: "Volume (gal) = π × (ID in inches / 2)² × length in inches ÷ 231. Example: 1\" copper (1.049\" ID) × 100 ft: V = π × 0.5245² × 1200 ÷ 231 = 4.49 gallons. Or use gallons-per-foot from the table and multiply by pipe length." },
+            { question: "How many gallons per foot of pipe?", answer: "Copper: ½\" = 0.016 gal/ft, ¾\" = 0.028 gal/ft, 1\" = 0.045 gal/ft, 1½\" = 0.106 gal/ft, 2\" = 0.175 gal/ft. Multiply by total pipe length to get system volume. These values are specific to pipe material — check the table for PEX and PVC." },
+            { question: "How much antifreeze do I need for radiant heating?", answer: "Calculate total system volume (pipes + boiler + headers). For propylene glycol: 30% mix for 0°F protection, 50% mix for -30°F. Example: 500 ft of 1\" copper = 22.5 gal. At 30% glycol: 6.7 gal glycol + 15.8 gal water. Add 10% for expansion tank." },
+            { question: "How do I calculate volume for multiple pipe sizes?", answer: "Calculate each section separately (different sizes have different IDs), then add the volumes together. Example: 50 ft of 1\" copper (2.24 gal) + 200 ft of ¾\" copper (5.60 gal) = 7.84 gal total. Use the calculator's multi-pipe feature for runs of the same size." },
+            { question: "What is the volume of a fire sprinkler system?", answer: "Typical residential fire sprinkler: 200–500 ft of 1\" CPVC + 50–100 ft of 1¼\" CPVC = 15–60 gallons total. Commercial systems with 2\"–4\" mains can hold 200+ gallons. Volume determines fill time and water supply requirements." },
+            { question: "Does water temperature affect pipe volume?", answer: "Water volume changes less than 1% between 40°F and 140°F, so temperature has negligible effect on pipe capacity. However, for expansion tank sizing, thermal expansion matters: water expands ~2.5% when heated from 40°F to 180°F in a closed system." },
         ],
     },
     "refrigerant-line-charge-calculator": {

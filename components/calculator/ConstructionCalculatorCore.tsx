@@ -7239,32 +7239,79 @@ function FurnaceBtuCalc() {
 }
 
 /* ──────────── 151. PIPE VOLUME CALCULATOR ──────────── */
+const PV_SIZES: { value: string; label: string; ids: Record<string, number> }[] = [
+    { value: "0.5", label: '½"', ids: { copper: 0.622, pex: 0.475, cpvc: 0.536, pvc: 0.622, galv: 0.622 } },
+    { value: "0.75", label: '¾"', ids: { copper: 0.824, pex: 0.681, cpvc: 0.720, pvc: 0.824, galv: 0.824 } },
+    { value: "1", label: '1"', ids: { copper: 1.049, pex: 0.863, cpvc: 0.920, pvc: 1.049, galv: 1.049 } },
+    { value: "1.25", label: '1¼"', ids: { copper: 1.368, pex: 1.102, cpvc: 1.188, pvc: 1.380, galv: 1.380 } },
+    { value: "1.5", label: '1½"', ids: { copper: 1.610, pex: 1.358, cpvc: 1.470, pvc: 1.610, galv: 1.610 } },
+    { value: "2", label: '2"', ids: { copper: 2.067, pex: 1.720, cpvc: 1.935, pvc: 2.067, galv: 2.067 } },
+    { value: "3", label: '3"', ids: { copper: 3.068, pex: 0, cpvc: 0, pvc: 3.068, galv: 3.068 } },
+    { value: "4", label: '4"', ids: { copper: 4.026, pex: 0, cpvc: 0, pvc: 4.026, galv: 4.026 } },
+    { value: "custom", label: "Custom", ids: { copper: 1, pex: 1, cpvc: 1, pvc: 1, galv: 1 } },
+];
+
+const PV_MATS: { value: string; label: string }[] = [
+    { value: "copper", label: "Copper (Type L)" },
+    { value: "pex", label: "PEX" },
+    { value: "cpvc", label: "CPVC" },
+    { value: "pvc", label: "PVC (Sch 40)" },
+    { value: "galv", label: "Galvanized Steel" },
+];
+
 function PipeVolumeCalc() {
-    const [diameter, setDiameter] = useState(2);
+    const [pipeSize, setPipeSize] = useState("1");
+    const [material, setMaterial] = useState("copper");
+    const [customDia, setCustomDia] = useState(1);
     const [lengthFt, setLengthFt] = useState(100);
+    const [numPipes, setNumPipes] = useState(1);
 
     const result = useMemo(() => {
-        const radiusFt = (diameter / 12) / 2;
+        const sizeData = PV_SIZES.find(s => s.value === pipeSize);
+        const idIn = pipeSize === "custom" ? customDia : (sizeData?.ids[material] || 1.049);
+        const radiusFt = (idIn / 12) / 2;
         const cuFt = Math.PI * radiusFt * radiusFt * lengthFt;
         const gallons = cuFt * 7.48052;
         const liters = cuFt * 28.3168;
         const cuIn = cuFt * 1728;
-        return { cuFt, gallons, liters, cuIn };
-    }, [diameter, lengthFt]);
+        const waterLbs = gallons * 8.34;
+        const galPerFt = gallons / lengthFt;
+        const totalGal = gallons * numPipes;
+        const totalLbs = waterLbs * numPipes;
+        const totalCuFt = cuFt * numPipes;
+        return { idIn, cuFt, gallons, liters, cuIn, waterLbs, galPerFt, totalGal, totalLbs, totalCuFt };
+    }, [pipeSize, material, customDia, lengthFt, numPipes]);
 
     return (
         <div className="con-calc">
             <h3 className="con-calc__title">🔧 Pipe Volume Calculator</h3>
             <div className="con-calc__inputs">
-                <InputField label="Inner Diameter" value={diameter} onChange={setDiameter} unit="in" min={0.5} step={0.25} />
+                <SelectField label="Pipe Size" value={pipeSize} onChange={setPipeSize}
+                    options={PV_SIZES.map(s => ({ value: s.value, label: s.label }))} />
+                <SelectField label="Pipe Material" value={material} onChange={setMaterial}
+                    options={PV_MATS.map(m => ({ value: m.value, label: m.label }))} />
+                {pipeSize === "custom" && (
+                    <InputField label="Inner Diameter" value={customDia} onChange={setCustomDia} unit="in" min={0.25} step={0.125} />
+                )}
                 <InputField label="Pipe Length" value={lengthFt} onChange={setLengthFt} unit="ft" min={1} />
+                <InputField label="Number of Pipes" value={numPipes} onChange={setNumPipes} min={1} max={50} />
             </div>
             <div className="con-calc__results">
-                <h4>Results</h4>
+                <h4 className="con-calc__group-label">PIPE</h4>
+                <ResultRow label="Inner Diameter" value={fmt(result.idIn, 3)} unit="in" />
+                <ResultRow label="Gallons/Foot" value={fmt(result.galPerFt, 4)} unit="gal/ft" />
+                <h4 className="con-calc__group-label">VOLUME (per pipe)</h4>
                 <ResultRow label="US Gallons" value={fmt(result.gallons, 2)} unit="gal" />
                 <ResultRow label="Liters" value={fmt(result.liters, 2)} unit="L" />
                 <ResultRow label="Cubic Feet" value={fmt(result.cuFt, 3)} unit="cu ft" />
                 <ResultRow label="Cubic Inches" value={fmt(result.cuIn, 1)} unit="cu in" />
+                <ResultRow label="Water Weight" value={fmt(result.waterLbs, 1)} unit="lbs" />
+                {numPipes > 1 && (<>
+                    <h4 className="con-calc__group-label">TOTAL SYSTEM ({numPipes} pipes)</h4>
+                    <ResultRow label="Total Gallons" value={fmt(result.totalGal, 2)} unit="gal" />
+                    <ResultRow label="Total Weight" value={fmt(result.totalLbs, 1)} unit="lbs" />
+                    <ResultRow label="Total Volume" value={fmt(result.totalCuFt, 3)} unit="cu ft" />
+                </>)}
             </div>
         </div>
     );
