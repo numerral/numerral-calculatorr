@@ -7271,46 +7271,81 @@ function PipeVolumeCalc() {
 }
 
 /* ──────────── 152. REFRIGERANT LINE CHARGE CALCULATOR ──────────── */
-function RefrigerantLineCalc() {
-    const [lineLength, setLineLength] = useState(50);
-    const [factoryCharge, setFactoryCharge] = useState(25);
-    const [lineSize, setLineSize] = useState("3/8");
+const REFRIG_TYPES: { value: string; label: string; liquid: Record<string, number>; suction: Record<string, number> }[] = [
+    { value: "r410a", label: "R-410A (current standard)", liquid: { "1/4": 0.19, "5/16": 0.30, "3/8": 0.43, "1/2": 0.78, "5/8": 1.22, "3/4": 1.76, "7/8": 2.40 }, suction: { "1/2": 0.12, "5/8": 0.19, "3/4": 0.28, "7/8": 0.38, "1-1/8": 0.62, "1-3/8": 0.93 } },
+    { value: "r22", label: "R-22 (legacy/phased out)", liquid: { "1/4": 0.15, "5/16": 0.24, "3/8": 0.34, "1/2": 0.62, "5/8": 0.97, "3/4": 1.40, "7/8": 1.91 }, suction: { "1/2": 0.06, "5/8": 0.10, "3/4": 0.14, "7/8": 0.19, "1-1/8": 0.31, "1-3/8": 0.47 } },
+    { value: "r407c", label: "R-407C (R-22 replacement)", liquid: { "1/4": 0.18, "5/16": 0.28, "3/8": 0.40, "1/2": 0.73, "5/8": 1.14, "3/4": 1.64, "7/8": 2.24 }, suction: { "1/2": 0.11, "5/8": 0.18, "3/4": 0.26, "7/8": 0.35, "1-1/8": 0.58, "1-3/8": 0.87 } },
+];
 
-    const OZ_PER_FT: Record<string, number> = {
-        "1/4": 0.19, "5/16": 0.30, "3/8": 0.43, "1/2": 0.78,
-        "5/8": 1.22, "3/4": 1.76, "7/8": 2.40,
+const SYSTEM_TONS: { value: string; label: string; factoryOz: number; factoryFt: number; liquidLine: string; suctionLine: string }[] = [
+    { value: "1.5", label: "1.5 Ton (18,000 BTU)", factoryOz: 72, factoryFt: 15, liquidLine: "1/4", suctionLine: "5/8" },
+    { value: "2", label: "2 Ton (24,000 BTU)", factoryOz: 96, factoryFt: 15, liquidLine: "5/16", suctionLine: "3/4" },
+    { value: "2.5", label: "2.5 Ton (30,000 BTU)", factoryOz: 112, factoryFt: 15, liquidLine: "3/8", suctionLine: "3/4" },
+    { value: "3", label: "3 Ton (36,000 BTU)", factoryOz: 128, factoryFt: 15, liquidLine: "3/8", suctionLine: "3/4" },
+    { value: "3.5", label: "3.5 Ton (42,000 BTU)", factoryOz: 152, factoryFt: 25, liquidLine: "3/8", suctionLine: "7/8" },
+    { value: "4", label: "4 Ton (48,000 BTU)", factoryOz: 176, factoryFt: 25, liquidLine: "3/8", suctionLine: "7/8" },
+    { value: "5", label: "5 Ton (60,000 BTU)", factoryOz: 210, factoryFt: 25, liquidLine: "3/8", suctionLine: "1-1/8" },
+    { value: "custom", label: "Custom / Other", factoryOz: 128, factoryFt: 15, liquidLine: "3/8", suctionLine: "3/4" },
+];
+
+function RefrigerantLineCalc() {
+    const [refrigerant, setRefrigerant] = useState("r410a");
+    const [tonnage, setTonnage] = useState("3");
+    const [liquidLine, setLiquidLine] = useState("3/8");
+    const [suctionLine, setSuctionLine] = useState("3/4");
+    const [lineLength, setLineLength] = useState(50);
+    const [factoryFt, setFactoryFt] = useState(15);
+    const [factoryChargeOz, setFactoryChargeOz] = useState(128);
+
+    const handleTonnage = (v: string) => {
+        setTonnage(v);
+        const t = SYSTEM_TONS.find(s => s.value === v);
+        if (t && v !== "custom") { setFactoryChargeOz(t.factoryOz); setFactoryFt(t.factoryFt); setLiquidLine(t.liquidLine); setSuctionLine(t.suctionLine); }
     };
 
     const result = useMemo(() => {
-        const ozPerFt = OZ_PER_FT[lineSize] || 0.43;
-        const totalOz = lineLength * ozPerFt;
-        const additionalOz = Math.max(0, totalOz - factoryCharge);
-        const totalLbs = totalOz / 16;
+        const ref = REFRIG_TYPES.find(r => r.value === refrigerant);
+        const liqOzFt = ref?.liquid[liquidLine] || 0.43;
+        const sucOzFt = ref?.suction[suctionLine] || 0.28;
+        const combinedOzFt = liqOzFt + sucOzFt;
+        const extraFt = Math.max(0, lineLength - factoryFt);
+        const additionalOz = extraFt * combinedOzFt;
         const additionalLbs = additionalOz / 16;
-        return { ozPerFt, totalOz, additionalOz, totalLbs, additionalLbs };
-    }, [lineLength, factoryCharge, lineSize]);
+        const totalLineOz = lineLength * combinedOzFt;
+        const totalLineLbs = totalLineOz / 16;
+        return { liqOzFt, sucOzFt, combinedOzFt, extraFt, additionalOz, additionalLbs, totalLineOz, totalLineLbs };
+    }, [lineLength, factoryFt, factoryChargeOz, liquidLine, suctionLine, refrigerant]);
+
+    const refData = REFRIG_TYPES.find(r => r.value === refrigerant);
 
     return (
         <div className="con-calc">
             <h3 className="con-calc__title">❄️ Refrigerant Line Charge Calculator</h3>
             <div className="con-calc__inputs">
-                <SelectField label="Liquid Line Size" value={lineSize} onChange={setLineSize} options={[
-                    { value: "1/4", label: "1/4 inch (0.19 oz/ft)" },
-                    { value: "5/16", label: "5/16 inch (0.30 oz/ft)" },
-                    { value: "3/8", label: "3/8 inch (0.43 oz/ft)" },
-                    { value: "1/2", label: "1/2 inch (0.78 oz/ft)" },
-                    { value: "5/8", label: "5/8 inch (1.22 oz/ft)" },
-                    { value: "3/4", label: "3/4 inch (1.76 oz/ft)" },
-                    { value: "7/8", label: "7/8 inch (2.40 oz/ft)" },
-                ]} />
-                <InputField label="Line Set Length" value={lineLength} onChange={setLineLength} unit="ft" min={5} />
-                <InputField label="Factory Charge" value={factoryCharge} onChange={setFactoryCharge} unit="oz" min={0} />
+                <SelectField label="Refrigerant Type" value={refrigerant} onChange={setRefrigerant}
+                    options={REFRIG_TYPES.map(r => ({ value: r.value, label: r.label }))} />
+                <SelectField label="System Size" value={tonnage} onChange={handleTonnage}
+                    options={SYSTEM_TONS.map(s => ({ value: s.value, label: s.label }))} />
+                <SelectField label="Liquid Line" value={liquidLine} onChange={setLiquidLine}
+                    options={Object.keys(refData?.liquid || {}).map(k => ({ value: k, label: `${k}" (${refData?.liquid[k]} oz/ft)` }))} />
+                <SelectField label="Suction Line" value={suctionLine} onChange={setSuctionLine}
+                    options={Object.keys(refData?.suction || {}).map(k => ({ value: k, label: `${k}" (${refData?.suction[k]} oz/ft)` }))} />
+                <InputField label="Total Line Length" value={lineLength} onChange={setLineLength} unit="ft" min={5} />
+                <InputField label="Factory Line Length" value={factoryFt} onChange={setFactoryFt} unit="ft" min={0} />
+                <InputField label="Factory Charge" value={factoryChargeOz} onChange={setFactoryChargeOz} unit="oz" min={0} />
             </div>
             <div className="con-calc__results">
-                <h4>Results</h4>
-                <ResultRow label="Total Charge" value={fmt(result.totalOz, 1)} unit="oz" />
+                <h4 className="con-calc__group-label">LINE SET</h4>
+                <ResultRow label="Liquid Line Rate" value={fmt(result.liqOzFt, 2)} unit="oz/ft" />
+                <ResultRow label="Suction Line Rate" value={fmt(result.sucOzFt, 2)} unit="oz/ft" />
+                <ResultRow label="Combined Rate" value={fmt(result.combinedOzFt, 2)} unit="oz/ft" />
+                <h4 className="con-calc__group-label">CHARGE REQUIRED</h4>
+                <ResultRow label="Extra Length" value={fmt(result.extraFt)} unit="ft beyond factory" />
                 <ResultRow label="Additional Charge" value={fmt(result.additionalOz, 1)} unit="oz" />
-                <ResultRow label="Additional (lbs)" value={fmt(result.additionalLbs, 2)} unit="lbs" />
+                <ResultRow label="Additional Charge" value={fmt(result.additionalLbs, 2)} unit="lbs" />
+                <h4 className="con-calc__group-label">TOTAL LINE CHARGE</h4>
+                <ResultRow label="Total (full run)" value={fmt(result.totalLineOz, 1)} unit="oz" />
+                <ResultRow label="Total (full run)" value={fmt(result.totalLineLbs, 2)} unit="lbs" />
             </div>
         </div>
     );

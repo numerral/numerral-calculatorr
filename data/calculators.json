@@ -13283,7 +13283,7 @@
     "categorySlug": "construction-calculators",
     "icon": "❄️",
     "calcType": "refrigerant-line",
-    "description": "Calculate additional refrigerant charge needed for line set length beyond factory charge. Enter line size and length.",
+    "description": "Calculate additional refrigerant charge for HVAC line sets. Select R-410A, R-22, or R-407C with system tonnage, liquid + suction line sizes.",
     "stars": 5,
     "defaults": {
       "amount": 50,

@@ -3967,18 +3967,96 @@ Net lawn area: 10,890 − 1,900 = <strong>8,990 sq ft</strong></p>
         ],
     },
     "refrigerant-line-charge-calculator": {
-        subtitle: "Calculate additional refrigerant charge for HVAC line sets beyond factory charge length. Enter liquid line size and total length.",
+        subtitle: "Calculate additional refrigerant charge for HVAC line sets. Select refrigerant type (R-410A, R-22, R-407C), system tonnage, and both liquid and suction line sizes.",
         explanation: {
             heading: "Refrigerant Line Set Charging",
             paragraphs: [
-                "AC and heat pump systems come with a factory refrigerant charge sized for a standard line set length (typically 15–25 ft). Longer line sets need additional refrigerant based on the liquid line diameter.",
-                "Common liquid line charge rates (R-410A): 1/4\" = 0.19 oz/ft, 3/8\" = 0.43 oz/ft, 1/2\" = 0.78 oz/ft. Only the liquid line is used for calculating additional charge — suction line volume is negligible for charge purposes.",
+                "Split-system AC and heat pump units ship with a factory charge sized for a standard line set (typically 15–25 ft). Longer runs need additional refrigerant based on both liquid and suction line diameters and refrigerant type.",
+                "The calculator includes charge rates for R-410A, R-22, and R-407C with both liquid and suction lines. Select system tonnage to auto-fill factory charge and line sizes, or enter custom values.",
             ],
-            highlight: "50 ft of 3/8\" liquid line: 50 × 0.43 = 21.5 oz total. If factory charge covers 25 oz, no additional charge needed.",
+            highlight: "3 Ton R-410A, 50 ft run (factory: 15 ft): extra 35 ft × (0.43 + 0.28) oz/ft = 24.9 oz additional charge = 1.55 lbs.",
         },
+        contentHTML: `
+<p>When installing a <strong>split-system air conditioner or heat pump</strong>, the refrigerant line set connects the outdoor condenser to the indoor evaporator. Factory charge covers a standard line length — any line beyond that requires <strong>additional refrigerant</strong> calculated from the liquid and suction line charge rates.</p>
+<p>The calculator above supports <strong>3 refrigerant types</strong> (R-410A, R-22, R-407C), <strong>7 system tonnage presets</strong> with auto-filled factory data, and separate <strong>liquid + suction line</strong> calculations for accurate total charge.</p>
+
+<h2>R-410A Liquid Line Charge (oz per foot)</h2>
+<p>The liquid line (small line) carries high-pressure liquid refrigerant from the condenser to the expansion valve.</p>
+<table>
+<thead><tr><th>Line Size</th><th>oz/ft</th><th>Common System</th></tr></thead>
+<tbody>
+<tr><td><strong>1/4"</strong></td><td>0.19</td><td>1–1.5 ton</td></tr>
+<tr><td><strong>5/16"</strong></td><td>0.30</td><td>2 ton</td></tr>
+<tr><td><strong>3/8"</strong></td><td>0.43</td><td>2.5–5 ton (most common)</td></tr>
+<tr><td><strong>1/2"</strong></td><td>0.78</td><td>5+ ton / commercial</td></tr>
+<tr><td><strong>5/8"</strong></td><td>1.22</td><td>Large commercial</td></tr>
+<tr><td><strong>3/4"</strong></td><td>1.76</td><td>Large commercial</td></tr>
+<tr><td><strong>7/8"</strong></td><td>2.40</td><td>Large commercial</td></tr>
+</tbody>
+</table>
+
+<h2>R-410A Suction Line Charge (oz per foot)</h2>
+<p>The suction line (large line) carries low-pressure gas from the evaporator back to the compressor. It has lower charge per foot because the refrigerant is in gas form.</p>
+<table>
+<thead><tr><th>Line Size</th><th>oz/ft</th><th>Common System</th></tr></thead>
+<tbody>
+<tr><td><strong>1/2"</strong></td><td>0.12</td><td>Mini-split</td></tr>
+<tr><td><strong>5/8"</strong></td><td>0.19</td><td>1–1.5 ton</td></tr>
+<tr><td><strong>3/4"</strong></td><td>0.28</td><td>2–3 ton</td></tr>
+<tr><td><strong>7/8"</strong></td><td>0.38</td><td>3–4 ton</td></tr>
+<tr><td><strong>1-1/8"</strong></td><td>0.62</td><td>4–5 ton</td></tr>
+<tr><td><strong>1-3/8"</strong></td><td>0.93</td><td>5+ ton</td></tr>
+</tbody>
+</table>
+
+<h2>System Tonnage & Factory Charge</h2>
+<table>
+<thead><tr><th>System</th><th>BTU</th><th>Factory Charge (approx)</th><th>Factory Line (ft)</th><th>Liquid Line</th><th>Suction Line</th></tr></thead>
+<tbody>
+<tr><td><strong>1.5 Ton</strong></td><td>18,000</td><td>72 oz (4.5 lbs)</td><td>15 ft</td><td>1/4"</td><td>5/8"</td></tr>
+<tr><td><strong>2 Ton</strong></td><td>24,000</td><td>96 oz (6 lbs)</td><td>15 ft</td><td>5/16"</td><td>3/4"</td></tr>
+<tr><td><strong>2.5 Ton</strong></td><td>30,000</td><td>112 oz (7 lbs)</td><td>15 ft</td><td>3/8"</td><td>3/4"</td></tr>
+<tr><td><strong>3 Ton</strong></td><td>36,000</td><td>128 oz (8 lbs)</td><td>15 ft</td><td>3/8"</td><td>3/4"</td></tr>
+<tr><td><strong>3.5 Ton</strong></td><td>42,000</td><td>152 oz (9.5 lbs)</td><td>25 ft</td><td>3/8"</td><td>7/8"</td></tr>
+<tr><td><strong>4 Ton</strong></td><td>48,000</td><td>176 oz (11 lbs)</td><td>25 ft</td><td>3/8"</td><td>7/8"</td></tr>
+<tr><td><strong>5 Ton</strong></td><td>60,000</td><td>210 oz (13 lbs)</td><td>25 ft</td><td>3/8"</td><td>1-1/8"</td></tr>
+</tbody>
+</table>
+<p><strong>Always check your unit's nameplate</strong> for exact factory charge — these are typical values and vary by manufacturer.</p>
+
+<h2>Step-by-Step Estimation</h2>
+<h3>Step 1: Identify Your System</h3>
+<p>Find system tonnage, refrigerant type, and factory charge on the unit's data plate (outdoor condenser). Note the factory line set length.</p>
+
+<h3>Step 2: Measure Total Line Length</h3>
+<p>Measure actual line set from condenser to evaporator, including vertical rises. Calculate extra length: total length minus factory line length.</p>
+
+<h3>Step 3: Calculate Additional Charge</h3>
+<p>Look up liquid and suction line charge rates for your refrigerant type. Multiply extra length × (liquid rate + suction rate).</p>
+<p><strong>Example:</strong> 3 Ton R-410A, 50 ft total run, factory 15 ft: Extra = 35 ft × (0.43 + 0.28) = 35 × 0.71 = <strong>24.9 oz (1.55 lbs)</strong> additional charge.</p>
+
+<h2>R-22 vs R-410A Charge Rates</h2>
+<table>
+<thead><tr><th>Line Size</th><th>R-410A (oz/ft)</th><th>R-22 (oz/ft)</th><th>Difference</th></tr></thead>
+<tbody>
+<tr><td>3/8" liquid</td><td>0.43</td><td>0.34</td><td>R-410A is 26% more</td></tr>
+<tr><td>3/4" suction</td><td>0.28</td><td>0.14</td><td>R-410A is 2× more</td></tr>
+<tr><td>7/8" suction</td><td>0.38</td><td>0.19</td><td>R-410A is 2× more</td></tr>
+</tbody>
+</table>
+<p><strong>R-410A requires significantly more charge per foot</strong> than R-22, especially on suction lines. Systems converting from R-22 to R-407C require different charge calculations — do not use R-22 rates for R-407C.</p>
+`,
         faq: [
-            { question: "How much refrigerant per foot of line set?", answer: "R-410A (liquid line): 1/4\" = 0.19 oz/ft, 5/16\" = 0.30 oz/ft, 3/8\" = 0.43 oz/ft, 1/2\" = 0.78 oz/ft, 5/8\" = 1.22 oz/ft. These values are for the liquid (small) line only." },
-            { question: "What is factory charge?", answer: "The amount of refrigerant pre-charged at the factory, typically sized for 15–25 ft of line set. Check the unit nameplate for exact factory charge amount. Any additional line length requires adding refrigerant." },
+            { question: "How much refrigerant per foot of line set?", answer: "R-410A (most common): liquid line 3/8\" = 0.43 oz/ft + suction line 3/4\" = 0.28 oz/ft = 0.71 oz/ft combined. This varies by line size and refrigerant type. R-22 rates are lower (0.34 + 0.14 = 0.48 oz/ft for the same sizes)." },
+            { question: "What is factory charge?", answer: "The amount of refrigerant pre-charged at the factory, sized for a standard line set (typically 15 ft for 1.5–3 ton, 25 ft for 3.5–5 ton). Check the unit nameplate for exact amount. Any line length beyond the factory length requires adding refrigerant at the per-foot rate." },
+            { question: "Do I need to charge the suction line too?", answer: "Yes — both liquid and suction lines contain refrigerant and both need to be included in charge calculations. The suction line carries lower-density gas so its charge rate per foot is lower, but it's a larger diameter line. Ignoring suction line charge leads to undercharging." },
+            { question: "How do I know my line sizes?", answer: "The liquid line is the smaller line (typically 1/4\" to 3/8\" for residential). The suction line is the larger, insulated line (typically 3/4\" to 1-1/8\"). Check the unit's installation manual for recommended line sizes based on system tonnage and run length." },
+            { question: "What happens if I add too much or too little refrigerant?", answer: "Overcharging: high head pressure, reduced efficiency, potential compressor damage, liquid slugging. Undercharging: poor cooling, ice on evaporator coil, compressor overheating, potential burnout. Both reduce system lifespan. Proper superheat/subcooling measurement is essential." },
+            { question: "Can I still use R-22?", answer: "R-22 was phased out on January 1, 2020 — no new production or import allowed in the US. Existing systems can use recycled/reclaimed R-22, but it's expensive ($40–$100/lb). For new installations, R-410A is standard. R-407C is a common R-22 retrofit replacement." },
+            { question: "What's the maximum line set length?", answer: "Most residential systems: 50–75 ft maximum. Mini-splits: typically 50 ft max (some up to 230 ft). Longer runs reduce efficiency and may require larger line sizes. Always follow manufacturer specifications — exceeding maximum length voids the warranty." },
+            { question: "How much does R-410A cost?", answer: "R-410A: $6–$15/lb wholesale, $30–$80/lb installed by HVAC technician. A typical residential charge is 6–14 lbs. Additional line charge for 35 extra feet is usually 1–2 lbs ($30–$160 installed). R-22 (recycled): $40–$100/lb." },
+            { question: "Do I need EPA certification to handle refrigerant?", answer: "Yes — EPA Section 608 certification is required to purchase and handle refrigerants in the US. This applies to all HVAC refrigerants including R-410A, R-22, and R-407C. Venting refrigerant is illegal under the Clean Air Act. Only certified technicians should add refrigerant." },
+            { question: "What is the difference between liquid and suction lines?", answer: "Liquid line (small, uninsulated): carries high-pressure liquid from condenser to expansion valve. Suction line (large, insulated): carries low-pressure gas from evaporator to compressor. The suction line is always insulated to prevent condensation and maintain efficiency." },
         ],
     },
     "water-velocity-calculator": {
