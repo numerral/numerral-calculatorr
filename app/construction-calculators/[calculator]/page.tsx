@@ -3997,18 +3997,94 @@ Net lawn area: 10,890 − 1,900 = <strong>8,990 sq ft</strong></p>
         ],
     },
     "window-ac-size-calculator": {
-        subtitle: "Calculate the right BTU window AC unit for your room based on area, sun exposure, and number of occupants.",
+        subtitle: "Calculate the right BTU window AC unit. Adjust for room size, ceiling height, sun exposure, insulation, kitchen use, occupants, and see electrical requirements and monthly cost.",
         explanation: {
             heading: "How to Size a Window Air Conditioner",
             paragraphs: [
-                "The DOE recommends 20 BTU per square foot as a baseline. Add 10% for sunny rooms, subtract 10% for shaded rooms, and add 600 BTU per additional person beyond 2. Common sizes: 5,000–18,000 BTU.",
-                "Standard window AC sizes: 5,000 BTU (100–150 sq ft), 8,000 BTU (300–350 sq ft), 10,000 BTU (400–450 sq ft), 12,000 BTU (450–550 sq ft), 14,000–18,000 BTU (700–1,000 sq ft).",
+                "Base sizing: 20 BTU per sq ft (Energy Star). Adjust for ceiling height (+5% per foot over 8 ft), sun exposure (±10%), insulation quality (±10–15%), kitchen use (+4,000 BTU), and occupants (+600 BTU per person over 2).",
+                "Units above 14,000 BTU require 230V dedicated circuits. The calculator estimates wattage, amperage, and monthly operating cost based on your electric rate and 8 hours/day usage.",
             ],
-            highlight: "A 300 sq ft room with normal sun and 2 people: 8,000 BTU recommended. With heavy sun: 9,000 BTU.",
+            highlight: "A 300 sq ft room, 8 ft ceiling, normal sun, average insulation, 2 people: 8,000 BTU. With heavy sun + poor insulation: 10,000 BTU. Est. monthly cost at $0.16/kWh: $30.72.",
         },
+        contentHTML: `
+<p>Window air conditioners are the most common <strong>room-level cooling solution</strong> in the US, with over 10 million units sold annually. Choosing the right BTU size is critical — <strong>too small</strong> and the unit runs constantly without cooling adequately; <strong>too large</strong> and it short-cycles, leaving the room cold and humid.</p>
+<p>The calculator above uses the <strong>Energy Star BTU guidelines</strong> with 6 real-world adjustment factors: ceiling height, sun exposure, insulation, kitchen heat, occupants, and electric rate — plus it shows <strong>electrical requirements and estimated monthly cost</strong>.</p>
+
+<h2>Energy Star BTU Size Chart</h2>
+<p>The DOE/Energy Star baseline assumes 8 ft ceilings, average insulation, and 2 occupants.</p>
+<table>
+<thead><tr><th>Room Size (sq ft)</th><th>Recommended BTU</th><th>Typical Unit</th></tr></thead>
+<tbody>
+<tr><td>100–150</td><td>5,000</td><td>Small bedroom</td></tr>
+<tr><td>150–250</td><td>6,000</td><td>Bedroom / office</td></tr>
+<tr><td>250–350</td><td>8,000</td><td>Large bedroom</td></tr>
+<tr><td>350–450</td><td>10,000</td><td>Living room</td></tr>
+<tr><td>450–550</td><td>12,000 (1 ton)</td><td>Large living room</td></tr>
+<tr><td>550–700</td><td>14,000</td><td>Open plan room</td></tr>
+<tr><td>700–1,000</td><td>18,000 (1.5 ton)</td><td>Large open area</td></tr>
+<tr><td>1,000–1,200</td><td>21,000</td><td>Multi-room / studio</td></tr>
+<tr><td>1,200–1,400</td><td>23,000</td><td>Large apartment</td></tr>
+<tr><td>1,400+</td><td>25,000+</td><td>Consider central AC</td></tr>
+</tbody>
+</table>
+
+<h2>Adjustment Factors</h2>
+<h3>1. Ceiling Height</h3>
+<p>Standard ceilings are 8 ft. Taller ceilings mean more air volume to cool. Add <strong>5% per foot over 8 ft</strong>. A 10 ft ceiling needs 10% more BTU; a 12 ft ceiling needs 20% more.</p>
+
+<h3>2. Sun Exposure</h3>
+<p><strong>Heavy sun</strong> (south-/west-facing, large windows): add 10%. <strong>Heavy shade</strong> (north-facing, tree cover): subtract 10%. This is one of the most significant factors — a sun-baked room can need 20% more cooling than a shaded one.</p>
+
+<h3>3. Insulation Quality</h3>
+<p><strong>Poor insulation</strong> (old homes, single-pane windows, no wall insulation): add 15%. <strong>Good insulation</strong> (new construction, double-pane, insulated walls): subtract 10%. Insulation quality dramatically affects cooling load.</p>
+
+<h3>4. Kitchen Use</h3>
+<p>Cooking appliances (oven, stove, dishwasher) generate significant heat. Add <strong>4,000 BTU</strong> for kitchens. This is a fixed addition regardless of room size.</p>
+
+<h3>5. Occupants</h3>
+<p>The baseline assumes 2 people. Each additional person adds roughly <strong>600 BTU</strong> of body heat. A room regularly occupied by 4 people needs 1,200 BTU more than baseline.</p>
+
+<h3>6. Electronics & Appliances</h3>
+<p>Rooms with many computers, monitors, or other heat-generating equipment may need an additional 10% BTU. Server rooms and home offices with multiple screens are common examples.</p>
+
+<h2>Electrical Requirements</h2>
+<table>
+<thead><tr><th>BTU Range</th><th>Voltage</th><th>Amperage</th><th>Circuit Type</th></tr></thead>
+<tbody>
+<tr><td>5,000–12,000</td><td>115V</td><td>5–12 amps</td><td>Standard outlet (shared OK)</td></tr>
+<tr><td>12,000–14,000</td><td>115V</td><td>12–15 amps</td><td>Dedicated 15A circuit recommended</td></tr>
+<tr><td>14,000–18,000</td><td>230V</td><td>7–9 amps</td><td>Dedicated 230V outlet required</td></tr>
+<tr><td>18,000–25,000</td><td>230V</td><td>9–13 amps</td><td>Dedicated 230V/20A circuit</td></tr>
+</tbody>
+</table>
+<p><strong>Important:</strong> Units above 14,000 BTU require a <strong>dedicated 230V outlet</strong> — most homes don't have these in bedrooms. Check your electrical panel before purchasing. Installing a 230V outlet costs $150–$400.</p>
+
+<h2>Estimated Operating Cost</h2>
+<p>Monthly cost = (BTU ÷ 10) ÷ 1,000 × hours/day × 30 days × electric rate.</p>
+<table>
+<thead><tr><th>BTU</th><th>Watts</th><th>8 hrs/day @ $0.16/kWh</th><th>Annual (5 months)</th></tr></thead>
+<tbody>
+<tr><td>5,000</td><td>500W</td><td>$19/mo</td><td>$96</td></tr>
+<tr><td>8,000</td><td>800W</td><td>$31/mo</td><td>$154</td></tr>
+<tr><td>10,000</td><td>1,000W</td><td>$38/mo</td><td>$192</td></tr>
+<tr><td>12,000</td><td>1,200W</td><td>$46/mo</td><td>$230</td></tr>
+<tr><td>14,000</td><td>1,400W</td><td>$54/mo</td><td>$269</td></tr>
+<tr><td>18,000</td><td>1,800W</td><td>$69/mo</td><td>$346</td></tr>
+</tbody>
+</table>
+<p><strong>Tip:</strong> Look for <strong>Energy Star certified</strong> units — they use 10–15% less energy than standard models. CEER (Combined Energy Efficiency Ratio) of 12+ is excellent; 10+ is good.</p>
+`,
         faq: [
-            { question: "What size window AC for a 12×12 room?", answer: "144 sq ft = 5,000–6,000 BTU. If the room gets afternoon sun, go with 6,000 BTU. A 5,000 BTU unit is fine for a shaded room." },
-            { question: "Can a window AC be too big?", answer: "Yes! An oversized AC cools too quickly without removing humidity, leaving the room cold and clammy. It also cycles on/off more frequently, wasting energy and wearing out the compressor faster." },
+            { question: "What size window AC for a 12×12 room?", answer: "144 sq ft = 5,000–6,000 BTU. If the room gets afternoon sun, go with 6,000 BTU. A 5,000 BTU unit is fine for a shaded room. Add 600 BTU per person beyond 2. For a 12×12 kitchen, add 4,000 BTU = 9,000–10,000 BTU." },
+            { question: "Can a window AC be too big?", answer: "Yes! An oversized AC cools too quickly without removing humidity, leaving the room cold and clammy. It also cycles on/off more frequently (short-cycling), wasting energy and wearing out the compressor faster. Always choose the right size — not the biggest." },
+            { question: "How many BTU per square foot?", answer: "The Energy Star baseline is 20 BTU per sq ft for standard rooms (8 ft ceiling, average insulation, 2 occupants). Adjust up for sun, poor insulation, kitchens, tall ceilings, or extra people. Adjust down for shade and good insulation." },
+            { question: "What voltage does a window AC need?", answer: "Units up to 14,000 BTU: standard 115V outlet. Units above 14,000 BTU: dedicated 230V outlet. Check the unit's label for exact requirements. Running a 230V unit on 115V won't work. Installing a 230V outlet costs $150–$400." },
+            { question: "How much does it cost to run a window AC?", answer: "An 8,000 BTU unit running 8 hrs/day at $0.16/kWh = ~$31/month. A 12,000 BTU unit = ~$46/month. Annual cost (5 summer months): $154–$230. Energy Star units save 10–15%. Use a programmable timer to reduce usage." },
+            { question: "Do ceiling height affect AC size?", answer: "Yes — taller ceilings mean more air volume. Add 5% per foot above 8 ft. A 10 ft ceiling needs 10% more BTU. A 12 ft ceiling (loft, old home) needs 20% more. This is often overlooked but significantly affects cooling performance." },
+            { question: "What is CEER and why does it matter?", answer: "CEER (Combined Energy Efficiency Ratio) measures how efficiently the AC converts electricity to cooling. Higher CEER = lower operating cost. 12+ CEER is excellent; 10+ is good; below 9.7 doesn't meet Energy Star standards. A CEER-12 unit costs ~15% less to run than a CEER-10 unit." },
+            { question: "Can I cool two rooms with one window AC?", answer: "Not effectively. Window ACs are designed for single rooms. Cooling adjacent rooms requires the unit to work much harder, and the second room won't cool evenly. Use a fan to circulate air, or install a separate unit in each room. For multi-room cooling, consider a mini-split system." },
+            { question: "When should I choose a portable AC instead?", answer: "Choose portable AC when: windows don't accommodate a window unit, you rent and can't modify windows, you need to move the unit between rooms, or HOA rules prohibit window units. Portable ACs are 10–40% less efficient than window units of the same BTU rating." },
+            { question: "What size window do I need for a window AC?", answer: "Most units fit windows 23\"–36\" wide. Smaller 5,000–8,000 BTU units fit narrower windows (23\"–28\"). Large 14,000+ BTU units need wider windows (28\"–36\") and stronger sills. Measure your window opening (width and height) before purchasing. Use the included accordion panels to fill gaps." },
         ],
     },
     "ice-water-shield-calculator": {

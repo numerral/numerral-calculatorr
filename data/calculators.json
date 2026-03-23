@@ -13367,7 +13367,7 @@
     "categorySlug": "construction-calculators",
     "icon": "🌡️",
     "calcType": "window-ac-size",
-    "description": "Calculate the right BTU window AC unit for your room. Enter room size and conditions for recommended cooling capacity.",
+    "description": "Calculate the right BTU window AC unit. Adjust for ceiling height, sun, insulation, kitchen, occupants. See electrical requirements and monthly cost.",
     "stars": 5,
     "defaults": {
       "amount": 300,

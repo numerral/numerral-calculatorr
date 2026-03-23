@@ -7351,8 +7351,12 @@ function WaterVelocityCalc() {
 /* ──────────── 154. WINDOW AC SIZE CALCULATOR ──────────── */
 function WindowAcSizeCalc() {
     const [sqFt, setSqFt] = useState(300);
+    const [ceilingHeight, setCeilingHeight] = useState("8");
     const [sunExposure, setSunExposure] = useState("normal");
+    const [insulation, setInsulation] = useState("average");
+    const [isKitchen, setIsKitchen] = useState("no");
     const [occupants, setOccupants] = useState(2);
+    const [electricRate, setElectricRate] = useState(0.16);
 
     const result = useMemo(() => {
         let baseBtu: number;
@@ -7363,33 +7367,60 @@ function WindowAcSizeCalc() {
         else if (sqFt <= 550) baseBtu = 12000;
         else if (sqFt <= 700) baseBtu = 14000;
         else if (sqFt <= 1000) baseBtu = 18000;
+        else if (sqFt <= 1200) baseBtu = 21000;
+        else if (sqFt <= 1400) baseBtu = 23000;
         else baseBtu = Math.ceil(sqFt * 20 / 1000) * 1000;
+
+        const ceilFt = Number(ceilingHeight);
+        if (ceilFt > 8) baseBtu *= (1 + (ceilFt - 8) * 0.05);
 
         if (sunExposure === "heavy") baseBtu *= 1.1;
         else if (sunExposure === "shaded") baseBtu *= 0.9;
 
+        if (insulation === "poor") baseBtu *= 1.15;
+        else if (insulation === "good") baseBtu *= 0.9;
+
+        if (isKitchen === "yes") baseBtu += 4000;
         if (occupants > 2) baseBtu += (occupants - 2) * 600;
 
-        const tons = baseBtu / 12000;
-        return { btu: Math.ceil(baseBtu / 1000) * 1000, tons };
-    }, [sqFt, sunExposure, occupants]);
+        const finalBtu = Math.ceil(baseBtu / 1000) * 1000;
+        const tons = finalBtu / 12000;
+        const watts = finalBtu / 10;
+        const voltage = finalBtu > 14000 ? "230V (dedicated circuit)" : "115V (standard outlet)";
+        const amps = finalBtu > 14000 ? watts / 230 : watts / 115;
+        const monthlyKwh = (watts / 1000) * 8 * 30;
+        const monthlyCost = monthlyKwh * electricRate;
+        return { finalBtu, tons, watts, voltage, amps, monthlyKwh, monthlyCost };
+    }, [sqFt, ceilingHeight, sunExposure, insulation, isKitchen, occupants, electricRate]);
 
     return (
         <div className="con-calc">
             <h3 className="con-calc__title">🌡️ Window AC Size Calculator</h3>
             <div className="con-calc__inputs">
                 <InputField label="Room Area" value={sqFt} onChange={setSqFt} unit="sq ft" min={50} step={25} />
-                <SelectField label="Sun Exposure" value={sunExposure} onChange={setSunExposure} options={[
-                    { value: "shaded", label: "Heavily Shaded (−10%)" },
-                    { value: "normal", label: "Normal" },
-                    { value: "heavy", label: "Very Sunny (+10%)" },
-                ]} />
-                <InputField label="Number of Occupants" value={occupants} onChange={setOccupants} min={1} max={10} />
+                <SelectField label="Ceiling Height" value={ceilingHeight} onChange={setCeilingHeight}
+                    options={[{ value: "8", label: '8 ft (standard)' }, { value: "9", label: '9 ft' }, { value: "10", label: '10 ft' }, { value: "12", label: '12 ft (loft/old home)' }]} />
+                <SelectField label="Sun Exposure" value={sunExposure} onChange={setSunExposure}
+                    options={[{ value: "shaded", label: "Heavily Shaded (−10%)" }, { value: "normal", label: "Normal" }, { value: "heavy", label: "Very Sunny (+10%)" }]} />
+                <SelectField label="Insulation Quality" value={insulation} onChange={setInsulation}
+                    options={[{ value: "poor", label: "Poor / Old Home (+15%)" }, { value: "average", label: "Average" }, { value: "good", label: "Well-Insulated (−10%)" }]} />
+                <SelectField label="Kitchen?" value={isKitchen} onChange={setIsKitchen}
+                    options={[{ value: "no", label: "No" }, { value: "yes", label: "Yes (+4,000 BTU)" }]} />
+                <InputField label="Occupants" value={occupants} onChange={setOccupants} min={1} max={10} />
+                <InputField label="Electric Rate" value={electricRate} onChange={setElectricRate} unit="$/kWh" min={0.05} max={0.50} step={0.01} />
             </div>
             <div className="con-calc__results">
-                <h4>Results</h4>
-                <ResultRow label="Recommended BTU" value={fmt(result.btu)} unit="BTU" />
-                <ResultRow label="Cooling Tons" value={fmt(result.tons, 2)} unit="tons" />
+                <h4 className="con-calc__group-label">ROOM</h4>
+                <ResultRow label="Room Area" value={fmt(sqFt)} unit="sq ft" />
+                <ResultRow label="Ceiling Height" value={`${ceilingHeight} ft`} />
+                <h4 className="con-calc__group-label">BTU SIZING</h4>
+                <ResultRow label="Recommended BTU" value={fmt(result.finalBtu)} unit="BTU" />
+                <ResultRow label="Cooling Capacity" value={fmt(result.tons, 2)} unit="tons" />
+                <ResultRow label="Wattage" value={fmt(result.watts)} unit="watts" />
+                <h4 className="con-calc__group-label">ELECTRICAL & COST</h4>
+                <ResultRow label="Circuit Required" value={result.voltage} />
+                <ResultRow label="Amperage" value={fmt(result.amps, 1)} unit="amps" />
+                <ResultRow label="Est. Monthly Cost" value={`$${fmt(result.monthlyCost, 2)}`} unit="(8 hrs/day)" />
             </div>
         </div>
     );
