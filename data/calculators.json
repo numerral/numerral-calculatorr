@@ -7365,7 +7365,7 @@
     "categorySlug": "construction-calculators",
     "icon": "📦",
     "calcType": "cubic-yards",
-    "description": "Calculate cubic yards for fill, gravel, mulch, and concrete. Enter length, width, and depth to get volume in cubic yards, cubic feet, and cubic meters.",
+    "description": "Calculate cubic yards for gravel, mulch, topsoil, sand, concrete, or fill dirt. Choose rectangular or cylinder shape, select material for weight estimate, and get cost per cubic yard.",
     "stars": 5,
     "defaults": {
       "amount": 10,

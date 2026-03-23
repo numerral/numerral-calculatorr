@@ -1017,7 +1017,7 @@ const HUB_CONTENT: Record<string, {
         ],
     },
     "cubic-yards-calculator": {
-        subtitle: "Calculate cubic yards for any material — fill dirt, gravel, mulch, topsoil, or concrete. Enter length, width, and depth for instant volume results.",
+        subtitle: "Calculate cubic yards for any material — gravel, mulch, topsoil, sand, concrete, or fill dirt. Choose from rectangle or cylinder shape, select material type for weight estimate, and get cost per cubic yard.",
         explanation: {
             heading: "How to Calculate Cubic Yards",
             paragraphs: [
@@ -1026,9 +1026,112 @@ const HUB_CONTENT: Record<string, {
             ],
             highlight: "A 10×10 ft area at 6 inch depth = 10 × 10 × 0.5 = 50 cu ft ÷ 27 = 1.85 cubic yards. For gravel, that's roughly 2.6 tons (1 cu yd of gravel ≈ 1.4 tons).",
         },
+        contentHTML: `
+<p>A cubic yard is a volume measurement equal to 27 cubic feet (3 ft × 3 ft × 3 ft). It's the standard unit for ordering bulk landscaping and construction materials like gravel, mulch, topsoil, fill dirt, sand, and concrete in the United States. Understanding how to calculate cubic yards saves money by preventing over-ordering and project delays from under-ordering.</p>
+<p>Depth is often measured in inches but must be converted to feet before calculating. A 3-inch layer of mulch is 3 ÷ 12 = 0.25 feet deep. Most materials compact 10–20% after settling, so consider ordering slightly more than the calculated amount.</p>
+
+<h2>Cubic Yards Formulas</h2>
+<h3>Rectangular / Square Area</h3>
+<p>The most common calculation for driveways, garden beds, and rectangular patios:</p>
+<p><strong>Cubic Yards = Length (ft) × Width (ft) × Depth (ft) ÷ 27</strong></p>
+<p>Example: A 12 ft × 14 ft patio with 4-inch gravel base: 12 × 14 × 0.333 ÷ 27 = <strong>2.07 cubic yards</strong>.</p>
+
+<h3>Circular / Cylinder Area</h3>
+<p>For round garden beds, tree rings, fire pit bases, and circular patios:</p>
+<p><strong>Cubic Yards = π × (Diameter ÷ 2)² × Depth (ft) ÷ 27</strong></p>
+<p>Example: A 10 ft diameter round flower bed with 3-inch mulch: π × 5² × 0.25 ÷ 27 = <strong>0.73 cubic yards</strong>.</p>
+
+<h2>Step-by-Step: How to Calculate Cubic Yards</h2>
+<h3>Step 1: Measure the Area</h3>
+<p>Measure the length and width (or diameter for circles) in feet. Use a tape measure for accuracy. For irregular shapes, break the area into rectangles and circles, calculate each separately, and add the results.</p>
+
+<h3>Step 2: Measure the Depth</h3>
+<p>Decide the desired material depth. Common depths: <strong>2–3 inches</strong> for mulch and decorative stone, <strong>4–6 inches</strong> for gravel driveways, <strong>4 inches</strong> for concrete slabs, <strong>6–8 inches</strong> for road base.</p>
+
+<h3>Step 3: Convert Units</h3>
+<p>All measurements must be in the same unit. Convert inches to feet by dividing by 12. Convert yards to feet by multiplying by 3. Then multiply L × W × D.</p>
+
+<h3>Step 4: Divide by 27</h3>
+<p>Divide the volume in cubic feet by 27 to get cubic yards. Round up to the next whole or half yard — most suppliers sell in full or half-yard increments. Add 10% extra for waste and compaction.</p>
+
+<h2>Material Weight per Cubic Yard</h2>
+<table>
+<thead><tr><th>Material</th><th>Weight per Cu Yd (tons)</th><th>Weight per Cu Yd (lbs)</th><th>Common Use</th></tr></thead>
+<tbody>
+<tr><td><strong>Topsoil</strong></td><td>1.0–1.3</td><td>2,000–2,600</td><td>Gardens, lawns, raised beds</td></tr>
+<tr><td><strong>Mulch (wood chips)</strong></td><td>0.4–0.8</td><td>800–1,600</td><td>Landscaping, garden beds, playgrounds</td></tr>
+<tr><td><strong>Gravel / Crushed Stone</strong></td><td>1.3–1.5</td><td>2,600–3,000</td><td>Driveways, drainage, road base</td></tr>
+<tr><td><strong>Sand</strong></td><td>1.3–1.5</td><td>2,600–3,000</td><td>Paver base, sandboxes, concrete mix</td></tr>
+<tr><td><strong>Fill Dirt</strong></td><td>1.0–1.3</td><td>2,000–2,600</td><td>Grading, filling holes, foundation backfill</td></tr>
+<tr><td><strong>Concrete (wet)</strong></td><td>1.8–2.0</td><td>3,600–4,000</td><td>Slabs, footings, foundations</td></tr>
+<tr><td><strong>River Rock</strong></td><td>1.4–1.6</td><td>2,800–3,200</td><td>Decorative landscaping, drainage</td></tr>
+<tr><td><strong>Compost</strong></td><td>0.5–0.7</td><td>1,000–1,400</td><td>Garden amendment, soil enrichment</td></tr>
+</tbody>
+</table>
+
+<h2>How Much Area Does 1 Cubic Yard Cover?</h2>
+<p>The coverage depends on the depth of material applied. One cubic yard = 27 cubic feet:</p>
+<table>
+<thead><tr><th>Depth</th><th>Coverage (sq ft)</th><th>Best For</th></tr></thead>
+<tbody>
+<tr><td><strong>1 inch</strong></td><td>324 sq ft</td><td>Light top-dressing</td></tr>
+<tr><td><strong>2 inches</strong></td><td>162 sq ft</td><td>Mulch (light layer)</td></tr>
+<tr><td><strong>3 inches</strong></td><td>108 sq ft</td><td>Standard mulch, decorative stone</td></tr>
+<tr><td><strong>4 inches</strong></td><td>81 sq ft</td><td>Concrete slabs, gravel base</td></tr>
+<tr><td><strong>6 inches</strong></td><td>54 sq ft</td><td>Driveway gravel, road base</td></tr>
+<tr><td><strong>12 inches (1 ft)</strong></td><td>27 sq ft</td><td>Raised beds, deep fill</td></tr>
+</tbody>
+</table>
+
+<h2>How Much Is a Cubic Yard?</h2>
+<p>A cubic yard is a cube 3 feet on each side — <strong>3 ft × 3 ft × 3 ft = 27 cubic feet</strong>. To visualize it:</p>
+<ul>
+<li><strong>Size:</strong> About the size of a standard washer/dryer set — roughly a 3×3×3 ft cube.</li>
+<li><strong>Wheelbarrows:</strong> A standard wheelbarrow holds about 3 cubic feet — so 1 cubic yard = about <strong>9 wheelbarrow loads</strong>.</li>
+<li><strong>Bags:</strong> A 2 cubic foot bag of mulch = about 13.5 bags per cubic yard.</li>
+<li><strong>Weight:</strong> Ranges from 800 lbs (mulch) to 4,000 lbs (concrete) depending on material.</li>
+</ul>
+
+<h2>Truck Bed Capacity</h2>
+<table>
+<thead><tr><th>Vehicle</th><th>Bed Size</th><th>Capacity (cu yd)</th><th>Max Weight (lbs)</th></tr></thead>
+<tbody>
+<tr><td><strong>Compact Truck (short bed)</strong></td><td>5 ft bed</td><td>~0.9</td><td>~1,200</td></tr>
+<tr><td><strong>Standard Truck (6 ft bed)</strong></td><td>6 ft bed</td><td>~1.3</td><td>~1,500</td></tr>
+<tr><td><strong>Full-Size Truck (8 ft bed)</strong></td><td>8 ft bed</td><td>~2.0</td><td>~2,000</td></tr>
+<tr><td><strong>Dump Truck (small)</strong></td><td>—</td><td>5–8</td><td>~13,000</td></tr>
+<tr><td><strong>Dump Truck (standard)</strong></td><td>—</td><td>10–14</td><td>~26,000</td></tr>
+</tbody>
+</table>
+<p><strong>Warning:</strong> A cubic yard of gravel weighs about 2,800 lbs. Most pickup trucks have a payload capacity of 1,200–2,000 lbs. <strong>Never exceed your truck's payload rating</strong> — it damages the suspension, brakes, and frame. For heavy materials, limit to half a cubic yard per trip or get delivery.</p>
+
+<h2>2025 US Material Cost Guide</h2>
+<table>
+<thead><tr><th>Material</th><th>Cost per Cu Yd</th><th>Cost per Ton</th><th>Delivery (typical)</th></tr></thead>
+<tbody>
+<tr><td><strong>Topsoil</strong></td><td>$25–$50</td><td>$20–$40</td><td>$50–$100</td></tr>
+<tr><td><strong>Mulch</strong></td><td>$20–$45</td><td>$30–$60</td><td>$50–$100</td></tr>
+<tr><td><strong>Gravel (crushed)</strong></td><td>$40–$65</td><td>$25–$50</td><td>$50–$150</td></tr>
+<tr><td><strong>Sand</strong></td><td>$25–$50</td><td>$20–$40</td><td>$50–$100</td></tr>
+<tr><td><strong>Fill Dirt</strong></td><td>$10–$25</td><td>$8–$20</td><td>$50–$100</td></tr>
+<tr><td><strong>Concrete (ready-mix)</strong></td><td>$120–$160</td><td>—</td><td>$50–$200 (truck fee)</td></tr>
+<tr><td><strong>River Rock</strong></td><td>$50–$80</td><td>$40–$60</td><td>$50–$150</td></tr>
+<tr><td><strong>Compost</strong></td><td>$30–$50</td><td>$25–$45</td><td>$50–$100</td></tr>
+</tbody>
+</table>
+<p><strong>Pro tip:</strong> Buying in bulk (by the cubic yard) is 50–70% cheaper than buying bags from a hardware store. A 2 cu ft bag of mulch costs $3–$5 (~$40–$67/cu yd equivalent). Bulk mulch is $20–$45/cu yd.</p>
+`,
         faq: [
-            { question: "How much does a cubic yard of material weigh?", answer: "It varies hugely by material: topsoil ≈ 1.0–1.3 tons, mulch ≈ 0.4–0.8 tons, gravel ≈ 1.4 tons, sand ≈ 1.3 tons, concrete ≈ 2.0 tons, decorative stone ≈ 1.2–1.5 tons." },
-            { question: "How much area will a cubic yard cover?", answer: "Depends on depth: at 1\" deep = 324 sq ft, at 2\" deep = 162 sq ft, at 3\" deep = 108 sq ft, at 4\" deep = 81 sq ft, at 6\" deep = 54 sq ft. These are the standard coverage rates used for landscaping materials." },
+            { question: "How many cubic feet are in a cubic yard?", answer: "There are 27 cubic feet in 1 cubic yard (3 × 3 × 3 = 27). To convert cubic feet to cubic yards, divide by 27. To convert cubic yards to cubic feet, multiply by 27." },
+            { question: "How much does a cubic yard of material weigh?", answer: "It varies by material: topsoil = 1.0–1.3 tons, mulch = 0.4–0.8 tons, gravel = 1.3–1.5 tons, sand = 1.3–1.5 tons, concrete (wet) = 1.8–2.0 tons, fill dirt = 1.0–1.3 tons, river rock = 1.4–1.6 tons, compost = 0.5–0.7 tons." },
+            { question: "How much area will 1 cubic yard cover?", answer: "Depends on depth: at 1\" deep = 324 sq ft, at 2\" = 162 sq ft, at 3\" = 108 sq ft, at 4\" = 81 sq ft, at 6\" = 54 sq ft, at 12\" (1 ft) = 27 sq ft. Mulch is typically spread 2–3\" deep; gravel driveways need 4–6\" deep." },
+            { question: "How many cubic yards fit in a truck bed?", answer: "Compact truck (5 ft bed): ~0.9 cu yd. Standard truck (6 ft bed): ~1.3 cu yd. Full-size truck (8 ft bed): ~2.0 cu yd. But weight matters more — a full cubic yard of gravel (2,800 lbs) exceeds most pickup payload limits (1,200–2,000 lbs). For heavy materials, take half loads." },
+            { question: "How do I convert cubic yards to tons?", answer: "Multiply cubic yards by the material's density factor: gravel = 1.4 tons/cu yd, sand = 1.3, topsoil = 1.1, mulch = 0.5, concrete = 2.0. For example: 3 cu yd of gravel = 3 × 1.4 = 4.2 tons." },
+            { question: "How much mulch do I need?", answer: "Measure the area in feet (L × W). Standard mulch depth is 2–3 inches. Formula: L × W × (depth in inches ÷ 12) ÷ 27 = cubic yards. A 20 × 10 ft bed at 3\" deep: 20 × 10 × 0.25 ÷ 27 = 1.85 cu yd. Order 2 cu yd." },
+            { question: "How much does a cubic yard of concrete cost?", answer: "Ready-mix concrete costs $120–$160 per cubic yard delivered, plus a truck/delivery fee of $50–$200. Short load fees ($50–$100 per yard) apply for orders under 5–10 yards. A standard 4\" thick, 10×10 ft slab needs about 1.2 cu yd = $200–$400 total." },
+            { question: "How many wheelbarrow loads in a cubic yard?", answer: "A standard wheelbarrow holds about 3 cubic feet. One cubic yard = 27 cubic feet ÷ 3 = about 9 wheelbarrow loads. A large (6 cu ft) wheelbarrow: 27 ÷ 6 = about 4.5 loads." },
+            { question: "How many bags of mulch equal a cubic yard?", answer: "Standard bags are 2 cubic feet. 1 cu yd = 27 cu ft ÷ 2 = 13.5 bags. A 3 cubic foot bag: 27 ÷ 3 = 9 bags per cu yd. Bulk is always cheaper — bags cost $3–$5 each ($40–$67/cu yd equivalent) vs. $20–$45/cu yd in bulk." },
+            { question: "Should I order extra material for waste?", answer: "Yes — add 10% for rectangular areas and 15% for irregular shapes. Materials compact 10–20% after settling (especially topsoil and mulch). It's better to have a small surplus than to run short and pay a second delivery fee ($50–$150)." },
         ],
     },
     "gravel-calculator": {

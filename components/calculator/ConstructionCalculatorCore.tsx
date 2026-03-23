@@ -785,38 +785,91 @@ function SquareFootageCalc() {
 }
 
 /* ──────────── 10. CUBIC YARDS CALCULATOR ──────────── */
+const MATERIAL_DENSITIES: { value: string; label: string; tonsPerYd: number; costPerYd: number }[] = [
+    { value: "topsoil", label: "Topsoil", tonsPerYd: 1.1, costPerYd: 35 },
+    { value: "mulch", label: "Mulch (wood chips)", tonsPerYd: 0.5, costPerYd: 30 },
+    { value: "gravel", label: "Gravel / Crushed Stone", tonsPerYd: 1.4, costPerYd: 50 },
+    { value: "sand", label: "Sand", tonsPerYd: 1.3, costPerYd: 40 },
+    { value: "fill-dirt", label: "Fill Dirt", tonsPerYd: 1.15, costPerYd: 15 },
+    { value: "concrete", label: "Concrete", tonsPerYd: 2.0, costPerYd: 130 },
+    { value: "river-rock", label: "River Rock", tonsPerYd: 1.5, costPerYd: 65 },
+    { value: "compost", label: "Compost", tonsPerYd: 0.6, costPerYd: 40 },
+    { value: "custom", label: "Custom", tonsPerYd: 1.0, costPerYd: 0 },
+];
+
 function CubicYardsCalc() {
+    const [shape, setShape] = useState("rectangle");
     const [length, setLength] = useState(10);
     const [width, setWidth] = useState(10);
+    const [diameter, setDiameter] = useState(6);
     const [depth, setDepth] = useState(6);
     const [depthUnit, setDepthUnit] = useState("inches");
+    const [material, setMaterial] = useState("gravel");
+    const [tonsPerYd, setTonsPerYd] = useState(1.4);
+    const [costPerYd, setCostPerYd] = useState(50);
+
+    const handleMaterial = (v: string) => {
+        setMaterial(v);
+        const m = MATERIAL_DENSITIES.find(d => d.value === v);
+        if (m && v !== "custom") { setTonsPerYd(m.tonsPerYd); setCostPerYd(m.costPerYd); }
+    };
 
     const result = useMemo(() => {
         const depthFt = depthUnit === "inches" ? depth / 12 : depth;
-        const cuFt = length * width * depthFt;
+        let cuFt = 0;
+        if (shape === "cylinder") {
+            const r = diameter / 2;
+            cuFt = Math.PI * r * r * depthFt;
+        } else {
+            cuFt = length * width * depthFt;
+        }
         const cuYd = cuFt / 27;
         const cuM = cuFt * 0.0283168;
-        const tons = cuYd * 1.4; // rough estimate: 1 cu yd ≈ 1.4 tons for gravel
-        return { cuFt, cuYd, cuM, tons };
-    }, [length, width, depth, depthUnit]);
+        const tons = cuYd * tonsPerYd;
+        const coverageSqFt = shape === "cylinder" ? Math.PI * (diameter / 2) * (diameter / 2) : length * width;
+        const totalCost = costPerYd > 0 ? Math.ceil(cuYd) * costPerYd : 0;
+        return { cuFt, cuYd, cuM, tons, coverageSqFt, totalCost };
+    }, [shape, length, width, diameter, depth, depthUnit, tonsPerYd, costPerYd]);
 
     return (
         <div className="con-calc">
             <h3 className="con-calc__title">📦 Cubic Yards Calculator</h3>
             <div className="con-calc__inputs">
-                <InputField label="Length" value={length} onChange={setLength} unit="ft" min={0.1} step={0.5} />
-                <InputField label="Width" value={width} onChange={setWidth} unit="ft" min={0.1} step={0.5} />
+                <SelectField label="Shape" value={shape} onChange={setShape} options={[
+                    { value: "rectangle", label: "Rectangle / Square" },
+                    { value: "cylinder", label: "Circle / Cylinder" },
+                ]} />
+                <SelectField label="Material" value={material} onChange={handleMaterial}
+                    options={MATERIAL_DENSITIES.map(d => ({ value: d.value, label: d.label }))} />
+                {shape === "rectangle" ? (
+                    <>
+                        <InputField label="Length" value={length} onChange={setLength} unit="ft" min={0.1} step={0.5} />
+                        <InputField label="Width" value={width} onChange={setWidth} unit="ft" min={0.1} step={0.5} />
+                    </>
+                ) : (
+                    <InputField label="Diameter" value={diameter} onChange={setDiameter} unit="ft" min={0.1} step={0.5} />
+                )}
                 <InputField label="Depth" value={depth} onChange={setDepth} unit={depthUnit} min={0.5} step={0.5} />
                 <SelectField label="Depth Unit" value={depthUnit} onChange={setDepthUnit} options={[
                     { value: "inches", label: "Inches" }, { value: "feet", label: "Feet" }
                 ]} />
+                <InputField label="Cost per Cu Yd" value={costPerYd} onChange={setCostPerYd} unit="$" min={0} />
             </div>
             <div className="con-calc__results">
-                <h4>Results</h4>
-                <ResultRow label="Volume" value={fmt(result.cuFt)} unit="cu ft" />
-                <ResultRow label="Volume" value={fmt(result.cuYd)} unit="cu yd" />
-                <ResultRow label="Volume" value={fmt(result.cuM)} unit="cu m" />
-                <ResultRow label="Est. Weight (gravel)" value={fmt(result.tons, 1)} unit="tons" />
+                <h4 className="con-calc__group-label">VOLUME</h4>
+                <ResultRow label="Cubic Feet" value={fmt(result.cuFt)} unit="cu ft" />
+                <ResultRow label="Cubic Yards" value={fmt(result.cuYd, 2)} unit="cu yd" />
+                <ResultRow label="Cubic Meters" value={fmt(result.cuM, 2)} unit="cu m" />
+                <ResultRow label="Coverage Area" value={fmt(result.coverageSqFt)} unit="sq ft" />
+                <h4 className="con-calc__group-label">WEIGHT</h4>
+                <ResultRow label="Estimated Weight" value={fmt(result.tons, 2)} unit="tons" />
+                <ResultRow label="Buy (rounded up)" value={fmtInt(result.cuYd)} unit="cu yd" />
+                {costPerYd > 0 && (
+                    <>
+                        <h4 className="con-calc__group-label">COST</h4>
+                        <ResultRow label="Material Cost" value={`$${fmtInt(result.totalCost)}`} />
+                    </>
+                )}
             </div>
         </div>
     );
