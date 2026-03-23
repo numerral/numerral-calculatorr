@@ -2294,34 +2294,79 @@ function DrainageCalc() {
 }
 
 /* ──────────── 37. PLYWOOD CALCULATOR ──────────── */
+const PLY_TYPES: { value: string; label: string; weightPerSheet: number; costPerSheet: number }[] = [
+    { value: "cdx", label: "CDX (structural)", weightPerSheet: 60, costPerSheet: 40 },
+    { value: "osb", label: "OSB (oriented strand)", weightPerSheet: 55, costPerSheet: 30 },
+    { value: "sanded", label: "Sanded (cabinet grade)", weightPerSheet: 65, costPerSheet: 55 },
+    { value: "marine", label: "Marine Grade", weightPerSheet: 70, costPerSheet: 85 },
+    { value: "baltic-birch", label: "Baltic Birch", weightPerSheet: 68, costPerSheet: 70 },
+    { value: "mdf", label: "MDF (medium density)", weightPerSheet: 85, costPerSheet: 35 },
+    { value: "custom", label: "Custom / Other", weightPerSheet: 60, costPerSheet: 45 },
+];
+
+const PLY_THICK: { value: string; label: string; factor: number }[] = [
+    { value: "1/4", label: "¼\" (6mm)", factor: 0.40 },
+    { value: "3/8", label: "⅜\" (9mm)", factor: 0.55 },
+    { value: "1/2", label: "½\" (12mm)", factor: 0.70 },
+    { value: "5/8", label: "⅝\" (15mm)", factor: 0.85 },
+    { value: "3/4", label: "¾\" (18mm)", factor: 1.0 },
+];
+
 function PlywoodCalc() {
+    const [plyType, setPlyType] = useState("cdx");
+    const [thickness, setThickness] = useState("3/4");
+    const [sheetSize, setSheetSize] = useState("4x8");
+    const [projectType, setProjectType] = useState("floor");
     const [length, setLength] = useState(20);
     const [width, setWidth] = useState(12);
     const [waste, setWaste] = useState(10);
-    const [pricePerSheet, setPricePerSheet] = useState(45);
+    const [pricePerSheet, setPricePerSheet] = useState(40);
+
+    const handleType = (v: string) => {
+        setPlyType(v);
+        const t = PLY_TYPES.find(p => p.value === v);
+        if (t && v !== "custom") setPricePerSheet(t.costPerSheet);
+    };
 
     const result = useMemo(() => {
         const area = length * width;
         const withWaste = area * (1 + waste / 100);
-        const sheets = Math.ceil(withWaste / 32); // 4×8 = 32 sq ft
+        const sheetArea = sheetSize === "4x8" ? 32 : 16;
+        const sheets = Math.ceil(withWaste / sheetArea);
         const cost = sheets * pricePerSheet;
-        return { area, withWaste, sheets, cost };
-    }, [length, width, waste, pricePerSheet]);
+        const thickFactor = PLY_THICK.find(t => t.value === thickness)?.factor || 1;
+        const typeData = PLY_TYPES.find(p => p.value === plyType);
+        const weightPerSheet = (typeData?.weightPerSheet || 60) * thickFactor;
+        const totalWeight = sheets * weightPerSheet;
+        return { area, withWaste, sheetArea, sheets, cost, weightPerSheet, totalWeight };
+    }, [length, width, waste, pricePerSheet, sheetSize, thickness, plyType]);
 
     return (
         <div className="con-calc">
             <h3 className="con-calc__title">📐 Plywood Calculator</h3>
             <div className="con-calc__inputs">
+                <SelectField label="Plywood Type" value={plyType} onChange={handleType}
+                    options={PLY_TYPES.map(p => ({ value: p.value, label: p.label }))} />
+                <SelectField label="Thickness" value={thickness} onChange={setThickness}
+                    options={PLY_THICK.map(t => ({ value: t.value, label: t.label }))} />
+                <SelectField label="Sheet Size" value={sheetSize} onChange={setSheetSize}
+                    options={[{ value: "4x8", label: "4×8 ft (32 sq ft)" }, { value: "4x4", label: "4×4 ft (16 sq ft)" }]} />
+                <SelectField label="Project" value={projectType} onChange={setProjectType}
+                    options={[{ value: "floor", label: "Subfloor / Floor" }, { value: "wall", label: "Wall Sheathing" }, { value: "roof", label: "Roof Sheathing" }, { value: "other", label: "Other / Custom" }]} />
                 <InputField label="Area Length" value={length} onChange={setLength} unit="ft" min={1} />
                 <InputField label="Area Width" value={width} onChange={setWidth} unit="ft" min={1} />
                 <InputField label="Waste Factor" value={waste} onChange={setWaste} unit="%" min={0} max={25} />
                 <InputField label="Price per Sheet" value={pricePerSheet} onChange={setPricePerSheet} unit="$" min={0} step={5} />
             </div>
             <div className="con-calc__results">
-                <h4>Results</h4>
-                <ResultRow label="Area" value={fmt(result.area)} unit="sq ft" />
-                <ResultRow label="Total (+ waste)" value={fmt(result.withWaste)} unit="sq ft" />
-                <ResultRow label="4×8 Sheets Needed" value={fmtInt(result.sheets)} unit="sheets" />
+                <h4 className="con-calc__group-label">AREA</h4>
+                <ResultRow label="Project Area" value={fmt(result.area)} unit="sq ft" />
+                <ResultRow label="With Waste" value={fmt(result.withWaste)} unit="sq ft" />
+                <h4 className="con-calc__group-label">SHEETS</h4>
+                <ResultRow label={`${sheetSize === "4x8" ? "4×8" : "4×4"} Sheets`} value={fmtInt(result.sheets)} unit="sheets" />
+                <ResultRow label="Weight per Sheet" value={fmtInt(result.weightPerSheet)} unit="lbs" />
+                <ResultRow label="Total Weight" value={fmtInt(result.totalWeight)} unit="lbs" />
+                <h4 className="con-calc__group-label">COST</h4>
                 <ResultRow label="Estimated Cost" value={`$${fmt(result.cost)}`} />
             </div>
         </div>

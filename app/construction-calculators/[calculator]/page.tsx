@@ -1957,18 +1957,97 @@ const HUB_CONTENT: Record<string, {
         ],
     },
     "plywood-calculator": {
-        subtitle: "Calculate how many 4×8 plywood sheets you need for floors, walls, roofs, or subfloors. Includes waste factor and cost estimator.",
+        subtitle: "Calculate plywood sheets needed for floors, walls, roofs, or cabinets. Choose from 6 plywood types, 5 thicknesses, and get weight and cost estimates.",
         explanation: {
             heading: "How to Calculate Plywood Sheets",
             paragraphs: [
                 "A standard plywood sheet is 4 feet × 8 feet = 32 square feet. To find how many sheets you need, calculate the total area, add a waste factor (10% for rectangular areas, 15% for complex shapes), and divide by 32. Round up — you can't buy partial sheets.",
                 "Plywood comes in various thicknesses: ¼ inch (underlayment), ⅜ inch (wall sheathing), ½ inch (roof sheathing), ⅝ inch (subfloor residential), and ¾ inch (subfloor, heavy-duty). CDX is the standard structural grade, while sanded plywood is used for visible applications.",
             ],
-            highlight: "A 20×12 ft subfloor with 10% waste: 240 sq ft × 1.10 = 264 sq ft ÷ 32 sq ft/sheet = 9 sheets of ¾\" plywood. At $45/sheet = $405.",
+            highlight: "A 20×12 ft subfloor with 10% waste: 240 sq ft × 1.10 = 264 sq ft ÷ 32 sq ft/sheet = 9 sheets of ¾\" plywood. At $40/sheet = $360.",
         },
+        contentHTML: `
+<p>Plywood is one of the most versatile building materials used in <strong>US construction</strong>. From structural subfloors and roof sheathing to cabinetry and furniture, understanding plywood types, thicknesses, and quantities is essential for accurate project planning and budgeting.</p>
+<p>The calculator above supports <strong>6 plywood types</strong>, <strong>5 thicknesses</strong>, two sheet sizes (4×8 and 4×4), and provides <strong>weight per sheet and total weight</strong> — critical for delivery planning and structural load calculations.</p>
+
+<h2>Plywood Types Comparison</h2>
+<table>
+<thead><tr><th>Type</th><th>Grade</th><th>Best For</th><th>¾" Weight (4×8)</th><th>¾" Cost (4×8)</th></tr></thead>
+<tbody>
+<tr><td><strong>CDX</strong></td><td>C-D Exposure 1</td><td>Subfloors, roof sheathing, wall sheathing</td><td>~60 lbs</td><td>$35–$50</td></tr>
+<tr><td><strong>OSB</strong></td><td>Structural 1</td><td>Roof decking, wall sheathing, subfloors</td><td>~55 lbs</td><td>$25–$35</td></tr>
+<tr><td><strong>Sanded (BC/AC)</strong></td><td>B-C or A-C</td><td>Cabinets, shelving, furniture, visible surfaces</td><td>~65 lbs</td><td>$45–$65</td></tr>
+<tr><td><strong>Marine Grade</strong></td><td>A-A or A-B</td><td>Boats, docks, outdoor furniture, wet environments</td><td>~70 lbs</td><td>$70–$100</td></tr>
+<tr><td><strong>Baltic Birch</strong></td><td>BB/BB or BB/CP</td><td>Fine furniture, laser cutting, drawer boxes</td><td>~68 lbs</td><td>$60–$85</td></tr>
+<tr><td><strong>MDF</strong></td><td>Standard</td><td>Cabinet doors, trim, paintable surfaces</td><td>~85 lbs</td><td>$30–$40</td></tr>
+</tbody>
+</table>
+<p><strong>Note:</strong> CDX and OSB are the two most common structural plywood types. CDX is true plywood (cross-laminated veneers); OSB is made from compressed wood strands. Both are code-approved for structural use, but CDX handles moisture better.</p>
+
+<h2>Plywood Thickness: Nominal vs. Actual</h2>
+<table>
+<thead><tr><th>Nominal</th><th>Actual Thickness</th><th>Weight (4×8, CDX)</th><th>Common Use</th></tr></thead>
+<tbody>
+<tr><td><strong>¼"</strong></td><td>7/32" (0.219")</td><td>~24 lbs</td><td>Underlayment, cabinet backs, craft projects</td></tr>
+<tr><td><strong>⅜"</strong></td><td>11/32" (0.344")</td><td>~33 lbs</td><td>Wall sheathing (non-structural), hobby projects</td></tr>
+<tr><td><strong>½"</strong></td><td>15/32" (0.469")</td><td>~42 lbs</td><td>Roof sheathing, wall sheathing, shelving</td></tr>
+<tr><td><strong>⅝"</strong></td><td>19/32" (0.594")</td><td>~51 lbs</td><td>Subfloor (16" OC joists), heavy shelving</td></tr>
+<tr><td><strong>¾"</strong></td><td>23/32" (0.719")</td><td>~60 lbs</td><td>Subfloor (24" OC joists), workbenches, heavy-duty</td></tr>
+</tbody>
+</table>
+<p><strong>Important:</strong> Nominal and actual plywood thicknesses differ by 1/32" to 1/16" due to sanding. This matters for cabinetry and precision joinery — always measure before cutting dados and rabbets.</p>
+
+<h2>Step-by-Step Plywood Estimation</h2>
+<h3>Step 1: Measure the Area</h3>
+<p>Measure the <strong>length and width</strong> of each surface to cover. Multiply to get square footage. For multiple walls or sections, calculate each separately and add together.</p>
+<p><strong>Example:</strong> A room 20 ft × 12 ft = 240 sq ft of subfloor.</p>
+
+<h3>Step 2: Add Waste</h3>
+<p>Add <strong>10% for rectangular rooms</strong> (simple cuts). Add <strong>15% for L-shaped rooms, corners, and cutouts</strong>. Add <strong>20% for complex shapes</strong> like hexagonal or curved surfaces.</p>
+<p><strong>Example:</strong> 240 sq ft × 1.10 = 264 sq ft.</p>
+
+<h3>Step 3: Divide by Sheet Area</h3>
+<p>Standard 4×8 sheet = <strong>32 sq ft</strong>. Half sheet (4×4) = <strong>16 sq ft</strong>. Round up to the nearest whole sheet — you can't buy partial sheets.</p>
+<p><strong>Example:</strong> 264 ÷ 32 = 8.25 → <strong>9 sheets</strong>.</p>
+
+<h2>Plywood by Project</h2>
+<table>
+<thead><tr><th>Project</th><th>Recommended Type</th><th>Thickness</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td><strong>Subfloor</strong></td><td>CDX or OSB</td><td>¾" (23/32")</td><td>Use T&G (tongue-and-groove) for 24" OC joists</td></tr>
+<tr><td><strong>Roof Sheathing</strong></td><td>CDX or OSB</td><td>½" or ⅝"</td><td>½" for 16" OC rafters; ⅝" for 24" OC</td></tr>
+<tr><td><strong>Wall Sheathing</strong></td><td>CDX or OSB</td><td>⅜" or ½"</td><td>Structural: ½" min. Non-structural: ⅜"</td></tr>
+<tr><td><strong>Underlayment</strong></td><td>Sanded BC</td><td>¼"</td><td>Over existing subfloor before vinyl/tile</td></tr>
+<tr><td><strong>Cabinets</strong></td><td>Sanded AC or Baltic Birch</td><td>¾"</td><td>AC for painted, Baltic Birch for clear finish</td></tr>
+<tr><td><strong>Shelving</strong></td><td>Sanded BC or Baltic Birch</td><td>¾"</td><td>Max span without support: 36" for ¾" plywood</td></tr>
+</tbody>
+</table>
+
+<h2>2025 US Plywood Cost Guide</h2>
+<table>
+<thead><tr><th>Type</th><th>½" (4×8)</th><th>¾" (4×8)</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td><strong>CDX</strong></td><td>$28–$38</td><td>$35–$50</td><td>Most common structural plywood</td></tr>
+<tr><td><strong>OSB</strong></td><td>$20–$28</td><td>$25–$35</td><td>Cheapest structural option</td></tr>
+<tr><td><strong>Sanded BC</strong></td><td>$35–$45</td><td>$45–$65</td><td>One good face, one utility face</td></tr>
+<tr><td><strong>Sanded AC</strong></td><td>$40–$55</td><td>$55–$75</td><td>One premium face for cabinetry</td></tr>
+<tr><td><strong>Baltic Birch</strong></td><td>$50–$65</td><td>$60–$85</td><td>5×5 ft sheets standard (not 4×8)</td></tr>
+<tr><td><strong>Marine Grade</strong></td><td>$55–$75</td><td>$70–$100</td><td>Waterproof glue, void-free core</td></tr>
+</tbody>
+</table>
+<p><strong>Delivery:</strong> Most lumberyards charge $50–$100 for delivery. Big-box stores often deliver free on orders over $500. A pallet typically holds 40–60 sheets (depending on thickness). Plan for pallets weighing 2,000–3,500 lbs.</p>
+`,
         faq: [
-            { question: "What thickness plywood do I need?", answer: "Subfloor: ¾\" (23/32\"). Roof sheathing: ½\" or ⅝\". Wall sheathing: ⅜\" or ½\". Underlayment: ¼\". Cabinet backs: ¼\". Shelving: ¾\". Always match to code requirements for your specific application and joist/rafter spacing." },
+            { question: "What thickness plywood do I need?", answer: "Subfloor: ¾\" (23/32\"). Roof sheathing: ½\" or ⅝\". Wall sheathing: ⅜\" or ½\". Underlayment: ¼\". Cabinet backs: ¼\". Shelving: ¾\". Always match to code requirements for your specific application, joist/rafter spacing (16\" vs 24\" OC), and load requirements." },
             { question: "What's the difference between CDX and OSB?", answer: "CDX plywood: layers of wood veneer cross-laminated, stronger and more water-resistant. OSB: oriented strand board made from compressed wood strands, cheaper but swells when wet. For subfloors and roof sheathing, both are code-approved. CDX is preferred for moisture-prone areas." },
+            { question: "How much does a sheet of plywood weigh?", answer: "¾\" CDX plywood (4×8): ~60 lbs. ½\" CDX: ~42 lbs. ¾\" MDF: ~85 lbs. ¾\" OSB: ~55 lbs. ¾\" Baltic Birch: ~68 lbs. Weight matters for delivery, handling, and structural load calculations. MDF is the heaviest; OSB is the lightest." },
+            { question: "What do plywood grades mean?", answer: "Letters indicate face quality: A = sanded smooth, few defects. B = solid surface, minor repairs allowed. C = unsanded, knotholes allowed. D = unsanded, larger defects. 'CDX' means C-face, D-back, Exposure 1 glue. 'AC' means A-face (smooth), C-back — good for cabinets where one side shows." },
+            { question: "Is actual plywood thickness different from nominal?", answer: "Yes — always slightly thinner. ¾\" nominal = 23/32\" actual (0.719\"). ½\" = 15/32\" (0.469\"). ¼\" = 7/32\" (0.219\"). This 1/32\" difference matters for dados, rabbets, and precision woodworking. Always measure before cutting joints." },
+            { question: "How many sheets of plywood fit in a pickup truck?", answer: "A standard full-size pickup bed (6.5 ft) can carry sheets flat, but they'll overhang. Most pickups have a 1,500–2,000 lb payload. At ~60 lbs per ¾\" sheet, you can safely carry 25–30 sheets. However, 10–15 sheets is more practical for handling and visibility." },
+            { question: "Should I use plywood or OSB for subfloor?", answer: "Both are code-approved. Plywood (CDX): better moisture resistance, less likely to swell at edges, smoother surface. OSB: cheaper (20–30% less), no core voids. For basements or bathrooms: use plywood (CDX). For general subfloor: OSB saves money with adequate performance." },
+            { question: "How much waste should I add?", answer: "10% for simple rectangular rooms with few cuts. 15% for L-shaped rooms, hallways, or rooms with many cutouts (plumbing, HVAC). 20% for complex shapes. For roofs, add 15% minimum due to hip/valley cuts and peak waste. Round up to the nearest full sheet." },
+            { question: "What's the best plywood for cabinets?", answer: "Sanded AC plywood (A-face smooth, C-back) for painted cabinets. Baltic Birch for clear-finish or stained cabinets — it has more plies (13 vs 5–7 for standard), void-free core, and beautiful edge grain. Use ¾\" for cabinet boxes and ¼\" for backs." },
+            { question: "How do I store plywood?", answer: "Store flat on a level surface — never leaned against a wall (causes warping). Keep indoors or under cover. Elevate off concrete floors (use 2×4 stickers) to prevent moisture absorption. Acclimate to the job site for 48 hours before installation. Stack sheets with stickers every 4 feet." },
         ],
     },
     "ceiling-tile-calculator": {

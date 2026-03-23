@@ -8492,7 +8492,7 @@
     "categorySlug": "construction-calculators",
     "icon": "📐",
     "calcType": "plywood",
-    "description": "Calculate how many plywood sheets you need for floors, walls, roofs, or subfloors. Enter area dimensions for 4×8 sheet counts and cost.",
+    "description": "Calculate plywood sheets needed for floors, walls, roofs, or cabinets. Choose from 6 plywood types, 5 thicknesses, and get weight and cost estimates.",
     "stars": 5,
     "defaults": {
       "amount": 20,
