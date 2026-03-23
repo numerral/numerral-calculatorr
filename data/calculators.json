@@ -7532,7 +7532,7 @@
     "categorySlug": "construction-calculators",
     "icon": "🏡",
     "calcType": "fence",
-    "description": "Calculate fencing materials — posts, rails, pickets, or panels needed for any fence length. Supports wood, vinyl, and chain-link fence types.",
+    "description": "Calculate fence materials — posts, rails, pickets, panels, concrete, and screws. Choose from 7 fence styles with auto-presets and get a complete cost estimate.",
     "stars": 5,
     "defaults": {
       "amount": 100,

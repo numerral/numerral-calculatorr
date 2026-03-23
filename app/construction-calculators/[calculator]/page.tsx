@@ -1450,18 +1450,96 @@ const HUB_CONTENT: Record<string, {
         ],
     },
     "fence-calculator": {
-        subtitle: "Calculate fencing materials — posts, rails, pickets, or panels needed for any fence. Supports wood picket, pre-built panel, and chain-link types.",
+        subtitle: "Calculate fence materials — posts, rails, pickets, panels, concrete, and screws. Choose from 7 fence styles with auto-presets and get a complete cost estimate.",
         explanation: {
             heading: "How to Calculate Fence Materials",
             paragraphs: [
                 "Fence material calculations start with the total fence length. Divide by post spacing (typically 8 feet for wood fences, 10 feet for chain-link) and add 1 for the end post. Each section between posts needs horizontal rails — 2 rails for fences under 5 feet, 3 rails for taller fences.",
                 "For wood picket fences, calculate the number of pickets by dividing fence length by the picket width (typically 3.5–5.5 inches). For pre-built panels (typically 6×8 or 4×8 feet), one panel fills each section. Don't forget concrete for post holes — plan 2 bags of 50 lb concrete per post.",
             ],
-            highlight: "A 100 ft wood picket fence with 6 ft height and 8 ft spacing = 14 posts, 39 rails (3 per section), 200 pickets (6\" wide), and 28 bags of concrete.",
+            highlight: "A 100 ft wood privacy fence with 6 ft height and 8 ft spacing = 14 posts, 39 rails (3 per section), ~240 pickets (5.5\" wide, +10% waste), and 28 bags of concrete.",
         },
+        contentHTML: `
+<p>Building a fence is one of the most common DIY and contractor projects for <strong>US homeowners</strong>. Whether you're installing a privacy fence, a decorative picket fence, or a ranch-style rail fence, accurate material estimation prevents over-ordering and costly return trips to the lumberyard.</p>
+<p>The calculator above supports <strong>7 fence styles</strong> with auto-presets for picket width, spacing, and rails per section. It estimates <strong>posts, rails, pickets/panels, concrete, screws, and gates</strong> with a <strong>complete material cost breakdown</strong>.</p>
+
+<h2>Fence Styles and Presets</h2>
+<table>
+<thead><tr><th>Style</th><th>Picket Width</th><th>Spacing</th><th>Rails/Section</th><th>Description</th></tr></thead>
+<tbody>
+<tr><td><strong>Privacy (solid board)</strong></td><td>5.5"</td><td>0" (no gap)</td><td>3</td><td>Boards side-by-side, rails on one side</td></tr>
+<tr><td><strong>Shadowbox (board-on-board)</strong></td><td>5.5"</td><td>−1" (overlap)</td><td>3</td><td>Boards on both sides, offset — looks same from both sides</td></tr>
+<tr><td><strong>Stockade</strong></td><td>2.5"</td><td>0"</td><td>3</td><td>Narrow pointed-top pickets, no gaps</td></tr>
+<tr><td><strong>Picket (spaced)</strong></td><td>3.5"</td><td>3.5"</td><td>2</td><td>Classic American picket fence with equal gaps</td></tr>
+<tr><td><strong>Rail (no pickets)</strong></td><td>—</td><td>—</td><td>3</td><td>Horizontal rails only — for ranch/boundary</td></tr>
+<tr><td><strong>Pre-built Panel</strong></td><td>—</td><td>—</td><td>—</td><td>6×8 ft panels, 1 per section</td></tr>
+<tr><td><strong>Chain Link</strong></td><td>—</td><td>—</td><td>2</td><td>Top + bottom rails, mesh fabric sold by linear foot</td></tr>
+</tbody>
+</table>
+
+<h2>Step-by-Step Fence Material Estimation</h2>
+<h3>Step 1: Calculate Posts</h3>
+<p>Divide the total fence length by <strong>post spacing</strong> (8 ft standard for wood) and round up. Add 1 for the end post. Add 2 extra posts per gate (heavier gate posts, often 6×6).</p>
+<p><strong>Formula:</strong> Posts = ⌈Length ÷ Spacing⌉ + 1 + (Gates × 2)</p>
+<p><strong>Example:</strong> 100 ft fence ÷ 8 ft spacing = 12.5 → 13 sections → 14 posts + 2 gate posts = <strong>16 posts</strong></p>
+
+<h3>Step 2: Calculate Rails</h3>
+<p>Multiply the number of sections by rails per section. Standard: 2 rails for fences ≤ 4 ft, 3 rails for 5–8 ft, 4+ rails for 10–12 ft.</p>
+<p><strong>Formula:</strong> Rails = Sections × Rails per Section</p>
+<p><strong>Example:</strong> 13 sections × 3 rails = <strong>39 rails</strong></p>
+
+<h3>Step 3: Calculate Pickets</h3>
+<p>Convert fence length to inches. Divide by (picket width + spacing). Add <strong>10% for waste</strong> (cuts, splits, defects).</p>
+<p><strong>Formula:</strong> Pickets = ⌈(Length × 12) ÷ (Picket Width + Spacing)⌉ × 1.10</p>
+<p><strong>Example (privacy):</strong> (100 × 12) ÷ (5.5 + 0) = 218 × 1.10 = <strong>240 pickets</strong></p>
+<p><strong>Shadowbox:</strong> Double the picket count because boards are on both sides.</p>
+
+<h3>Step 4: Hardware and Concrete</h3>
+<ul>
+<li><strong>Concrete:</strong> 2 bags (50 lb) per post for a 2 ft deep, 10" diameter hole</li>
+<li><strong>Screws:</strong> 2 exterior screws per picket per rail contact point (e.g. 3 rails = 6 screws per picket)</li>
+<li><strong>Post caps:</strong> 1 per post (optional, decorative)</li>
+</ul>
+
+<h2>Lumber Types for Wood Fences</h2>
+<table>
+<thead><tr><th>Component</th><th>Lumber Size</th><th>Material Options</th><th>Cost Each (2025)</th></tr></thead>
+<tbody>
+<tr><td><strong>Posts</strong></td><td>4×4 (8 ft for 6 ft fence)</td><td>Pressure-treated, cedar, redwood</td><td>$8–$20</td></tr>
+<tr><td><strong>Gate Posts</strong></td><td>6×6 (8 ft)</td><td>Pressure-treated, cedar</td><td>$18–$35</td></tr>
+<tr><td><strong>Rails</strong></td><td>2×4 (8 ft)</td><td>Pressure-treated, cedar</td><td>$4–$10</td></tr>
+<tr><td><strong>Pickets (privacy)</strong></td><td>1×6 (6 ft dog ear)</td><td>Pressure-treated, cedar</td><td>$2–$5</td></tr>
+<tr><td><strong>Pickets (stockade)</strong></td><td>¾"×2½" (5–6 ft)</td><td>Pressure-treated, cedar</td><td>$1.50–$3</td></tr>
+</tbody>
+</table>
+<p><strong>Wood choice:</strong> Pressure-treated pine is cheapest and lasts 15–20 years. Cedar is naturally rot-resistant and lasts 20–25 years but costs 30–50% more. Western red cedar is premium. Redwood is the most expensive but most durable (30+ years).</p>
+
+<h2>2025 US Fence Cost Guide</h2>
+<table>
+<thead><tr><th>Fence Type</th><th>Material Cost per ft</th><th>Installed Cost per ft</th><th>100 ft Material</th><th>100 ft Installed</th></tr></thead>
+<tbody>
+<tr><td><strong>Wood Privacy (PT)</strong></td><td>$12–$18</td><td>$25–$35</td><td>$1,200–$1,800</td><td>$2,500–$3,500</td></tr>
+<tr><td><strong>Wood Privacy (Cedar)</strong></td><td>$18–$28</td><td>$30–$45</td><td>$1,800–$2,800</td><td>$3,000–$4,500</td></tr>
+<tr><td><strong>Shadowbox</strong></td><td>$18–$30</td><td>$30–$50</td><td>$1,800–$3,000</td><td>$3,000–$5,000</td></tr>
+<tr><td><strong>Picket</strong></td><td>$8–$15</td><td>$18–$25</td><td>$800–$1,500</td><td>$1,800–$2,500</td></tr>
+<tr><td><strong>Chain Link (4 ft)</strong></td><td>$7–$12</td><td>$15–$20</td><td>$700–$1,200</td><td>$1,500–$2,000</td></tr>
+<tr><td><strong>Split Rail</strong></td><td>$6–$12</td><td>$12–$18</td><td>$600–$1,200</td><td>$1,200–$1,800</td></tr>
+</tbody>
+</table>
+<p><strong>Gates:</strong> Add $75–$150 per walk gate and $200–$500 per drive (double) gate, plus $50–$100 in hardware per gate. Most residential fences have 1–2 gates.</p>
+<p><strong>Labor:</strong> Professional fence installation is typically $10–$20 per linear foot for labor alone, or 50–60% of total installed cost.</p>
+`,
         faq: [
-            { question: "How deep should fence posts be?", answer: "The general rule is 1/3 the total post length underground, plus 6 inches. For a 6-foot fence with 8-foot posts, set posts 2.5–3 feet deep. In areas with frost, posts must extend below the frost line." },
-            { question: "How far apart should fence posts be?", answer: "8 feet on center is standard for wood fences using standard lumber lengths. Chain-link: 10 feet. Vinyl: 6–8 feet depending on panel size. Shorter spacing provides more strength but costs more in materials." },
+            { question: "How far apart should fence posts be?", answer: "8 feet on center is standard for wood fences using standard lumber lengths. Chain-link: 10 feet. Vinyl: 6–8 feet depending on panel size. In windy areas or for extra strength, reduce to 6 feet. Never exceed 10 feet for wood fences — rails will sag." },
+            { question: "How deep should fence posts be?", answer: "The rule is ⅓ of the total post length underground. For a 6 ft fence with 8 ft posts, set posts 2–2.5 ft deep. For a 4 ft fence: 2 ft deep. In cold climates, posts must extend below the frost line (36–48 inches in northern states). Always set posts in concrete." },
+            { question: "How long should fence posts be?", answer: "Fence height + ⅓ of total post length underground. For a 6 ft fence: 8 ft posts (6 ft above + 2 ft below). For an 8 ft fence: 10–11 ft posts. For a 4 ft fence: 6 ft posts. Gate posts should be 6×6 instead of 4×4 for extra strength." },
+            { question: "What is a linear foot of fence?", answer: "A linear foot is one foot of fence length, measured horizontally along the fence line. A 100 ft perimeter fence = 100 linear feet. Fence pricing is quoted per linear foot. To find the perimeter, add all sides of the area you're enclosing." },
+            { question: "How many pickets do I need per foot of fence?", answer: "Privacy fence (5.5\" boards, no gap): ~2.2 pickets per foot. Stockade (2.5\" pickets, no gap): ~4.8 per foot. Picket fence (3.5\" pickets, 3.5\" gap): ~1.7 per foot. Shadowbox: double the privacy count (boards on both sides). Always add 10% for waste." },
+            { question: "How much concrete per fence post?", answer: "Plan 2 bags (50 lb) of fast-setting concrete per post for a standard 10\" diameter × 24\" deep hole with a 4×4 post. Deeper holes (36\") need 3 bags each. For 6×6 gate posts in 12\" holes, use 3–4 bags each. Fast-setting concrete can be poured dry into the hole." },
+            { question: "What's the best wood for a fence?", answer: "Pressure-treated pine: cheapest, lasts 15–20 years, requires staining. Western red cedar: naturally rot-resistant, 20–25 years, beautiful grain. Redwood: premium, 30+ years, expensive. For budget fences, PT pine is the standard. For appearance and longevity without chemical treatment, cedar." },
+            { question: "What is the standard fence height?", answer: "Privacy fence: 6 ft standard (some areas allow up to 8 ft in backyards). Decorative/picket: 3–4 ft. Front yard: 3–4 ft max (most municipalities). Pool fence: 4 ft minimum (most states require 48\" with self-closing gate). Check local codes — many areas have strict height limits." },
+            { question: "Do I need a permit for a fence?", answer: "Most municipalities require a fence permit ($50–$200). Contact your local building department before starting. You also need to check property lines (consider a survey), HOA restrictions, utility easements, and setback requirements (usually 6\"–1 ft from property line). Call 811 before digging." },
+            { question: "How much does it cost to install a fence?", answer: "DIY wood privacy: $12–$18 per linear foot (materials only). Professional installation: $25–$45/ft total. A 150 ft backyard fence with 1 gate: DIY = $2,000–$3,000, installed = $4,000–$7,000. Chain link is cheapest ($15–$20/ft installed), vinyl most expensive ($35–$55/ft installed)." },
         ],
     },
     "deck-calculator": {

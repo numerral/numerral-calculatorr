@@ -1144,53 +1144,115 @@ function BrickCalc() {
 }
 
 /* ──────────── 14. FENCE CALCULATOR ──────────── */
+const FENCE_STYLES: { value: string; label: string; picketW: number; spacing: number; railsPer: number }[] = [
+    { value: "privacy", label: "Privacy (solid board)", picketW: 5.5, spacing: 0, railsPer: 3 },
+    { value: "shadowbox", label: "Shadowbox (board-on-board)", picketW: 5.5, spacing: -1, railsPer: 3 },
+    { value: "stockade", label: "Stockade", picketW: 2.5, spacing: 0, railsPer: 3 },
+    { value: "picket", label: "Picket (spaced)", picketW: 3.5, spacing: 3.5, railsPer: 2 },
+    { value: "rail", label: "Rail (no pickets)", picketW: 0, spacing: 0, railsPer: 3 },
+    { value: "panel", label: "Pre-built Panel (6×8 ft)", picketW: 0, spacing: 0, railsPer: 0 },
+    { value: "chain-link", label: "Chain Link", picketW: 0, spacing: 0, railsPer: 2 },
+];
+
 function FenceCalc() {
     const [fenceLength, setFenceLength] = useState(100);
     const [fenceHeight, setFenceHeight] = useState(6);
     const [postSpacing, setPostSpacing] = useState(8);
-    const [fenceType, setFenceType] = useState("wood-picket");
+    const [style, setStyle] = useState("privacy");
+    const [picketWidth, setPicketWidth] = useState(5.5);
+    const [picketSpacing, setPicketSpacing] = useState(0);
+    const [railsPerSection, setRailsPerSection] = useState(3);
+    const [gates, setGates] = useState(1);
+    const [postCost, setPostCost] = useState(12);
+    const [railCost, setRailCost] = useState(6);
+    const [picketCost, setPicketCost] = useState(3);
+
+    const handleStyle = (v: string) => {
+        setStyle(v);
+        const s = FENCE_STYLES.find(f => f.value === v);
+        if (s) { setPicketWidth(s.picketW); setPicketSpacing(s.spacing); setRailsPerSection(s.railsPer); }
+    };
 
     const result = useMemo(() => {
         const posts = Math.ceil(fenceLength / postSpacing) + 1;
         const sections = posts - 1;
-        let rails = 0, pickets = 0, panels = 0;
-        if (fenceType === "wood-picket") {
-            rails = sections * (fenceHeight > 4 ? 3 : 2);
-            pickets = Math.ceil(fenceLength / 0.5); // 6" wide pickets
-        } else if (fenceType === "wood-panel") {
+        const postLength = fenceHeight + Math.max(fenceHeight / 3, 2);
+        const postHoleDepth = Math.max(fenceHeight / 3, 2);
+
+        let rails = sections * railsPerSection;
+        let pickets = 0;
+        let panels = 0;
+
+        if (style === "panel") {
             panels = sections;
-            rails = 0;
-        } else {
-            // chain-link: measured in linear feet of fabric
-            rails = sections * 2; // top + bottom rail
+        } else if (style === "chain-link") {
+            // chain-link: linear feet of fabric
+        } else if (style === "shadowbox") {
+            // Shadowbox: pickets on both sides, offset for full coverage
+            const effectiveW = picketWidth + picketSpacing; // spacing is -1, so 4.5" effective
+            if (effectiveW > 0) pickets = Math.ceil((fenceLength * 12) / effectiveW) * 2;
+        } else if (picketWidth > 0) {
+            const effectiveW = picketWidth + Math.max(picketSpacing, 0);
+            if (effectiveW > 0) pickets = Math.ceil((fenceLength * 12) / effectiveW);
         }
-        const postHoleDepth = Math.max(fenceHeight / 3 + 0.5, 2);
-        const concreteBags = posts * 2;
-        return { posts, sections, rails, pickets, panels, postHoleDepth, concreteBags };
-    }, [fenceLength, fenceHeight, postSpacing, fenceType]);
+
+        // Add 10% waste
+        const picketsWithWaste = Math.ceil(pickets * 1.1);
+        const concreteBags = posts * 2; // 2 × 50lb bags per post
+        const screws = picketsWithWaste * (railsPerSection > 0 ? railsPerSection * 2 : 6); // 2 screws per rail contact
+        const gatePostsExtra = gates * 2;
+
+        // Cost
+        const totalPosts = posts + gatePostsExtra;
+        const costPosts = totalPosts * postCost;
+        const costRails = rails * railCost;
+        const costPickets = style === "panel" ? panels * 45 : picketsWithWaste * picketCost;
+        const costConcrete = concreteBags * 5; // ~$5 per 50lb bag
+        const costScrews = Math.ceil(screws / 100) * 9; // ~$9 per lb (100 screws)
+        const costGates = gates * 85;
+        const totalCost = costPosts + costRails + costPickets + costConcrete + costScrews + costGates;
+
+        return { posts: totalPosts, sections, rails, pickets: picketsWithWaste, panels, postLength, postHoleDepth, concreteBags, screws, totalCost, costPosts, costRails, costPickets, costConcrete, costGates };
+    }, [fenceLength, fenceHeight, postSpacing, style, picketWidth, picketSpacing, railsPerSection, gates, postCost, railCost, picketCost]);
 
     return (
         <div className="con-calc">
             <h3 className="con-calc__title">🏡 Fence Calculator</h3>
             <div className="con-calc__inputs">
+                <SelectField label="Fence Style" value={style} onChange={handleStyle}
+                    options={FENCE_STYLES.map(s => ({ value: s.value, label: s.label }))} />
                 <InputField label="Fence Length" value={fenceLength} onChange={setFenceLength} unit="ft" min={1} />
-                <InputField label="Fence Height" value={fenceHeight} onChange={setFenceHeight} unit="ft" min={3} max={10} />
+                <InputField label="Fence Height" value={fenceHeight} onChange={setFenceHeight} unit="ft" min={3} max={12} />
                 <InputField label="Post Spacing" value={postSpacing} onChange={setPostSpacing} unit="ft" min={4} max={12} />
-                <SelectField label="Fence Type" value={fenceType} onChange={setFenceType} options={[
-                    { value: "wood-picket", label: "Wood Picket" },
-                    { value: "wood-panel", label: "Wood Panel (Pre-built)" },
-                    { value: "chain-link", label: "Chain Link" },
-                ]} />
+                <InputField label="Gates" value={gates} onChange={setGates} unit="gates" min={0} max={10} />
+                {picketWidth > 0 && (
+                    <>
+                        <InputField label="Picket Width" value={picketWidth} onChange={setPicketWidth} unit="in" min={1} step={0.5} />
+                        <InputField label="Picket Spacing" value={picketSpacing} onChange={setPicketSpacing} unit="in" min={-2} step={0.5} />
+                    </>
+                )}
+                <InputField label="Post Cost (4×4)" value={postCost} onChange={setPostCost} unit="$" min={0} />
+                <InputField label="Rail Cost (2×4)" value={railCost} onChange={setRailCost} unit="$" min={0} />
+                {picketWidth > 0 && <InputField label="Picket Cost (each)" value={picketCost} onChange={setPicketCost} unit="$" min={0} step={0.5} />}
             </div>
             <div className="con-calc__results">
-                <h4>Results</h4>
-                <ResultRow label="Posts Needed" value={fmtInt(result.posts)} unit="posts" />
-                <ResultRow label="Sections" value={fmtInt(result.sections)} unit="sections" />
-                <ResultRow label="Rails" value={fmtInt(result.rails)} unit="rails" />
-                {result.pickets > 0 && <ResultRow label="Pickets" value={fmtInt(result.pickets)} unit="pickets" />}
-                {result.panels > 0 && <ResultRow label="Panels" value={fmtInt(result.panels)} unit="panels" />}
+                <h4 className="con-calc__group-label">STRUCTURE</h4>
+                <ResultRow label="Posts (4×4)" value={fmtInt(result.posts)} unit={`@ ${fmt(result.postLength, 1)} ft each`} />
                 <ResultRow label="Post Hole Depth" value={fmt(result.postHoleDepth, 1)} unit="ft" />
+                <ResultRow label="Sections" value={fmtInt(result.sections)} />
+                <ResultRow label="Rails (2×4)" value={fmtInt(result.rails)} />
+                {result.pickets > 0 && <ResultRow label="Pickets (+ 10% waste)" value={fmtInt(result.pickets)} />}
+                {result.panels > 0 && <ResultRow label="Panels (6×8 ft)" value={fmtInt(result.panels)} />}
+                <h4 className="con-calc__group-label">HARDWARE</h4>
                 <ResultRow label="Concrete (50 lb bags)" value={fmtInt(result.concreteBags)} unit="bags" />
+                <ResultRow label="Screws (approx)" value={fmtInt(result.screws)} />
+                <h4 className="con-calc__group-label">COST</h4>
+                <ResultRow label="Posts" value={`$${fmtInt(result.costPosts)}`} />
+                <ResultRow label="Rails" value={`$${fmtInt(result.costRails)}`} />
+                <ResultRow label="Pickets / Panels" value={`$${fmtInt(result.costPickets)}`} />
+                <ResultRow label="Concrete" value={`$${fmtInt(result.costConcrete)}`} />
+                {gates > 0 && <ResultRow label={`Gates (${gates})`} value={`$${fmtInt(result.costGates)}`} />}
+                <ResultRow label="Total Material Cost" value={`$${fmtInt(result.totalCost)}`} />
             </div>
         </div>
     );
