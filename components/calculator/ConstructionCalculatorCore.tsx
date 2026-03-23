@@ -7570,24 +7570,48 @@ function PlywoodSheathingCalc() {
 }
 
 /* ──────────── 158. ROOF SNOW LOAD CALCULATOR ──────────── */
+const SNOW_DENSITY: { value: string; label: string; psfPerIn: number }[] = [
+    { value: "fresh", label: "Fresh / Light Powder", psfPerIn: 1.25 },
+    { value: "settled", label: "Settled (few days old)", psfPerIn: 2.08 },
+    { value: "packed", label: "Wind-Packed", psfPerIn: 3.13 },
+    { value: "granular", label: "Granular / Old", psfPerIn: 3.75 },
+    { value: "wet", label: "Wet / Heavy", psfPerIn: 5.20 },
+    { value: "ice", label: "Ice Crust", psfPerIn: 4.69 },
+];
+
+const SNOW_PITCH: { value: string; label: string; mult: number }[] = [
+    { value: "flat", label: "Flat (0/12)", mult: 1.000 },
+    { value: "2", label: "2/12 (low slope)", mult: 1.014 },
+    { value: "4", label: "4/12 (standard)", mult: 1.054 },
+    { value: "6", label: "6/12 (moderate)", mult: 1.118 },
+    { value: "8", label: "8/12 (steep)", mult: 1.202 },
+    { value: "10", label: "10/12 (very steep)", mult: 1.302 },
+    { value: "12", label: "12/12 (45°)", mult: 1.414 },
+];
+
 function RoofSnowLoadCalc() {
     const [roofLength, setRoofLength] = useState(30);
     const [roofWidth, setRoofWidth] = useState(20);
+    const [pitch, setPitch] = useState("4");
     const [snowDepth, setSnowDepth] = useState(12);
     const [snowType, setSnowType] = useState("packed");
-
-    const DENSITY: Record<string, number> = {
-        "fresh": 1.25, "settled": 2.08, "packed": 3.13, "wet": 5.2, "ice": 4.69,
-    };
+    const [designLoad, setDesignLoad] = useState(30);
 
     const result = useMemo(() => {
-        const area = roofLength * roofWidth;
-        const psfPerInch = DENSITY[snowType] || 3.13;
-        const psf = psfPerInch * snowDepth;
-        const totalLbs = psf * area;
+        const footprint = roofLength * roofWidth;
+        const pitchData = SNOW_PITCH.find(p => p.value === pitch);
+        const mult = pitchData?.mult || 1;
+        const actualArea = footprint * mult;
+        const densData = SNOW_DENSITY.find(s => s.value === snowType);
+        const psfPerIn = densData?.psfPerIn || 3.13;
+        const psf = psfPerIn * snowDepth;
+        const totalLbs = psf * actualArea;
         const totalTons = totalLbs / 2000;
-        return { area, psf, totalLbs, totalTons };
-    }, [roofLength, roofWidth, snowDepth, snowType]);
+        const volumeCuFt = actualArea * (snowDepth / 12);
+        const capacityPct = designLoad > 0 ? (psf / designLoad) * 100 : 0;
+        const overloaded = psf > designLoad;
+        return { footprint, actualArea, psfPerIn, psf, totalLbs, totalTons, volumeCuFt, capacityPct, overloaded };
+    }, [roofLength, roofWidth, pitch, snowDepth, snowType, designLoad]);
 
     return (
         <div className="con-calc">
@@ -7595,21 +7619,26 @@ function RoofSnowLoadCalc() {
             <div className="con-calc__inputs">
                 <InputField label="Roof Length" value={roofLength} onChange={setRoofLength} unit="ft" min={5} />
                 <InputField label="Roof Width" value={roofWidth} onChange={setRoofWidth} unit="ft" min={5} />
-                <InputField label="Snow Depth" value={snowDepth} onChange={setSnowDepth} unit="in" min={1} max={60} />
-                <SelectField label="Snow Type" value={snowType} onChange={setSnowType} options={[
-                    { value: "fresh", label: "Fresh / Light (1.25 PSF/in)" },
-                    { value: "settled", label: "Settled (2.08 PSF/in)" },
-                    { value: "packed", label: "Packed (3.13 PSF/in)" },
-                    { value: "wet", label: "Wet / Heavy (5.2 PSF/in)" },
-                    { value: "ice", label: "Ice (4.69 PSF/in)" },
-                ]} />
+                <SelectField label="Roof Pitch" value={pitch} onChange={setPitch}
+                    options={SNOW_PITCH.map(p => ({ value: p.value, label: p.label }))} />
+                <InputField label="Snow Depth" value={snowDepth} onChange={setSnowDepth} unit="in" min={1} max={72} />
+                <SelectField label="Snow Type" value={snowType} onChange={(v) => setSnowType(v)}
+                    options={SNOW_DENSITY.map(s => ({ value: s.value, label: `${s.label} (${s.psfPerIn} PSF/in)` }))} />
+                <InputField label="Roof Design Load" value={designLoad} onChange={setDesignLoad} unit="PSF" min={10} max={100} />
             </div>
             <div className="con-calc__results">
-                <h4>Results</h4>
-                <ResultRow label="Roof Area" value={fmt(result.area)} unit="sq ft" />
-                <ResultRow label="Snow Load" value={fmt(result.psf, 1)} unit="PSF" />
+                <h4 className="con-calc__group-label">ROOF</h4>
+                <ResultRow label="Footprint" value={fmt(result.footprint)} unit="sq ft" />
+                <ResultRow label="Actual Roof Area" value={fmt(result.actualArea)} unit="sq ft" />
+                <ResultRow label="Snow Volume" value={fmt(result.volumeCuFt)} unit="cu ft" />
+                <h4 className="con-calc__group-label">SNOW LOAD</h4>
+                <ResultRow label="Density" value={fmt(result.psfPerIn, 2)} unit="PSF/inch" />
+                <ResultRow label="Snow Load (PSF)" value={fmt(result.psf, 1)} unit="PSF" />
                 <ResultRow label="Total Weight" value={fmt(result.totalLbs)} unit="lbs" />
                 <ResultRow label="Total Weight" value={fmt(result.totalTons, 2)} unit="tons" />
+                <h4 className="con-calc__group-label">STRUCTURAL CHECK</h4>
+                <ResultRow label="Design Capacity" value={`${designLoad} PSF`} />
+                <ResultRow label="Current Load" value={`${fmt(result.capacityPct, 0)}%`} unit={result.overloaded ? "⚠️ OVERLOADED" : "✅ Within limits"} />
             </div>
         </div>
     );

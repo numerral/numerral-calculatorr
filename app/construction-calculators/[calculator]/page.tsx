@@ -4136,18 +4136,92 @@ Net lawn area: 10,890 − 1,900 = <strong>8,990 sq ft</strong></p>
         ],
     },
     "roof-snow-load-calculator": {
-        subtitle: "Calculate snow weight on your roof based on depth, snow type, and roof area. Check against structural capacity.",
+        subtitle: "Calculate snow weight on your roof. Choose snow type and roof pitch, compare against design load capacity, and check structural safety.",
         explanation: {
             heading: "Roof Snow Load Calculation",
             paragraphs: [
-                "Snow load (PSF) = snow density × depth (inches). Fresh snow: ~1.25 PSF/inch. Settled: ~2 PSF/inch. Packed: ~3 PSF/inch. Wet/heavy: ~5 PSF/inch. Ice: ~4.7 PSF/inch.",
-                "Most residential roofs are designed for 20–40 PSF snow load. Check your local building code for design snow load requirements. Critical warning signs: ceiling sagging, doors sticking, cracks in walls or ceilings.",
+                "Snow load (PSF) = snow density × depth in inches. Fresh snow: ~1.25 PSF/inch. Settled: ~2 PSF/inch. Packed: ~3 PSF/inch. Wet/heavy: ~5 PSF/inch. The calculator accounts for roof pitch — steeper roofs accumulate more area but snow slides off faster.",
+                "Most US residential roofs are designed for 20–40 PSF ground snow load. The calculator compares your snow load against your roof's design capacity and shows a structural warning if exceeded.",
             ],
-            highlight: "12 inches of packed snow on a 30 × 20 ft roof: 37.5 PSF × 600 sq ft = 22,500 lbs = 11.25 tons on your roof.",
+            highlight: "12 in of packed snow on a 30 × 20 ft roof at 4/12 pitch: 632 sq ft × 37.5 PSF = 23,700 lbs (11.85 tons). At 30 PSF design load: 125% capacity — ⚠️ OVERLOADED.",
         },
+        contentHTML: `
+<p>Roof snow load is the <strong>weight of accumulated snow</strong> pressing down on your roof structure. In the US, snow-related roof collapses cause millions of dollars in damage annually — particularly during heavy winter storms in the Midwest, Northeast, and Mountain states. Understanding your roof's snow load capacity and monitoring accumulation is critical for <strong>structural safety</strong>.</p>
+<p>The calculator above supports <strong>6 snow types</strong> with density values, <strong>roof pitch adjustment</strong>, and a <strong>structural capacity check</strong> that compares current snow load against your roof's design load — displaying a clear warning when capacity is exceeded.</p>
+
+<h2>Snow Density Table</h2>
+<p>Snow weight varies dramatically based on moisture content and age. The same depth of fresh powder weighs 4× less than wet heavy snow.</p>
+<table>
+<thead><tr><th>Snow Type</th><th>Density (lb/ft³)</th><th>PSF/inch</th><th>12" Depth = PSF</th></tr></thead>
+<tbody>
+<tr><td><strong>Fresh / Light Powder</strong></td><td>3–5</td><td>1.25</td><td>15 PSF</td></tr>
+<tr><td><strong>Settled (few days)</strong></td><td>5–10</td><td>2.08</td><td>25 PSF</td></tr>
+<tr><td><strong>Wind-Packed</strong></td><td>10–15</td><td>3.13</td><td>37.5 PSF</td></tr>
+<tr><td><strong>Granular / Old</strong></td><td>12–18</td><td>3.75</td><td>45 PSF</td></tr>
+<tr><td><strong>Wet / Heavy</strong></td><td>15–25</td><td>5.20</td><td>62.4 PSF</td></tr>
+<tr><td><strong>Ice Crust</strong></td><td>30–57</td><td>4.69</td><td>56.3 PSF</td></tr>
+</tbody>
+</table>
+<p><strong>Key insight:</strong> Snow on a roof often has <strong>multiple layers</strong> — fresh on top, packed/ice below. Use the heaviest type present for a conservative estimate, or calculate each layer separately and add them.</p>
+
+<h2>Step-by-Step Snow Load Calculation</h2>
+<h3>Step 1: Calculate Snow Volume</h3>
+<p>Measure the roof footprint (length × width). Apply the <strong>roof pitch multiplier</strong> to get actual surface area. Multiply by snow depth (in feet) for volume in cubic feet.</p>
+<p><strong>Example:</strong> 30 × 20 ft at 4/12 pitch = 632 sq ft × 1 ft depth = 632 cu ft of snow.</p>
+
+<h3>Step 2: Determine Snow Density</h3>
+<p>Identify the snow type. Fresh powder: ~1.25 PSF/inch. Packed: ~3.13 PSF/inch. Wet: ~5.2 PSF/inch. When unsure, use <strong>packed (3.13)</strong> as a conservative middle estimate.</p>
+
+<h3>Step 3: Calculate Total Load</h3>
+<p>Snow Load (PSF) = density (PSF/inch) × depth (inches). Total Weight = PSF × roof area.</p>
+<p><strong>Example:</strong> Packed snow, 12 inches: 3.13 × 12 = <strong>37.5 PSF</strong> × 632 sq ft = <strong>23,700 lbs (11.85 tons)</strong>.</p>
+
+<h2>US Regional Design Snow Loads</h2>
+<p>Building codes specify <strong>ground snow load</strong> (Pg) for each region. Roof snow load is typically 70% of ground load (per ASCE 7). Actual design load depends on exposure, terrain, and building importance.</p>
+<table>
+<thead><tr><th>Region</th><th>Ground Snow Load</th><th>Roof Design Load</th><th>Examples</th></tr></thead>
+<tbody>
+<tr><td><strong>South / Gulf</strong></td><td>0–5 PSF</td><td>0–5 PSF</td><td>TX, FL, LA, AZ</td></tr>
+<tr><td><strong>Mid-Atlantic</strong></td><td>15–30 PSF</td><td>10–21 PSF</td><td>VA, NC, PA, NJ</td></tr>
+<tr><td><strong>Midwest</strong></td><td>20–40 PSF</td><td>14–28 PSF</td><td>OH, IN, IL, MO</td></tr>
+<tr><td><strong>Northeast</strong></td><td>30–70 PSF</td><td>21–49 PSF</td><td>NY, VT, NH, ME</td></tr>
+<tr><td><strong>Mountain / Rockies</strong></td><td>40–100+ PSF</td><td>28–70+ PSF</td><td>CO, MT, UT, WY</td></tr>
+</tbody>
+</table>
+<p><strong>Important:</strong> These are approximate ranges. Your specific design load is determined by local building codes, elevation, and exposure category. Check with your building department for the exact value for your location.</p>
+
+<h2>Roof Pitch and Snow</h2>
+<p>Steeper roofs shed snow more easily but have more surface area. The <strong>pitch factor</strong> affects load calculation in two ways:</p>
+<ul>
+<li><strong>Area increase:</strong> A 12/12 pitch has 41% more surface area than a flat roof</li>
+<li><strong>Snow shedding:</strong> Roofs steeper than 6/12 shed snow faster, reducing accumulation</li>
+<li><strong>Code adjustment:</strong> ASCE 7 allows reduced snow loads for pitches above 30° (7/12) — called the "slope factor" (Cs)</li>
+</ul>
+<p>The calculator uses the pitch multiplier for area but does not apply the slope reduction factor — giving you a <strong>conservative (worst-case) estimate</strong>.</p>
+
+<h2>Warning Signs of Snow Overload</h2>
+<table>
+<thead><tr><th>Warning Sign</th><th>Severity</th><th>Action</th></tr></thead>
+<tbody>
+<tr><td>Doors/windows sticking</td><td>Early</td><td>Monitor closely</td></tr>
+<tr><td>New cracks in drywall</td><td>Moderate</td><td>Plan snow removal</td></tr>
+<tr><td>Ceiling sagging</td><td>Serious</td><td>Remove snow immediately</td></tr>
+<tr><td>Popping/cracking sounds</td><td>Critical</td><td>Evacuate, call professional</td></tr>
+<tr><td>Visible roof deflection</td><td>Emergency</td><td>Evacuate immediately</td></tr>
+</tbody>
+</table>
+`,
         faq: [
-            { question: "How much snow can a roof hold?", answer: "Most residential roofs: 20–40 PSF. That equals 16–32 inches of fresh snow, 6–13 inches of packed snow, or 4–8 inches of wet/heavy snow. Always check your local codes for design load." },
-            { question: "When should I remove snow from my roof?", answer: "Remove when snow depth exceeds 2 feet of fresh snow or 1 foot of packed/wet snow. Use a roof rake (safer than climbing). Never use salt or heat — it can damage shingles. Call a professional for large accumulations." },
+            { question: "How much snow can a roof hold?", answer: "Most US residential roofs are designed for 20–40 PSF. That equals: 16–32 inches of fresh powder, 6–13 inches of packed snow, or 4–8 inches of wet/heavy snow. Mountain/Northeast homes may be rated for 50–100+ PSF. Always check your local building code for your specific design load." },
+            { question: "When should I remove snow from my roof?", answer: "Remove when depth exceeds 2 feet of fresh powder, 1 foot of packed snow, or 6 inches of wet/heavy snow — or whenever load approaches 75% of design capacity. Use a roof rake from the ground — never climb on a snow-covered roof. Call a professional for large accumulations or ice dams." },
+            { question: "What is PSF (pounds per square foot)?", answer: "PSF is the unit for snow load — the weight per square foot of roof area. To calculate: snow density (PSF/inch) × depth (inches) = PSF. Example: 12 inches of packed snow = 3.13 × 12 = 37.5 PSF. Most residential roofs are designed for 20–40 PSF." },
+            { question: "How do I find my roof's design snow load?", answer: "Check your original building plans or contact your local building department. It's based on ASCE 7 ground snow load maps + your elevation, exposure category, and building importance factor. Alternative: hire a structural engineer for an assessment ($300–$600)." },
+            { question: "Does roof pitch affect snow load?", answer: "Yes — in two ways. Steeper roofs have more surface area (12/12 = 41% more), but snow slides off faster. ASCE 7 allows reduced snow load for pitches above 7/12 (30°). For safety, the calculator uses the conservative full-area calculation without slope reduction." },
+            { question: "What's the difference between ground and roof snow load?", answer: "Ground snow load (Pg) is the weight on flat ground — measured by weather services. Roof snow load is typically 70% of ground load (factor of 0.7) per ASCE 7, because wind blows some snow off roofs. However, valleys and drift zones can exceed ground load." },
+            { question: "How heavy is wet snow vs dry snow?", answer: "Fresh powder: ~1.25 PSF/inch (lightest). Packed: ~3.13 PSF/inch (3× heavier). Wet/heavy: ~5.2 PSF/inch (4× heavier than fresh). Ice: ~4.69 PSF/inch. One foot of wet snow weighs as much as 4 feet of fresh powder." },
+            { question: "What causes roof collapses from snow?", answer: "Ice dams that block drainage, causing ponding. Rain-on-snow events that dramatically increase weight. Unbalanced loads from drifting. Multiple storms without melting. Flat or low-slope roofs that don't shed snow. Older buildings not designed for current snow loads." },
+            { question: "How do I safely remove snow from a roof?", answer: "Use a telescoping roof rake from the ground. Work from the eave up, removing 2–3 feet at a time. Never use a ladder on ice. Never use salt, hot water, or flame — all damage shingles. Leave 2–3 inches of snow to protect shingles from rake damage. For flat roofs, hire a professional." },
+            { question: "Do ice dams affect snow load?", answer: "Yes — ice dams form at the eave, trapping meltwater behind them. This ponding water adds significant weight: water weighs 62.4 lbs/cu ft, much heavier than even packed snow. Ice dams are caused by heat loss through the roof. Address by improving attic insulation and ventilation." },
         ],
     },
     "roofing-material-calculator": {

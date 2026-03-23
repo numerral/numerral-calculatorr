@@ -13535,7 +13535,7 @@
     "categorySlug": "construction-calculators",
     "icon": "❄️",
     "calcType": "roof-snow-load",
-    "description": "Calculate the weight of snow on your roof. Enter snow depth, type, and roof area for total load in PSF and pounds.",
+    "description": "Calculate snow weight on your roof. Choose snow type, roof pitch, and compare against design load capacity with structural safety check.",
     "stars": 5,
     "defaults": {
       "amount": 30,
