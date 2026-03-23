@@ -2444,18 +2444,113 @@ const HUB_CONTENT: Record<string, {
         ],
     },
     "vinyl-siding-calculator": {
-        subtitle: "Calculate vinyl siding panels, J-channel, corner posts, and starter strips. Get a complete material list for your project.",
+        subtitle: "Calculate vinyl siding panels, J-channel, starter strips, utility trim, corner posts, fascia, house wrap, and nails needed for your home. Get a detailed material list with cost estimate for your siding project.",
         explanation: {
-            heading: "Vinyl Siding Material List",
+            heading: "How to Estimate Vinyl Siding Materials",
             paragraphs: [
-                "Vinyl siding comes in boxes covering approximately 100 sq ft (1 square). In addition to panels, you need: J-channel around windows and doors, corner posts for inside and outside corners, starter strips along the bottom, and utility trim at the top.",
-                "J-channel: calculate the total perimeter of all openings. Corner posts: one per corner (inside or outside). Starter strips: total length of the bottom of all walls. Add under-sill trim for beneath windows.",
+                "Vinyl siding is sold by the square — one square covers 100 square feet of wall area. To estimate how many squares you need: measure the house perimeter and wall height to get gross wall area, subtract windows (about 15 sq ft each) and doors (about 21 sq ft each), then divide the net area by 100 and add 10% for waste.",
+                "Beyond the siding panels, you'll need five types of trim: J-channel around all windows and doors, starter strips along the bottom of every wall, undersill/utility trim under windows and at wall tops, corner posts on every outside corner, and optionally fascia to cover roof eave boards. Don't forget house wrap and galvanized siding nails — about ⅔ of a pound per square.",
             ],
-            highlight: "1,150 sq ft net siding area + 10% waste = 12.7 squares → 13 boxes of siding, 18 J-channels, 4 corners, 13 starter strips.",
+            highlight: "A typical 1,500 sq ft ranch (150 ft perimeter × 9 ft walls, 8 windows, 2 doors): gross area = 1,350 sq ft, minus 162 sq ft openings = 1,188 sq ft net = 11.9 squares + 10% waste = 13.1 squares → 14 boxes of siding.",
         },
+        contentHTML: `
+<h2>What Is Vinyl Siding?</h2>
+<p><strong>Vinyl siding</strong> is a plastic exterior cladding made from polyvinyl chloride (PVC) resin. It is the most popular siding material in the United States, covering more than <strong>30% of all US homes</strong>. Vinyl siding is favored for its low maintenance (no painting required), durability (25–40 year lifespan), affordability, and wide range of colors and styles.</p>
+<p>Vinyl siding is installed horizontally in overlapping courses that interlock with one another. Each panel snaps into the one below it, creating a weather-resistant barrier. The bottom course attaches to a starter strip, and trim pieces finish all edges, corners, and openings.</p>
+
+<h2>Step-by-Step: How to Estimate Vinyl Siding</h2>
+<ol>
+<li><strong>Measure the perimeter:</strong> Walk around your home and measure the total length of all exterior walls in feet. A typical rectangular home is about 120–200 ft of perimeter.</li>
+<li><strong>Measure wall height:</strong> Measure from the bottom of the siding to the top. Standard single-story homes are 8–9 ft; two-story homes are 16–18 ft.</li>
+<li><strong>Calculate gross wall area:</strong> Perimeter × wall height = gross area in square feet.</li>
+<li><strong>Subtract openings:</strong> Count all windows and doors. Average window = ~15 sq ft; average exterior door = ~21 sq ft. Subtract the total opening area from gross area to get <strong>net siding area</strong>.</li>
+<li><strong>Convert to squares:</strong> Divide net area by 100. One square = 100 sq ft.</li>
+<li><strong>Add 10% waste:</strong> Multiply by 1.10 to account for cutoffs, mistakes, and future repairs. Round up to the nearest whole number — this is how many <strong>boxes</strong> (squares) of siding to purchase.</li>
+</ol>
+
+<h2>Vinyl Siding Trim Guide</h2>
+<p>Trim pieces are essential for a professional siding installation. Plan to budget <strong>30–40% of your siding material cost</strong> for trim and accessories.</p>
+
+<h3>J-Channel Trim</h3>
+<p>J-channel is a J-shaped trim piece that covers the exposed edges of siding where it meets a window, door, soffit, or different wall surface. Measure the <strong>perimeter of every window and door</strong> to calculate the total linear feet needed. Average window perimeter is ~16 ft; average door perimeter is ~17 ft. J-channel is sold in 12.5-ft lengths.</p>
+<p>J-channel is also used where siding meets a different material (brick, stone) or as a transition strip between two siding styles on the same wall.</p>
+
+<h3>Starter Strips</h3>
+<p>Starter strips are narrow, flat strips installed along the <strong>very bottom of every wall</strong> before the first course of siding. They provide a solid attachment point for the first siding panel to snap into. Measure the total length of all walls at their base. Starter strips are sold in 10- or 12-ft lengths.</p>
+
+<h3>Undersill / Utility Trim</h3>
+<p>Utility trim (also called undersill trim) is installed on <strong>horizontal surfaces where the top edge of a siding panel is exposed</strong>. The most common locations are: under every window sill and at the top of the wall where siding meets the soffit. Measure the width of every window and the total perimeter at the wall tops. Utility trim is sold in 12-ft lengths.</p>
+
+<h3>Corner Trim</h3>
+<p><strong>Outside corner posts</strong> are installed vertically on every exterior corner of the home. They create a clean, finished edge where two walls meet. Each corner needs one post the full height of the wall. <strong>Inside corner posts</strong> are identical in function but designed for concave corners.</p>
+<p>Count all outside and inside corners and multiply by wall height to get total linear feet. Corner posts are typically sold as 10-ft pieces.</p>
+
+<h3>Fascia</h3>
+<p>Fascia is a wide trim board that covers the <strong>front face of your roof eave boards</strong> (the horizontal board where gutters attach). Measure the total length of all eaves in feet. Aluminum or vinyl fascia is sold in 12-ft lengths. Fascia is optional if existing wood fascia is in good condition.</p>
+
+<h2>Other Materials Needed</h2>
+<table>
+<thead><tr><th>Material</th><th>Amount Needed</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td><strong>House Wrap</strong></td><td>1 roll per ~1,350 sq ft of wall</td><td>Installed over sheathing before siding. Standard rolls are 9 ft × 150 ft.</td></tr>
+<tr><td><strong>Siding Nails</strong></td><td>⅔ lb per square of siding</td><td>Use galvanized or aluminum roofing nails, 1¼" to 2" long. One nail every 12–16 inches along each panel.</td></tr>
+<tr><td><strong>Flashing</strong></td><td>At all window/door heads</td><td>Aluminum drip cap over every window and door to prevent water entry behind siding.</td></tr>
+<tr><td><strong>Caulk</strong></td><td>1 tube per 5 windows/doors</td><td>Paintable silicone caulk for sealing gaps at trim edges and openings.</td></tr>
+</tbody>
+</table>
+
+<h2>Vinyl Siding Styles</h2>
+<p>Vinyl siding comes in several profiles that mimic traditional wood siding styles:</p>
+<table>
+<thead><tr><th>Style</th><th>Description</th><th>Cost Range (per sq ft)</th></tr></thead>
+<tbody>
+<tr><td><strong>Clapboard (Horizontal Lap)</strong></td><td>The most popular style. Overlapping horizontal planks. Available in 4", 5", or 8" widths.</td><td>$3–$7</td></tr>
+<tr><td><strong>Dutch Lap</strong></td><td>Similar to clapboard but with a decorative notch at the top of each plank for added shadow line.</td><td>$3–$8</td></tr>
+<tr><td><strong>Board and Batten (Vertical)</strong></td><td>Wide boards with narrow battens covering the joints. Creates a farmhouse/modern look.</td><td>$4–$9</td></tr>
+<tr><td><strong>Shake / Shingle</strong></td><td>Mimics hand-split cedar shakes. Often used on gable ends, dormers, or as accent siding.</td><td>$5–$10</td></tr>
+<tr><td><strong>Scallop / Fish Scale</strong></td><td>Rounded bottom edge for a Victorian or cottage aesthetic. Typically used as accent siding.</td><td>$5–$10</td></tr>
+<tr><td><strong>Insulated Vinyl</strong></td><td>Standard vinyl backed with rigid foam insulation. Adds R-2 to R-5 insulation value.</td><td>$5–$12</td></tr>
+</tbody>
+</table>
+
+<h2>Vinyl Siding Cost (2025 US Pricing)</h2>
+<p>Vinyl siding is the most affordable cladding option in the United States. Here are typical costs:</p>
+<table>
+<thead><tr><th>Cost Component</th><th>Range</th></tr></thead>
+<tbody>
+<tr><td><strong>Material only</strong></td><td>$3–$8 per sq ft ($300–$800 per square)</td></tr>
+<tr><td><strong>Labor (installation)</strong></td><td>$2–$5 per sq ft</td></tr>
+<tr><td><strong>Total installed</strong></td><td>$5–$12 per sq ft</td></tr>
+<tr><td><strong>1,000 sq ft of wall</strong></td><td>$3,000–$10,000 installed</td></tr>
+<tr><td><strong>1,500 sq ft of wall</strong></td><td>$4,500–$15,000 installed</td></tr>
+<tr><td><strong>2,000 sq ft of wall</strong></td><td>$6,000–$20,000 installed</td></tr>
+<tr><td><strong>2,500 sq ft of wall</strong></td><td>$7,500–$25,000 installed</td></tr>
+<tr><td><strong>Old siding removal</strong></td><td>$1,000–$3,000 additional</td></tr>
+</tbody>
+</table>
+<p><strong>Factors affecting cost:</strong> siding grade (builder's vs premium), number of stories, architectural complexity (gables, dormers), your region, and whether old siding must be removed. Insulated vinyl adds $3–$4 per sq ft compared to standard.</p>
+
+<h2>Pro Tips for Vinyl Siding Projects</h2>
+<ul>
+<li><strong>Always order 10% extra</strong> siding and <strong>15% extra trim</strong> — cutoffs, mistakes, and future repairs require spare material on hand.</li>
+<li><strong>Buy all siding from the same lot number</strong> to ensure consistent color. Vinyl siding color can vary slightly between production runs.</li>
+<li><strong>Leave ¼" expansion gap</strong> at all trim connections. Vinyl siding expands and contracts with temperature changes — never nail panels tight.</li>
+<li><strong>Drive nails in the center of the slotted nail hole</strong>, leaving 1/32" between the nail head and the panel. This allows the siding to move freely.</li>
+<li><strong>Install house wrap before siding</strong> — it's required by most building codes and protects your sheathing from water infiltration.</li>
+<li><strong>Use galvanized or aluminum nails only</strong> — steel nails will rust and stain the siding. Stainless steel is ideal but more expensive.</li>
+</ul>
+`,
         faq: [
-            { question: "How many boxes of vinyl siding do I need?", answer: "Calculate net wall area (gross minus openings), add 10% waste, divide by 100. Each box typically covers 100 sq ft (2 squares per carton at some manufacturers — check the label)." },
-            { question: "What accessories do I need for vinyl siding?", answer: "J-channel (around all openings), outside corner posts, inside corner posts, starter strips, under-sill trim, utility trim, F-channel or J-channel for soffit, and flashing. Budget 30–40% of siding cost for accessories." },
+            { question: "How many squares of vinyl siding do I need?", answer: "Measure your house perimeter × wall height to get gross wall area. Subtract all windows (~15 sq ft each) and doors (~21 sq ft each). Divide the net area by 100 to get squares, then add 10% for waste. A 150 ft perimeter × 9 ft walls with 8 windows and 2 doors = about 13 squares." },
+            { question: "What trim pieces are needed for vinyl siding?", answer: "Five main types: (1) J-channel around all windows/doors, (2) starter strips along the bottom of every wall, (3) undersill/utility trim under windows and at wall tops, (4) corner posts on all outside (and optionally inside) corners, and (5) fascia to cover roof eave boards. Budget 30–40% of siding cost for all trim and accessories." },
+            { question: "How much does vinyl siding cost per square foot?", answer: "Material only: $3–$8 per sq ft depending on grade and style. Installed cost (material + labor): $5–$12 per sq ft. A typical 2,000 sq ft exterior costs $6,000–$20,000 fully installed. Insulated vinyl adds $3–$4 per sq ft. Prices vary by region and contractor." },
+            { question: "Can I install vinyl siding over existing siding?", answer: "Yes, in many cases. Vinyl can be installed over wood clapboard, aluminum, or old vinyl siding if the existing surface is flat and structurally sound. You may need longer nails and furring strips. However, you cannot install over stucco or brick without furring strips, and removing rotted or damaged siding first is always recommended." },
+            { question: "How long does vinyl siding last?", answer: "Quality vinyl siding lasts 25–40 years with minimal maintenance. Premium brands (CertainTeed, James Hardie, Alside) offer lifetime limited warranties. Factors affecting lifespan: UV exposure (south-facing walls fade faster), extreme weather (hail damage), and proper installation. No painting is needed — vinyl is color-through." },
+            { question: "What is the best vinyl siding brand?", answer: "Top US brands: CertainTeed (best overall, wide selection), Alside (best value), Ply Gem (popular with contractors), Royal Building Products (premium colors), and Georgia-Pacific (budget-friendly). For insulated vinyl: Progressive Foam's CedarMAX or CertainTeed's CedarBoards are well-regarded." },
+            { question: "Do I need house wrap under vinyl siding?", answer: "Yes — house wrap (like Tyvek or similar) is required by most US building codes. It provides a moisture barrier between the siding and the wall sheathing, allowing water vapor to escape outward while blocking liquid water from entering. Standard rolls (9 ft × 150 ft) cover about 1,350 sq ft of wall area." },
+            { question: "How much waste should I plan for vinyl siding?", answer: "Plan for 10% waste on siding panels and 15% on trim pieces. This accounts for cutoffs around windows and doors, mistakes, damaged pieces during installation, and leftover material for future repairs. Having extra material from the same lot ensures color-matched replacements." },
+            { question: "What is the difference between standard and insulated vinyl siding?", answer: "Standard vinyl siding is a hollow panel with air space behind it. Insulated vinyl has rigid foam insulation (EPS or XPS) bonded to the back, adding R-2 to R-5 insulation value. Insulated siding is thicker, more rigid, reduces noise, and resists denting — but costs $3–$4 more per sq ft than standard." },
+            { question: "How many nails do I need for vinyl siding?", answer: "Plan approximately ⅔ of a pound (about 0.67 lbs) of nails per square (100 sq ft) of siding installed. Use 1¼ to 2 inch galvanized or aluminum roofing nails with at least a ⅜ inch head diameter. Nails should be driven every 12–16 inches along each panel's nailing hem — never tight against the panel." },
         ],
     },
     "cubic-feet-calculator": {

@@ -6967,43 +6967,79 @@ function SidingMaterialCalc() {
 function VinylSidingCalc() {
     const [perimeterFt, setPerimeterFt] = useState(150);
     const [wallHeight, setWallHeight] = useState(9);
-    const [openingsSqFt, setOpeningsSqFt] = useState(200);
+    const [numWindows, setNumWindows] = useState(8);
+    const [numDoors, setNumDoors] = useState(2);
     const [numCorners, setNumCorners] = useState(4);
+    const [fasciaFt, setFasciaFt] = useState(0);
+    const [costPerSq, setCostPerSq] = useState(0);
 
     const result = useMemo(() => {
+        // Opening area: avg window ~15 sq ft, avg door ~21 sq ft
+        const openingsSqFt = numWindows * 15 + numDoors * 21;
         const grossArea = perimeterFt * wallHeight;
-        const netArea = grossArea - openingsSqFt;
+        const netArea = Math.max(0, grossArea - openingsSqFt);
         const squares = netArea / 100;
         const squaresWithWaste = Math.ceil(squares * 1.1 * 10) / 10;
-        // Panels: 2 per box, each box covers ~100 sq ft
         const boxes = Math.ceil(squaresWithWaste);
-        // J-channel: perimeter of all openings (approx 4x per 15 sq ft opening)
-        const jChannelFt = Math.ceil(openingsSqFt / 15 * 16);
+
+        // J-channel: perimeter of each window (~16 ft avg) + each door (~17 ft avg)
+        const jChannelFt = numWindows * 16 + numDoors * 17;
         const jChannelPcs = Math.ceil(jChannelFt / 12.5);
+
+        // Starter strips: bottom perimeter
+        const starterPcs = Math.ceil(perimeterFt / 12);
+
+        // Utility / undersill trim: under each window (~3.5 ft avg) + top of walls (perimeter)
+        const utilityFt = numWindows * 3.5 + perimeterFt;
+        const utilityPcs = Math.ceil(utilityFt / 12);
+
         // Corners
         const cornerPcs = numCorners;
-        // Starter strip: same as perimeter
-        const starterPcs = Math.ceil(perimeterFt / 12);
-        return { grossArea, netArea, squares: squaresWithWaste, boxes, jChannelPcs, cornerPcs, starterPcs };
-    }, [perimeterFt, wallHeight, openingsSqFt, numCorners]);
+
+        // Fascia: linear feet ÷ 12 ft pieces
+        const fasciaPcs = fasciaFt > 0 ? Math.ceil(fasciaFt / 12) : 0;
+
+        // House wrap: rolls ~9 ft × 150 ft = 1,350 sq ft coverage
+        const houseWrapRolls = Math.ceil(grossArea / 1350);
+
+        // Nails: ~2/3 lb per square of siding
+        const nailsLbs = Math.round(squaresWithWaste * 0.67 * 10) / 10;
+
+        // Cost
+        const totalCost = costPerSq > 0 ? squaresWithWaste * costPerSq : 0;
+
+        return { grossArea, netArea, openingsSqFt, squaresWithWaste, boxes, jChannelPcs, starterPcs, utilityPcs, cornerPcs, fasciaPcs, houseWrapRolls, nailsLbs, totalCost };
+    }, [perimeterFt, wallHeight, numWindows, numDoors, numCorners, fasciaFt, costPerSq]);
 
     return (
         <div className="con-calc">
             <h3 className="con-calc__title">🏠 Vinyl Siding Calculator</h3>
             <div className="con-calc__inputs">
-                <InputField label="House Perimeter" value={perimeterFt} onChange={setPerimeterFt} unit="ft" min={40} />
-                <InputField label="Wall Height" value={wallHeight} onChange={setWallHeight} unit="ft" min={4} />
-                <InputField label="Total Openings" value={openingsSqFt} onChange={setOpeningsSqFt} unit="sq ft" min={0} />
-                <InputField label="Number of Corners" value={numCorners} onChange={setNumCorners} min={4} max={20} />
+                <InputField label="House Perimeter" value={perimeterFt} onChange={setPerimeterFt} unit="ft" min={20} />
+                <InputField label="Wall Height" value={wallHeight} onChange={setWallHeight} unit="ft" min={4} max={30} />
+                <InputField label="Number of Windows" value={numWindows} onChange={setNumWindows} min={0} max={50} />
+                <InputField label="Number of Doors" value={numDoors} onChange={setNumDoors} min={0} max={10} />
+                <InputField label="Outside Corners" value={numCorners} onChange={setNumCorners} min={4} max={20} />
+                <InputField label="Fascia Length (optional)" value={fasciaFt} onChange={setFasciaFt} unit="ft" min={0} />
+                <InputField label="Cost per Square (optional)" value={costPerSq} onChange={setCostPerSq} unit="$" min={0} />
             </div>
             <div className="con-calc__results">
-                <h4>Results</h4>
+                <h4>Siding</h4>
+                <ResultRow label="Gross Wall Area" value={fmt(result.grossArea)} unit="sq ft" />
+                <ResultRow label="Openings" value={fmt(result.openingsSqFt)} unit="sq ft" />
                 <ResultRow label="Net Siding Area" value={fmt(result.netArea)} unit="sq ft" />
-                <ResultRow label="Squares (w/ waste)" value={fmt(result.squares, 1)} unit="squares" />
+                <ResultRow label="Squares (w/ 10% waste)" value={fmt(result.squaresWithWaste, 1)} unit="squares" />
                 <ResultRow label="Siding Boxes" value={fmtInt(result.boxes)} unit="boxes" />
+                <h4>Trim &amp; Accessories</h4>
                 <ResultRow label="J-Channel" value={fmtInt(result.jChannelPcs)} unit="pcs (12.5')" />
-                <ResultRow label="Corner Posts" value={fmtInt(result.cornerPcs)} unit="pcs" />
                 <ResultRow label="Starter Strips" value={fmtInt(result.starterPcs)} unit="pcs (12')" />
+                <ResultRow label="Utility / Undersill Trim" value={fmtInt(result.utilityPcs)} unit="pcs (12')" />
+                <ResultRow label="Corner Posts" value={fmtInt(result.cornerPcs)} unit="pcs" />
+                {result.fasciaPcs > 0 && <ResultRow label="Fascia" value={fmtInt(result.fasciaPcs)} unit="pcs (12')" />}
+                <h4>Other Materials</h4>
+                <ResultRow label="House Wrap" value={fmtInt(result.houseWrapRolls)} unit="rolls (9'×150')" />
+                <ResultRow label="Siding Nails" value={fmt(result.nailsLbs, 1)} unit="lbs" />
+                {result.totalCost > 0 && <ResultRow label="Estimated Material Cost" value={`$${fmt(result.totalCost, 2)}`} />}
             </div>
         </div>
     );
