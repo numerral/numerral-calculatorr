@@ -7324,7 +7324,7 @@
     "categorySlug": "construction-calculators",
     "icon": "📏",
     "calcType": "square-footage",
-    "description": "Calculate the square footage of any space or shape. Supports rectangle, triangle, circle, and trapezoid. Convert between sq ft, sq m, and acres.",
+    "description": "Calculate the square footage of any space — rectangle, triangle, circle, trapezoid, or rectangular border. Convert to sq m, sq yd, and acres. Estimate project cost with price per sq ft.",
     "stars": 5,
     "defaults": {
       "amount": 20,

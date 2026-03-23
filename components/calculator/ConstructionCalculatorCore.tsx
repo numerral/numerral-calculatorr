@@ -717,6 +717,8 @@ function SquareFootageCalc() {
     const [dim1, setDim1] = useState(20);
     const [dim2, setDim2] = useState(15);
     const [dim3, setDim3] = useState(10);
+    const [dim4, setDim4] = useState(8);
+    const [pricePerSqFt, setPricePerSqFt] = useState(0);
 
     const result = useMemo(() => {
         let sqFt = 0;
@@ -725,41 +727,58 @@ function SquareFootageCalc() {
             case "triangle": sqFt = 0.5 * dim1 * dim2; break;
             case "circle": sqFt = Math.PI * (dim1 / 2) * (dim1 / 2); break;
             case "trapezoid": sqFt = 0.5 * (dim1 + dim2) * dim3; break;
+            case "border": sqFt = Math.max(0, (dim1 * dim2) - (dim3 * dim4)); break;
         }
         const sqM = sqFt * 0.092903;
         const sqYd = sqFt / 9;
         const acres = sqFt / 43560;
-        return { sqFt, sqM, sqYd, acres };
-    }, [shape, dim1, dim2, dim3]);
+        const sqIn = sqFt * 144;
+        const totalCost = pricePerSqFt > 0 ? sqFt * pricePerSqFt : 0;
+        return { sqFt, sqM, sqYd, acres, sqIn, totalCost };
+    }, [shape, dim1, dim2, dim3, dim4, pricePerSqFt]);
 
     const labels = shape === "circle"
-        ? { d1: "Diameter", d2: "", d3: "" }
+        ? { d1: "Diameter", d2: "", d3: "", d4: "" }
         : shape === "trapezoid"
-        ? { d1: "Base 1 (a)", d2: "Base 2 (b)", d3: "Height" }
+        ? { d1: "Base 1 (a)", d2: "Base 2 (b)", d3: "Height", d4: "" }
         : shape === "triangle"
-        ? { d1: "Base", d2: "Height", d3: "" }
-        : { d1: "Length", d2: "Width", d3: "" };
+        ? { d1: "Base", d2: "Height", d3: "", d4: "" }
+        : shape === "border"
+        ? { d1: "Outer Length", d2: "Outer Width", d3: "Inner Length", d4: "Inner Width" }
+        : { d1: "Length", d2: "Width", d3: "", d4: "" };
 
     return (
         <div className="con-calc">
             <h3 className="con-calc__title">📏 Square Footage Calculator</h3>
             <div className="con-calc__inputs">
                 <SelectField label="Shape" value={shape} onChange={setShape} options={[
-                    { value: "rectangle", label: "Rectangle" },
+                    { value: "rectangle", label: "Rectangle / Square" },
                     { value: "triangle", label: "Triangle" },
                     { value: "circle", label: "Circle" },
                     { value: "trapezoid", label: "Trapezoid" },
+                    { value: "border", label: "Rectangular Border (room with cutout)" },
                 ]} />
                 <InputField label={labels.d1} value={dim1} onChange={setDim1} unit="ft" min={0.1} step={0.5} />
                 {labels.d2 && <InputField label={labels.d2} value={dim2} onChange={setDim2} unit="ft" min={0.1} step={0.5} />}
                 {labels.d3 && <InputField label={labels.d3} value={dim3} onChange={setDim3} unit="ft" min={0.1} step={0.5} />}
+                {labels.d4 && <InputField label={labels.d4} value={dim4} onChange={setDim4} unit="ft" min={0.1} step={0.5} />}
+                <InputField label="Price per Sq Ft (optional)" value={pricePerSqFt} onChange={setPricePerSqFt} unit="$" min={0} step={0.5} />
             </div>
             <div className="con-calc__results">
-                <h4>Results</h4>
-                <ResultRow label="Area" value={fmt(result.sqFt)} unit="sq ft" />
-                <ResultRow label="Area" value={fmt(result.sqM)} unit="sq m" />
-                <ResultRow label="Area" value={fmt(result.sqYd)} unit="sq yd" />
-                <ResultRow label="Area" value={fmt(result.acres, 4)} unit="acres" />
+                <h4 className="con-calc__group-label">AREA</h4>
+                <ResultRow label="Square Feet" value={fmt(result.sqFt)} unit="sq ft" />
+                <ResultRow label="Square Inches" value={fmtInt(result.sqIn)} unit="sq in" />
+                <h4 className="con-calc__group-label">CONVERSIONS</h4>
+                <ResultRow label="Square Meters" value={fmt(result.sqM)} unit="sq m" />
+                <ResultRow label="Square Yards" value={fmt(result.sqYd)} unit="sq yd" />
+                <ResultRow label="Acres" value={fmt(result.acres, 4)} unit="acres" />
+                {pricePerSqFt > 0 && (
+                    <>
+                        <h4 className="con-calc__group-label">COST</h4>
+                        <ResultRow label="Total Cost" value={`$${fmt(result.totalCost)}`} />
+                        <ResultRow label="Price per Sq Ft" value={`$${fmt(pricePerSqFt)}`} />
+                    </>
+                )}
             </div>
         </div>
     );
