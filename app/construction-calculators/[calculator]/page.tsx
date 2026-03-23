@@ -352,18 +352,116 @@ const HUB_CONTENT: Record<string, {
         ],
     },
     "tile-calculator": {
-        subtitle: "Calculate exactly how many tiles you need for your floor or wall project, including gap spacing, waste factor, and grout estimates.",
+        subtitle: "Calculate how many tiles you need for any floor or wall. Choose from popular tile sizes or enter custom dimensions. Get tile count with waste, boxes, grout, thinset mortar, and cost estimate.",
         explanation: {
             heading: "How to Calculate Tiles Needed",
             paragraphs: [
-                "Tile calculation involves dividing your total area by the area of a single tile (including the grout gap). A 12×12 inch tile with a 1/8 inch gap has an effective size of 12.125 × 12.125 inches. This small difference adds up significantly over large areas.",
-                "Grout quantity depends on tile size, gap width, and tile thickness. As a general rule, plan 1 lb of unsanded grout per 10 sq ft for standard tiles with 1/8 inch gaps. Larger gaps or larger tiles require more grout. Always buy one extra bag.",
+                "Tile calculation divides your total area by the area of one tile (including the grout gap). A 12×12 inch tile with a ⅛-inch gap has an effective size of 12.125 × 12.125 inches = 1.02 sq ft. This small difference matters — over 100 sq ft, it means 2–3 extra tiles.",
+                "Always add a waste factor: 10% for standard straight-lay, 15% for diagonal or herringbone, and 20% for complex patterns. Tiles are sold by the box, so round up to full boxes. Don't forget thinset mortar (~50 sq ft per 50 lb bag) and grout (~1 lb per 10 sq ft at ⅛-inch joints).",
             ],
-            highlight: "100 sq ft area with 12×12 tiles and 1/8\" gap = about 100 tiles. With 10% waste = 110 tiles. At 10 tiles/box, you need 11 boxes.",
+            highlight: "100 sq ft bathroom with 12×12 tiles and ⅛\" gap = 97 tiles exact. With 10% waste = 107 tiles. At 10 tiles/box: 11 boxes. Thinset: 2 bags. Grout: 10 lbs.",
         },
+        contentHTML: `
+<h2>Tile Types Comparison</h2>
+<table>
+<thead><tr><th>Type</th><th>Material $/sq ft</th><th>Durability</th><th>Water Resistance</th><th>Best For</th></tr></thead>
+<tbody>
+<tr><td><strong>Ceramic</strong></td><td>$1–$5</td><td>10–20 years</td><td>Good (glazed)</td><td>Walls, light-traffic floors, backsplash</td></tr>
+<tr><td><strong>Porcelain</strong></td><td>$3–$10</td><td>25–50 years</td><td>Excellent</td><td>Bathrooms, kitchens, outdoor, high-traffic</td></tr>
+<tr><td><strong>Natural Stone</strong></td><td>$5–$30</td><td>50+ years</td><td>Needs sealing</td><td>Entryways, luxury baths, fireplaces</td></tr>
+<tr><td><strong>Glass</strong></td><td>$7–$30</td><td>30+ years</td><td>Excellent</td><td>Backsplash, accent walls, showers</td></tr>
+<tr><td><strong>Mosaic</strong></td><td>$5–$25</td><td>20+ years</td><td>Good</td><td>Shower floors, accent strips, borders</td></tr>
+<tr><td><strong>Cement / Encaustic</strong></td><td>$8–$20</td><td>25+ years</td><td>Needs sealing</td><td>Decorative floors, entryways</td></tr>
+</tbody>
+</table>
+
+<h2>Step-by-Step: How to Calculate Tiles</h2>
+<ol>
+<li><strong>Measure the area</strong> in feet (length × width). For L-shaped rooms, break into rectangles and add.</li>
+<li><strong>Calculate the effective tile area:</strong> Add the grout gap to each tile dimension, then multiply. Example: 12" tile + ⅛" gap = 12.125" → (12.125 ÷ 12)² = 1.02 sq ft.</li>
+<li><strong>Divide total area by tile area</strong> to get the exact tile count.</li>
+<li><strong>Add waste:</strong> Multiply by 1.10 for standard lay, 1.15 for diagonal, or 1.20 for herringbone/complex patterns.</li>
+<li><strong>Round up to full boxes.</strong> Check the box coverage (sq ft or tile count) on the product label.</li>
+</ol>
+
+<h2>Popular Tile Sizes</h2>
+<table>
+<thead><tr><th>Size (inches)</th><th>Tiles per sq ft</th><th>Tiles per box (typical)</th><th>Box coverage (sq ft)</th><th>Common Use</th></tr></thead>
+<tbody>
+<tr><td><strong>6 × 6</strong></td><td>4.0</td><td>40–50</td><td>10–12</td><td>Shower walls, accent areas</td></tr>
+<tr><td><strong>12 × 12</strong></td><td>1.0</td><td>10–12</td><td>10–12</td><td>Floors, walls (most popular)</td></tr>
+<tr><td><strong>12 × 24</strong></td><td>0.5</td><td>6–8</td><td>12–16</td><td>Modern floors, large bathrooms</td></tr>
+<tr><td><strong>18 × 18</strong></td><td>0.44</td><td>5–7</td><td>11–16</td><td>Open-plan floors</td></tr>
+<tr><td><strong>24 × 24</strong></td><td>0.25</td><td>4–5</td><td>16–20</td><td>Large living areas, commercial</td></tr>
+<tr><td><strong>3 × 6 (subway)</strong></td><td>8.0</td><td>50–80</td><td>6–10</td><td>Backsplash, shower walls</td></tr>
+<tr><td><strong>1 × 1 (mosaic sheet)</strong></td><td>—</td><td>10 sheets</td><td>10</td><td>Shower floors, borders</td></tr>
+</tbody>
+</table>
+
+<h2>Tile Layout Patterns</h2>
+<table>
+<thead><tr><th>Pattern</th><th>Waste Factor</th><th>Difficulty</th><th>Description</th></tr></thead>
+<tbody>
+<tr><td><strong>Straight Lay (Grid)</strong></td><td>10%</td><td>Easy</td><td>Tiles aligned in a grid. Simplest pattern, great for beginners.</td></tr>
+<tr><td><strong>Brick / Running Bond</strong></td><td>10%</td><td>Easy</td><td>Each row offset by half a tile. Classic subway tile pattern.</td></tr>
+<tr><td><strong>Diagonal (45°)</strong></td><td>15%</td><td>Moderate</td><td>Grid rotated 45°. More cuts at walls, but makes rooms look larger.</td></tr>
+<tr><td><strong>Herringbone</strong></td><td>15–20%</td><td>Hard</td><td>Rectangular tiles at 90° angles in a V-shape. Very stylish, more waste.</td></tr>
+<tr><td><strong>Basket Weave</strong></td><td>15%</td><td>Moderate</td><td>Pairs of tiles alternating horizontal and vertical. Classic look.</td></tr>
+<tr><td><strong>Chevron</strong></td><td>20%</td><td>Hard</td><td>Similar to herringbone but tiles are cut at an angle. Premium look.</td></tr>
+</tbody>
+</table>
+
+<h2>Grout & Thinset Guide</h2>
+<h3>Grout</h3>
+<ul>
+<li><strong>Unsanded grout:</strong> For joints ⅛ inch or narrower. Smooth finish, best for walls and polished tile.</li>
+<li><strong>Sanded grout:</strong> For joints ⅛ to ½ inch. Stronger, less likely to crack in wider joints. Standard for floor tile.</li>
+<li><strong>Epoxy grout:</strong> Waterproof and stain-proof. More expensive and harder to work with, but ideal for showers and kitchen backsplash.</li>
+<li><strong>Coverage:</strong> ~1 lb per 10 sq ft for 12×12 tiles with ⅛" joints. Smaller tiles or wider joints need more.</li>
+</ul>
+<h3>Thinset Mortar</h3>
+<ul>
+<li><strong>Standard thinset:</strong> For ceramic and porcelain up to 15" in any direction. ~50 sq ft per 50 lb bag with ¼×¼ trowel.</li>
+<li><strong>Large-format thinset (LFT):</strong> Required for tiles larger than 15" in any direction. Prevents lippage.</li>
+<li><strong>White vs gray:</strong> Use white thinset under light-colored or translucent tiles (glass, light marble). Gray for everything else.</li>
+</ul>
+
+<h2>Tile Cost (2025 US Pricing)</h2>
+<table>
+<thead><tr><th>Cost Component</th><th>Typical Range</th></tr></thead>
+<tbody>
+<tr><td><strong>Ceramic tile</strong></td><td>$1–$5 per sq ft</td></tr>
+<tr><td><strong>Porcelain tile</strong></td><td>$3–$10 per sq ft</td></tr>
+<tr><td><strong>Natural stone tile</strong></td><td>$5–$30 per sq ft</td></tr>
+<tr><td><strong>Subway tile (3×6)</strong></td><td>$2–$8 per sq ft</td></tr>
+<tr><td><strong>Thinset mortar (50 lb bag)</strong></td><td>$15–$30 per bag</td></tr>
+<tr><td><strong>Grout (25 lb bag)</strong></td><td>$12–$25 per bag</td></tr>
+<tr><td><strong>Professional installation</strong></td><td>$4–$12 per sq ft labor</td></tr>
+<tr><td><strong>100 sq ft bathroom (porcelain, pro)</strong></td><td>$1,000–$2,500 total</td></tr>
+</tbody>
+</table>
+
+<h2>Installation Tips</h2>
+<ul>
+<li><strong>Dry-lay first:</strong> Place tiles without adhesive to check the layout, verify symmetry, and minimize narrow cuts at walls.</li>
+<li><strong>Use tile spacers:</strong> Spacers ensure consistent grout joints. Remove them before grouting.</li>
+<li><strong>Start from the center:</strong> Snap chalk lines from the center of each wall to find the center point. Start tiling there and work outward for a balanced layout.</li>
+<li><strong>Back-butter large tiles:</strong> For tiles larger than 15", apply thinset to both the substrate and the back of the tile for full coverage.</li>
+<li><strong>Waterproof wet areas:</strong> Apply a waterproofing membrane (RedGard, Kerdi, etc.) before tiling shower walls and floors. Tile is not waterproof — the membrane is.</li>
+<li><strong>Wait before grouting:</strong> Let thinset cure for 24 hours before applying grout. Wait another 24–72 hours after grouting before exposing to water.</li>
+</ul>
+`,
         faq: [
-            { question: "What grout width should I use?", answer: "1/16\" for rectified (precision-cut) tiles, 1/8\" for standard ceramic/porcelain, 3/16\" for larger format tiles, and 1/4\" or wider for natural stone with irregular edges." },
-            { question: "How many tiles come in a box?", answer: "It varies by tile size: 12×12 tiles typically 10–12 per box, 18×18 tiles 6–8 per box, 24×24 tiles 4–6 per box, subway tiles (3×6) 50–80 per box. Always check the box coverage (sq ft) on the product label." },
+            { question: "What grout width should I use?", answer: "1/16\" for rectified (precision-cut, perfectly squared) tiles. ⅛\" for standard ceramic and porcelain — the most common size. 3/16\" for large-format tiles (18\"+ or tiles with slight size variation). ¼\" or wider for natural stone with irregular edges or tumbled finishes." },
+            { question: "How many tiles come in a box?", answer: "It depends on tile size: 6×6 tiles: 40–50 per box (~10 sq ft). 12×12 tiles: 10–12 per box (~10 sq ft). 18×18 tiles: 5–7 per box (~11 sq ft). 24×24 tiles: 4–5 per box (~16 sq ft). Subway 3×6: 50–80 per box (~6–10 sq ft). Always check the box label for exact coverage." },
+            { question: "What is the difference between ceramic and porcelain tile?", answer: "Porcelain is fired at higher temperatures, making it denser, harder, and more water-resistant (absorption rate <0.5%). Ceramic is softer, easier to cut, and cheaper. Porcelain is best for wet areas, outdoors, and high-traffic floors. Ceramic is fine for dry walls and light-traffic areas." },
+            { question: "How much thinset mortar do I need?", answer: "A 50 lb bag of thinset covers approximately 50 sq ft using a ¼×¼ inch square-notch trowel. For large-format tiles (18\"+), use a ½×½ trowel — coverage drops to about 30 sq ft per bag. Always back-butter tiles larger than 15\" for full adhesion." },
+            { question: "Should I use sanded or unsanded grout?", answer: "Sanded grout for joints ⅛ inch or wider — it's stronger and resists cracking. Unsanded grout for joints narrower than ⅛ inch — it fills thin joints smoothly without scratching polished tile. For showers, consider epoxy grout: it's waterproof, stain-proof, and doesn't need sealing." },
+            { question: "How much does it cost to tile a bathroom?", answer: "For a 100 sq ft bathroom: tile material $300–$1,500 (ceramic to porcelain), thinset $30–$60, grout $12–$25, waterproofing $50–$100. Total DIY: $400–$1,700. Professional installation adds $4–$12/sq ft for labor. Total with pro: $1,000–$2,500." },
+            { question: "Do I need to waterproof before tiling a shower?", answer: "Yes — always. Tile and grout are not waterproof. Apply a liquid waterproofing membrane (like RedGard) or a sheet membrane (like Schluter Kerdi) over the cement board before tiling. The membrane is what actually keeps water out of the wall cavity. Skipping this step leads to mold and rot." },
+            { question: "How do I handle cuts at the edges and corners?", answer: "Use a manual tile cutter for straight cuts on ceramic tile. Use a wet saw with a diamond blade for porcelain, natural stone, and angled/notched cuts. For small cutouts (around outlets), use a tile nipper or an angle grinder with a diamond blade. Always wear safety glasses." },
+            { question: "What layout pattern wastes the least tile?", answer: "Straight lay (grid) has the least waste — about 10%. Brick/running bond is similar at 10%. Diagonal increases waste to 15% due to angled cuts at every wall. Herringbone and chevron are the most wasteful at 15–20% because of the many angled cuts required." },
+            { question: "How long does it take to tile a floor?", answer: "A skilled DIYer can tile about 50–75 sq ft per day (including thinset, tile setting, and cleanup). Professional tilers do 100–200 sq ft per day. A 100 sq ft bathroom takes 1–2 days for tile installation, plus another day for grouting and cleanup. Add 24–72 hours for curing before use." },
         ],
     },
     "roofing-calculator": {

@@ -279,44 +279,85 @@ function FlooringCalc() {
 
 /* ──────────── 4. TILE CALCULATOR ──────────── */
 function TileCalc() {
+    const PRESETS: Record<string, { l: number; w: number; gap: number; perBox: number }> = {
+        "12x12": { l: 12, w: 12, gap: 0.125, perBox: 10 },
+        "6x6": { l: 6, w: 6, gap: 0.125, perBox: 44 },
+        "18x18": { l: 18, w: 18, gap: 0.1875, perBox: 6 },
+        "24x24": { l: 24, w: 24, gap: 0.1875, perBox: 4 },
+        "3x6": { l: 6, w: 3, gap: 0.0625, perBox: 60 },
+    };
+
+    const [preset, setPreset] = useState("12x12");
     const [areaLength, setAreaLength] = useState(10);
     const [areaWidth, setAreaWidth] = useState(10);
-    const [tileSize, setTileSize] = useState(12);
+    const [tileLength, setTileLength] = useState(12);
+    const [tileWidth, setTileWidth] = useState(12);
     const [gap, setGap] = useState(0.125);
     const [waste, setWaste] = useState(10);
     const [tilesPerBox, setTilesPerBox] = useState(10);
+    const [pricePerSqFt, setPricePerSqFt] = useState(0);
+
+    const handlePreset = (v: string) => {
+        setPreset(v);
+        const p = PRESETS[v];
+        if (p) { setTileLength(p.l); setTileWidth(p.w); setGap(p.gap); setTilesPerBox(p.perBox); }
+    };
+
+    const isCustom = preset === "custom";
 
     const result = useMemo(() => {
         const areaSqFt = areaLength * areaWidth;
-        const tileSizeFt = tileSize / 12;
-        const effectiveTile = tileSizeFt + gap / 12;
-        const tileArea = effectiveTile * effectiveTile;
+        const tileLFt = tileLength / 12;
+        const tileWFt = tileWidth / 12;
+        const effectiveL = tileLFt + gap / 12;
+        const effectiveW = tileWFt + gap / 12;
+        const tileArea = effectiveL * effectiveW;
         const tilesRaw = tileArea > 0 ? areaSqFt / tileArea : 0;
-        const tilesWithWaste = tilesRaw * (1 + waste / 100);
-        const boxes = tilesPerBox > 0 ? tilesWithWaste / tilesPerBox : 0;
-        // Grout: ~1 lb per 10 sq ft for standard tile
-        const groutLbs = areaSqFt / 10;
-        return { areaSqFt, tilesRaw, tilesWithWaste, boxes, groutLbs };
-    }, [areaLength, areaWidth, tileSize, gap, waste, tilesPerBox]);
+        const tilesWithWaste = Math.ceil(tilesRaw * (1 + waste / 100));
+        const boxes = tilesPerBox > 0 ? Math.ceil(tilesWithWaste / tilesPerBox) : 0;
+        // Grout: ~1 lb per 10 sq ft for standard tile with 1/8" gap
+        const groutLbs = Math.ceil(areaSqFt / 10);
+        // Thinset: 50 lb bag covers ~50 sq ft with 1/4" x 1/4" trowel
+        const thinsetBags = Math.ceil(areaSqFt / 50);
+        // Cost
+        const cost = pricePerSqFt > 0 ? areaSqFt * pricePerSqFt : 0;
+        return { areaSqFt, tilesRaw, tilesWithWaste, boxes, groutLbs, thinsetBags, cost };
+    }, [areaLength, areaWidth, tileLength, tileWidth, gap, waste, tilesPerBox, pricePerSqFt]);
 
     return (
         <div className="con-calc">
             <h3 className="con-calc__title">🔲 Tile Calculator</h3>
             <div className="con-calc__inputs">
+                <SelectField label="Tile Size" value={preset} onChange={handlePreset} options={[
+                    { value: "12x12", label: '12×12" (Standard)' },
+                    { value: "6x6", label: '6×6" (Small)' },
+                    { value: "18x18", label: '18×18" (Large)' },
+                    { value: "24x24", label: '24×24" (XL)' },
+                    { value: "3x6", label: '3×6" (Subway)' },
+                    { value: "custom", label: "Custom Size" },
+                ]} />
                 <InputField label="Area Length" value={areaLength} onChange={setAreaLength} unit="ft" min={1} />
                 <InputField label="Area Width" value={areaWidth} onChange={setAreaWidth} unit="ft" min={1} />
-                <InputField label="Tile Size" value={tileSize} onChange={setTileSize} unit="in" min={1} />
+                {isCustom && <InputField label="Tile Length" value={tileLength} onChange={setTileLength} unit="in" min={1} />}
+                {isCustom && <InputField label="Tile Width" value={tileWidth} onChange={setTileWidth} unit="in" min={1} />}
                 <InputField label="Gap Width" value={gap} onChange={setGap} unit="in" min={0} step={0.0625} />
                 <InputField label="Waste Factor" value={waste} onChange={setWaste} unit="%" min={0} max={30} />
                 <InputField label="Tiles per Box" value={tilesPerBox} onChange={setTilesPerBox} min={1} />
+                <InputField label="Price per sq ft (optional)" value={pricePerSqFt} onChange={setPricePerSqFt} unit="$" min={0} step={0.5} />
             </div>
             <div className="con-calc__results">
-                <h4>Results</h4>
+                <h4>Tiles</h4>
                 <ResultRow label="Total Area" value={fmt(result.areaSqFt)} unit="sq ft" />
                 <ResultRow label="Tiles (exact)" value={fmtInt(result.tilesRaw)} unit="tiles" />
                 <ResultRow label="Tiles (+ waste)" value={fmtInt(result.tilesWithWaste)} unit="tiles" />
                 <ResultRow label="Boxes Needed" value={fmtInt(result.boxes)} unit="boxes" />
-                <ResultRow label="Grout Needed" value={fmt(result.groutLbs, 1)} unit="lbs" />
+                <h4>Materials</h4>
+                <ResultRow label="Grout" value={fmtInt(result.groutLbs)} unit="lbs" />
+                <ResultRow label="Thinset Mortar" value={fmtInt(result.thinsetBags)} unit="bags (50 lb)" />
+                {result.cost > 0 && <>
+                    <h4>Cost</h4>
+                    <ResultRow label="Estimated Tile Cost" value={`$${fmt(result.cost, 2)}`} />
+                </>}
             </div>
         </div>
     );
