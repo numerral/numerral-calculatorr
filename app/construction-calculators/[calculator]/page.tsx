@@ -3386,18 +3386,161 @@ const HUB_CONTENT: Record<string, {
         ],
     },
     "grass-seed-calculator": {
-        subtitle: "Calculate grass seed needed for new lawns or overseeding. Select seed type and area for pounds and bags required.",
+        subtitle: "Calculate how much grass seed you need for a new lawn or overseeding project. Select your grass type, enter lawn area, and get pounds of seed, 5 lb and 25 lb bag counts, and seeding rate — instantly.",
         explanation: {
             heading: "How Much Grass Seed Do I Need?",
             paragraphs: [
-                "Seeding rates vary by grass species. Kentucky bluegrass: 2–3 lbs per 1,000 sq ft. Tall fescue: 6–8 lbs. Bermuda grass: 1–2 lbs. Perennial ryegrass: 6–8 lbs. For overseeding existing lawns, use half the new lawn rate.",
-                "For best germination: prepare the soil (rake, dethatch, or aerate), spread seed evenly with a broadcast or drop spreader, lightly rake seed into the top 1/4 inch of soil, and keep moist (not soaked) for 2–3 weeks. Apply starter fertilizer at seeding time.",
+                "The amount of grass seed you need depends on three factors: the grass species you're planting, the size of your lawn in square feet, and whether you're starting a brand-new lawn or overseeding an existing one. Seeding rates are measured in pounds per 1,000 square feet — Kentucky bluegrass needs only 2–3 lbs/1,000 sq ft, while tall fescue requires 6–8 lbs. Overseeding uses roughly half the new-lawn rate because you're filling gaps, not establishing bare ground.",
+                "For the best germination results, prepare the soil properly before spreading seed. Dethatch or aerate compacted soil, rake the surface to create good seed-to-soil contact, spread seed evenly with a broadcast or drop spreader, lightly rake seed into the top ¼ inch of soil, and keep the seedbed consistently moist (not waterlogged) for 2–4 weeks. Applying a starter fertilizer at seeding time gives seedlings the phosphorus they need for root development.",
             ],
-            highlight: "2,000 sq ft new lawn with Kentucky bluegrass at 3 lbs/1000 sf: 6 lbs of seed = 2 bags of 5 lb seed. Overseeding the same area: 3 lbs = 1 bag.",
+            highlight: "2,000 sq ft new lawn with tall fescue at 8 lbs/1,000 sq ft = 16 lbs of seed = 4 bags (5 lb) or 1 bag (25 lb). Overseeding the same area at half rate = 8 lbs = 2 bags (5 lb).",
         },
+        contentHTML: `
+<p>Establishing a lush, healthy lawn is one of the most rewarding <strong>home improvement projects</strong> in the United States. Whether you're building a new home, renovating a bare yard, or thickening an existing lawn, understanding how much <strong>grass seed</strong> you need — and which type to choose — saves money and ensures even coverage from the start.</p>
+
+<h2>Sod vs. Grass Seed: Which Is Right for You?</h2>
+<p>Homeowners in the US have two primary options for establishing a lawn: <strong>sod</strong> (pre-grown grass rolls) or <strong>grass seed</strong>. Each has distinct advantages:</p>
+<table>
+<thead><tr><th>Factor</th><th>Grass Seed</th><th>Sod</th></tr></thead>
+<tbody>
+<tr><td><strong>Cost per 1,000 sq ft</strong></td><td>$15–$60</td><td>$300–$800</td></tr>
+<tr><td><strong>Installation</strong></td><td>DIY-friendly; spread with a spreader</td><td>Labor-intensive; must be laid within 24 hrs</td></tr>
+<tr><td><strong>Time to usable lawn</strong></td><td>6–10 weeks for establishment</td><td>2–3 weeks for root attachment</td></tr>
+<tr><td><strong>Variety selection</strong></td><td>Wide — dozens of species and mixes</td><td>Limited — typically 3–5 varieties per supplier</td></tr>
+<tr><td><strong>Best planting window</strong></td><td>Fall (cool-season) or late spring (warm-season)</td><td>Nearly any time soil isn't frozen</td></tr>
+<tr><td><strong>Best for</strong></td><td>Large areas, budget projects, specific varieties</td><td>Instant results, slopes, erosion control</td></tr>
+</tbody>
+</table>
+<p><strong>Bottom line:</strong> Grass seed costs 80–90% less than sod and offers far more variety options. Sod provides an instant lawn and works in seasons when seeding isn't viable. For large yards (5,000+ sq ft), seed is almost always the more economical choice.</p>
+
+<h2>Warm-Season vs. Cool-Season Grasses</h2>
+<p>US lawn grasses fall into two categories based on the climate where they grow best:</p>
+<h3>Cool-Season Grasses</h3>
+<p>Thrive in the <strong>northern US</strong> (USDA zones 3–6) where temperatures range 60–75°F. They grow most actively in spring and fall, and may go dormant (turn brown) during hot summers. Best planted in <strong>early fall</strong> (late August–October).</p>
+<ul>
+<li><strong>Kentucky Bluegrass</strong> — Classic dark green lawn. Dense, self-spreading via rhizomes. Slow to establish but beautiful once mature. Dominant in the Midwest and Northeast.</li>
+<li><strong>Tall Fescue</strong> — Deep-rooted, drought-tolerant, shade-tolerant. The #1 choice for the <strong>transition zone</strong> (Virginia, Tennessee, Kansas, Missouri). Bunching type — doesn't spread, so overseed bare spots.</li>
+<li><strong>Fine Fescue</strong> — Low-maintenance, shade-tolerant, fine-textured. Excellent for under trees and shady areas. Common in seed mixes.</li>
+<li><strong>Perennial Ryegrass</strong> — Fastest germination (5–10 days). Often used for quick cover and in seed mixes. Less heat- and drought-tolerant.</li>
+</ul>
+<h3>Warm-Season Grasses</h3>
+<p>Thrive in the <strong>southern US</strong> (USDA zones 7–10) where summers are hot and long. They grow most actively when temperatures are 80–95°F and go dormant (tan/brown) in winter. Best planted in <strong>late spring to early summer</strong>.</p>
+<ul>
+<li><strong>Bermuda Grass</strong> — The most popular warm-season lawn grass. Extremely heat- and traffic-tolerant. Aggressive spreader. Dominant in Texas, the Southeast, and Southern California.</li>
+<li><strong>Bahia Grass</strong> — Tough, low-maintenance, drought-tolerant. Common in the Deep South (Florida, Gulf Coast). Coarse-textured.</li>
+<li><strong>Centipede Grass</strong> — Ultra-low-maintenance, slow-growing. Thrives in acidic, sandy soils of the Southeast. Very low seeding rate (0.5 lb/1,000 sq ft).</li>
+<li><strong>St. Augustine Grass</strong> — Shade-tolerant, lush, thick-bladed. Dominant in Florida and Gulf Coast. Typically planted from plugs or sod — seed is available but uncommon.</li>
+</ul>
+
+<h2>Grass Seed Coverage Rates</h2>
+<p>Every grass type has a recommended <strong>seeding rate</strong> — the number of pounds of seed per 1,000 square feet. Overseeding uses approximately half the new-lawn rate because the soil already has existing turf.</p>
+<table>
+<thead><tr><th>Grass Type</th><th>Season</th><th>New Lawn (lb/1,000 sf)</th><th>Overseeding (lb/1,000 sf)</th><th>Germination (days)</th></tr></thead>
+<tbody>
+<tr><td><strong>Kentucky Bluegrass</strong></td><td>Cool</td><td>2–3</td><td>1–1.5</td><td>14–30</td></tr>
+<tr><td><strong>Tall Fescue</strong></td><td>Cool</td><td>6–8</td><td>3–4</td><td>7–14</td></tr>
+<tr><td><strong>Fine Fescue</strong></td><td>Cool</td><td>4–5</td><td>2–3</td><td>7–14</td></tr>
+<tr><td><strong>Perennial Ryegrass</strong></td><td>Cool</td><td>6–8</td><td>3–4</td><td>5–10</td></tr>
+<tr><td><strong>Bermuda Grass</strong></td><td>Warm</td><td>1–2</td><td>0.5–1</td><td>10–30</td></tr>
+<tr><td><strong>Bahia Grass</strong></td><td>Warm</td><td>6–8</td><td>3–4</td><td>14–28</td></tr>
+<tr><td><strong>Centipede Grass</strong></td><td>Warm</td><td>0.25–0.5</td><td>0.15–0.25</td><td>14–28</td></tr>
+<tr><td><strong>St. Augustine</strong></td><td>Warm</td><td>0.33–0.5</td><td>0.2–0.25</td><td>7–14</td></tr>
+<tr><td><strong>Sun & Shade Mix</strong></td><td>Cool</td><td>4–6</td><td>2–3</td><td>7–21</td></tr>
+<tr><td><strong>Zoysia Grass</strong></td><td>Warm</td><td>1–2</td><td>0.5–1</td><td>14–21</td></tr>
+</tbody>
+</table>
+<p><strong>Tip:</strong> Seed mixes (like "Sun & Shade" or "Contractor's Mix") blend 2–4 species for broader adaptability. They're a smart choice if parts of your yard get different amounts of sun.</p>
+
+<h2>Step-by-Step: How to Calculate Grass Seed</h2>
+<ol>
+<li><strong>Measure your lawn area in square feet.</strong> For rectangular lawns: length × width. For irregular shapes, break the yard into rectangles and add them together. If you know acreage, multiply by 43,560 to convert to square feet.</li>
+<li><strong>Subtract non-grass areas.</strong> Deduct driveways, patios, flower beds, sidewalks, and the house footprint from the total lot area.</li>
+<li><strong>Choose your grass type</strong> and find its seeding rate (lbs per 1,000 sq ft) from the table above. Use the "New Lawn" rate for bare soil or the "Overseeding" rate for existing turf.</li>
+<li><strong>Calculate total seed needed:</strong> (lawn area ÷ 1,000) × seeding rate = total pounds of seed.</li>
+<li><strong>Convert to bags:</strong> Divide total pounds by the bag size (typically 5 lb or 25 lb). Round up — you can't buy a fraction of a bag, and having a small surplus for touch-up seeding is ideal.</li>
+</ol>
+
+<h2>Worked Example: Seeding a 0.25-Acre Yard</h2>
+<p>Suppose you have a <strong>quarter-acre yard</strong> (a common suburban lot size) and want to plant a new lawn with <strong>tall fescue</strong>.</p>
+<h3>Step 1: Convert Acres to Square Feet</h3>
+<p>0.25 acres × 43,560 sq ft/acre = <strong>10,890 sq ft</strong></p>
+<h3>Step 2: Subtract Non-Grass Areas</h3>
+<p>House footprint (1,200 sq ft) + driveway (400 sq ft) + patio (200 sq ft) + walkways (100 sq ft) = 1,900 sq ft<br>
+Net lawn area: 10,890 − 1,900 = <strong>8,990 sq ft</strong></p>
+<h3>Step 3: Calculate Seed Needed</h3>
+<p>Tall fescue new lawn rate: 8 lbs per 1,000 sq ft<br>
+(8,990 ÷ 1,000) × 8 = 8.99 × 8 = <strong>71.9 lbs of seed</strong></p>
+<h3>Step 4: Convert to Bags</h3>
+<p>71.9 ÷ 25 = 2.88 → Buy <strong>3 bags of 25 lb seed</strong> (75 lbs total, with 3.1 lbs left over for touch-ups).</p>
+
+<h2>Grass Seed Cost (2025 US Pricing)</h2>
+<table>
+<thead><tr><th>Grass Type</th><th>Cost per Pound</th><th>5 lb Bag</th><th>25 lb Bag</th><th>Cost per 1,000 sq ft (new lawn)</th></tr></thead>
+<tbody>
+<tr><td><strong>Kentucky Bluegrass</strong></td><td>$5–$10</td><td>$25–$50</td><td>$100–$200</td><td>$15–$30</td></tr>
+<tr><td><strong>Tall Fescue</strong></td><td>$2–$5</td><td>$10–$25</td><td>$40–$100</td><td>$16–$40</td></tr>
+<tr><td><strong>Perennial Ryegrass</strong></td><td>$2–$5</td><td>$10–$25</td><td>$40–$100</td><td>$16–$40</td></tr>
+<tr><td><strong>Bermuda Grass</strong></td><td>$5–$12</td><td>$25–$60</td><td>$100–$250</td><td>$10–$24</td></tr>
+<tr><td><strong>Fine Fescue</strong></td><td>$3–$7</td><td>$15–$35</td><td>$60–$140</td><td>$15–$35</td></tr>
+<tr><td><strong>Sun & Shade Mix</strong></td><td>$2–$6</td><td>$10–$30</td><td>$40–$120</td><td>$12–$36</td></tr>
+<tr><td><strong>Zoysia Grass</strong></td><td>$8–$15</td><td>$40–$75</td><td>$160–$300</td><td>$16–$30</td></tr>
+<tr><td><strong>Starter Fertilizer</strong></td><td>—</td><td>—</td><td>$20–$35 (covers 5,000 sq ft)</td><td>$4–$7</td></tr>
+</tbody>
+</table>
+<p><strong>Where to buy:</strong> Most US homeowners purchase grass seed from Home Depot, Lowe's, Tractor Supply, or online retailers like Amazon and SeedSuperstore. Name brands include Scotts, Pennington, Jonathan Green, and Barenbrug. For large projects (1+ acre), buying in bulk from a farm supply store is significantly cheaper per pound.</p>
+
+<h2>Lawn Preparation Checklist</h2>
+<p>Proper soil preparation is the single biggest factor in seeding success. Skipping these steps is the #1 reason new lawns fail:</p>
+<ol>
+<li><strong>Test your soil.</strong> A $15–$20 soil test from your county extension office reveals pH, nutrient levels, and amendment recommendations. Most grasses prefer pH 6.0–7.0. If pH is below 5.5, apply lime. If above 7.5, apply sulfur.</li>
+<li><strong>Grade the surface.</strong> Ensure the yard slopes away from the house foundation at 1–2% grade (1–2 inches drop per 10 feet). Fill low spots with topsoil. Remove rocks, debris, and old vegetation.</li>
+<li><strong>Amend the top 4–6 inches.</strong> Work in 1–2 inches of compost if the soil is sandy or heavy clay. This improves water retention, drainage, and root growth.</li>
+<li><strong>Rake the surface smooth.</strong> Create a firm, fine-textured seedbed. Break up clumps larger than a marble. Light rolling (half-filled lawn roller) firms the bed without compacting it.</li>
+<li><strong>Spread seed evenly.</strong> Use a <strong>broadcast spreader</strong> for large areas or a <strong>drop spreader</strong> for precise edges. Apply half the seed in one direction and the other half perpendicular for uniform coverage.</li>
+<li><strong>Lightly rake seed in.</strong> Cover seed with ⅛–¼ inch of soil using a leaf rake. Don't bury it — most grass seed needs light to germinate.</li>
+<li><strong>Apply starter fertilizer</strong> (high phosphorus, such as 18-24-12) at seeding time. Phosphorus promotes root development in seedlings.</li>
+<li><strong>Consider a thin layer of straw mulch</strong> (not hay — it contains weed seeds). One bale covers about 1,000 sq ft at the right thickness. This retains moisture and prevents erosion on slopes.</li>
+</ol>
+
+<h2>Watering Schedule After Seeding</h2>
+<p>Consistent moisture is critical during germination. The seedbed should stay moist but not puddled:</p>
+<table>
+<thead><tr><th>Phase</th><th>Duration</th><th>Watering Frequency</th><th>Amount</th></tr></thead>
+<tbody>
+<tr><td><strong>Days 1–14 (germination)</strong></td><td>2 weeks</td><td>2–3 times daily, 5–10 min each</td><td>Keep top ½ inch moist</td></tr>
+<tr><td><strong>Days 15–30 (seedling growth)</strong></td><td>2 weeks</td><td>Once daily, 15–20 min</td><td>Moisten top 1 inch</td></tr>
+<tr><td><strong>Days 31–60 (establishment)</strong></td><td>4 weeks</td><td>Every other day, 20–30 min</td><td>Moisten top 2 inches</td></tr>
+<tr><td><strong>After 60 days (mature lawn)</strong></td><td>Ongoing</td><td>1–2 times per week</td><td>1 inch per week total</td></tr>
+</tbody>
+</table>
+<p><strong>Tip:</strong> Water early in the morning (6–10 AM) to minimize evaporation and allow blades to dry before evening, which reduces disease risk. Avoid watering at night — wet grass overnight promotes fungal diseases like brown patch and dollar spot.</p>
+
+<h2>Best Grass Type by US Region</h2>
+<table>
+<thead><tr><th>Region</th><th>States</th><th>Best Grass Types</th></tr></thead>
+<tbody>
+<tr><td><strong>Northeast</strong></td><td>CT, DE, MA, MD, ME, NH, NJ, NY, PA, RI, VT</td><td>Kentucky bluegrass, fine fescue, perennial ryegrass</td></tr>
+<tr><td><strong>Midwest</strong></td><td>IA, IL, IN, MI, MN, MO, OH, WI</td><td>Kentucky bluegrass, tall fescue, perennial ryegrass</td></tr>
+<tr><td><strong>Southeast</strong></td><td>AL, FL, GA, LA, MS, NC, SC</td><td>Bermuda, zoysia, centipede, St. Augustine, bahia</td></tr>
+<tr><td><strong>South Central</strong></td><td>AR, KS, OK, TX</td><td>Bermuda, zoysia, buffalo grass, bahia</td></tr>
+<tr><td><strong>Transition Zone</strong></td><td>KY, MO, TN, VA, WV, southern KS/IL/IN</td><td>Tall fescue (primary), zoysia, bermuda, KBG blends</td></tr>
+<tr><td><strong>Mountain West</strong></td><td>CO, ID, MT, NM, UT, WY</td><td>Kentucky bluegrass, tall fescue, buffalo grass</td></tr>
+<tr><td><strong>Pacific Northwest</strong></td><td>OR, WA</td><td>Perennial ryegrass, fine fescue, KBG</td></tr>
+<tr><td><strong>California</strong></td><td>CA</td><td>Bermuda (south), tall fescue (north), buffalo grass</td></tr>
+</tbody>
+</table>
+`,
         faq: [
-            { question: "When is the best time to seed a lawn?", answer: "Cool-season grasses (bluegrass, fescue, rye): late August to mid-October (ideal) or early spring. Warm-season grasses (Bermuda, zoysia): late spring to early summer when soil temps reach 65–70°F. Fall seeding is generally more successful due to less weed competition." },
-            { question: "How long does grass seed take to germinate?", answer: "Kentucky bluegrass: 14–30 days. Tall fescue: 7–14 days. Perennial rye: 5–10 days. Bermuda: 10–30 days. Zoysia: 14–21 days. Keep the seedbed consistently moist — water lightly 2–3 times daily until germination, then reduce to once daily." },
+            { question: "How much grass seed do I need per 1,000 square feet?", answer: "It depends on the grass type. Kentucky bluegrass: 2–3 lbs. Tall fescue: 6–8 lbs. Perennial ryegrass: 6–8 lbs. Bermuda grass: 1–2 lbs. Fine fescue: 4–5 lbs. Centipede: 0.25–0.5 lbs. For overseeding, use half the new-lawn rate. Multiply the rate by the number of 1,000 sq ft units in your lawn." },
+            { question: "When is the best time to plant grass seed?", answer: "Cool-season grasses (bluegrass, fescue, ryegrass): late August to mid-October is ideal — fall gives seedlings 2 seasons of growth before summer stress. Early spring (March–April) is the second-best window. Warm-season grasses (Bermuda, zoysia, centipede): late May to early July when soil temperatures consistently reach 65–70°F. Fall seeding of warm-season grasses will fail due to winter dormancy." },
+            { question: "How long does grass seed take to germinate?", answer: "Perennial ryegrass: 5–10 days (fastest). Tall fescue: 7–14 days. Bermuda grass: 10–30 days. Kentucky bluegrass: 14–30 days (slowest). Fine fescue: 7–14 days. Zoysia: 14–21 days. These times assume consistent moisture and soil temperatures in the optimal range. Cold soil, dry conditions, or buried seed can delay germination significantly." },
+            { question: "What is the difference between overseeding and new lawn seeding?", answer: "New lawn seeding plants grass on bare soil at the full recommended seeding rate. Overseeding spreads seed over an existing lawn to fill in bare spots, thicken thin areas, or introduce improved varieties — at roughly half the new-lawn rate. Overseeding is best done in fall after aerating and dethatching to improve seed-to-soil contact." },
+            { question: "Which grass type is best for my region?", answer: "Northeast and Midwest: Kentucky bluegrass or bluegrass-fescue-rye mixes. Southeast and Gulf Coast: Bermuda, zoysia, centipede, or St. Augustine. Transition Zone (TN, VA, KY, MO): tall fescue is the #1 choice. Southwest and Texas: Bermuda or buffalo grass. Pacific Northwest: perennial ryegrass or fine fescue. Mountain West: Kentucky bluegrass." },
+            { question: "Can I overseed without dethatching or aerating?", answer: "You can, but results will be poor. Seed needs contact with soil to germinate — if it sits on top of thatch or compacted ground, germination rates drop below 30%. For best results: dethatch if the thatch layer exceeds ½ inch, core aerate to relieve compaction (the aeration holes create perfect seed beds), then spread seed and top-dress with a thin layer of compost." },
+            { question: "How long until my new lawn is ready to mow?", answer: "Wait until the grass reaches 3–4 inches tall before the first mowing — typically 3–4 weeks after germination for fast growers (ryegrass, fescue) and 6–8 weeks for slow growers (bluegrass, bermuda). Set the mower to its highest setting and remove no more than ⅓ of the blade length. Mowing too early or too short can uproot seedlings." },
+            { question: "Should I use a starter fertilizer when seeding?", answer: "Yes — strongly recommended. Starter fertilizers are high in phosphorus (the middle number, e.g., 18-24-12), which promotes root development in seedlings. Apply at the rate listed on the bag, typically 3–4 lbs per 1,000 sq ft. Avoid weed-and-feed products — the pre-emergent herbicide will kill germinating grass seed. Wait at least 60 days after seeding before applying any weed control." },
+            { question: "How much does grass seed cost vs. sod?", answer: "Grass seed: $15–$60 per 1,000 sq ft (seed + starter fertilizer). Sod: $300–$800 per 1,000 sq ft (material + delivery). For a 5,000 sq ft lawn: seed costs $75–$300 total vs. $1,500–$4,000 for sod. Seed is 80–90% cheaper but takes 6–10 weeks to establish. Sod provides an instant lawn but has far fewer variety options." },
+            { question: "How do I fix bare spots in an existing lawn?", answer: "Rake the bare area to loosen the top ½ inch of soil. Remove dead grass and debris. Apply seed at the full new-lawn rate for your grass type. Cover lightly with ⅛ inch of topsoil or compost. Apply starter fertilizer. Water 2–3 times daily to keep the patch moist until germination. For spots larger than 1 sq ft, consider a seed-and-mulch product like Scotts EZ Seed, which includes seed, mulch, and fertilizer in one." },
         ],
     },
     "lawn-mowing-calculator": {
