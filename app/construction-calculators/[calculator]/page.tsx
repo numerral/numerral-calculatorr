@@ -3982,18 +3982,92 @@ Net lawn area: 10,890 − 1,900 = <strong>8,990 sq ft</strong></p>
         ],
     },
     "water-velocity-calculator": {
-        subtitle: "Calculate water velocity in pipes from flow rate and diameter. Check against recommended velocity limits to prevent water hammer.",
+        subtitle: "Calculate water velocity in pipes. Select standard US pipe sizes, pipe material, and water temperature. Get Reynolds number, flow type, and velocity assessment.",
         explanation: {
             heading: "Water Velocity in Pipes",
             paragraphs: [
-                "Velocity = flow rate ÷ pipe cross-sectional area. V = (GPM ÷ 448.831) ÷ (π × r²), where r is the pipe radius in feet. Recommended limits: 5 ft/s for residential, 8 ft/s for commercial.",
-                "Excessive velocity causes water hammer, pipe erosion, noise, and pressure drops. Under-sized pipes create high velocities. A common fix is upsizing the pipe — doubling diameter reduces velocity by 75%.",
+                "Velocity = flow rate ÷ pipe cross-sectional area. For GPM: v (ft/s) = 0.408 × GPM ÷ D² (inches). The calculator uses actual inner diameter (ID) for standard copper pipe sizes and adjusts for material velocity limits.",
+                "Results include Reynolds number (laminar < 2300 / turbulent > 4000), flow type classification, and water temperature correction. Recommended velocity: 5 ft/s residential, 8 ft/s commercial.",
             ],
-            highlight: "10 GPM through a 1\" pipe: velocity = 4.09 ft/s ✅ Within limits. Same flow in 3/4\" pipe: 7.27 ft/s ⚠️ Getting high.",
+            highlight: "10 GPM through 1\" copper (1.049\" ID): velocity = 3.72 ft/s ✅ Within limits. Reynolds = 25,300 (turbulent). Same flow in ¾\" pipe: 6.01 ft/s ⚠️ Moderate.",
         },
+        contentHTML: `
+<p>Water velocity is the <strong>speed of water flowing through a pipe</strong>, measured in feet per second (ft/s). It's one of the most important parameters in plumbing design — too fast causes <strong>water hammer, erosion, and noise</strong>; too slow causes <strong>sediment buildup and bacterial growth</strong>.</p>
+<p>The calculator above uses <strong>actual inner diameters</strong> for 8 standard US copper pipe sizes, supports <strong>5 pipe materials</strong>, calculates <strong>Reynolds number</strong> to classify flow type (laminar/turbulent), and accounts for <strong>water temperature</strong> (which affects viscosity).</p>
+
+<h2>Water Velocity Formula</h2>
+<p>The universal formula is <strong>v = Q / A</strong> (velocity = flow rate ÷ cross-sectional area). For US plumbing units:</p>
+<p><strong>v (ft/s) = 0.408 × GPM ÷ D²</strong></p>
+<p>Where v = velocity in feet per second, GPM = gallons per minute, D = pipe inner diameter in inches.</p>
+<p><strong>Example:</strong> 10 GPM through 1" copper pipe (1.049" ID): v = 0.408 × 10 ÷ 1.049² = 4.08 ÷ 1.1 = <strong>3.71 ft/s</strong></p>
+
+<h2>Standard Pipe Inner Diameters</h2>
+<p>Nominal pipe size ≠ actual inner diameter. The actual ID depends on pipe material and wall thickness.</p>
+<table>
+<thead><tr><th>Nominal Size</th><th>Copper Type L (ID)</th><th>PEX (ID)</th><th>Cross-Section</th></tr></thead>
+<tbody>
+<tr><td><strong>½"</strong></td><td>0.622"</td><td>0.475"</td><td>0.304 sq in</td></tr>
+<tr><td><strong>¾"</strong></td><td>0.824"</td><td>0.681"</td><td>0.533 sq in</td></tr>
+<tr><td><strong>1"</strong></td><td>1.049"</td><td>0.863"</td><td>0.864 sq in</td></tr>
+<tr><td><strong>1¼"</strong></td><td>1.368"</td><td>1.102"</td><td>1.47 sq in</td></tr>
+<tr><td><strong>1½"</strong></td><td>1.610"</td><td>1.358"</td><td>2.04 sq in</td></tr>
+<tr><td><strong>2"</strong></td><td>2.067"</td><td>1.720"</td><td>3.36 sq in</td></tr>
+<tr><td><strong>3"</strong></td><td>3.068"</td><td>—</td><td>7.39 sq in</td></tr>
+<tr><td><strong>4"</strong></td><td>4.026"</td><td>—</td><td>12.73 sq in</td></tr>
+</tbody>
+</table>
+<p><strong>Key insight:</strong> A ¾" PEX pipe has a <strong>smaller ID than ¾" copper</strong> (0.681" vs 0.824"). At the same GPM, water moves faster in PEX — which matters for velocity limits.</p>
+
+<h2>Recommended Velocity Limits</h2>
+<table>
+<thead><tr><th>Application</th><th>Recommended</th><th>Maximum</th><th>Reason</th></tr></thead>
+<tbody>
+<tr><td><strong>Residential cold</strong></td><td>≤ 5 ft/s</td><td>8 ft/s</td><td>Noise, water hammer</td></tr>
+<tr><td><strong>Residential hot</strong></td><td>≤ 4 ft/s</td><td>5 ft/s</td><td>Erosion at higher temps</td></tr>
+<tr><td><strong>Commercial</strong></td><td>≤ 8 ft/s</td><td>10 ft/s</td><td>Short runs acceptable</td></tr>
+<tr><td><strong>Fire sprinkler</strong></td><td>≤ 20 ft/s</td><td>32 ft/s</td><td>Per NFPA 13</td></tr>
+<tr><td><strong>Minimum (any)</strong></td><td>≥ 2 ft/s</td><td>—</td><td>Prevent sediment, bacteria</td></tr>
+</tbody>
+</table>
+<p><strong>Hot water systems</strong> have lower velocity limits because higher temperatures increase erosion — especially in copper pipes where turbulent flow above 4 ft/s accelerates copper dissolution.</p>
+
+<h2>Reynolds Number & Flow Type</h2>
+<p>The <strong>Reynolds number (Re)</strong> determines whether the flow is smooth or chaotic:</p>
+<ul>
+<li><strong>Re < 2,300:</strong> Laminar flow — smooth, parallel layers. Minimal noise and erosion. Rare in plumbing.</li>
+<li><strong>2,300 < Re < 4,000:</strong> Transitional — unpredictable mix of laminar and turbulent.</li>
+<li><strong>Re > 4,000:</strong> Turbulent — most common in plumbing. Higher friction, noise potential, but better mixing.</li>
+</ul>
+<p><strong>Formula:</strong> Re = v × D / ν — where v = velocity, D = pipe diameter, ν = kinematic viscosity (temperature-dependent).</p>
+
+<h2>Water Temperature Effect</h2>
+<p>Hot water is less viscous, which changes the Reynolds number and flow characteristics:</p>
+<table>
+<thead><tr><th>Temperature</th><th>Viscosity (ft²/s)</th><th>Effect on Re</th></tr></thead>
+<tbody>
+<tr><td>40°F (cold supply)</td><td>1.664 × 10⁻⁵</td><td>Lower Re</td></tr>
+<tr><td>60°F (typical)</td><td>1.217 × 10⁻⁵</td><td>Baseline</td></tr>
+<tr><td>100°F (warm)</td><td>7.39 × 10⁻⁶</td><td>Higher Re</td></tr>
+<tr><td>140°F (hot water)</td><td>5.14 × 10⁻⁶</td><td>Highest Re — more turbulent</td></tr>
+</tbody>
+</table>
+
+<h2>Pipe Sizing for Target Velocity</h2>
+<p>To find the right pipe size, work backwards from your flow rate and target velocity:</p>
+<p><strong>D (in) = √(0.408 × GPM ÷ v)</strong></p>
+<p><strong>Example:</strong> 15 GPM at 5 ft/s target: D = √(0.408 × 15 ÷ 5) = √1.224 = <strong>1.11"</strong> → use 1¼" copper (1.368" ID).</p>
+`,
         faq: [
-            { question: "What is the maximum water velocity in pipes?", answer: "Residential: 5 ft/s recommended, 8 ft/s maximum. Commercial: 8 ft/s normal, 10 ft/s maximum for short runs. Hot water lines should be slower than cold water lines." },
-            { question: "What causes water hammer?", answer: "Water hammer occurs when flowing water is suddenly stopped (valve closing), creating a pressure wave. Higher velocities = worse hammer. Solutions: lower velocity, add water hammer arrestors, use slow-closing valves." },
+            { question: "What is the maximum water velocity in pipes?", answer: "Residential cold: 5 ft/s recommended, 8 ft/s max. Residential hot: 4 ft/s recommended, 5 ft/s max. Commercial: 8 ft/s normal, 10 ft/s for short runs. Fire sprinkler: up to 32 ft/s per NFPA 13. Minimum: 2 ft/s to prevent sediment and bacteria." },
+            { question: "What causes water hammer?", answer: "Water hammer is a pressure surge when flowing water is suddenly stopped (valve closing quickly). Higher velocity = worse hammer. V > 5 ft/s significantly increases risk. Solutions: lower velocity (larger pipe), install water hammer arrestors, use slow-closing valves, add expansion tanks." },
+            { question: "How do I calculate water velocity from GPM?", answer: "v (ft/s) = 0.408 × GPM ÷ D² — where D is pipe inner diameter in inches. Example: 10 GPM through 1\" copper (1.049\" ID): v = 0.408 × 10 ÷ 1.049² = 3.71 ft/s. This formula converts GPM to cubic feet per second and divides by pipe area." },
+            { question: "Why is actual ID different from nominal pipe size?", answer: "Nominal size is a trade designation, not a measurement. A \"1-inch\" copper pipe actually has a 1.049\" inner diameter. A \"1-inch\" PEX pipe has a 0.863\" ID — 18% smaller than copper. Always use actual ID for velocity calculations." },
+            { question: "What is the Reynolds number?", answer: "Reynolds number (Re) determines flow type: Re < 2,300 = laminar (smooth), Re > 4,000 = turbulent (chaotic). Formula: Re = v × D / ν. Most plumbing systems operate in the turbulent range (Re > 10,000). Temperature affects Re because hot water is less viscous." },
+            { question: "Does pipe diameter affect velocity?", answer: "Yes — dramatically. Velocity is inversely proportional to diameter squared. Doubling the pipe diameter reduces velocity by 75% (4× the area). Going from ¾\" to 1\" copper reduces velocity by 38% at the same flow rate." },
+            { question: "What's the velocity in a ¾\" pipe at 10 GPM?", answer: "¾\" copper (0.824\" ID): v = 0.408 × 10 ÷ 0.824² = 4.08 ÷ 0.679 = 6.01 ft/s — ⚠️ above the 5 ft/s residential recommendation. Use 1\" copper at 10 GPM to stay within limits (3.71 ft/s)." },
+            { question: "Does water temperature affect velocity calculations?", answer: "Temperature doesn't change velocity directly — v = Q/A regardless of temperature. But temperature changes viscosity, which affects the Reynolds number and flow type. Hot water (140°F) has half the viscosity of cold water (40°F), making flow more turbulent at the same velocity." },
+            { question: "Why is hot water velocity limited to 4 ft/s?", answer: "Higher temperatures increase copper dissolution (erosion corrosion), especially in turbulent flow above 4 ft/s. This leads to pinhole leaks in copper pipes. CPVC and PEX are less susceptible, but the 4 ft/s guideline is widely followed as best practice." },
+            { question: "How do I reduce water velocity in existing pipes?", answer: "Install a larger pipe (best solution). Reduce flow rate with pressure-reducing valve. Split the flow across two pipes. Add a bypass loop. For branches, use ¾\" minimum (not ½\") for fixtures. As a rule: size the pipe for 5 ft/s at peak flow demand." },
         ],
     },
     "window-ac-size-calculator": {

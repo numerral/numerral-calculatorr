@@ -13325,7 +13325,7 @@
     "categorySlug": "construction-calculators",
     "icon": "💧",
     "calcType": "water-velocity",
-    "description": "Calculate water velocity in pipes from flow rate and pipe diameter. Check against recommended velocity limits.",
+    "description": "Calculate water velocity in pipes. Select standard pipe sizes, material, and temperature. Get Reynolds number, flow type, and velocity assessment.",
     "stars": 5,
     "defaults": {
       "amount": 10,

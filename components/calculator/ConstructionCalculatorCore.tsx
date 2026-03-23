@@ -7317,32 +7317,81 @@ function RefrigerantLineCalc() {
 }
 
 /* ──────────── 153. WATER VELOCITY CALCULATOR ──────────── */
+const PIPE_SIZES: { value: string; label: string; id: number }[] = [
+    { value: "0.5", label: '½" (0.622" ID – copper)', id: 0.622 },
+    { value: "0.75", label: '¾" (0.824" ID – copper)', id: 0.824 },
+    { value: "1", label: '1" (1.049" ID – copper)', id: 1.049 },
+    { value: "1.25", label: '1¼" (1.368" ID – copper)', id: 1.368 },
+    { value: "1.5", label: '1½" (1.610" ID – copper)', id: 1.610 },
+    { value: "2", label: '2" (2.067" ID – copper)', id: 2.067 },
+    { value: "3", label: '3" (3.068" ID – copper)', id: 3.068 },
+    { value: "4", label: '4" (4.026" ID – copper)', id: 4.026 },
+    { value: "custom", label: "Custom Diameter", id: 1.0 },
+];
+
+const PIPE_MATERIALS: { value: string; label: string; roughness: number; maxVel: number }[] = [
+    { value: "copper", label: "Copper (Type L)", roughness: 0.000005, maxVel: 8 },
+    { value: "pex", label: "PEX", roughness: 0.000005, maxVel: 8 },
+    { value: "cpvc", label: "CPVC", roughness: 0.000005, maxVel: 5 },
+    { value: "galvanized", label: "Galvanized Steel", roughness: 0.0005, maxVel: 5 },
+    { value: "pvc", label: "PVC (Schedule 40)", roughness: 0.000005, maxVel: 5 },
+];
+
 function WaterVelocityCalc() {
+    const [pipeSize, setPipeSize] = useState("1");
+    const [customDia, setCustomDia] = useState(1);
+    const [material, setMaterial] = useState("copper");
     const [gpm, setGpm] = useState(10);
-    const [diameter, setDiameter] = useState(1);
+    const [waterTemp, setWaterTemp] = useState("60");
 
     const result = useMemo(() => {
-        const radiusFt = (diameter / 12) / 2;
+        const pipeData = PIPE_SIZES.find(p => p.value === pipeSize);
+        const idInches = pipeSize === "custom" ? customDia : (pipeData?.id || 1.049);
+        const idFt = idInches / 12;
+        const radiusFt = idFt / 2;
         const areaSqFt = Math.PI * radiusFt * radiusFt;
+        const areaSqIn = Math.PI * (idInches / 2) * (idInches / 2);
         const cfs = gpm / 448.831;
-        const velocity = areaSqFt > 0 ? cfs / areaSqFt : 0; // ft/s
+        const velocity = areaSqFt > 0 ? cfs / areaSqFt : 0;
         const mps = velocity * 0.3048;
-        const status = velocity <= 5 ? "✅ Within limits" : velocity <= 8 ? "⚠️ Moderate" : "🔴 Too fast – risk of water hammer";
-        return { velocity, mps, status };
-    }, [gpm, diameter]);
+        const matData = PIPE_MATERIALS.find(m => m.value === material);
+        const maxVel = matData?.maxVel || 8;
+
+        // Kinematic viscosity (ft²/s) at approx temp
+        const viscosity = waterTemp === "40" ? 0.00001664 : waterTemp === "60" ? 0.00001217 : waterTemp === "140" ? 0.00000514 : 0.00000739;
+        const reynolds = velocity * idFt / viscosity;
+        const flowType = reynolds < 2300 ? "Laminar" : reynolds < 4000 ? "Transitional" : "Turbulent";
+
+        const status = velocity <= 5 ? "✅ Within limits" : velocity <= maxVel ? "⚠️ Moderate" : "🔴 Too fast – risk of water hammer";
+        return { idInches, areaSqIn, velocity, mps, reynolds, flowType, status };
+    }, [gpm, pipeSize, customDia, material, waterTemp]);
 
     return (
         <div className="con-calc">
             <h3 className="con-calc__title">💧 Water Velocity Calculator</h3>
             <div className="con-calc__inputs">
-                <InputField label="Flow Rate" value={gpm} onChange={setGpm} unit="GPM" min={1} />
-                <InputField label="Pipe Diameter" value={diameter} onChange={setDiameter} unit="in" min={0.5} step={0.25} />
+                <SelectField label="Pipe Size" value={pipeSize} onChange={setPipeSize}
+                    options={PIPE_SIZES.map(p => ({ value: p.value, label: p.label }))} />
+                {pipeSize === "custom" && (
+                    <InputField label="Inner Diameter" value={customDia} onChange={setCustomDia} unit="in" min={0.25} step={0.125} />
+                )}
+                <SelectField label="Pipe Material" value={material} onChange={setMaterial}
+                    options={PIPE_MATERIALS.map(m => ({ value: m.value, label: m.label }))} />
+                <InputField label="Flow Rate" value={gpm} onChange={setGpm} unit="GPM" min={0.5} step={0.5} />
+                <SelectField label="Water Temperature" value={waterTemp} onChange={setWaterTemp}
+                    options={[{ value: "40", label: "40°F (cold supply)" }, { value: "60", label: "60°F (typical)" }, { value: "100", label: "100°F (warm)" }, { value: "140", label: "140°F (hot water)" }]} />
             </div>
             <div className="con-calc__results">
-                <h4>Results</h4>
+                <h4 className="con-calc__group-label">PIPE</h4>
+                <ResultRow label="Inner Diameter" value={fmt(result.idInches, 3)} unit="in" />
+                <ResultRow label="Cross-Section" value={fmt(result.areaSqIn, 3)} unit="sq in" />
+                <h4 className="con-calc__group-label">VELOCITY</h4>
                 <ResultRow label="Velocity" value={fmt(result.velocity, 2)} unit="ft/s" />
                 <ResultRow label="Velocity (metric)" value={fmt(result.mps, 2)} unit="m/s" />
                 <ResultRow label="Assessment" value={result.status} />
+                <h4 className="con-calc__group-label">FLOW ANALYSIS</h4>
+                <ResultRow label="Reynolds Number" value={fmt(result.reynolds, 0)} />
+                <ResultRow label="Flow Type" value={result.flowType} />
             </div>
         </div>
     );
