@@ -7406,7 +7406,7 @@
     "categorySlug": "construction-calculators",
     "icon": "🪨",
     "calcType": "gravel",
-    "description": "Calculate how much gravel you need for driveways, paths, and landscaping. Get results in cubic yards, tons, and cost estimate by material type.",
+    "description": "Calculate how much gravel you need for driveways, paths, and landscaping. Choose from 8 gravel types, get weight in tons with compaction factor, and estimate total cost with delivery.",
     "stars": 5,
     "defaults": {
       "amount": 20,

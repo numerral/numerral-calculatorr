@@ -1135,7 +1135,7 @@ const HUB_CONTENT: Record<string, {
         ],
     },
     "gravel-calculator": {
-        subtitle: "Calculate how much gravel you need for driveways, pathways, and landscaping. Get results in cubic yards, tons, and estimated cost by material type.",
+        subtitle: "Calculate how much gravel you need for driveways, paths, and landscaping. Choose from 8 gravel types, get weight in tons, add compaction factor, and estimate total cost with delivery.",
         explanation: {
             heading: "How to Calculate Gravel Quantities",
             paragraphs: [
@@ -1144,9 +1144,106 @@ const HUB_CONTENT: Record<string, {
             ],
             highlight: "A 20×10 ft driveway area with 3 inches of gravel = 20 × 10 × 0.25 = 50 cu ft ÷ 27 = 1.85 cubic yards ≈ 2.6 tons of crushed stone.",
         },
+        contentHTML: `
+<p>Gravel is one of the most versatile landscaping and construction materials in the United States. Whether you're building a driveway, creating a drainage solution, or designing a decorative walkway, knowing how to accurately calculate the amount of gravel you need saves money and prevents costly over- or under-ordering.</p>
+<p>Gravel is sold by the <strong>ton</strong> or by the <strong>cubic yard</strong> depending on your supplier. Most landscape suppliers sell by the ton for large orders. The calculator above automatically includes a <strong>10% overage</strong> for waste and spillage, and optionally adds <strong>30% for compaction</strong> if you plan to compact the gravel for driveways or road base.</p>
+
+<h2>Gravel Types and Specifications</h2>
+<table>
+<thead><tr><th>Gravel Type</th><th>Size Range</th><th>Density (tons/cu yd)</th><th>Cost per Ton</th><th>Best For</th></tr></thead>
+<tbody>
+<tr><td><strong>Crushed Stone</strong></td><td>¾"–1½"</td><td>1.4</td><td>$25–$50</td><td>Driveways, road base, fill</td></tr>
+<tr><td><strong>Pea Gravel</strong></td><td>⅜"–½"</td><td>1.4</td><td>$30–$55</td><td>Walkways, patios, dog runs</td></tr>
+<tr><td><strong>River Rock</strong></td><td>1"–3"</td><td>1.5</td><td>$40–$70</td><td>Decorative landscaping, drainage</td></tr>
+<tr><td><strong>Limestone</strong></td><td>¾"–2"</td><td>1.5</td><td>$20–$40</td><td>Driveways, pathways, erosion control</td></tr>
+<tr><td><strong>Decomposed Granite</strong></td><td>⅛"–¼"</td><td>1.3</td><td>$30–$60</td><td>Pathways, patios, xeriscaping</td></tr>
+<tr><td><strong>Quarry Process (QP)</strong></td><td>Dust–¾"</td><td>1.5</td><td>$15–$35</td><td>Road base, sub-base, paver base</td></tr>
+<tr><td><strong>Marble Chips</strong></td><td>½"–1"</td><td>1.4</td><td>$50–$90</td><td>Decorative borders, garden accents</td></tr>
+<tr><td><strong>Slate Chips</strong></td><td>½"–1½"</td><td>1.5</td><td>$45–$80</td><td>Decorative mulch, pathways</td></tr>
+</tbody>
+</table>
+
+<h2>Step-by-Step: How to Estimate Gravel Needs</h2>
+<h3>Step 1: Measure the Area</h3>
+<p>Measure the length and width of the area in feet. For circular areas (tree rings, fire pit surrounds), measure the diameter. For irregular shapes, break into rectangles and circles, then add the results.</p>
+
+<h3>Step 2: Determine Depth</h3>
+<p>Choose depth based on your project type:</p>
+<ul>
+<li><strong>Decorative ground cover:</strong> 2 inches</li>
+<li><strong>Walkways and paths:</strong> 2–3 inches</li>
+<li><strong>Patios:</strong> 3–4 inches</li>
+<li><strong>Driveways (light traffic):</strong> 4 inches</li>
+<li><strong>Driveways (heavy traffic):</strong> 6–8 inches</li>
+<li><strong>Road base / sub-base:</strong> 6–12 inches</li>
+</ul>
+
+<h3>Step 3: Calculate Volume</h3>
+<p><strong>Rectangular:</strong> Length (ft) × Width (ft) × Depth (ft) ÷ 27 = Cubic Yards</p>
+<p><strong>Circular:</strong> π × (Diameter ÷ 2)² × Depth (ft) ÷ 27 = Cubic Yards</p>
+
+<h3>Step 4: Convert to Tons</h3>
+<p>Multiply cubic yards by the material density. Crushed stone: cu yd × 1.4 = tons. River rock: cu yd × 1.5 = tons.</p>
+
+<h3>Step 5: Add Overage</h3>
+<p>Add <strong>10% for waste</strong> (spillage during transport and installation). If compacting the gravel (driveways, base layers), add an additional <strong>30% for compaction loss</strong>.</p>
+
+<h2>How Many Tons in a Cubic Yard of Gravel?</h2>
+<table>
+<thead><tr><th>Material</th><th>Tons per Cu Yd</th><th>Lbs per Cu Yd</th></tr></thead>
+<tbody>
+<tr><td><strong>Crushed Stone</strong></td><td>1.4</td><td>2,800</td></tr>
+<tr><td><strong>Pea Gravel</strong></td><td>1.4</td><td>2,800</td></tr>
+<tr><td><strong>River Rock</strong></td><td>1.5</td><td>3,000</td></tr>
+<tr><td><strong>Limestone</strong></td><td>1.5</td><td>3,000</td></tr>
+<tr><td><strong>Decomposed Granite</strong></td><td>1.3</td><td>2,600</td></tr>
+<tr><td><strong>Quarry Process</strong></td><td>1.5</td><td>3,000</td></tr>
+<tr><td><strong>Sand</strong></td><td>1.3–1.5</td><td>2,600–3,000</td></tr>
+<tr><td><strong>Topsoil</strong></td><td>1.0–1.3</td><td>2,000–2,600</td></tr>
+</tbody>
+</table>
+
+<h2>Gravel Driveway Depth Guide</h2>
+<p>A proper gravel driveway is built in <strong>three layers</strong> for maximum durability:</p>
+<table>
+<thead><tr><th>Layer</th><th>Material</th><th>Size</th><th>Depth</th><th>Purpose</th></tr></thead>
+<tbody>
+<tr><td><strong>Bottom (Sub-base)</strong></td><td>Large crushed stone</td><td>2"–4"</td><td>4–6 inches</td><td>Drainage & stability</td></tr>
+<tr><td><strong>Middle (Base)</strong></td><td>Crushed stone / QP</td><td>¾"–1"</td><td>3–4 inches</td><td>Load-bearing structure</td></tr>
+<tr><td><strong>Top (Surface)</strong></td><td>Fine gravel or DG</td><td>⅜"–¾"</td><td>2–3 inches</td><td>Smooth driving surface</td></tr>
+</tbody>
+</table>
+<p><strong>Total depth:</strong> 9–13 inches for a durable residential driveway. A single-layer driveway (4–6 inches) works for light traffic but won't last as long.</p>
+
+<h2>Overage and Compaction</h2>
+<p>Most professionals add <strong>10% extra</strong> to account for waste and spillage during transport and spreading. If the gravel will be compacted (compacted with a plate compactor or roller), expect to lose approximately <strong>30% of the volume</strong> during the compaction process. This means you need to order 30% more material to achieve the desired finished depth.</p>
+<p><strong>Example:</strong> If your calculations show you need 5.2 tons, add 10% overage = 5.7 tons. If compacting, add 30%: 5.7 × 1.3 = <strong>7.4 tons</strong>.</p>
+
+<h2>2025 US Gravel Cost Guide</h2>
+<table>
+<thead><tr><th>Gravel Type</th><th>Cost per Ton</th><th>Cost per Cu Yd</th><th>Delivery (5–10 mi)</th></tr></thead>
+<tbody>
+<tr><td><strong>Crushed Stone</strong></td><td>$25–$50</td><td>$35–$70</td><td>$50–$150</td></tr>
+<tr><td><strong>Pea Gravel</strong></td><td>$30–$55</td><td>$40–$75</td><td>$50–$150</td></tr>
+<tr><td><strong>River Rock</strong></td><td>$40–$70</td><td>$55–$100</td><td>$50–$200</td></tr>
+<tr><td><strong>Limestone</strong></td><td>$20–$40</td><td>$30–$55</td><td>$50–$150</td></tr>
+<tr><td><strong>Decomposed Granite</strong></td><td>$30–$60</td><td>$40–$80</td><td>$50–$150</td></tr>
+<tr><td><strong>Quarry Process</strong></td><td>$15–$35</td><td>$20–$50</td><td>$50–$100</td></tr>
+</tbody>
+</table>
+<p><strong>Delivery:</strong> Most suppliers offer free delivery for orders over 10–15 tons. Below that threshold, expect delivery fees of $50–$200 depending on distance. Dump truck loads hold 13–25 tons and cost $455–$1,250+ per full load.</p>
+`,
         faq: [
-            { question: "How much does gravel cost?", answer: "Bulk gravel typically costs $15–$75 per cubic yard depending on the type. Pea gravel: $25–$50, crushed stone: $20–$45, river rock: $40–$75. Delivery fees range from $50–$150 depending on distance and quantity." },
-            { question: "How thick should a gravel driveway be?", answer: "A standard residential gravel driveway should be 4–6 inches deep, laid in two layers: a 3–4 inch base of larger crushed stone (¾ inch) topped with 1–2 inches of finer gravel. Heavy traffic areas may need 8–12 inches total depth." },
+            { question: "How much gravel do I need for a driveway?", answer: "Measure the driveway length × width in feet. For a single-layer driveway, use 4–6 inches depth. For a three-layer driveway (recommended), total depth is 9–13 inches. A typical 12×50 ft driveway at 6 inches: 12 × 50 × 0.5 ÷ 27 = 11.1 cu yd × 1.4 = 15.5 tons + 10% overage = 17 tons." },
+            { question: "Do I order gravel by the yard or by the ton?", answer: "Most landscape suppliers sell by the ton for large orders (5+ tons). Some sell by the cubic yard, especially for smaller quantities. Our calculator shows both. When comparing prices, convert: 1 cu yd of crushed stone = about 1.4 tons." },
+            { question: "How much will 1 ton of gravel cover?", answer: "One ton of gravel covers: at 2 inches deep = ~100 sq ft, at 3 inches = ~70 sq ft, at 4 inches = ~50 sq ft, at 6 inches = ~35 sq ft. Exact coverage depends on gravel size — smaller gravel packs more tightly and covers slightly more area." },
+            { question: "How much does a truckload of gravel cost?", answer: "A standard dump truck holds 13–25 tons. At $25–$50 per ton for crushed stone, a full load costs $325–$1,250. Delivery fees run $50–$200. A pickup truck holds ~1 ton (be careful not to exceed payload capacity). Many suppliers offer free delivery over 10–15 tons." },
+            { question: "What's the best gravel for a driveway?", answer: "Crushed stone (#57 or #411) is the standard for driveways — it's angular, locks together, and doesn't roll under tires. Use quarry process (crusher run) for the base layer. Avoid pea gravel and river rock for driveways — they're rounded and shift under weight." },
+            { question: "Should I compact gravel for a driveway?", answer: "Yes. Compact each layer with a plate compactor. Compaction reduces volume by ~30% but dramatically increases stability and longevity. Without compaction, gravel ruts quickly under vehicle weight. Water the gravel lightly before compacting for best results." },
+            { question: "How thick should gravel be under pavers?", answer: "A paver base typically requires 4–6 inches of compacted gravel (quarry process or crushed stone), plus 1 inch of leveling sand on top. In areas with poor drainage or freeze-thaw cycles, use 6–8 inches of gravel base." },
+            { question: "How much does gravel weigh per cubic yard?", answer: "Crushed stone: 2,800 lbs (1.4 tons). Pea gravel: 2,800 lbs (1.4 tons). River rock: 3,000 lbs (1.5 tons). Limestone: 3,000 lbs (1.5 tons). Decomposed granite: 2,600 lbs (1.3 tons). Quarry process: 3,000 lbs (1.5 tons)." },
+            { question: "Can a pickup truck carry a cubic yard of gravel?", answer: "Most pickup trucks can physically hold 1 cubic yard of gravel by volume, but a cubic yard weighs 2,600–3,000 lbs — far exceeding most truck payload limits (1,200–2,000 lbs). Limit to ½ cubic yard per trip for heavy materials, or get professional delivery." },
+            { question: "How do I prevent weeds growing through gravel?", answer: "Install landscape fabric (weed barrier) before spreading gravel. Use commercial-grade fabric, not cheap plastic sheeting. Overlap seams by 6 inches and pin with landscape staples every 2 feet. Apply gravel at least 2–3 inches deep over the fabric." },
         ],
     },
     "mulch-calculator": {

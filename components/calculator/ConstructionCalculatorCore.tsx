@@ -876,53 +876,92 @@ function CubicYardsCalc() {
 }
 
 /* ──────────── 11. GRAVEL CALCULATOR ──────────── */
+const GRAVEL_TYPES: { value: string; label: string; density: number; costPerTon: number }[] = [
+    { value: "crushed-stone", label: "Crushed Stone", density: 1.4, costPerTon: 35 },
+    { value: "pea-gravel", label: "Pea Gravel", density: 1.4, costPerTon: 40 },
+    { value: "river-rock", label: "River Rock", density: 1.5, costPerTon: 50 },
+    { value: "limestone", label: "Limestone", density: 1.5, costPerTon: 30 },
+    { value: "decomposed-granite", label: "Decomposed Granite", density: 1.3, costPerTon: 45 },
+    { value: "quarry-process", label: "Quarry Process / QP", density: 1.5, costPerTon: 25 },
+    { value: "marble-chips", label: "Marble Chips", density: 1.4, costPerTon: 70 },
+    { value: "slate-chips", label: "Slate Chips", density: 1.5, costPerTon: 60 },
+    { value: "custom", label: "Custom", density: 1.4, costPerTon: 0 },
+];
+
 function GravelCalc() {
+    const [shape, setShape] = useState("rectangle");
     const [length, setLength] = useState(20);
     const [width, setWidth] = useState(10);
+    const [diameter, setDiameter] = useState(10);
     const [depth, setDepth] = useState(3);
     const [depthUnit, setDepthUnit] = useState("inches");
     const [material, setMaterial] = useState("crushed-stone");
-    const [pricePerYd, setPricePerYd] = useState(50);
+    const [density, setDensity] = useState(1.4);
+    const [costPerTon, setCostPerTon] = useState(35);
+    const [deliveryFee, setDeliveryFee] = useState(75);
+    const [compact, setCompact] = useState(false);
 
-    const DENSITY: Record<string, number> = {
-        "crushed-stone": 1.4, "pea-gravel": 1.4, "river-rock": 1.5,
-        "limestone": 1.5, "decomposed-granite": 1.3,
+    const handleMaterial = (v: string) => {
+        setMaterial(v);
+        const m = GRAVEL_TYPES.find(g => g.value === v);
+        if (m && v !== "custom") { setDensity(m.density); setCostPerTon(m.costPerTon); }
     };
 
     const result = useMemo(() => {
         const depthFt = depthUnit === "inches" ? depth / 12 : depth;
-        const cuFt = length * width * depthFt;
-        const cuYd = cuFt / 27;
-        const tons = cuYd * (DENSITY[material] || 1.4);
-        const cost = cuYd * pricePerYd;
-        return { cuFt, cuYd, tons, cost };
-    }, [length, width, depth, depthUnit, material, pricePerYd]);
+        let areaSqFt = shape === "circle" ? Math.PI * (diameter / 2) ** 2 : length * width;
+        let cuFt = areaSqFt * depthFt;
+        let cuYd = cuFt / 27;
+        // Add 10% overage
+        cuYd *= 1.1;
+        // Add 30% compaction if selected
+        if (compact) cuYd *= 1.3;
+        const tons = cuYd * density;
+        const materialCost = tons * costPerTon;
+        const totalCost = materialCost + deliveryFee;
+        return { areaSqFt, cuFt: cuYd * 27, cuYd, tons, materialCost, totalCost };
+    }, [shape, length, width, diameter, depth, depthUnit, density, costPerTon, deliveryFee, compact]);
 
     return (
         <div className="con-calc">
             <h3 className="con-calc__title">🪨 Gravel Calculator</h3>
             <div className="con-calc__inputs">
-                <InputField label="Length" value={length} onChange={setLength} unit="ft" min={0.1} step={0.5} />
-                <InputField label="Width" value={width} onChange={setWidth} unit="ft" min={0.1} step={0.5} />
+                <SelectField label="Shape" value={shape} onChange={setShape} options={[
+                    { value: "rectangle", label: "Rectangle / Square" },
+                    { value: "circle", label: "Circle" },
+                ]} />
+                <SelectField label="Material" value={material} onChange={handleMaterial}
+                    options={GRAVEL_TYPES.map(g => ({ value: g.value, label: g.label }))} />
+                {shape === "rectangle" ? (
+                    <>
+                        <InputField label="Length" value={length} onChange={setLength} unit="ft" min={0.1} step={0.5} />
+                        <InputField label="Width" value={width} onChange={setWidth} unit="ft" min={0.1} step={0.5} />
+                    </>
+                ) : (
+                    <InputField label="Diameter" value={diameter} onChange={setDiameter} unit="ft" min={0.1} step={0.5} />
+                )}
                 <InputField label="Depth" value={depth} onChange={setDepth} unit={depthUnit} min={0.5} step={0.5} />
                 <SelectField label="Depth Unit" value={depthUnit} onChange={setDepthUnit} options={[
                     { value: "inches", label: "Inches" }, { value: "feet", label: "Feet" }
                 ]} />
-                <SelectField label="Material" value={material} onChange={setMaterial} options={[
-                    { value: "crushed-stone", label: "Crushed Stone" },
-                    { value: "pea-gravel", label: "Pea Gravel" },
-                    { value: "river-rock", label: "River Rock" },
-                    { value: "limestone", label: "Limestone" },
-                    { value: "decomposed-granite", label: "Decomposed Granite" },
+                <InputField label="Cost per Ton" value={costPerTon} onChange={setCostPerTon} unit="$" min={0} />
+                <InputField label="Delivery Fee" value={deliveryFee} onChange={setDeliveryFee} unit="$" min={0} />
+                <SelectField label="Compaction" value={compact ? "yes" : "no"} onChange={(v) => setCompact(v === "yes")} options={[
+                    { value: "no", label: "No compaction" }, { value: "yes", label: "Yes (+30%)" },
                 ]} />
-                <InputField label="Price per cu yd" value={pricePerYd} onChange={setPricePerYd} unit="$" min={0} step={5} />
             </div>
             <div className="con-calc__results">
-                <h4>Results</h4>
-                <ResultRow label="Volume" value={fmt(result.cuFt)} unit="cu ft" />
-                <ResultRow label="Volume" value={fmt(result.cuYd)} unit="cu yd" />
-                <ResultRow label="Weight" value={fmt(result.tons, 1)} unit="tons" />
-                <ResultRow label="Estimated Cost" value={`$${fmt(result.cost)}`} />
+                <h4 className="con-calc__group-label">VOLUME (incl. 10% overage{compact ? " + 30% compaction" : ""})</h4>
+                <ResultRow label="Coverage Area" value={fmt(result.areaSqFt)} unit="sq ft" />
+                <ResultRow label="Cubic Yards" value={fmt(result.cuYd, 2)} unit="cu yd" />
+                <ResultRow label="Cubic Feet" value={fmt(result.cuFt)} unit="cu ft" />
+                <h4 className="con-calc__group-label">WEIGHT</h4>
+                <ResultRow label="Estimated Weight" value={fmt(result.tons, 2)} unit="tons" />
+                <ResultRow label="Order (rounded up)" value={`${Math.ceil(result.tons * 2) / 2}`} unit="tons" />
+                <h4 className="con-calc__group-label">COST</h4>
+                <ResultRow label="Material Cost" value={`$${fmtInt(result.materialCost)}`} />
+                <ResultRow label="Delivery" value={`$${fmtInt(deliveryFee)}`} />
+                <ResultRow label="Total Cost" value={`$${fmtInt(result.totalCost)}`} />
             </div>
         </div>
     );
