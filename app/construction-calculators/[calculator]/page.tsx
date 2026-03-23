@@ -565,18 +565,101 @@ const HUB_CONTENT: Record<string, {
         ],
     },
     "roof-pitch-calculator": {
-        subtitle: "Calculate roof pitch from rise and run measurements. Get the pitch ratio, angle in degrees, slope percentage, and the pitch multiplier used for area calculations.",
+        subtitle: "Calculate roof pitch from rise and run. Get pitch ratio, angle in degrees, slope percentage, rafter multiplier, roof classification, and walkability rating. Choose from 7 common presets or enter custom values.",
         explanation: {
             heading: "Understanding Roof Pitch",
             paragraphs: [
-                "Roof pitch is expressed as a ratio of rise to run — for example, 6:12 means the roof rises 6 inches for every 12 inches of horizontal run. This ratio directly determines the steepness of the roof and affects everything from material selection to walkability to structural requirements.",
-                "The pitch multiplier is crucial for accurate material estimation. It converts a flat (horizontal) footprint area into actual roof surface area. For example a 6:12 pitch has a multiplier of 1.118, meaning the actual roof area is 11.8% larger than what you'd measure from the ground.",
+                "Roof pitch is expressed as a ratio of vertical rise to horizontal run — for example, 6:12 means the roof rises 6 inches for every 12 inches of horizontal distance. In the US, pitch is always expressed over a 12-inch run. This ratio determines everything: material choices, walkability, cost, and structural requirements.",
+                "The pitch multiplier converts the flat (footprint) area into actual roof surface area. A 6:12 pitch has a multiplier of 1.118 — meaning the actual roof area is 11.8% larger than the footprint. This directly affects how many shingles, underlayment rolls, and other materials you need.",
             ],
-            highlight: "Common pitch classifications: 0-1:12 = flat roof, 2-4:12 = low slope, 5-8:12 = conventional, 9-12:12 = steep, 12:12+ = very steep. Most residential roofs fall in the 4:12 to 8:12 range.",
+            highlight: "Most US residential roofs are 4:12 to 8:12. A 4:12 roof rises 4 inches per foot (18.4° angle, 1.054× multiplier). A 12:12 roof is a 45° angle with a 1.414× multiplier — 41% more roof area than the footprint.",
         },
+        contentHTML: `
+<h2>Standard Roof Pitches</h2>
+<table>
+<thead><tr><th>Pitch</th><th>Angle (°)</th><th>Multiplier</th><th>Slope %</th><th>Classification</th><th>Walkable?</th></tr></thead>
+<tbody>
+<tr><td><strong>0:12</strong></td><td>0°</td><td>1.000</td><td>0%</td><td>Flat</td><td>Yes — easy</td></tr>
+<tr><td><strong>1:12</strong></td><td>4.8°</td><td>1.003</td><td>8.3%</td><td>Flat</td><td>Yes</td></tr>
+<tr><td><strong>2:12</strong></td><td>9.5°</td><td>1.014</td><td>16.7%</td><td>Low slope</td><td>Yes</td></tr>
+<tr><td><strong>3:12</strong></td><td>14.0°</td><td>1.031</td><td>25.0%</td><td>Low slope</td><td>Yes</td></tr>
+<tr><td><strong>4:12</strong></td><td>18.4°</td><td>1.054</td><td>33.3%</td><td>Conventional</td><td>Yes — caution</td></tr>
+<tr><td><strong>5:12</strong></td><td>22.6°</td><td>1.083</td><td>41.7%</td><td>Conventional</td><td>Yes — caution</td></tr>
+<tr><td><strong>6:12</strong></td><td>26.6°</td><td>1.118</td><td>50.0%</td><td>Conventional</td><td>Moderate</td></tr>
+<tr><td><strong>7:12</strong></td><td>30.3°</td><td>1.158</td><td>58.3%</td><td>Conventional</td><td>Moderate</td></tr>
+<tr><td><strong>8:12</strong></td><td>33.7°</td><td>1.202</td><td>66.7%</td><td>Steep</td><td>Difficult</td></tr>
+<tr><td><strong>9:12</strong></td><td>36.9°</td><td>1.250</td><td>75.0%</td><td>Steep</td><td>Roof jacks needed</td></tr>
+<tr><td><strong>10:12</strong></td><td>39.8°</td><td>1.302</td><td>83.3%</td><td>Steep</td><td>Roof jacks needed</td></tr>
+<tr><td><strong>12:12</strong></td><td>45.0°</td><td>1.414</td><td>100%</td><td>Very steep</td><td>Not walkable</td></tr>
+</tbody>
+</table>
+
+<h2>How to Measure Roof Pitch</h2>
+<h3>Method 1: From the Roof</h3>
+<p>Hold a 12-inch level horizontally on the roof surface. At the 12-inch mark, measure straight down to the roof. That distance is the rise. If it measures 6 inches, your pitch is 6:12.</p>
+
+<h3>Method 2: From the Attic</h3>
+<p>Inside the attic, hold a level against a rafter. Measure 12 inches along the level from the rafter, then measure the distance from that point down to the rafter. This gives the rise without going on the roof — safer for steep roofs.</p>
+
+<h3>Method 3: Total Rise and Run</h3>
+<p>If you know the peak height and building width: <strong>Rise = peak height. Run = half the building width.</strong> Divide the rise (in inches) by the run (in inches) and multiply by 12 for the pitch. Example: 4 ft peak, 20 ft wide building → rise = 48", run = 120" → 48/120 × 12 = 4.8:12 pitch.</p>
+
+<h3>Method 4: Speed Square</h3>
+<p>Place the pivot point of a speed square on the rafter edge with a level attached. Read the degree marking where the rafter crosses the scale. Convert degrees to pitch using the table above or the formula: pitch = tan(degrees) × 12.</p>
+
+<h2>Converting Between Degrees and Pitch</h2>
+<h3>Degrees → Pitch</h3>
+<p><strong>Formula:</strong> Pitch = tan(angle°) × 12. Example: 30° → tan(30°) × 12 = 0.577 × 12 = 6.9:12.</p>
+
+<h3>Pitch → Degrees</h3>
+<p><strong>Formula:</strong> Angle = arctan(rise ÷ 12). Example: 4:12 → arctan(4/12) = arctan(0.333) = 18.4°.</p>
+
+<h2>How Pitch Affects Cost</h2>
+<table>
+<thead><tr><th>Pitch Range</th><th>Cost Impact</th><th>Reason</th></tr></thead>
+<tbody>
+<tr><td>0–2:12 (Flat/Low)</td><td>Base cost</td><td>Easy to walk, no safety equipment</td></tr>
+<tr><td>3–5:12 (Low–Mid)</td><td>+5–10%</td><td>Slightly more material due to area increase</td></tr>
+<tr><td>6–8:12 (Conventional)</td><td>+10–20%</td><td>More materials, moderate safety needs</td></tr>
+<tr><td>9–12:12 (Steep)</td><td>+20–40%</td><td>Roof jacks, harnesses, slower work pace</td></tr>
+<tr><td>12:12+ (Very Steep)</td><td>+40–60%</td><td>Full scaffolding, specialized labor</td></tr>
+</tbody>
+</table>
+
+<h2>Roofing Material by Pitch</h2>
+<table>
+<thead><tr><th>Material</th><th>Minimum Pitch</th><th>Recommended Pitch</th></tr></thead>
+<tbody>
+<tr><td><strong>Built-up / TPO / EPDM (flat roofing)</strong></td><td>0.25:12</td><td>0.25–2:12</td></tr>
+<tr><td><strong>Metal panels (standing seam)</strong></td><td>0.5:12</td><td>3:12+</td></tr>
+<tr><td><strong>Asphalt shingles</strong></td><td>2:12 (with underlayment)</td><td>4:12–12:12</td></tr>
+<tr><td><strong>Wood shakes / shingles</strong></td><td>3:12</td><td>4:12–8:12</td></tr>
+<tr><td><strong>Clay / concrete tile</strong></td><td>2.5:12</td><td>4:12–8:12</td></tr>
+<tr><td><strong>Slate</strong></td><td>4:12</td><td>6:12–12:12</td></tr>
+</tbody>
+</table>
+
+<h2>Common Roof Types by Pitch</h2>
+<ul>
+<li><strong>Flat roof (0–1:12):</strong> Commercial buildings, modern homes. Requires membrane roofing (TPO, EPDM). Must have positive drainage.</li>
+<li><strong>Low slope (2–4:12):</strong> Ranch homes, attached garages. Can use shingles with proper underlayment. Minimum for most residential insurance.</li>
+<li><strong>Conventional (5–8:12):</strong> Most common US residential range. Supports all roofing materials. Good balance of aesthetics, cost, and drainage.</li>
+<li><strong>Steep (9–12:12):</strong> Cape Cod, Tudor, A-frame homes. Excellent snow shedding. Higher cost to install and maintain.</li>
+<li><strong>Gambrel (dual-pitch):</strong> Barn-style. Lower section ~20:12, upper section ~7:12. Maximizes attic/loft space.</li>
+<li><strong>Mansard (dual-pitch, 4 sides):</strong> Similar to gambrel but on all four sides. Very steep lower walls, flat or low-slope top.</li>
+</ul>
+`,
         faq: [
-            { question: "What is the best roof pitch for residential homes?", answer: "4:12 to 6:12 is the most common and practical range. It provides good water drainage, allows most roofing materials, and is safe enough for workers. Steeper pitches (8:12+) look more dramatic but require more materials and specialized safety equipment." },
-            { question: "Does roof pitch affect energy efficiency?", answer: "Yes. Steeper roofs have more surface area exposed to sun, which can increase cooling costs. However, steeper pitches also allow better attic ventilation and can accommodate more insulation. The optimal pitch depends on climate and orientation." },
+            { question: "What is the standard roof pitch?", answer: "Most US residential roofs are 4:12 to 8:12. The most common single pitch is 4:12 (18.4°) — it provides adequate drainage for asphalt shingles, is safe enough for workers to walk on, and doesn't dramatically increase material costs. 6:12 (26.6°) is the second most popular." },
+            { question: "What roof pitch is best for snow?", answer: "9:12 to 12:12 allows snow to slide off naturally, reducing structural snow load. However, you need snow guards to prevent dangerous avalanches. In heavy snow areas (40+ lb/sq ft ground snow load), steeper is better. Below 3:12, snow accumulates and adds structural load — design must account for it." },
+            { question: "What roof pitch is best for high winds?", answer: "6:12 to 7:12 performs best in high-wind zones. Steeper roofs present more surface area to wind uplift. Flatter roofs can experience suction. The 6–7:12 range balances drainage and wind resistance. In hurricane zones, hip roofs outperform gable roofs regardless of pitch." },
+            { question: "What angle is a 4/12 roof pitch?", answer: "A 4:12 pitch equals 18.43 degrees. The formula is: angle = arctan(rise ÷ run) = arctan(4 ÷ 12) = arctan(0.333) = 18.43°. This is considered a low conventional pitch — the minimum recommended for standard asphalt shingles without special underlayment." },
+            { question: "How do I convert roof pitch to degrees?", answer: "Use the formula: degrees = arctan(rise ÷ 12). Examples: 3:12 = 14.0°, 4:12 = 18.4°, 6:12 = 26.6°, 8:12 = 33.7°, 10:12 = 39.8°, 12:12 = 45.0°. Or use the standard pitches table above for instant lookup." },
+            { question: "What is the pitch multiplier used for?", answer: "The pitch multiplier converts the building footprint (measured from the ground or blueprints) into the actual roof surface area. Multiply footprint area × pitch multiplier = actual roof area. A 1,000 sq ft footprint at 6:12 pitch = 1,000 × 1.118 = 1,118 sq ft of actual roof to cover with shingles." },
+            { question: "Can I install asphalt shingles on a low-slope roof?", answer: "Asphalt shingles require a minimum 2:12 pitch, and below 4:12 you must install a full waterproofing underlayment (ice & water shield) beneath the shingles. Many shingle manufacturers void the warranty below 4:12. For roofs below 2:12, use flat-roofing materials (TPO, EPDM, or modified bitumen)." },
+            { question: "Does roof pitch affect energy efficiency?", answer: "Yes. Steeper roofs have more surface area exposed to sun (increasing summer heat gain) but also allow more attic space for insulation and better ventilation. In hot climates, a lower pitch with reflective roofing (cool roof) reduces cooling costs. In cold climates, steeper roofs shed snow and reduce ice dam risk." },
+            { question: "What is the difference between roof pitch and slope?", answer: "In practice, they're used interchangeably, but technically: pitch is expressed as rise:12 (inches per foot), while slope is expressed as a percentage or ratio (rise ÷ run). A 6:12 pitch = 50% slope = 0.5 ratio. Both describe the same angle (26.6°), just in different formats." },
+            { question: "How steep can a roof be?", answer: "There's no theoretical maximum, but practical limits exist. Above 12:12 (45°), roofing is extremely difficult and expensive — workers need full scaffolding. Mansard and A-frame roofs may reach 20:12 (59°) or even near-vertical. Building codes and wind loads typically limit practical residential pitches to 12:12 or less." },
         ],
     },
     "paint-calculator": {

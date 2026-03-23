@@ -450,8 +450,28 @@ function RoofingCalc() {
 
 /* ──────────── 6. ROOF PITCH CALCULATOR ──────────── */
 function RoofPitchCalc() {
+    const COMMON_PITCHES: Record<string, { rise: number; label: string }> = {
+        "0": { rise: 0, label: "Flat (0:12)" },
+        "2": { rise: 2, label: "Low (2:12)" },
+        "4": { rise: 4, label: "Standard (4:12)" },
+        "6": { rise: 6, label: "Conventional (6:12)" },
+        "8": { rise: 8, label: "Steep (8:12)" },
+        "10": { rise: 10, label: "Very Steep (10:12)" },
+        "12": { rise: 12, label: "45° (12:12)" },
+        "custom": { rise: 0, label: "Custom" },
+    };
+
+    const [preset, setPreset] = useState("6");
     const [rise, setRise] = useState(6);
     const [run, setRun] = useState(12);
+
+    const handlePreset = (v: string) => {
+        setPreset(v);
+        const p = COMMON_PITCHES[v];
+        if (p && v !== "custom") { setRise(p.rise); setRun(12); }
+    };
+
+    const isCustom = preset === "custom";
 
     const result = useMemo(() => {
         const pitchRatio = run > 0 ? rise / run * 12 : 0;
@@ -460,23 +480,38 @@ function RoofPitchCalc() {
         const slopePercent = run > 0 ? (rise / run) * 100 : 0;
         const rafterLength = Math.sqrt(rise * rise + run * run);
         const multiplier = run > 0 ? rafterLength / run : 1;
-        return { pitchRatio, angleDeg, slopePercent, rafterLength, multiplier };
+        // Classification
+        let classification = "Flat";
+        let walkable = "Easy — no safety equipment needed";
+        if (pitchRatio > 0 && pitchRatio <= 1) { classification = "Flat"; walkable = "Easy — no safety equipment needed"; }
+        else if (pitchRatio <= 4) { classification = "Low Slope"; walkable = "Easy — standard footwear"; }
+        else if (pitchRatio <= 8) { classification = "Conventional"; walkable = "Moderate — use caution and soft-soled shoes"; }
+        else if (pitchRatio <= 12) { classification = "Steep"; walkable = "Difficult — roof jacks and harness required"; }
+        else { classification = "Very Steep"; walkable = "Not walkable — scaffolding and equipment required"; }
+        return { pitchRatio, angleDeg, slopePercent, rafterLength, multiplier, classification, walkable };
     }, [rise, run]);
 
     return (
         <div className="con-calc">
             <h3 className="con-calc__title">📐 Roof Pitch Calculator</h3>
             <div className="con-calc__inputs">
-                <InputField label="Rise" value={rise} onChange={setRise} unit="in" min={0} step={0.5} />
-                <InputField label="Run" value={run} onChange={setRun} unit="in (12 = standard)" min={1} step={0.5} />
+                <SelectField label="Common Pitch" value={preset} onChange={handlePreset} options={
+                    Object.entries(COMMON_PITCHES).map(([k, v]) => ({ value: k, label: v.label }))
+                } />
+                {isCustom && <InputField label="Rise" value={rise} onChange={setRise} unit="in" min={0} step={0.5} />}
+                {isCustom && <InputField label="Run" value={run} onChange={setRun} unit="in" min={1} step={0.5} />}
             </div>
             <div className="con-calc__results">
-                <h4>Results</h4>
+                <h4>Pitch</h4>
                 <ResultRow label="Pitch" value={`${fmt(result.pitchRatio, 1)}:12`} />
                 <ResultRow label="Angle" value={fmt(result.angleDeg, 1)} unit="degrees" />
                 <ResultRow label="Slope" value={fmt(result.slopePercent, 1)} unit="%" />
-                <ResultRow label="Rafter Length Factor" value={fmt(result.multiplier, 3)} unit="× run" />
+                <h4>Rafter</h4>
+                <ResultRow label="Multiplier" value={fmt(result.multiplier, 3)} unit="×" />
                 <ResultRow label="Rafter Length" value={fmt(result.rafterLength, 1)} unit="in per ft run" />
+                <h4>Classification</h4>
+                <ResultRow label="Roof Type" value={result.classification} />
+                <ResultRow label="Walkability" value={result.walkable} />
             </div>
         </div>
     );
