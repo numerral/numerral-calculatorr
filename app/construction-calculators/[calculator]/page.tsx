@@ -3907,18 +3907,92 @@ Net lawn area: 10,890 − 1,900 = <strong>8,990 sq ft</strong></p>
         ],
     },
     "cfm-calculator": {
-        subtitle: "Calculate cubic feet per minute (CFM) airflow for HVAC, ventilation, exhaust fans, and range hoods.",
+        subtitle: "Calculate CFM airflow for ventilation. Select room type for auto ACH, add occupant-based ASHRAE minimum, and get duct size recommendation.",
         explanation: {
             heading: "How to Calculate CFM",
             paragraphs: [
-                "CFM = (Room Volume × Air Changes per Hour) ÷ 60. Room volume is length × width × ceiling height in feet. Air changes per hour (ACH) vary by room type: 4–6 for offices, 6–8 for kitchens, 8–12 for bathrooms and workshops.",
-                "Common CFM requirements: bathroom exhaust fans 50–110 CFM, kitchen range hoods 100–600 CFM, whole-house fans 3,000–6,000 CFM. Building codes often specify minimum ventilation rates.",
+                "CFM = (Room Volume × ACH) ÷ 60. Select room type to auto-set air changes per hour, or enter custom ACH. ASHRAE minimum: 15 CFM per occupant or 0.35 ACH, whichever is greater.",
+                "Results include recommended CFM (higher of ACH-based and ASHRAE), metric L/s conversion, CFM/sq ft, and duct diameter sized for 900 FPM velocity.",
             ],
-            highlight: "A 12 × 10 × 8 ft room at 6 ACH: (960 × 6) ÷ 60 = 96 CFM needed.",
+            highlight: "12 × 10 × 8 ft living room, 6 ACH, 2 occupants: ACH-based = 96 CFM, ASHRAE min = 30 CFM → recommended 96 CFM. Min duct: 5\" round.",
         },
+        contentHTML: `
+<p><strong>CFM (cubic feet per minute)</strong> measures the volume of air flowing through a space or duct. It's the primary metric for sizing <strong>exhaust fans, range hoods, HVAC systems, air purifiers, and ventilation equipment</strong>.</p>
+<p>The calculator above includes <strong>9 room type presets</strong> with auto-set ACH, <strong>ASHRAE occupant-based ventilation</strong>, <strong>L/s metric conversion</strong>, and <strong>duct diameter recommendation</strong>.</p>
+
+<h2>CFM Formula</h2>
+<p><strong>CFM = (Length × Width × Height × ACH) ÷ 60</strong></p>
+<p>Where L, W, H are room dimensions in feet, and ACH = air changes per hour.</p>
+
+<h3>Step 1: Measure the Room</h3>
+<p>Measure length, width, and ceiling height in feet. For irregular rooms, break into rectangles and add areas.</p>
+
+<h3>Step 2: Calculate Volume</h3>
+<p>Volume (cu ft) = L × W × H. Example: 12 × 10 × 8 = <strong>960 cu ft</strong>.</p>
+
+<h3>Step 3: Determine ACH</h3>
+<p>Air changes per hour depend on room type and use. Higher ACH = more air replacement per hour = better air quality.</p>
+
+<h3>Step 4: Calculate CFM</h3>
+<p>CFM = (960 × 6) ÷ 60 = <strong>96 CFM</strong> for a living room at 6 ACH.</p>
+
+<h2>Air Changes per Hour by Room Type</h2>
+<table>
+<thead><tr><th>Room Type</th><th>Recommended ACH</th><th>CFM for 120 sq ft (8 ft ceiling)</th></tr></thead>
+<tbody>
+<tr><td><strong>Bedroom</strong></td><td>4</td><td>64 CFM</td></tr>
+<tr><td><strong>Living Room</strong></td><td>6</td><td>96 CFM</td></tr>
+<tr><td><strong>Office / Study</strong></td><td>6</td><td>96 CFM</td></tr>
+<tr><td><strong>Kitchen</strong></td><td>8</td><td>128 CFM</td></tr>
+<tr><td><strong>Bathroom</strong></td><td>10</td><td>160 CFM</td></tr>
+<tr><td><strong>Laundry Room</strong></td><td>10</td><td>160 CFM</td></tr>
+<tr><td><strong>Garage / Workshop</strong></td><td>12</td><td>192 CFM</td></tr>
+<tr><td><strong>Restaurant Kitchen</strong></td><td>15–20</td><td>240–320 CFM</td></tr>
+<tr><td><strong>Server Room</strong></td><td>15–20</td><td>240–320 CFM</td></tr>
+</tbody>
+</table>
+
+<h2>Residential Ventilation Requirements</h2>
+<table>
+<thead><tr><th>Space</th><th>Minimum CFM</th><th>Code Reference</th></tr></thead>
+<tbody>
+<tr><td><strong>Bathroom (≤100 sq ft)</strong></td><td>50 CFM continuous or 1 CFM/sq ft</td><td>IRC M1507</td></tr>
+<tr><td><strong>Bathroom (>100 sq ft)</strong></td><td>1 CFM/sq ft + 50 per fixture</td><td>IRC M1507</td></tr>
+<tr><td><strong>Kitchen (range hood)</strong></td><td>100 CFM/ft of range</td><td>IMC Table 403</td></tr>
+<tr><td><strong>Kitchen (downdraft)</strong></td><td>300–600 CFM</td><td>Manufacturer spec</td></tr>
+<tr><td><strong>Utility/Laundry</strong></td><td>50 CFM continuous</td><td>IRC M1507</td></tr>
+<tr><td><strong>Whole-house</strong></td><td>0.35 ACH or 15 CFM/person</td><td>ASHRAE 62.2</td></tr>
+<tr><td><strong>Garage (attached)</strong></td><td>100 CFM continuous</td><td>IRC M1505</td></tr>
+<tr><td><strong>Crawl space</strong></td><td>1 CFM/150 sq ft</td><td>IRC R408</td></tr>
+</tbody>
+</table>
+
+<h2>Range Hood Sizing</h2>
+<ul>
+<li><strong>Wall-mounted:</strong> 100 CFM per linear foot of range. 30" range = 250 CFM min.</li>
+<li><strong>Island hoods:</strong> 150 CFM per linear foot. 36" island range = 450 CFM min.</li>
+<li><strong>Professional ranges (>60K BTU):</strong> 1 CFM per 100 BTU. 90K BTU range = 900 CFM.</li>
+<li><strong>Makeup air:</strong> Hoods >400 CFM require makeup air per IRC M1503.6.</li>
+</ul>
+
+<h2>Bathroom Fan Sizing</h2>
+<ul>
+<li><strong>Small bathroom (≤100 sq ft):</strong> 1 CFM per sq ft, minimum 50 CFM.</li>
+<li><strong>Large bathroom (>100 sq ft):</strong> Add 50 CFM per toilet, shower, bathtub, and jetted tub.</li>
+<li><strong>Sone rating:</strong> ≤1.0 sone = very quiet, 1.0–2.0 = quiet, >3.0 = noticeable noise.</li>
+</ul>
+`,
         faq: [
-            { question: "How many CFM do I need for a bathroom fan?", answer: "1 CFM per square foot minimum. A 50 sq ft bathroom needs at least 50 CFM. For bathrooms over 100 sq ft, add 50 CFM per toilet, shower, and bathtub." },
-            { question: "What size exhaust fan for my kitchen?", answer: "Range hoods: 100 CFM per linear foot of range for wall-mounted, 150 CFM per foot for island hoods. A 30-inch range needs at least 250 CFM; a 36-inch professional range may need 600+ CFM." },
+            { question: "How many CFM do I need for a bathroom fan?", answer: "1 CFM per square foot, minimum 50 CFM. A 80 sq ft bathroom needs 80 CFM. For bathrooms over 100 sq ft: add 50 CFM for each toilet, shower, and bathtub. Example: 150 sq ft bathroom with toilet + shower + bathtub = 150 + 50 + 50 + 50 = 300 CFM." },
+            { question: "What size exhaust fan for my kitchen?", answer: "Wall-mounted: 100 CFM per linear foot of range (30\" = 250 CFM, 36\" = 300 CFM). Island: 150 CFM/ft (36\" = 450 CFM). Professional ranges: 1 CFM per 100 BTU input (60K BTU = 600 CFM). Hoods over 400 CFM require makeup air per IRC M1503.6." },
+            { question: "What is ACH (air changes per hour)?", answer: "ACH is the number of times the entire air volume in a room is replaced per hour. 6 ACH means the air is completely replaced 6 times per hour. Higher ACH = better air quality but more energy to heat/cool the incoming air. Residential: 4–8 ACH. Commercial kitchens: 15–20 ACH." },
+            { question: "What is the ASHRAE ventilation standard?", answer: "ASHRAE 62.2 requires minimum 0.35 ACH or 15 CFM per person in residential homes, whichever is greater. For a 2,000 sq ft home with 8 ft ceilings and 4 occupants: 0.35 ACH = 93 CFM; 15 × 4 = 60 CFM → use 93 CFM minimum. This is for whole-house ventilation." },
+            { question: "How do I size ductwork for CFM?", answer: "Target 600–900 FPM velocity in main ducts, 400–600 FPM in branch ducts. Duct area (sq in) = CFM ÷ FPM × 144. Example: 100 CFM at 900 FPM: area = 16 sq in → 5\" round duct (19.6 sq in). Common sizes: 4\" (25 CFM), 6\" (100 CFM), 8\" (200 CFM), 10\" (350 CFM)." },
+            { question: "What is CFM per square foot?", answer: "A quick rule of thumb: 1 CFM per square foot is the minimum for bathrooms and kitchens. For living spaces, 0.5–1.0 CFM/sq ft is typical. For commercial spaces, 1.5–2.0 CFM/sq ft. The exact amount depends on ceiling height, ACH requirement, and occupancy." },
+            { question: "How many CFM for a whole-house fan?", answer: "2–4 CFM per square foot of living space. A 2,000 sq ft home: 4,000–8,000 CFM. Whole-house fans work by pulling cool outdoor air through open windows and exhausting hot attic air. They can reduce AC usage by 50–90% on mild days." },
+            { question: "Do I need makeup air for my range hood?", answer: "Yes, if your range hood exceeds 400 CFM (per IRC M1503.6 and most local codes). Makeup air replaces the air exhausted by the hood to prevent negative pressure, backdrafting of gas appliances, and CO infiltration. Makeup air systems typically cost $500–$2,000 to install." },
+            { question: "How do I convert CFM to liters per second?", answer: "Multiply CFM by 0.4719. Example: 100 CFM × 0.4719 = 47.19 L/s. Reverse: L/s × 2.119 = CFM. Metric systems (Canada, Europe, Australia) typically specify airflow in L/s rather than CFM." },
+            { question: "Why is my HVAC airflow low?", answer: "Common causes: dirty air filter (replace every 1–3 months), blocked/closed registers, kinked flex duct, undersized ductwork, failing blower motor, frozen evaporator coil, or dirty coils. Low airflow reduces comfort and efficiency. Target 400 CFM per ton of cooling capacity." },
         ],
     },
     "flow-rate-calculator": {

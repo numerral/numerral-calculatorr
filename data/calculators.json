@@ -13115,7 +13115,7 @@
     "categorySlug": "construction-calculators",
     "icon": "💨",
     "calcType": "cfm",
-    "description": "Calculate cubic feet per minute (CFM) airflow for HVAC, ventilation, and exhaust fans. Enter room size and air changes per hour.",
+    "description": "Calculate CFM airflow by room type. Auto-set ACH, ASHRAE occupant minimum, L/s metric, and duct size recommendation.",
     "stars": 5,
     "defaults": {
       "amount": 12,

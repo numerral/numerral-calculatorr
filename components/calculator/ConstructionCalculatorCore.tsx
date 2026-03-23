@@ -7116,19 +7116,47 @@ function TankVolumeCalc() {
 }
 
 /* ──────────── 148. CFM CALCULATOR ──────────── */
+const ROOM_TYPES: { value: string; label: string; ach: number }[] = [
+    { value: "bedroom", label: "Bedroom", ach: 4 },
+    { value: "living", label: "Living Room", ach: 6 },
+    { value: "office", label: "Office / Study", ach: 6 },
+    { value: "kitchen", label: "Kitchen", ach: 8 },
+    { value: "bathroom", label: "Bathroom", ach: 10 },
+    { value: "laundry", label: "Laundry Room", ach: 10 },
+    { value: "garage", label: "Garage / Workshop", ach: 12 },
+    { value: "restaurant", label: "Restaurant Kitchen", ach: 15 },
+    { value: "custom", label: "Custom ACH", ach: 6 },
+];
+
 function CfmCalc() {
     const [length, setLength] = useState(12);
     const [width, setWidth] = useState(10);
     const [ceilingHeight, setCeilingHeight] = useState(8);
+    const [roomType, setRoomType] = useState("living");
     const [ach, setAch] = useState("6");
+    const [occupants, setOccupants] = useState(2);
+
+    const handleRoomType = (v: string) => {
+        setRoomType(v);
+        const rt = ROOM_TYPES.find(r => r.value === v);
+        if (rt && v !== "custom") setAch(String(rt.ach));
+    };
 
     const result = useMemo(() => {
         const volume = length * width * ceilingHeight;
+        const sqFt = length * width;
         const achVal = Number(ach);
         const cfm = (volume * achVal) / 60;
-        const cfmPerSqFt = cfm / (length * width);
-        return { volume, cfm, cfmPerSqFt };
-    }, [length, width, ceilingHeight, ach]);
+        const cfmPerSqFt = cfm / sqFt;
+        const ashraeMin = occupants * 15;
+        const recommended = Math.max(cfm, ashraeMin);
+        const lps = recommended * 0.4719;
+        // Duct sizing: target ~900 FPM velocity
+        const ductAreaSqIn = (recommended / 900) * 144;
+        const ductDia = Math.sqrt(ductAreaSqIn / Math.PI) * 2;
+        const ductRound = Math.ceil(ductDia);
+        return { volume, sqFt, cfm, cfmPerSqFt, ashraeMin, recommended, lps, ductRound };
+    }, [length, width, ceilingHeight, ach, occupants]);
 
     return (
         <div className="con-calc">
@@ -7137,20 +7165,29 @@ function CfmCalc() {
                 <InputField label="Room Length" value={length} onChange={setLength} unit="ft" min={1} />
                 <InputField label="Room Width" value={width} onChange={setWidth} unit="ft" min={1} />
                 <InputField label="Ceiling Height" value={ceilingHeight} onChange={setCeilingHeight} unit="ft" min={6} max={20} />
-                <SelectField label="Air Changes / Hour (ACH)" value={ach} onChange={setAch} options={[
-                    { value: "4", label: "4 ACH – Offices, Bedrooms" },
-                    { value: "6", label: "6 ACH – Living Rooms, Retail" },
-                    { value: "8", label: "8 ACH – Kitchens, Restaurants" },
-                    { value: "10", label: "10 ACH – Bathrooms, Labs" },
-                    { value: "12", label: "12 ACH – Workshops, Garages" },
-                    { value: "15", label: "15 ACH – Smoking Areas, Bars" },
-                ]} />
+                <SelectField label="Room Type" value={roomType} onChange={handleRoomType}
+                    options={ROOM_TYPES.map(r => ({ value: r.value, label: `${r.label} (${r.ach} ACH)` }))} />
+                {roomType === "custom" && (
+                    <SelectField label="Air Changes / Hour" value={ach} onChange={setAch} options={[
+                        { value: "2", label: "2 ACH" }, { value: "4", label: "4 ACH" }, { value: "6", label: "6 ACH" },
+                        { value: "8", label: "8 ACH" }, { value: "10", label: "10 ACH" }, { value: "12", label: "12 ACH" },
+                        { value: "15", label: "15 ACH" }, { value: "20", label: "20 ACH" },
+                    ]} />
+                )}
+                <InputField label="Occupants" value={occupants} onChange={setOccupants} min={1} max={50} />
             </div>
             <div className="con-calc__results">
-                <h4>Results</h4>
-                <ResultRow label="Room Volume" value={fmt(result.volume)} unit="cu ft" />
-                <ResultRow label="Required CFM" value={fmt(result.cfm, 1)} unit="CFM" />
+                <h4 className="con-calc__group-label">ROOM</h4>
+                <ResultRow label="Floor Area" value={fmt(result.sqFt)} unit="sq ft" />
+                <ResultRow label="Volume" value={fmt(result.volume)} unit="cu ft" />
+                <h4 className="con-calc__group-label">VENTILATION</h4>
+                <ResultRow label={`CFM (${ach} ACH)`} value={fmt(result.cfm, 1)} unit="CFM" />
+                <ResultRow label="ASHRAE Min (15 CFM/person)" value={fmt(result.ashraeMin)} unit="CFM" />
+                <ResultRow label="Recommended CFM" value={fmt(result.recommended, 1)} unit="CFM" />
+                <ResultRow label="Airflow (metric)" value={fmt(result.lps, 1)} unit="L/s" />
                 <ResultRow label="CFM per Sq Ft" value={fmt(result.cfmPerSqFt, 2)} unit="CFM/ft²" />
+                <h4 className="con-calc__group-label">DUCT SIZING</h4>
+                <ResultRow label="Min Round Duct" value={`${result.ductRound}"`} unit="diameter" />
             </div>
         </div>
     );
