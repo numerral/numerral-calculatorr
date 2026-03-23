@@ -1343,34 +1343,92 @@ function StaircaseCalc() {
 }
 
 /* ──────────── 17. LUMBER CALCULATOR ──────────── */
+const WOOD_SPECIES: { value: string; label: string; density: number; costPerBF: number }[] = [
+    { value: "spf", label: "SPF (Spruce-Pine-Fir)", density: 28, costPerBF: 3 },
+    { value: "pt-pine", label: "Pressure-Treated Pine", density: 35, costPerBF: 4 },
+    { value: "doug-fir", label: "Douglas Fir", density: 34, costPerBF: 4 },
+    { value: "cedar", label: "Western Red Cedar", density: 23, costPerBF: 6 },
+    { value: "redwood", label: "Redwood", density: 28, costPerBF: 8 },
+    { value: "poplar", label: "Poplar", density: 29, costPerBF: 4 },
+    { value: "red-oak", label: "Red Oak", density: 44, costPerBF: 6 },
+    { value: "white-oak", label: "White Oak", density: 47, costPerBF: 7 },
+    { value: "hard-maple", label: "Hard Maple", density: 44, costPerBF: 6 },
+    { value: "walnut", label: "Black Walnut", density: 38, costPerBF: 12 },
+    { value: "cherry", label: "Cherry", density: 35, costPerBF: 7 },
+    { value: "custom", label: "Custom Species", density: 30, costPerBF: 5 },
+];
+
+const DIM_PRESETS: { value: string; label: string; w: number; t: number }[] = [
+    { value: "custom", label: "Custom Dimensions", w: 6, t: 1 },
+    { value: "2x4", label: "2×4 (1.5\" × 3.5\" actual)", w: 4, t: 2 },
+    { value: "2x6", label: "2×6 (1.5\" × 5.5\" actual)", w: 6, t: 2 },
+    { value: "2x8", label: "2×8 (1.5\" × 7.25\" actual)", w: 8, t: 2 },
+    { value: "2x10", label: "2×10 (1.5\" × 9.25\" actual)", w: 10, t: 2 },
+    { value: "2x12", label: "2×12 (1.5\" × 11.25\" actual)", w: 12, t: 2 },
+    { value: "4x4", label: "4×4 (3.5\" × 3.5\" actual)", w: 4, t: 4 },
+    { value: "1x6", label: "1×6 (0.75\" × 5.5\" actual)", w: 6, t: 1 },
+    { value: "1x8", label: "1×8 (0.75\" × 7.25\" actual)", w: 8, t: 1 },
+];
+
 function LumberCalc() {
+    const [species, setSpecies] = useState("spf");
+    const [dimPreset, setDimPreset] = useState("custom");
     const [boardLength, setBoardLength] = useState(8);
     const [boardWidth, setBoardWidth] = useState(6);
     const [boardThickness, setBoardThickness] = useState(1);
     const [quantity, setQuantity] = useState(10);
-    const [pricePerBF, setPricePerBF] = useState(5);
+    const [pricePerBF, setPricePerBF] = useState(3);
+
+    const handleSpecies = (v: string) => {
+        setSpecies(v);
+        const s = WOOD_SPECIES.find(w => w.value === v);
+        if (s && v !== "custom") setPricePerBF(s.costPerBF);
+    };
+
+    const handleDim = (v: string) => {
+        setDimPreset(v);
+        const d = DIM_PRESETS.find(p => p.value === v);
+        if (d && v !== "custom") { setBoardWidth(d.w); setBoardThickness(d.t); }
+    };
 
     const result = useMemo(() => {
         const boardFeetEach = (boardLength * boardWidth * boardThickness) / 12;
         const totalBF = boardFeetEach * quantity;
+        const cuFtEach = boardFeetEach / 12;
+        const sp = WOOD_SPECIES.find(w => w.value === species);
+        const density = sp?.density || 30;
+        const weightEach = cuFtEach * density;
+        const totalWeight = weightEach * quantity;
         const cost = totalBF * pricePerBF;
-        return { boardFeetEach, totalBF, cost };
-    }, [boardLength, boardWidth, boardThickness, quantity, pricePerBF]);
+        return { boardFeetEach, totalBF, cuFtEach, weightEach, totalWeight, cost };
+    }, [boardLength, boardWidth, boardThickness, quantity, pricePerBF, species]);
 
     return (
         <div className="con-calc">
             <h3 className="con-calc__title">🪓 Lumber Calculator</h3>
             <div className="con-calc__inputs">
+                <SelectField label="Wood Species" value={species} onChange={handleSpecies}
+                    options={WOOD_SPECIES.map(w => ({ value: w.value, label: w.label }))} />
+                <SelectField label="Lumber Size" value={dimPreset} onChange={handleDim}
+                    options={DIM_PRESETS.map(d => ({ value: d.value, label: d.label }))} />
                 <InputField label="Board Length" value={boardLength} onChange={setBoardLength} unit="ft" min={1} />
-                <InputField label="Board Width" value={boardWidth} onChange={setBoardWidth} unit="in" min={1} />
-                <InputField label="Board Thickness" value={boardThickness} onChange={setBoardThickness} unit="in" min={0.25} step={0.25} />
+                {dimPreset === "custom" && (
+                    <>
+                        <InputField label="Board Width" value={boardWidth} onChange={setBoardWidth} unit="in" min={1} />
+                        <InputField label="Thickness" value={boardThickness} onChange={setBoardThickness} unit="in" min={0.25} step={0.25} />
+                    </>
+                )}
                 <InputField label="Quantity" value={quantity} onChange={setQuantity} min={1} />
                 <InputField label="Price per Board Foot" value={pricePerBF} onChange={setPricePerBF} unit="$" min={0} step={0.5} />
             </div>
             <div className="con-calc__results">
-                <h4>Results</h4>
+                <h4 className="con-calc__group-label">BOARD FEET</h4>
                 <ResultRow label="Board Feet (each)" value={fmt(result.boardFeetEach)} unit="BF" />
                 <ResultRow label="Total Board Feet" value={fmt(result.totalBF)} unit="BF" />
+                <h4 className="con-calc__group-label">WEIGHT</h4>
+                <ResultRow label="Weight per Board" value={fmt(result.weightEach, 1)} unit="lbs" />
+                <ResultRow label="Total Weight" value={fmtInt(result.totalWeight)} unit="lbs" />
+                <h4 className="con-calc__group-label">COST</h4>
                 <ResultRow label="Estimated Cost" value={`$${fmt(result.cost)}`} />
             </div>
         </div>

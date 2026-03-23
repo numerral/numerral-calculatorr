@@ -1573,7 +1573,7 @@ const HUB_CONTENT: Record<string, {
         ],
     },
     "lumber-calculator": {
-        subtitle: "Calculate board feet for any lumber purchase. Enter board dimensions and quantity to get total board footage and estimated cost.",
+        subtitle: "Calculate board feet, weight, and cost for any lumber purchase. Choose from 11 wood species with density data and 8 dimensional lumber presets.",
         explanation: {
             heading: "How to Calculate Board Feet",
             paragraphs: [
@@ -1582,9 +1582,93 @@ const HUB_CONTENT: Record<string, {
             ],
             highlight: "10 boards of 8 ft × 6\" × 1\" = 10 × (8 × 6 × 1 ÷ 12) = 10 × 4 = 40 board feet. At $5/BF = $200 total.",
         },
+        contentHTML: `
+<p>Lumber is the backbone of <strong>US construction and woodworking</strong>. Whether you're framing a house, building a deck, crafting furniture, or finishing a trim project, accurately calculating board footage, weight, and cost is essential to avoid over-ordering and wasted material.</p>
+<p>The calculator above includes <strong>11 wood species</strong> with density data (for weight estimation), <strong>8 dimensional lumber presets</strong> (2×4 through 4×4 with actual sizes), and a <strong>weight output</strong> so you know how much your lumber order weighs before delivery.</p>
+
+<h2>Wood Species Density Chart</h2>
+<p>Wood density determines weight and hardness. Density values below are for air-dried wood (~12% moisture content). Green (freshly cut) lumber can weigh <strong>50–100% more</strong> due to moisture.</p>
+<table>
+<thead><tr><th>Species</th><th>Type</th><th>Density (lbs/cu ft)</th><th>8 ft 2×4 Weight</th><th>Cost per BF</th></tr></thead>
+<tbody>
+<tr><td><strong>SPF (Spruce-Pine-Fir)</strong></td><td>Softwood</td><td>28</td><td>~9 lbs</td><td>$2–$4</td></tr>
+<tr><td><strong>Pressure-Treated Pine</strong></td><td>Softwood</td><td>35</td><td>~11 lbs</td><td>$3–$5</td></tr>
+<tr><td><strong>Douglas Fir</strong></td><td>Softwood</td><td>34</td><td>~11 lbs</td><td>$3–$5</td></tr>
+<tr><td><strong>Western Red Cedar</strong></td><td>Softwood</td><td>23</td><td>~7 lbs</td><td>$5–$8</td></tr>
+<tr><td><strong>Redwood</strong></td><td>Softwood</td><td>28</td><td>~9 lbs</td><td>$6–$10</td></tr>
+<tr><td><strong>Poplar</strong></td><td>Hardwood</td><td>29</td><td>~9 lbs</td><td>$3–$5</td></tr>
+<tr><td><strong>Red Oak</strong></td><td>Hardwood</td><td>44</td><td>~14 lbs</td><td>$5–$8</td></tr>
+<tr><td><strong>White Oak</strong></td><td>Hardwood</td><td>47</td><td>~15 lbs</td><td>$6–$9</td></tr>
+<tr><td><strong>Hard Maple</strong></td><td>Hardwood</td><td>44</td><td>~14 lbs</td><td>$5–$8</td></tr>
+<tr><td><strong>Black Walnut</strong></td><td>Hardwood</td><td>38</td><td>~12 lbs</td><td>$8–$15</td></tr>
+<tr><td><strong>Cherry</strong></td><td>Hardwood</td><td>35</td><td>~11 lbs</td><td>$6–$10</td></tr>
+</tbody>
+</table>
+
+<h2>Step-by-Step Board Foot Calculation</h2>
+<h3>Step 1: Measure the Board</h3>
+<p>Measure <strong>length</strong> in feet, <strong>width</strong> in inches, and <strong>thickness</strong> in inches. For dimensional lumber (2×4, 2×6, etc.), use the nominal dimensions for board foot pricing — lumberyards price by nominal size.</p>
+
+<h3>Step 2: Calculate Board Feet</h3>
+<p><strong>Formula:</strong> Board Feet = (Length ft × Width in × Thickness in) ÷ 12</p>
+<p><strong>Example:</strong> An 8 ft × 6" × 1" board: (8 × 6 × 1) ÷ 12 = <strong>4 board feet</strong></p>
+<p><strong>Example:</strong> A 10 ft 2×6: (10 × 6 × 2) ÷ 12 = <strong>10 board feet</strong></p>
+
+<h3>Step 3: Estimate Weight</h3>
+<p>Convert board feet to cubic feet (÷ 12), then multiply by the wood's density (lbs/cu ft).</p>
+<p><strong>Example:</strong> 4 BF of red oak: 4 ÷ 12 = 0.333 cu ft × 44 lbs/cu ft = <strong>14.7 lbs</strong></p>
+
+<h2>Dimensional Lumber: Nominal vs. Actual Sizes</h2>
+<table>
+<thead><tr><th>Nominal</th><th>Actual Size</th><th>Board Feet per 8 ft</th><th>Weight (SPF, 8 ft)</th></tr></thead>
+<tbody>
+<tr><td><strong>1×4</strong></td><td>¾" × 3½"</td><td>2.67 BF</td><td>~4.4 lbs</td></tr>
+<tr><td><strong>1×6</strong></td><td>¾" × 5½"</td><td>4.00 BF</td><td>~6.2 lbs</td></tr>
+<tr><td><strong>1×8</strong></td><td>¾" × 7¼"</td><td>5.33 BF</td><td>~8.2 lbs</td></tr>
+<tr><td><strong>2×4</strong></td><td>1½" × 3½"</td><td>5.33 BF</td><td>~9.0 lbs</td></tr>
+<tr><td><strong>2×6</strong></td><td>1½" × 5½"</td><td>8.00 BF</td><td>~13.1 lbs</td></tr>
+<tr><td><strong>2×8</strong></td><td>1½" × 7¼"</td><td>10.67 BF</td><td>~17.3 lbs</td></tr>
+<tr><td><strong>2×10</strong></td><td>1½" × 9¼"</td><td>13.33 BF</td><td>~22.1 lbs</td></tr>
+<tr><td><strong>2×12</strong></td><td>1½" × 11¼"</td><td>16.00 BF</td><td>~26.8 lbs</td></tr>
+<tr><td><strong>4×4</strong></td><td>3½" × 3½"</td><td>10.67 BF</td><td>~18.2 lbs</td></tr>
+</tbody>
+</table>
+
+<h2>2025 US Lumber Cost Guide</h2>
+<table>
+<thead><tr><th>Lumber Type</th><th>Cost per BF</th><th>8 ft 2×4 Price</th><th>Best For</th></tr></thead>
+<tbody>
+<tr><td><strong>SPF (#2 grade)</strong></td><td>$2–$4</td><td>$3–$6</td><td>Framing, general construction</td></tr>
+<tr><td><strong>Pressure-Treated</strong></td><td>$3–$5</td><td>$5–$9</td><td>Decks, fences, ground contact</td></tr>
+<tr><td><strong>Douglas Fir</strong></td><td>$3–$5</td><td>$5–$8</td><td>Structural, beams, posts</td></tr>
+<tr><td><strong>Cedar (WRC)</strong></td><td>$5–$8</td><td>$8–$14</td><td>Decks, siding, outdoor furniture</td></tr>
+<tr><td><strong>Red Oak</strong></td><td>$5–$8</td><td>$10–$16</td><td>Furniture, cabinets, flooring</td></tr>
+<tr><td><strong>Black Walnut</strong></td><td>$8–$15</td><td>$16–$30</td><td>Fine furniture, cutting boards</td></tr>
+<tr><td><strong>Cherry</strong></td><td>$6–$10</td><td>$12–$20</td><td>Furniture, trim, cabinetry</td></tr>
+</tbody>
+</table>
+<p><strong>Lumber grading:</strong> #1 (select/premium) costs 20–50% more than #2 (standard). FAS (First and Seconds) is the top hardwood grade. Common #1 is standard for cabinet-grade hardwood.</p>
+
+<h2>Lumber Buying Tips</h2>
+<ul>
+<li><strong>Buy 10–15% extra</strong> for waste, defects, and miscuts</li>
+<li><strong>Kiln-dried (KD)</strong> lumber is more stable than green; look for "KD" or "HT" (heat-treated) stamps</li>
+<li><strong>Board foot pricing</strong> is standard for hardwoods and rough-sawn lumber; dimensional softwood is usually priced per piece</li>
+<li><strong>Check for straight boards</strong> at the store — sight down the length for twist, bow, and warp</li>
+<li><strong>Bulk discounts</strong> are common at lumberyards (not big-box stores) for orders over 100 BF</li>
+</ul>
+`,
         faq: [
-            { question: "What is the difference between nominal and actual lumber dimensions?", answer: "Nominal is the rough-cut size; actual is after drying and planing. Example: 2×4 nominal = 1.5×3.5 actual, 2×6 = 1.5×5.5, 2×8 = 1.5×7.25, 2×10 = 1.5×9.25, 2×12 = 1.5×11.25, 4×4 = 3.5×3.5." },
-            { question: "How much does lumber cost per board foot?", answer: "Pine/SPF: $2–$5/BF. Oak: $4–$8/BF. Walnut: $8–$15/BF. Cherry: $6–$10/BF. Maple: $5–$8/BF. Cedar: $4–$7/BF. Prices vary by region, grade, and market conditions." },
+            { question: "What is a board foot?", answer: "A board foot (BF) is the standard unit of lumber measurement: 1 inch thick × 12 inches wide × 12 inches long = 144 cubic inches. Formula: BF = (Length ft × Width in × Thickness in) ÷ 12. An 8 ft 2×6 = (8 × 6 × 2) ÷ 12 = 8 board feet." },
+            { question: "What is the difference between nominal and actual lumber dimensions?", answer: "Nominal is the rough-cut size; actual is after drying and planing. 2×4 nominal = 1.5×3.5 actual. 2×6 = 1.5×5.5. 2×8 = 1.5×7.25. 2×10 = 1.5×9.25. 2×12 = 1.5×11.25. 4×4 = 3.5×3.5. 1x boards lose ¼\" in thickness." },
+            { question: "How much does lumber weigh?", answer: "It depends on the species and moisture content. An 8 ft SPF 2×4 weighs ~9 lbs (air-dried). Douglas Fir: ~11 lbs. Red Oak: ~14 lbs. Western Red Cedar: ~7 lbs. Green (fresh-cut) lumber can weigh 50–100% more due to water content." },
+            { question: "How much does lumber cost per board foot?", answer: "SPF/pine: $2–$4/BF. Pressure-treated: $3–$5/BF. Cedar: $5–$8/BF. Oak: $5–$8/BF. Walnut: $8–$15/BF. Cherry: $6–$10/BF. Prices vary by region, grade, moisture content, and market conditions. Hardwoods are priced per BF; softwood is often priced per piece." },
+            { question: "How do I convert board feet to cubic feet?", answer: "Divide board feet by 12. Example: 48 board feet ÷ 12 = 4 cubic feet. This is because 1 board foot = 1/12 of a cubic foot (1\" thick × 12\" × 12\" = 144 cu in, while 1 cu ft = 1,728 cu in; 144/1,728 = 1/12)." },
+            { question: "What lumber grade should I use?", answer: "Construction framing: #2 or better (SPF, Doug Fir). Decks/porches: #1 or premium pressure-treated. Furniture: FAS (First and Seconds) or Select hardwood. Trim/molding: Clear or #1 common. The grade affects appearance (knots, defects) and structural rating." },
+            { question: "What's the best wood for outdoor projects?", answer: "Pressure-treated pine: cheapest, lasts 15–20 years. Western Red Cedar: naturally rot-resistant, 20+ years, no chemicals. Redwood: premium, 30+ years. Ipe (Brazilian hardwood): 40+ years, extremely durable but very expensive ($15–$25/BF). All outdoor wood should be sealed or stained." },
+            { question: "How much weight can my truck carry?", answer: "A standard ½-ton pickup (F-150, Silverado) has a payload of 1,500–2,000 lbs. A typical load of 30 8-ft 2×4s weighs ~270 lbs. But 30 8-ft 2×12s weigh ~800 lbs. Hardwood is heavier — 20 8-ft red oak 2×4s weigh ~280 lbs. Always check your truck's payload rating." },
+            { question: "What does 'S4S' mean on lumber?", answer: "S4S = Surfaced 4 Sides (planed smooth on all faces and edges). S2S = Surfaced 2 Sides (faces planed, edges rough). Rough-sawn = no planing (full nominal thickness). S4S is standard at big-box stores. Rough-sawn is common at sawmills and hardwood dealers." },
+            { question: "How much lumber do I need for a 2,000 sq ft house?", answer: "A typical wood-frame house uses 6,000–10,000 board feet of lumber per 1,000 sq ft. A 2,000 sq ft house: ~12,000–20,000 BF total (framing, sheathing, trim). That's roughly $25,000–$50,000 in lumber at 2025 prices, or 15–20% of total construction cost." },
         ],
     },
     "insulation-calculator": {

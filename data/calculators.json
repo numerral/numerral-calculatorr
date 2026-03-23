@@ -7657,7 +7657,7 @@
     "categorySlug": "construction-calculators",
     "icon": "🪓",
     "calcType": "lumber",
-    "description": "Calculate board feet for lumber purchases. Enter dimensions and quantity to get total board feet and estimated cost for any lumber project.",
+    "description": "Calculate board feet, weight, and cost for any lumber purchase. Choose from 11 wood species with density data and 8 dimensional lumber presets.",
     "stars": 4,
     "defaults": {
       "amount": 8,
