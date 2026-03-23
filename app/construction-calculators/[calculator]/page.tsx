@@ -158,18 +158,99 @@ const HUB_CONTENT: Record<string, {
         ],
     },
     "concrete-block-calculator": {
-        subtitle: "Estimate the number of concrete blocks (CMU) needed for any wall. Enter wall dimensions and block size to get total blocks and mortar bags.",
+        subtitle: "Calculate how many concrete blocks (CMU) you need for a wall or foundation. Get block count with 5% waste, mortar bags, sand, grout fill volume, and cost estimate. Supports standard and custom block sizes.",
         explanation: {
             heading: "How to Estimate Concrete Blocks for a Wall",
             paragraphs: [
-                "Standard concrete masonry units (CMU) are 16 inches long × 8 inches tall × 8 inches wide (nominal). Actual dimensions are slightly smaller (15⅝ × 7⅝) to account for the mortar joint, typically 3/8 inch. When calculating, use the nominal dimensions — the mortar is already factored in.",
-                "The calculation divides the total wall area (sq ft) by the face area of one block (in sq ft). A standard 16×8 block covers 0.89 sq ft of wall. For mortar, plan about one 80 lb bag of mortar mix per 33 standard blocks.",
+                "Standard CMU (concrete masonry unit) blocks are 16 inches long × 8 inches high × 8 inches wide (nominal size including a ⅜-inch mortar joint). The actual block is slightly smaller (15⅝ × 7⅝). A standard 8×16 block covers 0.89 sq ft of wall — so you need about 1.125 blocks per square foot.",
+                "To estimate blocks: measure wall length × height = wall area (sq ft), subtract any door/window openings, then divide by 0.89. Add 5% for waste (cuts, breakage, corners). For mortar, plan about 3 bags of Portland cement per 100 blocks, plus 1 cubic yard of sand per 7 bags of cement.",
             ],
-            highlight: "A 20 ft × 8 ft wall = 160 sq ft ÷ 0.89 sq ft/block = 180 blocks needed. Add 5–10% for cuts and breakage, especially at corners and around openings.",
+            highlight: "A 20 ft × 8 ft wall = 160 sq ft ÷ 0.89 = 180 blocks. With 5% waste = 189 blocks. Mortar: 6 bags cement + 0.9 cu yd sand. Grout fill: about 1.3 cubic yards.",
         },
+        contentHTML: `
+<h2>What Are Concrete Blocks?</h2>
+<p><strong>Concrete blocks</strong> (also called CMUs — concrete masonry units, or cinder blocks) are precast rectangular building units made from Portland cement, aggregate, and water. They are used to construct load-bearing walls, foundations, retaining walls, partition walls, and fencing.</p>
+<p>CMUs come in two basic types: <strong>hollow blocks</strong> (the most common, with two open cells that are filled with grout/concrete during installation) and <strong>solid blocks</strong> (used for retaining walls, filled walls, and special applications). The hollow cells allow reinforcing rebar to be inserted vertically, making the wall much stronger.</p>
+<p>In the United States, the standard CMU is <strong>8×8×16 inches</strong> (nominal). The actual dimensions are 7⅝ × 7⅝ × 15⅝ inches — the ⅜-inch difference is filled by the mortar joint during construction.</p>
+
+<h2>Step-by-Step: How to Calculate Concrete Blocks</h2>
+<h3>Step 1: Find Wall Square Footage</h3>
+<p>Measure the length and height of the wall in feet. Multiply them together to get the gross wall area. If there are doors, windows, or other openings, measure those separately and subtract them.</p>
+<p><strong>Example:</strong> A 30 ft long × 8 ft tall wall with one 3×7 ft door and two 3×4 ft windows: gross = 240 sq ft, openings = 21 + 24 = 45 sq ft, net = 195 sq ft.</p>
+
+<h3>Step 2: Find Block Square Footage</h3>
+<p>Calculate the face area of one block. For a standard 8×16 block: (8 × 16) ÷ 144 = <strong>0.89 sq ft per block</strong>. Different block sizes have different face areas — the table below lists common sizes.</p>
+
+<h3>Step 3: Calculate Number of Blocks</h3>
+<p>Divide the net wall area by the block face area, then add 5% for waste (cuts, breakage, corner pieces).</p>
+<p><strong>blocks needed = (wall sq ft ÷ block sq ft) × 1.05</strong></p>
+
+<h2>How to Estimate Mortar for a Block Wall</h2>
+<p>Mortar is the paste that bonds blocks together. It's made from Portland cement, sand, and water (ratio: <strong>1 part cement to 3 parts sand</strong>).</p>
+<ul>
+<li><strong>Pre-mixed mortar (80 lb bags):</strong> 1 bag covers about 33 standard blocks. Divide your block count by 33 to get the number of bags.</li>
+<li><strong>Site-mixed mortar:</strong> Plan about 3 bags (94 lb) of Portland cement per 100 blocks. For sand, use 1 cubic yard of masonry sand per 7 bags of cement.</li>
+<li><strong>Mortar joint thickness:</strong> The standard joint is <strong>⅜ inch</strong> (for CMU walls). Thicker joints require more mortar.</li>
+</ul>
+
+<h2>How to Estimate Grout / Concrete Fill</h2>
+<p>Hollow CMU blocks are designed to be filled with grout (a fluid concrete mix) after rebar is placed. To estimate fill volume:</p>
+<ol>
+<li>Calculate the <strong>cell volume</strong> per block: subtract the shell thickness (typically 1.25 inches on each side) and web thickness (typically 1 inch, 3 webs per standard block) from the block dimensions.</li>
+<li>For a standard 8×8×16 block: cell width ≈ 5.5 in, cell length ≈ 6.5 in, height = 8 in → <strong>~572 cu in per block</strong> (2 cells).</li>
+<li>Multiply by total blocks and divide by 46,656 cu in/cu yd to get <strong>cubic yards of grout</strong>.</li>
+</ol>
+<p><strong>Rule of thumb:</strong> Standard 8×8×16 CMU blocks require about <strong>0.007 cubic yards of fill per block</strong>, or roughly 1 cubic yard per 145 blocks.</p>
+
+<h2>Standard Concrete Block Sizes</h2>
+<table>
+<thead><tr><th>Block Size (W×H×L)</th><th>Nominal (in)</th><th>Actual (in)</th><th>Face Area (sq ft)</th><th>Blocks per sq ft</th></tr></thead>
+<tbody>
+<tr><td><strong>Standard</strong></td><td>8×8×16</td><td>7⅝ × 7⅝ × 15⅝</td><td>0.89</td><td>1.125</td></tr>
+<tr><td><strong>Half-Height</strong></td><td>8×4×16</td><td>7⅝ × 3⅝ × 15⅝</td><td>0.44</td><td>2.25</td></tr>
+<tr><td><strong>Half-Length</strong></td><td>8×8×8</td><td>7⅝ × 7⅝ × 7⅝</td><td>0.44</td><td>2.25</td></tr>
+<tr><td><strong>Thick Wall</strong></td><td>12×8×16</td><td>11⅝ × 7⅝ × 15⅝</td><td>0.89</td><td>1.125</td></tr>
+<tr><td><strong>Thin Partition</strong></td><td>4×8×16</td><td>3⅝ × 7⅝ × 15⅝</td><td>0.89</td><td>1.125</td></tr>
+<tr><td><strong>Wide</strong></td><td>10×8×16</td><td>9⅝ × 7⅝ × 15⅝</td><td>0.89</td><td>1.125</td></tr>
+</tbody>
+</table>
+<p><strong>Note:</strong> The nominal size includes the ⅜-inch mortar joint. When estimating, always use the nominal dimensions.</p>
+
+<h2>Concrete Block Wall Cost (2025 US Pricing)</h2>
+<table>
+<thead><tr><th>Cost Component</th><th>Typical Range</th></tr></thead>
+<tbody>
+<tr><td><strong>Standard 8×8×16 CMU block</strong></td><td>$1.50–$3.00 each</td></tr>
+<tr><td><strong>Half block (8×8×8)</strong></td><td>$1.00–$2.00 each</td></tr>
+<tr><td><strong>Mortar (80 lb pre-mix bag)</strong></td><td>$5–$10 per bag</td></tr>
+<tr><td><strong>Portland cement (94 lb bag)</strong></td><td>$12–$16 per bag</td></tr>
+<tr><td><strong>Masonry sand</strong></td><td>$25–$40 per cubic yard</td></tr>
+<tr><td><strong>Installed cost (material + labor)</strong></td><td>$10–$17 per sq ft of wall</td></tr>
+<tr><td><strong>100 sq ft wall (about 113 blocks)</strong></td><td>$1,000–$1,700 installed</td></tr>
+</tbody>
+</table>
+
+<h2>Tools Needed for a Block Wall</h2>
+<ul>
+<li><strong>Brick trowel</strong> — for spreading mortar on bed and head joints</li>
+<li><strong>Mason line and line blocks</strong> — to keep courses straight and level</li>
+<li><strong>4-ft level</strong> — to check plumb and level on every course</li>
+<li><strong>Jointer / striking tool</strong> — to finish mortar joints for a clean appearance</li>
+<li><strong>Mixing tub and hoe</strong> — to mix mortar on site</li>
+<li><strong>Block chisel and hammer</strong> — to score and split blocks for corners and ends</li>
+</ul>
+`,
         faq: [
-            { question: "What size concrete blocks are available?", answer: "Standard sizes: 8×8×16 (most common), 8×4×16 (half-height), 8×8×8 (half-length), and 12×8×16 (thicker walls). The first number is width, second is height, third is length — all in inches (nominal)." },
-            { question: "How many blocks per pallet?", answer: "Standard 8×8×16 blocks: typically 90–108 blocks per pallet. Half blocks: approximately 180 per pallet. Verify with your supplier as counts vary by manufacturer." },
+            { question: "How many concrete blocks do I need per square foot?", answer: "For standard 8×8×16 blocks: 1.125 blocks per square foot of wall. For half-height 8×4×16 blocks: 2.25 per sq ft. Multiply your total wall area (minus openings) by the blocks-per-sq-ft rate, then add 5% for waste." },
+            { question: "How much mortar do I need for a block wall?", answer: "Using pre-mixed 80 lb bags: 1 bag per 33 standard blocks. For site mixing: 3 bags (94 lb) Portland cement per 100 blocks, plus about 1 cubic yard of masonry sand per 7 bags of cement. A 200-block wall needs about 6 bags of mortar or 6 bags cement + ~0.9 cu yd sand." },
+            { question: "How much does it cost to build a concrete block wall?", answer: "Installed cost (material + labor) ranges from $10–$17 per square foot of wall area. A standard 8×8×16 CMU block costs $1.50–$3.00 each. A 20 ft × 8 ft wall (160 sq ft, ~189 blocks with waste) costs roughly $1,600–$2,700 fully installed." },
+            { question: "What is the difference between a cinder block and a concrete block?", answer: "Historically, cinder blocks were made with cement and coal ash (cinders) and were lighter. Modern CMUs are made with Portland cement, sand, and gravel aggregate and are heavier and stronger. Today the terms are used interchangeably — most 'cinder blocks' sold are actually concrete blocks." },
+            { question: "How much does a concrete block weigh?", answer: "A standard 8×8×16 hollow CMU weighs 35–38 lbs. A solid 8×8×16 block weighs about 50 lbs. Half blocks (8×8×8) weigh about 18–20 lbs. Lightweight blocks made with expanded aggregate weigh 25–28 lbs for the standard size." },
+            { question: "Do I need rebar in a concrete block wall?", answer: "Yes — for structural walls, building codes typically require vertical #4 or #5 rebar at 32–48 inch spacing. Horizontal rebar or masonry ladder wire is placed every 2–3 courses. All cells containing rebar must be filled with grout. Non-load-bearing partition walls may need less reinforcement — check local codes." },
+            { question: "How tall can a concrete block wall be without reinforcement?", answer: "Per most US building codes (IBC/IRC), an unreinforced 8-inch block wall can be up to 4 feet tall. For walls above 4 feet, vertical and horizontal reinforcement is required. Retaining walls almost always need reinforcement regardless of height. Always check your local building code." },
+            { question: "What type of mortar should I use for concrete blocks?", answer: "Type S mortar (high strength, 1,800 PSI) is best for below-grade walls, foundations, and retaining walls. Type N mortar (750 PSI) is suitable for above-grade, non-load-bearing walls. Type M mortar (2,500 PSI) is the strongest — use for heavy load-bearing or below-grade in contact with soil." },
+            { question: "How many blocks come on a pallet?", answer: "Standard 8×8×16: 90–108 blocks per pallet (varies by manufacturer). Half blocks (8×8×8): about 180 per pallet. A pallet of standard blocks weighs approximately 3,400–4,100 lbs. Always verify counts with your supplier." },
+            { question: "How long does it take to build a concrete block wall?", answer: "An experienced mason can lay 150–200 standard blocks per day (about 130–175 sq ft of wall). A 20 ft × 8 ft wall (180 blocks) takes roughly one full day. This includes mixing mortar, setting blocks, and tooling joints — but not the footing, rebar, grouting, or curing time." },
         ],
     },
     "flooring-calculator": {

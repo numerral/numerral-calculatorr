@@ -121,18 +121,52 @@ function ConcreteCalc() {
 function ConcreteBlockCalc() {
     const [wallLength, setWallLength] = useState(20);
     const [wallHeight, setWallHeight] = useState(8);
+    const [blockSize, setBlockSize] = useState("8x8x16");
     const [blockLength, setBlockLength] = useState(16);
     const [blockHeight, setBlockHeight] = useState(8);
+    const [blockWidth, setBlockWidth] = useState(8);
+    const [openingsSqFt, setOpeningsSqFt] = useState(0);
+    const [costPerBlock, setCostPerBlock] = useState(0);
+
+    // Sync preset → dimensions
+    const handlePreset = (v: string) => {
+        setBlockSize(v);
+        if (v === "8x8x16") { setBlockLength(16); setBlockHeight(8); setBlockWidth(8); }
+        else if (v === "8x4x16") { setBlockLength(16); setBlockHeight(4); setBlockWidth(8); }
+        else if (v === "8x8x8") { setBlockLength(8); setBlockHeight(8); setBlockWidth(8); }
+        else if (v === "12x8x16") { setBlockLength(16); setBlockHeight(8); setBlockWidth(12); }
+    };
 
     const result = useMemo(() => {
-        const wallArea = wallLength * wallHeight; // sq ft
+        const wallArea = Math.max(0, wallLength * wallHeight - openingsSqFt);
         const blockLenFt = blockLength / 12;
         const blockHtFt = blockHeight / 12;
         const blockArea = blockLenFt * blockHtFt;
-        const blocksNeeded = blockArea > 0 ? wallArea / blockArea : 0;
-        const mortarBags = blocksNeeded / 33; // ~33 blocks per 80lb bag of mortar
-        return { wallArea, blocksNeeded, mortarBags };
-    }, [wallLength, wallHeight, blockLength, blockHeight]);
+        const blocksExact = blockArea > 0 ? wallArea / blockArea : 0;
+        const blocksWithWaste = Math.ceil(blocksExact * 1.05);
+
+        // Mortar: ~3 bags of cement per 100 blocks; 1 cu yd sand per 7 bags cement
+        const mortarBags80 = Math.ceil(blocksWithWaste / 33);
+        const cementBags = Math.ceil(blocksWithWaste * 3 / 100);
+        const sandCuYd = Math.round(cementBags / 7 * 10) / 10;
+
+        // Grout fill: cell volume per block (subtract webs and shells)
+        // Standard 8x8x16: shell ~1.25", 3 webs ~1" each, 2 cells
+        const shellIn = 1.25;
+        const webIn = 1;
+        const cellW = blockWidth - 2 * shellIn;
+        const cellL = (blockLength - 3 * webIn) / 2;
+        const cellH = blockHeight;
+        const cellVolCuIn = cellW * cellL * cellH * 2; // 2 cells
+        const groutCuYd = Math.round(blocksWithWaste * cellVolCuIn / 46656 * 100) / 100;
+
+        // Cost
+        const totalCost = costPerBlock > 0 ? blocksWithWaste * costPerBlock : 0;
+
+        return { wallArea, blocksExact, blocksWithWaste, mortarBags80, cementBags, sandCuYd, groutCuYd, totalCost };
+    }, [wallLength, wallHeight, openingsSqFt, blockLength, blockHeight, blockWidth, costPerBlock]);
+
+    const isCustom = blockSize === "custom";
 
     return (
         <div className="con-calc">
@@ -140,14 +174,33 @@ function ConcreteBlockCalc() {
             <div className="con-calc__inputs">
                 <InputField label="Wall Length" value={wallLength} onChange={setWallLength} unit="ft" min={1} />
                 <InputField label="Wall Height" value={wallHeight} onChange={setWallHeight} unit="ft" min={1} />
-                <InputField label="Block Length" value={blockLength} onChange={setBlockLength} unit="in" min={1} />
-                <InputField label="Block Height" value={blockHeight} onChange={setBlockHeight} unit="in" min={1} />
+                <InputField label="Openings (optional)" value={openingsSqFt} onChange={setOpeningsSqFt} unit="sq ft" min={0} />
+                <SelectField label="Block Size" value={blockSize} onChange={handlePreset} options={[
+                    { value: "8x8x16", label: "Standard 8×8×16" },
+                    { value: "8x4x16", label: "Half-Height 8×4×16" },
+                    { value: "8x8x8", label: "Half-Length 8×8×8" },
+                    { value: "12x8x16", label: "Thick 12×8×16" },
+                    { value: "custom", label: "Custom Size" },
+                ]} />
+                {isCustom && <InputField label="Block Length" value={blockLength} onChange={setBlockLength} unit="in" min={4} />}
+                {isCustom && <InputField label="Block Height" value={blockHeight} onChange={setBlockHeight} unit="in" min={4} />}
+                {isCustom && <InputField label="Block Width (depth)" value={blockWidth} onChange={setBlockWidth} unit="in" min={4} />}
+                <InputField label="Cost per Block (optional)" value={costPerBlock} onChange={setCostPerBlock} unit="$" min={0} step={0.1} />
             </div>
             <div className="con-calc__results">
-                <h4>Results</h4>
+                <h4>Blocks</h4>
                 <ResultRow label="Wall Area" value={fmt(result.wallArea)} unit="sq ft" />
-                <ResultRow label="Blocks Needed" value={fmtInt(result.blocksNeeded)} unit="blocks" />
-                <ResultRow label="Mortar (80 lb bags)" value={fmtInt(result.mortarBags)} unit="bags" />
+                <ResultRow label="Blocks (exact)" value={fmtInt(result.blocksExact)} unit="blocks" />
+                <ResultRow label="Blocks (w/ 5% waste)" value={fmtInt(result.blocksWithWaste)} unit="blocks" />
+                <h4>Mortar &amp; Fill</h4>
+                <ResultRow label="Mortar Mix (80 lb bags)" value={fmtInt(result.mortarBags80)} unit="bags" />
+                <ResultRow label="Portland Cement" value={fmtInt(result.cementBags)} unit="bags" />
+                <ResultRow label="Sand" value={fmt(result.sandCuYd, 1)} unit="cu yd" />
+                <ResultRow label="Grout / Core Fill" value={fmt(result.groutCuYd)} unit="cu yd" />
+                {result.totalCost > 0 && <>
+                    <h4>Cost</h4>
+                    <ResultRow label="Block Cost" value={`$${fmt(result.totalCost, 2)}`} />
+                </>}
             </div>
         </div>
     );
