@@ -7396,38 +7396,82 @@ function WindowAcSizeCalc() {
 }
 
 /* ──────────── 155. ICE & WATER SHIELD CALCULATOR ──────────── */
+const IWS_ROLLS: { value: string; label: string; widthFt: number; lengthFt: number; sqFt: number; cost: number }[] = [
+    { value: "3x75", label: '3\' × 75\' (225 sq ft)', widthFt: 3, lengthFt: 75, sqFt: 225, cost: 130 },
+    { value: "3x67", label: '3\' × 67\' (200 sq ft)', widthFt: 3, lengthFt: 67, sqFt: 200, cost: 110 },
+    { value: "3x36", label: '3\' × 36\' (108 sq ft)', widthFt: 3, lengthFt: 36, sqFt: 108, cost: 65 },
+];
+
+const IWS_PITCH: { value: string; label: string; mult: number }[] = [
+    { value: "2", label: "2/12 (low slope)", mult: 1.014 },
+    { value: "4", label: "4/12 (standard)", mult: 1.054 },
+    { value: "6", label: "6/12 (moderate)", mult: 1.118 },
+    { value: "8", label: "8/12 (steep)", mult: 1.202 },
+    { value: "10", label: "10/12 (very steep)", mult: 1.302 },
+    { value: "12", label: "12/12 (45°)", mult: 1.414 },
+];
+
 function IceWaterShieldCalc() {
-    const [roofLength, setRoofLength] = useState(40);
-    const [eaveOverhang, setEaveOverhang] = useState(3);
+    const [rollType, setRollType] = useState("3x75");
+    const [pitch, setPitch] = useState("4");
+    const [eaveLength, setEaveLength] = useState(40);
+    const [eaveWidthFt, setEaveWidthFt] = useState(3);
     const [numValleys, setNumValleys] = useState(2);
     const [valleyLength, setValleyLength] = useState(15);
+    const [skylights, setSkylights] = useState(0);
+    const [chimneys, setChimneys] = useState(0);
+    const [vents, setVents] = useState(2);
+    const [wastePct, setWastePct] = useState(10);
 
     const result = useMemo(() => {
-        const eaveArea = roofLength * eaveOverhang * 2; // both sides
-        const valleyArea = numValleys * valleyLength * 3; // 3 ft wide each
-        const totalSqFt = eaveArea + valleyArea;
-        const rollWidth = 3; // ft
-        const rollLength = 75; // ft
-        const rollCoverage = rollWidth * rollLength;
-        const rolls = Math.ceil(totalSqFt / rollCoverage);
-        return { eaveArea, valleyArea, totalSqFt, rolls };
-    }, [roofLength, eaveOverhang, numValleys, valleyLength]);
+        const pitchData = IWS_PITCH.find(p => p.value === pitch);
+        const mult = pitchData?.mult || 1;
+        const eaveRunFt = eaveWidthFt * mult;
+        const eaveArea = eaveLength * 2 * eaveRunFt;
+        const valleyArea = numValleys * valleyLength * 3;
+        const skyArea = skylights * 16;
+        const chimArea = chimneys * 24;
+        const ventArea = vents * 4;
+        const penArea = skyArea + chimArea + ventArea;
+        const subtotal = eaveArea + valleyArea + penArea;
+        const total = subtotal * (1 + wastePct / 100);
+        const rollData = IWS_ROLLS.find(r => r.value === rollType);
+        const rollSqFt = rollData?.sqFt || 225;
+        const rollCost = rollData?.cost || 130;
+        const rolls = Math.ceil(total / rollSqFt);
+        const totalCost = rolls * rollCost;
+        return { eaveRunFt, eaveArea, valleyArea, penArea, subtotal, total, rolls, totalCost };
+    }, [eaveLength, eaveWidthFt, numValleys, valleyLength, skylights, chimneys, vents, pitch, rollType, wastePct]);
 
     return (
         <div className="con-calc">
             <h3 className="con-calc__title">🧊 Ice & Water Shield Calculator</h3>
             <div className="con-calc__inputs">
-                <InputField label="Roof Length (eave)" value={roofLength} onChange={setRoofLength} unit="ft" min={10} />
-                <InputField label="Eave Coverage Width" value={eaveOverhang} onChange={setEaveOverhang} unit="ft" min={2} max={6} />
-                <InputField label="Number of Valleys" value={numValleys} onChange={setNumValleys} min={0} max={10} />
+                <SelectField label="Roll Size" value={rollType} onChange={setRollType}
+                    options={IWS_ROLLS.map(r => ({ value: r.value, label: r.label }))} />
+                <SelectField label="Roof Pitch" value={pitch} onChange={setPitch}
+                    options={IWS_PITCH.map(p => ({ value: p.value, label: p.label }))} />
+                <InputField label="Eave Length (one side)" value={eaveLength} onChange={setEaveLength} unit="ft" min={10} />
+                <InputField label="Eave Coverage Width" value={eaveWidthFt} onChange={setEaveWidthFt} unit="ft" min={2} max={6} />
+                <InputField label="Valleys" value={numValleys} onChange={setNumValleys} min={0} max={10} />
                 <InputField label="Avg Valley Length" value={valleyLength} onChange={setValleyLength} unit="ft" min={5} />
+                <InputField label="Skylights" value={skylights} onChange={setSkylights} min={0} />
+                <InputField label="Chimneys" value={chimneys} onChange={setChimneys} min={0} />
+                <InputField label="Vent Pipes" value={vents} onChange={setVents} min={0} />
+                <InputField label="Waste / Overlap" value={wastePct} onChange={setWastePct} unit="%" min={5} max={25} />
             </div>
             <div className="con-calc__results">
-                <h4>Results</h4>
-                <ResultRow label="Eave Area" value={fmt(result.eaveArea)} unit="sq ft" />
+                <h4 className="con-calc__group-label">EAVES</h4>
+                <ResultRow label="Eave Run (with pitch)" value={fmt(result.eaveRunFt, 1)} unit="ft" />
+                <ResultRow label="Eave Area (both sides)" value={fmt(result.eaveArea)} unit="sq ft" />
+                <h4 className="con-calc__group-label">VALLEYS & PENETRATIONS</h4>
                 <ResultRow label="Valley Area" value={fmt(result.valleyArea)} unit="sq ft" />
-                <ResultRow label="Total Coverage" value={fmt(result.totalSqFt)} unit="sq ft" />
-                <ResultRow label="Rolls Needed (3'×75')" value={fmtInt(result.rolls)} unit="rolls" />
+                <ResultRow label="Penetration Area" value={fmt(result.penArea)} unit="sq ft" />
+                <h4 className="con-calc__group-label">TOTAL</h4>
+                <ResultRow label="Subtotal" value={fmt(result.subtotal)} unit="sq ft" />
+                <ResultRow label="With Overlap/Waste" value={fmt(result.total)} unit="sq ft" />
+                <ResultRow label="Rolls Needed" value={fmtInt(result.rolls)} unit="rolls" />
+                <ResultRow label="Material Cost" value={`$${fmt(result.totalCost)}`} />
             </div>
         </div>
     );

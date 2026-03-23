@@ -4012,18 +4012,103 @@ Net lawn area: 10,890 − 1,900 = <strong>8,990 sq ft</strong></p>
         ],
     },
     "ice-water-shield-calculator": {
-        subtitle: "Calculate ice and water shield membrane needed for eaves, valleys, and roof penetrations. Get rolls needed for your project.",
+        subtitle: "Calculate ice and water shield membrane for eaves, valleys, and penetrations. Choose roll size, roof pitch, and get rolls and cost.",
         explanation: {
             heading: "Ice & Water Shield Coverage",
             paragraphs: [
-                "Ice and water shield is a self-adhering membrane installed at vulnerable roof areas: eaves (2–3 ft minimum past the exterior wall), valleys (3 ft wide), and around penetrations. Building codes typically require it in cold climates.",
-                "Standard rolls are 3' × 75' (225 sq ft per roll) or 3' × 67' (200 sq ft). Apply to eaves extending at least 24 inches past the exterior wall, the full length of all valleys, and around skylights, chimneys, and vent pipes.",
+                "Ice and water shield (ice barrier) is a self-adhering membrane installed at vulnerable roof areas. Code requires it at eaves extending 24\" past the exterior wall line. The calculator applies your roof pitch to compute actual eave run up the slope.",
+                "Standard rolls: 3' × 75' (225 sq ft), 3' × 67' (200 sq ft), or 3' × 36' (108 sq ft). Apply at eaves, valleys (3 ft wide), and around all penetrations (skylights, chimneys, vent pipes). Add 10% for overlaps.",
             ],
-            highlight: "40 ft eave (both sides, 3 ft wide) + 2 valleys (15 ft × 3 ft): 240 + 90 = 330 sq ft = 2 rolls (3' × 75').",
+            highlight: "40 ft eave (both sides) at 4/12 pitch (3 ft coverage): 253 sq ft. 2 valleys (15 ft × 3 ft): 90 sq ft. 2 vents: 8 sq ft. With 10% overlap: 386 sq ft = 2 rolls (3'×75') = $260.",
         },
+        contentHTML: `
+<p>Ice and water shield (also called ice barrier, ice dam membrane, or self-adhering underlayment) is a <strong>critical waterproofing membrane</strong> used on US roofs to prevent leaks caused by ice dams, wind-driven rain, and water pooling. Building codes in cold-climate zones require it at eaves — and many roofers apply it generously at all vulnerable points.</p>
+<p>The calculator above accounts for <strong>roof pitch</strong> (which increases eave run up the slope), <strong>3 roll sizes</strong> with pricing, individual <strong>penetration counts</strong> (skylights, chimneys, vent pipes), and outputs rolls needed + material cost.</p>
+
+<h2>Roll Sizes and Coverage</h2>
+<table>
+<thead><tr><th>Roll Size</th><th>Width</th><th>Length</th><th>Coverage</th><th>Avg Cost</th></tr></thead>
+<tbody>
+<tr><td><strong>3' × 75'</strong></td><td>36"</td><td>75 ft</td><td>225 sq ft</td><td>$110–$150</td></tr>
+<tr><td><strong>3' × 67'</strong></td><td>36"</td><td>67 ft</td><td>200 sq ft</td><td>$90–$130</td></tr>
+<tr><td><strong>3' × 36'</strong></td><td>36"</td><td>36 ft</td><td>108 sq ft</td><td>$50–$80</td></tr>
+</tbody>
+</table>
+<p><strong>All rolls are 36" (3 ft) wide</strong> — designed to cover the code-minimum eave protection on most roof pitches. One roll of 3' × 75' covers approximately 50 linear feet of eave at 4/12 pitch.</p>
+
+<h2>Where to Install Ice & Water Shield</h2>
+<table>
+<thead><tr><th>Location</th><th>Width/Coverage</th><th>Code Required?</th></tr></thead>
+<tbody>
+<tr><td><strong>Eaves</strong></td><td>24" past interior wall line (min)</td><td>Yes — IRC R905.1.2</td></tr>
+<tr><td><strong>Valleys</strong></td><td>36" wide (18" each side of centerline)</td><td>Recommended</td></tr>
+<tr><td><strong>Skylights</strong></td><td>36" around all sides (~16 sq ft each)</td><td>Recommended</td></tr>
+<tr><td><strong>Chimneys</strong></td><td>36" around all sides (~24 sq ft each)</td><td>Recommended</td></tr>
+<tr><td><strong>Vent pipes</strong></td><td>18" radius minimum (~4 sq ft each)</td><td>Recommended</td></tr>
+<tr><td><strong>Wall/roof intersections</strong></td><td>Full length of intersection</td><td>Recommended</td></tr>
+</tbody>
+</table>
+<p><strong>Best practice:</strong> Many US roofers install ice and water shield at ALL vulnerable points — not just code-minimum eaves. The material cost is modest compared to leak repair costs.</p>
+
+<h2>Code Requirements by Climate</h2>
+<ul>
+<li><strong>Cold climates (IECC Zone 5+):</strong> IRC R905.1.2 requires ice barrier at eaves extending 24" past the exterior wall line. This includes most of the Northeast, Midwest, and Mountain states.</li>
+<li><strong>Moderate climates (Zone 4):</strong> Required in areas where the mean January temperature is 25°F or below. Check local amendments.</li>
+<li><strong>Warm climates (Zone 1–3):</strong> Not required by IRC, but recommended for valleys, low-slope sections, and penetrations. FL, TX, AZ, and CA rarely need eave protection.</li>
+</ul>
+
+<h2>How Roof Pitch Affects Eave Run</h2>
+<p>The 24" code minimum is measured horizontally — but the membrane runs up the slope. A steeper pitch means more membrane length (and area) to reach 24" past the wall.</p>
+<table>
+<thead><tr><th>Pitch</th><th>3 ft Horizontal</th><th>Actual Run</th><th>% More</th></tr></thead>
+<tbody>
+<tr><td>2/12</td><td>3 ft</td><td>3.04 ft</td><td>+1.4%</td></tr>
+<tr><td>4/12</td><td>3 ft</td><td>3.16 ft</td><td>+5.4%</td></tr>
+<tr><td>6/12</td><td>3 ft</td><td>3.35 ft</td><td>+11.8%</td></tr>
+<tr><td>8/12</td><td>3 ft</td><td>3.61 ft</td><td>+20.2%</td></tr>
+<tr><td>12/12</td><td>3 ft</td><td>4.24 ft</td><td>+41.4%</td></tr>
+</tbody>
+</table>
+<p><strong>At 12/12 pitch, you need 41% more membrane</strong> than on a flat roof for the same horizontal coverage. The calculator applies this automatically.</p>
+
+<h2>Step-by-Step Estimation</h2>
+<h3>Step 1: Calculate Eave Coverage</h3>
+<p>Measure eave length (one side of roof). Both eaves need coverage, so double the length. Apply the pitch multiplier to the coverage width.</p>
+<p><strong>Example:</strong> 40 ft eave × 2 sides × (3 ft × 1.054 at 4/12) = 40 × 2 × 3.16 = 253 sq ft</p>
+
+<h3>Step 2: Add Valleys</h3>
+<p>Each valley needs 36"-wide membrane for its full length. Number of valleys × length × 3 ft.</p>
+<p><strong>Example:</strong> 2 valleys × 15 ft × 3 ft = 90 sq ft</p>
+
+<h3>Step 3: Add Penetrations</h3>
+<p>Skylights: ~16 sq ft each. Chimneys: ~24 sq ft each. Vent pipes: ~4 sq ft each.</p>
+
+<h3>Step 4: Total and Roll Count</h3>
+<p>Add all areas, add 10% for overlaps, divide by roll coverage.</p>
+<p><strong>Example:</strong> 253 + 90 + 8 = 351 × 1.10 = 386 sq ft ÷ 225 = 2 rolls</p>
+
+<h2>Top US Ice & Water Shield Products</h2>
+<table>
+<thead><tr><th>Brand</th><th>Product</th><th>Thickness</th><th>Avg Cost/Roll</th></tr></thead>
+<tbody>
+<tr><td><strong>Grace</strong></td><td>Ice & Water Shield</td><td>40 mil</td><td>$130–$160</td></tr>
+<tr><td><strong>GAF</strong></td><td>WeatherWatch</td><td>40 mil</td><td>$90–$120</td></tr>
+<tr><td><strong>CertainTeed</strong></td><td>WinterGuard</td><td>40 mil</td><td>$100–$130</td></tr>
+<tr><td><strong>Owens Corning</strong></td><td>WeatherLock G</td><td>40 mil</td><td>$95–$125</td></tr>
+</tbody>
+</table>
+`,
         faq: [
-            { question: "Where do I need ice and water shield?", answer: "Eaves: 24\" minimum past exterior wall (many codes require 36\"). All valleys. Around chimneys, skylights, vent pipes. Low-slope areas. Dormers and wall intersections. Some codes require it on the entire roof deck." },
-            { question: "How many rolls of ice and water shield?", answer: "Measure total area needed: eave length × width + valley length × 3 ft + penetration areas. Divide by 225 (for 3'×75' rolls) or 200 (for 3'×67' rolls). Add 10% for overlap." },
+            { question: "Where do I need ice and water shield?", answer: "Code requires it at eaves: 24\" minimum past the exterior wall (IRC R905.1.2) in cold climates (Zone 5+). Also recommended at: all valleys (3 ft wide), around skylights (36\" each side), chimneys, vent pipes, dormers, and any roof-to-wall intersection. Many roofers apply it at all these locations regardless of climate." },
+            { question: "How many rolls of ice and water shield?", answer: "Measure eave length × 2 sides × coverage width. Add valley length × 3 ft. Add penetration areas. Add 10% for overlaps. Divide by roll coverage (225 sq ft for 3'×75', 200 for 3'×67'). Example: 40 ft eave (both sides, 3 ft) + 2 valleys + 2 vents = 386 sq ft = 2 rolls." },
+            { question: "What is ice and water shield?", answer: "A self-adhering, rubberized asphalt membrane (typically 40 mil thick) applied directly to roof decking before shingles. It creates a waterproof seal around nail holes and prevents leaks from ice dams, wind-driven rain, and standing water. Unlike synthetic underlayment, it self-seals around fastener penetrations." },
+            { question: "How does roof pitch affect ice barrier?", answer: "The 24\" code minimum is measured horizontally, but the membrane runs up the slope. At 4/12 pitch, 3 ft of horizontal coverage requires 3.16 ft of membrane. At 12/12 pitch, it requires 4.24 ft — 41% more material. Always account for pitch when estimating." },
+            { question: "Can I use ice and water shield on the entire roof?", answer: "Yes — 'full-deck' application is becoming common in cold climates and premium builds. It provides maximum waterproofing but costs $0.50–$1.50/sq ft more than synthetic underlayment alone. Some manufacturers void warranties if applied over the entire deck due to moisture trapping — check specs." },
+            { question: "How long does ice and water shield last?", answer: "The membrane itself lasts 25–50+ years, typically outlasting the shingles above it. UV exposure degrades it, so it must be covered by roofing material within 30–90 days (varies by manufacturer). Once covered, it remains effective for the life of the roof." },
+            { question: "What's the difference between ice barrier and synthetic underlayment?", answer: "Ice and water shield is self-adhering and self-sealing around nail holes — it creates a waterproof barrier. Synthetic underlayment is mechanically fastened and water-resistant but not waterproof at nail penetrations. Use ice barrier at vulnerable areas; synthetic underlayment covers the remaining deck." },
+            { question: "Do I need ice barrier in warm climates?", answer: "IRC doesn't require it in Zones 1–3 (TX, FL, AZ, CA). However, it's still recommended for valleys, low-slope areas, and penetrations where water can pool. In hurricane zones, it provides excellent wind-driven rain protection. Check local codes — some coastal areas require it." },
+            { question: "How do I install ice and water shield?", answer: "Apply directly to clean, dry roof decking. Start at the eave and work up, overlapping each row by 3–4 inches. Peel the release film as you go. Press firmly with a roller. Overlap end joints by 6 inches. Cut around penetrations and seal with additional pieces. Cover with roofing within 30–90 days." },
+            { question: "How much does ice and water shield cost?", answer: "Material: $0.50–$0.75/sq ft ($90–$160 per roll depending on brand and size). Installation adds $0.25–$0.50/sq ft labor. For a typical home: 2–4 rolls at eaves + 1–2 rolls for valleys and penetrations = $200–$600 in material. Full-deck coverage: $800–$2,000 for a 1,500 sq ft roof." },
         ],
     },
     "metal-roofing-calculator": {

@@ -13409,7 +13409,7 @@
     "categorySlug": "construction-calculators",
     "icon": "🧊",
     "calcType": "ice-water-shield",
-    "description": "Calculate ice and water shield membrane needed for eaves, valleys, and penetrations. Enter roof dimensions and features.",
+    "description": "Calculate ice and water shield membrane for eaves, valleys, and penetrations. Choose roll size, roof pitch, and get rolls and cost.",
     "stars": 5,
     "defaults": {
       "amount": 40,
