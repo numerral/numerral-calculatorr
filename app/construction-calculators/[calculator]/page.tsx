@@ -575,6 +575,9 @@ const HUB_CONTENT: Record<string, {
             highlight: "Most US residential roofs are 4:12 to 8:12. A 4:12 roof rises 4 inches per foot (18.4° angle, 1.054× multiplier). A 12:12 roof is a 45° angle with a 1.414× multiplier — 41% more roof area than the footprint.",
         },
         contentHTML: `
+<p>Roof pitch is expressed as a ratio of vertical rise to horizontal run — for example, 6:12 means the roof rises 6 inches for every 12 inches of horizontal distance. In the US, pitch is always expressed over a 12-inch run. This ratio determines everything: material choices, walkability, cost, and structural requirements.</p>
+<p>The pitch multiplier converts the flat (footprint) area into actual roof surface area. A 6:12 pitch has a multiplier of 1.118 — meaning the actual roof area is 11.8% larger than the footprint. This directly affects how many shingles, underlayment rolls, and other materials you need.</p>
+
 <h2>Standard Roof Pitches</h2>
 <table>
 <thead><tr><th>Pitch</th><th>Angle (°)</th><th>Multiplier</th><th>Slope %</th><th>Classification</th><th>Walkable?</th></tr></thead>

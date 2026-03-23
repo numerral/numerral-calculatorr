@@ -7198,7 +7198,7 @@
     "categorySlug": "construction-calculators",
     "icon": "📐",
     "calcType": "roof-pitch",
-    "description": "Calculate roof pitch from rise and run measurements. Get the pitch ratio (X:12), angle in degrees, and pitch multiplier for area calculations.",
+    "description": "Calculate roof pitch from rise and run. Get pitch ratio, angle in degrees, slope percentage, rafter multiplier, roof classification, and walkability rating. Choose from 7 common presets or enter custom values.",
     "stars": 4,
     "defaults": {
       "amount": 6,
