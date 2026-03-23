@@ -681,7 +681,7 @@ const HUB_CONTENT: Record<string, {
         ],
     },
     "paint-calculator": {
-        subtitle: "Calculate how many gallons of paint you need for any room. Accounts for doors, windows, wall height, and number of coats.",
+        subtitle: "Calculate how many gallons of paint you need for any room or exterior. Choose paint type, add ceiling and trim, include primer coats, and get a cost estimate. Supports 8 paint finishes and custom coverage.",
         explanation: {
             heading: "How to Calculate Paint Coverage",
             paragraphs: [
@@ -690,9 +690,112 @@ const HUB_CONTENT: Record<string, {
             ],
             highlight: "A 12×10 ft room with 8 ft ceilings, 1 door, 2 windows, 2 coats: Wall area = 352 sq ft, minus openings = 301 sq ft, × 2 coats = 602 sq ft ÷ 350 = 1.7 gallons. Buy 2 gallons.",
         },
+        contentHTML: `
+<p>Paint coverage depends on the paint type, surface texture, and color change. Most interior latex paints cover approximately 350 square feet per gallon on smooth surfaces. Textured walls, new drywall, and dramatic color changes (light to dark or vice versa) may require additional coats, reducing effective coverage.</p>
+<p>The formula: calculate total wall area (perimeter × height), subtract openings (standard door ≈ 21 sq ft, standard window ≈ 15 sq ft), multiply by number of coats, then divide by paint coverage per gallon. Always round up — it's better to have leftover paint for touch-ups.</p>
+
+<h2>Paint Coverage by Type</h2>
+<table>
+<thead><tr><th>Paint Type</th><th>Coverage (sq ft/gal)</th><th>Best For</th><th>Typical Coats</th></tr></thead>
+<tbody>
+<tr><td><strong>Interior Flat / Matte</strong></td><td>350–400</td><td>Ceilings, low-traffic rooms, hiding imperfections</td><td>2</td></tr>
+<tr><td><strong>Interior Eggshell</strong></td><td>300–350</td><td>Living rooms, bedrooms, dining rooms</td><td>2</td></tr>
+<tr><td><strong>Interior Satin</strong></td><td>300–350</td><td>Hallways, kids' rooms, family rooms</td><td>2</td></tr>
+<tr><td><strong>Interior Semi-Gloss</strong></td><td>300–350</td><td>Kitchens, bathrooms, trim, doors</td><td>2</td></tr>
+<tr><td><strong>Interior High-Gloss</strong></td><td>250–300</td><td>Cabinets, furniture, accent trim</td><td>2–3</td></tr>
+<tr><td><strong>Exterior Flat / Satin</strong></td><td>250–300</td><td>Siding, large exterior surfaces</td><td>2</td></tr>
+<tr><td><strong>Exterior Semi-Gloss</strong></td><td>250–275</td><td>Exterior trim, doors, shutters</td><td>2</td></tr>
+<tr><td><strong>Primer / Sealer</strong></td><td>250–300</td><td>New drywall, stain blocking, color changes</td><td>1</td></tr>
+<tr><td><strong>Ceiling Paint</strong></td><td>350–400</td><td>Ceilings — thicker formula to reduce drips</td><td>1–2</td></tr>
+</tbody>
+</table>
+
+<h2>Step-by-Step: How to Estimate Paint</h2>
+<h3>Step 1: Measure the Walls</h3>
+<p>Measure the length and height of each wall in feet. Multiply length × height to get the area of each wall. For rectangular rooms, a shortcut: <strong>perimeter × ceiling height = total wall area</strong>. Perimeter = 2 × (length + width).</p>
+
+<h3>Step 2: Subtract Openings</h3>
+<p>Measure doors and windows. Standard deductions: a <strong>standard door is about 21 sq ft</strong> (3 × 7 ft) and a <strong>standard window is about 15 sq ft</strong> (3 × 5 ft). Subtract these from total wall area. For large picture windows or sliding doors, measure the actual dimensions.</p>
+
+<h3>Step 3: Add Ceiling and Trim (Optional)</h3>
+<p>For ceiling paint, add the ceiling area: length × width. For trim and baseboards, measure the linear feet around the room and multiply by the trim height (usually 4–6 inches). Crown molding typically adds 3–4 inches of paintable surface per linear foot.</p>
+
+<h3>Step 4: Calculate Gallons</h3>
+<p><strong>Gallons = (paintable area × number of coats) ÷ coverage per gallon</strong>. Always round up to the next full gallon or quart. Having leftover paint is ideal for future touch-ups — colors vary slightly between batches.</p>
+
+<h2>Paint Coverage Chart by Room Size</h2>
+<p>This table shows estimated gallons needed for common room sizes with 8 ft ceilings, 1 standard door, and 2 standard windows — walls only:</p>
+<table>
+<thead><tr><th>Room Size</th><th>Wall Area (sq ft)</th><th>Paintable Area</th><th>1 Coat (gal)</th><th>2 Coats (gal)</th></tr></thead>
+<tbody>
+<tr><td><strong>8 × 10 ft</strong></td><td>288</td><td>237</td><td>0.7</td><td>1.4</td></tr>
+<tr><td><strong>10 × 10 ft</strong></td><td>320</td><td>269</td><td>0.8</td><td>1.5</td></tr>
+<tr><td><strong>10 × 12 ft</strong></td><td>352</td><td>301</td><td>0.9</td><td>1.7</td></tr>
+<tr><td><strong>12 × 12 ft</strong></td><td>384</td><td>333</td><td>1.0</td><td>1.9</td></tr>
+<tr><td><strong>12 × 14 ft</strong></td><td>416</td><td>365</td><td>1.0</td><td>2.1</td></tr>
+<tr><td><strong>14 × 16 ft</strong></td><td>480</td><td>429</td><td>1.2</td><td>2.5</td></tr>
+<tr><td><strong>16 × 20 ft</strong></td><td>576</td><td>525</td><td>1.5</td><td>3.0</td></tr>
+</tbody>
+</table>
+<p><strong>Note:</strong> These assume 350 sq ft/gal coverage. Textured walls or dark-to-light color changes may reduce effective coverage by 20–30%.</p>
+
+<h2>How to Estimate Paint for Trim</h2>
+<p>Trim includes baseboards, door casings, window casings, chair rail, and crown molding. Estimating separately from walls ensures accuracy:</p>
+<ul>
+<li><strong>Baseboards:</strong> Measure the room perimeter in linear feet. Height is typically 3.5–5.5 inches (0.29–0.46 ft). Multiply perimeter × height for total area.</li>
+<li><strong>Door casings:</strong> Each standard door has about 17 linear feet of casing (both sides + top, inside and outside). At 3.5 inches wide, that's ~5 sq ft per door.</li>
+<li><strong>Window casings:</strong> Each standard window has about 14 linear feet of casing. At 3.5 inches wide, that's ~4 sq ft per window.</li>
+<li><strong>Crown molding:</strong> Room perimeter × crown height (typically 3–5 inches).</li>
+</ul>
+<p><strong>Tip:</strong> Semi-gloss or high-gloss paint is standard for trim — it's more durable and easier to clean than flat paint. One quart covers about 75–100 sq ft of trim.</p>
+
+<h2>Interior vs. Exterior Paint</h2>
+<table>
+<thead><tr><th>Feature</th><th>Interior Paint</th><th>Exterior Paint</th></tr></thead>
+<tbody>
+<tr><td><strong>Binder type</strong></td><td>Soft resins for smooth finish</td><td>Hard, flexible resins for weather resistance</td></tr>
+<tr><td><strong>UV resistance</strong></td><td>Low — not designed for sun exposure</td><td>High — UV stabilizers prevent fading</td></tr>
+<tr><td><strong>Flexibility</strong></td><td>Minimal — stable indoor temps</td><td>High — expands/contracts with temperature</td></tr>
+<tr><td><strong>Mildew resistance</strong></td><td>Low</td><td>High — contains mildewcides</td></tr>
+<tr><td><strong>VOC levels</strong></td><td>Low-VOC and zero-VOC options common</td><td>Higher VOC (less concern outdoors)</td></tr>
+<tr><td><strong>Coverage</strong></td><td>350–400 sq ft/gal</td><td>250–300 sq ft/gal</td></tr>
+<tr><td><strong>Typical price</strong></td><td>$30–$60/gal</td><td>$35–$70/gal</td></tr>
+</tbody>
+</table>
+
+<h2>Surface Preparation Guide</h2>
+<ul>
+<li><strong>New drywall:</strong> Apply 1 coat of PVA primer before painting. Primer seals the porous paper surface and reduces paint absorption — you'll use less paint and get better adhesion.</li>
+<li><strong>Previously painted walls:</strong> Clean with TSP (trisodium phosphate) solution. Lightly sand glossy surfaces for adhesion. Fill nail holes and cracks with spackle.</li>
+<li><strong>Textured surfaces:</strong> Expect 20–30% more paint than smooth walls. Use a thick-nap roller (¾ inch for medium texture, 1 inch for heavy texture).</li>
+<li><strong>Stained or damaged walls:</strong> Use a stain-blocking primer (shellac-based for severe stains, latex-based for light stains) before painting.</li>
+<li><strong>Exterior wood:</strong> Scrape loose paint, sand smooth, prime bare wood. Caulk gaps around trim, windows, and doors before painting.</li>
+</ul>
+
+<h2>2025 US Paint Cost Guide</h2>
+<table>
+<thead><tr><th>Paint Grade</th><th>Price per Gallon</th><th>Coverage (sq ft)</th><th>Best Brands</th></tr></thead>
+<tbody>
+<tr><td><strong>Economy</strong></td><td>$20–$30</td><td>300–350</td><td>Glidden, ColorPlace, Valspar (basic)</td></tr>
+<tr><td><strong>Mid-Range</strong></td><td>$30–$50</td><td>350–400</td><td>Behr, Valspar Signature, PPG</td></tr>
+<tr><td><strong>Premium</strong></td><td>$50–$80</td><td>350–400</td><td>Benjamin Moore, Sherwin-Williams, Farrow & Ball</td></tr>
+<tr><td><strong>Primer</strong></td><td>$25–$40</td><td>250–300</td><td>Kilz, Zinsser, Behr primer</td></tr>
+<tr><td><strong>Exterior</strong></td><td>$35–$70</td><td>250–300</td><td>Sherwin-Williams Duration, Behr Ultra</td></tr>
+</tbody>
+</table>
+<p><strong>Pro tip:</strong> Premium paint often covers in fewer coats, has better durability, and is easier to touch up. A $60/gal premium paint that covers in 1 coat can be cheaper overall than a $25/gal economy paint that needs 3 coats.</p>
+`,
         faq: [
-            { question: "How many coats of paint do I need?", answer: "Most color changes require 2 coats for even coverage. Going from dark to light or priming new drywall may need 3 coats. Same-color touch-ups or high-quality paint-and-primer combos may achieve coverage in 1 coat." },
-            { question: "How much does paint cost?", answer: "Economy paint: $20–$30 per gallon. Mid-range: $30–$50. Premium: $50–$80+. Higher-quality paints typically offer better coverage (fewer coats needed), better color retention, and easier application — often making them more cost-effective overall." },
+            { question: "How much does 1 gallon of paint cover?", answer: "One gallon of standard interior latex paint covers 350–400 square feet per coat on smooth surfaces. Semi-gloss and high-gloss cover slightly less (300–350 sq ft). Exterior paint covers 250–300 sq ft per gallon. Textured surfaces, porous materials, and dark-to-light color changes all reduce coverage." },
+            { question: "How much paint do I need for a 12×12 room?", answer: "A 12×12 ft room with 8 ft ceilings has 384 sq ft of wall area. Subtracting 1 door (21 sq ft) and 2 windows (30 sq ft) = 333 sq ft paintable. At 350 sq ft/gal: 1 coat needs ~1 gallon, 2 coats need ~2 gallons. Buy 2 gallons for a standard 2-coat job." },
+            { question: "Do I need primer before painting?", answer: "Primer is recommended for: new drywall (PVA primer), dramatic color changes (tinted primer), covering stains (shellac-based primer), and bare wood (wood primer). If painting a similar color over clean, previously painted walls with quality paint-and-primer combo, you can often skip separate primer." },
+            { question: "How many coats of paint do I need?", answer: "Most color changes require 2 coats for even coverage. Going dark to light may need a tinted primer + 2 coats (or 3 coats without primer). Premium paint-and-primer combos may cover in 1 coat for same-color refreshes. Bright reds and yellows are notoriously poor at covering and may need 3+ coats." },
+            { question: "What is the difference between flat, eggshell, satin, and semi-gloss?", answer: "Flat (no shine): best for ceilings, hides imperfections, but hard to clean. Eggshell (slight sheen): most popular for living areas, easy to clean. Satin (medium sheen): good for high-traffic areas, kids' rooms. Semi-gloss (noticeable shine): standard for kitchens, bathrooms, and trim — very washable. High-gloss: cabinets and furniture." },
+            { question: "How do I estimate ceiling paint?", answer: "Ceiling area = room length × width. Ceiling paint is thicker and covers about 350–400 sq ft per gallon. A 12×12 ft ceiling = 144 sq ft = less than half a gallon per coat. Most ceilings need 1 coat unless covering dark colors or stains. Use flat white ceiling paint for the best results." },
+            { question: "Can I paint over wallpaper?", answer: "It's possible but not ideal. If the wallpaper is smooth, well-adhered, and not vinyl, you can: apply oil-based primer, then paint with 2 coats of latex. However, seams and texture may show through. For best results, remove the wallpaper, repair the wall, prime, and paint." },
+            { question: "How long should I wait between coats?", answer: "Latex paint: 2–4 hours between coats (or until dry to touch). Oil-based paint: 24 hours between coats. High humidity and cold temperatures extend dry time. The label on your specific paint will have the most accurate recoat time. Don't rush — painting over wet paint causes peeling and uneven coverage." },
+            { question: "How do I calculate exterior paint for a house?", answer: "Measure each exterior wall (length × height). For gable walls, add the triangle area: ½ × base × gable height. Subtract windows and doors. Add 10% for waste. Exterior paint covers less (250–300 sq ft/gal) and typically needs 2 coats. A 1,500 sq ft exterior needs about 10–12 gallons for 2 coats." },
+            { question: "How much does it cost to paint a room?", answer: "DIY: A 12×12 room typically costs $50–$100 for paint (2 gallons) plus $30–$50 for supplies (rollers, tape, drop cloths). Professional painters charge $300–$800 per room depending on size, prep work, and paint quality. Exterior painting: $1,500–$4,000 for an average home." },
         ],
     },
     "drywall-calculator": {

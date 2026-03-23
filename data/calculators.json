@@ -7240,7 +7240,7 @@
     "categorySlug": "construction-calculators",
     "icon": "🎨",
     "calcType": "paint",
-    "description": "Calculate how much paint you need for a room. Enter wall dimensions, doors, and windows to get total gallons needed with coverage breakdown.",
+    "description": "Calculate how many gallons of paint you need for any room or exterior. Choose paint type, add ceiling and trim, include primer coats, and get a cost estimate. Supports 8 finishes and custom coverage.",
     "stars": 5,
     "defaults": {
       "amount": 12,

@@ -518,7 +518,20 @@ function RoofPitchCalc() {
 }
 
 /* ──────────── 7. PAINT CALCULATOR ──────────── */
+const PAINT_TYPES: { value: string; label: string; coverage: number }[] = [
+    { value: "interior-flat", label: "Interior Flat / Matte", coverage: 400 },
+    { value: "interior-eggshell", label: "Interior Eggshell / Satin", coverage: 350 },
+    { value: "interior-semi", label: "Interior Semi-Gloss", coverage: 350 },
+    { value: "interior-gloss", label: "Interior High-Gloss", coverage: 300 },
+    { value: "exterior-flat", label: "Exterior Flat / Satin", coverage: 300 },
+    { value: "exterior-semi", label: "Exterior Semi-Gloss", coverage: 275 },
+    { value: "primer", label: "Primer / Sealer", coverage: 300 },
+    { value: "ceiling", label: "Ceiling Paint", coverage: 400 },
+    { value: "custom", label: "Custom Coverage", coverage: 350 },
+];
+
 function PaintCalc() {
+    const [paintType, setPaintType] = useState("interior-eggshell");
     const [roomLength, setRoomLength] = useState(12);
     const [roomWidth, setRoomWidth] = useState(10);
     const [wallHeight, setWallHeight] = useState(8);
@@ -526,37 +539,76 @@ function PaintCalc() {
     const [windows, setWindows] = useState(2);
     const [coats, setCoats] = useState(2);
     const [coverage, setCoverage] = useState(350);
+    const [includeCeiling, setIncludeCeiling] = useState(false);
+    const [includeTrim, setIncludeTrim] = useState(false);
+    const [primerCoats, setPrimerCoats] = useState(0);
+    const [costPerGal, setCostPerGal] = useState(40);
+
+    const handlePaintType = (v: string) => {
+        setPaintType(v);
+        const pt = PAINT_TYPES.find(p => p.value === v);
+        if (pt && v !== "custom") setCoverage(pt.coverage);
+    };
 
     const result = useMemo(() => {
         const perimeter = 2 * (roomLength + roomWidth);
         const wallArea = perimeter * wallHeight;
-        const doorArea = doors * 21;       // standard door ≈ 21 sq ft
-        const windowArea = windows * 15;   // standard window ≈ 15 sq ft
-        const paintableArea = wallArea - doorArea - windowArea;
-        const totalArea = paintableArea * coats;
+        const doorArea = doors * 21;
+        const windowArea = windows * 15;
+        const wallPaintable = Math.max(0, wallArea - doorArea - windowArea);
+        const ceilingArea = includeCeiling ? roomLength * roomWidth : 0;
+        const trimLF = includeTrim ? perimeter : 0;
+        const trimArea = trimLF * 0.33; // ~4 inches tall baseboard
+        const totalPaintable = wallPaintable + ceilingArea + trimArea;
+        const totalArea = totalPaintable * coats;
         const gallons = coverage > 0 ? totalArea / coverage : 0;
-        return { wallArea, paintableArea, totalArea, gallons };
-    }, [roomLength, roomWidth, wallHeight, doors, windows, coats, coverage]);
+        const primerArea = totalPaintable * primerCoats;
+        const primerGallons = primerArea / 300;
+        const paintCost = Math.ceil(gallons) * costPerGal;
+        const primerCost = Math.ceil(primerGallons) * 30; // avg primer ~$30/gal
+        return { wallArea, wallPaintable, ceilingArea, trimArea, trimLF, totalPaintable, totalArea, gallons, primerGallons, paintCost, primerCost };
+    }, [roomLength, roomWidth, wallHeight, doors, windows, coats, coverage, includeCeiling, includeTrim, primerCoats, costPerGal]);
 
     return (
         <div className="con-calc">
             <h3 className="con-calc__title">🎨 Paint Calculator</h3>
             <div className="con-calc__inputs">
+                <SelectField label="Paint Type" value={paintType} onChange={handlePaintType}
+                    options={PAINT_TYPES.map(p => ({ value: p.value, label: p.label }))} />
                 <InputField label="Room Length" value={roomLength} onChange={setRoomLength} unit="ft" min={1} />
                 <InputField label="Room Width" value={roomWidth} onChange={setRoomWidth} unit="ft" min={1} />
                 <InputField label="Wall Height" value={wallHeight} onChange={setWallHeight} unit="ft" min={1} />
                 <InputField label="Doors" value={doors} onChange={setDoors} min={0} />
                 <InputField label="Windows" value={windows} onChange={setWindows} min={0} />
-                <InputField label="Coats" value={coats} onChange={setCoats} min={1} max={4} />
-                <InputField label="Paint Coverage" value={coverage} onChange={setCoverage} unit="sq ft/gal" min={100} />
+                <InputField label="Paint Coats" value={coats} onChange={setCoats} min={1} max={4} />
+                <InputField label="Primer Coats" value={primerCoats} onChange={setPrimerCoats} min={0} max={2} />
+                {paintType === "custom" && (
+                    <InputField label="Coverage" value={coverage} onChange={setCoverage} unit="sq ft/gal" min={100} />
+                )}
+                <InputField label="Cost per Gallon" value={costPerGal} onChange={setCostPerGal} unit="$" min={0} />
+                <div className="con-input">
+                    <label className="con-input__label" style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
+                        <span><input type="checkbox" checked={includeCeiling} onChange={(e) => setIncludeCeiling(e.target.checked)} /> Include Ceiling</span>
+                        <span><input type="checkbox" checked={includeTrim} onChange={(e) => setIncludeTrim(e.target.checked)} /> Include Trim / Baseboard</span>
+                    </label>
+                </div>
             </div>
             <div className="con-calc__results">
-                <h4>Results</h4>
+                <h4 className="con-calc__group-label">AREA</h4>
                 <ResultRow label="Total Wall Area" value={fmt(result.wallArea)} unit="sq ft" />
-                <ResultRow label="Paintable Area" value={fmt(result.paintableArea)} unit="sq ft" />
-                <ResultRow label="Total Area (all coats)" value={fmt(result.totalArea)} unit="sq ft" />
+                <ResultRow label="Paintable Wall Area" value={fmt(result.wallPaintable)} unit="sq ft" />
+                {includeCeiling && <ResultRow label="Ceiling Area" value={fmt(result.ceilingArea)} unit="sq ft" />}
+                {includeTrim && <ResultRow label="Trim Area" value={fmt(result.trimArea)} unit="sq ft" />}
+                <ResultRow label="Total Paintable Area" value={fmt(result.totalPaintable)} unit="sq ft" />
+                <h4 className="con-calc__group-label">PAINT</h4>
+                <ResultRow label="Coverage (all coats)" value={fmt(result.totalArea)} unit="sq ft" />
                 <ResultRow label="Paint Needed" value={fmt(result.gallons, 1)} unit="gallons" />
-                <ResultRow label="Quarts Needed" value={fmt(result.gallons * 4, 1)} unit="quarts" />
+                <ResultRow label="Buy (rounded up)" value={fmtInt(result.gallons)} unit="gallons" />
+                {primerCoats > 0 && <ResultRow label="Primer Needed" value={fmt(result.primerGallons, 1)} unit="gallons" />}
+                <h4 className="con-calc__group-label">COST</h4>
+                <ResultRow label="Paint Cost" value={`$${fmtInt(result.paintCost)}`} />
+                {primerCoats > 0 && <ResultRow label="Primer Cost (~$30/gal)" value={`$${fmtInt(result.primerCost)}`} />}
+                <ResultRow label="Total Estimated Cost" value={`$${fmtInt(result.paintCost + result.primerCost)}`} />
             </div>
         </div>
     );
