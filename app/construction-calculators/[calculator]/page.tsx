@@ -4042,18 +4042,97 @@ Net lawn area: 10,890 − 1,900 = <strong>8,990 sq ft</strong></p>
         ],
     },
     "plywood-sheathing-calculator": {
-        subtitle: "Calculate plywood or OSB sheathing sheets needed for roofs, walls, or subfloors. Get sheet count and cost estimate.",
+        subtitle: "Calculate plywood or OSB sheathing sheets for roofs, walls, or subfloors. Choose sheathing type, roof pitch, and get weight and cost estimates.",
         explanation: {
             heading: "Plywood Sheathing Estimation",
             paragraphs: [
-                "Standard plywood sheathing is 4' × 8' (32 sq ft per sheet). Common thicknesses: 7/16\" OSB for walls, 1/2\" or 5/8\" CDX for roofs, and 3/4\" tongue-and-groove for subfloors.",
-                "Divide total area by 32 sq ft per sheet, then add 10–15% for waste and cuts. Waste is higher for complex roof shapes with many hips, valleys, and dormers.",
+                "Standard sheathing is 4' × 8' (32 sq ft per sheet). For roofs, multiply the footprint area by the pitch multiplier to get actual roof area, then divide by 32. Add 10–15% for waste — more for complex roofs with hips and valleys.",
+                "Common types: 7/16\" OSB for walls ($22/sheet), ½\" OSB or CDX for roofs ($26–30/sheet), and ¾\" T&G plywood for subfloors ($48/sheet). OSB is cheaper; CDX handles moisture better.",
             ],
-            highlight: "A 30 × 20 ft roof: 600 sq ft ÷ 32 = 19 sheets. With 10% waste: 21 sheets × $35 = $735.",
+            highlight: "A 30 × 20 ft roof at 4/12 pitch: 600 sq ft × 1.054 = 632 sq ft ÷ 32 = 20 sheets. With 10% waste: 22 sheets of ½\" OSB × $26 = $572.",
         },
+        contentHTML: `
+<p>Plywood and OSB sheathing form the structural substrate of <strong>US residential roofs, walls, and subfloors</strong>. Accurate sheet estimation prevents costly jobsite delays and excess material waste. The calculator above accounts for <strong>roof pitch multipliers</strong> — the often-overlooked factor that increases actual roof area compared to the flat footprint.</p>
+<p>Choose from <strong>6 sheathing types</strong>, select your <strong>application</strong> (roof, wall, subfloor), pick the <strong>roof pitch</strong>, and get sheets, weight, and cost instantly.</p>
+
+<h2>Sheathing Types</h2>
+<table>
+<thead><tr><th>Type</th><th>Thickness</th><th>Weight (4×8)</th><th>Cost (4×8)</th><th>Best For</th></tr></thead>
+<tbody>
+<tr><td><strong>CDX Plywood ½"</strong></td><td>15/32" actual</td><td>~42 lbs</td><td>$28–$35</td><td>Roof sheathing (16" OC rafters)</td></tr>
+<tr><td><strong>CDX Plywood ⅝"</strong></td><td>19/32" actual</td><td>~51 lbs</td><td>$35–$42</td><td>Roof sheathing (24" OC rafters)</td></tr>
+<tr><td><strong>CDX Plywood ¾"</strong></td><td>23/32" actual</td><td>~60 lbs</td><td>$40–$50</td><td>Heavy roofs, snow loads, solar panels</td></tr>
+<tr><td><strong>OSB 7/16"</strong></td><td>7/16" actual</td><td>~38 lbs</td><td>$18–$25</td><td>Wall sheathing, light-duty</td></tr>
+<tr><td><strong>OSB ½"</strong></td><td>15/32" actual</td><td>~44 lbs</td><td>$22–$30</td><td>Roof and wall sheathing</td></tr>
+<tr><td><strong>T&G Plywood ¾"</strong></td><td>23/32" actual</td><td>~62 lbs</td><td>$42–$55</td><td>Subfloor (tongue-and-groove)</td></tr>
+</tbody>
+</table>
+
+<h2>Roof Pitch Multiplier Table</h2>
+<p>A pitched roof has more surface area than its flat footprint. Multiply the footprint area by the <strong>pitch multiplier</strong> to get the actual roof area.</p>
+<table>
+<thead><tr><th>Roof Pitch</th><th>Multiplier</th><th>600 sq ft Footprint</th><th>Sheets (4×8)</th></tr></thead>
+<tbody>
+<tr><td><strong>Flat (0/12)</strong></td><td>1.000</td><td>600 sq ft</td><td>19</td></tr>
+<tr><td><strong>2/12</strong></td><td>1.014</td><td>608 sq ft</td><td>19</td></tr>
+<tr><td><strong>4/12</strong></td><td>1.054</td><td>632 sq ft</td><td>20</td></tr>
+<tr><td><strong>6/12</strong></td><td>1.118</td><td>671 sq ft</td><td>21</td></tr>
+<tr><td><strong>8/12</strong></td><td>1.202</td><td>721 sq ft</td><td>23</td></tr>
+<tr><td><strong>10/12</strong></td><td>1.302</td><td>781 sq ft</td><td>25</td></tr>
+<tr><td><strong>12/12 (45°)</strong></td><td>1.414</td><td>849 sq ft</td><td>27</td></tr>
+</tbody>
+</table>
+<p><strong>Note:</strong> A steeper pitch dramatically increases sheathing needs. A 12/12 pitch requires <strong>41% more sheets</strong> than a flat roof over the same footprint.</p>
+
+<h2>Step-by-Step Sheathing Estimation</h2>
+<h3>Step 1: Measure the Area</h3>
+<p>For <strong>roofs:</strong> measure the building footprint (length × width). For a gable roof, this is the total footprint of both sides. For <strong>walls:</strong> measure perimeter × wall height. For <strong>subfloors:</strong> measure room length × width.</p>
+
+<h3>Step 2: Apply Pitch Multiplier (Roofs Only)</h3>
+<p>Multiply footprint by the pitch multiplier from the table above. Formula: Multiplier = √(1 + (pitch/12)²).</p>
+<p><strong>Example:</strong> 30 ft × 20 ft = 600 sq ft × 1.054 (4/12) = 632 sq ft actual roof area.</p>
+
+<h3>Step 3: Calculate Sheets</h3>
+<p>Divide actual area by 32 sq ft (one 4×8 sheet). Add 10% waste for simple roofs, 15% for complex roofs with hips, valleys, and dormers.</p>
+<p><strong>Example:</strong> 632 sq ft × 1.10 = 695 sq ft ÷ 32 = 21.7 → <strong>22 sheets</strong>.</p>
+
+<h2>Plywood vs. OSB for Sheathing</h2>
+<table>
+<thead><tr><th>Feature</th><th>CDX Plywood</th><th>OSB</th></tr></thead>
+<tbody>
+<tr><td><strong>Cost</strong></td><td>$28–$50/sheet</td><td>$18–$30/sheet</td></tr>
+<tr><td><strong>Moisture</strong></td><td>Better — dries quickly</td><td>Swells at edges when wet</td></tr>
+<tr><td><strong>Nail holding</strong></td><td>Better at edges</td><td>Good in field, weaker at edges</td></tr>
+<tr><td><strong>Uniformity</strong></td><td>May have voids</td><td>Very uniform (no voids)</td></tr>
+<tr><td><strong>Weight</strong></td><td>Slightly lighter</td><td>Slightly heavier (same thickness)</td></tr>
+<tr><td><strong>Code approval</strong></td><td>Yes</td><td>Yes</td></tr>
+</tbody>
+</table>
+<p><strong>Recommendation:</strong> Both are code-approved for structural sheathing. Use CDX plywood in moisture-prone areas (bathrooms, kitchens, coastal climates). Use OSB to save 20–30% on material cost where moisture isn't a concern.</p>
+
+<h2>Sheathing by Application</h2>
+<table>
+<thead><tr><th>Application</th><th>Recommended</th><th>Min Thickness</th><th>Spacing</th></tr></thead>
+<tbody>
+<tr><td><strong>Roof (16" OC)</strong></td><td>CDX ½" or OSB ½"</td><td>7/16"</td><td>⅛" gap between sheets</td></tr>
+<tr><td><strong>Roof (24" OC)</strong></td><td>CDX ⅝" or OSB ⅝"</td><td>½"</td><td>⅛" gap between sheets</td></tr>
+<tr><td><strong>Wall</strong></td><td>OSB 7/16" or CDX ½"</td><td>7/16"</td><td>⅛" gap, stagger joints</td></tr>
+<tr><td><strong>Subfloor (16" OC)</strong></td><td>CDX ¾" or T&G ¾"</td><td>⅝"</td><td>T&G eliminates gaps</td></tr>
+<tr><td><strong>Subfloor (24" OC)</strong></td><td>T&G ¾" or CDX ¾"</td><td>¾"</td><td>Glue + screw recommended</td></tr>
+</tbody>
+</table>
+`,
         faq: [
-            { question: "Should I use plywood or OSB?", answer: "OSB is cheaper ($3–5 less per sheet) and more uniform. Plywood is stronger on edges, handles moisture better, and holds nails better. For roofs, either works. For subfloors, plywood is preferred." },
-            { question: "What thickness plywood for a roof?", answer: "Minimum 7/16\" OSB or 1/2\" plywood for 24\" rafter spacing. Use 5/8\" for heavy snow loads or when installing solar panels. Check local codes — they may require thicker sheathing." },
+            { question: "Should I use plywood or OSB for sheathing?", answer: "Both are code-approved. OSB is 20–30% cheaper and more uniform (no core voids). CDX plywood handles moisture better, dries faster, and holds nails better at edges. For roofs in dry climates: OSB saves money. For moisture-prone areas: use CDX plywood." },
+            { question: "What thickness plywood for a roof?", answer: "Minimum 7/16\" OSB or ½\" plywood for 16\" OC rafter spacing. Use ⅝\" for 24\" OC spacing. Use ¾\" for heavy snow loads, tile roofs, or solar panel installations. Always check local building codes — they may require thicker sheathing in your area." },
+            { question: "What is a roof pitch multiplier?", answer: "The pitch multiplier converts flat footprint area to actual roof surface area. Formula: √(1 + (pitch/12)²). A 4/12 pitch = 1.054× (5.4% more area). A 12/12 pitch = 1.414× (41% more area). Always apply this multiplier before calculating sheets." },
+            { question: "How many sheets of plywood for a 1,500 sq ft roof?", answer: "At 4/12 pitch: 1,500 × 1.054 = 1,581 sq ft ÷ 32 = 50 sheets. With 10% waste: 55 sheets. At 8/12 pitch: 1,500 × 1.202 = 1,803 sq ft ÷ 32 = 57 sheets. With 10% waste: 63 sheets." },
+            { question: "How much does sheathing weigh?", answer: "½\" CDX: ~42 lbs/sheet. ½\" OSB: ~44 lbs/sheet. ⅝\" CDX: ~51 lbs/sheet. ¾\" CDX: ~60 lbs/sheet. A typical roof with 55 sheets of ½\" OSB = ~2,420 lbs total. Factor this into structural load calculations." },
+            { question: "Do I need to leave gaps between sheathing panels?", answer: "Yes — leave ⅛\" (3mm) gap between all panels to allow for thermal expansion. Without gaps, panels can buckle in hot weather, causing visible bumps under roofing material. Use panel edge clips (H-clips) between rafters for ½\" and thinner sheathing." },
+            { question: "How much waste should I add?", answer: "10% for simple gable roofs. 15% for hip roofs or roofs with multiple valleys. 15–20% for complex roofs with dormers, turrets, or mixed pitch. Waste is higher on roofs because of angle cuts at hips, valleys, and edges that create unusable small pieces." },
+            { question: "What are H-clips for roof sheathing?", answer: "H-clips are small metal clips placed between panel edges at midspan between rafters. They support unsupported panel edges and prevent deflection under foot traffic and loads. Required by code for sheathing ½\" and thinner when rafter spacing is 24\" OC." },
+            { question: "How do I install roof sheathing?", answer: "Start at the bottom corner. Stagger joints by at least 4 feet between rows. Leave ⅛\" gaps. Use 8d common nails or #8 screws, 6\" OC at edges and 12\" OC in the field. Install H-clips at midspan. Work from the eave to the ridge. Always follow local codes." },
+            { question: "Can I use sheathing as a finished floor?", answer: "No — sheathing is a structural substrate, not a finished surface. CDX and OSB have rough surfaces and no aesthetic finish. For visible applications, use sanded plywood (AC or BC grade). For subfloors, the sheathing is always covered with a finished flooring material." },
         ],
     },
     "roof-snow-load-calculator": {

@@ -7482,35 +7482,88 @@ function MetalRoofingCalc() {
 }
 
 /* ──────────── 157. PLYWOOD SHEATHING CALCULATOR ──────────── */
+const SHEATH_TYPES: { value: string; label: string; costPerSheet: number; weightPerSheet: number }[] = [
+    { value: "cdx-12", label: 'CDX Plywood ½"', costPerSheet: 30, weightPerSheet: 42 },
+    { value: "cdx-58", label: 'CDX Plywood ⅝"', costPerSheet: 38, weightPerSheet: 51 },
+    { value: "cdx-34", label: 'CDX Plywood ¾"', costPerSheet: 45, weightPerSheet: 60 },
+    { value: "osb-716", label: 'OSB 7/16"', costPerSheet: 22, weightPerSheet: 38 },
+    { value: "osb-12", label: 'OSB ½"', costPerSheet: 26, weightPerSheet: 44 },
+    { value: "tng-34", label: 'T&G Plywood ¾" (subfloor)', costPerSheet: 48, weightPerSheet: 62 },
+    { value: "custom", label: "Custom / Other", costPerSheet: 35, weightPerSheet: 50 },
+];
+
+const PITCH_MULT: { value: string; label: string; mult: number }[] = [
+    { value: "flat", label: "Flat (0/12)", mult: 1.000 },
+    { value: "2", label: "2/12 (low slope)", mult: 1.014 },
+    { value: "4", label: "4/12 (standard)", mult: 1.054 },
+    { value: "6", label: "6/12 (moderate)", mult: 1.118 },
+    { value: "8", label: "8/12 (steep)", mult: 1.202 },
+    { value: "10", label: "10/12 (very steep)", mult: 1.302 },
+    { value: "12", label: "12/12 (45°)", mult: 1.414 },
+    { value: "wall", label: "Wall / Subfloor (flat)", mult: 1.000 },
+];
+
 function PlywoodSheathingCalc() {
+    const [sheathType, setSheathType] = useState("osb-12");
+    const [application, setApplication] = useState("roof");
+    const [pitch, setPitch] = useState("4");
     const [length, setLength] = useState(30);
     const [width, setWidth] = useState(20);
     const [wastePct, setWastePct] = useState(10);
-    const [costPerSheet, setCostPerSheet] = useState(35);
+    const [costPerSheet, setCostPerSheet] = useState(26);
+
+    const handleType = (v: string) => {
+        setSheathType(v);
+        const t = SHEATH_TYPES.find(s => s.value === v);
+        if (t && v !== "custom") setCostPerSheet(t.costPerSheet);
+    };
+
+    const handleApp = (v: string) => {
+        setApplication(v);
+        if (v === "wall" || v === "subfloor") setPitch("wall");
+        else if (pitch === "wall") setPitch("4");
+    };
 
     const result = useMemo(() => {
-        const area = length * width;
-        const areaWithWaste = area * (1 + wastePct / 100);
-        const sheetArea = 4 * 8; // 4x8 sheet
-        const sheets = Math.ceil(areaWithWaste / sheetArea);
+        const footprint = length * width;
+        const pitchData = PITCH_MULT.find(p => p.value === pitch);
+        const multiplier = pitchData?.mult || 1;
+        const actualArea = footprint * multiplier;
+        const withWaste = actualArea * (1 + wastePct / 100);
+        const sheets = Math.ceil(withWaste / 32);
+        const typeData = SHEATH_TYPES.find(s => s.value === sheathType);
+        const totalWeight = sheets * (typeData?.weightPerSheet || 50);
         const totalCost = sheets * costPerSheet;
-        return { area, sheets, totalCost };
-    }, [length, width, wastePct, costPerSheet]);
+        return { footprint, actualArea, withWaste, sheets, totalWeight, totalCost };
+    }, [length, width, wastePct, costPerSheet, pitch, sheathType]);
 
     return (
         <div className="con-calc">
             <h3 className="con-calc__title">🪵 Plywood Sheathing Calculator</h3>
             <div className="con-calc__inputs">
+                <SelectField label="Sheathing Type" value={sheathType} onChange={handleType}
+                    options={SHEATH_TYPES.map(s => ({ value: s.value, label: s.label }))} />
+                <SelectField label="Application" value={application} onChange={handleApp}
+                    options={[{ value: "roof", label: "Roof Sheathing" }, { value: "wall", label: "Wall Sheathing" }, { value: "subfloor", label: "Subfloor" }]} />
+                {application === "roof" && (
+                    <SelectField label="Roof Pitch" value={pitch} onChange={setPitch}
+                        options={PITCH_MULT.filter(p => p.value !== "wall").map(p => ({ value: p.value, label: p.label }))} />
+                )}
                 <InputField label="Length" value={length} onChange={setLength} unit="ft" min={1} />
                 <InputField label="Width" value={width} onChange={setWidth} unit="ft" min={1} />
-                <InputField label="Waste %" value={wastePct} onChange={setWastePct} unit="%" min={5} max={25} />
-                <InputField label="Cost per Sheet" value={costPerSheet} onChange={setCostPerSheet} unit="$" min={10} />
+                <InputField label="Waste Factor" value={wastePct} onChange={setWastePct} unit="%" min={5} max={25} />
+                <InputField label="Cost per Sheet" value={costPerSheet} onChange={setCostPerSheet} unit="$" min={0} />
             </div>
             <div className="con-calc__results">
-                <h4>Results</h4>
-                <ResultRow label="Area" value={fmt(result.area)} unit="sq ft" />
+                <h4 className="con-calc__group-label">AREA</h4>
+                <ResultRow label="Footprint" value={fmt(result.footprint)} unit="sq ft" />
+                {application === "roof" && <ResultRow label="Actual Roof Area" value={fmt(result.actualArea)} unit="sq ft" />}
+                <ResultRow label="With Waste" value={fmt(result.withWaste)} unit="sq ft" />
+                <h4 className="con-calc__group-label">SHEETS</h4>
                 <ResultRow label="4×8 Sheets Needed" value={fmtInt(result.sheets)} unit="sheets" />
-                <ResultRow label="Total Cost" value={`$${fmt(result.totalCost, 2)}`} />
+                <ResultRow label="Total Weight" value={fmtInt(result.totalWeight)} unit="lbs" />
+                <h4 className="con-calc__group-label">COST</h4>
+                <ResultRow label="Material Cost" value={`$${fmt(result.totalCost)}`} />
             </div>
         </div>
     );

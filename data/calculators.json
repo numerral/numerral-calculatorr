@@ -13493,7 +13493,7 @@
     "categorySlug": "construction-calculators",
     "icon": "🪵",
     "calcType": "plywood-sheathing",
-    "description": "Calculate plywood or OSB sheathing sheets needed for roofs, walls, or subfloors. Enter area for sheets and cost.",
+    "description": "Calculate plywood or OSB sheathing sheets for roofs, walls, or subfloors. Choose sheathing type, roof pitch, and get weight and cost estimates.",
     "stars": 5,
     "defaults": {
       "amount": 30,
