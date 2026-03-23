@@ -7029,7 +7029,7 @@
     "categorySlug": "construction-calculators",
     "icon": "🏗️",
     "calcType": "concrete-block",
-    "description": "Calculate how many concrete blocks (CMU) you need for a wall. Enter wall dimensions and block size to get total blocks, mortar, and cost estimate.",
+    "description": "Calculate how many concrete blocks (CMU) you need for a wall. Enter wall dimensions and block size to get total blocks with 5% waste, mortar bags, grout fill, and cost estimate. Supports standard and custom sizes.",
     "stars": 5,
     "defaults": {
       "amount": 20,

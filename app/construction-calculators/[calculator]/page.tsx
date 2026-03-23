@@ -53,6 +53,9 @@ const HUB_CONTENT: Record<string, {
             highlight: "A 10 × 10 ft patio slab at 4 inches thick = 10 × 10 × 0.333 = 33.3 cu ft = 1.23 cubic yards = about 89 bags (50 lb), 74 bags (60 lb), or 56 bags (80 lb). At $140/yard, that's about $172.",
         },
         contentHTML: `
+<p>Concrete is ordered in cubic yards in the United States. For a rectangular slab, the formula is Length × Width × Depth — but the critical step most people miss is converting depth from inches to feet first. A 4-inch slab is 4 ÷ 12 = 0.333 feet, not 4 feet. Mixing up this unit conversion is the #1 reason homeowners over-order concrete.</p>
+<p>For cylindrical shapes (sono tubes, columns, piers), use π × radius² × height. For pre-mix bags: a 50 lb bag fills about 0.375 cu ft, a 60 lb bag fills about 0.45 cu ft, and an 80 lb bag fills about 0.6 cu ft. For projects over 1 cubic yard, ordering a ready-mix truck is more economical and produces better results than hand-mixing individual bags.</p>
+
 <h2>What Is Concrete?</h2>
 <p><strong>Concrete</strong> is a composite material made by mixing <strong>Portland cement</strong>, water, sand (fine aggregate), and gravel or crushed stone (coarse aggregate). When water is added to the dry ingredients, a chemical reaction called <strong>hydration</strong> hardens the mixture into a durable, stone-like material.</p>
 <p>Concrete is not the same as cement — cement is just one ingredient in concrete (typically 10–15% of the mix by volume). In the US, concrete is used for foundations, driveways, patios, sidewalks, retaining walls, curbs, columns, and footings.</p>
@@ -168,6 +171,9 @@ const HUB_CONTENT: Record<string, {
             highlight: "A 20 ft × 8 ft wall = 160 sq ft ÷ 0.89 = 180 blocks. With 5% waste = 189 blocks. Mortar: 6 bags cement + 0.9 cu yd sand. Grout fill: about 1.3 cubic yards.",
         },
         contentHTML: `
+<p>Standard CMU (concrete masonry unit) blocks are 16 inches long × 8 inches high × 8 inches wide (nominal size including a ⅜-inch mortar joint). The actual block is slightly smaller (15⅝ × 7⅝). A standard 8×16 block covers 0.89 sq ft of wall — so you need about 1.125 blocks per square foot.</p>
+<p>To estimate blocks: measure wall length × height = wall area (sq ft), subtract any door/window openings, then divide by 0.89. Add 5% for waste (cuts, breakage, corners). For mortar, plan about 3 bags of Portland cement per 100 blocks, plus 1 cubic yard of sand per 7 bags of cement.</p>
+
 <h2>What Are Concrete Blocks?</h2>
 <p><strong>Concrete blocks</strong> (also called CMUs — concrete masonry units, or cinder blocks) are precast rectangular building units made from Portland cement, aggregate, and water. They are used to construct load-bearing walls, foundations, retaining walls, partition walls, and fencing.</p>
 <p>CMUs come in two basic types: <strong>hollow blocks</strong> (the most common, with two open cells that are filled with grout/concrete during installation) and <strong>solid blocks</strong> (used for retaining walls, filled walls, and special applications). The hollow cells allow reinforcing rebar to be inserted vertically, making the wall much stronger.</p>
@@ -264,6 +270,9 @@ const HUB_CONTENT: Record<string, {
             highlight: "12 × 10 ft room = 120 sq ft. With 10% waste = 132 sq ft. At 20 sq ft/box: 7 boxes. Underlayment: 1 roll. Trim: ~41 linear feet. At $8/sq ft hardwood: $1,056 for material.",
         },
         contentHTML: `
+<p>The basic flooring calculation is Length × Width to get the room’s square footage. But never order just the exact amount — cuts, fitting around obstacles, and pattern matching require extra material. Industry standard is 10% waste for straight-lay and 15–20% for diagonal, herringbone, or parquet patterns.</p>
+<p>Flooring is sold by the box, with each box covering a specific square footage (typically 15–25 sq ft depending on product). Divide your total area (including waste) by the box coverage and round up — you can’t buy a fraction of a box. Don’t forget underlayment (sold in 200 sq ft rolls) and baseboard/trim (sold by the linear foot).</p>
+
 <h2>How to Measure Your Room for Flooring</h2>
 <p>Accurate measurements are the foundation of a successful flooring project. Here's how to measure like a pro:</p>
 <ul>
@@ -362,6 +371,9 @@ const HUB_CONTENT: Record<string, {
             highlight: "100 sq ft bathroom with 12×12 tiles and ⅛\" gap = 97 tiles exact. With 10% waste = 107 tiles. At 10 tiles/box: 11 boxes. Thinset: 2 bags. Grout: 10 lbs.",
         },
         contentHTML: `
+<p>Tile calculation divides your total area by the area of one tile (including the grout gap). A 12×12 inch tile with a ⅛-inch gap has an effective size of 12.125 × 12.125 inches = 1.02 sq ft. This small difference matters — over 100 sq ft, it means 2–3 extra tiles.</p>
+<p>Always add a waste factor: 10% for standard straight-lay, 15% for diagonal or herringbone, and 20% for complex patterns. Tiles are sold by the box, so round up to full boxes. Don’t forget thinset mortar (~50 sq ft per 50 lb bag) and grout (~1 lb per 10 sq ft at ⅛-inch joints).</p>
+
 <h2>Tile Types Comparison</h2>
 <table>
 <thead><tr><th>Type</th><th>Material $/sq ft</th><th>Durability</th><th>Water Resistance</th><th>Best For</th></tr></thead>
@@ -475,6 +487,9 @@ const HUB_CONTENT: Record<string, {
             highlight: "A 30×40 ft roof at 4:12 pitch = 1,200 sq ft footprint × 1.054 = 1,265 sq ft actual. With 10% waste = 1,391 sq ft = 13.9 squares = 42 bundles. Underlayment: 4 rolls. Drip edge: 154 linear ft.",
         },
         contentHTML: `
+<p>Roofing is measured in ‘squares’ — one square equals 100 square feet of roof area. To convert ground-level (footprint) measurements to actual roof area, multiply by a pitch correction factor. A 4:12 pitch multiplies by 1.054; a 12:12 (45°) pitch multiplies by 1.414.</p>
+<p>Standard asphalt shingles come in bundles, with 3 bundles per square (100 sq ft). Underlayment (felt or synthetic) comes in rolls covering ~400 sq ft. Don’t forget drip edge (roof perimeter), ridge cap (ridge length), and roofing nails (~2.5 lbs per square). Always add 10% for waste.</p>
+
 <h2>Roof Pitch Correction Factors</h2>
 <p>Roof pitch determines how much larger the actual roof area is compared to the footprint you measure from the ground. Use this table to convert:</p>
 <table>
