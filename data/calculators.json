@@ -7448,7 +7448,7 @@
     "categorySlug": "construction-calculators",
     "icon": "🌿",
     "calcType": "mulch",
-    "description": "Calculate how much mulch you need for garden beds and landscaping. Get cubic yards, bags needed, and cost estimate for your project.",
+    "description": "Calculate how much mulch you need for garden beds and landscaping. Choose from 8 mulch types, compare bagged vs. bulk cost, and get bag count with 10% overage.",
     "stars": 5,
     "defaults": {
       "amount": 10,

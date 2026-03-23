@@ -1247,7 +1247,7 @@ const HUB_CONTENT: Record<string, {
         ],
     },
     "mulch-calculator": {
-        subtitle: "Calculate how much mulch you need for garden beds and landscaping. Get cubic yards, number of bags, and estimated cost for any area.",
+        subtitle: "Calculate how much mulch you need for garden beds and landscaping. Choose from 8 mulch types, compare bagged vs. bulk cost, and get weight and bag count with 10% overage.",
         explanation: {
             heading: "How to Calculate Mulch Needs",
             paragraphs: [
@@ -1256,9 +1256,95 @@ const HUB_CONTENT: Record<string, {
             ],
             highlight: "A 10×10 ft garden bed with 3 inches of mulch = 100 × 0.25 = 25 cu ft = 0.93 cu yd. That's about 13 bags (2 cu ft each). At $5/bag = $65 in bags vs. ~$35 for bulk.",
         },
+        contentHTML: `
+<p>Mulch is essential for healthy landscaping throughout the <strong>United States</strong>. It retains soil moisture, suppresses weeds, regulates soil temperature, and creates a polished, finished look for garden beds, tree rings, and walkways. Knowing exactly how much mulch to buy prevents waste and ensures even coverage.</p>
+<p>The calculator above supports <strong>8 common mulch types</strong>, automatically includes <strong>10% overage</strong> for settlement and spillage, calculates <strong>bags needed</strong> (2 or 3 cu ft), and compares <strong>bagged vs. bulk pricing</strong> so you can see exactly how much you'll save buying in bulk.</p>
+
+<h2>Mulch Types and Recommended Depth</h2>
+<table>
+<thead><tr><th>Mulch Type</th><th>Recommended Depth</th><th>Weight per Cu Yd</th><th>Bag Cost (2 cu ft)</th><th>Bulk Cost per Cu Yd</th></tr></thead>
+<tbody>
+<tr><td><strong>Shredded Hardwood Bark</strong></td><td>3–4 inches</td><td>~600 lbs</td><td>$4–$5</td><td>$25–$35</td></tr>
+<tr><td><strong>Cedar Mulch</strong></td><td>2–3 inches</td><td>~550 lbs</td><td>$5–$7</td><td>$35–$45</td></tr>
+<tr><td><strong>Pine Bark Nuggets</strong></td><td>3–4 inches</td><td>~450 lbs</td><td>$4–$6</td><td>$30–$40</td></tr>
+<tr><td><strong>Pine Straw</strong></td><td>3–4 inches</td><td>~300 lbs</td><td>$5–$8/bale</td><td>$25–$35</td></tr>
+<tr><td><strong>Wood Chips</strong></td><td>3–4 inches</td><td>~500 lbs</td><td>$3–$5</td><td>$20–$30</td></tr>
+<tr><td><strong>Dyed Mulch (black/red/brown)</strong></td><td>2–3 inches</td><td>~600 lbs</td><td>$4–$6</td><td>$30–$40</td></tr>
+<tr><td><strong>Rubber Mulch</strong></td><td>1–2 inches</td><td>~1,200 lbs</td><td>$7–$10</td><td>$150–$180</td></tr>
+<tr><td><strong>Decorative Stone Mulch</strong></td><td>2 inches</td><td>~2,800 lbs</td><td>$5–$8</td><td>$45–$70</td></tr>
+</tbody>
+</table>
+
+<h2>Step-by-Step Mulch Calculation</h2>
+<h3>Step 1: Measure the Area</h3>
+<p>Measure the <strong>length and width</strong> of each bed in feet. For circular tree rings, measure the <strong>diameter</strong>. For irregular beds, break them into rectangles and circles, then add the results.</p>
+
+<h3>Step 2: Choose Depth</h3>
+<p>Select depth based on mulch type and purpose:</p>
+<ul>
+<li><strong>Fine mulch</strong> (decomposed, cocoa hull): 1–2 inches</li>
+<li><strong>Medium mulch</strong> (shredded bark, cedar): 2–3 inches</li>
+<li><strong>Coarse mulch</strong> (pine bark nuggets, wood chips): 3–4 inches</li>
+<li><strong>Rubber mulch</strong> (playgrounds): 3–6 inches for fall protection</li>
+<li><strong>Weed suppression only</strong>: 4+ inches with landscape fabric underneath</li>
+</ul>
+
+<h3>Step 3: Calculate Volume</h3>
+<p><strong>Rectangle:</strong> Length (ft) × Width (ft) × Depth (in) ÷ 12 = Cubic Feet. Divide by 27 for Cubic Yards.</p>
+<p><strong>Circle:</strong> π × (Diameter ÷ 2)² × Depth (in) ÷ 12 = Cubic Feet. Divide by 27 for Cubic Yards.</p>
+
+<h3>Step 4: Add 10% Overage</h3>
+<p>Mulch is lightweight and tends to migrate and settle. Add <strong>10% extra</strong> to account for spillage, settlement, and transport loss. If buying bags, always round up.</p>
+
+<h2>Mulch Coverage Chart</h2>
+<p>How much area does <strong>1 cubic yard</strong> of mulch cover at different depths?</p>
+<table>
+<thead><tr><th>Depth</th><th>Coverage (sq ft)</th><th>Bags (2 cu ft)</th><th>Bags (3 cu ft)</th><th>Best For</th></tr></thead>
+<tbody>
+<tr><td><strong>1 inch</strong></td><td>324 sq ft</td><td>14</td><td>9</td><td>Light top-up, fine mulch</td></tr>
+<tr><td><strong>2 inches</strong></td><td>162 sq ft</td><td>14</td><td>9</td><td>Cedar, dyed, stone</td></tr>
+<tr><td><strong>3 inches</strong></td><td>108 sq ft</td><td>14</td><td>9</td><td>Standard organic mulch</td></tr>
+<tr><td><strong>4 inches</strong></td><td>81 sq ft</td><td>14</td><td>9</td><td>Heavy weed suppression</td></tr>
+<tr><td><strong>6 inches</strong></td><td>54 sq ft</td><td>14</td><td>9</td><td>Playground rubber mulch</td></tr>
+</tbody>
+</table>
+<p><strong>Note:</strong> Bag counts are per cubic yard regardless of depth. Coverage area changes with depth, but 1 cu yd always equals 27 cu ft = 14 bags (2 cu ft) or 9 bags (3 cu ft).</p>
+
+<h2>Bagged vs. Bulk: Which Is Cheaper?</h2>
+<table>
+<thead><tr><th>Method</th><th>Cost per Cu Yd</th><th>Pros</th><th>Cons</th></tr></thead>
+<tbody>
+<tr><td><strong>Bagged (2 cu ft)</strong></td><td>$54–$94 equivalent</td><td>Easy to transport, fits in car, no minimum order</td><td>More expensive per cu yd, more plastic waste</td></tr>
+<tr><td><strong>Bulk delivery</strong></td><td>$20–$45 + delivery</td><td>40–60% cheaper, less waste</td><td>Needs driveway space, delivery fee ($50–$100)</td></tr>
+</tbody>
+</table>
+<p><strong>Break-even point:</strong> For most mulch types, buying bulk becomes cheaper at about <strong>3+ cubic yards</strong> (40+ bags). Below that, bags may be more practical despite the higher per-unit cost.</p>
+
+<h2>2025 US Mulch Price Guide</h2>
+<table>
+<thead><tr><th>Mulch Type</th><th>Bagged (2 cu ft)</th><th>Bulk per Cu Yd</th><th>Delivery (5–10 mi)</th></tr></thead>
+<tbody>
+<tr><td><strong>Shredded Hardwood</strong></td><td>$4–$5</td><td>$25–$35</td><td>$50–$100</td></tr>
+<tr><td><strong>Cedar</strong></td><td>$5–$7</td><td>$35–$45</td><td>$50–$100</td></tr>
+<tr><td><strong>Pine Bark Nuggets</strong></td><td>$4–$6</td><td>$30–$40</td><td>$50–$100</td></tr>
+<tr><td><strong>Dyed (black/red/brown)</strong></td><td>$4–$6</td><td>$30–$40</td><td>$50–$100</td></tr>
+<tr><td><strong>Rubber</strong></td><td>$7–$10</td><td>$150–$180</td><td>$75–$150</td></tr>
+<tr><td><strong>Wood Chips</strong></td><td>$3–$5</td><td>$20–$30</td><td>$50–$100</td></tr>
+</tbody>
+</table>
+<p><strong>Pro tip:</strong> Many municipalities offer <strong>free wood chip mulch</strong> from tree trimming programs. Check your city's public works department — you may only need to pay for delivery.</p>
+`,
         faq: [
-            { question: "How often should mulch be replaced?", answer: "Organic mulch (bark, wood chips) decomposes and should be refreshed annually with 1–2 inches of new material. Fully replace every 2–3 years. Inorganic mulch (stone, rubber) is essentially permanent but may need occasional top-up." },
-            { question: "What type of mulch is best?", answer: "Shredded hardwood bark: best all-around for landscaping beds. Cedar mulch: natural insect repellent. Pine straw: excellent for acidic-soil plants. Rubber mulch: best for playgrounds. Stone: best for drainage areas and permanent installations." },
+            { question: "How much does a yard of mulch cover?", answer: "One cubic yard covers: 324 sq ft at 1 inch deep, 162 sq ft at 2 inches, 108 sq ft at 3 inches, 81 sq ft at 4 inches, 54 sq ft at 6 inches. The most common application (3 inches) covers about 100 sq ft per cu yd." },
+            { question: "What is the best depth for mulch?", answer: "Fine mulch (compost, cocoa shell): 1–2 inches. Standard mulch (hardwood bark, cedar): 2–3 inches. Coarse mulch (pine bark nuggets, wood chips): 3–4 inches. Rubber mulch for playgrounds: 3–6 inches for proper fall protection. Never exceed 4 inches for organic mulch around plants." },
+            { question: "How much does a yard of mulch weigh?", answer: "It depends on the type and moisture content: wood chips ~500 lbs, shredded bark ~600 lbs, pine bark ~450 lbs, pine straw ~300 lbs, rubber mulch ~1,200 lbs, decorative stone ~2,800 lbs. Wet mulch can weigh 30–50% more than dry." },
+            { question: "How many bags of mulch in a cubic yard?", answer: "One cubic yard = 27 cu ft. For 2 cu ft bags: 27 ÷ 2 = 13.5 bags (buy 14). For 3 cu ft bags: 27 ÷ 3 = 9 bags. Most big-box stores sell 2 cu ft bags." },
+            { question: "Is it better to buy mulch bagged or in bulk?", answer: "Bags are convenient for small jobs (under 3 cu yd) and fit in a car. Bulk is 40–60% cheaper per cu yd and better for large projects. Break-even is about 3 cu yd (40+ bags). Bulk requires driveway space and a delivery fee of $50–$100." },
+            { question: "How often should mulch be replaced?", answer: "Organic mulch (bark, chips) decomposes and should be refreshed annually with 1–2 inches of new material. Fully replace every 2–3 years. Inorganic mulch (stone, rubber) is essentially permanent but may need occasional top-up as pieces shift or settle." },
+            { question: "What type of mulch is best for flower beds?", answer: "Shredded hardwood bark is the best all-around choice — it stays in place, enriches soil as it decomposes, and looks neat. Cedar mulch is excellent if you want natural insect repellent properties. Avoid wood chips for annual flower beds (they tie up nitrogen as they decompose)." },
+            { question: "Is mulch better than gravel or stone?", answer: "Mulch retains moisture and enriches soil — better for plant beds and gardens. Gravel/stone is better for pathways, drainage, and areas where you want low maintenance. Rubber mulch is best for playgrounds. Each has trade-offs: organic mulch needs replacing, stone doesn't but doesn't feed the soil." },
+            { question: "How much does a bag of mulch weigh?", answer: "A standard 2 cu ft bag of organic mulch weighs 15–25 lbs depending on moisture content and type. Cedar and pine bark are lighter (~15–18 lbs). Hardwood bark and dyed mulch are heavier (~20–25 lbs). A 2 cu ft bag of rubber mulch weighs ~40 lbs." },
+            { question: "Can I put new mulch over old mulch?", answer: "Yes — this is the standard practice for annual refreshing. Add 1–2 inches of new mulch on top. But if the total depth exceeds 4 inches, remove some old mulch first. Thick mulch can mat down, prevent water penetration, and harbor fungal growth. Never pile mulch against tree trunks ('volcano mulching')." },
         ],
     },
     "brick-calculator": {

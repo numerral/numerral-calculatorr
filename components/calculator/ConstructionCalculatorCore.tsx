@@ -968,38 +968,86 @@ function GravelCalc() {
 }
 
 /* ──────────── 12. MULCH CALCULATOR ──────────── */
+const MULCH_TYPES: { value: string; label: string; weightPerYd: number; bagCost: number; bulkPerYd: number }[] = [
+    { value: "hardwood-bark", label: "Shredded Hardwood Bark", weightPerYd: 600, bagCost: 4.5, bulkPerYd: 30 },
+    { value: "cedar", label: "Cedar Mulch", weightPerYd: 550, bagCost: 5.5, bulkPerYd: 40 },
+    { value: "pine-bark", label: "Pine Bark Nuggets", weightPerYd: 450, bagCost: 5, bulkPerYd: 35 },
+    { value: "pine-straw", label: "Pine Straw (bale)", weightPerYd: 300, bagCost: 6, bulkPerYd: 28 },
+    { value: "wood-chips", label: "Wood Chips", weightPerYd: 500, bagCost: 4, bulkPerYd: 25 },
+    { value: "dyed-mulch", label: "Dyed Mulch (black/red/brown)", weightPerYd: 600, bagCost: 5, bulkPerYd: 35 },
+    { value: "rubber", label: "Rubber Mulch", weightPerYd: 1200, bagCost: 8, bulkPerYd: 160 },
+    { value: "stone", label: "Decorative Stone Mulch", weightPerYd: 2800, bagCost: 6, bulkPerYd: 55 },
+    { value: "custom", label: "Custom", weightPerYd: 500, bagCost: 5, bulkPerYd: 30 },
+];
+
 function MulchCalc() {
+    const [shape, setShape] = useState("rectangle");
     const [length, setLength] = useState(10);
     const [width, setWidth] = useState(10);
+    const [diameter, setDiameter] = useState(10);
     const [depth, setDepth] = useState(3);
+    const [mulchType, setMulchType] = useState("hardwood-bark");
     const [bagSize, setBagSize] = useState(2);
-    const [pricePerBag, setPricePerBag] = useState(5);
+    const [bagCost, setBagCost] = useState(4.5);
+    const [bulkPerYd, setBulkPerYd] = useState(30);
+
+    const handleType = (v: string) => {
+        setMulchType(v);
+        const m = MULCH_TYPES.find(t => t.value === v);
+        if (m && v !== "custom") { setBagCost(m.bagCost); setBulkPerYd(m.bulkPerYd); }
+    };
 
     const result = useMemo(() => {
         const depthFt = depth / 12;
-        const cuFt = length * width * depthFt;
+        const areaSqFt = shape === "circle" ? Math.PI * (diameter / 2) ** 2 : length * width;
+        let cuFt = areaSqFt * depthFt;
+        cuFt *= 1.1; // 10% overage
         const cuYd = cuFt / 27;
-        const bags = bagSize > 0 ? cuFt / bagSize : 0;
-        const cost = bags * pricePerBag;
-        return { cuFt, cuYd, bags, cost };
-    }, [length, width, depth, bagSize, pricePerBag]);
+        const bags = bagSize > 0 ? Math.ceil(cuFt / bagSize) : 0;
+        const costBagged = bags * bagCost;
+        const costBulk = cuYd * bulkPerYd;
+        const preset = MULCH_TYPES.find(t => t.value === mulchType);
+        const weightLbs = cuYd * (preset?.weightPerYd || 500);
+        return { areaSqFt, cuFt, cuYd, bags, costBagged, costBulk, weightLbs };
+    }, [shape, length, width, diameter, depth, mulchType, bagSize, bagCost, bulkPerYd]);
 
     return (
         <div className="con-calc">
             <h3 className="con-calc__title">🌿 Mulch Calculator</h3>
             <div className="con-calc__inputs">
-                <InputField label="Length" value={length} onChange={setLength} unit="ft" min={0.1} step={0.5} />
-                <InputField label="Width" value={width} onChange={setWidth} unit="ft" min={0.1} step={0.5} />
+                <SelectField label="Shape" value={shape} onChange={setShape} options={[
+                    { value: "rectangle", label: "Rectangle / Square" },
+                    { value: "circle", label: "Circle (tree ring, bed)" },
+                ]} />
+                <SelectField label="Mulch Type" value={mulchType} onChange={handleType}
+                    options={MULCH_TYPES.map(m => ({ value: m.value, label: m.label }))} />
+                {shape === "rectangle" ? (
+                    <>
+                        <InputField label="Length" value={length} onChange={setLength} unit="ft" min={0.1} step={0.5} />
+                        <InputField label="Width" value={width} onChange={setWidth} unit="ft" min={0.1} step={0.5} />
+                    </>
+                ) : (
+                    <InputField label="Diameter" value={diameter} onChange={setDiameter} unit="ft" min={0.1} step={0.5} />
+                )}
                 <InputField label="Depth" value={depth} onChange={setDepth} unit="inches" min={1} max={12} />
-                <InputField label="Bag Size" value={bagSize} onChange={setBagSize} unit="cu ft/bag" min={1} step={0.5} />
-                <InputField label="Price per Bag" value={pricePerBag} onChange={setPricePerBag} unit="$" min={0} step={0.5} />
+                <SelectField label="Bag Size" value={String(bagSize)} onChange={(v) => setBagSize(Number(v))} options={[
+                    { value: "2", label: "2 cu ft bag" }, { value: "3", label: "3 cu ft bag" },
+                ]} />
+                <InputField label="Price per Bag" value={bagCost} onChange={setBagCost} unit="$" min={0} step={0.5} />
+                <InputField label="Bulk Price per cu yd" value={bulkPerYd} onChange={setBulkPerYd} unit="$" min={0} step={5} />
             </div>
             <div className="con-calc__results">
-                <h4>Results</h4>
-                <ResultRow label="Volume" value={fmt(result.cuFt)} unit="cu ft" />
-                <ResultRow label="Volume" value={fmt(result.cuYd)} unit="cu yd" />
-                <ResultRow label="Bags Needed" value={fmtInt(result.bags)} unit="bags" />
-                <ResultRow label="Estimated Cost" value={`$${fmt(result.cost)}`} />
+                <h4 className="con-calc__group-label">VOLUME (incl. 10% overage)</h4>
+                <ResultRow label="Coverage Area" value={fmt(result.areaSqFt)} unit="sq ft" />
+                <ResultRow label="Cubic Feet" value={fmt(result.cuFt)} unit="cu ft" />
+                <ResultRow label="Cubic Yards" value={fmt(result.cuYd, 2)} unit="cu yd" />
+                <ResultRow label="Weight (approx)" value={fmtInt(result.weightLbs)} unit="lbs" />
+                <h4 className="con-calc__group-label">BAGS</h4>
+                <ResultRow label={`Bags (${bagSize} cu ft)`} value={fmtInt(result.bags)} unit="bags" />
+                <h4 className="con-calc__group-label">COST COMPARISON</h4>
+                <ResultRow label="Bagged Cost" value={`$${fmtInt(result.costBagged)}`} />
+                <ResultRow label="Bulk Cost" value={`$${fmtInt(result.costBulk)}`} />
+                <ResultRow label="You Save (bulk)" value={result.costBagged > result.costBulk ? `$${fmtInt(result.costBagged - result.costBulk)}` : "—"} />
             </div>
         </div>
     );
