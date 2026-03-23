@@ -43,19 +43,118 @@ const HUB_CONTENT: Record<string, {
     contentHTML?: string;
 }> = {
     "concrete-calculator": {
-        subtitle: "Calculate exactly how much concrete you need for slabs, footings, walls, and columns. Get results in cubic feet, cubic yards, and ready-mix bag counts.",
+        subtitle: "Calculate how much concrete you need for slabs, footings, columns, and walls. Get volume in cubic yards, pre-mix bag counts (50, 60, 80 lb), weight, and cost estimate. Supports rectangular, cylindrical, and footing shapes.",
         explanation: {
             heading: "How to Calculate Concrete Volume",
             paragraphs: [
-                "Concrete is ordered and delivered in cubic yards (in the US) or cubic meters (metric). For a rectangular slab, the volume is simply Length × Width × Depth. The critical detail most people miss is converting depth from inches to feet before multiplying — a 4-inch slab is 4/12 = 0.333 feet deep, not 4 feet.",
-                "For ready-mix bags: a standard 60 lb bag fills about 0.45 cubic feet, while an 80 lb bag fills about 0.6 cubic feet. For projects over 1 cubic yard, ordering from a ready-mix truck is usually more economical and produces a better result than mixing individual bags.",
+                "Concrete is ordered in cubic yards in the United States. For a rectangular slab, the formula is Length × Width × Depth — but the critical step most people miss is converting depth from inches to feet first. A 4-inch slab is 4 ÷ 12 = 0.333 feet, not 4 feet. Mixing up this unit conversion is the #1 reason homeowners over-order concrete.",
+                "For cylindrical shapes (sono tubes, columns, piers), use π × radius² × height. For pre-mix bags: a 50 lb bag fills about 0.375 cu ft, a 60 lb bag fills about 0.45 cu ft, and an 80 lb bag fills about 0.6 cu ft. For projects over 1 cubic yard, ordering a ready-mix truck is more economical and produces better results than hand-mixing individual bags.",
             ],
-            highlight: "A typical 10×10 ft patio with 4 inches of concrete = 10 × 10 × 0.333 = 33.3 cu ft = 1.23 cubic yards. That's about 74 bags of 60 lb mix or 56 bags of 80 lb mix.",
+            highlight: "A 10 × 10 ft patio slab at 4 inches thick = 10 × 10 × 0.333 = 33.3 cu ft = 1.23 cubic yards = about 89 bags (50 lb), 74 bags (60 lb), or 56 bags (80 lb). At $140/yard, that's about $172.",
         },
+        contentHTML: `
+<h2>What Is Concrete?</h2>
+<p><strong>Concrete</strong> is a composite material made by mixing <strong>Portland cement</strong>, water, sand (fine aggregate), and gravel or crushed stone (coarse aggregate). When water is added to the dry ingredients, a chemical reaction called <strong>hydration</strong> hardens the mixture into a durable, stone-like material.</p>
+<p>Concrete is not the same as cement — cement is just one ingredient in concrete (typically 10–15% of the mix by volume). In the US, concrete is used for foundations, driveways, patios, sidewalks, retaining walls, curbs, columns, and footings.</p>
+<p>Concrete is available in two forms: <strong>ready-mix</strong> (delivered by truck in large volumes) and <strong>pre-mixed bags</strong> (50, 60, or 80 lb bags that you mix with water on site). Ready-mix is standard for projects over 1 cubic yard.</p>
+
+<h2>Step-by-Step: How to Calculate Concrete</h2>
+<ol>
+<li><strong>Measure length and width</strong> of the pour area in feet. For irregular shapes, break the project into simple rectangles or cylinders and calculate each separately.</li>
+<li><strong>Measure depth (thickness)</strong> in inches. Standard slab thicknesses: 4 inches for sidewalks and patios, 4–6 inches for residential driveways, 6–8 inches for commercial or heavy-load areas.</li>
+<li><strong>Convert depth to feet:</strong> divide inches by 12. Example: 4 inches ÷ 12 = 0.333 feet.</li>
+<li><strong>Calculate cubic feet:</strong> Length (ft) × Width (ft) × Depth (ft) = volume in cubic feet.</li>
+<li><strong>Convert to cubic yards:</strong> divide cubic feet by 27. One cubic yard = 27 cubic feet = 3 ft × 3 ft × 3 ft.</li>
+<li><strong>Add 5–10% extra</strong> for waste, spillage, uneven subgrade, and over-excavation. Running short during a pour creates a cold joint — which permanently weakens the concrete.</li>
+</ol>
+
+<h2>Concrete Volume Formulas</h2>
+<table>
+<thead><tr><th>Shape</th><th>Formula</th><th>Example</th></tr></thead>
+<tbody>
+<tr><td><strong>Slab / Rectangle</strong></td><td>L × W × D (all in feet)</td><td>10 × 10 × 0.333 = 33.3 cu ft = 1.23 cu yd</td></tr>
+<tr><td><strong>Cylinder / Column</strong></td><td>π × r² × H (all in feet)</td><td>π × 0.5² × 4 = 3.14 cu ft = 0.12 cu yd</td></tr>
+<tr><td><strong>Footing / Wall</strong></td><td>L × W × D (all in feet)</td><td>40 × 1.5 × 1 = 60 cu ft = 2.22 cu yd</td></tr>
+<tr><td><strong>Stairs</strong></td><td>Break into steps + platform</td><td>Use our concrete stairs calculator</td></tr>
+</tbody>
+</table>
+
+<h2>How Many Bags of Concrete Per Cubic Yard?</h2>
+<p>For small projects, pre-mixed bags are convenient. Here's how many bags you need per cubic yard:</p>
+<table>
+<thead><tr><th>Bag Size</th><th>Yield per Bag</th><th>Bags per Cubic Yard</th><th>Bags per Cubic Foot</th></tr></thead>
+<tbody>
+<tr><td><strong>50 lb</strong></td><td>0.375 cu ft</td><td>72 bags</td><td>2.67 bags</td></tr>
+<tr><td><strong>60 lb</strong></td><td>0.45 cu ft</td><td>60 bags</td><td>2.22 bags</td></tr>
+<tr><td><strong>80 lb</strong></td><td>0.6 cu ft</td><td>45 bags</td><td>1.67 bags</td></tr>
+</tbody>
+</table>
+<p><strong>Tip:</strong> At more than 40–50 bags, consider ordering ready-mix instead. Hand-mixing that many bags is extremely labor-intensive and the quality may not be as consistent as truck-delivered concrete.</p>
+
+<h2>Concrete Coverage Table</h2>
+<p>How much area does one cubic yard of concrete cover at different thicknesses?</p>
+<table>
+<thead><tr><th>Slab Thickness</th><th>Coverage per Cubic Yard</th></tr></thead>
+<tbody>
+<tr><td>2 inches</td><td>162 sq ft</td></tr>
+<tr><td>3 inches</td><td>108 sq ft</td></tr>
+<tr><td>4 inches</td><td>81 sq ft</td></tr>
+<tr><td>5 inches</td><td>64.8 sq ft</td></tr>
+<tr><td>6 inches</td><td>54 sq ft</td></tr>
+<tr><td>8 inches</td><td>40.5 sq ft</td></tr>
+<tr><td>12 inches (1 ft)</td><td>27 sq ft</td></tr>
+</tbody>
+</table>
+
+<h2>Concrete Cost (2025 US Pricing)</h2>
+<table>
+<thead><tr><th>Cost Component</th><th>Typical Range</th></tr></thead>
+<tbody>
+<tr><td><strong>Ready-mix per cubic yard</strong></td><td>$125–$165 delivered</td></tr>
+<tr><td><strong>Short-load fee (&lt;5 yards)</strong></td><td>$50–$100 extra</td></tr>
+<tr><td><strong>50 lb pre-mix bag</strong></td><td>$4–$6 each</td></tr>
+<tr><td><strong>60 lb pre-mix bag</strong></td><td>$5–$7 each</td></tr>
+<tr><td><strong>80 lb pre-mix bag</strong></td><td>$6–$9 each</td></tr>
+<tr><td><strong>Installed (material + labor)</strong></td><td>$6–$20 per sq ft</td></tr>
+<tr><td><strong>Average 10×10 patio (4")</strong></td><td>$750–$1,500 installed</td></tr>
+<tr><td><strong>Average 2-car driveway (20×20, 5")</strong></td><td>$3,000–$6,000 installed</td></tr>
+</tbody>
+</table>
+<p><strong>Factors affecting cost:</strong> concrete mix design (standard vs high-strength), delivery distance, pump truck (if needed for hard-to-reach areas), finishing style (broom, stamped, exposed aggregate), and your region. Saturday deliveries and orders under 5 yards often incur surcharges.</p>
+
+<h2>Tips for a Successful Concrete Pour</h2>
+<ul>
+<li><strong>Build forms first:</strong> Use 2×4 or 2×6 lumber stakes to create the edges of your slab. Level the tops — they define the finished surface. Oil the inside face so forms release cleanly.</li>
+<li><strong>Prepare the base:</strong> Compact the subgrade, then add 4–6 inches of compacted gravel or crushed stone as a base. This prevents settling and improves drainage beneath the slab.</li>
+<li><strong>Add reinforcement:</strong> Use #3 or #4 rebar on 12–18 inch centers, or 6×6 welded wire mesh (WWM), to prevent cracking. Support rebar on chairs so it sits in the middle third of the slab.</li>
+<li><strong>Order 5–10% extra:</strong> Subgrade is never perfectly level, forms may bow slightly, and some concrete is always lost to spillage and residue in the truck chute.</li>
+<li><strong>Have your crew ready:</strong> Concrete starts setting within 60–90 minutes. The truck, tools (screed, bull float, edger, broom), and all workers must be on site before the truck arrives.</li>
+<li><strong>Cure properly:</strong> Keep the surface moist for at least 7 days after pouring. Use curing compound, wet burlap, or plastic sheeting. Proper curing increases strength by 50% compared to uncured concrete.</li>
+</ul>
+
+<h2>Concrete Types &amp; Mix Designs</h2>
+<table>
+<thead><tr><th>Type</th><th>PSI Rating</th><th>Common Uses</th></tr></thead>
+<tbody>
+<tr><td><strong>Standard Mix</strong></td><td>2,500–3,000 PSI</td><td>Sidewalks, patios, non-structural slabs</td></tr>
+<tr><td><strong>High-Strength</strong></td><td>4,000–5,000 PSI</td><td>Driveways, garage floors, footings, structural</td></tr>
+<tr><td><strong>Fiber-Reinforced</strong></td><td>3,000–4,000 PSI</td><td>Slabs where wire mesh is impractical; reduces surface cracking</td></tr>
+<tr><td><strong>Air-Entrained</strong></td><td>3,000–4,000 PSI</td><td>Required in freeze-thaw climates (northern US); tiny air bubbles absorb expansion</td></tr>
+<tr><td><strong>Fast-Setting</strong></td><td>4,000 PSI (1 day)</td><td>Post setting, small repairs, cold-weather pours</td></tr>
+</tbody>
+</table>
+`,
         faq: [
-            { question: "How much does a cubic yard of concrete cost?", answer: "Ready-mix concrete typically costs $125–$150 per cubic yard delivered, depending on your location and the mix design. Individual bags (60 lb or 80 lb) cost $4–$7 each but are only practical for small projects under 1 cubic yard." },
-            { question: "How thick should a concrete slab be?", answer: "Standard recommendations: sidewalks 4 inches, residential driveways 4–6 inches, garage floors 4–6 inches, and commercial driveways / heavy equipment pads 6–8 inches. Thicker slabs are needed for heavier loads." },
-            { question: "Should I order extra concrete?", answer: "Yes, always order 5–10% more than calculated. Concrete is mixed in bulk and slight variations in subgrade elevation, form dimensions, and spillage mean you'll need a small buffer. Running short mid-pour is far more costly than having a little extra." },
+            { question: "How much does a yard of concrete cover?", answer: "It depends on thickness: at 4 inches thick, 1 cubic yard covers 81 sq ft. At 6 inches, it covers 54 sq ft. At 12 inches (1 ft), it covers 27 sq ft. The formula: 324 ÷ thickness in inches = square feet per cubic yard." },
+            { question: "How much concrete is in a truck?", answer: "A standard concrete mixer truck carries 8–10 cubic yards. Mini-mix trucks carry 1–5 cubic yards and are ideal for residential projects where a full truck is too much. Most suppliers charge a short-load fee ($50–$100) for orders under 5 cubic yards." },
+            { question: "How many bags of concrete make a yard?", answer: "It depends on bag size: 72 bags of 50 lb mix, 60 bags of 60 lb mix, or 45 bags of 80 lb mix = 1 cubic yard. At more than ~40 bags, ordering ready-mix is usually more practical and cost-effective." },
+            { question: "How much does a yard of concrete weigh?", answer: "One cubic yard of standard concrete weighs approximately 4,050 lbs (about 2 US tons). That equals roughly 150 lbs per cubic foot. Lightweight concrete weighs 110–120 lbs/cu ft, while heavyweight concrete for radiation shielding can exceed 200 lbs/cu ft." },
+            { question: "What is the correct mix ratio for concrete?", answer: "The standard ratio is 1 part Portland cement : 2 parts sand : 4 parts gravel (1:2:4) by volume, with about 0.5 parts water. This produces approximately 3,000 PSI concrete. For higher strength (4,000 PSI), use 1:1.5:3. For pre-mixed bags, all ratios are pre-measured — just add water." },
+            { question: "How thick should a concrete slab be?", answer: "Sidewalks and patios: 4 inches. Residential driveways: 4–6 inches. Garage floors: 4–6 inches with thickened edges. Heavy equipment pads: 6–8 inches. Foundation footings: typically 8–12 inches thick. Always check local building codes for minimum requirements." },
+            { question: "Should I order extra concrete?", answer: "Yes — always order 5–10% more than calculated. Variations in subgrade elevation, form dimensions, spillage, and chute residue mean you'll use more than the theoretical volume. Running short mid-pour creates a cold joint, which permanently weakens the slab and may require tearing it out." },
+            { question: "How long does concrete take to cure?", answer: "Concrete reaches about 70% of its final strength in 7 days and 99% at 28 days. You can walk on it after 24–48 hours, drive on it after 7 days, and apply full load after 28 days. Keep the surface moist during the first 7 days — proper curing increases final strength by up to 50%." },
+            { question: "Can I pour concrete in cold weather?", answer: "Yes, but with precautions. Concrete should not freeze within the first 24 hours. Use hot water in the mix, order air-entrained concrete, use blankets or heated enclosures, and never pour on frozen ground. Ideal temperature for concrete placement is 50–60°F. Below 40°F requires special measures." },
+            { question: "What is the difference between cement and concrete?", answer: "Cement is a dry powder (Portland cement) that acts as a binder. Concrete is the finished product made by mixing cement with water, sand, and gravel. Cement makes up only about 10–15% of concrete by volume. Saying 'cement driveway' is technically incorrect — it should be 'concrete driveway.'" },
         ],
     },
     "concrete-block-calculator": {

@@ -51,39 +51,67 @@ function SelectField({ label, value, onChange, options }: {
 
 /* ──────────── 1. CONCRETE CALCULATOR ──────────── */
 function ConcreteCalc() {
+    const [shape, setShape] = useState("slab");
     const [length, setLength] = useState(10);
     const [width, setWidth] = useState(10);
     const [depth, setDepth] = useState(4);
-    const [unit, setUnit] = useState("inches");
+    const [depthUnit, setDepthUnit] = useState("inches");
+    const [diameter, setDiameter] = useState(2);
+    const [height, setHeight] = useState(4);
+    const [costPerYd, setCostPerYd] = useState(0);
 
     const result = useMemo(() => {
-        const depthFt = unit === "inches" ? depth / 12 : depth;
-        const cuFt = length * width * depthFt;
+        let cuFt = 0;
+        if (shape === "cylinder") {
+            const r = diameter / 2;
+            cuFt = Math.PI * r * r * height;
+        } else {
+            const depthFt = depthUnit === "inches" ? depth / 12 : depth;
+            cuFt = length * width * depthFt;
+        }
         const cuYd = cuFt / 27;
+        const bags50 = cuFt / 0.375; // 50lb bag ≈ 0.375 cu ft
         const bags60 = cuFt / 0.45;  // 60lb bag ≈ 0.45 cu ft
         const bags80 = cuFt / 0.6;   // 80lb bag ≈ 0.6 cu ft
         const cuM = cuFt * 0.0283168;
-        return { cuFt, cuYd, bags60, bags80, cuM };
-    }, [length, width, depth, unit]);
+        const weight = cuFt * 150; // concrete weighs ~150 lbs/cu ft
+        const cost = costPerYd > 0 ? cuYd * costPerYd : 0;
+        return { cuFt, cuYd, cuM, bags50, bags60, bags80, weight, cost };
+    }, [shape, length, width, depth, depthUnit, diameter, height, costPerYd]);
+
+    const isCylinder = shape === "cylinder";
 
     return (
         <div className="con-calc">
             <h3 className="con-calc__title">🧱 Concrete Calculator</h3>
             <div className="con-calc__inputs">
-                <InputField label="Length" value={length} onChange={setLength} unit="ft" min={0.1} step={0.5} />
-                <InputField label="Width" value={width} onChange={setWidth} unit="ft" min={0.1} step={0.5} />
-                <InputField label="Depth" value={depth} onChange={setDepth} unit={unit} min={0.5} step={0.5} />
-                <SelectField label="Depth Unit" value={unit} onChange={setUnit} options={[
-                    { value: "inches", label: "Inches" }, { value: "feet", label: "Feet" }
+                <SelectField label="Shape" value={shape} onChange={setShape} options={[
+                    { value: "slab", label: "Slab / Rectangle" },
+                    { value: "cylinder", label: "Cylinder / Column" },
+                    { value: "footing", label: "Footing / Wall" },
                 ]} />
+                {!isCylinder && <InputField label="Length" value={length} onChange={setLength} unit="ft" min={0.1} step={0.5} />}
+                {!isCylinder && <InputField label="Width" value={width} onChange={setWidth} unit="ft" min={0.1} step={0.5} />}
+                {!isCylinder && <InputField label={shape === "footing" ? "Depth" : "Thickness"} value={depth} onChange={setDepth} unit={depthUnit} min={0.5} step={0.5} />}
+                {!isCylinder && <SelectField label="Depth Unit" value={depthUnit} onChange={setDepthUnit} options={[
+                    { value: "inches", label: "Inches" }, { value: "feet", label: "Feet" },
+                ]} />}
+                {isCylinder && <InputField label="Diameter" value={diameter} onChange={setDiameter} unit="ft" min={0.25} step={0.25} />}
+                {isCylinder && <InputField label="Height" value={height} onChange={setHeight} unit="ft" min={0.5} step={0.5} />}
+                <InputField label="Cost per Cubic Yard (optional)" value={costPerYd} onChange={setCostPerYd} unit="$" min={0} />
             </div>
             <div className="con-calc__results">
-                <h4>Results</h4>
-                <ResultRow label="Volume" value={fmt(result.cuFt)} unit="cu ft" />
-                <ResultRow label="Volume" value={fmt(result.cuYd)} unit="cu yd" />
-                <ResultRow label="Volume" value={fmt(result.cuM)} unit="cu m" />
+                <h4>Volume</h4>
+                <ResultRow label="Cubic Feet" value={fmt(result.cuFt)} unit="cu ft" />
+                <ResultRow label="Cubic Yards" value={fmt(result.cuYd)} unit="cu yd" />
+                <ResultRow label="Cubic Meters" value={fmt(result.cuM, 4)} unit="m³" />
+                <h4>Pre-Mix Bags</h4>
+                <ResultRow label="50 lb Bags" value={fmtInt(result.bags50)} unit="bags" />
                 <ResultRow label="60 lb Bags" value={fmtInt(result.bags60)} unit="bags" />
                 <ResultRow label="80 lb Bags" value={fmtInt(result.bags80)} unit="bags" />
+                <h4>Weight &amp; Cost</h4>
+                <ResultRow label="Concrete Weight" value={fmt(result.weight)} unit="lbs" />
+                {result.cost > 0 && <ResultRow label="Estimated Cost" value={`$${fmt(result.cost, 2)}`} />}
             </div>
         </div>
     );
