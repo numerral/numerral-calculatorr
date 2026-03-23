@@ -13661,7 +13661,7 @@
     "categorySlug": "construction-calculators",
     "icon": "🏡",
     "calcType": "siding-material",
-    "description": "Calculate siding material for any type: vinyl, wood, fiber cement, or metal. Enter wall area minus openings for squares and cost.",
+    "description": "Calculate siding squares for any home exterior. Choose from 6 siding types, account for gables, windows, and doors, and get weight and cost estimates.",
     "stars": 5,
     "defaults": {
       "amount": 10,

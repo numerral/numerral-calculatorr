@@ -4102,18 +4102,85 @@ Net lawn area: 10,890 − 1,900 = <strong>8,990 sq ft</strong></p>
         ],
     },
     "siding-material-calculator": {
-        subtitle: "Calculate siding material in squares for vinyl, wood, fiber cement, or metal siding. Includes waste and cost estimates.",
+        subtitle: "Calculate siding squares for any home exterior. Choose from 6 siding types, account for gables, windows, and doors, and get weight and cost estimates.",
         explanation: {
             heading: "Siding Material Estimation",
             paragraphs: [
-                "Siding is measured in 'squares' — 1 square = 100 sq ft. Calculate gross wall area (perimeter × height), subtract openings (windows, doors), then add 10% for waste.",
+                "Siding is measured in 'squares' — 1 square = 100 sq ft. Calculate gross wall area (perimeter × height + gable area), subtract openings (windows ~15 sq ft each, doors ~21 sq ft each), then add 10% for waste.",
                 "Average house has 15–20% openings. A typical 1,500 sq ft home with 9 ft walls has about 1,350 sq ft of gross wall area, minus 200–270 sq ft of openings = 10–12 squares of siding needed.",
             ],
-            highlight: "150 ft perimeter × 9 ft height = 1,350 sq ft gross. Minus 200 sq ft openings = 1,150 sq ft net = 11.5 squares + 10% waste = 12.7 squares.",
+            highlight: "150 ft perimeter × 9 ft height + 100 sq ft gables = 1,450 sq ft gross. Minus 8 windows + 2 doors (162 sq ft) = 1,288 sq ft net + 10% waste = 14.2 squares.",
         },
+        contentHTML: `
+<p>Siding protects your home's exterior from weather, insects, and moisture while defining its curb appeal. Choosing the right siding material and accurately estimating quantities are critical steps in any <strong>US home exterior project</strong> — whether it's new construction, re-siding, or partial repairs.</p>
+<p>The calculator above supports <strong>6 siding types</strong> with auto-filled cost per square, <strong>gable area input</strong>, individual <strong>window and door counts</strong> (auto-deducted at standard sizes), adjustable waste factor, and <strong>weight estimation</strong> for structural and delivery planning.</p>
+
+<h2>Siding Types Comparison</h2>
+<table>
+<thead><tr><th>Type</th><th>Material/sq</th><th>Installed/sq ft</th><th>Weight/sq</th><th>Lifespan</th></tr></thead>
+<tbody>
+<tr><td><strong>Vinyl</strong></td><td>$100–$200</td><td>$3–$8</td><td>~60 lbs</td><td>20–40 yrs</td></tr>
+<tr><td><strong>Fiber Cement (HardiePlank)</strong></td><td>$250–$450</td><td>$6–$11</td><td>~300 lbs</td><td>30–50 yrs</td></tr>
+<tr><td><strong>Wood / Cedar</strong></td><td>$300–$500</td><td>$8–$14</td><td>~200 lbs</td><td>20–40 yrs</td></tr>
+<tr><td><strong>Engineered Wood (LP SmartSide)</strong></td><td>$200–$350</td><td>$5–$10</td><td>~180 lbs</td><td>25–50 yrs</td></tr>
+<tr><td><strong>Metal / Aluminum</strong></td><td>$200–$400</td><td>$5–$10</td><td>~50 lbs</td><td>40–50 yrs</td></tr>
+<tr><td><strong>Stone Veneer</strong></td><td>$600–$1,000</td><td>$15–$30</td><td>~800 lbs</td><td>50+ yrs</td></tr>
+</tbody>
+</table>
+<p><strong>Most popular in the US:</strong> Vinyl leads with ~33% market share (affordable, low maintenance). Fiber cement (James Hardie) is fastest-growing (fire-resistant, durable). Engineered wood (LP SmartSide) is gaining popularity as a wood-look alternative with better durability.</p>
+
+<h2>Step-by-Step Siding Estimation</h2>
+<h3>Step 1: Measure Wall Area</h3>
+<p>Measure the <strong>perimeter</strong> of the house and the <strong>wall height</strong> (ground to eave). Multiply to get rectangular wall area.</p>
+<p><strong>Example:</strong> 150 ft perimeter × 9 ft height = 1,350 sq ft</p>
+
+<h3>Step 2: Add Gable Area</h3>
+<p>Gable walls are triangular. Measure <strong>width</strong> and <strong>height</strong> (from eave to peak). Area = ½ × width × height. Add all gable areas together.</p>
+<p><strong>Example:</strong> Two gables at 30 ft wide × 6 ft tall = 2 × (½ × 30 × 6) = 180 sq ft</p>
+
+<h3>Step 3: Subtract Openings</h3>
+<p>Deduct window and door areas from the gross total:</p>
+<table>
+<thead><tr><th>Opening</th><th>Typical Size</th><th>Area</th></tr></thead>
+<tbody>
+<tr><td><strong>Standard window</strong></td><td>3 ft × 5 ft</td><td>15 sq ft</td></tr>
+<tr><td><strong>Large window</strong></td><td>4 ft × 5 ft</td><td>20 sq ft</td></tr>
+<tr><td><strong>Entry door</strong></td><td>3 ft × 7 ft</td><td>21 sq ft</td></tr>
+<tr><td><strong>Sliding glass door</strong></td><td>6 ft × 7 ft</td><td>42 sq ft</td></tr>
+<tr><td><strong>Garage door (single)</strong></td><td>9 ft × 7 ft</td><td>63 sq ft</td></tr>
+<tr><td><strong>Garage door (double)</strong></td><td>16 ft × 7 ft</td><td>112 sq ft</td></tr>
+</tbody>
+</table>
+<p>The calculator uses 15 sq ft per window and 21 sq ft per door as standard estimates.</p>
+
+<h3>Step 4: Add Waste</h3>
+<p>Add <strong>10% for simple rectangular homes</strong>. Add <strong>15% for homes with many corners, dormers, or complex trim</strong>. Divide total by 100 to get <strong>squares</strong>.</p>
+
+<h2>2025 US Siding Cost Guide</h2>
+<table>
+<thead><tr><th>Siding Type</th><th>Material Only (per sq)</th><th>Installed (per sq ft)</th><th>~2,000 sq ft Home</th></tr></thead>
+<tbody>
+<tr><td><strong>Vinyl</strong></td><td>$100–$200</td><td>$3–$8</td><td>$4,500–$12,000</td></tr>
+<tr><td><strong>Fiber Cement</strong></td><td>$250–$450</td><td>$6–$11</td><td>$9,000–$16,500</td></tr>
+<tr><td><strong>Engineered Wood</strong></td><td>$200–$350</td><td>$5–$10</td><td>$7,500–$15,000</td></tr>
+<tr><td><strong>Wood / Cedar</strong></td><td>$300–$500</td><td>$8–$14</td><td>$12,000–$21,000</td></tr>
+<tr><td><strong>Metal / Aluminum</strong></td><td>$200–$400</td><td>$5–$10</td><td>$7,500–$15,000</td></tr>
+<tr><td><strong>Stone Veneer</strong></td><td>$600–$1,000</td><td>$15–$30</td><td>$22,500–$45,000</td></tr>
+</tbody>
+</table>
+<p><strong>Additional costs:</strong> Old siding removal: $1–$3/sq ft. House wrap (Tyvek): $0.50–$1/sq ft. Trim and accessories: 10–15% of material cost. Permits: $100–$500 depending on jurisdiction.</p>
+`,
         faq: [
-            { question: "How many squares of siding for my house?", answer: "Measure perimeter × wall height = gross area. Subtract window and door areas (typically 15–20% of gross). Divide net area by 100 = squares. Add 10% waste. A typical 1,500 sq ft ranch needs 10–13 squares." },
-            { question: "What type of siding is cheapest?", answer: "Vinyl siding: $3–8/sq ft installed (cheapest). Fiber cement: $6–11/sq ft. Wood: $8–14/sq ft. Metal/aluminum: $5–10/sq ft. Natural stone: $15–30/sq ft (most expensive)." },
+            { question: "What is a 'square' of siding?", answer: "A square is a unit of measurement equal to 100 square feet of siding material. For example, 1,200 sq ft of net wall area = 12 squares. Siding is often packaged and sold in boxes containing 2 squares (200 sq ft). Contractors price siding per square for easy comparison." },
+            { question: "How many squares of siding for my house?", answer: "Measure perimeter × wall height = gross area. Add gable areas (½ × width × height). Subtract windows (~15 sq ft each) and doors (~21 sq ft each). Divide net area by 100 = squares. Add 10% waste. A typical 1,500 sq ft ranch: 10–14 squares. A 2-story home: 18–25 squares." },
+            { question: "What type of siding is cheapest?", answer: "Vinyl siding is the most affordable: $3–$8/sq ft installed. Next is engineered wood (LP SmartSide) at $5–$10/sq ft. Fiber cement (HardiePlank) is mid-range at $6–$11/sq ft. Wood/cedar and metal are $5–$14/sq ft. Stone veneer is most expensive at $15–$30/sq ft." },
+            { question: "How do I measure gable walls?", answer: "A gable is triangular. Measure the width (full base of the triangle) and the height (from eave to peak). Area = ½ × width × height. Example: A gable 30 ft wide and 8 ft tall = ½ × 30 × 8 = 120 sq ft. Add this to your rectangular wall area before calculating squares." },
+            { question: "How much waste should I add for siding?", answer: "10% for simple rectangular homes with few corners. 15% for homes with multiple corners, bump-outs, or bay windows. 15–20% for complex designs with dormers, turrets, or mixed siding styles. Having extra material also allows future repairs that match existing siding." },
+            { question: "What siding lasts the longest?", answer: "Stone veneer: 50+ years (essentially permanent). Metal/aluminum: 40–50 years. Fiber cement: 30–50 years. Engineered wood: 25–50 years. Vinyl: 20–40 years. Wood/cedar: 20–40 years (with regular maintenance). All lifespans depend on climate, installation quality, and maintenance." },
+            { question: "Should I deduct windows and doors?", answer: "Yes — always deduct openings to avoid over-ordering. Standard estimates: window = 15 sq ft, entry door = 21 sq ft, sliding glass door = 42 sq ft, single garage door = 63 sq ft, double garage door = 112 sq ft. However, you still need trim/J-channel around each opening." },
+            { question: "What is fiber cement siding?", answer: "Fiber cement (HardiePlank by James Hardie) is made from cement, sand, and cellulose fibers. It's fire-resistant, termite-proof, rot-resistant, and can mimic wood grain texture. It's heavier than vinyl (~300 lbs per square vs 60 lbs) and requires professional installation." },
+            { question: "Can I install siding over existing siding?", answer: "Vinyl can sometimes be installed over existing vinyl or wood siding if the surface is flat and in good condition. Fiber cement and wood siding generally require removal of old siding first. Installing over rotten or damaged substrate traps moisture. Check local building codes — some jurisdictions limit layering." },
+            { question: "How much does siding weigh?", answer: "Vinyl: ~60 lbs per square (lightest). Metal: ~50 lbs per square. Engineered wood: ~180 lbs. Wood/cedar: ~200 lbs. Fiber cement: ~300 lbs. Stone veneer: ~800 lbs per square (heaviest). Weight matters for structural loading, especially on older homes, and affects delivery logistics." },
         ],
     },
     "vinyl-siding-calculator": {

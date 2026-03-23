@@ -7646,44 +7646,70 @@ function ClapboardSidingCalc() {
 }
 
 /* ──────────── 161. SIDING MATERIAL CALCULATOR ──────────── */
+const SIDING_TYPES: { value: string; label: string; costPerSq: number; weightPerSq: number; lifespan: string }[] = [
+    { value: "vinyl", label: "Vinyl Siding", costPerSq: 150, weightPerSq: 60, lifespan: "20–40 yrs" },
+    { value: "fiber-cement", label: "Fiber Cement (HardiePlank)", costPerSq: 350, weightPerSq: 300, lifespan: "30–50 yrs" },
+    { value: "wood", label: "Wood / Cedar", costPerSq: 400, weightPerSq: 200, lifespan: "20–40 yrs" },
+    { value: "engineered", label: "Engineered Wood (LP SmartSide)", costPerSq: 250, weightPerSq: 180, lifespan: "25–50 yrs" },
+    { value: "metal", label: "Metal / Aluminum", costPerSq: 300, weightPerSq: 50, lifespan: "40–50 yrs" },
+    { value: "stone-veneer", label: "Stone Veneer", costPerSq: 800, weightPerSq: 800, lifespan: "50+ yrs" },
+    { value: "custom", label: "Custom / Other", costPerSq: 200, weightPerSq: 100, lifespan: "—" },
+];
+
 function SidingMaterialCalc() {
+    const [sidingType, setSidingType] = useState("vinyl");
     const [perimeterFt, setPerimeterFt] = useState(150);
     const [wallHeight, setWallHeight] = useState(9);
-    const [openingsSqFt, setOpeningsSqFt] = useState(200);
-    const [sidingType, setSidingType] = useState("vinyl");
+    const [gableArea, setGableArea] = useState(100);
+    const [windowCount, setWindowCount] = useState(8);
+    const [doorCount, setDoorCount] = useState(2);
+    const [waste, setWaste] = useState(10);
     const [costPerSq, setCostPerSq] = useState(150);
 
+    const handleType = (v: string) => {
+        setSidingType(v);
+        const t = SIDING_TYPES.find(s => s.value === v);
+        if (t && v !== "custom") setCostPerSq(t.costPerSq);
+    };
+
     const result = useMemo(() => {
-        const grossArea = perimeterFt * wallHeight;
-        const netArea = grossArea - openingsSqFt;
-        const squares = netArea / 100;
-        const squaresWithWaste = squares * 1.1;
-        const totalCost = squaresWithWaste * costPerSq;
-        return { grossArea, netArea, squares, squaresWithWaste, totalCost };
-    }, [perimeterFt, wallHeight, openingsSqFt, costPerSq]);
+        const rectArea = perimeterFt * wallHeight;
+        const grossArea = rectArea + gableArea;
+        const openings = (windowCount * 15) + (doorCount * 21);
+        const netArea = Math.max(0, grossArea - openings);
+        const withWaste = netArea * (1 + waste / 100);
+        const squares = withWaste / 100;
+        const typeData = SIDING_TYPES.find(s => s.value === sidingType);
+        const totalWeight = squares * (typeData?.weightPerSq || 100);
+        const totalCost = squares * costPerSq;
+        return { grossArea, openings, netArea, withWaste, squares, totalWeight, totalCost };
+    }, [perimeterFt, wallHeight, gableArea, windowCount, doorCount, waste, costPerSq, sidingType]);
 
     return (
         <div className="con-calc">
             <h3 className="con-calc__title">🏡 Siding Material Calculator</h3>
             <div className="con-calc__inputs">
+                <SelectField label="Siding Type" value={sidingType} onChange={handleType}
+                    options={SIDING_TYPES.map(s => ({ value: s.value, label: s.label }))} />
                 <InputField label="House Perimeter" value={perimeterFt} onChange={setPerimeterFt} unit="ft" min={40} />
                 <InputField label="Wall Height" value={wallHeight} onChange={setWallHeight} unit="ft" min={4} />
-                <InputField label="Total Openings" value={openingsSqFt} onChange={setOpeningsSqFt} unit="sq ft" min={0} />
-                <SelectField label="Siding Type" value={sidingType} onChange={setSidingType} options={[
-                    { value: "vinyl", label: "Vinyl" },
-                    { value: "wood", label: "Wood / Cedar" },
-                    { value: "fiber-cement", label: "Fiber Cement (HardiePlank)" },
-                    { value: "metal", label: "Metal / Aluminum" },
-                ]} />
-                <InputField label="Cost per Square (100 sq ft)" value={costPerSq} onChange={setCostPerSq} unit="$" min={50} />
+                <InputField label="Gable Area" value={gableArea} onChange={setGableArea} unit="sq ft" min={0} />
+                <InputField label="Windows" value={windowCount} onChange={setWindowCount} min={0} />
+                <InputField label="Doors" value={doorCount} onChange={setDoorCount} min={0} />
+                <InputField label="Waste Factor" value={waste} onChange={setWaste} unit="%" min={0} max={25} />
+                <InputField label="Cost per Square" value={costPerSq} onChange={setCostPerSq} unit="$" min={0} />
             </div>
             <div className="con-calc__results">
-                <h4>Results</h4>
-                <ResultRow label="Gross Wall Area" value={fmt(result.grossArea)} unit="sq ft" />
+                <h4 className="con-calc__group-label">WALL AREA</h4>
+                <ResultRow label="Gross Area (incl. gables)" value={fmt(result.grossArea)} unit="sq ft" />
+                <ResultRow label="Openings Deducted" value={fmt(result.openings)} unit="sq ft" />
                 <ResultRow label="Net Siding Area" value={fmt(result.netArea)} unit="sq ft" />
-                <ResultRow label="Squares" value={fmt(result.squares, 1)} unit="sq (100 ft²)" />
-                <ResultRow label="With 10% Waste" value={fmt(result.squaresWithWaste, 1)} unit="squares" />
-                <ResultRow label="Material Cost" value={`$${fmt(result.totalCost, 2)}`} />
+                <h4 className="con-calc__group-label">MATERIAL</h4>
+                <ResultRow label="With Waste" value={fmt(result.withWaste)} unit="sq ft" />
+                <ResultRow label="Squares Needed" value={fmt(result.squares, 1)} unit="sq (100 ft²)" />
+                <ResultRow label="Total Weight" value={fmtInt(result.totalWeight)} unit="lbs" />
+                <h4 className="con-calc__group-label">COST</h4>
+                <ResultRow label="Material Cost" value={`$${fmt(result.totalCost)}`} />
             </div>
         </div>
     );
