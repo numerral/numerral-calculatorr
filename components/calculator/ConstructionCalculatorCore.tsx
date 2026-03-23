@@ -5750,36 +5750,88 @@ function StoneCalc() {
 
 /* ──────────── 133. CUBIC FEET CALCULATOR ──────────── */
 function CubicFeetCalc() {
-    const [length, setLength] = useState(10);
-    const [width, setWidth] = useState(8);
-    const [height, setHeight] = useState(4);
+    const [shape, setShape] = useState("rectangle");
+    const [inputUnit, setInputUnit] = useState("ft");
+    const [dim1, setDim1] = useState(10);
+    const [dim2, setDim2] = useState(8);
+    const [dim3, setDim3] = useState(4);
+    const [costPerCuFt, setCostPerCuFt] = useState(0);
+
+    const toFt = (v: number): number => {
+        switch (inputUnit) {
+            case "in": return v / 12;
+            case "cm": return v / 30.48;
+            case "m": return v * 3.28084;
+            default: return v;
+        }
+    };
 
     const result = useMemo(() => {
-        const cuFt = length * width * height;
+        const a = toFt(dim1);
+        const b = toFt(dim2);
+        const c = toFt(dim3);
+        let cuFt = 0;
+
+        switch (shape) {
+            case "rectangle": cuFt = a * b * c; break;
+            case "cube": cuFt = a * a * a; break;
+            case "cylinder": cuFt = Math.PI * (a / 2) * (a / 2) * b; break;
+            case "sphere": cuFt = (4 / 3) * Math.PI * (a / 2) * (a / 2) * (a / 2); break;
+            case "cone": cuFt = (1 / 3) * Math.PI * (a / 2) * (a / 2) * b; break;
+            case "triangular-prism": cuFt = 0.5 * a * b * c; break;
+        }
+
         const cuYd = cuFt / 27;
-        const cuIn = cuFt * 1728;
         const cuM = cuFt * 0.0283168;
-        const liters = cuFt * 28.3168;
         const gallons = cuFt * 7.48052;
-        return { cuFt, cuYd, cuIn, cuM, liters, gallons };
-    }, [length, width, height]);
+        const liters = cuFt * 28.3168;
+        const cost = costPerCuFt > 0 ? cuFt * costPerCuFt : 0;
+        return { cuFt, cuYd, cuM, gallons, liters, cost };
+    }, [shape, inputUnit, dim1, dim2, dim3, costPerCuFt]);
+
+    const labels: Record<string, { d1: string; d2: string; d3: string; show: [boolean, boolean, boolean] }> = {
+        rectangle: { d1: "Length", d2: "Width", d3: "Height", show: [true, true, true] },
+        cube: { d1: "Side Length", d2: "", d3: "", show: [true, false, false] },
+        cylinder: { d1: "Diameter", d2: "Height", d3: "", show: [true, true, false] },
+        sphere: { d1: "Diameter", d2: "", d3: "", show: [true, false, false] },
+        cone: { d1: "Diameter (base)", d2: "Height", d3: "", show: [true, true, false] },
+        "triangular-prism": { d1: "Base Width", d2: "Triangle Height", d3: "Length (depth)", show: [true, true, true] },
+    };
+
+    const l = labels[shape] || labels.rectangle;
+    const unitLabel = inputUnit === "ft" ? "ft" : inputUnit === "in" ? "in" : inputUnit === "cm" ? "cm" : "m";
 
     return (
         <div className="con-calc">
             <h3 className="con-calc__title">📦 Cubic Feet Calculator</h3>
             <div className="con-calc__inputs">
-                <InputField label="Length" value={length} onChange={setLength} unit="ft" min={0.1} step={0.1} />
-                <InputField label="Width" value={width} onChange={setWidth} unit="ft" min={0.1} step={0.1} />
-                <InputField label="Height / Depth" value={height} onChange={setHeight} unit="ft" min={0.1} step={0.1} />
+                <SelectField label="Shape" value={shape} onChange={setShape} options={[
+                    { value: "rectangle", label: "Rectangle / Box" },
+                    { value: "cube", label: "Cube" },
+                    { value: "cylinder", label: "Cylinder" },
+                    { value: "sphere", label: "Sphere" },
+                    { value: "cone", label: "Cone" },
+                    { value: "triangular-prism", label: "Triangular Prism" },
+                ]} />
+                <SelectField label="Input Unit" value={inputUnit} onChange={setInputUnit} options={[
+                    { value: "ft", label: "Feet" },
+                    { value: "in", label: "Inches" },
+                    { value: "cm", label: "Centimeters" },
+                    { value: "m", label: "Meters" },
+                ]} />
+                {l.show[0] && <InputField label={l.d1} value={dim1} onChange={setDim1} unit={unitLabel} min={0.01} step={0.5} />}
+                {l.show[1] && <InputField label={l.d2} value={dim2} onChange={setDim2} unit={unitLabel} min={0.01} step={0.5} />}
+                {l.show[2] && <InputField label={l.d3} value={dim3} onChange={setDim3} unit={unitLabel} min={0.01} step={0.5} />}
+                <InputField label="Cost per cu ft (optional)" value={costPerCuFt} onChange={setCostPerCuFt} unit="$" min={0} step={0.1} />
             </div>
             <div className="con-calc__results">
                 <h4>Results</h4>
-                <ResultRow label="Cubic Feet" value={fmt(result.cuFt, 2)} unit="cu ft" />
-                <ResultRow label="Cubic Yards" value={fmt(result.cuYd, 2)} unit="cu yd" />
-                <ResultRow label="Cubic Inches" value={fmt(result.cuIn)} unit="cu in" />
-                <ResultRow label="Cubic Meters" value={fmt(result.cuM, 3)} unit="m³" />
-                <ResultRow label="Liters" value={fmt(result.liters, 1)} unit="L" />
-                <ResultRow label="US Gallons" value={fmt(result.gallons, 1)} unit="gal" />
+                <ResultRow label="Volume" value={fmt(result.cuFt)} unit="cu ft" />
+                <ResultRow label="Volume" value={fmt(result.cuYd)} unit="cu yd" />
+                <ResultRow label="Volume" value={fmt(result.cuM, 4)} unit="cu m" />
+                <ResultRow label="Liquid Volume" value={fmt(result.gallons)} unit="US gallons" />
+                <ResultRow label="Liquid Volume" value={fmt(result.liters)} unit="liters" />
+                {result.cost > 0 && <ResultRow label="Estimated Cost" value={`$${fmt(result.cost)}`} />}
             </div>
         </div>
     );

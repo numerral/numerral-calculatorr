@@ -2023,21 +2023,6 @@ const HUB_CONTENT: Record<string, {
             { question: "How much does a ton of stone cover?", answer: "At 2-inch depth: ~100 sq ft. At 3-inch depth: ~65 sq ft. At 4-inch depth: ~50 sq ft. Coverage varies slightly by stone type and size. Larger stones (4-6 inch river rock) have more air gaps and cover slightly more area. Crushed stone packs tightly with less void space." },
         ],
     },
-    "cubic-feet-calculator": {
-        subtitle: "Calculate volume in cubic feet from length, width, and height. Converts to cubic yards, cubic meters, gallons, and liters.",
-        explanation: {
-            heading: "How to Calculate Cubic Feet",
-            paragraphs: [
-                "Cubic feet = length (ft) × width (ft) × height (ft). One cubic foot equals 1,728 cubic inches, 7.48 US gallons, or 28.3 liters. It's the standard unit for measuring volume in construction, shipping, and storage.",
-                "Common uses: refrigerator/freezer capacity, moving truck volume, storage unit sizing, concrete volume, firewood (a cord = 128 cu ft), and HVAC airflow (CFM = cubic feet per minute).",
-            ],
-            highlight: "A 10 × 8 × 4 ft space = 320 cubic feet = 11.85 cubic yards = 2,394 US gallons = 9,061 liters.",
-        },
-        faq: [
-            { question: "How do I convert cubic feet to cubic yards?", answer: "Divide by 27. One cubic yard = 27 cubic feet (3 ft × 3 ft × 3 ft). For example, 81 cubic feet ÷ 27 = 3 cubic yards." },
-            { question: "How many gallons in a cubic foot?", answer: "7.48 US gallons. So a 10 cubic foot container holds 74.8 gallons. To convert cubic feet to gallons, multiply by 7.48." },
-        ],
-    },
     "cubic-inches-calculator": {
         subtitle: "Calculate volume in cubic inches from dimensions. Convert to cubic feet, gallons, liters, and milliliters.",
         explanation: {
@@ -2473,7 +2458,121 @@ const HUB_CONTENT: Record<string, {
             { question: "What accessories do I need for vinyl siding?", answer: "J-channel (around all openings), outside corner posts, inside corner posts, starter strips, under-sill trim, utility trim, F-channel or J-channel for soffit, and flashing. Budget 30–40% of siding cost for accessories." },
         ],
     },
+    "cubic-feet-calculator": {
+        subtitle: "Calculate volume in cubic feet for any shape — box, cylinder, sphere, cone, or triangular prism. Convert to cubic yards, cubic meters, gallons, and liters. Supports feet, inches, centimeters, and meters.",
+        explanation: {
+            heading: "How to Calculate Cubic Feet",
+            paragraphs: [
+                "Cubic feet measures three-dimensional volume — the amount of space occupied by an object or enclosed in a container. For a rectangular shape (the most common), the formula is simple: Length × Width × Height = Volume in cubic feet. The key detail most people miss: all measurements must be in feet before you multiply. If your dimensions are in inches, divide each by 12 first. If they're in centimeters, divide by 30.48.",
+                "One cubic foot is the volume of a cube measuring 1 ft × 1 ft × 1 ft — about the size of a standard file box. This unit is used extensively in the United States for construction materials (concrete, gravel, mulch), shipping and moving (truck capacity, box sizing), HVAC (airflow in CFM — cubic feet per minute), and appliance capacities (refrigerator and freezer volume).",
+            ],
+            highlight: "Quick example: A storage closet measuring 5 ft long × 3 ft wide × 8 ft tall = 120 cubic feet. That's 4.44 cubic yards, 3.40 cubic meters, or 897.66 US gallons.",
+        },
+        contentHTML: `
+<h2>What Is a Cubic Foot?</h2>
+<p>A <strong>cubic foot</strong> (symbol: ft³ or cu ft) is a unit of volume in the US customary and imperial measurement systems. One cubic foot equals the volume of a cube with edges exactly one foot (12 inches) long. To put it in perspective, a cubic foot is roughly the size of a standard <strong>file storage box</strong> or a basketball.</p>
+<p>The cubic foot is the primary volume unit used in the United States for:</p>
+<ul>
+<li><strong>Construction</strong> — ordering concrete, gravel, mulch, topsoil, and sand</li>
+<li><strong>Moving and storage</strong> — measuring truck capacity and box sizes</li>
+<li><strong>HVAC</strong> — airflow rated in CFM (cubic feet per minute)</li>
+<li><strong>Shipping</strong> — calculating dimensional weight for freight</li>
+<li><strong>Appliances</strong> — refrigerator, freezer, oven, and dishwasher capacity</li>
+</ul>
+
+<h2>Cubic Feet Formula for Common Shapes</h2>
+<p>Different shapes require different formulas. Use all measurements in feet for results in cubic feet:</p>
+<table>
+<thead><tr><th>Shape</th><th>Formula</th><th>Example</th></tr></thead>
+<tbody>
+<tr><td><strong>Rectangle / Box</strong></td><td>L × W × H</td><td>10 × 8 × 4 = 320 cu ft</td></tr>
+<tr><td><strong>Cube</strong></td><td>Side³</td><td>5³ = 125 cu ft</td></tr>
+<tr><td><strong>Cylinder</strong></td><td>π × r² × H</td><td>π × 2² × 6 = 75.4 cu ft</td></tr>
+<tr><td><strong>Sphere</strong></td><td>(4/3) × π × r³</td><td>(4/3) × π × 3³ = 113.1 cu ft</td></tr>
+<tr><td><strong>Cone</strong></td><td>(1/3) × π × r² × H</td><td>(1/3) × π × 2² × 6 = 25.1 cu ft</td></tr>
+<tr><td><strong>Triangular Prism</strong></td><td>½ × B × H × L</td><td>½ × 4 × 3 × 10 = 60 cu ft</td></tr>
+</tbody>
+</table>
+
+<h2>Cubic Feet Conversion Table</h2>
+<p>Use these exact conversion factors to convert cubic feet to other volume units:</p>
+<table>
+<thead><tr><th>From 1 Cubic Foot</th><th>To</th><th>Multiply By</th></tr></thead>
+<tbody>
+<tr><td>1 cu ft</td><td>Cubic Inches</td><td>1,728</td></tr>
+<tr><td>1 cu ft</td><td>Cubic Yards</td><td>0.037037</td></tr>
+<tr><td>1 cu ft</td><td>Cubic Meters</td><td>0.0283168</td></tr>
+<tr><td>1 cu ft</td><td>US Gallons</td><td>7.48052</td></tr>
+<tr><td>1 cu ft</td><td>Liters</td><td>28.3168</td></tr>
+<tr><td>1 cu ft</td><td>Quarts</td><td>29.922</td></tr>
+<tr><td>27 cu ft</td><td>1 Cubic Yard</td><td>—</td></tr>
+</tbody>
+</table>
+<p><strong>Note:</strong> Cubic feet and square feet do not directly convert — square feet measures area (2D) while cubic feet measures volume (3D). To go from square feet to cubic feet, multiply the area by the height or depth in feet.</p>
+
+<h2>When to Use Cubic Feet</h2>
+
+<h3>Moving and Storage</h3>
+<p>Moving companies in the US price estimates by total cubic feet of belongings. Knowing your cubic footage helps you choose the right truck size and get accurate quotes. Standard US moving box sizes:</p>
+<ul>
+<li><strong>Small box</strong> (16" × 12" × 12") = 1.33 cu ft</li>
+<li><strong>Medium box</strong> (18" × 18" × 16") = 3.0 cu ft</li>
+<li><strong>Large box</strong> (24" × 18" × 18") = 4.5 cu ft</li>
+<li><strong>Extra-large box</strong> (24" × 20" × 24") = 6.67 cu ft</li>
+</ul>
+<p>Popular truck sizes: 10-ft truck = 402 cu ft, 15-ft truck = 764 cu ft, 20-ft truck = 1,015 cu ft, 26-ft truck = 1,611 cu ft. A typical one-bedroom apartment requires 350–500 cu ft of truck space.</p>
+
+<h3>Landscaping Materials</h3>
+<p>Mulch, topsoil, gravel, and sand are sold by the cubic foot (bags) or cubic yard (bulk). To calculate cubic feet for a garden bed: measure the area in square feet, decide on the depth (usually 2–4 inches for mulch), convert depth to feet (divide by 12), and multiply: Area × Depth = Cubic Feet.</p>
+<p><strong>Worked example:</strong> A 20 × 8 ft flower bed with 3 inches of mulch: 20 × 8 = 160 sq ft × (3 ÷ 12) = 160 × 0.25 = <strong>40 cubic feet</strong>. That's 20 bags of 2 cu ft mulch, or about 1.5 cubic yards for a bulk delivery. Always order 5–10% extra for settling and uneven areas.</p>
+
+<h3>HVAC and Airflow</h3>
+<p>HVAC professionals size heating and cooling systems using the room's cubic footage. Multiply length × width × ceiling height to get the room volume in cubic feet. General guidelines:</p>
+<ul>
+<li><strong>Air conditioners:</strong> approximately 20–25 BTU per cubic foot</li>
+<li><strong>Heaters:</strong> 30–35 BTU per cubic foot in cold climates (zones 5–7)</li>
+<li><strong>Ventilation:</strong> most rooms need the air exchanged 4–6 times per hour — so a 1,200 cu ft room needs a fan rated at 80–120 CFM</li>
+</ul>
+
+<h3>Shipping and Freight</h3>
+<p>Freight carriers calculate <strong>dimensional weight</strong> using cubic feet. The formula: (Length × Width × Height in inches) ÷ the carrier's DIM factor (usually 139 for domestic US shipments). If the dimensional weight exceeds the actual weight, you pay for the dimensional weight. Calculating cubic feet first helps you estimate whether you'll be charged by actual or dimensional weight.</p>
+
+<h3>Appliance Capacity</h3>
+<p>In the US, refrigerator and freezer capacity is measured in cubic feet. Common sizes: side-by-side refrigerators = 22–28 cu ft, French door = 20–30 cu ft, top-freezer = 15–22 cu ft, chest freezer = 5–25 cu ft. When shopping for appliances, knowing the cubic footage helps compare capacity across brands and styles.</p>
+
+<h2>How to Calculate Cubic Feet from Other Units</h2>
+<p>If your measurements are not in feet, convert them first:</p>
+<ul>
+<li><strong>From inches:</strong> divide each measurement by 12, then multiply L × W × H. Or multiply L × W × H in inches, then divide the result by 1,728.</li>
+<li><strong>From yards:</strong> multiply each measurement by 3, then calculate. Or multiply the result in cubic yards by 27.</li>
+<li><strong>From centimeters:</strong> divide each measurement by 30.48, then calculate. Or divide the result in cubic centimeters by 28,316.85.</li>
+<li><strong>From meters:</strong> multiply each measurement by 3.28084, then calculate. Or multiply the result in cubic meters by 35.3147.</li>
+</ul>
+
+<h2>Pro Tips for Accurate Volume Calculations</h2>
+<ul>
+<li><strong>Always order 5–10% extra</strong> material for construction projects — dimensions are never perfect, and some material is lost to spillage and waste.</li>
+<li><strong>Compaction factor:</strong> loose materials (gravel, soil) compact 20–30% when settled or compacted, so order accordingly.</li>
+<li><strong>Don't confuse cubic feet with square feet.</strong> Square feet (sq ft) measures flat area. Cubic feet (cu ft) measures volume. You need a third dimension (depth/height) to convert between them.</li>
+<li><strong>For irregular shapes:</strong> break the area into simpler shapes (rectangles, cylinders), calculate each volume separately, and add them together.</li>
+<li><strong>A cord of firewood</strong> = 128 cubic feet (8 ft × 4 ft × 4 ft). A face cord = about 43 cubic feet.</li>
+</ul>
+`,
+        faq: [
+            { question: "How many cubic feet are in a cubic yard?", answer: "There are exactly 27 cubic feet in one cubic yard (3 ft × 3 ft × 3 ft = 27 cu ft). To convert cubic feet to cubic yards, divide by 27. To convert cubic yards to cubic feet, multiply by 27." },
+            { question: "How do I convert cubic feet to gallons?", answer: "Multiply cubic feet by 7.48052 to get US gallons. For example, 10 cubic feet = 74.81 US gallons. One cubic foot holds exactly 7.48052 US liquid gallons or 6.22884 imperial gallons." },
+            { question: "What is the cubic footage of a room?", answer: "Measure the room's length, width, and ceiling height in feet, then multiply all three: L × W × H. A 12 × 10 ft room with 8 ft ceilings = 960 cubic feet. This is useful for HVAC sizing, which typically requires 20–25 BTU per cubic foot for air conditioning." },
+            { question: "How many cubic feet is a standard moving box?", answer: "Small boxes (16×12×12 in) = 1.33 cu ft. Medium boxes (18×18×16 in) = 3.0 cu ft. Large boxes (24×18×18 in) = 4.5 cu ft. Extra-large boxes (24×20×24 in) = 6.67 cu ft. To calculate any box: multiply L × W × H in inches, then divide by 1,728." },
+            { question: "How do I calculate cubic feet for concrete?", answer: "Measure the slab's length and width in feet and the depth in inches. Convert depth to feet (divide by 12), then multiply: L × W × Depth(ft) = cubic feet. For a 10×10 ft slab at 4 inches thick: 10 × 10 × 0.333 = 33.3 cu ft = 1.23 cubic yards. Order 5–10% extra." },
+            { question: "What's the difference between cubic feet and square feet?", answer: "Square feet (sq ft) measures flat, two-dimensional area (length × width). Cubic feet (cu ft) measures three-dimensional volume (length × width × height). You cannot convert between them without knowing the third dimension. Example: 100 sq ft of floor with a 0.25 ft (3 in) depth of mulch = 25 cu ft." },
+            { question: "How many cubic feet of mulch do I need?", answer: "Calculate the area in square feet (length × width), then multiply by the depth in feet. For 3 inches of mulch: area × 0.25. A 10×10 ft bed at 3 in deep = 25 cu ft (about 13 bags of 2 cu ft mulch). One cubic yard (27 cu ft) covers 108 sq ft at 3 inches deep." },
+            { question: "How do I calculate the cubic feet of a cylinder?", answer: "Use the formula: π × radius² × height. If you know the diameter, divide by 2 to get the radius. For a tank that's 4 ft in diameter and 6 ft tall: π × 2² × 6 = 75.4 cubic feet. That holds about 564 US gallons of water." },
+            { question: "How do I size an air conditioner using cubic feet?", answer: "Calculate room volume: L × W × ceiling height = cubic feet. Then multiply by 20–25 BTU per cubic foot. A 12×10 ft room with 8 ft ceilings = 960 cu ft × 25 = 24,000 BTU (about a 2-ton unit). Adjust upward for sunny rooms, kitchens, or rooms with many occupants." },
+            { question: "How many cubic feet is a standard refrigerator?", answer: "Top-freezer: 15–22 cu ft. Bottom-freezer: 18–25 cu ft. Side-by-side: 22–28 cu ft. French door: 20–30 cu ft. The most popular size for US families of 3–5 is 22–25 cu ft. Compact/apartment refrigerators range from 3–10 cu ft." },
+        ],
+    },
 };
+
 
 export default async function ConstructionCalculatorHubPage({ params }: PageProps) {
     const { calculator } = await params;
