@@ -7157,33 +7157,84 @@ function CfmCalc() {
 }
 
 /* ──────────── 149. FLOW RATE CALCULATOR ──────────── */
+const FR_PIPES: { value: string; label: string; id: number }[] = [
+    { value: "0.5", label: '½" (0.622" ID)', id: 0.622 },
+    { value: "0.75", label: '¾" (0.824" ID)', id: 0.824 },
+    { value: "1", label: '1" (1.049" ID)', id: 1.049 },
+    { value: "1.25", label: '1¼" (1.368" ID)', id: 1.368 },
+    { value: "1.5", label: '1½" (1.610" ID)', id: 1.610 },
+    { value: "2", label: '2" (2.067" ID)', id: 2.067 },
+    { value: "3", label: '3" (3.068" ID)', id: 3.068 },
+    { value: "4", label: '4" (4.026" ID)', id: 4.026 },
+    { value: "custom", label: "Custom Diameter", id: 1.0 },
+];
+
 function FlowRateCalc() {
-    const [diameter, setDiameter] = useState(2);
+    const [mode, setMode] = useState("velocity");
+    const [pipeSize, setPipeSize] = useState("1");
+    const [customDia, setCustomDia] = useState(1);
     const [velocity, setVelocity] = useState(5);
+    const [volume, setVolume] = useState(5);
+    const [time, setTime] = useState(1);
+    const [hoursPerDay, setHoursPerDay] = useState(8);
 
     const result = useMemo(() => {
-        const radiusFt = (diameter / 12) / 2;
-        const areaSqFt = Math.PI * radiusFt * radiusFt;
-        const cfs = areaSqFt * velocity; // cu ft/sec
-        const gpm = cfs * 448.831;
-        const gph = gpm * 60;
-        const lpm = gpm * 3.78541;
-        return { areaSqFt, cfs, gpm, gph, lpm };
-    }, [diameter, velocity]);
+        if (mode === "velocity") {
+            const pipeData = FR_PIPES.find(p => p.value === pipeSize);
+            const idIn = pipeSize === "custom" ? customDia : (pipeData?.id || 1.049);
+            const radiusFt = (idIn / 12) / 2;
+            const areaSqFt = Math.PI * radiusFt * radiusFt;
+            const areaSqIn = Math.PI * (idIn / 2) * (idIn / 2);
+            const cfs = areaSqFt * velocity;
+            const gpm = cfs * 448.831;
+            const gph = gpm * 60;
+            const lpm = gpm * 3.78541;
+            const dailyGal = gpm * 60 * hoursPerDay;
+            return { idIn, areaSqIn, cfs, gpm, gph, lpm, dailyGal };
+        } else {
+            const gpm = volume / time;
+            const gph = gpm * 60;
+            const lpm = gpm * 3.78541;
+            const cfs = gpm / 448.831;
+            const dailyGal = gpm * 60 * hoursPerDay;
+            return { idIn: 0, areaSqIn: 0, cfs, gpm, gph, lpm, dailyGal };
+        }
+    }, [mode, pipeSize, customDia, velocity, volume, time, hoursPerDay]);
 
     return (
         <div className="con-calc">
             <h3 className="con-calc__title">🌊 Flow Rate Calculator</h3>
             <div className="con-calc__inputs">
-                <InputField label="Pipe Diameter" value={diameter} onChange={setDiameter} unit="in" min={0.5} step={0.5} />
-                <InputField label="Flow Velocity" value={velocity} onChange={setVelocity} unit="ft/s" min={0.5} step={0.5} />
+                <SelectField label="Calculation Method" value={mode} onChange={setMode} options={[
+                    { value: "velocity", label: "Pipe Velocity × Area (Q = A × v)" },
+                    { value: "bucket", label: "Volume ÷ Time (Q = V / t)" },
+                ]} />
+                {mode === "velocity" ? (<>
+                    <SelectField label="Pipe Size" value={pipeSize} onChange={setPipeSize}
+                        options={FR_PIPES.map(p => ({ value: p.value, label: p.label }))} />
+                    {pipeSize === "custom" && (
+                        <InputField label="Inner Diameter" value={customDia} onChange={setCustomDia} unit="in" min={0.25} step={0.125} />
+                    )}
+                    <InputField label="Flow Velocity" value={velocity} onChange={setVelocity} unit="ft/s" min={0.5} step={0.5} />
+                </>) : (<>
+                    <InputField label="Volume Collected" value={volume} onChange={setVolume} unit="gal" min={0.1} step={0.1} />
+                    <InputField label="Time" value={time} onChange={setTime} unit="min" min={0.1} step={0.1} />
+                </>)}
+                <InputField label="Usage Hours/Day" value={hoursPerDay} onChange={setHoursPerDay} unit="hrs" min={0.5} step={0.5} />
             </div>
             <div className="con-calc__results">
-                <h4>Results</h4>
-                <ResultRow label="GPM" value={fmt(result.gpm, 1)} unit="gal/min" />
+                {mode === "velocity" && (<>
+                    <h4 className="con-calc__group-label">PIPE</h4>
+                    <ResultRow label="Inner Diameter" value={fmt(result.idIn, 3)} unit="in" />
+                    <ResultRow label="Cross-Section" value={fmt(result.areaSqIn, 3)} unit="sq in" />
+                </>)}
+                <h4 className="con-calc__group-label">FLOW RATE</h4>
+                <ResultRow label="GPM" value={fmt(result.gpm, 2)} unit="gal/min" />
                 <ResultRow label="GPH" value={fmt(result.gph)} unit="gal/hr" />
-                <ResultRow label="Liters/min" value={fmt(result.lpm, 1)} unit="L/min" />
-                <ResultRow label="CFS" value={fmt(result.cfs, 3)} unit="ft³/s" />
+                <ResultRow label="Liters/min" value={fmt(result.lpm, 2)} unit="L/min" />
+                <ResultRow label="CFS" value={fmt(result.cfs, 4)} unit="ft³/s" />
+                <h4 className="con-calc__group-label">DAILY ESTIMATE</h4>
+                <ResultRow label="Daily Volume" value={fmt(result.dailyGal)} unit={`gal (${hoursPerDay} hrs)`} />
             </div>
         </div>
     );

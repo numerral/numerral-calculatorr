@@ -13157,7 +13157,7 @@
     "categorySlug": "construction-calculators",
     "icon": "🌊",
     "calcType": "flow-rate",
-    "description": "Calculate water or fluid flow rate from pipe diameter and velocity. Outputs GPM, GPH, liters per minute, and cubic feet per second.",
+    "description": "Calculate flow rate two ways: pipe velocity × area or volume ÷ time. Standard US pipe sizes, GPM, GPH, liters/min, CFS, and daily estimate.",
     "stars": 5,
     "defaults": {
       "amount": 2,

@@ -3922,18 +3922,88 @@ Net lawn area: 10,890 − 1,900 = <strong>8,990 sq ft</strong></p>
         ],
     },
     "flow-rate-calculator": {
-        subtitle: "Calculate water flow rate from pipe diameter and velocity. Get results in GPM, GPH, liters per minute, and CFS.",
+        subtitle: "Calculate water flow rate two ways: pipe velocity × area or volume ÷ time. Standard US pipe sizes, GPM, GPH, liters/min, CFS, and daily usage estimate.",
         explanation: {
             heading: "How to Calculate Flow Rate",
             paragraphs: [
-                "Flow rate (Q) = pipe cross-sectional area × velocity. Q (CFS) = π × (D/2)² × V, where D is diameter in feet and V is velocity in feet per second. Convert CFS to GPM by multiplying by 448.831.",
-                "Recommended water velocities: 4–8 ft/s for supply lines, 2–4 ft/s for drain lines. Velocities above 8 ft/s can cause water hammer and pipe erosion.",
+                "Two methods: Q = A × v (pipe area × velocity) for known pipe diameter and velocity, or Q = V / t (volume ÷ time) for bucket-test measurement. The calculator uses actual copper IDs for 8 standard US pipe sizes.",
+                "Results in GPM, GPH, liters/min, and CFS. Daily usage estimate based on hours of operation. Recommended velocities: 4–8 ft/s supply lines, 2–4 ft/s drain lines.",
             ],
-            highlight: "A 2\" pipe at 5 ft/s flow: area = 0.0218 ft² → Q = 0.109 CFS = 49 GPM = 2,936 GPH.",
+            highlight: "1\" copper (1.049\" ID) at 5 ft/s: Q = 0.0060 ft² × 5 = 0.030 CFS = 13.5 GPM. Bucket test: 5 gal in 1 min = 5.0 GPM.",
         },
+        contentHTML: `
+<p><strong>Flow rate</strong> is the volume of fluid passing through a pipe per unit of time. It's the most fundamental measurement in plumbing design — every pipe size, pump selection, and fixture specification depends on it.</p>
+<p>The calculator above supports <strong>two calculation methods</strong>: engineering formula (pipe area × velocity) with 8 standard pipe sizes, and practical measurement (volume ÷ time for bucket tests). Both output in <strong>GPM, GPH, liters/min, and CFS</strong>.</p>
+
+<h2>Flow Rate Formula: Q = A × v</h2>
+<p>The volumetric flow rate equals the <strong>pipe cross-sectional area multiplied by fluid velocity</strong>:</p>
+<p><strong>Q = A × v</strong> — where Q = flow rate, A = pipe area, v = velocity</p>
+<p>For a round pipe: <strong>A = π × (D/2)²</strong></p>
+<p><strong>Example:</strong> 1" copper pipe (1.049" ID) at 5 ft/s:</p>
+<ul>
+<li>A = π × (1.049 ÷ 24)² = π × 0.001907 = <strong>0.005993 sq ft</strong></li>
+<li>Q = 0.005993 × 5 = <strong>0.02997 CFS</strong></li>
+<li>GPM = 0.02997 × 448.831 = <strong>13.45 GPM</strong></li>
+</ul>
+
+<h2>Alternate Formula: Q = V / t</h2>
+<p>The <strong>bucket test</strong> is the easiest way to measure actual flow rate at a fixture:</p>
+<p><strong>Q = V / t</strong> — where V = volume collected, t = time</p>
+<p><strong>Example:</strong> Fill a 5-gallon bucket from your garden hose: takes 3 minutes → Q = 5 ÷ 3 = <strong>1.67 GPM</strong>.</p>
+
+<h2>Fixture Flow Rate Standards (US)</h2>
+<table>
+<thead><tr><th>Fixture</th><th>Standard GPM</th><th>WaterSense GPM</th><th>Federal Max</th></tr></thead>
+<tbody>
+<tr><td><strong>Kitchen faucet</strong></td><td>2.2</td><td>1.5</td><td>2.2 GPM</td></tr>
+<tr><td><strong>Bathroom faucet</strong></td><td>1.5</td><td>1.0</td><td>2.2 GPM</td></tr>
+<tr><td><strong>Showerhead</strong></td><td>2.5</td><td>2.0</td><td>2.5 GPM</td></tr>
+<tr><td><strong>Toilet (per flush)</strong></td><td>1.6 GPF</td><td>1.28 GPF</td><td>1.6 GPF</td></tr>
+<tr><td><strong>Dishwasher</strong></td><td>2.0–3.0</td><td>—</td><td>—</td></tr>
+<tr><td><strong>Washing machine</strong></td><td>3.0–5.0</td><td>—</td><td>—</td></tr>
+<tr><td><strong>Garden hose (½")</strong></td><td>5.0–10.0</td><td>—</td><td>—</td></tr>
+<tr><td><strong>Irrigation sprinkler</strong></td><td>2.0–4.0</td><td>—</td><td>—</td></tr>
+<tr><td><strong>Bathtub filler</strong></td><td>4.0–6.0</td><td>—</td><td>—</td></tr>
+<tr><td><strong>Hose bibb (¾")</strong></td><td>8.0–15.0</td><td>—</td><td>—</td></tr>
+</tbody>
+</table>
+<p><strong>GPF = gallons per flush.</strong> WaterSense is the EPA's voluntary program for water-efficient products. Federal maximums are set by the Energy Policy Act.</p>
+
+<h2>Flow Rate by Pipe Size (at 5 ft/s)</h2>
+<table>
+<thead><tr><th>Pipe (Copper ID)</th><th>Area (sq in)</th><th>GPM at 5 ft/s</th><th>GPH</th></tr></thead>
+<tbody>
+<tr><td><strong>½" (0.622")</strong></td><td>0.304</td><td>4.6</td><td>274</td></tr>
+<tr><td><strong>¾" (0.824")</strong></td><td>0.533</td><td>8.0</td><td>481</td></tr>
+<tr><td><strong>1" (1.049")</strong></td><td>0.864</td><td>13.5</td><td>808</td></tr>
+<tr><td><strong>1¼" (1.368")</strong></td><td>1.470</td><td>22.9</td><td>1,374</td></tr>
+<tr><td><strong>1½" (1.610")</strong></td><td>2.036</td><td>31.7</td><td>1,903</td></tr>
+<tr><td><strong>2" (2.067")</strong></td><td>3.356</td><td>52.3</td><td>3,138</td></tr>
+<tr><td><strong>3" (3.068")</strong></td><td>7.393</td><td>115.2</td><td>6,912</td></tr>
+<tr><td><strong>4" (4.026")</strong></td><td>12.730</td><td>198.3</td><td>11,900</td></tr>
+</tbody>
+</table>
+<p><strong>5 ft/s is the recommended maximum for residential supply lines.</strong> Higher velocities increase noise and water hammer risk.</p>
+
+<h2>Unit Conversions</h2>
+<ul>
+<li><strong>1 CFS = 448.831 GPM</strong> = 7.481 gal/sec</li>
+<li><strong>1 GPM = 3.785 liters/min</strong> = 0.0631 liters/sec</li>
+<li><strong>1 GPM = 0.00223 CFS</strong></li>
+<li><strong>1 liter/sec = 15.85 GPM</strong></li>
+</ul>
+`,
         faq: [
-            { question: "What is a normal water flow rate for a house?", answer: "Typical residential flow: 6–12 GPM total. Individual fixtures: shower 2.0–2.5 GPM, faucet 1.5–2.2 GPM, toilet flush 1.6 GPF, dishwasher 2–3 GPM." },
-            { question: "How do I increase water flow rate?", answer: "Increase pipe diameter (larger diameter = much more flow), reduce pipe length and fittings, increase pressure, or remove restrictions. Doubling pipe diameter roughly quadruples flow capacity." },
+            { question: "What is a normal water flow rate for a house?", answer: "Typical whole-house flow: 6–12 GPM simultaneously. Individual fixtures: shower 2.0–2.5 GPM, kitchen faucet 1.5–2.2 GPM, toilet 1.6 GPF, garden hose 5–10 GPM. Total peak demand depends on how many fixtures run at once. Size your main line for peak demand." },
+            { question: "How do I increase water flow rate?", answer: "Increase pipe diameter (largest effect — doubling diameter quadruples flow capacity). Reduce pipe length and number of fittings. Increase water pressure. Remove restrictions (corroded pipes, clogged aerators, partially closed valves). Replace ½\" supply branches with ¾\" pipe." },
+            { question: "How do I measure flow rate at home?", answer: "Bucket test: place a bucket under the faucet/hose, open fully, time how long to fill a known volume. Q = volume ÷ time. Example: 5-gallon bucket fills in 2 minutes = 2.5 GPM. For more precision, use a flow meter (available for $20–$50 at hardware stores)." },
+            { question: "What is the difference between GPM and CFS?", answer: "GPM (gallons per minute) is used for residential plumbing and fixtures. CFS (cubic feet per second) is used in engineering and larger systems. 1 CFS = 448.831 GPM. Most plumbers work in GPM; civil engineers use CFS for storm drains, rivers, and municipal systems." },
+            { question: "How does pipe diameter affect flow rate?", answer: "Flow capacity is proportional to diameter squared (area). Doubling diameter = 4× the area = 4× the flow at the same velocity. Going from ½\" to ¾\" copper increases flow capacity by 75% at the same velocity. This is why upsizing pipes is the most effective way to increase flow." },
+            { question: "What is the maximum flow rate for ¾\" pipe?", answer: "At 5 ft/s (recommended residential max): ¾\" copper = 8.0 GPM. At 8 ft/s (absolute max): 12.8 GPM. For WaterSense fixtures (lower flow), a ¾\" main can supply 2–3 fixtures simultaneously. For larger homes, use 1\" or 1¼\" main." },
+            { question: "What flow rate do I need for a shower?", answer: "Standard showerhead: 2.5 GPM (federal max). WaterSense showerhead: 2.0 GPM. Rainfall/body spray systems: 5–8 GPM total. For a ½\" supply line at 5 ft/s, max flow is 4.6 GPM — sufficient for one standard shower. Two simultaneous showers need a ¾\" supply." },
+            { question: "How do I calculate flow rate from pressure?", answer: "Use the Bernoulli equation or manufacturer's pressure/flow curves. As a rough guide: flow increases with the square root of pressure. Doubling pressure increases flow by ~41%. Most residential systems operate at 40–80 PSI. A pressure-reducing valve (PRV) limits flow to protect fixtures." },
+            { question: "What is the WaterSense standard?", answer: "WaterSense is an EPA voluntary program for water-efficient products. WaterSense faucets: ≤1.5 GPM (vs 2.2 standard). WaterSense showerheads: ≤2.0 GPM (vs 2.5). WaterSense toilets: ≤1.28 GPF (vs 1.6). WaterSense-labeled products use at least 20% less water." },
+            { question: "Why is my water flow rate low?", answer: "Common causes: partially closed main valve, clogged aerators, corroded/restricted pipes (especially galvanized), high demand (too many fixtures at once), low municipal pressure, undersized pipes (½\" mains), failing pressure regulator, or water heater restriction. Start by checking aerators and valves." },
         ],
     },
     "furnace-btu-calculator": {
