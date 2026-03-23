@@ -13199,7 +13199,7 @@
     "categorySlug": "construction-calculators",
     "icon": "🔥",
     "calcType": "furnace-btu",
-    "description": "Calculate the BTU output needed for your furnace based on home size, climate zone, and insulation quality.",
+    "description": "Calculate furnace BTU for your home. Adjust for climate zone, insulation, ceiling height, AFUE efficiency, fuel type, and see estimated annual heating cost.",
     "stars": 5,
     "defaults": {
       "amount": 1500,

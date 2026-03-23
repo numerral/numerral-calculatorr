@@ -7190,25 +7190,48 @@ function FlowRateCalc() {
 }
 
 /* ──────────── 150. FURNACE BTU CALCULATOR ──────────── */
+const FUEL_TYPES: { value: string; label: string; unitLabel: string; btuPerUnit: number; defaultCost: number }[] = [
+    { value: "gas", label: "Natural Gas", unitLabel: "therms", btuPerUnit: 100000, defaultCost: 1.20 },
+    { value: "propane", label: "Propane (LP)", unitLabel: "gallons", btuPerUnit: 91500, defaultCost: 2.80 },
+    { value: "oil", label: "Heating Oil", unitLabel: "gallons", btuPerUnit: 138500, defaultCost: 3.50 },
+    { value: "electric", label: "Electric", unitLabel: "kWh", btuPerUnit: 3412, defaultCost: 0.16 },
+];
+
 function FurnaceBtuCalc() {
     const [sqFt, setSqFt] = useState(1500);
     const [climate, setClimate] = useState("moderate");
     const [insulation, setInsulation] = useState("average");
+    const [ceilingHeight, setCeilingHeight] = useState("8");
+    const [afue, setAfue] = useState("95");
+    const [fuelType, setFuelType] = useState("gas");
+    const [fuelCost, setFuelCost] = useState(1.20);
 
-    const CLIMATE_FACTOR: Record<string, number> = {
-        "mild": 25, "moderate": 35, "cold": 45, "very-cold": 60,
+    const handleFuel = (v: string) => {
+        setFuelType(v);
+        const f = FUEL_TYPES.find(ft => ft.value === v);
+        if (f) setFuelCost(f.defaultCost);
     };
-    const INSUL_FACTOR: Record<string, number> = {
-        "poor": 1.3, "average": 1.0, "good": 0.85, "excellent": 0.7,
-    };
+
+    const CLIMATE_FACTOR: Record<string, number> = { "mild": 25, "moderate": 35, "cold": 45, "very-cold": 60 };
+    const INSUL_FACTOR: Record<string, number> = { "poor": 1.3, "average": 1.0, "good": 0.85, "excellent": 0.7 };
 
     const result = useMemo(() => {
-        const base = sqFt * (CLIMATE_FACTOR[climate] || 35);
+        const ceilFt = Number(ceilingHeight);
+        const ceilMult = ceilFt > 8 ? (1 + (ceilFt - 8) * 0.05) : 1;
+        const base = sqFt * (CLIMATE_FACTOR[climate] || 35) * ceilMult;
         const adjusted = base * (INSUL_FACTOR[insulation] || 1.0);
-        const furnaceInput = adjusted / 0.95; // 95% AFUE
+        const afueVal = Number(afue) / 100;
+        const furnaceInput = adjusted / afueVal;
         const kw = adjusted / 3412;
-        return { btuOutput: adjusted, furnaceInput, kw };
-    }, [sqFt, climate, insulation]);
+        const fuel = FUEL_TYPES.find(f => f.value === fuelType);
+        const heatingHours = climate === "mild" ? 1200 : climate === "moderate" ? 1800 : climate === "cold" ? 2400 : 3000;
+        const annualBtu = adjusted * heatingHours * 0.5;
+        const annualUnits = annualBtu / ((fuel?.btuPerUnit || 100000) * afueVal);
+        const annualCost = annualUnits * fuelCost;
+        return { btuOutput: adjusted, furnaceInput, kw, annualCost, annualUnits };
+    }, [sqFt, climate, insulation, ceilingHeight, afue, fuelType, fuelCost]);
+
+    const fuelData = FUEL_TYPES.find(f => f.value === fuelType);
 
     return (
         <div className="con-calc">
@@ -7219,20 +7242,33 @@ function FurnaceBtuCalc() {
                     { value: "mild", label: "Mild (25 BTU/ft²) – Southern US" },
                     { value: "moderate", label: "Moderate (35 BTU/ft²) – Mid-Atlantic" },
                     { value: "cold", label: "Cold (45 BTU/ft²) – Northern US" },
-                    { value: "very-cold", label: "Very Cold (60 BTU/ft²) – Minnesota, Alaska" },
+                    { value: "very-cold", label: "Very Cold (60 BTU/ft²) – MN, AK, MT" },
                 ]} />
-                <SelectField label="Insulation Quality" value={insulation} onChange={setInsulation} options={[
+                <SelectField label="Insulation" value={insulation} onChange={setInsulation} options={[
                     { value: "poor", label: "Poor (+30%)" },
                     { value: "average", label: "Average (baseline)" },
                     { value: "good", label: "Good (−15%)" },
                     { value: "excellent", label: "Excellent (−30%)" },
                 ]} />
+                <SelectField label="Ceiling Height" value={ceilingHeight} onChange={setCeilingHeight}
+                    options={[{ value: "8", label: "8 ft (standard)" }, { value: "9", label: "9 ft" }, { value: "10", label: "10 ft" }, { value: "12", label: "12 ft (vaulted)" }]} />
+                <SelectField label="Furnace Efficiency" value={afue} onChange={setAfue}
+                    options={[{ value: "80", label: "80% AFUE (standard)" }, { value: "90", label: "90% AFUE (mid-efficiency)" }, { value: "95", label: "95% AFUE (high-efficiency)" }, { value: "98", label: "98% AFUE (condensing)" }]} />
+                <SelectField label="Fuel Type" value={fuelType} onChange={handleFuel}
+                    options={FUEL_TYPES.map(f => ({ value: f.value, label: f.label }))} />
+                <InputField label="Fuel Cost" value={fuelCost} onChange={setFuelCost} unit={`$/${fuelData?.unitLabel || 'unit'}`} min={0.01} step={0.01} />
             </div>
             <div className="con-calc__results">
-                <h4>Results</h4>
+                <h4 className="con-calc__group-label">HOME</h4>
+                <ResultRow label="Home Size" value={fmt(sqFt)} unit="sq ft" />
+                <ResultRow label="Ceiling Height" value={`${ceilingHeight} ft`} />
+                <h4 className="con-calc__group-label">BTU SIZING</h4>
                 <ResultRow label="BTU Output Needed" value={fmt(result.btuOutput)} unit="BTU/hr" />
-                <ResultRow label="Furnace Input (95% AFUE)" value={fmt(result.furnaceInput)} unit="BTU/hr" />
                 <ResultRow label="Equivalent kW" value={fmt(result.kw, 1)} unit="kW" />
+                <h4 className="con-calc__group-label">FURNACE & COST</h4>
+                <ResultRow label={`Furnace Input (${afue}% AFUE)`} value={fmt(result.furnaceInput)} unit="BTU/hr" />
+                <ResultRow label="Est. Annual Fuel" value={fmt(result.annualUnits, 0)} unit={fuelData?.unitLabel || "units"} />
+                <ResultRow label="Est. Annual Cost" value={`$${fmt(result.annualCost, 0)}`} />
             </div>
         </div>
     );

@@ -3937,18 +3937,93 @@ Net lawn area: 10,890 − 1,900 = <strong>8,990 sq ft</strong></p>
         ],
     },
     "furnace-btu-calculator": {
-        subtitle: "Calculate the BTU output needed for your furnace based on home size, climate zone, and insulation quality.",
+        subtitle: "Calculate furnace BTU for your home. Adjust for climate zone, insulation, ceiling height, AFUE efficiency, and fuel type. See estimated annual heating cost.",
         explanation: {
             heading: "How to Size a Furnace",
             paragraphs: [
-                "Furnace BTU = home sq ft × BTU per sq ft factor. Climate factors: mild (25 BTU/ft²), moderate (35), cold (45), very cold (60). Adjust for insulation quality: poor (+30%), average (baseline), good (−15%), excellent (−30%).",
-                "Furnaces are rated by input BTU and AFUE efficiency. A 95% AFUE 80,000 BTU furnace delivers 76,000 BTU of heat. Common sizes: 40K, 60K, 80K, 100K, 120K BTU.",
+                "BTU = sq ft × climate factor (25–60 BTU/ft²) × insulation adjustment × ceiling height factor. The calculator adjusts for AFUE efficiency (80–98%) and estimates annual fuel cost based on fuel type and local rates.",
+                "Fuel options: natural gas ($1.20/therm), propane ($2.80/gal), heating oil ($3.50/gal), electric ($0.16/kWh). Higher AFUE = less fuel for the same heat output.",
             ],
-            highlight: "1,500 sq ft home in moderate climate: 1,500 × 35 = 52,500 BTU. With average insulation, a 60,000 BTU furnace is recommended.",
+            highlight: "1,500 sq ft, moderate climate, average insulation, 95% AFUE gas: 52,500 BTU output → 55,263 BTU furnace input. Est. annual cost: ~$630.",
         },
+        contentHTML: `
+<p>A furnace's BTU (British Thermal Unit) rating determines <strong>how much heat it can produce per hour</strong>. Choosing the right size is critical — <strong>too small</strong> and your home stays cold on the worst days; <strong>too large</strong> and the furnace short-cycles, wasting fuel and wearing out faster.</p>
+<p>The calculator above uses <strong>climate zone BTU factors</strong>, adjusts for <strong>insulation, ceiling height, and AFUE efficiency</strong>, and estimates <strong>annual heating cost</strong> across 4 fuel types (gas, propane, oil, electric).</p>
+
+<h2>BTU per Square Foot by Climate Zone</h2>
+<p>The DOE and HVAC industry recommend different BTU/sq ft based on your heating climate:</p>
+<table>
+<thead><tr><th>Climate Zone</th><th>BTU/sq ft</th><th>States</th></tr></thead>
+<tbody>
+<tr><td><strong>Mild</strong></td><td>25–30</td><td>FL, TX, AZ, GA, LA, SC, MS, AL, NM</td></tr>
+<tr><td><strong>Moderate</strong></td><td>30–40</td><td>NC, VA, TN, KY, MO, KS, OK, AR, DE, MD</td></tr>
+<tr><td><strong>Cold</strong></td><td>40–50</td><td>NY, PA, OH, MI, IL, IN, NJ, CT, MA, WI, IA</td></tr>
+<tr><td><strong>Very Cold</strong></td><td>50–60</td><td>MN, ND, SD, MT, WY, VT, NH, ME, AK</td></tr>
+<tr><td><strong>Subarctic</strong></td><td>60+</td><td>Interior AK, mountain regions</td></tr>
+</tbody>
+</table>
+<p><strong>Example:</strong> 2,000 sq ft home in cold climate: 2,000 × 45 = <strong>90,000 BTU output needed</strong>.</p>
+
+<h2>Insulation Adjustment</h2>
+<table>
+<thead><tr><th>Insulation</th><th>Adjustment</th><th>Description</th></tr></thead>
+<tbody>
+<tr><td><strong>Poor</strong></td><td>+30%</td><td>Old home, single-pane windows, no wall insulation, drafty</td></tr>
+<tr><td><strong>Average</strong></td><td>Baseline</td><td>Standard double-pane, R-19 attic, some wall insulation</td></tr>
+<tr><td><strong>Good</strong></td><td>−15%</td><td>Updated insulation, tight envelope, energy-efficient windows</td></tr>
+<tr><td><strong>Excellent</strong></td><td>−30%</td><td>New construction, spray foam, triple-pane, air-sealed</td></tr>
+</tbody>
+</table>
+<p><strong>An energy audit ($200–$500)</strong> can identify where your home loses heat most. Adding attic insulation is often the highest-ROI upgrade.</p>
+
+<h2>AFUE Efficiency Explained</h2>
+<p><strong>AFUE (Annual Fuel Utilization Efficiency)</strong> is the percentage of fuel converted to heat. The rest goes up the flue.</p>
+<table>
+<thead><tr><th>AFUE</th><th>Type</th><th>Heat from 100K BTU Input</th><th>Avg Cost</th></tr></thead>
+<tbody>
+<tr><td><strong>80%</strong></td><td>Standard</td><td>80,000 BTU</td><td>$1,500–$3,000</td></tr>
+<tr><td><strong>90%</strong></td><td>Mid-Efficiency</td><td>90,000 BTU</td><td>$2,500–$4,000</td></tr>
+<tr><td><strong>95%</strong></td><td>High-Efficiency</td><td>95,000 BTU</td><td>$3,000–$5,000</td></tr>
+<tr><td><strong>98%</strong></td><td>Condensing</td><td>98,000 BTU</td><td>$4,000–$6,500</td></tr>
+</tbody>
+</table>
+<p><strong>In cold climates, a 95%+ AFUE furnace pays for itself</strong> in 3–5 years through fuel savings. In mild climates, an 80% AFUE may be more cost-effective.</p>
+
+<h2>Fuel Type Comparison</h2>
+<table>
+<thead><tr><th>Fuel</th><th>BTU/Unit</th><th>Avg Cost</th><th>Annual Cost (90K BTU home)</th></tr></thead>
+<tbody>
+<tr><td><strong>Natural Gas</strong></td><td>100,000/therm</td><td>$1.00–$1.50/therm</td><td>$600–$1,200</td></tr>
+<tr><td><strong>Propane</strong></td><td>91,500/gallon</td><td>$2.50–$3.50/gal</td><td>$1,800–$3,000</td></tr>
+<tr><td><strong>Heating Oil</strong></td><td>138,500/gallon</td><td>$3.00–$4.50/gal</td><td>$1,500–$2,800</td></tr>
+<tr><td><strong>Electric</strong></td><td>3,412/kWh</td><td>$0.10–$0.25/kWh</td><td>$1,500–$4,000</td></tr>
+</tbody>
+</table>
+<p><strong>Natural gas is the cheapest</strong> heating fuel in most US markets. Propane and oil are common in rural areas without gas lines. Electric furnaces are nearly 100% efficient but expensive to run.</p>
+
+<h2>Common Furnace Sizes</h2>
+<table>
+<thead><tr><th>Furnace (Input BTU)</th><th>Output (95% AFUE)</th><th>Home Size (Moderate)</th></tr></thead>
+<tbody>
+<tr><td>40,000</td><td>38,000</td><td>800–1,100 sq ft</td></tr>
+<tr><td>60,000</td><td>57,000</td><td>1,100–1,600 sq ft</td></tr>
+<tr><td>80,000</td><td>76,000</td><td>1,600–2,200 sq ft</td></tr>
+<tr><td>100,000</td><td>95,000</td><td>2,200–2,700 sq ft</td></tr>
+<tr><td>120,000</td><td>114,000</td><td>2,700–3,300 sq ft</td></tr>
+</tbody>
+</table>
+`,
         faq: [
-            { question: "What size furnace do I need for 2,000 sq ft?", answer: "Depends on climate: mild = 50,000 BTU, moderate = 70,000 BTU, cold = 90,000 BTU, very cold = 120,000 BTU. Adjust for insulation quality and ceiling height." },
-            { question: "What does AFUE mean?", answer: "Annual Fuel Utilization Efficiency — the percentage of fuel converted to heat. 95% AFUE means 95¢ of every $1 in fuel becomes heat. Standard furnaces: 80% AFUE. High-efficiency: 90–98% AFUE." },
+            { question: "What size furnace do I need for 2,000 sq ft?", answer: "Depends on climate: mild (25 BTU/ft²) = 50,000 BTU, moderate (35) = 70,000 BTU, cold (45) = 90,000 BTU, very cold (60) = 120,000 BTU. Adjust for insulation (+30% poor, −30% excellent) and ceiling height (+5% per ft over 8 ft). Most 2,000 sq ft homes need an 80,000–100,000 BTU furnace." },
+            { question: "What does AFUE mean?", answer: "Annual Fuel Utilization Efficiency — the percentage of fuel converted to heat. 95% AFUE means 95¢ of every $1 in fuel becomes heat, 5¢ goes up the flue. Standard furnaces: 80% AFUE. High-efficiency: 90–98% AFUE. Electric furnaces are ~100% AFUE but more expensive per BTU." },
+            { question: "How many BTU per square foot for heating?", answer: "25–30 BTU/sq ft for mild climates (FL, TX, AZ). 30–40 for moderate (VA, NC, MO). 40–50 for cold (NY, OH, MI, MA). 50–60 for very cold (MN, MT, AK). These assume 8 ft ceilings and average insulation. Add 5% per foot of ceiling above 8 ft." },
+            { question: "Is a bigger furnace better?", answer: "No — an oversized furnace short-cycles (turns on/off rapidly), causing uneven heating, higher energy bills, increased wear, and poor humidity control. Size your furnace to match your home's heat loss. A slightly oversized furnace (10–20% above calculated BTU) provides a safety margin." },
+            { question: "Gas vs electric furnace — which is cheaper?", answer: "Gas is 2–3× cheaper to operate in most US markets. Natural gas: $600–$1,200/year for a typical home. Electric: $1,500–$4,000/year. However, electric furnaces cost less to install ($1,500–$3,000 vs $3,000–$6,000 for gas) and are nearly 100% efficient." },
+            { question: "How does ceiling height affect furnace size?", answer: "Standard 8 ft ceilings are the baseline. Add 5% BTU per foot above 8 ft. A 10 ft ceiling needs 10% more BTU, a 12 ft vaulted ceiling needs 20% more. This accounts for the larger volume of air that must be heated." },
+            { question: "What furnace efficiency should I choose?", answer: "Cold climates: 95%+ AFUE — the fuel savings pay for the higher price in 3–5 years. Moderate climates: 90% AFUE is a good balance. Mild climates: 80% AFUE may be sufficient since heating costs are already low. Always compare annual fuel cost, not just purchase price." },
+            { question: "How much does it cost to heat a house per month?", answer: "Natural gas: $50–$150/month in winter for a typical 2,000 sq ft home. Propane: $150–$300/month. Oil: $150–$250/month. Electric: $125–$350/month. Actual costs depend on climate, insulation, thermostat settings, and local fuel prices." },
+            { question: "Should I get a two-stage or variable-speed furnace?", answer: "Two-stage furnaces run at low (65%) and high (100%) capacity — better comfort, lower noise, less cycling. Variable-speed runs at 40–100% capacity for maximum comfort and efficiency. Both cost more upfront but save 10–20% on fuel. Best value in cold climates with long heating seasons." },
+            { question: "How do I calculate annual heating cost?", answer: "Annual cost = (BTU output × heating hours × 0.5) ÷ (BTU per fuel unit × AFUE) × fuel price. The 0.5 factor accounts for the furnace not running at full capacity continuously. Example: 52,500 BTU × 1,800 hrs × 0.5 ÷ (100,000 × 0.95) × $1.20 = ~$596/year." },
         ],
     },
     "pipe-volume-calculator": {
