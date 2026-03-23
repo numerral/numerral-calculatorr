@@ -13451,7 +13451,7 @@
     "categorySlug": "construction-calculators",
     "icon": "🏠",
     "calcType": "metal-roofing",
-    "description": "Calculate metal roofing panels, trim, and fasteners needed. Enter roof area and select panel type for a material list.",
+    "description": "Calculate metal roofing panels, screws, ridge cap, and cost. Choose from 5 panel types with roof pitch, gauge, and pricing.",
     "stars": 5,
     "defaults": {
       "amount": 30,

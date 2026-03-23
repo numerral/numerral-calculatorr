@@ -7434,48 +7434,85 @@ function IceWaterShieldCalc() {
 }
 
 /* ──────────── 156. METAL ROOFING CALCULATOR ──────────── */
+const METAL_PANELS: { value: string; label: string; coverageIn: number; costPerSqFt: number; screwsPer100: number }[] = [
+    { value: "standing-seam", label: "Standing Seam", coverageIn: 16, costPerSqFt: 10, screwsPer100: 30 },
+    { value: "corrugated", label: "Corrugated", coverageIn: 26, costPerSqFt: 4, screwsPer100: 80 },
+    { value: "r-panel", label: "Ribbed / R-Panel", coverageIn: 36, costPerSqFt: 5, screwsPer100: 80 },
+    { value: "shingle", label: "Metal Shingle (interlocking)", coverageIn: 48, costPerSqFt: 8, screwsPer100: 60 },
+    { value: "5v-crimp", label: "5V Crimp", coverageIn: 24, costPerSqFt: 4.50, screwsPer100: 75 },
+    { value: "custom", label: "Custom / Other", coverageIn: 26, costPerSqFt: 6, screwsPer100: 75 },
+];
+
+const METAL_PITCH: { value: string; label: string; mult: number }[] = [
+    { value: "flat", label: "Flat / Low (1/12–2/12)", mult: 1.01 },
+    { value: "3", label: "3/12 (minimum for most metal)", mult: 1.031 },
+    { value: "4", label: "4/12 (standard)", mult: 1.054 },
+    { value: "6", label: "6/12 (moderate)", mult: 1.118 },
+    { value: "8", label: "8/12 (steep)", mult: 1.202 },
+    { value: "10", label: "10/12 (very steep)", mult: 1.302 },
+    { value: "12", label: "12/12 (45°)", mult: 1.414 },
+];
+
 function MetalRoofingCalc() {
+    const [panelType, setPanelType] = useState("standing-seam");
+    const [pitch, setPitch] = useState("4");
     const [roofLength, setRoofLength] = useState(30);
     const [roofWidth, setRoofWidth] = useState(20);
-    const [panelType, setPanelType] = useState("standing-seam");
+    const [gauge, setGauge] = useState("26");
     const [wastePct, setWastePct] = useState(10);
+    const [costPerSqFt, setCostPerSqFt] = useState(10);
 
-    const PANEL_WIDTH: Record<string, number> = {
-        "standing-seam": 16, "corrugated": 26, "ribbed": 36,
+    const handlePanel = (v: string) => {
+        setPanelType(v);
+        const p = METAL_PANELS.find(m => m.value === v);
+        if (p && v !== "custom") setCostPerSqFt(p.costPerSqFt);
     };
 
     const result = useMemo(() => {
-        const area = roofLength * roofWidth;
-        const areaWithWaste = area * (1 + wastePct / 100);
-        const panelWidthIn = PANEL_WIDTH[panelType] || 16;
-        const panelWidthFt = panelWidthIn / 12;
-        const panels = Math.ceil(roofWidth / panelWidthFt);
-        const screwsPer100 = panelType === "standing-seam" ? 75 : 80;
-        const screws = Math.ceil(areaWithWaste / 100) * screwsPer100;
+        const footprint = roofLength * roofWidth;
+        const pitchData = METAL_PITCH.find(p => p.value === pitch);
+        const mult = pitchData?.mult || 1;
+        const actualArea = footprint * mult;
+        const withWaste = actualArea * (1 + wastePct / 100);
+        const panelData = METAL_PANELS.find(m => m.value === panelType);
+        const coverageIn = panelData?.coverageIn || 26;
+        const coverageFt = coverageIn / 12;
+        const panels = Math.ceil(roofWidth / coverageFt);
+        const screwsPer100 = panelData?.screwsPer100 || 75;
+        const squares = withWaste / 100;
+        const screws = Math.ceil(squares) * screwsPer100;
         const ridgeCapFt = roofWidth;
-        return { area, areaWithWaste, panels, screws, ridgeCapFt };
-    }, [roofLength, roofWidth, panelType, wastePct]);
+        const totalCost = withWaste * costPerSqFt;
+        return { footprint, actualArea, withWaste, squares, panels, screws, ridgeCapFt, totalCost };
+    }, [roofLength, roofWidth, panelType, pitch, wastePct, costPerSqFt]);
 
     return (
         <div className="con-calc">
             <h3 className="con-calc__title">🏠 Metal Roofing Calculator</h3>
             <div className="con-calc__inputs">
-                <InputField label="Roof Length (slope)" value={roofLength} onChange={setRoofLength} unit="ft" min={5} />
+                <SelectField label="Panel Type" value={panelType} onChange={handlePanel}
+                    options={METAL_PANELS.map(m => ({ value: m.value, label: m.label }))} />
+                <SelectField label="Roof Pitch" value={pitch} onChange={setPitch}
+                    options={METAL_PITCH.map(p => ({ value: p.value, label: p.label }))} />
+                <InputField label="Roof Length (eave to ridge)" value={roofLength} onChange={setRoofLength} unit="ft" min={5} />
                 <InputField label="Roof Width" value={roofWidth} onChange={setRoofWidth} unit="ft" min={5} />
-                <SelectField label="Panel Type" value={panelType} onChange={setPanelType} options={[
-                    { value: "standing-seam", label: "Standing Seam (16\" coverage)" },
-                    { value: "corrugated", label: "Corrugated (26\" coverage)" },
-                    { value: "ribbed", label: "Ribbed / R-Panel (36\" coverage)" },
-                ]} />
-                <InputField label="Waste %" value={wastePct} onChange={setWastePct} unit="%" min={5} max={25} />
+                <SelectField label="Gauge" value={gauge} onChange={setGauge}
+                    options={[{ value: "29", label: "29 ga (economy)" }, { value: "26", label: "26 ga (standard)" }, { value: "24", label: "24 ga (premium)" }, { value: "22", label: "22 ga (commercial)" }]} />
+                <InputField label="Waste Factor" value={wastePct} onChange={setWastePct} unit="%" min={5} max={25} />
+                <InputField label="Cost per sq ft" value={costPerSqFt} onChange={setCostPerSqFt} unit="$" min={0} step={0.5} />
             </div>
             <div className="con-calc__results">
-                <h4>Results</h4>
-                <ResultRow label="Roof Area" value={fmt(result.area)} unit="sq ft" />
-                <ResultRow label="With Waste" value={fmt(result.areaWithWaste)} unit="sq ft" />
+                <h4 className="con-calc__group-label">ROOF AREA</h4>
+                <ResultRow label="Footprint" value={fmt(result.footprint)} unit="sq ft" />
+                <ResultRow label="Actual (with pitch)" value={fmt(result.actualArea)} unit="sq ft" />
+                <ResultRow label="With Waste" value={fmt(result.withWaste)} unit="sq ft" />
+                <ResultRow label="Roofing Squares" value={fmt(result.squares, 1)} unit="squares" />
+                <h4 className="con-calc__group-label">PANELS & FASTENERS</h4>
                 <ResultRow label="Panels Needed" value={fmtInt(result.panels)} unit="panels" />
                 <ResultRow label="Screws" value={fmt(result.screws)} unit="pcs" />
                 <ResultRow label="Ridge Cap" value={fmt(result.ridgeCapFt)} unit="lin ft" />
+                <h4 className="con-calc__group-label">COST</h4>
+                <ResultRow label="Material Cost" value={`$${fmt(result.totalCost)}`} />
             </div>
         </div>
     );

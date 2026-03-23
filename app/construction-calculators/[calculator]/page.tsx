@@ -4027,18 +4027,96 @@ Net lawn area: 10,890 − 1,900 = <strong>8,990 sq ft</strong></p>
         ],
     },
     "metal-roofing-calculator": {
-        subtitle: "Calculate metal roofing panels, screws, trim, and ridge cap needed. Select panel type for accurate material estimates.",
+        subtitle: "Calculate metal roofing panels, screws, ridge cap, and cost. Choose from 5 panel types with roof pitch, gauge, and material pricing.",
         explanation: {
             heading: "Metal Roofing Material Estimation",
             paragraphs: [
-                "Metal roofing panels come in three main types: standing seam (16\" coverage width), corrugated (26\" coverage), and ribbed/R-panel (36\" coverage). Panels are cut to length to span from eave to ridge.",
-                "Count panels by dividing roof width by panel coverage width. Screws: 75–80 per 100 sq ft for exposed fastener types, fewer for standing seam. Add ridge cap, trim, and closure strips to your order.",
+                "Metal roofing panels come in five main types: standing seam (16\" coverage), corrugated (26\"), R-panel (36\"), metal shingle (48\"), and 5V crimp (24\"). Panels are typically cut to length from eave to ridge — no horizontal seams needed.",
+                "Apply the roof pitch multiplier to footprint area for actual roof area. Panel count = roof width ÷ panel coverage width. Standing seam uses concealed clips (30 screws/square); exposed-fastener types use 75–80 screws/square.",
             ],
-            highlight: "30 × 20 ft roof with standing seam: 600 sq ft, 15 panels, 495 screws, 20 ft ridge cap.",
+            highlight: "30 × 20 ft roof at 4/12 pitch: 632 sq ft × 1.10 waste = 695 sq ft. Standing seam: 15 panels, 210 screws, 20 ft ridge cap. At $10/sq ft = $6,950.",
         },
+        contentHTML: `
+<p>Metal roofing is the <strong>fastest-growing segment</strong> of the US residential roofing market, now installed on 17% of new homes (up from 5% in 2000). Metal roofs last 40–70 years — 2–3× longer than asphalt shingles — and offer superior wind resistance, fire resistance, and energy efficiency.</p>
+<p>The calculator above supports <strong>5 panel types</strong> with auto-filled pricing, <strong>roof pitch multiplier</strong>, <strong>gauge selection</strong>, and detailed output including panels, screws, ridge cap, and total material cost.</p>
+
+<h2>Metal Roofing Panel Types</h2>
+<table>
+<thead><tr><th>Panel Type</th><th>Coverage Width</th><th>Fastening</th><th>Screws/sq</th><th>Cost/sq ft</th><th>Lifespan</th></tr></thead>
+<tbody>
+<tr><td><strong>Standing Seam</strong></td><td>12"–18"</td><td>Concealed clips</td><td>~30</td><td>$8–$14</td><td>50–70 yrs</td></tr>
+<tr><td><strong>Corrugated</strong></td><td>26"</td><td>Exposed screws</td><td>~80</td><td>$3–$6</td><td>40–60 yrs</td></tr>
+<tr><td><strong>Ribbed / R-Panel</strong></td><td>36"</td><td>Exposed screws</td><td>~80</td><td>$4–$7</td><td>40–60 yrs</td></tr>
+<tr><td><strong>Metal Shingle</strong></td><td>48" (interlocking)</td><td>Hidden nails</td><td>~60</td><td>$7–$12</td><td>50–70 yrs</td></tr>
+<tr><td><strong>5V Crimp</strong></td><td>24"</td><td>Exposed screws</td><td>~75</td><td>$3.50–$6</td><td>40–60 yrs</td></tr>
+</tbody>
+</table>
+<p><strong>Most popular:</strong> Standing seam dominates the premium residential market (concealed fasteners, clean lines). Corrugated and R-panel are most cost-effective for agricultural, commercial, and budget-conscious residential projects.</p>
+
+<h2>Metal Gauge Guide</h2>
+<p>Gauge measures metal thickness — <strong>lower gauge = thicker metal</strong>. Thicker gauge costs more but resists dents, wind, and hail better.</p>
+<table>
+<thead><tr><th>Gauge</th><th>Thickness</th><th>Best For</th><th>Cost Premium</th></tr></thead>
+<tbody>
+<tr><td><strong>29 ga</strong></td><td>0.014"</td><td>Budget sheds, carports</td><td>Least expensive</td></tr>
+<tr><td><strong>26 ga</strong></td><td>0.019"</td><td>Standard residential</td><td>Baseline</td></tr>
+<tr><td><strong>24 ga</strong></td><td>0.024"</td><td>Premium residential, high-wind</td><td>+15–25%</td></tr>
+<tr><td><strong>22 ga</strong></td><td>0.030"</td><td>Commercial, industrial</td><td>+30–50%</td></tr>
+</tbody>
+</table>
+<p><strong>Recommendation:</strong> 26 gauge is the US residential standard. Use 24 gauge in high-wind zones (coastal, tornado-prone) or areas with frequent hail. Never use 29 gauge for a primary residence.</p>
+
+<h2>Step-by-Step Metal Roofing Estimation</h2>
+<h3>Step 1: Calculate Roof Area</h3>
+<p>Measure the building footprint and apply the <strong>pitch multiplier</strong>. Metal roofing requires minimum 3/12 pitch for most panel types (standing seam can go as low as ½/12).</p>
+<p><strong>Example:</strong> 30 × 20 ft footprint at 4/12 pitch = 600 × 1.054 = 632 sq ft. Add 10% waste = 695 sq ft.</p>
+
+<h3>Step 2: Calculate Panels</h3>
+<p>Divide roof width by panel coverage width. Panels run vertically from eave to ridge — they're cut to match your roof length.</p>
+<p><strong>Example:</strong> 20 ft wide ÷ 16" standing seam (1.33 ft) = 15 panels, each cut to 30 ft length.</p>
+
+<h3>Step 3: Calculate Fasteners and Trim</h3>
+<p>Screws per square (100 sq ft): standing seam ~30, exposed-fastener ~75–80. Ridge cap: 1 linear foot per foot of ridge. Add eave trim, gable trim, and closures.</p>
+
+<h2>Metal vs. Asphalt Shingles</h2>
+<table>
+<thead><tr><th>Feature</th><th>Metal Roofing</th><th>Asphalt Shingles</th></tr></thead>
+<tbody>
+<tr><td><strong>Lifespan</strong></td><td>40–70 years</td><td>15–25 years</td></tr>
+<tr><td><strong>Installed cost</strong></td><td>$8–$14/sq ft</td><td>$3–$7/sq ft</td></tr>
+<tr><td><strong>Wind rating</strong></td><td>140–180 mph</td><td>60–130 mph</td></tr>
+<tr><td><strong>Fire rating</strong></td><td>Class A (non-combustible)</td><td>Class A–C</td></tr>
+<tr><td><strong>Energy savings</strong></td><td>25–40% cooling</td><td>Minimal</td></tr>
+<tr><td><strong>Weight</strong></td><td>1–1.5 lbs/sq ft</td><td>2–4 lbs/sq ft</td></tr>
+<tr><td><strong>Maintenance</strong></td><td>Very low</td><td>Moderate</td></tr>
+</tbody>
+</table>
+<p><strong>Lifetime cost:</strong> Metal costs 2–3× more upfront but lasts 2–3× longer. Over 50 years, metal is typically <strong>cheaper than two asphalt roof replacements</strong>.</p>
+
+<h2>2025 US Metal Roofing Cost Guide</h2>
+<table>
+<thead><tr><th>Type</th><th>Material/sq ft</th><th>Installed/sq ft</th><th>1,500 sq ft Roof</th></tr></thead>
+<tbody>
+<tr><td><strong>Corrugated</strong></td><td>$3–$5</td><td>$5–$8</td><td>$7,500–$12,000</td></tr>
+<tr><td><strong>5V Crimp</strong></td><td>$3.50–$5</td><td>$6–$9</td><td>$9,000–$13,500</td></tr>
+<tr><td><strong>R-Panel</strong></td><td>$4–$6</td><td>$6–$10</td><td>$9,000–$15,000</td></tr>
+<tr><td><strong>Metal Shingle</strong></td><td>$7–$10</td><td>$10–$15</td><td>$15,000–$22,500</td></tr>
+<tr><td><strong>Standing Seam</strong></td><td>$8–$12</td><td>$12–$18</td><td>$18,000–$27,000</td></tr>
+</tbody>
+</table>
+<p><strong>Additional costs:</strong> Old roof tear-off: $1–$3/sq ft. Underlayment: $0.50–$1.50/sq ft. Trim/flashing: 10–15% of panel cost. Permits: $150–$500.</p>
+`,
         faq: [
-            { question: "How many metal roofing panels do I need?", answer: "Divide roof width by panel coverage width. 20 ft wide ÷ 16\" coverage (1.33 ft) = 15 panels for standing seam. For corrugated (26\" = 2.17 ft), you'd need 10 panels." },
-            { question: "How much does metal roofing cost?", answer: "Corrugated: $3–5/sq ft installed. Standing seam: $8–14/sq ft installed. R-panel: $4–7/sq ft installed. Metal lasts 40–70 years vs 15–25 for asphalt shingles." },
+            { question: "How many metal roofing panels do I need?", answer: "Divide roof width by panel coverage width. Standing seam at 16\": 20 ft ÷ 1.33 ft = 15 panels. Corrugated at 26\": 20 ft ÷ 2.17 ft = 10 panels. R-panel at 36\": 20 ft ÷ 3 ft = 7 panels. Each panel is cut to your roof length (eave to ridge)." },
+            { question: "How much does metal roofing cost?", answer: "Corrugated: $5–$8/sq ft installed (most affordable). R-panel: $6–$10/sq ft. Metal shingle: $10–$15/sq ft. Standing seam: $12–$18/sq ft (premium). A typical 1,500 sq ft roof: $7,500–$27,000 depending on panel type." },
+            { question: "What gauge metal for a residential roof?", answer: "26 gauge is the US residential standard — good balance of durability and cost. Use 24 gauge in high-wind or hail-prone areas. Avoid 29 gauge for primary residences — it's too thin and dents easily. 22 gauge is commercial-grade and rarely needed for homes." },
+            { question: "What minimum roof pitch for metal roofing?", answer: "Most exposed-fastener panels (corrugated, R-panel, 5V): minimum 3/12 pitch. Standing seam: can go as low as ½/12 (nearly flat) because concealed clips allow thermal expansion. Metal shingles: minimum 3/12. Always check manufacturer specifications." },
+            { question: "How long does a metal roof last?", answer: "Corrugated/R-panel: 40–60 years. Standing seam: 50–70 years. Metal shingle: 50–70 years. Copper/zinc: 80–100+ years. Lifespan depends on gauge, coating (Kynar/PVDF lasts longest), installation quality, and climate. Metal outlasts asphalt 2–3×." },
+            { question: "Standing seam vs corrugated — which is better?", answer: "Standing seam: concealed fasteners (no leak points), clean modern look, handles thermal expansion, lasts 50–70 years, but costs 2–3× more. Corrugated: exposed fasteners (need resealing every 10–15 years), traditional look, very affordable. Standing seam is premium; corrugated is value." },
+            { question: "How many screws per square of metal roofing?", answer: "Standing seam: ~30 concealed clips per square (100 sq ft). Corrugated: ~80 exposed screws per square. R-panel: ~80 per square. 5V crimp: ~75 per square. Use self-drilling screws with EPDM rubber washers for exposed-fastener types." },
+            { question: "Can I install metal roofing over shingles?", answer: "Yes — in most US jurisdictions, metal can be installed over one layer of asphalt shingles. This saves $1–$3/sq ft in tear-off costs. Install furring strips or battens for an air gap. Check local codes — some jurisdictions require tear-off. Never install over two layers of shingles." },
+            { question: "Do metal roofs attract lightning?", answer: "No — metal roofs don't increase the probability of a lightning strike. Metal is non-combustible, so it's actually safer than wood or asphalt during a strike. Metal roofs disperse energy across the entire surface rather than concentrating it. No grounding is required by code." },
+            { question: "What accessories do I need for a metal roof?", answer: "Ridge cap (ridge line coverage). Eave/drip edge trim. Gable/rake trim. Closure strips (foam seals for corrugated profiles). Pipe boots (for vent penetrations). Underlayment (synthetic preferred over felt). Butyl tape for standing seam. Touch-up paint for cut edges." },
         ],
     },
     "plywood-sheathing-calculator": {
