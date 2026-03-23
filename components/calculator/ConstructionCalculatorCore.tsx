@@ -615,6 +615,20 @@ function PaintCalc() {
 }
 
 /* ──────────── 8. DRYWALL CALCULATOR ──────────── */
+const DRYWALL_SHEETS: { value: string; label: string; sqft: number; weight: number }[] = [
+    { value: "4x8", label: "4 × 8 ft (standard)", sqft: 32, weight: 54 },
+    { value: "4x10", label: "4 × 10 ft", sqft: 40, weight: 68 },
+    { value: "4x12", label: "4 × 12 ft", sqft: 48, weight: 82 },
+];
+
+const DRYWALL_TYPES: { value: string; label: string; pricePer: number }[] = [
+    { value: "standard", label: "Standard ½\" (most common)", pricePer: 12 },
+    { value: "fire-rated", label: "Fire-Rated ⅝\" (Type X)", pricePer: 16 },
+    { value: "moisture", label: "Moisture-Resistant (green board)", pricePer: 15 },
+    { value: "mold", label: "Mold-Resistant (purple board)", pricePer: 18 },
+    { value: "soundproof", label: "Soundproof (QuietRock / 5⁄8\")", pricePer: 45 },
+];
+
 function DrywallCalc() {
     const [roomLength, setRoomLength] = useState(12);
     const [roomWidth, setRoomWidth] = useState(10);
@@ -622,52 +636,76 @@ function DrywallCalc() {
     const [doors, setDoors] = useState(1);
     const [windows, setWindows] = useState(2);
     const [includeCeiling, setIncludeCeiling] = useState(true);
+    const [sheetSize, setSheetSize] = useState("4x8");
+    const [drywallType, setDrywallType] = useState("standard");
+    const [costPerSheet, setCostPerSheet] = useState(12);
+
+    const handleDrywallType = (v: string) => {
+        setDrywallType(v);
+        const dt = DRYWALL_TYPES.find(d => d.value === v);
+        if (dt) setCostPerSheet(dt.pricePer);
+    };
 
     const result = useMemo(() => {
         const perimeter = 2 * (roomLength + roomWidth);
         const wallArea = perimeter * wallHeight;
         const ceilingArea = includeCeiling ? roomLength * roomWidth : 0;
         const openingsArea = (doors * 21) + (windows * 15);
-        const totalArea = wallArea + ceilingArea - openingsArea;
-        const sheets = totalArea / 32;           // 4×8 sheet = 32 sq ft
-        const jointTape = (totalArea / 32) * 12; // ~12 ft of tape per sheet
-        const jointCompound = totalArea / 100;    // ~1 bucket per 100 sq ft
-        const screws = totalArea * 0.8;           // ~0.8 screws per sq ft
-        return { totalArea, wallArea, ceilingArea, sheets, jointTape, jointCompound, screws };
-    }, [roomLength, roomWidth, wallHeight, doors, windows, includeCeiling]);
+        const netArea = Math.max(0, wallArea + ceilingArea - openingsArea);
+        const wasteArea = netArea * 1.10; // 10% waste
+        const sheet = DRYWALL_SHEETS.find(s => s.value === sheetSize) || DRYWALL_SHEETS[0];
+        const sheets = wasteArea / sheet.sqft;
+        const jointTape = sheets * 12;
+        const jointCompound = netArea / 100;
+        const screws = netArea * 0.8;
+        const totalWeight = Math.ceil(sheets) * sheet.weight;
+        const materialCost = Math.ceil(sheets) * costPerSheet;
+        const tapeCost = Math.ceil(jointTape / 250) * 8; // ~250 ft roll = $8
+        const mudCost = Math.ceil(jointCompound) * 16; // ~$16 per bucket
+        const screwCost = Math.ceil(screws / 150) * 10; // ~150 screws/lb = $10/lb box
+        return { wallArea, ceilingArea, netArea, wasteArea, sheets, jointTape, jointCompound, screws, totalWeight, materialCost, tapeCost, mudCost, screwCost };
+    }, [roomLength, roomWidth, wallHeight, doors, windows, includeCeiling, sheetSize, costPerSheet]);
 
     return (
         <div className="con-calc">
             <h3 className="con-calc__title">🪟 Drywall Calculator</h3>
             <div className="con-calc__inputs">
+                <SelectField label="Drywall Type" value={drywallType} onChange={handleDrywallType}
+                    options={DRYWALL_TYPES.map(d => ({ value: d.value, label: d.label }))} />
+                <SelectField label="Sheet Size" value={sheetSize} onChange={setSheetSize}
+                    options={DRYWALL_SHEETS.map(s => ({ value: s.value, label: s.label }))} />
                 <InputField label="Room Length" value={roomLength} onChange={setRoomLength} unit="ft" min={1} />
                 <InputField label="Room Width" value={roomWidth} onChange={setRoomWidth} unit="ft" min={1} />
                 <InputField label="Wall Height" value={wallHeight} onChange={setWallHeight} unit="ft" min={1} />
                 <InputField label="Doors" value={doors} onChange={setDoors} min={0} />
                 <InputField label="Windows" value={windows} onChange={setWindows} min={0} />
+                <InputField label="Cost per Sheet" value={costPerSheet} onChange={setCostPerSheet} unit="$" min={0} />
                 <div className="con-input">
                     <label className="con-input__label">Include Ceiling</label>
                     <div className="con-toggle">
-                        <button
-                            className={`con-toggle__btn ${includeCeiling ? "con-toggle__btn--active" : ""}`}
-                            onClick={() => setIncludeCeiling(true)}
-                        >Yes</button>
-                        <button
-                            className={`con-toggle__btn ${!includeCeiling ? "con-toggle__btn--active" : ""}`}
-                            onClick={() => setIncludeCeiling(false)}
-                        >No</button>
+                        <button className={`con-toggle__btn ${includeCeiling ? "con-toggle__btn--active" : ""}`} onClick={() => setIncludeCeiling(true)}>Yes</button>
+                        <button className={`con-toggle__btn ${!includeCeiling ? "con-toggle__btn--active" : ""}`} onClick={() => setIncludeCeiling(false)}>No</button>
                     </div>
                 </div>
             </div>
             <div className="con-calc__results">
-                <h4>Results</h4>
+                <h4 className="con-calc__group-label">AREA</h4>
                 <ResultRow label="Wall Area" value={fmt(result.wallArea)} unit="sq ft" />
                 {includeCeiling && <ResultRow label="Ceiling Area" value={fmt(result.ceilingArea)} unit="sq ft" />}
-                <ResultRow label="Total Drywall Area" value={fmt(result.totalArea)} unit="sq ft" />
-                <ResultRow label="4×8 Sheets" value={fmtInt(result.sheets)} unit="sheets" />
+                <ResultRow label="Net Drywall Area" value={fmt(result.netArea)} unit="sq ft" />
+                <ResultRow label="With 10% Waste" value={fmt(result.wasteArea)} unit="sq ft" />
+                <h4 className="con-calc__group-label">MATERIALS</h4>
+                <ResultRow label="Sheets Needed" value={fmtInt(result.sheets)} unit="sheets" />
+                <ResultRow label="Total Weight" value={fmtInt(result.totalWeight)} unit="lbs" />
                 <ResultRow label="Joint Tape" value={fmtInt(result.jointTape)} unit="ft" />
                 <ResultRow label="Joint Compound" value={fmt(result.jointCompound, 1)} unit="buckets" />
                 <ResultRow label="Drywall Screws" value={fmtInt(result.screws)} unit="screws" />
+                <h4 className="con-calc__group-label">COST</h4>
+                <ResultRow label="Drywall Sheets" value={`$${fmtInt(result.materialCost)}`} />
+                <ResultRow label="Joint Tape" value={`$${fmtInt(result.tapeCost)}`} />
+                <ResultRow label="Joint Compound" value={`$${fmtInt(result.mudCost)}`} />
+                <ResultRow label="Screws" value={`$${fmtInt(result.screwCost)}`} />
+                <ResultRow label="Total Material Cost" value={`$${fmtInt(result.materialCost + result.tapeCost + result.mudCost + result.screwCost)}`} />
             </div>
         </div>
     );

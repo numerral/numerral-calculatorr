@@ -799,7 +799,7 @@ const HUB_CONTENT: Record<string, {
         ],
     },
     "drywall-calculator": {
-        subtitle: "Calculate how many drywall sheets you need for walls and ceilings, plus joint tape, joint compound, and screw estimates.",
+        subtitle: "Calculate how many drywall sheets you need for walls and ceilings. Choose from 5 drywall types and 3 sheet sizes. Get sheets, joint tape, compound, screws, weight, and total cost estimate with 10% waste factor.",
         explanation: {
             heading: "How to Estimate Drywall Materials",
             paragraphs: [
@@ -808,9 +808,103 @@ const HUB_CONTENT: Record<string, {
             ],
             highlight: "A 12×10 ft room with 8 ft ceilings, 1 door, 2 windows, plus ceiling: Wall area ≈ 301 sq ft + ceiling 120 sq ft = 421 sq ft ÷ 32 = 14 sheets of 4×8 drywall.",
         },
+        contentHTML: `
+<p>Standard drywall sheets are 4 feet wide × 8 feet tall (32 sq ft per sheet). Longer sheets (10 ft, 12 ft) are available for taller walls or fewer horizontal joints. To calculate sheets needed, divide the total wall and ceiling area by the sheet size, add 10% for waste, and round up.</p>
+<p>Don't forget the finishing materials: plan approximately 12 feet of joint tape per sheet, 1 bucket (4.5 gallons) of joint compound per 100 sq ft, and about 28–32 drywall screws per sheet (spaced 12 inches on ceilings, 16 inches on walls).</p>
+
+<h2>Drywall Types Guide</h2>
+<table>
+<thead><tr><th>Type</th><th>Thickness</th><th>Weight (4×8 sheet)</th><th>Best Use</th><th>Price per Sheet</th></tr></thead>
+<tbody>
+<tr><td><strong>Standard (white board)</strong></td><td>½"</td><td>54 lbs</td><td>Most interior walls and ceilings</td><td>$10–$15</td></tr>
+<tr><td><strong>Fire-Rated (Type X)</strong></td><td>⅝"</td><td>70 lbs</td><td>Garage walls, furnace rooms, code-required fire barriers</td><td>$14–$18</td></tr>
+<tr><td><strong>Moisture-Resistant (green board)</strong></td><td>½"</td><td>56 lbs</td><td>Bathrooms, kitchens, laundry rooms (not direct water contact)</td><td>$13–$17</td></tr>
+<tr><td><strong>Mold-Resistant (purple board)</strong></td><td>½"</td><td>58 lbs</td><td>High-humidity areas, basements, behind tile</td><td>$16–$20</td></tr>
+<tr><td><strong>Soundproof (QuietRock)</strong></td><td>⅝"</td><td>80 lbs</td><td>Media rooms, bedrooms, shared walls, home offices</td><td>$40–$55</td></tr>
+</tbody>
+</table>
+<p><strong>Note:</strong> ¼" drywall exists for curved walls and overlaying existing surfaces. ½" is the US standard for 16" on-center framing. ⅝" is required by code for ceilings with 24" on-center framing and all fire-rated assemblies.</p>
+
+<h2>Drywall Sheet Sizes</h2>
+<table>
+<thead><tr><th>Sheet Size</th><th>Coverage (sq ft)</th><th>Weight (½")</th><th>Best For</th></tr></thead>
+<tbody>
+<tr><td><strong>4 × 8 ft</strong></td><td>32</td><td>54 lbs</td><td>Most common — easy to handle, fits through doorways</td></tr>
+<tr><td><strong>4 × 10 ft</strong></td><td>40</td><td>68 lbs</td><td>9–10 ft ceilings, reduces horizontal seams</td></tr>
+<tr><td><strong>4 × 12 ft</strong></td><td>48</td><td>82 lbs</td><td>High ceilings, commercial — fewer joints, harder to carry</td></tr>
+</tbody>
+</table>
+<p><strong>Tip:</strong> Longer sheets mean fewer seams and less finishing work, but they're significantly heavier and harder to maneuver through stairwells and tight spaces. A 4×12 sheet weighs 82 lbs — always use at least two people.</p>
+
+<h2>Step-by-Step: How to Calculate Drywall</h2>
+<h3>Step 1: Measure Walls and Ceiling</h3>
+<p>Measure the length and height of each wall. For a rectangular room, use the shortcut: <strong>perimeter × ceiling height = total wall area</strong>. Perimeter = 2 × (length + width). Add the ceiling area (length × width) if you're drywalling the ceiling too.</p>
+
+<h3>Step 2: Subtract Openings</h3>
+<p>Standard door opening = 21 sq ft (3 × 7 ft). Standard window = 15 sq ft (3 × 5 ft). Subtract these from total area. For large openings, measure actual dimensions.</p>
+
+<h3>Step 3: Add 10% for Waste</h3>
+<p>Always add 10% to your net area to account for cuts, damaged sheets, fitting around outlets and corners. For complex layouts with many angles, increase waste to 15%.</p>
+
+<h3>Step 4: Divide by Sheet Size</h3>
+<p><strong>Sheets = (net area × 1.10) ÷ sheet sq ft</strong>. Round up to whole sheets. A 421 sq ft room with 10% waste = 463 sq ft ÷ 32 = 15 sheets of 4×8.</p>
+
+<h2>How to Estimate Joint Compound and Tape</h2>
+<p>Finishing drywall requires three coats: bedding coat (embed the tape), filler coat (smooth the seam), and finish coat (final smooth pass).</p>
+<ul>
+<li><strong>Joint tape:</strong> ~12 linear feet per sheet. Rolls come in 250 ft and 500 ft lengths. Paper tape is standard; mesh tape is easier for beginners but requires setting compound.</li>
+<li><strong>Joint compound (mud):</strong> ~1 bucket (4.5 gal) per 100 sq ft of drywall. For a 14-sheet room: ~4.5 buckets. Pre-mixed is easiest; powder (setting compound) is faster-drying and stronger.</li>
+<li><strong>Corner bead:</strong> Metal or paper-faced — needed for all outside corners. Measure total linear feet of corners.</li>
+</ul>
+
+<h2>Drywall Screw Spacing Guide</h2>
+<table>
+<thead><tr><th>Application</th><th>Spacing</th><th>Screws per Sheet</th><th>Screw Size</th></tr></thead>
+<tbody>
+<tr><td><strong>Walls (edges)</strong></td><td>8" on center</td><td>—</td><td>#6 × 1¼"</td></tr>
+<tr><td><strong>Walls (field/studs)</strong></td><td>16" on center</td><td>~28 total</td><td>#6 × 1¼"</td></tr>
+<tr><td><strong>Ceilings</strong></td><td>12" on center</td><td>~36 total</td><td>#6 × 1⅝"</td></tr>
+<tr><td><strong>⅝" Type X</strong></td><td>12" on center</td><td>~36 total</td><td>#6 × 1⅝"</td></tr>
+</tbody>
+</table>
+<p><strong>Rule of thumb:</strong> Plan about <strong>0.8 screws per square foot</strong> of drywall. A 5 lb box contains ~150 screws — enough for about 5–6 sheets.</p>
+
+<h2>Drywall Cost Guide (2025 US Pricing)</h2>
+<table>
+<thead><tr><th>Material</th><th>Cost</th><th>Coverage</th></tr></thead>
+<tbody>
+<tr><td><strong>Standard ½" sheet (4×8)</strong></td><td>$10–$15</td><td>32 sq ft</td></tr>
+<tr><td><strong>Fire-Rated ⅝" (4×8)</strong></td><td>$14–$18</td><td>32 sq ft</td></tr>
+<tr><td><strong>Joint compound (4.5 gal)</strong></td><td>$14–$18</td><td>~100 sq ft</td></tr>
+<tr><td><strong>Joint tape (250 ft roll)</strong></td><td>$6–$10</td><td>~20 sheets</td></tr>
+<tr><td><strong>Drywall screws (5 lb box)</strong></td><td>$8–$12</td><td>~5–6 sheets</td></tr>
+<tr><td><strong>Corner bead (8 ft)</strong></td><td>$3–$5</td><td>1 corner</td></tr>
+<tr><td><strong>Professional installation</strong></td><td>$1.50–$3.00/sq ft</td><td>Hang + finish</td></tr>
+</tbody>
+</table>
+<p><strong>Average DIY cost:</strong> $0.50–$0.80 per sq ft (materials only). <strong>Professional installed:</strong> $1.50–$3.00 per sq ft including hanging, taping, mudding, and sanding.</p>
+
+<h2>Drywall Finishing Levels (0–5)</h2>
+<ul>
+<li><strong>Level 0:</strong> No finishing — used in temporary construction or areas above ceilings.</li>
+<li><strong>Level 1:</strong> Tape set in compound — for areas hidden above ceilings or in attic spaces.</li>
+<li><strong>Level 2:</strong> Tape + one coat — for areas behind tile or in garages.</li>
+<li><strong>Level 3:</strong> Tape + two coats — for areas receiving heavy texture (knockdown, orange peel).</li>
+<li><strong>Level 4:</strong> Tape + three coats — standard for most painted walls. Light textures or flat paint.</li>
+<li><strong>Level 5:</strong> Tape + three coats + skim coat — premium smooth finish for gloss/semi-gloss paint or harsh lighting.</li>
+</ul>
+`,
         faq: [
-            { question: "What thickness of drywall do I need?", answer: "1/2 inch is standard for most walls and ceilings with 16-inch on-center framing. 5/8 inch is required for fire-rated assemblies and is recommended for ceilings to reduce sag. 1/4 inch is used for curved walls. Moisture-resistant (green board) is for bathrooms." },
-            { question: "How much joint compound do I need?", answer: "Plan for about 1 bucket (4.5-gallon) of all-purpose joint compound per 100 sq ft of drywall. This covers three coats of bedding, taping, and finish coating. Larger rooms need proportionally more." },
+            { question: "How many sheets of drywall do I need for a 10×10 room?", answer: "A 10×10 ft room with 8 ft ceilings = 320 sq ft walls + 100 sq ft ceiling = 420 sq ft. Minus 1 door (21 sq ft) and 2 windows (30 sq ft) = 369 sq ft net. With 10% waste = 406 sq ft ÷ 32 = 13 sheets of 4×8 drywall." },
+            { question: "What size drywall should I use?", answer: "4×8 ft sheets are standard for most homes. Use 4×10 for 9–10 ft ceilings and 4×12 for high ceilings or to minimize seams. Longer sheets are heavier (82 lbs for 4×12) and harder to maneuver. For thickness: ½\" for walls, ⅝\" for ceilings and fire-rated assemblies." },
+            { question: "What thickness of drywall do I need?", answer: "½\" is standard for most walls and ceilings with 16\" on-center framing. ⅝\" (Type X) is required for fire-rated assemblies — garage-to-house walls, furnace rooms, and between units in multifamily. ⅝\" is also recommended for ceilings to reduce sag. ¼\" is for curved walls and overlays." },
+            { question: "Is drywall the same as Sheetrock?", answer: "Sheetrock is a brand name of drywall made by USG (United States Gypsum Company). It's like Kleenex vs. tissue — Sheetrock is one brand, but 'drywall' is the generic term. Other brands include Georgia-Pacific (ToughRock), National Gypsum (Gold Bond), and CertainTeed." },
+            { question: "How much joint compound do I need?", answer: "Plan about 1 bucket (4.5 gallons, ~60 lbs) of all-purpose joint compound per 100 sq ft of drywall. This covers bedding, taping, and finish coats. A 14-sheet room needs about 4.5 buckets. For Level 5 finish (skim coat), add 50% more." },
+            { question: "How much does it cost to drywall a room?", answer: "DIY materials: $0.50–$0.80 per sq ft (drywall, tape, mud, screws). A 12×10 room with ceiling costs about $200–$350 in materials. Professional installation: $1.50–$3.00 per sq ft for hanging, taping, mudding, and sanding — roughly $600–$1,200 for the same room." },
+            { question: "Do I need moisture-resistant drywall in bathrooms?", answer: "Yes — use green board (moisture-resistant) or purple board (mold-resistant) in bathrooms, kitchens, and laundry rooms. Behind shower surrounds and tub areas, use cement board (HardieBacker, Durock) instead of drywall — drywall will fail with direct water exposure." },
+            { question: "How many screws do I need per sheet of drywall?", answer: "About 28–32 screws per 4×8 sheet on walls (8\" spacing on edges, 16\" in the field), and about 36 screws per sheet on ceilings (12\" spacing everywhere). Plan roughly 0.8 screws per square foot. A 5 lb box contains ~150 screws — enough for 5–6 sheets." },
+            { question: "Can I install drywall by myself?", answer: "Walls: yes, one person can hang 4×8 sheets on walls using a drywall lift or dead man (T-brace). Ceilings: highly recommended to use 2 people or a mechanical drywall lift. 4×12 sheets always require 2 people. Taping and mudding is easier solo but takes practice to get smooth." },
+            { question: "How long does a drywall project take?", answer: "Hanging: an experienced DIYer can install 8–12 sheets per day. Taping/mudding: 3 coats with drying time between = 3–4 days. Sanding: half a day. Total for a 12×10 room (14 sheets): about 5–6 days including drying time. Pros can do the same room in 2–3 days." },
         ],
     },
     "square-footage-calculator": {

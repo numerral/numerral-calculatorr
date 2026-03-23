@@ -7282,7 +7282,7 @@
     "categorySlug": "construction-calculators",
     "icon": "🪟",
     "calcType": "drywall",
-    "description": "Calculate how many drywall sheets you need for walls and ceilings. Get total 4×8 sheets, joint tape, joint compound, and screws needed.",
+    "description": "Calculate drywall sheets needed for walls and ceilings. Choose from 5 drywall types and 3 sheet sizes. Get sheets with 10% waste, joint tape, compound, screws, weight, and total cost estimate.",
     "stars": 4,
     "defaults": {
       "amount": 12,
