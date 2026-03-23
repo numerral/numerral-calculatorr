@@ -4087,18 +4087,97 @@ Net lawn area: 10,890 − 1,900 = <strong>8,990 sq ft</strong></p>
         ],
     },
     "clapboard-siding-calculator": {
-        subtitle: "Calculate clapboard or lap siding boards needed for your walls. Enter dimensions, exposure, and board length for total count.",
+        subtitle: "Calculate clapboard or lap siding boards, courses, linear feet, and cost. Choose from 5 board materials with exposure, overlap, and gable area support.",
         explanation: {
             heading: "Clapboard & Lap Siding Estimation",
             paragraphs: [
-                "Clapboard siding is installed horizontally with each board overlapping the one below. The visible portion is called the 'exposure' — typically 4–6 inches. Rows = wall height ÷ exposure.",
-                "Total boards = number of rows × boards per row (wall length ÷ board length). Standard board lengths: 8', 10', 12', and 16'. Add 10% for waste from cuts around windows and doors.",
+                "Clapboard siding is installed horizontally with each board overlapping the one below. The visible portion is called the 'exposure' — typically board width minus 1–1.5 inches of overlap. Courses (rows) = wall height in inches ÷ exposure in inches.",
+                "Total boards = courses × boards per course (wall length ÷ board length). Standard board lengths: 8', 10', 12', and 16'. Add 10% for straight walls and 15–20% for gable walls due to angle cuts.",
             ],
-            highlight: "A 40 × 9 ft wall with 4\" exposure and 12' boards: 27 rows × 4 boards per row = 108 boards. With waste: 119 boards.",
+            highlight: "A 40 × 9 ft wall with 6\" cedar boards (4.75\" exposure) and 12' lengths: 23 courses × 4 boards = 92 boards. With 10% waste: 102 boards = 1,224 lin ft. At $2.50/lf = $3,060.",
         },
+        contentHTML: `
+<p>Clapboard (also called lap, bevel, or weatherboard siding) is one of the most iconic <strong>American home exterior styles</strong>, dating back to Colonial New England. Modern clapboard siding is available in natural wood, fiber cement, engineered wood, and composite materials — each with different exposure, overlap, and cost characteristics.</p>
+<p>The calculator above supports <strong>5 board materials</strong> with auto-filled pricing, adjustable <strong>board width and overlap</strong>, multiple board lengths, <strong>gable area</strong> input, individual window/door counts, and outputs <strong>courses, boards, linear feet, and cost</strong>.</p>
+
+<h2>Board Material Comparison</h2>
+<table>
+<thead><tr><th>Material</th><th>Common Width</th><th>Exposure</th><th>Cost/lin ft</th><th>Lifespan</th></tr></thead>
+<tbody>
+<tr><td><strong>Western Red Cedar</strong></td><td>6"</td><td>4.75"</td><td>$2.00–$3.50</td><td>30–50 yrs</td></tr>
+<tr><td><strong>Fiber Cement (HardiePlank)</strong></td><td>8.25"</td><td>7"</td><td>$1.50–$2.50</td><td>30–50 yrs</td></tr>
+<tr><td><strong>Pine / Spruce (primed)</strong></td><td>6"</td><td>4.75"</td><td>$0.80–$1.60</td><td>15–25 yrs</td></tr>
+<tr><td><strong>Engineered Wood (LP SmartSide)</strong></td><td>8"</td><td>6.75"</td><td>$1.20–$2.00</td><td>25–50 yrs</td></tr>
+<tr><td><strong>Composite / PVC</strong></td><td>8"</td><td>6.75"</td><td>$2.50–$4.00</td><td>30–50+ yrs</td></tr>
+</tbody>
+</table>
+<p><strong>Most popular:</strong> Fiber cement (HardiePlank) dominates the US lap siding market — it's fire-resistant, termite-proof, and mimics the look of real wood. Western Red Cedar remains the premium natural-wood choice for its dimensional stability and natural decay resistance.</p>
+
+<h2>Understanding Exposure and Overlap</h2>
+<p><strong>Board width</strong> = the full width of the siding plank. <strong>Overlap</strong> = the hidden portion covered by the board above (typically 1"–1½"). <strong>Exposure</strong> = the visible portion = board width − overlap.</p>
+<ul>
+<li><strong>6" board, 1.25" overlap → 4.75" exposure</strong> (standard for cedar)</li>
+<li><strong>8" board, 1.25" overlap → 6.75" exposure</strong> (standard for fiber cement)</li>
+<li><strong>10" board, 1.5" overlap → 8.5" exposure</strong> (wider profile)</li>
+</ul>
+<p><strong>Important:</strong> Minimum overlap of 1" is required for water resistance. In high-wind zones, 1.5" or more is recommended. Always follow manufacturer specifications for your climate.</p>
+
+<h2>Step-by-Step Clapboard Estimation</h2>
+<h3>Step 1: Calculate Courses (Rows)</h3>
+<p>Convert wall height to inches. Divide by the exposure in inches. Round up to the nearest whole number.</p>
+<p><strong>Example:</strong> 9 ft wall = 108 in ÷ 4.75" exposure = 22.7 → <strong>23 courses</strong></p>
+
+<h3>Step 2: Calculate Boards per Course</h3>
+<p>Divide wall length by board length. Round up.</p>
+<p><strong>Example:</strong> 40 ft wall ÷ 12 ft boards = 3.33 → <strong>4 boards per course</strong></p>
+
+<h3>Step 3: Total Boards and Linear Feet</h3>
+<p>Boards = courses × boards per course. Linear feet = total boards × board length.</p>
+<p><strong>Example:</strong> 23 courses × 4 boards = 92 boards = 1,104 lin ft</p>
+
+<h3>Step 4: Add Waste</h3>
+<p>Add <strong>10% for rectangular walls</strong>. Add <strong>15–20% for gable walls</strong> (angle cuts produce more waste). Add <strong>5% extra if boards have knots</strong> or defects to cull.</p>
+
+<h2>Gable Walls</h2>
+<p>Gable walls are triangular. To estimate boards: calculate courses using the same exposure, multiply by the gable width, then <strong>divide by 2</strong> (since each successive course gets shorter). Add 15–20% waste for the angle cuts.</p>
+<p><strong>Example:</strong> A 30 ft × 8 ft gable at 4.75" exposure: 21 courses × 30 ft ÷ 2 = 315 lin ft + 20% waste = 378 lin ft.</p>
+
+<h2>Common Board Sizes</h2>
+<table>
+<thead><tr><th>Nominal Width</th><th>Actual Width</th><th>Typical Exposure</th><th>Lengths Available</th></tr></thead>
+<tbody>
+<tr><td>4"</td><td>3.5"</td><td>2.25"–2.5"</td><td>8', 10', 12'</td></tr>
+<tr><td>6"</td><td>5.5"</td><td>4.25"–4.75"</td><td>8', 10', 12', 16'</td></tr>
+<tr><td>8"</td><td>7.25"–8.25"</td><td>6"–7"</td><td>8', 10', 12', 16'</td></tr>
+<tr><td>10"</td><td>9.25"</td><td>7.75"–8.5"</td><td>8', 12', 16'</td></tr>
+<tr><td>12"</td><td>11.25"</td><td>9.75"–10.5"</td><td>8', 12', 16'</td></tr>
+</tbody>
+</table>
+
+<h2>2025 US Clapboard Cost Guide</h2>
+<table>
+<thead><tr><th>Material</th><th>Material/lin ft</th><th>Installed/sq ft</th><th>1,200 sq ft Home</th></tr></thead>
+<tbody>
+<tr><td><strong>Pine (primed)</strong></td><td>$0.80–$1.60</td><td>$4–$7</td><td>$4,800–$8,400</td></tr>
+<tr><td><strong>Fiber Cement</strong></td><td>$1.50–$2.50</td><td>$6–$10</td><td>$7,200–$12,000</td></tr>
+<tr><td><strong>Engineered Wood</strong></td><td>$1.20–$2.00</td><td>$5–$9</td><td>$6,000–$10,800</td></tr>
+<tr><td><strong>Cedar</strong></td><td>$2.00–$3.50</td><td>$8–$14</td><td>$9,600–$16,800</td></tr>
+<tr><td><strong>Composite / PVC</strong></td><td>$2.50–$4.00</td><td>$10–$16</td><td>$12,000–$19,200</td></tr>
+</tbody>
+</table>
+<p><strong>Labor:</strong> Professional installation typically runs $3–$6/sq ft for clapboard siding. Total installed cost ranges from $7–$20/sq ft depending on material and home complexity.</p>
+`,
         faq: [
-            { question: "What is the standard exposure for clapboard siding?", answer: "4–6 inches depending on board width. A 6\" wide board typically has 4\" exposure and 2\" overlap. Wider boards (8\") can have 5–6\" exposure. Check manufacturer specifications." },
-            { question: "How much siding do I need for my house?", answer: "Calculate each wall separately: height × length = gross area. Subtract window and door areas. Divide net area by the coverage per board (board length × exposure). Add 10% for waste." },
+            { question: "What is clapboard siding?", answer: "Clapboard (also called lap, bevel, or weatherboard siding) consists of horizontal boards installed from bottom to top, with each board overlapping the one below. The overlapping design sheds water away from the wall. It's available in cedar, fiber cement, pine, engineered wood, and composite." },
+            { question: "What is the standard exposure for clapboard siding?", answer: "Exposure depends on board width. 6\" board: 4.25\"–4.75\" exposure. 8\" board: 6\"–7\" exposure. 10\" board: 7.75\"–8.5\" exposure. The overlap (hidden portion) should be at least 1\"–1.5\" for water protection. Follow manufacturer specs for your specific material." },
+            { question: "How do I calculate courses of siding?", answer: "Convert wall height to inches, divide by board exposure in inches, and round up. Example: 9 ft wall = 108\" ÷ 4.75\" exposure = 22.7 → 23 courses. Adjust exposure slightly so the top course isn't too short — 108\" ÷ 23 = 4.70\" adjusted exposure." },
+            { question: "How much waste should I add?", answer: "10% for rectangular walls with few windows. 15% for walls with multiple windows and doors. 15–20% for gable walls (angle cuts). 5% extra if using natural wood with possible knot defects. Always order extra for future repairs from the same lot." },
+            { question: "Cedar or fiber cement — which is better?", answer: "Cedar: natural beauty, lightweight, easy to cut, naturally rot-resistant, but requires staining every 3–5 years. Fiber cement (HardiePlank): fire-resistant, termite-proof, holds paint 15+ years, but heavier and requires professional cutting tools. Fiber cement has a lower lifetime maintenance cost." },
+            { question: "How do I estimate gable walls?", answer: "A gable is triangular. Calculate courses using the same exposure. Multiply courses × gable width, then divide by 2 (each course is progressively shorter). Add 15–20% waste for angle cuts. Example: 30 ft wide × 8 ft tall gable at 4.75\" exposure: 21 courses × 30 ft ÷ 2 = 315 lin ft + 20% = 378 lin ft." },
+            { question: "What board length should I use?", answer: "12 ft is the most common and easiest to handle. 16 ft reduces butt joints (seams) but is harder to manage alone. 8 ft is lightweight but creates many seams. Use longer boards on long walls to minimize joints — each butt joint is a potential water entry point." },
+            { question: "How many linear feet of siding do I need?", answer: "Multiply courses × boards per course × board length. Example: 23 courses × 4 boards per course × 12 ft = 1,104 lin ft. Add 10% waste = 1,214 lin ft. Divide by board length to get total boards: 1,214 ÷ 12 = 102 boards." },
+            { question: "Do I need to keep siding off the ground?", answer: "Yes — maintain a minimum 6\" gap between the bottom of the siding and the ground. This prevents moisture wicking, insect entry, and splash-back damage. Use a starter strip at the bottom to angle the first course correctly." },
+            { question: "Can I install clapboard siding myself?", answer: "Yes — clapboard is one of the more DIY-friendly siding types, especially cedar and pine. Fiber cement requires a diamond blade for cutting and produces harmful silica dust. For a professional-looking job, invest in a story pole (layout gauge), pneumatic nailer, and quality caulk." },
         ],
     },
     "siding-material-calculator": {

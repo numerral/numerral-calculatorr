@@ -7605,41 +7605,85 @@ function RoofingMaterialCalc() {
 }
 
 /* ──────────── 160. CLAPBOARD / LAP SIDING CALCULATOR ──────────── */
+const CLAP_MATERIALS: { value: string; label: string; widthIn: number; overlapIn: number; costPerLf: number }[] = [
+    { value: "cedar", label: "Western Red Cedar", widthIn: 6, overlapIn: 1.25, costPerLf: 2.50 },
+    { value: "fiber-cement", label: "Fiber Cement (HardiePlank)", widthIn: 8, overlapIn: 1.25, costPerLf: 1.80 },
+    { value: "pine", label: "Pine / Spruce (primed)", widthIn: 6, overlapIn: 1.25, costPerLf: 1.20 },
+    { value: "engineered", label: "Engineered Wood (LP)", widthIn: 8, overlapIn: 1.25, costPerLf: 1.60 },
+    { value: "composite", label: "Composite / PVC", widthIn: 8, overlapIn: 1.25, costPerLf: 3.00 },
+    { value: "custom", label: "Custom / Other", widthIn: 6, overlapIn: 1.25, costPerLf: 2.00 },
+];
+
 function ClapboardSidingCalc() {
+    const [material, setMaterial] = useState("cedar");
+    const [boardWidthIn, setBoardWidthIn] = useState(6);
+    const [overlapIn, setOverlapIn] = useState(1.25);
+    const [boardLengthFt, setBoardLengthFt] = useState(12);
     const [wallLength, setWallLength] = useState(40);
     const [wallHeight, setWallHeight] = useState(9);
-    const [openingsSqFt, setOpeningsSqFt] = useState(60);
-    const [exposureIn, setExposureIn] = useState(4);
-    const [boardLengthFt, setBoardLengthFt] = useState(12);
+    const [gableArea, setGableArea] = useState(0);
+    const [windowCount, setWindowCount] = useState(2);
+    const [doorCount, setDoorCount] = useState(1);
+    const [waste, setWaste] = useState(10);
+    const [costPerLf, setCostPerLf] = useState(2.50);
+
+    const handleMaterial = (v: string) => {
+        setMaterial(v);
+        const m = CLAP_MATERIALS.find(c => c.value === v);
+        if (m && v !== "custom") { setBoardWidthIn(m.widthIn); setOverlapIn(m.overlapIn); setCostPerLf(m.costPerLf); }
+    };
 
     const result = useMemo(() => {
-        const grossArea = wallLength * wallHeight;
-        const netArea = grossArea - openingsSqFt;
+        const exposureIn = boardWidthIn - overlapIn;
         const exposureFt = exposureIn / 12;
-        const rows = Math.ceil(wallHeight / exposureFt);
-        const boardsPerRow = Math.ceil(wallLength / boardLengthFt);
-        const totalBoards = rows * boardsPerRow;
-        const withWaste = Math.ceil(totalBoards * 1.1);
-        return { grossArea, netArea, rows, totalBoards, withWaste };
-    }, [wallLength, wallHeight, openingsSqFt, exposureIn, boardLengthFt]);
+        const rectArea = wallLength * wallHeight;
+        const grossArea = rectArea + gableArea;
+        const openings = (windowCount * 15) + (doorCount * 21);
+        const netArea = Math.max(0, grossArea - openings);
+        const courses = Math.ceil((wallHeight * 12) / exposureIn);
+        const boardsPerCourse = Math.ceil(wallLength / boardLengthFt);
+        const totalBoards = courses * boardsPerCourse;
+        const linearFt = totalBoards * boardLengthFt;
+        const withWaste = Math.ceil(totalBoards * (1 + waste / 100));
+        const linearFtWaste = withWaste * boardLengthFt;
+        const totalCost = linearFtWaste * costPerLf;
+        return { exposureIn, grossArea, openings, netArea, courses, boardsPerCourse, totalBoards, linearFt, withWaste, linearFtWaste, totalCost };
+    }, [wallLength, wallHeight, gableArea, windowCount, doorCount, boardWidthIn, overlapIn, boardLengthFt, waste, costPerLf]);
 
     return (
         <div className="con-calc">
             <h3 className="con-calc__title">🏠 Clapboard & Lap Siding Calculator</h3>
             <div className="con-calc__inputs">
+                <SelectField label="Board Material" value={material} onChange={handleMaterial}
+                    options={CLAP_MATERIALS.map(c => ({ value: c.value, label: c.label }))} />
+                <SelectField label="Board Width" value={String(boardWidthIn)} onChange={(v) => setBoardWidthIn(Number(v))}
+                    options={[{ value: "6", label: '6" (standard)' }, { value: "8", label: '8" (wide)' }, { value: "10", label: '10" (extra wide)' }, { value: "12", label: '12" (maximum)' }]} />
+                <InputField label="Board Overlap" value={overlapIn} onChange={setOverlapIn} unit="in" min={0.75} max={3} step={0.25} />
+                <SelectField label="Board Length" value={String(boardLengthFt)} onChange={(v) => setBoardLengthFt(Number(v))}
+                    options={[{ value: "8", label: "8 ft" }, { value: "10", label: "10 ft" }, { value: "12", label: "12 ft (standard)" }, { value: "16", label: "16 ft" }]} />
                 <InputField label="Wall Length" value={wallLength} onChange={setWallLength} unit="ft" min={5} />
                 <InputField label="Wall Height" value={wallHeight} onChange={setWallHeight} unit="ft" min={4} />
-                <InputField label="Openings (doors/windows)" value={openingsSqFt} onChange={setOpeningsSqFt} unit="sq ft" min={0} />
-                <InputField label="Board Exposure" value={exposureIn} onChange={setExposureIn} unit="in" min={2} max={8} />
-                <InputField label="Board Length" value={boardLengthFt} onChange={setBoardLengthFt} unit="ft" min={4} max={16} />
+                <InputField label="Gable Area" value={gableArea} onChange={setGableArea} unit="sq ft" min={0} />
+                <InputField label="Windows" value={windowCount} onChange={setWindowCount} min={0} />
+                <InputField label="Doors" value={doorCount} onChange={setDoorCount} min={0} />
+                <InputField label="Waste Factor" value={waste} onChange={setWaste} unit="%" min={0} max={25} />
+                <InputField label="Cost per Linear Ft" value={costPerLf} onChange={setCostPerLf} unit="$" min={0} step={0.1} />
             </div>
             <div className="con-calc__results">
-                <h4>Results</h4>
-                <ResultRow label="Gross Wall Area" value={fmt(result.grossArea)} unit="sq ft" />
+                <h4 className="con-calc__group-label">WALL</h4>
+                <ResultRow label="Gross Area" value={fmt(result.grossArea)} unit="sq ft" />
+                <ResultRow label="Openings" value={fmt(result.openings)} unit="sq ft" />
                 <ResultRow label="Net Area" value={fmt(result.netArea)} unit="sq ft" />
-                <ResultRow label="Rows of Siding" value={fmtInt(result.rows)} />
-                <ResultRow label="Boards Needed" value={fmtInt(result.totalBoards)} />
-                <ResultRow label="With 10% Waste" value={fmtInt(result.withWaste)} unit="boards" />
+                <h4 className="con-calc__group-label">COURSES</h4>
+                <ResultRow label="Board Exposure" value={fmt(result.exposureIn, 2)} unit="in" />
+                <ResultRow label="Courses (rows)" value={fmtInt(result.courses)} />
+                <ResultRow label="Boards per Course" value={fmtInt(result.boardsPerCourse)} />
+                <h4 className="con-calc__group-label">MATERIAL</h4>
+                <ResultRow label="Boards (before waste)" value={fmtInt(result.totalBoards)} />
+                <ResultRow label="Boards (with waste)" value={fmtInt(result.withWaste)} unit="boards" />
+                <ResultRow label="Linear Feet" value={fmt(result.linearFtWaste)} unit="lin ft" />
+                <h4 className="con-calc__group-label">COST</h4>
+                <ResultRow label="Material Cost" value={`$${fmt(result.totalCost)}`} />
             </div>
         </div>
     );

@@ -13619,7 +13619,7 @@
     "categorySlug": "construction-calculators",
     "icon": "🏠",
     "calcType": "clapboard-siding",
-    "description": "Calculate clapboard or lap siding boards needed. Enter wall area, exposure, and board width for total pieces and cost.",
+    "description": "Calculate clapboard or lap siding boards, courses, linear feet, and cost. Choose from 5 board materials with exposure, overlap, and gable support.",
     "stars": 5,
     "defaults": {
       "amount": 10,
