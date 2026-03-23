@@ -7490,7 +7490,7 @@
     "categorySlug": "construction-calculators",
     "icon": "🧱",
     "calcType": "brick",
-    "description": "Calculate how many bricks you need for a wall, patio, or walkway. Accounts for brick size, mortar joints, and waste factor.",
+    "description": "Calculate how many bricks and mortar bags you need for walls, patios, or walkways. Choose from 6 brick sizes, estimate pallets, and get total material cost.",
     "stars": 5,
     "defaults": {
       "amount": 20,

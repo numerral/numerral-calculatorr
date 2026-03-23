@@ -1006,42 +1006,90 @@ function MulchCalc() {
 }
 
 /* ──────────── 13. BRICK CALCULATOR ──────────── */
+const BRICK_SIZES: { value: string; label: string; l: number; h: number; perSqFt: number; perPallet: number }[] = [
+    { value: "modular", label: "Modular (7⅝×2¼\")", l: 7.625, h: 2.25, perSqFt: 6.86, perPallet: 532 },
+    { value: "queen", label: "Queen (7⅝×2¾\")", l: 7.625, h: 2.75, perSqFt: 5.76, perPallet: 390 },
+    { value: "king", label: "King (9⅝×2⅝\")", l: 9.625, h: 2.625, perSqFt: 4.61, perPallet: 360 },
+    { value: "utility", label: "Utility (11⅝×3⅝\")", l: 11.625, h: 3.625, perSqFt: 3.00, perPallet: 270 },
+    { value: "engineer", label: "Engineer (7⅝×2 13⁄16\")", l: 7.625, h: 2.8125, perSqFt: 5.63, perPallet: 410 },
+    { value: "closure", label: "Closure (7⅝×3⅝\")", l: 7.625, h: 3.625, perSqFt: 4.50, perPallet: 340 },
+    { value: "custom", label: "Custom Size", l: 8, h: 2.25, perSqFt: 0, perPallet: 500 },
+];
+
 function BrickCalc() {
+    const [projectType, setProjectType] = useState("wall");
     const [wallLength, setWallLength] = useState(20);
     const [wallHeight, setWallHeight] = useState(8);
-    const [brickLength, setBrickLength] = useState(8);
+    const [brickPreset, setBrickPreset] = useState("modular");
+    const [brickLength, setBrickLength] = useState(7.625);
     const [brickHeight, setBrickHeight] = useState(2.25);
     const [mortarJoint, setMortarJoint] = useState(0.375);
-    const [waste, setWaste] = useState(5);
+    const [waste, setWaste] = useState(10);
+    const [brickCost, setBrickCost] = useState(0.65);
+    const [mortarCostPerBag, setMortarCostPerBag] = useState(12);
+
+    const handlePreset = (v: string) => {
+        setBrickPreset(v);
+        const p = BRICK_SIZES.find(b => b.value === v);
+        if (p && v !== "custom") { setBrickLength(p.l); setBrickHeight(p.h); }
+    };
 
     const result = useMemo(() => {
         const wallArea = wallLength * wallHeight;
-        const brickLenFt = (brickLength + mortarJoint) / 12;
-        const brickHtFt = (brickHeight + mortarJoint) / 12;
-        const brickArea = brickLenFt * brickHtFt;
-        const bricksExact = brickArea > 0 ? wallArea / brickArea : 0;
-        const bricksWithWaste = bricksExact * (1 + waste / 100);
-        const mortarBags = bricksWithWaste / 35;
-        return { wallArea, bricksExact, bricksWithWaste, mortarBags };
-    }, [wallLength, wallHeight, brickLength, brickHeight, mortarJoint, waste]);
+        const brickLenIn = brickLength + mortarJoint;
+        const brickHtIn = brickHeight + mortarJoint;
+        const brickAreaSqIn = brickLenIn * brickHtIn;
+        const brickAreaSqFt = brickAreaSqIn / 144;
+        const perSqFt = brickAreaSqFt > 0 ? 1 / brickAreaSqFt : 0;
+        const bricksExact = wallArea * perSqFt;
+        const bricksWithWaste = Math.ceil(bricksExact * (1 + waste / 100));
+        // Mortar: 1 bag (80 lb) per ~35 bricks for pre-mix; 1 bag cement per 142 modular bricks for site-mix
+        const mortarBags80lb = Math.ceil(bricksWithWaste / 35);
+        const preset = BRICK_SIZES.find(b => b.value === brickPreset);
+        const perPallet = preset?.perPallet || 500;
+        const pallets = Math.ceil(bricksWithWaste / perPallet);
+        const materialCostBrick = bricksWithWaste * brickCost;
+        const materialCostMortar = mortarBags80lb * mortarCostPerBag;
+        const totalCost = materialCostBrick + materialCostMortar;
+        return { wallArea, perSqFt, bricksExact, bricksWithWaste, mortarBags80lb, pallets, perPallet, materialCostBrick, materialCostMortar, totalCost };
+    }, [wallLength, wallHeight, brickLength, brickHeight, mortarJoint, waste, brickPreset, brickCost, mortarCostPerBag]);
 
     return (
         <div className="con-calc">
             <h3 className="con-calc__title">🧱 Brick Calculator</h3>
             <div className="con-calc__inputs">
-                <InputField label="Wall Length" value={wallLength} onChange={setWallLength} unit="ft" min={1} />
-                <InputField label="Wall Height" value={wallHeight} onChange={setWallHeight} unit="ft" min={1} />
-                <InputField label="Brick Length" value={brickLength} onChange={setBrickLength} unit="in" min={1} step={0.25} />
-                <InputField label="Brick Height" value={brickHeight} onChange={setBrickHeight} unit="in" min={0.5} step={0.25} />
+                <SelectField label="Project Type" value={projectType} onChange={setProjectType} options={[
+                    { value: "wall", label: "Wall / Façade" },
+                    { value: "patio", label: "Patio / Walkway (flat)" },
+                ]} />
+                <SelectField label="Brick Size" value={brickPreset} onChange={handlePreset}
+                    options={BRICK_SIZES.map(b => ({ value: b.value, label: b.label }))} />
+                <InputField label={projectType === "wall" ? "Wall Length" : "Area Length"} value={wallLength} onChange={setWallLength} unit="ft" min={1} />
+                <InputField label={projectType === "wall" ? "Wall Height" : "Area Width"} value={wallHeight} onChange={setWallHeight} unit="ft" min={1} />
+                {brickPreset === "custom" && (
+                    <>
+                        <InputField label="Brick Length" value={brickLength} onChange={setBrickLength} unit="in" min={1} step={0.125} />
+                        <InputField label="Brick Height" value={brickHeight} onChange={setBrickHeight} unit="in" min={0.5} step={0.125} />
+                    </>
+                )}
                 <InputField label="Mortar Joint" value={mortarJoint} onChange={setMortarJoint} unit="in" min={0.25} step={0.125} />
-                <InputField label="Waste Factor" value={waste} onChange={setWaste} unit="%" min={0} max={20} />
+                <InputField label="Waste Factor" value={waste} onChange={setWaste} unit="%" min={0} max={25} />
+                <InputField label="Brick Cost (each)" value={brickCost} onChange={setBrickCost} unit="$" min={0} step={0.05} />
+                <InputField label="Mortar (80 lb bag)" value={mortarCostPerBag} onChange={setMortarCostPerBag} unit="$" min={0} step={0.5} />
             </div>
             <div className="con-calc__results">
-                <h4>Results</h4>
-                <ResultRow label="Wall Area" value={fmt(result.wallArea)} unit="sq ft" />
+                <h4 className="con-calc__group-label">BRICKS</h4>
+                <ResultRow label="Wall / Area" value={fmt(result.wallArea)} unit="sq ft" />
+                <ResultRow label="Bricks per sq ft" value={fmt(result.perSqFt, 1)} />
                 <ResultRow label="Bricks (exact)" value={fmtInt(result.bricksExact)} unit="bricks" />
-                <ResultRow label="Bricks (+ waste)" value={fmtInt(result.bricksWithWaste)} unit="bricks" />
-                <ResultRow label="Mortar (80 lb bags)" value={fmtInt(result.mortarBags)} unit="bags" />
+                <ResultRow label={`Bricks (+ ${waste}% waste)`} value={fmtInt(result.bricksWithWaste)} unit="bricks" />
+                <ResultRow label={`Pallets (${result.perPallet}/pallet)`} value={fmtInt(result.pallets)} unit="pallets" />
+                <h4 className="con-calc__group-label">MORTAR</h4>
+                <ResultRow label="Mortar (80 lb bags)" value={fmtInt(result.mortarBags80lb)} unit="bags" />
+                <h4 className="con-calc__group-label">COST</h4>
+                <ResultRow label="Brick Cost" value={`$${fmtInt(result.materialCostBrick)}`} />
+                <ResultRow label="Mortar Cost" value={`$${fmtInt(result.materialCostMortar)}`} />
+                <ResultRow label="Total Cost" value={`$${fmtInt(result.totalCost)}`} />
             </div>
         </div>
     );

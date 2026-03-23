@@ -1262,18 +1262,105 @@ const HUB_CONTENT: Record<string, {
         ],
     },
     "brick-calculator": {
-        subtitle: "Calculate how many bricks you need for a wall, patio, or walkway. Accounts for brick size, mortar joints, and waste factor.",
+        subtitle: "Calculate how many bricks and mortar bags you need for walls, patios, or walkways. Choose from 6 brick sizes, estimate pallets, and get total material cost.",
         explanation: {
             heading: "How to Calculate Bricks Needed",
             paragraphs: [
                 "Standard modular bricks are 7⅝ × 2¼ × 3⅝ inches (actual) or 8 × 2⅔ × 4 inches (nominal, with mortar). The most common mortar joint is ⅜ inch. When calculating, add the mortar joint width to the brick dimensions to get the effective coverage per brick.",
                 "For walls, divide the wall face area by the face area of one brick (including mortar). For patios laid flat, use the brick's length × width (without mortar for dry-laid, with mortar for mortared). Always add 5–10% for cuts and breakage.",
             ],
-            highlight: "A 20×8 ft brick wall using standard modular bricks (8\" × 2.67\" nominal with mortar) = 160 sq ft ÷ 0.148 sq ft/brick = ~1,081 bricks. With 5% waste = ~1,135 bricks.",
+            highlight: "A 20×8 ft brick wall using standard modular bricks (8\" × 2.67\" nominal with mortar) = 160 sq ft ÷ 0.148 sq ft/brick = ~1,081 bricks. With 10% waste = ~1,189 bricks.",
         },
+        contentHTML: `
+<p>Bricks are one of the most durable and aesthetically appealing building materials in the <strong>United States</strong>. Whether you're constructing an exterior wall, building a chimney, creating a patio, or adding a brick walkway, accurately estimating the number of bricks you need prevents costly over-ordering and project delays.</p>
+<p>Bricks are commonly made of fired clay or shale and are laid in courses (rows) held together by <strong>mortar</strong> — a mixture of cement, sand, and lime. The calculator above supports <strong>6 standard US brick sizes</strong>, estimates <strong>mortar bags</strong>, calculates <strong>pallets</strong>, and provides a <strong>total material cost</strong> including both bricks and mortar.</p>
+
+<h2>Brick Sizes and Coverage</h2>
+<p>Brick dimensions in the US follow standard ASTM specifications. The "nominal" size includes the mortar joint (typically ⅜"). When estimating, always use the actual brick dimensions plus the mortar joint.</p>
+<table>
+<thead><tr><th>Brick Type</th><th>Actual Size (L×H)</th><th>Bricks per sq ft</th><th>Per Pallet</th><th>Pallet Weight</th></tr></thead>
+<tbody>
+<tr><td><strong>Modular</strong></td><td>7⅝" × 2¼"</td><td>6.86</td><td>~532</td><td>~2,200 lbs</td></tr>
+<tr><td><strong>Queen</strong></td><td>7⅝" × 2¾"</td><td>5.76</td><td>~390</td><td>~2,100 lbs</td></tr>
+<tr><td><strong>King</strong></td><td>9⅝" × 2⅝"</td><td>4.61</td><td>~360</td><td>~2,400 lbs</td></tr>
+<tr><td><strong>Utility</strong></td><td>11⅝" × 3⅝"</td><td>3.00</td><td>~270</td><td>~2,300 lbs</td></tr>
+<tr><td><strong>Engineer</strong></td><td>7⅝" × 2 13⁄16"</td><td>5.63</td><td>~410</td><td>~2,200 lbs</td></tr>
+<tr><td><strong>Closure</strong></td><td>7⅝" × 3⅝"</td><td>4.50</td><td>~340</td><td>~2,100 lbs</td></tr>
+</tbody>
+</table>
+<p><strong>Note:</strong> "Bricks per sq ft" assumes a ⅜" mortar joint. Thicker joints (½") reduce the count per sq ft.</p>
+
+<h2>Step-by-Step Brick Estimation</h2>
+<h3>Step 1: Calculate the Wall or Area</h3>
+<p>Measure the <strong>length and height</strong> of the wall (or length and width for patios). Multiply to get the total square footage. Subtract square footage of any windows, doors, or openings.</p>
+<p><strong>Example:</strong> A wall 20 ft long × 8 ft high = 160 sq ft. Minus one 3×5 ft window = 145 sq ft.</p>
+
+<h3>Step 2: Find Bricks per Square Foot</h3>
+<p>Add the mortar joint to each brick dimension. Multiply to get the area of one brick (in square inches), then divide by 144 to convert to sq ft. Divide 1 by that number to find bricks per sq ft.</p>
+<p><strong>Modular brick with ⅜" joint:</strong> (7.625 + 0.375) × (2.25 + 0.375) = 8 × 2.625 = 21 sq in ÷ 144 = 0.1458 sq ft → <strong>6.86 bricks per sq ft</strong></p>
+
+<h3>Step 3: Calculate Total Bricks + Waste</h3>
+<p>Multiply wall area × bricks per sq ft. Add <strong>10% for waste</strong> (cuts, breakage, transport damage). Add 15–20% if the project involves intricate patterns like herringbone or basket weave.</p>
+<p><strong>Example:</strong> 145 sq ft × 6.86 = 995 bricks. With 10% waste: 995 × 1.10 = <strong>1,095 bricks</strong> = ~2 pallets (modular).</p>
+
+<h2>Mortar Estimation</h2>
+<p>Mortar usage depends on brick size and joint thickness. The two most common methods:</p>
+<table>
+<thead><tr><th>Method</th><th>Coverage per Bag</th><th>Best For</th></tr></thead>
+<tbody>
+<tr><td><strong>Pre-mixed mortar (80 lb bag)</strong></td><td>30–36 bricks</td><td>Homeowners, small projects</td></tr>
+<tr><td><strong>Portland cement (94 lb bag + sand)</strong></td><td>100–142 bricks (varies by size)</td><td>Contractors, large projects</td></tr>
+</tbody>
+</table>
+<p><strong>Pre-mixed bags:</strong> Divide total bricks by 35 to estimate bags. For 1,095 modular bricks: 1,095 ÷ 35 = <strong>32 bags</strong>.</p>
+<p><strong>Site-mix (1:3 cement to sand):</strong> 1 bag cement per 142 modular bricks, 125 queen bricks, or 100 utility bricks. Requires about 1 cu yd of sand per 7 bags of cement.</p>
+
+<h2>Ordering by the Pallet</h2>
+<p>Bricks are sold individually, by the pallet, or in bulk truckloads. Ordering by the pallet is standard for most projects:</p>
+<ul>
+<li><strong>Modular:</strong> ~532 bricks/pallet (~2,200 lbs)</li>
+<li><strong>Queen:</strong> ~390 bricks/pallet (~2,100 lbs)</li>
+<li><strong>King:</strong> ~360 bricks/pallet (~2,400 lbs)</li>
+</ul>
+<p>Always round up to the next full pallet. You can return unopened pallets to most suppliers. A forklift is typically needed to move pallets on-site.</p>
+
+<h2>2025 US Brick Cost Guide</h2>
+<table>
+<thead><tr><th>Brick Type</th><th>Cost per Brick</th><th>Cost per Pallet</th><th>Cost per sq ft (wall)</th></tr></thead>
+<tbody>
+<tr><td><strong>Standard Modular</strong></td><td>$0.50–$0.75</td><td>$265–$400</td><td>$3.40–$5.15</td></tr>
+<tr><td><strong>Face Brick (colored)</strong></td><td>$0.75–$1.50</td><td>$400–$800</td><td>$5.15–$10.30</td></tr>
+<tr><td><strong>Used / Reclaimed</strong></td><td>$0.50–$2.00</td><td>$265–$1,060</td><td>$3.40–$13.70</td></tr>
+<tr><td><strong>Thin Brick Veneer</strong></td><td>$0.80–$2.50</td><td>Varies</td><td>$6–$18</td></tr>
+<tr><td><strong>Fire Brick</strong></td><td>$1.50–$3.00</td><td>$500–$1,000</td><td>Varies</td></tr>
+</tbody>
+</table>
+<p><strong>Mortar:</strong> Pre-mixed 80 lb bags cost $8–$15 each. For 1,000 bricks you'll need ~30 bags = <strong>$240–$450 in mortar</strong>.</p>
+<p><strong>Total installed cost:</strong> Professional brick masonry in the US runs $10–$25 per sq ft installed, depending on brick type and project complexity.</p>
+
+<h2>Common Brick Projects</h2>
+<table>
+<thead><tr><th>Project</th><th>Typical Size</th><th>Bricks (Modular)</th><th>Mortar (80 lb bags)</th><th>Material Cost</th></tr></thead>
+<tbody>
+<tr><td><strong>Garden wall (4 ft high)</strong></td><td>20 × 4 ft = 80 sq ft</td><td>~605</td><td>~18</td><td>$500–$800</td></tr>
+<tr><td><strong>Single-story façade</strong></td><td>40 × 10 ft = 400 sq ft</td><td>~3,020</td><td>~87</td><td>$2,500–$4,200</td></tr>
+<tr><td><strong>Fireplace surround</strong></td><td>~50 sq ft</td><td>~380</td><td>~11</td><td>$300–$570</td></tr>
+<tr><td><strong>Patio (10×10 ft)</strong></td><td>100 sq ft (flat)</td><td>~470 (4.7/sq ft flat)</td><td>~14 (mortared)</td><td>$400–$750</td></tr>
+<tr><td><strong>Mailbox column</strong></td><td>~25 sq ft exposed</td><td>~190</td><td>~6</td><td>$150–$280</td></tr>
+</tbody>
+</table>
+`,
         faq: [
-            { question: "How many bricks are on a pallet?", answer: "Standard modular bricks: typically 500–534 per pallet. King-size bricks: approximately 360 per pallet. Paver bricks: 480–540 per pallet depending on size. Weights range from 2,000–2,500 lbs per pallet." },
-            { question: "How much mortar do I need per brick?", answer: "For standard modular bricks, plan 1 bag (80 lb) of mortar mix per 35–40 bricks. This assumes standard ⅜-inch joints. Thicker joints or larger bricks require proportionally more mortar." },
+            { question: "How many bricks per square foot?", answer: "Standard modular bricks: 6.86 per sq ft (with ⅜\" mortar joint). Queen: 5.76. King: 4.61. Utility: 3.00. The exact count depends on brick dimensions and mortar joint thickness. A ½\" joint reduces brick count by ~5%." },
+            { question: "How many bricks are on a pallet?", answer: "Modular: ~532 per pallet (~2,200 lbs). Queen: ~390 per pallet. King: ~360 per pallet. Utility: ~270 per pallet. Pallet counts vary by manufacturer. Always verify with your supplier before ordering." },
+            { question: "How much mortar do I need per 1,000 bricks?", answer: "For pre-mixed mortar (80 lb bags): ~30 bags per 1,000 modular bricks. For site-mixed (Portland cement + sand): ~7 bags of cement + 1 cu yd of sand per 1,000 modular bricks. Larger bricks and thicker joints require proportionally more mortar." },
+            { question: "How much does brick cost per square foot?", answer: "Standard modular brick: $3.40–$5.15 per sq ft (materials only). Face brick: $5.15–$10.30. Add mortar at $2–$4 per sq ft. Professional installation: $10–$25 per sq ft total. A 400 sq ft single-story façade costs $4,000–$10,000 installed." },
+            { question: "What's the standard mortar joint size?", answer: "The standard mortar joint in the US is ⅜ inch (3/8\"). This is the most common for residential construction. Commercial projects sometimes use ½\" joints. Raked, flush, concave, and V-shaped joints are the most common profiles." },
+            { question: "How many bricks do I need for a wall?", answer: "Multiply the wall's length × height to get sq ft. Then multiply by 6.86 (for modular bricks) to get total bricks. Add 10% for waste. Example: 20×8 ft wall = 160 sq ft × 6.86 = 1,098 + 10% waste = ~1,207 bricks (about 2.3 pallets)." },
+            { question: "What type of mortar should I use for bricks?", answer: "Type N: the most common for residential above-grade walls and veneers (medium strength). Type S: for below-grade, retaining walls, and exterior paving (high strength). Type M: for foundations, heavy loads, and below-grade structural (highest strength). Type O: interior, non-load-bearing only." },
+            { question: "How much does a pallet of bricks weigh?", answer: "Most pallets weigh 2,000–2,500 lbs. A standard modular brick pallet (~532 bricks) weighs approximately 2,200 lbs. You'll need a forklift or equipment to move pallets. Verify delivery access before ordering — many suppliers charge $50–$150 for forklift delivery." },
+            { question: "Can I lay bricks myself or do I need a mason?", answer: "Garden walls under 4 ft, patios, walkways, and mailbox columns are reasonable DIY projects. Anything structural (load-bearing walls, chimneys above 1 story, foundations) should be done by a licensed mason. DIY saves 50–60% but takes 3–5× longer." },
+            { question: "How do I account for windows and doors in a brick wall?", answer: "Calculate the total wall area (length × height), then subtract the area of each opening (window or door width × height). For example: 40×10 ft wall = 400 sq ft minus two 3×5 ft windows = 400 - 30 = 370 sq ft of brick needed." },
         ],
     },
     "fence-calculator": {
