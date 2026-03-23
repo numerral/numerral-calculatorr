@@ -465,18 +465,103 @@ const HUB_CONTENT: Record<string, {
         ],
     },
     "roofing-calculator": {
-        subtitle: "Calculate the roofing materials needed for your project — including shingle bundles, roofing squares, and underlayment rolls based on roof dimensions and pitch.",
+        subtitle: "Calculate roofing materials for any project. Choose from 5 material types — asphalt, architectural, metal, wood shake, or clay tile. Get squares, shingle bundles, underlayment, drip edge, ridge cap, nails, and cost estimate.",
         explanation: {
             heading: "How to Calculate Roofing Materials",
             paragraphs: [
-                "Roofing is measured in 'squares' — one square equals 100 square feet of roof area. To calculate actual roof area from ground-level measurements, you must apply a pitch multiplier. A 4:12 pitch multiplies the footprint area by 1.054, while a 12:12 (45°) pitch multiplies by 1.414.",
-                "Standard asphalt shingles come in bundles, with 3 bundles covering 1 square (100 sq ft). Underlayment (felt or synthetic) comes in rolls covering approximately 400 sq ft. Always include a 10% waste factor for cuts, ridges, hips, and valleys.",
+                "Roofing is measured in 'squares' — one square equals 100 square feet of roof area. To convert ground-level (footprint) measurements to actual roof area, multiply by a pitch correction factor. A 4:12 pitch multiplies by 1.054; a 12:12 (45°) pitch multiplies by 1.414.",
+                "Standard asphalt shingles come in bundles, with 3 bundles per square (100 sq ft). Underlayment (felt or synthetic) comes in rolls covering ~400 sq ft. Don't forget drip edge (roof perimeter), ridge cap (ridge length), and roofing nails (~2.5 lbs per square). Always add 10% for waste.",
             ],
-            highlight: "A 30×40 ft roof at 4:12 pitch = 1,200 sq ft footprint × 1.054 = 1,265 sq ft actual. With 10% waste = 1,391 sq ft = 13.9 squares = 42 bundles of shingles.",
+            highlight: "A 30×40 ft roof at 4:12 pitch = 1,200 sq ft footprint × 1.054 = 1,265 sq ft actual. With 10% waste = 1,391 sq ft = 13.9 squares = 42 bundles. Underlayment: 4 rolls. Drip edge: 154 linear ft.",
         },
+        contentHTML: `
+<h2>Roof Pitch Correction Factors</h2>
+<p>Roof pitch determines how much larger the actual roof area is compared to the footprint you measure from the ground. Use this table to convert:</p>
+<table>
+<thead><tr><th>Pitch</th><th>Multiplier</th><th>Angle (°)</th><th>Classification</th></tr></thead>
+<tbody>
+<tr><td>0:12</td><td>1.000</td><td>0°</td><td>Flat</td></tr>
+<tr><td>2:12</td><td>1.014</td><td>9.5°</td><td>Low slope</td></tr>
+<tr><td>4:12</td><td>1.054</td><td>18.4°</td><td>Low slope</td></tr>
+<tr><td>6:12</td><td>1.118</td><td>26.6°</td><td>Conventional</td></tr>
+<tr><td>8:12</td><td>1.202</td><td>33.7°</td><td>Conventional</td></tr>
+<tr><td>10:12</td><td>1.302</td><td>39.8°</td><td>Steep</td></tr>
+<tr><td>12:12</td><td>1.414</td><td>45°</td><td>Very steep</td></tr>
+</tbody>
+</table>
+<p><strong>Formula:</strong> Actual roof area = footprint area × pitch multiplier. Most US residential roofs are 4:12 to 8:12.</p>
+
+<h2>Roofing Material Types</h2>
+<table>
+<thead><tr><th>Material</th><th>Cost / Square</th><th>Installed / Sq</th><th>Lifespan</th><th>Best For</th></tr></thead>
+<tbody>
+<tr><td><strong>Asphalt 3-Tab</strong></td><td>$70–$120</td><td>$250–$400</td><td>15–20 years</td><td>Budget roofs, rentals</td></tr>
+<tr><td><strong>Architectural (Dimensional)</strong></td><td>$100–$160</td><td>$350–$500</td><td>25–30 years</td><td>Most residential homes</td></tr>
+<tr><td><strong>Metal Panels (Standing Seam)</strong></td><td>$300–$500</td><td>$600–$1,200</td><td>40–70 years</td><td>Long-term, hail/wind areas</td></tr>
+<tr><td><strong>Wood Shake / Shingle</strong></td><td>$350–$500</td><td>$600–$900</td><td>20–40 years</td><td>High-end, rustic aesthetic</td></tr>
+<tr><td><strong>Clay / Concrete Tile</strong></td><td>$600–$1,000</td><td>$1,000–$1,800</td><td>50–100+ years</td><td>Southwest, Mediterranean style</td></tr>
+</tbody>
+</table>
+
+<h2>Roofing Components Guide</h2>
+<h3>Shingles / Panels</h3>
+<p>The primary roof covering. Asphalt shingles are sold in bundles — <strong>3 bundles = 1 square (100 sq ft)</strong>. Metal panels are sold by the sheet or linear foot. Wood shakes are sold in bundles covering approximately 25 sq ft each (4 bundles per square).</p>
+
+<h3>Underlayment</h3>
+<p>A waterproof barrier between the shingles and the roof deck. Types include:</p>
+<ul>
+<li><strong>15 lb felt (tar paper):</strong> Budget option, covers ~400 sq ft per roll. Being replaced by synthetics.</li>
+<li><strong>30 lb felt:</strong> Heavier, more durable. ~200 sq ft per roll. Required for some metal roofs.</li>
+<li><strong>Synthetic underlayment:</strong> Lighter, stronger, and water-resistant. ~1,000 sq ft per roll. Industry standard for new construction.</li>
+</ul>
+
+<h3>Ice & Water Shield</h3>
+<p>Self-adhering membrane applied at eaves, valleys, and around penetrations. Required by code in cold climates. Apply from the eave up to at least 24 inches past the interior wall line.</p>
+
+<h3>Drip Edge</h3>
+<p>Metal flashing installed along the eaves and rakes (sides) of the roof. Prevents water from wicking under the shingles. Sold in <strong>10-ft strips</strong> — divide your roof perimeter by 10 and add 10% for overlap.</p>
+
+<h3>Ridge Cap</h3>
+<p>Pre-bent or hand-cut shingles applied along the ridge (peak) of the roof. Sold by the linear foot or in bundles covering ~33 linear feet. Provides a finished look and ventilation gap for ridge vents.</p>
+
+<h3>Roofing Nails</h3>
+<p>Use 1¼-inch galvanized roofing nails for standard shingles. Plan <strong>~2.5 lbs of nails per square</strong>. High-wind zones may require 6 nails per shingle instead of 4, increasing nail consumption by ~50%.</p>
+
+<h2>Roof Replacement Cost (2025 US Pricing)</h2>
+<table>
+<thead><tr><th>Cost Component</th><th>Typical Range</th></tr></thead>
+<tbody>
+<tr><td><strong>Asphalt shingles (architectural)</strong></td><td>$100–$160 per square (material)</td></tr>
+<tr><td><strong>Underlayment (synthetic)</strong></td><td>$50–$75 per roll (1,000 sq ft)</td></tr>
+<tr><td><strong>Drip edge</strong></td><td>$1–$3 per linear foot</td></tr>
+<tr><td><strong>Ice & water shield</strong></td><td>$50–$100 per roll (75 sq ft)</td></tr>
+<tr><td><strong>Ridge cap shingles</strong></td><td>$30–$60 per bundle (33 lin ft)</td></tr>
+<tr><td><strong>Tear-off (old roof removal)</strong></td><td>$100–$150 per square</td></tr>
+<tr><td><strong>Professional labor</strong></td><td>$150–$300 per square</td></tr>
+<tr><td><strong>Average 20-square roof (architectural, full replacement)</strong></td><td>$8,000–$15,000 total</td></tr>
+</tbody>
+</table>
+
+<h2>Does Your Roof Need Replacing?</h2>
+<ul>
+<li><strong>Age:</strong> Asphalt roofs over 20 years old are approaching end of life even without visible damage.</li>
+<li><strong>Curling or buckling shingles:</strong> Shingles that curl at the edges or buckle in the center are failing.</li>
+<li><strong>Missing granules:</strong> Check gutters for large granule deposits — this means the shingles are degrading.</li>
+<li><strong>Daylight through the roof deck:</strong> If you see light in the attic, water is getting in.</li>
+<li><strong>Sagging roof deck:</strong> A sagging roof indicates structural damage — get a professional inspection immediately.</li>
+</ul>
+`,
         faq: [
-            { question: "What is a roofing square?", answer: "A roofing square is a unit of measurement equal to 100 square feet of roof area. Shingles, underlayment, and other roofing materials are priced and sold per square. A 2,000 sq ft roof is 20 squares." },
-            { question: "How do I measure roof pitch?", answer: "Place a level against the roof and measure how many inches the roof rises for every 12 inches of horizontal run. A 6-inch rise per 12-inch run is a 6:12 pitch. You can also use our Roof Pitch Calculator for precise calculations." },
+            { question: "What is a roofing square?", answer: "A roofing square is exactly 100 square feet of roof area. All roofing materials — shingles, underlayment, felt — are priced and sold per square. To find how many squares your roof is, divide the total roof area (including waste) by 100. A 2,000 sq ft roof is 20 squares." },
+            { question: "How do I measure roof pitch?", answer: "Place a level against the roof rafters and measure how many inches the roof rises for every 12 inches of horizontal run. A 6-inch rise per 12-inch run = 6:12 pitch. You can also measure from inside the attic. Most residential roofs are 4:12 to 8:12." },
+            { question: "How much does a new roof cost?", answer: "For a 20-square roof (~2,000 sq ft): asphalt architectural shingles cost $8,000–$15,000 fully installed (tear-off, disposal, materials, labor). Metal roofing runs $15,000–$30,000. Clay tile can exceed $25,000–$40,000. Prices vary by region, complexity, and contractor." },
+            { question: "How many bundles of shingles do I need?", answer: "3 bundles per roofing square (100 sq ft). A 20-square roof needs 60 bundles. This applies to standard 3-tab and architectural asphalt shingles. Add 10% for waste (hips, valleys, starters, and cuts). Ridge cap shingles are separate — about 1 bundle per 33 linear feet of ridge." },
+            { question: "Should I tear off the old roof or overlay?", answer: "Tear-off is always preferred — it lets you inspect the deck for rot, install new underlayment, and ensures proper adhesion. Most codes allow a maximum of 2 layers of shingles. Adding a third layer voids warranties and may exceed structural load limits. Tear-off adds $100–$150 per square." },
+            { question: "What roof pitch is too steep to walk on?", answer: "Most roofers can safely walk on pitches up to 8:12 (33.7°). Above 8:12, roof jacks (brackets) and planks are needed for safety. Above 12:12 (45°), specialized equipment is required. Steep roofs cost 20–50% more to install due to the extra safety equipment and slower work pace." },
+            { question: "How long does a roof installation take?", answer: "A professional crew (3–5 workers) can complete a typical 20-square residential roof in 1–3 days, including tear-off. Complex roofs with multiple valleys, dormers, or skylights may take 4–5 days. Weather delays can extend the timeline. Metal and tile roofs take longer than asphalt." },
+            { question: "Do I need a permit to replace my roof?", answer: "In most US cities and counties, yes — a building permit is required for roof replacement. The permit ensures the work meets local building codes (wind uplift, fire rating, ice protection). Permits typically cost $100–$500. Your contractor usually handles the permit process." },
+            { question: "What underlayment should I use?", answer: "Synthetic underlayment is the current industry standard — it's lighter, stronger, and more water-resistant than felt. Use ice & water shield (self-adhering membrane) at eaves, valleys, and around penetrations in cold climates. For metal roofs, use high-temperature synthetic underlayment rated for metal." },
+            { question: "How do I calculate roofing for a complex roof?", answer: "Break the roof into simple rectangles, triangles, and trapezoids. Calculate the area of each section separately, apply the pitch multiplier for that section, then add all sections together. Don't forget to add waste (10% minimum). For very complex roofs, consider getting a satellite measurement from a supplier like EagleView." },
         ],
     },
     "roof-pitch-calculator": {

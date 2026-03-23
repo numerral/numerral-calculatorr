@@ -365,10 +365,26 @@ function TileCalc() {
 
 /* ──────────── 5. ROOFING CALCULATOR ──────────── */
 function RoofingCalc() {
+    const MATERIALS: Record<string, { costPerSq: number; label: string }> = {
+        "3tab": { costPerSq: 90, label: "Asphalt 3-Tab" },
+        "arch": { costPerSq: 130, label: "Architectural" },
+        "metal": { costPerSq: 350, label: "Metal Panels" },
+        "shake": { costPerSq: 400, label: "Wood Shake" },
+        "clay": { costPerSq: 800, label: "Clay / Concrete Tile" },
+    };
+
+    const [material, setMaterial] = useState("arch");
     const [length, setLength] = useState(30);
     const [width, setWidth] = useState(40);
     const [pitch, setPitch] = useState("4");
     const [waste, setWaste] = useState(10);
+    const [costPerSquare, setCostPerSquare] = useState(130);
+
+    const handleMaterial = (v: string) => {
+        setMaterial(v);
+        const m = MATERIALS[v];
+        if (m) setCostPerSquare(m.costPerSq);
+    };
 
     const PITCH_MULTIPLIERS: Record<string, number> = {
         "0": 1.000, "1": 1.003, "2": 1.014, "3": 1.031, "4": 1.054,
@@ -381,31 +397,52 @@ function RoofingCalc() {
         const multiplier = PITCH_MULTIPLIERS[pitch] || 1;
         const actualArea = footprintArea * multiplier;
         const withWaste = actualArea * (1 + waste / 100);
-        const squares = withWaste / 100;         // 1 square = 100 sq ft
-        const bundles = squares * 3;              // 3 bundles per square
-        const underlaymentRolls = withWaste / 400; // 1 roll ≈ 400 sq ft
-        return { footprintArea, actualArea, withWaste, squares, bundles, underlaymentRolls };
-    }, [length, width, pitch, waste]);
+        const squares = withWaste / 100;
+        const bundles = Math.ceil(squares * 3);
+        const underlaymentRolls = Math.ceil(withWaste / 400);
+        // Drip edge: perimeter of roof
+        const perimeter = 2 * (length + width);
+        const dripEdgeLf = Math.ceil(perimeter * 1.1); // 10% overlap
+        // Ridge cap: ~length of roof (ridge runs along length)
+        const ridgeCapLf = Math.ceil(length * 1.1);
+        // Roofing nails: ~2.5 lbs per square
+        const nailsLbs = Math.ceil(squares * 2.5);
+        // Cost
+        const totalCost = costPerSquare > 0 ? squares * costPerSquare : 0;
+        return { footprintArea, actualArea, withWaste, squares, bundles, underlaymentRolls, dripEdgeLf, ridgeCapLf, nailsLbs, totalCost };
+    }, [length, width, pitch, waste, costPerSquare]);
 
     return (
         <div className="con-calc">
             <h3 className="con-calc__title">🏠 Roofing Calculator</h3>
             <div className="con-calc__inputs">
+                <SelectField label="Roofing Material" value={material} onChange={handleMaterial} options={
+                    Object.entries(MATERIALS).map(([k, v]) => ({ value: k, label: v.label }))
+                } />
                 <InputField label="Roof Length" value={length} onChange={setLength} unit="ft" min={1} />
                 <InputField label="Roof Width" value={width} onChange={setWidth} unit="ft" min={1} />
                 <SelectField label="Roof Pitch" value={pitch} onChange={setPitch} options={
                     Object.keys(PITCH_MULTIPLIERS).map((p) => ({ value: p, label: `${p}:12` }))
                 } />
                 <InputField label="Waste Factor" value={waste} onChange={setWaste} unit="%" min={0} max={30} />
+                <InputField label="Cost per Square" value={costPerSquare} onChange={setCostPerSquare} unit="$" min={0} />
             </div>
             <div className="con-calc__results">
-                <h4>Results</h4>
+                <h4>Area</h4>
                 <ResultRow label="Footprint Area" value={fmt(result.footprintArea)} unit="sq ft" />
                 <ResultRow label="Actual Roof Area" value={fmt(result.actualArea)} unit="sq ft" />
                 <ResultRow label="Total (+ waste)" value={fmt(result.withWaste)} unit="sq ft" />
                 <ResultRow label="Roofing Squares" value={fmt(result.squares, 1)} unit="squares" />
+                <h4>Materials</h4>
                 <ResultRow label="Shingle Bundles" value={fmtInt(result.bundles)} unit="bundles" />
-                <ResultRow label="Underlayment Rolls" value={fmt(result.underlaymentRolls, 1)} unit="rolls" />
+                <ResultRow label="Underlayment Rolls" value={fmtInt(result.underlaymentRolls)} unit="rolls (400 sq ft)" />
+                <ResultRow label="Drip Edge" value={fmtInt(result.dripEdgeLf)} unit="linear ft" />
+                <ResultRow label="Ridge Cap" value={fmtInt(result.ridgeCapLf)} unit="linear ft" />
+                <ResultRow label="Roofing Nails" value={fmtInt(result.nailsLbs)} unit="lbs" />
+                {result.totalCost > 0 && <>
+                    <h4>Cost</h4>
+                    <ResultRow label="Estimated Material Cost" value={`$${fmt(result.totalCost, 2)}`} />
+                </>}
             </div>
         </div>
     );
