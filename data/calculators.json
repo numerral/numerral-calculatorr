@@ -6360,7 +6360,7 @@
     "categorySlug": "time-calculators",
     "icon": "⏱️",
     "calcType": "time-calc",
-    "description": "Add or subtract hours, minutes, and seconds from any time. A quick tool for time arithmetic and scheduling.",
+    "description": "Add or subtract hours, minutes, and seconds from any time. Convert to decimal hours, calculate durations, and handle midnight crossings automatically.",
     "stars": 5,
     "defaults": {
       "amount": 0,

@@ -38,10 +38,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 const HUB_CONTENT: Record<string, {
     subtitle: string;
     explanation?: { heading: string; paragraphs: string[]; highlight: string };
+    contentHTML?: string;
     faq?: { question: string; answer: string }[];
 }> = {
     "time-calculator": {
-        subtitle: "Add or subtract hours, minutes, and seconds from any time of day. Perfect for scheduling, cooking, and shift planning.",
+        subtitle: "Add or subtract hours, minutes, and seconds from any time. Convert times to decimal hours, calculate durations, and handle midnight crossings automatically.",
         explanation: {
             heading: "How the Time Calculator Works",
             paragraphs: [
@@ -50,9 +51,90 @@ const HUB_CONTENT: Record<string, {
             ],
             highlight: "9:30 AM + 2h 45m = 12:15 PM. The calculator handles all the carry-over arithmetic so you don't have to think about it.",
         },
+        contentHTML: `
+<p>Time arithmetic is something we all need but rarely enjoy doing manually. Whether you're scheduling meetings across <strong>US time zones</strong>, planning cooking times, calculating shift differentials, or figuring out when your flight lands, a time calculator eliminates the mental gymnastics of carrying over minutes and hours.</p>
+
+<h2>How to Add Times</h2>
+<p>Adding two times (or a time and a duration) follows a simple carry-over process:</p>
+<ol>
+<li><strong>Add the seconds together.</strong> If the result is 60 or more, subtract 60 from the seconds and carry 1 to the minutes.</li>
+<li><strong>Add the minutes together</strong> (plus any carry). If the result is 60 or more, subtract 60 from the minutes and carry 1 to the hours.</li>
+<li><strong>Add the hours together</strong> (plus any carry). If the result is 24 or more, subtract 24 (the time wraps past midnight into the next day).</li>
+</ol>
+<p><strong>Example:</strong> 10:45:30 PM + 3h 25m 40s</p>
+<ul>
+<li>Seconds: 30 + 40 = 70 → 10 seconds, carry 1</li>
+<li>Minutes: 45 + 25 + 1 = 71 → 11 minutes, carry 1</li>
+<li>Hours: 22 + 3 + 1 = 26 → 26 − 24 = <strong>2:11:10 AM (next day)</strong></li>
+</ul>
+
+<h2>How to Subtract Times</h2>
+<p>Subtracting times works in reverse with borrowing:</p>
+<ol>
+<li><strong>Subtract the seconds.</strong> If the result is negative, add 60 to the seconds and borrow 1 from the minutes.</li>
+<li><strong>Subtract the minutes.</strong> If the result is negative, add 60 to the minutes and borrow 1 from the hours.</li>
+<li><strong>Subtract the hours.</strong> If the result is negative, add 24 (the time wraps backward past midnight).</li>
+</ol>
+<p><strong>Example:</strong> 2:15:00 AM − 4h 30m = 22:15 − 0:30 → <strong>9:45:00 PM (previous day)</strong></p>
+
+<h2>Converting Time to Decimal</h2>
+<p>Many payroll systems, billing software, and scheduling tools require time in <strong>decimal format</strong> rather than hours:minutes. Here are the three conversion formulas:</p>
+<table>
+<thead><tr><th>Convert To</th><th>Formula</th><th>Example (2h 30m 45s)</th></tr></thead>
+<tbody>
+<tr><td><strong>Decimal Hours</strong></td><td>H + (M ÷ 60) + (S ÷ 3,600)</td><td>2 + 0.5 + 0.0125 = <strong>2.5125 hours</strong></td></tr>
+<tr><td><strong>Decimal Minutes</strong></td><td>(H × 60) + M + (S ÷ 60)</td><td>120 + 30 + 0.75 = <strong>150.75 minutes</strong></td></tr>
+<tr><td><strong>Total Seconds</strong></td><td>(H × 3,600) + (M × 60) + S</td><td>7,200 + 1,800 + 45 = <strong>9,045 seconds</strong></td></tr>
+</tbody>
+</table>
+
+<h2>Common Time Conversions</h2>
+<table>
+<thead><tr><th>Minutes</th><th>Decimal Hours</th><th>Common Use</th></tr></thead>
+<tbody>
+<tr><td>6 min</td><td>0.10 hrs</td><td>Billing in 6-min increments (legal)</td></tr>
+<tr><td>15 min</td><td>0.25 hrs</td><td>Quarter-hour payroll rounding</td></tr>
+<tr><td>30 min</td><td>0.50 hrs</td><td>Half-hour scheduling blocks</td></tr>
+<tr><td>45 min</td><td>0.75 hrs</td><td>Class periods, therapy sessions</td></tr>
+<tr><td>90 min</td><td>1.50 hrs</td><td>Movie length, meetings</td></tr>
+<tr><td>480 min</td><td>8.00 hrs</td><td>Standard US work day</td></tr>
+</tbody>
+</table>
+
+<h2>Calculating Time Duration</h2>
+<p>To find the duration between two times:</p>
+<ol>
+<li><strong>Convert both times to 24-hour format.</strong> 3:00 PM = 15:00. 8:30 AM = 08:30.</li>
+<li><strong>Convert to decimal hours.</strong> 15:00 = 15.0 hours. 08:30 = 8.5 hours.</li>
+<li><strong>Subtract.</strong> 15.0 − 8.5 = <strong>6.5 hours = 6h 30m</strong></li>
+</ol>
+<p>If the end time is before the start time (overnight span), add 24 to the end time first. Example: 10:00 PM to 6:00 AM = (6 + 24) − 22 = 8 hours.</p>
+
+<h2>US Time Zones Quick Reference</h2>
+<table>
+<thead><tr><th>Zone</th><th>Abbreviation</th><th>UTC Offset (Standard)</th><th>UTC Offset (DST)</th></tr></thead>
+<tbody>
+<tr><td><strong>Eastern</strong></td><td>EST / EDT</td><td>UTC−5</td><td>UTC−4</td></tr>
+<tr><td><strong>Central</strong></td><td>CST / CDT</td><td>UTC−6</td><td>UTC−5</td></tr>
+<tr><td><strong>Mountain</strong></td><td>MST / MDT</td><td>UTC−7</td><td>UTC−6</td></tr>
+<tr><td><strong>Pacific</strong></td><td>PST / PDT</td><td>UTC−8</td><td>UTC−7</td></tr>
+<tr><td><strong>Alaska</strong></td><td>AKST / AKDT</td><td>UTC−9</td><td>UTC−8</td></tr>
+<tr><td><strong>Hawaii</strong></td><td>HST</td><td>UTC−10</td><td>No DST</td></tr>
+</tbody>
+</table>
+<p><strong>Daylight saving time (DST)</strong> runs from the second Sunday in March to the first Sunday in November. Arizona (except Navajo Nation) and Hawaii do not observe DST.</p>
+`,
         faq: [
-            { question: "Can I add more than 24 hours?", answer: "Yes. The calculator wraps around — adding 25 hours is the same as adding 1 hour. The result always shows a valid time within a 24-hour day." },
-            { question: "How do I calculate time across midnight?", answer: "Just enter the start time and the duration. If you start at 11:00 PM and add 3 hours, the result correctly shows 2:00 AM." },
+            { question: "How do I add hours and minutes to a time?", answer: "Add hours to hours, minutes to minutes. If minutes total 60+, subtract 60 and add 1 to hours. If hours total 24+, subtract 24 (next day). Example: 10:45 AM + 3h 30m = 10:45 + 3:30 = 13:75 → 14:15 = 2:15 PM." },
+            { question: "How do I subtract time?", answer: "Subtract hours from hours, minutes from minutes. If minutes go negative, add 60 to minutes and subtract 1 from hours. If hours go negative, add 24 (previous day). Example: 2:15 PM − 4h 30m = 14:15 − 4:30 = 9:45 AM." },
+            { question: "How do I convert minutes to decimal hours?", answer: "Divide minutes by 60. Examples: 15 min = 0.25 hrs, 30 min = 0.50 hrs, 45 min = 0.75 hrs, 20 min = 0.333 hrs, 6 min = 0.10 hrs. For payroll: 7h 45m = 7.75 decimal hours × hourly rate." },
+            { question: "Can I add more than 24 hours?", answer: "Yes. The calculator wraps around — adding 25 hours is the same as adding 1 hour. The result always shows a valid time within a 24-hour day. To track multi-day durations, use the Hours Calculator instead." },
+            { question: "How do I calculate time across midnight?", answer: "Just enter the start time and the duration. If you start at 11:00 PM and add 3 hours, the result correctly shows 2:00 AM. For duration calculations across midnight, add 24 to the end time before subtracting. Example: 10 PM to 6 AM = (6+24) − 22 = 8 hours." },
+            { question: "What is military time?", answer: "Military time uses a 24-hour clock (0000 to 2359) instead of AM/PM. To convert PM times: add 12 to the hour. 1 PM = 1300, 3 PM = 1500, 10 PM = 2200. Midnight = 0000. Noon = 1200. Used by military, aviation, healthcare, and most countries outside the US." },
+            { question: "How many minutes are in a work day?", answer: "A standard US 8-hour work day = 480 minutes. With a 30-min lunch break: 450 minutes of work. With a 60-min lunch: 420 minutes. A 40-hour work week = 2,400 minutes. These are important for payroll calculations and time tracking." },
+            { question: "How do I round time for payroll?", answer: "The most common US payroll rounding method is the 7-minute rule: round to the nearest 15 minutes. 0–7 minutes round down, 8–14 minutes round up. Example: clock in at 8:07 → rounds to 8:00. Clock in at 8:08 → rounds to 8:15. This is compliant with FLSA regulations." },
+            { question: "What are the US time zones?", answer: "The continental US has 4 time zones: Eastern (UTC−5), Central (UTC−6), Mountain (UTC−7), Pacific (UTC−8). Plus Alaska (UTC−9) and Hawaii (UTC−10). During DST (March–November), clocks move forward 1 hour. Arizona and Hawaii don't observe DST." },
+            { question: "How do I calculate elapsed time between two dates?", answer: "For same-day: convert both to 24-hour format, then subtract start from end. For multi-day: use the Date Duration Calculator. For business days only (excluding weekends): use the Business Days Calculator. Each tool handles edge cases like month boundaries and leap years." },
         ],
     },
     "time-duration-calculator": {
@@ -278,6 +360,13 @@ export default async function TimeCalculatorHubPage({ params }: PageProps) {
                                 paragraphs={content.explanation?.paragraphs}
                                 highlight={content.explanation?.highlight}
                             />
+                            {content.contentHTML && (
+                                <section
+                                    className="hub-content"
+                                    style={{ marginTop: "var(--s-6)" }}
+                                    dangerouslySetInnerHTML={{ __html: content.contentHTML }}
+                                />
+                            )}
                             {content.faq && <FAQAccordion title={`${calc.title} FAQ`} items={content.faq} />}
                         </>
                     )}
