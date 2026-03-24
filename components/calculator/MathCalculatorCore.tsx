@@ -173,43 +173,128 @@ function LcmCalc() {
     </div></div>);
 }
 
-/* 5. Quadratic Equation Solver */
+/* 5. Quadratic Equation Solver (Enhanced) */
+function simplifyRadical(n: number): { coeff: number; radicand: number } {
+    if (n < 0) { const r = simplifyRadical(-n); return { coeff: r.coeff, radicand: -r.radicand }; }
+    if (n === 0) return { coeff: 0, radicand: 0 };
+    let coeff = 1; let rem = n;
+    for (let p = 2; p * p <= rem; p++) { while (rem % (p * p) === 0) { coeff *= p; rem /= p * p; } }
+    return { coeff, radicand: rem };
+}
+function fmtFrac(num: number, den: number): string {
+    if (den === 0) return "undefined";
+    const sign = (num < 0) !== (den < 0) ? "-" : "";
+    const an = Math.abs(num); const ad = Math.abs(den);
+    const g = gcd(an, ad); const sn = an / g; const sd = ad / g;
+    if (sd === 1) return `${sign}${sn}`;
+    return `${sign}${sn}/${sd}`;
+}
 function QuadraticCalc() {
     const [aVal, setA] = useState("1"); const [bVal, setB] = useState("-5"); const [cVal, setC] = useState("6");
     const r = useMemo(() => {
         const a = parseFloat(aVal) || 0; const b = parseFloat(bVal) || 0; const c = parseFloat(cVal) || 0;
-        if (a === 0) return { type: "linear", roots: b !== 0 ? [`x = ${fmt(-c / b)}`] : [], disc: 0, vertex: { x: 0, y: 0 }, steps: ["Not a quadratic equation (a = 0)"] };
+        if (a === 0) return { type: "linear", roots: b !== 0 ? [`x = ${fmt(-c / b)}`] : [], disc: 0, vertex: { x: 0, y: 0 }, steps: ["Not a quadratic equation (a = 0)"], exactRoots: [] as string[], sumOfRoots: "—", productOfRoots: "—", factoredForm: "—", yIntercept: `(0, ${c})`, axisOfSymmetry: "—" };
         const disc = b * b - 4 * a * c;
-        const steps: string[] = [
-            `Equation: ${a}x² + ${b >= 0 ? "+" : ""}${b}x + ${c >= 0 ? "+" : ""}${c} = 0`,
-            `Discriminant (Δ) = b² − 4ac = ${b}² − 4(${a})(${c}) = ${fmt(disc)}`,
-        ];
+        const steps: string[] = [];
+        // Step 1: Identify
+        steps.push(`Equation: ${a}x² ${b >= 0 ? "+" : ""}${b}x ${c >= 0 ? "+" : ""}${c} = 0`);
+        steps.push(`Coefficients: a = ${a}, b = ${b}, c = ${c}`);
+        // Step 2: Discriminant
+        steps.push(`Discriminant: Δ = b² − 4ac = (${b})² − 4(${a})(${c}) = ${b * b} − ${4 * a * c} = ${fmt(disc)}`);
+
         let roots: string[];
+        let exactRoots: string[] = [];
         let type: string;
+        let factoredForm = "—";
+
         if (disc > 0) {
-            const r1 = (-b + Math.sqrt(disc)) / (2 * a);
-            const r2 = (-b - Math.sqrt(disc)) / (2 * a);
+            const sqrtDisc = Math.sqrt(disc);
+            const r1 = (-b + sqrtDisc) / (2 * a);
+            const r2 = (-b - sqrtDisc) / (2 * a);
             roots = [`x₁ = ${fmt(r1, 6)}`, `x₂ = ${fmt(r2, 6)}`];
             type = "Two distinct real roots";
             steps.push(`Δ > 0 → Two distinct real roots`);
-            steps.push(`x = (−b ± √Δ) / 2a = (${-b} ± ${fmt(Math.sqrt(disc))}) / ${2 * a}`);
+            // Check for perfect square discriminant
+            const sqrtInt = Math.round(sqrtDisc);
+            if (sqrtInt * sqrtInt === disc) {
+                steps.push(`√Δ = √${fmt(disc, 0)} = ${sqrtInt}`);
+                steps.push(`x = (−b ± √Δ) / 2a = (${-b} ± ${sqrtInt}) / ${2 * a}`);
+                steps.push(`x₁ = (${-b} + ${sqrtInt}) / ${2 * a} = ${-b + sqrtInt} / ${2 * a} = ${fmtFrac(-b + sqrtInt, 2 * a)}`);
+                steps.push(`x₂ = (${-b} − ${sqrtInt}) / ${2 * a} = ${-b - sqrtInt} / ${2 * a} = ${fmtFrac(-b - sqrtInt, 2 * a)}`);
+                exactRoots = [fmtFrac(-b + sqrtInt, 2 * a), fmtFrac(-b - sqrtInt, 2 * a)];
+                // Factored form
+                const fr1 = fmtFrac(-b + sqrtInt, 2 * a);
+                const fr2 = fmtFrac(-b - sqrtInt, 2 * a);
+                const ff1 = r1 >= 0 ? `(x − ${fr1})` : `(x + ${fr1.replace("-", "")})`;
+                const ff2 = r2 >= 0 ? `(x − ${fr2})` : `(x + ${fr2.replace("-", "")})`;
+                factoredForm = a === 1 ? `${ff1}${ff2}` : `${a}${ff1}${ff2}`;
+            } else {
+                // Simplify the radical
+                const { coeff: rc, radicand: rr } = simplifyRadical(disc);
+                const radStr = rc > 1 ? `${rc}√${rr}` : `√${disc}`;
+                steps.push(`√Δ = √${disc} = ${radStr}`);
+                steps.push(`x = (−b ± √Δ) / 2a = (${-b} ± ${radStr}) / ${2 * a}`);
+                exactRoots = [`(${-b} + ${radStr}) / ${2 * a}`, `(${-b} − ${radStr}) / ${2 * a}`];
+                // Try simplifying
+                const den = 2 * a;
+                const g2 = gcd(gcd(Math.abs(-b), rc), Math.abs(den));
+                if (g2 > 1) {
+                    const sB = (-b) / g2; const sRc = rc / g2; const sDen = den / g2;
+                    const sRadStr = sRc > 1 ? `${sRc}√${rr}` : (sRc === 1 ? `√${rr}` : `${sRc}√${rr}`);
+                    exactRoots = [`(${sB} + ${sRadStr}) / ${sDen}`, `(${sB} − ${sRadStr}) / ${sDen}`];
+                    if (Math.abs(sDen) === 1) {
+                        exactRoots = [`${sB} + ${sRadStr}`, `${sB} − ${sRadStr}`];
+                    }
+                    steps.push(`Simplify (÷${g2}): x = (${sB} ± ${sRadStr})${Math.abs(sDen) === 1 ? "" : ` / ${sDen}`}`);
+                }
+                steps.push(`x₁ ≈ ${fmt(r1, 6)}`);
+                steps.push(`x₂ ≈ ${fmt(r2, 6)}`);
+            }
         } else if (disc === 0) {
             const r1 = -b / (2 * a);
             roots = [`x = ${fmt(r1, 6)}`];
-            type = "One repeated real root";
+            exactRoots = [fmtFrac(-b, 2 * a)];
+            type = "One repeated (double) real root";
             steps.push(`Δ = 0 → One repeated root`);
-            steps.push(`x = −b / 2a = ${-b} / ${2 * a} = ${fmt(r1, 6)}`);
+            steps.push(`x = −b / 2a = ${-b} / ${2 * a} = ${fmtFrac(-b, 2 * a)}`);
+            const ex = fmtFrac(-b, 2 * a);
+            const ff = r1 >= 0 ? `(x − ${ex})²` : `(x + ${ex.replace("-", "")})²`;
+            factoredForm = a === 1 ? ff : `${a}${ff}`;
         } else {
             const real = -b / (2 * a);
-            const imag = Math.sqrt(-disc) / (2 * a);
-            roots = [`x₁ = ${fmt(real, 4)} + ${fmt(imag, 4)}i`, `x₂ = ${fmt(real, 4)} − ${fmt(imag, 4)}i`];
+            const imagVal = Math.sqrt(-disc) / (2 * a);
+            roots = [`x₁ = ${fmt(real, 6)} + ${fmt(Math.abs(imagVal), 6)}i`, `x₂ = ${fmt(real, 6)} − ${fmt(Math.abs(imagVal), 6)}i`];
             type = "Two complex conjugate roots";
             steps.push(`Δ < 0 → Two complex conjugate roots`);
+            const { coeff: rc, radicand: rr } = simplifyRadical(-disc);
+            const radStr = rc > 1 ? `${rc}√${rr}` : `√${-disc}`;
+            steps.push(`√|Δ| = √${-disc} = ${radStr}`);
+            steps.push(`Real part: −b / 2a = ${-b} / ${2 * a} = ${fmtFrac(-b, 2 * a)}`);
+            steps.push(`Imaginary part: ±${radStr} / ${2 * a} · i`);
+            const realFrac = fmtFrac(-b, 2 * a);
+            const den = 2 * a;
+            const g2 = gcd(rc, Math.abs(den));
+            const simpRadStr = (rc / g2) > 1 ? `${rc / g2}√${rr}` : `√${rr}`;
+            const simpDen = Math.abs(den / g2);
+            const imagPart = simpDen === 1 ? `${simpRadStr}i` : `(${simpRadStr}/${simpDen})i`;
+            exactRoots = [`${realFrac} + ${imagPart}`, `${realFrac} − ${imagPart}`];
+            steps.push(`x₁ = ${exactRoots[0]}`);
+            steps.push(`x₂ = ${exactRoots[1]}`);
         }
+        // Vertex
         const vx = -b / (2 * a);
         const vy = a * vx * vx + b * vx + c;
-        steps.push(`Vertex: (${fmt(vx)}, ${fmt(vy)})`);
-        return { type, roots, disc, vertex: { x: vx, y: vy }, steps };
+        steps.push(`Axis of symmetry: x = −b / 2a = ${fmtFrac(-b, 2 * a)}`);
+        steps.push(`Vertex: (${fmtFrac(-b, 2 * a)}, ${fmt(vy)})`);
+        steps.push(`Parabola opens ${a > 0 ? "upward ↑ (minimum)" : "downward ↓ (maximum)"}`);
+        steps.push(`Y-intercept: (0, ${c})`);
+        // Vieta's formulas
+        const sumOfRoots = fmtFrac(-b, a);
+        const productOfRoots = fmtFrac(c, a);
+        steps.push(`Sum of roots (−b/a): ${sumOfRoots}`);
+        steps.push(`Product of roots (c/a): ${productOfRoots}`);
+
+        return { type, roots, disc, vertex: { x: vx, y: vy }, steps, exactRoots, sumOfRoots, productOfRoots, factoredForm, yIntercept: `(0, ${c})`, axisOfSymmetry: fmtFrac(-b, 2 * a) };
     }, [aVal, bVal, cVal]);
     return (<div className="con-calc"><h3 className="con-calc__title">📐 Quadratic Equation Solver</h3><div className="con-calc__inputs">
         <p style={{fontSize:"0.85rem",color:"var(--text-muted)",margin:"0 0 var(--s-2)"}}>ax² + bx + c = 0</p>
@@ -220,7 +305,16 @@ function QuadraticCalc() {
         <ResultRow label="Type" value={r.type} />
         <ResultRow label="Discriminant (Δ)" value={fmt(r.disc)} />
         {r.roots.map((root, i) => <ResultRow key={i} label={`Root ${i + 1}`} value={root} />)}
-        <ResultRow label="Vertex" value={`(${fmt(r.vertex.x)}, ${fmt(r.vertex.y)})`} />
+        {r.exactRoots.length > 0 && <><h4>Exact Form</h4>
+        {r.exactRoots.map((root, i) => <ResultRow key={i} label={`x${r.exactRoots.length > 1 ? `₁₂`[i] : ""}`} value={root} />)}</>}
+        <h4>Parabola Properties</h4>
+        <ResultRow label="Vertex (h, k)" value={`(${r.axisOfSymmetry}, ${fmt(r.vertex.y)})`} />
+        <ResultRow label="Axis of Symmetry" value={`x = ${r.axisOfSymmetry}`} />
+        <ResultRow label="Y-intercept" value={r.yIntercept} />
+        {r.factoredForm !== "—" && <ResultRow label="Factored Form" value={r.factoredForm} />}
+        <h4>Vieta's Formulas</h4>
+        <ResultRow label="Sum of Roots (−b/a)" value={r.sumOfRoots} />
+        <ResultRow label="Product of Roots (c/a)" value={r.productOfRoots} />
         <h4>Step-by-Step</h4>
         {r.steps.map((s, i) => <ResultRow key={i} label="" value={s} />)}
     </div></div>);

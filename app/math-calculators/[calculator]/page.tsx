@@ -787,42 +787,241 @@ const HUB_CONTENT: Record<string, {
         ],
     },
 
-    /* ─── 5. QUADRATIC EQUATION SOLVER ─── */
+    /* ─── 5. QUADRATIC EQUATION SOLVER — RICH CONTENT (Topical Authority) ─── */
     "quadratic-equation-solver": {
-        subtitle: "Solve any quadratic equation ax² + bx + c = 0 using the quadratic formula. See discriminant analysis, real and complex roots, vertex, and step-by-step solution.",
-        explanation: {
-            heading: "What is the Quadratic Formula and How Does It Work?",
-            paragraphs: [
-                "A quadratic equation is any equation of the form ax² + bx + c = 0, where a ≠ 0. It is called 'quadratic' because the highest power of the unknown variable x is 2 (from the Latin 'quadratus,' meaning square). Quadratic equations arise naturally in physics (projectile motion), engineering (signal processing), economics (profit maximization), and geometry (area problems).",
-                "The quadratic formula x = (−b ± √(b² − 4ac)) / 2a gives the solution to any quadratic equation. The key element is the discriminant, Δ = b² − 4ac, which determines the nature of the roots: if Δ > 0, there are two distinct real roots; if Δ = 0, there is exactly one repeated real root; and if Δ < 0, the roots are complex conjugates (involving imaginary numbers).",
-                "Beyond the roots, the vertex of the parabola — the highest or lowest point of the graph — is found at x = −b/(2a), y = f(−b/(2a)). If a > 0, the parabola opens upward and the vertex is a minimum. If a < 0, it opens downward and the vertex is a maximum. Our calculator provides the roots, discriminant, vertex, and complete step-by-step solution for any quadratic equation.",
-            ],
-            highlight: "Example: x² − 5x + 6 = 0 → Δ = 25 − 24 = 1 > 0 → x₁ = (5+1)/2 = 3, x₂ = (5−1)/2 = 2. Vertex at (2.5, −0.25).",
-        },
+        subtitle: "Solve any quadratic equation ax² + bx + c = 0 using the quadratic formula. See discriminant analysis, real and complex roots, exact fractions, simplified radicals, vertex, factored form, Vieta's formulas, and step-by-step solution.",
+        contentHTML: `
+            <h2 id="what-is-a-quadratic-equation">What Is a Quadratic Equation?</h2>
+            <p>A <strong>quadratic equation</strong> is any polynomial equation of the <strong>second degree</strong>, meaning the highest power of the unknown variable <em>x</em> is 2. The word "quadratic" comes from the Latin <em>quadratus</em>, meaning "square," because the equation involves squaring a variable.</p>
+            <p>Every quadratic equation can be written in <strong>standard form</strong>:</p>
+            <div class="explanation__highlight">
+                <strong>ax² + bx + c = 0</strong>
+            </div>
+            <p>Where:</p>
+            <table>
+                <thead><tr><th>Coefficient</th><th>Name</th><th>Role</th><th>Constraint</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>a</strong></td><td>Quadratic coefficient</td><td>Determines the width and direction of the parabola</td><td>a ≠ 0 (otherwise it's linear)</td></tr>
+                    <tr><td><strong>b</strong></td><td>Linear coefficient</td><td>Shifts the vertex horizontally</td><td>Can be any real number</td></tr>
+                    <tr><td><strong>c</strong></td><td>Constant term</td><td>The y-intercept of the parabola</td><td>Can be any real number</td></tr>
+                </tbody>
+            </table>
+            <p>Examples of quadratic equations: <strong>x² − 5x + 6 = 0</strong>, <strong>2x² + 3x − 2 = 0</strong>, <strong>x² + 1 = 0</strong> (complex roots). An equation like 3x + 5 = 0 is <em>not</em> quadratic because the highest power is 1 (it's linear).</p>
+
+            <h2 id="the-quadratic-formula">The Quadratic Formula</h2>
+            <p>The <strong>quadratic formula</strong> provides a direct way to find the solutions (roots) of any quadratic equation. It is one of the most important formulas in algebra:</p>
+            <div class="explanation__highlight">
+                <strong>x = (−b ± √(b² − 4ac)) / 2a</strong>
+            </div>
+            <p>This formula works for <em>every</em> quadratic equation — whether the roots are rational, irrational, or complex. The "±" symbol means there are two solutions: one using addition and one using subtraction.</p>
+
+            <h3 id="deriving-the-quadratic-formula">Derivation from Completing the Square</h3>
+            <p>The quadratic formula isn't magic — it is derived by applying the <strong>completing the square</strong> technique to the general equation ax² + bx + c = 0:</p>
+            <ol>
+                <li><strong>Start:</strong> ax² + bx + c = 0</li>
+                <li><strong>Divide by a:</strong> x² + (b/a)x + c/a = 0</li>
+                <li><strong>Move constant:</strong> x² + (b/a)x = −c/a</li>
+                <li><strong>Complete the square:</strong> Add (b/2a)² to both sides: x² + (b/a)x + (b/2a)² = (b/2a)² − c/a</li>
+                <li><strong>Factor left side:</strong> (x + b/2a)² = (b² − 4ac) / 4a²</li>
+                <li><strong>Take square root:</strong> x + b/2a = ±√(b² − 4ac) / 2a</li>
+                <li><strong>Solve for x:</strong> x = (−b ± √(b² − 4ac)) / 2a ✓</li>
+            </ol>
+            <p>This derivation is a standard topic in <strong>Algebra I and Algebra II</strong> courses across the United States and appears on the <strong>SAT, ACT, and GRE</strong> math sections.</p>
+
+            <h2 id="understanding-the-discriminant">Understanding the Discriminant (Δ)</h2>
+            <p>The expression under the square root — <strong>Δ = b² − 4ac</strong> — is called the <strong>discriminant</strong>. It determines the <em>nature and number</em> of solutions without actually solving the equation:</p>
+            <table>
+                <thead><tr><th>Discriminant Value</th><th>Number of Roots</th><th>Type of Roots</th><th>Graph Behavior</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Δ &gt; 0</strong> (positive)</td><td>2</td><td>Two distinct real roots</td><td>Parabola crosses x-axis at two points</td></tr>
+                    <tr><td><strong>Δ = 0</strong></td><td>1</td><td>One repeated (double) root</td><td>Parabola touches x-axis at vertex</td></tr>
+                    <tr><td><strong>Δ &lt; 0</strong> (negative)</td><td>0 real / 2 complex</td><td>Two complex conjugate roots</td><td>Parabola does not cross x-axis</td></tr>
+                </tbody>
+            </table>
+            <p>Additionally, when Δ is a <strong>perfect square</strong> (like 1, 4, 9, 16, 25, …), the roots are <em>rational numbers</em> and the equation can be factored over the integers. Our calculator above automatically detects this and shows the <strong>exact fraction form</strong> and <strong>factored form</strong> when applicable.</p>
+
+            <h2 id="three-solving-methods">Three Methods for Solving Quadratic Equations</h2>
+            <p>There are three standard methods for solving quadratic equations. Each has advantages depending on the equation:</p>
+            <table>
+                <thead><tr><th>Method</th><th>Best For</th><th>Pros</th><th>Cons</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Factoring</strong></td><td>Simple integer roots</td><td>Fastest when applicable; no calculator needed</td><td>Only works when roots are rational</td></tr>
+                    <tr><td><strong>Quadratic Formula</strong></td><td>Any quadratic equation</td><td>Universal — works for all cases including complex roots</td><td>More arithmetic steps</td></tr>
+                    <tr><td><strong>Completing the Square</strong></td><td>Converting to vertex form</td><td>Reveals vertex; foundation for deriving the formula</td><td>Tedious for non-unit leading coefficients</td></tr>
+                </tbody>
+            </table>
+            <p><strong>Pro tip:</strong> Always check the discriminant first. If Δ is a perfect square, try factoring. If not, go straight to the quadratic formula. Our calculator uses the <a href="/math-calculators/quadratic-equation-solver">quadratic formula</a> for all cases and automatically simplifies radicals and fractions.</p>
+
+            <h2 id="worked-examples">Worked Examples</h2>
+
+            <h3 id="example-two-real-roots">Example 1: Two Distinct Real Roots (Δ &gt; 0)</h3>
+            <p><strong>Solve:</strong> x² − 5x + 6 = 0</p>
+            <ol>
+                <li>Identify: a = 1, b = −5, c = 6</li>
+                <li>Discriminant: Δ = (−5)² − 4(1)(6) = 25 − 24 = <strong>1</strong></li>
+                <li>Since Δ = 1 > 0 and is a perfect square → two rational roots</li>
+                <li>x = (5 ± √1) / 2 = (5 ± 1) / 2</li>
+                <li><strong>x₁ = (5 + 1) / 2 = 3</strong></li>
+                <li><strong>x₂ = (5 − 1) / 2 = 2</strong></li>
+            </ol>
+            <p>Factored form: (x − 3)(x − 2) = 0. Verify: 3 × 2 = 6 ✓ and 3 + 2 = 5 ✓ (Vieta's formulas).</p>
+
+            <h3 id="example-one-repeated-root">Example 2: One Repeated Root (Δ = 0)</h3>
+            <p><strong>Solve:</strong> x² − 6x + 9 = 0</p>
+            <ol>
+                <li>Identify: a = 1, b = −6, c = 9</li>
+                <li>Discriminant: Δ = (−6)² − 4(1)(9) = 36 − 36 = <strong>0</strong></li>
+                <li>Since Δ = 0 → one repeated root</li>
+                <li><strong>x = −(−6) / 2(1) = 6/2 = 3</strong></li>
+            </ol>
+            <p>Factored form: (x − 3)² = 0. The parabola touches the x-axis at its vertex (3, 0).</p>
+
+            <h3 id="example-complex-roots">Example 3: Complex Conjugate Roots (Δ &lt; 0)</h3>
+            <p><strong>Solve:</strong> x² + 2x + 5 = 0</p>
+            <ol>
+                <li>Identify: a = 1, b = 2, c = 5</li>
+                <li>Discriminant: Δ = (2)² − 4(1)(5) = 4 − 20 = <strong>−16</strong></li>
+                <li>Since Δ < 0 → two complex conjugate roots</li>
+                <li>√|Δ| = √16 = 4</li>
+                <li>Real part: −b/2a = −2/2 = −1</li>
+                <li>Imaginary part: ±4/2 = ±2i</li>
+                <li><strong>x₁ = −1 + 2i</strong>, <strong>x₂ = −1 − 2i</strong></li>
+            </ol>
+            <p>The parabola y = x² + 2x + 5 has its vertex at (−1, 4) and never crosses the x-axis.</p>
+
+            <h3 id="example-word-problem">Example 4: Real-World Word Problem — Projectile Motion</h3>
+            <p>A baseball is hit from a height of 3 feet with an initial upward velocity of 80 feet per second. Using the US standard gravitational acceleration (g = 32 ft/s²), the height equation is:</p>
+            <div class="explanation__highlight">
+                <strong>h(t) = −16t² + 80t + 3</strong>
+            </div>
+            <p><strong>Question:</strong> When does the ball hit the ground? (h = 0)</p>
+            <ol>
+                <li>Set h(t) = 0: −16t² + 80t + 3 = 0</li>
+                <li>a = −16, b = 80, c = 3</li>
+                <li>Δ = 80² − 4(−16)(3) = 6400 + 192 = 6592</li>
+                <li>√6592 = √(64 × 103) = 8√103 ≈ 81.20</li>
+                <li>t = (−80 ± 8√103) / (−32)</li>
+                <li>t₁ = (−80 + 81.20) / (−32) = −0.04 s (rejected, before hit)</li>
+                <li><strong>t₂ = (−80 − 81.20) / (−32) ≈ 5.04 seconds</strong></li>
+            </ol>
+            <p>The ball hits the ground after approximately <strong>5.04 seconds</strong>. Our calculator shows the exact form using simplified radicals — try entering a = −16, b = 80, c = 3.</p>
+
+            <h2 id="complex-roots-imaginary-numbers">Complex Roots & Imaginary Numbers</h2>
+            <p>When the discriminant is negative (Δ < 0), the square root of a negative number is required. This introduces the <strong>imaginary unit</strong>:</p>
+            <div class="explanation__highlight">
+                <strong>i = √(−1)</strong>
+            </div>
+            <p>A <strong>complex number</strong> has the form <strong>a + bi</strong>, where <em>a</em> is the real part and <em>b</em> is the imaginary part. Complex roots of quadratic equations always come in <strong>conjugate pairs</strong>: if <em>a + bi</em> is a root, then <em>a − bi</em> is also a root.</p>
+            <p>Complex numbers are not just mathematical abstractions — they are essential in <strong>electrical engineering</strong> (AC circuit analysis uses impedance as a complex number), <strong>signal processing</strong> (Fourier transforms), <strong>quantum mechanics</strong>, and <strong>control theory</strong>.</p>
+
+            <h2 id="vertex-parabola-properties">Vertex & Parabola Properties</h2>
+            <p>Every quadratic equation y = ax² + bx + c graphs as a <strong>parabola</strong>. Key properties:</p>
+            <table>
+                <thead><tr><th>Property</th><th>Formula</th><th>Meaning</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Vertex</strong></td><td>(h, k) where h = −b/2a, k = c − b²/4a</td><td>The highest or lowest point of the parabola</td></tr>
+                    <tr><td><strong>Axis of Symmetry</strong></td><td>x = −b/2a</td><td>The vertical line through the vertex</td></tr>
+                    <tr><td><strong>Direction</strong></td><td>a > 0 → opens up; a < 0 → opens down</td><td>Determines if vertex is a minimum or maximum</td></tr>
+                    <tr><td><strong>Y-intercept</strong></td><td>(0, c)</td><td>Where the parabola crosses the y-axis</td></tr>
+                    <tr><td><strong>Vertex Form</strong></td><td>y = a(x − h)² + k</td><td>Alternative form revealing the vertex directly</td></tr>
+                </tbody>
+            </table>
+            <p>Our calculator displays the vertex, axis of symmetry, y-intercept, and factored form (when roots are rational) for complete parabola analysis. For related geometry calculations, see our <a href="/math-calculators/area-calculator">Area Calculator</a>.</p>
+
+            <h2 id="real-world-applications">Real-World Applications of Quadratic Equations (USA Focus)</h2>
+            <p>Quadratic equations appear throughout science, engineering, business, and everyday life:</p>
+
+            <h3 id="physics-projectile-motion">Physics — Projectile Motion</h3>
+            <p>In the United States, physics courses use the equation <strong>h(t) = −16t² + v₀t + h₀</strong> (in feet, using g = 32 ft/s²) or <strong>h(t) = −4.9t² + v₀t + h₀</strong> (in meters). This is the basis for calculating the trajectory of a thrown baseball, a launched rocket, or a basketball shot. The roots of the equation tell you <em>when</em> the object hits the ground.</p>
+
+            <h3 id="business-optimization">Business — Profit Optimization</h3>
+            <p>Revenue and profit functions are often quadratic: <strong>P(x) = −ax² + bx − c</strong>, where x is the quantity produced. The vertex gives the <strong>maximum profit point</strong> — the optimal quantity to produce. This is taught in MBA programs and <a href="/business-calculators/ebitda-calculator">business finance</a> courses across the US.</p>
+
+            <h3 id="engineering-architecture">Engineering & Architecture</h3>
+            <p>Parabolic shapes appear in satellite dishes, headlight reflectors, suspension bridge cables, and the famous <strong>Gateway Arch</strong> in St. Louis (which is actually a catenary, closely related to a parabola). Engineers use quadratic equations to design these structures, calculate load distributions, and model stress curves.</p>
+
+            <h3 id="sports-analytics">Sports Analytics</h3>
+            <p>In American football, the trajectory of a field goal kick follows a parabolic path. Coaches and analysts use quadratic models to determine the optimal launch angle and initial velocity for maximum distance or to clear the crossbar at 10 feet high.</p>
+
+            <h2 id="the-golden-ratio">The Golden Ratio — Derived from a Quadratic</h2>
+            <p>One of mathematics' most famous numbers — the <strong>golden ratio</strong> φ (phi) — comes from solving a quadratic equation. If we want to split a line segment into two pieces where the ratio of the whole to the longer piece equals the ratio of the longer to the shorter:</p>
+            <div class="explanation__highlight">
+                <strong>φ² − φ − 1 = 0 → φ = (1 + √5) / 2 ≈ 1.61803...</strong>
+            </div>
+            <p>The golden ratio appears in:</p>
+            <ul>
+                <li><strong>Fibonacci sequence:</strong> The ratio of consecutive Fibonacci numbers approaches φ</li>
+                <li><strong>Regular pentagons:</strong> The diagonal-to-side ratio equals φ</li>
+                <li><strong>Art & architecture:</strong> The Parthenon, Leonardo da Vinci's works, and modern design</li>
+                <li><strong>Nature:</strong> Spiral patterns in sunflowers, pinecones, and nautilus shells</li>
+            </ul>
+            <p>Try it in our calculator: enter a = 1, b = −1, c = −1. You'll get x₁ ≈ 1.618034 (the golden ratio) and x₂ ≈ −0.618034.</p>
+
+            <h2 id="vietas-formulas">Vieta's Formulas — Sum & Product of Roots</h2>
+            <p><strong>Vieta's formulas</strong> provide a direct relationship between the roots and the coefficients of a quadratic equation, without actually solving for the roots:</p>
+            <table>
+                <thead><tr><th>Formula</th><th>Relationship</th><th>Example: x² − 5x + 6 = 0 (roots: 2, 3)</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Sum of roots</strong></td><td>x₁ + x₂ = −b/a</td><td>2 + 3 = 5 = −(−5)/1 ✓</td></tr>
+                    <tr><td><strong>Product of roots</strong></td><td>x₁ · x₂ = c/a</td><td>2 × 3 = 6 = 6/1 ✓</td></tr>
+                </tbody>
+            </table>
+            <p>These formulas are invaluable for <strong>checking your work</strong> and for constructing quadratic equations when you know the desired roots. Our calculator displays both Vieta's values automatically. For working with fractions in these calculations, use our <a href="/math-calculators/fraction-calculator">Fraction Calculator</a>.</p>
+
+            <h2 id="common-mistakes">Common Mistakes to Avoid</h2>
+            <p>Students frequently make these errors when solving quadratic equations:</p>
+            <ol>
+                <li><strong>Forgetting the ± symbol:</strong> The formula gives <em>two</em> solutions. Always calculate both the + and − cases.</li>
+                <li><strong>Sign errors with b:</strong> If b is negative, −b becomes positive. Be careful with double negatives: −(−5) = +5.</li>
+                <li><strong>Dividing by 2a, not 2:</strong> The denominator is <strong>2a</strong>, not just 2. For the equation 3x² + 6x + 2 = 0, the denominator is 2(3) = 6.</li>
+                <li><strong>Forgetting that a ≠ 0:</strong> If a = 0, it's a linear equation, not quadratic. Solve with x = −c/b instead.</li>
+                <li><strong>Not simplifying radicals:</strong> √50 should be simplified to 5√2. Our calculator handles this automatically.</li>
+                <li><strong>Applying the formula to non-standard form:</strong> Always rearrange the equation to ax² + bx + c = 0 first. Move all terms to one side before identifying a, b, and c.</li>
+            </ol>
+            <p>Use our <a href="/math-calculators/exponent-calculator">Exponent Calculator</a> when squaring the b coefficient, and our <a href="/math-calculators/gcd-calculator">GCD Calculator</a> to simplify fraction results.</p>
+
+            <h2 id="related-algebraic-concepts">Related Algebraic Concepts</h2>
+            <ul>
+                <li><strong><a href="/math-calculators/percentage-calculator">Percentage Calculator</a>:</strong> Express discriminant ratios or root proportions as percentages</li>
+                <li><strong><a href="/math-calculators/exponent-calculator">Exponent Calculator</a>:</strong> Compute powers needed for discriminant calculations (b²)</li>
+                <li><strong><a href="/math-calculators/fraction-calculator">Fraction Calculator</a>:</strong> Simplify the fractional roots returned by the quadratic formula</li>
+                <li><strong><a href="/math-calculators/gcd-calculator">GCD Calculator</a>:</strong> Find the GCD to reduce fractions and simplify radicals</li>
+                <li><strong><a href="/math-calculators/standard-deviation-calculator">Standard Deviation Calculator</a>:</strong> Analyze distributions related to quadratic models</li>
+                <li><strong><a href="/glossary/quadratic-equation">Glossary: Quadratic Equation</a>:</strong> Full reference with discriminant table and solving methods compared</li>
+            </ul>
+        `,
         formula: {
             formula: "x = (−b ± √(b² − 4ac)) / 2a",
             variables: [
-                { symbol: "a", meaning: "Coefficient of x² (must not be zero)" },
-                { symbol: "b", meaning: "Coefficient of x" },
-                { symbol: "c", meaning: "Constant term" },
-                { symbol: "Δ = b²−4ac", meaning: "Discriminant — determines root nature" },
+                { symbol: "a", meaning: "Coefficient of x² (the quadratic coefficient, must not be zero)" },
+                { symbol: "b", meaning: "Coefficient of x (the linear coefficient)" },
+                { symbol: "c", meaning: "Constant term (the y-intercept of the parabola)" },
+                { symbol: "Δ = b²−4ac", meaning: "Discriminant — determines the nature and number of roots" },
             ],
             example: [
-                { label: "Solve 2x² − 7x + 3 = 0", substitution: "x = (7 ± √(49−24)) / 4 = (7 ± 5) / 4", result: "x₁ = 3, x₂ = 0.5" },
-                { label: "Discriminant", substitution: "Δ = 49 − 24", result: "25 > 0 → Two real roots" },
+                { label: "Solve x² − 5x + 6 = 0", substitution: "x = (5 ± √(25−24)) / 2 = (5 ± 1) / 2", result: "x₁ = 3, x₂ = 2" },
+                { label: "Solve 2x² − 7x + 3 = 0", substitution: "x = (7 ± √(49−24)) / 4 = (7 ± 5) / 4", result: "x₁ = 3, x₂ = 1/2" },
+                { label: "Golden ratio: x² − x − 1 = 0", substitution: "x = (1 ± √5) / 2", result: "x₁ ≈ 1.618, x₂ ≈ −0.618" },
             ],
         },
         faq: [
-            { question: "What does the discriminant tell us?", answer: "The discriminant Δ = b² − 4ac reveals the nature of the roots: Δ > 0 means two distinct real roots; Δ = 0 means one repeated (double) root; Δ < 0 means two complex conjugate roots involving √(−1) = i. A perfect square discriminant means the roots are rational numbers." },
-            { question: "Can I use the quadratic formula for higher-degree equations?", answer: "No, the quadratic formula only works for degree-2 equations. For cubic (degree 3) and quartic (degree 4) equations, there are more complex formulas. For degree 5 and above, there is no general algebraic formula (proven by the Abel–Ruffini theorem), and numerical methods must be used." },
-            { question: "What is the vertex form of a quadratic equation?", answer: "The vertex form is y = a(x − h)² + k, where (h, k) is the vertex. You can convert from standard form by completing the square, or use h = −b/(2a) and k = c − b²/(4a)." },
-            { question: "How are quadratic equations used in real life?", answer: "Physics: projectile motion (height = −½gt² + v₀t + h₀). Business: profit optimization (revenue minus cost functions). Engineering: stress analysis, circuit impedance. Architecture: parabolic arches and suspension bridges." },
+            { question: "What is the quadratic formula?", answer: "The quadratic formula is x = (−b ± √(b² − 4ac)) / 2a. It provides the exact solutions to any quadratic equation ax² + bx + c = 0, regardless of whether the roots are rational, irrational, or complex. It is derived by completing the square on the general quadratic equation." },
+            { question: "How does the discriminant determine the type of roots?", answer: "The discriminant Δ = b² − 4ac tells you: (1) Δ > 0 means two distinct real roots — if Δ is a perfect square, the roots are rational; (2) Δ = 0 means one repeated (double) root; (3) Δ < 0 means two complex conjugate roots involving the imaginary unit i = √(−1). Always check the discriminant before choosing a solving method." },
+            { question: "What are complex roots in a quadratic equation?", answer: "Complex roots occur when the discriminant is negative. They involve the imaginary unit i = √(−1) and always come in conjugate pairs: a + bi and a − bi. For example, x² + 1 = 0 has roots x = i and x = −i. Complex numbers are essential in electrical engineering, signal processing, and quantum mechanics." },
+            { question: "When should I use factoring vs the quadratic formula?", answer: "Try factoring first when the discriminant is a perfect square — this means the roots are rational and the equation factors easily. Example: x² − 5x + 6 = (x−2)(x−3). If the equation doesn't factor easily, use the quadratic formula. The formula works universally for all quadratic equations." },
+            { question: "How do I complete the square?", answer: "To complete the square for x² + bx: (1) Take half of b: b/2. (2) Square it: (b/2)². (3) Add and subtract this value: x² + bx + (b/2)² − (b/2)² = (x + b/2)² − (b/2)². For example: x² + 6x = x² + 6x + 9 − 9 = (x + 3)² − 9. This technique is used to derive the quadratic formula and to convert to vertex form." },
+            { question: "What is the vertex form of a quadratic equation?", answer: "The vertex form is y = a(x − h)² + k, where (h, k) is the vertex of the parabola. Convert from standard form using h = −b/(2a) and k = c − b²/(4a). The vertex form immediately reveals the maximum or minimum point and the axis of symmetry x = h." },
+            { question: "Can a quadratic equation have no solution?", answer: "In the real number system, a quadratic equation has no real solutions when Δ < 0. However, every quadratic equation always has exactly two solutions in the complex number system (counting multiplicity). The Fundamental Theorem of Algebra guarantees that a polynomial of degree n has exactly n roots over the complex numbers." },
+            { question: "What are Vieta's formulas for quadratic equations?", answer: "Vieta's formulas relate the roots to the coefficients: (1) Sum of roots: x₁ + x₂ = −b/a. (2) Product of roots: x₁ × x₂ = c/a. These formulas work even for complex roots and are useful for checking solutions or constructing equations from known roots." },
+            { question: "How are quadratic equations used in physics?", answer: "In US physics courses, projectile motion uses h(t) = −16t² + v₀t + h₀ (in feet). Setting h = 0 gives a quadratic equation whose positive root is the time when the object hits the ground. Quadratics also model kinetic energy (½mv²), spring force (F = kx²), and gravitational potential energy problems." },
+            { question: "What is the golden ratio and how is it related to quadratics?", answer: "The golden ratio φ ≈ 1.618 is the solution to the quadratic equation φ² − φ − 1 = 0. Using the quadratic formula: φ = (1 + √5) / 2. It appears in the Fibonacci sequence, regular pentagons, Renaissance art, and natural spiral patterns. It's sometimes called the 'divine proportion.'" },
         ],
         relatedCalculators: [
-            { title: "Exponent Calculator", slug: "exponent-calculator", categorySlug: "math-calculators", description: "Calculate powers and exponents" },
-            { title: "Percentage Calculator", slug: "percentage-calculator", categorySlug: "math-calculators", description: "Calculate percentage changes" },
-            { title: "Average Calculator", slug: "average-calculator", categorySlug: "math-calculators", description: "Calculate mean of data sets" },
-            { title: "Standard Deviation", slug: "standard-deviation-calculator", categorySlug: "math-calculators", description: "Measure data spread" },
+            { title: "Exponent Calculator", slug: "exponent-calculator", categorySlug: "math-calculators", description: "Calculate b² for the discriminant" },
+            { title: "Fraction Calculator", slug: "fraction-calculator", categorySlug: "math-calculators", description: "Simplify fractional roots from the formula" },
+            { title: "GCD Calculator", slug: "gcd-calculator", categorySlug: "math-calculators", description: "Simplify radicals and fraction results" },
+            { title: "Standard Deviation", slug: "standard-deviation-calculator", categorySlug: "math-calculators", description: "Analyze data modeled by quadratic functions" },
+            { title: "Percentage Calculator", slug: "percentage-calculator", categorySlug: "math-calculators", description: "Express mathematical relationships as percentages" },
         ],
     },
 
