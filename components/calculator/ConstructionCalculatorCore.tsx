@@ -7055,36 +7055,59 @@ function SquareYardsCalc() {
 }
 
 /* ──────────── 147. TANK VOLUME CALCULATOR ──────────── */
+const TANK_LIQUIDS: { value: string; label: string; lbsPerGal: number }[] = [
+    { value: "water", label: "Water", lbsPerGal: 8.34 },
+    { value: "diesel", label: "Diesel Fuel", lbsPerGal: 7.1 },
+    { value: "gasoline", label: "Gasoline", lbsPerGal: 6.3 },
+    { value: "propane", label: "Propane (liquid)", lbsPerGal: 4.2 },
+    { value: "oil", label: "Heating Oil", lbsPerGal: 7.2 },
+    { value: "empty", label: "Empty (no liquid)", lbsPerGal: 0 },
+];
+
 function TankVolumeCalc() {
-    const [tankShape, setTankShape] = useState("rectangular");
-    const [lengthIn, setLengthIn] = useState(48);
+    const [tankShape, setTankShape] = useState("cylindrical-h");
+    const [lengthIn, setLengthIn] = useState(72);
     const [widthIn, setWidthIn] = useState(24);
-    const [heightIn, setHeightIn] = useState(36);
+    const [heightIn, setHeightIn] = useState(24);
+    const [fillPct, setFillPct] = useState(100);
+    const [liquidType, setLiquidType] = useState("water");
 
     const result = useMemo(() => {
         let cuIn: number;
         if (tankShape === "rectangular") {
             cuIn = lengthIn * widthIn * heightIn;
         } else if (tankShape === "cylindrical-h") {
-            // horizontal cylinder: diameter = widthIn, length = lengthIn
             const r = widthIn / 2;
             cuIn = Math.PI * r * r * lengthIn;
         } else if (tankShape === "cylindrical-v") {
-            // vertical cylinder: diameter = lengthIn, height = heightIn
             const r = lengthIn / 2;
             cuIn = Math.PI * r * r * heightIn;
-        } else {
-            // oval: approximate as ellipse cross-section
+        } else if (tankShape === "oval") {
             const a = widthIn / 2;
             const b = heightIn / 2;
             cuIn = Math.PI * a * b * lengthIn;
+        } else if (tankShape === "capsule") {
+            const r = widthIn / 2;
+            const cylLen = Math.max(lengthIn - widthIn, 0);
+            cuIn = Math.PI * r * r * cylLen + (4 / 3) * Math.PI * r * r * r;
+        } else {
+            // sphere
+            const r = lengthIn / 2;
+            cuIn = (4 / 3) * Math.PI * r * r * r;
         }
         const cuFt = cuIn / 1728;
         const gallons = cuIn / 231;
         const liters = cuIn * 0.016387;
-        const cuYd = cuFt / 27;
-        return { cuIn, cuFt, gallons, liters, cuYd };
-    }, [tankShape, lengthIn, widthIn, heightIn]);
+        const fillFrac = fillPct / 100;
+        const filledGal = gallons * fillFrac;
+        const filledLiters = liters * fillFrac;
+        const liq = TANK_LIQUIDS.find(l => l.value === liquidType);
+        const weightLbs = filledGal * (liq?.lbsPerGal || 0);
+        return { cuIn, cuFt, gallons, liters, filledGal, filledLiters, weightLbs };
+    }, [tankShape, lengthIn, widthIn, heightIn, fillPct, liquidType]);
+
+    const needsWidth = tankShape === "rectangular" || tankShape === "cylindrical-h" || tankShape === "oval" || tankShape === "capsule";
+    const needsHeight = tankShape === "rectangular" || tankShape === "cylindrical-v" || tankShape === "oval";
 
     return (
         <div className="con-calc">
@@ -7095,21 +7118,32 @@ function TankVolumeCalc() {
                     { value: "cylindrical-h", label: "Cylindrical (Horizontal)" },
                     { value: "cylindrical-v", label: "Cylindrical (Vertical)" },
                     { value: "oval", label: "Oval / Elliptical" },
+                    { value: "capsule", label: "Capsule (Cylinder + Hemispheres)" },
+                    { value: "sphere", label: "Sphere" },
                 ]} />
-                <InputField label={tankShape.includes("cylindrical-v") ? "Diameter" : "Length"} value={lengthIn} onChange={setLengthIn} unit="in" min={1} />
-                {(tankShape === "rectangular" || tankShape === "cylindrical-h" || tankShape === "oval") && (
-                    <InputField label={tankShape === "cylindrical-h" ? "Diameter" : "Width"} value={widthIn} onChange={setWidthIn} unit="in" min={1} />
+                <InputField label={tankShape === "cylindrical-v" || tankShape === "sphere" ? "Diameter" : "Length"} value={lengthIn} onChange={setLengthIn} unit="in" min={1} />
+                {needsWidth && (
+                    <InputField label={tankShape === "cylindrical-h" || tankShape === "capsule" ? "Diameter" : "Width"} value={widthIn} onChange={setWidthIn} unit="in" min={1} />
                 )}
-                {(tankShape === "rectangular" || tankShape === "cylindrical-v" || tankShape === "oval") && (
+                {needsHeight && (
                     <InputField label="Height" value={heightIn} onChange={setHeightIn} unit="in" min={1} />
                 )}
+                <InputField label="Fill Level" value={fillPct} onChange={setFillPct} unit="%" min={0} max={100} step={5} />
+                <SelectField label="Liquid Type" value={liquidType} onChange={setLiquidType}
+                    options={TANK_LIQUIDS.map(l => ({ value: l.value, label: l.label }))} />
             </div>
             <div className="con-calc__results">
-                <h4>Results</h4>
+                <h4 className="con-calc__group-label">TOTAL CAPACITY</h4>
                 <ResultRow label="US Gallons" value={fmt(result.gallons, 1)} unit="gal" />
                 <ResultRow label="Liters" value={fmt(result.liters, 1)} unit="L" />
                 <ResultRow label="Cubic Feet" value={fmt(result.cuFt, 2)} unit="cu ft" />
                 <ResultRow label="Cubic Inches" value={fmt(result.cuIn)} unit="cu in" />
+                <h4 className="con-calc__group-label">FILLED VOLUME ({fillPct}%)</h4>
+                <ResultRow label="Filled Gallons" value={fmt(result.filledGal, 1)} unit="gal" />
+                <ResultRow label="Filled Liters" value={fmt(result.filledLiters, 1)} unit="L" />
+                {liquidType !== "empty" && (
+                    <ResultRow label="Liquid Weight" value={fmt(result.weightLbs, 1)} unit="lbs" />
+                )}
             </div>
         </div>
     );

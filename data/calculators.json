@@ -13074,7 +13074,7 @@
     "categorySlug": "construction-calculators",
     "icon": "🛢️",
     "calcType": "tank-volume",
-    "description": "Calculate tank volume for rectangular, cylindrical, and oval tanks. Get gallons, liters, and cubic feet.",
+    "description": "Calculate tank volume for 6 shapes with fill level and liquid weight. Supports cylinder, capsule, sphere, rectangle, and oval tanks.",
     "stars": 5,
     "defaults": {
       "amount": 48,

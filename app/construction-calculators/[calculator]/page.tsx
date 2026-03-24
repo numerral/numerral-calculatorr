@@ -3892,18 +3892,86 @@ Net lawn area: 10,890 − 1,900 = <strong>8,990 sq ft</strong></p>
         ],
     },
     "tank-volume-calculator": {
-        subtitle: "Calculate tank volume for rectangular, cylindrical, and oval tanks. Get capacity in gallons, liters, and cubic feet.",
+        subtitle: "Calculate tank volume for 6 shapes: rectangular, horizontal/vertical cylinder, oval, capsule, sphere. Add fill level and liquid type for filled volume and weight.",
         explanation: {
             heading: "How to Calculate Tank Volume",
             paragraphs: [
-                "Tank volume formulas: Rectangular = L × W × H. Cylindrical = π × r² × H. Oval = π × a × b × L (where a and b are the semi-axes of the elliptical cross-section). Enter dimensions in inches.",
-                "Convert cubic inches to gallons by dividing by 231 (US) or by 277.42 (UK/Imperial). A standard 55-gallon drum is approximately 23\" diameter × 34\" tall. A 275-gallon oil tank is roughly 27\" × 44\" × 60\".",
+                "Select tank shape, enter dimensions in inches, set fill level (0–100%), and choose liquid type. Formulas: rectangular (L×W×H), cylinder (πr²L), oval (πabL), capsule (πr²L + ⁴⁄₃πr³), sphere (⁴⁄₃πr³).",
+                "Results include total capacity and filled volume in gallons and liters, plus liquid weight for water, diesel, gasoline, propane, and heating oil.",
             ],
-            highlight: "Rectangular tank 48\" × 24\" × 36\" = 41,472 cu in = 179.5 gallons = 679.5 liters.",
+            highlight: "24\" diameter × 72\" horizontal cylinder: 32,572 cu in = 141 gal. At 75% fill with water: 105.8 gal = 882 lbs.",
         },
+        contentHTML: `
+<p><strong>Tank volume</strong> is the total internal capacity of a storage tank. Knowing exact volume is essential for <strong>ordering fuel, sizing pumps, calculating chemical dosages, estimating fill time, and determining structural loads</strong>.</p>
+<p>The calculator above supports <strong>6 tank shapes</strong>, calculates <strong>filled volume at any fill level</strong>, and estimates <strong>liquid weight</strong> for 5 common liquids.</p>
+
+<h2>Tank Volume Formulas</h2>
+<table>
+<thead><tr><th>Shape</th><th>Formula</th><th>Variables</th></tr></thead>
+<tbody>
+<tr><td><strong>Rectangular</strong></td><td>V = L × W × H</td><td>L = length, W = width, H = height</td></tr>
+<tr><td><strong>Cylinder (H)</strong></td><td>V = π × r² × L</td><td>r = diameter ÷ 2, L = length</td></tr>
+<tr><td><strong>Cylinder (V)</strong></td><td>V = π × r² × H</td><td>r = diameter ÷ 2, H = height</td></tr>
+<tr><td><strong>Oval</strong></td><td>V = π × a × b × L</td><td>a = width ÷ 2, b = height ÷ 2, L = length</td></tr>
+<tr><td><strong>Capsule</strong></td><td>V = πr²L + ⁴⁄₃πr³</td><td>r = diameter ÷ 2, L = cylinder length</td></tr>
+<tr><td><strong>Sphere</strong></td><td>V = ⁴⁄₃πr³</td><td>r = diameter ÷ 2</td></tr>
+</tbody>
+</table>
+<p><strong>All formulas give volume in cubic inches.</strong> Divide by 231 for US gallons, or multiply by 0.016387 for liters.</p>
+
+<h2>Common Propane Tank Sizes</h2>
+<table>
+<thead><tr><th>Tank Size</th><th>Capacity</th><th>Dimensions (approx)</th><th>Weight (full)</th></tr></thead>
+<tbody>
+<tr><td><strong>20 lb (BBQ)</strong></td><td>4.6 gal</td><td>12" dia × 18" tall</td><td>38 lbs</td></tr>
+<tr><td><strong>30 lb</strong></td><td>7.0 gal</td><td>12" dia × 24" tall</td><td>55 lbs</td></tr>
+<tr><td><strong>40 lb</strong></td><td>9.4 gal</td><td>12" dia × 29" tall</td><td>72 lbs</td></tr>
+<tr><td><strong>100 lb</strong></td><td>23.6 gal</td><td>15" dia × 48" tall</td><td>170 lbs</td></tr>
+<tr><td><strong>120 gal</strong></td><td>96 gal (80% fill)</td><td>30" dia × 52" long</td><td>500 lbs</td></tr>
+<tr><td><strong>250 gal</strong></td><td>200 gal (80% fill)</td><td>30" dia × 92" long</td><td>960 lbs</td></tr>
+<tr><td><strong>500 gal</strong></td><td>400 gal (80% fill)</td><td>37" dia × 120" long</td><td>1,900 lbs</td></tr>
+<tr><td><strong>1,000 gal</strong></td><td>800 gal (80% fill)</td><td>41" dia × 192" long</td><td>3,700 lbs</td></tr>
+</tbody>
+</table>
+<p><strong>Propane tanks are filled to 80% capacity</strong> to allow for thermal expansion. The "gallon" rating is total tank capacity, not usable propane.</p>
+
+<h2>Common Tank Dimensions</h2>
+<table>
+<thead><tr><th>Tank Type</th><th>Dimensions</th><th>Capacity</th></tr></thead>
+<tbody>
+<tr><td><strong>55-gallon drum</strong></td><td>23" dia × 34" tall</td><td>55 gal</td></tr>
+<tr><td><strong>275-gal oil tank</strong></td><td>27" × 44" × 60"</td><td>275 gal</td></tr>
+<tr><td><strong>330-gal IBC tote</strong></td><td>48" × 40" × 46"</td><td>330 gal</td></tr>
+<tr><td><strong>Water heater (40 gal)</strong></td><td>18" dia × 60" tall</td><td>40 gal</td></tr>
+<tr><td><strong>Water heater (50 gal)</strong></td><td>20" dia × 60" tall</td><td>50 gal</td></tr>
+<tr><td><strong>Septic tank (1,000 gal)</strong></td><td>60" × 60" × 96"</td><td>~1,000 gal</td></tr>
+</tbody>
+</table>
+
+<h2>Liquid Weight Reference</h2>
+<table>
+<thead><tr><th>Liquid</th><th>lbs/gallon</th><th>Weight of 100 gal</th></tr></thead>
+<tbody>
+<tr><td><strong>Water</strong></td><td>8.34</td><td>834 lbs</td></tr>
+<tr><td><strong>Diesel fuel</strong></td><td>7.1</td><td>710 lbs</td></tr>
+<tr><td><strong>Gasoline</strong></td><td>6.3</td><td>630 lbs</td></tr>
+<tr><td><strong>Heating oil</strong></td><td>7.2</td><td>720 lbs</td></tr>
+<tr><td><strong>Propane (liquid)</strong></td><td>4.2</td><td>420 lbs</td></tr>
+</tbody>
+</table>
+<p><strong>Structural note:</strong> A 1,000-gallon water tank weighs over 8,300 lbs when full. Always verify floor/foundation capacity before placing large tanks indoors.</p>
+`,
         faq: [
-            { question: "How many gallons in my tank?", answer: "Rectangular: (L × W × H in inches) ÷ 231 = US gallons. Cylindrical: (π × r² × H in inches) ÷ 231 = US gallons. For example, a 24\" diameter × 48\" tall cylinder: 21,715 cu in ÷ 231 = 94 gallons." },
-            { question: "How do I calculate a partially filled tank?", answer: "For a vertical tank: calculate full volume, then multiply by (current fill height ÷ total height). For a horizontal cylinder, the partial volume calculation is more complex — use the measured fill height with a tank chart for your specific diameter." },
+            { question: "How many gallons in my tank?", answer: "Measure inside dimensions in inches. Rectangular: (L × W × H) ÷ 231. Cylinder: (π × r² × L) ÷ 231. Example: 24\" dia × 72\" cylinder: π × 12² × 72 ÷ 231 = 141 gallons. For oval tanks: (π × a × b × L) ÷ 231." },
+            { question: "How do I calculate a partially filled tank?", answer: "For vertical tanks: total volume × (fill height ÷ total height). For horizontal cylinders, the calculation is more complex — use the calculator's fill level slider for accurate results. Propane tanks are typically filled to 80% for thermal expansion safety." },
+            { question: "How much does a full water tank weigh?", answer: "Water weighs 8.34 lbs/gallon. A 55-gallon drum: 459 lbs water + 23 lbs drum = ~482 lbs total. A 275-gallon oil tank with water: 2,294 lbs. A 1,000-gallon tank: 8,340 lbs of water alone. Always check floor load capacity." },
+            { question: "What size propane tank do I need?", answer: "BBQ grill: 20 lb (4.6 gal). Fireplace/space heater: 100 lb (23.6 gal). Whole-house heating: 500 gal (400 usable at 80% fill) for moderate use, 1,000 gal for cold climates or large homes. Tanks are refilled at 20–30% remaining." },
+            { question: "How do I measure tank dimensions?", answer: "Measure inside dimensions (not outside) in inches for accuracy. For cylinders, measure the inside diameter. For rectangular tanks, measure inside length, width, and height. If you can only measure outside, subtract twice the wall thickness (typically 0.1\"–0.25\" for steel)." },
+            { question: "What is the difference between US and Imperial gallons?", answer: "1 US gallon = 231 cubic inches = 3.785 liters. 1 Imperial gallon = 277.42 cubic inches = 4.546 liters. Imperial gallons are 20% larger. The US uses US gallons exclusively. The calculator outputs US gallons." },
+            { question: "How fast will my tank fill?", answer: "Fill time = tank volume (gal) ÷ flow rate (GPM). A 275-gallon oil tank at 5 GPM: 275 ÷ 5 = 55 minutes. A 1,000-gallon water tank at 10 GPM: 100 minutes. Add 10% for hose friction and elevation." },
+            { question: "How do I convert cubic inches to gallons?", answer: "Divide cubic inches by 231 for US gallons. Example: 32,572 cu in ÷ 231 = 141 gallons. For liters: multiply cubic inches by 0.016387. For cubic feet: divide cubic inches by 1,728." },
+            { question: "What is a capsule tank?", answer: "A capsule (also called stadium or oblong) tank is a cylinder with hemispherical ends. Volume = cylinder portion (πr²L) + sphere portion (⁴⁄₃πr³). Common for pressurized tanks (propane, compressed gas) because the curved ends distribute pressure evenly." },
+            { question: "How much does heating oil weigh?", answer: "Heating oil (No. 2 fuel oil) weighs 7.2 lbs/gallon. A full 275-gallon oil tank contains 275 × 7.2 = 1,980 lbs of oil, plus the tank itself (~250 lbs for steel). Total: ~2,230 lbs. This is important for floor/basement support calculations." },
         ],
     },
     "cfm-calculator": {
