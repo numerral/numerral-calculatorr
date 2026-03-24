@@ -12828,7 +12828,7 @@
     "categorySlug": "construction-calculators",
     "icon": "🗺️",
     "calcType": "scale-conversion",
-    "description": "Convert between scale model and actual dimensions. Works for blueprints, maps, and architectural drawings.",
+    "description": "Convert scale to actual, actual to scale, or find scale factor. 12+ presets for architectural, engineering, and model scales plus custom ratio.",
     "stars": 5,
     "defaults": {
       "amount": 1,

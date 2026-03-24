@@ -6850,40 +6850,98 @@ function InchFractionCalc() {
 }
 
 /* ──────────── 141. SCALE CONVERSION CALCULATOR ──────────── */
+const SCALE_PRESETS: { value: string; label: string }[] = [
+    { value: "12", label: '1" = 1\' (1:12) — Dollhouse' },
+    { value: "18", label: "1:18 — Large model cars" },
+    { value: "24", label: '1/2" = 1\' (1:24) — Models' },
+    { value: "43", label: "1:43 — O Gauge trains" },
+    { value: "48", label: '1/4" = 1\' (1:48) — Residential' },
+    { value: "64", label: "1:64 — Hot Wheels / S Gauge" },
+    { value: "87", label: "1:87 — HO Scale trains" },
+    { value: "96", label: '1/8" = 1\' (1:96) — Small residential' },
+    { value: "160", label: "1:160 — N Scale trains" },
+    { value: "192", label: '1/16" = 1\' (1:192) — Site plans' },
+    { value: "240", label: '1" = 20\' (1:240) — Engineering' },
+    { value: "600", label: '1" = 50\' (1:600) — Civil' },
+    { value: "custom", label: "Custom ratio..." },
+];
+
 function ScaleConversionCalc() {
-    const [scaleMeasurement, setScaleMeasurement] = useState(6);
-    const [scaleRatio, setScaleRatio] = useState("48");
+    const [mode, setMode] = useState("scale-to-actual");
+    const [measurement, setMeasurement] = useState(6);
+    const [scalePreset, setScalePreset] = useState("48");
+    const [customRatio, setCustomRatio] = useState(48);
+    const [actualMeasurement, setActualMeasurement] = useState(24);
+    const [actualUnit, setActualUnit] = useState("feet");
+
+    const ratio = scalePreset === "custom" ? customRatio : Number(scalePreset);
 
     const result = useMemo(() => {
-        const ratio = Number(scaleRatio);
-        const actualIn = scaleMeasurement * ratio;
-        const actualFt = actualIn / 12;
-        const actualM = actualFt * 0.3048;
-        return { actualIn, actualFt, actualM, ratio };
-    }, [scaleMeasurement, scaleRatio]);
+        if (mode === "scale-to-actual") {
+            const actualIn = measurement * ratio;
+            const actualFt = actualIn / 12;
+            const actualM = actualFt * 0.3048;
+            return { actualIn, actualFt, actualM, scaleIn: measurement, ratio, scaleFraction: `1:${ratio}` };
+        } else if (mode === "actual-to-scale") {
+            let actualIn: number;
+            if (actualUnit === "feet") actualIn = actualMeasurement * 12;
+            else if (actualUnit === "meters") actualIn = actualMeasurement * 39.3701;
+            else actualIn = actualMeasurement;
+            const scaleIn = actualIn / ratio;
+            return { actualIn, actualFt: actualIn / 12, actualM: actualIn * 0.0254, scaleIn, ratio, scaleFraction: `1:${ratio}` };
+        } else {
+            // find scale factor
+            let actualIn: number;
+            if (actualUnit === "feet") actualIn = actualMeasurement * 12;
+            else if (actualUnit === "meters") actualIn = actualMeasurement * 39.3701;
+            else actualIn = actualMeasurement;
+            const foundRatio = actualIn / measurement;
+            return { actualIn, actualFt: actualIn / 12, actualM: actualIn * 0.0254, scaleIn: measurement, ratio: foundRatio, scaleFraction: `1:${Math.round(foundRatio * 100) / 100}` };
+        }
+    }, [mode, measurement, scalePreset, customRatio, actualMeasurement, actualUnit, ratio]);
 
     return (
         <div className="con-calc">
             <h3 className="con-calc__title">🗺️ Scale Conversion Calculator</h3>
             <div className="con-calc__inputs">
-                <InputField label="Scale Measurement" value={scaleMeasurement} onChange={setScaleMeasurement} unit="in" min={0.01} step={0.01} />
-                <SelectField label="Scale Ratio" value={scaleRatio} onChange={setScaleRatio} options={[
-                    { value: "12", label: '1" = 1\' (1:12)' },
-                    { value: "24", label: '1/2" = 1\' (1:24)' },
-                    { value: "48", label: '1/4" = 1\' (1:48)' },
-                    { value: "96", label: '1/8" = 1\' (1:96)' },
-                    { value: "192", label: '1/16" = 1\' (1:192)' },
-                    { value: "120", label: '1" = 10\' (1:120)' },
-                    { value: "240", label: '1" = 20\' (1:240)' },
-                    { value: "600", label: '1" = 50\' (1:600)' },
+                <SelectField label="Mode" value={mode} onChange={setMode} options={[
+                    { value: "scale-to-actual", label: "Scale → Actual Size" },
+                    { value: "actual-to-scale", label: "Actual → Scale Size" },
+                    { value: "find-factor", label: "Find Scale Factor" },
                 ]} />
+                {mode !== "find-factor" && (
+                    <SelectField label="Scale Ratio" value={scalePreset} onChange={setScalePreset} options={SCALE_PRESETS} />
+                )}
+                {scalePreset === "custom" && mode !== "find-factor" && (
+                    <InputField label="Custom Ratio (1:X)" value={customRatio} onChange={setCustomRatio} unit="X" min={1} step={1} />
+                )}
+                {(mode === "scale-to-actual" || mode === "find-factor") && (
+                    <InputField label="Scale Measurement" value={measurement} onChange={setMeasurement} unit="in" min={0.01} step={0.01} />
+                )}
+                {(mode === "actual-to-scale" || mode === "find-factor") && (
+                    <>
+                        <InputField label="Actual Measurement" value={actualMeasurement} onChange={setActualMeasurement} unit={actualUnit === "meters" ? "m" : actualUnit === "feet" ? "ft" : "in"} min={0.01} step={0.01} />
+                        <SelectField label="Actual Unit" value={actualUnit} onChange={setActualUnit} options={[
+                            { value: "inches", label: "Inches" },
+                            { value: "feet", label: "Feet" },
+                            { value: "meters", label: "Meters" },
+                        ]} />
+                    </>
+                )}
             </div>
             <div className="con-calc__results">
-                <h4>Results</h4>
-                <ResultRow label="Actual (inches)" value={fmt(result.actualIn, 1)} unit="in" />
-                <ResultRow label="Actual (feet)" value={fmt(result.actualFt, 2)} unit="ft" />
-                <ResultRow label="Actual (meters)" value={fmt(result.actualM, 2)} unit="m" />
-                <ResultRow label="Scale Factor" value={`1 : ${fmtInt(result.ratio)}`} />
+                <h4 className="con-calc__group-label">RESULTS</h4>
+                {mode !== "actual-to-scale" && (
+                    <>
+                        <ResultRow label="Actual (inches)" value={fmt(result.actualIn, 2)} unit="in" />
+                        <ResultRow label="Actual (feet)" value={fmt(result.actualFt, 2)} unit="ft" />
+                        <ResultRow label="Actual (meters)" value={fmt(result.actualM, 3)} unit="m" />
+                    </>
+                )}
+                {mode === "actual-to-scale" && (
+                    <ResultRow label="Scale Drawing Size" value={fmt(result.scaleIn, 3)} unit="in" />
+                )}
+                <ResultRow label="Scale Factor" value={result.scaleFraction} />
             </div>
         </div>
     );

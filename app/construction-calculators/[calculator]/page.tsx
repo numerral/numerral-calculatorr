@@ -3802,18 +3802,81 @@ Net lawn area: 10,890 − 1,900 = <strong>8,990 sq ft</strong></p>
         ],
     },
     "scale-conversion-calculator": {
-        subtitle: "Convert scale model measurements to actual dimensions. Works for architectural blueprints, maps, and model building.",
+        subtitle: "Convert scale to actual size, actual to scale, or find the scale factor. 12 preset architectural, engineering, and model scales plus custom ratio.",
         explanation: {
             heading: "How to Use Scale Conversions",
             paragraphs: [
-                "Architectural and engineering drawings use scale ratios to represent real dimensions on paper. Common scales: 1/4\" = 1' (1:48), 1/8\" = 1' (1:96), 1\" = 1' (1:12). To find the actual dimension, multiply the measured drawing dimension by the scale ratio.",
-                "For example, at 1/4\" = 1' scale, a wall that measures 3\" on the blueprint is actually 3 × 48 = 144 inches = 12 feet in reality.",
+                "Three modes: Scale → Actual Size (measure a drawing, get real dimensions), Actual → Scale Size (know real size, find drawing measurement), Find Scale Factor (compare drawing to reality). 12 preset ratios from 1:12 to 1:600 plus custom.",
+                "Architectural scale: multiply drawing inches by ratio to get actual inches, then ÷ 12 for feet. Example: 1/4\" = 1' (1:48) — a 6\" line on paper = 6 × 48 = 288\" = 24 feet.",
             ],
-            highlight: "Blueprint at 1/4\" = 1' scale: a 6\" measurement on paper = 6 × 48 = 288\" = 24 feet actual.",
+            highlight: "At 1/4\" = 1' scale (1:48): a 6\" drawing measurement = 24 feet actual. A 30-foot wall = 7.5\" on the blueprint.",
         },
+        contentHTML: `
+<p><strong>Scale conversion</strong> translates measurements between <strong>drawings, blueprints, models, and real-world dimensions</strong>. The calculator supports 3 modes and 12 preset scales used in US <strong>architecture, engineering, and model building</strong>.</p>
+
+<h2>Three Calculation Modes</h2>
+<ul>
+<li><strong>Scale → Actual Size:</strong> Enter the measurement from a drawing or model, select the scale ratio, and get the real-world dimension in inches, feet, and meters.</li>
+<li><strong>Actual → Scale Size:</strong> Enter the real dimension, select scale ratio, and find the drawing/model measurement in inches.</li>
+<li><strong>Find Scale Factor:</strong> Enter both the scale measurement and actual measurement to determine the scale ratio (1:X).</li>
+</ul>
+
+<h2>Architectural Scales</h2>
+<p>Used on US residential and commercial blueprints. The fraction of an inch on the drawing equals one foot in reality.</p>
+<table>
+<thead><tr><th>Scale Notation</th><th>Ratio</th><th>1" on Drawing =</th><th>Common Use</th></tr></thead>
+<tbody>
+<tr><td><strong>1" = 1'</strong></td><td>1:12</td><td>1 foot</td><td>Detail drawings, millwork</td></tr>
+<tr><td><strong>1/2" = 1'</strong></td><td>1:24</td><td>2 feet</td><td>Interior details, cabinets</td></tr>
+<tr><td><strong>1/4" = 1'</strong></td><td>1:48</td><td>4 feet</td><td>Residential floor plans</td></tr>
+<tr><td><strong>1/8" = 1'</strong></td><td>1:96</td><td>8 feet</td><td>Small residential, elevations</td></tr>
+<tr><td><strong>1/16" = 1'</strong></td><td>1:192</td><td>16 feet</td><td>Site plans, large buildings</td></tr>
+</tbody>
+</table>
+
+<h2>Engineering Scales</h2>
+<p>Used on US civil and site engineering drawings. One inch on the drawing equals a specific number of feet.</p>
+<table>
+<thead><tr><th>Scale Notation</th><th>Ratio</th><th>1" on Drawing =</th><th>Common Use</th></tr></thead>
+<tbody>
+<tr><td><strong>1" = 10'</strong></td><td>1:120</td><td>10 feet</td><td>Plot plans, details</td></tr>
+<tr><td><strong>1" = 20'</strong></td><td>1:240</td><td>20 feet</td><td>Site plans, grading</td></tr>
+<tr><td><strong>1" = 30'</strong></td><td>1:360</td><td>30 feet</td><td>Road profiles</td></tr>
+<tr><td><strong>1" = 40'</strong></td><td>1:480</td><td>40 feet</td><td>Subdivision plans</td></tr>
+<tr><td><strong>1" = 50'</strong></td><td>1:600</td><td>50 feet</td><td>City planning, civil</td></tr>
+</tbody>
+</table>
+
+<h2>Common Model Scales</h2>
+<table>
+<thead><tr><th>Scale</th><th>Ratio</th><th>1" Model =</th><th>Common Use</th></tr></thead>
+<tbody>
+<tr><td><strong>1:12</strong></td><td>1:12</td><td>1 foot</td><td>Dollhouses, large models</td></tr>
+<tr><td><strong>1:18</strong></td><td>1:18</td><td>1.5 feet</td><td>Large diecast cars</td></tr>
+<tr><td><strong>1:24</strong></td><td>1:24</td><td>2 feet</td><td>Model cars, aircraft</td></tr>
+<tr><td><strong>1:43</strong></td><td>1:43</td><td>3.58 feet</td><td>O Gauge trains, diecast</td></tr>
+<tr><td><strong>1:64</strong></td><td>1:64</td><td>5.33 feet</td><td>Hot Wheels, S Gauge</td></tr>
+<tr><td><strong>1:87</strong></td><td>1:87</td><td>7.25 feet</td><td>HO Scale (most popular)</td></tr>
+<tr><td><strong>1:160</strong></td><td>1:160</td><td>13.33 feet</td><td>N Scale trains</td></tr>
+<tr><td><strong>1:220</strong></td><td>1:220</td><td>18.33 feet</td><td>Z Scale trains</td></tr>
+</tbody>
+</table>
+
+<h2>How to Find the Scale Factor</h2>
+<p><strong>Scale factor = actual size ÷ model size</strong></p>
+<p>Measure both the model/drawing and the real object in the same unit. Divide actual by model. Example: a doorway is 80" tall in reality and 1.67" on the model. 80 ÷ 1.67 = <strong>1:48</strong> (which is 1/4" = 1' architectural scale).</p>
+`,
         faq: [
-            { question: "What does 1/4 inch scale mean?", answer: "1/4\" = 1' means every 1/4 inch on the drawing represents 1 foot in real life. The ratio is 1:48. A 2-inch line on the blueprint = 8 feet actual. This is the most common residential architectural scale." },
-            { question: "How do I read a blueprint scale?", answer: "Use an architect's scale ruler, or measure with a regular ruler and multiply. At 1/4\" = 1' scale, multiply inches by 4 to get feet. At 1/8\" = 1' scale, multiply inches by 8 to get feet." },
+            { question: "What does 1/4 inch scale mean?", answer: "1/4\" = 1' means every 1/4 inch on the drawing represents 1 foot in real life. The ratio is 1:48. A 2\" line on the blueprint = 8 feet actual. This is the most common residential architectural scale in the US." },
+            { question: "How do I read a blueprint scale?", answer: "Use an architect's scale ruler, or measure with a regular ruler and multiply. At 1/4\" = 1' (1:48): multiply drawing inches by 48 for actual inches, or by 4 for actual feet. At 1/8\" = 1': multiply inches by 8 for feet." },
+            { question: "Is the scale factor always greater than 1?", answer: "No. Scale factor > 1 means the model is smaller than reality (most models, blueprints). Scale factor < 1 means the model is larger than reality (microscope images, circuit board diagrams). Scale factor = 1 means full size (1:1)." },
+            { question: "How do I calculate scale from a drawing?", answer: "Measure a known dimension on the drawing and compare to the real object. Scale factor = actual size ÷ drawing size. Example: a wall measures 3\" on the drawing and is 12 feet (144\") in reality. Scale = 144 ÷ 3 = 1:48." },
+            { question: "What scale are Hot Wheels cars?", answer: "Hot Wheels are 1:64 scale. A real car ~16 feet long = 3\" Hot Wheels model. This is also the scale used for S Gauge model trains. Matchbox cars are also approximately 1:64." },
+            { question: "What is HO Scale?", answer: "HO (Half O) scale is 1:87 — the most popular model railroad scale in the US. 1 inch represents 87 inches (7.25 feet). A 50-foot boxcar is about 6.9\" long in HO. Track gauge: 16.5mm. This scale offers a good balance of detail and space." },
+            { question: "How do I convert architectural scale to engineering scale?", answer: "Architectural uses fractions (1/4\" = 1'). Engineering uses whole numbers (1\" = 20'). To convert: express both as 1:X ratios. 1/4\" = 1' → 1:48. 1\" = 20' → 1:240. Then compare or convert between them." },
+            { question: "What scale should I use for a model?", answer: "Depends on space and detail: 1:12 for large display models. 1:24 or 1:43 for cars. 1:87 (HO) or 1:160 (N) for model railroads. 1:48 for military models and aircraft. Consider available display space — larger scales need more room." },
+            { question: "How do I scale up a drawing?", answer: "Use Actual → Scale mode in reverse. If you have a 1:48 drawing and want it at 1:24 (twice as large), multiply all drawing dimensions by 2. To go from 1:48 to 1:12 (4× larger), multiply by 4. The multiplier is old ratio ÷ new ratio." },
+            { question: "What is a scale factor of 1:1?", answer: "1:1 means full size — the drawing/model is the same size as the real object. This is used for full-size templates (e.g., bracket patterns, stencils), actual-size medical imaging, and some architectural detail drawings." },
         ],
     },
     "square-feet-to-cubic-feet-calculator": {
