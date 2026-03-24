@@ -13033,7 +13033,7 @@
     "categorySlug": "construction-calculators",
     "icon": "📐",
     "calcType": "square-yards",
-    "description": "Calculate area in square yards. Convert between square yards, square feet, and square meters. Used for carpet and fabric.",
+    "description": "Calculate square yards for rectangles, circles, and triangles. Add cost per sq yd and waste factor. Convert sq ft, sq m, and acres.",
     "stars": 5,
     "defaults": {
       "amount": 12,

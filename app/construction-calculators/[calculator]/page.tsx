@@ -3877,18 +3877,91 @@ Net lawn area: 10,890 − 1,900 = <strong>8,990 sq ft</strong></p>
         ],
     },
     "square-yards-calculator": {
-        subtitle: "Calculate area in square yards from dimensions. Convert between square yards, square feet, and square meters.",
+        subtitle: "Calculate square yards for rectangles, circles, and triangles. Enter in feet, inches, yards, or meters. Add cost per sq yd and waste factor for material estimates.",
         explanation: {
             heading: "How to Calculate Square Yards",
             paragraphs: [
-                "Square yards = (length in feet × width in feet) ÷ 9. One square yard = 9 square feet = 0.8361 square meters. Square yards are commonly used for carpet, fabric, and flooring pricing.",
-                "Quick conversion: divide square feet by 9 to get square yards. For example, a 12 × 10 ft room = 120 sq ft ÷ 9 = 13.33 sq yd of carpet needed.",
+                "Square yards = (length ft × width ft) ÷ 9. Select shape (rectangle, circle, triangle), enter dimensions in feet/inches/yards/meters. Add cost per sq yd and waste factor (0–30%) for accurate material budgets.",
+                "1 sq yd = 9 sq ft = 0.836 m². Used for carpet, flooring, fabric, sod, and landscaping. Results include sq yd, sq ft, m², and total cost with waste.",
             ],
-            highlight: "12 × 10 ft room = 120 sq ft = 13.33 sq yd = 11.15 m². Carpet at $25/sq yd = $333.",
+            highlight: "12 × 10 ft room = 120 sq ft = 13.33 sq yd. At $25/sq yd + 10% waste: 14.67 sq yd × $25 = $367 total.",
         },
+        contentHTML: `
+<p><strong>Square yards</strong> measure area and are commonly used in the US for <strong>carpet, flooring, fabric, sod, and landscaping</strong>. One square yard equals a 3-foot × 3-foot area (9 square feet).</p>
+<p>The calculator above supports <strong>3 shapes</strong> (rectangle, circle, triangle), accepts <strong>4 input units</strong> (feet, inches, yards, meters), and includes <strong>cost estimation with waste factor</strong>.</p>
+
+<h2>Square Yardage Formulas</h2>
+<table>
+<thead><tr><th>Shape</th><th>Formula (ft)</th><th>To Sq Yd</th></tr></thead>
+<tbody>
+<tr><td><strong>Rectangle</strong></td><td>L × W</td><td>÷ 9</td></tr>
+<tr><td><strong>Circle</strong></td><td>π × r²</td><td>÷ 9</td></tr>
+<tr><td><strong>Triangle</strong></td><td>½ × base × height</td><td>÷ 9</td></tr>
+</tbody>
+</table>
+<p><strong>All measurements must be in the same unit.</strong> The calculator converts automatically. To convert manually: divide sq ft by 9 to get sq yd.</p>
+
+<h2>How to Convert Square Feet to Square Yards</h2>
+<p><strong>Square yards = square feet ÷ 9</strong></p>
+<p>This is the most common conversion. Since 1 yard = 3 feet, the area conversion factor is 3² = 9.</p>
+<p><strong>Examples:</strong></p>
+<ul>
+<li>100 sq ft ÷ 9 = <strong>11.11 sq yd</strong></li>
+<li>144 sq ft (12×12 room) ÷ 9 = <strong>16 sq yd</strong></li>
+<li>200 sq ft ÷ 9 = <strong>22.22 sq yd</strong></li>
+<li>500 sq ft ÷ 9 = <strong>55.56 sq yd</strong></li>
+<li>1,000 sq ft ÷ 9 = <strong>111.11 sq yd</strong></li>
+</ul>
+
+<h2>Carpet & Flooring Cost per Square Yard</h2>
+<table>
+<thead><tr><th>Material</th><th>Cost/sq yd (installed)</th><th>Cost for 200 sq ft room</th></tr></thead>
+<tbody>
+<tr><td><strong>Builder-grade carpet</strong></td><td>$15–$25</td><td>$333–$556</td></tr>
+<tr><td><strong>Mid-range carpet</strong></td><td>$25–$45</td><td>$556–$1,000</td></tr>
+<tr><td><strong>Premium carpet</strong></td><td>$45–$80</td><td>$1,000–$1,778</td></tr>
+<tr><td><strong>Indoor/outdoor carpet</strong></td><td>$10–$20</td><td>$222–$444</td></tr>
+<tr><td><strong>Carpet padding</strong></td><td>$3–$8</td><td>$67–$178</td></tr>
+</tbody>
+</table>
+<p><strong>Add 10–15% waste</strong> for seams, pattern matching, and closets. Stairways require additional yardage — typically 1 sq yd per 3 steps.</p>
+
+<h2>Area Conversion Reference</h2>
+<table>
+<thead><tr><th>From</th><th>To Sq Yards</th><th>To Sq Feet</th><th>To Sq Meters</th></tr></thead>
+<tbody>
+<tr><td><strong>1 sq yd</strong></td><td>1</td><td>9</td><td>0.8361</td></tr>
+<tr><td><strong>1 sq ft</strong></td><td>0.1111</td><td>1</td><td>0.0929</td></tr>
+<tr><td><strong>1 sq m</strong></td><td>1.196</td><td>10.764</td><td>1</td></tr>
+<tr><td><strong>1 sq in</strong></td><td>0.000772</td><td>0.00694</td><td>0.000645</td></tr>
+<tr><td><strong>1 acre</strong></td><td>4,840</td><td>43,560</td><td>4,047</td></tr>
+</tbody>
+</table>
+
+<h2>Common Room Sizes</h2>
+<table>
+<thead><tr><th>Room</th><th>Typical Size</th><th>Sq Ft</th><th>Sq Yd</th></tr></thead>
+<tbody>
+<tr><td><strong>Bedroom</strong></td><td>10 × 12 ft</td><td>120</td><td>13.3</td></tr>
+<tr><td><strong>Living Room</strong></td><td>15 × 20 ft</td><td>300</td><td>33.3</td></tr>
+<tr><td><strong>Master Bedroom</strong></td><td>14 × 16 ft</td><td>224</td><td>24.9</td></tr>
+<tr><td><strong>Office</strong></td><td>10 × 10 ft</td><td>100</td><td>11.1</td></tr>
+<tr><td><strong>Hallway</strong></td><td>3 × 20 ft</td><td>60</td><td>6.7</td></tr>
+<tr><td><strong>Stairway (13 steps)</strong></td><td>—</td><td>~36</td><td>~4.0</td></tr>
+</tbody>
+</table>
+`,
         faq: [
-            { question: "How many square feet in a square yard?", answer: "9 square feet = 1 square yard (3 ft × 3 ft). To convert sq ft to sq yd, divide by 9." },
-            { question: "Why is carpet sold in square yards?", answer: "Carpet rolls are typically 12 feet (4 yards) wide, making square yards a natural measurement. Some retailers now list prices per square foot, but the rolls are still manufactured in standard yard widths." },
+            { question: "How many square feet in a square yard?", answer: "9 square feet = 1 square yard (3 ft × 3 ft = 9 sq ft). To convert sq ft to sq yd, divide by 9. To convert sq yd to sq ft, multiply by 9. Example: 200 sq ft ÷ 9 = 22.22 sq yd." },
+            { question: "Why is carpet sold in square yards?", answer: "Carpet rolls are manufactured in standard widths of 12 feet (4 yards) or 15 feet (5 yards). Square yards became the standard pricing unit because it aligns with these widths. Some retailers now list per sq ft pricing, but multiply by 9 to compare with sq yd prices." },
+            { question: "How many square yards is 12 feet by 12 feet?", answer: "12 × 12 = 144 sq ft ÷ 9 = 16 square yards. This is a common room size. At $25/sq yd installed, carpet would cost about $400 (plus 10% waste = $440)." },
+            { question: "How much carpet do I need with waste?", answer: "Calculate room area in sq yd, then add 10–15% for waste. A 12 × 15 ft room: 180 sq ft ÷ 9 = 20 sq yd. With 10% waste: 20 × 1.10 = 22 sq yd to order. Pattern carpets may need 15–20% extra for matching." },
+            { question: "What is the difference between square meters and square yards?", answer: "1 sq m = 1.196 sq yd (square meters are ~20% smaller). 1 sq yd = 0.836 sq m. The US uses sq yd for carpet/flooring; most other countries use sq m. Multiply sq m by 1.196 to convert to sq yd." },
+            { question: "How do I calculate square yards for a circular area?", answer: "Area = π × r² (in sq ft) ÷ 9. Example: 10 ft radius circle: π × 10² = 314.16 sq ft ÷ 9 = 34.9 sq yd. For the diameter, divide by 2 first. This is useful for round rugs, gazebos, and garden beds." },
+            { question: "How much does carpet installation cost?", answer: "Builder-grade: $15–$25/sq yd installed. Mid-range: $25–$45/sq yd. Premium/luxury: $45–$80/sq yd. Typical 200 sq ft bedroom (22.2 sq yd): $550–$1,000 for mid-range carpet + pad + installation. Removal of old carpet: add $1–$2/sq yd." },
+            { question: "How do I measure a room for carpet?", answer: "Measure length and width at the widest points, including closets and alcoves. Round up to the nearest half-foot. For L-shaped rooms, break into two rectangles and add. Always include doorways (carpet extends to the center of the doorway). Add 10% waste." },
+            { question: "What is measured in square yards?", answer: "Carpet, area rugs, sod/turf, fabric/textiles, concrete work, and roofing are commonly measured in sq yd in the US. Land is measured in acres (1 acre = 4,840 sq yd). Construction materials are often priced per sq yd." },
+            { question: "How many square yards of sod do I need?", answer: "Measure lawn area in sq ft, divide by 9. A 50 × 30 ft lawn: 1,500 sq ft ÷ 9 = 167 sq yd. Add 5–10% for cutting waste. Sod costs $2–$8/sq yd ($0.22–$0.89/sq ft) depending on grass type. Bermuda: $2–$4/sq yd. Zoysia: $4–$8/sq yd." },
         ],
     },
     "tank-volume-calculator": {

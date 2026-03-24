@@ -7018,37 +7018,75 @@ function SquareMetersCalc() {
 
 /* ──────────── 146. SQUARE YARDS CALCULATOR ──────────── */
 function SquareYardsCalc() {
+    const [shape, setShape] = useState("rectangle");
     const [length, setLength] = useState(12);
     const [width, setWidth] = useState(10);
     const [inputUnit, setInputUnit] = useState("feet");
+    const [costPerSqYd, setCostPerSqYd] = useState(25);
+    const [wastePct, setWastePct] = useState(10);
+
+    const toFeet = (v: number) => {
+        if (inputUnit === "yards") return v * 3;
+        if (inputUnit === "meters") return v * 3.28084;
+        if (inputUnit === "inches") return v / 12;
+        return v;
+    };
+    const unitLabel = inputUnit === "meters" ? "m" : inputUnit === "yards" ? "yd" : inputUnit === "inches" ? "in" : "ft";
 
     const result = useMemo(() => {
-        let lengthFt = length, widthFt = width;
-        if (inputUnit === "yards") { lengthFt = length * 3; widthFt = width * 3; }
-        else if (inputUnit === "meters") { lengthFt = length * 3.28084; widthFt = width * 3.28084; }
-        const sqFt = lengthFt * widthFt;
+        let sqFt: number;
+        if (shape === "rectangle") {
+            sqFt = toFeet(length) * toFeet(width);
+        } else if (shape === "circle") {
+            const r = toFeet(length);
+            sqFt = Math.PI * r * r;
+        } else if (shape === "triangle") {
+            sqFt = 0.5 * toFeet(length) * toFeet(width);
+        } else {
+            // border: outer - inner
+            const outerSqFt = toFeet(length) * toFeet(width);
+            sqFt = outerSqFt;
+        }
         const sqYd = sqFt / 9;
         const sqM = sqFt * 0.092903;
-        return { sqFt, sqYd, sqM };
-    }, [length, width, inputUnit]);
+        const wasteMultiplier = 1 + wastePct / 100;
+        const sqYdWithWaste = sqYd * wasteMultiplier;
+        const totalCost = sqYdWithWaste * costPerSqYd;
+        const acres = sqFt / 43560;
+        return { sqFt, sqYd, sqM, sqYdWithWaste, totalCost, acres };
+    }, [shape, length, width, inputUnit, costPerSqYd, wastePct]);
 
     return (
         <div className="con-calc">
             <h3 className="con-calc__title">📐 Square Yards Calculator</h3>
             <div className="con-calc__inputs">
+                <SelectField label="Area Shape" value={shape} onChange={setShape} options={[
+                    { value: "rectangle", label: "Rectangle / Square" },
+                    { value: "circle", label: "Circle (enter radius)" },
+                    { value: "triangle", label: "Triangle (base × height)" },
+                ]} />
                 <SelectField label="Input Unit" value={inputUnit} onChange={setInputUnit} options={[
                     { value: "feet", label: "Feet" },
+                    { value: "inches", label: "Inches" },
                     { value: "yards", label: "Yards" },
                     { value: "meters", label: "Meters" },
                 ]} />
-                <InputField label="Length" value={length} onChange={setLength} unit={inputUnit === "meters" ? "m" : inputUnit === "yards" ? "yd" : "ft"} min={0.1} step={0.1} />
-                <InputField label="Width" value={width} onChange={setWidth} unit={inputUnit === "meters" ? "m" : inputUnit === "yards" ? "yd" : "ft"} min={0.1} step={0.1} />
+                <InputField label={shape === "circle" ? "Radius" : shape === "triangle" ? "Base" : "Length"} value={length} onChange={setLength} unit={unitLabel} min={0.1} step={0.1} />
+                {shape !== "circle" && (
+                    <InputField label={shape === "triangle" ? "Height" : "Width"} value={width} onChange={setWidth} unit={unitLabel} min={0.1} step={0.1} />
+                )}
+                <InputField label="Cost per Sq Yd" value={costPerSqYd} onChange={setCostPerSqYd} unit="$/sq yd" min={0} step={1} />
+                <InputField label="Waste Factor" value={wastePct} onChange={setWastePct} unit="%" min={0} max={30} step={5} />
             </div>
             <div className="con-calc__results">
-                <h4>Results</h4>
+                <h4 className="con-calc__group-label">AREA</h4>
                 <ResultRow label="Square Yards" value={fmt(result.sqYd, 2)} unit="sq yd" />
                 <ResultRow label="Square Feet" value={fmt(result.sqFt, 2)} unit="sq ft" />
                 <ResultRow label="Square Meters" value={fmt(result.sqM, 2)} unit="m²" />
+                {result.sqFt >= 10000 && <ResultRow label="Acres" value={fmt(result.acres, 3)} unit="acres" />}
+                <h4 className="con-calc__group-label">COST ESTIMATE</h4>
+                <ResultRow label={`With ${wastePct}% Waste`} value={fmt(result.sqYdWithWaste, 2)} unit="sq yd" />
+                <ResultRow label="Total Cost" value={`$${fmt(result.totalCost, 2)}`} />
             </div>
         </div>
     );
