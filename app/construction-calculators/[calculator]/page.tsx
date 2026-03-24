@@ -3787,18 +3787,82 @@ Net lawn area: 10,890 − 1,900 = <strong>8,990 sq ft</strong></p>
         ],
     },
     "inch-fraction-calculator": {
-        subtitle: "Convert decimal inches to fractions and fractions to decimals. Find the nearest standard tape measure fraction.",
+        subtitle: "Convert decimal inches to fractions or fractions to decimal. Choose 1/8 to 1/64 precision. See mm, cm, and feet + inches equivalents.",
         explanation: {
             heading: "Decimal to Fraction Inch Conversion",
             paragraphs: [
-                "Tape measures and construction plans use fractions (1/2\", 3/8\", 5/16\"). This calculator converts any decimal measurement to the nearest standard fraction at your chosen precision (1/8, 1/16, 1/32, or 1/64 inch).",
-                "For example, 3.375\" = 3 3/8\". The calculator also shows millimeter and centimeter equivalents, making it useful for converting between imperial and metric measurements.",
+                "Two modes: Decimal → Fraction (enter decimal inches, get nearest fraction at 1/8, 1/16, 1/32, or 1/64 precision) or Fraction → Decimal (enter whole inches + numerator/denominator, get decimal). Results include mm, cm, and feet + inches.",
+                "Tape measures use fractions: 1/2\", 1/4\", 1/8\", 1/16\". This calculator converts between decimal and fractional inches for woodworking, construction, machining, and DIY projects.",
             ],
-            highlight: "3.375\" = 3 3/8\" (at 1/16 precision). In metric: 85.72 mm = 8.57 cm.",
+            highlight: "3.375\" = 3 3/8\" = 85.73 mm. At 1/16 precision: 3 6/16\" = 3 3/8\" (simplified). In Fraction → Decimal: 3 3/8\" = 3.375\".",
         },
+        contentHTML: `
+<p><strong>Inch fractions</strong> use denominators that are powers of 2: halves (1/2), quarters (1/4), eighths (1/8), sixteenths (1/16), thirty-seconds (1/32), and sixty-fourths (1/64). They're the standard on US <strong>tape measures, rulers, and construction plans</strong>.</p>
+
+<h2>How to Convert Decimal to Fraction</h2>
+<ol>
+<li><strong>Separate</strong> the whole number: 3.375 → whole = 3, decimal = 0.375</li>
+<li><strong>Multiply</strong> decimal by your precision denominator: 0.375 × 16 = 6</li>
+<li><strong>Place</strong> result over denominator: 6/16</li>
+<li><strong>Simplify:</strong> 6/16 = 3/8 (divide both by GCD of 2)</li>
+<li><strong>Result:</strong> 3 3/8"</li>
+</ol>
+
+<h2>Decimal to Inches Chart</h2>
+<table>
+<thead><tr><th>Fraction</th><th>Decimal</th><th>mm</th></tr></thead>
+<tbody>
+<tr><td><strong>1/16"</strong></td><td>0.0625</td><td>1.59</td></tr>
+<tr><td><strong>1/8"</strong></td><td>0.125</td><td>3.18</td></tr>
+<tr><td><strong>3/16"</strong></td><td>0.1875</td><td>4.76</td></tr>
+<tr><td><strong>1/4"</strong></td><td>0.25</td><td>6.35</td></tr>
+<tr><td><strong>5/16"</strong></td><td>0.3125</td><td>7.94</td></tr>
+<tr><td><strong>3/8"</strong></td><td>0.375</td><td>9.53</td></tr>
+<tr><td><strong>7/16"</strong></td><td>0.4375</td><td>11.11</td></tr>
+<tr><td><strong>1/2"</strong></td><td>0.5</td><td>12.70</td></tr>
+<tr><td><strong>9/16"</strong></td><td>0.5625</td><td>14.29</td></tr>
+<tr><td><strong>5/8"</strong></td><td>0.625</td><td>15.88</td></tr>
+<tr><td><strong>11/16"</strong></td><td>0.6875</td><td>17.46</td></tr>
+<tr><td><strong>3/4"</strong></td><td>0.75</td><td>19.05</td></tr>
+<tr><td><strong>13/16"</strong></td><td>0.8125</td><td>20.64</td></tr>
+<tr><td><strong>7/8"</strong></td><td>0.875</td><td>22.23</td></tr>
+<tr><td><strong>15/16"</strong></td><td>0.9375</td><td>23.81</td></tr>
+<tr><td><strong>1"</strong></td><td>1.0</td><td>25.40</td></tr>
+</tbody>
+</table>
+
+<h2>Inches to Metric Conversion</h2>
+<p><strong>mm = inches × 25.4</strong> | <strong>cm = inches × 2.54</strong></p>
+<ul>
+<li>1/4" = 6.35 mm</li>
+<li>1/2" = 12.70 mm</li>
+<li>1" = 25.40 mm = 2.54 cm</li>
+<li>6" = 152.40 mm = 15.24 cm</li>
+<li>12" = 304.80 mm = 30.48 cm = 1 foot</li>
+</ul>
+
+<h2>Reading a Tape Measure</h2>
+<p>Tape measure markings are different lengths to indicate fraction size:</p>
+<ul>
+<li><strong>Longest marks:</strong> whole inches (1", 2", 3"…)</li>
+<li><strong>Next longest:</strong> 1/2" marks</li>
+<li><strong>Medium marks:</strong> 1/4" marks</li>
+<li><strong>Short marks:</strong> 1/8" marks</li>
+<li><strong>Shortest marks:</strong> 1/16" marks</li>
+</ul>
+<p>Count the smallest marks past the last whole inch. If you count 7 marks of 1/16" size, the reading is 7/16".</p>
+`,
         faq: [
-            { question: "What fraction is 0.625 inches?", answer: "5/8 inch. Common decimals: 0.125 = 1/8, 0.25 = 1/4, 0.375 = 3/8, 0.5 = 1/2, 0.625 = 5/8, 0.75 = 3/4, 0.875 = 7/8." },
-            { question: "How do I read a tape measure?", answer: "The longest marks are inches. The next longest is 1/2\". Then 1/4\" marks, 1/8\" marks, and the shortest marks are 1/16\". Count the smallest marks from the last whole inch to read the fraction." },
+            { question: "What fraction is 0.625 inches?", answer: "5/8 inch. Common decimals: 0.125 = 1/8, 0.25 = 1/4, 0.375 = 3/8, 0.5 = 1/2, 0.625 = 5/8, 0.75 = 3/4, 0.875 = 7/8. These are the 8 standard eighth-inch fractions." },
+            { question: "How do I read a tape measure?", answer: "The longest marks are inches. Next longest = 1/2\". Then 1/4\" marks, 1/8\" marks, and the shortest marks are 1/16\". Count the smallest marks from the last whole inch. Example: 3 marks past the 5\" mark at 1/8\" size = 5 3/8\"." },
+            { question: "What is an inch fraction?", answer: "A fraction of an inch where the denominator is a power of 2: 1/2, 1/4, 1/8, 1/16, 1/32, or 1/64. Examples: 3/8\", 5/16\", 7/32\". These are used because tape measures divide inches by repeatedly halving." },
+            { question: "How do I convert a fraction to decimal?", answer: "Divide numerator by denominator. Examples: 3/8 = 0.375. 5/16 = 0.3125. 7/32 = 0.21875. For mixed numbers: add the whole number. 3 3/8\" = 3 + 0.375 = 3.375\"." },
+            { question: "What is 3/16 of an inch in mm?", answer: "3/16\" = 0.1875\" × 25.4 = 4.76 mm. Quick references: 1/16\" = 1.59 mm, 1/8\" = 3.18 mm, 1/4\" = 6.35 mm, 3/8\" = 9.53 mm, 1/2\" = 12.70 mm." },
+            { question: "Why does the US use inches?", answer: "The US inherited the imperial system from the British Empire. While the UK switched to metric in the 1960s–70s, the US retained inches for everyday use. Inches remain standard in US construction, manufacturing, and consumer products." },
+            { question: "What is the symbol for inches?", answer: "The double prime symbol (″) or quotation marks (\"). Example: 5 inches = 5\" = 5 in. For feet and inches: 5'3\" (5 feet 3 inches). In technical drawings, \"in\" is also acceptable." },
+            { question: "How big is one inch?", answer: "1 inch = 25.4 mm = 2.54 cm. Visual references: the diameter of a US quarter ($0.25 coin), the width of a standard paperclip, or roughly the length from the tip to the first joint of your thumb." },
+            { question: "When should I use 1/32 or 1/64 precision?", answer: "1/32\" (0.03125\") for fine woodworking, detailed millwork, and precision carpentry. 1/64\" (0.015625\") for machining, metalwork, and engineering. Most construction uses 1/16\" precision. Tape measures typically go to 1/16\" or 1/32\"." },
+            { question: "How do I add fractions of inches?", answer: "Find a common denominator, add numerators, then simplify. Example: 3/8\" + 5/16\" = 6/16 + 5/16 = 11/16\". For mixed numbers: 2 3/4\" + 1 5/8\" = 2 6/8 + 1 5/8 = 3 11/8 = 4 3/8\"." },
         ],
     },
     "scale-conversion-calculator": {

@@ -12787,7 +12787,7 @@
     "categorySlug": "construction-calculators",
     "icon": "🔢",
     "calcType": "inch-fraction",
-    "description": "Convert decimal inches to fractions and fractions to decimals. Find the nearest fraction to any decimal measurement.",
+    "description": "Convert decimal inches to fractions or fractions to decimal. Choose 1/8 to 1/64 precision. See mm, cm, and feet + inches equivalents.",
     "stars": 5,
     "defaults": {
       "amount": 3,

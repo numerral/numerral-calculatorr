@@ -6806,32 +6806,65 @@ function FeetAndInchesCalc() {
 
 /* ──────────── 140. INCH FRACTION CALCULATOR ──────────── */
 function InchFractionCalc() {
+    const [mode, setMode] = useState("decimal-to-fraction");
     const [decimal, setDecimal] = useState(3.375);
     const [precision, setPrecision] = useState("16");
+    // Fraction → Decimal inputs
+    const [wholeIn, setWholeIn] = useState(3);
+    const [fracNum, setFracNum] = useState(3);
+    const [fracDen, setFracDen] = useState(8);
+
+    const gcd = (a: number, b: number): number => b === 0 ? a : gcd(b, a % b);
 
     const result = useMemo(() => {
+        let decValue: number;
+        if (mode === "decimal-to-fraction") {
+            decValue = decimal;
+        } else {
+            decValue = wholeIn + (fracDen > 0 ? fracNum / fracDen : 0);
+        }
         const prec = Number(precision);
-        const wholeInches = Math.floor(decimal);
-        const fractionalPart = decimal - wholeInches;
+        const wholeInches = Math.floor(decValue);
+        const fractionalPart = decValue - wholeInches;
         const numerator = Math.round(fractionalPart * prec);
-        // Simplify fraction
-        const gcd = (a: number, b: number): number => b === 0 ? a : gcd(b, a % b);
         const g = numerator === 0 ? 1 : gcd(numerator, prec);
         const simpNum = numerator / g;
         const simpDen = prec / g;
         const fractionStr = simpNum === 0 ? `${wholeInches}"` : `${wholeInches} ${simpNum}/${simpDen}"`;
         const backToDecimal = wholeInches + (simpNum / simpDen);
-        const mm = decimal * 25.4;
-        const cm = decimal * 2.54;
-        return { fractionStr, backToDecimal, mm, cm, wholeInches, simpNum, simpDen };
-    }, [decimal, precision]);
+        const mm = decValue * 25.4;
+        const cm = decValue * 2.54;
+        const totalFeet = Math.floor(decValue / 12);
+        const remainIn = decValue - totalFeet * 12;
+        const feetInStr = totalFeet > 0 ? `${totalFeet}' ${fmt(remainIn, 3)}"` : `${fmt(decValue, 4)}"`;
+        return { fractionStr, backToDecimal, mm, cm, decValue, feetInStr, totalFeet };
+    }, [mode, decimal, precision, wholeIn, fracNum, fracDen]);
 
     return (
         <div className="con-calc">
             <h3 className="con-calc__title">🔢 Inch Fraction Calculator</h3>
             <div className="con-calc__inputs">
-                <InputField label="Decimal Inches" value={decimal} onChange={setDecimal} unit="in" min={0} step={0.001} />
-                <SelectField label="Precision" value={precision} onChange={setPrecision} options={[
+                <SelectField label="Mode" value={mode} onChange={setMode} options={[
+                    { value: "decimal-to-fraction", label: "Decimal → Fraction" },
+                    { value: "fraction-to-decimal", label: "Fraction → Decimal" },
+                ]} />
+                {mode === "decimal-to-fraction" ? (
+                    <InputField label="Decimal Inches" value={decimal} onChange={setDecimal} unit="in" min={0} step={0.001} />
+                ) : (
+                    <>
+                        <InputField label="Whole Inches" value={wholeIn} onChange={setWholeIn} unit="in" min={0} step={1} />
+                        <InputField label="Numerator" value={fracNum} onChange={setFracNum} unit="" min={0} step={1} />
+                        <SelectField label="Denominator" value={String(fracDen)} onChange={(v) => setFracDen(Number(v))} options={[
+                            { value: "2", label: "2 (halves)" },
+                            { value: "4", label: "4 (quarters)" },
+                            { value: "8", label: "8 (eighths)" },
+                            { value: "16", label: "16 (sixteenths)" },
+                            { value: "32", label: "32 (thirty-seconds)" },
+                            { value: "64", label: "64 (sixty-fourths)" },
+                        ]} />
+                    </>
+                )}
+                <SelectField label="Fraction Precision" value={precision} onChange={setPrecision} options={[
                     { value: "8", label: "1/8 inch" },
                     { value: "16", label: "1/16 inch" },
                     { value: "32", label: "1/32 inch" },
@@ -6839,11 +6872,19 @@ function InchFractionCalc() {
                 ]} />
             </div>
             <div className="con-calc__results">
-                <h4>Results</h4>
-                <ResultRow label="Fraction" value={result.fractionStr} />
-                <ResultRow label="Decimal" value={`${fmt(result.backToDecimal, 4)}"`} />
+                <h4 className="con-calc__group-label">FRACTION</h4>
+                <ResultRow label="Inch Fraction" value={result.fractionStr} />
+                <h4 className="con-calc__group-label">DECIMAL</h4>
+                <ResultRow label="Decimal Inches" value={`${fmt(result.backToDecimal, 4)}"`} />
+                <h4 className="con-calc__group-label">METRIC</h4>
                 <ResultRow label="Millimeters" value={fmt(result.mm, 2)} unit="mm" />
-                <ResultRow label="Centimeters" value={fmt(result.cm, 2)} unit="cm" />
+                <ResultRow label="Centimeters" value={fmt(result.cm, 3)} unit="cm" />
+                {result.totalFeet > 0 && (
+                    <>
+                        <h4 className="con-calc__group-label">FEET & INCHES</h4>
+                        <ResultRow label="Feet + Inches" value={result.feetInStr} />
+                    </>
+                )}
             </div>
         </div>
     );
