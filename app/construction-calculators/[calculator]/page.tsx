@@ -3847,18 +3847,93 @@ Net lawn area: 10,890 − 1,900 = <strong>8,990 sq ft</strong></p>
         ],
     },
     "square-inches-calculator": {
-        subtitle: "Calculate area in square inches. Convert to square feet, square centimeters, and square millimeters.",
+        subtitle: "Calculate area in square inches for rectangles, circles, and triangles. Enter in inches, cm, mm, or feet. Convert to sq ft, cm², mm², and m².",
         explanation: {
             heading: "How to Calculate Square Inches",
             paragraphs: [
-                "Square inches = length (in) × width (in). There are 144 square inches in one square foot (12 × 12). Square inches are used for smaller areas like tiles, screens, paper, and cross-sections.",
-                "Common conversions: 1 sq in = 6.45 cm² = 645.16 mm². A standard sheet of paper (8.5 × 11\") = 93.5 sq in. A 12 × 12\" tile = 144 sq in = 1 sq ft.",
+                "Square inches = length (in) × width (in). Select shape (rectangle, circle, triangle) and input unit (inches, cm, mm, feet). 144 sq in = 1 sq ft. Results show imperial (sq in, sq ft) and metric (cm², mm², m²).",
+                "Square inches are used for smaller areas: tiles, screens, paper, cross-sections, gaskets, and crafts. 1 sq in = 6.4516 cm² = 645.16 mm².",
             ],
-            highlight: "12 × 8 inches = 96 square inches = 0.667 square feet = 619.4 cm².",
+            highlight: "12 × 8 inches = 96 sq in = 0.667 sq ft = 619.4 cm². Circle with 6\" radius: 113.1 sq in.",
         },
+        contentHTML: `
+<p><strong>Square inches (sq in or in²)</strong> measure small areas in the US customary system. They're used for <strong>tiles, screens, paper, fabric swatches, gaskets, pipe cross-sections, and craft projects</strong>.</p>
+<p>The calculator above supports <strong>3 shapes</strong> (rectangle, circle, triangle), accepts <strong>4 input units</strong> (inches, cm, mm, feet), and converts to <strong>both imperial and metric</strong> area units.</p>
+
+<h2>Square Inches Formulas</h2>
+<table>
+<thead><tr><th>Shape</th><th>Formula</th><th>Example</th></tr></thead>
+<tbody>
+<tr><td><strong>Rectangle</strong></td><td>L × W</td><td>12 × 8 = 96 sq in</td></tr>
+<tr><td><strong>Circle</strong></td><td>π × r²</td><td>r = 6" → π × 36 = 113.1 sq in</td></tr>
+<tr><td><strong>Triangle</strong></td><td>½ × base × height</td><td>10 × 8 ÷ 2 = 40 sq in</td></tr>
+</tbody>
+</table>
+<p><strong>All dimensions must be in inches.</strong> The calculator converts from cm, mm, or feet automatically.</p>
+
+<h2>Square Inches to Square Feet</h2>
+<p><strong>Square feet = square inches ÷ 144</strong></p>
+<p>Since 1 foot = 12 inches, 1 sq ft = 12 × 12 = 144 sq in.</p>
+<p><strong>Quick conversions:</strong></p>
+<ul>
+<li>72 sq in = <strong>0.5 sq ft</strong></li>
+<li>144 sq in = <strong>1 sq ft</strong></li>
+<li>288 sq in = <strong>2 sq ft</strong></li>
+<li>432 sq in = <strong>3 sq ft</strong></li>
+<li>1,008 sq in = <strong>7 sq ft</strong></li>
+</ul>
+
+<h2>Common Object Sizes in Square Inches</h2>
+<table>
+<thead><tr><th>Object</th><th>Dimensions</th><th>Square Inches</th><th>Square Feet</th></tr></thead>
+<tbody>
+<tr><td><strong>Credit card</strong></td><td>3.37 × 2.13"</td><td>7.2</td><td>0.05</td></tr>
+<tr><td><strong>Index card</strong></td><td>3 × 5"</td><td>15</td><td>0.10</td></tr>
+<tr><td><strong>Letter paper</strong></td><td>8.5 × 11"</td><td>93.5</td><td>0.65</td></tr>
+<tr><td><strong>Legal paper</strong></td><td>8.5 × 14"</td><td>119</td><td>0.83</td></tr>
+<tr><td><strong>12 × 12" tile</strong></td><td>12 × 12"</td><td>144</td><td>1.00</td></tr>
+<tr><td><strong>Pizza (14" dia)</strong></td><td>r = 7"</td><td>154</td><td>1.07</td></tr>
+<tr><td><strong>Poster (18 × 24")</strong></td><td>18 × 24"</td><td>432</td><td>3.00</td></tr>
+</tbody>
+</table>
+
+<h2>Screen Sizes in Square Inches</h2>
+<table>
+<thead><tr><th>Screen</th><th>Diagonal</th><th>Approx Area (sq in)</th></tr></thead>
+<tbody>
+<tr><td><strong>iPhone 15</strong></td><td>6.1"</td><td>~16</td></tr>
+<tr><td><strong>iPad (10.9")</strong></td><td>10.9"</td><td>~64</td></tr>
+<tr><td><strong>Laptop (15.6")</strong></td><td>15.6"</td><td>~92</td></tr>
+<tr><td><strong>Monitor (24")</strong></td><td>24"</td><td>~219</td></tr>
+<tr><td><strong>Monitor (27")</strong></td><td>27"</td><td>~277</td></tr>
+<tr><td><strong>TV (55")</strong></td><td>55"</td><td>~1,150</td></tr>
+<tr><td><strong>TV (65")</strong></td><td>65"</td><td>~1,606</td></tr>
+</tbody>
+</table>
+
+<h2>Area Conversion Reference</h2>
+<table>
+<thead><tr><th>Unit</th><th>To sq in</th><th>To sq ft</th><th>To cm²</th></tr></thead>
+<tbody>
+<tr><td><strong>1 sq in</strong></td><td>1</td><td>0.00694</td><td>6.4516</td></tr>
+<tr><td><strong>1 sq ft</strong></td><td>144</td><td>1</td><td>929.03</td></tr>
+<tr><td><strong>1 cm²</strong></td><td>0.155</td><td>0.00108</td><td>1</td></tr>
+<tr><td><strong>1 mm²</strong></td><td>0.00155</td><td>0.0000108</td><td>0.01</td></tr>
+<tr><td><strong>1 m²</strong></td><td>1,550</td><td>10.764</td><td>10,000</td></tr>
+</tbody>
+</table>
+`,
         faq: [
-            { question: "How many square inches in a square foot?", answer: "144 square inches = 1 square foot (12 inches × 12 inches). To convert square inches to square feet, divide by 144." },
-            { question: "How do I convert square inches to square centimeters?", answer: "Multiply by 6.4516. For example, 96 sq in × 6.4516 = 619.4 cm²." },
+            { question: "How many square inches in a square foot?", answer: "144 square inches = 1 square foot (12\" × 12\" = 144 sq in). To convert sq in to sq ft: divide by 144. To convert sq ft to sq in: multiply by 144. Example: 288 sq in ÷ 144 = 2 sq ft." },
+            { question: "How do I convert square inches to square centimeters?", answer: "Multiply by 6.4516. Example: 96 sq in × 6.4516 = 619.4 cm². Reverse: divide cm² by 6.4516. Since 1 inch = 2.54 cm, the area factor is 2.54² = 6.4516." },
+            { question: "How many square inches is a sheet of paper?", answer: "Letter size (8.5 × 11\"): 93.5 sq in. Legal size (8.5 × 14\"): 119 sq in. Tabloid (11 × 17\"): 187 sq in. A4 (8.27 × 11.69\"): 96.7 sq in. A4 is slightly taller and narrower than US Letter." },
+            { question: "How do I calculate square inches of a circle?", answer: "Area = π × r². Measure the diameter and divide by 2 to get the radius. Example: 12\" diameter circle: r = 6\", area = π × 36 = 113.1 sq in. A 14\" pizza: r = 7\", area = π × 49 = 153.9 sq in." },
+            { question: "What is measured in square inches?", answer: "Small areas: screen displays, paper/cardboard, fabric swatches, tiles, gaskets, pipe cross-sections, decals, stickers, labels, and craft materials. Larger areas use sq ft or sq yd instead." },
+            { question: "How many square inches in a 12×12 tile?", answer: "12 × 12 = 144 sq in = exactly 1 sq ft. This is why 12×12 tiles are so popular — each tile covers exactly one square foot, making quantity calculations easy: just count the sq ft of floor space." },
+            { question: "How do I calculate the cross-section area of a pipe?", answer: "Use the circle formula: area = π × r². For a 2\" inner diameter pipe: r = 1\", area = π × 1 = 3.14 sq in. For a 4\" pipe: r = 2\", area = π × 4 = 12.57 sq in. This is the flow area for fluid calculations." },
+            { question: "How do I convert square inches to square meters?", answer: "Multiply by 0.00064516. Example: 1,000 sq in × 0.00064516 = 0.645 m². Reverse: multiply m² by 1,550 to get sq in. This conversion is useful for international specifications." },
+            { question: "What is the area of a TV screen in square inches?", answer: "TV screens are measured diagonally. For a 16:9 TV, viewable area ≈ diagonal² × 0.38. A 55\" TV: 55² × 0.38 ≈ 1,149 sq in (7.98 sq ft). A 65\" TV: 65² × 0.38 ≈ 1,606 sq in (11.15 sq ft)." },
+            { question: "How do I measure irregular shapes in square inches?", answer: "Break the shape into rectangles, triangles, and circles. Calculate each area separately and add them together. For truly irregular shapes, trace onto graph paper and count the squares (each 1\" square = 1 sq in). Digital tools can measure from photos." },
         ],
     },
     "square-meters-calculator": {

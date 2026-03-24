@@ -6954,30 +6954,64 @@ function SqFtToCuYdCalc() {
 
 /* ──────────── 144. SQUARE INCHES CALCULATOR ──────────── */
 function SquareInchesCalc() {
+    const [shape, setShape] = useState("rectangle");
     const [length, setLength] = useState(12);
     const [width, setWidth] = useState(8);
+    const [inputUnit, setInputUnit] = useState("inches");
+
+    const toInches = (v: number) => {
+        if (inputUnit === "cm") return v / 2.54;
+        if (inputUnit === "mm") return v / 25.4;
+        if (inputUnit === "feet") return v * 12;
+        return v;
+    };
+    const unitLabel = inputUnit === "cm" ? "cm" : inputUnit === "mm" ? "mm" : inputUnit === "feet" ? "ft" : "in";
 
     const result = useMemo(() => {
-        const sqIn = length * width;
+        let sqIn: number;
+        if (shape === "rectangle") {
+            sqIn = toInches(length) * toInches(width);
+        } else if (shape === "circle") {
+            const r = toInches(length);
+            sqIn = Math.PI * r * r;
+        } else {
+            sqIn = 0.5 * toInches(length) * toInches(width);
+        }
         const sqFt = sqIn / 144;
         const sqCm = sqIn * 6.4516;
         const sqMm = sqIn * 645.16;
-        return { sqIn, sqFt, sqCm, sqMm };
-    }, [length, width]);
+        const sqM = sqIn * 0.00064516;
+        return { sqIn, sqFt, sqCm, sqMm, sqM };
+    }, [shape, length, width, inputUnit]);
 
     return (
         <div className="con-calc">
             <h3 className="con-calc__title">📐 Square Inches Calculator</h3>
             <div className="con-calc__inputs">
-                <InputField label="Length" value={length} onChange={setLength} unit="in" min={0.1} step={0.1} />
-                <InputField label="Width" value={width} onChange={setWidth} unit="in" min={0.1} step={0.1} />
+                <SelectField label="Area Shape" value={shape} onChange={setShape} options={[
+                    { value: "rectangle", label: "Rectangle / Square" },
+                    { value: "circle", label: "Circle (enter radius)" },
+                    { value: "triangle", label: "Triangle (base × height)" },
+                ]} />
+                <SelectField label="Input Unit" value={inputUnit} onChange={setInputUnit} options={[
+                    { value: "inches", label: "Inches" },
+                    { value: "cm", label: "Centimeters" },
+                    { value: "mm", label: "Millimeters" },
+                    { value: "feet", label: "Feet" },
+                ]} />
+                <InputField label={shape === "circle" ? "Radius" : shape === "triangle" ? "Base" : "Length"} value={length} onChange={setLength} unit={unitLabel} min={0.1} step={0.1} />
+                {shape !== "circle" && (
+                    <InputField label={shape === "triangle" ? "Height" : "Width"} value={width} onChange={setWidth} unit={unitLabel} min={0.1} step={0.1} />
+                )}
             </div>
             <div className="con-calc__results">
-                <h4>Results</h4>
+                <h4 className="con-calc__group-label">IMPERIAL</h4>
                 <ResultRow label="Square Inches" value={fmt(result.sqIn, 2)} unit="sq in" />
                 <ResultRow label="Square Feet" value={fmt(result.sqFt, 4)} unit="sq ft" />
+                <h4 className="con-calc__group-label">METRIC</h4>
                 <ResultRow label="Square Centimeters" value={fmt(result.sqCm, 2)} unit="cm²" />
                 <ResultRow label="Square Millimeters" value={fmt(result.sqMm, 1)} unit="mm²" />
+                <ResultRow label="Square Meters" value={fmt(result.sqM, 6)} unit="m²" />
             </div>
         </div>
     );

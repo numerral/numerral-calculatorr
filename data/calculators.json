@@ -12951,7 +12951,7 @@
     "categorySlug": "construction-calculators",
     "icon": "📐",
     "calcType": "square-inches",
-    "description": "Calculate area in square inches. Convert between square inches, square feet, and square centimeters.",
+    "description": "Calculate square inches for rectangles, circles, and triangles. Enter in inches, cm, mm, or feet. Convert to sq ft, cm², mm², and m².",
     "stars": 5,
     "defaults": {
       "amount": 12,
