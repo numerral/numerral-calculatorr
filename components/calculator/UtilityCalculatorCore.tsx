@@ -10,12 +10,23 @@ import {
     calculateInterestRate,
     calculateRuleOf72,
     calculateInflationAdjustedReturn,
+    calculateCPIInflation,
+    calculateForwardInflation,
+    calculateBackwardInflation,
+    calculateSalaryPurchasingPower,
+    CPI_MIN_YEAR,
+    CPI_MAX_YEAR,
+    CPI_YEARS,
 } from "@/lib/calculators/utilities";
 
 function fmtINR(n: number): string {
     if (Math.abs(n) >= 10000000) return "₹" + (n / 10000000).toFixed(2) + " Cr";
     if (Math.abs(n) >= 100000) return "₹" + (n / 100000).toFixed(2) + " L";
     return "₹" + n.toLocaleString("en-IN");
+}
+
+function fmtUSD(n: number): string {
+    return "$" + n.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
 
 // ─── Age ───
@@ -520,6 +531,216 @@ function InflationAdjustedCalc() {
     );
 }
 
+// ─── US Inflation Calculator (4 modes) ───
+function InflationCalc() {
+    type Mode = "cpi" | "forward" | "backward" | "salary";
+    const [mode, setMode] = useState<Mode>("cpi");
+
+    // CPI mode
+    const [cpiAmount, setCpiAmount] = useState(100);
+    const [fromYear, setFromYear] = useState(2000);
+    const [toYear, setToYear] = useState(CPI_MAX_YEAR);
+
+    // Forward mode
+    const [fwdAmount, setFwdAmount] = useState(1000);
+    const [fwdRate, setFwdRate] = useState(3);
+    const [fwdYears, setFwdYears] = useState(10);
+
+    // Backward mode
+    const [bwdAmount, setBwdAmount] = useState(1000);
+    const [bwdRate, setBwdRate] = useState(3);
+    const [bwdYears, setBwdYears] = useState(10);
+
+    // Salary mode
+    const [salary, setSalary] = useState(50000);
+    const [salFromYear, setSalFromYear] = useState(2015);
+    const [salToYear, setSalToYear] = useState(CPI_MAX_YEAR);
+
+    const cpiResult = useMemo(() => calculateCPIInflation(cpiAmount, fromYear, toYear), [cpiAmount, fromYear, toYear]);
+    const fwdResult = useMemo(() => calculateForwardInflation(fwdAmount, fwdRate, fwdYears), [fwdAmount, fwdRate, fwdYears]);
+    const bwdResult = useMemo(() => calculateBackwardInflation(bwdAmount, bwdRate, bwdYears), [bwdAmount, bwdRate, bwdYears]);
+    const salResult = useMemo(() => calculateSalaryPurchasingPower(salary, salFromYear, salToYear), [salary, salFromYear, salToYear]);
+
+    const yearOptions = CPI_YEARS.map((y) => <option key={y} value={y}>{y}</option>);
+
+    return (
+        <div className="calc-card">
+            <div className="calc-field">
+                <label className="calc-field__label">📊 MODE</label>
+                <div className="tax-toggle">
+                    {(["cpi", "forward", "backward", "salary"] as Mode[]).map((m) => (
+                        <button key={m} className={`tax-toggle__btn${mode === m ? " active" : ""}`}
+                            onClick={() => setMode(m)}>
+                            {m === "cpi" ? "CPI Historical" : m === "forward" ? "Forward" : m === "backward" ? "Backward" : "Salary"}
+                        </button>
+                    ))}
+                </div>
+            </div>
+
+            {/* ── CPI Historical Mode ── */}
+            {mode === "cpi" && (
+                <>
+                    <div className="calc-field">
+                        <label className="calc-field__label">💵 AMOUNT ($)</label>
+                        <input type="number" className="calc-field__input" value={cpiAmount}
+                            onChange={(e) => setCpiAmount(Number(e.target.value))} />
+                    </div>
+                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "var(--s-3)" }}>
+                        <div className="calc-field">
+                            <label className="calc-field__label">📅 FROM YEAR</label>
+                            <select className="calc-field__input" value={fromYear}
+                                onChange={(e) => setFromYear(Number(e.target.value))}>
+                                {yearOptions}
+                            </select>
+                        </div>
+                        <div className="calc-field">
+                            <label className="calc-field__label">📅 TO YEAR</label>
+                            <select className="calc-field__input" value={toYear}
+                                onChange={(e) => setToYear(Number(e.target.value))}>
+                                {yearOptions}
+                            </select>
+                        </div>
+                    </div>
+
+                    <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
+                        <p className="calc-field__label">EQUIVALENT VALUE IN {toYear}</p>
+                        <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+                            {fmtUSD(cpiResult.equivalentAmount)}
+                        </p>
+                        <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
+                        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "var(--s-3)" }}>
+                            <div><p className="calc-field__label">CUMULATIVE INFLATION</p><p style={{ fontWeight: 700, color: cpiResult.cumulativeInflation >= 0 ? "var(--n-error)" : "var(--n-success)" }}>{cpiResult.cumulativeInflation.toFixed(2)}%</p></div>
+                            <div><p className="calc-field__label">AVG ANNUAL RATE</p><p style={{ fontWeight: 700 }}>{cpiResult.avgAnnualRate.toFixed(2)}%</p></div>
+                            <div><p className="calc-field__label">ORIGINAL ({fromYear})</p><p style={{ fontWeight: 700 }}>{fmtUSD(cpiAmount)}</p></div>
+                        </div>
+                        <p style={{ fontSize: "var(--t-body-sm)", color: "var(--n-text-muted)", marginTop: "var(--s-3)" }}>
+                            {fmtUSD(cpiAmount)} in {fromYear} has the same purchasing power as {fmtUSD(cpiResult.equivalentAmount)} in {toYear}. Based on U.S. Bureau of Labor Statistics CPI-U data.
+                        </p>
+                    </div>
+                </>
+            )}
+
+            {/* ── Forward Flat Rate Mode ── */}
+            {mode === "forward" && (
+                <>
+                    <div className="calc-field">
+                        <label className="calc-field__label">💵 CURRENT AMOUNT ($)</label>
+                        <input type="number" className="calc-field__input" value={fwdAmount}
+                            onChange={(e) => setFwdAmount(Number(e.target.value))} />
+                    </div>
+                    <div className="calc-field">
+                        <label className="calc-field__label">📈 INFLATION RATE (%)</label>
+                        <input type="range" className="calc-field__slider" min={0.5} max={15} step={0.1}
+                            value={fwdRate} onChange={(e) => setFwdRate(Number(e.target.value))} />
+                        <input type="number" className="calc-field__input" value={fwdRate}
+                            onChange={(e) => setFwdRate(Number(e.target.value))} />
+                    </div>
+                    <div className="calc-field">
+                        <label className="calc-field__label">📅 AFTER NUMBER OF YEARS</label>
+                        <input type="range" className="calc-field__slider" min={1} max={50} step={1}
+                            value={fwdYears} onChange={(e) => setFwdYears(Number(e.target.value))} />
+                        <input type="number" className="calc-field__input" value={fwdYears}
+                            onChange={(e) => setFwdYears(Number(e.target.value))} />
+                    </div>
+
+                    <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
+                        <p className="calc-field__label">YOU WILL NEED</p>
+                        <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+                            {fmtUSD(fwdResult.futureAmount)}
+                        </p>
+                        <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
+                        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "var(--s-3)" }}>
+                            <div><p className="calc-field__label">PURCHASING POWER LOSS</p><p style={{ fontWeight: 700, color: "var(--n-error)" }}>{fmtUSD(fwdResult.purchasingPowerLoss)}</p></div>
+                            <div><p className="calc-field__label">CURRENT VALUE</p><p style={{ fontWeight: 700 }}>{fmtUSD(fwdAmount)}</p></div>
+                        </div>
+                        <p style={{ fontSize: "var(--t-body-sm)", color: "var(--n-text-muted)", marginTop: "var(--s-3)" }}>
+                            At {fwdRate}% annual inflation, {fmtUSD(fwdAmount)} today will need to be {fmtUSD(fwdResult.futureAmount)} in {fwdYears} years to have the same purchasing power.
+                        </p>
+                    </div>
+                </>
+            )}
+
+            {/* ── Backward Flat Rate Mode ── */}
+            {mode === "backward" && (
+                <>
+                    <div className="calc-field">
+                        <label className="calc-field__label">💵 AMOUNT TODAY ($)</label>
+                        <input type="number" className="calc-field__input" value={bwdAmount}
+                            onChange={(e) => setBwdAmount(Number(e.target.value))} />
+                    </div>
+                    <div className="calc-field">
+                        <label className="calc-field__label">📈 INFLATION RATE (%)</label>
+                        <input type="range" className="calc-field__slider" min={0.5} max={15} step={0.1}
+                            value={bwdRate} onChange={(e) => setBwdRate(Number(e.target.value))} />
+                        <input type="number" className="calc-field__input" value={bwdRate}
+                            onChange={(e) => setBwdRate(Number(e.target.value))} />
+                    </div>
+                    <div className="calc-field">
+                        <label className="calc-field__label">📅 NUMBER OF YEARS AGO</label>
+                        <input type="range" className="calc-field__slider" min={1} max={50} step={1}
+                            value={bwdYears} onChange={(e) => setBwdYears(Number(e.target.value))} />
+                        <input type="number" className="calc-field__input" value={bwdYears}
+                            onChange={(e) => setBwdYears(Number(e.target.value))} />
+                    </div>
+
+                    <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
+                        <p className="calc-field__label">EQUIVALENT PURCHASING POWER {bwdYears} YEARS AGO</p>
+                        <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+                            {fmtUSD(bwdResult.pastEquivalent)}
+                        </p>
+                        <p style={{ fontSize: "var(--t-body-sm)", color: "var(--n-text-muted)", marginTop: "var(--s-3)" }}>
+                            At {bwdRate}% annual inflation, {fmtUSD(bwdAmount)} today had the same purchasing power as {fmtUSD(bwdResult.pastEquivalent)} {bwdYears} years ago.
+                        </p>
+                    </div>
+                </>
+            )}
+
+            {/* ── Salary Purchasing Power Mode ── */}
+            {mode === "salary" && (
+                <>
+                    <div className="calc-field">
+                        <label className="calc-field__label">💼 ANNUAL SALARY ($)</label>
+                        <input type="number" className="calc-field__input" value={salary}
+                            onChange={(e) => setSalary(Number(e.target.value))} />
+                    </div>
+                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "var(--s-3)" }}>
+                        <div className="calc-field">
+                            <label className="calc-field__label">📅 SALARY WAS FROM</label>
+                            <select className="calc-field__input" value={salFromYear}
+                                onChange={(e) => setSalFromYear(Number(e.target.value))}>
+                                {yearOptions}
+                            </select>
+                        </div>
+                        <div className="calc-field">
+                            <label className="calc-field__label">📅 EQUIVALENT IN</label>
+                            <select className="calc-field__input" value={salToYear}
+                                onChange={(e) => setSalToYear(Number(e.target.value))}>
+                                {yearOptions}
+                            </select>
+                        </div>
+                    </div>
+
+                    <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
+                        <p className="calc-field__label">SALARY NEEDED IN {salToYear} TO MATCH {salFromYear} PURCHASING POWER</p>
+                        <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+                            {fmtUSD(salResult.requiredSalary)}
+                        </p>
+                        <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
+                        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "var(--s-3)" }}>
+                            <div><p className="calc-field__label">SALARY GAP</p><p style={{ fontWeight: 700, color: salResult.salaryGap > 0 ? "var(--n-error)" : "var(--n-success)" }}>{salResult.salaryGap > 0 ? "+" : ""}{fmtUSD(salResult.salaryGap)}</p></div>
+                            <div><p className="calc-field__label">CUMULATIVE INFLATION</p><p style={{ fontWeight: 700 }}>{salResult.cumulativeInflation.toFixed(2)}%</p></div>
+                            <div><p className="calc-field__label">ORIGINAL SALARY</p><p style={{ fontWeight: 700 }}>{fmtUSD(salary)}</p></div>
+                        </div>
+                        <p style={{ fontSize: "var(--t-body-sm)", color: "var(--n-text-muted)", marginTop: "var(--s-3)" }}>
+                            A {fmtUSD(salary)} salary in {salFromYear} needs to be {fmtUSD(salResult.requiredSalary)} in {salToYear} to maintain the same purchasing power. That&apos;s a {fmtUSD(salResult.salaryGap)} difference due to {salResult.cumulativeInflation.toFixed(1)}% cumulative inflation.
+                        </p>
+                    </div>
+                </>
+            )}
+        </div>
+    );
+}
+
 // ─── Dispatcher ───
 interface Props { calcType: string; }
 
@@ -533,6 +754,7 @@ const CALCULATORS: Record<string, React.FC> = {
     "rate": InterestRateCalc,
     "ruleOf72": RuleOf72Calc,
     "inflationAdjusted": InflationAdjustedCalc,
+    "inflation": InflationCalc,
 };
 
 export default function UtilityCalculatorCore({ calcType }: Props) {

@@ -287,3 +287,103 @@ export function calculateInflationAdjustedReturn(returnRate: number, inflationRa
         formula: `[(1 + ${returnRate}%) ÷ (1 + ${inflationRate}%)] − 1`,
     };
 }
+
+// ─── US INFLATION CALCULATOR (CPI-BASED) ───
+
+import { CPI_DATA, CPI_MIN_YEAR, CPI_MAX_YEAR } from "./cpi-data";
+
+export interface CPIInflationResult {
+    originalAmount: number;
+    equivalentAmount: number;
+    cumulativeInflation: number;     // percentage
+    avgAnnualRate: number;           // percentage
+    fromYear: number;
+    toYear: number;
+    fromCPI: number;
+    toCPI: number;
+}
+
+export function calculateCPIInflation(
+    amount: number,
+    fromYear: number,
+    toYear: number
+): CPIInflationResult {
+    const fromCPI = CPI_DATA[fromYear] || CPI_DATA[CPI_MAX_YEAR];
+    const toCPI = CPI_DATA[toYear] || CPI_DATA[CPI_MAX_YEAR];
+    const ratio = toCPI / fromCPI;
+    const equivalentAmount = Math.round(amount * ratio * 100) / 100;
+    const cumulativeInflation = Math.round((ratio - 1) * 10000) / 100;
+    const years = Math.abs(toYear - fromYear) || 1;
+    const avgAnnualRate = Math.round((Math.pow(ratio, 1 / years) - 1) * 10000) / 100;
+
+    return {
+        originalAmount: amount,
+        equivalentAmount,
+        cumulativeInflation,
+        avgAnnualRate,
+        fromYear,
+        toYear,
+        fromCPI,
+        toCPI,
+    };
+}
+
+export interface ForwardInflationResult {
+    originalAmount: number;
+    futureAmount: number;
+    purchasingPowerLoss: number;
+    years: number;
+    rate: number;
+}
+
+export function calculateForwardInflation(
+    amount: number,
+    rate: number,
+    years: number
+): ForwardInflationResult {
+    const futureAmount = Math.round(amount * Math.pow(1 + rate / 100, years) * 100) / 100;
+    const purchasingPowerLoss = Math.round((futureAmount - amount) * 100) / 100;
+    return { originalAmount: amount, futureAmount, purchasingPowerLoss, years, rate };
+}
+
+export interface BackwardInflationResult {
+    currentAmount: number;
+    pastEquivalent: number;
+    years: number;
+    rate: number;
+}
+
+export function calculateBackwardInflation(
+    amount: number,
+    rate: number,
+    years: number
+): BackwardInflationResult {
+    const pastEquivalent = Math.round(amount / Math.pow(1 + rate / 100, years) * 100) / 100;
+    return { currentAmount: amount, pastEquivalent, years, rate };
+}
+
+export interface SalaryPurchasingPowerResult {
+    originalSalary: number;
+    requiredSalary: number;
+    salaryGap: number;
+    cumulativeInflation: number;
+    fromYear: number;
+    toYear: number;
+}
+
+export function calculateSalaryPurchasingPower(
+    salary: number,
+    fromYear: number,
+    toYear: number
+): SalaryPurchasingPowerResult {
+    const fromCPI = CPI_DATA[fromYear] || CPI_DATA[CPI_MAX_YEAR];
+    const toCPI = CPI_DATA[toYear] || CPI_DATA[CPI_MAX_YEAR];
+    const ratio = toCPI / fromCPI;
+    const requiredSalary = Math.round(salary * ratio * 100) / 100;
+    const salaryGap = Math.round((requiredSalary - salary) * 100) / 100;
+    const cumulativeInflation = Math.round((ratio - 1) * 10000) / 100;
+
+    return { originalSalary: salary, requiredSalary, salaryGap, cumulativeInflation, fromYear, toYear };
+}
+
+export { CPI_MIN_YEAR, CPI_MAX_YEAR, CPI_YEARS } from "./cpi-data";

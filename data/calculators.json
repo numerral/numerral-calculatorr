@@ -3153,6 +3153,49 @@
     }
   },
   {
+    "id": "inflation-calculator",
+    "category": "utility",
+    "title": "Inflation Calculator",
+    "slug": "inflation-calculator",
+    "categorySlug": "utility-calculators",
+    "icon": "📊",
+    "calcType": "inflation",
+    "description": "Calculate how inflation has changed the value of the US dollar from 1913 to 2025 using CPI data. Project future purchasing power and find what your salary should be today.",
+    "stars": 5,
+    "defaults": {
+      "amount": 100,
+      "rate": 3,
+      "tenure": 10
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 1,
+        "max": 10000000,
+        "step": 100
+      },
+      "rate": {
+        "min": 0.5,
+        "max": 15,
+        "step": 0.1
+      },
+      "tenure": {
+        "min": 1,
+        "max": 50,
+        "step": 1
+      }
+    },
+    "keywords": "inflation calculator, US inflation rate, CPI calculator, purchasing power calculator, dollar value calculator, cost of living calculator, inflation rate calculator, what was a dollar worth",
+    "links": {
+      "related": [
+        "inflation-adjusted-return",
+        "compound-interest-calculator",
+        "rule-of-72",
+        "interest-rate"
+      ],
+      "glossary": "inflation"
+    }
+  },
+  {
     "id": "ml-to-gram-converter",
     "category": "convert",
     "title": "Milliliters to Grams Converter (mL to g)",

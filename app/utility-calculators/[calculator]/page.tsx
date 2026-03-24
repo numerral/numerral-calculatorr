@@ -245,6 +245,172 @@ const HUB_CONTENT: Record<string, {
             <p><strong>Q: My FD is earning more than inflation right now. Am I safe?</strong><br/>A: Today's FD rates are unusually elevated due to RBI rate hikes. Historically, FD rates have trailed inflation by 1–2% in real terms. Always plan for a 15+ year average scenario, not just current rates.</p>
         `
     },
+    "inflation-calculator": {
+        subtitle: "Calculate how inflation has changed the value of the U.S. dollar from 1913 to 2025 using official CPI data. Project future purchasing power, compare past values, and find what your salary should be today.",
+        contentHTML: `
+            <h2>What Is Inflation?</h2>
+            <p><strong>Inflation</strong> is the sustained increase in the general price level of goods and services in an economy over time. When inflation rises, every dollar you hold buys less than it did before — this erosion of value is called a <strong>decline in purchasing power</strong>. The U.S. Federal Reserve targets an annual inflation rate of approximately <strong>2%</strong>, believing moderate inflation is necessary for a healthy, growing economy. When prices rise too fast (high inflation) or fall (deflation), it signals economic instability.</p>
+            <p>The most common measure of inflation in the United States is the <strong>Consumer Price Index (CPI)</strong>, published monthly by the <a href="https://www.bls.gov/cpi/" target="_blank" rel="noopener noreferrer">Bureau of Labor Statistics (BLS)</a>. The CPI tracks the average change in prices paid by urban consumers for a representative basket of goods and services, including food, housing, transportation, medical care, apparel, recreation, and education.</p>
+            <p>Our Inflation Calculator uses the <strong>CPI-U (Consumer Price Index for All Urban Consumers)</strong> annual average data from 1913 to 2025 to give you the most accurate purchasing power comparison across any two years in modern U.S. history.</p>
+
+            <h2>Types of Inflation</h2>
+            <p>Economists classify inflation by its root cause. Understanding these types helps explain why prices rise and how policymakers respond:</p>
+            <ul>
+                <li><strong>Demand-Pull Inflation</strong> — Occurs when aggregate demand for goods and services exceeds aggregate supply. When consumers, businesses, and the government are all spending heavily, prices get bid up. The post-pandemic spending surge in 2021–2022 is a recent U.S. example where stimulus checks, pent-up demand, and low interest rates combined to push inflation to 40-year highs.</li>
+                <li><strong>Cost-Push Inflation</strong> — Happens when the cost of producing goods rises, forcing businesses to pass those costs on to consumers. Oil price shocks, supply chain disruptions, and rising wages can all trigger cost-push inflation. The 1970s oil crisis is the textbook U.S. example, when OPEC embargoes sent gasoline and energy prices soaring.</li>
+                <li><strong>Built-In Inflation (Wage-Price Spiral)</strong> — When workers expect rising prices, they demand higher wages. Businesses then raise prices to cover higher labor costs, which in turn fuels more wage demands. This self-reinforcing cycle can be very difficult to break once it takes hold.</li>
+                <li><strong>Monetary Inflation</strong> — The Monetarist view, championed by Milton Friedman, holds that "inflation is always and everywhere a monetary phenomenon." When the Federal Reserve increases the money supply faster than the economy grows, more dollars chase the same goods, pushing prices up. The Fed's massive quantitative easing programs after 2008 and 2020 are modern examples.</li>
+            </ul>
+
+            <h2>How Is Inflation Measured in the United States?</h2>
+            <p>The U.S. uses several price indices to measure inflation. Each serves a different purpose:</p>
+            <table>
+                <thead>
+                    <tr><th>Index</th><th>Full Name</th><th>Used For</th><th>Key Characteristic</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>CPI-U</strong></td><td>CPI for All Urban Consumers</td><td>General inflation reporting, media headlines</td><td>Covers ~93% of U.S. population. Most widely cited inflation measure.</td></tr>
+                    <tr><td><strong>CPI-W</strong></td><td>CPI for Urban Wage Earners</td><td>Social Security COLA calculation</td><td>Covers ~29% of population (hourly workers). Used for SS benefits since 1975.</td></tr>
+                    <tr><td><strong>C-CPI-U</strong></td><td>Chained CPI for All Urban Consumers</td><td>IRS tax bracket indexation (since 2018)</td><td>Accounts for consumer substitution. Grows ~0.2–0.3% slower than CPI-U per year.</td></tr>
+                    <tr><td><strong>Core CPI</strong></td><td>CPI Less Food and Energy</td><td>Fed policy analysis</td><td>Excludes volatile food and energy prices for a clearer inflation trend.</td></tr>
+                    <tr><td><strong>PCE</strong></td><td>Personal Consumption Expenditures Price Index</td><td>Federal Reserve's preferred inflation gauge</td><td>Broader coverage than CPI—includes employer-paid healthcare. Accounts for substitution effects.</td></tr>
+                    <tr><td><strong>PPI</strong></td><td>Producer Price Index</td><td>Wholesale/producer price tracking</td><td>Measures prices from the seller's perspective. Rising PPI often foreshadows rising CPI.</td></tr>
+                </tbody>
+            </table>
+            <p>Our calculator uses <strong>CPI-U</strong> because it is the most widely referenced and covers the broadest segment of the U.S. population. The Federal Reserve, however, prefers the <strong>PCE index</strong> for setting monetary policy because it has broader coverage and naturally accounts for consumers switching between products when prices change.</p>
+
+            <h2>U.S. Inflation by Decade</h2>
+            <p>Inflation in the United States has varied dramatically over the past century. Here is a decade-by-decade summary:</p>
+            <table>
+                <thead>
+                    <tr><th>Decade</th><th>Avg Annual Inflation</th><th>Key Events</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>1920s</strong></td><td>~-1.1%</td><td>Post-WWI deflation, Roaring Twenties economic boom</td></tr>
+                    <tr><td><strong>1930s</strong></td><td>~-2.0%</td><td>Great Depression brought severe deflation</td></tr>
+                    <tr><td><strong>1940s</strong></td><td>~5.6%</td><td>WWII wartime spending and post-war demand surge</td></tr>
+                    <tr><td><strong>1950s</strong></td><td>~2.2%</td><td>Korean War spike, then stable growth</td></tr>
+                    <tr><td><strong>1960s</strong></td><td>~2.5%</td><td>Vietnam War spending, "guns and butter" fiscal policy</td></tr>
+                    <tr><td><strong>1970s</strong></td><td>~7.4%</td><td>Oil crises (1973, 1979), wage-price spirals, stagflation</td></tr>
+                    <tr><td><strong>1980s</strong></td><td>~5.1%</td><td>Volcker shock (Fed rate hikes to 20%), inflation tamed by mid-decade</td></tr>
+                    <tr><td><strong>1990s</strong></td><td>~2.9%</td><td>Great Moderation, tech boom, globalization kept prices stable</td></tr>
+                    <tr><td><strong>2000s</strong></td><td>~2.6%</td><td>Housing bubble, 2008 financial crisis, near-deflation in 2009</td></tr>
+                    <tr><td><strong>2010s</strong></td><td>~1.8%</td><td>Slow recovery, persistently below-target inflation, near-zero interest rates</td></tr>
+                    <tr><td><strong>2020s</strong></td><td>~5.0%*</td><td>COVID supply shocks, stimulus spending, 2022 peak at 9.1% (June), aggressive Fed rate hikes</td></tr>
+                </tbody>
+            </table>
+            <p><em>*2020s average through 2025. The June 2022 CPI reading of 9.1% year-over-year was the highest since November 1981.</em></p>
+
+            <h2>How Inflation Affects Your Daily Life</h2>
+            <p>Inflation isn't just an abstract economic concept — it directly impacts what Americans pay for everything from groceries to college tuition. Here's how the prices of common items have changed over the decades:</p>
+            <table>
+                <thead>
+                    <tr><th>Item</th><th>1970</th><th>1990</th><th>2000</th><th>2010</th><th>2025</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>Gallon of Gas</strong></td><td>$0.36</td><td>$1.16</td><td>$1.51</td><td>$2.79</td><td>$3.40</td></tr>
+                    <tr><td><strong>Gallon of Milk</strong></td><td>$1.15</td><td>$2.15</td><td>$2.79</td><td>$3.32</td><td>$4.20</td></tr>
+                    <tr><td><strong>Loaf of Bread</strong></td><td>$0.25</td><td>$0.70</td><td>$0.99</td><td>$1.37</td><td>$2.00</td></tr>
+                    <tr><td><strong>Postage Stamp</strong></td><td>$0.06</td><td>$0.25</td><td>$0.33</td><td>$0.44</td><td>$0.73</td></tr>
+                    <tr><td><strong>Movie Ticket</strong></td><td>$1.55</td><td>$4.23</td><td>$5.39</td><td>$7.89</td><td>$11.00</td></tr>
+                    <tr><td><strong>Median Home Price</strong></td><td>$23,400</td><td>$79,100</td><td>$119,600</td><td>$221,800</td><td>$420,000</td></tr>
+                    <tr><td><strong>Avg College Tuition (4-yr public)</strong></td><td>$1,207</td><td>$3,349</td><td>$4,845</td><td>$8,244</td><td>$11,600</td></tr>
+                    <tr><td><strong>Federal Minimum Wage</strong></td><td>$1.60</td><td>$3.80</td><td>$5.15</td><td>$7.25</td><td>$7.25</td></tr>
+                </tbody>
+            </table>
+            <p>Notice that the federal minimum wage has been frozen at $7.25/hour since 2009 — the longest period without an increase in U.S. history. Meanwhile, the cost of essential goods has continued to rise, effectively reducing the real purchasing power of minimum-wage workers by over 30% since 2009.</p>
+
+            <h2>Social Security and Inflation (COLA)</h2>
+            <p>Social Security benefits are adjusted annually through the <strong>Cost-of-Living Adjustment (COLA)</strong>, which is tied to the CPI-W index. The Social Security Administration compares the average CPI-W for July through September of the current year to the same period in the prior year. If prices have risen, benefits are increased by that percentage the following January.</p>
+            <table>
+                <thead>
+                    <tr><th>Year</th><th>COLA %</th><th>Impact on Avg Monthly Benefit</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>2025</td><td>2.5%</td><td>+$48/month</td></tr>
+                    <tr><td>2024</td><td>3.2%</td><td>+$59/month</td></tr>
+                    <tr><td>2023</td><td>8.7%</td><td>+$146/month (highest since 1981)</td></tr>
+                    <tr><td>2022</td><td>5.9%</td><td>+$92/month</td></tr>
+                    <tr><td>2021</td><td>1.3%</td><td>+$20/month</td></tr>
+                    <tr><td>2020</td><td>1.6%</td><td>+$24/month</td></tr>
+                    <tr><td>2019</td><td>2.8%</td><td>+$39/month</td></tr>
+                </tbody>
+            </table>
+            <p>The record-high 8.7% COLA in 2023 was a direct response to the inflation spike of 2022. While large adjustments help, critics argue that the CPI-W underweights healthcare costs, which disproportionately affect retirees.</p>
+
+            <h2>How to Protect Your Money from Inflation</h2>
+            <p>No single investment perfectly hedges against inflation, but several strategies can help preserve or grow your purchasing power:</p>
+            <table>
+                <thead>
+                    <tr><th>Strategy</th><th>How It Works</th><th>Inflation Protection</th><th>Risk Level</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>TIPS</strong></td><td>Treasury Inflation-Protected Securities — principal adjusts with CPI</td><td>Direct (indexed to CPI-U)</td><td>Very Low</td></tr>
+                    <tr><td><strong>I-Bonds</strong></td><td>Series I Savings Bonds — rate = fixed rate + inflation rate (CPI-U semiannual)</td><td>Direct (indexed to CPI-U)</td><td>Very Low</td></tr>
+                    <tr><td><strong>Stocks (S&P 500)</strong></td><td>Historically return 10% annually, well above inflation</td><td>Indirect (earnings growth outpaces prices)</td><td>High</td></tr>
+                    <tr><td><strong>Real Estate</strong></td><td>Property values and rents tend to rise with inflation</td><td>Moderate-High</td><td>Medium-High</td></tr>
+                    <tr><td><strong>Commodities</strong></td><td>Gold, silver, oil — tangible assets that often rise during inflationary periods</td><td>Moderate (cyclical)</td><td>High</td></tr>
+                    <tr><td><strong>High-Yield Savings</strong></td><td>Online savings accounts with 4–5% APY (2024–2025)</td><td>Partial (keeps pace but rarely beats)</td><td>Very Low</td></tr>
+                </tbody>
+            </table>
+            <p><strong>TIPS</strong> are U.S. Treasury bonds whose principal adjusts daily based on CPI changes. If inflation is 3%, a $1,000 TIPS bond's principal becomes $1,030. Interest is paid on the adjusted principal, so your payments also increase. TIPS come in 5, 10, and 30-year maturities and can be purchased directly from <a href="https://www.treasurydirect.gov" target="_blank" rel="noopener noreferrer">TreasuryDirect.gov</a>.</p>
+            <p><strong>I-Bonds</strong> combine a fixed rate (set when you buy) with an inflation rate (adjusted every 6 months based on CPI-U). You can purchase up to $10,000 in I-Bonds per person per year electronically. They must be held for at least 1 year, and cashing out before 5 years forfeits 3 months of interest. I-Bonds are ideal for emergency savings and short-to-medium-term inflation protection.</p>
+
+            <h2>How the Inflation Calculator Works</h2>
+            <p>Our CPI-based inflation calculator uses the following formula to determine the equivalent purchasing power of a dollar amount across different years:</p>
+            <div class="explanation__highlight">
+                <strong>Equivalent Value = Original Amount × (CPI in Target Year ÷ CPI in Original Year)</strong>
+            </div>
+            <p>For example, to find out what $100 in 1990 would be worth in 2025:</p>
+            <ul>
+                <li>CPI-U Annual Average for 1990: <strong>130.7</strong></li>
+                <li>CPI-U Annual Average for 2025: <strong>320.8</strong></li>
+                <li>Equivalent Value = $100 × (320.8 ÷ 130.7) = <strong>$245.37</strong></li>
+                <li>Cumulative Inflation = ((320.8 − 130.7) ÷ 130.7) × 100 = <strong>145.37%</strong></li>
+            </ul>
+            <p>This means $100 in 1990 has the same purchasing power as approximately $245.37 in 2025 — prices have more than doubled over those 35 years.</p>
+            <p>The <strong>Forward Flat Rate</strong> and <strong>Backward Flat Rate</strong> modes use a simpler flat-rate compound formula for theoretical projections:</p>
+            <ul>
+                <li><strong>Forward:</strong> Future Value = Amount × (1 + Rate)^Years</li>
+                <li><strong>Backward:</strong> Past Value = Amount ÷ (1 + Rate)^Years</li>
+            </ul>
+            <p>The historical U.S. average inflation rate hovers around <strong>3.2% per year</strong> since 1913, making 3% a commonly used assumption for forward and backward projections.</p>
+
+            <h2>Problems with Measuring Inflation</h2>
+            <p>While the CPI is the most widely used inflation measure, it has well-documented limitations:</p>
+            <ul>
+                <li><strong>Quality Adjustment Bias</strong> — When a product improves in quality (a computer becomes faster, a car becomes safer), the BLS adjusts the price to account for the quality improvement. Critics argue this can understate true inflation because consumers still pay the higher price.</li>
+                <li><strong>Substitution Bias</strong> — When the price of beef rises, consumers may switch to chicken. The standard CPI-U uses a fixed basket, which can overstate inflation if consumers are substituting. The Chained CPI (C-CPI-U) addresses this but gives lower results.</li>
+                <li><strong>Housing Measurement</strong> — The CPI uses "owners' equivalent rent" to measure housing costs, not actual home prices. During the 2020–2022 housing boom, home prices surged 40%+ while the CPI's shelter component lagged significantly behind.</li>
+                <li><strong>Demographic Differences</strong> — Inflation affects people differently. Retirees spend more on healthcare (which inflates faster), while young families spend more on childcare and education. The experimental CPI-E (for the elderly) consistently shows higher inflation than the standard CPI-U.</li>
+            </ul>
+
+            <h2>Hyperinflation and Deflation</h2>
+            <p><strong>Hyperinflation</strong> is extreme, out-of-control price increases — typically exceeding 50% per month. The most extreme case in modern history was Zimbabwe in 2008, where prices doubled every 24 hours. Germany's Weimar Republic experienced hyperinflation in the 1920s when the government printed money to pay war reparations, making the currency essentially worthless. The United States has never experienced hyperinflation, though the 1970s stagflation period (high inflation + high unemployment + low growth) was the closest the country has come to an inflationary crisis since WWII.</p>
+            <p><strong>Deflation</strong> — a sustained decrease in the general price level — is often more dangerous than inflation. When prices fall, consumers delay purchases (expecting even lower prices), businesses cut production and jobs, and a vicious cycle of falling demand and falling prices takes hold. The Great Depression of the 1930s saw sustained deflation, with prices falling nearly 25% from 1929 to 1933. The U.S. briefly experienced deflation in 2009 during the Great Recession.</p>
+
+            <h2>How the Federal Reserve Controls Inflation</h2>
+            <p>The Federal Reserve uses several tools to manage inflation and keep it near its 2% target:</p>
+            <ul>
+                <li><strong>Federal Funds Rate</strong> — The Fed's primary tool. By raising the overnight lending rate between banks, borrowing becomes more expensive, which slows spending and investment, reducing inflationary pressure. In 2022–2023, the Fed raised rates from 0% to 5.25–5.50% — the fastest tightening cycle in decades — to combat 9.1% inflation.</li>
+                <li><strong>Open Market Operations</strong> — The Fed buys or sells Treasury securities. Buying bonds injects money into the economy (stimulating growth but potentially increasing inflation); selling bonds removes money (cooling the economy).</li>
+                <li><strong>Quantitative Easing/Tightening</strong> — Large-scale asset purchases expand the money supply. The Fed bought trillions in bonds after 2008 and 2020. Quantitative tightening (letting bonds mature without replacement) reduces the money supply.</li>
+                <li><strong>Forward Guidance</strong> — The Fed communicates its future policy intentions to shape market expectations. If markets believe inflation will be controlled, it becomes a self-fulfilling prophecy.</li>
+            </ul>
+        `,
+        faq: [
+            { question: "What is the current US inflation rate?", answer: "As of early 2025, the annual U.S. inflation rate (CPI-U, 12-month) is approximately 2.8–3.0%. This is down significantly from the peak of 9.1% in June 2022, the highest since 1981. The Federal Reserve targets a long-run inflation rate of 2%, so current levels remain slightly above target." },
+            { question: "How does the CPI measure inflation?", answer: "The Bureau of Labor Statistics (BLS) tracks the prices of approximately 80,000 items across 23,000 retail and service establishments in 75 urban areas nationwide. These items form a representative 'basket' of goods and services — including food, housing, transportation, medical care, apparel, recreation, and education. The CPI measures the average change in these prices over time." },
+            { question: "What is the difference between CPI and PCE?", answer: "The CPI (Consumer Price Index) and PCE (Personal Consumption Expenditures Price Index) both measure inflation but differ in scope and methodology. CPI uses a fixed basket of goods; PCE uses a flexible basket that adjusts for consumer substitution. PCE also includes employer-paid healthcare and has broader coverage. The Federal Reserve prefers PCE because it better reflects actual consumer spending patterns. PCE typically runs 0.3–0.5 percentage points lower than CPI." },
+            { question: "How does inflation affect purchasing power?", answer: "Inflation erodes purchasing power — the real value of your money. At 3% annual inflation, $100 today will only buy about $74 worth of goods in 10 years and about $55 worth in 20 years. This is why simply holding cash or keeping money in low-yield savings accounts causes a steady loss of real wealth. Investments must earn returns above the inflation rate to preserve purchasing power." },
+            { question: "What was the highest inflation rate in US history?", answer: "The highest annual CPI inflation rate in modern U.S. history was approximately 18% in 1918 (during WWI). In the post-WWII era, the peak was 13.5% in 1980 during the oil crisis and stagflation period. More recently, the CPI-U hit 9.1% year-over-year in June 2022 — the highest reading since November 1981 — driven by pandemic-era supply chain disruptions and massive fiscal stimulus." },
+            { question: "How does the Federal Reserve control inflation?", answer: "The Federal Reserve's primary tool is the federal funds rate — the overnight lending rate between banks. By raising this rate, the Fed makes borrowing more expensive, which slows consumer spending and business investment, reducing demand-driven inflation. The Fed also uses open market operations (buying/selling Treasury securities), quantitative easing or tightening, and forward guidance to influence inflation expectations and economic activity." },
+            { question: "What are TIPS (Treasury Inflation-Protected Securities)?", answer: "TIPS are U.S. Treasury bonds whose principal value adjusts daily based on changes in the Consumer Price Index (CPI-U). If inflation rises 3%, a $1,000 TIPS bond's principal becomes $1,030, and interest is calculated on the higher amount. At maturity, you receive the greater of the adjusted principal or original face value, providing deflation protection. TIPS come in 5, 10, and 30-year maturities and can be purchased through TreasuryDirect.gov or via TIPS mutual funds and ETFs." },
+            { question: "How does inflation affect Social Security benefits?", answer: "Social Security benefits receive an annual Cost-of-Living Adjustment (COLA) based on the CPI-W index. The Social Security Administration compares average CPI-W readings from July–September of the current year to the same period in the prior year. If prices increased, benefits rise by that percentage the following January. For example, the 8.7% COLA in 2023 (the largest since 1981) added approximately $146/month to the average benefit." },
+            { question: "What investments beat inflation in the US?", answer: "Historically, U.S. equities (S&P 500) have returned approximately 10% annually — well above the ~3.2% long-run average inflation rate, yielding a real return of about 7%. TIPS and I-Bonds provide direct inflation protection. Real estate, through both property appreciation and rising rents, has also been an effective long-term inflation hedge. Commodities like gold tend to outperform during inflationary spikes but are more volatile. A diversified portfolio is the best approach." },
+            { question: "How is core inflation different from headline inflation?", answer: "Core inflation excludes volatile food and energy prices from the CPI calculation, providing a clearer view of underlying price trends. Headline inflation includes everything. The Federal Reserve focuses on core measures because food and energy prices can swing dramatically due to weather, geopolitical events, or seasonal factors, creating noise that obscures the true inflation trend. When core inflation is stable but headline inflation spikes, the Fed may consider the spike temporary." },
+        ],
+    },
 };
 
 export default async function UtilityCalculatorHubPage({ params }: PageProps) {
