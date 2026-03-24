@@ -12992,7 +12992,7 @@
     "categorySlug": "construction-calculators",
     "icon": "📏",
     "calcType": "square-meters",
-    "description": "Calculate area in square meters. Convert between square meters, square feet, acres, and hectares.",
+    "description": "Calculate square meters for rectangles, circles, and triangles. Enter in meters, cm, feet, or inches. Add cost per m² for estimates.",
     "stars": 5,
     "defaults": {
       "amount": 5,

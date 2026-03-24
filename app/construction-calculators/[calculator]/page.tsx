@@ -3862,18 +3862,85 @@ Net lawn area: 10,890 − 1,900 = <strong>8,990 sq ft</strong></p>
         ],
     },
     "square-meters-calculator": {
-        subtitle: "Calculate area in square meters. Convert between square meters, square feet, square yards, acres, and hectares.",
+        subtitle: "Calculate area in square meters for rectangles, circles, and triangles. Enter in meters, cm, feet, or inches. Add cost per m² for material estimates.",
         explanation: {
             heading: "How to Calculate Square Meters",
             paragraphs: [
-                "Square meters = length (m) × width (m). One square meter = 10.764 square feet. It's the SI unit for area and is used worldwide for real estate, construction, and land measurement.",
-                "Common references: a parking space ≈ 12 m², a single car garage ≈ 15–20 m², a tennis court = 260.87 m², a basketball court = 420 m², one hectare = 10,000 m².",
+                "Square meters = length (m) × width (m). Select shape (rectangle, circle, triangle), enter in meters, cm, feet, or inches. Add cost per m² for flooring, tiling, or painting budgets.",
+                "1 m² = 10.764 sq ft = 1.196 sq yd. Results show metric (m², cm², hectares) and imperial (sq ft, sq yd, acres) conversions plus total cost.",
             ],
-            highlight: "5 × 4 meters = 20 m² = 215.28 sq ft = 23.92 sq yd = 0.002 hectares.",
+            highlight: "5 × 4 m room = 20 m² = 215.28 sq ft. At $50/m²: $1,000 total. Circle with 3 m radius: 28.27 m².",
         },
+        contentHTML: `
+<p><strong>Square meters (m²)</strong> is the SI unit of area, used worldwide for <strong>real estate, construction, flooring, landscaping, and international trade</strong>. In the US, square meters are increasingly used alongside square feet for global comparisons and scientific applications.</p>
+<p>The calculator above supports <strong>3 shapes</strong> (rectangle, circle, triangle), accepts <strong>4 input units</strong> (meters, cm, feet, inches), and includes <strong>cost estimation per m²</strong>.</p>
+
+<h2>Square Meter Formulas</h2>
+<table>
+<thead><tr><th>Shape</th><th>Formula</th><th>Example</th></tr></thead>
+<tbody>
+<tr><td><strong>Rectangle</strong></td><td>L × W</td><td>5 m × 4 m = 20 m²</td></tr>
+<tr><td><strong>Circle</strong></td><td>π × r²</td><td>r = 3 m → π × 9 = 28.27 m²</td></tr>
+<tr><td><strong>Triangle</strong></td><td>½ × base × height</td><td>6 m × 4 m ÷ 2 = 12 m²</td></tr>
+</tbody>
+</table>
+
+<h2>How to Convert Square Feet to Square Meters</h2>
+<p><strong>Square meters = square feet × 0.0929</strong></p>
+<p><strong>Square feet = square meters × 10.764</strong></p>
+<p><strong>Examples:</strong></p>
+<ul>
+<li>100 sq ft = <strong>9.29 m²</strong></li>
+<li>200 sq ft = <strong>18.58 m²</strong></li>
+<li>500 sq ft = <strong>46.45 m²</strong></li>
+<li>1,000 sq ft = <strong>92.90 m²</strong></li>
+<li>2,000 sq ft = <strong>185.81 m²</strong></li>
+</ul>
+
+<h2>Area Conversion Reference</h2>
+<table>
+<thead><tr><th>Unit</th><th>To m²</th><th>To sq ft</th><th>To sq yd</th></tr></thead>
+<tbody>
+<tr><td><strong>1 m²</strong></td><td>1</td><td>10.764</td><td>1.196</td></tr>
+<tr><td><strong>1 sq ft</strong></td><td>0.0929</td><td>1</td><td>0.1111</td></tr>
+<tr><td><strong>1 sq yd</strong></td><td>0.8361</td><td>9</td><td>1</td></tr>
+<tr><td><strong>1 sq cm</strong></td><td>0.0001</td><td>0.00108</td><td>0.00012</td></tr>
+<tr><td><strong>1 hectare</strong></td><td>10,000</td><td>107,639</td><td>11,960</td></tr>
+<tr><td><strong>1 acre</strong></td><td>4,047</td><td>43,560</td><td>4,840</td></tr>
+</tbody>
+</table>
+
+<h2>Real-World Size References</h2>
+<table>
+<thead><tr><th>Item / Space</th><th>Approx m²</th><th>Approx sq ft</th></tr></thead>
+<tbody>
+<tr><td><strong>1 square meter</strong></td><td>1.0</td><td>10.8</td></tr>
+<tr><td><strong>King-size bed</strong></td><td>3.7</td><td>40</td></tr>
+<tr><td><strong>Parking space</strong></td><td>12.5</td><td>135</td></tr>
+<tr><td><strong>Single-car garage</strong></td><td>18.6</td><td>200</td></tr>
+<tr><td><strong>Studio apartment</strong></td><td>35–50</td><td>375–540</td></tr>
+<tr><td><strong>Tennis court</strong></td><td>261</td><td>2,808</td></tr>
+<tr><td><strong>Basketball court</strong></td><td>420</td><td>4,520</td></tr>
+<tr><td><strong>Olympic pool</strong></td><td>1,250</td><td>13,455</td></tr>
+<tr><td><strong>1 acre</strong></td><td>4,047</td><td>43,560</td></tr>
+<tr><td><strong>Football field</strong></td><td>5,351</td><td>57,600</td></tr>
+</tbody>
+</table>
+
+<h2>Measuring Oddly Shaped Rooms</h2>
+<p>For L-shaped, T-shaped, or irregular rooms: <strong>divide the space into rectangles</strong>, calculate each area in m², and add them together. Example: an L-shaped room = rectangle A (3 × 5 = 15 m²) + rectangle B (2 × 3 = 6 m²) = <strong>21 m² total</strong>.</p>
+`,
         faq: [
-            { question: "How do I convert square meters to square feet?", answer: "Multiply by 10.764. For example, 20 m² × 10.764 = 215.28 sq ft. To convert sq ft to sq m, divide by 10.764." },
-            { question: "How big is 100 square meters?", answer: "About 1,076 square feet — roughly a 10 × 10 meter area (33 × 33 ft). It's about the size of a small apartment or a large living room." },
+            { question: "How do I convert square meters to square feet?", answer: "Multiply by 10.764. Example: 20 m² × 10.764 = 215.28 sq ft. To convert sq ft to m²: multiply sq ft by 0.0929. A 1,500 sq ft home = 139.35 m²." },
+            { question: "How big is 100 square meters?", answer: "About 1,076 sq ft — a 10 × 10 meter area (roughly 33 × 33 ft). It's about the size of a small apartment, a large studio, or 4 parking spaces. In real estate, 100 m² is a common benchmark for apartments worldwide." },
+            { question: "Are square meters and meters the same?", answer: "No. Meters measure length (one dimension). Square meters measure area (two dimensions). A room 5 m long and 4 m wide has dimensions of 5 m × 4 m but an area of 20 m². You can't directly convert between them without knowing both dimensions." },
+            { question: "What does 1 square meter look like?", answer: "A square that is 1 meter (3.28 ft) on each side — roughly 3 ft 3 in × 3 ft 3 in. About the size of a large TV screen, a small desk, or the floor space under a dining chair. A guitar is about 1 m long, so picture a square framed by guitars." },
+            { question: "How many square meters is a 10x10 room?", answer: "If measured in meters: 10 × 10 = 100 m². If measured in feet: 10 × 10 ft = 100 sq ft = 9.29 m². Always specify whether dimensions are in meters or feet — the difference is more than 10×." },
+            { question: "What does per square meter mean?", answer: "A unit price for area-based products or services. If flooring costs $50/m² and your room is 20 m², total cost = $50 × 20 = $1,000. Compare: $50/m² = $4.65/sq ft = $41.80/sq yd. Always confirm whether quotes include installation." },
+            { question: "How do I measure a room in square meters?", answer: "Measure length and width in meters (or feet, then convert). Multiply length × width. For cm measurements: multiply, then divide by 10,000 to get m². For oddly shaped rooms, divide into rectangles, calculate each, and add together." },
+            { question: "How many square meters is a typical US house?", answer: "Average US home: ~200 m² (2,150 sq ft). Small home: 90–120 m² (1,000–1,300 sq ft). Medium: 150–230 m² (1,600–2,500 sq ft). Large: 280–465 m² (3,000–5,000 sq ft). US homes are 2–3× larger than European averages." },
+            { question: "When do you use square meters in the US?", answer: "Square meters are used in US science, engineering, international real estate, trade, and government. Real estate listings often include both sq ft and m² for international buyers. Construction specs for government projects often use metric. Flooring imported from Europe is priced per m²." },
+            { question: "How do I convert square centimeters to square meters?", answer: "Divide by 10,000. Example: 50,000 cm² ÷ 10,000 = 5 m². This is because 1 m = 100 cm, so 1 m² = 100 × 100 = 10,000 cm². Common mistake: dividing by 100 instead of 10,000 (that converts linear cm to m, not area)." },
         ],
     },
     "square-yards-calculator": {

@@ -6985,32 +6985,71 @@ function SquareInchesCalc() {
 
 /* ──────────── 145. SQUARE METERS CALCULATOR ──────────── */
 function SquareMetersCalc() {
+    const [shape, setShape] = useState("rectangle");
     const [length, setLength] = useState(5);
     const [width, setWidth] = useState(4);
+    const [inputUnit, setInputUnit] = useState("meters");
+    const [costPerSqM, setCostPerSqM] = useState(50);
+
+    const toMeters = (v: number) => {
+        if (inputUnit === "cm") return v / 100;
+        if (inputUnit === "feet") return v * 0.3048;
+        if (inputUnit === "inches") return v * 0.0254;
+        return v;
+    };
+    const unitLabel = inputUnit === "cm" ? "cm" : inputUnit === "feet" ? "ft" : inputUnit === "inches" ? "in" : "m";
 
     const result = useMemo(() => {
-        const sqM = length * width;
+        let sqM: number;
+        if (shape === "rectangle") {
+            sqM = toMeters(length) * toMeters(width);
+        } else if (shape === "circle") {
+            const r = toMeters(length);
+            sqM = Math.PI * r * r;
+        } else {
+            sqM = 0.5 * toMeters(length) * toMeters(width);
+        }
         const sqFt = sqM * 10.7639;
         const sqYd = sqFt / 9;
         const hectares = sqM / 10000;
         const acres = sqM / 4046.86;
-        return { sqM, sqFt, sqYd, hectares, acres };
-    }, [length, width]);
+        const totalCost = sqM * costPerSqM;
+        const sqCm = sqM * 10000;
+        return { sqM, sqFt, sqYd, hectares, acres, totalCost, sqCm };
+    }, [shape, length, width, inputUnit, costPerSqM]);
 
     return (
         <div className="con-calc">
             <h3 className="con-calc__title">📏 Square Meters Calculator</h3>
             <div className="con-calc__inputs">
-                <InputField label="Length" value={length} onChange={setLength} unit="m" min={0.01} step={0.01} />
-                <InputField label="Width" value={width} onChange={setWidth} unit="m" min={0.01} step={0.01} />
+                <SelectField label="Area Shape" value={shape} onChange={setShape} options={[
+                    { value: "rectangle", label: "Rectangle / Square" },
+                    { value: "circle", label: "Circle (enter radius)" },
+                    { value: "triangle", label: "Triangle (base × height)" },
+                ]} />
+                <SelectField label="Input Unit" value={inputUnit} onChange={setInputUnit} options={[
+                    { value: "meters", label: "Meters" },
+                    { value: "cm", label: "Centimeters" },
+                    { value: "feet", label: "Feet" },
+                    { value: "inches", label: "Inches" },
+                ]} />
+                <InputField label={shape === "circle" ? "Radius" : shape === "triangle" ? "Base" : "Length"} value={length} onChange={setLength} unit={unitLabel} min={0.01} step={0.01} />
+                {shape !== "circle" && (
+                    <InputField label={shape === "triangle" ? "Height" : "Width"} value={width} onChange={setWidth} unit={unitLabel} min={0.01} step={0.01} />
+                )}
+                <InputField label="Cost per m²" value={costPerSqM} onChange={setCostPerSqM} unit="$/m²" min={0} step={1} />
             </div>
             <div className="con-calc__results">
-                <h4>Results</h4>
+                <h4 className="con-calc__group-label">METRIC AREA</h4>
                 <ResultRow label="Square Meters" value={fmt(result.sqM, 2)} unit="m²" />
+                <ResultRow label="Square Centimeters" value={fmt(result.sqCm)} unit="cm²" />
+                {result.sqM >= 1000 && <ResultRow label="Hectares" value={fmt(result.hectares, 4)} unit="ha" />}
+                <h4 className="con-calc__group-label">IMPERIAL</h4>
                 <ResultRow label="Square Feet" value={fmt(result.sqFt, 2)} unit="sq ft" />
                 <ResultRow label="Square Yards" value={fmt(result.sqYd, 2)} unit="sq yd" />
-                <ResultRow label="Hectares" value={fmt(result.hectares, 4)} unit="ha" />
-                <ResultRow label="Acres" value={fmt(result.acres, 4)} unit="acres" />
+                {result.sqM >= 1000 && <ResultRow label="Acres" value={fmt(result.acres, 4)} unit="acres" />}
+                <h4 className="con-calc__group-label">COST ESTIMATE</h4>
+                <ResultRow label="Total Cost" value={`$${fmt(result.totalCost, 2)}`} />
             </div>
         </div>
     );
