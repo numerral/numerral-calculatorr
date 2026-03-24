@@ -1990,116 +1990,269 @@ const HUB_CONTENT: Record<string, {
     },
 
     /* ─── 18. MIXED NUMBER CALCULATOR — RICH CONTENT ─── */
+    /* ─── 18. MIXED NUMBER CALCULATOR — RICH CONTENT (Topical Authority) ─── */
     "mixed-number-calculator": {
-        subtitle: "Add, subtract, multiply, or divide mixed numbers and fractions. See the full step-by-step solution with conversion to improper fractions, LCD, and simplification.",
+        subtitle: "Add, subtract, multiply, or divide mixed numbers and fractions. See the full step-by-step solution with conversion to improper fractions, LCD, simplification, and conversion back to mixed number form.",
         contentHTML: `
-            <h2 id="how-to-calculate">How to Calculate Mixed Numbers</h2>
-            <p>A <strong>mixed number</strong> combines a whole number with a <a href="/math-calculators/fraction-calculator">fraction</a> — like 1 2/3 or 3 1/4. Calculating with mixed numbers is similar to calculating with regular fractions, but with one extra step: you first convert each mixed number to an <strong>improper fraction</strong>.</p>
+            <h2 id="what-is-a-mixed-number">What Is a Mixed Number?</h2>
+            <p>A <strong>mixed number</strong> (also called a <strong>mixed fraction</strong>) combines a <em>whole number</em> and a <em>proper fraction</em> into one value. For example, <strong>2 3/4</strong> means "two and three-fourths" — it represents a quantity between 2 and 3.</p>
+            <p>Mixed numbers are part of everyday American life: recipes call for <strong>1 1/2 cups of flour</strong>, lumber is measured in <strong>3 3/4 inches</strong>, and race times might be <strong>9 3/10 seconds</strong>.</p>
 
-            <h3 id="step-convert">Step One: Convert to Improper Fractions</h3>
-            <p>Multiply the whole number by the denominator, then add the numerator. Keep the same denominator.</p>
-            <p><strong>Formula:</strong> w n/d = (w × d + n) / d</p>
-            <p><strong>Example:</strong> Convert 1 2/3 and 1 3/4 to improper fractions.</p>
+            <h3 id="fraction-terminology">Fraction Terminology Table</h3>
+            <table>
+                <thead><tr><th>Term</th><th>Definition</th><th>Example</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Proper fraction</strong></td><td>Numerator &lt; Denominator</td><td>3/4, 2/5, 7/8</td></tr>
+                    <tr><td><strong>Improper fraction</strong></td><td>Numerator ≥ Denominator</td><td>7/4, 11/3, 5/5</td></tr>
+                    <tr><td><strong>Mixed number</strong></td><td>Whole number + proper fraction</td><td>1 3/4, 2 1/3, 5 7/8</td></tr>
+                    <tr><td><strong>Equivalent fractions</strong></td><td>Different fractions with the same value</td><td>1/2 = 2/4 = 3/6</td></tr>
+                    <tr><td><strong>Lowest terms</strong></td><td>Simplified so GCD of numerator and denominator is 1</td><td>6/8 → 3/4</td></tr>
+                </tbody>
+            </table>
+            <p>A mixed number like <strong>2 3/4</strong> and the improper fraction <strong>11/4</strong> represent the <em>same value</em>. Mixed numbers are easier for humans to read; improper fractions are easier to calculate with. Our calculator handles both — enter whole = 0 for pure fractions.</p>
+
+            <h2 id="converting-mixed-improper">How to Convert Between Mixed Numbers and Improper Fractions</h2>
+            <p>Before performing any operation, you must convert mixed numbers to <strong>improper fractions</strong>. This is the critical first step:</p>
+
+            <h3 id="mixed-to-improper">Mixed Number → Improper Fraction</h3>
+            <div class="explanation__highlight">
+                <strong>Formula: w n/d = (w × d + n) / d</strong>
+            </div>
+            <p>Multiply the whole number by the denominator, add the numerator, and place the result over the original denominator.</p>
+            <p><strong>Example:</strong> Convert 3 2/5 to an improper fraction:</p>
             <ul>
-                <li>1 2/3 = (1 × 3 + 2) / 3 = <strong>5/3</strong></li>
-                <li>1 3/4 = (1 × 4 + 3) / 4 = <strong>7/4</strong></li>
+                <li>3 × 5 + 2 = 15 + 2 = 17</li>
+                <li>Result: <strong>17/5</strong></li>
+            </ul>
+            <p>Use our <a href="/math-calculators/mixed-number-to-fraction-calculator">Mixed Number to Improper Fraction Calculator</a> for instant conversions.</p>
+
+            <h3 id="improper-to-mixed">Improper Fraction → Mixed Number</h3>
+            <div class="explanation__highlight">
+                <strong>Divide the numerator by the denominator. Quotient = whole, Remainder = new numerator.</strong>
+            </div>
+            <p><strong>Example:</strong> Convert 17/5 back to a mixed number:</p>
+            <ul>
+                <li>17 ÷ 5 = 3 remainder 2</li>
+                <li>Result: <strong>3 2/5</strong></li>
             </ul>
             <p>Use our <a href="/math-calculators/fraction-to-mixed-number-calculator">Fraction to Mixed Number Calculator</a> for this step.</p>
 
-            <h3 id="step-lcd">Step Two: Find a Common Denominator</h3>
-            <p>For <strong>addition</strong> and <strong>subtraction</strong>, you need fractions with the same denominator. Find the <a href="/math-calculators/lcd-calculator">Least Common Denominator (LCD)</a> and convert both fractions.</p>
-            <p><strong>Continuing the example:</strong></p>
-            <ul>
-                <li>LCD(3, 4) = 12</li>
-                <li>5/3 = (5 × 4) / (3 × 4) = <strong>20/12</strong></li>
-                <li>7/4 = (7 × 3) / (4 × 3) = <strong>21/12</strong></li>
-            </ul>
+            <h3 id="conversion-reference-table">Common Conversion Reference Table</h3>
+            <table>
+                <thead><tr><th>Mixed Number</th><th>Improper Fraction</th><th>Decimal</th></tr></thead>
+                <tbody>
+                    <tr><td>1 1/2</td><td>3/2</td><td>1.5</td></tr>
+                    <tr><td>1 1/3</td><td>4/3</td><td>1.333...</td></tr>
+                    <tr><td>1 1/4</td><td>5/4</td><td>1.25</td></tr>
+                    <tr><td>1 3/4</td><td>7/4</td><td>1.75</td></tr>
+                    <tr><td>2 1/2</td><td>5/2</td><td>2.5</td></tr>
+                    <tr><td>2 1/3</td><td>7/3</td><td>2.333...</td></tr>
+                    <tr><td>2 2/3</td><td>8/3</td><td>2.666...</td></tr>
+                    <tr><td>3 1/4</td><td>13/4</td><td>3.25</td></tr>
+                    <tr><td>3 3/4</td><td>15/4</td><td>3.75</td></tr>
+                    <tr><td>5 1/2</td><td>11/2</td><td>5.5</td></tr>
+                </tbody>
+            </table>
 
-            <h3 id="step-operate">Step Three: Add or Subtract the Numerators</h3>
-            <p>With matching denominators, add (or subtract) the numerators and keep the denominator.</p>
-            <p>20/12 + 21/12 = (20 + 21) / 12 = <strong>41/12</strong></p>
-
-            <h3 id="step-simplify">Step Four: Simplify and Convert Back</h3>
-            <p>Simplify the fraction using the <a href="/math-calculators/gcd-calculator">GCD</a>, then convert back to a mixed number using <a href="/math-calculators/long-division-calculator">long division</a>.</p>
-            <ul>
-                <li>41/12 — GCD(41, 12) = 1, already simplified</li>
-                <li>41 ÷ 12 = 3 remainder 5</li>
-                <li>Result: 1 2/3 + 1 3/4 = <strong>3 5/12</strong></li>
-            </ul>
-
+            <h2 id="how-to-add-mixed-numbers">How to Add Mixed Numbers</h2>
+            <p>Adding mixed numbers requires a common denominator. Follow these steps:</p>
+            <ol>
+                <li><strong>Convert</strong> each mixed number to an improper fraction.</li>
+                <li><strong>Find the LCD</strong> (<a href="/math-calculators/lcd-calculator">Least Common Denominator</a>).</li>
+                <li><strong>Convert</strong> both fractions to <a href="/math-calculators/equivalent-fractions-calculator">equivalent fractions</a> with the LCD.</li>
+                <li><strong>Add</strong> the numerators; keep the denominator.</li>
+                <li><strong>Simplify</strong> using the <a href="/math-calculators/gcd-calculator">GCD</a> and convert back to a mixed number.</li>
+            </ol>
             <div class="explanation__highlight">
-                <strong>Tip:</strong> Skip Step Two for multiplication and division — you don't need a common denominator for those operations.
+                <strong>Formula: a/b + c/d = (a×d + c×b) / (b×d)</strong>
             </div>
 
-            <h2 id="multiply-mixed">How to Multiply Mixed Numbers</h2>
-            <p>Multiplying mixed numbers is actually <em>simpler</em> than adding them because you don't need a common denominator:</p>
+            <h3 id="addition-example">Worked Example: Add 1 2/3 + 2 1/4</h3>
             <ol>
-                <li>Convert both mixed numbers to improper fractions.</li>
-                <li>Multiply the numerators together and the denominators together.</li>
-                <li>Simplify and convert back to a mixed number.</li>
+                <li>Convert: 1 2/3 = (1×3+2)/3 = <strong>5/3</strong>; 2 1/4 = (2×4+1)/4 = <strong>9/4</strong></li>
+                <li>LCD(3, 4) = 12</li>
+                <li>Convert: 5/3 = 20/12; 9/4 = 27/12</li>
+                <li>Add: 20 + 27 = 47 → <strong>47/12</strong></li>
+                <li>Convert back: 47 ÷ 12 = 3 remainder 11 → <strong>3 11/12</strong></li>
             </ol>
-            <p><strong>Example:</strong> 2 1/2 × 1 1/3</p>
-            <ul>
-                <li>2 1/2 = 5/2, 1 1/3 = 4/3</li>
-                <li>5/2 × 4/3 = (5 × 4) / (2 × 3) = 20/6</li>
+
+            <h2 id="how-to-subtract-mixed-numbers">How to Subtract Mixed Numbers</h2>
+            <p>Subtraction follows the same process as addition, but you subtract the numerators instead:</p>
+            <div class="explanation__highlight">
+                <strong>Formula: a/b − c/d = (a×d − c×b) / (b×d)</strong>
+            </div>
+
+            <h3 id="subtraction-example">Worked Example: Subtract 1 2/6 − 2 1/4</h3>
+            <ol>
+                <li>Convert: 1 2/6 = 8/6; 2 1/4 = 9/4</li>
+                <li>LCD(6, 4) = 12</li>
+                <li>Convert: 8/6 = 16/12; 9/4 = 27/12</li>
+                <li>Subtract: 16 − 27 = −11 → <strong>−11/12</strong></li>
+                <li>Result is negative: <strong>−11/12</strong></li>
+            </ol>
+            <p><strong>Note:</strong> When the second number is larger, the result is naturally <em>negative</em>. This is perfectly normal — our calculator handles negative results automatically.</p>
+
+            <h2 id="how-to-multiply-mixed-numbers">How to Multiply Mixed Numbers</h2>
+            <p>Multiplying mixed numbers is actually <em>simpler</em> than adding them — you <strong>don't need a common denominator</strong>:</p>
+            <ol>
+                <li><strong>Convert</strong> both mixed numbers to improper fractions.</li>
+                <li><strong>Multiply</strong> numerators together and denominators together.</li>
+                <li><strong>Simplify</strong> and convert back to a mixed number.</li>
+            </ol>
+            <div class="explanation__highlight">
+                <strong>Formula: a/b × c/d = (a × c) / (b × d)</strong>
+            </div>
+
+            <h3 id="multiplication-example">Worked Example: Multiply 2 1/2 × 1 1/3</h3>
+            <ol>
+                <li>Convert: 2 1/2 = 5/2; 1 1/3 = 4/3</li>
+                <li>Multiply: (5 × 4) / (2 × 3) = 20/6</li>
                 <li>Simplify: GCD(20, 6) = 2 → 10/3</li>
                 <li>Convert: 10 ÷ 3 = 3 R 1 → <strong>3 1/3</strong></li>
-            </ul>
-
-            <h2 id="divide-mixed">How to Divide Mixed Numbers</h2>
-            <p>Dividing mixed numbers uses the "flip and multiply" method:</p>
-            <ol>
-                <li>Convert both mixed numbers to improper fractions.</li>
-                <li><strong>Flip</strong> the second fraction (swap numerator and denominator).</li>
-                <li>Multiply the fractions.</li>
-                <li>Simplify and convert back.</li>
             </ol>
-            <p><strong>Example:</strong> 3 1/2 ÷ 1 1/4</p>
-            <ul>
-                <li>3 1/2 = 7/2, 1 1/4 = 5/4</li>
-                <li>Flip: 5/4 → 4/5</li>
-                <li>7/2 × 4/5 = 28/10</li>
+            <p><strong>Pro tip (Cross-cancellation):</strong> Before multiplying, check if any numerator shares a common factor with either denominator. Cancel first to work with smaller numbers. For example, in 5/2 × 4/3, you could cancel the 2 and 4 first: 5/1 × 2/3 = 10/3.</p>
+
+            <h2 id="how-to-divide-mixed-numbers">How to Divide Mixed Numbers</h2>
+            <p>Division uses the <strong>"Keep, Change, Flip"</strong> method (also called "multiply by the reciprocal"):</p>
+            <ol>
+                <li><strong>Convert</strong> both mixed numbers to improper fractions.</li>
+                <li><strong>Keep</strong> the first fraction the same.</li>
+                <li><strong>Change</strong> the division sign (÷) to multiplication (×).</li>
+                <li><strong>Flip</strong> the second fraction (swap numerator and denominator).</li>
+                <li><strong>Multiply</strong>, simplify, and convert back.</li>
+            </ol>
+            <div class="explanation__highlight">
+                <strong>Formula: a/b ÷ c/d = a/b × d/c = (a × d) / (b × c)</strong>
+            </div>
+
+            <h3 id="division-example">Worked Example: Divide 3 1/2 ÷ 1 1/4</h3>
+            <ol>
+                <li>Convert: 3 1/2 = 7/2; 1 1/4 = 5/4</li>
+                <li>Flip second fraction: 5/4 → 4/5</li>
+                <li>Multiply: (7 × 4) / (2 × 5) = 28/10</li>
                 <li>Simplify: GCD(28, 10) = 2 → 14/5</li>
                 <li>Convert: 14 ÷ 5 = 2 R 4 → <strong>2 4/5</strong></li>
+            </ol>
+
+            <h2 id="negative-mixed-numbers">Working with Negative Mixed Numbers</h2>
+            <p>Negative mixed numbers follow the same rules as positive ones, with additional sign considerations. A negative sign can be placed in three equivalent positions:</p>
+            <table>
+                <thead><tr><th>Notation</th><th>Meaning</th><th>Example</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>−a/b</strong></td><td>Negative in front of fraction</td><td>−3/4 (most common)</td></tr>
+                    <tr><td><strong>−a / b</strong></td><td>Negative numerator</td><td>(−3)/4</td></tr>
+                    <tr><td><strong>a / −b</strong></td><td>Negative denominator</td><td>3/(−4)</td></tr>
+                </tbody>
+            </table>
+            <p>All three forms are equivalent: <strong>−3/4 = (−3)/4 = 3/(−4)</strong>.</p>
+            <p><strong>Multiplication/Division sign rules:</strong></p>
+            <ul>
+                <li>Positive × Positive = <strong>Positive</strong></li>
+                <li>Negative × Negative = <strong>Positive</strong></li>
+                <li>Positive × Negative = <strong>Negative</strong></li>
+                <li>Negative × Positive = <strong>Negative</strong></li>
             </ul>
+            <p>Our calculator handles negative inputs automatically — just enter negative values in the whole or numerator field.</p>
 
-            <h2 id="faq">Frequently Asked Questions</h2>
+            <h2 id="when-common-denominator">When Do You Need a Common Denominator?</h2>
+            <table>
+                <thead><tr><th>Operation</th><th>Common Denominator Needed?</th><th>Why?</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Addition (+)</strong></td><td>✅ Yes</td><td>You must combine numerators over the same denominator</td></tr>
+                    <tr><td><strong>Subtraction (−)</strong></td><td>✅ Yes</td><td>Same reason — you subtract numerators over a shared base</td></tr>
+                    <tr><td><strong>Multiplication (×)</strong></td><td>❌ No</td><td>Just multiply straight across: numerator × numerator, denominator × denominator</td></tr>
+                    <tr><td><strong>Division (÷)</strong></td><td>❌ No</td><td>Flip the second fraction and multiply</td></tr>
+                </tbody>
+            </table>
+            <p>This is one of the most common sources of confusion for students. Remember: LCD is only needed for <strong>addition and subtraction</strong>. Use our <a href="/math-calculators/lcd-calculator">LCD Calculator</a> to find it quickly.</p>
 
-            <h3>What is the difference between a mixed number and an improper fraction?</h3>
-            <p>A <strong>mixed number</strong> has a whole number and a fraction (e.g., 2 3/4). An <strong>improper fraction</strong> has a numerator ≥ denominator (e.g., 11/4). They represent the same value: 2 3/4 = 11/4. Mixed numbers are easier to read; improper fractions are easier to calculate with.</p>
+            <h2 id="real-world-applications">Real-World Applications of Mixed Numbers (USA Focus)</h2>
 
-            <h3>Do I always need to convert to improper fractions first?</h3>
-            <p>Yes — for all four operations. It's the simplest and most reliable approach. Once you've finished calculating, convert the result back to a mixed number for readability.</p>
+            <h3 id="cooking-baking">Cooking & Baking</h3>
+            <p>American recipes regularly use mixed numbers: <strong>1 1/2 cups of flour</strong>, <strong>2 1/4 teaspoons of baking soda</strong>, <strong>3/4 cup of sugar</strong>. Doubling or halving a recipe requires multiplying or dividing mixed numbers. For example, doubling a recipe that calls for 1 3/4 cups means calculating 1 3/4 × 2 = 7/4 × 2 = 14/4 = <strong>3 1/2 cups</strong>.</p>
 
-            <h3>Can I add mixed numbers with different denominators?</h3>
-            <p>Yes, but you must first find a <a href="/math-calculators/lcd-calculator">common denominator</a>. Convert both fractions to <a href="/math-calculators/equivalent-fractions-calculator">equivalent fractions</a> with the same denominator, then add the numerators.</p>
+            <h3 id="construction-carpentry">Construction & Carpentry</h3>
+            <p>US construction measurements use feet and inches with fractions: a board might be <strong>5 3/4 inches</strong> wide, and you need to cut <strong>2 1/8 inches</strong> off. You'd calculate 5 3/4 − 2 1/8 = 23/4 − 17/8 = 46/8 − 17/8 = 29/8 = <strong>3 5/8 inches</strong> remaining. See our <a href="/math-calculators/inch-fraction-calculator">Inch Fraction Calculator</a> for measurement-specific calculations.</p>
 
-            <h3>Why don't I need a common denominator for multiplication?</h3>
-            <p>When multiplying fractions, you simply multiply numerators together and denominators together. There's no combining of numerators that requires matching denominators. The same applies to division (after flipping the second fraction).</p>
+            <h3 id="sports-statistics">Sports Statistics</h3>
+            <p>Track and field records, marathon times, and race results often involve mixed numbers: a runner's split might be <strong>4 1/4 minutes</strong> per mile. Comparing or averaging performance times requires mixed number arithmetic.</p>
 
-            <h3>How do I subtract a larger mixed number from a smaller one?</h3>
-            <p>The result will be <strong>negative</strong>. Follow the same steps — the answer will naturally come out negative. For example, 1 1/4 − 2 1/2 = 5/4 − 5/2 = 5/4 − 10/4 = −5/4 = <strong>−1 1/4</strong>.</p>
+            <h2 id="us-curriculum">US Curriculum Alignment</h2>
+            <p>Mixed number operations are a core part of the <strong>Common Core State Standards</strong> adopted by most US states:</p>
+            <table>
+                <thead><tr><th>Standard</th><th>Grade Level</th><th>Skill</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>4.NF.B.3c</strong></td><td>4th Grade</td><td>Add and subtract mixed numbers with like denominators</td></tr>
+                    <tr><td><strong>4.NF.B.3d</strong></td><td>4th Grade</td><td>Solve word problems involving addition and subtraction of fractions</td></tr>
+                    <tr><td><strong>5.NF.A.1</strong></td><td>5th Grade</td><td>Add and subtract fractions with unlike denominators (including mixed numbers)</td></tr>
+                    <tr><td><strong>5.NF.B.4</strong></td><td>5th Grade</td><td>Multiply fractions and mixed numbers</td></tr>
+                    <tr><td><strong>5.NF.B.6</strong></td><td>5th Grade</td><td>Solve real-world problems involving multiplication of fractions and mixed numbers</td></tr>
+                    <tr><td><strong>5.NF.B.7</strong></td><td>5th Grade</td><td>Divide unit fractions by whole numbers and whole numbers by unit fractions</td></tr>
+                    <tr><td><strong>6.NS.A.1</strong></td><td>6th Grade</td><td>Divide fractions by fractions (including mixed numbers)</td></tr>
+                </tbody>
+            </table>
+            <p>Mixed number operations also appear on the <strong>SAT, ACT, and GRE</strong> math sections, typically as word problems involving measurements, recipes, or time calculations.</p>
+
+            <h2 id="common-mistakes">Common Mistakes to Avoid</h2>
+            <ol>
+                <li><strong>Forgetting to convert to improper fractions:</strong> You cannot add whole parts and fraction parts separately (e.g., 1 2/3 + 2 1/4 ≠ 3 3/7). Always convert first.</li>
+                <li><strong>Using LCD for multiplication:</strong> You do NOT need a common denominator for multiplication or division. Just multiply straight across.</li>
+                <li><strong>Not simplifying the result:</strong> Always check if the answer can be reduced. Use the <a href="/math-calculators/gcd-calculator">GCD</a> to find the greatest common factor.</li>
+                <li><strong>Forgetting to convert back:</strong> After calculating, convert the improper fraction back to a mixed number for a readable answer.</li>
+                <li><strong>Sign errors with negatives:</strong> Be careful with negative numbers. A negative times a negative is positive: (−3) × (−2) = +6.</li>
+                <li><strong>Wrong reciprocal for division:</strong> When dividing, flip only the <em>second</em> fraction (the divisor), not the first.</li>
+            </ol>
+
+            <h2 id="related-fraction-tools">Related Fraction Tools</h2>
+            <ul>
+                <li><strong><a href="/math-calculators/fraction-calculator">Fraction Calculator</a>:</strong> Perform operations with simple (non-mixed) fractions</li>
+                <li><strong><a href="/math-calculators/fraction-to-mixed-number-calculator">Fraction to Mixed Number Converter</a>:</strong> Convert improper fractions to mixed numbers</li>
+                <li><strong><a href="/math-calculators/mixed-number-to-fraction-calculator">Mixed Number to Improper Fraction</a>:</strong> Convert mixed numbers before calculating</li>
+                <li><strong><a href="/math-calculators/add-fractions-calculator">Add Fractions Calculator</a>:</strong> Add pure fractions without the whole number component</li>
+                <li><strong><a href="/math-calculators/subtract-fractions-calculator">Subtract Fractions Calculator</a>:</strong> Subtract pure fractions</li>
+                <li><strong><a href="/math-calculators/lcd-calculator">LCD Calculator</a>:</strong> Find the Least Common Denominator for addition and subtraction</li>
+                <li><strong><a href="/math-calculators/gcd-calculator">GCD Calculator</a>:</strong> Find the Greatest Common Divisor to simplify results</li>
+                <li><strong><a href="/math-calculators/equivalent-fractions-calculator">Equivalent Fractions</a>:</strong> Find fractions with matching denominators</li>
+                <li><strong><a href="/math-calculators/fraction-simplifier">Fraction Simplifier</a>:</strong> Reduce any fraction to lowest terms</li>
+                <li><strong><a href="/math-calculators/long-division-calculator">Long Division Calculator</a>:</strong> Divide numerator by denominator to get the mixed number form</li>
+            </ul>
         `,
         formula: {
             formula: "Convert to improper → Operate → Simplify → Convert back",
             variables: [
                 { symbol: "w n/d → (w×d+n)/d", meaning: "Convert mixed number to improper fraction" },
-                { symbol: "LCD", meaning: "Least Common Denominator (needed for +/−)" },
-                { symbol: "a/b × c/d = ac/bd", meaning: "Multiply numerators & denominators" },
-                { symbol: "a/b ÷ c/d = a/b × d/c", meaning: "Flip second fraction and multiply" },
+                { symbol: "a/b + c/d = (ad+bc)/bd", meaning: "Add fractions (requires common denominator)" },
+                { symbol: "a/b − c/d = (ad−bc)/bd", meaning: "Subtract fractions (requires common denominator)" },
+                { symbol: "a/b × c/d = ac/bd", meaning: "Multiply: numerator × numerator, denominator × denominator" },
+                { symbol: "a/b ÷ c/d = ad/bc", meaning: "Divide: flip second fraction and multiply" },
             ],
             example: [
-                { label: "1 2/3 + 1 3/4", substitution: "5/3 + 7/4 = 20/12 + 21/12 = 41/12", result: "3 5/12" },
+                { label: "1 2/3 + 2 1/4", substitution: "5/3 + 9/4 → 20/12 + 27/12 = 47/12", result: "3 11/12" },
                 { label: "2 1/2 × 1 1/3", substitution: "5/2 × 4/3 = 20/6 → 10/3", result: "3 1/3" },
                 { label: "3 1/2 ÷ 1 1/4", substitution: "7/2 × 4/5 = 28/10 → 14/5", result: "2 4/5" },
+                { label: "1 2/6 − 2 1/4", substitution: "8/6 − 9/4 → 16/12 − 27/12 = −11/12", result: "−11/12" },
             ],
         },
+        faq: [
+            { question: "What is a mixed number?", answer: "A mixed number combines a whole number and a proper fraction, like 2 3/4 (read as 'two and three-fourths'). It represents a value greater than 1. Mixed numbers are equivalent to improper fractions — for example, 2 3/4 = 11/4. They're commonly used in American cooking recipes, construction measurements, and everyday math." },
+            { question: "How do you add mixed numbers with different denominators?", answer: "First, convert both mixed numbers to improper fractions. Then find the Least Common Denominator (LCD) of the two denominators. Convert both fractions to equivalent fractions with the LCD. Add the numerators (keep the denominator). Finally, simplify and convert back to a mixed number. Example: 1 1/3 + 2 1/2 = 4/3 + 5/2 = 8/6 + 15/6 = 23/6 = 3 5/6." },
+            { question: "How do you convert a mixed number to an improper fraction?", answer: "Multiply the whole number by the denominator, then add the numerator. Place this result over the original denominator. Formula: w n/d = (w × d + n) / d. Example: 3 2/5 = (3 × 5 + 2) / 5 = 17/5." },
+            { question: "Can you subtract a larger mixed number from a smaller one?", answer: "Yes! The result will simply be negative. Follow the same steps — convert to improper fractions, find the LCD, and subtract. Example: 1 1/4 − 2 1/2 = 5/4 − 5/2 = 5/4 − 10/4 = −5/4 = −1 1/4." },
+            { question: "Why don't you need a common denominator for multiplication?", answer: "When multiplying fractions, you multiply numerators together and denominators together (a/b × c/d = ac/bd). There's no step that combines numerators over a shared base—that only happens in addition and subtraction. The same applies to division (after flipping the second fraction)." },
+            { question: "How do you divide mixed numbers?", answer: "Use the 'Keep, Change, Flip' method: (1) Convert both mixed numbers to improper fractions. (2) Keep the first fraction. (3) Change ÷ to ×. (4) Flip the second fraction (swap numerator and denominator). (5) Multiply straight across, simplify, and convert back. Example: 3 1/2 ÷ 1 1/4 = 7/2 × 4/5 = 28/10 = 14/5 = 2 4/5." },
+            { question: "What is the difference between a proper and improper fraction?", answer: "A proper fraction has a numerator smaller than the denominator (like 3/4 — less than 1). An improper fraction has a numerator equal to or greater than the denominator (like 7/4 — equal to or greater than 1). Improper fractions can be converted to mixed numbers: 7/4 = 1 3/4." },
+            { question: "How are mixed numbers used in everyday life?", answer: "Americans encounter mixed numbers daily: cooking (1 1/2 cups of flour), carpentry (a board 5 3/4 inches wide), fuel (3 1/4 gallons of gas), time (2 1/2 hours), and sports (a 9 3/10 second sprint). Understanding mixed number arithmetic is essential for doubling recipes, cutting wood to size, and calculating distances." },
+            { question: "What does 'reduce to lowest terms' mean?", answer: "Reducing a fraction to lowest terms means dividing both the numerator and denominator by their Greatest Common Divisor (GCD) until no further simplification is possible. For example, 12/18: GCD(12, 18) = 6, so 12/18 = 2/3. A fraction is in lowest terms when the only common factor of the numerator and denominator is 1." },
+            { question: "How do mixed numbers appear on standardized tests?", answer: "Mixed numbers appear frequently on the SAT, ACT, and GRE math sections, typically as word problems: 'A recipe calls for 2 1/3 cups of flour. If you make 1 1/2 batches, how much flour do you need?' (Answer: 2 1/3 × 1 1/2 = 7/3 × 3/2 = 21/6 = 7/2 = 3 1/2 cups). These problems test conversion skills, operation selection, and simplification." },
+        ],
         relatedCalculators: [
-            { title: "Fraction Calculator", slug: "fraction-calculator", categorySlug: "math-calculators", description: "Perform operations with regular fractions" },
-            { title: "Fraction to Mixed Number", slug: "fraction-to-mixed-number-calculator", categorySlug: "math-calculators", description: "Convert between mixed numbers and improper fractions" },
+            { title: "Fraction Calculator", slug: "fraction-calculator", categorySlug: "math-calculators", description: "Perform operations with simple fractions" },
+            { title: "Fraction to Mixed Number", slug: "fraction-to-mixed-number-calculator", categorySlug: "math-calculators", description: "Convert improper fractions to mixed numbers" },
+            { title: "Mixed to Improper", slug: "mixed-number-to-fraction-calculator", categorySlug: "math-calculators", description: "Convert mixed numbers before calculating" },
             { title: "LCD Calculator", slug: "lcd-calculator", categorySlug: "math-calculators", description: "Find the common denominator for adding" },
-            { title: "GCD Calculator", slug: "gcd-calculator", categorySlug: "math-calculators", description: "Simplify the result" },
-            { title: "Equivalent Fractions", slug: "equivalent-fractions-calculator", categorySlug: "math-calculators", description: "Find fractions with matching denominators" },
+            { title: "GCD Calculator", slug: "gcd-calculator", categorySlug: "math-calculators", description: "Simplify the result to lowest terms" },
+            { title: "Add Fractions", slug: "add-fractions-calculator", categorySlug: "math-calculators", description: "Add pure fractions without whole numbers" },
+            { title: "Fraction Simplifier", slug: "fraction-simplifier", categorySlug: "math-calculators", description: "Reduce any fraction to lowest terms" },
         ],
     },
 

@@ -880,7 +880,7 @@ function LCDCalc() {
     </div></div>);
 }
 
-/* 18. Mixed Number Calculator */
+/* 18. Mixed Number Calculator (Enhanced) */
 function MixedNumberCalc() {
     const [w1, setW1] = useState("1"); const [n1, setN1] = useState("2"); const [d1, setD1] = useState("3");
     const [op, setOp] = useState("+");
@@ -888,47 +888,58 @@ function MixedNumberCalc() {
     const r = useMemo(() => {
         const whole1 = parseInt(w1) || 0; const num1 = parseInt(n1) || 0; const den1 = parseInt(d1) || 1;
         const whole2 = parseInt(w2) || 0; const num2 = parseInt(n2) || 0; const den2 = parseInt(d2) || 1;
+        if (den1 === 0 || den2 === 0) return { fraction: "—", mixed: "—", decimal: "—", percent: "—", steps: ["Denominator cannot be zero"] };
         const steps: string[] = [];
         // Step 1: Convert to improper
         const imp1 = whole1 * den1 + num1; const imp2 = whole2 * den2 + num2;
-        steps.push(`Convert: ${whole1} ${num1}/${den1} = (${whole1}×${den1}+${num1})/${den1} = ${imp1}/${den1}`);
-        steps.push(`Convert: ${whole2} ${num2}/${den2} = (${whole2}×${den2}+${num2})/${den2} = ${imp2}/${den2}`);
+        const fmtMixed = (w: number, n: number, d: number) => w !== 0 ? `${w} ${Math.abs(n)}/${Math.abs(d)}` : `${n}/${d}`;
+        steps.push(`Convert to improper fractions:`);
+        steps.push(`  ${fmtMixed(whole1, num1, den1)} = (${whole1}×${den1}+${num1})/${den1} = ${imp1}/${den1}`);
+        steps.push(`  ${fmtMixed(whole2, num2, den2)} = (${whole2}×${den2}+${num2})/${den2} = ${imp2}/${den2}`);
         let resN: number, resD: number;
         if (op === "+" || op === "-") {
-            const g = gcd(den1, den2);
-            const lcd = (den1 * den2) / g;
-            const m1 = lcd / den1; const m2 = lcd / den2;
+            const g = gcd(Math.abs(den1), Math.abs(den2));
+            const lcd = Math.abs(den1 * den2) / g;
+            const m1 = lcd / Math.abs(den1); const m2 = lcd / Math.abs(den2);
             const adj1 = imp1 * m1; const adj2 = imp2 * m2;
-            steps.push(`LCD(${den1}, ${den2}) = ${lcd}`);
-            steps.push(`${imp1}/${den1} = ${adj1}/${lcd}, ${imp2}/${den2} = ${adj2}/${lcd}`);
+            steps.push(`Find LCD(${den1}, ${den2}) = ${lcd}`);
+            steps.push(`Convert to common denominator:`);
+            steps.push(`  ${imp1}/${den1} = ${imp1}×${m1} / ${den1}×${m1} = ${adj1}/${lcd}`);
+            steps.push(`  ${imp2}/${den2} = ${imp2}×${m2} / ${den2}×${m2} = ${adj2}/${lcd}`);
             resN = op === "+" ? adj1 + adj2 : adj1 - adj2;
             resD = lcd;
-            steps.push(`${adj1} ${op} ${adj2} = ${resN}`);
+            steps.push(`${op === "+" ? "Add" : "Subtract"} numerators: ${adj1} ${op} ${adj2} = ${resN}`);
             steps.push(`Result: ${resN}/${resD}`);
         } else if (op === "×") {
             resN = imp1 * imp2; resD = den1 * den2;
-            steps.push(`Multiply: ${imp1}×${imp2} / ${den1}×${den2} = ${resN}/${resD}`);
+            steps.push(`Multiply: (${imp1}×${imp2}) / (${den1}×${den2}) = ${resN}/${resD}`);
         } else {
+            if (imp2 === 0) return { fraction: "—", mixed: "—", decimal: "—", percent: "—", steps: ["Cannot divide by zero"] };
             resN = imp1 * den2; resD = den1 * imp2;
-            steps.push(`Divide (flip & multiply): ${imp1}×${den2} / ${den1}×${imp2} = ${resN}/${resD}`);
+            steps.push(`Flip second fraction: ${imp2}/${den2} → ${den2}/${imp2}`);
+            steps.push(`Multiply: (${imp1}×${den2}) / (${den1}×${imp2}) = ${resN}/${resD}`);
         }
         // Simplify
         const sign = (resN < 0) !== (resD < 0) ? "-" : "";
         const absN = Math.abs(resN); const absD = Math.abs(resD);
         const g2 = gcd(absN, absD);
         const sn = absN / g2; const sd = absD / g2;
-        if (g2 > 1) steps.push(`Simplify: GCD(${absN},${absD})=${g2} → ${sn}/${sd}`);
+        if (g2 > 1) steps.push(`Simplify: GCD(${absN}, ${absD}) = ${g2} → ${sign}${sn}/${sd}`);
         // To mixed
         let mixed = `${sign}${sn}/${sd}`;
         if (sn >= sd && sd > 1) {
             const q = Math.floor(sn / sd); const rem = sn % sd;
             mixed = rem > 0 ? `${sign}${q} ${rem}/${sd}` : `${sign}${q}`;
-            steps.push(`As mixed number: ${mixed}`);
+            steps.push(`Convert to mixed number: ${sign}${sn}/${sd} = ${mixed}`);
+        } else if (sd === 1) {
+            mixed = `${sign}${sn}`;
         }
-        const decimal = resD !== 0 ? fmt(resN / resD, 6) : "0";
-        return { fraction: `${sign}${sn}/${sd}`, mixed, decimal, steps };
+        const decimal = resD !== 0 ? resN / resD : 0;
+        const percent = fmt(decimal * 100, 4) + "%";
+        return { fraction: `${sign}${sn}/${sd}`, mixed, decimal: fmt(decimal, 6), percent, steps };
     }, [w1, n1, d1, op, w2, n2, d2]);
     return (<div className="con-calc"><h3 className="con-calc__title">🧮 Mixed Number Calculator</h3><div className="con-calc__inputs">
+        <p style={{fontSize:"0.85rem",color:"var(--text-muted)",margin:"0 0 var(--s-2)"}}>Enter mixed numbers (whole + numerator/denominator). Leave whole as 0 for pure fractions.</p>
         <div style={{display:"flex",gap:"var(--s-2)",alignItems:"center"}}>
             <InputField label="Whole" value={w1} onChange={setW1} />
             <InputField label="Num" value={n1} onChange={setN1} />
@@ -942,10 +953,11 @@ function MixedNumberCalc() {
         </div>
     </div><div className="con-calc__results"><h4>Result</h4>
         <ResultRow label="Mixed Number" value={r.mixed} />
-        <ResultRow label="Fraction" value={r.fraction} />
+        <ResultRow label="Improper Fraction" value={r.fraction} />
         <ResultRow label="Decimal" value={r.decimal} />
-        <h4>Steps</h4>
-        {r.steps.map((s, i) => <ResultRow key={i} label={`Step ${i + 1}`} value={s} />)}
+        <ResultRow label="Percentage" value={r.percent} />
+        <h4>Step-by-Step Solution</h4>
+        {r.steps.map((s, i) => <ResultRow key={i} label="" value={s} />)}
     </div></div>);
 }
 
