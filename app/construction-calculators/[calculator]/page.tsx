@@ -3832,18 +3832,86 @@ Net lawn area: 10,890 − 1,900 = <strong>8,990 sq ft</strong></p>
         ],
     },
     "square-feet-to-cubic-yards-calculator": {
-        subtitle: "Convert square feet to cubic yards by adding depth. Calculate how many cubic yards of material to order for any project.",
+        subtitle: "Convert square feet to cubic yards by adding depth. Select material type, set waste factor, and get weight and cost estimates for bulk orders.",
         explanation: {
             heading: "Square Feet to Cubic Yards",
             paragraphs: [
-                "Cubic yards = (square feet × depth in feet) ÷ 27. Most bulk materials (gravel, soil, mulch, sand) are sold by the cubic yard. Always add 10% for waste and settling.",
-                "Quick reference at common depths: at 2\" deep, 1 cubic yard covers 162 sq ft. At 3\", 108 sq ft. At 4\", 81 sq ft. At 6\", 54 sq ft. At 12\", 27 sq ft.",
+                "Cubic yards = (sq ft × depth in inches) ÷ 324. Select material (gravel, sand, topsoil, mulch, concrete, crushed stone, asphalt) for automatic weight. Set waste factor (0–25%) and cost per cu yd for total budget.",
+                "1 cubic yard = 27 cu ft. At 4\" depth, 1 cu yd covers 81 sq ft. Results include cu ft, cu yd, liters, weight in tons, and total cost.",
             ],
-            highlight: "500 sq ft at 4 inches deep: (500 × 0.333) ÷ 27 = 6.17 cubic yards. With 10% waste: 6.79 cu yd — order 7.",
+            highlight: "500 sq ft at 4\" deep = 6.17 cu yd. With 10% waste: 6.79 cu yd of gravel = 9.5 tons ≈ $340 at $50/cu yd.",
         },
+        contentHTML: `
+<p><strong>Square feet</strong> measure area (2D), while <strong>cubic yards</strong> measure volume (3D). To convert between them, you need <strong>depth or thickness</strong>. This calculator handles the conversion and estimates <strong>material weight and cost</strong> for 7 bulk materials.</p>
+
+<h2>Square Feet to Cubic Yards Formula</h2>
+<p><strong>cu yd = (sq ft × depth in inches) ÷ 324</strong></p>
+<p>Or equivalently: cu yd = (sq ft × depth in feet) ÷ 27</p>
+<p><strong>Step-by-step:</strong></p>
+<ol>
+<li><strong>Measure area</strong> in square feet (length × width)</li>
+<li><strong>Choose depth</strong> in inches (e.g., 4" for gravel, 6" for concrete)</li>
+<li><strong>Multiply:</strong> sq ft × depth (in) = cubic inches of coverage</li>
+<li><strong>Divide by 324</strong> (= 27 × 12) to get cubic yards</li>
+<li><strong>Add 10% waste</strong> for settling, spreading, and uneven surfaces</li>
+</ol>
+
+<h2>Coverage per Cubic Yard at Common Depths</h2>
+<table>
+<thead><tr><th>Depth</th><th>Sq Ft per Cu Yd</th><th>Cu Yd per 1,000 Sq Ft</th></tr></thead>
+<tbody>
+<tr><td><strong>1"</strong></td><td>324</td><td>3.09</td></tr>
+<tr><td><strong>2"</strong></td><td>162</td><td>6.17</td></tr>
+<tr><td><strong>3"</strong></td><td>108</td><td>9.26</td></tr>
+<tr><td><strong>4"</strong></td><td>81</td><td>12.35</td></tr>
+<tr><td><strong>6"</strong></td><td>54</td><td>18.52</td></tr>
+<tr><td><strong>8"</strong></td><td>40.5</td><td>24.69</td></tr>
+<tr><td><strong>12"</strong></td><td>27</td><td>37.04</td></tr>
+</tbody>
+</table>
+
+<h2>Bulk Material Weight & Cost</h2>
+<table>
+<thead><tr><th>Material</th><th>Tons/Cu Yd</th><th>Typical Cost/Cu Yd</th><th>Typical Depth</th></tr></thead>
+<tbody>
+<tr><td><strong>Gravel</strong></td><td>1.4</td><td>$30–$65</td><td>2–4"</td></tr>
+<tr><td><strong>Sand</strong></td><td>1.35</td><td>$25–$50</td><td>2–4"</td></tr>
+<tr><td><strong>Topsoil</strong></td><td>1.08</td><td>$25–$55</td><td>4–6"</td></tr>
+<tr><td><strong>Mulch (wood)</strong></td><td>0.4</td><td>$25–$45</td><td>2–3"</td></tr>
+<tr><td><strong>Concrete</strong></td><td>2.0</td><td>$120–$180</td><td>4–6"</td></tr>
+<tr><td><strong>Crushed stone</strong></td><td>1.3</td><td>$35–$60</td><td>2–4"</td></tr>
+<tr><td><strong>Asphalt</strong></td><td>1.15</td><td>$100–$200</td><td>2–3"</td></tr>
+</tbody>
+</table>
+<p><strong>Delivery note:</strong> Most suppliers require a minimum order (often 3–5 cu yd) and charge $50–$150 for delivery within 10–20 miles.</p>
+
+<h2>Cubic Yards to Square Feet (Reverse)</h2>
+<p><strong>sq ft = (cu yd × 324) ÷ depth (in)</strong></p>
+<p>Use this to figure out how much area a given amount of material will cover. Example: 5 cu yd of mulch at 3" deep: (5 × 324) ÷ 3 = <strong>540 sq ft</strong>.</p>
+
+<h2>How Much Concrete Do I Need?</h2>
+<table>
+<thead><tr><th>Area (sq ft)</th><th>4" Thick</th><th>6" Thick</th></tr></thead>
+<tbody>
+<tr><td><strong>100</strong></td><td>1.23 cu yd</td><td>1.85 cu yd</td></tr>
+<tr><td><strong>200</strong></td><td>2.47 cu yd</td><td>3.70 cu yd</td></tr>
+<tr><td><strong>500</strong></td><td>6.17 cu yd</td><td>9.26 cu yd</td></tr>
+<tr><td><strong>1,000</strong></td><td>12.35 cu yd</td><td>18.52 cu yd</td></tr>
+</tbody>
+</table>
+<p><strong>Standard residential slab:</strong> 4" thick. Driveways and garages: 6" thick. Always add 10% for waste.</p>
+`,
         faq: [
-            { question: "How many cubic yards do I need?", answer: "Multiply area (sq ft) × depth (inches) ÷ 324. For example: 1,000 sq ft × 4 inches ÷ 324 = 12.35 cubic yards. Add 10% = 13.6 — order 14 cubic yards." },
-            { question: "How much area does 1 cubic yard cover?", answer: "At 2\" depth: 162 sq ft. At 3\" depth: 108 sq ft. At 4\" depth: 81 sq ft. At 6\" depth: 54 sq ft. At 12\" depth: 27 sq ft." },
+            { question: "How many cubic yards do I need?", answer: "Multiply area (sq ft) × depth (in) ÷ 324. Example: 1,000 sq ft × 4\" ÷ 324 = 12.35 cu yd. Add 10% waste = 13.6 — order 14 cubic yards. Or use the shortcut: at 4\" depth, each 81 sq ft needs 1 cu yd." },
+            { question: "How much area does 1 cubic yard cover?", answer: "At 1\" depth: 324 sq ft. At 2\": 162 sq ft. At 3\": 108 sq ft. At 4\": 81 sq ft. At 6\": 54 sq ft. At 12\": 27 sq ft. Remember: 1 cu yd = 27 cubic feet." },
+            { question: "What is the difference between cubic yards and square yards?", answer: "Square yards measure area (2D): length × width. Cubic yards measure volume (3D): length × width × depth. You need a depth measurement to convert between them. 1 sq yd at 1 yd deep = 1 cu yd." },
+            { question: "How many square feet does a cubic yard of concrete cover?", answer: "At 4\" thick: 81 sq ft. At 6\" thick: 54 sq ft. Standard sidewalks: 4\" thick. Driveways: 6\" thick. For a 10×20 ft driveway (200 sq ft) at 6\": 200 ÷ 54 = 3.7 cu yd — order 4 cu yd with waste." },
+            { question: "How do I convert cubic yards to tons?", answer: "Multiply cu yd × material density: gravel = 1.4 tons/cu yd, sand = 1.35, topsoil = 1.08, mulch = 0.4, concrete = 2.0, crushed stone = 1.3. Example: 10 cu yd of gravel = 14 tons." },
+            { question: "How much does a cubic yard of gravel cost?", answer: "Gravel: $30–$65/cu yd depending on type. Pea gravel: $30–$45. Crushed stone: $35–$60. River rock: $45–$65. Add $50–$150 for delivery. A 500 sq ft driveway at 4\" deep needs about 7 cu yd = $210–$455 + delivery." },
+            { question: "How much mulch do I need?", answer: "Apply mulch 2–3\" deep. At 3\" depth, 1 cu yd covers 108 sq ft. A 500 sq ft garden bed: 500 ÷ 108 = 4.6 cu yd + 10% waste = 5.1 — order 5 cu yd. At $30/cu yd: $150 for materials." },
+            { question: "What depth of gravel do I need for a driveway?", answer: "Minimum 4\" for a residential gravel driveway, ideally in 3 layers: 4\" of large crushed stone base, 2\" of mid-size stone, and 2\" of fine surface gravel. Total: ~8\" or about 25 cu yd per 1,000 sq ft." },
+            { question: "How many bags of concrete equal 1 cubic yard?", answer: "About 45 bags of 80 lb concrete mix = 1 cu yd. Or 60 bags of 60 lb mix. For more than 1-2 cu yd, ordering ready-mix concrete from a truck is more cost-effective and provides better quality ($120–$180/cu yd delivered)." },
+            { question: "Should I order extra material?", answer: "Always add 10% waste for flat surfaces (gravel, sand, mulch). Add 15% for uneven terrain or areas with drainage. For concrete, add 10% for formwork waste. Having leftover is better than running short mid-pour — a short concrete pour creates a weak joint." },
         ],
     },
     "square-inches-calculator": {

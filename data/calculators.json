@@ -12910,7 +12910,7 @@
     "categorySlug": "construction-calculators",
     "icon": "📐",
     "calcType": "sqft-to-cuyd",
-    "description": "Convert square feet to cubic yards by adding depth. Calculate how many cubic yards of material to order.",
+    "description": "Convert square feet to cubic yards with depth. Select from 7 materials for weight and cost estimates. Adjustable waste factor.",
     "stars": 5,
     "defaults": {
       "amount": 500,

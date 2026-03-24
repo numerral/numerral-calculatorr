@@ -6921,18 +6921,35 @@ function SqFtToCuFtCalc() {
 }
 
 /* ──────────── 143. SQUARE FEET TO CUBIC YARDS CALCULATOR ──────────── */
+const BULK_MATERIALS: { value: string; label: string; tonsPerCuYd: number }[] = [
+    { value: "gravel", label: "Gravel", tonsPerCuYd: 1.4 },
+    { value: "sand", label: "Sand", tonsPerCuYd: 1.35 },
+    { value: "topsoil", label: "Topsoil", tonsPerCuYd: 1.08 },
+    { value: "mulch", label: "Mulch (wood)", tonsPerCuYd: 0.4 },
+    { value: "concrete", label: "Concrete", tonsPerCuYd: 2.0 },
+    { value: "crushed-stone", label: "Crushed Stone", tonsPerCuYd: 1.3 },
+    { value: "asphalt", label: "Asphalt", tonsPerCuYd: 1.15 },
+];
+
 function SqFtToCuYdCalc() {
     const [area, setArea] = useState(500);
     const [depthIn, setDepthIn] = useState(4);
+    const [material, setMaterial] = useState("gravel");
+    const [wastePct, setWastePct] = useState(10);
+    const [costPerCuYd, setCostPerCuYd] = useState(50);
 
     const result = useMemo(() => {
         const depthFt = depthIn / 12;
         const cuFt = area * depthFt;
         const cuYd = cuFt / 27;
-        const cuYdWithWaste = cuYd * 1.1;
-        const tons = cuYd * 1.4; // typical gravel
-        return { depthFt, cuFt, cuYd, cuYdWithWaste, tons };
-    }, [area, depthIn]);
+        const wasteMult = 1 + wastePct / 100;
+        const cuYdWithWaste = cuYd * wasteMult;
+        const mat = BULK_MATERIALS.find(m => m.value === material);
+        const tons = cuYdWithWaste * (mat?.tonsPerCuYd || 1.4);
+        const totalCost = cuYdWithWaste * costPerCuYd;
+        const liters = cuFt * 28.3168;
+        return { depthFt, cuFt, cuYd, cuYdWithWaste, tons, totalCost, liters };
+    }, [area, depthIn, material, wastePct, costPerCuYd]);
 
     return (
         <div className="con-calc">
@@ -6940,13 +6957,21 @@ function SqFtToCuYdCalc() {
             <div className="con-calc__inputs">
                 <InputField label="Area" value={area} onChange={setArea} unit="sq ft" min={1} />
                 <InputField label="Depth / Thickness" value={depthIn} onChange={setDepthIn} unit="in" min={0.5} step={0.5} />
+                <SelectField label="Material Type" value={material} onChange={setMaterial}
+                    options={BULK_MATERIALS.map(m => ({ value: m.value, label: m.label }))} />
+                <InputField label="Waste Factor" value={wastePct} onChange={setWastePct} unit="%" min={0} max={25} step={5} />
+                <InputField label="Cost per Cubic Yard" value={costPerCuYd} onChange={setCostPerCuYd} unit="$/cu yd" min={0} step={5} />
             </div>
             <div className="con-calc__results">
-                <h4>Results</h4>
+                <h4 className="con-calc__group-label">VOLUME</h4>
                 <ResultRow label="Cubic Feet" value={fmt(result.cuFt, 1)} unit="cu ft" />
                 <ResultRow label="Cubic Yards" value={fmt(result.cuYd, 2)} unit="cu yd" />
-                <ResultRow label="With 10% Waste" value={fmt(result.cuYdWithWaste, 2)} unit="cu yd" />
-                <ResultRow label="Approx. Tons (gravel)" value={fmt(result.tons, 1)} unit="tons" />
+                <ResultRow label="Liters" value={fmt(result.liters, 1)} unit="L" />
+                <h4 className="con-calc__group-label">MATERIAL ESTIMATE</h4>
+                <ResultRow label={`With ${wastePct}% Waste`} value={fmt(result.cuYdWithWaste, 2)} unit="cu yd" />
+                <ResultRow label="Weight" value={fmt(result.tons, 1)} unit="tons" />
+                <h4 className="con-calc__group-label">COST</h4>
+                <ResultRow label="Total Cost" value={`$${fmt(result.totalCost, 2)}`} />
             </div>
         </div>
     );
