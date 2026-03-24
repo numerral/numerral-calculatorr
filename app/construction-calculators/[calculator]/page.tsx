@@ -3772,18 +3772,94 @@ Net lawn area: 10,890 − 1,900 = <strong>8,990 sq ft</strong></p>
         ],
     },
     "feet-and-inches-calculator": {
-        subtitle: "Add, subtract, multiply, and divide measurements in feet and inches. Essential for construction math.",
+        subtitle: "Add, subtract, multiply, and divide feet, inches, and fractions. Get results in feet-inches, decimal feet, yards, meters, cm, and mm.",
         explanation: {
             heading: "Construction Math: Feet and Inches",
             paragraphs: [
-                "Construction measurements are typically in feet and inches (e.g., 10' 6\"). Adding, subtracting, or dividing these mixed measurements requires converting to a single unit, performing the operation, then converting back.",
-                "This calculator handles the conversion automatically. Enter two measurements in feet and inches, select an operation, and get the result in feet-inches, decimal feet, total inches, and meters.",
+                "Enter measurements with feet, whole inches, and fractional inches (1/16 to 15/16). Supports 4 operations: add, subtract, multiply, and divide. Results show grouped imperial (ft-in, total inches, decimal feet, yards) and metric (m, cm, mm).",
+                "For fraction-to-decimal conversion, use our Inch Fraction Calculator. For area calculations with these measurements, see our Square Footage or Square Yards calculators.",
             ],
-            highlight: "10' 6\" + 5' 3\" = 15' 9\" = 189 inches = 15.75 decimal feet = 4.801 meters.",
+            highlight: "10' 6\" + 5' 3\" = 15' 9\" = 189 in = 15.75 ft = 5.25 yd = 4.801 m. With fractions: 10' 6 3/8\" + 5' 3 1/4\" = 15' 9.63\".",
         },
+        contentHTML: `
+<p><strong>Feet and inches math</strong> is essential for US construction, carpentry, and home improvement. This calculator handles <strong>addition, subtraction, multiplication, and division</strong> of measurements with fractional inches — the same fractions found on a <strong>tape measure</strong>.</p>
+<p>Need to convert fractions? Use our <a href="/construction-calculators/inch-fraction-calculator">inch fraction calculator</a>. For area calculations, see our <a href="/construction-calculators/square-footage-calculator">square footage calculator</a> or <a href="/construction-calculators/square-yards-calculator">square yards calculator</a>.</p>
+
+<h2>How to Add Feet and Inches</h2>
+<ol>
+<li><strong>Convert fractional inches to decimals:</strong> 3/8" = 0.375", 1/2" = 0.5", etc.</li>
+<li><strong>Add feet separately,</strong> add inches separately</li>
+<li><strong>Carry over:</strong> if inches ≥ 12, subtract 12 and add 1 to feet</li>
+</ol>
+<p><strong>Example:</strong> 10' 6 3/8" + 5' 3 1/4" = 15' 9 5/8"</p>
+<ul>
+<li>Feet: 10 + 5 = 15</li>
+<li>Inches: 6.375 + 3.25 = 9.625 = 9 5/8"</li>
+<li>Result: <strong>15' 9 5/8"</strong></li>
+</ul>
+
+<h2>Common Fraction Addition Reference</h2>
+<table>
+<thead><tr><th>A</th><th>+ B</th><th>= Result</th></tr></thead>
+<tbody>
+<tr><td>1/8"</td><td>1/8"</td><td><strong>1/4"</strong></td></tr>
+<tr><td>1/4"</td><td>1/4"</td><td><strong>1/2"</strong></td></tr>
+<tr><td>3/8"</td><td>1/4"</td><td><strong>5/8"</strong></td></tr>
+<tr><td>1/2"</td><td>1/4"</td><td><strong>3/4"</strong></td></tr>
+<tr><td>1/2"</td><td>1/2"</td><td><strong>1"</strong></td></tr>
+<tr><td>5/8"</td><td>3/8"</td><td><strong>1"</strong></td></tr>
+<tr><td>3/4"</td><td>1/2"</td><td><strong>1 1/4"</strong></td></tr>
+<tr><td>7/8"</td><td>5/8"</td><td><strong>1 1/2"</strong></td></tr>
+</tbody>
+</table>
+
+<h2>How to Multiply and Divide</h2>
+<p><strong>Multiply:</strong> Convert to decimal inches, multiply by the factor, convert back.</p>
+<p>Example: 5' 6" × 3 = 66" × 3 = 198" = <strong>16' 6"</strong></p>
+<p><strong>Divide:</strong> Convert to decimal inches, divide by the factor, convert back.</p>
+<p>Example: 10' 0" ÷ 4 = 120" ÷ 4 = 30" = <strong>2' 6"</strong></p>
+
+<h2>Feet and Inches to Metric</h2>
+<table>
+<thead><tr><th>Feet & Inches</th><th>Decimal Feet</th><th>Meters</th><th>Centimeters</th></tr></thead>
+<tbody>
+<tr><td><strong>1' 0"</strong></td><td>1.0</td><td>0.3048</td><td>30.48</td></tr>
+<tr><td><strong>3' 0"</strong></td><td>3.0</td><td>0.9144</td><td>91.44</td></tr>
+<tr><td><strong>5' 0"</strong></td><td>5.0</td><td>1.524</td><td>152.4</td></tr>
+<tr><td><strong>5' 6"</strong></td><td>5.5</td><td>1.676</td><td>167.6</td></tr>
+<tr><td><strong>6' 0"</strong></td><td>6.0</td><td>1.829</td><td>182.9</td></tr>
+<tr><td><strong>8' 0"</strong></td><td>8.0</td><td>2.438</td><td>243.8</td></tr>
+<tr><td><strong>10' 0"</strong></td><td>10.0</td><td>3.048</td><td>304.8</td></tr>
+</tbody>
+</table>
+
+<h2>Common Length References</h2>
+<table>
+<thead><tr><th>Item</th><th>Typical Length</th></tr></thead>
+<tbody>
+<tr><td><strong>Standard door height</strong></td><td>6' 8" (80")</td></tr>
+<tr><td><strong>Standard door width</strong></td><td>2' 8" or 3' 0"</td></tr>
+<tr><td><strong>Ceiling height</strong></td><td>8' 0" or 9' 0"</td></tr>
+<tr><td><strong>Wall stud</strong></td><td>92 5/8" (pre-cut for 8' walls)</td></tr>
+<tr><td><strong>Sheet of plywood</strong></td><td>4' × 8' (48" × 96")</td></tr>
+<tr><td><strong>Standard 2×4 lumber</strong></td><td>8', 10', 12', 16' lengths</td></tr>
+<tr><td><strong>Countertop height</strong></td><td>3' 0" (36")</td></tr>
+<tr><td><strong>Stair riser</strong></td><td>7" to 7 3/4"</td></tr>
+</tbody>
+</table>
+<p>For area calculations with these measurements, try our <a href="/construction-calculators/square-footage-calculator">square footage calculator</a> or <a href="/construction-calculators/square-meters-calculator">square meters calculator</a>.</p>
+`,
         faq: [
-            { question: "How do I convert feet and inches to decimal feet?", answer: "Divide inches by 12 and add to feet. For example, 10' 6\" = 10 + (6/12) = 10.5 feet. For 8' 3\" = 8 + (3/12) = 8.25 feet." },
-            { question: "How do I add feet and inches?", answer: "Add feet and inches separately, then carry over: 10' 9\" + 8' 7\" = 18' 16\". Since 16\" > 12\", subtract 12\" and add 1': 19' 4\"." },
+            { question: "How do I convert feet and inches to decimal feet?", answer: "Divide inches by 12 and add to feet. Example: 10' 6\" = 10 + (6 ÷ 12) = 10.5 ft. For fractions: 8' 3 1/2\" = 8 + (3.5 ÷ 12) = 8.292 ft. For metric: multiply decimal feet by 0.3048 for meters." },
+            { question: "How do I add feet and inches?", answer: "Add feet and inches separately, then carry over: 10' 9\" + 8' 7\" = 18' 16\". Since 16\" > 12\", subtract 12\" and add 1': result = 19' 4\". With fractions: add fractions with a common denominator, then carry if needed." },
+            { question: "What are the symbols for feet and inches?", answer: "Feet: single prime (') or \"ft\" — e.g., 5' or 5 ft. Inches: double prime (\") or \"in\" — e.g., 3\" or 3 in. Combined: 5' 3\" or 5 ft 3 in. In construction plans, the foot mark is sometimes omitted: 5-3 means 5' 3\"." },
+            { question: "Is 12 inches the same as 1 foot?", answer: "Yes, exactly. 12 inches = 1 foot. 36 inches = 3 feet = 1 yard. This is why when adding inches, you carry over at 12 — e.g., 15\" = 1' 3\". There are no fractions involved in the foot-to-inch relationship." },
+            { question: "How do I convert feet to meters?", answer: "Multiply by 0.3048. Examples: 5' = 1.524 m. 6' = 1.829 m. 10' = 3.048 m. Reverse: multiply meters by 3.28084 for feet. 1 meter = 3' 3 3/8\" (approximately)." },
+            { question: "How do I subtract feet and inches with fractions?", answer: "Convert everything to decimal inches, subtract, then convert back. Example: 10' 6 1/4\" − 3' 8 3/4\" = 126.25\" − 44.75\" = 81.5\" = 6' 9 1/2\". The calculator handles the borrowing automatically." },
+            { question: "How do I divide a board into equal parts?", answer: "Use Divide mode. Enter the total length and the number of parts. Example: a 10' 6\" board ÷ 4 = 126\" ÷ 4 = 31.5\" = 2' 7 1/2\" per piece. Remember to account for kerf (saw blade width, typically 1/8\") for each cut." },
+            { question: "What length are pre-cut wall studs?", answer: "92 5/8\" for 8-foot walls (allows for bottom plate + double top plate + 1/2\" drywall ceiling = 8' 0\" finished). For 9-foot walls: 104 5/8\". For 10-foot walls: 116 5/8\". Standard stud spacing is 16\" on center." },
+            { question: "How many inches in a yard?", answer: "36 inches = 1 yard = 3 feet. So 1 yard = 3 feet = 36 inches. Conversely, divide inches by 36 for yards. A standard 8' board = 2.667 yards. A 10' board = 3.333 yards." },
+            { question: "How do I convert a measurement from a tape measure?", answer: "Read the tape: whole inches + fraction (the smallest marks are 1/16\"). Example: 7 marks past 5\" = 5 7/16\". Enter as 0' 5\" with 7/16 fraction. For longer measurements: 6 marks past the 3-foot mark = 3' 6\". Use our inch fraction calculator for decimal conversion." },
         ],
     },
     "inch-fraction-calculator": {

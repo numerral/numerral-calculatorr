@@ -6751,26 +6751,51 @@ function CylinderCubicYardageCalc() {
 function FeetAndInchesCalc() {
     const [feet1, setFeet1] = useState(10);
     const [inches1, setInches1] = useState(6);
+    const [frac1, setFrac1] = useState("0");
     const [feet2, setFeet2] = useState(5);
     const [inches2, setInches2] = useState(3);
+    const [frac2, setFrac2] = useState("0");
     const [operation, setOperation] = useState("add");
 
+    const FRAC_OPTIONS = [
+        { value: "0", label: "0 (none)" },
+        { value: "0.0625", label: "1/16" },
+        { value: "0.125", label: "1/8" },
+        { value: "0.1875", label: "3/16" },
+        { value: "0.25", label: "1/4" },
+        { value: "0.3125", label: "5/16" },
+        { value: "0.375", label: "3/8" },
+        { value: "0.4375", label: "7/16" },
+        { value: "0.5", label: "1/2" },
+        { value: "0.5625", label: "9/16" },
+        { value: "0.625", label: "5/8" },
+        { value: "0.6875", label: "11/16" },
+        { value: "0.75", label: "3/4" },
+        { value: "0.8125", label: "13/16" },
+        { value: "0.875", label: "7/8" },
+        { value: "0.9375", label: "15/16" },
+    ];
+
     const result = useMemo(() => {
-        const totalIn1 = feet1 * 12 + inches1;
-        const totalIn2 = feet2 * 12 + inches2;
+        const totalIn1 = feet1 * 12 + inches1 + Number(frac1);
+        const totalIn2 = feet2 * 12 + inches2 + Number(frac2);
         let resultIn: number;
+        const isMultDiv = operation === "multiply" || operation === "divide";
         if (operation === "add") resultIn = totalIn1 + totalIn2;
         else if (operation === "subtract") resultIn = totalIn1 - totalIn2;
-        else if (operation === "multiply") resultIn = totalIn1 * feet2; // multiply by a number
-        else resultIn = feet2 > 0 ? totalIn1 / feet2 : 0; // divide by a number
-        const isMultDiv = operation === "multiply" || operation === "divide";
-        const resultFt = Math.floor(Math.abs(resultIn) / 12);
-        const resultInches = Math.abs(resultIn) % 12;
+        else if (operation === "multiply") resultIn = totalIn1 * feet2;
+        else resultIn = feet2 > 0 ? totalIn1 / feet2 : 0;
+        const abs = Math.abs(resultIn);
+        const resultFt = Math.floor(abs / 12);
+        const resultInches = abs % 12;
         const sign = resultIn < 0 ? "-" : "";
         const totalFt = resultIn / 12;
-        const meters = totalFt * 0.3048;
-        return { resultFt, resultInches, sign, totalFt, totalIn: resultIn, meters, isMultDiv };
-    }, [feet1, inches1, feet2, inches2, operation]);
+        const meters = Math.abs(totalFt) * 0.3048;
+        const cm = meters * 100;
+        const mm = meters * 1000;
+        const yards = Math.abs(totalFt) / 3;
+        return { resultFt, resultInches, sign, totalFt, totalIn: resultIn, meters, cm, mm, yards, isMultDiv };
+    }, [feet1, inches1, frac1, feet2, inches2, frac2, operation]);
 
     return (
         <div className="con-calc">
@@ -6778,6 +6803,7 @@ function FeetAndInchesCalc() {
             <div className="con-calc__inputs">
                 <InputField label="Feet (A)" value={feet1} onChange={setFeet1} unit="ft" min={0} />
                 <InputField label="Inches (A)" value={inches1} onChange={setInches1} unit="in" min={0} max={11} />
+                <SelectField label="Fraction (A)" value={frac1} onChange={setFrac1} options={FRAC_OPTIONS} />
                 <SelectField label="Operation" value={operation} onChange={setOperation} options={[
                     { value: "add", label: "Add (+)" },
                     { value: "subtract", label: "Subtract (−)" },
@@ -6788,17 +6814,22 @@ function FeetAndInchesCalc() {
                     <>
                         <InputField label="Feet (B)" value={feet2} onChange={setFeet2} unit="ft" min={0} />
                         <InputField label="Inches (B)" value={inches2} onChange={setInches2} unit="in" min={0} max={11} />
+                        <SelectField label="Fraction (B)" value={frac2} onChange={setFrac2} options={FRAC_OPTIONS} />
                     </>
                 ) : (
                     <InputField label="Factor" value={feet2} onChange={setFeet2} min={1} />
                 )}
             </div>
             <div className="con-calc__results">
-                <h4>Results</h4>
-                <ResultRow label="Result" value={`${result.sign}${result.resultFt}' ${fmt(result.resultInches, 1)}"`} />
-                <ResultRow label="Total Inches" value={fmt(result.totalIn, 1)} unit="in" />
-                <ResultRow label="Decimal Feet" value={fmt(result.totalFt, 3)} unit="ft" />
-                <ResultRow label="Meters" value={fmt(result.meters, 3)} unit="m" />
+                <h4 className="con-calc__group-label">IMPERIAL</h4>
+                <ResultRow label="Feet & Inches" value={`${result.sign}${result.resultFt}' ${fmt(result.resultInches, 2)}"`} />
+                <ResultRow label="Total Inches" value={fmt(result.totalIn, 2)} unit="in" />
+                <ResultRow label="Decimal Feet" value={fmt(result.totalFt, 4)} unit="ft" />
+                <ResultRow label="Yards" value={fmt(result.yards, 3)} unit="yd" />
+                <h4 className="con-calc__group-label">METRIC</h4>
+                <ResultRow label="Meters" value={fmt(result.meters, 4)} unit="m" />
+                <ResultRow label="Centimeters" value={fmt(result.cm, 2)} unit="cm" />
+                <ResultRow label="Millimeters" value={fmt(result.mm, 1)} unit="mm" />
             </div>
         </div>
     );
