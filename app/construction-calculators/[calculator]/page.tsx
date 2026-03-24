@@ -3873,7 +3873,7 @@ Net lawn area: 10,890 − 1,900 = <strong>8,990 sq ft</strong></p>
             highlight: "3.375\" = 3 3/8\" = 85.73 mm. At 1/16 precision: 3 6/16\" = 3 3/8\" (simplified). In Fraction → Decimal: 3 3/8\" = 3.375\".",
         },
         contentHTML: `
-<p><strong>Inch fractions</strong> use denominators that are powers of 2: halves (1/2), quarters (1/4), eighths (1/8), sixteenths (1/16), thirty-seconds (1/32), and sixty-fourths (1/64). They're the standard on US <strong>tape measures, rulers, and construction plans</strong>.</p>
+<p><strong>Inch fractions</strong> use denominators that are powers of 2: halves (1/2), quarters (1/4), eighths (1/8), sixteenths (1/16), thirty-seconds (1/32), and sixty-fourths (1/64). They're the standard on US <strong>tape measures, rulers, and construction plans</strong>. For math with fractional measurements, try our <a href="/construction-calculators/feet-and-inches-calculator">feet and inches calculator</a> or convert areas with our <a href="/construction-calculators/square-footage-calculator">square footage calculator</a>.</p>
 
 <h2>How to Convert Decimal to Fraction</h2>
 <ol>
@@ -3952,7 +3952,7 @@ Net lawn area: 10,890 − 1,900 = <strong>8,990 sq ft</strong></p>
             highlight: "At 1/4\" = 1' scale (1:48): a 6\" drawing measurement = 24 feet actual. A 30-foot wall = 7.5\" on the blueprint.",
         },
         contentHTML: `
-<p><strong>Scale conversion</strong> translates measurements between <strong>drawings, blueprints, models, and real-world dimensions</strong>. The calculator supports 3 modes and 12 preset scales used in US <strong>architecture, engineering, and model building</strong>.</p>
+<p><strong>Scale conversion</strong> translates measurements between <strong>drawings, blueprints, models, and real-world dimensions</strong>. The calculator supports 3 modes and 12 preset scales used in US <strong>architecture, engineering, and model building</strong>. For converting the resulting dimensions, use our <a href="/construction-calculators/feet-and-inches-calculator">feet and inches calculator</a> or <a href="/construction-calculators/inch-fraction-calculator">inch fraction calculator</a>.</p>
 
 <h2>Three Calculation Modes</h2>
 <ul>
@@ -4045,7 +4045,7 @@ Net lawn area: 10,890 − 1,900 = <strong>8,990 sq ft</strong></p>
             highlight: "500 sq ft at 4\" deep = 6.17 cu yd. With 10% waste: 6.79 cu yd of gravel = 9.5 tons ≈ $340 at $50/cu yd.",
         },
         contentHTML: `
-<p><strong>Square feet</strong> measure area (2D), while <strong>cubic yards</strong> measure volume (3D). To convert between them, you need <strong>depth or thickness</strong>. This calculator handles the conversion and estimates <strong>material weight and cost</strong> for 7 bulk materials.</p>
+<p><strong>Square feet</strong> measure area (2D), while <strong>cubic yards</strong> measure volume (3D). To convert between them, you need <strong>depth or thickness</strong>. This calculator handles the conversion and estimates <strong>material weight and cost</strong> for 7 bulk materials. Measure your area with our <a href="/construction-calculators/square-footage-calculator">square footage calculator</a> or convert between <a href="/construction-calculators/square-feet-to-cubic-feet-calculator">square feet and cubic feet</a>.</p>
 
 <h2>Square Feet to Cubic Yards Formula</h2>
 <p><strong>cu yd = (sq ft × depth in inches) ÷ 324</strong></p>
@@ -4128,8 +4128,8 @@ Net lawn area: 10,890 − 1,900 = <strong>8,990 sq ft</strong></p>
             highlight: "12 × 8 inches = 96 sq in = 0.667 sq ft = 619.4 cm². Circle with 6\" radius: 113.1 sq in.",
         },
         contentHTML: `
-<p><strong>Square inches (sq in or in²)</strong> measure small areas in the US customary system. They're used for <strong>tiles, screens, paper, fabric swatches, gaskets, pipe cross-sections, and craft projects</strong>.</p>
-<p>The calculator above supports <strong>3 shapes</strong> (rectangle, circle, triangle), accepts <strong>4 input units</strong> (inches, cm, mm, feet), and converts to <strong>both imperial and metric</strong> area units.</p>
+<p><strong>Square inches (sq in or in²)</strong> measure small areas in the US customary system. They're used for <strong>tiles, screens, paper, fabric swatches, gaskets, pipe cross-sections, and craft projects</strong>. For larger areas, use our <a href="/construction-calculators/square-footage-calculator">square footage calculator</a> or <a href="/construction-calculators/square-yards-calculator">square yards calculator</a>.</p>
+<p>The calculator above supports <strong>3 shapes</strong> (rectangle, circle, triangle), accepts <strong>4 input units</strong> (inches, cm, mm, feet), and converts to <strong>both imperial and metric</strong> area units. Pair it with our <a href="/construction-calculators/inch-fraction-calculator">inch fraction calculator</a> for tape-measure conversions.</p>
 
 <h2>Square Inches Formulas</h2>
 <table>
@@ -4218,8 +4218,8 @@ Net lawn area: 10,890 − 1,900 = <strong>8,990 sq ft</strong></p>
             highlight: "5 × 4 m room = 20 m² = 215.28 sq ft. At $50/m²: $1,000 total. Circle with 3 m radius: 28.27 m².",
         },
         contentHTML: `
-<p><strong>Square meters (m²)</strong> is the SI unit of area, used worldwide for <strong>real estate, construction, flooring, landscaping, and international trade</strong>. In the US, square meters are increasingly used alongside square feet for global comparisons and scientific applications.</p>
-<p>The calculator above supports <strong>3 shapes</strong> (rectangle, circle, triangle), accepts <strong>4 input units</strong> (meters, cm, feet, inches), and includes <strong>cost estimation per m²</strong>.</p>
+<p><strong>Square meters (m²)</strong> is the SI unit of area, used worldwide for <strong>real estate, construction, flooring, landscaping, and international trade</strong>. In the US, square meters are increasingly used alongside square feet for global comparisons and scientific applications. Convert to US units with our <a href="/construction-calculators/square-footage-calculator">square footage calculator</a> or <a href="/construction-calculators/square-yards-calculator">square yards calculator</a>.</p>
+<p>The calculator above supports <strong>3 shapes</strong> (rectangle, circle, triangle), accepts <strong>4 input units</strong> (meters, cm, feet, inches), and includes <strong>cost estimation per m²</strong>. For length conversions, try our <a href="/construction-calculators/feet-and-inches-calculator">feet and inches calculator</a>.</p>
 
 <h2>Square Meter Formulas</h2>
 <table>
@@ -4300,8 +4300,8 @@ Net lawn area: 10,890 − 1,900 = <strong>8,990 sq ft</strong></p>
             highlight: "12 × 10 ft room = 120 sq ft = 13.33 sq yd. At $25/sq yd + 10% waste: 14.67 sq yd × $25 = $367 total.",
         },
         contentHTML: `
-<p><strong>Square yards</strong> measure area and are commonly used in the US for <strong>carpet, flooring, fabric, sod, and landscaping</strong>. One square yard equals a 3-foot × 3-foot area (9 square feet).</p>
-<p>The calculator above supports <strong>3 shapes</strong> (rectangle, circle, triangle), accepts <strong>4 input units</strong> (feet, inches, yards, meters), and includes <strong>cost estimation with waste factor</strong>.</p>
+<p><strong>Square yards</strong> measure area and are commonly used in the US for <strong>carpet, flooring, fabric, sod, and landscaping</strong>. One square yard equals a 3-foot × 3-foot area (9 square feet). See also our <a href="/construction-calculators/square-footage-calculator">square footage calculator</a>, <a href="/construction-calculators/square-meters-calculator">square meters calculator</a>, and <a href="/construction-calculators/square-inches-calculator">square inches calculator</a>.</p>
+<p>The calculator above supports <strong>3 shapes</strong> (rectangle, circle, triangle), accepts <strong>4 input units</strong> (feet, inches, yards, meters), and includes <strong>cost estimation with waste factor</strong>. For volume calculations, try our <a href="/construction-calculators/square-feet-to-cubic-yards-calculator">square feet to cubic yards calculator</a>.</p>
 
 <h2>Square Yardage Formulas</h2>
 <table>
