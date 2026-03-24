@@ -1683,6 +1683,142 @@ function RegularPolygonCalc() {
     </div></div>);
 }
 
+/* 33. Numbers to Words Converter */
+function NumbersToWordsCalc() {
+    const [input, setInput] = useState("5075.62");
+    const [mode, setMode] = useState("words");
+    const [letterCase, setLetterCase] = useState("lowercase");
+
+    const ones = ["", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine",
+        "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"];
+    const tens = ["", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"];
+    const scales = ["", "thousand", "million", "billion", "trillion", "quadrillion", "quintillion"];
+    const ordinalOnes = ["", "first", "second", "third", "fourth", "fifth", "sixth", "seventh", "eighth", "ninth",
+        "tenth", "eleventh", "twelfth", "thirteenth", "fourteenth", "fifteenth", "sixteenth", "seventeenth", "eighteenth", "nineteenth"];
+    const ordinalTens = ["", "", "twentieth", "thirtieth", "fortieth", "fiftieth", "sixtieth", "seventieth", "eightieth", "ninetieth"];
+
+    function chunkToWords(n: number): string {
+        if (n === 0) return "";
+        if (n < 20) return ones[n];
+        if (n < 100) return tens[Math.floor(n / 10)] + (n % 10 ? "-" + ones[n % 10] : "");
+        return ones[Math.floor(n / 100)] + " hundred" + (n % 100 ? " " + chunkToWords(n % 100) : "");
+    }
+
+    function toWords(numStr: string): string {
+        const cleaned = numStr.replace(/,/g, "").trim();
+        if (cleaned === "" || isNaN(Number(cleaned))) return "(invalid number)";
+        const num = Number(cleaned);
+        if (num === 0) return "zero";
+        const isNeg = num < 0;
+        const abs = Math.abs(Math.floor(num));
+        if (abs === 0) return isNeg ? "negative zero" : "zero";
+        const digits = abs.toString();
+        const chunks: number[] = [];
+        for (let i = digits.length; i > 0; i -= 3) {
+            chunks.unshift(parseInt(digits.slice(Math.max(0, i - 3), i)));
+        }
+        const parts: string[] = [];
+        for (let i = 0; i < chunks.length; i++) {
+            if (chunks[i] === 0) continue;
+            const scaleIdx = chunks.length - 1 - i;
+            const w = chunkToWords(chunks[i]) + (scaleIdx > 0 && scaleIdx < scales.length ? " " + scales[scaleIdx] : "");
+            parts.push(w);
+        }
+        return (isNeg ? "negative " : "") + parts.join(" ");
+    }
+
+    function toOrdinal(numStr: string): string {
+        const cleaned = numStr.replace(/,/g, "").trim();
+        const num = parseInt(cleaned);
+        if (isNaN(num) || num < 0) return "(enter a positive integer)";
+        if (num === 0) return "zeroth";
+        const abs = Math.abs(num);
+        if (abs < 20) return ordinalOnes[abs];
+        if (abs < 100) {
+            const t = Math.floor(abs / 10);
+            const o = abs % 10;
+            return o === 0 ? ordinalTens[t] : tens[t] + "-" + ordinalOnes[o];
+        }
+        const baseWords = toWords(numStr);
+        const lastTwo = abs % 100;
+        if (lastTwo === 0) return baseWords.replace(/hundred$/, "hundredth");
+        if (lastTwo < 20) {
+            const parts = baseWords.split(" ");
+            parts[parts.length - 1] = ordinalOnes[lastTwo];
+            return parts.join(" ");
+        }
+        const lastOne = abs % 10;
+        if (lastOne === 0) {
+            const parts = baseWords.split(" ");
+            const last = parts[parts.length - 1];
+            parts[parts.length - 1] = ordinalTens[Math.floor(lastTwo / 10)];
+            return parts.join(" ");
+        }
+        const parts = baseWords.split("-");
+        parts[parts.length - 1] = ordinalOnes[lastOne];
+        return parts.join("-");
+    }
+
+    function toCurrency(numStr: string): { check: string; display: string } {
+        const cleaned = numStr.replace(/,/g, "").trim();
+        const num = parseFloat(cleaned);
+        if (isNaN(num)) return { check: "(invalid)", display: "(invalid)" };
+        const abs = Math.abs(num);
+        const dollars = Math.floor(abs);
+        const cents = Math.round((abs - dollars) * 100);
+        const dollarsWord = dollars === 0 ? "zero" : toWords(dollars.toString());
+        const centsWord = cents === 0 ? "zero" : toWords(cents.toString());
+        const neg = num < 0 ? "negative " : "";
+        return {
+            check: `${neg}${dollarsWord} and ${cents.toString().padStart(2, "0")}/100 dollars`,
+            display: `${neg}${dollarsWord} dollar${dollars !== 1 ? "s" : ""} and ${centsWord} cent${cents !== 1 ? "s" : ""}`,
+        };
+    }
+
+    function applyCase(text: string): string {
+        switch (letterCase) {
+            case "uppercase": return text.toUpperCase();
+            case "title": return text.replace(/\b\w/g, c => c.toUpperCase());
+            case "sentence": return text.charAt(0).toUpperCase() + text.slice(1);
+            default: return text;
+        }
+    }
+
+    const r = useMemo(() => {
+        const cleaned = input.replace(/,/g, "").trim();
+        const num = parseFloat(cleaned);
+        const digitCount = cleaned.replace(/[^0-9]/g, "").length;
+        if (mode === "currency") {
+            const c = toCurrency(input);
+            return { primary: applyCase(c.check), secondary: applyCase(c.display), digitCount, num };
+        }
+        if (mode === "ordinal") {
+            return { primary: applyCase(toOrdinal(input)), secondary: !isNaN(num) ? `${Math.abs(Math.floor(num))}${["th","st","nd","rd"][(Math.abs(Math.floor(num))%100>10&&Math.abs(Math.floor(num))%100<14)?0:([1,2,3].indexOf(Math.abs(Math.floor(num))%10)+1)||0]||"th"}` : "", digitCount, num };
+        }
+        return { primary: applyCase(toWords(input)), secondary: "", digitCount, num };
+    }, [input, mode, letterCase]);
+
+    return (<div className="con-calc"><h3 className="con-calc__title">🔤 Numbers to Words Converter</h3><div className="con-calc__inputs">
+        <InputField label="Enter a Number" value={input} onChange={setInput} placeholder="e.g. 5075.62, 1000000, -42" />
+        <SelectField label="Mode" value={mode} onChange={setMode} options={[
+            { value: "words", label: "Number → Words" },
+            { value: "currency", label: "USD Currency (Check Writing)" },
+            { value: "ordinal", label: "Ordinal (1st, 2nd, 3rd…)" },
+        ]} />
+        <SelectField label="Letter Case" value={letterCase} onChange={setLetterCase} options={[
+            { value: "lowercase", label: "lowercase" },
+            { value: "uppercase", label: "UPPERCASE" },
+            { value: "title", label: "Title Case" },
+            { value: "sentence", label: "Sentence case" },
+        ]} />
+    </div><div className="con-calc__results"><h4>Result</h4>
+        <ResultRow label={mode === "currency" ? "Check Writing" : mode === "ordinal" ? "Ordinal" : "In Words"} value={r.primary} />
+        {r.secondary && <ResultRow label={mode === "currency" ? "Full Form" : "Numeric Ordinal"} value={r.secondary} />}
+        <ResultRow label="Digit Count" value={r.digitCount.toString()} />
+        {!isNaN(r.num) && <ResultRow label="Number" value={r.num.toLocaleString("en-US", { maximumFractionDigits: 10 })} />}
+    </div></div>);
+}
+
 /* ──── DISPATCHER ──── */
 const CALC_MAP: Record<string, React.FC> = {
     "percentage": PercentageCalc,
@@ -1717,6 +1853,7 @@ const CALC_MAP: Record<string, React.FC> = {
     "perimeter-calculator": PerimeterCalc,
     "circle-area": CircleCalc,
     "polygon-calculator": RegularPolygonCalc,
+    "numbers-to-words": NumbersToWordsCalc,
 };
 
 export default function MathCalculatorCore({ calcType }: { calcType: string }) {

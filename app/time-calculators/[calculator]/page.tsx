@@ -166,6 +166,152 @@ const HUB_CONTENT: Record<string, {
             { question: "Does this work for overnight shifts?", answer: "Yes. If your clock-out time is earlier than clock-in (e.g., in 10 PM, out 6 AM), the calculator correctly calculates 8 hours of gross time." },
         ],
     },
+    "work-hours-calculator": {
+        subtitle: "Add up your weekly work hours with start time, end time, and breaks for each day. See total hours in hh:mm and decimal format, automatic FLSA overtime calculation, and optional gross pay estimate.",
+        explanation: {
+            heading: "Weekly Work Hours Calculator with Overtime & Pay",
+            paragraphs: [
+                "Enter your clock-in and clock-out times plus break duration for each day of the week. The calculator instantly totals your hours in both standard (hours:minutes) and decimal format — the format most payroll systems use. Days you didn't work can be unchecked to exclude them.",
+                "If your total exceeds 40 hours per week, the calculator automatically splits your time into regular hours (up to 40) and overtime hours (the excess) per FLSA rules. Toggle the pay calculation to see your estimated gross pay, including time-and-a-half overtime.",
+            ],
+            highlight: "Mon–Fri, 9:00 AM to 5:30 PM with a 60-minute break = 37.50 decimal hours per week. At $25/hr, that's $937.50 gross pay. Add Saturday hours to see overtime calculations kick in.",
+        },
+        contentHTML: `
+<h2 id="how-to-calculate-work-hours">How to Calculate Work Hours</h2>
+<p>Calculating work hours is straightforward once you break it into steps. For each work day:</p>
+<ol>
+<li><strong>Convert times to 24-hour format.</strong> 9:00 AM = 09:00. 5:30 PM = 17:30.</li>
+<li><strong>Subtract start time from end time.</strong> 17:30 − 09:00 = 8 hours 30 minutes (gross hours).</li>
+<li><strong>Subtract unpaid breaks.</strong> 8h 30m − 60 min break = <strong>7h 30m net hours</strong>.</li>
+<li><strong>Convert to decimal hours</strong> for payroll: 7h 30m = 7 + (30 ÷ 60) = <strong>7.50 decimal hours</strong>.</li>
+</ol>
+<p>For a full work week, repeat for each day and add the daily totals. Our calculator above does all of this automatically for all 7 days.</p>
+
+<h3 id="overnight-shift">Overnight Shifts</h3>
+<p>If your shift crosses midnight (e.g., clock in 10:00 PM, clock out 6:30 AM), the calculator detects this automatically. It adds 24 hours to the end time before subtracting: (6:30 + 24:00) − 22:00 = 8h 30m gross hours.</p>
+
+<h2 id="converting-minutes-to-decimal">Converting Minutes to Decimal Hours</h2>
+<p>Payroll systems use <strong>decimal hours</strong> instead of hours and minutes. The conversion formula is:</p>
+<p style="text-align:center;font-weight:700;font-size:1.1em">Decimal Hours = Whole Hours + (Minutes ÷ 60)</p>
+<p><strong>Example:</strong> You worked 41 hours and 15 minutes.</p>
+<ul>
+<li>Whole hours = 41</li>
+<li>Minutes to decimal: 15 ÷ 60 = 0.25</li>
+<li>Total decimal hours: <strong>41.25</strong></li>
+<li>At $20/hr: 41.25 × $20 = <strong>$825.00</strong></li>
+</ul>
+
+<h3 id="minutes-to-decimal-table">Minutes to Decimal Quick-Reference Table</h3>
+<table>
+<thead><tr><th>Minutes</th><th>Decimal</th><th>Minutes</th><th>Decimal</th><th>Minutes</th><th>Decimal</th></tr></thead>
+<tbody>
+<tr><td>5</td><td>0.08</td><td>25</td><td>0.42</td><td>45</td><td>0.75</td></tr>
+<tr><td>6</td><td>0.10</td><td>30</td><td>0.50</td><td>48</td><td>0.80</td></tr>
+<tr><td>10</td><td>0.17</td><td>35</td><td>0.58</td><td>50</td><td>0.83</td></tr>
+<tr><td>12</td><td>0.20</td><td>36</td><td>0.60</td><td>54</td><td>0.90</td></tr>
+<tr><td>15</td><td>0.25</td><td>40</td><td>0.67</td><td>55</td><td>0.92</td></tr>
+<tr><td>20</td><td>0.33</td><td>42</td><td>0.70</td><td>60</td><td>1.00</td></tr>
+</tbody>
+</table>
+<p><strong>Tip:</strong> 6-minute increments are the standard billing unit in the legal profession (each 6 min = 0.10 hours). Quarter-hour rounding (15 min = 0.25) is the most common payroll rounding method.</p>
+
+<h2 id="flsa-overtime-rules">FLSA Overtime Rules for US Workers</h2>
+<p>The <strong>Fair Labor Standards Act (FLSA)</strong> is the federal law that governs overtime pay in the United States. Here are the key rules every hourly worker and employer should know:</p>
+<ul>
+<li><strong>40-hour threshold:</strong> Non-exempt employees must receive overtime pay for all hours worked over 40 in a workweek.</li>
+<li><strong>Overtime rate:</strong> The minimum overtime rate is <strong>1.5× the regular hourly rate</strong> (commonly called "time and a half").</li>
+<li><strong>Workweek definition:</strong> A workweek is any fixed, recurring 168-hour period (7 consecutive 24-hour periods). It doesn't have to align with the calendar week.</li>
+<li><strong>No daily overtime (federally):</strong> Federal law does <em>not</em> require overtime for working more than 8 hours in a single day. However, some states (like <strong>California</strong>) do require daily overtime after 8 hours.</li>
+<li><strong>Exempt vs. non-exempt:</strong> Salaried employees earning above a threshold ($35,568/year as of 2024) in executive, administrative, or professional roles may be exempt from overtime. Hourly workers are almost always non-exempt.</li>
+</ul>
+
+<h3 id="overtime-calculation-example">Overtime Calculation Example</h3>
+<p>You worked 45 hours this week at $20/hour:</p>
+<ul>
+<li>Regular pay: 40 hours × $20 = <strong>$800</strong></li>
+<li>Overtime hours: 45 − 40 = <strong>5 hours</strong></li>
+<li>Overtime rate: $20 × 1.5 = <strong>$30/hour</strong></li>
+<li>Overtime pay: 5 × $30 = <strong>$150</strong></li>
+<li>Total gross pay: $800 + $150 = <strong>$950</strong></li>
+</ul>
+<p>Our calculator above performs this computation automatically when your total exceeds 40 hours and you enable the "Show Pay Calculation" option.</p>
+
+<h2 id="common-us-work-schedules">Common US Work Schedules</h2>
+<table>
+<thead><tr><th>Schedule Type</th><th>Hours/Day</th><th>Days/Week</th><th>Hours/Week</th><th>Common In</th></tr></thead>
+<tbody>
+<tr><td><strong>Standard</strong></td><td>8</td><td>5 (Mon–Fri)</td><td>40</td><td>Most office jobs</td></tr>
+<tr><td><strong>9/80 Compressed</strong></td><td>9 or 8</td><td>5 or 4 (alternating)</td><td>40</td><td>Federal government, engineering</td></tr>
+<tr><td><strong>4/10 Compressed</strong></td><td>10</td><td>4</td><td>40</td><td>Healthcare, manufacturing</td></tr>
+<tr><td><strong>Part-Time</strong></td><td>4–6</td><td>3–5</td><td>20–30</td><td>Retail, food service</td></tr>
+<tr><td><strong>Rotating Shifts</strong></td><td>8 or 12</td><td>Varies</td><td>36–48</td><td>Hospitals, police, fire</td></tr>
+<tr><td><strong>Flex Schedule</strong></td><td>Varies</td><td>5</td><td>40</td><td>Tech, startups</td></tr>
+</tbody>
+</table>
+
+<h2 id="gross-pay-formula">How to Calculate Gross Pay from Work Hours</h2>
+<p>The gross pay formula depends on whether you worked overtime:</p>
+<p><strong>No overtime (≤ 40 hours):</strong></p>
+<p style="text-align:center;font-weight:700">Gross Pay = Total Hours × Hourly Rate</p>
+<p><strong>With overtime (> 40 hours):</strong></p>
+<p style="text-align:center;font-weight:700">Gross Pay = (40 × Rate) + (Overtime Hours × Rate × 1.5)</p>
+<p>Remember: gross pay is <em>before</em> taxes and deductions. Your take-home pay will be lower after federal income tax, state income tax, Social Security (6.2%), and Medicare (1.45%) are withheld. Use our <a href="/time-calculators/time-card-calculator">Time Card Calculator</a> for single-day calculations, or our <a href="/time-calculators/hours-calculator">Hours Calculator</a> for multi-day hour tracking.</p>
+
+<h2 id="break-requirements">Federal and State Break Requirements</h2>
+<p>There is <strong>no federal requirement</strong> for meal or rest breaks under the FLSA. However, if an employer provides short breaks (typically 5–20 minutes), they must be <em>paid</em>. Meal periods of 30 minutes or longer may be unpaid if the employee is completely relieved of duties.</p>
+<p>Many states have their own break laws:</p>
+<ul>
+<li><strong>California:</strong> 30-min unpaid meal break for shifts over 5 hours; 10-min paid rest break per 4 hours worked.</li>
+<li><strong>Washington:</strong> 30-min meal break for shifts over 5 hours; 10-min paid rest break per 4 hours.</li>
+<li><strong>New York:</strong> 30-min meal break for shifts over 6 hours.</li>
+<li><strong>Texas, Florida, Georgia:</strong> No state-mandated break requirements (follow FLSA only).</li>
+</ul>
+<p>Our calculator defaults to a 60-minute break for weekdays, but you can adjust the break duration for each day to match your actual schedule.</p>
+
+<h2 id="payroll-rounding">Payroll Time Rounding Rules</h2>
+<p>The FLSA allows employers to round time to the nearest increment, as long as rounding doesn't systematically favor the employer over time. The most common rounding method is the <strong>7-minute rule</strong>:</p>
+<ul>
+<li>Round to the nearest <strong>15 minutes</strong> (quarter hour)</li>
+<li>1–7 minutes → round <strong>down</strong></li>
+<li>8–14 minutes → round <strong>up</strong></li>
+</ul>
+<p><strong>Example:</strong> Clock in at 8:07 AM → rounds to 8:00 AM. Clock in at 8:08 AM → rounds to 8:15 AM.</p>
+<p>Some employers use 6-minute rounding (tenth of an hour) or exact-minute tracking with digital time clocks. Always check your company's policy.</p>
+
+<h2 id="time-tracking-tips">Tips for Accurate Time Tracking</h2>
+<ul>
+<li><strong>Use consistent time format:</strong> Pick either 12-hour or 24-hour and stick with it to avoid AM/PM mix-ups. Our calculator uses 24-hour format for accuracy.</li>
+<li><strong>Record times immediately:</strong> Don't rely on memory at the end of the day. Use a phone alarm or digital clock-in system.</li>
+<li><strong>Track breaks separately:</strong> Always deduct actual break time, not just the scheduled break. A 45-minute lunch is 0.75 hours, not 1.00.</li>
+<li><strong>Save weekly totals:</strong> Keep a record of your weekly hours for pay stub verification and tax documentation.</li>
+<li><strong>Know your state laws:</strong> Some states (California, Colorado, Oregon) have daily overtime rules on top of the federal weekly overtime rule.</li>
+</ul>
+
+<h2 id="work-hours-in-a-year">How Many Work Hours Are in a Year?</h2>
+<table>
+<thead><tr><th>Scenario</th><th>Calculation</th><th>Total Hours</th></tr></thead>
+<tbody>
+<tr><td><strong>No time off</strong></td><td>52 weeks × 40 hours</td><td>2,080</td></tr>
+<tr><td><strong>2 weeks vacation</strong></td><td>50 weeks × 40 hours</td><td>2,000</td></tr>
+<tr><td><strong>2 weeks vacation + 10 holidays</strong></td><td>50 × 40 − (10 × 8)</td><td>1,920</td></tr>
+<tr><td><strong>Part-time (20 hrs/week)</strong></td><td>52 × 20</td><td>1,040</td></tr>
+</tbody>
+</table>
+<p>The standard figure used for <strong>salary-to-hourly</strong> conversions in the US is <strong>2,080 hours per year</strong> (52 weeks × 40 hours). Use our <a href="/time-calculators/business-days-calculator">Business Days Calculator</a> to count the exact working days between any two dates, or our <a href="/time-calculators/deadline-calculator">Deadline Calculator</a> to plan project timelines.</p>
+        `,
+        faq: [
+            { question: "How many hours is a standard work week in the US?", answer: "A standard full-time work week in the US is 40 hours, typically Monday through Friday, 8 hours per day. This is the threshold used by the FLSA for overtime calculations. Anything over 40 hours in a workweek qualifies for overtime pay at 1.5× the regular rate for non-exempt employees." },
+            { question: "How do I convert 41 hours 15 minutes to decimal?", answer: "Take the minutes and divide by 60: 15 ÷ 60 = 0.25. Add to the whole hours: 41 + 0.25 = 41.25 decimal hours. To convert back: take the decimal portion (0.25) and multiply by 60: 0.25 × 60 = 15 minutes. So 41.25 = 41 hours 15 minutes." },
+            { question: "What is FLSA overtime?", answer: "FLSA (Fair Labor Standards Act) overtime requires employers to pay non-exempt employees at least 1.5× their regular hourly rate for all hours worked over 40 in a workweek. For example, at $20/hour, overtime pays $30/hour. The FLSA is a federal law enforced by the Department of Labor." },
+            { question: "How do I calculate overtime pay?", answer: "Overtime Pay = (Hours over 40) × (Hourly Rate × 1.5). Example: 45 hours at $20/hr → Regular: 40 × $20 = $800. Overtime: 5 × $30 = $150. Total: $950. Some states like California also require daily overtime (after 8 hours in a day) in addition to the weekly 40-hour threshold." },
+            { question: "Are lunch breaks paid in the US?", answer: "Under federal FLSA rules, meal periods of 30+ minutes are generally unpaid IF the employee is completely relieved of duties. Short breaks (5–20 minutes) must be paid. State laws vary — California, Washington, and New York have specific break requirements. There is no federal law REQUIRING employers to provide breaks." },
+            { question: "How many work hours are in a year?", answer: "52 weeks × 40 hours = 2,080 hours per year. With 2 weeks vacation: 2,000 hours. With 2 weeks vacation + 10 federal holidays: 1,920 hours. The 2,080 figure is the standard used for salary-to-hourly conversions in the US." },
+            { question: "What is the difference between gross hours and net hours?", answer: "Gross hours = total time from clock-in to clock-out. Net hours = gross hours minus unpaid breaks. Example: clock in 9:00, clock out 5:30 = 8.5 gross hours. Minus 1-hour lunch = 7.5 net hours. Payroll is calculated on net hours, not gross." },
+            { question: "How do I round time for payroll?", answer: "The most common FLSA-compliant method is the 7-minute rule: round to the nearest 15 minutes. 1–7 minutes round down, 8–14 minutes round up. Example: 8:07 AM → 8:00. 8:08 AM → 8:15. The key rule is that rounding must not consistently favor the employer." },
+            { question: "What is a compressed work schedule?", answer: "A compressed schedule packs 40 hours into fewer than 5 days. Common formats: 4/10 (four 10-hour days, one day off) and 9/80 (alternating weeks of five 9-hour days and four 9-hour days plus one 8-hour day, getting every other Friday off). Popular in government and healthcare." },
+            { question: "How many working days are in a month?", answer: "Most months have 20–23 working days (weekdays). The average is about 21.7 working days per month. January and February tend to have fewer (due to New Year's and Presidents' Day holidays), while months without federal holidays have 22–23. Use our Business Days Calculator for exact counts." },
+        ],
+    },
     "hours-calculator": {
         subtitle: "Calculate the total number of hours and minutes between two date-times. Perfect for project tracking and event duration.",
         explanation: {

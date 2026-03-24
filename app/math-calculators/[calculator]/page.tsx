@@ -95,7 +95,369 @@ const HUB_CONTENT: Record<string, {
         ],
     },
 
+    /* ─── 1b. PERCENTAGE DECREASE CALCULATOR — RICH CONTENT (Competitor-beating) ─── */
+    "percentage-decrease-calculator": {
+        subtitle: "Calculate the percentage decrease between two values. Enter the original and new value to see the percent decrease, the formula, step-by-step solution, and the absolute difference — instantly.",
+        contentHTML: `
+            <h2 id="how-to-calculate-percentage-decrease">How to Calculate Percentage Decrease</h2>
+            <p>A <strong>percentage decrease</strong> measures how much a value has fallen relative to its original amount, expressed as a percent. It answers the question: <em>"By what percent did this value go down?"</em> Whether you're tracking a price drop, a salary reduction, or a decline in website traffic, the percentage decrease tells you the <strong>relative magnitude</strong> of the change — which is often more meaningful than the raw number.</p>
+            <p>To calculate the percentage decrease between an original value and a new (smaller) value, follow these four steps:</p>
+            <ol>
+                <li><strong>Find the difference:</strong> Subtract the new value from the original value. This gives you the <em>absolute decrease</em>.</li>
+                <li><strong>Divide by the original:</strong> Divide the difference by the <strong>absolute value</strong> of the original number. This gives a decimal representing the relative drop.</li>
+                <li><strong>Multiply by 100:</strong> Convert the decimal to a percentage by multiplying by 100.</li>
+                <li><strong>Interpret the result:</strong> The resulting number is the percentage decrease. A positive number confirms a decrease; a negative number would indicate the value actually <em>increased</em>.</li>
+            </ol>
+            <p>Our calculator above performs all four steps automatically. Just enter any two values — the original and the new — and the percentage decrease, absolute difference, and step-by-step formula are displayed instantly.</p>
+
+            <h2 id="percentage-decrease-formula">Percentage Decrease Formula</h2>
+            <p>The <strong>percent decrease formula</strong> is:</p>
+            <div class="explanation__highlight">
+                <strong>Percentage Decrease = ((Original Value − New Value) / |Original Value|) × 100</strong>
+            </div>
+            <p>Where:</p>
+            <ul>
+                <li><strong>Original Value</strong> — the starting amount (before the decrease)</li>
+                <li><strong>New Value</strong> — the ending amount (after the decrease)</li>
+                <li><strong>|Original Value|</strong> — the absolute value of the original, used as the reference point for the relative calculation</li>
+            </ul>
+            <p>The formula divides by the <em>original</em> value because we want to express the drop as a proportion of where we started. This is the same formula used in our <a href="/math-calculators/percentage-calculator">Percentage Calculator</a> when set to "percentage change" mode, but focused specifically on decreases.</p>
+
+            <h2 id="step-by-step-example">Step-by-Step Example</h2>
+            <p>Let's walk through a real example: a product was priced at <strong>$250</strong> and is now on sale for <strong>$185</strong>. What is the percentage decrease?</p>
+            <ol>
+                <li><strong>Find the difference:</strong> $250 − $185 = <strong>$65</strong></li>
+                <li><strong>Divide by the original:</strong> $65 / $250 = <strong>0.26</strong></li>
+                <li><strong>Multiply by 100:</strong> 0.26 × 100 = <strong>26%</strong></li>
+                <li><strong>Result:</strong> The price decreased by <strong>26%</strong>.</li>
+            </ol>
+            <p>You can verify this by using our calculator above: enter 250 as the original value and 185 as the new value.</p>
+
+            <h3 id="another-example">Another Worked Example — Salary Reduction</h3>
+            <p>Suppose your annual salary was <strong>$75,000</strong> and it was reduced to <strong>$68,250</strong>. To find the percentage decrease:</p>
+            <ol>
+                <li>Difference: $75,000 − $68,250 = <strong>$6,750</strong></li>
+                <li>Divide: $6,750 / $75,000 = <strong>0.09</strong></li>
+                <li>Multiply: 0.09 × 100 = <strong>9%</strong></li>
+                <li>Your salary decreased by <strong>9%</strong>.</li>
+            </ol>
+
+            <h2 id="common-percentage-decrease-table">Common Percentage Decrease Reference Table</h2>
+            <p>Here is a quick-reference table showing the percentage decrease for common value drops. Use this to quickly verify your calculations or get a sense of popular decrease scenarios.</p>
+            <table>
+                <thead>
+                    <tr><th>Original Value</th><th>New Value</th><th>Decrease</th><th>% Decrease</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>100</td><td>90</td><td>10</td><td><strong>10%</strong></td></tr>
+                    <tr><td>100</td><td>75</td><td>25</td><td><strong>25%</strong></td></tr>
+                    <tr><td>100</td><td>50</td><td>50</td><td><strong>50%</strong></td></tr>
+                    <tr><td>100</td><td>25</td><td>75</td><td><strong>75%</strong></td></tr>
+                    <tr><td>100</td><td>10</td><td>90</td><td><strong>90%</strong></td></tr>
+                    <tr><td>200</td><td>150</td><td>50</td><td><strong>25%</strong></td></tr>
+                    <tr><td>500</td><td>400</td><td>100</td><td><strong>20%</strong></td></tr>
+                    <tr><td>1,000</td><td>850</td><td>150</td><td><strong>15%</strong></td></tr>
+                    <tr><td>5,000</td><td>1,000</td><td>4,000</td><td><strong>80%</strong></td></tr>
+                    <tr><td>50,000</td><td>45,000</td><td>5,000</td><td><strong>10%</strong></td></tr>
+                </tbody>
+            </table>
+
+            <h2 id="percentage-decrease-vs-difference">Percentage Decrease vs. Percentage Difference</h2>
+            <p>These two concepts are often confused, but they measure different things:</p>
+            <ul>
+                <li><strong>Percentage decrease</strong> always uses the <em>original</em> (starting) value as the denominator. It has a clear direction: from old to new.</li>
+                <li><strong>Percentage difference</strong> uses the <em>average</em> of the two values as the denominator. It is directionless — it measures how far apart two values are relative to their midpoint.</li>
+            </ul>
+            <p><strong>Example:</strong> For values 200 and 150:</p>
+            <ul>
+                <li>Percentage decrease (from 200 to 150): (200 − 150) / 200 × 100 = <strong>25%</strong></li>
+                <li>Percentage difference: |200 − 150| / ((200 + 150) / 2) × 100 = 50 / 175 × 100 = <strong>28.57%</strong></li>
+            </ul>
+            <p>Use <strong>percentage decrease</strong> when you know which value came first (the "before" value). Use our <a href="/math-calculators/percentage-calculator">Percentage Calculator</a> for percentage difference, percentage change, or percentage increase calculations.</p>
+
+            <h2 id="real-world-applications">Real-World Applications of Percentage Decrease</h2>
+            <p>Percentage decrease is used across many domains. Here are common real-life applications that are particularly relevant in the United States:</p>
+
+            <h3 id="finance-investing">Finance & Investing</h3>
+            <p>Stock market analysts use percentage decrease to report market drops. For example, if the S&P 500 falls from 5,200 to 4,940, that's a (5,200 − 4,940) / 5,200 × 100 = <strong>5% decrease</strong>. Investors track percentage drops to assess portfolio risk and make buy/sell decisions.</p>
+            <p>Similarly, company earnings reports often show year-over-year revenue changes as a percentage decrease. A $1 million revenue decline has very different implications for a $5 million company (20% decrease) versus a $100 million company (1% decrease).</p>
+
+            <h3 id="shopping-discounts">Shopping & Discount Calculations</h3>
+            <p>Percentage decrease is the math behind every sale. A $120 jacket on sale for $84 has been reduced by (120 − 84) / 120 × 100 = <strong>30%</strong>. Use our <a href="/business-calculators/discount-calculator">Discount Calculator</a> for quick sale-price calculations including multiple stacked discounts.</p>
+
+            <h3 id="population-decline">Population Decline</h3>
+            <p>Demographers and urban planners use percentage decrease to track population changes. Many U.S. cities have experienced population declines — comparing the drop as a percentage (rather than raw numbers) allows fair comparison between cities of different sizes.</p>
+
+            <h3 id="weight-loss">Health & Weight Loss</h3>
+            <p>Doctors recommend tracking weight loss as a percentage of body weight. Losing 10 lbs means very different things for someone weighing 300 lbs (3.3% decrease) versus someone weighing 130 lbs (7.7% decrease). A 5–10% body weight decrease is considered clinically significant for health improvements.</p>
+
+            <h3 id="inflation-purchasing-power">Inflation & Purchasing Power</h3>
+            <p>When inflation rises, the purchasing power of a dollar decreases. If inflation is 3.5% over a year, a dollar's purchasing power decreases by roughly 3.4% — meaning $100 at the start of the year buys the equivalent of about $96.62 by year-end.</p>
+
+            <h2 id="common-mistakes">Common Mistakes When Calculating Percentage Decrease</h2>
+            <p>Even simple math can trip you up. Watch out for these common errors:</p>
+            <ol>
+                <li><strong>Dividing by the wrong value:</strong> Always divide by the <em>original</em> (starting) value, not the new value. Dividing by the new value gives you a different (and incorrect) percentage.</li>
+                <li><strong>Confusing decrease with difference:</strong> Percentage decrease is directional (old → new). Percentage difference is symmetric. See the <a href="#percentage-decrease-vs-difference">comparison above</a>.</li>
+                <li><strong>Forgetting absolute value:</strong> If the original value is negative (like a temperature drop from −10 to −15), use the absolute value of the original in the denominator.</li>
+                <li><strong>Reversing the values:</strong> If the new value is <em>larger</em> than the original, the result is a percentage <em>increase</em>, not a decrease. Make sure you're entering them in the right order.</li>
+                <li><strong>Confusing "decreased by" with "decreased to":</strong> A <a href="/math-calculators/percentage-calculator">20% decrease</a> of 100 gives you 80 (decreased <em>to</em> 80). The <em>decrease amount</em> is 20, but the new value is 80.</li>
+            </ol>
+
+            <h2 id="how-to-reverse">How to Reverse a Percentage Decrease</h2>
+            <p>Sometimes you know the percentage decrease and the new value, and you need to find the original value. The reverse formula is:</p>
+            <div class="explanation__highlight">
+                <strong>Original Value = New Value / (1 − Percentage Decrease / 100)</strong>
+            </div>
+            <p><strong>Example:</strong> A product is now $60 after a 25% decrease. What was the original price?</p>
+            <p>Original = $60 / (1 − 0.25) = $60 / 0.75 = <strong>$80</strong>.</p>
+
+            <h2 id="related-concepts">Related Percentage Concepts</h2>
+            <p>Percentage decrease is one of several related percentage calculations. Understanding the differences helps you choose the right formula:</p>
+            <ul>
+                <li><strong><a href="/math-calculators/percentage-calculator">Percentage Calculator</a>:</strong> The comprehensive tool for all percentage operations — X% of Y, percentage change, increase, decrease, and "what % is A of B."</li>
+                <li><strong><a href="/math-calculators/fraction-to-percent-calculator">Fraction to Percent Calculator</a>:</strong> Convert fractions like 3/4 to 75%. Useful when your decrease is expressed as a fraction (e.g., "the stock lost a quarter of its value" = 25% decrease).</li>
+                <li><strong><a href="/business-calculators/discount-calculator">Discount Calculator</a>:</strong> Specialized for shopping — enter the original price and discount percentage to see the sale price and savings amount.</li>
+                <li><strong><a href="/math-calculators/average-calculator">Average Calculator</a>:</strong> When comparing multiple percentage decreases over time, the average (mean) decrease can reveal the overall trend.</li>
+            </ul>
+        `,
+        formula: {
+            formula: "Percentage Decrease = ((Original − New) / |Original|) × 100",
+            variables: [
+                { symbol: "Original", meaning: "The starting value (before the decrease)" },
+                { symbol: "New", meaning: "The ending value (after the decrease)" },
+                { symbol: "|Original|", meaning: "Absolute value of the original — ensures a correct result even if the original is negative" },
+                { symbol: "× 100", meaning: "Converts the decimal to a percentage" },
+            ],
+            example: [
+                { label: "Price drop: $250 → $185", substitution: "((250 − 185) / 250) × 100 = (65/250) × 100", result: "26% decrease" },
+                { label: "Salary cut: $75,000 → $68,250", substitution: "((75000 − 68250) / 75000) × 100", result: "9% decrease" },
+                { label: "Stock: 5,000 → 1,000", substitution: "((5000 − 1000) / 5000) × 100", result: "80% decrease" },
+            ],
+        },
+        faq: [
+            { question: "What is the percentage decrease from 100 to 10?", answer: "The percentage decrease from 100 to 10 is 90%. The calculation: (100 − 10) / 100 × 100 = 90 / 100 × 100 = 90%." },
+            { question: "What is the percentage decrease from 80 to 60?", answer: "The percentage decrease is 25%. Calculation: (80 − 60) / 80 × 100 = 20/80 × 100 = 25%." },
+            { question: "How do I calculate a 20% decrease?", answer: "Multiply the original value by 0.20 to get the decrease amount, then subtract from the original. Or simply multiply by 0.80. Example: 20% decrease of 500 = 500 × 0.80 = 400." },
+            { question: "What is the formula for percentage decrease?", answer: "Percentage Decrease = ((Original Value − New Value) / |Original Value|) × 100. The result tells you what percent the value dropped relative to the starting amount." },
+            { question: "Is percentage decrease always positive?", answer: "Yes, when the value actually decreased (new < original). If the new value is larger, the result is negative — meaning it was actually an increase, not a decrease." },
+            { question: "What is the difference between percentage decrease and percentage change?", answer: "Percentage change is the general concept covering both increases and decreases. Percentage decrease is specifically when the change is downward (new value < original value). They use the same formula." },
+            { question: "Can percentage decrease be more than 100%?", answer: "Not when both values are positive. A 100% decrease means the value dropped to zero. However, if working with negative original values, technically a result over 100% is possible." },
+            { question: "How is percentage decrease used in finance?", answer: "It's used to report stock declines, revenue drops, and portfolio losses. A percentage decrease normalizes comparisons — a $50 drop means 10% on a $500 stock but only 1% on a $5,000 stock." },
+        ],
+        relatedCalculators: [
+            { title: "Percentage Calculator", slug: "percentage-calculator", categorySlug: "math-calculators", description: "All percentage operations — change, increase, decrease, X% of Y" },
+            { title: "Fraction to Percent", slug: "fraction-to-percent-calculator", categorySlug: "math-calculators", description: "Convert fractions to percentages" },
+            { title: "Discount Calculator", slug: "discount-calculator", categorySlug: "business-calculators", description: "Calculate sale prices and savings from discounts" },
+            { title: "Average Calculator", slug: "average-calculator", categorySlug: "math-calculators", description: "Mean, median, and mode for data analysis" },
+            { title: "Standard Deviation", slug: "standard-deviation-calculator", categorySlug: "math-calculators", description: "Measure data spread and variability" },
+        ],
+    },
+
+    /* ─── 1c. NUMBERS TO WORDS CONVERTER — RICH CONTENT (Competitor-beating) ─── */
+    "numbers-to-words-converter": {
+        subtitle: "Convert any number to English words instantly. Supports integers, decimals, negative numbers, USD currency for check writing, and ordinal numbers (1st, 2nd, 3rd). Choose lowercase, UPPERCASE, Title Case, or Sentence case.",
+        contentHTML: `
+            <h2 id="how-to-convert-numbers-to-words">How to Convert Numbers to Words</h2>
+            <p>Converting <strong>numbers to words</strong> means spelling out a numeric value as English text. For example, the number <strong>1,234</strong> becomes <strong>"one thousand two hundred thirty-four."</strong> This is a fundamental skill used in check writing, legal documents, formal reports, education, and accessibility.</p>
+            <p>Our converter above handles any number you enter — positive, negative, integers, and decimals — and instantly outputs the word form. You can switch between three modes:</p>
+            <ul>
+                <li><strong>Number → Words:</strong> Converts any number to its English word form</li>
+                <li><strong>USD Currency:</strong> Formats the output for check writing (e.g., "five thousand seventy-five and 62/100 dollars")</li>
+                <li><strong>Ordinal:</strong> Converts to ordinal form (e.g., 23 → "twenty-third")</li>
+            </ul>
+            <p>You can also choose your preferred <strong>letter case</strong> — lowercase, UPPERCASE, Title Case, or Sentence case — so you can copy and paste directly into your document.</p>
+
+            <h2 id="place-value-groups">How Numbers Are Named — Place Value Groups</h2>
+            <p>English names numbers by grouping digits into <strong>groups of three</strong>, starting from the right. Each group of three digits is called a <strong>period</strong> and has a scale name:</p>
+            <table>
+                <thead>
+                    <tr><th>Group Position</th><th>Scale Name</th><th>Value</th><th>Example</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>1st group</td><td>Ones</td><td>1 – 999</td><td>five hundred twelve</td></tr>
+                    <tr><td>2nd group</td><td>Thousands</td><td>1,000</td><td>three thousand</td></tr>
+                    <tr><td>3rd group</td><td>Millions</td><td>1,000,000</td><td>seven million</td></tr>
+                    <tr><td>4th group</td><td>Billions</td><td>1,000,000,000</td><td>two billion</td></tr>
+                    <tr><td>5th group</td><td>Trillions</td><td>1,000,000,000,000</td><td>one trillion</td></tr>
+                    <tr><td>6th group</td><td>Quadrillions</td><td>10<sup>15</sup></td><td>four quadrillion</td></tr>
+                    <tr><td>7th group</td><td>Quintillions</td><td>10<sup>18</sup></td><td>nine quintillion</td></tr>
+                </tbody>
+            </table>
+            <p>For each three-digit group, the conversion follows the same pattern: <em>[ones digit] hundred [tens and ones]</em>. For example, the group <strong>512</strong> becomes "five hundred twelve." Then the scale name is appended: "five hundred twelve <strong>thousand</strong>."</p>
+            <p>The United States uses the <strong>short scale</strong> system, where each new scale name represents 1,000 times the previous one. This is different from the <strong>long scale</strong> used in some European countries, where "billion" means 10<sup>12</sup> (one million millions) rather than 10<sup>9</sup>.</p>
+
+            <h2 id="number-names-reference">Number Names Reference Table</h2>
+            <p>Here is a complete reference for number names from 1 through 100, plus the key large numbers:</p>
+
+            <h3 id="ones-through-twenty">1 Through 20</h3>
+            <table>
+                <thead><tr><th>Number</th><th>Word</th><th>Number</th><th>Word</th></tr></thead>
+                <tbody>
+                    <tr><td>1</td><td>one</td><td>11</td><td>eleven</td></tr>
+                    <tr><td>2</td><td>two</td><td>12</td><td>twelve</td></tr>
+                    <tr><td>3</td><td>three</td><td>13</td><td>thirteen</td></tr>
+                    <tr><td>4</td><td>four</td><td>14</td><td>fourteen</td></tr>
+                    <tr><td>5</td><td>five</td><td>15</td><td>fifteen</td></tr>
+                    <tr><td>6</td><td>six</td><td>16</td><td>sixteen</td></tr>
+                    <tr><td>7</td><td>seven</td><td>17</td><td>seventeen</td></tr>
+                    <tr><td>8</td><td>eight</td><td>18</td><td>eighteen</td></tr>
+                    <tr><td>9</td><td>nine</td><td>19</td><td>nineteen</td></tr>
+                    <tr><td>10</td><td>ten</td><td>20</td><td>twenty</td></tr>
+                </tbody>
+            </table>
+
+            <h3 id="tens">Tens (30–100)</h3>
+            <table>
+                <thead><tr><th>Number</th><th>Word</th><th>Number</th><th>Word</th></tr></thead>
+                <tbody>
+                    <tr><td>30</td><td>thirty</td><td>70</td><td>seventy</td></tr>
+                    <tr><td>40</td><td>forty</td><td>80</td><td>eighty</td></tr>
+                    <tr><td>50</td><td>fifty</td><td>90</td><td>ninety</td></tr>
+                    <tr><td>60</td><td>sixty</td><td>100</td><td>one hundred</td></tr>
+                </tbody>
+            </table>
+
+            <div class="explanation__highlight">
+                <strong>Common spelling mistake:</strong> "Forty" is the correct spelling — not "fourty." This is one of the most common spelling errors in English.
+            </div>
+
+            <h2 id="how-to-write-a-check">How to Write a Check in the United States</h2>
+            <p>Even in the digital age, writing checks is still common in the U.S. for rent payments, contractor invoices, and business-to-business transactions. The most important line on a check is the <strong>amount written in words</strong> — this is the legal amount, and it takes priority over the numeric amount if they differ.</p>
+            <p>Follow these steps to write a check correctly:</p>
+            <ol>
+                <li><strong>Date:</strong> Write today's date in MM/DD/YYYY format (the standard U.S. format) in the upper right corner.</li>
+                <li><strong>Payee:</strong> Write the full name of the person or company on the "Pay to the order of" line.</li>
+                <li><strong>Numeric amount:</strong> Write the dollar amount in numbers in the box (e.g., <strong>$5,075.62</strong>).</li>
+                <li><strong>Amount in words:</strong> On the line below the payee, write the amount in words. Use our converter in "USD Currency" mode to get the exact wording.</li>
+                <li><strong>Signature:</strong> Sign your name on the bottom-right line.</li>
+                <li><strong>Memo (optional):</strong> Add a note on the memo line (e.g., "September rent" or "Invoice #123").</li>
+            </ol>
+
+            <h3 id="check-writing-example">Worked Example: Writing a Check for $5,075.62</h3>
+            <p>Enter <strong>5075.62</strong> in our converter and select "USD Currency" mode. The output is:</p>
+            <div class="explanation__highlight">
+                <strong>Five thousand seventy-five and 62/100 dollars</strong>
+            </div>
+            <p>Write this on the "amount in words" line. The cents are written as a fraction over 100 (<strong>62/100</strong>). Draw a line through any remaining blank space on the line to prevent tampering.</p>
+            <p>Writing amounts in words reduces the risk of fraud — it's much harder to alter "five thousand" to "fifty thousand" than to add a zero to "$5,000" to make "$50,000."</p>
+
+            <h2 id="numbers-in-formal-writing">Numbers in Formal Writing — When to Spell Out Numbers</h2>
+            <p>Different style guides have different rules for when to use numerals versus words. Here are the two most common standards in the United States:</p>
+
+            <h3 id="ap-style">AP Style (Journalism)</h3>
+            <ul>
+                <li>Spell out numbers <strong>one through nine</strong>; use numerals for <strong>10 and above</strong>.</li>
+                <li>Always spell out a number at the <strong>beginning of a sentence</strong>: "Twenty-three people attended."</li>
+                <li>Use numerals for <strong>ages, dates, addresses, percentages, and dollar amounts</strong>.</li>
+            </ul>
+
+            <h3 id="chicago-style">Chicago Manual of Style (Academic/Book Publishing)</h3>
+            <ul>
+                <li>Spell out numbers <strong>zero through one hundred</strong> and any number that can be expressed in two words (e.g., "two hundred," "forty-five thousand").</li>
+                <li>Use numerals for numbers <strong>over one hundred</strong> when they cannot be expressed in two words.</li>
+                <li>Never start a sentence with a numeral — always spell it out or rewrite the sentence.</li>
+            </ul>
+
+            <h2 id="ordinal-numbers">Ordinal Numbers — 1st, 2nd, 3rd</h2>
+            <p><strong>Ordinal numbers</strong> indicate position or order — first, second, third, and so on. They are different from <strong>cardinal numbers</strong> (one, two, three), which indicate quantity. Our converter's "Ordinal" mode generates the word form of ordinal numbers.</p>
+            <table>
+                <thead><tr><th>Cardinal</th><th>Ordinal Word</th><th>Cardinal</th><th>Ordinal Word</th></tr></thead>
+                <tbody>
+                    <tr><td>1</td><td>first</td><td>11</td><td>eleventh</td></tr>
+                    <tr><td>2</td><td>second</td><td>12</td><td>twelfth</td></tr>
+                    <tr><td>3</td><td>third</td><td>13</td><td>thirteenth</td></tr>
+                    <tr><td>4</td><td>fourth</td><td>20</td><td>twentieth</td></tr>
+                    <tr><td>5</td><td>fifth</td><td>21</td><td>twenty-first</td></tr>
+                    <tr><td>6</td><td>sixth</td><td>30</td><td>thirtieth</td></tr>
+                    <tr><td>7</td><td>seventh</td><td>50</td><td>fiftieth</td></tr>
+                    <tr><td>8</td><td>eighth</td><td>100</td><td>one hundredth</td></tr>
+                    <tr><td>9</td><td>ninth</td><td>101</td><td>one hundred first</td></tr>
+                    <tr><td>10</td><td>tenth</td><td>1000</td><td>one thousandth</td></tr>
+                </tbody>
+            </table>
+            <p>Ordinal numbers are used for <strong>dates</strong> (March 3rd), <strong>rankings</strong> (1st place), <strong>floors</strong> (the 42nd floor), and <strong>fractions</strong> (one-fifth, three-fourths).</p>
+
+            <h2 id="common-use-cases">Common Use Cases for Numbers to Words</h2>
+            <ul>
+                <li><strong>Check writing:</strong> Banks require the dollar amount in words as the legal amount on checks.</li>
+                <li><strong>Legal documents:</strong> Contracts, leases, and court filings spell out monetary amounts and quantities to prevent ambiguity and fraud.</li>
+                <li><strong>Invoices and receipts:</strong> Some businesses include word-form amounts alongside numeric totals for clarity.</li>
+                <li><strong>Education:</strong> Students learn to read and write numbers in word form in elementary math classes. Use this converter with our <a href="/math-calculators/long-division-calculator">Long Division Calculator</a> and <a href="/math-calculators/fraction-calculator">Fraction Calculator</a> for complete math homework support.</li>
+                <li><strong>Accessibility:</strong> Screen readers for visually impaired users sometimes interpret numerals differently than written words. Spelling out numbers ensures clear communication.</li>
+                <li><strong>Tax forms:</strong> IRS forms and some state tax documents require amounts in both numeric and word form.</li>
+                <li><strong>Speeches and presentations:</strong> "There are only five thousand six hundred wild tigers left" has more impact than "5,600."</li>
+            </ul>
+
+            <h2 id="faq">Frequently Asked Questions</h2>
+
+            <h3>How do you write 1,000 in words?</h3>
+            <p>1,000 in words is <strong>"one thousand."</strong></p>
+
+            <h3>How do you write 100,000 in words?</h3>
+            <p>100,000 in words is <strong>"one hundred thousand."</strong></p>
+
+            <h3>How do you write a check for $1,500?</h3>
+            <p>Write <strong>"one thousand five hundred and 00/100 dollars"</strong> on the amount-in-words line. If paying $1,500.50, write "one thousand five hundred and 50/100 dollars."</p>
+
+            <h3>What is the word for 1,000,000,000?</h3>
+            <p>1,000,000,000 is <strong>"one billion"</strong> in the United States (short scale). In some European countries using the long scale, this would be called "one milliard."</p>
+
+            <h3>How do you spell out dollars and cents on a check?</h3>
+            <p>Write the dollar amount in words, then write "and" followed by the cents as a fraction over 100. For example, $42.75 becomes <strong>"forty-two and 75/100 dollars."</strong></p>
+
+            <h3>When should you spell out numbers in writing?</h3>
+            <p>In AP Style (journalism), spell out one through nine. In Chicago style (academic), spell out zero through one hundred. Always spell out numbers at the beginning of a sentence. Use our <a href="/math-calculators/percentage-calculator">Percentage Calculator</a> when you need to express numerical relationships.</p>
+
+            <h3>What is the largest number with a recognized name?</h3>
+            <p>A <strong>googolplex</strong> (10<sup>10<sup>100</sup></sup>) is one of the largest named numbers. A <strong>googol</strong> (10<sup>100</sup>) — the number 1 followed by 100 zeros — is "ten duotrigintillion." Our converter handles numbers up to quintillions (10<sup>18</sup>).</p>
+
+            <h3>Do you use "and" when writing numbers in words?</h3>
+            <p>In <strong>American English</strong>, "and" is typically <em>not</em> used between the hundreds and tens place (e.g., "one hundred twenty-three," not "one hundred and twenty-three"). However, "and" <em>is</em> used in check writing to separate dollars from cents: "one hundred twenty-three <strong>and</strong> 45/100 dollars." In British English, "and" is always used.</p>
+
+            <h3>How do you write ordinal numbers in words?</h3>
+            <p>Most ordinal numbers are formed by adding "-th" to the cardinal number: four → four<strong>th</strong>, six → six<strong>th</strong>. Exceptions: first, second, third, fifth (not "fiveth"), eighth (not "eightth"), ninth (not "nineth"), twelfth (not "twelveth"). Use our Ordinal mode to convert any number.</p>
+
+            <h3>What is the difference between cardinal and ordinal numbers?</h3>
+            <p><strong>Cardinal numbers</strong> express quantity: one, two, three (how many?). <strong>Ordinal numbers</strong> express position or rank: first, second, third (which one?). Use our <a href="/math-calculators/average-calculator">Average Calculator</a> for working with cardinal numbers in data sets.</p>
+        `,
+        formula: {
+            formula: "Group digits by 3s from right → Name each group → Add scale (thousand, million, …)",
+            variables: [
+                { symbol: "Ones", meaning: "0–9: zero, one, two, three, four, five, six, seven, eight, nine" },
+                { symbol: "Teens", meaning: "10–19: ten, eleven, twelve, thirteen, … nineteen" },
+                { symbol: "Tens", meaning: "20–90: twenty, thirty, forty, fifty, sixty, seventy, eighty, ninety" },
+                { symbol: "Scales", meaning: "thousand (10³), million (10⁶), billion (10⁹), trillion (10¹²)" },
+            ],
+            example: [
+                { label: "1,234", substitution: "1 thousand + 234 → two hundred thirty-four", result: "one thousand two hundred thirty-four" },
+                { label: "1,000,000", substitution: "1 million + 0 thousands + 0 ones", result: "one million" },
+                { label: "$5,075.62 (USD)", substitution: "5 thousand + 75 + 62/100", result: "five thousand seventy-five and 62/100 dollars" },
+            ],
+        },
+        faq: [
+            { question: "How do you write 1,000 in words?", answer: "1,000 in words is \"one thousand.\"" },
+            { question: "How do you write 100,000 in words?", answer: "100,000 in words is \"one hundred thousand.\"" },
+            { question: "How do you write a check for $1,500?", answer: "Write \"one thousand five hundred and 00/100 dollars\" on the amount-in-words line. The check usually has \"dollars\" pre-printed, so write up to that point." },
+            { question: "What is the word for 1,000,000,000?", answer: "One billion (in the U.S. short scale). In countries using the long scale, it would be \"one milliard\" — \"billion\" in the long scale means 10¹²." },
+            { question: "How do you spell out dollars and cents?", answer: "Write the dollar amount in words, then \"and\" followed by the cents as a fraction over 100. Example: $42.75 = \"forty-two and 75/100 dollars.\"" },
+            { question: "When should you spell out numbers in writing?", answer: "AP Style: spell out one through nine, use numerals for 10+. Chicago style: spell out zero through one hundred. Always spell out a number at the start of a sentence." },
+            { question: "What is the largest number with a name?", answer: "A googolplex (10^(10^100)) is one of the largest. A googol (10^100) — the number 1 followed by 100 zeros — is \"ten duotrigintillion.\"" },
+            { question: "Do you use 'and' when writing numbers?", answer: "In American English, \"and\" is NOT used between hundreds and tens (\"one hundred twenty-three\"). However, in check writing, \"and\" separates dollars from cents (\"one hundred twenty-three and 45/100 dollars\")." },
+            { question: "How do you write ordinal numbers in words?", answer: "Add \"-th\" to the cardinal number (fourth, sixth). Exceptions: first, second, third, fifth, eighth, ninth, twelfth. For compound ordinals: twenty-first, thirty-second, etc." },
+            { question: "What is the difference between cardinal and ordinal numbers?", answer: "Cardinal numbers express quantity (one, two, three — how many?). Ordinal numbers express position (first, second, third — in what order?). Our converter supports both modes." },
+        ],
+        relatedCalculators: [
+            { title: "Percentage Calculator", slug: "percentage-calculator", categorySlug: "math-calculators", description: "Calculate percentages — X% of Y, change, increase, decrease" },
+            { title: "Fraction Calculator", slug: "fraction-calculator", categorySlug: "math-calculators", description: "Add, subtract, multiply, and divide fractions" },
+            { title: "Long Division Calculator", slug: "long-division-calculator", categorySlug: "math-calculators", description: "Division with step-by-step working" },
+            { title: "Average Calculator", slug: "average-calculator", categorySlug: "math-calculators", description: "Calculate mean, median, and mode" },
+            { title: "Exponent Calculator", slug: "exponent-calculator", categorySlug: "math-calculators", description: "Calculate powers and scientific notation" },
+        ],
+    },
+
     /* ─── 2. FRACTION CALCULATOR — RICH CONTENT (Competitor-level) ─── */
+
     "fraction-calculator": {
         subtitle: "Add, subtract, multiply, and divide fractions and mixed numbers using our fraction calculator. See every step of the solution — from finding the common denominator to simplifying the result.",
         contentHTML: `

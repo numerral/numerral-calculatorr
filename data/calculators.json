@@ -6471,8 +6471,52 @@
     "keywords": "time card calculator, work hours calculator, clock in out, timesheet calculator",
     "links": {
       "related": [
+        "work-hours-calculator",
         "hours-calculator",
         "time-duration-calculator",
+        "business-days-calculator",
+        "deadline-calculator"
+      ],
+      "crossCluster": "salary-after-tax"
+    }
+  },
+  {
+    "id": "work-hours-calculator",
+    "category": "time",
+    "title": "Work Hours Calculator",
+    "slug": "work-hours-calculator",
+    "categorySlug": "time-calculators",
+    "icon": "📋",
+    "calcType": "work-hours",
+    "description": "Add up your weekly work hours with this time sheet calculator. Enter start time, end time, and breaks for each day. See total hours in decimal format with FLSA overtime and optional gross pay calculation.",
+    "stars": 5,
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "work hours calculator, weekly timesheet calculator, time card calculator weekly, payroll hours calculator, work week hours, calculate work hours with breaks, overtime calculator, time sheet calculator",
+    "links": {
+      "related": [
+        "time-card-calculator",
+        "hours-calculator",
         "business-days-calculator",
         "deadline-calculator"
       ],
@@ -17711,6 +17755,7 @@
     "keywords": "percentage calculator, percent calculator, percent of number, percentage change calculator, percentage increase decrease, what percent is X of Y",
     "links": {
       "related": [
+        "percentage-decrease-calculator",
         "fraction-to-percent-calculator",
         "exponent-calculator",
         "average-calculator",
@@ -17719,6 +17764,92 @@
       "glossary": "percentage-term"
     }
   },
+  {
+    "id": "percentage-decrease-calculator",
+    "category": "math",
+    "title": "Percentage Decrease Calculator",
+    "slug": "percentage-decrease-calculator",
+    "categorySlug": "math-calculators",
+    "icon": "📉",
+    "description": "Calculate the percentage decrease between two values instantly. See the percent decrease formula, step-by-step solution, and the absolute difference.",
+    "stars": 5,
+    "calcType": "percentage",
+    "defaults": {
+      "amount": 20,
+      "rate": 100,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 100,
+        "step": 0.01
+      },
+      "rate": {
+        "min": 0,
+        "max": 1000000,
+        "step": 1
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "percentage decrease calculator, percent decrease formula, how to calculate percentage decrease, percentage drop calculator, percentage reduction calculator, calculate percent decrease between two numbers",
+    "links": {
+      "related": [
+        "math-percentage-calculator",
+        "fraction-to-percent-calculator",
+        "discount-calculator",
+        "average-calculator"
+      ],
+      "glossary": "percentage-term"
+    }
+  },
+  {
+    "id": "numbers-to-words-converter",
+    "category": "math",
+    "title": "Numbers to Words Converter",
+    "slug": "numbers-to-words-converter",
+    "categorySlug": "math-calculators",
+    "icon": "🔤",
+    "description": "Convert any number to words in English. Supports integers, decimals, negative numbers, USD currency for check writing, and ordinal numbers (1st, 2nd, 3rd).",
+    "stars": 5,
+    "calcType": "numbers-to-words",
+    "defaults": {
+      "amount": 5075.62,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 999999999999,
+        "step": 1
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "numbers to words converter, number to word converter, convert numbers to words, spell out numbers, number to text, write numbers in words, how to write a check, numbers to English words, figures to words",
+    "links": {
+      "related": [
+        "math-percentage-calculator",
+        "fraction-calculator",
+        "long-division-calculator",
+        "average-calculator"
+      ]
+    }
+  },
+
   {
     "id": "fraction-calculator",
     "category": "math",

@@ -55,6 +55,7 @@ const HUB_CONTENT: Record<string, {
         contentHTML: `
 <p>Concrete is ordered in cubic yards in the United States. For a rectangular slab, the formula is Length × Width × Depth — but the critical step most people miss is converting depth from inches to feet first. A 4-inch slab is 4 ÷ 12 = 0.333 feet, not 4 feet. Mixing up this unit conversion is the #1 reason homeowners over-order concrete.</p>
 <p>For cylindrical shapes (sono tubes, columns, piers), use π × radius² × height. For pre-mix bags: a 50 lb bag fills about 0.375 cu ft, a 60 lb bag fills about 0.45 cu ft, and an 80 lb bag fills about 0.6 cu ft. For projects over 1 cubic yard, ordering a ready-mix truck is more economical and produces better results than hand-mixing individual bags.</p>
+<p>Calculate volume with our <a href="/construction-calculators/cubic-yards-calculator">cubic yards calculator</a>. Measure your pour area with our <a href="/construction-calculators/square-footage-calculator">square footage calculator</a>. For block walls, see our <a href="/construction-calculators/concrete-block-calculator">concrete block calculator</a>.</p>
 
 <h2>What Is Concrete?</h2>
 <p><strong>Concrete</strong> is a composite material made by mixing <strong>Portland cement</strong>, water, sand (fine aggregate), and gravel or crushed stone (coarse aggregate). When water is added to the dry ingredients, a chemical reaction called <strong>hydration</strong> hardens the mixture into a durable, stone-like material.</p>
@@ -173,6 +174,7 @@ const HUB_CONTENT: Record<string, {
         contentHTML: `
 <p>Standard CMU (concrete masonry unit) blocks are 16 inches long × 8 inches high × 8 inches wide (nominal size including a ⅜-inch mortar joint). The actual block is slightly smaller (15⅝ × 7⅝). A standard 8×16 block covers 0.89 sq ft of wall — so you need about 1.125 blocks per square foot.</p>
 <p>To estimate blocks: measure wall length × height = wall area (sq ft), subtract any door/window openings, then divide by 0.89. Add 5% for waste (cuts, breakage, corners). For mortar, plan about 3 bags of Portland cement per 100 blocks, plus 1 cubic yard of sand per 7 bags of cement.</p>
+<p>For poured concrete, use our <a href="/construction-calculators/concrete-calculator">concrete calculator</a>. Calculate wall area with our <a href="/construction-calculators/square-footage-calculator">square footage calculator</a>. For brick walls, see our <a href="/construction-calculators/brick-calculator">brick calculator</a>.</p>
 
 <h2>What Are Concrete Blocks?</h2>
 <p><strong>Concrete blocks</strong> (also called CMUs — concrete masonry units, or cinder blocks) are precast rectangular building units made from Portland cement, aggregate, and water. They are used to construct load-bearing walls, foundations, retaining walls, partition walls, and fencing.</p>
@@ -272,6 +274,7 @@ const HUB_CONTENT: Record<string, {
         contentHTML: `
 <p>The basic flooring calculation is Length × Width to get the room’s square footage. But never order just the exact amount — cuts, fitting around obstacles, and pattern matching require extra material. Industry standard is 10% waste for straight-lay and 15–20% for diagonal, herringbone, or parquet patterns.</p>
 <p>Flooring is sold by the box, with each box covering a specific square footage (typically 15–25 sq ft depending on product). Divide your total area (including waste) by the box coverage and round up — you can’t buy a fraction of a box. Don’t forget underlayment (sold in 200 sq ft rolls) and baseboard/trim (sold by the linear foot).</p>
+<p>Measure your room with our <a href="/construction-calculators/square-footage-calculator">square footage calculator</a>. For tile projects, try our <a href="/construction-calculators/tile-calculator">tile calculator</a>. For carpet, see our <a href="/construction-calculators/carpet-calculator">carpet calculator</a>.</p>
 
 <h2>How to Measure Your Room for Flooring</h2>
 <p>Accurate measurements are the foundation of a successful flooring project. Here's how to measure like a pro:</p>
@@ -373,6 +376,7 @@ const HUB_CONTENT: Record<string, {
         contentHTML: `
 <p>Tile calculation divides your total area by the area of one tile (including the grout gap). A 12×12 inch tile with a ⅛-inch gap has an effective size of 12.125 × 12.125 inches = 1.02 sq ft. This small difference matters — over 100 sq ft, it means 2–3 extra tiles.</p>
 <p>Always add a waste factor: 10% for standard straight-lay, 15% for diagonal or herringbone, and 20% for complex patterns. Tiles are sold by the box, so round up to full boxes. Don’t forget thinset mortar (~50 sq ft per 50 lb bag) and grout (~1 lb per 10 sq ft at ⅛-inch joints).</p>
+<p>Measure floor area with our <a href="/construction-calculators/square-footage-calculator">square footage calculator</a>. For general flooring, use our <a href="/construction-calculators/flooring-calculator">flooring calculator</a>. For outdoor surfaces, try our <a href="/construction-calculators/gravel-calculator">gravel calculator</a>.</p>
 
 <h2>Tile Types Comparison</h2>
 <table>
@@ -489,6 +493,7 @@ const HUB_CONTENT: Record<string, {
         contentHTML: `
 <p>Roofing is measured in ‘squares’ — one square equals 100 square feet of roof area. To convert ground-level (footprint) measurements to actual roof area, multiply by a pitch correction factor. A 4:12 pitch multiplies by 1.054; a 12:12 (45°) pitch multiplies by 1.414.</p>
 <p>Standard asphalt shingles come in bundles, with 3 bundles per square (100 sq ft). Underlayment (felt or synthetic) comes in rolls covering ~400 sq ft. Don’t forget drip edge (roof perimeter), ridge cap (ridge length), and roofing nails (~2.5 lbs per square). Always add 10% for waste.</p>
+<p>Find your roof pitch with our <a href="/construction-calculators/roof-pitch-calculator">roof pitch calculator</a>. Calculate area with our <a href="/construction-calculators/square-footage-calculator">square footage calculator</a>. For metal roofing, see our <a href="/construction-calculators/metal-roofing-calculator">metal roofing calculator</a>.</p>
 
 <h2>Roof Pitch Correction Factors</h2>
 <p>Roof pitch determines how much larger the actual roof area is compared to the footprint you measure from the ground. Use this table to convert:</p>
@@ -592,6 +597,7 @@ const HUB_CONTENT: Record<string, {
         contentHTML: `
 <p>Roof pitch is expressed as a ratio of vertical rise to horizontal run — for example, 6:12 means the roof rises 6 inches for every 12 inches of horizontal distance. In the US, pitch is always expressed over a 12-inch run. This ratio determines everything: material choices, walkability, cost, and structural requirements.</p>
 <p>The pitch multiplier converts the flat (footprint) area into actual roof surface area. A 6:12 pitch has a multiplier of 1.118 — meaning the actual roof area is 11.8% larger than the footprint. This directly affects how many shingles, underlayment rolls, and other materials you need.</p>
+<p>Estimate materials with our <a href="/construction-calculators/roofing-calculator">roofing calculator</a>. Check snow loads with our <a href="/construction-calculators/roof-snow-load-calculator">roof snow load calculator</a>. Size rafters with our <a href="/construction-calculators/lumber-calculator">lumber calculator</a>.</p>
 
 <h2>Standard Roof Pitches</h2>
 <table>
@@ -693,6 +699,7 @@ const HUB_CONTENT: Record<string, {
         contentHTML: `
 <p>Paint coverage depends on the paint type, surface texture, and color change. Most interior latex paints cover approximately 350 square feet per gallon on smooth surfaces. Textured walls, new drywall, and dramatic color changes (light to dark or vice versa) may require additional coats, reducing effective coverage.</p>
 <p>The formula: calculate total wall area (perimeter × height), subtract openings (standard door ≈ 21 sq ft, standard window ≈ 15 sq ft), multiply by number of coats, then divide by paint coverage per gallon. Always round up — it's better to have leftover paint for touch-ups.</p>
+<p>Measure wall area with our <a href="/construction-calculators/square-footage-calculator">square footage calculator</a>. For new walls, see our <a href="/construction-calculators/drywall-calculator">drywall calculator</a>.</p>
 
 <h2>Paint Coverage by Type</h2>
 <table>
@@ -811,6 +818,7 @@ const HUB_CONTENT: Record<string, {
         contentHTML: `
 <p>Standard drywall sheets are 4 feet wide × 8 feet tall (32 sq ft per sheet). Longer sheets (10 ft, 12 ft) are available for taller walls or fewer horizontal joints. To calculate sheets needed, divide the total wall and ceiling area by the sheet size, add 10% for waste, and round up.</p>
 <p>Don't forget the finishing materials: plan approximately 12 feet of joint tape per sheet, 1 bucket (4.5 gallons) of joint compound per 100 sq ft, and about 28–32 drywall screws per sheet (spaced 12 inches on ceilings, 16 inches on walls).</p>
+<p>Calculate wall area with our <a href="/construction-calculators/square-footage-calculator">square footage calculator</a>. For painting after install, use our <a href="/construction-calculators/paint-calculator">paint calculator</a>. For framing, see our <a href="/construction-calculators/lumber-calculator">lumber calculator</a>.</p>
 
 <h2>Drywall Types Guide</h2>
 <table>
@@ -920,6 +928,7 @@ const HUB_CONTENT: Record<string, {
         contentHTML: `
 <p>Square footage measures the area of a two-dimensional space. For a rectangle: Length × Width. For a triangle: ½ × Base × Height. For a circle: π × (Diameter/2)². For a trapezoid: ½ × (Base₁ + Base₂) × Height. All measurements must be in feet — convert inches to feet by dividing by 12 before calculating.</p>
 <p>For irregularly shaped rooms, break the space into simple geometric shapes (rectangles, triangles), calculate each area separately, and add them together. For L-shaped rooms, split into two rectangles. For rooms with bay windows, add a triangle or trapezoid to the main rectangle.</p>
+<p>Convert to square yards with our <a href="/construction-calculators/square-yards-calculator">square yards calculator</a>. Convert to metric with our <a href="/construction-calculators/square-meters-calculator">square meters calculator</a>. Add depth for volume with our <a href="/construction-calculators/cubic-yards-calculator">cubic yards calculator</a>.</p>
 
 <h2>Square Footage Formulas</h2>
 <table>
@@ -1029,6 +1038,7 @@ const HUB_CONTENT: Record<string, {
         contentHTML: `
 <p>A cubic yard is a volume measurement equal to 27 cubic feet (3 ft × 3 ft × 3 ft). It's the standard unit for ordering bulk landscaping and construction materials like gravel, mulch, topsoil, fill dirt, sand, and concrete in the United States. Understanding how to calculate cubic yards saves money by preventing over-ordering and project delays from under-ordering.</p>
 <p>Depth is often measured in inches but must be converted to feet before calculating. A 3-inch layer of mulch is 3 ÷ 12 = 0.25 feet deep. Most materials compact 10–20% after settling, so consider ordering slightly more than the calculated amount.</p>
+<p>Measure area first with our <a href="/construction-calculators/square-footage-calculator">square footage calculator</a>. For concrete projects, use our <a href="/construction-calculators/concrete-calculator">concrete calculator</a>. For gravel, see our <a href="/construction-calculators/gravel-calculator">gravel calculator</a>.</p>
 
 <h2>Cubic Yards Formulas</h2>
 <h3>Rectangular / Square Area</h3>
@@ -1147,6 +1157,7 @@ const HUB_CONTENT: Record<string, {
         contentHTML: `
 <p>Gravel is one of the most versatile landscaping and construction materials in the United States. Whether you're building a driveway, creating a drainage solution, or designing a decorative walkway, knowing how to accurately calculate the amount of gravel you need saves money and prevents costly over- or under-ordering.</p>
 <p>Gravel is sold by the <strong>ton</strong> or by the <strong>cubic yard</strong> depending on your supplier. Most landscape suppliers sell by the ton for large orders. The calculator above automatically includes a <strong>10% overage</strong> for waste and spillage, and optionally adds <strong>30% for compaction</strong> if you plan to compact the gravel for driveways or road base.</p>
+<p>Convert volume with our <a href="/construction-calculators/cubic-yards-calculator">cubic yards calculator</a>. Measure area with our <a href="/construction-calculators/square-footage-calculator">square footage calculator</a>. For mulch, see our <a href="/construction-calculators/mulch-calculator">mulch calculator</a>.</p>
 
 <h2>Gravel Types and Specifications</h2>
 <table>
@@ -1259,6 +1270,7 @@ const HUB_CONTENT: Record<string, {
         contentHTML: `
 <p>Mulch is essential for healthy landscaping throughout the <strong>United States</strong>. It retains soil moisture, suppresses weeds, regulates soil temperature, and creates a polished, finished look for garden beds, tree rings, and walkways. Knowing exactly how much mulch to buy prevents waste and ensures even coverage.</p>
 <p>The calculator above supports <strong>8 common mulch types</strong>, automatically includes <strong>10% overage</strong> for settlement and spillage, calculates <strong>bags needed</strong> (2 or 3 cu ft), and compares <strong>bagged vs. bulk pricing</strong> so you can see exactly how much you'll save buying in bulk.</p>
+<p>Convert volume with our <a href="/construction-calculators/cubic-yards-calculator">cubic yards calculator</a>. Measure bed area with our <a href="/construction-calculators/square-footage-calculator">square footage calculator</a>. For gravel, try our <a href="/construction-calculators/gravel-calculator">gravel calculator</a>.</p>
 
 <h2>Mulch Types and Recommended Depth</h2>
 <table>
@@ -1360,6 +1372,7 @@ const HUB_CONTENT: Record<string, {
         contentHTML: `
 <p>Bricks are one of the most durable and aesthetically appealing building materials in the <strong>United States</strong>. Whether you're constructing an exterior wall, building a chimney, creating a patio, or adding a brick walkway, accurately estimating the number of bricks you need prevents costly over-ordering and project delays.</p>
 <p>Bricks are commonly made of fired clay or shale and are laid in courses (rows) held together by <strong>mortar</strong> — a mixture of cement, sand, and lime. The calculator above supports <strong>6 standard US brick sizes</strong>, estimates <strong>mortar bags</strong>, calculates <strong>pallets</strong>, and provides a <strong>total material cost</strong> including both bricks and mortar.</p>
+<p>For CMU blocks, see our <a href="/construction-calculators/concrete-block-calculator">concrete block calculator</a>. Measure wall area with our <a href="/construction-calculators/square-footage-calculator">square footage calculator</a>. For mortar and footings, use our <a href="/construction-calculators/concrete-calculator">concrete calculator</a>.</p>
 
 <h2>Brick Sizes and Coverage</h2>
 <p>Brick dimensions in the US follow standard ASTM specifications. The "nominal" size includes the mortar joint (typically ⅜"). When estimating, always use the actual brick dimensions plus the mortar joint.</p>
@@ -1462,6 +1475,7 @@ const HUB_CONTENT: Record<string, {
         contentHTML: `
 <p>Building a fence is one of the most common DIY and contractor projects for <strong>US homeowners</strong>. Whether you're installing a privacy fence, a decorative picket fence, or a ranch-style rail fence, accurate material estimation prevents over-ordering and costly return trips to the lumberyard.</p>
 <p>The calculator above supports <strong>7 fence styles</strong> with auto-presets for picket width, spacing, and rails per section. It estimates <strong>posts, rails, pickets/panels, concrete, screws, and gates</strong> with a <strong>complete material cost breakdown</strong>.</p>
+<p>Estimate lumber with our <a href="/construction-calculators/lumber-calculator">lumber calculator</a>. For post footings, use our <a href="/construction-calculators/concrete-calculator">concrete calculator</a>. Calculate area with our <a href="/construction-calculators/square-footage-calculator">square footage calculator</a>.</p>
 
 <h2>Fence Styles and Presets</h2>
 <table>
@@ -1585,6 +1599,7 @@ const HUB_CONTENT: Record<string, {
         contentHTML: `
 <p>Lumber is the backbone of <strong>US construction and woodworking</strong>. Whether you're framing a house, building a deck, crafting furniture, or finishing a trim project, accurately calculating board footage, weight, and cost is essential to avoid over-ordering and wasted material.</p>
 <p>The calculator above includes <strong>11 wood species</strong> with density data (for weight estimation), <strong>8 dimensional lumber presets</strong> (2×4 through 4×4 with actual sizes), and a <strong>weight output</strong> so you know how much your lumber order weighs before delivery.</p>
+<p>For sheathing, see our <a href="/construction-calculators/plywood-calculator">plywood calculator</a>. For fencing, try our <a href="/construction-calculators/fence-calculator">fence calculator</a>. Measure area with our <a href="/construction-calculators/square-footage-calculator">square footage calculator</a>.</p>
 
 <h2>Wood Species Density Chart</h2>
 <p>Wood density determines weight and hardness. Density values below are for air-dried wood (~12% moisture content). Green (freshly cut) lumber can weigh <strong>50–100% more</strong> due to moisture.</p>
@@ -1699,6 +1714,7 @@ const HUB_CONTENT: Record<string, {
         contentHTML: `
 <p>Carpet remains one of the most popular <strong>US flooring choices</strong>, installed in an estimated 50% of American homes. It offers warmth, comfort, sound insulation, and a wide range of styles and price points. Accurately estimating carpet, padding, and installation costs is essential for budgeting any flooring project.</p>
 <p>The calculator above supports <strong>6 carpet types</strong> with auto-filled pricing, <strong>padding cost</strong>, <strong>labor cost</strong>, roll width selection (12 ft or 15 ft), and <strong>seam estimation</strong> — giving you a complete cost breakdown before visiting the store.</p>
+<p>Convert to square yards with our <a href="/construction-calculators/square-yards-calculator">square yards calculator</a>. Measure room area with our <a href="/construction-calculators/square-footage-calculator">square footage calculator</a>. For other flooring types, see our <a href="/construction-calculators/flooring-calculator">flooring calculator</a>.</p>
 
 <h2>Carpet Types Comparison</h2>
 <table>
@@ -2047,6 +2063,7 @@ const HUB_CONTENT: Record<string, {
         contentHTML: `
 <p>Plywood is one of the most versatile building materials used in <strong>US construction</strong>. From structural subfloors and roof sheathing to cabinetry and furniture, understanding plywood types, thicknesses, and quantities is essential for accurate project planning and budgeting.</p>
 <p>The calculator above supports <strong>6 plywood types</strong>, <strong>5 thicknesses</strong>, two sheet sizes (4×8 and 4×4), and provides <strong>weight per sheet and total weight</strong> — critical for delivery planning and structural load calculations.</p>
+<p>Measure area with our <a href="/construction-calculators/square-footage-calculator">square footage calculator</a>. For framing lumber, see our <a href="/construction-calculators/lumber-calculator">lumber calculator</a>. For drywall, try our <a href="/construction-calculators/drywall-calculator">drywall calculator</a>.</p>
 
 <h2>Plywood Types Comparison</h2>
 <table>
@@ -3478,6 +3495,7 @@ const HUB_CONTENT: Record<string, {
 
 <h2>Sod vs. Grass Seed: Which Is Right for You?</h2>
 <p>Homeowners in the US have two primary options for establishing a lawn: <strong>sod</strong> (pre-grown grass rolls) or <strong>grass seed</strong>. Each has distinct advantages:</p>
+<p>Measure lawn area with our <a href="/construction-calculators/square-footage-calculator">square footage calculator</a>. For mulch beds, see our <a href="/construction-calculators/mulch-calculator">mulch calculator</a>. For landscape gravel, try our <a href="/construction-calculators/gravel-calculator">gravel calculator</a>.</p>
 <table>
 <thead><tr><th>Factor</th><th>Grass Seed</th><th>Sod</th></tr></thead>
 <tbody>
@@ -4390,6 +4408,7 @@ Net lawn area: 10,890 − 1,900 = <strong>8,990 sq ft</strong></p>
         contentHTML: `
 <p><strong>Tank volume</strong> is the total internal capacity of a storage tank. Knowing exact volume is essential for <strong>ordering fuel, sizing pumps, calculating chemical dosages, estimating fill time, and determining structural loads</strong>.</p>
 <p>The calculator above supports <strong>6 tank shapes</strong>, calculates <strong>filled volume at any fill level</strong>, and estimates <strong>liquid weight</strong> for 5 common liquids.</p>
+<p>Convert volume with our <a href="/construction-calculators/cubic-feet-calculator">cubic feet calculator</a>. For pipes, see our <a href="/construction-calculators/pipe-volume-calculator">pipe volume calculator</a>. Calculate fill time with our <a href="/construction-calculators/flow-rate-calculator">flow rate calculator</a>.</p>
 
 <h2>Tank Volume Formulas</h2>
 <table>
@@ -4473,6 +4492,7 @@ Net lawn area: 10,890 − 1,900 = <strong>8,990 sq ft</strong></p>
         contentHTML: `
 <p><strong>CFM (cubic feet per minute)</strong> measures the volume of air flowing through a space or duct. It's the primary metric for sizing <strong>exhaust fans, range hoods, HVAC systems, air purifiers, and ventilation equipment</strong>.</p>
 <p>The calculator above includes <strong>9 room type presets</strong> with auto-set ACH, <strong>ASHRAE occupant-based ventilation</strong>, <strong>L/s metric conversion</strong>, and <strong>duct diameter recommendation</strong>.</p>
+<p>Size your furnace with our <a href="/construction-calculators/furnace-btu-calculator">furnace BTU calculator</a>. For cooling, see our <a href="/construction-calculators/window-ac-size-calculator">window AC size calculator</a>. Measure room area with our <a href="/construction-calculators/square-footage-calculator">square footage calculator</a>.</p>
 
 <h2>CFM Formula</h2>
 <p><strong>CFM = (Length × Width × Height × ACH) ÷ 60</strong></p>
@@ -4562,6 +4582,7 @@ Net lawn area: 10,890 − 1,900 = <strong>8,990 sq ft</strong></p>
         contentHTML: `
 <p><strong>Flow rate</strong> is the volume of fluid passing through a pipe per unit of time. It's the most fundamental measurement in plumbing design — every pipe size, pump selection, and fixture specification depends on it.</p>
 <p>The calculator above supports <strong>two calculation methods</strong>: engineering formula (pipe area × velocity) with 8 standard pipe sizes, and practical measurement (volume ÷ time for bucket tests). Both output in <strong>GPM, GPH, liters/min, and CFS</strong>.</p>
+<p>Calculate pipe volume with our <a href="/construction-calculators/pipe-volume-calculator">pipe volume calculator</a>. For tanks, see our <a href="/construction-calculators/tank-volume-calculator">tank volume calculator</a>. Check flow speed with our <a href="/construction-calculators/water-velocity-calculator">water velocity calculator</a>.</p>
 
 <h2>Flow Rate Formula: Q = A × v</h2>
 <p>The volumetric flow rate equals the <strong>pipe cross-sectional area multiplied by fluid velocity</strong>:</p>
@@ -4647,6 +4668,7 @@ Net lawn area: 10,890 − 1,900 = <strong>8,990 sq ft</strong></p>
         contentHTML: `
 <p>A furnace's BTU (British Thermal Unit) rating determines <strong>how much heat it can produce per hour</strong>. Choosing the right size is critical — <strong>too small</strong> and your home stays cold on the worst days; <strong>too large</strong> and the furnace short-cycles, wasting fuel and wearing out faster.</p>
 <p>The calculator above uses <strong>climate zone BTU factors</strong>, adjusts for <strong>insulation, ceiling height, and AFUE efficiency</strong>, and estimates <strong>annual heating cost</strong> across 4 fuel types (gas, propane, oil, electric).</p>
+<p>Calculate airflow with our <a href="/construction-calculators/cfm-calculator">CFM calculator</a>. For cooling, see our <a href="/construction-calculators/window-ac-size-calculator">window AC size calculator</a>. Measure room area with our <a href="/construction-calculators/square-footage-calculator">square footage calculator</a>.</p>
 
 <h2>BTU per Square Foot by Climate Zone</h2>
 <p>The DOE and HVAC industry recommend different BTU/sq ft based on your heating climate:</p>
@@ -4737,6 +4759,7 @@ Net lawn area: 10,890 − 1,900 = <strong>8,990 sq ft</strong></p>
         contentHTML: `
 <p>Pipe volume is the <strong>internal capacity of a pipe</strong>, typically calculated for plumbing, HVAC, fire sprinkler, and irrigation systems. Knowing the volume is essential for <strong>filling, draining, flushing, sizing expansion tanks, calculating antifreeze amounts, and estimating water weight</strong>.</p>
 <p>The calculator above uses <strong>actual inner diameters</strong> for 8 standard US pipe sizes across 5 pipe materials, calculates <strong>water weight</strong>, and supports <strong>multi-pipe systems</strong>.</p>
+<p>Calculate flow with our <a href="/construction-calculators/flow-rate-calculator">flow rate calculator</a>. For tanks, see our <a href="/construction-calculators/tank-volume-calculator">tank volume calculator</a>. Check velocity with our <a href="/construction-calculators/water-velocity-calculator">water velocity calculator</a>.</p>
 
 <h2>Pipe Volume Formula</h2>
 <p><strong>Volume = π × r² × L</strong> — or equivalently: <strong>Volume = π × (D/2)² × L</strong></p>
@@ -4824,6 +4847,7 @@ Net lawn area: 10,890 − 1,900 = <strong>8,990 sq ft</strong></p>
         contentHTML: `
 <p>When installing a <strong>split-system air conditioner or heat pump</strong>, the refrigerant line set connects the outdoor condenser to the indoor evaporator. Factory charge covers a standard line length — any line beyond that requires <strong>additional refrigerant</strong> calculated from the liquid and suction line charge rates.</p>
 <p>The calculator above supports <strong>3 refrigerant types</strong> (R-410A, R-22, R-407C), <strong>7 system tonnage presets</strong> with auto-filled factory data, and separate <strong>liquid + suction line</strong> calculations for accurate total charge.</p>
+<p>Calculate line volume with our <a href="/construction-calculators/pipe-volume-calculator">pipe volume calculator</a>. Size your HVAC with our <a href="/construction-calculators/furnace-btu-calculator">furnace BTU calculator</a>. Calculate airflow with our <a href="/construction-calculators/cfm-calculator">CFM calculator</a>.</p>
 
 <h2>R-410A Liquid Line Charge (oz per foot)</h2>
 <p>The liquid line (small line) carries high-pressure liquid refrigerant from the condenser to the expansion valve.</p>
@@ -4917,6 +4941,7 @@ Net lawn area: 10,890 − 1,900 = <strong>8,990 sq ft</strong></p>
         contentHTML: `
 <p>Water velocity is the <strong>speed of water flowing through a pipe</strong>, measured in feet per second (ft/s). It's one of the most important parameters in plumbing design — too fast causes <strong>water hammer, erosion, and noise</strong>; too slow causes <strong>sediment buildup and bacterial growth</strong>.</p>
 <p>The calculator above uses <strong>actual inner diameters</strong> for 8 standard US copper pipe sizes, supports <strong>5 pipe materials</strong>, calculates <strong>Reynolds number</strong> to classify flow type (laminar/turbulent), and accounts for <strong>water temperature</strong> (which affects viscosity).</p>
+<p>Calculate flow rate with our <a href="/construction-calculators/flow-rate-calculator">flow rate calculator</a>. For pipe volume, use our <a href="/construction-calculators/pipe-volume-calculator">pipe volume calculator</a>. For tanks, see our <a href="/construction-calculators/tank-volume-calculator">tank volume calculator</a>.</p>
 
 <h2>Water Velocity Formula</h2>
 <p>The universal formula is <strong>v = Q / A</strong> (velocity = flow rate ÷ cross-sectional area). For US plumbing units:</p>
@@ -5006,6 +5031,7 @@ Net lawn area: 10,890 − 1,900 = <strong>8,990 sq ft</strong></p>
         contentHTML: `
 <p>Window air conditioners are the most common <strong>room-level cooling solution</strong> in the US, with over 10 million units sold annually. Choosing the right BTU size is critical — <strong>too small</strong> and the unit runs constantly without cooling adequately; <strong>too large</strong> and it short-cycles, leaving the room cold and humid.</p>
 <p>The calculator above uses the <strong>Energy Star BTU guidelines</strong> with 6 real-world adjustment factors: ceiling height, sun exposure, insulation, kitchen heat, occupants, and electric rate — plus it shows <strong>electrical requirements and estimated monthly cost</strong>.</p>
+<p>For heating, use our <a href="/construction-calculators/furnace-btu-calculator">furnace BTU calculator</a>. Calculate airflow with our <a href="/construction-calculators/cfm-calculator">CFM calculator</a>. Measure room area with our <a href="/construction-calculators/square-footage-calculator">square footage calculator</a>.</p>
 
 <h2>Energy Star BTU Size Chart</h2>
 <p>The DOE/Energy Star baseline assumes 8 ft ceilings, average insulation, and 2 occupants.</p>
@@ -5097,6 +5123,7 @@ Net lawn area: 10,890 − 1,900 = <strong>8,990 sq ft</strong></p>
         contentHTML: `
 <p>Ice and water shield (also called ice barrier, ice dam membrane, or self-adhering underlayment) is a <strong>critical waterproofing membrane</strong> used on US roofs to prevent leaks caused by ice dams, wind-driven rain, and water pooling. Building codes in cold-climate zones require it at eaves — and many roofers apply it generously at all vulnerable points.</p>
 <p>The calculator above accounts for <strong>roof pitch</strong> (which increases eave run up the slope), <strong>3 roll sizes</strong> with pricing, individual <strong>penetration counts</strong> (skylights, chimneys, vent pipes), and outputs rolls needed + material cost.</p>
+<p>Estimate roofing with our <a href="/construction-calculators/roofing-calculator">roofing calculator</a>. Find your pitch with our <a href="/construction-calculators/roof-pitch-calculator">roof pitch calculator</a>. For decking, see our <a href="/construction-calculators/plywood-sheathing-calculator">plywood sheathing calculator</a>.</p>
 
 <h2>Roll Sizes and Coverage</h2>
 <table>
@@ -5197,6 +5224,7 @@ Net lawn area: 10,890 − 1,900 = <strong>8,990 sq ft</strong></p>
         contentHTML: `
 <p>Metal roofing is the <strong>fastest-growing segment</strong> of the US residential roofing market, now installed on 17% of new homes (up from 5% in 2000). Metal roofs last 40–70 years — 2–3× longer than asphalt shingles — and offer superior wind resistance, fire resistance, and energy efficiency.</p>
 <p>The calculator above supports <strong>5 panel types</strong> with auto-filled pricing, <strong>roof pitch multiplier</strong>, <strong>gauge selection</strong>, and detailed output including panels, screws, ridge cap, and total material cost.</p>
+<p>Compare materials with our <a href="/construction-calculators/roofing-calculator">roofing calculator</a>. Find your pitch with our <a href="/construction-calculators/roof-pitch-calculator">roof pitch calculator</a>. For sheathing, see our <a href="/construction-calculators/plywood-sheathing-calculator">plywood sheathing calculator</a>.</p>
 
 <h2>Metal Roofing Panel Types</h2>
 <table>
@@ -5290,6 +5318,7 @@ Net lawn area: 10,890 − 1,900 = <strong>8,990 sq ft</strong></p>
         contentHTML: `
 <p>Plywood and OSB sheathing form the structural substrate of <strong>US residential roofs, walls, and subfloors</strong>. Accurate sheet estimation prevents costly jobsite delays and excess material waste. The calculator above accounts for <strong>roof pitch multipliers</strong> — the often-overlooked factor that increases actual roof area compared to the flat footprint.</p>
 <p>Choose from <strong>6 sheathing types</strong>, select your <strong>application</strong> (roof, wall, subfloor), pick the <strong>roof pitch</strong>, and get sheets, weight, and cost instantly.</p>
+<p>Estimate roofing with our <a href="/construction-calculators/roofing-calculator">roofing calculator</a>. For general plywood, use our <a href="/construction-calculators/plywood-calculator">plywood calculator</a>. Find your pitch with our <a href="/construction-calculators/roof-pitch-calculator">roof pitch calculator</a>.</p>
 
 <h2>Sheathing Types</h2>
 <table>
@@ -5384,6 +5413,7 @@ Net lawn area: 10,890 − 1,900 = <strong>8,990 sq ft</strong></p>
         contentHTML: `
 <p>Roof snow load is the <strong>weight of accumulated snow</strong> pressing down on your roof structure. In the US, snow-related roof collapses cause millions of dollars in damage annually — particularly during heavy winter storms in the Midwest, Northeast, and Mountain states. Understanding your roof's snow load capacity and monitoring accumulation is critical for <strong>structural safety</strong>.</p>
 <p>The calculator above supports <strong>6 snow types</strong> with density values, <strong>roof pitch adjustment</strong>, and a <strong>structural capacity check</strong> that compares current snow load against your roof's design load — displaying a clear warning when capacity is exceeded.</p>
+<p>Find your pitch with our <a href="/construction-calculators/roof-pitch-calculator">roof pitch calculator</a>. Estimate roofing with our <a href="/construction-calculators/roofing-calculator">roofing calculator</a>. Size rafters with our <a href="/construction-calculators/lumber-calculator">lumber calculator</a>.</p>
 
 <h2>Snow Density Table</h2>
 <p>Snow weight varies dramatically based on moisture content and age. The same depth of fresh powder weighs 4× less than wet heavy snow.</p>
@@ -5488,6 +5518,7 @@ Net lawn area: 10,890 − 1,900 = <strong>8,990 sq ft</strong></p>
         contentHTML: `
 <p>Clapboard (also called lap, bevel, or weatherboard siding) is one of the most iconic <strong>American home exterior styles</strong>, dating back to Colonial New England. Modern clapboard siding is available in natural wood, fiber cement, engineered wood, and composite materials — each with different exposure, overlap, and cost characteristics.</p>
 <p>The calculator above supports <strong>5 board materials</strong> with auto-filled pricing, adjustable <strong>board width and overlap</strong>, multiple board lengths, <strong>gable area</strong> input, individual window/door counts, and outputs <strong>courses, boards, linear feet, and cost</strong>.</p>
+<p>Compare siding with our <a href="/construction-calculators/siding-material-calculator">siding material calculator</a>. For vinyl, see our <a href="/construction-calculators/vinyl-siding-calculator">vinyl siding calculator</a>. Measure wall area with our <a href="/construction-calculators/square-footage-calculator">square footage calculator</a>.</p>
 
 <h2>Board Material Comparison</h2>
 <table>
@@ -5582,6 +5613,7 @@ Net lawn area: 10,890 − 1,900 = <strong>8,990 sq ft</strong></p>
         contentHTML: `
 <p>Siding protects your home's exterior from weather, insects, and moisture while defining its curb appeal. Choosing the right siding material and accurately estimating quantities are critical steps in any <strong>US home exterior project</strong> — whether it's new construction, re-siding, or partial repairs.</p>
 <p>The calculator above supports <strong>6 siding types</strong> with auto-filled cost per square, <strong>gable area input</strong>, individual <strong>window and door counts</strong> (auto-deducted at standard sizes), adjustable waste factor, and <strong>weight estimation</strong> for structural and delivery planning.</p>
+<p>For vinyl, see our <a href="/construction-calculators/vinyl-siding-calculator">vinyl siding calculator</a>. For clapboard, try our <a href="/construction-calculators/clapboard-siding-calculator">clapboard siding calculator</a>. Measure wall area with our <a href="/construction-calculators/square-footage-calculator">square footage calculator</a>.</p>
 
 <h2>Siding Types Comparison</h2>
 <table>
@@ -5665,6 +5697,7 @@ Net lawn area: 10,890 − 1,900 = <strong>8,990 sq ft</strong></p>
 <h2>What Is Vinyl Siding?</h2>
 <p><strong>Vinyl siding</strong> is a plastic exterior cladding made from polyvinyl chloride (PVC) resin. It is the most popular siding material in the United States, covering more than <strong>30% of all US homes</strong>. Vinyl siding is favored for its low maintenance (no painting required), durability (25–40 year lifespan), affordability, and wide range of colors and styles.</p>
 <p>Vinyl siding is installed horizontally in overlapping courses that interlock with one another. Each panel snaps into the one below it, creating a weather-resistant barrier. The bottom course attaches to a starter strip, and trim pieces finish all edges, corners, and openings.</p>
+<p>Compare materials with our <a href="/construction-calculators/siding-material-calculator">siding material calculator</a>. For clapboard, see our <a href="/construction-calculators/clapboard-siding-calculator">clapboard siding calculator</a>. Measure wall area with our <a href="/construction-calculators/square-footage-calculator">square footage calculator</a>.</p>
 
 <h2>Step-by-Step: How to Estimate Vinyl Siding</h2>
 <ol>
@@ -5775,6 +5808,7 @@ Net lawn area: 10,890 − 1,900 = <strong>8,990 sq ft</strong></p>
 <h2>What Is a Cubic Foot?</h2>
 <p>A <strong>cubic foot</strong> (symbol: ft³ or cu ft) is a unit of volume in the US customary and imperial measurement systems. One cubic foot equals the volume of a cube with edges exactly one foot (12 inches) long. To put it in perspective, a cubic foot is roughly the size of a standard <strong>file storage box</strong> or a basketball.</p>
 <p>The cubic foot is the primary volume unit used in the United States for:</p>
+<p>Convert to cubic yards with our <a href="/construction-calculators/cubic-yards-calculator">cubic yards calculator</a>. Measure area with our <a href="/construction-calculators/square-footage-calculator">square footage calculator</a>. For tank volumes, see our <a href="/construction-calculators/tank-volume-calculator">tank volume calculator</a>.</p>
 <ul>
 <li><strong>Construction</strong> — ordering concrete, gravel, mulch, topsoil, and sand</li>
 <li><strong>Moving and storage</strong> — measuring truck capacity and box sizes</li>

@@ -470,6 +470,133 @@ function WeekCalc() {
     );
 }
 
+// ─── Work Hours (Weekly Timesheet) ───
+const DAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+interface DayRow { startH: number; startM: number; endH: number; endM: number; breakMin: number; enabled: boolean; }
+
+function WorkHoursCalc() {
+    const defaultRow = (enabled: boolean, sH = 9, sM = 0, eH = 17, eM = 30, br = 60): DayRow => ({ startH: sH, startM: sM, endH: eH, endM: eM, breakMin: br, enabled });
+    const [rows, setRows] = useState<DayRow[]>([
+        defaultRow(true), defaultRow(true), defaultRow(true), defaultRow(true), defaultRow(true),
+        defaultRow(false, 0, 0, 0, 0, 0), defaultRow(false, 0, 0, 0, 0, 0),
+    ]);
+    const [rate, setRate] = useState(25);
+    const [showPay, setShowPay] = useState(false);
+
+    const updateRow = (i: number, patch: Partial<DayRow>) => {
+        setRows(prev => prev.map((r, idx) => idx === i ? { ...r, ...patch } : r));
+    };
+
+    const calcDay = (r: DayRow) => {
+        if (!r.enabled) return { netMin: 0, grossMin: 0, decHrs: 0, fmt: "—" };
+        let startTotal = r.startH * 60 + r.startM;
+        let endTotal = r.endH * 60 + r.endM;
+        if (endTotal <= startTotal) endTotal += 1440; // overnight
+        const grossMin = endTotal - startTotal;
+        const netMin = Math.max(0, grossMin - r.breakMin);
+        const h = Math.floor(netMin / 60);
+        const m = netMin % 60;
+        const decHrs = Math.round((netMin / 60) * 100) / 100;
+        return { netMin, grossMin, decHrs, fmt: `${h}h ${pad(m)}m` };
+    };
+
+    const results = useMemo(() => {
+        const daily = rows.map(calcDay);
+        const totalMin = daily.reduce((s, d) => s + d.netMin, 0);
+        const totalH = Math.floor(totalMin / 60);
+        const totalM = totalMin % 60;
+        const totalDec = Math.round((totalMin / 60) * 100) / 100;
+        const regHrs = Math.min(totalDec, 40);
+        const otHrs = Math.max(0, totalDec - 40);
+        const regPay = Math.round(regHrs * rate * 100) / 100;
+        const otPay = Math.round(otHrs * rate * 1.5 * 100) / 100;
+        const grossPay = Math.round((regPay + otPay) * 100) / 100;
+        return { daily, totalMin, totalH, totalM, totalDec, regHrs, otHrs, regPay, otPay, grossPay };
+    }, [rows, rate]);
+
+    return (
+        <div className="calc-card">
+            <div style={{ overflowX: "auto" }}>
+                <table className="calc-table" style={{ fontSize: "var(--t-body-sm)", width: "100%" }}>
+                    <thead><tr>
+                        <th style={{ minWidth: 80 }}>Day</th>
+                        <th style={{ minWidth: 60 }}>Start</th><th style={{ minWidth: 60 }}>End</th>
+                        <th style={{ minWidth: 55 }}>Break</th><th style={{ minWidth: 70 }}>Net Hrs</th>
+                        <th style={{ minWidth: 60 }}>Decimal</th>
+                    </tr></thead>
+                    <tbody>
+                        {DAYS.map((day, i) => {
+                            const d = results.daily[i];
+                            return (
+                                <tr key={day} style={{ opacity: rows[i].enabled ? 1 : 0.5 }}>
+                                    <td>
+                                        <label style={{ display: "flex", alignItems: "center", gap: "var(--s-1)", cursor: "pointer" }}>
+                                            <input type="checkbox" checked={rows[i].enabled} onChange={(e) => updateRow(i, { enabled: e.target.checked })} />
+                                            <span style={{ fontWeight: 600 }}>{day.slice(0, 3)}</span>
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <div style={{ display: "flex", gap: 2 }}>
+                                            <input type="number" className="calc-field__input" style={{ width: 38, padding: "2px 4px", fontSize: "var(--t-body-sm)" }} min={0} max={23} value={rows[i].startH} onChange={(e) => updateRow(i, { startH: +e.target.value })} disabled={!rows[i].enabled} />
+                                            <span>:</span>
+                                            <input type="number" className="calc-field__input" style={{ width: 38, padding: "2px 4px", fontSize: "var(--t-body-sm)" }} min={0} max={59} value={rows[i].startM} onChange={(e) => updateRow(i, { startM: +e.target.value })} disabled={!rows[i].enabled} />
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div style={{ display: "flex", gap: 2 }}>
+                                            <input type="number" className="calc-field__input" style={{ width: 38, padding: "2px 4px", fontSize: "var(--t-body-sm)" }} min={0} max={23} value={rows[i].endH} onChange={(e) => updateRow(i, { endH: +e.target.value })} disabled={!rows[i].enabled} />
+                                            <span>:</span>
+                                            <input type="number" className="calc-field__input" style={{ width: 38, padding: "2px 4px", fontSize: "var(--t-body-sm)" }} min={0} max={59} value={rows[i].endM} onChange={(e) => updateRow(i, { endM: +e.target.value })} disabled={!rows[i].enabled} />
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <input type="number" className="calc-field__input" style={{ width: 50, padding: "2px 4px", fontSize: "var(--t-body-sm)" }} min={0} max={480} step={5} value={rows[i].breakMin} onChange={(e) => updateRow(i, { breakMin: +e.target.value })} disabled={!rows[i].enabled} />
+                                    </td>
+                                    <td style={{ fontWeight: 600 }}>{d.fmt}</td>
+                                    <td style={{ fontWeight: 600, color: "var(--n-primary)" }}>{rows[i].enabled ? d.decHrs.toFixed(2) : "—"}</td>
+                                </tr>
+                            );
+                        })}
+                    </tbody>
+                </table>
+            </div>
+
+            <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
+                <p className="calc-field__label">WEEKLY TOTAL</p>
+                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)" }}>{results.totalH}h {pad(results.totalM)}m</p>
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "var(--s-3)", marginTop: "var(--s-3)" }}>
+                    <div><p className="calc-field__label">DECIMAL</p><p style={{ fontWeight: 700 }}>{results.totalDec.toFixed(2)} hrs</p></div>
+                    <div><p className="calc-field__label">REGULAR</p><p style={{ fontWeight: 700 }}>{results.regHrs.toFixed(2)} hrs</p></div>
+                    <div><p className="calc-field__label">OVERTIME</p><p style={{ fontWeight: 700, color: results.otHrs > 0 ? "var(--n-warning, #f59e0b)" : "var(--n-text-muted)" }}>{results.otHrs.toFixed(2)} hrs</p></div>
+                </div>
+            </div>
+
+            <div className="calc-field" style={{ marginTop: "var(--s-4)" }}>
+                <label style={{ display: "flex", alignItems: "center", gap: "var(--s-2)", cursor: "pointer" }}>
+                    <input type="checkbox" checked={showPay} onChange={(e) => setShowPay(e.target.checked)} />
+                    <span className="calc-field__label" style={{ margin: 0 }}>💰 SHOW PAY CALCULATION</span>
+                </label>
+            </div>
+            {showPay && (
+                <>
+                    <div className="calc-field" style={{ marginTop: "var(--s-2)" }}>
+                        <label className="calc-field__label">HOURLY RATE ($)</label>
+                        <input type="number" className="calc-field__input" min={0} step={0.5} value={rate} onChange={(e) => setRate(+e.target.value)} />
+                    </div>
+                    <div className="calc-card" style={{ marginTop: "var(--s-3)", background: "var(--n-surface-alt)" }}>
+                        <p className="calc-field__label">ESTIMATED GROSS PAY</p>
+                        <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)" }}>${results.grossPay.toLocaleString("en-US", { minimumFractionDigits: 2 })}</p>
+                        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "var(--s-3)", marginTop: "var(--s-3)" }}>
+                            <div><p className="calc-field__label">REGULAR PAY</p><p style={{ fontWeight: 700 }}>${results.regPay.toLocaleString("en-US", { minimumFractionDigits: 2 })} <span style={{ fontSize: "var(--t-body-sm)", color: "var(--n-text-muted)" }}>({results.regHrs.toFixed(2)}h × ${rate})</span></p></div>
+                            <div><p className="calc-field__label">OVERTIME PAY (1.5×)</p><p style={{ fontWeight: 700, color: results.otHrs > 0 ? "var(--n-warning, #f59e0b)" : "var(--n-text-muted)" }}>${results.otPay.toLocaleString("en-US", { minimumFractionDigits: 2 })} <span style={{ fontSize: "var(--t-body-sm)", color: "var(--n-text-muted)" }}>({results.otHrs.toFixed(2)}h × ${(rate * 1.5).toFixed(2)})</span></p></div>
+                        </div>
+                    </div>
+                </>
+            )}
+        </div>
+    );
+}
+
 // ─── Dispatcher ───
 const CALCULATORS: Record<string, React.FC> = {
     "time-calc": TimeCalc,
@@ -487,6 +614,7 @@ const CALCULATORS: Record<string, React.FC> = {
     "days-left-year": DaysLeftYearCalc,
     "deadline-calc": DeadlineCalc,
     "week-calc": WeekCalc,
+    "work-hours": WorkHoursCalc,
 };
 
 interface Props { calcType: string; }
