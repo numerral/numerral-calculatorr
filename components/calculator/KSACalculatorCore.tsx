@@ -434,7 +434,188 @@ export default function KSACalculatorCore({ calcType }: { calcType: string }) {
     if (calcType === "overtime") return <OvertimeCalc />;
     if (calcType === "leave") return <LeaveCalc />;
     if (calcType === "homeloan") return <HomeLoanCalc />;
+    if (calcType === "carloan") return <CarLoanCalc />;
     return <p>Calculator not found: {calcType}</p>;
+}
+
+/* ── Car Loan Calculator (Saudi Auto Financing) ── */
+function CarLoanCalc() {
+    const [tab, setTab] = useState(0);
+    const tabs = ["🧮 Calculator", "📋 Reference"];
+    return (<div className="con-calc">
+        <h3 className="con-calc__title">🚗 Car Loan Calculator (KSA)</h3>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: "var(--s-1)", marginBottom: "var(--s-3)" }}>
+            {tabs.map((t, i) => <button key={i} onClick={() => setTab(i)} className={`calc-tab-btn${tab === i ? " calc-tab-btn--active" : ""}`}>{t}</button>)}
+        </div>
+        {tab === 0 && <CarLoanCalcTab />}
+        {tab === 1 && <CarLoanRefTab />}
+    </div>);
+}
+
+function CarLoanCalcTab() {
+    const [price, setPrice] = useState("120000");
+    const [downPct, setDownPct] = useState("10");
+    const [rate, setRate] = useState("4.5");
+    const [tenure, setTenure] = useState("60");
+    const [salary, setSalary] = useState("");
+
+    const r = useMemo(() => {
+        const p = parseFloat(price) || 0;
+        const dp = parseFloat(downPct) || 0;
+        const ar = parseFloat(rate) || 0;
+        const t = parseFloat(tenure) || 0;
+        const sal = parseFloat(salary) || 0;
+        if (p <= 0 || ar <= 0 || t <= 0) return null;
+
+        const downPayment = p * (dp / 100);
+        const loanAmount = p - downPayment;
+        const mr = ar / 100 / 12;
+        const monthly = loanAmount * (mr * Math.pow(1 + mr, t)) / (Math.pow(1 + mr, t) - 1);
+        const totalCost = monthly * t;
+        const totalProfit = totalCost - loanAmount;
+        const dti = sal > 0 ? (monthly / sal) * 100 : 0;
+
+        return {
+            p, downPayment, loanAmount, ar, t, monthly, totalCost, totalProfit, dti, sal,
+            steps: [
+                `Vehicle Price: SAR ${fmt(p)}`,
+                `Down Payment (${dp}%): SAR ${fmt(downPayment)}`,
+                `Financing Amount: SAR ${fmt(p)} − SAR ${fmt(downPayment)} = SAR ${fmt(loanAmount)}`,
+                `Annual Profit Rate (APR): ${ar}%`,
+                `Monthly Rate: ${ar}% ÷ 12 = ${fmt(ar / 12)}%`,
+                `Tenure: ${t} months${t > 60 ? " ⚠️ EXCEEDS SAMA 60-month limit" : ""}`,
+                `Monthly Installment: SAR ${fmt(monthly)}`,
+                `Total Cost: SAR ${fmt(monthly)} × ${t} months = SAR ${fmt(totalCost)}`,
+                `Total Profit Paid: SAR ${fmt(totalCost)} − SAR ${fmt(loanAmount)} = SAR ${fmt(totalProfit)}`,
+                ...(sal > 0 ? [`DTI Ratio: SAR ${fmt(monthly)} ÷ SAR ${fmt(sal)} = ${fmt(dti)}% ${dti > 50 ? "⚠️ Above recommended 50%" : "✅ Within recommended 50%"}`] : []),
+            ],
+        };
+    }, [price, downPct, rate, tenure, salary]);
+
+    return (<div>
+        <div className="con-calc__inputs">
+            <InputField label="Vehicle Price" value={price} onChange={setPrice} unit="SAR" placeholder="e.g. 120000" />
+            <InputField label="Down Payment" value={downPct} onChange={setDownPct} unit="%" placeholder="e.g. 10" />
+            <InputField label="Annual Profit Rate (APR)" value={rate} onChange={setRate} unit="%" placeholder="e.g. 4.5" />
+            <InputField label="Financing Tenure (months, max 60)" value={tenure} onChange={setTenure} unit="months" placeholder="e.g. 60" />
+            <InputField label="Monthly Net Salary (optional, for DTI)" value={salary} onChange={setSalary} unit="SAR" placeholder="e.g. 8000" />
+        </div>
+        {r && <div className="con-calc__results">
+            <h4>Car Financing Summary</h4>
+            <ResultRow label="Down Payment" value={`SAR ${fmt(r.downPayment)}`} />
+            <ResultRow label="Financing Amount" value={`SAR ${fmt(r.loanAmount)}`} />
+            <ResultRow label="Monthly Installment" value={`SAR ${fmt(r.monthly)}`} />
+            <ResultRow label="Total Cost (over tenure)" value={`SAR ${fmt(r.totalCost)}`} />
+            <ResultRow label="Total Profit Paid" value={`SAR ${fmt(r.totalProfit)}`} />
+            {r.sal > 0 && <ResultRow label="DTI Ratio" value={`${fmt(r.dti)}% ${r.dti > 50 ? "⚠️ High" : "✅ OK"}`} />}
+
+            <h4>Step‑by‑Step</h4>
+            {r.steps.map((s, i) => <ResultRow key={i} label={`Step ${i + 1}`} value={s} />)}
+            <div style={{ marginTop: "var(--s-3)", padding: "var(--s-3)", background: "rgba(234,179,8,0.08)", borderRadius: "8px", fontSize: "0.8rem", color: "var(--text-muted)" }}>
+                ⚠️ SAMA limits non-real-estate financing to 60 months max. Comprehensive insurance is mandatory. DTI recommended ≤50%. Actual bank offers may vary based on credit score & salary.
+            </div>
+        </div>}
+    </div>);
+}
+
+function CarLoanRefTab() {
+    const ts = { width: "100%", fontSize: "0.85rem", borderCollapse: "collapse" as const };
+    const th = { padding: "8px 12px", textAlign: "center" as const };
+    const td = { padding: "6px 12px", textAlign: "center" as const };
+    const tl = { ...td, textAlign: "left" as const };
+    const b = { borderBottom: "1px solid var(--border)" };
+    const bh = { borderBottom: "2px solid var(--border)" };
+
+    const providers = [
+        ["Al Rajhi Bank", "~3.99%", "0–10%", "Up to 60 months", "Murabaha / Ijara"],
+        ["Saudi National Bank (SNB)", "~4.25%", "10–20%", "Up to 60 months", "Murabaha / Ijara"],
+        ["Bank Albilad", "~4.50%", "10%", "Up to 60 months", "Murabaha"],
+        ["Abdul Latif Jameel (ALJ)", "~4.75%", "10–20%", "12–60 months", "Murabaha / Ijara"],
+        ["Emirates NBD", "~5.51%", "20%", "Up to 60 months", "Murabaha"],
+        ["Tasheel Finance", "~5.00%", "15–20%", "Up to 60 months", "Murabaha"],
+    ];
+
+    const cars = [60000, 80000, 100000, 120000, 150000, 200000, 300000];
+
+    return (<div className="con-calc__results">
+        <h4>Saudi Auto Financing Providers (Indicative 2025)</h4>
+        <div style={{ overflowX: "auto" }}>
+            <table style={ts}>
+                <thead><tr style={bh}>
+                    <th style={{ ...th, textAlign: "left" }}>Provider</th>
+                    <th style={th}>APR (New)</th>
+                    <th style={th}>Down Payment</th>
+                    <th style={th}>Max Tenure</th>
+                    <th style={th}>Product</th>
+                </tr></thead>
+                <tbody>
+                    {providers.map(([name, apr, dp, tenure, product], i) => (
+                        <tr key={i} style={b}>
+                            <td style={{ ...tl, fontWeight: 600 }}>{name}</td>
+                            <td style={{ ...td, fontWeight: 700 }}>{apr}</td>
+                            <td style={td}>{dp}</td>
+                            <td style={td}>{tenure}</td>
+                            <td style={{ ...tl, fontSize: "0.8rem" }}>{product}</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
+
+        <h4 style={{ marginTop: "var(--s-4)" }}>Monthly Payment by Car Price (10% down, 4.5% APR, 60 months)</h4>
+        <div style={{ overflowX: "auto" }}>
+            <table style={ts}>
+                <thead><tr style={bh}>
+                    <th style={{ ...th, textAlign: "left" }}>Car Price</th>
+                    <th style={th}>Down (10%)</th>
+                    <th style={th}>Financed</th>
+                    <th style={th}>Monthly</th>
+                    <th style={th}>Total Profit</th>
+                </tr></thead>
+                <tbody>
+                    {cars.map((p) => {
+                        const dp = p * 0.1; const loan = p - dp;
+                        const mr = 0.045 / 12; const n = 60;
+                        const m = loan * (mr * Math.pow(1 + mr, n)) / (Math.pow(1 + mr, n) - 1);
+                        const profit = (m * n) - loan;
+                        return (<tr key={p} style={b}>
+                            <td style={{ ...tl, fontWeight: 600 }}>SAR {p.toLocaleString()}</td>
+                            <td style={td}>SAR {dp.toLocaleString()}</td>
+                            <td style={td}>SAR {loan.toLocaleString()}</td>
+                            <td style={{ ...td, fontWeight: 700 }}>SAR {fmt(m)}</td>
+                            <td style={td}>SAR {fmt(profit)}</td>
+                        </tr>);
+                    })}
+                </tbody>
+            </table>
+        </div>
+
+        <h4 style={{ marginTop: "var(--s-4)" }}>New vs Used Vehicle Rates</h4>
+        <div style={{ overflowX: "auto" }}>
+            <table style={ts}>
+                <thead><tr style={bh}>
+                    <th style={{ ...th, textAlign: "left" }}>Feature</th>
+                    <th style={th}>New Vehicle</th>
+                    <th style={th}>Used Vehicle</th>
+                </tr></thead>
+                <tbody>
+                    {[
+                        ["Typical APR", "3.5–5.5%", "4–7%"],
+                        ["Max Tenure", "60 months", "48–60 months"],
+                        ["Down Payment", "0–20%", "10–30%"],
+                        ["Insurance", "Comprehensive (mandatory)", "Comprehensive (mandatory)"],
+                        ["Max Age Limit", "Current year models", "Typically 5–7 years old"],
+                    ].map(([feat, newV, usedV], i) => (
+                        <tr key={i} style={b}>
+                            <td style={{ ...tl, fontWeight: 600 }}>{feat}</td>
+                            <td style={td}>{newV}</td>
+                            <td style={td}>{usedV}</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
+    </div>);
 }
 
 /* ── Home Loan Calculator (Sharia-Compliant Financing) ── */

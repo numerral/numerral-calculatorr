@@ -55,6 +55,12 @@ const KSA_CALCULATORS = [
         icon: "🏠",
         description: "Calculate your monthly mortgage payment in Saudi Arabia. Sharia-compliant Murabaha, Ijara, and Musharaka with SAMA DTI check.",
     },
+    {
+        title: "Car Loan Calculator",
+        slug: "car-loan-calculator",
+        icon: "🚗",
+        description: "Calculate your monthly car installment in Saudi Arabia. Murabaha and Ijara with SAMA 60-month limit and bank comparison.",
+    },
 ];
 
 
