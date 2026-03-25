@@ -43,6 +43,12 @@ const KSA_CALCULATORS = [
         icon: "⏱️",
         description: "Calculate your overtime pay under Saudi Labor Law Article 107. 150% rate for weekdays, weekends, and holidays. Supports Ramadan hours.",
     },
+    {
+        title: "Annual Leave Calculator",
+        slug: "annual-leave-calculator",
+        icon: "🏖️",
+        description: "Calculate your annual leave entitlement, leave pay, and encashment value. 21 days under 5 years, 30 days for 5+ years of service.",
+    },
 ];
 
 

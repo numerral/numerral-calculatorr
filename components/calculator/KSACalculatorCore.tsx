@@ -432,7 +432,159 @@ export default function KSACalculatorCore({ calcType }: { calcType: string }) {
     if (calcType === "vat") return <VATCalc />;
     if (calcType === "salary") return <SalaryCalc />;
     if (calcType === "overtime") return <OvertimeCalc />;
+    if (calcType === "leave") return <LeaveCalc />;
     return <p>Calculator not found: {calcType}</p>;
+}
+
+/* ── Annual Leave Calculator (Articles 109-113) ── */
+function LeaveCalc() {
+    const [tab, setTab] = useState(0);
+    const tabs = ["🧮 Calculator", "📋 All Leave Types"];
+    return (<div className="con-calc">
+        <h3 className="con-calc__title">🏖️ Annual Leave Calculator (KSA)</h3>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: "var(--s-1)", marginBottom: "var(--s-3)" }}>
+            {tabs.map((t, i) => <button key={i} onClick={() => setTab(i)} className={`calc-tab-btn${tab === i ? " calc-tab-btn--active" : ""}`}>{t}</button>)}
+        </div>
+        {tab === 0 && <LeaveCalcTab />}
+        {tab === 1 && <LeaveRefTab />}
+    </div>);
+}
+
+function LeaveCalcTab() {
+    const [salary, setSalary] = useState("10000");
+    const [years, setYears] = useState("3");
+    const [usedDays, setUsedDays] = useState("0");
+
+    const r = useMemo(() => {
+        const s = parseFloat(salary) || 0;
+        const y = parseFloat(years) || 0;
+        const ud = parseFloat(usedDays) || 0;
+        if (s <= 0) return null;
+
+        const entitlement = y >= 5 ? 30 : 21;
+        const accrualRate = y >= 5 ? 2.5 : 1.75;
+        const dailyRate = s / 30;
+        const remaining = Math.max(entitlement - ud, 0);
+        const leavePay = entitlement * dailyRate;
+        const encashmentValue = remaining * dailyRate;
+
+        // Pro-rata for partial year
+        const fullMonths = Math.floor((y % 1) * 12);
+        const proRataDays = fullMonths > 0 ? Math.round(accrualRate * fullMonths * 10) / 10 : 0;
+
+        return {
+            s, y, ud, entitlement, accrualRate, dailyRate, remaining,
+            leavePay, encashmentValue, proRataDays,
+            steps: [
+                `Monthly Salary (actual wage): SAR ${fmt(s)}`,
+                `Years of Service: ${y} years`,
+                `Leave Entitlement: ${entitlement} days/year (${y >= 5 ? "5+ years — Article 109" : "less than 5 years — Article 109"})`,
+                `Accrual Rate: ${accrualRate} days per month`,
+                `Daily Rate: SAR ${fmt(s)} ÷ 30 = SAR ${fmt(dailyRate)}`,
+                `Days Used This Year: ${ud} days`,
+                `Remaining Balance: ${entitlement} − ${ud} = ${remaining} days`,
+                `Full Leave Pay Value: ${entitlement} days × SAR ${fmt(dailyRate)} = SAR ${fmt(leavePay)}`,
+                `Encashment Value (unused): ${remaining} days × SAR ${fmt(dailyRate)} = SAR ${fmt(encashmentValue)}`,
+            ],
+        };
+    }, [salary, years, usedDays]);
+
+    return (<div>
+        <div className="con-calc__inputs">
+            <InputField label="Monthly Salary (actual wage)" value={salary} onChange={setSalary} unit="SAR" placeholder="e.g. 10000" />
+            <InputField label="Years of Service" value={years} onChange={setYears} unit="years" placeholder="e.g. 3" />
+            <InputField label="Leave Days Used This Year" value={usedDays} onChange={setUsedDays} unit="days" placeholder="e.g. 0" />
+        </div>
+        {r && <div className="con-calc__results">
+            <h4>Annual Leave Summary</h4>
+            <ResultRow label="Leave Entitlement" value={`${r.entitlement} days/year`} />
+            <ResultRow label="Accrual Rate" value={`${r.accrualRate} days/month`} />
+            <ResultRow label="Days Used" value={`${r.ud} days`} />
+            <ResultRow label="Remaining Balance" value={`${r.remaining} days`} />
+
+            <h4>Leave Pay</h4>
+            <ResultRow label="Daily Rate" value={`SAR ${fmt(r.dailyRate)}`} />
+            <ResultRow label="Full Leave Pay (all days)" value={`SAR ${fmt(r.leavePay)}`} />
+            <ResultRow label="Encashment Value (unused)" value={`SAR ${fmt(r.encashmentValue)}`} />
+
+            <h4>Step‑by‑Step</h4>
+            {r.steps.map((s, i) => <ResultRow key={i} label={`Step ${i + 1}`} value={s} />)}
+            <div style={{ marginTop: "var(--s-3)", padding: "var(--s-3)", background: "rgba(234,179,8,0.08)", borderRadius: "8px", fontSize: "0.8rem", color: "var(--text-muted)" }}>
+                ⚠️ Based on Saudi Labor Law Article 109. Leave pay is calculated on "actual wage" (basic + all regular allowances). Unused leave is encashed at termination (Article 111). Employees cannot forfeit leave for cash during service.
+            </div>
+        </div>}
+    </div>);
+}
+
+function LeaveRefTab() {
+    const ts = { width: "100%", fontSize: "0.85rem", borderCollapse: "collapse" as const };
+    const th = { padding: "8px 12px", textAlign: "center" as const };
+    const td = { padding: "6px 12px", textAlign: "center" as const };
+    const tl = { ...td, textAlign: "left" as const };
+    const b = { borderBottom: "1px solid var(--border)" };
+    const bh = { borderBottom: "2px solid var(--border)" };
+
+    const leaves = [
+        ["Annual Leave (<5yr)", "21 days", "Full pay", "Art 109"],
+        ["Annual Leave (5+yr)", "30 days", "Full pay", "Art 109"],
+        ["Sick Leave", "120 days", "30d full + 60d 75% + 30d unpaid", "Art 117"],
+        ["Marriage Leave", "5 days", "Full pay", "Art 113"],
+        ["Paternity Leave", "3 days", "Full pay (within 7 days of birth)", "Art 113"],
+        ["Bereavement (spouse/parent/child)", "5 days", "Full pay", "Art 113"],
+        ["Bereavement (sibling)", "3 days", "Full pay (2025 amendment)", "Art 113"],
+        ["Maternity Leave", "10 weeks", "Full pay (6wk post-birth mandatory)", "Art 151"],
+        ["Hajj Leave", "10–15 days", "Full pay (once, after 2yr service)", "Art 114"],
+        ["Iddah (Muslim widow)", "4 months 10 days", "Full pay", "Art 160"],
+        ["Study/Exam Leave", "Exam days", "Full pay (if employer approved enrollment)", "Art 115"],
+        ["Unpaid Leave", "By agreement", "Unpaid (>20d suspends contract)", "Custom"],
+    ];
+
+    return (<div className="con-calc__results">
+        <h4>All Saudi Leave Types — Complete Reference</h4>
+        <div style={{ overflowX: "auto" }}>
+            <table style={ts}>
+                <thead><tr style={bh}>
+                    <th style={{ ...th, textAlign: "left" }}>Leave Type</th>
+                    <th style={th}>Duration</th>
+                    <th style={{ ...th, textAlign: "left" }}>Pay</th>
+                    <th style={th}>Legal Basis</th>
+                </tr></thead>
+                <tbody>
+                    {leaves.map(([type, dur, pay, art], i) => (
+                        <tr key={i} style={b}>
+                            <td style={{ ...tl, fontWeight: 600 }}>{type}</td>
+                            <td style={{ ...td, fontWeight: 700, whiteSpace: "nowrap" }}>{dur}</td>
+                            <td style={{ ...tl, fontSize: "0.8rem" }}>{pay}</td>
+                            <td style={{ ...td, fontSize: "0.8rem", whiteSpace: "nowrap" }}>{art}</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
+
+        <h4 style={{ marginTop: "var(--s-4)" }}>Salary → Leave Pay Lookup</h4>
+        <div style={{ overflowX: "auto" }}>
+            <table style={ts}>
+                <thead><tr style={bh}>
+                    <th style={{ ...th, textAlign: "left" }}>Monthly Salary</th>
+                    <th style={th}>Daily Rate</th>
+                    <th style={th}>21-Day Leave Pay</th>
+                    <th style={th}>30-Day Leave Pay</th>
+                </tr></thead>
+                <tbody>
+                    {[4000, 6000, 8000, 10000, 12000, 15000, 20000, 25000, 30000, 40000].map((s) => {
+                        const dr = s / 30;
+                        return (<tr key={s} style={b}>
+                            <td style={{ ...tl, fontWeight: 600 }}>SAR {s.toLocaleString()}</td>
+                            <td style={td}>SAR {fmt(dr)}</td>
+                            <td style={td}>SAR {fmt(dr * 21)}</td>
+                            <td style={{ ...td, fontWeight: 700 }}>SAR {fmt(dr * 30)}</td>
+                        </tr>);
+                    })}
+                </tbody>
+            </table>
+        </div>
+    </div>);
 }
 
 /* ── Overtime Calculator (Saudi Labor Law Article 107) ── */
