@@ -3,7 +3,9 @@
 
 import type { Metadata } from "next";
 import Script from "next/script";
+import Link from "next/link";
 import Breadcrumb from "@/components/layout/Breadcrumb";
+import "../ksa.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
 import KSACalculatorCore from "@/components/calculator/KSACalculatorCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
@@ -84,11 +86,45 @@ export default function EOSBPage() {
             </div>
 
             {/* ─── Educational Content ─── */}
-            <section className="calc-card" style={{ marginTop: "var(--s-6)", padding: "var(--s-6)" }}>
-                <div className="hub-content" dangerouslySetInnerHTML={{ __html: CONTENT_HTML }} />
+            <section className="ksa-content">
+                <div dangerouslySetInnerHTML={{ __html: CONTENT_HTML }} />
             </section>
 
             <FAQAccordion title="End of Service Benefit (KSA) FAQ" items={FAQ_ITEMS} />
+
+            <section className="ksa-related">
+                <h3>Related KSA Calculators</h3>
+                <div className="ksa-related-links">
+                    <Link href="/ksa/gosi-calculator" className="ksa-related-link">
+                        <span className="ksa-related-link__icon">🏛️</span>
+                        <div className="ksa-related-link__text">
+                            <div className="ksa-related-link__title">GOSI Calculator</div>
+                            <div className="ksa-related-link__desc">GOSI is separate from EOSB</div>
+                        </div>
+                    </Link>
+                    <Link href="/ksa/salary-calculator" className="ksa-related-link">
+                        <span className="ksa-related-link__icon">💰</span>
+                        <div className="ksa-related-link__text">
+                            <div className="ksa-related-link__title">Salary Calculator</div>
+                            <div className="ksa-related-link__desc">Calculate your actual wage for EOSB</div>
+                        </div>
+                    </Link>
+                    <Link href="/ksa/vat-calculator" className="ksa-related-link">
+                        <span className="ksa-related-link__icon">🧾</span>
+                        <div className="ksa-related-link__text">
+                            <div className="ksa-related-link__title">VAT Calculator (15%)</div>
+                            <div className="ksa-related-link__desc">EOSB is not subject to VAT</div>
+                        </div>
+                    </Link>
+                    <Link href="/ksa/annual-leave-calculator" className="ksa-related-link">
+                        <span className="ksa-related-link__icon">🏖️</span>
+                        <div className="ksa-related-link__text">
+                            <div className="ksa-related-link__title">Annual Leave Calculator</div>
+                            <div className="ksa-related-link__desc">Leave pay is separate from EOSB</div>
+                        </div>
+                    </Link>
+                </div>
+            </section>
         </main>
     );
 }

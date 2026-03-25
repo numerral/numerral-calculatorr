@@ -5,6 +5,7 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import Link from "next/link";
 import Breadcrumb from "@/components/layout/Breadcrumb";
+import "../ksa.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
 import KSACalculatorCore from "@/components/calculator/KSACalculatorCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
@@ -79,26 +80,44 @@ export default function SalaryPage() {
                 </aside>
             </div>
 
-            <section className="calc-card" style={{ marginTop: "var(--s-6)", padding: "var(--s-6)" }}>
-                <div className="hub-content" dangerouslySetInnerHTML={{ __html: CONTENT_HTML }} />
+            <section className="ksa-content">
+                <div dangerouslySetInnerHTML={{ __html: CONTENT_HTML }} />
             </section>
 
             <FAQAccordion title="Saudi Arabia Salary FAQ" items={FAQ_ITEMS} />
 
-            <section className="calc-card" style={{ marginTop: "var(--s-4)", padding: "var(--s-4)" }}>
+            <section className="ksa-related">
                 <h3>Related KSA Calculators</h3>
-                <p style={{ marginBottom: "var(--s-2)" }}>
-                    <Link href="/ksa/gosi-calculator" style={{ color: "var(--primary)", fontWeight: 600 }}>🏛️ GOSI Calculator</Link>
-                    {" — "}Calculate your GOSI social insurance contributions in detail.
-                </p>
-                <p style={{ marginBottom: "var(--s-2)" }}>
-                    <Link href="/ksa/end-of-service-calculator" style={{ color: "var(--primary)", fontWeight: 600 }}>🏢 End of Service Benefit Calculator</Link>
-                    {" — "}Calculate your EOSB under Saudi Labor Law.
-                </p>
-                <p>
-                    <Link href="/ksa/vat-calculator" style={{ color: "var(--primary)", fontWeight: 600 }}>🧾 VAT Calculator (15%)</Link>
-                    {" — "}Add or remove 15% VAT for Saudi Arabia.
-                </p>
+                <div className="ksa-related-links">
+                    <Link href="/ksa/gosi-calculator" className="ksa-related-link">
+                        <span className="ksa-related-link__icon">🏛️</span>
+                        <div className="ksa-related-link__text">
+                            <div className="ksa-related-link__title">GOSI Calculator</div>
+                            <div className="ksa-related-link__desc">Detailed GOSI breakdown</div>
+                        </div>
+                    </Link>
+                    <Link href="/ksa/end-of-service-calculator" className="ksa-related-link">
+                        <span className="ksa-related-link__icon">🏢</span>
+                        <div className="ksa-related-link__text">
+                            <div className="ksa-related-link__title">EOSB Calculator</div>
+                            <div className="ksa-related-link__desc">Calculate end of service benefit</div>
+                        </div>
+                    </Link>
+                    <Link href="/ksa/overtime-calculator" className="ksa-related-link">
+                        <span className="ksa-related-link__icon">⏱️</span>
+                        <div className="ksa-related-link__text">
+                            <div className="ksa-related-link__title">Overtime Calculator</div>
+                            <div className="ksa-related-link__desc">Calculate overtime pay at 150%</div>
+                        </div>
+                    </Link>
+                    <Link href="/ksa/vat-calculator" className="ksa-related-link">
+                        <span className="ksa-related-link__icon">🧾</span>
+                        <div className="ksa-related-link__text">
+                            <div className="ksa-related-link__title">VAT Calculator (15%)</div>
+                            <div className="ksa-related-link__desc">Add or remove 15% VAT</div>
+                        </div>
+                    </Link>
+                </div>
             </section>
         </main>
     );

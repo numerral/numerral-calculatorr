@@ -5,6 +5,7 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import Link from "next/link";
 import Breadcrumb from "@/components/layout/Breadcrumb";
+import "../ksa.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
 import KSACalculatorCore from "@/components/calculator/KSACalculatorCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
@@ -79,22 +80,44 @@ export default function VATPage() {
                 </aside>
             </div>
 
-            <section className="calc-card" style={{ marginTop: "var(--s-6)", padding: "var(--s-6)" }}>
-                <div className="hub-content" dangerouslySetInnerHTML={{ __html: CONTENT_HTML }} />
+            <section className="ksa-content">
+                <div dangerouslySetInnerHTML={{ __html: CONTENT_HTML }} />
             </section>
 
             <FAQAccordion title="Saudi Arabia VAT FAQ" items={FAQ_ITEMS} />
 
-            <section className="calc-card" style={{ marginTop: "var(--s-4)", padding: "var(--s-4)" }}>
+            <section className="ksa-related">
                 <h3>Related KSA Calculators</h3>
-                <p style={{ marginBottom: "var(--s-2)" }}>
-                    <Link href="/ksa/end-of-service-calculator" style={{ color: "var(--primary)", fontWeight: 600 }}>🏢 End of Service Benefit Calculator</Link>
-                    {" — "}Calculate your EOSB under Saudi Labor Law Articles 84, 85, and 87.
-                </p>
-                <p>
-                    <Link href="/ksa/gosi-calculator" style={{ color: "var(--primary)", fontWeight: 600 }}>🏛️ GOSI Calculator</Link>
-                    {" — "}Calculate your GOSI social insurance contributions for Saudi and non-Saudi employees.
-                </p>
+                <div className="ksa-related-links">
+                    <Link href="/ksa/salary-calculator" className="ksa-related-link">
+                        <span className="ksa-related-link__icon">💰</span>
+                        <div className="ksa-related-link__text">
+                            <div className="ksa-related-link__title">Salary Calculator</div>
+                            <div className="ksa-related-link__desc">No income tax in Saudi Arabia</div>
+                        </div>
+                    </Link>
+                    <Link href="/ksa/gosi-calculator" className="ksa-related-link">
+                        <span className="ksa-related-link__icon">🏛️</span>
+                        <div className="ksa-related-link__text">
+                            <div className="ksa-related-link__title">GOSI Calculator</div>
+                            <div className="ksa-related-link__desc">Social insurance contributions</div>
+                        </div>
+                    </Link>
+                    <Link href="/ksa/home-loan-calculator" className="ksa-related-link">
+                        <span className="ksa-related-link__icon">🏠</span>
+                        <div className="ksa-related-link__text">
+                            <div className="ksa-related-link__title">Home Loan Calculator</div>
+                            <div className="ksa-related-link__desc">VAT on property transactions</div>
+                        </div>
+                    </Link>
+                    <Link href="/ksa/end-of-service-calculator" className="ksa-related-link">
+                        <span className="ksa-related-link__icon">🏢</span>
+                        <div className="ksa-related-link__text">
+                            <div className="ksa-related-link__title">EOSB Calculator</div>
+                            <div className="ksa-related-link__desc">End of service benefits</div>
+                        </div>
+                    </Link>
+                </div>
             </section>
         </main>
     );

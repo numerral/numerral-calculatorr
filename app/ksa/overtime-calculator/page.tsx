@@ -5,6 +5,7 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import Link from "next/link";
 import Breadcrumb from "@/components/layout/Breadcrumb";
+import "../ksa.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
 import KSACalculatorCore from "@/components/calculator/KSACalculatorCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
@@ -79,26 +80,44 @@ export default function OvertimePage() {
                 </aside>
             </div>
 
-            <section className="calc-card" style={{ marginTop: "var(--s-6)", padding: "var(--s-6)" }}>
-                <div className="hub-content" dangerouslySetInnerHTML={{ __html: CONTENT_HTML }} />
+            <section className="ksa-content">
+                <div dangerouslySetInnerHTML={{ __html: CONTENT_HTML }} />
             </section>
 
             <FAQAccordion title="Saudi Arabia Overtime FAQ" items={FAQ_ITEMS} />
 
-            <section className="calc-card" style={{ marginTop: "var(--s-4)", padding: "var(--s-4)" }}>
+            <section className="ksa-related">
                 <h3>Related KSA Calculators</h3>
-                <p style={{ marginBottom: "var(--s-2)" }}>
-                    <Link href="/ksa/salary-calculator" style={{ color: "var(--primary)", fontWeight: 600 }}>💰 Salary Calculator</Link>
-                    {" — "}Calculate your net take-home salary in Saudi Arabia.
-                </p>
-                <p style={{ marginBottom: "var(--s-2)" }}>
-                    <Link href="/ksa/gosi-calculator" style={{ color: "var(--primary)", fontWeight: 600 }}>🏛️ GOSI Calculator</Link>
-                    {" — "}Calculate your GOSI social insurance contributions.
-                </p>
-                <p>
-                    <Link href="/ksa/end-of-service-calculator" style={{ color: "var(--primary)", fontWeight: 600 }}>🏢 End of Service Benefit Calculator</Link>
-                    {" — "}Calculate your EOSB under Saudi Labor Law.
-                </p>
+                <div className="ksa-related-links">
+                    <Link href="/ksa/salary-calculator" className="ksa-related-link">
+                        <span className="ksa-related-link__icon">💰</span>
+                        <div className="ksa-related-link__text">
+                            <div className="ksa-related-link__title">Salary Calculator</div>
+                            <div className="ksa-related-link__desc">Calculate net take-home salary</div>
+                        </div>
+                    </Link>
+                    <Link href="/ksa/gosi-calculator" className="ksa-related-link">
+                        <span className="ksa-related-link__icon">🏛️</span>
+                        <div className="ksa-related-link__text">
+                            <div className="ksa-related-link__title">GOSI Calculator</div>
+                            <div className="ksa-related-link__desc">Overtime excluded from GOSI</div>
+                        </div>
+                    </Link>
+                    <Link href="/ksa/end-of-service-calculator" className="ksa-related-link">
+                        <span className="ksa-related-link__icon">🏢</span>
+                        <div className="ksa-related-link__text">
+                            <div className="ksa-related-link__title">EOSB Calculator</div>
+                            <div className="ksa-related-link__desc">Overtime excluded from EOSB</div>
+                        </div>
+                    </Link>
+                    <Link href="/ksa/annual-leave-calculator" className="ksa-related-link">
+                        <span className="ksa-related-link__icon">🏖️</span>
+                        <div className="ksa-related-link__text">
+                            <div className="ksa-related-link__title">Annual Leave Calculator</div>
+                            <div className="ksa-related-link__desc">Leave entitlement and pay</div>
+                        </div>
+                    </Link>
+                </div>
             </section>
         </main>
     );
