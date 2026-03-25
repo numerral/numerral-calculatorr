@@ -18066,6 +18066,49 @@
   },
 
   {
+    "id": "midpoint-calculator",
+    "category": "math",
+    "title": "Midpoint Calculator",
+    "slug": "midpoint-calculator",
+    "categorySlug": "math-calculators",
+    "icon": "📍",
+    "calcType": "midpoint",
+    "description": "Calculate the midpoint between two points, find the distance, or solve for a missing endpoint. Step-by-step work shown with the midpoint formula and distance formula.",
+    "stars": 5,
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "midpoint calculator, midpoint formula, distance between two points, distance formula, find endpoint, midpoint of a line segment, coordinate geometry, section formula",
+    "links": {
+      "related": [
+        "area-calculator",
+        "perimeter-calculator",
+        "average-calculator",
+        "fraction-calculator"
+      ]
+    }
+  },
+
+  {
     "id": "fraction-calculator",
     "category": "math",
     "title": "Fraction Calculator",

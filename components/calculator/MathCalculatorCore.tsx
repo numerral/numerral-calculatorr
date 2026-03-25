@@ -2638,6 +2638,129 @@ function SigFigsArithmeticTab() {
     </div>);
 }
 
+/* ── Midpoint / Distance / Endpoint Calculator (3 tabs) ── */
+function MidpointCalc() {
+    const [tab, setTab] = useState(0);
+    const tabs = ["📍 Midpoint", "📏 Distance", "🔍 Endpoint Finder"];
+    return (<div className="con-calc">
+        <h3 className="con-calc__title">📍 Midpoint Calculator</h3>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: "var(--s-1)", marginBottom: "var(--s-3)" }}>
+            {tabs.map((t, i) => <button key={i} onClick={() => setTab(i)} className={`calc-tab-btn${tab === i ? " calc-tab-btn--active" : ""}`}>{t}</button>)}
+        </div>
+        {tab === 0 && <MidpointTab />}
+        {tab === 1 && <DistanceTab />}
+        {tab === 2 && <EndpointTab />}
+    </div>);
+}
+
+function MidpointTab() {
+    const [x1, setX1] = useState("2"); const [y1, setY1] = useState("3");
+    const [x2, setX2] = useState("8"); const [y2, setY2] = useState("7");
+    const r = useMemo(() => {
+        const a = parseFloat(x1), b = parseFloat(y1), c = parseFloat(x2), d = parseFloat(y2);
+        if ([a,b,c,d].some(isNaN)) return null;
+        const mx = (a + c) / 2, my = (b + d) / 2;
+        const dist = Math.sqrt(Math.pow(c - a, 2) + Math.pow(d - b, 2));
+        return {
+            mx: mx % 1 === 0 ? mx.toString() : mx.toFixed(4),
+            my: my % 1 === 0 ? my.toString() : my.toFixed(4),
+            dist: dist.toFixed(6),
+            steps: [
+                `Points: A(${a}, ${b}) and B(${c}, ${d})`,
+                `Midpoint x: (${a} + ${c}) / 2 = ${a + c} / 2 = ${mx % 1 === 0 ? mx : mx.toFixed(4)}`,
+                `Midpoint y: (${b} + ${d}) / 2 = ${b + d} / 2 = ${my % 1 === 0 ? my : my.toFixed(4)}`,
+                `Midpoint M = (${mx % 1 === 0 ? mx : mx.toFixed(4)}, ${my % 1 === 0 ? my : my.toFixed(4)})`,
+                `Distance: √((${c}−${a})² + (${d}−${b})²) = √(${Math.pow(c-a,2)} + ${Math.pow(d-b,2)}) = √${Math.pow(c-a,2)+Math.pow(d-b,2)} = ${dist.toFixed(6)}`,
+            ],
+        };
+    }, [x1, y1, x2, y2]);
+    return (<div>
+        <div className="con-calc__inputs">
+            <InputField label="x₁" value={x1} onChange={setX1} placeholder="x₁" />
+            <InputField label="y₁" value={y1} onChange={setY1} placeholder="y₁" />
+            <InputField label="x₂" value={x2} onChange={setX2} placeholder="x₂" />
+            <InputField label="y₂" value={y2} onChange={setY2} placeholder="y₂" />
+        </div>
+        {r && <div className="con-calc__results"><h4>Result</h4>
+            <ResultRow label="Midpoint" value={`(${r.mx}, ${r.my})`} />
+            <ResultRow label="Distance" value={r.dist} />
+            <h4>Step‑by‑Step</h4>
+            {r.steps.map((s, i) => <ResultRow key={i} label={`Step ${i + 1}`} value={s} />)}
+        </div>}
+    </div>);
+}
+
+function DistanceTab() {
+    const [x1, setX1] = useState("13"); const [y1, setY1] = useState("2");
+    const [x2, setX2] = useState("7"); const [y2, setY2] = useState("10");
+    const r = useMemo(() => {
+        const a = parseFloat(x1), b = parseFloat(y1), c = parseFloat(x2), d = parseFloat(y2);
+        if ([a,b,c,d].some(isNaN)) return null;
+        const dx = c - a, dy = d - b;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        return {
+            dist: dist.toFixed(6),
+            steps: [
+                `Points: A(${a}, ${b}) and B(${c}, ${d})`,
+                `Δx = x₂ − x₁ = ${c} − ${a} = ${dx}`,
+                `Δy = y₂ − y₁ = ${d} − ${b} = ${dy}`,
+                `(Δx)² = ${dx}² = ${dx * dx}`,
+                `(Δy)² = ${dy}² = ${dy * dy}`,
+                `Sum = ${dx*dx} + ${dy*dy} = ${dx*dx + dy*dy}`,
+                `Distance = √${dx*dx + dy*dy} = ${dist.toFixed(6)}`,
+            ],
+        };
+    }, [x1, y1, x2, y2]);
+    return (<div>
+        <div className="con-calc__inputs">
+            <InputField label="x₁" value={x1} onChange={setX1} placeholder="x₁" />
+            <InputField label="y₁" value={y1} onChange={setY1} placeholder="y₁" />
+            <InputField label="x₂" value={x2} onChange={setX2} placeholder="x₂" />
+            <InputField label="y₂" value={y2} onChange={setY2} placeholder="y₂" />
+        </div>
+        {r && <div className="con-calc__results"><h4>Result</h4>
+            <ResultRow label="Distance" value={r.dist} />
+            <h4>Pythagorean Breakdown</h4>
+            {r.steps.map((s, i) => <ResultRow key={i} label={`Step ${i + 1}`} value={s} />)}
+        </div>}
+    </div>);
+}
+
+function EndpointTab() {
+    const [x1, setX1] = useState("6"); const [y1, setY1] = useState("-4");
+    const [xm, setXm] = useState("1"); const [ym, setYm] = useState("7");
+    const r = useMemo(() => {
+        const a = parseFloat(x1), b = parseFloat(y1), mx = parseFloat(xm), my = parseFloat(ym);
+        if ([a,b,mx,my].some(isNaN)) return null;
+        const x2 = 2 * mx - a, y2 = 2 * my - b;
+        return {
+            x2: x2 % 1 === 0 ? x2.toString() : x2.toFixed(4),
+            y2: y2 % 1 === 0 ? y2.toString() : y2.toFixed(4),
+            steps: [
+                `Known endpoint: A(${a}, ${b})`,
+                `Known midpoint: M(${mx}, ${my})`,
+                `Formula: x₂ = 2·xₘ − x₁, y₂ = 2·yₘ − y₁`,
+                `x₂ = 2·${mx} − ${a} = ${2*mx} − ${a} = ${x2 % 1 === 0 ? x2 : x2.toFixed(4)}`,
+                `y₂ = 2·${my} − ${b} = ${2*my} − ${b} = ${y2 % 1 === 0 ? y2 : y2.toFixed(4)}`,
+                `Missing endpoint: B(${x2 % 1 === 0 ? x2 : x2.toFixed(4)}, ${y2 % 1 === 0 ? y2 : y2.toFixed(4)})`,
+            ],
+        };
+    }, [x1, y1, xm, ym]);
+    return (<div>
+        <div className="con-calc__inputs">
+            <InputField label="Known Endpoint x₁" value={x1} onChange={setX1} placeholder="x₁" />
+            <InputField label="Known Endpoint y₁" value={y1} onChange={setY1} placeholder="y₁" />
+            <InputField label="Midpoint xₘ" value={xm} onChange={setXm} placeholder="xₘ" />
+            <InputField label="Midpoint yₘ" value={ym} onChange={setYm} placeholder="yₘ" />
+        </div>
+        {r && <div className="con-calc__results"><h4>Result</h4>
+            <ResultRow label="Missing Endpoint" value={`(${r.x2}, ${r.y2})`} />
+            <h4>Step‑by‑Step</h4>
+            {r.steps.map((s, i) => <ResultRow key={i} label={`Step ${i + 1}`} value={s} />)}
+        </div>}
+    </div>);
+}
+
 const CALC_MAP: Record<string, React.FC> = {
     "percentage": PercentageCalc,
     "fraction": FractionCalc,
@@ -2676,6 +2799,7 @@ const CALC_MAP: Record<string, React.FC> = {
     "percent-error": PercentErrorCalc,
     "cube-root": CubeRootCalc,
     "significant-figures": SigFigsCalc,
+    "midpoint": MidpointCalc,
 };
 
 export default function MathCalculatorCore({ calcType }: { calcType: string }) {

@@ -1368,6 +1368,193 @@ const HUB_CONTENT: Record<string, {
         ],
     },
 
+    /* ─── MIDPOINT CALCULATOR — RICH CONTENT (Topical Authority) ─── */
+    "midpoint-calculator": {
+        subtitle: "Calculate the midpoint between two points, find the distance between endpoints, or solve for a missing endpoint. Step-by-step work shown for every calculation.",
+        contentHTML: `
+            <h2 id="what-is-midpoint">What Is a Midpoint?</h2>
+            <p>The <strong>midpoint</strong> of a line segment is the point that divides the segment into two equal halves. It lies exactly halfway between the two endpoints, at the same distance from each. If you have two points A and B, the midpoint M is the unique point where AM = MB.</p>
+            <p>Geometrically, the midpoint is the <strong>center of a line segment</strong>. It appears everywhere in mathematics — from basic coordinate geometry to advanced applications in <strong>computer graphics, GPS navigation, surveying</strong>, and <strong>construction</strong>.</p>
+            <p>It is important to distinguish between a <strong>line segment</strong>, a <strong>line</strong>, and a <strong>ray</strong>. A line segment has two endpoints, so it has a definite midpoint. A true line extends infinitely in both directions and has no midpoint. A ray has one endpoint and extends infinitely, so it also has no midpoint.</p>
+            <p>Our calculator above handles three operations: find the <strong>midpoint</strong> between two points, calculate the <strong>distance</strong> between two points, and find a <strong>missing endpoint</strong> when you know one endpoint and the midpoint.</p>
+
+            <h2 id="midpoint-formula">The Midpoint Formula</h2>
+            <p>Given two points in a coordinate plane, A(x₁, y₁) and B(x₂, y₂), the midpoint M is found by averaging the x-coordinates and averaging the y-coordinates:</p>
+            <div class="explanation__highlight">
+                <strong>M = ((x₁ + x₂) / 2, (y₁ + y₂) / 2)</strong>
+            </div>
+            <p>The formula works because the midpoint is the <strong>arithmetic mean</strong> of the coordinates. The x-coordinate of M is the <a href="/math-calculators/average-calculator">average</a> of x₁ and x₂, and the y-coordinate of M is the average of y₁ and y₂.</p>
+            <table>
+                <thead><tr><th>Variable</th><th>Meaning</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>(x₁, y₁)</strong></td><td>Coordinates of endpoint A</td></tr>
+                    <tr><td><strong>(x₂, y₂)</strong></td><td>Coordinates of endpoint B</td></tr>
+                    <tr><td><strong>M(xₘ, yₘ)</strong></td><td>Midpoint — the center of the line segment</td></tr>
+                    <tr><td><strong>xₘ = (x₁+x₂)/2</strong></td><td>Average of x-coordinates</td></tr>
+                    <tr><td><strong>yₘ = (y₁+y₂)/2</strong></td><td>Average of y-coordinates</td></tr>
+                </tbody>
+            </table>
+
+            <h3 id="midpoint-3d">Midpoint in 3D</h3>
+            <p>The formula extends naturally to three dimensions. For points A(x₁, y₁, z₁) and B(x₂, y₂, z₂):</p>
+            <div class="explanation__highlight">
+                <strong>M = ((x₁+x₂)/2, (y₁+y₂)/2, (z₁+z₂)/2)</strong>
+            </div>
+
+            <h2 id="how-to-find-midpoint">How to Find the Midpoint Step by Step</h2>
+            <p>Follow these simple steps:</p>
+            <ol>
+                <li><strong>Identify</strong> your two endpoints: (x₁, y₁) and (x₂, y₂)</li>
+                <li><strong>Add</strong> the x-coordinates and divide by 2: xₘ = (x₁ + x₂) / 2</li>
+                <li><strong>Add</strong> the y-coordinates and divide by 2: yₘ = (y₁ + y₂) / 2</li>
+                <li><strong>Write</strong> the midpoint as M(xₘ, yₘ)</li>
+            </ol>
+
+            <h3 id="example-1">Worked Example 1: Basic Midpoint</h3>
+            <p>Find the midpoint of A(6, 3) and B(12, 7).</p>
+            <ol>
+                <li>xₘ = (6 + 12) / 2 = 18 / 2 = <strong>9</strong></li>
+                <li>yₘ = (3 + 7) / 2 = 10 / 2 = <strong>5</strong></li>
+                <li>Midpoint M = <strong>(9, 5)</strong></li>
+            </ol>
+
+            <h3 id="example-2">Worked Example 2: Negative Coordinates</h3>
+            <p>Find the midpoint of A(−4, 8) and B(6, −2).</p>
+            <ol>
+                <li>xₘ = (−4 + 6) / 2 = 2 / 2 = <strong>1</strong></li>
+                <li>yₘ = (8 + (−2)) / 2 = 6 / 2 = <strong>3</strong></li>
+                <li>Midpoint M = <strong>(1, 3)</strong></li>
+            </ol>
+
+            <h3 id="example-3">Worked Example 3: Decimal Coordinates</h3>
+            <p>Find the midpoint of A(2.5, 7.3) and B(9.1, 4.7).</p>
+            <ol>
+                <li>xₘ = (2.5 + 9.1) / 2 = 11.6 / 2 = <strong>5.8</strong></li>
+                <li>yₘ = (7.3 + 4.7) / 2 = 12.0 / 2 = <strong>6.0</strong></li>
+                <li>Midpoint M = <strong>(5.8, 6.0)</strong></li>
+            </ol>
+
+            <h2 id="distance-formula">The Distance Formula</h2>
+            <p>The <strong>distance formula</strong> calculates the length of a line segment between two points. It is derived directly from the <strong>Pythagorean theorem</strong>:</p>
+            <div class="explanation__highlight">
+                <strong>d = √((x₂ − x₁)² + (y₂ − y₁)²)</strong>
+            </div>
+            <p>The line segment forms the <strong>hypotenuse</strong> of a right triangle, where the horizontal leg has length |x₂ − x₁| and the vertical leg has length |y₂ − y₁|. By the Pythagorean theorem, a² + b² = c², so the distance is the square root of the sum of the squared differences.</p>
+
+            <h3 id="distance-example">Worked Example: Distance Between Two Points</h3>
+            <p>Find the distance between A(13, 2) and B(7, 10).</p>
+            <ol>
+                <li>Δx = 7 − 13 = −6</li>
+                <li>Δy = 10 − 2 = 8</li>
+                <li>(Δx)² = (−6)² = 36</li>
+                <li>(Δy)² = 8² = 64</li>
+                <li>Sum = 36 + 64 = 100</li>
+                <li>d = √100 = <strong>10</strong></li>
+            </ol>
+
+            <h2 id="finding-endpoint">Finding a Missing Endpoint</h2>
+            <p>If you know one endpoint and the midpoint, you can find the missing endpoint by rearranging the midpoint formula:</p>
+            <div class="explanation__highlight">
+                <strong>x₂ = 2·xₘ − x₁</strong><br/>
+                <strong>y₂ = 2·yₘ − y₁</strong>
+            </div>
+            <p>This works because the midpoint formula says xₘ = (x₁ + x₂)/2, which rearranges to x₂ = 2xₘ − x₁.</p>
+
+            <h3 id="endpoint-example">Worked Example: Find the Missing Endpoint</h3>
+            <p>Endpoint A = (6, −4) and midpoint M = (1, 7). Find endpoint B.</p>
+            <ol>
+                <li>x₂ = 2(1) − 6 = 2 − 6 = <strong>−4</strong></li>
+                <li>y₂ = 2(7) − (−4) = 14 + 4 = <strong>18</strong></li>
+                <li>Missing endpoint B = <strong>(−4, 18)</strong></li>
+            </ol>
+            <p>Verify: midpoint of (6, −4) and (−4, 18) = ((6−4)/2, (−4+18)/2) = (1, 7) ✓</p>
+
+            <h2 id="section-formula">Section Formula: Dividing in Ratio m:n</h2>
+            <p>The midpoint formula is a special case of the <strong>section formula</strong>, which finds a point that divides a line segment in any ratio m:n (not just 1:1):</p>
+            <div class="explanation__highlight">
+                <strong>P = ((m·x₂ + n·x₁) / (m + n), (m·y₂ + n·y₁) / (m + n))</strong>
+            </div>
+            <p>When m = n = 1, this simplifies to the midpoint formula. The section formula is useful in more advanced geometry problems, engineering design, and animation (interpolating between keyframes).</p>
+            <table>
+                <thead><tr><th>Ratio m:n</th><th>Result</th><th>Use Case</th></tr></thead>
+                <tbody>
+                    <tr><td>1:1</td><td>Midpoint (exactly halfway)</td><td>Standard midpoint</td></tr>
+                    <tr><td>1:2</td><td>One-third of the way from A to B</td><td>Trisection point</td></tr>
+                    <tr><td>2:1</td><td>Two-thirds of the way from A to B</td><td>Trisection point</td></tr>
+                    <tr><td>3:1</td><td>Three-quarters of the way</td><td>Quartile point</td></tr>
+                </tbody>
+            </table>
+
+            <h2 id="midpoint-vs-centroid">Midpoint vs. Centroid vs. Center of Mass</h2>
+            <p>These related concepts are often confused:</p>
+            <table>
+                <thead><tr><th>Concept</th><th>Applies To</th><th>Formula</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Midpoint</strong></td><td>Line segment (2 points)</td><td>Average of 2 endpoints</td></tr>
+                    <tr><td><strong>Centroid</strong></td><td>Triangle (3 vertices)</td><td>Average of 3 vertices: ((x₁+x₂+x₃)/3, (y₁+y₂+y₃)/3)</td></tr>
+                    <tr><td><strong>Center of Mass</strong></td><td>Any shape with mass distribution</td><td>Weighted average of all points, considering mass</td></tr>
+                </tbody>
+            </table>
+            <p>The centroid of a triangle is the intersection of its three medians. Each <strong>median</strong> connects a vertex to the midpoint of the opposite side — so midpoints are essential building blocks for finding centroids.</p>
+
+            <h2 id="real-world-applications">Real-World Applications in the United States</h2>
+
+            <h3 id="gps-navigation">GPS and Navigation</h3>
+            <p>When GPS navigation apps calculate a route through the United States, they often need the midpoint between two locations. For example, finding the halfway point of a road trip from <strong>New York City to Los Angeles</strong> uses the midpoint formula on latitude/longitude coordinates. This is essential for planning rest stops, fuel stations, and meeting points. Apps like Google Maps and Apple Maps use midpoint calculations internally for route optimization.</p>
+
+            <h3 id="surveying">Land Surveying and the PLSS</h3>
+            <p>The <strong>Public Land Survey System (PLSS)</strong> — the framework for dividing land in 30 U.S. states — relies heavily on midpoints. Surveyors find midpoints of section lines to establish quarter-section corners. When the <strong>Bureau of Land Management (BLM)</strong> subdivides a 640-acre section into quarter sections, the midpoints of each boundary line determine the new property corners.</p>
+
+            <h3 id="construction">Construction and Architecture</h3>
+            <p>In <strong>construction</strong>, midpoints are used constantly. Finding the center of a wall for hanging a picture, the center of a beam for load distribution, or the center of a lot for positioning a foundation — all of these are midpoint calculations. Architects and builders across the United States use coordinate-based midpoint calculations in <strong>CAD software</strong> like AutoCAD and Revit.</p>
+
+            <h3 id="game-dev">Game Development and Computer Graphics</h3>
+            <p>In the <strong>video game industry</strong>, midpoint calculations are fundamental to 2D and 3D graphics. Games compute midpoints for camera positioning (centering between player and target), collision detection (midpoint of bounding boxes), and procedural terrain generation. Major U.S. studios use midpoints in every frame of rendering.</p>
+
+            <h3 id="education">Education and Standardized Testing</h3>
+            <p>The midpoint formula is a core topic in <strong>Pre-Algebra</strong>, <strong>Algebra I</strong>, and <strong>Geometry</strong> courses across American schools, tested on the <strong>SAT</strong>, <strong>ACT</strong>, and <strong>GRE</strong>. The <strong>Common Core State Standards</strong> include coordinate geometry skills that build directly on the midpoint and distance formulas.</p>
+        `,
+        formula: {
+            formula: "M = ((x₁ + x₂) / 2, (y₁ + y₂) / 2)",
+            variables: [
+                { symbol: "(x₁, y₁)", meaning: "Coordinates of endpoint A" },
+                { symbol: "(x₂, y₂)", meaning: "Coordinates of endpoint B" },
+                { symbol: "M(xₘ, yₘ)", meaning: "Midpoint — the center of the line segment" },
+                { symbol: "d = √((x₂−x₁)²+(y₂−y₁)²)", meaning: "Distance formula — derived from the Pythagorean theorem" },
+                { symbol: "x₂ = 2xₘ − x₁", meaning: "Missing endpoint formula — rearranged from midpoint formula" },
+            ],
+            example: [
+                { label: "Midpoint", substitution: "((6+12)/2, (3+7)/2)", result: "(9, 5)" },
+                { label: "Distance", substitution: "√((7−13)²+(10−2)²) = √(36+64)", result: "10" },
+                { label: "Endpoint", substitution: "x₂=2(1)−6, y₂=2(7)−(−4)", result: "(−4, 18)" },
+            ],
+        },
+        faq: [
+            { question: "What is the midpoint formula?", answer: "The midpoint formula is M = ((x₁ + x₂) / 2, (y₁ + y₂) / 2). Add the x-coordinates and divide by 2 to get the midpoint's x-coordinate. Add the y-coordinates and divide by 2 to get the midpoint's y-coordinate. It works by averaging the endpoints." },
+            { question: "How do I find the midpoint of two points?", answer: "Given points A(x₁, y₁) and B(x₂, y₂): (1) Add the x-coordinates and divide by 2. (2) Add the y-coordinates and divide by 2. (3) The result is the midpoint. Example: midpoint of (2,3) and (8,7) = ((2+8)/2, (3+7)/2) = (5, 5)." },
+            { question: "What is the distance formula?", answer: "The distance formula is d = √((x₂ − x₁)² + (y₂ − y₁)²). It is derived from the Pythagorean theorem. The horizontal and vertical differences form the legs of a right triangle, and the distance is the hypotenuse." },
+            { question: "How do I find a missing endpoint?", answer: "If you know one endpoint (x₁, y₁) and the midpoint (xₘ, yₘ), the missing endpoint is: x₂ = 2·xₘ − x₁ and y₂ = 2·yₘ − y₁. This comes from rearranging the midpoint formula." },
+            { question: "Can the midpoint have negative coordinates?", answer: "Yes! If one or both endpoints have negative coordinates, the midpoint can be negative. For example, the midpoint of (-6, 4) and (2, -8) is ((-6+2)/2, (4+(-8))/2) = (-2, -2)." },
+            { question: "Does the midpoint formula work with fractions and decimals?", answer: "Yes, the formula works with any real numbers — integers, fractions, decimals, and negative numbers. Our calculator accepts all of these input types." },
+            { question: "What is the midpoint in 3D?", answer: "For 3D points A(x₁, y₁, z₁) and B(x₂, y₂, z₂), the midpoint is M = ((x₁+x₂)/2, (y₁+y₂)/2, (z₁+z₂)/2). It's the same concept — average each coordinate." },
+            { question: "What is the difference between midpoint and centroid?", answer: "A midpoint is the center of a line segment (2 points). A centroid is the center of a triangle (3 points), calculated as the average of all three vertices. The centroid is also the intersection of the three medians of the triangle." },
+            { question: "Is the midpoint always on the line segment?", answer: "Yes, by definition the midpoint lies exactly on the line segment, equidistant from both endpoints. It divides the segment into two equal parts." },
+            { question: "What is the section formula?", answer: "The section formula generalizes the midpoint formula. It finds a point that divides a segment in ratio m:n: P = ((m·x₂ + n·x₁)/(m+n), (m·y₂ + n·y₁)/(m+n)). When m=n=1, this gives the midpoint." },
+            { question: "How is the distance formula related to the Pythagorean theorem?", answer: "The distance formula IS the Pythagorean theorem applied to coordinates. The horizontal distance |x₂−x₁| and vertical distance |y₂−y₁| form the legs of a right triangle. The distance between the points is the hypotenuse: d = √(a² + b²)." },
+            { question: "Can two different line segments have the same midpoint?", answer: "Yes! Infinitely many line segments can share the same midpoint. For example, (0,0)→(4,4) and (1,3)→(3,1) both have midpoint (2,2). The midpoint only specifies the center point, not the length or direction." },
+            { question: "Is the midpoint formula tested on the SAT?", answer: "Yes, the College Board includes midpoint and distance formula problems on the SAT, particularly in the 'Additional Topics in Math' section. These problems test coordinate geometry skills and often require combining the midpoint formula with other concepts." },
+            { question: "How do I verify my midpoint answer?", answer: "Calculate the distance from each endpoint to the midpoint. If both distances are equal, your midpoint is correct. Or, use the midpoint as a 'known midpoint' in the endpoint formula — you should get back your original endpoints." },
+            { question: "What are real-world uses of the midpoint formula?", answer: "Midpoints are used in: (1) GPS navigation — finding halfway points on trips, (2) land surveying — PLSS quarter-section corners, (3) construction — centering beams and foundations, (4) computer graphics — camera positioning and collision detection, (5) data analysis — interpolation between data points." },
+        ],
+        relatedCalculators: [
+            { title: "Area Calculator", slug: "area-calculator", categorySlug: "math-calculators", description: "Calculate area of various geometric shapes" },
+            { title: "Perimeter Calculator", slug: "perimeter-calculator", categorySlug: "math-calculators", description: "Calculate perimeter of geometric shapes" },
+            { title: "Average Calculator", slug: "average-calculator", categorySlug: "math-calculators", description: "Calculate mean, median, mode, and range" },
+            { title: "Percentage Calculator", slug: "percentage-calculator", categorySlug: "math-calculators", description: "Calculate percentages — X% of Y, change, increase, decrease" },
+            { title: "Fraction Calculator", slug: "fraction-calculator", categorySlug: "math-calculators", description: "Add, subtract, multiply, divide fractions" },
+        ],
+    },
+
     /* ─── 2. FRACTION CALCULATOR — RICH CONTENT (Competitor-level) ─── */
 
     "fraction-calculator": {
