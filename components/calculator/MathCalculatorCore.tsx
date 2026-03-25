@@ -2336,6 +2336,128 @@ function PercentErrorBatchTab() {
     </div>);
 }
 
+/* ── Cube Root / Nth Root Calculator (2 tabs) ── */
+function CubeRootCalc() {
+    const [tab, setTab] = useState(0);
+    const tabs = ["🔢 Calculator", "📊 Perfect Cubes"];
+    return (<div className="con-calc">
+        <h3 className="con-calc__title">🔢 Cube Root Calculator</h3>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: "var(--s-1)", marginBottom: "var(--s-3)" }}>
+            {tabs.map((t, i) => <button key={i} onClick={() => setTab(i)} className={`calc-tab-btn${tab === i ? " calc-tab-btn--active" : ""}`}>{t}</button>)}
+        </div>
+        {tab === 0 && <CubeRootMainTab />}
+        {tab === 1 && <PerfectCubesTab />}
+    </div>);
+}
+
+
+function CubeRootMainTab() {
+    const [number, setNumber] = useState("27");
+    const [rootIndex, setRootIndex] = useState("3");
+    const r = useMemo(() => {
+        const x = parseFloat(number);
+        const n = parseInt(rootIndex);
+        if (isNaN(x) || isNaN(n) || n < 2) return { result: "—", steps: ["Enter a valid number and root index ≥ 2"] };
+        const isNeg = x < 0;
+        if (isNeg && n % 2 === 0) return { result: "Not a real number", steps: [`Even roots of negative numbers are not real. ∜(${x}) is imaginary: ${Math.pow(Math.abs(x), 1 / n).toFixed(6)}i`] };
+        const absX = Math.abs(x);
+        const root = Math.pow(absX, 1 / n) * (isNeg ? -1 : 1);
+        const steps: string[] = [];
+        const ordinal = n === 2 ? "square" : n === 3 ? "cube" : `${n}th`;
+        steps.push(`Find the ${ordinal} root of ${x}`);
+        steps.push(`Express as exponent: ${x < 0 ? `-(|${x}|)` : x}^(1/${n})`);
+        const intX = Math.round(absX);
+        if (intX === absX && intX > 1 && intX <= 1e9) {
+            const pf = primeFactors(intX);
+            const grouped: Record<number, number> = {};
+            pf.forEach(f => grouped[f] = (grouped[f] || 0) + 1);
+            const factStr = pf.join(" × ");
+            steps.push(`Prime factorization: ${intX} = ${factStr}`);
+            const allDivisible = Object.values(grouped).every(c => c % n === 0);
+            if (allDivisible) {
+                const rootFactors = Object.entries(grouped).map(([b, c]) => `${b}^(${c}/${n})`).join(" × ");
+                steps.push(`Each exponent is divisible by ${n}: ${rootFactors}`);
+                steps.push(`Perfect ${ordinal}: result is exactly ${Math.round(root)}`);
+            } else {
+                steps.push(`Not a perfect ${ordinal} — exponents are not all divisible by ${n}`);
+            }
+        }
+        steps.push(`Calculate: ${x}^(1/${n}) = ${root.toFixed(8)}`);
+        const rounded = Math.round(root * 1e8) / 1e8;
+        const isExact = Math.abs(Math.pow(Math.round(root), n) - (isNeg ? -absX : absX)) < 0.0001;
+        if (isExact) steps.push(`Verify: ${Math.round(root)}^${n} = ${Math.pow(Math.round(root), n)} ✓`);
+        return {
+            result: isExact ? String(Math.round(root)) : rounded.toFixed(8),
+            steps,
+            absError: isExact ? "0 (exact)" : undefined,
+        };
+    }, [number, rootIndex]);
+    return (<div>
+        <div className="con-calc__inputs">
+            <InputField label="Number" value={number} onChange={setNumber} placeholder="e.g. 27, -64, 125" />
+            <SelectField label="Root Index" value={rootIndex} onChange={setRootIndex} options={[
+                { value: "2", label: "Square Root (²√)" },
+                { value: "3", label: "Cube Root (³√)" },
+                { value: "4", label: "4th Root (⁴√)" },
+                { value: "5", label: "5th Root (⁵√)" },
+                { value: "6", label: "6th Root (⁶√)" },
+                { value: "7", label: "7th Root (⁷√)" },
+                { value: "8", label: "8th Root (⁸√)" },
+                { value: "9", label: "9th Root (⁹√)" },
+                { value: "10", label: "10th Root (¹⁰√)" },
+            ]} />
+        </div>
+        <div className="con-calc__results"><h4>Result</h4>
+            <ResultRow label={`${rootIndex === "3" ? "Cube" : rootIndex === "2" ? "Square" : rootIndex + "th"} Root`} value={r.result} />
+            <ResultRow label="Input" value={number} />
+            <ResultRow label="Root Index (n)" value={rootIndex} />
+            <h4>Step‑by‑Step</h4>
+            {r.steps.map((s, i) => <ResultRow key={i} label={`Step ${i + 1}`} value={s} />)}
+        </div>
+    </div>);
+}
+
+function PerfectCubesTab() {
+    const [search, setSearch] = useState("");
+    const cubes = useMemo(() => {
+        const arr = [];
+        for (let i = 1; i <= 50; i++) arr.push({ n: i, cube: i * i * i });
+        return arr;
+    }, []);
+    const filtered = useMemo(() => {
+        if (!search.trim()) return cubes;
+        const q = parseInt(search);
+        if (isNaN(q)) return cubes;
+        return cubes.filter(c => c.n === q || c.cube === q || String(c.n).includes(search) || String(c.cube).includes(search));
+    }, [search, cubes]);
+    return (<div>
+        <div className="con-calc__inputs">
+            <InputField label="Search (by number or cube)" value={search} onChange={setSearch} placeholder="e.g. 27, 5, 125" />
+        </div>
+        <div className="con-calc__results"><h4>Perfect Cubes (1³ – 50³)</h4>
+            <div style={{ overflowX: "auto" }}>
+                <table style={{ width: "100%", fontSize: "0.85rem", borderCollapse: "collapse" }}>
+                    <thead><tr style={{ borderBottom: "1px solid var(--border)" }}>
+                        <th style={{ padding: "6px 10px", textAlign: "right" }}>n</th>
+                        <th style={{ padding: "6px 10px", textAlign: "center" }}>n³</th>
+                        <th style={{ padding: "6px 10px", textAlign: "right" }}>Result</th>
+                        <th style={{ padding: "6px 10px", textAlign: "right" }}>∛Result</th>
+                    </tr></thead>
+                    <tbody>{filtered.map(c => (
+                        <tr key={c.n} style={{ borderBottom: "1px solid var(--border)" }}>
+                            <td style={{ padding: "5px 10px", textAlign: "right" }}>{c.n}</td>
+                            <td style={{ padding: "5px 10px", textAlign: "center" }}>{c.n}³</td>
+                            <td style={{ padding: "5px 10px", textAlign: "right", fontWeight: 600 }}>{c.cube.toLocaleString()}</td>
+                            <td style={{ padding: "5px 10px", textAlign: "right" }}>{c.n}</td>
+                        </tr>
+                    ))}</tbody>
+                </table>
+            </div>
+            <ResultRow label="Total shown" value={`${filtered.length} of 50`} />
+        </div>
+    </div>);
+}
+
 const CALC_MAP: Record<string, React.FC> = {
     "percentage": PercentageCalc,
     "fraction": FractionCalc,
@@ -2372,6 +2494,7 @@ const CALC_MAP: Record<string, React.FC> = {
     "numbers-to-words": NumbersToWordsCalc,
     "roman-numeral": RomanNumeralCalc,
     "percent-error": PercentErrorCalc,
+    "cube-root": CubeRootCalc,
 };
 
 export default function MathCalculatorCore({ calcType }: { calcType: string }) {

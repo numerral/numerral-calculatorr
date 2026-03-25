@@ -920,6 +920,211 @@ const HUB_CONTENT: Record<string, {
         ],
     },
 
+    /* ─── CUBE ROOT CALCULATOR — RICH CONTENT (Topical Authority) ─── */
+    "cube-root-calculator": {
+        subtitle: "Calculate cube roots, nth roots, and see step-by-step prime factorization. Supports positive and negative numbers. Includes a searchable perfect cubes reference chart from 1³ to 50³.",
+        contentHTML: `
+            <h2 id="what-is-cube-root">What Is a Cube Root?</h2>
+            <p>A <strong>cube root</strong> of a number <em>x</em> is a value <em>a</em> such that <strong>a × a × a = x</strong> (written as <strong>a³ = x</strong>). In other words, the cube root "undoes" cubing a number. The cube root of <em>x</em> is written with the radical symbol as <strong>∛x</strong> or equivalently as <strong>x<sup>1/3</sup></strong>.</p>
+            <p>Geometrically, if you have a perfect cube with a volume of <strong>27 cubic inches</strong>, the cube root tells you the <strong>length of each side</strong> — in this case, <strong>3 inches</strong>, because 3 × 3 × 3 = 27. This connection between cube roots and three-dimensional volume is why the operation is called a "cube" root.</p>
+            <p>Cube roots are one of the fundamental operations in <strong>algebra, geometry, and applied mathematics</strong>. They appear in <a href="/math-calculators/percentage-calculator">everyday calculations</a> ranging from computing the side length of a container to solving cubic equations in engineering and physics.</p>
+            <p>Our calculator above computes cube roots and <strong>nth roots</strong> (square root, 4th root, 5th root, up to 10th root) with <strong>step-by-step prime factorization</strong>, showing whether the input is a perfect cube and how to simplify it.</p>
+
+            <h2 id="cube-root-formula">Cube Root Formula and Notation</h2>
+            <p>There are two standard ways to write the cube root:</p>
+            <div class="explanation__highlight">
+                <strong>Radical Notation: ∛x = the cube root of x</strong><br/>
+                <strong>Exponent Notation: x<sup>1/3</sup> = the cube root of x</strong>
+            </div>
+            <p>Both notations are mathematically equivalent. The radical form uses the <strong>radical symbol (√)</strong> with a small <strong>3</strong> (the <em>index</em>) written in the "crook" of the radical. The exponent form uses <strong>rational exponents</strong>, where raising to the power of 1/3 means "take the cube root."</p>
+            <table>
+                <thead><tr><th>Notation</th><th>Example</th><th>Meaning</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>∛x</strong></td><td>∛64 = 4</td><td>Radical notation — the most common in textbooks</td></tr>
+                    <tr><td><strong>x<sup>1/3</sup></strong></td><td>64<sup>1/3</sup> = 4</td><td>Exponent notation — useful in algebra and calculus</td></tr>
+                    <tr><td><strong>x<sup>0.333…</sup></strong></td><td>64<sup>0.333…</sup> = 4</td><td>Decimal exponent — used in scientific calculators</td></tr>
+                </tbody>
+            </table>
+            <p>The <strong>index</strong> of a radical tells you which root to take. For cube roots, the index is 3. For <a href="/math-calculators/exponent-calculator">square roots</a>, the index is 2 (usually omitted). For nth roots, the index is <em>n</em>.</p>
+
+            <h2 id="how-to-find-cube-root">How to Find Cube Root — Three Methods</h2>
+
+            <h3 id="method-prime-factorization">Method 1: Prime Factorization (Perfect Cubes)</h3>
+            <p>For <strong>perfect cubes</strong> (integers whose cube root is also an integer), prime factorization is the most elegant method:</p>
+            <ol>
+                <li><strong>Factor</strong> the number into its prime factors</li>
+                <li><strong>Group</strong> the factors into triplets (groups of three identical primes)</li>
+                <li><strong>Take one factor</strong> from each triplet</li>
+                <li><strong>Multiply</strong> the factors together to get the cube root</li>
+            </ol>
+            <p><strong>Example:</strong> Find ∛216</p>
+            <ol>
+                <li>Factor: 216 = 2 × 2 × 2 × 3 × 3 × 3 = 2³ × 3³</li>
+                <li>Group into triplets: (2 × 2 × 2) and (3 × 3 × 3)</li>
+                <li>Take one from each: 2 and 3</li>
+                <li>Multiply: 2 × 3 = <strong>6</strong></li>
+            </ol>
+            <p>Verify: 6³ = 6 × 6 × 6 = 216 ✓</p>
+
+            <p><strong>Example:</strong> Find ∛1728</p>
+            <ol>
+                <li>Factor: 1728 = 2 × 2 × 2 × 2 × 2 × 2 × 3 × 3 × 3 = 2⁶ × 3³</li>
+                <li>Group: (2 × 2 × 2)(2 × 2 × 2)(3 × 3 × 3)</li>
+                <li>Take one from each triplet: 2 × 2 × 3</li>
+                <li>Multiply: 2 × 2 × 3 = <strong>12</strong></li>
+            </ol>
+            <p>Verify: 12³ = 1,728 ✓</p>
+
+            <h3 id="method-estimation">Method 2: Estimation Between Perfect Cubes</h3>
+            <p>For <strong>non-perfect cubes</strong>, estimate by finding the two nearest perfect cubes:</p>
+            <ol>
+                <li>Find the perfect cubes that bracket your number</li>
+                <li>Interpolate to estimate the root</li>
+            </ol>
+            <p><strong>Example:</strong> Estimate ∛50</p>
+            <ol>
+                <li>3³ = 27 and 4³ = 64, so ∛50 is between 3 and 4</li>
+                <li>50 is closer to 64 than to 27, so the root is closer to 4</li>
+                <li>Position: (50 − 27) / (64 − 27) = 23/37 ≈ 0.62</li>
+                <li>Estimate: 3 + 0.62 = <strong>≈ 3.62</strong></li>
+            </ol>
+            <p>Actual value: ∛50 = 3.6840… — our estimate of 3.62 is close!</p>
+
+            <h3 id="method-newton">Method 3: Newton's Method (Iterative)</h3>
+            <p>For high precision, <strong>Newton's method</strong> (also called the Newton-Raphson method) iteratively refines an estimate:</p>
+            <div class="explanation__highlight">
+                <strong>x<sub>n+1</sub> = (1/3) × (2x<sub>n</sub> + S/x<sub>n</sub>²)</strong><br/>
+                where S is the number and x<sub>n</sub> is the current estimate
+            </div>
+            <p>Start with an initial guess and repeat until the desired precision is reached. This is essentially what your calculator does internally. Each iteration roughly triples the number of correct digits.</p>
+
+            <h2 id="perfect-cubes-table">Perfect Cubes: Complete Reference Table</h2>
+            <p>A <strong>perfect cube</strong> is any number that can be expressed as n³ where n is an integer. Here are the first 30 perfect cubes — use the <strong>Perfect Cubes tab</strong> above for the full interactive table up to 50³:</p>
+            <table>
+                <thead><tr><th>n</th><th>n³</th><th>n</th><th>n³</th><th>n</th><th>n³</th></tr></thead>
+                <tbody>
+                    <tr><td>1</td><td>1</td><td>11</td><td>1,331</td><td>21</td><td>9,261</td></tr>
+                    <tr><td>2</td><td>8</td><td>12</td><td>1,728</td><td>22</td><td>10,648</td></tr>
+                    <tr><td>3</td><td>27</td><td>13</td><td>2,197</td><td>23</td><td>12,167</td></tr>
+                    <tr><td>4</td><td>64</td><td>14</td><td>2,744</td><td>24</td><td>13,824</td></tr>
+                    <tr><td>5</td><td>125</td><td>15</td><td>3,375</td><td>25</td><td>15,625</td></tr>
+                    <tr><td>6</td><td>216</td><td>16</td><td>4,096</td><td>26</td><td>17,576</td></tr>
+                    <tr><td>7</td><td>343</td><td>17</td><td>4,913</td><td>27</td><td>19,683</td></tr>
+                    <tr><td>8</td><td>512</td><td>18</td><td>5,832</td><td>28</td><td>21,952</td></tr>
+                    <tr><td>9</td><td>729</td><td>19</td><td>6,859</td><td>29</td><td>24,389</td></tr>
+                    <tr><td>10</td><td>1,000</td><td>20</td><td>8,000</td><td>30</td><td>27,000</td></tr>
+                </tbody>
+            </table>
+
+            <h2 id="cube-root-negative-numbers">Cube Root of Negative Numbers</h2>
+            <p>Unlike <a href="/math-calculators/exponent-calculator">square roots</a>, cube roots of negative numbers <strong>are real numbers</strong>. This is because a negative number multiplied by itself three times produces a negative result:</p>
+            <div class="explanation__highlight">
+                <strong>∛(−x) = −∛x</strong><br/>
+                A negative times a negative times a negative is negative: (−a)³ = −a³
+            </div>
+            <p>Examples:</p>
+            <ul>
+                <li>∛(−8) = −2, because (−2)³ = (−2)(−2)(−2) = −8</li>
+                <li>∛(−27) = −3, because (−3)³ = −27</li>
+                <li>∛(−64) = −4, because (−4)³ = −64</li>
+                <li>∛(−125) = −5, because (−5)³ = −125</li>
+                <li>∛(−1000) = −10, because (−10)³ = −1,000</li>
+            </ul>
+            <p>This property makes cube roots fundamentally different from even-indexed roots (square roots, 4th roots, etc.), which are <strong>not defined for negative numbers</strong> in the real number system. In general, <strong>odd-indexed roots</strong> (3rd, 5th, 7th…) of negative numbers are real, while <strong>even-indexed roots</strong> (2nd, 4th, 6th…) of negative numbers are imaginary.</p>
+
+            <h2 id="cube-root-vs-square-root">Cube Roots vs. Square Roots</h2>
+            <p>Students often confuse cube roots and square roots. Here is a comprehensive comparison:</p>
+            <table>
+                <thead><tr><th>Property</th><th>Square Root (√x)</th><th>Cube Root (∛x)</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Index</strong></td><td>2 (usually omitted)</td><td>3</td></tr>
+                    <tr><td><strong>Exponent form</strong></td><td>x<sup>1/2</sup></td><td>x<sup>1/3</sup></td></tr>
+                    <tr><td><strong>Meaning</strong></td><td>a² = x (side of a square)</td><td>a³ = x (side of a cube)</td></tr>
+                    <tr><td><strong>Negative inputs</strong></td><td>❌ Not real (imaginary)</td><td>✅ Real and negative</td></tr>
+                    <tr><td><strong>√ or ∛ of 0</strong></td><td>0</td><td>0</td></tr>
+                    <tr><td><strong>√ or ∛ of 1</strong></td><td>1</td><td>1</td></tr>
+                    <tr><td><strong>Example</strong></td><td>√16 = 4</td><td>∛27 = 3</td></tr>
+                    <tr><td><strong>Geometric link</strong></td><td>Area → side length</td><td>Volume → side length</td></tr>
+                    <tr><td><strong>Graph shape</strong></td><td>Half-parabola (x ≥ 0 only)</td><td>S-shaped curve (all real x)</td></tr>
+                </tbody>
+            </table>
+
+            <h2 id="nth-roots">Nth Roots — Generalizing Beyond Cube Roots</h2>
+            <p>The cube root is a special case of the <strong>nth root</strong>. The nth root of <em>x</em> is a value <em>a</em> such that <strong>a<sup>n</sup> = x</strong>:</p>
+            <div class="explanation__highlight">
+                <strong>ⁿ√x = x<sup>1/n</sup></strong>
+            </div>
+            <table>
+                <thead><tr><th>Root</th><th>Index (n)</th><th>Symbol</th><th>Example</th></tr></thead>
+                <tbody>
+                    <tr><td>Square root</td><td>2</td><td>√x</td><td>√81 = 9</td></tr>
+                    <tr><td>Cube root</td><td>3</td><td>∛x</td><td>∛125 = 5</td></tr>
+                    <tr><td>4th root</td><td>4</td><td>⁴√x</td><td>⁴√256 = 4</td></tr>
+                    <tr><td>5th root</td><td>5</td><td>⁵√x</td><td>⁵√32 = 2</td></tr>
+                    <tr><td>6th root</td><td>6</td><td>⁶√x</td><td>⁶√729 = 3</td></tr>
+                    <tr><td>10th root</td><td>10</td><td>¹⁰√x</td><td>¹⁰√1024 = 2</td></tr>
+                </tbody>
+            </table>
+            <p>Our calculator supports all roots from 2nd through 10th. Use the <strong>Root Index</strong> dropdown to switch between them. The same prime factorization and step-by-step logic applies to all nth roots.</p>
+
+            <h2 id="real-world-applications">Real-World Applications in the United States</h2>
+
+            <h3 id="volume-calculations">Volume and Dimensions</h3>
+            <p>The most intuitive application of cube roots is working backward from <strong>volume to side length</strong>. If you know the volume of a cube-shaped container, storage unit, or room, the cube root gives you the side length. For example, a shipping container with an internal volume of <strong>2,197 cubic feet</strong> has sides of ∛2,197 = <strong>13 feet</strong>. This calculation is essential in <strong>logistics, warehousing, and architecture</strong> across the United States.</p>
+
+            <h3 id="engineering-materials">Engineering and Materials Science</h3>
+            <p>In <strong>mechanical engineering</strong>, cube roots appear in formulas relating <strong>stress, strain, and material properties</strong>. The <a href="/math-calculators/average-calculator">mean</a> stress in a three-dimensional stress state involves cube root calculations. Engineers at companies and research labs across the U.S. use cube roots when working with <strong>elastic modulus</strong>, <strong>fatigue analysis</strong>, and <strong>heat transfer coefficients</strong>.</p>
+
+            <h3 id="statistics-geometric-mean">Statistics and Data Analysis</h3>
+            <p>The <strong>geometric mean</strong> of three values uses the cube root: Geometric Mean = ∛(a × b × c). This is commonly used in <strong>financial analysis</strong> (compound annual growth rate over 3 years), <strong>environmental science</strong> (averaging pollution measurements), and <strong>public health</strong> (comparing rates across three time periods). The EPA and CDC regularly use geometric means in their statistical analyses.</p>
+
+            <h3 id="three-d-printing">3D Printing and Manufacturing</h3>
+            <p>In the rapidly growing <strong>3D printing industry</strong> in the United States, cube roots are used to scale objects. When you want to double the volume of a 3D-printed part, you multiply each dimension by ∛2 ≈ 1.26 — not by 2. This <strong>cube root scaling law</strong> is fundamental to additive manufacturing, CNC machining, and mold design.</p>
+
+            <h3 id="education-curriculum">Education and Standardized Testing</h3>
+            <p>Cube roots are part of the <strong>Common Core State Standards</strong> for mathematics, introduced in 8th grade under the <strong>Expressions and Equations</strong> domain. They appear on the <strong>SAT</strong>, <strong>ACT</strong>, <strong>GRE</strong>, and <strong>AP Calculus</strong> exams. Students use cube roots when solving cubic equations, simplifying radical expressions, and working with <a href="/math-calculators/exponent-calculator">exponent rules</a>.</p>
+        `,
+        formula: {
+            formula: "∛x = x^(1/3)",
+            variables: [
+                { symbol: "∛x", meaning: "Cube root of x — a value a such that a³ = x" },
+                { symbol: "x^(1/3)", meaning: "Equivalent exponent form — raising x to the power 1/3" },
+                { symbol: "ⁿ√x = x^(1/n)", meaning: "General nth root — any root index from 2 upward" },
+                { symbol: "Perfect Cube", meaning: "A number n³ where n is an integer (e.g., 1, 8, 27, 64, 125…)" },
+            ],
+            example: [
+                { label: "∛27", substitution: "27^(1/3) = 3 × 3 × 3 = 27", result: "3" },
+                { label: "∛-64", substitution: "-(64^(1/3)) = -(4)", result: "-4" },
+                { label: "∛1000", substitution: "1000^(1/3) = 10³", result: "10" },
+                { label: "⁴√81", substitution: "81^(1/4) = 3⁴ = 81", result: "3" },
+            ],
+        },
+        faq: [
+            { question: "What is the cube root of a number?", answer: "The cube root of a number x is a value a such that a³ = x (a × a × a = x). It is written as ∛x or x^(1/3). For example, the cube root of 27 is 3 because 3 × 3 × 3 = 27." },
+            { question: "How do I calculate cube root by hand?", answer: "For perfect cubes, use prime factorization: factor the number, group primes in triplets, take one from each group, and multiply. For example, ∛216: factor as 2³ × 3³, take one 2 and one 3, so ∛216 = 2 × 3 = 6. For non-perfect cubes, use estimation between known perfect cubes." },
+            { question: "What is the cube root symbol?", answer: "The cube root symbol is ∛ (a radical sign with a small 3 in the crook). It can also be written as x^(1/3) using exponent notation. On calculators, you may see it as x^(1/3) or a dedicated ∛ button." },
+            { question: "Can you take the cube root of a negative number?", answer: "Yes! Unlike square roots, cube roots of negative numbers are real. ∛(-x) = -∛x. For example, ∛(-8) = -2 because (-2)³ = -8. This works because a negative times a negative times a negative is negative." },
+            { question: "What is a perfect cube?", answer: "A perfect cube is a number that is the cube of an integer. The first 10 perfect cubes are: 1, 8, 27, 64, 125, 216, 343, 512, 729, and 1,000 (which are 1³ through 10³). Our Perfect Cubes tab lists all cubes from 1³ to 50³." },
+            { question: "What is the difference between cube root and square root?", answer: "A square root finds a such that a² = x (related to area). A cube root finds a such that a³ = x (related to volume). Key difference: square roots of negative numbers are imaginary, but cube roots of negative numbers are real." },
+            { question: "How do I write cube root as an exponent?", answer: "The cube root of x equals x raised to the power 1/3: ∛x = x^(1/3). In general, the nth root of x is x^(1/n). This exponent form is especially useful in algebra and calculus." },
+            { question: "What is the cube root of 0?", answer: "The cube root of 0 is 0, because 0³ = 0 × 0 × 0 = 0." },
+            { question: "How do cube roots relate to volume?", answer: "If you know the volume of a cube, the cube root gives you the side length. For example, a cube with volume 125 cubic inches has sides of ∛125 = 5 inches. This is the geometric meaning of cube roots." },
+            { question: "What is an nth root?", answer: "The nth root of x (written ⁿ√x or x^(1/n)) is a value a such that a^n = x. Cube root is the 3rd root (n=3), square root is the 2nd root (n=2). Our calculator supports 2nd through 10th roots." },
+            { question: "Is ∛2 rational or irrational?", answer: "∛2 is irrational — it cannot be expressed as a fraction of two integers. Its decimal expansion (1.2599210…) never terminates or repeats. In general, ∛n is irrational unless n is a perfect cube." },
+            { question: "How do I find cube root on a calculator?", answer: "Most scientific calculators have a ∛ or x^y button. Enter the number, then use x^(1/3) or the cube root function. On a phone calculator in scientific mode, use the exponent button and enter 1/3 as the power. Or use our free online calculator above." },
+            { question: "What is the cube root of 1?", answer: "The cube root of 1 is 1, because 1³ = 1. In the real number system, 1 is the only real cube root of 1. (In the complex number system, there are two additional complex cube roots.)" },
+            { question: "Can I simplify cube roots like square roots?", answer: "Yes! Use the same factoring approach. If any prime factor appears 3 or more times, pull it out. For example, ∛(24) = ∛(8 × 3) = ∛8 × ∛3 = 2∛3. The number under the radical (radicand) gets smaller." },
+            { question: "Where are cube roots used in real life?", answer: "Cube roots are used in: (1) volume/side length calculations in construction and packaging, (2) engineering stress-strain analysis, (3) 3D printing scaling, (4) statistics — geometric mean of 3 values, (5) chemistry — molar volume calculations, (6) finance — compound annual growth rate over 3 periods." },
+        ],
+        relatedCalculators: [
+            { title: "Exponent Calculator", slug: "exponent-calculator", categorySlug: "math-calculators", description: "Calculate powers and exponents" },
+            { title: "Percentage Calculator", slug: "percentage-calculator", categorySlug: "math-calculators", description: "Calculate percentages — X% of Y, change, increase, decrease" },
+            { title: "Fraction Calculator", slug: "fraction-calculator", categorySlug: "math-calculators", description: "Add, subtract, multiply, divide fractions" },
+            { title: "GCD Calculator", slug: "gcd-calculator", categorySlug: "math-calculators", description: "Find greatest common divisor" },
+            { title: "Average Calculator", slug: "average-calculator", categorySlug: "math-calculators", description: "Calculate mean, median, mode, and range" },
+        ],
+    },
+
     /* ─── 2. FRACTION CALCULATOR — RICH CONTENT (Competitor-level) ─── */
 
     "fraction-calculator": {
