@@ -191,18 +191,21 @@
     margin-top: 2rem;
     padding: 2rem;
     border-radius: 16px;
-    border: 1px solid var(--border);
-    background: var(--surface);
+    border: 1px solid var(--n-border, var(--border));
+    background: var(--n-surface, var(--surface));
 }
 
+/* ── Headings ── */
 .ksa-content h2 {
     font-size: 1.5rem;
     font-weight: 700;
-    margin-top: 2rem;
+    margin-top: 2.25rem;
     margin-bottom: 0.75rem;
     padding-bottom: 0.5rem;
+    padding-left: 0.75rem;
     border-bottom: 2px solid rgba(0, 106, 60, 0.15);
-    color: var(--text-primary);
+    border-left: 3px solid #006a3c;
+    color: var(--n-text, var(--text-primary));
 }
 
 .ksa-content h2:first-child {
@@ -212,35 +215,109 @@
 .ksa-content h3 {
     font-size: 1.15rem;
     font-weight: 600;
-    margin-top: 1.5rem;
+    margin-top: 1.75rem;
     margin-bottom: 0.5rem;
-    color: var(--text-primary);
+    color: var(--n-text, var(--text-primary));
 }
 
+.ksa-content h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-top: 1.25rem;
+    margin-bottom: 0.4rem;
+    color: var(--n-text, var(--text-primary));
+}
+
+/* ── Paragraphs ── */
 .ksa-content p {
-    line-height: 1.7;
+    line-height: 1.75;
     margin-bottom: 1rem;
-    color: var(--text-secondary, var(--text-muted));
+    color: var(--n-text-secondary, var(--text-muted));
+    font-size: 0.95rem;
 }
 
-.ksa-content ul, .ksa-content ol {
-    padding-left: 1.5rem;
-    margin-bottom: 1rem;
+.ksa-content strong {
+    color: var(--n-text, var(--text-primary));
+    font-weight: 600;
+}
+
+.ksa-content em {
+    font-style: italic;
+    color: var(--n-text-secondary, var(--text-muted));
+}
+
+/* ── Lists — RESTORE bullets/numbers stripped by global reset ── */
+.ksa-content ul {
+    list-style-type: disc !important;
+    padding-left: 1.75rem;
+    margin-bottom: 1.25rem;
+    margin-top: 0.5rem;
+}
+
+.ksa-content ol {
+    list-style-type: decimal !important;
+    padding-left: 1.75rem;
+    margin-bottom: 1.25rem;
+    margin-top: 0.5rem;
+}
+
+.ksa-content ul ul {
+    list-style-type: circle !important;
+    margin-top: 0.4rem;
+    margin-bottom: 0.4rem;
 }
 
 .ksa-content li {
     margin-bottom: 0.5rem;
-    line-height: 1.6;
+    line-height: 1.7;
+    color: var(--n-text-secondary, var(--text-muted));
+    font-size: 0.95rem;
+    display: list-item !important;
 }
 
+.ksa-content li strong {
+    color: var(--n-text, var(--text-primary));
+}
+
+.ksa-content li::marker {
+    color: #006a3c;
+    font-weight: 600;
+}
+
+/* ── Highlight / callout boxes (.explanation__highlight in content HTML) ── */
+.ksa-content .explanation__highlight {
+    margin: 1.25rem 0;
+    padding: 1rem 1.25rem;
+    background: linear-gradient(135deg, rgba(0, 106, 60, 0.06) 0%, rgba(0, 106, 60, 0.03) 100%);
+    border-left: 4px solid #006a3c;
+    border-radius: 0 10px 10px 0;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--n-text, var(--text-primary));
+    line-height: 1.7;
+}
+
+.ksa-content .explanation__highlight strong {
+    color: #006a3c;
+    font-weight: 700;
+}
+
+.ksa-content .explanation__highlight br {
+    display: block;
+    margin-bottom: 0.25rem;
+    content: "";
+}
+
+/* ── Tables ── */
 .ksa-content table {
     width: 100%;
     border-collapse: collapse;
-    margin-bottom: 1.5rem;
+    margin: 1.25rem 0 1.5rem;
     font-size: 0.88rem;
-    border-radius: 8px;
+    border-radius: 10px;
     overflow: hidden;
-    border: 1px solid var(--border);
+    border: 1px solid var(--n-border, var(--border));
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
 }
 
 .ksa-content thead th {
@@ -250,34 +327,60 @@
     text-transform: uppercase;
     font-size: 0.75rem;
     letter-spacing: 0.5px;
-    padding: 10px 14px;
+    padding: 11px 14px;
     text-align: left;
+    white-space: nowrap;
 }
 
 .ksa-content tbody td {
     padding: 10px 14px;
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid var(--n-border, var(--border));
     vertical-align: top;
+    color: var(--n-text-secondary, var(--text-muted));
+}
+
+.ksa-content tbody td strong {
+    color: var(--n-text, var(--text-primary));
 }
 
 .ksa-content tbody tr:nth-child(even) {
-    background: rgba(0, 106, 60, 0.02);
+    background: rgba(0, 106, 60, 0.025);
 }
 
 .ksa-content tbody tr:hover {
-    background: rgba(0, 106, 60, 0.04);
+    background: rgba(0, 106, 60, 0.05);
 }
 
+.ksa-content tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* ── Links ── */
 .ksa-content a {
     color: #006a3c;
     font-weight: 600;
     text-decoration: none;
-    border-bottom: 1px solid rgba(0, 106, 60, 0.2);
-    transition: border-color 0.2s ease;
+    border-bottom: 1px dashed rgba(0, 106, 60, 0.35);
+    transition: all 0.2s ease;
 }
 
 .ksa-content a:hover {
+    border-bottom-style: solid;
     border-bottom-color: #006a3c;
+    color: #005230;
+}
+
+/* ── Superscript/subscript ── */
+.ksa-content sup {
+    font-size: 0.7em;
+    vertical-align: super;
+    line-height: 0;
+}
+
+.ksa-content sub {
+    font-size: 0.7em;
+    vertical-align: sub;
+    line-height: 0;
 }
 
 /* Related calculators section */
@@ -482,6 +585,20 @@
 
 [data-theme="dark"] .ksa-content h2 {
     border-bottom-color: rgba(0, 200, 100, 0.2);
+    border-left-color: #00c864;
+}
+
+[data-theme="dark"] .ksa-content li::marker {
+    color: #00c864;
+}
+
+[data-theme="dark"] .ksa-content .explanation__highlight {
+    background: linear-gradient(135deg, rgba(0, 200, 100, 0.08) 0%, rgba(0, 200, 100, 0.03) 100%);
+    border-left-color: #00c864;
+}
+
+[data-theme="dark"] .ksa-content .explanation__highlight strong {
+    color: #00c864;
 }
 
 [data-theme="dark"] .ksa-content thead th {
@@ -498,7 +615,7 @@
 
 [data-theme="dark"] .ksa-content a {
     color: #00c864;
-    border-bottom-color: rgba(0, 200, 100, 0.2);
+    border-bottom-color: rgba(0, 200, 100, 0.3);
 }
 
 [data-theme="dark"] .ksa-related-link:hover {
