@@ -5,6 +5,7 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import Link from "next/link";
 import Breadcrumb from "@/components/layout/Breadcrumb";
+import "../ksa.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
 import KSACalculatorCore from "@/components/calculator/KSACalculatorCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
@@ -79,30 +80,44 @@ export default function CarLoanPage() {
                 </aside>
             </div>
 
-            <section className="calc-card" style={{ marginTop: "var(--s-6)", padding: "var(--s-6)" }}>
-                <div className="hub-content" dangerouslySetInnerHTML={{ __html: CONTENT_HTML }} />
+            <section className="ksa-content">
+                <div dangerouslySetInnerHTML={{ __html: CONTENT_HTML }} />
             </section>
 
             <FAQAccordion title="Saudi Arabia Car Loan FAQ" items={FAQ_ITEMS} />
 
-            <section className="calc-card" style={{ marginTop: "var(--s-4)", padding: "var(--s-4)" }}>
+            <section className="ksa-related">
                 <h3>Related KSA Calculators</h3>
-                <p style={{ marginBottom: "var(--s-2)" }}>
-                    <Link href="/ksa/home-loan-calculator" style={{ color: "var(--primary)", fontWeight: 600 }}>🏠 Home Loan Calculator</Link>
-                    {" — "}Compare car vs home financing in Saudi Arabia.
-                </p>
-                <p style={{ marginBottom: "var(--s-2)" }}>
-                    <Link href="/ksa/salary-calculator" style={{ color: "var(--primary)", fontWeight: 600 }}>💰 Salary Calculator</Link>
-                    {" — "}Calculate your net salary for DTI assessment.
-                </p>
-                <p style={{ marginBottom: "var(--s-2)" }}>
-                    <Link href="/ksa/gosi-calculator" style={{ color: "var(--primary)", fontWeight: 600 }}>🏛️ GOSI Calculator</Link>
-                    {" — "}Banks verify employment via GOSI records.
-                </p>
-                <p>
-                    <Link href="/ksa/vat-calculator" style={{ color: "var(--primary)", fontWeight: 600 }}>🧾 VAT Calculator (15%)</Link>
-                    {" — "}Calculate 15% VAT on vehicle purchases.
-                </p>
+                <div className="ksa-related-links">
+                    <Link href="/ksa/home-loan-calculator" className="ksa-related-link">
+                        <span className="ksa-related-link__icon">🏠</span>
+                        <div className="ksa-related-link__text">
+                            <div className="ksa-related-link__title">Home Loan Calculator</div>
+                            <div className="ksa-related-link__desc">Compare car vs home financing</div>
+                        </div>
+                    </Link>
+                    <Link href="/ksa/salary-calculator" className="ksa-related-link">
+                        <span className="ksa-related-link__icon">💰</span>
+                        <div className="ksa-related-link__text">
+                            <div className="ksa-related-link__title">Salary Calculator</div>
+                            <div className="ksa-related-link__desc">Calculate net salary for DTI</div>
+                        </div>
+                    </Link>
+                    <Link href="/ksa/gosi-calculator" className="ksa-related-link">
+                        <span className="ksa-related-link__icon">🏛️</span>
+                        <div className="ksa-related-link__text">
+                            <div className="ksa-related-link__title">GOSI Calculator</div>
+                            <div className="ksa-related-link__desc">Banks verify employment via GOSI</div>
+                        </div>
+                    </Link>
+                    <Link href="/ksa/vat-calculator" className="ksa-related-link">
+                        <span className="ksa-related-link__icon">🧾</span>
+                        <div className="ksa-related-link__text">
+                            <div className="ksa-related-link__title">VAT Calculator (15%)</div>
+                            <div className="ksa-related-link__desc">Calculate VAT on vehicle purchases</div>
+                        </div>
+                    </Link>
+                </div>
             </section>
         </main>
     );

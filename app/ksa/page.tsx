@@ -1,14 +1,15 @@
 // KSA Hub Page — /ksa/
-// Lists all KSA-specific calculators
+// Premium hub with Saudi-themed styling
 
 import type { Metadata } from "next";
 import Link from "next/link";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import { canonicalUrl } from "@/lib/seo";
+import "./ksa.css";
 
 export const metadata: Metadata = {
     title: "KSA Calculators — Saudi Arabia Tools",
-    description: "Free KSA-specific calculators: End of Service Benefit (EOSB), Saudi Labor Law tools, and more. Accurate, step-by-step, and based on Saudi regulations.",
+    description: "Free KSA-specific calculators: End of Service Benefit (EOSB), GOSI, Salary, Overtime, Leave, Home Loan, Car Loan, and VAT. Accurate, step-by-step, based on Saudi regulations.",
     alternates: { canonical: canonicalUrl("/ksa") },
 };
 
@@ -17,52 +18,59 @@ const KSA_CALCULATORS = [
         title: "End of Service Benefit Calculator",
         slug: "end-of-service-calculator",
         icon: "🏢",
-        description: "Calculate your EOSB under Saudi Labor Law Articles 84, 85, and 87. Covers termination, resignation, and special cases with step-by-step breakdown.",
+        tag: "Labor Law",
+        description: "Calculate your EOSB under Saudi Labor Law Articles 84, 85, and 87. Covers termination, resignation, and special cases.",
     },
     {
         title: "GOSI Calculator",
         slug: "gosi-calculator",
         icon: "🏛️",
-        description: "Calculate your GOSI social insurance contributions — Annuities, SANED, and Occupational Hazards — for Saudi and non-Saudi employees. Based on 2025 rates.",
+        tag: "Social Insurance",
+        description: "Calculate your GOSI contributions — Annuities, SANED, and Occupational Hazards — for Saudi and non-Saudi employees.",
     },
     {
         title: "VAT Calculator (15%)",
         slug: "vat-calculator",
         icon: "🧾",
-        description: "Add or remove 15% VAT for Saudi Arabia. Calculate VAT-inclusive and VAT-exclusive prices with ZATCA-compliant formulas.",
+        tag: "Tax",
+        description: "Add or remove 15% VAT for Saudi Arabia. ZATCA-compliant formulas for VAT-inclusive and VAT-exclusive prices.",
     },
     {
         title: "Salary Calculator",
         slug: "salary-calculator",
         icon: "💰",
-        description: "Calculate your net take-home salary in Saudi Arabia. No income tax — only GOSI deduction. Supports Saudi nationals and expatriates.",
+        tag: "Payroll",
+        description: "Calculate your net take-home salary. No income tax — only GOSI deduction. Supports Saudi nationals and expatriates.",
     },
     {
         title: "Overtime Calculator",
         slug: "overtime-calculator",
         icon: "⏱️",
-        description: "Calculate your overtime pay under Saudi Labor Law Article 107. 150% rate for weekdays, weekends, and holidays. Supports Ramadan hours.",
+        tag: "Labor Law",
+        description: "Calculate overtime pay under Article 107. 150% rate for weekdays, weekends, and holidays. Ramadan hours supported.",
     },
     {
         title: "Annual Leave Calculator",
         slug: "annual-leave-calculator",
         icon: "🏖️",
-        description: "Calculate your annual leave entitlement, leave pay, and encashment value. 21 days under 5 years, 30 days for 5+ years of service.",
+        tag: "Labor Law",
+        description: "Calculate leave entitlement, leave pay, and encashment. 21 days under 5 years, 30 days for 5+ years of service.",
     },
     {
         title: "Home Loan Calculator",
         slug: "home-loan-calculator",
         icon: "🏠",
-        description: "Calculate your monthly mortgage payment in Saudi Arabia. Sharia-compliant Murabaha, Ijara, and Musharaka with SAMA DTI check.",
+        tag: "Financing",
+        description: "Calculate monthly mortgage payment. Sharia-compliant Murabaha, Ijara, and Musharaka with SAMA DTI check.",
     },
     {
         title: "Car Loan Calculator",
         slug: "car-loan-calculator",
         icon: "🚗",
-        description: "Calculate your monthly car installment in Saudi Arabia. Murabaha and Ijara with SAMA 60-month limit and bank comparison.",
+        tag: "Financing",
+        description: "Calculate monthly car installment. Murabaha and Ijara with SAMA 60-month limit and bank comparison.",
     },
 ];
-
 
 export default function KSAPage() {
     return (
@@ -72,22 +80,38 @@ export default function KSAPage() {
                 { label: "KSA Calculators" },
             ]} />
 
-            <h1 className="t-h1" style={{ marginBottom: "var(--s-2)" }}>🇸🇦 KSA Calculators</h1>
-            <p className="t-body text-muted" style={{ marginBottom: "var(--s-6)" }}>
-                Free calculators designed for Saudi Arabia. Based on Saudi Labor Law, GOSI regulations, and KSA-specific rules.
-            </p>
+            <div className="ksa-hero">
+                <div className="ksa-hero__flag">🇸🇦</div>
+                <h1 className="ksa-hero__title">KSA Calculators</h1>
+                <p className="ksa-hero__subtitle">
+                    Free calculators designed for Saudi Arabia — based on Saudi Labor Law, GOSI regulations, SAMA rules, and ZATCA guidelines.
+                </p>
+                <div className="ksa-hero__stats">
+                    <div className="ksa-hero__stat">
+                        <span className="ksa-hero__stat-num">{KSA_CALCULATORS.length}</span>
+                        <span className="ksa-hero__stat-label">Calculators</span>
+                    </div>
+                    <div className="ksa-hero__stat">
+                        <span className="ksa-hero__stat-num">120+</span>
+                        <span className="ksa-hero__stat-label">FAQs</span>
+                    </div>
+                    <div className="ksa-hero__stat">
+                        <span className="ksa-hero__stat-num">100%</span>
+                        <span className="ksa-hero__stat-label">Free</span>
+                    </div>
+                </div>
+            </div>
 
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))", gap: "var(--s-4)" }}>
+            <div className="ksa-grid">
                 {KSA_CALCULATORS.map((calc) => (
-                    <Link
-                        key={calc.slug}
-                        href={`/ksa/${calc.slug}`}
-                        className="calc-card"
-                        style={{ display: "block", padding: "var(--s-4)", textDecoration: "none", color: "inherit", transition: "transform 0.2s ease, box-shadow 0.2s ease" }}
-                    >
-                        <div style={{ fontSize: "2rem", marginBottom: "var(--s-2)" }}>{calc.icon}</div>
-                        <h2 className="t-h3" style={{ marginBottom: "var(--s-1)" }}>{calc.title}</h2>
-                        <p className="t-body text-muted" style={{ fontSize: "0.9rem" }}>{calc.description}</p>
+                    <Link key={calc.slug} href={`/ksa/${calc.slug}`} className="ksa-card">
+                        <div className="ksa-card__icon">{calc.icon}</div>
+                        <div className="ksa-card__body">
+                            <div className="ksa-card__tag">{calc.tag}</div>
+                            <h2 className="ksa-card__title">{calc.title}</h2>
+                            <p className="ksa-card__desc">{calc.description}</p>
+                        </div>
+                        <div className="ksa-card__arrow">→</div>
                     </Link>
                 ))}
             </div>

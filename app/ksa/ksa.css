@@ -1,0 +1,507 @@
+/* ── KSA Hub & Inner Pages — Premium Styling ── */
+
+/* ═══════════════════════════════════════════════
+   HERO SECTION
+   ═══════════════════════════════════════════════ */
+.ksa-hero {
+    text-align: center;
+    padding: 2.5rem 1.5rem 2rem;
+    margin-bottom: 2.5rem;
+    background: linear-gradient(135deg, rgba(0, 100, 60, 0.06) 0%, rgba(0, 100, 60, 0.02) 50%, rgba(255, 255, 255, 0) 100%);
+    border-radius: 16px;
+    border: 1px solid rgba(0, 100, 60, 0.08);
+}
+
+.ksa-hero__flag {
+    font-size: 3rem;
+    margin-bottom: 0.75rem;
+    filter: drop-shadow(0 2px 8px rgba(0, 100, 60, 0.15));
+}
+
+.ksa-hero__title {
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+.ksa-hero__subtitle {
+    max-width: 640px;
+    margin: 0 auto 1.5rem;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+}
+
+.ksa-hero__stats {
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+}
+
+.ksa-hero__stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ksa-hero__stat-num {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #006a3c;
+    line-height: 1;
+}
+
+.ksa-hero__stat-label {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 0.25rem;
+}
+
+/* ═══════════════════════════════════════════════
+   CARD GRID
+   ═══════════════════════════════════════════════ */
+.ksa-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-bottom: 3rem;
+}
+
+.ksa-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    border-radius: 12px;
+    text-decoration: none;
+    color: inherit;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.ksa-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 100%;
+    background: linear-gradient(180deg, #006a3c, #00a85a);
+    opacity: 0;
+    transition: opacity 0.25s ease;
+}
+
+.ksa-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 106, 60, 0.2);
+}
+
+.ksa-card:hover::before {
+    opacity: 1;
+}
+
+.ksa-card:hover .ksa-card__arrow {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.ksa-card__icon {
+    font-size: 2rem;
+    line-height: 1;
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 106, 60, 0.06);
+    border-radius: 10px;
+}
+
+.ksa-card__body {
+    flex: 1;
+    min-width: 0;
+}
+
+.ksa-card__tag {
+    display: inline-block;
+    font-size: 0.65rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: #006a3c;
+    background: rgba(0, 106, 60, 0.08);
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-bottom: 0.4rem;
+}
+
+.ksa-card__title {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+    line-height: 1.3;
+    color: var(--text-primary);
+}
+
+.ksa-card__desc {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin: 0;
+}
+
+.ksa-card__arrow {
+    flex-shrink: 0;
+    font-size: 1.2rem;
+    color: #006a3c;
+    opacity: 0;
+    transform: translateX(-4px);
+    transition: all 0.25s ease;
+    align-self: center;
+    font-weight: 700;
+}
+
+/* ═══════════════════════════════════════════════
+   INNER PAGE — Calculator card styling
+   ═══════════════════════════════════════════════ */
+.ksa-calc-wrapper {
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    overflow: hidden;
+}
+
+.ksa-calc-wrapper .con-calc {
+    padding: 1.5rem;
+}
+
+/* ═══════════════════════════════════════════════
+   INNER PAGE — Content section polish
+   ═══════════════════════════════════════════════ */
+.ksa-content {
+    margin-top: 2rem;
+    padding: 2rem;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+}
+
+.ksa-content h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid rgba(0, 106, 60, 0.15);
+    color: var(--text-primary);
+}
+
+.ksa-content h2:first-child {
+    margin-top: 0;
+}
+
+.ksa-content h3 {
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+.ksa-content p {
+    line-height: 1.7;
+    margin-bottom: 1rem;
+    color: var(--text-secondary, var(--text-muted));
+}
+
+.ksa-content ul, .ksa-content ol {
+    padding-left: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.ksa-content li {
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+}
+
+.ksa-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1.5rem;
+    font-size: 0.88rem;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+}
+
+.ksa-content thead th {
+    background: #006a3c;
+    color: #fff;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.5px;
+    padding: 10px 14px;
+    text-align: left;
+}
+
+.ksa-content tbody td {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+}
+
+.ksa-content tbody tr:nth-child(even) {
+    background: rgba(0, 106, 60, 0.02);
+}
+
+.ksa-content tbody tr:hover {
+    background: rgba(0, 106, 60, 0.04);
+}
+
+.ksa-content a {
+    color: #006a3c;
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(0, 106, 60, 0.2);
+    transition: border-color 0.2s ease;
+}
+
+.ksa-content a:hover {
+    border-bottom-color: #006a3c;
+}
+
+/* Related calculators section */
+.ksa-related {
+    margin-top: 1.5rem;
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+}
+
+.ksa-related h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+.ksa-related-links {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+}
+
+.ksa-related-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.2s ease;
+}
+
+.ksa-related-link:hover {
+    border-color: rgba(0, 106, 60, 0.3);
+    background: rgba(0, 106, 60, 0.03);
+    transform: translateY(-1px);
+}
+
+.ksa-related-link__icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.ksa-related-link__text {
+    flex: 1;
+}
+
+.ksa-related-link__title {
+    font-weight: 600;
+    font-size: 0.88rem;
+    color: var(--text-primary);
+}
+
+.ksa-related-link__desc {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    margin-top: 2px;
+}
+
+/* ═══════════════════════════════════════════════
+   MOBILE RESPONSIVE
+   ═══════════════════════════════════════════════ */
+@media (max-width: 768px) {
+    .ksa-hero {
+        padding: 1.5rem 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .ksa-hero__flag {
+        font-size: 2.5rem;
+    }
+
+    .ksa-hero__title {
+        font-size: 1.5rem;
+    }
+
+    .ksa-hero__subtitle {
+        font-size: 0.9rem;
+    }
+
+    .ksa-hero__stats {
+        gap: 1.5rem;
+    }
+
+    .ksa-hero__stat-num {
+        font-size: 1.25rem;
+    }
+
+    .ksa-grid {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+    }
+
+    .ksa-card {
+        padding: 1rem 1.25rem;
+    }
+
+    .ksa-card__icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1.5rem;
+    }
+
+    .ksa-card__title {
+        font-size: 0.95rem;
+    }
+
+    .ksa-card__desc {
+        font-size: 0.8rem;
+    }
+
+    .ksa-card__arrow {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    .ksa-content {
+        padding: 1.25rem;
+    }
+
+    .ksa-content h2 {
+        font-size: 1.25rem;
+    }
+
+    .ksa-content table {
+        font-size: 0.8rem;
+    }
+
+    .ksa-content thead th {
+        padding: 8px 10px;
+        font-size: 0.7rem;
+    }
+
+    .ksa-content tbody td {
+        padding: 8px 10px;
+    }
+
+    .ksa-related-links {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .ksa-hero__stats {
+        flex-direction: row;
+        gap: 1rem;
+    }
+
+    .ksa-card {
+        gap: 0.75rem;
+    }
+
+    .ksa-content {
+        padding: 1rem;
+        margin-top: 1.5rem;
+    }
+
+    .ksa-content table {
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+/* ═══════════════════════════════════════════════
+   DARK MODE OVERRIDES
+   ═══════════════════════════════════════════════ */
+[data-theme="dark"] .ksa-hero {
+    background: linear-gradient(135deg, rgba(0, 168, 90, 0.08) 0%, rgba(0, 168, 90, 0.02) 50%, rgba(0, 0, 0, 0) 100%);
+    border-color: rgba(0, 168, 90, 0.12);
+}
+
+[data-theme="dark"] .ksa-hero__stat-num {
+    color: #00c864;
+}
+
+[data-theme="dark"] .ksa-card__icon {
+    background: rgba(0, 200, 100, 0.08);
+}
+
+[data-theme="dark"] .ksa-card__tag {
+    color: #00c864;
+    background: rgba(0, 200, 100, 0.1);
+}
+
+[data-theme="dark"] .ksa-card::before {
+    background: linear-gradient(180deg, #00c864, #00a85a);
+}
+
+[data-theme="dark"] .ksa-card:hover {
+    border-color: rgba(0, 200, 100, 0.25);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .ksa-card__arrow {
+    color: #00c864;
+}
+
+[data-theme="dark"] .ksa-content h2 {
+    border-bottom-color: rgba(0, 200, 100, 0.2);
+}
+
+[data-theme="dark"] .ksa-content thead th {
+    background: #005a30;
+}
+
+[data-theme="dark"] .ksa-content tbody tr:nth-child(even) {
+    background: rgba(0, 200, 100, 0.03);
+}
+
+[data-theme="dark"] .ksa-content tbody tr:hover {
+    background: rgba(0, 200, 100, 0.06);
+}
+
+[data-theme="dark"] .ksa-content a {
+    color: #00c864;
+    border-bottom-color: rgba(0, 200, 100, 0.2);
+}
+
+[data-theme="dark"] .ksa-related-link:hover {
+    border-color: rgba(0, 200, 100, 0.3);
+    background: rgba(0, 200, 100, 0.05);
+}
