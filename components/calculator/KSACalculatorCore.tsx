@@ -430,7 +430,210 @@ export default function KSACalculatorCore({ calcType }: { calcType: string }) {
     if (calcType === "eosb") return <EOSBCalc />;
     if (calcType === "gosi") return <GOSICalc />;
     if (calcType === "vat") return <VATCalc />;
+    if (calcType === "salary") return <SalaryCalc />;
     return <p>Calculator not found: {calcType}</p>;
+}
+
+/* ── Salary Calculator (KSA — No Income Tax) ── */
+function SalaryCalc() {
+    const [tab, setTab] = useState(0);
+    const tabs = ["🧮 Gross-to-Net", "📊 Salary Table"];
+    return (<div className="con-calc">
+        <h3 className="con-calc__title">💰 Salary Calculator (KSA)</h3>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: "var(--s-1)", marginBottom: "var(--s-3)" }}>
+            {tabs.map((t, i) => <button key={i} onClick={() => setTab(i)} className={`calc-tab-btn${tab === i ? " calc-tab-btn--active" : ""}`}>{t}</button>)}
+        </div>
+        {tab === 0 && <SalaryGrossToNetTab />}
+        {tab === 1 && <SalaryTableTab />}
+    </div>);
+}
+
+function SalaryGrossToNetTab() {
+    const [basic, setBasic] = useState("8000");
+    const [housing, setHousing] = useState("2500");
+    const [transport, setTransport] = useState("800");
+    const [other, setOther] = useState("0");
+    const [nationality, setNationality] = useState("saudi");
+
+    const r = useMemo(() => {
+        const b = parseFloat(basic) || 0;
+        const h = parseFloat(housing) || 0;
+        const t = parseFloat(transport) || 0;
+        const o = parseFloat(other) || 0;
+        const grossSalary = b + h + t + o;
+        if (grossSalary <= 0) return null;
+
+        const gosiBase = b + h; // Only basic + housing
+        const contributable = Math.min(Math.max(gosiBase, GOSI_FLOOR), GOSI_CAP);
+        const isSaudi = nationality === "saudi";
+
+        const empRate = isSaudi ? GOSI_RATES.saudi.employee.total : 0;
+        const errRate = isSaudi ? GOSI_RATES.saudi.employer.total : GOSI_RATES.nonSaudi.employer.total;
+
+        const empGOSI = contributable * empRate;
+        const errGOSI = contributable * errRate;
+        const netSalary = grossSalary - empGOSI;
+        const totalEmployerCost = grossSalary + errGOSI;
+
+        return {
+            b, h, t, o, grossSalary, gosiBase, contributable, isSaudi,
+            empGOSI, errGOSI, netSalary, totalEmployerCost, empRate, errRate,
+            steps: [
+                `Basic Salary: SAR ${fmt(b)}`,
+                `Housing Allowance: SAR ${fmt(h)}`,
+                `Transport Allowance: SAR ${fmt(t)}`,
+                ...(o > 0 ? [`Other Allowances: SAR ${fmt(o)}`] : []),
+                `Gross Salary: SAR ${fmt(grossSalary)}`,
+                `GOSI Base (Basic + Housing): SAR ${fmt(gosiBase)}`,
+                contributable !== gosiBase
+                    ? `GOSI Base ${contributable < gosiBase ? "capped" : "floored"} at: SAR ${fmt(contributable)}`
+                    : `GOSI Base within limits (SAR ${fmt(GOSI_FLOOR, 0)}–${fmt(GOSI_CAP, 0)})`,
+                `Income Tax: SAR 0.00 (Saudi Arabia has no personal income tax)`,
+                `Employee GOSI (${(empRate * 100).toFixed(2)}%): SAR ${fmt(empGOSI)}`,
+                `Net Salary: SAR ${fmt(grossSalary)} − SAR ${fmt(empGOSI)} = SAR ${fmt(netSalary)}`,
+                `Employer GOSI (${(errRate * 100).toFixed(2)}%): SAR ${fmt(errGOSI)}`,
+                `Total Employer Cost: SAR ${fmt(grossSalary)} + SAR ${fmt(errGOSI)} = SAR ${fmt(totalEmployerCost)}`,
+            ],
+        };
+    }, [basic, housing, transport, other, nationality]);
+
+    return (<div>
+        <div className="con-calc__inputs">
+            <InputField label="Basic Salary" value={basic} onChange={setBasic} unit="SAR" placeholder="e.g. 8000" />
+            <InputField label="Housing Allowance" value={housing} onChange={setHousing} unit="SAR" placeholder="e.g. 2500" />
+            <InputField label="Transport Allowance" value={transport} onChange={setTransport} unit="SAR" placeholder="e.g. 800" />
+            <InputField label="Other Allowances" value={other} onChange={setOther} unit="SAR" placeholder="e.g. 500" />
+            <SelectField label="Nationality" value={nationality} onChange={setNationality} options={[
+                { value: "saudi", label: "Saudi National" },
+                { value: "nonSaudi", label: "Non-Saudi (Expatriate)" },
+            ]} />
+        </div>
+        {r && <div className="con-calc__results">
+            <h4>Monthly Salary Summary</h4>
+            <ResultRow label="Gross Salary" value={`SAR ${fmt(r.grossSalary)}`} />
+            <ResultRow label="Income Tax" value="SAR 0.00 (no income tax)" />
+            <ResultRow label="Employee GOSI Deduction" value={`SAR ${fmt(r.empGOSI)}`} />
+            <ResultRow label="Net Salary (Take-Home)" value={`SAR ${fmt(r.netSalary)}`} />
+
+            <h4>Employer Cost</h4>
+            <ResultRow label="Employer GOSI" value={`SAR ${fmt(r.errGOSI)}`} />
+            <ResultRow label="Total Employer Cost" value={`SAR ${fmt(r.totalEmployerCost)}`} />
+
+            <h4>Annual Summary</h4>
+            <ResultRow label="Annual Gross" value={`SAR ${fmt(r.grossSalary * 12)}`} />
+            <ResultRow label="Annual Net" value={`SAR ${fmt(r.netSalary * 12)}`} />
+            <ResultRow label="Annual GOSI (Employee)" value={`SAR ${fmt(r.empGOSI * 12)}`} />
+
+            <h4>Step‑by‑Step</h4>
+            {r.steps.map((s, i) => <ResultRow key={i} label={`Step ${i + 1}`} value={s} />)}
+            <div style={{ marginTop: "var(--s-3)", padding: "var(--s-3)", background: "rgba(234,179,8,0.08)", borderRadius: "8px", fontSize: "0.8rem", color: "var(--text-muted)" }}>
+                ⚠️ Saudi Arabia has no personal income tax. GOSI is the only mandatory payroll deduction. Rates based on 2025 GOSI schedule.
+            </div>
+        </div>}
+    </div>);
+}
+
+function SalaryTableTab() {
+    const ts = { width: "100%", fontSize: "0.85rem", borderCollapse: "collapse" as const };
+    const th = { padding: "8px 12px", textAlign: "center" as const };
+    const td = { padding: "6px 12px", textAlign: "center" as const };
+    const tl = { ...td, textAlign: "left" as const };
+    const b = { borderBottom: "1px solid var(--border)" };
+    const bh = { borderBottom: "2px solid var(--border)" };
+
+    // Standard package: 60% basic, 25% housing, 10% transport, 5% other
+    const packages = [4000, 6000, 8000, 10000, 12000, 15000, 20000, 25000, 30000, 40000, 50000];
+
+    return (<div className="con-calc__results">
+        <h4>Saudi National — Salary → Net Pay Lookup</h4>
+        <p style={{ fontSize: "0.8rem", color: "var(--text-muted)", marginBottom: "var(--s-2)" }}>
+            Assumes standard package: 60% basic, 25% housing, 10% transport, 5% other
+        </p>
+        <div style={{ overflowX: "auto" }}>
+            <table style={ts}>
+                <thead><tr style={bh}>
+                    <th style={{ ...th, textAlign: "left" }}>Total Package</th>
+                    <th style={th}>Basic (60%)</th>
+                    <th style={th}>Housing (25%)</th>
+                    <th style={th}>GOSI Base</th>
+                    <th style={th}>GOSI Deduction</th>
+                    <th style={th}>Net Salary</th>
+                </tr></thead>
+                <tbody>
+                    {packages.map((pkg) => {
+                        const bas = pkg * 0.6;
+                        const hou = pkg * 0.25;
+                        const gosiBase = Math.min(bas + hou, GOSI_CAP);
+                        const gosi = gosiBase * 0.0975;
+                        const net = pkg - gosi;
+                        return (<tr key={pkg} style={b}>
+                            <td style={{ ...tl, fontWeight: 600 }}>SAR {pkg.toLocaleString()}</td>
+                            <td style={td}>SAR {fmt(bas)}</td>
+                            <td style={td}>SAR {fmt(hou)}</td>
+                            <td style={td}>SAR {fmt(gosiBase)}</td>
+                            <td style={td}>SAR {fmt(gosi)}</td>
+                            <td style={{ ...td, fontWeight: 700 }}>SAR {fmt(net)}</td>
+                        </tr>);
+                    })}
+                </tbody>
+            </table>
+        </div>
+
+        <h4 style={{ marginTop: "var(--s-4)" }}>Non-Saudi (Expatriate) — Salary → Net Pay</h4>
+        <p style={{ fontSize: "0.8rem", color: "var(--text-muted)", marginBottom: "var(--s-2)" }}>
+            No GOSI deduction from employee — net salary equals gross salary
+        </p>
+        <div style={{ overflowX: "auto" }}>
+            <table style={ts}>
+                <thead><tr style={bh}>
+                    <th style={{ ...th, textAlign: "left" }}>Total Package</th>
+                    <th style={th}>Employee GOSI</th>
+                    <th style={th}>Net Salary</th>
+                    <th style={th}>Employer Hazards (2%)</th>
+                </tr></thead>
+                <tbody>
+                    {packages.map((pkg) => {
+                        const bas = pkg * 0.6;
+                        const hou = pkg * 0.25;
+                        const gosiBase = Math.min(bas + hou, GOSI_CAP);
+                        return (<tr key={pkg} style={b}>
+                            <td style={{ ...tl, fontWeight: 600 }}>SAR {pkg.toLocaleString()}</td>
+                            <td style={td}>SAR 0.00</td>
+                            <td style={{ ...td, fontWeight: 700 }}>SAR {fmt(pkg)}</td>
+                            <td style={td}>SAR {fmt(gosiBase * 0.02)}</td>
+                        </tr>);
+                    })}
+                </tbody>
+            </table>
+        </div>
+
+        <h4 style={{ marginTop: "var(--s-4)" }}>Typical Salary Package Structure</h4>
+        <div style={{ overflowX: "auto" }}>
+            <table style={ts}>
+                <thead><tr style={bh}>
+                    <th style={{ ...th, textAlign: "left" }}>Component</th>
+                    <th style={th}>Typical Range</th>
+                    <th style={{ ...th, textAlign: "left" }}>Notes</th>
+                </tr></thead>
+                <tbody>
+                    {[
+                        ["Basic Salary", "40–60%", "Foundation for GOSI & EOSB calculations"],
+                        ["Housing Allowance", "25–35%", "Included in GOSI base; may be actual housing instead"],
+                        ["Transport Allowance", "5–10%", "NOT included in GOSI base"],
+                        ["Food/Meal Allowance", "0–5%", "Optional; NOT in GOSI base"],
+                        ["Phone/Internet", "0–3%", "Optional; NOT in GOSI base"],
+                        ["Annual Bonus", "Varies", "Performance-based; NOT in GOSI base"],
+                    ].map(([comp, range, notes], i) => (
+                        <tr key={i} style={b}>
+                            <td style={{ ...tl, fontWeight: 600 }}>{comp}</td>
+                            <td style={{ ...td, fontWeight: 700 }}>{range}</td>
+                            <td style={{ ...tl, fontSize: "0.8rem" }}>{notes}</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
+    </div>);
 }
 
 /* ── VAT Calculator (Saudi Arabia 15%) ── */

@@ -31,6 +31,12 @@ const KSA_CALCULATORS = [
         icon: "🧾",
         description: "Add or remove 15% VAT for Saudi Arabia. Calculate VAT-inclusive and VAT-exclusive prices with ZATCA-compliant formulas.",
     },
+    {
+        title: "Salary Calculator",
+        slug: "salary-calculator",
+        icon: "💰",
+        description: "Calculate your net take-home salary in Saudi Arabia. No income tax — only GOSI deduction. Supports Saudi nationals and expatriates.",
+    },
 ];
 
 
