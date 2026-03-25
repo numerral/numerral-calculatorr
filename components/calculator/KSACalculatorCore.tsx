@@ -433,7 +433,188 @@ export default function KSACalculatorCore({ calcType }: { calcType: string }) {
     if (calcType === "salary") return <SalaryCalc />;
     if (calcType === "overtime") return <OvertimeCalc />;
     if (calcType === "leave") return <LeaveCalc />;
+    if (calcType === "homeloan") return <HomeLoanCalc />;
     return <p>Calculator not found: {calcType}</p>;
+}
+
+/* ── Home Loan Calculator (Sharia-Compliant Financing) ── */
+function HomeLoanCalc() {
+    const [tab, setTab] = useState(0);
+    const tabs = ["🧮 Calculator", "📋 Reference"];
+    return (<div className="con-calc">
+        <h3 className="con-calc__title">🏠 Home Loan Calculator (KSA)</h3>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: "var(--s-1)", marginBottom: "var(--s-3)" }}>
+            {tabs.map((t, i) => <button key={i} onClick={() => setTab(i)} className={`calc-tab-btn${tab === i ? " calc-tab-btn--active" : ""}`}>{t}</button>)}
+        </div>
+        {tab === 0 && <HomeLoanCalcTab />}
+        {tab === 1 && <HomeLoanRefTab />}
+    </div>);
+}
+
+function HomeLoanCalcTab() {
+    const [price, setPrice] = useState("1000000");
+    const [downPct, setDownPct] = useState("10");
+    const [rate, setRate] = useState("5.5");
+    const [tenure, setTenure] = useState("25");
+    const [salary, setSalary] = useState("");
+
+    const r = useMemo(() => {
+        const p = parseFloat(price) || 0;
+        const dp = parseFloat(downPct) || 0;
+        const ar = parseFloat(rate) || 0;
+        const t = parseFloat(tenure) || 0;
+        const sal = parseFloat(salary) || 0;
+        if (p <= 0 || ar <= 0 || t <= 0) return null;
+
+        const downPayment = p * (dp / 100);
+        const loanAmount = p - downPayment;
+        const mr = ar / 100 / 12;
+        const n = t * 12;
+        const monthly = loanAmount * (mr * Math.pow(1 + mr, n)) / (Math.pow(1 + mr, n) - 1);
+        const totalCost = monthly * n;
+        const totalProfit = totalCost - loanAmount;
+        const dti = sal > 0 ? (monthly / sal) * 100 : 0;
+
+        return {
+            p, downPayment, loanAmount, ar, t, monthly, totalCost, totalProfit, dti, sal,
+            steps: [
+                `Property Price: SAR ${fmt(p)}`,
+                `Down Payment (${dp}%): SAR ${fmt(downPayment)}`,
+                `Financing Amount: SAR ${fmt(p)} − SAR ${fmt(downPayment)} = SAR ${fmt(loanAmount)}`,
+                `Annual Profit Rate (APR): ${ar}%`,
+                `Monthly Rate: ${ar}% ÷ 12 = ${fmt(ar / 12)}%`,
+                `Tenure: ${t} years (${n} months)`,
+                `Monthly Payment: SAR ${fmt(monthly)}`,
+                `Total Cost: SAR ${fmt(monthly)} × ${n} months = SAR ${fmt(totalCost)}`,
+                `Total Profit Paid: SAR ${fmt(totalCost)} − SAR ${fmt(loanAmount)} = SAR ${fmt(totalProfit)}`,
+                ...(sal > 0 ? [`DTI Ratio: SAR ${fmt(monthly)} ÷ SAR ${fmt(sal)} = ${fmt(dti)}% ${dti > 65 ? "⚠️ EXCEEDS 65% SAMA limit" : "✅ Within 65% SAMA limit"}`] : []),
+            ],
+        };
+    }, [price, downPct, rate, tenure, salary]);
+
+    return (<div>
+        <div className="con-calc__inputs">
+            <InputField label="Property Price" value={price} onChange={setPrice} unit="SAR" placeholder="e.g. 1000000" />
+            <InputField label="Down Payment" value={downPct} onChange={setDownPct} unit="%" placeholder="e.g. 10" />
+            <InputField label="Annual Profit Rate (APR)" value={rate} onChange={setRate} unit="%" placeholder="e.g. 5.5" />
+            <InputField label="Financing Tenure" value={tenure} onChange={setTenure} unit="years" placeholder="e.g. 25" />
+            <InputField label="Monthly Net Salary (optional, for DTI)" value={salary} onChange={setSalary} unit="SAR" placeholder="e.g. 15000" />
+        </div>
+        {r && <div className="con-calc__results">
+            <h4>Financing Summary</h4>
+            <ResultRow label="Down Payment" value={`SAR ${fmt(r.downPayment)}`} />
+            <ResultRow label="Financing Amount" value={`SAR ${fmt(r.loanAmount)}`} />
+            <ResultRow label="Monthly Payment" value={`SAR ${fmt(r.monthly)}`} />
+            <ResultRow label="Total Cost (over tenure)" value={`SAR ${fmt(r.totalCost)}`} />
+            <ResultRow label="Total Profit Paid" value={`SAR ${fmt(r.totalProfit)}`} />
+            {r.sal > 0 && <ResultRow label="DTI Ratio" value={`${fmt(r.dti)}% ${r.dti > 65 ? "⚠️ Over SAMA limit" : "✅ OK"}`} />}
+
+            <h4>Step‑by‑Step</h4>
+            {r.steps.map((s, i) => <ResultRow key={i} label={`Step ${i + 1}`} value={s} />)}
+            <div style={{ marginTop: "var(--s-3)", padding: "var(--s-3)", background: "rgba(234,179,8,0.08)", borderRadius: "8px", fontSize: "0.8rem", color: "var(--text-muted)" }}>
+                ⚠️ This is Sharia-compliant financing estimation. Uses standard amortization with "profit rate" instead of interest. Actual bank offers may vary. SAMA limits: DTI ≤ 65%, minimum 10% down (first home), 30% down (second home).
+            </div>
+        </div>}
+    </div>);
+}
+
+function HomeLoanRefTab() {
+    const ts = { width: "100%", fontSize: "0.85rem", borderCollapse: "collapse" as const };
+    const th = { padding: "8px 12px", textAlign: "center" as const };
+    const td = { padding: "6px 12px", textAlign: "center" as const };
+    const tl = { ...td, textAlign: "left" as const };
+    const b = { borderBottom: "1px solid var(--border)" };
+    const bh = { borderBottom: "2px solid var(--border)" };
+
+    const banks = [
+        ["Al Rajhi Bank", "~5.50%", "Murabaha / Ijara", "Up to 30 years"],
+        ["Saudi National Bank (SNB)", "~5.75%", "Murabaha / Ijara", "Up to 25 years"],
+        ["Riyad Bank", "~5.60%", "Murabaha / Ijara", "Up to 30 years"],
+        ["SAB (HSBC Saudi)", "~5.80%", "Murabaha / Ijara", "Up to 25 years"],
+        ["Emirates NBD", "~7.22%", "Murabaha", "Up to 20 years"],
+        ["Banque Saudi Fransi", "~5.90%", "Murabaha / Ijara", "Up to 25 years"],
+        ["Arab National Bank", "~5.75%", "Murabaha / Ijara", "Up to 25 years"],
+        ["Alinma Bank", "~5.65%", "Murabaha / Musharaka", "Up to 30 years"],
+    ];
+
+    const prices = [500000, 750000, 1000000, 1500000, 2000000, 3000000];
+
+    return (<div className="con-calc__results">
+        <h4>Saudi Bank Home Financing Rates (Indicative 2025)</h4>
+        <div style={{ overflowX: "auto" }}>
+            <table style={ts}>
+                <thead><tr style={bh}>
+                    <th style={{ ...th, textAlign: "left" }}>Bank</th>
+                    <th style={th}>APR</th>
+                    <th style={th}>Product</th>
+                    <th style={th}>Max Tenure</th>
+                </tr></thead>
+                <tbody>
+                    {banks.map(([name, apr, product, tenure], i) => (
+                        <tr key={i} style={b}>
+                            <td style={{ ...tl, fontWeight: 600 }}>{name}</td>
+                            <td style={{ ...td, fontWeight: 700 }}>{apr}</td>
+                            <td style={{ ...tl, fontSize: "0.8rem" }}>{product}</td>
+                            <td style={td}>{tenure}</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
+
+        <h4 style={{ marginTop: "var(--s-4)" }}>Monthly Payment by Property Price (10% down, 5.5% APR, 25yr)</h4>
+        <div style={{ overflowX: "auto" }}>
+            <table style={ts}>
+                <thead><tr style={bh}>
+                    <th style={{ ...th, textAlign: "left" }}>Property Price</th>
+                    <th style={th}>Down (10%)</th>
+                    <th style={th}>Loan Amount</th>
+                    <th style={th}>Monthly Payment</th>
+                    <th style={th}>Min Salary (65% DTI)</th>
+                </tr></thead>
+                <tbody>
+                    {prices.map((p) => {
+                        const dp = p * 0.1; const loan = p - dp;
+                        const mr = 0.055 / 12; const n = 300;
+                        const m = loan * (mr * Math.pow(1 + mr, n)) / (Math.pow(1 + mr, n) - 1);
+                        const minSal = m / 0.65;
+                        return (<tr key={p} style={b}>
+                            <td style={{ ...tl, fontWeight: 600 }}>SAR {p.toLocaleString()}</td>
+                            <td style={td}>SAR {dp.toLocaleString()}</td>
+                            <td style={td}>SAR {loan.toLocaleString()}</td>
+                            <td style={{ ...td, fontWeight: 700 }}>SAR {fmt(m)}</td>
+                            <td style={td}>SAR {fmt(minSal)}</td>
+                        </tr>);
+                    })}
+                </tbody>
+            </table>
+        </div>
+
+        <h4 style={{ marginTop: "var(--s-4)" }}>Down Payment Rules (SAMA)</h4>
+        <div style={{ overflowX: "auto" }}>
+            <table style={ts}>
+                <thead><tr style={bh}>
+                    <th style={{ ...th, textAlign: "left" }}>Scenario</th>
+                    <th style={th}>Min Down Payment</th>
+                    <th style={th}>Max LTV</th>
+                </tr></thead>
+                <tbody>
+                    {[
+                        ["First Home (Saudi)", "10%", "90%"],
+                        ["Second Home", "30%", "70%"],
+                        ["Expat (typical)", "20–30%", "70–80%"],
+                        ["Off-Plan Property", "Varies (10–20%)", "—"],
+                    ].map(([scenario, dp, ltv], i) => (
+                        <tr key={i} style={b}>
+                            <td style={{ ...tl, fontWeight: 600 }}>{scenario}</td>
+                            <td style={{ ...td, fontWeight: 700 }}>{dp}</td>
+                            <td style={td}>{ltv}</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
+    </div>);
 }
 
 /* ── Annual Leave Calculator (Articles 109-113) ── */

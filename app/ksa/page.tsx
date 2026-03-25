@@ -49,6 +49,12 @@ const KSA_CALCULATORS = [
         icon: "🏖️",
         description: "Calculate your annual leave entitlement, leave pay, and encashment value. 21 days under 5 years, 30 days for 5+ years of service.",
     },
+    {
+        title: "Home Loan Calculator",
+        slug: "home-loan-calculator",
+        icon: "🏠",
+        description: "Calculate your monthly mortgage payment in Saudi Arabia. Sharia-compliant Murabaha, Ijara, and Musharaka with SAMA DTI check.",
+    },
 ];
 
 
