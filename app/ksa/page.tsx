@@ -19,7 +19,14 @@ const KSA_CALCULATORS = [
         icon: "🏢",
         description: "Calculate your EOSB under Saudi Labor Law Articles 84, 85, and 87. Covers termination, resignation, and special cases with step-by-step breakdown.",
     },
+    {
+        title: "GOSI Calculator",
+        slug: "gosi-calculator",
+        icon: "🏛️",
+        description: "Calculate your GOSI social insurance contributions — Annuities, SANED, and Occupational Hazards — for Saudi and non-Saudi employees. Based on 2025 rates.",
+    },
 ];
+
 
 export default function KSAPage() {
     return (
