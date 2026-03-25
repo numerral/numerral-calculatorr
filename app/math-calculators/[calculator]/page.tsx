@@ -735,6 +735,191 @@ const HUB_CONTENT: Record<string, {
         ],
     },
 
+    /* ─── PERCENT ERROR CALCULATOR — RICH CONTENT (Topical Authority) ─── */
+    "percent-error-calculator": {
+        subtitle: "Calculate percent error between experimental and theoretical values. Solve for percent error, experimental value, or theoretical value with step-by-step work. Compare multiple measurements in batch mode.",
+        contentHTML: `
+            <h2 id="what-is-percent-error">What Is Percent Error?</h2>
+            <p><strong>Percent error</strong> — also called <strong>percentage error</strong> or <strong>approximation error</strong> — is a measure of how far an <strong>experimental (observed) value</strong> deviates from a <strong>theoretical (accepted) value</strong>. It expresses the discrepancy as a <strong>percentage of the true value</strong>, making it easy to judge the accuracy of a measurement regardless of scale.</p>
+            <p>If you measured the boiling point of water at 101.5°C in a lab experiment, and the accepted value is 100°C, your percent error is <strong>1.5%</strong>. That single number tells a chemistry teacher, quality inspector, or research scientist exactly how accurate your measurement was — far more useful than saying you were "off by 1.5 degrees."</p>
+            <p>Percent error is one of the most fundamental <a href="/math-calculators/percentage-calculator">percentage calculations</a> used in <strong>science, engineering, and manufacturing</strong> in the United States. It appears in every high school and college chemistry and physics course, and it is a core metric in quality control programs regulated by the <strong>FDA</strong>, <strong>NIST</strong>, and <strong>EPA</strong>.</p>
+            <p>Our calculator above handles three modes: compute <strong>percent error</strong> from known values, solve for the <strong>experimental value</strong> given a target error, or solve for the <strong>theoretical value</strong>. The Batch Compare tab lets you enter multiple measurements at once and see which trial was most and least accurate.</p>
+
+            <h2 id="percent-error-formula">The Percent Error Formula</h2>
+            <p>The standard percent error formula is:</p>
+            <div class="explanation__highlight">
+                <strong>Percent Error = |Experimental Value − Theoretical Value| ÷ |Theoretical Value| × 100%</strong>
+            </div>
+            <p>Or in compact notation:</p>
+            <div class="explanation__highlight">
+                <strong>% Error = |E − T| / |T| × 100</strong>
+            </div>
+            <p>Where:</p>
+            <table>
+                <thead><tr><th>Variable</th><th>Meaning</th><th>Other Names</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>E</strong></td><td>Experimental (observed) value</td><td>Measured, observed, estimated, approximate</td></tr>
+                    <tr><td><strong>T</strong></td><td>Theoretical (accepted) value</td><td>True, accepted, expected, exact, actual, known</td></tr>
+                    <tr><td><strong>|…|</strong></td><td>Absolute value</td><td>Ensures the result is always non-negative</td></tr>
+                </tbody>
+            </table>
+            <p>The <strong>absolute value</strong> in the numerator ensures that percent error is always reported as a <strong>positive number</strong>, regardless of whether the experimental value overshoots or undershoots the theoretical value. The order of subtraction does not matter: |E − T| = |T − E|.</p>
+            <p><strong>Important:</strong> The formula is <strong>undefined when T = 0</strong>, because you cannot divide by zero. In such cases, use absolute error or mean absolute error instead.</p>
+
+            <h2 id="how-to-calculate-step-by-step">How to Calculate Percent Error Step by Step</h2>
+            <p>Follow these four steps to calculate percent error by hand or with our calculator:</p>
+            <ol>
+                <li><strong>Subtract</strong> the theoretical value from the experimental value: E − T</li>
+                <li><strong>Take the absolute value</strong> of the result: |E − T|</li>
+                <li><strong>Divide</strong> by the absolute value of the theoretical value: |E − T| / |T|</li>
+                <li><strong>Multiply by 100</strong> to convert to a percentage</li>
+            </ol>
+
+            <h3 id="example-boiling-point">Worked Example 1: Boiling Point of Water (Chemistry)</h3>
+            <p>A student measures the boiling point of water at <strong>101.5°C</strong>. The accepted value is <strong>100.0°C</strong>.</p>
+            <ol>
+                <li>Subtract: 101.5 − 100.0 = <strong>1.5</strong></li>
+                <li>Absolute value: |1.5| = <strong>1.5</strong></li>
+                <li>Divide: 1.5 ÷ 100.0 = <strong>0.015</strong></li>
+                <li>Multiply: 0.015 × 100 = <strong>1.5%</strong></li>
+            </ol>
+            <p>The student's measurement has a <strong>1.5% error</strong> — well within the <5% threshold typically expected in general chemistry labs.</p>
+
+            <h3 id="example-gravity">Worked Example 2: Gravitational Acceleration (Physics)</h3>
+            <p>A physics student measures gravitational acceleration as <strong>9.72 m/s²</strong>. The accepted value is <strong>9.807 m/s²</strong>.</p>
+            <ol>
+                <li>Subtract: 9.72 − 9.807 = <strong>−0.087</strong></li>
+                <li>Absolute value: |−0.087| = <strong>0.087</strong></li>
+                <li>Divide: 0.087 ÷ 9.807 = <strong>0.008871</strong></li>
+                <li>Multiply: 0.008871 × 100 = <strong>0.887%</strong></li>
+            </ol>
+            <p>A <strong>0.887% error</strong> in a gravitational acceleration experiment is excellent — well below the 2% threshold expected in introductory physics.</p>
+
+            <h3 id="example-density">Worked Example 3: Density of Aluminum (Engineering)</h3>
+            <p>An engineer measures the density of an aluminum sample as <strong>2.75 g/cm³</strong>. The accepted density of aluminum is <strong>2.70 g/cm³</strong>.</p>
+            <ol>
+                <li>Subtract: 2.75 − 2.70 = <strong>0.05</strong></li>
+                <li>Absolute value: |0.05| = <strong>0.05</strong></li>
+                <li>Divide: 0.05 ÷ 2.70 = <strong>0.01852</strong></li>
+                <li>Multiply: 0.01852 × 100 = <strong>1.852%</strong></li>
+            </ol>
+            <p>A <strong>1.852% error</strong> would be acceptable for a classroom demonstration but might raise concerns in aerospace manufacturing where tolerances under 1% are required.</p>
+
+            <h2 id="percent-error-vs-percent-difference-vs-percent-change">Percent Error vs. Percent Difference vs. Percent Change</h2>
+            <p>These three <a href="/math-calculators/percentage-calculator">percentage calculations</a> are frequently confused. Here is how they differ:</p>
+            <table>
+                <thead><tr><th>Metric</th><th>Formula</th><th>When to Use</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Percent Error</strong></td><td>|E − T| / |T| × 100</td><td>When you know the <strong>true/accepted value</strong> and want to evaluate measurement accuracy</td></tr>
+                    <tr><td><strong>Percent Difference</strong></td><td>|A − B| / ((A + B) / 2) × 100</td><td>When comparing <strong>two experimental values</strong> and neither is the "true" value</td></tr>
+                    <tr><td><strong>Percent Change</strong></td><td>(New − Old) / |Old| × 100</td><td>When measuring <strong>change over time</strong> from an original value to a new value</td></tr>
+                </tbody>
+            </table>
+            <div class="explanation__highlight">
+                <strong>Key distinction:</strong> Percent error requires a known <em>true</em> value. If you're comparing two measurements and neither is "the truth," use percent difference instead. If you're tracking how a value changes over time, use <a href="/math-calculators/percentage-calculator">percent change</a>.
+            </div>
+
+            <h2 id="absolute-vs-relative-vs-percent-error">Absolute Error vs. Relative Error vs. Percent Error</h2>
+            <p>These three metrics form a hierarchy — each builds on the previous one:</p>
+            <table>
+                <thead><tr><th>Metric</th><th>Formula</th><th>Units</th><th>What It Tells You</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Absolute Error</strong></td><td>|E − T|</td><td>Same as measurement</td><td>The raw size of the error in the original units (e.g., 1.5°C, 0.087 m/s²)</td></tr>
+                    <tr><td><strong>Relative Error</strong></td><td>|E − T| / |T|</td><td>Unitless (decimal)</td><td>The error as a fraction of the true value (e.g., 0.015)</td></tr>
+                    <tr><td><strong>Percent Error</strong></td><td>|E − T| / |T| × 100</td><td>Percentage (%)</td><td>The relative error expressed as a percentage (e.g., 1.5%)</td></tr>
+                </tbody>
+            </table>
+            <p><strong>Absolute error</strong> is the most basic — it tells you the raw distance between your measurement and the truth. But a 1.5°C error means very different things when measuring the boiling point of water (100°C) versus the melting point of iron (1,538°C). <strong>Relative error</strong> normalizes the error to the true value, and <strong>percent error</strong> simply converts that to an easily understood percentage.</p>
+
+            <h2 id="acceptable-percent-error">Acceptable Percent Error by Field</h2>
+            <p>What counts as "acceptable" percent error depends entirely on the discipline and context. Here are general guidelines used in the United States:</p>
+            <table>
+                <thead><tr><th>Field</th><th>Acceptable % Error</th><th>Context</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>General Chemistry Lab</strong></td><td>< 5%</td><td>High school and introductory college chemistry experiments</td></tr>
+                    <tr><td><strong>Analytical Chemistry</strong></td><td>< 1%</td><td>Quantitative analysis, titrations, gravimetric analysis</td></tr>
+                    <tr><td><strong>Introductory Physics</strong></td><td>< 5–10%</td><td>Mechanics, optics, and thermodynamics experiments</td></tr>
+                    <tr><td><strong>Advanced Physics</strong></td><td>< 1–2%</td><td>Precision measurements (speed of sound, g, refractive index)</td></tr>
+                    <tr><td><strong>Mechanical Engineering</strong></td><td>< 1%</td><td>Dimensional tolerances, material testing (per ASTM standards)</td></tr>
+                    <tr><td><strong>Pharmaceutical (FDA)</strong></td><td>< 0.5–2%</td><td>Drug potency, dissolution testing (USP standards)</td></tr>
+                    <tr><td><strong>Environmental (EPA)</strong></td><td>< 5–10%</td><td>Air and water quality monitoring, emissions calibration</td></tr>
+                    <tr><td><strong>NIST Calibration</strong></td><td>< 0.01–0.1%</td><td>National measurement standards and reference materials</td></tr>
+                    <tr><td><strong>Survey/Polling</strong></td><td>± 3–5%</td><td>Margin of error in public opinion polls</td></tr>
+                    <tr><td><strong>Manufacturing QC</strong></td><td>< 0.5–1%</td><td>Production line sampling, Six Sigma processes</td></tr>
+                </tbody>
+            </table>
+            <div class="explanation__highlight">
+                <strong>Rule of thumb:</strong> In most science courses in the United States, a percent error under <strong>5%</strong> is generally considered "good," under <strong>1%</strong> is "excellent," and over <strong>10%</strong> usually signals a problem with equipment, technique, or procedure.
+            </div>
+
+            <h2 id="common-mistakes">Common Mistakes and Misconceptions</h2>
+            <ol>
+                <li><strong>Dividing by the experimental value:</strong> The formula divides by the <em>theoretical</em> (true) value, not the experimental one. Using the wrong denominator gives a different (incorrect) result.</li>
+                <li><strong>Forgetting the absolute value:</strong> Without the absolute value, you might get a negative number. While a negative result can tell you the <em>direction</em> of error (underestimate vs. overestimate), the standard percent error formula always reports a positive value.</li>
+                <li><strong>Confusing percent error with percent difference:</strong> Percent error requires a known true value. If you're comparing two measurements without a reference, use percent difference instead.</li>
+                <li><strong>"Zero percent error" confusion:</strong> A 0% error means your measurement <em>exactly</em> matches the theoretical value. This is rare in practice; some error is always expected.</li>
+                <li><strong>Theoretical value of zero:</strong> The formula is <em>undefined</em> when T = 0 because you cannot divide by zero. In these cases, report the absolute error instead.</li>
+                <li><strong>Reporting too many decimal places:</strong> Match your percent error precision to the <a href="/math-calculators/fraction-calculator">significant figures</a> in your measurements. If you measured to 3 significant figures, report percent error to 3 significant figures.</li>
+                <li><strong>Negative percent error:</strong> Some textbooks use a signed formula (without absolute value) where negative values indicate the measurement was below the true value. Always check which convention your instructor uses.</li>
+            </ol>
+
+            <h2 id="real-world-applications">Real-World Applications in the United States</h2>
+            <h3 id="nist-calibration">NIST Measurement Standards</h3>
+            <p>The <strong>National Institute of Standards and Technology (NIST)</strong> in Gaithersburg, Maryland, maintains the United States' national measurement standards. When NIST certifies a <strong>Standard Reference Material (SRM)</strong>, the certificate states the percent error tolerance. Laboratories across the country calibrate their instruments against NIST standards, and percent error is the primary metric for evaluating whether a lab's equipment meets certification requirements.</p>
+
+            <h3 id="fda-pharmaceutical">FDA Pharmaceutical Testing</h3>
+            <p>The <strong>U.S. Food and Drug Administration (FDA)</strong> requires pharmaceutical manufacturers to perform <strong>assay testing</strong> that measures the percent error of active ingredient concentration. Under <strong>USP (United States Pharmacopeia)</strong> guidelines, most drugs must have a potency within <strong>±2%</strong> of the labeled amount. Tablets, capsules, and injectable solutions are routinely tested using percent error to ensure they contain the correct dosage.</p>
+
+            <h3 id="epa-environmental">EPA Environmental Monitoring</h3>
+            <p>The <strong>Environmental Protection Agency (EPA)</strong> uses percent error as a quality control metric for air and water monitoring data. Under the <strong>Clean Air Act</strong> and <strong>Clean Water Act</strong>, continuous emissions monitoring systems (CEMS) must demonstrate calibration with percent errors typically below <strong>5%</strong>. State environmental agencies report percent error for every calibration check submitted to the EPA.</p>
+
+            <h3 id="engineering-quality">Manufacturing and Engineering Quality Control</h3>
+            <p>In <strong>automotive, aerospace, and precision manufacturing</strong>, percent error is a core metric in quality control. Engineers calculate percent error to evaluate whether machined parts meet dimensional tolerances specified by <strong>ASTM International</strong> and <strong>ISO standards</strong>. In <strong>Six Sigma methodology</strong>, percent error feeds into process capability analysis (Cpk) to determine whether production lines meet statistical quality targets.</p>
+
+            <h3 id="classroom-education">Science Education in American Schools</h3>
+            <p>Percent error is one of the most commonly taught concepts in <strong>AP Chemistry</strong>, <strong>AP Physics</strong>, and <strong>college-level science courses</strong> across the United States. Students calculate percent error in virtually every lab report, from measuring the <a href="/math-calculators/average-calculator">mean value</a> of repeated trials to comparing experimental results against textbook values. The <strong>College Board</strong> includes percent error in its AP Science curriculum frameworks.</p>
+        `,
+        formula: {
+            formula: "% Error = |Experimental − Theoretical| / |Theoretical| × 100",
+            variables: [
+                { symbol: "E", meaning: "Experimental (observed, measured) value" },
+                { symbol: "T", meaning: "Theoretical (true, accepted, expected) value" },
+                { symbol: "|…|", meaning: "Absolute value — ensures the result is always non-negative" },
+                { symbol: "Absolute Error", meaning: "|E − T| — the raw difference in original units" },
+                { symbol: "Relative Error", meaning: "|E − T| / |T| — unitless fraction (decimal form)" },
+            ],
+            example: [
+                { label: "Boiling Point", substitution: "|101.5 − 100| / |100| × 100", result: "1.5%" },
+                { label: "Gravity", substitution: "|9.72 − 9.807| / |9.807| × 100", result: "0.887%" },
+                { label: "Density", substitution: "|2.75 − 2.70| / |2.70| × 100", result: "1.852%" },
+            ],
+        },
+        faq: [
+            { question: "What is the percent error formula?", answer: "Percent Error = |Experimental Value − Theoretical Value| / |Theoretical Value| × 100. Subtract the theoretical value from the experimental value, take the absolute value, divide by the theoretical value, and multiply by 100 to get a percentage." },
+            { question: "How do I calculate percent error step by step?", answer: "Four steps: (1) Subtract: E − T. (2) Take the absolute value: |E − T|. (3) Divide by the absolute value of the theoretical value: |E − T| / |T|. (4) Multiply by 100 to get percent error. For example, if E=101.5 and T=100: |101.5−100|/100 × 100 = 1.5%." },
+            { question: "What is a good percent error?", answer: "It depends on the field. In general chemistry labs, under 5% is acceptable. In physics, under 5-10% for introductory and under 1-2% for advanced courses. In pharmaceutical manufacturing (FDA), under 0.5-2%. In NIST calibration, under 0.01-0.1%." },
+            { question: "What is the difference between percent error and percent difference?", answer: "Percent error compares a measurement to a known true value: |E−T|/|T|×100. Percent difference compares two measurements when neither is the 'true' value: |A−B|/((A+B)/2)×100. Use percent error when you have an accepted reference value." },
+            { question: "Can percent error be negative?", answer: "In the standard formula using absolute value, percent error is always positive. Some textbooks use a signed version (without absolute value) where negative means the measurement was below the true value and positive means above. Always check your instructor's convention." },
+            { question: "What happens when the theoretical value is zero?", answer: "The percent error formula is undefined when the theoretical value is zero because you cannot divide by zero. In these cases, report the absolute error (|E − T|) or use mean absolute error instead." },
+            { question: "What is absolute error vs relative error?", answer: "Absolute error = |E − T|, measured in the same units as the values (e.g., 1.5°C). Relative error = |E − T| / |T|, a unitless decimal (e.g., 0.015). Percent error = relative error × 100 (e.g., 1.5%). Each builds on the previous one." },
+            { question: "How do I solve for experimental value from percent error?", answer: "Rearrange the formula: E = T ± (% Error / 100) × |T|. There are two possible values — one above and one below the theoretical value. Our calculator's 'Solve for Experimental Value' mode computes both." },
+            { question: "How do I solve for theoretical value from percent error?", answer: "Rearrange: T = E / (1 + P/100) or T = E / (1 − P/100), where P is percent error. There are two possible solutions. Our calculator handles this automatically." },
+            { question: "Is percent error the same as margin of error?", answer: "No. Percent error measures how far a single measurement is from a known true value. Margin of error is a statistical term used in surveys and polls to express the range within which the true population value likely falls, based on sample size and confidence level." },
+            { question: "What is percent error in chemistry?", answer: "In chemistry, percent error quantifies how close an experimental result is to the accepted value. It's calculated after every lab experiment — from measuring boiling points to determining molar mass. Most general chemistry courses expect percent errors under 5%." },
+            { question: "How is percent error used in physics?", answer: "Physics students calculate percent error to evaluate the accuracy of experiments — measuring gravitational acceleration, speed of sound, refractive index, and more. A common physics lab threshold is under 5% for introductory courses and under 2% for advanced labs." },
+            { question: "What does a high percent error indicate?", answer: "A high percent error (e.g., >10%) usually indicates systematic error (faulty equipment, incorrect calibration), procedural mistakes, environmental interference, or incorrect assumptions. It does not necessarily mean 'bad data' — it signals that investigation is needed." },
+            { question: "How many significant figures should I report for percent error?", answer: "Match the precision of your input measurements. If your experimental and theoretical values have 3 significant figures, report percent error to 3 significant figures. Our calculator shows results to 4 decimal places; round as needed for your report." },
+            { question: "Can I compare multiple measurements using percent error?", answer: "Yes! Use our Batch Compare tab. Enter one theoretical value and multiple experimental values (comma-separated). The calculator shows each measurement's percent error, highlights the best (most accurate) and worst (least accurate), and gives the average percent error across all trials." },
+        ],
+        relatedCalculators: [
+            { title: "Percentage Calculator", slug: "percentage-calculator", categorySlug: "math-calculators", description: "Calculate percentages — X% of Y, change, increase, decrease" },
+            { title: "Standard Deviation Calculator", slug: "standard-deviation-calculator", categorySlug: "math-calculators", description: "Calculate standard deviation, variance, and mean" },
+            { title: "Average Calculator", slug: "average-calculator", categorySlug: "math-calculators", description: "Calculate mean, median, mode, and range" },
+            { title: "Fraction Calculator", slug: "fraction-calculator", categorySlug: "math-calculators", description: "Add, subtract, multiply, divide fractions" },
+            { title: "Percentage Decrease Calculator", slug: "percentage-decrease-calculator", categorySlug: "math-calculators", description: "Calculate percentage decrease between two values" },
+        ],
+    },
+
     /* ─── 2. FRACTION CALCULATOR — RICH CONTENT (Competitor-level) ─── */
 
     "fraction-calculator": {

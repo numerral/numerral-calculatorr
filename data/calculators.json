@@ -17937,6 +17937,49 @@
   },
 
   {
+    "id": "percent-error-calculator",
+    "category": "math",
+    "title": "Percent Error Calculator",
+    "slug": "percent-error-calculator",
+    "categorySlug": "math-calculators",
+    "icon": "🧪",
+    "calcType": "percent-error",
+    "description": "Calculate percent error between experimental and theoretical values. Solve for percent error, experimental value, or theoretical value with step-by-step work and batch comparison.",
+    "stars": 5,
+    "defaults": {
+      "amount": 101.5,
+      "rate": 100,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 10000,
+        "step": 0.1
+      },
+      "rate": {
+        "min": 0,
+        "max": 10000,
+        "step": 0.1
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "percent error calculator, percent error formula, how to calculate percent error, percentage error, experimental vs theoretical, absolute error, relative error, percent error chemistry, percent error physics",
+    "links": {
+      "related": [
+        "math-percentage-calculator",
+        "standard-deviation-calculator",
+        "average-calculator",
+        "percentage-decrease-calculator"
+      ]
+    }
+  },
+
+  {
     "id": "fraction-calculator",
     "category": "math",
     "title": "Fraction Calculator",

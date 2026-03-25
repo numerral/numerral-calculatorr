@@ -2192,6 +2192,150 @@ function RomanChartTab() {
     </div>);
 }
 
+/* ── Percent Error Calculator (2 tabs) ── */
+function PercentErrorCalc() {
+    const [tab, setTab] = useState(0);
+    const tabs = ["🧪 Calculator", "📊 Batch Compare"];
+    return (<div className="con-calc">
+        <h3 className="con-calc__title">🧪 Percent Error Calculator</h3>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: "var(--s-1)", marginBottom: "var(--s-3)" }}>
+            {tabs.map((t, i) => <button key={i} onClick={() => setTab(i)} className={`calc-tab-btn${tab === i ? " calc-tab-btn--active" : ""}`}>{t}</button>)}
+        </div>
+        {tab === 0 && <PercentErrorMainTab />}
+        {tab === 1 && <PercentErrorBatchTab />}
+    </div>);
+}
+
+function PercentErrorMainTab() {
+    const [mode, setMode] = useState("percent-error");
+    const [experimental, setExperimental] = useState("101.5");
+    const [theoretical, setTheoretical] = useState("100");
+    const [percentError, setPercentError] = useState("5");
+    const r = useMemo(() => {
+        if (mode === "percent-error") {
+            const e = parseFloat(experimental); const t = parseFloat(theoretical);
+            if (isNaN(e) || isNaN(t)) return { result: "—", abs: "—", rel: "—", steps: ["Enter valid numbers"] };
+            if (t === 0) return { result: "Undefined (theoretical value cannot be zero)", abs: Math.abs(e - t).toString(), rel: "—", steps: ["Division by zero: cannot compute percent error when theoretical value is 0"] };
+            const absErr = Math.abs(e - t);
+            const relErr = absErr / Math.abs(t);
+            const pctErr = relErr * 100;
+            return {
+                result: pctErr.toFixed(4) + "%",
+                abs: absErr.toFixed(6),
+                rel: relErr.toFixed(6),
+                steps: [
+                    `Subtract: |${e} − ${t}| = |${(e - t).toFixed(6)}| = ${absErr.toFixed(6)} (absolute error)`,
+                    `Divide by theoretical: ${absErr.toFixed(6)} ÷ |${t}| = ${relErr.toFixed(6)} (relative error)`,
+                    `Multiply by 100: ${relErr.toFixed(6)} × 100 = ${pctErr.toFixed(4)}%`,
+                ],
+            };
+        } else if (mode === "experimental") {
+            const t = parseFloat(theoretical); const p = parseFloat(percentError);
+            if (isNaN(t) || isNaN(p)) return { result: "—", abs: "—", rel: "—", steps: ["Enter valid numbers"] };
+            if (t === 0) return { result: "0", abs: "0", rel: "0", steps: ["When theoretical = 0, experimental must also be 0 for any finite % error"] };
+            const delta = Math.abs(t) * (p / 100);
+            const e1 = t + delta; const e2 = t - delta;
+            return {
+                result: `${e1.toFixed(4)} or ${e2.toFixed(4)}`,
+                abs: delta.toFixed(6),
+                rel: (p / 100).toFixed(6),
+                steps: [
+                    `Convert percent to decimal: ${p}% ÷ 100 = ${(p / 100).toFixed(6)}`,
+                    `Calculate absolute error: ${(p / 100).toFixed(6)} × |${t}| = ${delta.toFixed(6)}`,
+                    `Two possible values: ${t} + ${delta.toFixed(4)} = ${e1.toFixed(4)} or ${t} − ${delta.toFixed(4)} = ${e2.toFixed(4)}`,
+                ],
+            };
+        } else {
+            const e = parseFloat(experimental); const p = parseFloat(percentError);
+            if (isNaN(e) || isNaN(p)) return { result: "—", abs: "—", rel: "—", steps: ["Enter valid numbers"] };
+            if (p === 100) return { result: "Undefined (100% error implies theoretical = 0)", abs: "—", rel: "—", steps: ["When percent error is exactly 100%, the theoretical value would be 0, which is undefined"] };
+            const t1 = e / (1 + p / 100); const t2 = e / (1 - p / 100);
+            const validResults: string[] = [];
+            if (isFinite(t1)) validResults.push(t1.toFixed(4));
+            if (isFinite(t2) && p !== 0) validResults.push(t2.toFixed(4));
+            return {
+                result: validResults.join(" or ") || "—",
+                abs: "—",
+                rel: (p / 100).toFixed(6),
+                steps: [
+                    `From % error = |E − T| / |T| × 100, solving for T:`,
+                    `T = E / (1 + P/100) = ${e} / ${(1 + p / 100).toFixed(6)} = ${t1.toFixed(4)}`,
+                    ...(p !== 0 && isFinite(t2) ? [`T = E / (1 − P/100) = ${e} / ${(1 - p / 100).toFixed(6)} = ${t2.toFixed(4)}`] : []),
+                ],
+            };
+        }
+    }, [mode, experimental, theoretical, percentError]);
+    return (<div>
+        <div className="con-calc__inputs">
+            <SelectField label="Solve For" value={mode} onChange={setMode} options={[{ value: "percent-error", label: "Percent Error (%)" }, { value: "experimental", label: "Experimental Value (E)" }, { value: "theoretical", label: "Theoretical Value (T)" }]} />
+            {mode !== "experimental" && <InputField label="Experimental (Observed) Value" value={experimental} onChange={setExperimental} placeholder="e.g. 101.5" />}
+            {mode !== "theoretical" && <InputField label="Theoretical (Accepted) Value" value={theoretical} onChange={setTheoretical} placeholder="e.g. 100" />}
+            {mode !== "percent-error" && <InputField label="Percent Error (%)" value={percentError} onChange={setPercentError} placeholder="e.g. 5" />}
+        </div>
+        <div className="con-calc__results"><h4>Result</h4>
+            <ResultRow label={mode === "percent-error" ? "Percent Error" : mode === "experimental" ? "Experimental Value" : "Theoretical Value"} value={r.result} />
+            <ResultRow label="Absolute Error" value={r.abs} />
+            <ResultRow label="Relative Error" value={r.rel} />
+            <h4>Step‑by‑Step</h4>
+            {r.steps.map((s, i) => <ResultRow key={i} label={`Step ${i + 1}`} value={s} />)}
+        </div>
+    </div>);
+}
+
+function PercentErrorBatchTab() {
+    const [theoretical, setTheoretical] = useState("100");
+    const [values, setValues] = useState("101.5, 99.2, 103.1, 98.7, 100.4");
+    const results = useMemo(() => {
+        const t = parseFloat(theoretical);
+        if (isNaN(t) || t === 0) return [];
+        return values.split(/[,\s]+/).filter(Boolean).map(v => {
+            const e = parseFloat(v.trim());
+            if (isNaN(e)) return null;
+            const absErr = Math.abs(e - t);
+            const pctErr = (absErr / Math.abs(t)) * 100;
+            return { experimental: e, absError: absErr, pctError: pctErr };
+        }).filter(Boolean) as { experimental: number; absError: number; pctError: number }[];
+    }, [theoretical, values]);
+    const best = results.length > 0 ? results.reduce((a, b) => a.pctError < b.pctError ? a : b) : null;
+    const worst = results.length > 0 ? results.reduce((a, b) => a.pctError > b.pctError ? a : b) : null;
+    const avg = results.length > 0 ? results.reduce((s, r) => s + r.pctError, 0) / results.length : 0;
+    return (<div>
+        <div className="con-calc__inputs">
+            <InputField label="Theoretical (Accepted) Value" value={theoretical} onChange={setTheoretical} placeholder="e.g. 100" />
+            <InputField label="Experimental Values (comma or space separated)" value={values} onChange={setValues} placeholder="e.g. 101.5, 99.2, 103.1" />
+        </div>
+        <div className="con-calc__results"><h4>Batch Comparison</h4>
+            {results.length > 0 ? (<>
+                <div style={{ overflowX: "auto" }}>
+                    <table style={{ width: "100%", fontSize: "0.85rem", borderCollapse: "collapse" }}>
+                        <thead><tr style={{ borderBottom: "1px solid var(--border)" }}>
+                            <th style={{ padding: "6px 10px", textAlign: "right" }}>#</th>
+                            <th style={{ padding: "6px 10px", textAlign: "right" }}>Experimental</th>
+                            <th style={{ padding: "6px 10px", textAlign: "right" }}>Absolute Error</th>
+                            <th style={{ padding: "6px 10px", textAlign: "right" }}>% Error</th>
+                            <th style={{ padding: "6px 10px", textAlign: "center" }}>Rating</th>
+                        </tr></thead>
+                        <tbody>{results.map((r, i) => (
+                            <tr key={i} style={{ borderBottom: "1px solid var(--border)", background: r === best ? "rgba(34,197,94,0.08)" : r === worst ? "rgba(239,68,68,0.08)" : undefined }}>
+                                <td style={{ padding: "5px 10px", textAlign: "right" }}>{i + 1}</td>
+                                <td style={{ padding: "5px 10px", textAlign: "right" }}>{r.experimental}</td>
+                                <td style={{ padding: "5px 10px", textAlign: "right" }}>{r.absError.toFixed(4)}</td>
+                                <td style={{ padding: "5px 10px", textAlign: "right", fontWeight: 600 }}>{r.pctError.toFixed(4)}%</td>
+                                <td style={{ padding: "5px 10px", textAlign: "center" }}>{r === best ? "✅ Best" : r === worst ? "⚠️ Worst" : "—"}</td>
+                            </tr>
+                        ))}</tbody>
+                    </table>
+                </div>
+                <h4>Summary</h4>
+                <ResultRow label="Measurements" value={String(results.length)} />
+                <ResultRow label="Average % Error" value={avg.toFixed(4) + "%"} />
+                <ResultRow label="Best (lowest)" value={best ? `${best.experimental} → ${best.pctError.toFixed(4)}%` : "—"} />
+                <ResultRow label="Worst (highest)" value={worst ? `${worst.experimental} → ${worst.pctError.toFixed(4)}%` : "—"} />
+            </>) : <ResultRow label="" value="Enter a theoretical value and at least one experimental value" />}
+        </div>
+    </div>);
+}
+
 const CALC_MAP: Record<string, React.FC> = {
     "percentage": PercentageCalc,
     "fraction": FractionCalc,
@@ -2227,6 +2371,7 @@ const CALC_MAP: Record<string, React.FC> = {
     "polygon-calculator": RegularPolygonCalc,
     "numbers-to-words": NumbersToWordsCalc,
     "roman-numeral": RomanNumeralCalc,
+    "percent-error": PercentErrorCalc,
 };
 
 export default function MathCalculatorCore({ calcType }: { calcType: string }) {
