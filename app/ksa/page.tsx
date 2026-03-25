@@ -37,6 +37,12 @@ const KSA_CALCULATORS = [
         icon: "💰",
         description: "Calculate your net take-home salary in Saudi Arabia. No income tax — only GOSI deduction. Supports Saudi nationals and expatriates.",
     },
+    {
+        title: "Overtime Calculator",
+        slug: "overtime-calculator",
+        icon: "⏱️",
+        description: "Calculate your overtime pay under Saudi Labor Law Article 107. 150% rate for weekdays, weekends, and holidays. Supports Ramadan hours.",
+    },
 ];
 
 

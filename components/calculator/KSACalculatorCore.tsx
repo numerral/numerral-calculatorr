@@ -431,7 +431,175 @@ export default function KSACalculatorCore({ calcType }: { calcType: string }) {
     if (calcType === "gosi") return <GOSICalc />;
     if (calcType === "vat") return <VATCalc />;
     if (calcType === "salary") return <SalaryCalc />;
+    if (calcType === "overtime") return <OvertimeCalc />;
     return <p>Calculator not found: {calcType}</p>;
+}
+
+/* ── Overtime Calculator (Saudi Labor Law Article 107) ── */
+const OT_MULTIPLIER = 1.5;
+
+function OvertimeCalc() {
+    const [tab, setTab] = useState(0);
+    const tabs = ["🧮 Calculator", "📋 Reference"];
+    return (<div className="con-calc">
+        <h3 className="con-calc__title">⏱️ Overtime Calculator (KSA)</h3>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: "var(--s-1)", marginBottom: "var(--s-3)" }}>
+            {tabs.map((t, i) => <button key={i} onClick={() => setTab(i)} className={`calc-tab-btn${tab === i ? " calc-tab-btn--active" : ""}`}>{t}</button>)}
+        </div>
+        {tab === 0 && <OvertimeCalcTab />}
+        {tab === 1 && <OvertimeRefTab />}
+    </div>);
+}
+
+function OvertimeCalcTab() {
+    const [salary, setSalary] = useState("6000");
+    const [dailyHours, setDailyHours] = useState("8");
+    const [otHours, setOtHours] = useState("10");
+    const [otType, setOtType] = useState("weekday");
+
+    const r = useMemo(() => {
+        const s = parseFloat(salary) || 0;
+        const dh = parseFloat(dailyHours) || 8;
+        const oh = parseFloat(otHours) || 0;
+        if (s <= 0 || oh <= 0) return null;
+
+        const hourlyRate = s / 30 / dh;
+        const otRate = hourlyRate * OT_MULTIPLIER;
+        const otPay = otRate * oh;
+        const totalPay = s + otPay;
+
+        return {
+            salary: s, dailyHours: dh, otHours: oh, otType,
+            hourlyRate, otRate, otPay, totalPay,
+            steps: [
+                `Monthly Basic Salary: SAR ${fmt(s)}`,
+                `Daily Working Hours: ${dh} hours${dh === 6 ? " (Ramadan — Muslim employees)" : ""}`,
+                `Hourly Rate: SAR ${fmt(s)} ÷ 30 days ÷ ${dh} hours = SAR ${fmt(hourlyRate)}`,
+                `Overtime Rate (150%): SAR ${fmt(hourlyRate)} × 1.5 = SAR ${fmt(otRate)}`,
+                `Overtime Type: ${otType === "weekday" ? "Weekday (beyond normal hours)" : otType === "weekend" ? "Weekend (rest day)" : "Public Holiday"} — all at 150%`,
+                `Overtime Hours This Month: ${oh} hours`,
+                `Overtime Pay: SAR ${fmt(otRate)} × ${oh} = SAR ${fmt(otPay)}`,
+                `Total Monthly Pay: SAR ${fmt(s)} + SAR ${fmt(otPay)} = SAR ${fmt(totalPay)}`,
+            ],
+        };
+    }, [salary, dailyHours, otHours, otType]);
+
+    return (<div>
+        <div className="con-calc__inputs">
+            <InputField label="Monthly Basic Salary" value={salary} onChange={setSalary} unit="SAR" placeholder="e.g. 6000" />
+            <SelectField label="Daily Working Hours" value={dailyHours} onChange={setDailyHours} options={[
+                { value: "8", label: "8 hours (Normal)" },
+                { value: "6", label: "6 hours (Ramadan — Muslim)" },
+                { value: "9", label: "9 hours (Extended — Article 99)" },
+                { value: "7", label: "7 hours (Hazardous — Article 99)" },
+            ]} />
+            <InputField label="Overtime Hours (this month)" value={otHours} onChange={setOtHours} unit="hours" placeholder="e.g. 10" />
+            <SelectField label="Overtime Type" value={otType} onChange={setOtType} options={[
+                { value: "weekday", label: "Weekday (beyond normal hours)" },
+                { value: "weekend", label: "Weekend / Rest Day" },
+                { value: "holiday", label: "Public Holiday" },
+            ]} />
+        </div>
+        {r && <div className="con-calc__results">
+            <h4>Overtime Pay Summary</h4>
+            <ResultRow label="Normal Hourly Rate" value={`SAR ${fmt(r.hourlyRate)}`} />
+            <ResultRow label="Overtime Rate (150%)" value={`SAR ${fmt(r.otRate)}`} />
+            <ResultRow label="Overtime Pay" value={`SAR ${fmt(r.otPay)}`} />
+            <ResultRow label="Total Monthly Pay" value={`SAR ${fmt(r.totalPay)}`} />
+
+            <h4>Step‑by‑Step</h4>
+            {r.steps.map((s, i) => <ResultRow key={i} label={`Step ${i + 1}`} value={s} />)}
+            <div style={{ marginTop: "var(--s-3)", padding: "var(--s-3)", background: "rgba(234,179,8,0.08)", borderRadius: "8px", fontSize: "0.8rem", color: "var(--text-muted)" }}>
+                ⚠️ Based on Saudi Labor Law Article 107. All overtime types (weekday, weekend, holiday) are paid at 150%. Overtime is calculated on basic salary only. Max 720 OT hours/year without consent.
+            </div>
+        </div>}
+    </div>);
+}
+
+function OvertimeRefTab() {
+    const ts = { width: "100%", fontSize: "0.85rem", borderCollapse: "collapse" as const };
+    const th = { padding: "8px 12px", textAlign: "center" as const };
+    const td = { padding: "6px 12px", textAlign: "center" as const };
+    const tl = { ...td, textAlign: "left" as const };
+    const b = { borderBottom: "1px solid var(--border)" };
+    const bh = { borderBottom: "2px solid var(--border)" };
+    const salaries = [3000, 4000, 5000, 6000, 8000, 10000, 12000, 15000, 20000, 25000];
+
+    return (<div className="con-calc__results">
+        <h4>Salary → Overtime Rate Lookup (Normal — 8hr/day)</h4>
+        <div style={{ overflowX: "auto" }}>
+            <table style={ts}>
+                <thead><tr style={bh}>
+                    <th style={{ ...th, textAlign: "left" }}>Monthly Salary</th>
+                    <th style={th}>Hourly Rate</th>
+                    <th style={th}>OT Rate (150%)</th>
+                    <th style={th}>10 OT Hours</th>
+                    <th style={th}>20 OT Hours</th>
+                </tr></thead>
+                <tbody>
+                    {salaries.map((s) => {
+                        const hr = s / 30 / 8; const ot = hr * 1.5;
+                        return (<tr key={s} style={b}>
+                            <td style={{ ...tl, fontWeight: 600 }}>SAR {s.toLocaleString()}</td>
+                            <td style={td}>SAR {fmt(hr)}</td>
+                            <td style={{ ...td, fontWeight: 700 }}>SAR {fmt(ot)}</td>
+                            <td style={td}>SAR {fmt(ot * 10)}</td>
+                            <td style={td}>SAR {fmt(ot * 20)}</td>
+                        </tr>);
+                    })}
+                </tbody>
+            </table>
+        </div>
+
+        <h4 style={{ marginTop: "var(--s-4)" }}>Salary → Overtime Rate Lookup (Ramadan — 6hr/day)</h4>
+        <div style={{ overflowX: "auto" }}>
+            <table style={ts}>
+                <thead><tr style={bh}>
+                    <th style={{ ...th, textAlign: "left" }}>Monthly Salary</th>
+                    <th style={th}>Hourly Rate</th>
+                    <th style={th}>OT Rate (150%)</th>
+                    <th style={th}>10 OT Hours</th>
+                    <th style={th}>20 OT Hours</th>
+                </tr></thead>
+                <tbody>
+                    {salaries.map((s) => {
+                        const hr = s / 30 / 6; const ot = hr * 1.5;
+                        return (<tr key={s} style={b}>
+                            <td style={{ ...tl, fontWeight: 600 }}>SAR {s.toLocaleString()}</td>
+                            <td style={td}>SAR {fmt(hr)}</td>
+                            <td style={{ ...td, fontWeight: 700 }}>SAR {fmt(ot)}</td>
+                            <td style={td}>SAR {fmt(ot * 10)}</td>
+                            <td style={td}>SAR {fmt(ot * 20)}</td>
+                        </tr>);
+                    })}
+                </tbody>
+            </table>
+        </div>
+
+        <h4 style={{ marginTop: "var(--s-4)" }}>Saudi Labor Law — Working Hours Summary</h4>
+        <div style={{ overflowX: "auto" }}>
+            <table style={ts}>
+                <thead><tr style={bh}>
+                    <th style={{ ...th, textAlign: "left" }}>Article</th>
+                    <th style={{ ...th, textAlign: "left" }}>Rule</th>
+                </tr></thead>
+                <tbody>
+                    {[
+                        ["Art 98", "Normal: 8hr/day, 48hr/week. Ramadan (Muslim): 6hr/day, 36hr/week"],
+                        ["Art 99", "Extended: 9hr for non-continuous work. Reduced: 7hr for hazardous jobs"],
+                        ["Art 101", "Max 5 continuous hours without 30-min break. Max 12hr/day at workplace"],
+                        ["Art 106", "Exceptions: Inventory, budgets, emergencies (max 30 days/year)"],
+                        ["Art 107", "Overtime at 150%. Weekend/holiday = all overtime. Compensatory leave allowed"],
+                    ].map(([art, rule], i) => (
+                        <tr key={i} style={b}>
+                            <td style={{ ...tl, fontWeight: 700, whiteSpace: "nowrap" }}>{art}</td>
+                            <td style={{ ...tl, fontSize: "0.8rem" }}>{rule}</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
+    </div>);
 }
 
 /* ── Salary Calculator (KSA — No Income Tax) ── */
