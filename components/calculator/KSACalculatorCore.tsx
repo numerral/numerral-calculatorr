@@ -429,5 +429,162 @@ function GOSIContributionTab() {
 export default function KSACalculatorCore({ calcType }: { calcType: string }) {
     if (calcType === "eosb") return <EOSBCalc />;
     if (calcType === "gosi") return <GOSICalc />;
+    if (calcType === "vat") return <VATCalc />;
     return <p>Calculator not found: {calcType}</p>;
+}
+
+/* ── VAT Calculator (Saudi Arabia 15%) ── */
+const VAT_RATE = 0.15;
+
+function VATCalc() {
+    const [tab, setTab] = useState(0);
+    const tabs = ["➕ Add VAT", "➖ Remove VAT", "📊 Quick Reference"];
+    return (<div className="con-calc">
+        <h3 className="con-calc__title">🧾 VAT Calculator (KSA — 15%)</h3>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: "var(--s-1)", marginBottom: "var(--s-3)" }}>
+            {tabs.map((t, i) => <button key={i} onClick={() => setTab(i)} className={`calc-tab-btn${tab === i ? " calc-tab-btn--active" : ""}`}>{t}</button>)}
+        </div>
+        {tab === 0 && <VATAddTab />}
+        {tab === 1 && <VATRemoveTab />}
+        {tab === 2 && <VATReferenceTab />}
+    </div>);
+}
+
+function VATAddTab() {
+    const [price, setPrice] = useState("1000");
+
+    const r = useMemo(() => {
+        const p = parseFloat(price) || 0;
+        if (p <= 0) return null;
+        const vatAmount = p * VAT_RATE;
+        const totalIncl = p + vatAmount;
+        return {
+            priceExcl: p, vatAmount, totalIncl,
+            steps: [
+                `Price (excl. VAT): SAR ${fmt(p)}`,
+                `VAT Rate: 15%`,
+                `VAT Amount: SAR ${fmt(p)} × 0.15 = SAR ${fmt(vatAmount)}`,
+                `Total (incl. VAT): SAR ${fmt(p)} + SAR ${fmt(vatAmount)} = SAR ${fmt(totalIncl)}`,
+            ],
+        };
+    }, [price]);
+
+    return (<div>
+        <div className="con-calc__inputs">
+            <InputField label="Price (excluding VAT)" value={price} onChange={setPrice} unit="SAR" placeholder="e.g. 1000" />
+        </div>
+        {r && <div className="con-calc__results">
+            <h4>Result — Add 15% VAT</h4>
+            <ResultRow label="Price (excl. VAT)" value={`SAR ${fmt(r.priceExcl)}`} />
+            <ResultRow label="VAT Amount (15%)" value={`SAR ${fmt(r.vatAmount)}`} />
+            <ResultRow label="Total (incl. VAT)" value={`SAR ${fmt(r.totalIncl)}`} />
+            <h4>Calculation</h4>
+            {r.steps.map((s, i) => <ResultRow key={i} label={`Step ${i + 1}`} value={s} />)}
+        </div>}
+    </div>);
+}
+
+function VATRemoveTab() {
+    const [price, setPrice] = useState("1150");
+
+    const r = useMemo(() => {
+        const p = parseFloat(price) || 0;
+        if (p <= 0) return null;
+        const priceExcl = p / (1 + VAT_RATE);
+        const vatAmount = p - priceExcl;
+        return {
+            totalIncl: p, priceExcl, vatAmount,
+            steps: [
+                `Total Price (incl. VAT): SAR ${fmt(p)}`,
+                `VAT Rate: 15%`,
+                `Original Price: SAR ${fmt(p)} ÷ 1.15 = SAR ${fmt(priceExcl)}`,
+                `VAT Component: SAR ${fmt(p)} − SAR ${fmt(priceExcl)} = SAR ${fmt(vatAmount)}`,
+            ],
+        };
+    }, [price]);
+
+    return (<div>
+        <div className="con-calc__inputs">
+            <InputField label="Price (including VAT)" value={price} onChange={setPrice} unit="SAR" placeholder="e.g. 1150" />
+        </div>
+        {r && <div className="con-calc__results">
+            <h4>Result — Remove 15% VAT</h4>
+            <ResultRow label="Original Price (excl. VAT)" value={`SAR ${fmt(r.priceExcl)}`} />
+            <ResultRow label="VAT Component (15%)" value={`SAR ${fmt(r.vatAmount)}`} />
+            <ResultRow label="Total (incl. VAT)" value={`SAR ${fmt(r.totalIncl)}`} />
+            <h4>Calculation</h4>
+            {r.steps.map((s, i) => <ResultRow key={i} label={`Step ${i + 1}`} value={s} />)}
+        </div>}
+    </div>);
+}
+
+function VATReferenceTab() {
+    const ts = { width: "100%", fontSize: "0.85rem", borderCollapse: "collapse" as const };
+    const th = { padding: "8px 12px", textAlign: "center" as const };
+    const td = { padding: "6px 12px", textAlign: "center" as const };
+    const tl = { ...td, textAlign: "left" as const };
+    const b = { borderBottom: "1px solid var(--border)" };
+    const bh = { borderBottom: "2px solid var(--border)" };
+
+    return (<div className="con-calc__results">
+        <h4>Common Price → VAT Lookup</h4>
+        <div style={{ overflowX: "auto" }}>
+            <table style={ts}>
+                <thead><tr style={bh}>
+                    <th style={{ ...th, textAlign: "left" }}>Price (excl. VAT)</th>
+                    <th style={th}>VAT (15%)</th>
+                    <th style={th}>Total (incl. VAT)</th>
+                </tr></thead>
+                <tbody>
+                    {[50, 100, 200, 500, 1000, 2000, 5000, 10000, 25000, 50000, 100000].map((p) => (
+                        <tr key={p} style={b}>
+                            <td style={{ ...tl, fontWeight: 600 }}>SAR {p.toLocaleString()}</td>
+                            <td style={td}>SAR {fmt(p * 0.15)}</td>
+                            <td style={{ ...td, fontWeight: 600 }}>SAR {fmt(p * 1.15)}</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
+
+        <h4 style={{ marginTop: "var(--s-4)" }}>VAT Classification Summary</h4>
+        <div style={{ overflowX: "auto" }}>
+            <table style={ts}>
+                <thead><tr style={bh}>
+                    <th style={{ ...th, textAlign: "left" }}>Category</th>
+                    <th style={th}>Rate</th>
+                    <th style={{ ...th, textAlign: "left" }}>Examples</th>
+                </tr></thead>
+                <tbody>
+                    {[
+                        ["Standard Rated", "15%", "Most goods & services, electronics, clothing, restaurants, fuel"],
+                        ["Zero-Rated", "0%", "Exports, international transport, qualifying medicines, 99%+ precious metals"],
+                        ["Exempt", "N/A", "Financial services, residential leasing, local passenger transport"],
+                    ].map(([cat, rate, ex], i) => (
+                        <tr key={i} style={b}>
+                            <td style={{ ...tl, fontWeight: 600 }}>{cat}</td>
+                            <td style={{ ...td, fontWeight: 700 }}>{rate}</td>
+                            <td style={{ ...tl, fontSize: "0.8rem" }}>{ex}</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
+
+        <h4 style={{ marginTop: "var(--s-4)" }}>VAT Registration Thresholds</h4>
+        <div style={{ overflowX: "auto" }}>
+            <table style={ts}>
+                <thead><tr style={bh}>
+                    <th style={{ ...th, textAlign: "left" }}>Type</th>
+                    <th style={th}>Threshold</th>
+                    <th style={{ ...th, textAlign: "left" }}>Requirement</th>
+                </tr></thead>
+                <tbody>
+                    <tr style={b}><td style={{ ...tl, fontWeight: 600 }}>Mandatory</td><td style={{ ...td, fontWeight: 700 }}>SAR 375,000</td><td style={tl}>Annual taxable supplies exceed this amount</td></tr>
+                    <tr style={b}><td style={{ ...tl, fontWeight: 600 }}>Voluntary</td><td style={{ ...td, fontWeight: 700 }}>SAR 187,500</td><td style={tl}>Annual supplies exceed this — optional registration</td></tr>
+                    <tr style={b}><td style={{ ...tl, fontWeight: 600 }}>Non-Resident</td><td style={{ ...td, fontWeight: 700 }}>SAR 0</td><td style={tl}>Must register regardless of turnover</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>);
 }

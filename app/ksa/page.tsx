@@ -25,6 +25,12 @@ const KSA_CALCULATORS = [
         icon: "🏛️",
         description: "Calculate your GOSI social insurance contributions — Annuities, SANED, and Occupational Hazards — for Saudi and non-Saudi employees. Based on 2025 rates.",
     },
+    {
+        title: "VAT Calculator (15%)",
+        slug: "vat-calculator",
+        icon: "🧾",
+        description: "Add or remove 15% VAT for Saudi Arabia. Calculate VAT-inclusive and VAT-exclusive prices with ZATCA-compliant formulas.",
+    },
 ];
 
 
