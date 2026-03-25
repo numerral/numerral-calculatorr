@@ -12,6 +12,10 @@ const categories = [
     { key: "utility", name: "Utility Calculators", icon: "⚡", href: "/utility-calculators", desc: "Age, percentage, BMI" },
 ];
 
+const countries = [
+    { key: "ksa", name: "KSA Calculators", icon: "🇸🇦", href: "/ksa", desc: "EOSB, GOSI, VAT, salary" },
+];
+
 const resources = [
     { name: "Financial Guides", href: "/guides", icon: "📚" },
     { name: "Financial Glossary", href: "/glossary", icon: "📖" },
@@ -116,6 +120,25 @@ export default function Header() {
                                         </Link>
                                     ))}
                                 </div>
+                                <div style={{ borderTop: '1px solid var(--n-border)', margin: '8px 0', paddingTop: '8px' }}>
+                                    <div style={{ fontSize: '11px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--n-text-muted)', padding: '0 12px 6px' }}>Countries</div>
+                                    <div className="header__mega-grid">
+                                        {countries.map((c) => (
+                                            <Link
+                                                key={c.key}
+                                                href={c.href}
+                                                className="header__mega-item"
+                                                onClick={() => setDropdownOpen(false)}
+                                            >
+                                                <span className="header__mega-icon">{c.icon}</span>
+                                                <div>
+                                                    <div className="header__mega-name">{c.name}</div>
+                                                    <div className="header__mega-desc">{c.desc}</div>
+                                                </div>
+                                            </Link>
+                                        ))}
+                                    </div>
+                                </div>
                             </div>
                         )}
                     </div>
@@ -166,6 +189,19 @@ export default function Header() {
                                 onClick={() => setMobileOpen(false)}
                             >
                                 <span>{cat.icon}</span> {cat.name}
+                            </Link>
+                        ))}
+                    </div>
+                    <div className="header__mobile-section">
+                        <div className="header__mobile-label">Countries</div>
+                        {countries.map((c) => (
+                            <Link
+                                key={c.key}
+                                href={c.href}
+                                className="header__mobile-link"
+                                onClick={() => setMobileOpen(false)}
+                            >
+                                <span>{c.icon}</span> {c.name}
                             </Link>
                         ))}
                     </div>
