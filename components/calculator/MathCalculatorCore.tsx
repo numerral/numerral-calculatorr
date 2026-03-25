@@ -2458,6 +2458,186 @@ function PerfectCubesTab() {
     </div>);
 }
 
+/* ── Significant Figures Calculator (3 tabs) ── */
+function countSigFigs(input: string): { count: number; digits: { char: string; significant: boolean; rule: string }[]; scientific: string } {
+    let s = input.trim().replace(/\s/g, "");
+    // Handle scientific notation
+    let mantissa = s;
+    let expPart = "";
+    const sciMatch = s.match(/^([+-]?\d*\.?\d+)\s*[×xX*]\s*10\^?\s*([+-]?\d+)$/);
+    const eMatch = s.match(/^([+-]?\d*\.?\d+)[eE]([+-]?\d+)$/);
+    if (sciMatch) { mantissa = sciMatch[1]; expPart = sciMatch[2]; }
+    else if (eMatch) { mantissa = eMatch[1]; expPart = eMatch[2]; }
+    // Remove sign
+    if (mantissa.startsWith("+") || mantissa.startsWith("-")) mantissa = mantissa.slice(1);
+    const hasDecimal = mantissa.includes(".");
+    const cleanM = mantissa.replace(".", "");
+    const digits: { char: string; significant: boolean; rule: string }[] = [];
+    let firstNonZero = -1; let lastNonZero = -1;
+    for (let i = 0; i < cleanM.length; i++) { if (cleanM[i] !== "0") { if (firstNonZero === -1) firstNonZero = i; lastNonZero = i; } }
+    if (firstNonZero === -1) {
+        // All zeros
+        for (const c of cleanM) digits.push({ char: c, significant: hasDecimal, rule: hasDecimal ? "Trailing zeros with decimal point" : "Leading/placeholder zero" });
+        const val = parseFloat(input);
+        return { count: hasDecimal ? cleanM.length : (cleanM.length > 0 ? 1 : 0), digits, scientific: isNaN(val) ? s : val.toExponential() };
+    }
+    for (let i = 0; i < cleanM.length; i++) {
+        const c = cleanM[i];
+        if (c !== "0") { digits.push({ char: c, significant: true, rule: "Non-zero digit — always significant" }); }
+        else if (i < firstNonZero) { digits.push({ char: c, significant: false, rule: "Leading zero — never significant" }); }
+        else if (i > firstNonZero && i < lastNonZero) { digits.push({ char: c, significant: true, rule: "Zero between non-zero digits — always significant" }); }
+        else if (i > lastNonZero) { digits.push({ char: c, significant: hasDecimal, rule: hasDecimal ? "Trailing zero with decimal point — significant" : "Trailing zero without decimal — not significant" }); }
+        else { digits.push({ char: c, significant: true, rule: "Zero between non-zero digits" }); }
+    }
+    const count = digits.filter(d => d.significant).length;
+    const val = parseFloat(input.replace(/[×xX*]\s*10\^?\s*/, "e"));
+    return { count, digits, scientific: isNaN(val) ? s : val.toExponential() };
+}
+
+function roundToSigFigs(num: number, sf: number): string {
+    if (num === 0) return "0";
+    if (sf < 1) sf = 1;
+    const d = Math.ceil(Math.log10(Math.abs(num)));
+    const power = sf - d;
+    const magnitude = Math.pow(10, power);
+    const shifted = Math.round(num * magnitude);
+    return (shifted / magnitude).toString();
+}
+
+function SigFigsCalc() {
+    const [tab, setTab] = useState(0);
+    const tabs = ["🔢 Counter", "🎯 Rounding", "➕ Arithmetic"];
+    return (<div className="con-calc">
+        <h3 className="con-calc__title">🔢 Significant Figures Calculator</h3>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: "var(--s-1)", marginBottom: "var(--s-3)" }}>
+            {tabs.map((t, i) => <button key={i} onClick={() => setTab(i)} className={`calc-tab-btn${tab === i ? " calc-tab-btn--active" : ""}`}>{t}</button>)}
+        </div>
+        {tab === 0 && <SigFigsCounterTab />}
+        {tab === 1 && <SigFigsRoundingTab />}
+        {tab === 2 && <SigFigsArithmeticTab />}
+    </div>);
+}
+
+function SigFigsCounterTab() {
+    const [input, setInput] = useState("0.00340");
+    const r = useMemo(() => countSigFigs(input), [input]);
+    return (<div>
+        <div className="con-calc__inputs">
+            <InputField label="Enter a Number" value={input} onChange={setInput} placeholder="e.g. 0.00340, 1500, 3.5e4" />
+        </div>
+        <div className="con-calc__results"><h4>Result</h4>
+            <ResultRow label="Significant Figures" value={String(r.count)} />
+            <ResultRow label="Scientific Notation" value={r.scientific} />
+            <h4>Digit Analysis</h4>
+            <div style={{ overflowX: "auto" }}>
+                <table style={{ width: "100%", fontSize: "0.85rem", borderCollapse: "collapse" }}>
+                    <thead><tr style={{ borderBottom: "1px solid var(--border)" }}>
+                        <th style={{ padding: "6px 10px", textAlign: "center" }}>Digit</th>
+                        <th style={{ padding: "6px 10px", textAlign: "center" }}>Significant?</th>
+                        <th style={{ padding: "6px 10px", textAlign: "left" }}>Rule</th>
+                    </tr></thead>
+                    <tbody>{r.digits.map((d, i) => (
+                        <tr key={i} style={{ borderBottom: "1px solid var(--border)", background: d.significant ? "rgba(34,197,94,0.08)" : "rgba(239,68,68,0.05)" }}>
+                            <td style={{ padding: "5px 10px", textAlign: "center", fontWeight: 700, fontSize: "1.1rem" }}>{d.char}</td>
+                            <td style={{ padding: "5px 10px", textAlign: "center" }}>{d.significant ? "✅ Yes" : "❌ No"}</td>
+                            <td style={{ padding: "5px 10px", textAlign: "left", fontSize: "0.8rem" }}>{d.rule}</td>
+                        </tr>
+                    ))}</tbody>
+                </table>
+            </div>
+        </div>
+    </div>);
+}
+
+function SigFigsRoundingTab() {
+    const [input, setInput] = useState("123456");
+    const [target, setTarget] = useState("3");
+    const r = useMemo(() => {
+        const num = parseFloat(input.replace(/[×xX*]\s*10\^?\s*/, "e"));
+        const sf = parseInt(target);
+        if (isNaN(num) || isNaN(sf) || sf < 1) return { result: "—", steps: ["Enter a valid number and sig fig count ≥ 1"] };
+        const original = countSigFigs(input);
+        const rounded = roundToSigFigs(num, sf);
+        const roundedSF = countSigFigs(rounded);
+        return {
+            result: rounded,
+            steps: [
+                `Original number: ${input} has ${original.count} significant figures`,
+                `Target: round to ${sf} significant figures`,
+                `Rounded result: ${rounded}`,
+                `Verification: ${rounded} has ${roundedSF.count} significant figures`,
+            ],
+        };
+    }, [input, target]);
+    return (<div>
+        <div className="con-calc__inputs">
+            <InputField label="Number to Round" value={input} onChange={setInput} placeholder="e.g. 123456, 0.004567" />
+            <InputField label="Round to N Sig Figs" value={target} onChange={setTarget} placeholder="e.g. 3" />
+        </div>
+        <div className="con-calc__results"><h4>Result</h4>
+            <ResultRow label="Rounded Value" value={r.result} />
+            <h4>Step‑by‑Step</h4>
+            {r.steps.map((s, i) => <ResultRow key={i} label={`Step ${i + 1}`} value={s} />)}
+        </div>
+    </div>);
+}
+
+function SigFigsArithmeticTab() {
+    const [a, setA] = useState("23.45");
+    const [b, setB] = useState("1.2");
+    const [op, setOp] = useState("multiply");
+    const r = useMemo(() => {
+        const numA = parseFloat(a); const numB = parseFloat(b);
+        if (isNaN(numA) || isNaN(numB)) return { result: "—", steps: ["Enter valid numbers"] };
+        if (op === "divide" && numB === 0) return { result: "Undefined", steps: ["Cannot divide by zero"] };
+        const sfA = countSigFigs(a); const sfB = countSigFigs(b);
+        let rawResult: number;
+        let opSymbol: string;
+        if (op === "add") { rawResult = numA + numB; opSymbol = "+"; }
+        else if (op === "subtract") { rawResult = numA - numB; opSymbol = "−"; }
+        else if (op === "multiply") { rawResult = numA * numB; opSymbol = "×"; }
+        else { rawResult = numA / numB; opSymbol = "÷"; }
+        const steps: string[] = [];
+        steps.push(`${a} ${opSymbol} ${b} = ${rawResult}`);
+        steps.push(`Sig figs in ${a}: ${sfA.count}`);
+        steps.push(`Sig figs in ${b}: ${sfB.count}`);
+        let finalResult: string;
+        if (op === "add" || op === "subtract") {
+            const decA = a.includes(".") ? a.split(".")[1]?.length || 0 : 0;
+            const decB = b.includes(".") ? b.split(".")[1]?.length || 0 : 0;
+            const minDec = Math.min(decA, decB);
+            finalResult = rawResult.toFixed(minDec);
+            steps.push(`Rule: For addition/subtraction, round to fewest decimal places`);
+            steps.push(`${a} has ${decA} decimal place(s), ${b} has ${decB} decimal place(s)`);
+            steps.push(`Round to ${minDec} decimal place(s): ${finalResult}`);
+        } else {
+            const minSF = Math.min(sfA.count, sfB.count);
+            finalResult = roundToSigFigs(rawResult, minSF);
+            steps.push(`Rule: For multiplication/division, round to fewest significant figures`);
+            steps.push(`Limiting factor: ${minSF} sig figs (from ${sfA.count <= sfB.count ? a : b})`);
+            steps.push(`Round to ${minSF} sig figs: ${finalResult}`);
+        }
+        return { result: finalResult, steps };
+    }, [a, b, op]);
+    return (<div>
+        <div className="con-calc__inputs">
+            <InputField label="First Number" value={a} onChange={setA} placeholder="e.g. 23.45" />
+            <SelectField label="Operation" value={op} onChange={setOp} options={[
+                { value: "add", label: "Addition (+)" },
+                { value: "subtract", label: "Subtraction (−)" },
+                { value: "multiply", label: "Multiplication (×)" },
+                { value: "divide", label: "Division (÷)" },
+            ]} />
+            <InputField label="Second Number" value={b} onChange={setB} placeholder="e.g. 1.2" />
+        </div>
+        <div className="con-calc__results"><h4>Result</h4>
+            <ResultRow label="Answer (with correct sig figs)" value={r.result} />
+            <h4>Step‑by‑Step</h4>
+            {r.steps.map((s, i) => <ResultRow key={i} label={`Step ${i + 1}`} value={s} />)}
+        </div>
+    </div>);
+}
+
 const CALC_MAP: Record<string, React.FC> = {
     "percentage": PercentageCalc,
     "fraction": FractionCalc,
@@ -2495,6 +2675,7 @@ const CALC_MAP: Record<string, React.FC> = {
     "roman-numeral": RomanNumeralCalc,
     "percent-error": PercentErrorCalc,
     "cube-root": CubeRootCalc,
+    "significant-figures": SigFigsCalc,
 };
 
 export default function MathCalculatorCore({ calcType }: { calcType: string }) {

@@ -1125,6 +1125,249 @@ const HUB_CONTENT: Record<string, {
         ],
     },
 
+    /* ─── SIGNIFICANT FIGURES CALCULATOR — RICH CONTENT (Topical Authority) ─── */
+    "significant-figures-calculator": {
+        subtitle: "Count significant figures in any number with digit-by-digit analysis. Round numbers to a specific number of sig figs. Perform arithmetic with automatic sig fig rules applied.",
+        contentHTML: `
+            <h2 id="what-are-significant-figures">What Are Significant Figures?</h2>
+            <p><strong>Significant figures</strong> (also called <strong>significant digits</strong> or <strong>sig figs</strong>) are the digits in a number that carry meaning contributing to its <strong>measurement precision</strong>. They indicate how precisely a value has been measured or is known.</p>
+            <p>For example, when a chemist reports a mass as <strong>12.30 grams</strong>, the four significant figures tell us the measurement is precise to the hundredths place — the "0" at the end is intentional and meaningful. If the mass were only known to the tenths place, it would be written as <strong>12.3 grams</strong> (three significant figures).</p>
+            <p>Understanding significant figures is critical for <strong>scientific accuracy</strong>. Without sig fig rules, calculated results could falsely imply a level of precision that the original measurements don't support. This is why every chemistry, physics, and engineering course in the United States teaches significant figures as a foundational skill.</p>
+            <p>Our calculator above offers three tools: <strong>Counter</strong> (count sig figs with rule identification for each digit), <strong>Rounding</strong> (round to a target number of sig figs), and <strong>Arithmetic</strong> (add, subtract, multiply, or divide with automatic sig fig rules applied).</p>
+
+            <h2 id="six-rules">The 6 Rules of Significant Figures</h2>
+
+            <h3 id="rule-1">Rule 1: Non-Zero Digits Are Always Significant</h3>
+            <p>Every digit from 1 through 9 is always significant, no matter where it appears in the number.</p>
+            <ul>
+                <li><strong>1234</strong> has 4 significant figures</li>
+                <li><strong>5.6</strong> has 2 significant figures</li>
+                <li><strong>91</strong> has 2 significant figures</li>
+            </ul>
+
+            <h3 id="rule-2">Rule 2: Zeros Between Non-Zero Digits Are Significant (Captive Zeros)</h3>
+            <p>Any zero that appears <em>between</em> two non-zero digits is significant. These are sometimes called <strong>captive zeros</strong> or <strong>sandwiched zeros</strong>.</p>
+            <ul>
+                <li><strong>3003</strong> has 4 significant figures (both zeros are between 3s)</li>
+                <li><strong>10.05</strong> has 4 significant figures</li>
+                <li><strong>900.01</strong> has 5 significant figures</li>
+            </ul>
+
+            <h3 id="rule-3">Rule 3: Leading Zeros Are Never Significant</h3>
+            <p><strong>Leading zeros</strong> — zeros that come before all non-zero digits — are never significant. They serve only as <strong>placeholders</strong> to indicate the decimal position.</p>
+            <ul>
+                <li><strong>0.009</strong> has 1 significant figure (only the 9)</li>
+                <li><strong>0.0056</strong> has 2 significant figures (the 5 and 6)</li>
+                <li><strong>0.0000340</strong> has 3 significant figures (3, 4, and trailing 0)</li>
+            </ul>
+
+            <h3 id="rule-4">Rule 4: Trailing Zeros Are Significant Only with a Decimal Point</h3>
+            <p>This is the most commonly confused rule. <strong>Trailing zeros</strong> (zeros at the end of a number) are significant <em>only if the number contains a decimal point</em>.</p>
+            <ul>
+                <li><strong>1500</strong> has 2 significant figures (trailing zeros, no decimal)</li>
+                <li><strong>1500.</strong> has 4 significant figures (decimal point present)</li>
+                <li><strong>1500.0</strong> has 5 significant figures</li>
+                <li><strong>25.00</strong> has 4 significant figures</li>
+                <li><strong>3.200</strong> has 4 significant figures</li>
+            </ul>
+            <div class="explanation__highlight">
+                <strong>Key insight:</strong> The presence or absence of a decimal point in a whole number changes the sig fig count. Writing "100" implies ±50, but writing "100." implies ±0.5. This subtle distinction matters enormously in laboratory science and engineering.
+            </div>
+
+            <h3 id="rule-5">Rule 5: Exact Numbers Have Infinite Significant Figures</h3>
+            <p><strong>Exact numbers</strong> — values obtained by counting or by definition — have an <em>unlimited</em> number of significant figures and never limit the precision of a calculation.</p>
+            <ul>
+                <li>There are <strong>exactly 12</strong> eggs in a dozen (counted)</li>
+                <li><strong>1 inch = 2.54 cm exactly</strong> (by definition)</li>
+                <li><strong>1 mole = 6.02214076 × 10²³</strong> (exact since 2019 SI redefinition)</li>
+            </ul>
+
+            <h3 id="rule-6">Rule 6: In Scientific Notation, All Digits in the Coefficient Are Significant</h3>
+            <p>When a number is written in <strong>scientific notation</strong> (N × 10ⁿ), all digits in the coefficient N are significant. The power of 10 merely indicates magnitude.</p>
+            <ul>
+                <li><strong>5.02 × 10⁴</strong> has 3 significant figures</li>
+                <li><strong>1.300 × 10⁻³</strong> has 4 significant figures</li>
+                <li><strong>6.0 × 10²³</strong> has 2 significant figures</li>
+            </ul>
+            <p>Scientific notation eliminates ambiguity about trailing zeros. If 1500 could have 2, 3, or 4 sig figs, writing it as 1.5 × 10³ (2 sf), 1.50 × 10³ (3 sf), or 1.500 × 10³ (4 sf) makes the precision explicit.</p>
+
+            <h2 id="counting-step-by-step">How to Count Significant Figures Step by Step</h2>
+            <p>Use this algorithm for any number:</p>
+            <ol>
+                <li><strong>Ignore</strong> the sign (+ or −) and any leading zeros</li>
+                <li><strong>Find</strong> the first non-zero digit — it and everything after it <em>might</em> be significant</li>
+                <li><strong>Apply</strong> the trailing zero rule: with decimal → significant; without → not significant</li>
+                <li><strong>Count</strong> all remaining significant digits</li>
+            </ol>
+
+            <p><strong>Example 1:</strong> 0.004050</p>
+            <ul>
+                <li>Leading zeros (0.00): not significant → skip</li>
+                <li>Digits 4, 0, 5, 0: the "0" between 4 and 5 is captive (significant); the trailing "0" has a decimal point (significant)</li>
+                <li><strong>Answer: 4 significant figures</strong></li>
+            </ul>
+
+            <p><strong>Example 2:</strong> 8200</p>
+            <ul>
+                <li>Digits: 8, 2, 0, 0</li>
+                <li>Trailing zeros, no decimal point → not significant</li>
+                <li><strong>Answer: 2 significant figures</strong></li>
+            </ul>
+
+            <p><strong>Example 3:</strong> 8200.</p>
+            <ul>
+                <li>Same digits but decimal point present</li>
+                <li>All four digits are significant</li>
+                <li><strong>Answer: 4 significant figures</strong></li>
+            </ul>
+
+            <p><strong>Example 4:</strong> 3.50 × 10⁵</p>
+            <ul>
+                <li>Scientific notation: count only the coefficient (3.50)</li>
+                <li>Three digits, all significant (trailing zero with decimal)</li>
+                <li><strong>Answer: 3 significant figures</strong></li>
+            </ul>
+
+            <p><strong>Example 5:</strong> 100,000</p>
+            <ul>
+                <li>Only the 1 is definitely significant; the five zeros are trailing with no decimal</li>
+                <li><strong>Answer: 1 significant figure</strong></li>
+                <li>To express 3 sig figs, write as 1.00 × 10⁵</li>
+            </ul>
+
+            <h2 id="rounding-rules">Rounding to Significant Figures</h2>
+            <p>To round a number to N significant figures:</p>
+            <ol>
+                <li><strong>Count</strong> N digits from the first non-zero digit</li>
+                <li><strong>Look</strong> at the (N+1)th digit — the one being dropped</li>
+                <li><strong>If</strong> it's less than 5, round down (keep the Nth digit as is)</li>
+                <li><strong>If</strong> it's 5 or greater, round up (add 1 to the Nth digit)</li>
+            </ol>
+            <p><strong>Example:</strong> Round 0.004567 to 3 sig figs</p>
+            <ol>
+                <li>First 3 significant digits: 4, 5, 6 → the 4th (7) determines rounding</li>
+                <li>7 ≥ 5 → round up: 0.00457</li>
+            </ol>
+            <p><strong>Example:</strong> Round 123,456 to 4 sig figs</p>
+            <ol>
+                <li>First 4 digits: 1, 2, 3, 4 → the 5th (5) determines rounding</li>
+                <li>5 ≥ 5 → round up: 123,500</li>
+            </ol>
+
+            <h2 id="arithmetic-rules">Significant Figures in Arithmetic</h2>
+            <p>The rules differ between addition/subtraction and multiplication/division:</p>
+            <table>
+                <thead><tr><th>Operation</th><th>Rule</th><th>Example</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Addition & Subtraction</strong></td><td>Result has same number of <strong>decimal places</strong> as the input with the <strong>fewest decimal places</strong></td><td>12.11 + 0.3 = 12.4 (1 decimal place)</td></tr>
+                    <tr><td><strong>Multiplication & Division</strong></td><td>Result has same number of <strong>significant figures</strong> as the input with the <strong>fewest sig figs</strong></td><td>4.56 × 1.4 = 6.4 (2 sig figs)</td></tr>
+                </tbody>
+            </table>
+            <div class="explanation__highlight">
+                <strong>Common mistake:</strong> Many students apply the "fewest sig figs" rule to addition and subtraction. This is wrong! For addition/subtraction, you count <strong>decimal places</strong>, not total significant figures. Our Arithmetic tab handles this correctly for you.
+            </div>
+
+            <h3 id="arithmetic-add-example">Addition/Subtraction Example</h3>
+            <p>Calculate: 128.1 + 1.72 + 0.457</p>
+            <ol>
+                <li>128.1 has 1 decimal place</li>
+                <li>1.72 has 2 decimal places</li>
+                <li>0.457 has 3 decimal places</li>
+                <li>Sum: 128.1 + 1.72 + 0.457 = 130.277</li>
+                <li>Round to 1 decimal place (fewest): <strong>130.3</strong></li>
+            </ol>
+
+            <h3 id="arithmetic-multiply-example">Multiplication/Division Example</h3>
+            <p>Calculate: 4.321 × 3.14</p>
+            <ol>
+                <li>4.321 has 4 significant figures</li>
+                <li>3.14 has 3 significant figures</li>
+                <li>Product: 4.321 × 3.14 = 13.56794</li>
+                <li>Round to 3 sig figs (fewest): <strong>13.6</strong></li>
+            </ol>
+
+            <h2 id="scientific-notation">Scientific Notation and Significant Figures</h2>
+            <p><strong>Scientific notation</strong> is the gold standard for communicating precision because it eliminates ambiguity about trailing zeros. Express any number as N × 10ⁿ where 1 ≤ N < 10.</p>
+            <table>
+                <thead><tr><th>Standard Form</th><th>Scientific Notation</th><th>Sig Figs</th><th>Why Ambiguous?</th></tr></thead>
+                <tbody>
+                    <tr><td>1500</td><td>1.5 × 10³</td><td>2</td><td>Trailing zeros without decimal — unclear</td></tr>
+                    <tr><td>1500</td><td>1.50 × 10³</td><td>3</td><td>Scientific notation clarifies 3 sig figs</td></tr>
+                    <tr><td>1500</td><td>1.500 × 10³</td><td>4</td><td>Scientific notation clarifies 4 sig figs</td></tr>
+                    <tr><td>0.00340</td><td>3.40 × 10⁻³</td><td>3</td><td>Not ambiguous — but notation confirms</td></tr>
+                </tbody>
+            </table>
+            <p>In <strong>AP Chemistry</strong> and <strong>AP Physics</strong> exams, the College Board expects students to express answers in the correct number of significant figures. Using scientific notation is the safest way to avoid point deductions.</p>
+
+            <h2 id="exact-vs-measured">Exact Numbers vs. Measured Numbers</h2>
+            <p>Not all numbers follow sig fig rules. <strong>Exact numbers</strong> have infinite precision and never limit calculations:</p>
+            <table>
+                <thead><tr><th>Type</th><th>Examples</th><th>Sig Figs</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Counted quantities</strong></td><td>15 students, 6 trials, 4 sides of a rectangle</td><td>Infinite (exact)</td></tr>
+                    <tr><td><strong>Defined relationships</strong></td><td>1 ft = 12 in, 1 kg = 1000 g, π (definition)</td><td>Infinite (exact)</td></tr>
+                    <tr><td><strong>Measured quantities</strong></td><td>23.45 mL, 9.807 m/s², 101.5°C</td><td>Limited by instrument</td></tr>
+                </tbody>
+            </table>
+            <p>When performing calculations that mix exact and measured numbers, only the <strong>measured numbers</strong> determine the significant figures of the result.</p>
+
+            <h2 id="real-world-applications">Real-World Applications in the United States</h2>
+
+            <h3 id="nist-standards">NIST Measurement Standards</h3>
+            <p>The <strong>National Institute of Standards and Technology (NIST)</strong> publishes measurement guidelines that emphasize proper use of significant figures in reporting measurement uncertainty. Every NIST-traceable calibration certificate in the United States specifies values to the appropriate number of significant figures, ensuring that laboratories nationwide maintain consistent <a href="/math-calculators/percent-error-calculator">measurement accuracy</a>.</p>
+
+            <h3 id="fda-pharmaceutical">FDA and Pharmaceutical Quality</h3>
+            <p>The <strong>U.S. Pharmacopeia (USP)</strong> and <strong>FDA</strong> require pharmaceutical analyses to report results with the correct number of significant figures. Drug potency assays, dissolution testing, and content uniformity tests all depend on proper sig fig reporting to ensure patient safety.</p>
+
+            <h3 id="epa-environmental">EPA Environmental Reporting</h3>
+            <p>The <strong>Environmental Protection Agency</strong> requires environmental monitoring data to be reported with appropriate significant figures. Under the <strong>Clean Water Act</strong> and <strong>Safe Drinking Water Act</strong>, water quality measurements for contaminants like lead, arsenic, and mercury must reflect the actual precision of the analytical method used.</p>
+
+            <h3 id="education-ap">AP Science Curriculum</h3>
+            <p>The <strong>College Board</strong> includes significant figures as a core competency in <strong>AP Chemistry</strong>, <strong>AP Physics</strong>, and <strong>AP Environmental Science</strong>. Students lose points on free-response questions for answers with incorrect sig figs. Understanding these rules is essential for scoring well on these standardized exams taken by over <strong>1 million American students</strong> annually.</p>
+        `,
+        formula: {
+            formula: "Count all digits except leading zeros; trailing zeros count only with a decimal point",
+            variables: [
+                { symbol: "Rule 1", meaning: "Non-zero digits are always significant" },
+                { symbol: "Rule 2", meaning: "Captive zeros (between non-zero digits) are always significant" },
+                { symbol: "Rule 3", meaning: "Leading zeros are never significant" },
+                { symbol: "Rule 4", meaning: "Trailing zeros are significant only with a decimal point" },
+                { symbol: "Rule 5", meaning: "Exact numbers have infinite significant figures" },
+                { symbol: "Rule 6", meaning: "In scientific notation, all coefficient digits are significant" },
+            ],
+            example: [
+                { label: "0.00340", substitution: "Leading 0s skip → 3, 4, 0 (trailing with decimal)", result: "3 sig figs" },
+                { label: "1500", substitution: "1, 5 significant; trailing 00 no decimal", result: "2 sig figs" },
+                { label: "1500.", substitution: "All digits with decimal point", result: "4 sig figs" },
+                { label: "5.02 × 10⁴", substitution: "Coefficient 5.02 → all digits count", result: "3 sig figs" },
+            ],
+        },
+        faq: [
+            { question: "How many significant figures are in 100?", answer: "In the number 100 (without a decimal point), there is 1 significant figure. The trailing zeros are ambiguous placeholders. To indicate 3 significant figures, write 100. (with a decimal point) or 1.00 × 10²." },
+            { question: "How many significant figures are in 0.00340?", answer: "0.00340 has 3 significant figures: the 3, 4, and the trailing 0. The leading zeros (0.00) are not significant — they are placeholders. The trailing 0 is significant because the number contains a decimal point." },
+            { question: "What are the rules for significant figures?", answer: "Six rules: (1) Non-zero digits are always significant. (2) Zeros between non-zero digits are significant. (3) Leading zeros are never significant. (4) Trailing zeros are significant only with a decimal point. (5) Exact numbers have infinite sig figs. (6) In scientific notation, all coefficient digits are significant." },
+            { question: "How do sig figs work in multiplication and division?", answer: "For multiplication and division, the result must have the same number of significant figures as the input with the FEWEST sig figs. For example, 4.56 × 1.4 = 6.384, rounded to 6.4 (2 sig figs, limited by 1.4)." },
+            { question: "How do sig figs work in addition and subtraction?", answer: "For addition and subtraction, the result must have the same number of DECIMAL PLACES as the input with the fewest decimal places. For example, 12.11 + 0.3 = 12.41, rounded to 12.4 (1 decimal place, limited by 0.3). Note: this uses decimal places, NOT total sig figs." },
+            { question: "Are leading zeros significant?", answer: "No, leading zeros are never significant. They are placeholders that indicate the position of the decimal point. In 0.0056, only the 5 and 6 are significant (2 sig figs). The three leading zeros do not count." },
+            { question: "Are trailing zeros significant?", answer: "It depends! Trailing zeros ARE significant if the number contains a decimal point (e.g., 25.00 has 4 sig figs). Trailing zeros are NOT significant if there is no decimal point (e.g., 2500 has 2 sig figs). This is the most commonly confused sig fig rule." },
+            { question: "How many sig figs does an exact number have?", answer: "Exact numbers have infinite significant figures. These include counted quantities (12 eggs) and defined conversions (1 inch = 2.54 cm). Exact numbers never limit the sig figs of a calculation result." },
+            { question: "How do you round to 3 significant figures?", answer: "Count 3 digits starting from the first non-zero digit. Look at the 4th digit: if it's 5 or more, round up; if it's less than 5, round down. Example: 0.04567 → 3 sig figs → 0.0457 (the 4th sig digit is 7 ≥ 5, so round up)." },
+            { question: "Why does scientific notation help with sig figs?", answer: "Scientific notation eliminates ambiguity about trailing zeros. The number 1500 could have 2, 3, or 4 sig figs — it's unclear. Writing 1.50 × 10³ explicitly communicates 3 sig figs. All digits in the coefficient are significant." },
+            { question: "How many significant figures are in 1500.?", answer: "1500. (with a decimal point at the end) has 4 significant figures. The decimal point indicates that the trailing zeros are intentional and meaningful, not just placeholders." },
+            { question: "What is the difference between 2.0 and 2?", answer: "2.0 has 2 significant figures and implies the value is precise to the tenths place (between 1.95 and 2.05). The number 2 has 1 significant figure and implies less precision (between 1.5 and 2.5). Adding the .0 communicates greater measurement precision." },
+            { question: "Do sig figs apply to all numbers?", answer: "Sig fig rules apply to measured quantities. They do NOT apply to exact numbers (counted items, defined constants) or pure mathematical values (π, e). In calculations mixing exact and measured numbers, only the measured numbers determine the final sig fig count." },
+            { question: "How are sig figs tested on the AP Chemistry exam?", answer: "The College Board expects AP Chemistry students to report calculation answers with the correct number of significant figures. On free-response questions, answers with too many or too few sig figs may lose points. The general rule is to match the precision of the given data." },
+            { question: "Can your calculator handle scientific notation?", answer: "Yes! Enter numbers in scientific notation as '3.5e4' (e-notation) or '3.5 x 10^4'. The Counter tab will identify only the coefficient digits as significant. The Arithmetic tab also accepts scientific notation inputs." },
+        ],
+        relatedCalculators: [
+            { title: "Percent Error Calculator", slug: "percent-error-calculator", categorySlug: "math-calculators", description: "Calculate percent error with step-by-step work" },
+            { title: "Standard Deviation Calculator", slug: "standard-deviation-calculator", categorySlug: "math-calculators", description: "Calculate standard deviation, variance, and mean" },
+            { title: "Average Calculator", slug: "average-calculator", categorySlug: "math-calculators", description: "Calculate mean, median, mode, and range" },
+            { title: "Fraction Calculator", slug: "fraction-calculator", categorySlug: "math-calculators", description: "Add, subtract, multiply, divide fractions" },
+            { title: "Decimal to Fraction Calculator", slug: "decimal-to-fraction-calculator", categorySlug: "math-calculators", description: "Convert decimals to fractions" },
+        ],
+    },
+
     /* ─── 2. FRACTION CALCULATOR — RICH CONTENT (Competitor-level) ─── */
 
     "fraction-calculator": {

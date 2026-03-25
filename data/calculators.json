@@ -18023,6 +18023,49 @@
   },
 
   {
+    "id": "significant-figures-calculator",
+    "category": "math",
+    "title": "Significant Figures Calculator",
+    "slug": "significant-figures-calculator",
+    "categorySlug": "math-calculators",
+    "icon": "🔬",
+    "calcType": "significant-figures",
+    "description": "Count significant figures, round to sig figs, and perform arithmetic with proper sig fig rules. Supports scientific notation and e-notation with digit-by-digit analysis.",
+    "stars": 5,
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "significant figures calculator, sig figs calculator, count significant figures, significant figures rules, sig fig counter, rounding significant figures, significant digits, how many sig figs",
+    "links": {
+      "related": [
+        "percent-error-calculator",
+        "standard-deviation-calculator",
+        "average-calculator",
+        "decimal-to-fraction-calculator"
+      ]
+    }
+  },
+
+  {
     "id": "fraction-calculator",
     "category": "math",
     "title": "Fraction Calculator",
