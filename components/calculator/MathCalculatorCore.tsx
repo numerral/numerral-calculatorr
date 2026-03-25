@@ -1926,6 +1926,272 @@ function NumbersToWordsCalc() {
 }
 
 /* ──── DISPATCHER ──── */
+/* ── Roman Numeral helpers ── */
+const ROMAN_VALS: [string, number][] = [
+    ["M", 1000], ["CM", 900], ["D", 500], ["CD", 400],
+    ["C", 100], ["XC", 90], ["L", 50], ["XL", 40],
+    ["X", 10], ["IX", 9], ["V", 5], ["IV", 4], ["I", 1],
+];
+const ROMAN_MAP: Record<string, number> = { I: 1, V: 5, X: 10, L: 50, C: 100, D: 500, M: 1000 };
+
+function toRoman(n: number): string {
+    if (n <= 0 || n > 3999999 || !Number.isInteger(n)) return "";
+    if (n > 3999) {
+        const hi = Math.floor(n / 1000);
+        const lo = n % 1000;
+        const hiR = toRomanBasic(hi);
+        const loR = lo > 0 ? toRomanBasic(lo) : "";
+        return hiR.split("").map(c => c + "\u0305").join("") + loR;
+    }
+    return toRomanBasic(n);
+}
+function toRomanBasic(n: number): string {
+    let result = "";
+    for (const [sym, val] of ROMAN_VALS) {
+        while (n >= val) { result += sym; n -= val; }
+    }
+    return result;
+}
+function fromRoman(s: string): number {
+    const clean = s.toUpperCase().replace(/[^IVXLCDM\u0305_]/g, "");
+    // Handle _X style overline
+    let total = 0; let i = 0;
+    const chars: { val: number }[] = [];
+    const arr = Array.from(clean);
+    for (let j = 0; j < arr.length; j++) {
+        if (arr[j] === "_" && j + 1 < arr.length && ROMAN_MAP[arr[j + 1]]) {
+            chars.push({ val: ROMAN_MAP[arr[j + 1]] * 1000 }); j++;
+        } else if (arr[j + 1] === "\u0305") {
+            if (ROMAN_MAP[arr[j]]) { chars.push({ val: ROMAN_MAP[arr[j]] * 1000 }); j++; }
+        } else if (ROMAN_MAP[arr[j]]) {
+            chars.push({ val: ROMAN_MAP[arr[j]] });
+        }
+    }
+    for (let k = 0; k < chars.length; k++) {
+        if (k + 1 < chars.length && chars[k].val < chars[k + 1].val) {
+            total += chars[k + 1].val - chars[k].val; k++;
+        } else {
+            total += chars[k].val;
+        }
+    }
+    return total;
+}
+function placeValueBreakdown(n: number): { place: string; value: number; roman: string }[] {
+    if (n <= 0 || n > 3999) return [{ place: "Number", value: n, roman: toRoman(n) }];
+    const places: { place: string; value: number; roman: string }[] = [];
+    const thousands = Math.floor(n / 1000);
+    const hundreds = Math.floor((n % 1000) / 100);
+    const tens = Math.floor((n % 100) / 10);
+    const ones = n % 10;
+    if (thousands > 0) places.push({ place: "Thousands", value: thousands * 1000, roman: toRomanBasic(thousands * 1000) });
+    if (hundreds > 0) places.push({ place: "Hundreds", value: hundreds * 100, roman: toRomanBasic(hundreds * 100) });
+    if (tens > 0) places.push({ place: "Tens", value: tens * 10, roman: toRomanBasic(tens * 10) });
+    if (ones > 0) places.push({ place: "Ones", value: ones, roman: toRomanBasic(ones) });
+    return places;
+}
+function conversionSteps(n: number): string[] {
+    if (n <= 0 || n > 3999) return [`${n} → ${toRoman(n)}`];
+    const steps: string[] = [];
+    const bd = placeValueBreakdown(n);
+    steps.push(`Break down ${n} by place value:`);
+    bd.forEach(b => steps.push(`  ${b.place}: ${b.value} = ${b.roman}`));
+    steps.push(`Combine: ${bd.map(b => b.roman).join(" + ")} = ${toRomanBasic(n)}`);
+    return steps;
+}
+
+/* Roman Numeral Calculator (4 tabs) */
+function RomanNumeralCalc() {
+    const [tab, setTab] = useState(0);
+    const tabs = ["🏛️ Converter", "📅 Date", "➕ Arithmetic", "📊 Chart"];
+    return (<div className="con-calc">
+        <h3 className="con-calc__title">🏛️ Roman Numeral Converter</h3>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: "var(--s-1)", marginBottom: "var(--s-3)" }}>
+            {tabs.map((t, i) => <button key={i} onClick={() => setTab(i)} className={`calc-tab-btn${tab === i ? " calc-tab-btn--active" : ""}`}>{t}</button>)}
+        </div>
+        {tab === 0 && <RomanConverterTab />}
+        {tab === 1 && <RomanDateTab />}
+        {tab === 2 && <RomanArithmeticTab />}
+        {tab === 3 && <RomanChartTab />}
+    </div>);
+}
+
+function RomanConverterTab() {
+    const [mode, setMode] = useState<"to-roman" | "to-number">("to-roman");
+    const [numInput, setNumInput] = useState("2026");
+    const [romanInput, setRomanInput] = useState("MMXXVI");
+    const r = useMemo(() => {
+        if (mode === "to-roman") {
+            const n = parseInt(numInput) || 0;
+            if (n < 1 || n > 3999999) return { result: "Enter 1–3,999,999", breakdown: [] as ReturnType<typeof placeValueBreakdown>, steps: ["Number must be between 1 and 3,999,999"] };
+            return { result: toRoman(n), breakdown: n <= 3999 ? placeValueBreakdown(n) : [], steps: n <= 3999 ? conversionSteps(n) : [`${n} → ${toRoman(n)} (overline notation for values above 3,999)`] };
+        } else {
+            const n = fromRoman(romanInput);
+            if (n === 0) return { result: "Invalid Roman numeral", breakdown: [] as ReturnType<typeof placeValueBreakdown>, steps: ["Enter a valid Roman numeral (I, V, X, L, C, D, M)"] };
+            const verify = toRoman(n);
+            const steps = [`Read left to right, applying subtractive notation:`, `${romanInput.toUpperCase()} = ${n}`];
+            if (verify !== romanInput.toUpperCase()) steps.push(`Standard form: ${verify}`);
+            return { result: n.toLocaleString(), breakdown: n <= 3999 ? placeValueBreakdown(n) : [], steps };
+        }
+    }, [mode, numInput, romanInput]);
+    return (<div>
+        <div className="con-calc__inputs">
+            <SelectField label="Direction" value={mode} onChange={(v) => setMode(v as "to-roman" | "to-number")} options={[{ value: "to-roman", label: "Number → Roman Numeral" }, { value: "to-number", label: "Roman Numeral → Number" }]} />
+            {mode === "to-roman"
+                ? <InputField label="Enter a Number (1–3,999,999)" value={numInput} onChange={setNumInput} placeholder="e.g. 2026" />
+                : <InputField label="Enter Roman Numeral" value={romanInput} onChange={setRomanInput} placeholder="e.g. MMXXVI" />}
+        </div>
+        <div className="con-calc__results"><h4>Result</h4>
+            <ResultRow label={mode === "to-roman" ? "Roman Numeral" : "Number"} value={r.result} />
+            {r.breakdown.length > 0 && <><h4>Place‑Value Breakdown</h4>
+                <div style={{ overflowX: "auto" }}>
+                    <table style={{ width: "100%", fontSize: "0.85rem", borderCollapse: "collapse" }}>
+                        <thead><tr style={{ borderBottom: "1px solid var(--border)" }}><th style={{ padding: "6px 10px", textAlign: "left" }}>Place</th><th style={{ padding: "6px 10px", textAlign: "right" }}>Value</th><th style={{ padding: "6px 10px", textAlign: "right" }}>Roman</th></tr></thead>
+                        <tbody>{r.breakdown.map((b, i) => <tr key={i} style={{ borderBottom: "1px solid var(--border)" }}><td style={{ padding: "6px 10px" }}>{b.place}</td><td style={{ padding: "6px 10px", textAlign: "right" }}>{b.value.toLocaleString()}</td><td style={{ padding: "6px 10px", textAlign: "right", fontWeight: 600 }}>{b.roman}</td></tr>)}</tbody>
+                    </table>
+                </div></>}
+            <h4>Step‑by‑Step</h4>
+            {r.steps.map((s, i) => <ResultRow key={i} label="" value={s} />)}
+        </div>
+    </div>);
+}
+
+function RomanDateTab() {
+    const now = new Date();
+    const [month, setMonth] = useState(String(now.getMonth() + 1));
+    const [day, setDay] = useState(String(now.getDate()));
+    const [year, setYear] = useState(String(now.getFullYear()));
+    const [sep, setSep] = useState("·");
+    const r = useMemo(() => {
+        const m = parseInt(month) || 0; const d = parseInt(day) || 0; const y = parseInt(year) || 0;
+        if (m < 1 || m > 12 || d < 1 || d > 31 || y < 1 || y > 3999) return { date: "Invalid date", parts: [] as string[] };
+        const parts = [toRomanBasic(m), toRomanBasic(d), toRomanBasic(y)];
+        return { date: parts.join(` ${sep} `), parts };
+    }, [month, day, year, sep]);
+    return (<div>
+        <div className="con-calc__inputs">
+            <div style={{ display: "flex", gap: "var(--s-2)", flexWrap: "wrap" }}>
+                <InputField label="Month (1–12)" value={month} onChange={setMonth} min={1} max={12} />
+                <InputField label="Day (1–31)" value={day} onChange={setDay} min={1} max={31} />
+                <InputField label="Year (1–3999)" value={year} onChange={setYear} min={1} max={3999} />
+            </div>
+            <SelectField label="Separator" value={sep} onChange={setSep} options={[{ value: "·", label: "Dot ( · )" }, { value: "-", label: "Dash ( - )" }, { value: "/", label: "Slash ( / )" }, { value: " ", label: "Space" }]} />
+        </div>
+        <div className="con-calc__results"><h4>Roman Numeral Date</h4>
+            <ResultRow label="Date" value={r.date} />
+            {r.parts.length === 3 && <>
+                <ResultRow label="Month" value={r.parts[0]} />
+                <ResultRow label="Day" value={r.parts[1]} />
+                <ResultRow label="Year" value={r.parts[2]} />
+            </>}
+            <h4>💡 Popular Uses</h4>
+            <ResultRow label="" value="Tattoo designs, jewelry engravings, wedding invitations, and memorial plaques" />
+        </div>
+    </div>);
+}
+
+function RomanArithmeticTab() {
+    const [a, setA] = useState("XIV");
+    const [b, setB] = useState("VIII");
+    const [op, setOp] = useState("add");
+    const r = useMemo(() => {
+        const na = fromRoman(a); const nb = fromRoman(b);
+        if (na === 0 || nb === 0) return { result: "—", decimal: 0, steps: ["Enter valid Roman numerals"] };
+        let result: number;
+        const opSym = { add: "+", subtract: "−", multiply: "×", divide: "÷" }[op] || "+";
+        switch (op) {
+            case "add": result = na + nb; break;
+            case "subtract": result = na - nb; break;
+            case "multiply": result = na * nb; break;
+            case "divide": result = Math.floor(na / nb); break;
+            default: result = na + nb;
+        }
+        const steps = [
+            `Convert: ${a.toUpperCase()} = ${na}, ${b.toUpperCase()} = ${nb}`,
+            `Calculate: ${na} ${opSym} ${nb} = ${op === "divide" ? `${result} (integer quotient)` : result}`,
+        ];
+        if (result > 0 && result <= 3999999) {
+            steps.push(`Convert back: ${result} = ${toRoman(result)}`);
+        } else if (result <= 0) {
+            steps.push("Result is zero or negative — cannot be represented in Roman numerals");
+        }
+        return { result: result > 0 && result <= 3999999 ? toRoman(result) : String(result), decimal: result, steps };
+    }, [a, b, op]);
+    return (<div>
+        <div className="con-calc__inputs">
+            <InputField label="First Roman Numeral" value={a} onChange={setA} placeholder="e.g. XIV" />
+            <SelectField label="Operation" value={op} onChange={setOp} options={[{ value: "add", label: "Add (+)" }, { value: "subtract", label: "Subtract (−)" }, { value: "multiply", label: "Multiply (×)" }, { value: "divide", label: "Divide (÷)" }]} />
+            <InputField label="Second Roman Numeral" value={b} onChange={setB} placeholder="e.g. VIII" />
+        </div>
+        <div className="con-calc__results"><h4>Result</h4>
+            <ResultRow label="Roman Numeral" value={r.result} />
+            <ResultRow label="Decimal" value={r.decimal.toLocaleString()} />
+            <h4>Steps</h4>
+            {r.steps.map((s, i) => <ResultRow key={i} label={`Step ${i + 1}`} value={s} />)}
+        </div>
+    </div>);
+}
+
+function RomanChartTab() {
+    const [range, setRange] = useState("1-50");
+    const [search, setSearch] = useState("");
+    const ranges: Record<string, [number, number]> = { "1-50": [1, 50], "51-100": [51, 100], "100-500": [100, 500], "500-1000": [500, 1000] };
+    const data = useMemo(() => {
+        if (search.trim()) {
+            const q = search.trim();
+            const n = parseInt(q);
+            if (!isNaN(n) && n >= 1 && n <= 3999) return [{ num: n, roman: toRomanBasic(n) }];
+            const fromR = fromRoman(q);
+            if (fromR > 0) return [{ num: fromR, roman: toRoman(fromR) }];
+            return [];
+        }
+        const [lo, hi] = ranges[range] || [1, 50];
+        const step = hi <= 100 ? 1 : hi <= 500 ? (range === "100-500" ? 10 : 1) : 50;
+        const items: { num: number; roman: string }[] = [];
+        for (let i = lo; i <= hi; i += step) items.push({ num: i, roman: toRomanBasic(i) });
+        return items;
+    }, [range, search]);
+    return (<div>
+        <div className="con-calc__inputs">
+            <InputField label="🔍 Search (number or Roman numeral)" value={search} onChange={setSearch} placeholder="e.g. 42 or XLII" />
+            <SelectField label="Range" value={range} onChange={setRange} options={[{ value: "1-50", label: "1 – 50" }, { value: "51-100", label: "51 – 100" }, { value: "100-500", label: "100 – 500 (by 10s)" }, { value: "500-1000", label: "500 – 1000 (by 50s)" }]} />
+        </div>
+        <div className="con-calc__results"><h4>Reference Chart {!search && `(${range})`}</h4>
+            <div style={{ overflowX: "auto", maxHeight: 420, overflowY: "auto" }}>
+                <table style={{ width: "100%", fontSize: "0.85rem", borderCollapse: "collapse" }}>
+                    <thead><tr style={{ borderBottom: "1px solid var(--border)", position: "sticky", top: 0, background: "var(--card-bg, #1a1a2e)" }}><th style={{ padding: "6px 10px", textAlign: "right" }}>Number</th><th style={{ padding: "6px 10px", textAlign: "left" }}>Roman</th><th style={{ padding: "6px 10px", textAlign: "right" }}>Number</th><th style={{ padding: "6px 10px", textAlign: "left" }}>Roman</th></tr></thead>
+                    <tbody>
+                        {Array.from({ length: Math.ceil(data.length / 2) }, (_, i) => {
+                            const left = data[i * 2];
+                            const right = data[i * 2 + 1];
+                            return (<tr key={i} style={{ borderBottom: "1px solid var(--border)" }}>
+                                <td style={{ padding: "5px 10px", textAlign: "right" }}>{left?.num}</td>
+                                <td style={{ padding: "5px 10px", fontWeight: 600 }}>{left?.roman}</td>
+                                <td style={{ padding: "5px 10px", textAlign: "right" }}>{right?.num ?? ""}</td>
+                                <td style={{ padding: "5px 10px", fontWeight: 600 }}>{right?.roman ?? ""}</td>
+                            </tr>);
+                        })}
+                    </tbody>
+                </table>
+            </div>
+            <h4 style={{ marginTop: "var(--s-3)" }}>Key Symbols</h4>
+            <div style={{ overflowX: "auto" }}>
+                <table style={{ width: "100%", fontSize: "0.85rem", borderCollapse: "collapse" }}>
+                    <thead><tr style={{ borderBottom: "1px solid var(--border)" }}><th style={{ padding: "6px 10px", textAlign: "left" }}>Symbol</th><th style={{ padding: "6px 10px", textAlign: "right" }}>Value</th><th style={{ padding: "6px 10px", textAlign: "left" }}>Origin</th></tr></thead>
+                    <tbody>
+                        {([["I", "1", "One finger"], ["V", "5", "Hand (5 fingers)"], ["X", "10", "Two hands crossed"], ["L", "50", "Half of C (Centum)"], ["C", "100", "Centum (Latin: hundred)"], ["D", "500", "Half of M (Mille)"], ["M", "1,000", "Mille (Latin: thousand)"]] as string[][]).map(([sym, val, origin], i) => (
+                            <tr key={i} style={{ borderBottom: "1px solid var(--border)" }}>
+                                <td style={{ padding: "5px 10px", fontWeight: 700, fontSize: "1.1rem" }}>{sym}</td>
+                                <td style={{ padding: "5px 10px", textAlign: "right" }}>{val}</td>
+                                <td style={{ padding: "5px 10px", color: "var(--text-muted)" }}>{origin}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>);
+}
+
 const CALC_MAP: Record<string, React.FC> = {
     "percentage": PercentageCalc,
     "fraction": FractionCalc,
@@ -1960,6 +2226,7 @@ const CALC_MAP: Record<string, React.FC> = {
     "circle-area": CircleCalc,
     "polygon-calculator": RegularPolygonCalc,
     "numbers-to-words": NumbersToWordsCalc,
+    "roman-numeral": RomanNumeralCalc,
 };
 
 export default function MathCalculatorCore({ calcType }: { calcType: string }) {

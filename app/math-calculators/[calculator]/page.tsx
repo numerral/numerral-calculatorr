@@ -456,6 +456,285 @@ const HUB_CONTENT: Record<string, {
         ],
     },
 
+    /* ─── ROMAN NUMERAL CONVERTER — RICH CONTENT (Topical Authority) ─── */
+    "roman-numeral-converter": {
+        subtitle: "Convert numbers to Roman numerals and Roman numerals to numbers instantly. Supports 1 to 3,999,999 with overline notation, date conversion, Roman numeral arithmetic, and a searchable reference chart for 1–1,000.",
+        contentHTML: `
+            <h2 id="what-are-roman-numerals">What Are Roman Numerals?</h2>
+            <p><strong>Roman numerals</strong> are a numeral system that originated in <strong>ancient Rome</strong> and remained the dominant way of writing numbers throughout Europe for nearly two thousand years. Unlike the modern <strong>Hindu-Arabic numeral system</strong> (0, 1, 2, 3…) which uses ten digits and positional notation, Roman numerals use <strong>seven Latin letters</strong> — <strong>I, V, X, L, C, D, M</strong> — combined in additive and subtractive patterns to represent values.</p>
+            <p>The system evolved from <strong>Etruscan numerals</strong> used in pre-Roman Italy around the 8th century BCE. The Romans refined it into the notation we recognize today: tally-like marks for small numbers (I, II, III) and shorthand letters for larger values. Despite being replaced by Hindu-Arabic numerals for everyday arithmetic in the Middle Ages, Roman numerals survive in modern life — from <strong>Super Bowl numbers</strong> and <strong>movie copyright dates</strong> to <strong>clock faces</strong>, <strong>book chapters</strong>, and <strong>building cornerstones</strong>.</p>
+            <p>Our converter above handles bidirectional conversion (numbers to Roman and Roman to numbers), <strong>date conversion</strong> for tattoos and engravings, <strong>arithmetic operations</strong> in Roman numerals, and a complete <strong>reference chart</strong> — all in one tool. This replaces the need for multiple separate calculators.</p>
+
+            <h2 id="seven-symbols">The 7 Roman Numeral Symbols</h2>
+            <p>The entire Roman numeral system is built from just <strong>seven symbols</strong>. Every Roman numeral — from I (1) to MMMCMXCIX (3,999) — is constructed by combining these letters:</p>
+            <table>
+                <thead><tr><th>Symbol</th><th>Value</th><th>Name (Latin)</th><th>Origin</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>I</strong></td><td>1</td><td>Unus</td><td>A single tally mark — one finger held up</td></tr>
+                    <tr><td><strong>V</strong></td><td>5</td><td>Quinque</td><td>An open hand (5 fingers) — the top half of an X</td></tr>
+                    <tr><td><strong>X</strong></td><td>10</td><td>Decem</td><td>Two V's stacked or crossed — two hands</td></tr>
+                    <tr><td><strong>L</strong></td><td>50</td><td>Quinquaginta</td><td>Originally ⊥ (half of the old symbol for 100), later stylized to L</td></tr>
+                    <tr><td><strong>C</strong></td><td>100</td><td>Centum</td><td>From Latin <em>centum</em> (hundred)</td></tr>
+                    <tr><td><strong>D</strong></td><td>500</td><td>Quingenti</td><td>Half of the old symbol for 1000 (IↃ → D)</td></tr>
+                    <tr><td><strong>M</strong></td><td>1,000</td><td>Mille</td><td>From Latin <em>mille</em> (thousand)</td></tr>
+                </tbody>
+            </table>
+            <p>There is <strong>no symbol for zero</strong> in Roman numerals. The concept of zero as a placeholder did not exist in Roman mathematics — it was introduced to Europe through the Hindu-Arabic system via Arab scholars in the Middle Ages.</p>
+            <div class="explanation__highlight">
+                <strong>Unicode:</strong> Modern Unicode includes dedicated Roman numeral characters (Ⅰ Ⅱ Ⅲ Ⅳ Ⅴ Ⅵ Ⅶ Ⅷ Ⅸ Ⅹ Ⅺ Ⅻ), but standard Latin letters (I, V, X, L, C, D, M) are used in virtually all modern applications.
+            </div>
+
+            <h2 id="how-to-convert-number-to-roman">How to Convert Numbers to Roman Numerals</h2>
+            <p>Converting a number to Roman numerals follows a <strong>place-value decomposition</strong> method. Break the number into thousands, hundreds, tens, and ones, convert each place separately, then concatenate the results. Here is the step-by-step algorithm:</p>
+            <ol>
+                <li><strong>Break down by place value:</strong> Separate the number into thousands, hundreds, tens, and ones. For example, 2,749 = 2,000 + 700 + 40 + 9.</li>
+                <li><strong>Convert each place value:</strong> Use the conversion chart below for each digit position.</li>
+                <li><strong>Concatenate left to right:</strong> Join the Roman numeral groups from largest (thousands) to smallest (ones).</li>
+            </ol>
+
+            <h3 id="place-value-conversion-chart">Place Value Conversion Chart</h3>
+            <table>
+                <thead><tr><th>Ones</th><th>Tens</th><th>Hundreds</th><th>Thousands</th></tr></thead>
+                <tbody>
+                    <tr><td>1 = I</td><td>10 = X</td><td>100 = C</td><td>1000 = M</td></tr>
+                    <tr><td>2 = II</td><td>20 = XX</td><td>200 = CC</td><td>2000 = MM</td></tr>
+                    <tr><td>3 = III</td><td>30 = XXX</td><td>300 = CCC</td><td>3000 = MMM</td></tr>
+                    <tr><td>4 = IV</td><td>40 = XL</td><td>400 = CD</td><td></td></tr>
+                    <tr><td>5 = V</td><td>50 = L</td><td>500 = D</td><td></td></tr>
+                    <tr><td>6 = VI</td><td>60 = LX</td><td>600 = DC</td><td></td></tr>
+                    <tr><td>7 = VII</td><td>70 = LXX</td><td>700 = DCC</td><td></td></tr>
+                    <tr><td>8 = VIII</td><td>80 = LXXX</td><td>800 = DCCC</td><td></td></tr>
+                    <tr><td>9 = IX</td><td>90 = XC</td><td>900 = CM</td><td></td></tr>
+                </tbody>
+            </table>
+
+            <h3 id="worked-example-2026">Worked Example: Convert 2,026 to Roman Numerals</h3>
+            <ol>
+                <li><strong>Thousands:</strong> 2,000 = <strong>MM</strong></li>
+                <li><strong>Hundreds:</strong> 0 = (nothing)</li>
+                <li><strong>Tens:</strong> 20 = <strong>XX</strong></li>
+                <li><strong>Ones:</strong> 6 = <strong>VI</strong></li>
+            </ol>
+            <p>Combine: MM + XX + VI = <strong>MMXXVI</strong></p>
+
+            <h3 id="worked-example-1999">Worked Example: Convert 1,999 to Roman Numerals</h3>
+            <ol>
+                <li><strong>Thousands:</strong> 1,000 = <strong>M</strong></li>
+                <li><strong>Hundreds:</strong> 900 = <strong>CM</strong> (subtractive: 1000 − 100)</li>
+                <li><strong>Tens:</strong> 90 = <strong>XC</strong> (subtractive: 100 − 10)</li>
+                <li><strong>Ones:</strong> 9 = <strong>IX</strong> (subtractive: 10 − 1)</li>
+            </ol>
+            <p>Combine: M + CM + XC + IX = <strong>MCMXCIX</strong></p>
+
+            <h3 id="worked-example-1776">Worked Example: Convert 1,776 to Roman Numerals</h3>
+            <p>The year the United States Declaration of Independence was signed:</p>
+            <ol>
+                <li><strong>Thousands:</strong> 1,000 = <strong>M</strong></li>
+                <li><strong>Hundreds:</strong> 700 = <strong>DCC</strong></li>
+                <li><strong>Tens:</strong> 70 = <strong>LXX</strong></li>
+                <li><strong>Ones:</strong> 6 = <strong>VI</strong></li>
+            </ol>
+            <p>Combine: M + DCC + LXX + VI = <strong>MDCCLXXVI</strong></p>
+
+            <h2 id="how-to-convert-roman-to-number">How to Convert Roman Numerals to Numbers</h2>
+            <p>To convert a Roman numeral back to a number, read it <strong>from left to right</strong> and apply two rules:</p>
+            <ol>
+                <li><strong>Additive rule:</strong> If a symbol has a value <em>greater than or equal to</em> the symbol to its right, <strong>add</strong> its value.</li>
+                <li><strong>Subtractive rule:</strong> If a symbol has a value <em>less than</em> the symbol to its right, <strong>subtract</strong> its value from the next symbol's value.</li>
+            </ol>
+
+            <h3 id="reading-example">Worked Example: Convert MCMXCIV to a Number</h3>
+            <table>
+                <thead><tr><th>Position</th><th>Symbol</th><th>Value</th><th>Rule</th><th>Running Total</th></tr></thead>
+                <tbody>
+                    <tr><td>1</td><td>M</td><td>1,000</td><td>M ≥ C → Add</td><td>1,000</td></tr>
+                    <tr><td>2–3</td><td>CM</td><td>900</td><td>C < M → Subtract (1000−100)</td><td>1,900</td></tr>
+                    <tr><td>4–5</td><td>XC</td><td>90</td><td>X < C → Subtract (100−10)</td><td>1,990</td></tr>
+                    <tr><td>6–7</td><td>IV</td><td>4</td><td>I < V → Subtract (5−1)</td><td><strong>1,994</strong></td></tr>
+                </tbody>
+            </table>
+            <p>MCMXCIV = <strong>1,994</strong></p>
+
+            <h2 id="additive-vs-subtractive">Additive vs. Subtractive Notation</h2>
+            <p>Roman numerals use two complementary principles: <strong>additive notation</strong> and <strong>subtractive notation</strong>.</p>
+
+            <h3 id="additive-notation">Additive Notation</h3>
+            <p>In additive notation, the values of the symbols are simply <strong>added together</strong>. Symbols are written from largest to smallest (left to right). Examples:</p>
+            <ul>
+                <li>VIII = 5 + 1 + 1 + 1 = <strong>8</strong></li>
+                <li>LXII = 50 + 10 + 1 + 1 = <strong>62</strong></li>
+                <li>MDCLXVI = 1000 + 500 + 100 + 50 + 10 + 5 + 1 = <strong>1,666</strong></li>
+            </ul>
+
+            <h3 id="subtractive-notation">Subtractive Notation</h3>
+            <p>Subtractive notation prevents the need to write four identical symbols in a row. When a <strong>smaller symbol appears before a larger one</strong>, you <strong>subtract</strong> the smaller from the larger. There are only <strong>six valid subtractive combinations</strong>:</p>
+            <table>
+                <thead><tr><th>Combination</th><th>Value</th><th>Replaces</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>IV</strong></td><td>4</td><td>IIII</td></tr>
+                    <tr><td><strong>IX</strong></td><td>9</td><td>VIIII</td></tr>
+                    <tr><td><strong>XL</strong></td><td>40</td><td>XXXX</td></tr>
+                    <tr><td><strong>XC</strong></td><td>90</td><td>LXXXX</td></tr>
+                    <tr><td><strong>CD</strong></td><td>400</td><td>CCCC</td></tr>
+                    <tr><td><strong>CM</strong></td><td>900</td><td>DCCCC</td></tr>
+                </tbody>
+            </table>
+
+            <h3 id="why-99-is-not-ic">Why 99 Is XCIX, Not IC</h3>
+            <p>A common question is: why can't you write 99 as "<strong>IC</strong>" (100 − 1)? The answer lies in a strict rule:</p>
+            <div class="explanation__highlight">
+                <strong>Rule:</strong> A numeral can only be subtracted from the next two higher numerals. I can subtract from V and X only. X can subtract from L and C only. C can subtract from D and M only. "IC" violates this rule because I cannot subtract from C.
+            </div>
+            <p>Therefore, 99 must be written as XC (90) + IX (9) = <strong>XCIX</strong>. Similarly, 490 is CDXC (not XD) and 999 is CMXCIX (not IM). Each digit place must be expressed independently.</p>
+
+            <h3 id="four-in-a-row-rule">The Four-in-a-Row Prohibition</h3>
+            <p>In standard (subtractive) notation, <strong>no symbol may appear more than three times in a row</strong>. For example:</p>
+            <ul>
+                <li><strong>III</strong> = 3 ✅ (three I's)</li>
+                <li><strong>IV</strong> = 4 ✅ (not IIII)</li>
+                <li><strong>XXX</strong> = 30 ✅ (three X's)</li>
+                <li><strong>XL</strong> = 40 ✅ (not XXXX)</li>
+            </ul>
+            <p><strong>Exception:</strong> On many <strong>clock and watch faces</strong>, the number 4 is written as <strong>IIII</strong> rather than IV. This is called the "clockmaker's four" or "watchmaker's convention." Theories for this include visual symmetry with VIII on the opposite side of the dial, readability, and tradition dating back to medieval times. Our calculator uses the standard subtractive notation (IV for 4).</p>
+
+            <h2 id="roman-numerals-in-american-culture">Roman Numerals in American Culture</h2>
+            <p>Despite being thousands of years old, Roman numerals remain deeply embedded in American life. Here are the most common places you'll encounter them in the United States:</p>
+
+            <h3 id="super-bowl">Super Bowl Numbering</h3>
+            <p>The <strong>National Football League (NFL)</strong> has used Roman numerals to number the Super Bowl since <strong>Super Bowl V</strong> (1971). This tradition adds gravitas and makes each game feel historic. Super Bowl LVIII (58) was played in February 2024 at Allegiant Stadium in Las Vegas. The only exception was <strong>Super Bowl 50</strong> (2016), which used an Arabic numeral 50 for aesthetic reasons before returning to Roman numerals with Super Bowl LI (51). Use our converter to find any Super Bowl number — for example, Super Bowl C will be the 100th.</p>
+
+            <h3 id="movie-copyright-dates">Movie and Television Copyright Dates</h3>
+            <p>Hollywood has traditionally used Roman numerals in the <strong>copyright notice</strong> at the end of films and TV shows. The year the film was produced appears in Roman numerals — for example, <strong>MCMXCIX</strong> for 1999 or <strong>MMXXVI</strong> for 2026. This practice dates back to the early studio system and continues today, though some studios have switched to Arabic numerals.</p>
+
+            <h3 id="clock-faces">Clock and Watch Faces</h3>
+            <p>Roman numeral clock faces have been standard since medieval Europe and remain popular in the United States on <strong>wall clocks, wristwatches, and tower clocks</strong> (like many <strong>city hall</strong> and <strong>courthouse clocks</strong> across America). Most use <strong>IIII for 4</strong> instead of IV — a centuries-old tradition called the "watchmaker's four."</p>
+
+            <h3 id="buildings-monuments">Government Buildings and Monuments</h3>
+            <p>Many U.S. government buildings, courthouses, and memorials display the year of construction or dedication in Roman numerals carved into the <strong>cornerstone</strong> or <strong>pediment</strong>. The <strong>Supreme Court Building</strong>, the <strong>Library of Congress</strong>, and countless state capitols feature Roman numeral dates. University buildings and public libraries throughout the country also follow this tradition.</p>
+
+            <h3 id="tattoos-jewelry">Tattoo and Jewelry Trends</h3>
+            <p>Roman numeral tattoos are consistently among the <a href="/math-calculators/numbers-to-words-converter">most popular tattoo styles</a> in the United States. Common designs include <strong>birthdates</strong>, <strong>wedding dates</strong>, <strong>memorial dates</strong>, and <strong>coordinates</strong>. Our Date Converter tab is designed specifically for this use case — enter any date and get the Roman numeral equivalent with your choice of separator for the perfect tattoo, engraving, or invitation design.</p>
+
+            <h3 id="education-outlines">Education, Outlines, and Chapters</h3>
+            <p>Roman numerals are used extensively in <strong>academic outlines</strong> (I, II, III for major sections), <strong>book chapters</strong>, <strong>act and scene numbers</strong> in plays, and <strong>music theory</strong> (chord numbers in harmonic analysis). The <a href="/math-calculators/fraction-calculator">mathematical education</a> system in the United States teaches Roman numerals as part of the K-6 curriculum.</p>
+
+            <h2 id="overline-vinculum">Numbers Greater Than 3,999 — The Overline (Vinculum)</h2>
+            <p>The largest number that can be written using the standard seven symbols without repetition rules being broken is <strong>3,999 = MMMCMXCIX</strong>. To represent larger numbers, Romans used an <strong>overline</strong> (called a <em>vinculum</em>) placed above a symbol. An overline multiplies the symbol's value by <strong>1,000</strong>.</p>
+            <table>
+                <thead><tr><th>Overline Symbol</th><th>Value</th><th>Standard Symbol</th><th>× 1,000</th></tr></thead>
+                <tbody>
+                    <tr><td>I̅</td><td>1,000</td><td>I = 1</td><td>1 × 1,000</td></tr>
+                    <tr><td>V̅</td><td>5,000</td><td>V = 5</td><td>5 × 1,000</td></tr>
+                    <tr><td>X̅</td><td>10,000</td><td>X = 10</td><td>10 × 1,000</td></tr>
+                    <tr><td>L̅</td><td>50,000</td><td>L = 50</td><td>50 × 1,000</td></tr>
+                    <tr><td>C̅</td><td>100,000</td><td>C = 100</td><td>100 × 1,000</td></tr>
+                    <tr><td>D̅</td><td>500,000</td><td>D = 500</td><td>500 × 1,000</td></tr>
+                    <tr><td>M̅</td><td>1,000,000</td><td>M = 1,000</td><td>1,000 × 1,000</td></tr>
+                </tbody>
+            </table>
+            <p>This extends the range to <strong>3,999,999</strong>. Our converter supports overline notation — enter any number up to 3,999,999 to see its Roman numeral with combining overline characters.</p>
+
+            <h2 id="common-mistakes">Common Mistakes and Misconceptions</h2>
+            <p>Here are the most common errors people make when working with Roman numerals:</p>
+            <ol>
+                <li><strong>Writing IIII for 4:</strong> In standard notation, 4 is <strong>IV</strong>, not IIII. Exception: clock faces often use IIII by tradition.</li>
+                <li><strong>Writing IC for 99:</strong> I can only subtract from V and X. The correct form is <strong>XCIX</strong> (90 + 9).</li>
+                <li><strong>Writing VX for 5:</strong> V is never subtracted. There is no "VX" — only <strong>V</strong> (5) exists.</li>
+                <li><strong>Expecting a zero:</strong> Roman numerals have no zero. The concept did not exist in Roman mathematics.</li>
+                <li><strong>Exceeding three in a row:</strong> XXXX is not standard; use <strong>XL</strong> for 40. CCCC is not standard; use <strong>CD</strong> for 400.</li>
+                <li><strong>Mixing cases:</strong> Roman numerals should be <strong>all uppercase</strong>. Lowercase may be used for page numbering (i, ii, iii) in books.</li>
+                <li><strong>Confusing D and M:</strong> D = 500, M = 1,000. A common mix-up that produces wildly wrong values.</li>
+            </ol>
+
+            <h2 id="roman-numerals-chart-1-100">Roman Numerals Chart: 1 to 100</h2>
+            <p>Here is the complete reference table for <strong>Roman numerals 1 to 100</strong>. You can also use our Reference Chart tab above to search for any number or view ranges like 1–50, 51–100, 100–500, and 500–1,000.</p>
+            <table>
+                <thead><tr><th>Number</th><th>Roman</th><th>Number</th><th>Roman</th><th>Number</th><th>Roman</th><th>Number</th><th>Roman</th></tr></thead>
+                <tbody>
+                    <tr><td>1</td><td><strong>I</strong></td><td>26</td><td>XXVI</td><td>51</td><td>LI</td><td>76</td><td>LXXVI</td></tr>
+                    <tr><td>2</td><td><strong>II</strong></td><td>27</td><td>XXVII</td><td>52</td><td>LII</td><td>77</td><td>LXXVII</td></tr>
+                    <tr><td>3</td><td><strong>III</strong></td><td>28</td><td>XXVIII</td><td>53</td><td>LIII</td><td>78</td><td>LXXVIII</td></tr>
+                    <tr><td>4</td><td><strong>IV</strong></td><td>29</td><td>XXIX</td><td>54</td><td>LIV</td><td>79</td><td>LXXIX</td></tr>
+                    <tr><td>5</td><td><strong>V</strong></td><td>30</td><td>XXX</td><td>55</td><td>LV</td><td>80</td><td>LXXX</td></tr>
+                    <tr><td>6</td><td><strong>VI</strong></td><td>31</td><td>XXXI</td><td>56</td><td>LVI</td><td>81</td><td>LXXXI</td></tr>
+                    <tr><td>7</td><td><strong>VII</strong></td><td>32</td><td>XXXII</td><td>57</td><td>LVII</td><td>82</td><td>LXXXII</td></tr>
+                    <tr><td>8</td><td><strong>VIII</strong></td><td>33</td><td>XXXIII</td><td>58</td><td>LVIII</td><td>83</td><td>LXXXIII</td></tr>
+                    <tr><td>9</td><td><strong>IX</strong></td><td>34</td><td>XXXIV</td><td>59</td><td>LIX</td><td>84</td><td>LXXXIV</td></tr>
+                    <tr><td>10</td><td><strong>X</strong></td><td>35</td><td>XXXV</td><td>60</td><td>LX</td><td>85</td><td>LXXXV</td></tr>
+                    <tr><td>11</td><td>XI</td><td>36</td><td>XXXVI</td><td>61</td><td>LXI</td><td>86</td><td>LXXXVI</td></tr>
+                    <tr><td>12</td><td>XII</td><td>37</td><td>XXXVII</td><td>62</td><td>LXII</td><td>87</td><td>LXXXVII</td></tr>
+                    <tr><td>13</td><td>XIII</td><td>38</td><td>XXXVIII</td><td>63</td><td>LXIII</td><td>88</td><td>LXXXVIII</td></tr>
+                    <tr><td>14</td><td>XIV</td><td>39</td><td>XXXIX</td><td>64</td><td>LXIV</td><td>89</td><td>LXXXIX</td></tr>
+                    <tr><td>15</td><td>XV</td><td>40</td><td>XL</td><td>65</td><td>LXV</td><td>90</td><td>XC</td></tr>
+                    <tr><td>16</td><td>XVI</td><td>41</td><td>XLI</td><td>66</td><td>LXVI</td><td>91</td><td>XCI</td></tr>
+                    <tr><td>17</td><td>XVII</td><td>42</td><td>XLII</td><td>67</td><td>LXVII</td><td>92</td><td>XCII</td></tr>
+                    <tr><td>18</td><td>XVIII</td><td>43</td><td>XLIII</td><td>68</td><td>LXVIII</td><td>93</td><td>XCIII</td></tr>
+                    <tr><td>19</td><td>XIX</td><td>44</td><td>XLIV</td><td>69</td><td>LXIX</td><td>94</td><td>XCIV</td></tr>
+                    <tr><td>20</td><td>XX</td><td>45</td><td>XLV</td><td>70</td><td>LXX</td><td>95</td><td>XCV</td></tr>
+                    <tr><td>21</td><td>XXI</td><td>46</td><td>XLVI</td><td>71</td><td>LXXI</td><td>96</td><td>XCVI</td></tr>
+                    <tr><td>22</td><td>XXII</td><td>47</td><td>XLVII</td><td>72</td><td>LXXII</td><td>97</td><td>XCVII</td></tr>
+                    <tr><td>23</td><td>XXIII</td><td>48</td><td>XLVIII</td><td>73</td><td>LXXIII</td><td>98</td><td>XCVIII</td></tr>
+                    <tr><td>24</td><td>XXIV</td><td>49</td><td>XLIX</td><td>74</td><td>LXXIV</td><td>99</td><td>XCIX</td></tr>
+                    <tr><td>25</td><td>XXV</td><td>50</td><td>L</td><td>75</td><td>LXXV</td><td>100</td><td>C</td></tr>
+                </tbody>
+            </table>
+
+            <h2 id="years-in-roman-numerals">Important Years in Roman Numerals</h2>
+            <p>Here are historically significant years for the United States and commonly searched year conversions:</p>
+            <table>
+                <thead><tr><th>Year</th><th>Roman Numeral</th><th>Event</th></tr></thead>
+                <tbody>
+                    <tr><td>1776</td><td><strong>MDCCLXXVI</strong></td><td>Declaration of Independence</td></tr>
+                    <tr><td>1865</td><td><strong>MDCCCLXV</strong></td><td>End of the Civil War</td></tr>
+                    <tr><td>1969</td><td><strong>MCMLXIX</strong></td><td>Moon landing (Apollo 11)</td></tr>
+                    <tr><td>1999</td><td><strong>MCMXCIX</strong></td><td>End of the 20th century</td></tr>
+                    <tr><td>2000</td><td><strong>MM</strong></td><td>New millennium</td></tr>
+                    <tr><td>2024</td><td><strong>MMXXIV</strong></td><td>Current era</td></tr>
+                    <tr><td>2025</td><td><strong>MMXXV</strong></td><td>Current era</td></tr>
+                    <tr><td>2026</td><td><strong>MMXXVI</strong></td><td>Current era</td></tr>
+                </tbody>
+            </table>
+        `,
+        formula: {
+            formula: "Number → Break into 1000s, 100s, 10s, 1s → Convert each → Concatenate",
+            variables: [
+                { symbol: "I, V, X, L, C, D, M", meaning: "The 7 Roman numeral symbols representing 1, 5, 10, 50, 100, 500, 1000" },
+                { symbol: "Additive", meaning: "Symbols are added: VI = 5 + 1 = 6" },
+                { symbol: "Subtractive", meaning: "Smaller before larger subtracts: IV = 5 − 1 = 4" },
+                { symbol: "Overline (×1000)", meaning: "A line over a symbol multiplies by 1,000: V̅ = 5,000" },
+            ],
+            example: [
+                { label: "2026", substitution: "2000 = MM, 20 = XX, 6 = VI", result: "MMXXVI" },
+                { label: "1999", substitution: "1000 = M, 900 = CM, 90 = XC, 9 = IX", result: "MCMXCIX" },
+                { label: "MCMXCIV →", substitution: "M=1000 + CM=900 + XC=90 + IV=4", result: "1994" },
+            ],
+        },
+        faq: [
+            { question: "How do I convert a number to Roman numerals?", answer: "Break the number into place values (thousands, hundreds, tens, ones), convert each place using the standard chart (e.g., 4 = IV, 9 = IX, 40 = XL, 90 = XC, 400 = CD, 900 = CM), then concatenate the results from left to right. For example, 2026 = MM (2000) + XX (20) + VI (6) = MMXXVI." },
+            { question: "What is the largest number you can write in Roman numerals?", answer: "Using the standard seven symbols (I, V, X, L, C, D, M), the largest number is 3,999 = MMMCMXCIX. Using overline notation (vinculum), where a bar over a symbol multiplies it by 1,000, you can extend to 3,999,999. Our converter supports the full extended range." },
+            { question: "What year is 2026 in Roman numerals?", answer: "2026 in Roman numerals is MMXXVI. M = 1,000 (so MM = 2,000), XX = 20, and VI = 6. Combined: MMXXVI." },
+            { question: "What year is 2025 in Roman numerals?", answer: "2025 in Roman numerals is MMXXV. M = 1,000 (so MM = 2,000), XX = 20, and V = 5. Combined: MMXXV." },
+            { question: "Why is 4 written as IV and not IIII?", answer: "Standard (subtractive) notation uses IV for 4 to avoid writing four identical symbols in a row. However, on clock faces, IIII is traditional — it's called the 'watchmaker's four' and may exist for visual symmetry with VIII on the opposite side of the dial." },
+            { question: "Why is 99 not written as IC?", answer: "I can only be subtracted from V (4 = IV) and X (9 = IX). I cannot subtract from C. Each place value must be expressed independently: 99 = XC (90) + IX (9) = XCIX." },
+            { question: "Is there a zero in Roman numerals?", answer: "No. The Roman numeral system has no symbol for zero. The concept of zero as a number and placeholder was introduced to Europe through the Hindu-Arabic numeral system via Arab scholars in the Middle Ages." },
+            { question: "What does a line over a Roman numeral mean?", answer: "An overline (vinculum) multiplies the symbol's value by 1,000. For example, V̅ = 5,000, X̅ = 10,000, and M̅ = 1,000,000. This allows Roman numerals to represent values up to 3,999,999." },
+            { question: "What Roman numeral is Super Bowl 2025?", answer: "Super Bowl LIX (59) was held in February 2025. The NFL uses Roman numerals for every Super Bowl except Super Bowl 50 (2016). Use our converter to find any Super Bowl number." },
+            { question: "How do I write a date in Roman numerals for a tattoo?", answer: "Use our Date Converter tab. Enter the month, day, and year, and choose your preferred separator (dot, dash, slash, or space). For example, March 25, 2026 becomes III · XXV · MMXXVI. This format is the most popular for tattoos and engravings." },
+            { question: "Can I add and subtract Roman numerals?", answer: "Yes! Use our Arithmetic tab. Convert each Roman numeral to its decimal value, perform the operation, and convert back. For example, XIV + VIII → 14 + 8 = 22 → XXII." },
+            { question: "What is the Roman numeral for 1,000,000?", answer: "One million in Roman numerals is M̅ (M with an overline), because the overline multiplies by 1,000: M (1,000) × 1,000 = 1,000,000." },
+            { question: "How do Roman numerals work on a clock?", answer: "Clock faces traditionally show hours 1–12 as I through XII. The number 4 is usually written as IIII (not IV). The 6 is VI, positioned upside-down at the bottom of the dial. This convention has been used since at least the 14th century." },
+            { question: "What is 1776 in Roman numerals?", answer: "1776 = MDCCLXXVI. This is the year of American independence and appears on the base of the pyramid on the US one-dollar bill. M=1000, DCC=700, LXX=70, VI=6." },
+            { question: "Why do movies use Roman numerals for the year?", answer: "Hollywood started using Roman numerals in copyright notices during the early studio system era. The Roman numeral year appears at the end of the credits — for example, MCMXCIX for 1999. It adds a formal, timeless quality to the copyright notice. Some modern films have switched to Arabic numerals." },
+        ],
+        relatedCalculators: [
+            { title: "Numbers to Words Converter", slug: "numbers-to-words-converter", categorySlug: "math-calculators", description: "Convert any number to English words — check writing, ordinals" },
+            { title: "Percentage Calculator", slug: "percentage-calculator", categorySlug: "math-calculators", description: "Calculate percentages — X% of Y, change, increase" },
+            { title: "Fraction Calculator", slug: "fraction-calculator", categorySlug: "math-calculators", description: "Add, subtract, multiply, divide fractions" },
+            { title: "GCD Calculator", slug: "gcd-calculator", categorySlug: "math-calculators", description: "Find greatest common divisor for simplifying fractions" },
+            { title: "Long Division Calculator", slug: "long-division-calculator", categorySlug: "math-calculators", description: "Step-by-step long division with remainder" },
+        ],
+    },
+
     /* ─── 2. FRACTION CALCULATOR — RICH CONTENT (Competitor-level) ─── */
 
     "fraction-calculator": {
