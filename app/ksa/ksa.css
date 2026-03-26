@@ -887,21 +887,33 @@ article .calc-table td strong {
 
 /* ── Nested List Circles ── */
 article ul {
-    list-style-type: disc;
+    list-style: disc !important;
+    padding-left: var(--s-6) !important;
+}
+
+article ol {
+    list-style: decimal !important;
+    padding-left: var(--s-6) !important;
 }
 
 article ul ul {
-    list-style-type: circle;
+    list-style-type: circle !important;
     margin-top: 4px;
 }
 
 article ul ul ul {
-    list-style-type: square;
+    list-style-type: square !important;
     margin-top: 4px;
+}
+
+article li {
+    display: list-item !important;
+    margin-bottom: 4px;
 }
 
 article li::marker {
     color: hsl(150, 60%, 35%);
+    font-size: 1em;
 }
 
 article ol li::marker {
@@ -915,10 +927,6 @@ article ol li::marker {
 
 [data-theme="dark"] article ol li::marker {
     color: hsl(150, 55%, 50%);
-}
-
-article li {
-    margin-bottom: 4px;
 }
 
 /* ── Highlight / Info Boxes (sub-header + bullet sections) ── */
