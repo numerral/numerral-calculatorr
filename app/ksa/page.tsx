@@ -70,6 +70,13 @@ const KSA_CALCULATORS = [
         tag: "Financing",
         description: "Calculate monthly car installment. Murabaha and Ijara with SAMA 60-month limit and bank comparison.",
     },
+    {
+        title: "Savings Goal Calculator",
+        slug: "savings-goal-calculator",
+        icon: "🏦",
+        tag: "Savings",
+        description: "Plan your savings in SAR. Calculate time to goal or monthly needed for Hajj, emergency fund, home, and more.",
+    },
 ];
 
 export default function KSAPage() {

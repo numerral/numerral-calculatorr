@@ -426,6 +426,275 @@ function GOSIContributionTab() {
     </div>);
 }
 
+/* ── Savings Goal Calculator ── */
+const SAVINGS_GOALS = [
+    { value: "emergency", label: "🛡️ Emergency Fund", amount: 30000 },
+    { value: "hajj", label: "🕋 Hajj", amount: 8000 },
+    { value: "umrah", label: "🕌 Umrah", amount: 4000 },
+    { value: "wedding", label: "💍 Wedding", amount: 100000 },
+    { value: "car", label: "🚗 Car Down Payment", amount: 20000 },
+    { value: "home", label: "🏠 Home Down Payment", amount: 150000 },
+    { value: "education", label: "🎓 Education Abroad", amount: 200000 },
+    { value: "custom", label: "✏️ Custom Goal", amount: 50000 },
+];
+
+function SavingsGoalCalc() {
+    const [tab, setTab] = useState(0);
+    const tabs = ["🧮 Calculator", "📋 Quick Reference"];
+
+    const [mode, setMode] = useState<"time" | "monthly">("time");
+    const [goal, setGoal] = useState("emergency");
+    const [target, setTarget] = useState(30000);
+    const [current, setCurrent] = useState(0);
+    const [monthly, setMonthly] = useState(2000);
+    const [rate, setRate] = useState(4.0);
+    const [compounding, setCompounding] = useState("monthly");
+    const [timeframe, setTimeframe] = useState(24);
+
+    const handleGoalChange = (v: string) => {
+        setGoal(v);
+        const found = SAVINGS_GOALS.find((g) => g.value === v);
+        if (found) setTarget(found.amount);
+    };
+
+    const result = useMemo(() => {
+        const remaining = Math.max(target - current, 0);
+        if (remaining <= 0) return { months: 0, totalContrib: 0, totalProfit: 0, finalBalance: current, steps: ["Goal already reached!"] };
+
+        const periodsPerYear = compounding === "monthly" ? 12 : compounding === "quarterly" ? 4 : 1;
+        const r = rate / 100 / periodsPerYear;
+
+        if (mode === "time") {
+            // Calculate months to reach goal
+            if (monthly <= 0) return null;
+            let balance = current;
+            let totalContrib = 0;
+            let monthCount = 0;
+            const maxMonths = 600; // 50 yrs cap
+            while (balance < target && monthCount < maxMonths) {
+                monthCount++;
+                balance += monthly;
+                totalContrib += monthly;
+                // Apply compounding at appropriate intervals
+                if (compounding === "monthly") {
+                    balance *= (1 + r);
+                } else if (compounding === "quarterly" && monthCount % 3 === 0) {
+                    balance *= (1 + r);
+                } else if (compounding === "annually" && monthCount % 12 === 0) {
+                    balance *= (1 + r);
+                }
+            }
+            const totalProfit = balance - current - totalContrib;
+            const years = Math.floor(monthCount / 12);
+            const remMonths = monthCount % 12;
+            const timeLabel = years > 0 ? `${years} year${years > 1 ? "s" : ""}${remMonths > 0 ? ` ${remMonths} month${remMonths > 1 ? "s" : ""}` : ""}` : `${remMonths} month${remMonths > 1 ? "s" : ""}`;
+            const steps = [
+                `Target: SAR ${fmt(target, 0)}`,
+                `Current savings: SAR ${fmt(current, 0)}`,
+                `Remaining to save: SAR ${fmt(remaining, 0)}`,
+                `Monthly deposit: SAR ${fmt(monthly, 0)}`,
+                `Annual profit rate: ${fmt(rate, 1)}% (${compounding})`,
+                `Time to goal: ${timeLabel} (${monthCount} months)`,
+                `Total contributions: SAR ${fmt(totalContrib)}`,
+                `Profit earned: SAR ${fmt(totalProfit)}`,
+                `Final balance: SAR ${fmt(balance)}`,
+            ];
+            return { months: monthCount, totalContrib, totalProfit, finalBalance: balance, timeLabel, steps };
+        } else {
+            // Calculate monthly needed for given timeframe
+            if (timeframe <= 0) return null;
+            // FV = PV(1+r)^n + PMT × [((1+r)^n - 1) / r]
+            // target = current × (1+r)^n + PMT × [((1+r)^n - 1) / r]
+            // PMT = (target - current × (1+r)^n) / [((1+r)^n - 1) / r]
+            const n = compounding === "monthly" ? timeframe : compounding === "quarterly" ? timeframe / 3 : timeframe / 12;
+            const fvCurrent = current * Math.pow(1 + r, n);
+            const needFromPMT = target - fvCurrent;
+            let neededMonthly: number;
+            if (r === 0) {
+                neededMonthly = needFromPMT / timeframe;
+            } else {
+                const annuityFactor = (Math.pow(1 + r, n) - 1) / r;
+                const pmtPerPeriod = needFromPMT / annuityFactor;
+                // Convert period payment to monthly
+                if (compounding === "monthly") neededMonthly = pmtPerPeriod;
+                else if (compounding === "quarterly") neededMonthly = pmtPerPeriod / 3;
+                else neededMonthly = pmtPerPeriod / 12;
+            }
+            neededMonthly = Math.max(neededMonthly, 0);
+            const totalContrib = neededMonthly * timeframe;
+            const totalProfit = target - current - totalContrib;
+            const years = Math.floor(timeframe / 12);
+            const remMonths = timeframe % 12;
+            const timeLabel = years > 0 ? `${years} year${years > 1 ? "s" : ""}${remMonths > 0 ? ` ${remMonths} month${remMonths > 1 ? "s" : ""}` : ""}` : `${remMonths} month${remMonths > 1 ? "s" : ""}`;
+            const steps = [
+                `Target: SAR ${fmt(target, 0)}`,
+                `Current savings: SAR ${fmt(current, 0)}`,
+                `Remaining to save: SAR ${fmt(remaining, 0)}`,
+                `Timeframe: ${timeLabel} (${timeframe} months)`,
+                `Annual profit rate: ${fmt(rate, 1)}% (${compounding})`,
+                `Required monthly savings: SAR ${fmt(neededMonthly)}`,
+                `Total contributions: SAR ${fmt(totalContrib)}`,
+                `Estimated profit: SAR ${fmt(Math.max(totalProfit, 0))}`,
+            ];
+            return { months: timeframe, totalContrib, totalProfit: Math.max(totalProfit, 0), finalBalance: target, neededMonthly, timeLabel, steps };
+        }
+    }, [target, current, monthly, rate, compounding, mode, timeframe]);
+
+    const progress = result ? Math.min((current / target) * 100, 100) : 0;
+
+    return (<div className="con-calc">
+        <h3 className="con-calc__title">🏦 Savings Goal Calculator (KSA)</h3>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: "var(--s-1)", marginBottom: "var(--s-3)" }}>
+            {tabs.map((t, i) => (<button key={t} onClick={() => setTab(i)}
+                style={{ padding: "6px 14px", borderRadius: "6px", fontSize: "0.82rem", fontWeight: tab === i ? 700 : 500, background: tab === i ? "var(--primary, var(--n-primary))" : "transparent", color: tab === i ? "#fff" : "var(--text-muted, var(--n-text-muted))", border: tab === i ? "none" : "1px solid var(--border, var(--n-border))", cursor: "pointer" }}>{t}</button>))}
+        </div>
+
+        {tab === 0 && <>
+            {/* Mode Toggle */}
+            <div style={{ display: "flex", gap: "var(--s-2)", marginBottom: "var(--s-4)" }}>
+                <button onClick={() => setMode("time")} style={{ flex: 1, padding: "8px", borderRadius: "6px", fontSize: "0.82rem", fontWeight: mode === "time" ? 700 : 500, background: mode === "time" ? "rgba(0,106,60,0.1)" : "transparent", color: mode === "time" ? "#006a3c" : "var(--text-muted, var(--n-text-muted))", border: `1px solid ${mode === "time" ? "#006a3c" : "var(--border, var(--n-border))"}`, cursor: "pointer" }}>⏱️ Time to Goal</button>
+                <button onClick={() => setMode("monthly")} style={{ flex: 1, padding: "8px", borderRadius: "6px", fontSize: "0.82rem", fontWeight: mode === "monthly" ? 700 : 500, background: mode === "monthly" ? "rgba(0,106,60,0.1)" : "transparent", color: mode === "monthly" ? "#006a3c" : "var(--text-muted, var(--n-text-muted))", border: `1px solid ${mode === "monthly" ? "#006a3c" : "var(--border, var(--n-border))"}`, cursor: "pointer" }}>💰 Monthly Needed</button>
+            </div>
+
+            <SelectField label="Savings Goal" value={goal} onChange={handleGoalChange} options={SAVINGS_GOALS.map((g) => ({ value: g.value, label: g.label }))} />
+            <InputField label="Target Amount" value={target} onChange={(v) => setTarget(Number(v))} unit="SAR" min={0} />
+            <InputField label="Current Savings" value={current} onChange={(v) => setCurrent(Number(v))} unit="SAR" min={0} />
+            {mode === "time" && <InputField label="Monthly Contribution" value={monthly} onChange={(v) => setMonthly(Number(v))} unit="SAR" min={0} />}
+            {mode === "monthly" && <InputField label="Timeframe" value={timeframe} onChange={(v) => setTimeframe(Number(v))} unit="months" min={1} max={600} />}
+            <InputField label="Annual Profit Rate" value={rate} onChange={(v) => setRate(Number(v))} unit="%" min={0} max={30} step={0.1} />
+            <SelectField label="Compounding" value={compounding} onChange={setCompounding} options={[{ value: "monthly", label: "Monthly" }, { value: "quarterly", label: "Quarterly" }, { value: "annually", label: "Annually" }]} />
+
+            {/* Progress Bar */}
+            <div style={{ margin: "var(--s-4) 0 var(--s-2)" }}>
+                <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.8rem", marginBottom: 4 }}>
+                    <span>Goal Progress</span>
+                    <span style={{ fontWeight: 700, color: "#006a3c" }}>{fmt(progress, 1)}%</span>
+                </div>
+                <div style={{ height: 8, borderRadius: 4, background: "var(--border, var(--n-border))" }}>
+                    <div style={{ height: "100%", borderRadius: 4, background: "linear-gradient(90deg, #006a3c, #00a85a)", width: `${progress}%`, transition: "width 0.3s ease" }} />
+                </div>
+            </div>
+
+            {result && <div className="con-calc__results" style={{ marginTop: "var(--s-3)" }}>
+                <h4>Results</h4>
+                {mode === "time" && result.months !== undefined && (
+                    <ResultRow label="Time to Reach Goal" value={(result as any).timeLabel || `${result.months} months`} />
+                )}
+                {mode === "monthly" && (result as any).neededMonthly !== undefined && (
+                    <ResultRow label="Required Monthly Savings" value={`SAR ${fmt((result as any).neededMonthly)}`} />
+                )}
+                <ResultRow label="Total Contributions" value={`SAR ${fmt(result.totalContrib)}`} />
+                <ResultRow label="Profit Earned" value={`SAR ${fmt(result.totalProfit)}`} />
+                <ResultRow label="Final Balance" value={`SAR ${fmt(result.finalBalance)}`} />
+
+                <h4 style={{ marginTop: "var(--s-3)" }}>Calculation Steps</h4>
+                {result.steps.map((s, i) => <ResultRow key={i} label={`Step ${i + 1}`} value={s} />)}
+            </div>}
+        </>}
+
+        {tab === 1 && <SavingsReferenceTab />}
+    </div>);
+}
+
+function SavingsReferenceTab() {
+    const ts = { width: "100%", fontSize: "0.85rem", borderCollapse: "collapse" as const };
+    const th = { padding: "8px 12px", textAlign: "center" as const };
+    const td = { padding: "6px 12px", textAlign: "center" as const };
+    const tl = { ...td, textAlign: "left" as const };
+    const b = { borderBottom: "1px solid var(--border)" };
+    const bh = { borderBottom: "2px solid var(--border)" };
+
+    return (<div className="con-calc__results">
+        <h4>KSA Savings Goal Presets</h4>
+        <div style={{ overflowX: "auto" }}>
+            <table style={ts}>
+                <thead><tr style={bh}>
+                    <th style={{ ...th, textAlign: "left" }}>Goal</th>
+                    <th style={th}>Typical Amount (SAR)</th>
+                    <th style={th}>Suggested Timeframe</th>
+                </tr></thead>
+                <tbody>
+                    {[
+                        ["🛡️ Emergency Fund", "15,000–60,000", "6–12 months"],
+                        ["🕋 Hajj", "3,000–12,000", "1–3 years"],
+                        ["🕌 Umrah", "2,000–8,000", "6–12 months"],
+                        ["💍 Wedding", "50,000–200,000+", "2–5 years"],
+                        ["🚗 Car Down Payment", "6,000–40,000", "1–2 years"],
+                        ["🏠 Home Down Payment", "50,000–300,000", "3–10 years"],
+                        ["🎓 Education Abroad", "100,000–500,000", "5–10 years"],
+                        ["💼 Business Startup", "50,000–500,000", "2–5 years"],
+                    ].map(([goal, amount, time], i) => (
+                        <tr key={i} style={b}>
+                            <td style={{ ...tl, fontWeight: 600 }}>{goal}</td>
+                            <td style={{ ...td, fontWeight: 700 }}>{amount}</td>
+                            <td style={td}>{time}</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
+
+        <h4 style={{ marginTop: "var(--s-4)" }}>50/30/20 Budget Rule for KSA</h4>
+        <div style={{ overflowX: "auto" }}>
+            <table style={ts}>
+                <thead><tr style={bh}>
+                    <th style={{ ...th, textAlign: "left" }}>Category</th>
+                    <th style={th}>% of Income</th>
+                    <th style={{ ...th, textAlign: "left" }}>KSA Examples</th>
+                </tr></thead>
+                <tbody>
+                    <tr style={b}><td style={{ ...tl, fontWeight: 600 }}>Needs</td><td style={{ ...td, fontWeight: 700 }}>50%</td><td style={tl}>Rent, food, utilities, transport, Iqama fees</td></tr>
+                    <tr style={b}><td style={{ ...tl, fontWeight: 600 }}>Wants</td><td style={{ ...td, fontWeight: 700 }}>30%</td><td style={tl}>Dining out, entertainment, travel, shopping</td></tr>
+                    <tr style={b}><td style={{ ...tl, fontWeight: 600 }}>Savings & Debt</td><td style={{ ...td, fontWeight: 700 }}>20%</td><td style={tl}>Emergency fund, Hajj savings, investments, Murabaha deposits</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h4 style={{ marginTop: "var(--s-4)" }}>Saudi Bank Profit Rates (Indicative — 2025/2026)</h4>
+        <div style={{ overflowX: "auto" }}>
+            <table style={ts}>
+                <thead><tr style={bh}>
+                    <th style={{ ...th, textAlign: "left" }}>Bank</th>
+                    <th style={{ ...th, textAlign: "left" }}>Product</th>
+                    <th style={th}>Rate</th>
+                </tr></thead>
+                <tbody>
+                    {[
+                        ["meem", "Murabaha Deposit (90-day)", "Up to 5.14%"],
+                        ["Al Rajhi", "Savings Account", "Variable"],
+                        ["Riyad Bank", "Savings (Mudarabah)", "Competitive"],
+                        ["SNB (AlAhli)", "Khayrat / Murabaha", "Variable"],
+                        ["SAB", "Wafer Account", "Competitive"],
+                        ["Alinma", "Savings Account", "~3.0%"],
+                        ["Sah Sukuk", "Government-backed", "Fixed per issue"],
+                    ].map(([bank, product, rate], i) => (
+                        <tr key={i} style={b}>
+                            <td style={{ ...tl, fontWeight: 600 }}>{bank}</td>
+                            <td style={tl}>{product}</td>
+                            <td style={{ ...td, fontWeight: 700 }}>{rate}</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
+
+        <h4 style={{ marginTop: "var(--s-4)" }}>SAMA Policy Rates (Feb 2026)</h4>
+        <div style={{ overflowX: "auto" }}>
+            <table style={ts}>
+                <thead><tr style={bh}>
+                    <th style={{ ...th, textAlign: "left" }}>Rate</th>
+                    <th style={th}>Current</th>
+                    <th style={{ ...th, textAlign: "left" }}>Impact on Savings</th>
+                </tr></thead>
+                <tbody>
+                    <tr style={b}><td style={{ ...tl, fontWeight: 600 }}>Repo Rate</td><td style={{ ...td, fontWeight: 700 }}>4.25%</td><td style={tl}>Higher = better savings returns</td></tr>
+                    <tr style={b}><td style={{ ...tl, fontWeight: 600 }}>Reverse Repo</td><td style={{ ...td, fontWeight: 700 }}>3.75%</td><td style={tl}>Floor for bank deposit rates</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>);
+}
+
 export default function KSACalculatorCore({ calcType }: { calcType: string }) {
     if (calcType === "eosb") return <EOSBCalc />;
     if (calcType === "gosi") return <GOSICalc />;
@@ -435,6 +704,7 @@ export default function KSACalculatorCore({ calcType }: { calcType: string }) {
     if (calcType === "leave") return <LeaveCalc />;
     if (calcType === "homeloan") return <HomeLoanCalc />;
     if (calcType === "carloan") return <CarLoanCalc />;
+    if (calcType === "savings") return <SavingsGoalCalc />;
     return <p>Calculator not found: {calcType}</p>;
 }
 
