@@ -105,6 +105,13 @@ const KSA_CALCULATORS = [
         tag: "Business",
         description: "Calculate total CR cost — entity fees, Chamber of Commerce, municipality license, MISA, and sub-CRs.",
     },
+    {
+        title: "Zakat Calculator",
+        slug: "zakat-calculator",
+        icon: "🕌",
+        tag: "Islamic Finance",
+        description: "Calculate Zakat on gold, silver, cash, stocks, business assets, and property. Nisab in SAR with ZATCA guidance.",
+    },
 ];
 
 export default function KSAPage() {
