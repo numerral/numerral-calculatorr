@@ -126,6 +126,13 @@ const KSA_CALCULATORS = [
         tag: "Expat Fees",
         description: "Calculate dependent fees for family & domestic workers. SAR 400/month with exemptions and salary impact.",
     },
+    {
+        title: "Calorie Calculator",
+        slug: "calorie-calculator",
+        icon: "🔥",
+        tag: "Health",
+        description: "Calculate BMR, TDEE, calorie deficit for weight loss, and macros. Includes Saudi food calorie guide.",
+    },
 ];
 
 export default function KSAPage() {
