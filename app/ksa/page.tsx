@@ -98,6 +98,13 @@ const KSA_CALCULATORS = [
         tag: "Compliance",
         description: "Calculate your Saudization % and Nitaqat band. Sector targets, weighted counting, and gap analysis.",
     },
+    {
+        title: "Commercial Registration Calculator",
+        slug: "commercial-registration-calculator",
+        icon: "🏪",
+        tag: "Business",
+        description: "Calculate total CR cost — entity fees, Chamber of Commerce, municipality license, MISA, and sub-CRs.",
+    },
 ];
 
 export default function KSAPage() {

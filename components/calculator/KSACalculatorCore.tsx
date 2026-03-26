@@ -1267,6 +1267,172 @@ function SaudizationReferenceTab() {
     </div>);
 }
 
+/* ── Commercial Registration Fee Calculator (KSA) ── */
+const CR_FEES: Record<string, { label: string; annual: number; initial: number }> = {
+    sole: { label: "Sole Proprietorship", annual: 500, initial: 500 },
+    llc: { label: "LLC (Limited Liability)", annual: 1200, initial: 6000 },
+    gp: { label: "General Partnership", annual: 1000, initial: 1000 },
+    lp: { label: "Limited Partnership", annual: 1000, initial: 1000 },
+    sjsc: { label: "Simplified Joint Stock", annual: 1600, initial: 1600 },
+    foreign: { label: "Foreign Company Branch", annual: 2000, initial: 2000 },
+};
+
+const CHAMBER_FEES: Record<string, { label: string; fee: number }> = {
+    a: { label: "Category A (>SAR 1M capital / 250+ employees)", fee: 5000 },
+    b: { label: "Category B (SAR 375K–1M / 50–249 employees)", fee: 2000 },
+    c: { label: "Category C (<SAR 375K / 6–49 employees)", fee: 1000 },
+    d: { label: "Category D (<SAR 375K / ≤5 employees)", fee: 1000 },
+};
+
+const MUNICIPALITY_FEES: Record<string, { label: string; fee: number }> = {
+    small: { label: "Small office/shop (~SAR 750)", fee: 750 },
+    medium: { label: "Medium commercial (~SAR 2,000)", fee: 2000 },
+    large: { label: "Large/industrial (~SAR 4,000)", fee: 4000 },
+    none: { label: "Not applicable", fee: 0 },
+};
+
+function CRFeeCalc() {
+    const [tab, setTab] = useState(0);
+    const tabs = ["🧮 Calculator", "📋 Quick Reference"];
+
+    const [entityType, setEntityType] = useState("llc");
+    const [regType, setRegType] = useState("renewal");
+    const [subCRs, setSubCRs] = useState(0);
+    const [activities, setActivities] = useState(0);
+    const [chamberCat, setChamberCat] = useState("c");
+    const [municipality, setMunicipality] = useState("medium");
+    const [isForeign, setIsForeign] = useState("no");
+    const [misaFirstYear, setMisaFirstYear] = useState("no");
+    const [includeArticles, setIncludeArticles] = useState("no");
+
+    const result = useMemo(() => {
+        const entity = CR_FEES[entityType];
+        const crFee = regType === "new" ? entity.initial : entity.annual;
+        const subCRFee = subCRs * 100;
+        const activityFee = activities * 300;
+        const chamberFee = CHAMBER_FEES[chamberCat].fee;
+        const muniFee = MUNICIPALITY_FEES[municipality].fee;
+        const articlesFee = includeArticles === "yes" ? 500 : 0;
+
+        let misaFee = 0;
+        if (isForeign === "yes") {
+            misaFee = 2000; // annual service fee
+            if (misaFirstYear === "yes") misaFee += 10000; // first-year subscription
+        }
+
+        const grandTotal = crFee + subCRFee + activityFee + chamberFee + muniFee + misaFee + articlesFee;
+
+        return { crFee, subCRFee, activityFee, chamberFee, muniFee, misaFee, articlesFee, grandTotal, entityLabel: entity.label };
+    }, [entityType, regType, subCRs, activities, chamberCat, municipality, isForeign, misaFirstYear, includeArticles]);
+
+    return (<div className="con-calc">
+        <h3 className="con-calc__title">🏪 Commercial Registration Fee Calculator (KSA)</h3>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: "var(--s-1)", marginBottom: "var(--s-3)" }}>
+            {tabs.map((t, i) => (<button key={t} onClick={() => setTab(i)}
+                style={{ padding: "6px 14px", borderRadius: "6px", fontSize: "0.82rem", fontWeight: tab === i ? 700 : 500, background: tab === i ? "var(--primary, var(--n-primary))" : "transparent", color: tab === i ? "#fff" : "var(--text-muted, var(--n-text-muted))", border: tab === i ? "none" : "1px solid var(--border, var(--n-border))", cursor: "pointer" }}>{t}</button>))}
+        </div>
+
+        {tab === 0 && <>
+            <SelectField label="Entity Type" value={entityType} onChange={setEntityType} options={Object.entries(CR_FEES).map(([k, v]) => ({ value: k, label: v.label }))} />
+            <SelectField label="Registration Type" value={regType} onChange={setRegType} options={[{ value: "new", label: "New Registration (Initial)" }, { value: "renewal", label: "Annual Renewal / Confirmation" }]} />
+            <InputField label="Number of Sub-CRs (SAR 100 each)" value={subCRs} onChange={(v) => setSubCRs(Math.max(0, Number(v)))} unit="sub-CRs" min={0} />
+            <InputField label="Additional Activities (SAR 300 each)" value={activities} onChange={(v) => setActivities(Math.max(0, Number(v)))} unit="activities" min={0} />
+            <SelectField label="Chamber of Commerce Category" value={chamberCat} onChange={setChamberCat} options={Object.entries(CHAMBER_FEES).map(([k, v]) => ({ value: k, label: v.label }))} />
+            <SelectField label="Municipality License (Baladiya)" value={municipality} onChange={setMunicipality} options={Object.entries(MUNICIPALITY_FEES).map(([k, v]) => ({ value: k, label: v.label }))} />
+            <SelectField label="Foreign Ownership (MISA License)" value={isForeign} onChange={setIsForeign} options={[{ value: "no", label: "No — Saudi/GCC owned" }, { value: "yes", label: "Yes — Foreign investor" }]} />
+            {isForeign === "yes" && <SelectField label="MISA First Year?" value={misaFirstYear} onChange={setMisaFirstYear} options={[{ value: "no", label: "No — Renewal year (SAR 2,000)" }, { value: "yes", label: "Yes — First year (+SAR 10,000)" }]} />}
+            {entityType === "llc" && <SelectField label="Articles of Association Publication" value={includeArticles} onChange={setIncludeArticles} options={[{ value: "no", label: "No" }, { value: "yes", label: "Yes — SAR 500" }]} />}
+
+            {result && <div className="con-calc__results" style={{ marginTop: "var(--s-3)" }}>
+                <h4>Fee Breakdown — {result.entityLabel}</h4>
+                <ResultRow label={`CR Fee (${regType === "new" ? "Initial" : "Annual"})`} value={`SAR ${fmt(result.crFee)}`} />
+                {result.subCRFee > 0 && <ResultRow label={`Sub-CRs (${subCRs} × SAR 100)`} value={`SAR ${fmt(result.subCRFee)}`} />}
+                {result.activityFee > 0 && <ResultRow label={`Additional Activities (${activities} × SAR 300)`} value={`SAR ${fmt(result.activityFee)}`} />}
+                <ResultRow label="Chamber of Commerce" value={`SAR ${fmt(result.chamberFee)}`} />
+                {result.muniFee > 0 && <ResultRow label="Municipality License" value={`SAR ${fmt(result.muniFee)}`} />}
+                {result.misaFee > 0 && <ResultRow label={`MISA License${misaFirstYear === "yes" ? " (1st year)" : ""}`} value={`SAR ${fmt(result.misaFee)}`} />}
+                {result.articlesFee > 0 && <ResultRow label="Articles Publication" value={`SAR ${fmt(result.articlesFee)}`} />}
+
+                <div style={{ margin: "var(--s-3) 0", borderTop: "2px solid var(--border)", paddingTop: "var(--s-2)" }}>
+                    <ResultRow label="Grand Total" value={`SAR ${fmt(result.grandTotal)}`} />
+                </div>
+            </div>}
+        </>}
+
+        {tab === 1 && <CRFeeReferenceTab />}
+    </div>);
+}
+
+function CRFeeReferenceTab() {
+    const ts = { width: "100%", fontSize: "0.85rem", borderCollapse: "collapse" as const };
+    const th = { padding: "8px 12px", textAlign: "center" as const };
+    const td = { padding: "6px 12px", textAlign: "center" as const };
+    const tl = { ...td, textAlign: "left" as const };
+    const b = { borderBottom: "1px solid var(--border)" };
+    const bh = { borderBottom: "2px solid var(--border)" };
+
+    return (<div className="con-calc__results">
+        <h4>CR Fees by Entity Type (SAR)</h4>
+        <div style={{ overflowX: "auto" }}>
+            <table style={ts}>
+                <thead><tr style={bh}>
+                    <th style={{ ...th, textAlign: "left" }}>Entity Type</th><th style={th}>Initial</th><th style={th}>Annual</th>
+                </tr></thead>
+                <tbody>
+                    {Object.values(CR_FEES).map((e) => (
+                        <tr key={e.label} style={b}><td style={{ ...tl, fontWeight: 600 }}>{e.label}</td><td style={{ ...td, fontWeight: 700 }}>{e.initial.toLocaleString()}</td><td style={{ ...td, fontWeight: 700 }}>{e.annual.toLocaleString()}</td></tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
+
+        <h4 style={{ marginTop: "var(--s-4)" }}>Chamber of Commerce Membership</h4>
+        <div style={{ overflowX: "auto" }}>
+            <table style={ts}>
+                <thead><tr style={bh}>
+                    <th style={{ ...th, textAlign: "left" }}>Category</th><th style={th}>Annual Fee</th>
+                </tr></thead>
+                <tbody>
+                    {Object.values(CHAMBER_FEES).map((c) => (
+                        <tr key={c.label} style={b}><td style={{ ...tl, fontWeight: 600 }}>{c.label}</td><td style={{ ...td, fontWeight: 700 }}>SAR {c.fee.toLocaleString()}</td></tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
+
+        <h4 style={{ marginTop: "var(--s-4)" }}>Late Penalties</h4>
+        <div style={{ overflowX: "auto" }}>
+            <table style={ts}>
+                <thead><tr style={bh}>
+                    <th style={{ ...th, textAlign: "left" }}>Situation</th><th style={{ ...th, textAlign: "left" }}>Consequence</th>
+                </tr></thead>
+                <tbody>
+                    <tr style={b}><td style={{ ...tl, fontWeight: 600 }}>Late annual confirmation</td><td style={tl}>25% of renewal fee</td></tr>
+                    <tr style={b}><td style={{ ...tl, fontWeight: 600 }}>90 days overdue</td><td style={tl}>CR suspended</td></tr>
+                    <tr style={b}><td style={{ ...tl, fontWeight: 600 }}>1 year overdue</td><td style={tl}>CR cancelled</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h4 style={{ marginTop: "var(--s-4)" }}>Additional Fees</h4>
+        <div style={{ overflowX: "auto" }}>
+            <table style={ts}>
+                <thead><tr style={bh}>
+                    <th style={{ ...th, textAlign: "left" }}>Item</th><th style={th}>Fee (SAR)</th>
+                </tr></thead>
+                <tbody>
+                    <tr style={b}><td style={{ ...tl, fontWeight: 600 }}>Sub-CR (per year)</td><td style={{ ...td, fontWeight: 700 }}>100</td></tr>
+                    <tr style={b}><td style={{ ...tl, fontWeight: 600 }}>Additional activity</td><td style={{ ...td, fontWeight: 700 }}>300</td></tr>
+                    <tr style={b}><td style={{ ...tl, fontWeight: 600 }}>CR info update</td><td style={{ ...td, fontWeight: 700 }}>100</td></tr>
+                    <tr style={b}><td style={{ ...tl, fontWeight: 600 }}>Articles publication (LLC)</td><td style={{ ...td, fontWeight: 700 }}>500</td></tr>
+                    <tr style={b}><td style={{ ...tl, fontWeight: 600 }}>MISA annual service</td><td style={{ ...td, fontWeight: 700 }}>2,000</td></tr>
+                    <tr style={b}><td style={{ ...tl, fontWeight: 600 }}>MISA first-year subscription</td><td style={{ ...td, fontWeight: 700 }}>10,000</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>);
+}
+
 export default function KSACalculatorCore({ calcType }: { calcType: string }) {
     if (calcType === "eosb") return <EOSBCalc />;
     if (calcType === "gosi") return <GOSICalc />;
@@ -1280,6 +1446,7 @@ export default function KSACalculatorCore({ calcType }: { calcType: string }) {
     if (calcType === "rent") return <RentAffordabilityCalc />;
     if (calcType === "iqama") return <IqamaRenewalCalc />;
     if (calcType === "saudization") return <SaudizationCalc />;
+    if (calcType === "crfee") return <CRFeeCalc />;
     return <p>Calculator not found: {calcType}</p>;
 }
 
