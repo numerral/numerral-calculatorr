@@ -77,6 +77,13 @@ const KSA_CALCULATORS = [
         tag: "Savings",
         description: "Plan your savings in SAR. Calculate time to goal or monthly needed for Hajj, emergency fund, home, and more.",
     },
+    {
+        title: "Rent Affordability Calculator",
+        slug: "rent-affordability-calculator",
+        icon: "🏘️",
+        tag: "Housing",
+        description: "Find how much rent you can afford by city. Includes housing allowance, GOSI, Ejar costs, and property matching.",
+    },
 ];
 
 export default function KSAPage() {

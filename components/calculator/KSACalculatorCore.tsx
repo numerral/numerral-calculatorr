@@ -695,6 +695,215 @@ function SavingsReferenceTab() {
     </div>);
 }
 
+/* ── Rent Affordability Calculator (KSA) ── */
+const CITY_RENT_DATA: Record<string, { label: string; studio: number[]; br1: number[]; br2: number[]; br3: number[]; villa: number[] }> = {
+    riyadh: { label: "Riyadh", studio: [1700, 3800], br1: [2500, 4800], br2: [3400, 6800], br3: [4000, 7500], villa: [15000, 19000] },
+    jeddah: { label: "Jeddah", studio: [2200, 3400], br1: [2000, 4000], br2: [3200, 5500], br3: [5000, 12000], villa: [8000, 17000] },
+    dammam: { label: "Dammam/Khobar", studio: [1500, 2800], br1: [1800, 3500], br2: [2500, 4500], br3: [3000, 5000], villa: [5000, 10000] },
+    makkah: { label: "Makkah", studio: [1200, 2500], br1: [1500, 3000], br2: [2000, 4000], br3: [2500, 6000], villa: [6000, 12000] },
+    madinah: { label: "Madinah", studio: [1000, 2000], br1: [1000, 2500], br2: [1500, 3000], br3: [2000, 4000], villa: [4000, 8000] },
+};
+
+const PROPERTY_TYPES = [
+    { value: "studio", label: "Studio" },
+    { value: "br1", label: "1-Bedroom" },
+    { value: "br2", label: "2-Bedroom" },
+    { value: "br3", label: "3-Bedroom" },
+    { value: "villa", label: "Villa" },
+];
+
+function RentAffordabilityCalc() {
+    const [tab, setTab] = useState(0);
+    const tabs = ["🧮 Calculator", "📋 Quick Reference"];
+
+    const [income, setIncome] = useState(10000);
+    const [allowance, setAllowance] = useState(0);
+    const [city, setCity] = useState("riyadh");
+    const [propType, setPropType] = useState("br2");
+    const [rule, setRule] = useState(30);
+    const [debts, setDebts] = useState(0);
+    const [isGosi, setIsGosi] = useState("no");
+
+    const result = useMemo(() => {
+        if (income <= 0) return null;
+        const gosiDeduction = isGosi === "yes" ? income * 0.0975 : 0;
+        const netIncome = income - gosiDeduction;
+        const totalIncome = netIncome + allowance;
+        const maxRent = totalIncome * (rule / 100);
+        const remaining = totalIncome - maxRent;
+        const dti = totalIncome > 0 ? ((maxRent + debts) / totalIncome) * 100 : 0;
+
+        // City match
+        const cityData = CITY_RENT_DATA[city];
+        const propKey = propType as keyof typeof cityData;
+        const rentRange = cityData[propKey] as number[];
+        const avgCityRent = (rentRange[0] + rentRange[1]) / 2;
+        const canAfford = maxRent >= rentRange[0];
+        const comfortableAfford = maxRent >= avgCityRent;
+
+        // Annual cost breakdown
+        const annualRent = maxRent * 12;
+        const agentFee = annualRent * 0.05;
+        const securityDeposit = maxRent * 2;
+        const monthlyUtilities = 450;
+        const annualUtilities = monthlyUtilities * 12;
+        const totalFirstYear = annualRent + agentFee + securityDeposit + annualUtilities;
+
+        // Find affordable property types
+        const affordableTypes = PROPERTY_TYPES.filter((pt) => {
+            const key = pt.value as keyof typeof cityData;
+            const range = cityData[key] as number[];
+            return maxRent >= range[0];
+        });
+
+        return {
+            gosiDeduction, netIncome, totalIncome, maxRent, remaining, dti,
+            rentRange, avgCityRent, canAfford, comfortableAfford,
+            annualRent, agentFee, securityDeposit, monthlyUtilities, annualUtilities, totalFirstYear,
+            affordableTypes, cityLabel: cityData.label,
+        };
+    }, [income, allowance, city, propType, rule, debts, isGosi]);
+
+    return (<div className="con-calc">
+        <h3 className="con-calc__title">🏘️ Rent Affordability Calculator (KSA)</h3>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: "var(--s-1)", marginBottom: "var(--s-3)" }}>
+            {tabs.map((t, i) => (<button key={t} onClick={() => setTab(i)}
+                style={{ padding: "6px 14px", borderRadius: "6px", fontSize: "0.82rem", fontWeight: tab === i ? 700 : 500, background: tab === i ? "var(--primary, var(--n-primary))" : "transparent", color: tab === i ? "#fff" : "var(--text-muted, var(--n-text-muted))", border: tab === i ? "none" : "1px solid var(--border, var(--n-border))", cursor: "pointer" }}>{t}</button>))}
+        </div>
+
+        {tab === 0 && <>
+            <InputField label="Monthly Salary" value={income} onChange={(v) => setIncome(Number(v))} unit="SAR" min={0} />
+            <InputField label="Housing Allowance (if separate)" value={allowance} onChange={(v) => setAllowance(Number(v))} unit="SAR" min={0} />
+            <SelectField label="GOSI Deduction" value={isGosi} onChange={setIsGosi} options={[{ value: "no", label: "No (Expat)" }, { value: "yes", label: "Yes — Saudi (9.75%)" }]} />
+            <SelectField label="City" value={city} onChange={setCity} options={Object.entries(CITY_RENT_DATA).map(([k, v]) => ({ value: k, label: v.label }))} />
+            <SelectField label="Property Type" value={propType} onChange={setPropType} options={PROPERTY_TYPES} />
+            <InputField label="Affordability Rule" value={rule} onChange={(v) => setRule(Number(v))} unit="% of income" min={10} max={60} step={5} />
+            <InputField label="Monthly Debts (car loan, etc.)" value={debts} onChange={(v) => setDebts(Number(v))} unit="SAR" min={0} />
+
+            {result && <div className="con-calc__results" style={{ marginTop: "var(--s-3)" }}>
+                <h4>Affordability Results</h4>
+                {result.gosiDeduction > 0 && <ResultRow label="GOSI Deduction (9.75%)" value={`SAR ${fmt(result.gosiDeduction)}`} />}
+                <ResultRow label="Net Income (after GOSI)" value={`SAR ${fmt(result.netIncome)}`} />
+                {result.totalIncome !== result.netIncome && <ResultRow label="Total (+ Housing Allowance)" value={`SAR ${fmt(result.totalIncome)}`} />}
+                <ResultRow label={`Maximum Rent (${rule}% rule)`} value={`SAR ${fmt(result.maxRent)}`} />
+                <ResultRow label="Remaining After Rent" value={`SAR ${fmt(result.remaining)}`} />
+                <ResultRow label="Debt-to-Income Ratio" value={`${fmt(result.dti, 1)}%`} />
+
+                <h4 style={{ marginTop: "var(--s-3)" }}>City Rent Match — {result.cityLabel}</h4>
+                <ResultRow label={`${PROPERTY_TYPES.find(p => p.value === propType)?.label} Range`} value={`SAR ${fmt(result.rentRange[0], 0)} – ${fmt(result.rentRange[1], 0)}/mo`} />
+                <ResultRow label="Average" value={`SAR ${fmt(result.avgCityRent, 0)}/mo`} />
+                <ResultRow label="Can You Afford Entry Level?" value={result.canAfford ? "✅ Yes" : "❌ No — over budget"} />
+                <ResultRow label="Comfortable at Average?" value={result.comfortableAfford ? "✅ Yes" : "⚠️ Stretch — consider smaller unit"} />
+
+                {result.affordableTypes.length > 0 && <>
+                    <h4 style={{ marginTop: "var(--s-3)" }}>Affordable Property Types in {result.cityLabel}</h4>
+                    {result.affordableTypes.map((pt) => {
+                        const key = pt.value as keyof typeof CITY_RENT_DATA.riyadh;
+                        const range = (CITY_RENT_DATA[city][key] as number[]);
+                        return <ResultRow key={pt.value} label={pt.label} value={`SAR ${fmt(range[0], 0)} – ${fmt(range[1], 0)}/mo`} />;
+                    })}
+                </>}
+
+                <h4 style={{ marginTop: "var(--s-3)" }}>First Year Cost Breakdown</h4>
+                <ResultRow label="Annual Rent (12 months)" value={`SAR ${fmt(result.annualRent, 0)}`} />
+                <ResultRow label="Agent Fee (5% of annual)" value={`SAR ${fmt(result.agentFee, 0)}`} />
+                <ResultRow label="Security Deposit (~2 months)" value={`SAR ${fmt(result.securityDeposit, 0)}`} />
+                <ResultRow label="Est. Utilities (12 months)" value={`SAR ${fmt(result.annualUtilities, 0)}`} />
+                <ResultRow label="Total First Year Cost" value={`SAR ${fmt(result.totalFirstYear, 0)}`} />
+            </div>}
+        </>}
+
+        {tab === 1 && <RentReferenceTab />}
+    </div>);
+}
+
+function RentReferenceTab() {
+    const ts = { width: "100%", fontSize: "0.85rem", borderCollapse: "collapse" as const };
+    const th = { padding: "8px 12px", textAlign: "center" as const };
+    const td = { padding: "6px 12px", textAlign: "center" as const };
+    const tl = { ...td, textAlign: "left" as const };
+    const b = { borderBottom: "1px solid var(--border)" };
+    const bh = { borderBottom: "2px solid var(--border)" };
+
+    return (<div className="con-calc__results">
+        <h4>Average Monthly Rent by City (SAR — 2025/2026)</h4>
+        <div style={{ overflowX: "auto" }}>
+            <table style={ts}>
+                <thead><tr style={bh}>
+                    <th style={{ ...th, textAlign: "left" }}>City</th>
+                    <th style={th}>Studio</th>
+                    <th style={th}>1-BR</th>
+                    <th style={th}>2-BR</th>
+                    <th style={th}>3-BR</th>
+                    <th style={th}>Villa</th>
+                </tr></thead>
+                <tbody>
+                    {Object.entries(CITY_RENT_DATA).map(([key, c]) => (
+                        <tr key={key} style={b}>
+                            <td style={{ ...tl, fontWeight: 600 }}>{c.label}</td>
+                            <td style={td}>{c.studio[0].toLocaleString()}–{c.studio[1].toLocaleString()}</td>
+                            <td style={td}>{c.br1[0].toLocaleString()}–{c.br1[1].toLocaleString()}</td>
+                            <td style={td}>{c.br2[0].toLocaleString()}–{c.br2[1].toLocaleString()}</td>
+                            <td style={td}>{c.br3[0].toLocaleString()}–{c.br3[1].toLocaleString()}</td>
+                            <td style={td}>{c.villa[0].toLocaleString()}–{c.villa[1].toLocaleString()}</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
+
+        <h4 style={{ marginTop: "var(--s-4)" }}>Affordability Benchmarks</h4>
+        <div style={{ overflowX: "auto" }}>
+            <table style={ts}>
+                <thead><tr style={bh}>
+                    <th style={{ ...th, textAlign: "left" }}>Salary (SAR)</th>
+                    <th style={th}>25% Rule</th>
+                    <th style={th}>30% Rule</th>
+                    <th style={th}>35% Rule</th>
+                    <th style={th}>40% Rule</th>
+                </tr></thead>
+                <tbody>
+                    {[5000, 7000, 10000, 15000, 20000, 30000].map((s) => (
+                        <tr key={s} style={b}>
+                            <td style={{ ...tl, fontWeight: 600 }}>SAR {s.toLocaleString()}</td>
+                            <td style={{ ...td, fontWeight: 700 }}>{fmt(s * 0.25, 0)}</td>
+                            <td style={{ ...td, fontWeight: 700 }}>{fmt(s * 0.30, 0)}</td>
+                            <td style={td}>{fmt(s * 0.35, 0)}</td>
+                            <td style={td}>{fmt(s * 0.40, 0)}</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
+
+        <h4 style={{ marginTop: "var(--s-4)" }}>Ejar Rental Checklist</h4>
+        <div style={{ overflowX: "auto" }}>
+            <table style={ts}>
+                <thead><tr style={bh}>
+                    <th style={{ ...th, textAlign: "left" }}>Step</th>
+                    <th style={{ ...th, textAlign: "left" }}>Details</th>
+                </tr></thead>
+                <tbody>
+                    {[
+                        ["1. Valid Iqama/ID", "Must have valid residence permit (expats) or national ID"],
+                        ["2. Ejar Registration", "Contract MUST be registered on Ejar platform"],
+                        ["3. Payment via SADAD", "Rent via Mada or SADAD (biller 153) since Jan 2024"],
+                        ["4. Security Deposit", "Held by Ejar as neutral party — returned after inspection"],
+                        ["5. Agent Fee", "Typically 5% of annual rent — paid once at signing"],
+                        ["6. 60-Day Notice", "Required before contract non-renewal"],
+                        ["7. Riyadh Freeze", "5-year rent freeze — no increases above 0–2% (since Sep 2025)"],
+                    ].map(([step, detail], i) => (
+                        <tr key={i} style={b}>
+                            <td style={{ ...tl, fontWeight: 600 }}>{step}</td>
+                            <td style={tl}>{detail}</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
+    </div>);
+}
+
 export default function KSACalculatorCore({ calcType }: { calcType: string }) {
     if (calcType === "eosb") return <EOSBCalc />;
     if (calcType === "gosi") return <GOSICalc />;
@@ -705,6 +914,7 @@ export default function KSACalculatorCore({ calcType }: { calcType: string }) {
     if (calcType === "homeloan") return <HomeLoanCalc />;
     if (calcType === "carloan") return <CarLoanCalc />;
     if (calcType === "savings") return <SavingsGoalCalc />;
+    if (calcType === "rent") return <RentAffordabilityCalc />;
     return <p>Calculator not found: {calcType}</p>;
 }
 
