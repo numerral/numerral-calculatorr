@@ -474,3 +474,35 @@ export function getGlossaryTermsByCategory(category: string): GlossaryTerm[] {
     return glossary.filter((t) => t.category === category);
 }
 
+// ---- KSA Glossary types & getters ----
+
+import ksaGlossaryJson from "@/data/ksa-glossary.json";
+
+export interface KSAGlossaryTerm {
+    term: string;
+    slug: string;
+    termAr: string;
+    definition: string;
+    category: string;
+    relatedCalc: string;
+    contentHTML: string;
+    faq: { question: string; answer: string }[];
+}
+
+const ksaGlossary = ksaGlossaryJson as KSAGlossaryTerm[];
+
+/** Get all KSA glossary terms. */
+export function getAllKSAGlossaryTerms(): KSAGlossaryTerm[] {
+    return ksaGlossary;
+}
+
+/** Get a KSA glossary term by slug. */
+export function getKSAGlossaryTermBySlug(slug: string): KSAGlossaryTerm | undefined {
+    return ksaGlossary.find((t) => t.slug === slug);
+}
+
+/** Get KSA glossary terms by category. */
+export function getKSAGlossaryTermsByCategory(category: string): KSAGlossaryTerm[] {
+    return ksaGlossary.filter((t) => t.category === category);
+}
+

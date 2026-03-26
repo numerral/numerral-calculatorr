@@ -150,6 +150,23 @@ export default function KSAPage() {
                     </Link>
                 ))}
             </div>
+
+            {/* KSA Glossary Section */}
+            <section style={{ marginTop: "var(--s-8)", marginBottom: "var(--s-6)" }}>
+                <Link
+                    href="/ksa/glossary"
+                    className="ksa-card"
+                    style={{ background: "linear-gradient(135deg, rgba(0,100,60,0.04) 0%, rgba(0,100,60,0.01) 100%)" }}
+                >
+                    <div className="ksa-card__icon">📖</div>
+                    <div className="ksa-card__body">
+                        <div className="ksa-card__tag">Reference</div>
+                        <h2 className="ksa-card__title">KSA Glossary — مسرد المصطلحات</h2>
+                        <p className="ksa-card__desc">30+ Saudi-specific terms explained: Nitaqat, Saudization, GOSI, Iqama, Commercial Registration, VAT, Zakat, Islamic banking, and more — with Arabic translations.</p>
+                    </div>
+                    <div className="ksa-card__arrow">→</div>
+                </Link>
+            </section>
         </main>
     );
 }

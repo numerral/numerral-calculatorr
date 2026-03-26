@@ -1,0 +1,382 @@
+[
+  {
+    "term": "Nitaqat",
+    "slug": "nitaqat",
+    "termAr": "نطاقات",
+    "definition": "Nitaqat (Bands) is the Saudi labor market nationalization program that classifies private-sector companies into color-coded bands — Platinum, High Green, Mid Green, Low Green, and Red — based on their Saudization percentage. Companies in higher bands enjoy benefits like easier visa processing, while Red zone companies face sanctions.",
+    "category": "employment",
+    "relatedCalc": "/ksa/saudization-calculator",
+    "contentHTML": "<h3>How Nitaqat Works</h3><p>The Ministry of Human Resources and Social Development (MHRSD) assigns each company a Nitaqat band based on the ratio of Saudi nationals to total employees. Each industry sector has its own target percentage. The system was introduced in 2011 and has been updated multiple times, most recently with the <strong>Developed Nitaqat Program (2024–2028)</strong> which introduces sector-specific localization targets.</p><h3>Band Thresholds</h3><ul><li><strong>Platinum:</strong> 40%+ Saudization — fast-track visas, government contract priority</li><li><strong>High Green:</strong> 26–40% — most benefits, easy processing</li><li><strong>Mid Green:</strong> 19–26% — basic services, good standing</li><li><strong>Low Green:</strong> 16–19% — limited services, needs improvement</li><li><strong>Red:</strong> Below 16% — visa block, sanctions, service suspension</li></ul><h3>Impact on Businesses</h3><p>Your Nitaqat band affects your ability to issue new work visas, renew <a href='/ksa/glossary/iqama'>Iqamas</a>, change employee professions, and access government services. Use our <a href='/ksa/saudization-calculator'>Saudization Calculator</a> to determine your current band and plan compliance.</p>",
+    "faq": [
+      {"question": "What is Nitaqat in Saudi Arabia?", "answer": "Nitaqat (meaning 'bands' in Arabic) is Saudi Arabia's Saudization compliance system that classifies companies into color-coded bands based on their percentage of Saudi national employees."},
+      {"question": "How many Nitaqat bands are there?", "answer": "There are 5 bands: Platinum (40%+), High Green (26–40%), Mid Green (19–26%), Low Green (16–19%), and Red (below 16%)."},
+      {"question": "What happens if my company is in Red zone?", "answer": "Red zone companies face visa issuance blocks, Iqama renewal restrictions, inability to change employee professions, and potential fines up to SAR 20,000–100,000."}
+    ]
+  },
+  {
+    "term": "Saudization",
+    "slug": "saudization",
+    "termAr": "السعودة",
+    "definition": "Saudization (Tawteen) is Saudi Arabia's national policy requiring private-sector companies to employ a minimum percentage of Saudi citizens. Mandated under the Nitaqat system, it aims to reduce unemployment among Saudi nationals and is a key pillar of Vision 2030's employment goals.",
+    "category": "employment",
+    "relatedCalc": "/ksa/saudization-calculator",
+    "contentHTML": "<h3>Saudization Formula</h3><p>The basic Saudization percentage is calculated as:<br><strong>Saudization % = (Weighted Saudi Employees ÷ Total Employees) × 100</strong></p><p>The 'weighted' count applies special multipliers: employees with disabilities count as 4, while part-time Saudis and those earning below SAR 4,000 count as 0.5.</p><h3>Sector-Specific Targets (2025/2026)</h3><p>Targets vary by industry — Medical Labs require 70%, Physiotherapy 80%, Engineering 30%, Accounting 40% (rising to 70% over 5 years). Use our <a href='/ksa/saudization-calculator'>Saudization Calculator</a> to check your sector's specific target.</p>",
+    "faq": [
+      {"question": "What is the Saudization rate in Saudi Arabia?", "answer": "The required Saudization rate varies by sector, ranging from 20% for general private sector to 80% for physiotherapy and therapeutic nutrition. Most sectors target 30–70%."},
+      {"question": "What is the penalty for non-compliance with Saudization?", "answer": "Penalties include fines of SAR 20,000–100,000, visa blocks, Iqama renewal restrictions, and potential business license suspension for companies in the Red Nitaqat zone."}
+    ]
+  },
+  {
+    "term": "Kafala System",
+    "slug": "kafala-system",
+    "termAr": "نظام الكفالة",
+    "definition": "The Kafala (sponsorship) system is a framework used in Saudi Arabia and other Gulf states that ties a foreign worker's immigration status to their employer-sponsor (kafeel). Recent reforms under the Labor Reform Initiative (2021) have loosened some restrictions, allowing workers to change jobs and exit the country without employer consent.",
+    "category": "employment",
+    "relatedCalc": "/ksa/iqama-renewal-calculator",
+    "contentHTML": "<h3>Key Reforms (2021–2025)</h3><ul><li><strong>Job mobility:</strong> Workers can transfer to a new employer after completing their contract or after 1 year</li><li><strong>Exit/re-entry:</strong> Workers can travel without employer permission</li><li><strong>Final exit:</strong> Workers can leave the country without employer consent</li></ul><p>Despite reforms, the employer still sponsors the worker's <a href='/ksa/glossary/iqama'>Iqama</a> and is responsible for renewal fees. Use our <a href='/ksa/iqama-renewal-calculator'>Iqama Renewal Calculator</a> to estimate sponsorship costs.</p>",
+    "faq": [
+      {"question": "Is the Kafala system still used in Saudi Arabia?", "answer": "Yes, but significantly reformed. Since March 2021, workers can change jobs, travel, and exit without employer consent under the Labor Reform Initiative, though the sponsorship framework remains."},
+      {"question": "Can a worker change sponsors in KSA?", "answer": "Yes. Under the 2021 reforms, workers can transfer sponsorship after completing their contract or after 12 months, without needing their current employer's approval."}
+    ]
+  },
+  {
+    "term": "Qiwa",
+    "slug": "qiwa",
+    "termAr": "قوى",
+    "definition": "Qiwa is the official digital platform of Saudi Arabia's Ministry of Human Resources and Social Development (MHRSD) for managing labor market services. It handles work permit issuance, contract documentation, Saudization compliance tracking, employee transfers, and establishment management for all private-sector employers.",
+    "category": "employment",
+    "relatedCalc": "/ksa/saudization-calculator",
+    "contentHTML": "<h3>Services Available on Qiwa</h3><ul><li><strong>Contract documentation:</strong> Mandatory from April 2026 — all employment contracts must be documented on Qiwa</li><li><strong>Work permits:</strong> Issue, renew, and cancel work permits for foreign employees</li><li><strong>Saudization tracking:</strong> Monitor your company's <a href='/ksa/glossary/nitaqat'>Nitaqat</a> band in real-time</li><li><strong>Employee transfers:</strong> Process sponsorship transfers under the Labor Reform Initiative</li><li><strong>Establishment management:</strong> Update company information and activity codes</li></ul>",
+    "faq": [
+      {"question": "What is Qiwa platform used for?", "answer": "Qiwa is the MHRSD's digital platform for managing work permits, employment contracts, Saudization compliance, employee transfers, and all labor market services for private-sector employers in Saudi Arabia."},
+      {"question": "Is Qiwa contract documentation mandatory?", "answer": "Yes. From April 2026, all employment contracts must be documented on the Qiwa platform. Non-compliance may result in fines and restrictions on labor services."}
+    ]
+  },
+  {
+    "term": "Musaned",
+    "slug": "musaned",
+    "termAr": "مساند",
+    "definition": "Musaned is Saudi Arabia's official online platform for recruiting and managing domestic workers (household staff). It connects Saudi households with licensed recruitment agencies and handles visa applications, contracts, insurance, and complaint resolution for domestic labor.",
+    "category": "employment",
+    "relatedCalc": "/ksa/iqama-renewal-calculator",
+    "contentHTML": "<h3>Services on Musaned</h3><ul><li>Request new domestic worker visas</li><li>Select licensed recruitment agencies</li><li>Track visa application status</li><li>E-contracts with domestic workers</li><li>File complaints and disputes</li><li>Transfer domestic worker sponsorship</li></ul><p>Domestic workers' <a href='/ksa/glossary/iqama'>Iqama</a> renewal and dependent fees can be estimated using our <a href='/ksa/iqama-renewal-calculator'>Iqama Renewal Calculator</a>.</p>",
+    "faq": [
+      {"question": "What is Musaned?", "answer": "Musaned is Saudi Arabia's official platform for recruiting, contracting, and managing domestic workers (maids, drivers, cooks, etc.) through licensed agencies."}
+    ]
+  },
+  {
+    "term": "GOSI",
+    "slug": "gosi",
+    "termAr": "التأمينات الاجتماعية",
+    "definition": "The General Organization for Social Insurance (GOSI) is Saudi Arabia's social security system that provides pension, disability, occupational hazard, and unemployment insurance (SANED) to employees. Saudi nationals contribute 21.5% of salary (split employer/employee), while expats contribute 2% for occupational hazards only.",
+    "category": "employment",
+    "relatedCalc": "/ksa/gosi-calculator",
+    "contentHTML": "<h3>GOSI Contribution Rates</h3><table><thead><tr><th>Component</th><th>Saudi Employer</th><th>Saudi Employee</th><th>Expat Employer</th></tr></thead><tbody><tr><td>Annuity (Pension)</td><td>9%</td><td>9%</td><td>—</td></tr><tr><td>Occupational Hazards</td><td>2%</td><td>—</td><td>2%</td></tr><tr><td>SANED (Unemployment)</td><td>0.75%</td><td>0.75%</td><td>—</td></tr><tr><td><strong>Total</strong></td><td><strong>11.75%</strong></td><td><strong>9.75%</strong></td><td><strong>2%</strong></td></tr></tbody></table><p>Use our <a href='/ksa/gosi-calculator'>GOSI Calculator</a> to compute exact monthly contributions based on salary.</p>",
+    "faq": [
+      {"question": "What is the GOSI contribution rate?", "answer": "For Saudi employees: 9.75% employee share + 11.75% employer share = 21.5% total. For expat employees: 2% employer share only (occupational hazards)."},
+      {"question": "Do expats get GOSI pension?", "answer": "No. Expat employees are only covered under the Occupational Hazards branch (2% employer contribution). They do not receive pension or SANED unemployment benefits."}
+    ]
+  },
+  {
+    "term": "End of Service Benefits",
+    "slug": "eosb",
+    "termAr": "مكافأة نهاية الخدمة",
+    "definition": "End of Service Benefits (EOSB) — known as مكافأة نهاية الخدمة — is the mandatory gratuity payment Saudi employers must pay employees upon termination of employment. Governed by Articles 84, 85, and 87 of the Saudi Labor Law, it's calculated based on length of service and last drawn salary.",
+    "category": "employment",
+    "relatedCalc": "/ksa/end-of-service-calculator",
+    "contentHTML": "<h3>EOSB Formula</h3><ul><li><strong>First 5 years:</strong> Half month's salary per year</li><li><strong>After 5 years:</strong> Full month's salary per year</li></ul><h3>Resignation Entitlement</h3><ul><li>Less than 2 years: No entitlement</li><li>2–5 years: One-third of EOSB</li><li>5–10 years: Two-thirds of EOSB</li><li>Over 10 years: Full EOSB</li></ul><p>Use our <a href='/ksa/end-of-service-calculator'>End of Service Calculator</a> for exact calculation.</p>",
+    "faq": [
+      {"question": "How is EOSB calculated in Saudi Arabia?", "answer": "EOSB = (half month's salary × first 5 years) + (full month's salary × years beyond 5). For resignation, entitlement is 0% (<2 yrs), 33% (2-5 yrs), 67% (5-10 yrs), or 100% (10+ yrs)."}
+    ]
+  },
+  {
+    "term": "Commercial Registration",
+    "slug": "commercial-registration",
+    "termAr": "السجل التجاري",
+    "definition": "A Commercial Registration (CR) is the official license issued by the Ministry of Commerce (MOCI) authorizing businesses to operate in Saudi Arabia. It is the foundational legal document for any business entity, required for opening bank accounts, signing contracts, hiring employees, and registering for VAT.",
+    "category": "business",
+    "relatedCalc": "/ksa/commercial-registration-calculator",
+    "contentHTML": "<h3>CR Fees by Entity Type</h3><table><thead><tr><th>Entity</th><th>Annual Fee</th></tr></thead><tbody><tr><td>Sole Proprietorship</td><td>SAR 500</td></tr><tr><td>LLC</td><td>SAR 1,200</td></tr><tr><td>Partnership</td><td>SAR 1,000</td></tr><tr><td>Simplified JSC</td><td>SAR 1,600</td></tr><tr><td>Foreign Branch</td><td>SAR 2,000</td></tr></tbody></table><p>From April 2025, businesses must perform annual confirmation instead of renewal. Late confirmation incurs a 25% penalty, and CRs are suspended after 90 days. Use our <a href='/ksa/commercial-registration-calculator'>CR Fee Calculator</a> to estimate total costs.</p>",
+    "faq": [
+      {"question": "How much does a commercial registration cost in Saudi Arabia?", "answer": "Annual CR fees: Sole Proprietorship SAR 500, LLC SAR 1,200, Partnership SAR 1,000, Simplified JSC SAR 1,600, Foreign Branch SAR 2,000. Additional costs include Chamber of Commerce (SAR 1,000–5,000) and municipality license."}
+    ]
+  },
+  {
+    "term": "Sijil",
+    "slug": "sijil",
+    "termAr": "سجل",
+    "definition": "Sijil is the Ministry of Commerce's digital platform and mobile app for managing commercial registrations in Saudi Arabia. Businesses use Sijil to issue, confirm, and update their CR, reserve company names, manage sub-CRs, and access digital certificates — all without visiting a physical office.",
+    "category": "business",
+    "relatedCalc": "/ksa/commercial-registration-calculator",
+    "contentHTML": "<h3>What You Can Do on Sijil</h3><ul><li>Issue a new <a href='/ksa/glossary/commercial-registration'>Commercial Registration</a></li><li>Annual CR confirmation</li><li>Reserve and register company names</li><li>Add/remove business activities (ISIC codes)</li><li>Manage sub-CRs for branches</li><li>Download digital CR certificates</li><li>Pay fees via SADAD</li></ul>",
+    "faq": [
+      {"question": "What is the Sijil app?", "answer": "Sijil is the Ministry of Commerce's official app for managing commercial registrations. It allows business owners to issue, renew, and manage their CR entirely online."}
+    ]
+  },
+  {
+    "term": "Chamber of Commerce",
+    "slug": "chamber-of-commerce",
+    "termAr": "الغرفة التجارية",
+    "definition": "Chamber of Commerce membership is mandatory for all businesses with a commercial registration in Saudi Arabia. Fees are tiered based on company capital and employee count: Category A (SAR 5,000), Category B (SAR 2,000), Category C/D (SAR 1,000).",
+    "category": "business",
+    "relatedCalc": "/ksa/commercial-registration-calculator",
+    "contentHTML": "<h3>Fee Categories</h3><table><thead><tr><th>Category</th><th>Criteria</th><th>Annual Fee</th></tr></thead><tbody><tr><td>A</td><td>Capital >SAR 1M or 250+ employees</td><td>SAR 5,000</td></tr><tr><td>B</td><td>Capital SAR 375K–1M or 50–249 employees</td><td>SAR 2,000</td></tr><tr><td>C/D</td><td>Capital <SAR 375K or <50 employees</td><td>SAR 1,000</td></tr></tbody></table>",
+    "faq": [
+      {"question": "Is Chamber of Commerce membership mandatory in Saudi Arabia?", "answer": "Yes. All businesses with a commercial registration must join their local Chamber of Commerce. Annual fees range from SAR 1,000 to SAR 5,000 based on company size."}
+    ]
+  },
+  {
+    "term": "MISA License",
+    "slug": "misa-license",
+    "termAr": "ترخيص وزارة الاستثمار",
+    "definition": "A MISA (Ministry of Investment) license is required for foreign investors to operate businesses in Saudi Arabia. The annual service fee is SAR 2,000, with a one-time first-year subscription of SAR 10,000. Previous issuance fees (SAR 12,000) and renewal fees (SAR 62,000) were suspended in 2026.",
+    "category": "business",
+    "relatedCalc": "/ksa/commercial-registration-calculator",
+    "contentHTML": "<h3>MISA Fee Structure (2026)</h3><table><thead><tr><th>Component</th><th>Fee</th></tr></thead><tbody><tr><td>Annual service fee</td><td>SAR 2,000</td></tr><tr><td>First-year subscription</td><td>SAR 10,000 (one-time)</td></tr><tr><td>License issuance</td><td>Suspended</td></tr><tr><td>License renewal</td><td>Suspended</td></tr></tbody></table><p>Under Vision 2030, Saudi Arabia now allows 100% foreign ownership in most sectors, making the MISA license more accessible than ever.</p>",
+    "faq": [
+      {"question": "How much does a MISA license cost?", "answer": "Annual service fee of SAR 2,000 plus a one-time SAR 10,000 first-year subscription. The previous SAR 12,000 issuance and SAR 62,000 renewal fees were suspended in 2026."}
+    ]
+  },
+  {
+    "term": "Baladiya",
+    "slug": "baladiya",
+    "termAr": "البلدية",
+    "definition": "Baladiya (municipality) is the local government body that issues municipality licenses required for businesses operating from physical locations in Saudi Arabia. Annual fees range from SAR 500 for small offices to SAR 5,000 for large industrial facilities.",
+    "category": "business",
+    "relatedCalc": "/ksa/commercial-registration-calculator",
+    "contentHTML": "<h3>Municipality License Fees</h3><ul><li><strong>Small office/shop:</strong> SAR 500–1,000</li><li><strong>Medium commercial:</strong> SAR 1,000–3,000</li><li><strong>Large/industrial:</strong> SAR 3,000–5,000</li></ul><p>The municipality license is separate from your <a href='/ksa/glossary/commercial-registration'>Commercial Registration</a> and must be renewed annually.</p>",
+    "faq": [
+      {"question": "What is a Baladiya license?", "answer": "A Baladiya (municipality) license is a local permit required to operate a business from a physical location in Saudi Arabia. Fees range from SAR 500 to SAR 5,000 annually."}
+    ]
+  },
+  {
+    "term": "ISIC Code",
+    "slug": "isic-code",
+    "termAr": "رمز النشاط التجاري",
+    "definition": "ISIC (International Standard Industrial Classification) codes are activity codes used in Saudi Arabia's commercial registration system to classify business activities. Each additional activity beyond the primary one costs SAR 300. The correct ISIC code determines your Saudization target sector.",
+    "category": "business",
+    "relatedCalc": "/ksa/commercial-registration-calculator",
+    "contentHTML": "<h3>Why ISIC Codes Matter</h3><ul><li>Determines your <a href='/ksa/glossary/nitaqat'>Nitaqat</a> sector and Saudization target</li><li>Affects municipality license requirements</li><li>Determines which government tenders you can bid on</li><li>Each additional activity costs SAR 300 on your CR</li></ul>",
+    "faq": [
+      {"question": "What is an ISIC code in Saudi Arabia?", "answer": "An ISIC code is a standardized activity classification code assigned to your business on the commercial registration. It determines your Saudization sector, license requirements, and eligibility for government contracts."}
+    ]
+  },
+  {
+    "term": "Freelance License",
+    "slug": "freelance-license",
+    "termAr": "وثيقة العمل الحر",
+    "definition": "The Saudi Freelance License (Marshid/Work Document) allows Saudi nationals to work independently without a traditional commercial registration. Issued through the Ministry of Human Resources, it covers over 140 professional activities and enables freelancers to issue invoices, open business bank accounts, and access government services.",
+    "category": "business",
+    "relatedCalc": "/ksa/salary-calculator",
+    "contentHTML": "<h3>Freelance License Benefits</h3><ul><li>No need for a <a href='/ksa/glossary/commercial-registration'>Commercial Registration</a></li><li>Access to 140+ professional activities</li><li>Issue official invoices</li><li>Open business bank account</li><li>Register for <a href='/ksa/glossary/vat'>VAT</a> if revenue exceeds SAR 375,000</li><li>Count toward <a href='/ksa/glossary/saudization'>Saudization</a> targets</li></ul>",
+    "faq": [
+      {"question": "Who can get a freelance license in Saudi Arabia?", "answer": "Saudi nationals aged 18+ can obtain a freelance license through the MHRSD portal. It covers 140+ activities including consulting, design, IT, education, and more."}
+    ]
+  },
+  {
+    "term": "ZATCA",
+    "slug": "zatca",
+    "termAr": "هيئة الزكاة والضريبة والجمارك",
+    "definition": "ZATCA (Zakat, Tax and Customs Authority) is Saudi Arabia's tax authority responsible for collecting VAT, Zakat, excise tax, and customs duties. It also manages e-invoicing (Fatoorah), tax compliance, and customs clearance for imports and exports.",
+    "category": "tax",
+    "relatedCalc": "/ksa/vat-calculator",
+    "contentHTML": "<h3>ZATCA Responsibilities</h3><ul><li><strong>VAT collection:</strong> 15% standard rate on goods and services</li><li><strong>Zakat:</strong> 2.5% on Saudi/GCC-owned business net assets</li><li><strong>E-invoicing (Fatoorah):</strong> Mandatory electronic invoicing for all businesses</li><li><strong>Excise tax:</strong> On tobacco, energy drinks, soft drinks</li><li><strong>Customs:</strong> Import/export duties and clearance</li></ul><p>Use our <a href='/ksa/vat-calculator'>VAT Calculator</a> to compute VAT on transactions.</p>",
+    "faq": [
+      {"question": "What is ZATCA in Saudi Arabia?", "answer": "ZATCA is the Zakat, Tax and Customs Authority — Saudi Arabia's unified tax body that collects VAT (15%), Zakat (2.5%), excise tax, and customs duties, and enforces e-invoicing compliance."}
+    ]
+  },
+  {
+    "term": "VAT",
+    "slug": "vat",
+    "termAr": "ضريبة القيمة المضافة",
+    "definition": "Value Added Tax (VAT) is a 15% consumption tax applied to most goods and services in Saudi Arabia, administered by ZATCA. Businesses with annual revenue exceeding SAR 375,000 must register for VAT, charge it on sales, and file periodic returns.",
+    "category": "tax",
+    "relatedCalc": "/ksa/vat-calculator",
+    "contentHTML": "<h3>VAT Key Facts</h3><ul><li><strong>Rate:</strong> 15% (increased from 5% in July 2020)</li><li><strong>Mandatory registration:</strong> Revenue > SAR 375,000</li><li><strong>Voluntary registration:</strong> Revenue > SAR 187,500</li><li><strong>Filing:</strong> Monthly (revenue > SAR 40M) or quarterly</li><li><strong>Exempt:</strong> Real estate rentals, certain financial services, healthcare, education</li></ul><p>Use our <a href='/ksa/vat-calculator'>VAT Calculator</a> to compute inclusive/exclusive VAT amounts.</p>",
+    "faq": [
+      {"question": "What is the VAT rate in Saudi Arabia?", "answer": "The standard VAT rate in Saudi Arabia is 15%, applied to most goods and services since July 2020."},
+      {"question": "Who must register for VAT in KSA?", "answer": "Businesses with annual taxable revenue exceeding SAR 375,000 must register. Voluntary registration is available for those exceeding SAR 187,500."}
+    ]
+  },
+  {
+    "term": "Zakat",
+    "slug": "zakat",
+    "termAr": "الزكاة",
+    "definition": "Zakat is the Islamic obligatory charitable tax of 2.5% levied on the net assets of Saudi and GCC-owned businesses in Saudi Arabia. Collected by ZATCA, it applies to companies' adjusted net worth and is calculated on the Zakat base (shareholders' equity + long-term liabilities – fixed assets).",
+    "category": "tax",
+    "relatedCalc": "/ksa/vat-calculator",
+    "contentHTML": "<h3>Zakat vs Corporate Tax</h3><ul><li><strong>Saudi/GCC-owned:</strong> Pay Zakat (2.5% of Zakat base)</li><li><strong>Foreign-owned:</strong> Pay Corporate Income Tax (20%)</li><li><strong>Mixed ownership:</strong> Saudi share pays Zakat, foreign share pays CIT</li></ul><p>Zakat is filed annually with <a href='/ksa/glossary/zatca'>ZATCA</a> within 120 days of the fiscal year end.</p>",
+    "faq": [
+      {"question": "What is the Zakat rate in Saudi Arabia?", "answer": "The Zakat rate is 2.5% applied to the adjusted net worth (Zakat base) of Saudi and GCC-owned companies. Foreign-owned companies pay 20% corporate income tax instead."}
+    ]
+  },
+  {
+    "term": "SADAD",
+    "slug": "sadad",
+    "termAr": "سداد",
+    "definition": "SADAD is Saudi Arabia's national electronic bill payment system, operated by the Saudi Central Bank (SAMA). It enables consumers and businesses to pay government fees, utility bills, telecom charges, and commercial invoices through bank channels — including CR fees, Iqama renewals, GOSI contributions, and VAT payments.",
+    "category": "tax",
+    "relatedCalc": "/ksa/vat-calculator",
+    "contentHTML": "<h3>What You Can Pay via SADAD</h3><ul><li><a href='/ksa/glossary/commercial-registration'>Commercial Registration</a> fees</li><li><a href='/ksa/glossary/iqama'>Iqama</a> renewal and work permit fees</li><li><a href='/ksa/glossary/gosi'>GOSI</a> monthly contributions</li><li><a href='/ksa/glossary/vat'>VAT</a> and <a href='/ksa/glossary/zakat'>Zakat</a> payments</li><li>Utility bills (electricity, water, telecom)</li><li>Traffic fines and government penalties</li></ul>",
+    "faq": [
+      {"question": "What is SADAD payment system?", "answer": "SADAD is Saudi Arabia's national bill payment system. All government fees, utility bills, and commercial payments are processed through SADAD via bank apps or ATMs."}
+    ]
+  },
+  {
+    "term": "Mada",
+    "slug": "mada",
+    "termAr": "مدى",
+    "definition": "Mada is Saudi Arabia's national debit card payment network, connecting all Saudi banks and enabling point-of-sale and e-commerce transactions. Managed by Saudi Payments (a SAMA subsidiary), Mada cards are issued by all Saudi banks and are accepted at over 1 million terminals nationwide.",
+    "category": "tax",
+    "relatedCalc": "/ksa/salary-calculator",
+    "contentHTML": "<h3>Mada Key Facts</h3><ul><li>National debit card network connecting all Saudi banks</li><li>Accepted at 1M+ POS terminals</li><li>Supports contactless (NFC) payments</li><li>Used for e-commerce and online payments</li><li>Processed SAR 1.2+ trillion in transactions annually</li></ul>",
+    "faq": [
+      {"question": "What is Mada card in Saudi Arabia?", "answer": "Mada is Saudi Arabia's national debit card payment network. Every Saudi bank issues Mada cards, which are accepted at all POS terminals and e-commerce platforms in the Kingdom."}
+    ]
+  },
+  {
+    "term": "SAMA",
+    "slug": "sama",
+    "termAr": "البنك المركزي السعودي",
+    "definition": "SAMA (Saudi Central Bank, formerly Saudi Arabian Monetary Authority) is the central bank of Saudi Arabia. It regulates banks, insurance companies, and financing institutions, manages monetary policy, issues currency (Saudi Riyal), and oversees payment systems including SADAD and Mada.",
+    "category": "tax",
+    "relatedCalc": "/ksa/home-loan-calculator",
+    "contentHTML": "<h3>SAMA Key Functions</h3><ul><li>Monetary policy and interest rate regulation</li><li>Banking supervision and licensing</li><li>Insurance sector regulation</li><li>Payment systems oversight (<a href='/ksa/glossary/sadad'>SADAD</a>, <a href='/ksa/glossary/mada'>Mada</a>)</li><li>Consumer protection in financial services</li><li>Anti-money laundering enforcement</li></ul>",
+    "faq": [
+      {"question": "What is SAMA in Saudi Arabia?", "answer": "SAMA (Saudi Central Bank) is the Kingdom's central bank that regulates all banks, insurance companies, and financing institutions, manages monetary policy, and oversees national payment systems."}
+    ]
+  },
+  {
+    "term": "Iqama",
+    "slug": "iqama",
+    "termAr": "الإقامة",
+    "definition": "An Iqama is the residence permit issued to foreign nationals living and working in Saudi Arabia. It serves as the primary identification document for expats and must be renewed annually. The base renewal fee is SAR 650 per year, with additional costs for work permits, dependent levies, and insurance.",
+    "category": "immigration",
+    "relatedCalc": "/ksa/iqama-renewal-calculator",
+    "contentHTML": "<h3>Iqama Renewal Costs</h3><table><thead><tr><th>Component</th><th>Fee</th></tr></thead><tbody><tr><td>Base Iqama renewal</td><td>SAR 650/year</td></tr><tr><td>Work permit (compliant company)</td><td>SAR 8,400/year</td></tr><tr><td>Work permit (non-compliant)</td><td>SAR 9,600/year</td></tr><tr><td>Each dependent</td><td>SAR 400/month (SAR 4,800/year)</td></tr><tr><td>Health insurance</td><td>SAR 500–2,000/year</td></tr></tbody></table><p>Use our <a href='/ksa/iqama-renewal-calculator'>Iqama Renewal Calculator</a> to compute your total annual cost.</p>",
+    "faq": [
+      {"question": "How much does Iqama renewal cost?", "answer": "Base renewal is SAR 650/year. With work permit (SAR 8,400–9,600), health insurance (SAR 500–2,000), and dependent levy (SAR 4,800/dependent/year), total can reach SAR 10,000–25,000+."},
+      {"question": "What happens if Iqama expires?", "answer": "Late renewal incurs a SAR 500 penalty for the first offense, SAR 1,000 for the second, and deportation with a re-entry ban for the third offense."}
+    ]
+  },
+  {
+    "term": "Exit/Re-entry Visa",
+    "slug": "exit-reentry-visa",
+    "termAr": "تأشيرة خروج وعودة",
+    "definition": "An Exit/Re-entry visa allows foreign workers in Saudi Arabia to leave the country temporarily and return. Under the 2021 Labor Reform Initiative, workers no longer need employer approval to obtain exit/re-entry visas. Available as single (SAR 200) or multiple (SAR 500 for 3 months, SAR 1,000 for 6 months).",
+    "category": "immigration",
+    "relatedCalc": "/ksa/iqama-renewal-calculator",
+    "contentHTML": "<h3>Exit/Re-entry Visa Fees</h3><table><thead><tr><th>Type</th><th>Fee</th></tr></thead><tbody><tr><td>Single exit/re-entry</td><td>SAR 200</td></tr><tr><td>Multiple (3 months)</td><td>SAR 500</td></tr><tr><td>Multiple (6 months)</td><td>SAR 1,000</td></tr></tbody></table><p>Applied for through the <a href='/ksa/glossary/absher'>Absher</a> or <a href='/ksa/glossary/muqeem'>Muqeem</a> platform.</p>",
+    "faq": [
+      {"question": "Can I leave Saudi Arabia without employer permission?", "answer": "Yes. Since March 2021, workers can obtain exit/re-entry visas without employer consent through the Absher platform, as part of the Labor Reform Initiative."}
+    ]
+  },
+  {
+    "term": "Final Exit Visa",
+    "slug": "final-exit",
+    "termAr": "تأشيرة خروج نهائي",
+    "definition": "A Final Exit visa is issued when a foreign worker permanently leaves Saudi Arabia. Under the Labor Reform Initiative, workers can apply for a final exit without employer consent. The employer has 30 days to settle end-of-service benefits after final exit processing.",
+    "category": "immigration",
+    "relatedCalc": "/ksa/end-of-service-calculator",
+    "contentHTML": "<h3>Final Exit Process</h3><ol><li>Apply through <a href='/ksa/glossary/absher'>Absher</a> or <a href='/ksa/glossary/muqeem'>Muqeem</a></li><li>Settle all financial obligations (traffic fines, loans)</li><li>Receive <a href='/ksa/glossary/eosb'>End of Service Benefits</a></li><li>Cancel <a href='/ksa/glossary/iqama'>Iqama</a></li><li>Exit within 60 days of visa issuance</li></ol><p>Calculate your EOSB entitlement using our <a href='/ksa/end-of-service-calculator'>End of Service Calculator</a>.</p>",
+    "faq": [
+      {"question": "Can I get a final exit without employer consent?", "answer": "Yes. Since the 2021 Labor Reform Initiative, workers can apply for a final exit visa without employer approval through the Absher platform."}
+    ]
+  },
+  {
+    "term": "Absher",
+    "slug": "absher",
+    "termAr": "أبشر",
+    "definition": "Absher is Saudi Arabia's government e-services portal managed by the Ministry of Interior. It provides 200+ digital services for citizens and residents, including passport renewal, visa applications, traffic services, civil affairs, and Iqama management. Absher Afrad is for individuals, Absher Business is for employers.",
+    "category": "immigration",
+    "relatedCalc": "/ksa/iqama-renewal-calculator",
+    "contentHTML": "<h3>Key Absher Services</h3><ul><li><strong>Absher Afrad (Individuals):</strong> Passport renewal, visa status, traffic violations, civil records</li><li><strong>Absher Business:</strong> <a href='/ksa/glossary/iqama'>Iqama</a> issuance/renewal, exit/re-entry visas, employee transfers, work permits</li><li><strong>Absher Tawtheeq:</strong> Digital power of attorney</li></ul>",
+    "faq": [
+      {"question": "What is Absher?", "answer": "Absher is Saudi Arabia's main government e-services portal offering 200+ services including passport renewal, visa management, traffic services, and Iqama processing for citizens and residents."}
+    ]
+  },
+  {
+    "term": "Muqeem",
+    "slug": "muqeem",
+    "termAr": "مقيم",
+    "definition": "Muqeem is the online platform used by employers and government agencies to manage expatriate affairs in Saudi Arabia. It handles Iqama issuance and renewal, work permit management, visa processing, and workforce data for private and public sector establishments.",
+    "category": "immigration",
+    "relatedCalc": "/ksa/iqama-renewal-calculator",
+    "contentHTML": "<h3>Muqeem Services</h3><ul><li><a href='/ksa/glossary/iqama'>Iqama</a> issuance and renewal for employees</li><li>Work permit management</li><li><a href='/ksa/glossary/exit-reentry-visa'>Exit/re-entry visa</a> processing</li><li>Employee transfer requests</li><li>Expatriate data verification</li></ul>",
+    "faq": [
+      {"question": "What is the difference between Absher and Muqeem?", "answer": "Absher is for individuals (citizens and residents) to manage personal services. Muqeem is for employers to manage their expatriate employees' Iqamas, work permits, and visas."}
+    ]
+  },
+  {
+    "term": "Dependent Levy",
+    "slug": "dependent-levy",
+    "termAr": "رسوم المرافقين",
+    "definition": "The Dependent Levy is a monthly fee charged to foreign workers in Saudi Arabia for each dependent family member (spouse, children, parents). The current rate is SAR 400 per dependent per month (SAR 4,800/year), payable upon Iqama renewal.",
+    "category": "immigration",
+    "relatedCalc": "/ksa/iqama-renewal-calculator",
+    "contentHTML": "<h3>Dependent Levy Rates</h3><table><thead><tr><th>Year</th><th>Monthly Rate</th><th>Annual Cost per Dependent</th></tr></thead><tbody><tr><td>2017</td><td>SAR 100</td><td>SAR 1,200</td></tr><tr><td>2018</td><td>SAR 200</td><td>SAR 2,400</td></tr><tr><td>2019</td><td>SAR 300</td><td>SAR 3,600</td></tr><tr><td>2020–2026</td><td>SAR 400</td><td>SAR 4,800</td></tr></tbody></table><p>Use our <a href='/ksa/iqama-renewal-calculator'>Iqama Renewal Calculator</a> to compute total dependent costs.</p>",
+    "faq": [
+      {"question": "How much is the dependent levy in Saudi Arabia?", "answer": "SAR 400 per month per dependent (SAR 4,800/year). This applies to spouse, children, and parents of foreign workers."}
+    ]
+  },
+  {
+    "term": "Murabahah",
+    "slug": "murabahah",
+    "termAr": "المرابحة",
+    "definition": "Murabahah is an Islamic finance structure where the bank purchases an asset and resells it to the customer at a disclosed markup (profit margin). It is the most common Sharia-compliant financing method used for home loans, car loans, and personal financing in Saudi Arabia.",
+    "category": "banking",
+    "relatedCalc": "/ksa/home-loan-calculator",
+    "contentHTML": "<h3>How Murabahah Works</h3><ol><li>Customer identifies the asset they want (home, car)</li><li>Bank purchases the asset from the seller</li><li>Bank resells to customer at original price + agreed profit margin</li><li>Customer pays in installments over the financing period</li></ol><p>Unlike conventional loans, the profit margin is fixed upfront — no variable interest rates. Use our <a href='/ksa/home-loan-calculator'>Home Loan Calculator</a> or <a href='/ksa/car-loan-calculator'>Car Loan Calculator</a> to estimate monthly installments.</p>",
+    "faq": [
+      {"question": "What is Murabahah financing?", "answer": "Murabahah is an Islamic cost-plus financing structure where the bank buys an asset and resells it at a disclosed profit margin. The customer pays in installments. It avoids interest (riba) by structuring as a sale transaction."}
+    ]
+  },
+  {
+    "term": "Tawarruq",
+    "slug": "tawarruq",
+    "termAr": "التورق",
+    "definition": "Tawarruq (organized commodity Murabahah) is an Islamic financing method where the bank buys a commodity on behalf of the customer, sells it to the customer at a markup, and the customer immediately resells the commodity at market price to receive cash. Widely used for personal financing in KSA.",
+    "category": "banking",
+    "relatedCalc": "/ksa/salary-calculator",
+    "contentHTML": "<h3>Tawarruq vs Murabahah</h3><table><thead><tr><th>Feature</th><th>Murabahah</th><th>Tawarruq</th></tr></thead><tbody><tr><td>Purpose</td><td>Asset purchase</td><td>Cash financing</td></tr><tr><td>Asset</td><td>Customer keeps asset</td><td>Commodity immediately resold</td></tr><tr><td>Use case</td><td>Home/car loan</td><td>Personal loan/credit card</td></tr></tbody></table>",
+    "faq": [
+      {"question": "What is Tawarruq in Islamic banking?", "answer": "Tawarruq is a Sharia-compliant personal financing method where commodities are bought and resold to generate cash for the customer, avoiding direct interest charges."}
+    ]
+  },
+  {
+    "term": "Ijarah",
+    "slug": "ijarah",
+    "termAr": "الإجارة",
+    "definition": "Ijarah is an Islamic leasing contract where the bank purchases an asset and leases it to the customer for a specified period. At the end of the lease, ownership may transfer to the customer (Ijarah Muntahia Bittamleek). Common for vehicle and equipment financing in Saudi Arabia.",
+    "category": "banking",
+    "relatedCalc": "/ksa/car-loan-calculator",
+    "contentHTML": "<h3>Types of Ijarah</h3><ul><li><strong>Ijarah (Operating Lease):</strong> Bank retains ownership, customer pays rent</li><li><strong>Ijarah Muntahia Bittamleek:</strong> Lease with ownership transfer at end</li><li><strong>Ijarah Mawsufah:</strong> Forward lease for assets under construction</li></ul><p>For vehicle Ijarah calculations, use our <a href='/ksa/car-loan-calculator'>Car Loan Calculator</a>.</p>",
+    "faq": [
+      {"question": "What is Ijarah in Islamic finance?", "answer": "Ijarah is an Islamic lease contract where the bank buys an asset and leases it to the customer. In 'Ijarah Muntahia Bittamleek,' ownership transfers to the customer at lease end."}
+    ]
+  },
+  {
+    "term": "Riba",
+    "slug": "riba",
+    "termAr": "الربا",
+    "definition": "Riba (usury/interest) is explicitly prohibited in Islamic finance and Saudi Arabian banking law. All financing in KSA is structured as Sharia-compliant products — Murabahah, Tawarruq, Ijarah, and Sukuk — that use profit margins, leasing fees, or commodity trades instead of interest charges.",
+    "category": "banking",
+    "relatedCalc": "/ksa/home-loan-calculator",
+    "contentHTML": "<h3>How KSA Banks Avoid Riba</h3><ul><li><strong><a href='/ksa/glossary/murabahah'>Murabahah:</a></strong> Cost-plus sale with disclosed markup</li><li><strong><a href='/ksa/glossary/tawarruq'>Tawarruq:</a></strong> Commodity trading for cash financing</li><li><strong><a href='/ksa/glossary/ijarah'>Ijarah:</a></strong> Leasing instead of lending</li><li><strong>Sukuk:</strong> Asset-backed bonds instead of interest-bearing bonds</li></ul><p>All Saudi banks are regulated by <a href='/ksa/glossary/sama'>SAMA</a> to ensure Sharia compliance.</p>",
+    "faq": [
+      {"question": "Is interest banned in Saudi Arabia?", "answer": "Yes. Riba (interest) is prohibited under Islamic law. Saudi banks use Sharia-compliant structures like Murabahah (markup), Ijarah (leasing), and Tawarruq (commodity trading) instead of conventional interest."}
+    ]
+  },
+  {
+    "term": "Sukuk",
+    "slug": "sukuk",
+    "termAr": "الصكوك",
+    "definition": "Sukuk are Islamic financial certificates similar to bonds but structured to comply with Sharia law. Instead of paying interest, Sukuk represent ownership in a tangible asset, project, or service and distribute profits from that underlying asset. Saudi Arabia is the world's largest Sukuk issuer.",
+    "category": "banking",
+    "relatedCalc": "/ksa/savings-calculator",
+    "contentHTML": "<h3>Types of Sukuk</h3><ul><li><strong>Sukuk al-Ijarah:</strong> Based on lease income</li><li><strong>Sukuk al-Murabahah:</strong> Based on sale profits</li><li><strong>Sukuk al-Musharakah:</strong> Based on partnership profits</li></ul><p>Saudi Arabia issues government Sukuk through the National Debt Management Center (NDMC). Individual investors can access Sukuk through Saudi banks and investment funds.</p>",
+    "faq": [
+      {"question": "What is the difference between Sukuk and bonds?", "answer": "Bonds pay interest on debt. Sukuk represent ownership in an asset and share profits from that asset. Sukuk are Sharia-compliant; conventional bonds are not."}
+    ]
+  }
+]
