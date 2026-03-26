@@ -775,3 +775,367 @@ select.con-input__field {
 [data-theme="dark"] .con-calc__results h4 {
     color: hsl(234, 85%, 70%);
 }
+
+/* ═══════════════════════════════════════════════
+   KSA GUIDES — ARTICLE TYPOGRAPHY & ELEMENTS
+   ═══════════════════════════════════════════════ */
+
+/* ── Sup / Sub support ── */
+.ksa-guide-article sup,
+article sup {
+    font-size: 0.7em;
+    vertical-align: super;
+    line-height: 0;
+    color: hsl(234, 65%, 50%);
+    font-weight: 600;
+}
+
+.ksa-guide-article sub,
+article sub {
+    font-size: 0.7em;
+    vertical-align: sub;
+    line-height: 0;
+    color: hsl(234, 65%, 50%);
+    font-weight: 600;
+}
+
+[data-theme="dark"] .ksa-guide-article sup,
+[data-theme="dark"] article sup,
+[data-theme="dark"] .ksa-guide-article sub,
+[data-theme="dark"] article sub {
+    color: hsl(234, 85%, 72%);
+}
+
+/* ── Table Enhancements ── */
+article .calc-table {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow:
+        0 1px 3px rgba(0, 0, 0, 0.04),
+        0 4px 12px rgba(0, 0, 0, 0.06);
+    border: 1px solid hsl(228, 20%, 90%);
+    border-collapse: separate;
+    border-spacing: 0;
+    width: 100%;
+}
+
+article .calc-table thead tr {
+    background: linear-gradient(135deg, hsl(228, 18%, 96%) 0%, hsl(228, 14%, 93%) 100%);
+}
+
+article .calc-table th {
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: hsl(228, 25%, 30%);
+    padding: 12px 16px;
+    border-bottom: 2px solid hsl(228, 20%, 86%);
+    text-align: left;
+    white-space: nowrap;
+}
+
+article .calc-table td {
+    padding: 11px 16px;
+    font-size: 0.9rem;
+    color: hsl(228, 15%, 32%);
+    border-bottom: 1px solid hsl(228, 18%, 93%);
+    line-height: 1.5;
+}
+
+article .calc-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+article .calc-table tbody tr:hover {
+    background: hsl(228, 20%, 97%);
+}
+
+article .calc-table td strong {
+    color: hsl(228, 25%, 18%);
+    font-weight: 700;
+}
+
+[data-theme="dark"] article .calc-table {
+    border-color: hsl(222, 20%, 22%);
+    box-shadow:
+        0 1px 3px rgba(0, 0, 0, 0.15),
+        0 4px 16px rgba(0, 0, 0, 0.25);
+}
+
+[data-theme="dark"] article .calc-table thead tr {
+    background: linear-gradient(135deg, hsl(222, 25%, 14%) 0%, hsl(222, 22%, 17%) 100%);
+}
+
+[data-theme="dark"] article .calc-table th {
+    color: hsl(220, 20%, 75%);
+    border-bottom-color: hsl(222, 20%, 22%);
+}
+
+[data-theme="dark"] article .calc-table td {
+    color: hsl(220, 15%, 72%);
+    border-bottom-color: hsl(222, 18%, 18%);
+}
+
+[data-theme="dark"] article .calc-table td strong {
+    color: hsl(220, 20%, 90%);
+}
+
+[data-theme="dark"] article .calc-table tbody tr:hover {
+    background: hsl(222, 20%, 14%);
+}
+
+/* ── Nested List Circles ── */
+article ul {
+    list-style-type: disc;
+}
+
+article ul ul {
+    list-style-type: circle;
+    margin-top: 4px;
+}
+
+article ul ul ul {
+    list-style-type: square;
+    margin-top: 4px;
+}
+
+article li::marker {
+    color: hsl(150, 60%, 35%);
+}
+
+article ol li::marker {
+    color: hsl(150, 60%, 35%);
+    font-weight: 700;
+}
+
+[data-theme="dark"] article li::marker {
+    color: hsl(150, 55%, 50%);
+}
+
+[data-theme="dark"] article ol li::marker {
+    color: hsl(150, 55%, 50%);
+}
+
+article li {
+    margin-bottom: 4px;
+}
+
+/* ── Highlight / Info Boxes (sub-header + bullet sections) ── */
+article > section > div > div[style*="background"] {
+    border-left: 3px solid hsl(150, 55%, 40%) !important;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+article > section > div > div[style*="background"]:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 100, 60, 0.08);
+}
+
+[data-theme="dark"] article > section > div > div[style*="background"] {
+    background: hsl(222, 25%, 12%) !important;
+    border-color: hsl(222, 18%, 25%) !important;
+    border-left-color: hsl(150, 50%, 45%) !important;
+}
+
+[data-theme="dark"] article > section > div > div[style*="background"]:hover {
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="dark"] article > section > div > div[style*="background"] p {
+    color: hsl(220, 15%, 85%) !important;
+}
+
+[data-theme="dark"] article > section > div > div[style*="background"] li {
+    color: hsl(220, 15%, 72%) !important;
+}
+
+/* ── Blockquote / Quotation Polish ── */
+article blockquote {
+    transition: border-color 0.2s ease;
+}
+
+article blockquote:hover {
+    border-left-width: 5px !important;
+}
+
+[data-theme="dark"] article blockquote {
+    background: hsl(222, 25%, 11%) !important;
+    border-left-color: hsl(150, 50%, 45%) !important;
+    color: hsl(220, 15%, 85%) !important;
+}
+
+[data-theme="dark"] article blockquote p {
+    color: hsl(220, 15%, 80%) !important;
+}
+
+[data-theme="dark"] article blockquote span {
+    opacity: 0.25 !important;
+}
+
+/* ── Table of Contents Polish ── */
+article nav[style*="background"] {
+    transition: box-shadow 0.2s ease;
+}
+
+article nav[style*="background"]:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+[data-theme="dark"] article nav[style*="background"] {
+    background: hsl(222, 25%, 11%) !important;
+    border-color: hsl(222, 18%, 22%) !important;
+}
+
+[data-theme="dark"] article nav[style*="background"] p {
+    color: hsl(220, 15%, 88%) !important;
+}
+
+[data-theme="dark"] article nav[style*="background"] a {
+    color: hsl(150, 55%, 50%) !important;
+}
+
+[data-theme="dark"] article nav[style*="background"] a:hover {
+    color: hsl(150, 60%, 60%) !important;
+}
+
+/* ── Section Headings with accent line ── */
+article section[id^="section-"] h2 {
+    position: relative;
+    padding-bottom: 10px;
+}
+
+article section[id^="section-"] h2::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 48px;
+    height: 3px;
+    background: linear-gradient(135deg, hsl(150, 60%, 38%), hsl(150, 45%, 52%));
+    border-radius: 2px;
+}
+
+[data-theme="dark"] article section[id^="section-"] h2::after {
+    background: linear-gradient(135deg, hsl(150, 50%, 45%), hsl(150, 40%, 58%));
+}
+
+/* ── Article Strong / Bold ── */
+article .t-body strong {
+    color: hsl(228, 25%, 15%);
+    font-weight: 700;
+}
+
+[data-theme="dark"] article .t-body strong {
+    color: hsl(220, 20%, 90%);
+}
+
+/* ── Article Paragraph Spacing ── */
+article .t-body p {
+    color: hsl(228, 12%, 36%);
+}
+
+[data-theme="dark"] article .t-body p {
+    color: hsl(220, 15%, 68%);
+}
+
+/* ── Insight Box (Related Calculators) Dark Mode ── */
+[data-theme="dark"] .insight-box {
+    background: hsl(222, 25%, 11%);
+    border-color: hsl(222, 18%, 22%);
+}
+
+/* ── Related Glossary Term Cards ── */
+article a[href*="/ksa/glossary/"] {
+    transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+article a[href*="/ksa/glossary/"]:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 100, 60, 0.1);
+    border-color: hsl(150, 50%, 50%) !important;
+}
+
+[data-theme="dark"] article a[href*="/ksa/glossary/"] {
+    background: hsl(222, 25%, 12%) !important;
+    border-color: hsl(222, 18%, 22%) !important;
+    color: hsl(150, 55%, 55%) !important;
+}
+
+[data-theme="dark"] article a[href*="/ksa/glossary/"] span {
+    color: hsl(220, 15%, 55%) !important;
+}
+
+[data-theme="dark"] article a[href*="/ksa/glossary/"]:hover {
+    border-color: hsl(150, 45%, 42%) !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+}
+
+/* ── Result Highlight Badges (Read Time, Category) ── */
+[data-theme="dark"] article .result-highlight {
+    background: hsl(222, 25%, 14%) !important;
+    color: hsl(150, 55%, 55%) !important;
+    border-color: hsl(222, 18%, 25%) !important;
+}
+
+/* ── Guide Card Styling on Hub ── */
+.calc-card[style*="border-left"] {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.calc-card[style*="border-left"]:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="dark"] .calc-card[style*="border-left"] {
+    background: hsl(222, 25%, 10%);
+    border-color: hsl(222, 18%, 20%);
+}
+
+[data-theme="dark"] .calc-card[style*="border-left"] h2 {
+    color: hsl(220, 20%, 90%) !important;
+}
+
+[data-theme="dark"] .calc-card[style*="border-left"] p {
+    color: hsl(220, 15%, 60%) !important;
+}
+
+[data-theme="dark"] .calc-card[style*="border-left"]:hover {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Section preview micro-tags on hub */
+[data-theme="dark"] .calc-card[style*="border-left"] span[style*="background: var(--n-surface)"] {
+    background: hsl(222, 22%, 15%) !important;
+    border-color: hsl(222, 18%, 22%) !important;
+    color: hsl(220, 15%, 55%) !important;
+}
+
+/* ── Back Links / Footer Navigation ── */
+[data-theme="dark"] a[style*="color: #006a3c"] {
+    color: hsl(150, 55%, 50%) !important;
+}
+
+/* ── Responsive Guide Cards ── */
+@media (max-width: 600px) {
+    .calc-card[style*="border-left"] {
+        flex-direction: column !important;
+        gap: var(--s-3) !important;
+    }
+
+    .calc-card[style*="border-left"] > span:first-child {
+        font-size: 1.5rem !important;
+    }
+
+    article .calc-table {
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    article .calc-table th,
+    article .calc-table td {
+        min-width: 100px;
+    }
+}
