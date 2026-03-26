@@ -629,11 +629,11 @@
 
 /* Calculator card container */
 .con-calc {
-    border: 1px solid hsl(228, 15%, 86%);
+    border: 1.5px solid hsl(228, 15%, 80%);
     border-radius: 14px;
     padding: 28px 28px 24px;
     background: hsl(0, 0%, 100%);
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.07), 0 1px 3px rgba(0, 0, 0, 0.04);
 }
 
 [data-theme="dark"] .con-calc {
@@ -680,14 +680,14 @@
 
 /* Input fields — visible borders, subtle background, proper sizing */
 .con-input__field {
-    padding: 11px 14px;
-    border: 1.5px solid hsl(228, 15%, 82%);
+    padding: 12px 14px;
+    border: 1.5px solid hsl(228, 18%, 72%);
     border-radius: 10px;
-    background: hsl(228, 30%, 98.5%);
+    background: hsl(228, 30%, 97.5%);
     font-size: 0.95rem;
     font-family: inherit;
     color: hsl(228, 25%, 14%);
-    transition: border-color 0.2s, box-shadow 0.2s;
+    transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
     width: 100%;
     box-sizing: border-box;
 }
@@ -700,7 +700,8 @@
 }
 
 .con-input__field:hover:not(:focus) {
-    border-color: hsl(228, 15%, 72%);
+    border-color: hsl(228, 20%, 60%);
+    background: hsl(228, 30%, 96%);
 }
 
 select.con-input__field {
