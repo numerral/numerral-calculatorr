@@ -112,6 +112,13 @@ const KSA_CALCULATORS = [
         tag: "Islamic Finance",
         description: "Calculate Zakat on gold, silver, cash, stocks, business assets, and property. Nisab in SAR with ZATCA guidance.",
     },
+    {
+        title: "Personal Loan Calculator",
+        slug: "personal-loan-calculator",
+        icon: "🏦",
+        tag: "Banking",
+        description: "Calculate your EMI, total cost, and SAMA DBR compliance. Tawarruq financing with amortization schedule.",
+    },
 ];
 
 export default function KSAPage() {
