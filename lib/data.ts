@@ -506,3 +506,33 @@ export function getKSAGlossaryTermsByCategory(category: string): KSAGlossaryTerm
     return ksaGlossary.filter((t) => t.category === category);
 }
 
+// ---- KSA Guides types & getters ----
+
+import ksaGuidesJson from "@/data/ksa-guides.json";
+
+export interface KSAGuideDef {
+    slug: string;
+    title: string;
+    description: string;
+    category: string;
+    icon: string;
+    readTime: string;
+    quotation: string;
+    relatedCalcs: string[];
+    relatedGlossary: string[];
+    sections: { heading: string; content: string }[];
+    faq: { question: string; answer: string }[];
+}
+
+const ksaGuides = ksaGuidesJson as KSAGuideDef[];
+
+/** Get all KSA guides. */
+export function getAllKSAGuides(): KSAGuideDef[] {
+    return ksaGuides;
+}
+
+/** Get a KSA guide by slug. */
+export function getKSAGuideBySlug(slug: string): KSAGuideDef | undefined {
+    return ksaGuides.find((g) => g.slug === slug);
+}
+
