@@ -904,6 +904,199 @@ function RentReferenceTab() {
     </div>);
 }
 
+/* ── Iqama Renewal Cost Calculator (KSA) ── */
+const IQAMA_FEES: Record<string, Record<string, number>> = {
+    company: { "3": 163, "6": 325, "9": 488, "12": 650 },
+    domestic: { "3": 150, "6": 300, "9": 450, "12": 600 },
+};
+
+const WORK_PERMIT_MONTHLY: Record<string, number> = {
+    high: 800,   // expats exceed saudis
+    met: 700,    // saudization met
+    exempt: 0,   // domestic/industrial
+};
+
+const INSURANCE_COSTS: Record<string, number> = {
+    basic: 700,
+    standard: 1200,
+    enhanced: 2500,
+    family: 4000,
+};
+
+function IqamaRenewalCalc() {
+    const [tab, setTab] = useState(0);
+    const tabs = ["🧮 Calculator", "📋 Quick Reference"];
+
+    const [workerType, setWorkerType] = useState("company");
+    const [period, setPeriod] = useState("12");
+    const [dependents, setDependents] = useState(0);
+    const [saudization, setSaudization] = useState("high");
+    const [includeWP, setIncludeWP] = useState("yes");
+    const [insurance, setInsurance] = useState("standard");
+    const [visaType, setVisaType] = useState("none");
+    const [visaDuration, setVisaDuration] = useState(2);
+    const [penalty, setPenalty] = useState("none");
+
+    const result = useMemo(() => {
+        const months = parseInt(period);
+        const iqamaFee = IQAMA_FEES[workerType][period];
+        const absherFee = 51.75;
+
+        // Work permit
+        const wpMonthly = includeWP === "yes" ? WORK_PERMIT_MONTHLY[saudization] : 0;
+        const wpTotal = wpMonthly * months;
+
+        // Dependent levy
+        const depMonthly = 400 * dependents;
+        const depTotal = depMonthly * months;
+
+        // Insurance (pro-rated)
+        const insuranceAnnual = INSURANCE_COSTS[insurance];
+        const insuranceProratio = (insuranceAnnual / 12) * months;
+
+        // Exit/re-entry visa
+        let visaCost = 0;
+        if (visaType === "single") {
+            visaCost = 200 + Math.max(0, (visaDuration - 2)) * 100;
+        } else if (visaType === "multiple") {
+            visaCost = 500 + Math.max(0, (visaDuration - 3)) * 200;
+        }
+
+        // Late penalty
+        let penaltyCost = 0;
+        if (penalty === "first") penaltyCost = 500;
+        else if (penalty === "second") penaltyCost = 1000;
+
+        const grandTotal = iqamaFee + absherFee + wpTotal + depTotal + insuranceProratio + visaCost + penaltyCost;
+        const monthlyAvg = grandTotal / months;
+
+        return {
+            iqamaFee, absherFee, wpMonthly, wpTotal, depMonthly, depTotal,
+            insuranceProratio, visaCost, penaltyCost, grandTotal, monthlyAvg, months,
+        };
+    }, [workerType, period, dependents, saudization, includeWP, insurance, visaType, visaDuration, penalty]);
+
+    return (<div className="con-calc">
+        <h3 className="con-calc__title">📋 Iqama Renewal Cost Calculator (KSA)</h3>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: "var(--s-1)", marginBottom: "var(--s-3)" }}>
+            {tabs.map((t, i) => (<button key={t} onClick={() => setTab(i)}
+                style={{ padding: "6px 14px", borderRadius: "6px", fontSize: "0.82rem", fontWeight: tab === i ? 700 : 500, background: tab === i ? "var(--primary, var(--n-primary))" : "transparent", color: tab === i ? "#fff" : "var(--text-muted, var(--n-text-muted))", border: tab === i ? "none" : "1px solid var(--border, var(--n-border))", cursor: "pointer" }}>{t}</button>))}
+        </div>
+
+        {tab === 0 && <>
+            <SelectField label="Worker Category" value={workerType} onChange={setWorkerType} options={[{ value: "company", label: "Company / Institution Worker" }, { value: "domestic", label: "Domestic Worker (driver, guard, housekeeper)" }]} />
+            <SelectField label="Renewal Period" value={period} onChange={setPeriod} options={[{ value: "3", label: "3 Months" }, { value: "6", label: "6 Months" }, { value: "9", label: "9 Months" }, { value: "12", label: "12 Months (1 Year)" }]} />
+            <InputField label="Number of Dependents" value={dependents} onChange={(v) => setDependents(Math.max(0, Math.min(10, Number(v))))} unit="persons" min={0} max={10} />
+            <SelectField label="Include Work Permit Fee?" value={includeWP} onChange={setIncludeWP} options={[{ value: "yes", label: "Yes — show total cost to employer" }, { value: "no", label: "No — employee cost only" }]} />
+            {includeWP === "yes" && <SelectField label="Saudization Status" value={saudization} onChange={setSaudization} options={[{ value: "high", label: "Expats exceed Saudis (SAR 800/mo)" }, { value: "met", label: "Saudization target met (SAR 700/mo)" }, { value: "exempt", label: "Exempt (domestic/industrial)" }]} />}
+            <SelectField label="Health Insurance Level" value={insurance} onChange={setInsurance} options={[{ value: "basic", label: "Basic (~SAR 700/yr)" }, { value: "standard", label: "Standard (~SAR 1,200/yr)" }, { value: "enhanced", label: "Enhanced (~SAR 2,500/yr)" }, { value: "family", label: "Family Comprehensive (~SAR 4,000/yr)" }]} />
+            <SelectField label="Exit/Re-entry Visa" value={visaType} onChange={setVisaType} options={[{ value: "none", label: "None" }, { value: "single", label: "Single Exit/Re-entry" }, { value: "multiple", label: "Multiple Exit/Re-entry" }]} />
+            {visaType !== "none" && <InputField label="Visa Duration" value={visaDuration} onChange={(v) => setVisaDuration(Math.max(1, Math.min(12, Number(v))))} unit="months" min={1} max={12} />}
+            <SelectField label="Late Renewal Penalty" value={penalty} onChange={setPenalty} options={[{ value: "none", label: "None — on time ✅" }, { value: "first", label: "1st offense (SAR 500)" }, { value: "second", label: "2nd offense (SAR 1,000)" }]} />
+
+            {result && <div className="con-calc__results" style={{ marginTop: "var(--s-3)" }}>
+                <h4>Cost Breakdown ({result.months} months)</h4>
+                <ResultRow label={`Iqama Renewal (${workerType === "company" ? "Company" : "Domestic"})`} value={`SAR ${fmt(result.iqamaFee)}`} />
+                <ResultRow label="Absher Processing Fee" value={`SAR ${fmt(result.absherFee)}`} />
+                {result.wpTotal > 0 && <ResultRow label={`Work Permit (SAR ${result.wpMonthly}/mo × ${result.months})`} value={`SAR ${fmt(result.wpTotal)}`} />}
+                {result.depTotal > 0 && <ResultRow label={`Dependent Levy (${dependents} × SAR 400/mo × ${result.months})`} value={`SAR ${fmt(result.depTotal)}`} />}
+                <ResultRow label={`Health Insurance (${insurance})`} value={`SAR ${fmt(result.insuranceProratio)}`} />
+                {result.visaCost > 0 && <ResultRow label={`Exit/Re-entry Visa (${visaType}, ${visaDuration}mo)`} value={`SAR ${fmt(result.visaCost)}`} />}
+                {result.penaltyCost > 0 && <ResultRow label="Late Renewal Penalty ⚠️" value={`SAR ${fmt(result.penaltyCost)}`} />}
+
+                <div style={{ margin: "var(--s-3) 0", borderTop: "2px solid var(--border)", paddingTop: "var(--s-2)" }}>
+                    <ResultRow label="Grand Total" value={`SAR ${fmt(result.grandTotal)}`} />
+                    <ResultRow label="Monthly Average" value={`SAR ${fmt(result.monthlyAvg)}/mo`} />
+                </div>
+            </div>}
+        </>}
+
+        {tab === 1 && <IqamaReferenceTab />}
+    </div>);
+}
+
+function IqamaReferenceTab() {
+    const ts = { width: "100%", fontSize: "0.85rem", borderCollapse: "collapse" as const };
+    const th = { padding: "8px 12px", textAlign: "center" as const };
+    const td = { padding: "6px 12px", textAlign: "center" as const };
+    const tl = { ...td, textAlign: "left" as const };
+    const b = { borderBottom: "1px solid var(--border)" };
+    const bh = { borderBottom: "2px solid var(--border)" };
+
+    return (<div className="con-calc__results">
+        <h4>Iqama Renewal Fees (SAR)</h4>
+        <div style={{ overflowX: "auto" }}>
+            <table style={ts}>
+                <thead><tr style={bh}>
+                    <th style={{ ...th, textAlign: "left" }}>Worker Type</th>
+                    <th style={th}>3 Months</th><th style={th}>6 Months</th><th style={th}>9 Months</th><th style={th}>12 Months</th>
+                </tr></thead>
+                <tbody>
+                    <tr style={b}><td style={{ ...tl, fontWeight: 600 }}>Company / Institution</td><td style={{ ...td, fontWeight: 700 }}>163</td><td style={{ ...td, fontWeight: 700 }}>325</td><td style={{ ...td, fontWeight: 700 }}>488</td><td style={{ ...td, fontWeight: 700 }}>650</td></tr>
+                    <tr style={b}><td style={{ ...tl, fontWeight: 600 }}>Domestic Worker</td><td style={{ ...td, fontWeight: 700 }}>150</td><td style={{ ...td, fontWeight: 700 }}>300</td><td style={{ ...td, fontWeight: 700 }}>450</td><td style={{ ...td, fontWeight: 700 }}>600</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h4 style={{ marginTop: "var(--s-4)" }}>Work Permit (Maktab Amal) Fees</h4>
+        <div style={{ overflowX: "auto" }}>
+            <table style={ts}>
+                <thead><tr style={bh}>
+                    <th style={{ ...th, textAlign: "left" }}>Saudization Status</th>
+                    <th style={th}>Monthly</th><th style={th}>Annual</th>
+                </tr></thead>
+                <tbody>
+                    <tr style={b}><td style={{ ...tl, fontWeight: 600 }}>Expats exceed Saudis</td><td style={{ ...td, fontWeight: 700 }}>SAR 800</td><td style={{ ...td, fontWeight: 700 }}>SAR 9,600</td></tr>
+                    <tr style={b}><td style={{ ...tl, fontWeight: 600 }}>Saudization target met</td><td style={{ ...td, fontWeight: 700 }}>SAR 700</td><td style={{ ...td, fontWeight: 700 }}>SAR 8,400</td></tr>
+                    <tr style={b}><td style={{ ...tl, fontWeight: 600 }}>Domestic / Industrial</td><td style={{ ...td, fontWeight: 700 }}>Exempt</td><td style={{ ...td, fontWeight: 700 }}>—</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h4 style={{ marginTop: "var(--s-4)" }}>Dependent Levy</h4>
+        <div style={{ overflowX: "auto" }}>
+            <table style={ts}>
+                <thead><tr style={bh}>
+                    <th style={{ ...th, textAlign: "left" }}>Dependents</th>
+                    <th style={th}>Monthly</th><th style={th}>Quarterly</th><th style={th}>Annual</th>
+                </tr></thead>
+                <tbody>
+                    {[1, 2, 3, 4, 5].map((n) => (
+                        <tr key={n} style={b}><td style={{ ...tl, fontWeight: 600 }}>{n} dependent{n > 1 ? "s" : ""}</td><td style={td}>SAR {(400 * n).toLocaleString()}</td><td style={td}>SAR {(1200 * n).toLocaleString()}</td><td style={{ ...td, fontWeight: 700 }}>SAR {(4800 * n).toLocaleString()}</td></tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
+
+        <h4 style={{ marginTop: "var(--s-4)" }}>Late Renewal Penalties</h4>
+        <div style={{ overflowX: "auto" }}>
+            <table style={ts}>
+                <thead><tr style={bh}>
+                    <th style={{ ...th, textAlign: "left" }}>Offense</th><th style={th}>Fine</th><th style={{ ...th, textAlign: "left" }}>Consequence</th>
+                </tr></thead>
+                <tbody>
+                    <tr style={b}><td style={{ ...tl, fontWeight: 600 }}>1st delay</td><td style={{ ...td, fontWeight: 700 }}>SAR 500</td><td style={tl}>Service suspension</td></tr>
+                    <tr style={b}><td style={{ ...tl, fontWeight: 600 }}>2nd delay</td><td style={{ ...td, fontWeight: 700 }}>SAR 1,000</td><td style={tl}>Banking/Absher blocked</td></tr>
+                    <tr style={b}><td style={{ ...tl, fontWeight: 600 }}>3rd delay</td><td style={{ ...td, fontWeight: 700 }}>Deportation</td><td style={tl}>Possible permanent ban</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h4 style={{ marginTop: "var(--s-4)" }}>Exit/Re-entry Visa Fees</h4>
+        <div style={{ overflowX: "auto" }}>
+            <table style={ts}>
+                <thead><tr style={bh}>
+                    <th style={{ ...th, textAlign: "left" }}>Type</th><th style={th}>Base Fee</th><th style={{ ...th, textAlign: "left" }}>Additional</th>
+                </tr></thead>
+                <tbody>
+                    <tr style={b}><td style={{ ...tl, fontWeight: 600 }}>Single</td><td style={{ ...td, fontWeight: 700 }}>SAR 200 (2 mo)</td><td style={tl}>+SAR 100/month</td></tr>
+                    <tr style={b}><td style={{ ...tl, fontWeight: 600 }}>Multiple</td><td style={{ ...td, fontWeight: 700 }}>SAR 500 (3 mo)</td><td style={tl}>+SAR 200/month</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>);
+}
+
 export default function KSACalculatorCore({ calcType }: { calcType: string }) {
     if (calcType === "eosb") return <EOSBCalc />;
     if (calcType === "gosi") return <GOSICalc />;
@@ -915,6 +1108,7 @@ export default function KSACalculatorCore({ calcType }: { calcType: string }) {
     if (calcType === "carloan") return <CarLoanCalc />;
     if (calcType === "savings") return <SavingsGoalCalc />;
     if (calcType === "rent") return <RentAffordabilityCalc />;
+    if (calcType === "iqama") return <IqamaRenewalCalc />;
     return <p>Calculator not found: {calcType}</p>;
 }
 

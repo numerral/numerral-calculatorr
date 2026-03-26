@@ -84,6 +84,13 @@ const KSA_CALCULATORS = [
         tag: "Housing",
         description: "Find how much rent you can afford by city. Includes housing allowance, GOSI, Ejar costs, and property matching.",
     },
+    {
+        title: "Iqama Renewal Cost Calculator",
+        slug: "iqama-renewal-calculator",
+        icon: "📋",
+        tag: "Immigration",
+        description: "Calculate total Iqama renewal cost — base fee, work permit, dependent levy, insurance, visa, and penalties.",
+    },
 ];
 
 export default function KSAPage() {
