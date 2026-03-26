@@ -119,6 +119,13 @@ const KSA_CALCULATORS = [
         tag: "Banking",
         description: "Calculate your EMI, total cost, and SAMA DBR compliance. Tawarruq financing with amortization schedule.",
     },
+    {
+        title: "Dependent Levy Calculator",
+        slug: "dependent-levy-calculator",
+        icon: "👨‍👩‍👧‍👦",
+        tag: "Expat Fees",
+        description: "Calculate dependent fees for family & domestic workers. SAR 400/month with exemptions and salary impact.",
+    },
 ];
 
 export default function KSAPage() {
