@@ -1097,6 +1097,176 @@ function IqamaReferenceTab() {
     </div>);
 }
 
+/* ── Saudization (Nitaqat) Calculator ── */
+const SECTOR_TARGETS: { value: string; label: string; target: number; note: string }[] = [
+    { value: "general", label: "General (Private Sector)", target: 20, note: "Varies by company size" },
+    { value: "medical_lab", label: "Medical Laboratories", target: 70, note: "Effective Apr 2025" },
+    { value: "physiotherapy", label: "Physiotherapy", target: 80, note: "Effective Apr 2025" },
+    { value: "radiology", label: "Radiology", target: 65, note: "Effective Apr 2025" },
+    { value: "nutrition", label: "Therapeutic Nutrition", target: 80, note: "Effective Apr 2025" },
+    { value: "dentistry", label: "Dentistry", target: 45, note: "45% Jul 2025 → 55% 2026" },
+    { value: "pharmacy_community", label: "Community Pharmacy", target: 35, note: "Effective Jul 2025" },
+    { value: "pharmacy_hospital", label: "Hospital Pharmacy", target: 65, note: "Effective Jul 2025" },
+    { value: "pharmacy_other", label: "Other Pharmacy", target: 55, note: "Effective Jul 2025" },
+    { value: "engineering", label: "Technical Engineering", target: 30, note: "Effective Jul 2025, min SAR 8K" },
+    { value: "accounting", label: "Accounting", target: 40, note: "40% Oct 2025 → 70% over 5yrs" },
+    { value: "consulting", label: "Consulting / Cybersecurity / Finance", target: 40, note: "Ongoing" },
+    { value: "marketing", label: "Marketing & Sales", target: 60, note: "Effective Jan 2026" },
+    { value: "procurement", label: "Procurement", target: 70, note: "Effective Nov 2025" },
+];
+
+function getBand(pct: number): { band: string; color: string; emoji: string; desc: string } {
+    if (pct >= 40) return { band: "Platinum", color: "#7c3aed", emoji: "🟪", desc: "Fast-track visas, gov contract priority, premium services" };
+    if (pct >= 26) return { band: "High Green", color: "#059669", emoji: "🟩", desc: "Most benefits, easy visa processing" };
+    if (pct >= 19) return { band: "Mid Green", color: "#10b981", emoji: "🟢", desc: "Basic services, good standing" };
+    if (pct >= 16) return { band: "Low Green", color: "#eab308", emoji: "🟡", desc: "Needs improvement, limited services" };
+    return { band: "Red", color: "#dc2626", emoji: "🔴", desc: "Visa block, services suspended, sanctions" };
+}
+
+function SaudizationCalc() {
+    const [tab, setTab] = useState(0);
+    const tabs = ["🧮 Calculator", "📋 Quick Reference"];
+
+    const [totalEmp, setTotalEmp] = useState(50);
+    const [saudiEmp, setSaudiEmp] = useState(10);
+    const [saudiLow, setSaudiLow] = useState(0);
+    const [saudiDisabled, setSaudiDisabled] = useState(0);
+    const [saudiPartTime, setSaudiPartTime] = useState(0);
+    const [sector, setSector] = useState("general");
+
+    const result = useMemo(() => {
+        if (totalEmp <= 0) return null;
+
+        const fullSaudis = Math.max(0, saudiEmp - saudiLow - saudiDisabled - saudiPartTime);
+        const weightedSaudis = fullSaudis + (saudiLow * 0.5) + (saudiDisabled * 4) + (saudiPartTime * 0.5);
+        const pct = (weightedSaudis / totalEmp) * 100;
+        const band = getBand(pct);
+
+        const sectorData = SECTOR_TARGETS.find((s) => s.value === sector)!;
+        const gap = sectorData.target - pct;
+        const isCompliant = pct >= sectorData.target;
+
+        // Saudis needed to reach sector target
+        const saudisNeeded = gap > 0 ? Math.ceil((sectorData.target / 100) * totalEmp - weightedSaudis) : 0;
+
+        // Saudis needed for next band
+        const bands = [16, 19, 26, 40];
+        const nextBandThreshold = bands.find((b) => pct < b) || null;
+        const saudisForNextBand = nextBandThreshold ? Math.ceil((nextBandThreshold / 100) * totalEmp - weightedSaudis) : 0;
+
+        return {
+            weightedSaudis, pct, band, sectorData, gap, isCompliant, saudisNeeded, nextBandThreshold, saudisForNextBand,
+        };
+    }, [totalEmp, saudiEmp, saudiLow, saudiDisabled, saudiPartTime, sector]);
+
+    return (<div className="con-calc">
+        <h3 className="con-calc__title">📊 Saudization (Nitaqat) Calculator</h3>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: "var(--s-1)", marginBottom: "var(--s-3)" }}>
+            {tabs.map((t, i) => (<button key={t} onClick={() => setTab(i)}
+                style={{ padding: "6px 14px", borderRadius: "6px", fontSize: "0.82rem", fontWeight: tab === i ? 700 : 500, background: tab === i ? "var(--primary, var(--n-primary))" : "transparent", color: tab === i ? "#fff" : "var(--text-muted, var(--n-text-muted))", border: tab === i ? "none" : "1px solid var(--border, var(--n-border))", cursor: "pointer" }}>{t}</button>))}
+        </div>
+
+        {tab === 0 && <>
+            <InputField label="Total Employees" value={totalEmp} onChange={(v) => setTotalEmp(Math.max(1, Number(v)))} unit="persons" min={1} />
+            <InputField label="Saudi Employees (total including below categories)" value={saudiEmp} onChange={(v) => setSaudiEmp(Math.max(0, Number(v)))} unit="persons" min={0} />
+            <InputField label="Of which: Saudis earning < SAR 4,000 (count as 0.5)" value={saudiLow} onChange={(v) => setSaudiLow(Math.max(0, Number(v)))} unit="persons" min={0} />
+            <InputField label="Of which: Saudis with disabilities (count as 4)" value={saudiDisabled} onChange={(v) => setSaudiDisabled(Math.max(0, Number(v)))} unit="persons" min={0} />
+            <InputField label="Of which: Part-time Saudis (count as 0.5)" value={saudiPartTime} onChange={(v) => setSaudiPartTime(Math.max(0, Number(v)))} unit="persons" min={0} />
+            <SelectField label="Industry Sector" value={sector} onChange={setSector} options={SECTOR_TARGETS.map((s) => ({ value: s.value, label: s.label }))} />
+
+            {result && <div className="con-calc__results" style={{ marginTop: "var(--s-3)" }}>
+                <h4>Saudization Results</h4>
+                <ResultRow label="Weighted Saudi Employees" value={`${fmt(result.weightedSaudis, 1)} of ${totalEmp}`} />
+                <ResultRow label="Saudization Percentage" value={`${fmt(result.pct, 1)}%`} />
+
+                <div style={{ marginTop: "var(--s-2)", padding: "12px 16px", borderRadius: "8px", background: `${result.band.color}18`, border: `2px solid ${result.band.color}` }}>
+                    <div style={{ fontSize: "1.1rem", fontWeight: 700 }}>{result.band.emoji} Nitaqat Band: {result.band.band}</div>
+                    <div style={{ fontSize: "0.85rem", marginTop: "4px", color: "var(--text-muted)" }}>{result.band.desc}</div>
+                </div>
+
+                <h4 style={{ marginTop: "var(--s-3)" }}>Sector Target — {result.sectorData.label}</h4>
+                <ResultRow label="Required Saudization" value={`${result.sectorData.target}%`} />
+                <ResultRow label="Your Current Rate" value={`${fmt(result.pct, 1)}%`} />
+                <ResultRow label="Gap" value={result.gap > 0 ? `${fmt(result.gap, 1)}% below target ⚠️` : `${fmt(Math.abs(result.gap), 1)}% above target ✅`} />
+                <ResultRow label="Compliance Status" value={result.isCompliant ? "✅ Compliant" : "❌ Non-Compliant"} />
+                {result.saudisNeeded > 0 && <ResultRow label="Saudis Needed to Reach Target" value={`${result.saudisNeeded} more Saudi employees`} />}
+
+                {result.nextBandThreshold && result.saudisForNextBand > 0 && <>
+                    <h4 style={{ marginTop: "var(--s-3)" }}>Next Nitaqat Band</h4>
+                    <ResultRow label="Next Band Threshold" value={`${result.nextBandThreshold}%`} />
+                    <ResultRow label="Saudis Needed" value={`${result.saudisForNextBand} more Saudi employees`} />
+                </>}
+
+                <p style={{ fontSize: "0.8rem", marginTop: "var(--s-2)", color: "var(--text-muted)" }}>{result.sectorData.note}</p>
+            </div>}
+        </>}
+
+        {tab === 1 && <SaudizationReferenceTab />}
+    </div>);
+}
+
+function SaudizationReferenceTab() {
+    const ts = { width: "100%", fontSize: "0.85rem", borderCollapse: "collapse" as const };
+    const th = { padding: "8px 12px", textAlign: "center" as const };
+    const td = { padding: "6px 12px", textAlign: "center" as const };
+    const tl = { ...td, textAlign: "left" as const };
+    const b = { borderBottom: "1px solid var(--border)" };
+    const bh = { borderBottom: "2px solid var(--border)" };
+
+    return (<div className="con-calc__results">
+        <h4>Nitaqat Bands</h4>
+        <div style={{ overflowX: "auto" }}>
+            <table style={ts}>
+                <thead><tr style={bh}>
+                    <th style={{ ...th, textAlign: "left" }}>Band</th><th style={th}>Range</th><th style={{ ...th, textAlign: "left" }}>Key Impact</th>
+                </tr></thead>
+                <tbody>
+                    <tr style={b}><td style={{ ...tl, fontWeight: 600 }}>🟪 Platinum</td><td style={{ ...td, fontWeight: 700 }}>40%+</td><td style={tl}>Fast-track visas, gov contract priority</td></tr>
+                    <tr style={b}><td style={{ ...tl, fontWeight: 600 }}>🟩 High Green</td><td style={{ ...td, fontWeight: 700 }}>26–40%</td><td style={tl}>Most benefits, easy processing</td></tr>
+                    <tr style={b}><td style={{ ...tl, fontWeight: 600 }}>🟢 Mid Green</td><td style={{ ...td, fontWeight: 700 }}>19–26%</td><td style={tl}>Basic services, good standing</td></tr>
+                    <tr style={b}><td style={{ ...tl, fontWeight: 600 }}>🟡 Low Green</td><td style={{ ...td, fontWeight: 700 }}>16–19%</td><td style={tl}>Needs improvement, limited services</td></tr>
+                    <tr style={b}><td style={{ ...tl, fontWeight: 600 }}>🔴 Red</td><td style={{ ...td, fontWeight: 700 }}>&lt;16%</td><td style={tl}>Visa block, sanctions, service suspension</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h4 style={{ marginTop: "var(--s-4)" }}>Sector-Specific Targets (2025/2026)</h4>
+        <div style={{ overflowX: "auto" }}>
+            <table style={ts}>
+                <thead><tr style={bh}>
+                    <th style={{ ...th, textAlign: "left" }}>Sector</th><th style={th}>Target</th><th style={{ ...th, textAlign: "left" }}>Effective</th>
+                </tr></thead>
+                <tbody>
+                    {SECTOR_TARGETS.filter(s => s.value !== "general").map((s) => (
+                        <tr key={s.value} style={b}>
+                            <td style={{ ...tl, fontWeight: 600 }}>{s.label}</td>
+                            <td style={{ ...td, fontWeight: 700 }}>{s.target}%</td>
+                            <td style={tl}>{s.note}</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
+
+        <h4 style={{ marginTop: "var(--s-4)" }}>Employee Counting Rules</h4>
+        <div style={{ overflowX: "auto" }}>
+            <table style={ts}>
+                <thead><tr style={bh}>
+                    <th style={{ ...th, textAlign: "left" }}>Employee Type</th><th style={th}>Count Factor</th><th style={{ ...th, textAlign: "left" }}>Notes</th>
+                </tr></thead>
+                <tbody>
+                    <tr style={b}><td style={{ ...tl, fontWeight: 600 }}>Saudi ≥ SAR 4,000</td><td style={{ ...td, fontWeight: 700 }}>1.0</td><td style={tl}>Full count</td></tr>
+                    <tr style={b}><td style={{ ...tl, fontWeight: 600 }}>Saudi &lt; SAR 4,000</td><td style={{ ...td, fontWeight: 700 }}>0.5</td><td style={tl}>Half count</td></tr>
+                    <tr style={b}><td style={{ ...tl, fontWeight: 600 }}>Saudi with disability</td><td style={{ ...td, fontWeight: 700 }}>4.0</td><td style={tl}>Max 10% of Saudi workforce</td></tr>
+                    <tr style={b}><td style={{ ...tl, fontWeight: 600 }}>Part-time Saudi</td><td style={{ ...td, fontWeight: 700 }}>0.5</td><td style={tl}>With caps</td></tr>
+                    <tr style={b}><td style={{ ...tl, fontWeight: 600 }}>Remote Saudi worker</td><td style={{ ...td, fontWeight: 700 }}>1.0</td><td style={tl}>Full count</td></tr>
+                    <tr style={b}><td style={{ ...tl, fontWeight: 600 }}>Foreign investor (owner)</td><td style={{ ...td, fontWeight: 700 }}>1.0</td><td style={tl}>Counted as Saudi</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>);
+}
+
 export default function KSACalculatorCore({ calcType }: { calcType: string }) {
     if (calcType === "eosb") return <EOSBCalc />;
     if (calcType === "gosi") return <GOSICalc />;
@@ -1109,6 +1279,7 @@ export default function KSACalculatorCore({ calcType }: { calcType: string }) {
     if (calcType === "savings") return <SavingsGoalCalc />;
     if (calcType === "rent") return <RentAffordabilityCalc />;
     if (calcType === "iqama") return <IqamaRenewalCalc />;
+    if (calcType === "saudization") return <SaudizationCalc />;
     return <p>Calculator not found: {calcType}</p>;
 }
 

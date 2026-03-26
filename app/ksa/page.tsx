@@ -91,6 +91,13 @@ const KSA_CALCULATORS = [
         tag: "Immigration",
         description: "Calculate total Iqama renewal cost — base fee, work permit, dependent levy, insurance, visa, and penalties.",
     },
+    {
+        title: "Saudization Calculator",
+        slug: "saudization-calculator",
+        icon: "📊",
+        tag: "Compliance",
+        description: "Calculate your Saudization % and Nitaqat band. Sector targets, weighted counting, and gap analysis.",
+    },
 ];
 
 export default function KSAPage() {
