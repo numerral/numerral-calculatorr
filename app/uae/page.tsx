@@ -51,6 +51,13 @@ const UAE_CALCULATORS = [
         description: "How much rent can you afford on your salary? Get max rent, total move-in costs, monthly housing budget, and areas in Dubai & Abu Dhabi that fit your budget.",
     },
     {
+        title: "Ejari & Tenancy Calculator",
+        slug: "ejari-tenancy-calculator",
+        icon: "📋",
+        tag: "Property",
+        description: "Calculate the total cost of renting: security deposit, agency fee, Ejari/Tawtheeq, DEWA/ADDC deposit, and first-year total. Dubai & Abu Dhabi 2025 fees.",
+    },
+    {
         title: "Salary Calculator",
         slug: "salary-calculator",
         icon: "💰",
