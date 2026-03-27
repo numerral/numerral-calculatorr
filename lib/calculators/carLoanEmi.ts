@@ -6,7 +6,7 @@
 //   n = tenure in months
 
 export interface CarLoanInput {
-    /** Loan amount in ₹ */
+    /** Loan amount */
     amount: number;
     /** Annual interest rate in % (e.g. 8.5) */
     rate: number;
@@ -15,7 +15,7 @@ export interface CarLoanInput {
 }
 
 export interface CarLoanResult {
-    /** Monthly EMI in ₹ (rounded) */
+    /** Monthly EMI (rounded) */
     emi: number;
     /** Total interest payable over full tenure (rounded) */
     totalInterest: number;
@@ -73,7 +73,7 @@ export function calculateCarLoanEmi(input: CarLoanInput): CarLoanResult {
  * Generate comparison scenarios against a base calculation.
  * Returns base + 2 alternate scenarios.
  */
-export function calculateComparison(input: CarLoanInput) {
+export function calculateComparison(input: CarLoanInput, locale: "en" | "ar" = "en") {
     const base = calculateCarLoanEmi(input);
     const plusRate = calculateCarLoanEmi({
         ...input,
@@ -84,19 +84,26 @@ export function calculateComparison(input: CarLoanInput) {
         tenure: input.tenure + 12,
     });
 
+    const isAr = locale === "ar";
+
     return {
-        base: { label: "Your plan", ...base },
+        base: { label: isAr ? "خطتك" : "Your plan", ...base },
         plusRate: {
-            label: `+1% Interest (${(input.rate + 1).toFixed(1)}%)`,
+            label: isAr
+                ? `+1% ربح (${(input.rate + 1).toFixed(1)}%)`
+                : `+1% Interest (${(input.rate + 1).toFixed(1)}%)`,
             ...plusRate,
             emiDiff: plusRate.emi - base.emi,
             interestDiff: plusRate.totalInterest - base.totalInterest,
         },
         plusTenure: {
-            label: `+12 Months (${input.tenure + 12}mo)`,
+            label: isAr
+                ? `+12 شهر (${input.tenure + 12} شهر)`
+                : `+12 Months (${input.tenure + 12}mo)`,
             ...plusTenure,
             emiDiff: plusTenure.emi - base.emi,
             interestDiff: plusTenure.totalInterest - base.totalInterest,
         },
     };
 }
+

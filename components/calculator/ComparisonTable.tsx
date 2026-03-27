@@ -33,7 +33,7 @@ function DiffBadge({ value, locale }: { value: number; locale: "en" | "ar" }) {
 }
 
 export default function ComparisonTable({ input, locale = "en" }: ComparisonTableProps) {
-    const { base, plusRate, plusTenure } = calculateComparison(input);
+    const { base, plusRate, plusTenure } = calculateComparison(input, locale);
     const t = L[locale];
     const fmt = (n: number) => fmtCurrency(n, locale);
 
