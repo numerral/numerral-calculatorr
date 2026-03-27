@@ -114,6 +114,13 @@ const UAE_CALCULATORS = [
         description: "Look up UAE traffic fines by violation type: speeding, red light, parking, DUI. See black points, impoundment, and early payment discounts for Dubai, Abu Dhabi, and Sharjah.",
     },
     {
+        title: "Parking Cost Calculator",
+        slug: "parking-cost-calculator",
+        icon: "🅿️",
+        tag: "Auto",
+        description: "Calculate parking costs in Dubai (RTA) and Abu Dhabi (Mawaqif). April 2025 variable tariffs, peak/off-peak rates, monthly commuter costs, and parking fine reference.",
+    },
+    {
         title: "Mobile Plan Calculator",
         slug: "mobile-plan-calculator",
         icon: "📱",
