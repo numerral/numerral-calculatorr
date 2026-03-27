@@ -65,6 +65,13 @@ const UAE_CALCULATORS = [
         description: "Calculate your monthly DEWA electricity and water bill with 2025 slab tariffs. Includes fuel surcharge, sewerage fee, housing fee, and 5% VAT.",
     },
     {
+        title: "ADDC Bill Calculator",
+        slug: "addc-bill-calculator",
+        icon: "🔌",
+        tag: "Utilities",
+        description: "Estimate your Abu Dhabi ADDC / TAQA Distribution bill. Green & Red Band electricity and water, meter fee, municipality fee, and VAT. Includes ADDC vs DEWA comparison.",
+    },
+    {
         title: "Currency Converter",
         slug: "currency-converter",
         icon: "💱",
