@@ -636,6 +636,13 @@
     box-shadow: 0 2px 16px rgba(0, 0, 0, 0.07), 0 1px 3px rgba(0, 0, 0, 0.04);
 }
 
+/* Override global grid layout → single column for KSA/UAE complex calculators */
+.con-calc .con-calc__inputs {
+    display: block;
+    padding: 0;
+}
+
+
 [data-theme="dark"] .con-calc {
     border-color: hsl(222, 20%, 22%);
     background: hsl(222, 30%, 13%);
