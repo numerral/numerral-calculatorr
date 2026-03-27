@@ -36,6 +36,13 @@ const UAE_CALCULATORS = [
         tag: "Tax",
         description: "Add or remove 5% UAE VAT, estimate tourist refunds, and manage bulk invoices. Covers standard-rated, zero-rated, and exempt supplies.",
     },
+    {
+        title: "RERA Rental Increase Calculator",
+        slug: "rera-rental-calculator",
+        icon: "📊",
+        tag: "Property",
+        description: "Calculate the maximum legal rent increase in Dubai and Abu Dhabi. Based on RERA Smart Rental Index, Decree No. 43/2013 tiers, and Abu Dhabi's 5% cap.",
+    },
 ];
 
 export default function UAEPage() {
@@ -58,7 +65,7 @@ export default function UAEPage() {
                         <span className="uae-hero__stat-label">Calculators</span>
                     </div>
                     <div className="uae-hero__stat">
-                        <span className="uae-hero__stat-num">45+</span>
+                        <span className="uae-hero__stat-num">60+</span>
                         <span className="uae-hero__stat-label">FAQs</span>
                     </div>
                     <div className="uae-hero__stat">
