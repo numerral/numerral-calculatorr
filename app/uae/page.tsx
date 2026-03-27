@@ -29,6 +29,13 @@ const UAE_CALCULATORS = [
         tag: "Employment",
         description: "Calculate your end-of-service gratuity in the UAE. Covers private sector, domestic workers, part-time, DIFC DEWS, and ADGM. Based on Federal Decree-Law 33/2021.",
     },
+    {
+        title: "VAT Calculator",
+        slug: "vat-calculator",
+        icon: "🧾",
+        tag: "Tax",
+        description: "Add or remove 5% UAE VAT, estimate tourist refunds, and manage bulk invoices. Covers standard-rated, zero-rated, and exempt supplies.",
+    },
 ];
 
 export default function UAEPage() {
@@ -51,7 +58,7 @@ export default function UAEPage() {
                         <span className="uae-hero__stat-label">Calculators</span>
                     </div>
                     <div className="uae-hero__stat">
-                        <span className="uae-hero__stat-num">30+</span>
+                        <span className="uae-hero__stat-num">45+</span>
                         <span className="uae-hero__stat-label">FAQs</span>
                     </div>
                     <div className="uae-hero__stat">
