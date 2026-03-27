@@ -11,9 +11,9 @@ import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
-    title: "DEWA Bill Calculator 2025 — Electricity & Water Dubai",
-    description: "Calculate your monthly DEWA bill with accurate 2025 slab tariffs for electricity (23–38 fils/kWh) and water (3.5–4.6 fils/IG). Includes fuel surcharge, sewerage fee, housing fee, and 5% VAT.",
-    keywords: ["DEWA bill calculator", "Dubai electricity calculator", "DEWA tariff rates 2025", "حاسبة فاتورة ديوا", "DEWA slab rates", "Dubai water charges", "fuel surcharge DEWA", "housing fee Dubai", "DEWA vs ADDC", "sewerage fee Dubai 2025"],
+    title: "DEWA Bill Calculator 2026 — Electricity & Water Dubai",
+    description: "Calculate your monthly DEWA bill with accurate 2026 slab tariffs for electricity (23–38 fils/kWh) and water (3.5–4.6 fils/IG). Includes fuel surcharge, sewerage fee, housing fee, and 5% VAT.",
+    keywords: ["DEWA bill calculator", "Dubai electricity calculator", "DEWA tariff rates 2026", "حاسبة فاتورة ديوا", "DEWA slab rates", "Dubai water charges", "fuel surcharge DEWA", "housing fee Dubai", "DEWA vs ADDC", "sewerage fee Dubai 2026"],
     alternates: { canonical: canonicalUrl("/uae/dewa-calculator") },
 };
 
@@ -63,9 +63,9 @@ export default function DEWACalculatorPage() {
                 { label: "DEWA Bill Calculator" },
             ]} />
 
-            <h1 className="t-h1" style={{ marginBottom: "var(--s-2)" }}>DEWA Bill Calculator 2025</h1>
+            <h1 className="t-h1" style={{ marginBottom: "var(--s-2)" }}>DEWA Bill Calculator 2026</h1>
             <p className="t-body text-muted" style={{ marginBottom: "var(--s-6)" }}>
-                Calculate your monthly DEWA electricity and water bill with accurate 2025 slab tariffs. Includes fuel surcharge, sewerage fee, housing fee, and 5% VAT. Works for residential and commercial properties in Dubai.
+                Calculate your monthly DEWA electricity and water bill with accurate 2026 slab tariffs. Includes fuel surcharge, sewerage fee, housing fee, and 5% VAT. Works for residential and commercial properties in Dubai.
             </p>
             <AuthorBadge categoryKey="loan" />
             <UAEDEWACalculatorCore />

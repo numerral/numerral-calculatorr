@@ -11,14 +11,14 @@ import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
-    title: "UAE Visa Cost Calculator 2025 — Tourist, Employment, Golden & Green Visa Fees",
-    description: "Calculate the total cost of any UAE visa: tourist, employment, Golden Visa, Green Visa, family, student, and remote work. Instant breakdown of application fees, medical, Emirates ID, and stamping costs. Includes overstay fine calculator and 2025 new visa types.",
-    keywords: ["UAE visa cost calculator", "Dubai visa fees 2025", "Golden Visa cost UAE", "Green Visa cost", "UAE employment visa fees", "family visa UAE cost", "UAE overstay fine calculator", "tourist visa Dubai price", "UAE visa types 2025", "Emirates ID cost"],
+    title: "UAE Visa Cost Calculator 2026 — Tourist, Employment, Golden & Green Visa Fees",
+    description: "Calculate the total cost of any UAE visa: tourist, employment, Golden Visa, Green Visa, family, student, and remote work. Instant breakdown of application fees, medical, Emirates ID, and stamping costs. Includes overstay fine calculator and 2026 visa fee guide.",
+    keywords: ["UAE visa cost calculator", "Dubai visa fees 2026", "Golden Visa cost UAE", "Green Visa cost", "UAE employment visa fees", "family visa UAE cost", "UAE overstay fine calculator", "tourist visa Dubai price", "UAE visa types 2026", "Emirates ID cost"],
     alternates: { canonical: canonicalUrl("/uae/visa-cost-calculator") },
 };
 
 const FAQ_ITEMS = [
-    { question: "How much does a UAE tourist visa cost in 2025?", answer: "A UAE tourist visa costs between AED 350 and AED 2,500 depending on duration and entry type. A 30-day single entry visa costs approximately AED 350–500, a 60-day costs AED 500–750, and a 90-day costs AED 600–700 for single entry. Multiple entry visas are pricier: a 30-day multiple entry is about AED 600–700, while a 60-day multiple entry costs AED 950–1,200. These prices may include travel insurance and service fees. Extensions cost approximately AED 1,100 per 30-day period (including the AED 500 in-country fee and VAT)." },
+    { question: "How much does a UAE tourist visa cost in 2026?", answer: "A UAE tourist visa costs between AED 350 and AED 2,500 depending on duration and entry type. A 30-day single entry visa costs approximately AED 350–500, a 60-day costs AED 500–750, and a 90-day costs AED 600–700 for single entry. Multiple entry visas are pricier: a 30-day multiple entry is about AED 600–700, while a 60-day multiple entry costs AED 950–1,200. These prices may include travel insurance and service fees. Extensions cost approximately AED 1,100 per 30-day period (including the AED 500 in-country fee and VAT)." },
     { question: "What is the total cost of a UAE employment visa?", answer: "The total cost of a UAE employment visa ranges from AED 3,000 to AED 7,000 for a 2-year visa. The breakdown typically includes: work permit approval (AED 200 + 5% VAT), work permit fee (AED 0 for Class 1 companies, AED 300–1,500 for Class 2, AED 5,000 for Class 3), medical examination (AED 300–500), Emirates ID (AED 370 for 2 years), residency visa stamping (AED 510–560), and typing center fees (AED 100–200). Free zone employees typically pay AED 2,500–6,500 total. Crucially, under UAE law, the employer is legally required to pay all visa costs — employees should never be charged." },
     { question: "How much does a Golden Visa cost for property investors?", answer: "A Golden Visa for property investors costs approximately AED 9,685–15,000 in government and processing fees. This includes: application/processing fee (AED 3,200–3,800), Emirates ID for 10 years (AED 1,070–1,400), medical examination (AED 500–1,000), health insurance annual premium (AED 800–2,500), and Dubai Land Department nomination letter (AED 320). To qualify, you must own property worth at least AED 2,000,000 (for a 10-year visa) or AED 750,000 (for a 5-year visa). The property investment itself is not included in the visa cost — it's the eligibility criterion." },
     { question: "What is the difference between Golden Visa and Green Visa?", answer: "The Golden Visa (5 or 10 years) targets investors, skilled professionals, and entrepreneurs with higher thresholds — AED 2M property or AED 30,000/mo salary. The Green Visa (5 years) is designed for freelancers, self-employed, and skilled employees with lower thresholds — AED 1M business investment or AED 15,000/mo salary. Both are self-sponsored (no employer needed), offer family sponsorship, have a 6-month grace period after expiry, and benefit from 0% personal income tax. The Golden Visa costs ~AED 5,300–15,000 while the Green Visa costs ~AED 4,700–13,700 (including freelance permit). The Green Visa allows sponsoring parents; the Golden Visa sponsors children of any age." },
@@ -62,7 +62,7 @@ export default function VisaCostCalculatorPage() {
                 { label: "Visa Cost Calculator" },
             ]} />
 
-            <h1 className="t-h1" style={{ marginBottom: "var(--s-2)" }}>UAE Visa Cost Calculator 2025 — Tourist, Employment, Golden & Green Visa Fees</h1>
+            <h1 className="t-h1" style={{ marginBottom: "var(--s-2)" }}>UAE Visa Cost Calculator 2026 — Tourist, Employment, Golden & Green Visa Fees</h1>
             <p className="t-body text-muted" style={{ marginBottom: "var(--s-6)" }}>
                 Calculate the total cost of any UAE visa with our interactive tool. Get an instant itemized breakdown of government fees, medical, Emirates ID, stamping, and insurance costs. Covers 15+ visa types including the new 2025 AI Professional and Event visas. Includes overstay fine calculator and family sponsorship cost estimation.
             </p>
@@ -115,7 +115,7 @@ export default function VisaCostCalculatorPage() {
 const CONTENT_HTML = `
     <h2 id="visa-overview">UAE Visa System Overview</h2>
     <p>The <strong>United Arab Emirates visa system</strong> is managed by three primary government entities: the <strong>Federal Authority for Identity, Citizenship, Customs, and Port Security (ICP)</strong>, which handles visa policy at the federal level; the <strong>General Directorate of Residency and Foreigners Affairs (GDRFA)</strong>, which manages emirate-specific visa processing (most notably in Dubai); and the <strong>Ministry of Human Resources and Emiratisation (MoHRE)</strong>, which handles employment-related permits and labor cards.</p>
-    <p>The UAE offers <strong>15+ distinct visa types</strong> in 2025, ranging from short-term tourist visas (30 days) to long-term Golden Visas (10 years). The cost structure typically includes several components:</p>
+    <p>The UAE offers <strong>15+ distinct visa types</strong> in 2026, ranging from short-term tourist visas (30 days) to long-term Golden Visas (10 years). The cost structure typically includes several components:</p>
     <ul>
         <li><strong>Application/processing fee</strong> — paid to ICP or GDRFA</li>
         <li><strong>Medical examination</strong> — mandatory fitness test (blood test + chest X-ray)</li>

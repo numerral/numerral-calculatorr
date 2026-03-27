@@ -93,8 +93,8 @@ export default function VehicleLoanCalculatorsPage() {
                 title="Vehicle Loan Calculator FAQ"
                 items={[
                     {
-                        question: "What is a good interest rate for a car loan in 2025?",
-                        answer: "As of 2025, good auto loan rates are 4.5%–6.5% for new cars with excellent credit (750+). Used car rates are typically 1–3% higher. Credit unions often offer the best rates — check local CUs alongside national banks.",
+                        question: "What is a good interest rate for a car loan in 2026?",
+                        answer: "As of 2026, good auto loan rates are 4.5%–6.5% for new cars with excellent credit (750+). Used car rates are typically 1–3% higher. Credit unions often offer the best rates — check local CUs alongside national banks.",
                     },
                     {
                         question: "How long should my auto loan be?",

@@ -11,7 +11,7 @@ import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
-    title: "UAE VAT Calculator 2025 — Add, Remove & Tourist Refund",
+    title: "UAE VAT Calculator 2026 — Add, Remove & Tourist Refund",
     description: "Calculate UAE 5% VAT instantly. Add or remove VAT, estimate tourist refunds, and manage bulk invoices. Covers zero-rated, exempt, and standard-rated supplies under Federal Decree-Law No. 8 of 2017.",
     keywords: ["UAE VAT calculator", "VAT calculator Dubai", "ضريبة القيمة المضافة حاسبة", "5% VAT UAE", "tourist VAT refund UAE", "FTA VAT", "zero-rated VAT UAE", "exempt VAT supplies UAE", "reverse charge UAE", "e-invoicing UAE"],
     alternates: { canonical: canonicalUrl("/uae/vat-calculator") },
@@ -63,7 +63,7 @@ export default function VATCalculatorPage() {
                 { label: "VAT Calculator" },
             ]} />
 
-            <h1 className="t-h1" style={{ marginBottom: "var(--s-2)" }}>UAE VAT Calculator 2025</h1>
+            <h1 className="t-h1" style={{ marginBottom: "var(--s-2)" }}>UAE VAT Calculator 2026</h1>
             <p className="t-body text-muted" style={{ marginBottom: "var(--s-6)" }}>
                 Calculate UAE 5% VAT instantly. Add or remove VAT, estimate tourist refunds, and manage bulk invoices. Covers standard-rated, zero-rated, and exempt supplies under Federal Decree-Law No. 8 of 2017.
             </p>

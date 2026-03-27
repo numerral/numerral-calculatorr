@@ -39,7 +39,7 @@ const HUB_CONTENT: Record<string, { subtitle: string; contentHTML: string; faq?:
 <p>Your loan amount starts with the <strong>vehicle price</strong> (after negotiation) plus any add-ons — extended warranty, GAP insurance, accessories. Then add <strong>sales tax</strong> (varies by state, 0%–10.25%). Subtract your <strong>trade-in value</strong> and <strong>down payment</strong> to get the net loan amount.</p>
 
 <h3>Step 2: Understand Interest Rates</h3>
-<p>Auto loan interest rates depend on your <strong>credit score, loan term, new vs. used, and the lender</strong>. As of 2025:</p>
+<p>Auto loan interest rates depend on your <strong>credit score, loan term, new vs. used, and the lender</strong>. As of 2026:</p>
 <table><thead><tr><th>Credit Score</th><th>New Car APR</th><th>Used Car APR</th></tr></thead><tbody>
 <tr><td>Excellent (750+)</td><td>4.5%–6.0%</td><td>5.5%–7.5%</td></tr>
 <tr><td>Good (700–749)</td><td>6.0%–8.0%</td><td>7.5%–10.0%</td></tr>
@@ -212,7 +212,7 @@ const HUB_CONTENT: Record<string, { subtitle: string; contentHTML: string; faq?:
         contentHTML: `<h2>How to Calculate Motorcycle Loan Payments</h2>
 <p>Motorcycle loans use the same <strong>amortization formula</strong> as auto loans but typically have shorter terms and slightly higher interest rates due to the higher risk profile of motorcycles.</p>
 
-<h3>Motorcycle Loan Rates (2025)</h3>
+<h3>Motorcycle Loan Rates (2026)</h3>
 <table><thead><tr><th>Credit Score</th><th>New Bike APR</th><th>Used Bike APR</th></tr></thead><tbody>
 <tr><td>Excellent (750+)</td><td>4.5%–7.0%</td><td>6.0%–9.0%</td></tr>
 <tr><td>Good (700–749)</td><td>7.0%–10.0%</td><td>9.0%–13.0%</td></tr>

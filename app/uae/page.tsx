@@ -62,7 +62,7 @@ const UAE_CALCULATORS = [
         slug: "dewa-calculator",
         icon: "⚡",
         tag: "Utilities",
-        description: "Calculate your monthly DEWA electricity and water bill with 2025 slab tariffs. Includes fuel surcharge, sewerage fee, housing fee, and 5% VAT.",
+        description: "Calculate your monthly DEWA electricity and water bill with 2026 slab tariffs. Includes fuel surcharge, sewerage fee, housing fee, and 5% VAT.",
     },
     {
         title: "ADDC Bill Calculator",
@@ -90,7 +90,7 @@ const UAE_CALCULATORS = [
         slug: "car-loan-calculator",
         icon: "🚗",
         tag: "Auto",
-        description: "Calculate your car loan EMI with flat-to-reducing rate conversion. Estimate Salik toll costs with 2025 variable pricing. Includes bank rate comparison and ownership cost breakdown.",
+        description: "Calculate your car loan EMI with flat-to-reducing rate conversion. Estimate Salik toll costs with 2026 variable pricing. Includes bank rate comparison and ownership cost breakdown.",
     },
     {
         title: "Traffic Fine Calculator",

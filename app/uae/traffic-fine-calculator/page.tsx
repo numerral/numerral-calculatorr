@@ -11,9 +11,9 @@ import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
-    title: "UAE Traffic Fine Calculator 2025 — Dubai, Abu Dhabi & Sharjah",
+    title: "UAE Traffic Fine Calculator 2026 — Dubai, Abu Dhabi & Sharjah",
     description: "Look up any UAE traffic fine by violation type: speeding, red light, parking, DUI. See fines, black points, impoundment, vehicle release fees, and early payment discounts for Dubai, Abu Dhabi, and Sharjah. Updated for Federal Decree-Law No. 14/2024.",
-    keywords: ["UAE traffic fine calculator", "Dubai traffic fines 2025", "Abu Dhabi traffic fines", "Sharjah traffic fines", "UAE speeding fines", "black points UAE", "traffic fine discount Dubai", "red light fine UAE", "Federal Decree-Law 14/2024", "UAE traffic law 2025"],
+    keywords: ["UAE traffic fine calculator", "Dubai traffic fines 2026", "Abu Dhabi traffic fines", "Sharjah traffic fines", "UAE speeding fines", "black points UAE", "traffic fine discount Dubai", "red light fine UAE", "Federal Decree-Law 14/2024", "UAE traffic law 2026"],
     alternates: { canonical: canonicalUrl("/uae/traffic-fine-calculator") },
 };
 
@@ -62,7 +62,7 @@ export default function TrafficFineCalculatorPage() {
                 { label: "Traffic Fine Calculator" },
             ]} />
 
-            <h1 className="t-h1" style={{ marginBottom: "var(--s-2)" }}>UAE Traffic Fine Calculator 2025 — Dubai, Abu Dhabi & Sharjah</h1>
+            <h1 className="t-h1" style={{ marginBottom: "var(--s-2)" }}>UAE Traffic Fine Calculator 2026 — Dubai, Abu Dhabi & Sharjah</h1>
             <p className="t-body text-muted" style={{ marginBottom: "var(--s-6)" }}>
                 Look up any UAE traffic violation and see the exact fine, black points, vehicle impoundment period, and early payment discounts. Covers all emirates with emirate-specific penalties. Updated for Federal Decree-Law No. 14/2024 (effective March 29, 2025).
             </p>
