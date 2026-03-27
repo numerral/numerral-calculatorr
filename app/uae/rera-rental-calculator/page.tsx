@@ -11,7 +11,7 @@ import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
-    title: "RERA Rental Increase Calculator 2025 — Dubai & Abu Dhabi",
+    title: "RERA Rental Increase Calculator 2026 — Dubai & Abu Dhabi",
     description: "Calculate the maximum legal rent increase in Dubai and Abu Dhabi. Based on RERA Smart Rental Index, Decree No. 43 of 2013 tiers, and Abu Dhabi's 5% cap. Includes Ejari guide and tenant rights.",
     keywords: ["RERA rental increase calculator", "Dubai rent increase calculator", "حاسبة زيادة الإيجار", "Smart Rental Index 2025", "Decree 43 2013", "Ejari registration", "Abu Dhabi Tawtheeq", "tenant rights Dubai", "landlord rental increase UAE", "RDC rental disputes"],
     alternates: { canonical: canonicalUrl("/uae/rera-rental-calculator") },
@@ -63,7 +63,7 @@ export default function RERARentalCalculatorPage() {
                 { label: "RERA Rental Calculator" },
             ]} />
 
-            <h1 className="t-h1" style={{ marginBottom: "var(--s-2)" }}>RERA Rental Increase Calculator 2025</h1>
+            <h1 className="t-h1" style={{ marginBottom: "var(--s-2)" }}>RERA Rental Increase Calculator 2026</h1>
             <p className="t-body text-muted" style={{ marginBottom: "var(--s-6)" }}>
                 Calculate the maximum legal rent increase in Dubai and Abu Dhabi. Based on the RERA Smart Rental Index, Decree No. 43 of 2013, and Abu Dhabi&apos;s 5% cap. Includes notice period validation, Ejari guide, and tenant rights.
             </p>

@@ -11,9 +11,9 @@ import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
-    title: "UAE Mobile Plan Calculator 2025 — e& (Etisalat) vs du Comparison",
+    title: "UAE Mobile Plan Calculator 2026 — e& (Etisalat) vs du Comparison",
     description: "Compare all UAE mobile plans: e& (Etisalat) Freedom/Wasel vs du Power/Prepaid. Find the best postpaid, prepaid, or tourist SIM by budget and data needs. Includes USSD codes, MNP guide, and roaming rates.",
-    keywords: ["UAE mobile plan calculator", "Etisalat vs du", "e& plans 2025", "du prepaid plans", "best mobile plan UAE", "tourist SIM Dubai", "Wasel plan", "du Power plan", "TDRA number portability", "eSIM UAE"],
+    keywords: ["UAE mobile plan calculator", "Etisalat vs du", "e& plans 2026", "du prepaid plans", "best mobile plan UAE", "tourist SIM Dubai", "Wasel plan", "du Power plan", "TDRA number portability", "eSIM UAE"],
     alternates: { canonical: canonicalUrl("/uae/mobile-plan-calculator") },
 };
 
@@ -63,7 +63,7 @@ export default function MobilePlanCalculatorPage() {
                 { label: "Mobile Plan Calculator" },
             ]} />
 
-            <h1 className="t-h1" style={{ marginBottom: "var(--s-2)" }}>UAE Mobile Plan Calculator 2025 — e& vs du</h1>
+            <h1 className="t-h1" style={{ marginBottom: "var(--s-2)" }}>UAE Mobile Plan Calculator 2026 — e& vs du</h1>
             <p className="t-body text-muted" style={{ marginBottom: "var(--s-6)" }}>
                 Compare all UAE mobile plans side-by-side: e& (Etisalat) Freedom and Wasel plans vs du Power and Prepaid plans. Filter by budget, minimum data, and provider to find the best postpaid, prepaid, or tourist SIM for your needs.
             </p>

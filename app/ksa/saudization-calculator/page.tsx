@@ -14,8 +14,8 @@ import { SITE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
     title: "Saudization Calculator (Nitaqat) — حاسبة السعودة نطاقات",
-    description: "Calculate your company's Saudization percentage and Nitaqat band. See sector-specific targets for 2025/2026, weighted employee counting rules, gap analysis, and compliance status.",
-    keywords: ["Saudization calculator", "حاسبة السعودة", "Nitaqat calculator", "نطاقات", "Saudization percentage", "Nitaqat bands Saudi Arabia", "Saudization ratio formula", "sector targets 2025", "Qiwa platform", "MHRSD compliance"],
+    description: "Calculate your company's Saudization percentage and Nitaqat band. See sector-specific targets for 2026, weighted employee counting rules, gap analysis, and compliance status.",
+    keywords: ["Saudization calculator", "حاسبة السعودة", "Nitaqat calculator", "نطاقات", "Saudization percentage", "Nitaqat bands Saudi Arabia", "Saudization ratio formula", "sector targets 2026", "Qiwa platform", "MHRSD compliance"],
     alternates: { canonical: canonicalUrl("/ksa/saudization-calculator") },
 };
 

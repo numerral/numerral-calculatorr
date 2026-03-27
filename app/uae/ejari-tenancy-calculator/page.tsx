@@ -11,15 +11,15 @@ import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
-    title: "Ejari & Tenancy Cost Calculator UAE 2025 — Dubai & Abu Dhabi",
-    description: "Calculate the total cost of renting in the UAE: security deposit, agency fee, Ejari/Tawtheeq registration, DEWA/ADDC deposit, and first-year total. Covers Dubai (Ejari) and Abu Dhabi (Tawtheeq) with 2025 fees.",
-    keywords: ["Ejari calculator", "Ejari cost 2025", "Dubai tenancy calculator", "Tawtheeq Abu Dhabi cost", "total cost renting Dubai", "security deposit Dubai", "agency fee UAE", "DEWA deposit", "move-in cost Dubai", "first year rent cost UAE"],
+    title: "Ejari & Tenancy Cost Calculator UAE 2026 — Dubai & Abu Dhabi",
+    description: "Calculate the total cost of renting in the UAE: security deposit, agency fee, Ejari/Tawtheeq registration, DEWA/ADDC deposit, and first-year total. Covers Dubai (Ejari) and Abu Dhabi (Tawtheeq) with 2026 fees.",
+    keywords: ["Ejari calculator", "Ejari cost 2026", "Dubai tenancy calculator", "Tawtheeq Abu Dhabi cost", "total cost renting Dubai", "security deposit Dubai", "agency fee UAE", "DEWA deposit", "move-in cost Dubai", "first year rent cost UAE"],
     alternates: { canonical: canonicalUrl("/uae/ejari-tenancy-calculator") },
 };
 
 const FAQ_ITEMS = [
     { question: "What is Ejari and why is it mandatory in Dubai?", answer: "Ejari (Arabic for 'my rent') is Dubai's official tenancy contract registration system, managed by the Dubai Land Department (DLD) and regulated by RERA. Every rental agreement in Dubai — whether residential or commercial — must be registered through Ejari. It's legally mandatory and required for: activating DEWA (electricity and water), processing or renewing residency visas, enrolling children in school, obtaining trade licenses for commercial properties, and pursuing any rental dispute through the Rental Dispute Settlement Centre (RDSC). Without a valid Ejari certificate, tenants cannot access essential government services." },
-    { question: "How much does Ejari registration cost in 2025?", answer: "Ejari registration costs depend on your chosen method: Online via the Dubai REST app or DLD website costs approximately AED 120 (AED 100 base fee + AED 10 knowledge fee + AED 10 innovation fee) plus 5% VAT, totaling around AED 126. Through a Real Estate Services Trustee Center (typing center), the cost is approximately AED 235 (AED 120 base + AED 95 service partner fee + AED 20 knowledge/innovation fees) plus VAT and possible additional typing charges of AED 30–100, bringing the total to AED 265–320. Renewal costs the same as initial registration through either method." },
+    { question: "How much does Ejari registration cost in 2026?", answer: "Ejari registration costs depend on your chosen method: Online via the Dubai REST app or DLD website costs approximately AED 120 (AED 100 base fee + AED 10 knowledge fee + AED 10 innovation fee) plus 5% VAT, totaling around AED 126. Through a Real Estate Services Trustee Center (typing center), the cost is approximately AED 235 (AED 120 base + AED 95 service partner fee + AED 20 knowledge/innovation fees) plus VAT and possible additional typing charges of AED 30–100, bringing the total to AED 265–320. Renewal costs the same as initial registration through either method." },
     { question: "How do I cancel Ejari and is there a fee?", answer: "Ejari cancellation is free when done online through the Dubai REST app. Simply log in with your UAE Pass, select your registered tenancy, and submit a cancellation request. Through a typing center, cancellation costs approximately AED 40–60. You'll need: the original Ejari certificate, a final DEWA bill showing no outstanding balance, and a No Objection Certificate (NOC) from the landlord. It's crucial to cancel Ejari when moving out — an active Ejari on your old property can prevent you from registering a new rental or cause issues with DEWA setup at your new address." },
     { question: "What is the security deposit for renting in Dubai?", answer: "The standard security deposit in Dubai is 5% of the annual rent for unfurnished properties and 10% for furnished properties. For example, an unfurnished apartment at AED 80,000/year requires a AED 4,000 deposit. The deposit is fully refundable when you vacate, provided: the property is returned in good condition (normal wear and tear accepted), there are no outstanding utility bills, and you've completed DEWA disconnection. The landlord must refund the deposit within 14 days of vacating. Any deductions must be justified with receipts or evidence of damage beyond normal wear." },
     { question: "How much is the agency fee when renting in the UAE?", answer: "The standard real estate agency fee in the UAE is 5% of the annual rent, paid by the tenant to the broker who facilitated the rental. This fee is non-refundable and is typically due at the time of signing the tenancy contract. A 5% VAT is also applied to the brokerage service, making the effective agency cost 5.25% of annual rent. For example, on AED 80,000 annual rent: agency fee = AED 4,000 + AED 200 VAT = AED 4,200. Some brokers may charge a flat fee (e.g., AED 5,000) regardless of rent amount. You can avoid this fee entirely by dealing directly with the landlord." },
@@ -62,9 +62,9 @@ export default function EjariTenancyCalculatorPage() {
                 { label: "Ejari & Tenancy Calculator" },
             ]} />
 
-            <h1 className="t-h1" style={{ marginBottom: "var(--s-2)" }}>Ejari & Tenancy Cost Calculator UAE 2025 — Dubai & Abu Dhabi</h1>
+            <h1 className="t-h1" style={{ marginBottom: "var(--s-2)" }}>Ejari & Tenancy Cost Calculator UAE 2026 — Dubai & Abu Dhabi</h1>
             <p className="t-body text-muted" style={{ marginBottom: "var(--s-6)" }}>
-                Calculate the true total cost of renting in the UAE — not just the headline rent. Enter your annual rent to see a complete breakdown of security deposit, agency fee, Ejari/Tawtheeq registration, DEWA/ADDC deposit, moving costs, and your first-year grand total. Covers both Dubai (Ejari) and Abu Dhabi (Tawtheeq) with 2025 fees.
+                Calculate the true total cost of renting in the UAE — not just the headline rent. Enter your annual rent to see a complete breakdown of security deposit, agency fee, Ejari/Tawtheeq registration, DEWA/ADDC deposit, moving costs, and your first-year grand total. Covers both Dubai (Ejari) and Abu Dhabi (Tawtheeq) with 2026 fees.
             </p>
             <AuthorBadge categoryKey="loan" />
             <UAEEjariTenancyCalculatorCore />
@@ -142,7 +142,7 @@ const CONTENT_HTML = `
         <strong>Without Ejari:</strong> You cannot activate utilities, sponsor family visas, enroll children in school, or pursue legal action in rental disputes. It's not optional — it's legally required.
     </div>
 
-    <h2 id="ejari-cost">Ejari Registration Cost Breakdown (2025)</h2>
+    <h2 id="ejari-cost">Ejari Registration Cost Breakdown (2026)</h2>
     <p>Ejari registration can be done online or at a physical typing center. The costs differ significantly:</p>
     <table>
         <thead><tr><th>Method</th><th>Base Fee</th><th>Other Fees</th><th>Total (incl. VAT)</th></tr></thead>

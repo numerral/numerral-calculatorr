@@ -11,9 +11,9 @@ import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
-    title: "UAE Car Loan & Salik Calculator 2025 — Auto EMI + Toll Costs",
+    title: "UAE Car Loan & Salik Calculator 2026 — Auto EMI + Toll Costs",
     description: "Calculate your monthly car loan EMI in the UAE with flat-to-reducing rate conversion. Estimate Salik toll costs with 2025 variable pricing (AED 6 peak / AED 4 off-peak). Includes bank rate comparison and ownership cost breakdown.",
-    keywords: ["UAE car loan calculator", "Dubai auto finance EMI", "Salik calculator", "حاسبة قرض السيارة", "flat rate vs reducing rate", "car loan interest rate UAE 2025", "Salik toll charges 2025", "CBUAE car loan rules", "car ownership cost Dubai"],
+    keywords: ["UAE car loan calculator", "Dubai auto finance EMI", "Salik calculator", "حاسبة قرض السيارة", "flat rate vs reducing rate", "car loan interest rate UAE 2026", "Salik toll charges 2026", "CBUAE car loan rules", "car ownership cost Dubai"],
     alternates: { canonical: canonicalUrl("/uae/car-loan-calculator") },
 };
 
@@ -63,7 +63,7 @@ export default function CarLoanCalculatorPage() {
                 { label: "Car Loan & Salik Calculator" },
             ]} />
 
-            <h1 className="t-h1" style={{ marginBottom: "var(--s-2)" }}>UAE Car Loan & Salik Calculator 2025</h1>
+            <h1 className="t-h1" style={{ marginBottom: "var(--s-2)" }}>UAE Car Loan & Salik Calculator 2026</h1>
             <p className="t-body text-muted" style={{ marginBottom: "var(--s-6)" }}>
                 Calculate your monthly car loan EMI with flat-to-reducing rate conversion and estimate your Salik toll costs with 2025 variable pricing. Includes CBUAE regulations, bank rate comparison, and total car ownership cost breakdown.
             </p>

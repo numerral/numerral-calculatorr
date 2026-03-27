@@ -11,7 +11,7 @@ import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
-    title: "AED Currency Converter 2025 — UAE Dirham Exchange Rates",
+    title: "AED Currency Converter 2026 — UAE Dirham Exchange Rates",
     description: "Convert AED to 22+ major currencies with indicative mid-market rates. Covers USD peg (3.6725), INR, PKR, PHP, GBP, EUR, and all GCC currencies. Includes UAE remittance guide and exchange house comparison.",
     keywords: ["AED currency converter", "UAE dirham exchange rate", "AED to USD", "AED to INR", "محول العملات الدرهم", "AED to PKR", "AED to PHP", "Dubai exchange rate", "CBUAE rates", "money transfer UAE", "remittance Dubai"],
     alternates: { canonical: canonicalUrl("/uae/currency-converter") },
@@ -63,7 +63,7 @@ export default function CurrencyConverterPage() {
                 { label: "Currency Converter" },
             ]} />
 
-            <h1 className="t-h1" style={{ marginBottom: "var(--s-2)" }}>AED Currency Converter 2025</h1>
+            <h1 className="t-h1" style={{ marginBottom: "var(--s-2)" }}>AED Currency Converter 2026</h1>
             <p className="t-body text-muted" style={{ marginBottom: "var(--s-6)" }}>
                 Convert UAE Dirhams (AED) to 22+ major world currencies with indicative mid-market reference rates. Covers the fixed USD peg, GCC currencies, and top remittance corridors to India, Pakistan, Philippines, Bangladesh, and Egypt.
             </p>

@@ -55,7 +55,7 @@ const UAE_CALCULATORS = [
         slug: "ejari-tenancy-calculator",
         icon: "📋",
         tag: "Property",
-        description: "Calculate the total cost of renting: security deposit, agency fee, Ejari/Tawtheeq, DEWA/ADDC deposit, and first-year total. Dubai & Abu Dhabi 2025 fees.",
+        description: "Calculate the total cost of renting: security deposit, agency fee, Ejari/Tawtheeq, DEWA/ADDC deposit, and first-year total. Dubai & Abu Dhabi 2026 fees.",
     },
     {
         title: "Salary Calculator",

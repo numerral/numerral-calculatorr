@@ -13,9 +13,9 @@ import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
-    title: "Dependent Levy Calculator (KSA) — حاسبة رسوم المرافقين (2025/2026)",
+    title: "Dependent Levy Calculator (KSA) — حاسبة رسوم المرافقين (2026)",
     description: "Calculate your dependent levy in Saudi Arabia — SAR 400/month per dependent. Covers spouse, children, parents, domestic workers, exemptions, payment via Absher & Muqeem, newborn fees, and salary impact analysis.",
-    keywords: ["dependent levy calculator Saudi Arabia", "حاسبة رسوم المرافقين", "dependent fee KSA 2025", "expat family cost Saudi", "SAR 400 dependent fee", "exempt from dependent fee", "domestic worker levy", "Absher dependent payment", "Iqama renewal dependent fee", "family visa cost Saudi"],
+    keywords: ["dependent levy calculator Saudi Arabia", "حاسبة رسوم المرافقين", "dependent fee KSA 2026", "expat family cost Saudi", "SAR 400 dependent fee", "exempt from dependent fee", "domestic worker levy", "Absher dependent payment", "Iqama renewal dependent fee", "family visa cost Saudi"],
     alternates: { canonical: canonicalUrl("/ksa/dependent-levy-calculator") },
 };
 

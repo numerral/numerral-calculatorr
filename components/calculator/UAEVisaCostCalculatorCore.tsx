@@ -146,7 +146,7 @@ export default function UAEVisaCostCalculatorCore() {
     const [tab, setTab] = useState(0);
     const tabs = ["🛂 Visa Cost Calculator", "⏰ Overstay Calculator", "📋 Reference Tables"];
     return (<div className="con-calc">
-        <h3 className="con-calc__title">🛂 Visa Cost Calculator — UAE 2025</h3>
+        <h3 className="con-calc__title">🛂 Visa Cost Calculator — UAE 2026</h3>
         <div style={{ display: "flex", flexWrap: "wrap", gap: "var(--s-1)", marginBottom: "var(--s-3)" }}>
             {tabs.map((t, i) => <button key={i} onClick={() => setTab(i)} className={`calc-tab-btn${tab === i ? " calc-tab-btn--active" : ""}`}>{t}</button>)}
         </div>

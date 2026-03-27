@@ -126,7 +126,7 @@ export default function UAEADDCBillCalculatorCore() {
     const [tab, setTab] = useState(0);
     const tabs = ["⚡ Bill Calculator", "🔄 ADDC vs DEWA", "📋 Tariff Tables"];
     return (<div className="con-calc">
-        <h3 className="con-calc__title">⚡ ADDC Bill Calculator — Abu Dhabi 2025</h3>
+        <h3 className="con-calc__title">⚡ ADDC Bill Calculator — Abu Dhabi 2026</h3>
         <div style={{ display: "flex", flexWrap: "wrap", gap: "var(--s-1)", marginBottom: "var(--s-3)" }}>
             {tabs.map((t, i) => <button key={i} onClick={() => setTab(i)} className={`calc-tab-btn${tab === i ? " calc-tab-btn--active" : ""}`}>{t}</button>)}
         </div>

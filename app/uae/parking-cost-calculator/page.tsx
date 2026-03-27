@@ -11,9 +11,9 @@ import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
-    title: "Parking Cost Calculator UAE 2025 — Dubai RTA & Abu Dhabi Mawaqif",
-    description: "Calculate parking costs in Dubai and Abu Dhabi. Updated April 2025 variable tariffs with peak/off-peak pricing. RTA zones, Mawaqif rates, monthly commuter costs, parking fines, and free parking schedule.",
-    keywords: ["parking cost calculator UAE", "Dubai parking rates 2025", "RTA parking zones", "Mawaqif parking Abu Dhabi", "Dubai parking fine", "free parking Dubai", "mParking Dubai", "parking cost per hour Dubai", "Abu Dhabi parking permit cost", "Dubai variable parking tariff 2025"],
+    title: "Parking Cost Calculator UAE 2026 — Dubai RTA & Abu Dhabi Mawaqif",
+    description: "Calculate parking costs in Dubai and Abu Dhabi. Updated April 2025 variable tariffs (current rates) with peak/off-peak pricing. RTA zones, Mawaqif rates, monthly commuter costs, parking fines, and free parking schedule.",
+    keywords: ["parking cost calculator UAE", "Dubai parking rates 2026", "RTA parking zones", "Mawaqif parking Abu Dhabi", "Dubai parking fine", "free parking Dubai", "mParking Dubai", "parking cost per hour Dubai", "Abu Dhabi parking permit cost", "Dubai variable parking tariff 2026"],
     alternates: { canonical: canonicalUrl("/uae/parking-cost-calculator") },
 };
 
@@ -62,9 +62,9 @@ export default function ParkingCostCalculatorPage() {
                 { label: "Parking Cost Calculator" },
             ]} />
 
-            <h1 className="t-h1" style={{ marginBottom: "var(--s-2)" }}>Parking Cost Calculator UAE 2025 — Dubai RTA & Abu Dhabi Mawaqif</h1>
+            <h1 className="t-h1" style={{ marginBottom: "var(--s-2)" }}>Parking Cost Calculator UAE 2026 — Dubai RTA & Abu Dhabi Mawaqif</h1>
             <p className="t-body text-muted" style={{ marginBottom: "var(--s-6)" }}>
-                Calculate your parking costs in Dubai and Abu Dhabi with the latest 2025 rates. Covers all Dubai RTA zones (including the new April 2025 variable peak/off-peak tariffs), Abu Dhabi Mawaqif premium and standard zones, monthly commuter cost comparisons, parking fines, and the complete free parking schedule.
+                Calculate your parking costs in Dubai and Abu Dhabi with the latest 2026 rates. Covers all Dubai RTA zones (including the new April 2025 variable peak/off-peak tariffs), Abu Dhabi Mawaqif premium and standard zones, monthly commuter cost comparisons, parking fines, and the complete free parking schedule.
             </p>
             <AuthorBadge categoryKey="loan" />
             <UAEParkingCostCalculatorCore />

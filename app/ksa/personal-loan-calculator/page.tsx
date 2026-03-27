@@ -13,7 +13,7 @@ import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
-    title: "Personal Loan Calculator (KSA) — حاسبة التمويل الشخصي (2025/2026)",
+    title: "Personal Loan Calculator (KSA) — حاسبة التمويل الشخصي (2026)",
     description: "Calculate your personal loan EMI in Saudi Arabia. Includes SAMA DBR compliance check (33.33%), amortization schedule, processing fees with VAT, and bank rate comparison. Covers Tawarruq, Murabaha, SIMAH credit score, eligibility requirements, and early settlement rules.",
     keywords: ["personal loan calculator Saudi Arabia", "حاسبة التمويل الشخصي", "EMI calculator KSA", "SAMA DBR limit", "personal finance Saudi", "Tawarruq financing", "SIMAH credit score", "best personal loan Saudi", "loan without salary transfer", "Islamic finance calculator", "Al Rajhi personal loan", "SABB personal finance"],
     alternates: { canonical: canonicalUrl("/ksa/personal-loan-calculator") },

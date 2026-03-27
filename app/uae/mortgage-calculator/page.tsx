@@ -14,7 +14,7 @@ import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
-    title: "UAE Mortgage Calculator 2025 — Dubai & Abu Dhabi Home Loan",
+    title: "UAE Mortgage Calculator 2026 — Dubai & Abu Dhabi Home Loan",
     description: "Calculate your monthly mortgage payment in the UAE. Covers Dubai & Abu Dhabi property fees, CBUAE LTV limits, DBR check, Islamic & conventional financing, and upfront cost estimator.",
     keywords: ["UAE mortgage calculator", "Dubai mortgage calculator", "Abu Dhabi mortgage calculator", "حاسبة الرهن العقاري", "UAE home loan", "CBUAE LTV", "DLD fees calculator", "expat mortgage UAE", "Islamic mortgage UAE", "Murabaha mortgage Dubai", "EIBOR mortgage rate"],
     alternates: { canonical: canonicalUrl("/uae/mortgage-calculator") },
@@ -66,7 +66,7 @@ export default function MortgageCalculatorPage() {
                 { label: "Mortgage Calculator" },
             ]} />
 
-            <h1 className="t-h1" style={{ marginBottom: "var(--s-2)" }}>UAE Mortgage Calculator 2025</h1>
+            <h1 className="t-h1" style={{ marginBottom: "var(--s-2)" }}>UAE Mortgage Calculator 2026</h1>
             <p className="t-body text-muted" style={{ marginBottom: "var(--s-6)" }}>
                 Calculate your monthly mortgage payment in the UAE. Covers CBUAE LTV limits for nationals, residents, and non-residents. Includes DLD and DMT fee calculator, DBR affordability check, and Islamic financing options.
             </p>

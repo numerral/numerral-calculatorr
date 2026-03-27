@@ -48,7 +48,7 @@ export default function UAEParkingCostCalculatorCore() {
     const [tab, setTab] = useState(0);
     const tabs = ["🅿️ Parking Cost", "💰 Monthly Commuter", "📋 Reference"];
     return (<div className="con-calc">
-        <h3 className="con-calc__title">🅿️ Parking Cost Calculator — UAE 2025</h3>
+        <h3 className="con-calc__title">🅿️ Parking Cost Calculator — UAE 2026</h3>
         <div style={{ display: "flex", flexWrap: "wrap", gap: "var(--s-1)", marginBottom: "var(--s-3)" }}>
             {tabs.map((t, i) => <button key={i} onClick={() => setTab(i)} className={`calc-tab-btn${tab === i ? " calc-tab-btn--active" : ""}`}>{t}</button>)}
         </div>
@@ -290,7 +290,7 @@ function ReferenceTab() {
             </tbody></table>
         </div>
 
-        <h4 style={{ marginTop: "var(--s-4)" }}>Abu Dhabi Mawaqif Rates — 2025</h4>
+        <h4 style={{ marginTop: "var(--s-4)" }}>Abu Dhabi Mawaqif Rates — 2026</h4>
         <div style={{ overflowX: "auto" }}>
             <table style={ts}><thead><tr style={bh}>
                 <th style={{ ...th, textAlign: "left" }}>Zone</th>

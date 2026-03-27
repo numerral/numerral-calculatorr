@@ -11,7 +11,7 @@ import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
-    title: "UAE Gold Price Calculator 2025 — Buy, Sell & Making Charges",
+    title: "UAE Gold Price Calculator 2026 — Buy, Sell & Making Charges",
     description: "Calculate gold jewellery prices in Dubai and UAE. Enter today's 24K rate, select karat (22K/21K/18K), add making charges and 5% VAT. Includes buyback estimator and ESMA hallmark guide.",
     keywords: ["UAE gold price calculator", "Dubai gold calculator", "حاسبة سعر الذهب", "gold making charges Dubai", "22 karat gold price UAE", "gold buyback Dubai", "ESMA hallmark gold", "Dubai Gold Souk", "gold VAT UAE", "sell gold Dubai"],
     alternates: { canonical: canonicalUrl("/uae/gold-calculator") },
@@ -63,7 +63,7 @@ export default function GoldCalculatorPage() {
                 { label: "Gold Price Calculator" },
             ]} />
 
-            <h1 className="t-h1" style={{ marginBottom: "var(--s-2)" }}>UAE Gold Price Calculator 2025</h1>
+            <h1 className="t-h1" style={{ marginBottom: "var(--s-2)" }}>UAE Gold Price Calculator 2026</h1>
             <p className="t-body text-muted" style={{ marginBottom: "var(--s-6)" }}>
                 Calculate gold jewellery prices in Dubai and the UAE. Enter today&apos;s 24K rate, select your karat, add making charges and VAT. Includes a buyback estimator for selling old gold and a complete ESMA hallmark verification guide.
             </p>

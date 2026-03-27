@@ -15,7 +15,7 @@ import { SITE_URL } from "@/lib/constants";
 export const metadata: Metadata = {
     title: "Rent Affordability Calculator (KSA) — حاسبة القدرة على تحمل الإيجار",
     description: "Find out how much rent you can afford in Saudi Arabia. Compare rent by city (Riyadh, Jeddah, Dammam), factor in housing allowance & GOSI, and see first-year costs including Ejar fees.",
-    keywords: ["rent affordability calculator Saudi Arabia", "حاسبة القدرة على تحمل الإيجار", "how much rent can I afford KSA", "Riyadh rent prices 2025", "Jeddah apartment rent", "housing allowance Saudi", "Ejar rental platform", "Riyadh rent freeze", "30 percent rule rent", "Dammam rent cost"],
+    keywords: ["rent affordability calculator Saudi Arabia", "حاسبة القدرة على تحمل الإيجار", "how much rent can I afford KSA", "Riyadh rent prices 2026", "Jeddah apartment rent", "housing allowance Saudi", "Ejar rental platform", "Riyadh rent freeze", "30 percent rule rent", "Dammam rent cost"],
     alternates: { canonical: canonicalUrl("/ksa/rent-affordability-calculator") },
 };
 

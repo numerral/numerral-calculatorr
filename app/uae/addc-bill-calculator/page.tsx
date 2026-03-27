@@ -11,14 +11,14 @@ import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
-    title: "ADDC Bill Calculator 2025 — Abu Dhabi Electricity & Water (TAQA Distribution)",
-    description: "Calculate your ADDC / TAQA Distribution bill for Abu Dhabi. Instant breakdown of electricity (Green/Red Band), water, meter fee, municipality fee, and VAT. Includes ADDC vs DEWA comparison and 2025 tariff tables for UAE Nationals and expatriates.",
-    keywords: ["ADDC bill calculator", "Abu Dhabi electricity rates 2025", "TAQA Distribution tariff", "ADDC electricity water charges", "Abu Dhabi utility bill", "Green Band Red Band ADDC", "ADDC vs DEWA", "Abu Dhabi municipality fee", "ADDC expat rates", "Abu Dhabi water tariff"],
+    title: "ADDC Bill Calculator 2026 — Abu Dhabi Electricity & Water (TAQA Distribution)",
+    description: "Calculate your ADDC / TAQA Distribution bill for Abu Dhabi. Instant breakdown of electricity (Green/Red Band), water, meter fee, municipality fee, and VAT. Includes ADDC vs DEWA comparison and 2026 tariff tables for UAE Nationals and expatriates.",
+    keywords: ["ADDC bill calculator", "Abu Dhabi electricity rates 2026", "TAQA Distribution tariff", "ADDC electricity water charges", "Abu Dhabi utility bill", "Green Band Red Band ADDC", "ADDC vs DEWA", "Abu Dhabi municipality fee", "ADDC expat rates", "Abu Dhabi water tariff"],
     alternates: { canonical: canonicalUrl("/uae/addc-bill-calculator") },
 };
 
 const FAQ_ITEMS = [
-    { question: "How much is electricity per kWh in Abu Dhabi for expats in 2025?", answer: "Expatriate residents in Abu Dhabi pay 26.8 fils per kWh (AED 0.268/kWh) for consumption within the Green Band (up to 20 kWh/day for apartments, 30 kWh/day for villas). Consumption exceeding the Green Band limit is charged at the Red Band rate of 29.5 fils per kWh (AED 0.295/kWh). UAE Nationals pay significantly less: 6.7 fils/kWh (Green) and 8.1 fils/kWh (Red). These rates are set by TAQA Distribution (formerly ADDC) and include a monthly meter service fee of AED 7.84 for expats." },
+    { question: "How much is electricity per kWh in Abu Dhabi for expats in 2026?", answer: "Expatriate residents in Abu Dhabi pay 26.8 fils per kWh (AED 0.268/kWh) for consumption within the Green Band (up to 20 kWh/day for apartments, 30 kWh/day for villas). Consumption exceeding the Green Band limit is charged at the Red Band rate of 29.5 fils per kWh (AED 0.295/kWh). UAE Nationals pay significantly less: 6.7 fils/kWh (Green) and 8.1 fils/kWh (Red). These rates are set by TAQA Distribution (formerly ADDC) and include a monthly meter service fee of AED 7.84 for expats." },
     { question: "What is the Green Band and Red Band on my ADDC bill?", answer: "The Green Band and Red Band are ADDC's two-tier pricing system designed to encourage sustainable consumption. The Green Band is the standard lower rate applied when your daily usage stays within a set allowance. For expat apartments, the Green Band limit is 20 kWh/day for electricity and 0.7 m³/day for water. For villas, it's 30 kWh/day (electricity) and 5 m³/day (water). If your average daily consumption exceeds these thresholds during the billing period, the excess is charged at the higher Red Band rate. This is different from DEWA's progressive slab system in Dubai." },
     { question: "How is the municipality fee calculated on ADDC bills?", answer: "The municipality fee on ADDC bills is calculated as 5% of your annual rental contract value, divided into 12 monthly installments. The minimum annual charge is AED 450 (approximately AED 37.50 per month). For example, if your annual rent is AED 60,000, your monthly municipality fee is AED 250 (60,000 × 5% ÷ 12). This fee is collected by ADDC/TAQA Distribution on behalf of the Department of Municipalities and Transport (DMT) and is linked to your Tawtheeq tenancy registration. The fee applies to expatriate tenants only." },
     { question: "Is ADDC cheaper than DEWA?", answer: "For most expatriate residents, ADDC (Abu Dhabi) is cheaper than DEWA (Dubai) for the same consumption level. The key reasons: (1) ADDC has a flatter rate structure — expats pay 26.8–29.5 fils/kWh, while DEWA charges 23–38 fils/kWh in progressive slabs that penalize high usage. (2) ADDC has no separate fuel surcharge, while DEWA charges 6.0 fils/kWh on electricity and AED 1.10/m³ on water. (3) For 2,000–3,000 kWh monthly consumption, ADDC is typically AED 100–250 cheaper per month. However, at very low consumption (under 1,000 kWh), DEWA's lower starting slab of 23 fils/kWh can be slightly cheaper." },
@@ -62,9 +62,9 @@ export default function ADDCBillCalculatorPage() {
                 { label: "ADDC Bill Calculator" },
             ]} />
 
-            <h1 className="t-h1" style={{ marginBottom: "var(--s-2)" }}>ADDC Bill Calculator 2025 — Abu Dhabi Electricity & Water (TAQA Distribution)</h1>
+            <h1 className="t-h1" style={{ marginBottom: "var(--s-2)" }}>ADDC Bill Calculator 2026 — Abu Dhabi Electricity & Water (TAQA Distribution)</h1>
             <p className="t-body text-muted" style={{ marginBottom: "var(--s-6)" }}>
-                Estimate your monthly ADDC / TAQA Distribution utility bill with our interactive calculator. Get an instant itemized breakdown of electricity (Green & Red Band), water charges, meter service fee, municipality fee, and 5% VAT. Compare ADDC (Abu Dhabi) vs DEWA (Dubai) costs side-by-side. Updated with 2025 tariff rates for UAE Nationals, expatriates, and commercial customers.
+                Estimate your monthly ADDC / TAQA Distribution utility bill with our interactive calculator. Get an instant itemized breakdown of electricity (Green & Red Band), water charges, meter service fee, municipality fee, and 5% VAT. Compare ADDC (Abu Dhabi) vs DEWA (Dubai) costs side-by-side. Updated with 2026 tariff rates for UAE Nationals, expatriates, and commercial customers.
             </p>
             <AuthorBadge categoryKey="loan" />
             <UAEADDCBillCalculatorCore />

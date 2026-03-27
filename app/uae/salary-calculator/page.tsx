@@ -11,7 +11,7 @@ import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
-    title: "UAE Salary Calculator 2025 — Gross to Net, Overtime & Pension",
+    title: "UAE Salary Calculator 2026 — Gross to Net, Overtime & Pension",
     description: "Calculate your UAE salary breakdown: gross to net, GPSSA pension, overtime pay, and unemployment insurance. Covers expat & Emirati salaries, WPS, allowances, and leave entitlements.",
     keywords: ["UAE salary calculator", "Dubai salary calculator", "حاسبة الراتب الإمارات", "gross to net UAE", "GPSSA pension calculator", "UAE overtime calculator", "WPS wage protection", "UAE allowances housing transport", "Emirati pension deduction", "MOHRE salary"],
     alternates: { canonical: canonicalUrl("/uae/salary-calculator") },
@@ -63,7 +63,7 @@ export default function SalaryCalculatorPage() {
                 { label: "Salary Calculator" },
             ]} />
 
-            <h1 className="t-h1" style={{ marginBottom: "var(--s-2)" }}>UAE Salary Calculator 2025</h1>
+            <h1 className="t-h1" style={{ marginBottom: "var(--s-2)" }}>UAE Salary Calculator 2026</h1>
             <p className="t-body text-muted" style={{ marginBottom: "var(--s-6)" }}>
                 Calculate your UAE salary breakdown: gross to net take-home, GPSSA pension deductions, overtime pay, and unemployment insurance. Covers both expatriate and Emirati salaries, WPS compliance, allowance structures, and leave entitlements.
             </p>
@@ -131,7 +131,7 @@ const CONTENT_HTML = `
     </div>
 
     <h2 id="no-income-tax">Zero Personal Income Tax</h2>
-    <p>The UAE has <strong>no personal income tax</strong> — for both Emirati citizens and expatriates. This has been the case since the country&apos;s founding and remains unchanged in 2025. There is no state tax, no municipal tax, and no social contributions for expats (beyond the AED 5–10/month unemployment insurance).</p>
+    <p>The UAE has <strong>no personal income tax</strong> — for both Emirati citizens and expatriates. This has been the case since the country&apos;s founding and remains unchanged in 2026. There is no state tax, no municipal tax, and no social contributions for expats (beyond the AED 5–10/month unemployment insurance).</p>
     <p>This means your <strong>gross salary ≈ net salary</strong> for expatriates. For UAE nationals, the only significant deduction is the GPSSA/ADPF pension contribution.</p>
     <table>
         <thead><tr><th>Country</th><th>Income Tax on AED 15,000/month</th><th>Net Take-Home</th></tr></thead>

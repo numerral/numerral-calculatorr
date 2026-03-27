@@ -45,7 +45,7 @@ const HUB_CONTENT: Record<string, {
     contentHTML?: string;
 }> = {
     "income-tax-calculator": {
-        subtitle: "Estimate your 2025 federal income tax refund or amount owed. Includes all filing statuses, standard & itemized deductions, credits, and FICA.",
+        subtitle: "Estimate your 2026 federal income tax refund or amount owed. Includes all filing statuses, standard & itemized deductions, credits, and FICA.",
         explanation: {
             heading: "Understanding U.S. Federal Income Tax",
             paragraphs: [
