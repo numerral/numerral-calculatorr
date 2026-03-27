@@ -9,7 +9,6 @@ import "../ksa.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
 import KSACalculatorCore from "@/components/calculator/KSACalculatorCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
-import TrendingCalculations from "@/components/shared/TrendingCalculations";
 import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
@@ -70,15 +69,7 @@ export default function VATPage() {
                 Add or remove 15% VAT for Saudi Arabia. Calculate VAT-inclusive and VAT-exclusive prices instantly based on ZATCA regulations.
             </p>
             <AuthorBadge categoryKey="salary" />
-
-            <div className="calculator-layout">
-                <div className="calculator-layout__main">
-                    <KSACalculatorCore calcType="vat" />
-                </div>
-                <aside className="calculator-layout__sidebar">
-                    <TrendingCalculations />
-                </aside>
-            </div>
+            <KSACalculatorCore calcType="vat" />
 
             <section className="ksa-content">
                 <div dangerouslySetInnerHTML={{ __html: CONTENT_HTML }} />

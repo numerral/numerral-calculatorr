@@ -7,7 +7,6 @@ import "../uae.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
 import UAERERARentalCalculatorCore from "@/components/calculator/UAERERARentalCalculatorCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
-import TrendingCalculations from "@/components/shared/TrendingCalculations";
 import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
@@ -69,15 +68,7 @@ export default function RERARentalCalculatorPage() {
                 Calculate the maximum legal rent increase in Dubai and Abu Dhabi. Based on the RERA Smart Rental Index, Decree No. 43 of 2013, and Abu Dhabi&apos;s 5% cap. Includes notice period validation, Ejari guide, and tenant rights.
             </p>
             <AuthorBadge categoryKey="loan" />
-
-            <div className="calculator-layout">
-                <div className="calculator-layout__main">
-                    <UAERERARentalCalculatorCore />
-                </div>
-                <aside className="calculator-layout__sidebar">
-                    <TrendingCalculations />
-                </aside>
-            </div>
+            <UAERERARentalCalculatorCore />
 
             <section className="uae-content">
                 <div dangerouslySetInnerHTML={{ __html: CONTENT_HTML }} />

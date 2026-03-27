@@ -9,7 +9,6 @@ import "../ksa.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
 import KSACalculatorCore from "@/components/calculator/KSACalculatorCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
-import TrendingCalculations from "@/components/shared/TrendingCalculations";
 import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
@@ -70,15 +69,7 @@ export default function SavingsGoalPage() {
                 Plan your savings in Saudi Arabia. Calculate how long to reach your financial goal or how much to save monthly. Supports Hajj, emergency fund, home, car, and wedding goals with Sharia-compliant profit rates.
             </p>
             <AuthorBadge categoryKey="salary" />
-
-            <div className="calculator-layout">
-                <div className="calculator-layout__main">
-                    <KSACalculatorCore calcType="savings" />
-                </div>
-                <aside className="calculator-layout__sidebar">
-                    <TrendingCalculations />
-                </aside>
-            </div>
+            <KSACalculatorCore calcType="savings" />
 
             <section className="ksa-content">
                 <div dangerouslySetInnerHTML={{ __html: CONTENT_HTML }} />

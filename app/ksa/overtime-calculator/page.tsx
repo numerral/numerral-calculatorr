@@ -9,7 +9,6 @@ import "../ksa.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
 import KSACalculatorCore from "@/components/calculator/KSACalculatorCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
-import TrendingCalculations from "@/components/shared/TrendingCalculations";
 import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
@@ -70,15 +69,7 @@ export default function OvertimePage() {
                 Calculate your overtime pay under Saudi Labor Law Article 107. 150% rate for weekdays, weekends, and holidays. Supports normal and Ramadan working hours.
             </p>
             <AuthorBadge categoryKey="salary" />
-
-            <div className="calculator-layout">
-                <div className="calculator-layout__main">
-                    <KSACalculatorCore calcType="overtime" />
-                </div>
-                <aside className="calculator-layout__sidebar">
-                    <TrendingCalculations />
-                </aside>
-            </div>
+            <KSACalculatorCore calcType="overtime" />
 
             <section className="ksa-content">
                 <div dangerouslySetInnerHTML={{ __html: CONTENT_HTML }} />

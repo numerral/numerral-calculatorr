@@ -9,7 +9,6 @@ import "../ksa.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
 import DependentLevyCalculatorCore from "@/components/calculator/DependentLevyCalculatorCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
-import TrendingCalculations from "@/components/shared/TrendingCalculations";
 import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
@@ -67,15 +66,7 @@ export default function DependentLevyPage() {
                 Calculate the total cost of sponsoring family members and domestic workers in Saudi Arabia. Includes fee breakdowns, exemptions, salary impact, and 5-year projections.
             </p>
             <AuthorBadge categoryKey="salary" />
-
-            <div className="calculator-layout">
-                <div className="calculator-layout__main">
-                    <DependentLevyCalculatorCore />
-                </div>
-                <aside className="calculator-layout__sidebar">
-                    <TrendingCalculations />
-                </aside>
-            </div>
+            <DependentLevyCalculatorCore />
 
             <section className="ksa-content">
                 <div dangerouslySetInnerHTML={{ __html: CONTENT_HTML }} />

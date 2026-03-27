@@ -7,7 +7,6 @@ import "../uae.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
 import UAEVATCalculatorCore from "@/components/calculator/UAEVATCalculatorCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
-import TrendingCalculations from "@/components/shared/TrendingCalculations";
 import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
@@ -69,15 +68,7 @@ export default function VATCalculatorPage() {
                 Calculate UAE 5% VAT instantly. Add or remove VAT, estimate tourist refunds, and manage bulk invoices. Covers standard-rated, zero-rated, and exempt supplies under Federal Decree-Law No. 8 of 2017.
             </p>
             <AuthorBadge categoryKey="tax" />
-
-            <div className="calculator-layout">
-                <div className="calculator-layout__main">
-                    <UAEVATCalculatorCore />
-                </div>
-                <aside className="calculator-layout__sidebar">
-                    <TrendingCalculations />
-                </aside>
-            </div>
+            <UAEVATCalculatorCore />
 
             <section className="uae-content">
                 <div dangerouslySetInnerHTML={{ __html: CONTENT_HTML }} />

@@ -9,7 +9,6 @@ import "../ksa.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
 import KSACalculatorCore from "@/components/calculator/KSACalculatorCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
-import TrendingCalculations from "@/components/shared/TrendingCalculations";
 import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
@@ -70,15 +69,7 @@ export default function LeavePage() {
                 Calculate your annual leave entitlement, remaining balance, leave pay, and encashment value under Saudi Labor Law Articles 109-113.
             </p>
             <AuthorBadge categoryKey="salary" />
-
-            <div className="calculator-layout">
-                <div className="calculator-layout__main">
-                    <KSACalculatorCore calcType="leave" />
-                </div>
-                <aside className="calculator-layout__sidebar">
-                    <TrendingCalculations />
-                </aside>
-            </div>
+            <KSACalculatorCore calcType="leave" />
 
             <section className="ksa-content">
                 <div dangerouslySetInnerHTML={{ __html: CONTENT_HTML }} />

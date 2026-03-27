@@ -7,7 +7,6 @@ import "../uae.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
 import UAEGoldCalculatorCore from "@/components/calculator/UAEGoldCalculatorCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
-import TrendingCalculations from "@/components/shared/TrendingCalculations";
 import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
@@ -69,15 +68,7 @@ export default function GoldCalculatorPage() {
                 Calculate gold jewellery prices in Dubai and the UAE. Enter today&apos;s 24K rate, select your karat, add making charges and VAT. Includes a buyback estimator for selling old gold and a complete ESMA hallmark verification guide.
             </p>
             <AuthorBadge categoryKey="loan" />
-
-            <div className="calculator-layout">
-                <div className="calculator-layout__main">
-                    <UAEGoldCalculatorCore />
-                </div>
-                <aside className="calculator-layout__sidebar">
-                    <TrendingCalculations />
-                </aside>
-            </div>
+            <UAEGoldCalculatorCore />
 
             <section className="uae-content">
                 <div dangerouslySetInnerHTML={{ __html: CONTENT_HTML }} />

@@ -9,7 +9,6 @@ import "../ksa.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
 import CalorieCalculatorCore from "@/components/calculator/CalorieCalculatorCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
-import TrendingCalculations from "@/components/shared/TrendingCalculations";
 import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
@@ -67,15 +66,7 @@ export default function CalorieCalculatorPage() {
                 Calculate your daily calorie needs using the scientifically-proven Mifflin-St Jeor equation. Includes BMR, TDEE, calorie deficit for weight loss, macronutrient breakdown, and Saudi food calorie reference — aligned with SFDA guidelines.
             </p>
             <AuthorBadge categoryKey="salary" />
-
-            <div className="calculator-layout">
-                <div className="calculator-layout__main">
-                    <CalorieCalculatorCore />
-                </div>
-                <aside className="calculator-layout__sidebar">
-                    <TrendingCalculations />
-                </aside>
-            </div>
+            <CalorieCalculatorCore />
 
             <section className="ksa-content">
                 <div dangerouslySetInnerHTML={{ __html: CONTENT_HTML }} />

@@ -10,7 +10,6 @@ import "../uae.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
 import UAEGratuityCalculatorCore from "@/components/calculator/UAEGratuityCalculatorCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
-import TrendingCalculations from "@/components/shared/TrendingCalculations";
 import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
@@ -72,15 +71,7 @@ export default function GratuityCalculatorPage() {
                 Calculate your end-of-service gratuity in the UAE. Covers private sector, domestic workers, part-time employees, DIFC DEWS, and ADGM. Based on Federal Decree-Law No. 33 of 2021 and updated MoHRE guidelines.
             </p>
             <AuthorBadge categoryKey="salary" />
-
-            <div className="calculator-layout">
-                <div className="calculator-layout__main">
-                    <UAEGratuityCalculatorCore />
-                </div>
-                <aside className="calculator-layout__sidebar">
-                    <TrendingCalculations />
-                </aside>
-            </div>
+            <UAEGratuityCalculatorCore />
 
             <section className="uae-content">
                 <div dangerouslySetInnerHTML={{ __html: CONTENT_HTML }} />

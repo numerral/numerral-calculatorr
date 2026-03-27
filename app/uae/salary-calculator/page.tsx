@@ -7,7 +7,6 @@ import "../uae.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
 import UAESalaryCalculatorCore from "@/components/calculator/UAESalaryCalculatorCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
-import TrendingCalculations from "@/components/shared/TrendingCalculations";
 import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
@@ -69,15 +68,7 @@ export default function SalaryCalculatorPage() {
                 Calculate your UAE salary breakdown: gross to net take-home, GPSSA pension deductions, overtime pay, and unemployment insurance. Covers both expatriate and Emirati salaries, WPS compliance, allowance structures, and leave entitlements.
             </p>
             <AuthorBadge categoryKey="salary" />
-
-            <div className="calculator-layout">
-                <div className="calculator-layout__main">
-                    <UAESalaryCalculatorCore />
-                </div>
-                <aside className="calculator-layout__sidebar">
-                    <TrendingCalculations />
-                </aside>
-            </div>
+            <UAESalaryCalculatorCore />
 
             <section className="uae-content">
                 <div dangerouslySetInnerHTML={{ __html: CONTENT_HTML }} />

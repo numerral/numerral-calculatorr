@@ -10,7 +10,6 @@ import "../uae.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
 import UAEMortgageCalculatorCore from "@/components/calculator/UAEMortgageCalculatorCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
-import TrendingCalculations from "@/components/shared/TrendingCalculations";
 import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
@@ -72,15 +71,7 @@ export default function MortgageCalculatorPage() {
                 Calculate your monthly mortgage payment in the UAE. Covers CBUAE LTV limits for nationals, residents, and non-residents. Includes DLD and DMT fee calculator, DBR affordability check, and Islamic financing options.
             </p>
             <AuthorBadge categoryKey="salary" />
-
-            <div className="calculator-layout">
-                <div className="calculator-layout__main">
-                    <UAEMortgageCalculatorCore />
-                </div>
-                <aside className="calculator-layout__sidebar">
-                    <TrendingCalculations />
-                </aside>
-            </div>
+            <UAEMortgageCalculatorCore />
 
             <section className="uae-content">
                 <div dangerouslySetInnerHTML={{ __html: CONTENT_HTML }} />
