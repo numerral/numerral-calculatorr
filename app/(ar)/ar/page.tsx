@@ -1,17 +1,35 @@
 // Arabic Hub Page — /ar
-// Premium categorized hub with 25 Arabic calculators
+// Premium categorized hub with 35+ Arabic calculators (financial + health/fitness)
 
 import type { Metadata } from "next";
 import Link from "next/link";
 import { AR_CALCULATORS } from "@/data/ar-calculators";
 
 export const metadata: Metadata = {
-    title: "25 حاسبة مالية مجانية — قروض، تمويل، استثمار، راتب، ضريبة",
+    title: "35+ حاسبة مجانية — مالية، صحة، لياقة | قروض، سعرات، BMI، دهون",
     description:
-        "أكثر من 25 حاسبة مالية مجانية: حاسبة القروض، التمويل العقاري، القسط الشهري، الفائدة المركبة، الاستثمار، الادخار، العائد على الاستثمار، الراتب، الضريبة والمزيد. نتائج فورية ودقيقة.",
-    keywords: AR_CALCULATORS.map(c => c.arabicKeyword),
+        "أكثر من 35 حاسبة مجانية: حاسبة القروض، التمويل العقاري، السعرات الحرارية، BMI، نسبة الدهون، الكتلة العضلية، الدورة الشهرية، احتياج الماء، دورة النوم والمزيد. نتائج فورية ودقيقة.",
+    keywords: [...AR_CALCULATORS.map(c => c.arabicKeyword), "حاسبة سعرات حرارية", "حاسبة BMI", "حاسبة دهون الجسم", "حاسبة كتلة عضلية", "حاسبة الدورة الشهرية"],
 };
 
+/* ── Health/fitness standalone pages (not in AR_CALCULATORS data) ── */
+const HEALTH_CALCULATORS = [
+    { id: "hisabat-suarat-hararia", icon: "🔥", title: "حاسبة السعرات الحرارية", desc: "BMR + TDEE — Mifflin-St Jeor" },
+    { id: "hisabat-ihtiyaj-alma", icon: "💧", title: "حاسبة احتياج الماء", desc: "حسب الوزن والنشاط والمناخ" },
+    { id: "hisabat-kutlat-aljism", icon: "⚖️", title: "حاسبة مؤشر كتلة الجسم", desc: "BMI — تصنيف WHO" },
+    { id: "hisabat-nisbat-duhun", icon: "📊", title: "حاسبة نسبة الدهون", desc: "Navy + BMI — تصنيف ACE" },
+    { id: "hisabat-kutla-adaliya", icon: "💪", title: "حاسبة الكتلة العضلية", desc: "LBM — Boer/James/Hume + FFMI" },
+    { id: "hisabat-karbohidrat", icon: "🍞", title: "حاسبة الكربوهيدرات", desc: "5 استراتيجيات + ماكرو" },
+];
+
+const WELLNESS_CALCULATORS = [
+    { id: "hisabat-shakl-aljism", icon: "📏", title: "حاسبة شكل الجسم", desc: "7 أشكال + WHR" },
+    { id: "hisabat-dawrat-alnawm", icon: "🌙", title: "حاسبة دورة النوم", desc: "90 دقيقة — 3 أوضاع" },
+    { id: "hisabat-tahwil-altul", icon: "📐", title: "حاسبة تحويل الطول", desc: "سم ↔ قدم/بوصة" },
+    { id: "hisabat-dawra-shahriya", icon: "🩸", title: "حاسبة الدورة الشهرية", desc: "التبويض + نافذة الخصوبة" },
+];
+
+/* ── Financial categories (driven by AR_CALCULATORS data) ── */
 const AR_CATEGORIES = [
     {
         label: "القروض والتمويل",
@@ -65,17 +83,58 @@ export default function ArHomePage() {
                     <span className="ar-hub-v2__accent">بذكاء</span> مع نمررال
                 </h1>
                 <p className="ar-hub-v2__subtitle">
-                    25 حاسبة مالية مجانية ودقيقة — قروض، تمويل عقاري، استثمار، ادخار، راتب والمزيد.
+                    35+ حاسبة مجانية ودقيقة — مالية + صحة ولياقة. قروض، تمويل، سعرات حرارية، BMI، نسبة دهون، كتلة عضلية والمزيد.
                     نتائج فورية بدون تسجيل.
                 </p>
                 <div className="ar-hub-v2__stats">
-                    <div className="ar-hub-v2__stat"><span className="ar-hub-v2__stat-num">25</span><span className="ar-hub-v2__stat-label">حاسبة</span></div>
-                    <div className="ar-hub-v2__stat"><span className="ar-hub-v2__stat-num">5</span><span className="ar-hub-v2__stat-label">فئات</span></div>
+                    <div className="ar-hub-v2__stat"><span className="ar-hub-v2__stat-num">35+</span><span className="ar-hub-v2__stat-label">حاسبة</span></div>
+                    <div className="ar-hub-v2__stat"><span className="ar-hub-v2__stat-num">7</span><span className="ar-hub-v2__stat-label">فئات</span></div>
                     <div className="ar-hub-v2__stat"><span className="ar-hub-v2__stat-num">6</span><span className="ar-hub-v2__stat-label">دول خليجية</span></div>
                 </div>
             </section>
 
-            {/* Categorized Calculator Grid */}
+            {/* ── Health & Fitness Categories ── */}
+            <section className="ar-hub-v2__category">
+                <div className="ar-hub-v2__cat-header">
+                    <span className="ar-hub-v2__cat-icon">🏋️</span>
+                    <h2 className="ar-hub-v2__cat-title">الصحة واللياقة</h2>
+                    <span className="ar-hub-v2__cat-count">{HEALTH_CALCULATORS.length} حاسبة</span>
+                </div>
+                <div className="ar-hub-v2__grid">
+                    {HEALTH_CALCULATORS.map((calc) => (
+                        <Link key={calc.id} href={`/ar/${calc.id}`} className="ar-hub-v2__card">
+                            <span className="ar-hub-v2__card-icon">{calc.icon}</span>
+                            <div className="ar-hub-v2__card-body">
+                                <h3 className="ar-hub-v2__card-title">{calc.title}</h3>
+                                <p className="ar-hub-v2__card-desc">{calc.desc}</p>
+                            </div>
+                            <span className="ar-hub-v2__card-arrow">←</span>
+                        </Link>
+                    ))}
+                </div>
+            </section>
+
+            <section className="ar-hub-v2__category">
+                <div className="ar-hub-v2__cat-header">
+                    <span className="ar-hub-v2__cat-icon">🌿</span>
+                    <h2 className="ar-hub-v2__cat-title">العافية والأدوات الصحية</h2>
+                    <span className="ar-hub-v2__cat-count">{WELLNESS_CALCULATORS.length} حاسبة</span>
+                </div>
+                <div className="ar-hub-v2__grid">
+                    {WELLNESS_CALCULATORS.map((calc) => (
+                        <Link key={calc.id} href={`/ar/${calc.id}`} className="ar-hub-v2__card">
+                            <span className="ar-hub-v2__card-icon">{calc.icon}</span>
+                            <div className="ar-hub-v2__card-body">
+                                <h3 className="ar-hub-v2__card-title">{calc.title}</h3>
+                                <p className="ar-hub-v2__card-desc">{calc.desc}</p>
+                            </div>
+                            <span className="ar-hub-v2__card-arrow">←</span>
+                        </Link>
+                    ))}
+                </div>
+            </section>
+
+            {/* ── Financial Categories (driven by AR_CALCULATORS data) ── */}
             {AR_CATEGORIES.map((cat, ci) => {
                 const calcs = cat.ids
                     .map(id => AR_CALCULATORS.find(c => c.id === id))
@@ -130,17 +189,16 @@ export default function ArHomePage() {
             <section className="ar-hub-v2__seo-text">
                 <h2>عن حاسبات نمررال العربية</h2>
                 <p>
-                    نمررال هي منصة حاسبات مالية مجانية بالكامل تغطي أهم الأدوات المالية في الخليج العربي:
-                    حاسبة القروض بالفائدة المتناقصة، حاسبة التمويل العقاري بالمعدل الثابت والمتغير،
-                    حاسبة القسط الشهري لجميع أنواع التمويل، حاسبة الفائدة المركبة والبسيطة،
-                    حاسبة الاستثمار والعائد المركب السنوي، حاسبة الادخار، حاسبة الربح وهامش الربحية،
-                    وحاسبة الخصم.
+                    نمررال هي منصة حاسبات مجانية بالكامل تغطي أهم الأدوات المالية والصحية في الخليج العربي:
+                    حاسبة القروض بالفائدة المتناقصة، حاسبة التمويل العقاري، حاسبة السعرات الحرارية (Mifflin-St Jeor)،
+                    حاسبة مؤشر كتلة الجسم (BMI)، حاسبة نسبة الدهون (US Navy)، حاسبة الكتلة العضلية (LBM)،
+                    حاسبة الدورة الشهرية والتبويض، حاسبة احتياج الماء، وحاسبة دورة النوم.
                 </p>
                 <p>
-                    سواء كنت تقارن عروض تمويل بنكية، تخطط لشراء عقار، تحسب عائد استثمارك،
-                    أو تقيّم ربحية مشروعك — ستجد الأداة المناسبة هنا. الحاسبات مصممة لأسواق
-                    الإمارات والسعودية والكويت والبحرين وعمان، مع مراعاة الأنظمة المالية المحلية
-                    ومتطلبات التمويل الإسلامي والتقليدي.
+                    سواء كنت تقارن عروض تمويل بنكية، تخطط لشراء عقار، تحسب سعراتك اليومية،
+                    تتابع نسبة دهون جسمك، أو تخططين للحمل — ستجدين الأداة المناسبة هنا.
+                    الحاسبات مصممة لأسواق الإمارات والسعودية والكويت والبحرين وعمان،
+                    مع مراعاة الأنظمة المالية المحلية والإرشادات الصحية الإقليمية (MOHAP/SFDA).
                 </p>
             </section>
         </main>
