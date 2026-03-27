@@ -50,6 +50,13 @@ const UAE_CALCULATORS = [
         tag: "Employment",
         description: "Calculate your UAE salary breakdown: gross to net, GPSSA pension, overtime pay, and unemployment insurance. Covers both expat and Emirati salaries.",
     },
+    {
+        title: "Gold Price Calculator",
+        slug: "gold-calculator",
+        icon: "✨",
+        tag: "Finance",
+        description: "Calculate gold jewellery prices: karat selection, making charges, VAT, and buyback estimation. Includes ESMA hallmark guide and Gold Souk tips.",
+    },
 ];
 
 export default function UAEPage() {
@@ -72,7 +79,7 @@ export default function UAEPage() {
                         <span className="uae-hero__stat-label">Calculators</span>
                     </div>
                     <div className="uae-hero__stat">
-                        <span className="uae-hero__stat-num">75+</span>
+                        <span className="uae-hero__stat-num">90+</span>
                         <span className="uae-hero__stat-label">FAQs</span>
                     </div>
                     <div className="uae-hero__stat">
