@@ -44,6 +44,13 @@ const UAE_CALCULATORS = [
         description: "Calculate the maximum legal rent increase in Dubai and Abu Dhabi. Based on RERA Smart Rental Index, Decree No. 43/2013 tiers, and Abu Dhabi's 5% cap.",
     },
     {
+        title: "Rent Affordability Calculator",
+        slug: "rent-affordability-calculator",
+        icon: "🏠",
+        tag: "Property",
+        description: "How much rent can you afford on your salary? Get max rent, total move-in costs, monthly housing budget, and areas in Dubai & Abu Dhabi that fit your budget.",
+    },
+    {
         title: "Salary Calculator",
         slug: "salary-calculator",
         icon: "💰",
