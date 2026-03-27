@@ -57,6 +57,13 @@ const UAE_CALCULATORS = [
         tag: "Finance",
         description: "Calculate gold jewellery prices: karat selection, making charges, VAT, and buyback estimation. Includes ESMA hallmark guide and Gold Souk tips.",
     },
+    {
+        title: "DEWA Bill Calculator",
+        slug: "dewa-calculator",
+        icon: "⚡",
+        tag: "Utilities",
+        description: "Calculate your monthly DEWA electricity and water bill with 2025 slab tariffs. Includes fuel surcharge, sewerage fee, housing fee, and 5% VAT.",
+    },
 ];
 
 export default function UAEPage() {
@@ -79,7 +86,7 @@ export default function UAEPage() {
                         <span className="uae-hero__stat-label">Calculators</span>
                     </div>
                     <div className="uae-hero__stat">
-                        <span className="uae-hero__stat-num">90+</span>
+                        <span className="uae-hero__stat-num">105+</span>
                         <span className="uae-hero__stat-label">FAQs</span>
                     </div>
                     <div className="uae-hero__stat">
