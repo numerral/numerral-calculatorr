@@ -57,16 +57,12 @@ export default function MegaFooter() {
                     <Link href="/cookie-policy" className="mega-footer__link">Cookie Policy</Link>
                 </div>
 
-                {/* Countries */}
+                {/* Countries & Languages */}
                 <div className="mega-footer__col">
-                    <h4 className="mega-footer__col-title">🌍 Countries</h4>
+                    <h4 className="mega-footer__col-title">🌍 Countries & Languages</h4>
+                    <Link href="/uae" className="mega-footer__link">🇦🇪 UAE Calculators</Link>
                     <Link href="/ksa" className="mega-footer__link">🇸🇦 KSA Calculators</Link>
-                </div>
-
-                {/* Language Selector */}
-                <div className="mega-footer__col">
-                    <h4 className="mega-footer__col-title">🌐 Language</h4>
-                    <div className="mega-footer__languages">
+                    <div className="mega-footer__languages" style={{ marginTop: "var(--s-3)" }}>
                         {LANGUAGES.map((lang) => (
                             <Link
                                 key={lang.code}

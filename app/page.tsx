@@ -17,7 +17,7 @@ import { canonicalUrl } from "@/lib/seo";
 import { SITE_NAME, SITE_URL, TOTAL_CALCULATORS, TOTAL_CATEGORIES } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: `${TOTAL_CALCULATORS}+ Free Online Calculators — Finance, Construction, Health & More | ${SITE_NAME}`,
+  title: `${TOTAL_CALCULATORS}+ Free Online Calculators | ${SITE_NAME}`,
   description:
     `Numerral offers ${TOTAL_CALCULATORS}+ free online calculators across finance, construction, health, EV, and everyday math. Instant results, transparent formulas, zero data collection. Available in 6 languages.`,
   keywords:
@@ -188,7 +188,7 @@ export default function HomePage() {
           <p>
             Numerral is a free online calculator platform offering {totalCalcs}+ tools across {categories.length} specialized categories.
             Our finance calculators use the reducing balance EMI formula, compound interest computation, XIRR for 
-            irregular cash flows, and current FY 2025-26 Indian income tax slabs. Construction calculators cover 
+            irregular cash flows, and current FY 2025-26 Indian income tax slabs. We also offer specialized UAE and KSA regional calculators. Construction calculators cover 
             material estimation for concrete volume, lumber board feet, roofing squares, flooring coverage, 
             insulation R-value, and 150+ building project types with configurable waste factors.
           </p>
