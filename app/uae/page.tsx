@@ -78,6 +78,13 @@ const UAE_CALCULATORS = [
         tag: "Auto",
         description: "Calculate your car loan EMI with flat-to-reducing rate conversion. Estimate Salik toll costs with 2025 variable pricing. Includes bank rate comparison and ownership cost breakdown.",
     },
+    {
+        title: "Mobile Plan Calculator",
+        slug: "mobile-plan-calculator",
+        icon: "📱",
+        tag: "Telecom",
+        description: "Compare e& (Etisalat) vs du mobile plans. Find the best postpaid, prepaid, or tourist SIM by budget and data needs. Includes MNP guide and roaming rates.",
+    },
 ];
 
 export default function UAEPage() {
@@ -100,7 +107,7 @@ export default function UAEPage() {
                         <span className="uae-hero__stat-label">Calculators</span>
                     </div>
                     <div className="uae-hero__stat">
-                        <span className="uae-hero__stat-num">135+</span>
+                        <span className="uae-hero__stat-num">150+</span>
                         <span className="uae-hero__stat-label">FAQs</span>
                     </div>
                     <div className="uae-hero__stat">
