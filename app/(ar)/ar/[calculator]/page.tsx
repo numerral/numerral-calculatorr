@@ -92,6 +92,7 @@ export default async function ArCalculatorPage({ params }: PageProps) {
                             defaults={calc.defaults}
                             sliderRanges={calc.sliderRanges}
                             showComparison={false}
+                            locale="ar"
                         />
                     ) : calc.engine === "custom" ? (
                         <ArCustomCalculatorCore calcType={calc.calcType} />

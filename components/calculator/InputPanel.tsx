@@ -15,7 +15,13 @@ interface InputPanelProps {
         rate: { min: number; max: number; step: number };
         tenure: { min: number; max: number; step: number };
     };
+    locale?: "en" | "ar";
 }
+
+const L = {
+    en: { amountLabel: "Loan Amount", rateLabel: "Interest Rate (p.a.)", tenureLabel: "Loan Tenure", months: "Months", years: "Years", currencyIcon: "₹", numLocale: "en-IN" },
+    ar: { amountLabel: "مبلغ التمويل", rateLabel: "معدل الربح السنوي", tenureLabel: "مدة السداد", months: "أشهر", years: "سنوات", currencyIcon: "ر.س", numLocale: "ar-SA" },
+};
 
 export default function InputPanel({
     amount,
@@ -31,14 +37,17 @@ export default function InputPanel({
         rate: { min: 1, max: 30, step: 0.1 },
         tenure: { min: 6, max: 360, step: 6 },
     },
+    locale = "en",
 }: InputPanelProps) {
+    const t = L[locale];
+
     return (
         <div className="calc-input-panel">
             {/* Loan Amount */}
             <div className="calc-field">
                 <label className="calc-field__label">
-                    <span className="calc-field__label-icon">₹</span>
-                    Loan Amount
+                    <span className="calc-field__label-icon">{t.currencyIcon}</span>
+                    {t.amountLabel}
                 </label>
                 <input
                     type="range"
@@ -52,9 +61,9 @@ export default function InputPanel({
                 <input
                     type="text"
                     className="calc-field__input"
-                    value={amount.toLocaleString("en-IN")}
+                    value={amount.toLocaleString(t.numLocale)}
                     onChange={(e) => {
-                        const parsed = parseInt(e.target.value.replace(/,/g, ""));
+                        const parsed = parseInt(e.target.value.replace(/[,،٬]/g, ""));
                         if (!isNaN(parsed)) onAmountChange(parsed);
                     }}
                     inputMode="numeric"
@@ -65,7 +74,7 @@ export default function InputPanel({
             <div className="calc-field">
                 <label className="calc-field__label">
                     <span className="calc-field__label-icon">%</span>
-                    Interest Rate (p.a.)
+                    {t.rateLabel}
                 </label>
                 <input
                     type="range"
@@ -92,7 +101,7 @@ export default function InputPanel({
             <div className="calc-field">
                 <label className="calc-field__label">
                     <span className="calc-field__label-icon">📅</span>
-                    Loan Tenure
+                    {t.tenureLabel}
                 </label>
                 <input
                     type="range"
@@ -120,13 +129,13 @@ export default function InputPanel({
                             className={`calc-tenure-toggle__btn${tenureUnit === "months" ? " active" : ""}`}
                             onClick={() => onTenureUnitChange("months")}
                         >
-                            Months
+                            {t.months}
                         </button>
                         <button
                             className={`calc-tenure-toggle__btn${tenureUnit === "years" ? " active" : ""}`}
                             onClick={() => onTenureUnitChange("years")}
                         >
-                            Years
+                            {t.years}
                         </button>
                     </div>
                 </div>

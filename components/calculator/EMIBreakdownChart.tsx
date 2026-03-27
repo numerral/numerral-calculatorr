@@ -35,13 +35,24 @@ interface EMIBreakdownChartProps {
     emi: number;
     rate: number;
     tenureMonths: number;
+    locale?: "en" | "ar";
 }
 
-function formatINR(num: number): string {
+function fmtCurrency(num: number, locale: "en" | "ar"): string {
+    if (locale === "ar") {
+        if (num >= 1000000) return (num / 1000000).toFixed(2) + " م ر.س";
+        if (num >= 1000) return (num / 1000).toFixed(1) + " ألف ر.س";
+        return num.toLocaleString("ar-SA") + " ر.س";
+    }
     if (num >= 10000000) return "₹" + (num / 10000000).toFixed(2) + " Cr";
     if (num >= 100000) return "₹" + (num / 100000).toFixed(2) + " L";
     return "₹" + num.toLocaleString("en-IN");
 }
+
+const L = {
+    en: { title: "📊 Interactive EMI Breakdown", doughnutTitle: "Principal vs Interest", barTitle: "Year-by-Year Payment Split", principal: "Principal", interest: "Interest" },
+    ar: { title: "📊 تحليل القسط الشهري", doughnutTitle: "المبلغ مقابل الأرباح", barTitle: "توزيع الأقساط حسب السنة", principal: "المبلغ الأصلي", interest: "الأرباح" },
+};
 
 export default function EMIBreakdownChart({
     principal,
@@ -49,11 +60,15 @@ export default function EMIBreakdownChart({
     emi,
     rate,
     tenureMonths,
+    locale = "en",
 }: EMIBreakdownChartProps) {
+    const t = L[locale];
+    const fmt = (n: number) => fmtCurrency(n, locale);
+
     // Doughnut data
     const doughnutData = useMemo(
         () => ({
-            labels: ["Principal", "Interest"],
+            labels: [t.principal, t.interest],
             datasets: [
                 {
                     data: [principal, totalInterest],
@@ -64,7 +79,7 @@ export default function EMIBreakdownChart({
                 },
             ],
         }),
-        [principal, totalInterest]
+        [principal, totalInterest, t.principal, t.interest]
     );
 
     const doughnutOptions = {
@@ -85,7 +100,7 @@ export default function EMIBreakdownChart({
                 callbacks: {
                     // eslint-disable-next-line @typescript-eslint/no-explicit-any
                     label: (ctx: any) =>
-                        `${ctx.label}: ${formatINR(ctx.raw as number)}`,
+                        `${ctx.label}: ${fmt(ctx.raw as number)}`,
                 },
             },
         },
@@ -113,7 +128,7 @@ export default function EMIBreakdownChart({
                 balance = Math.max(0, balance - principalForMonth);
             }
 
-            yearLabels.push(`Y${y}`);
+            yearLabels.push(locale === "ar" ? `س${y}` : `Y${y}`);
             principalPaid.push(Math.round(yearPrincipal));
             interestPaid.push(Math.round(yearInterest));
         }
@@ -122,14 +137,14 @@ export default function EMIBreakdownChart({
             labels: yearLabels,
             datasets: [
                 {
-                    label: "Principal",
+                    label: t.principal,
                     data: principalPaid,
                     backgroundColor: "#4f46e5",
                     borderRadius: 4,
                     barPercentage: 0.7,
                 },
                 {
-                    label: "Interest",
+                    label: t.interest,
                     data: interestPaid,
                     backgroundColor: "#f59e0b",
                     borderRadius: 4,
@@ -137,7 +152,7 @@ export default function EMIBreakdownChart({
                 },
             ],
         };
-    }, [principal, emi, rate, tenureMonths]);
+    }, [principal, emi, rate, tenureMonths, locale, t.principal, t.interest]);
 
     const barOptions = {
         responsive: true,
@@ -153,7 +168,7 @@ export default function EMIBreakdownChart({
                 grid: { color: "rgba(0,0,0,0.06)" },
                 ticks: {
                     font: { size: 11, family: "'Inter', sans-serif" },
-                    callback: (value: string | number) => formatINR(Number(value)),
+                    callback: (value: string | number) => fmtCurrency(Number(value), locale),
                 },
             },
         },
@@ -171,7 +186,7 @@ export default function EMIBreakdownChart({
                 callbacks: {
                     // eslint-disable-next-line @typescript-eslint/no-explicit-any
                     label: (ctx: any) =>
-                        `${ctx.dataset.label}: ${formatINR(ctx.raw as number)}`,
+                        `${ctx.dataset.label}: ${fmt(ctx.raw as number)}`,
                 },
             },
         },
@@ -179,29 +194,29 @@ export default function EMIBreakdownChart({
 
     return (
         <div className="chart-section">
-            <h3 className="chart-section__title">📊 Interactive EMI Breakdown</h3>
+            <h3 className="chart-section__title">{t.title}</h3>
             <div className="chart-grid">
                 {/* Doughnut */}
                 <div className="chart-card">
-                    <h4 className="chart-card__title">Principal vs Interest</h4>
+                    <h4 className="chart-card__title">{t.doughnutTitle}</h4>
                     <div className="chart-card__canvas" style={{ height: "280px" }}>
                         <Doughnut data={doughnutData} options={doughnutOptions} />
                     </div>
                     <div className="chart-card__legend-custom">
                         <div className="chart-legend-item">
                             <span className="chart-legend-dot" style={{ background: "#4f46e5" }} />
-                            <span>Principal: {formatINR(principal)}</span>
+                            <span>{t.principal}: {fmt(principal)}</span>
                         </div>
                         <div className="chart-legend-item">
                             <span className="chart-legend-dot" style={{ background: "#f59e0b" }} />
-                            <span>Interest: {formatINR(totalInterest)}</span>
+                            <span>{t.interest}: {fmt(totalInterest)}</span>
                         </div>
                     </div>
                 </div>
 
                 {/* Amortization Bar */}
                 <div className="chart-card">
-                    <h4 className="chart-card__title">Year-by-Year Payment Split</h4>
+                    <h4 className="chart-card__title">{t.barTitle}</h4>
                     <div className="chart-card__canvas" style={{ height: "280px" }}>
                         <Bar data={amortizationData} options={barOptions} />
                     </div>

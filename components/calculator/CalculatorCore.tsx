@@ -33,6 +33,8 @@ interface CalculatorCoreProps {
     showComparison?: boolean;
     /** Loan type ID for CIBIL module (e.g. 'car-loan-emi') */
     loanTypeId?: string;
+    /** Locale for currency/labels: 'en' = INR/English, 'ar' = SAR/Arabic */
+    locale?: "en" | "ar";
 }
 
 export default function CalculatorCore({
@@ -40,6 +42,7 @@ export default function CalculatorCore({
     sliderRanges,
     showComparison = true,
     loanTypeId,
+    locale = "en",
 }: CalculatorCoreProps) {
     // CIBIL config for this loan type
     const cibilConfig = loanTypeId ? LOAN_CONFIGS[loanTypeId] : undefined;
@@ -84,9 +87,10 @@ export default function CalculatorCore({
                 onTenureChange={setTenure}
                 onTenureUnitChange={handleTenureUnitChange}
                 sliderRanges={sliderRanges}
+                locale={locale}
             />
 
-            <ResultCard result={result} principal={amount} />
+            <ResultCard result={result} principal={amount} locale={locale} />
 
             <EMIBreakdownChart
                 principal={amount}
@@ -94,6 +98,7 @@ export default function CalculatorCore({
                 emi={result.emi}
                 rate={rate}
                 tenureMonths={tenureInMonths}
+                locale={locale}
             />
 
             {cibilConfig && (
@@ -102,8 +107,12 @@ export default function CalculatorCore({
 
             {showComparison && (
                 <section>
-                    <h2 className="t-h2" style={{ marginBottom: "var(--s-4)" }}>{cibilConfig ? cibilConfig.label : "Loan"} Scenario Comparison</h2>
-                    <ComparisonTable input={input} />
+                    <h2 className="t-h2" style={{ marginBottom: "var(--s-4)" }}>
+                        {locale === "ar"
+                            ? "مقارنة سيناريوهات التمويل"
+                            : `${cibilConfig ? cibilConfig.label : "Loan"} Scenario Comparison`}
+                    </h2>
+                    <ComparisonTable input={input} locale={locale} />
                 </section>
             )}
         </div>
