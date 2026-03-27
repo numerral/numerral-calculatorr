@@ -79,6 +79,13 @@ const UAE_CALCULATORS = [
         description: "Calculate your car loan EMI with flat-to-reducing rate conversion. Estimate Salik toll costs with 2025 variable pricing. Includes bank rate comparison and ownership cost breakdown.",
     },
     {
+        title: "Traffic Fine Calculator",
+        slug: "traffic-fine-calculator",
+        icon: "🚦",
+        tag: "Auto",
+        description: "Look up UAE traffic fines by violation type: speeding, red light, parking, DUI. See black points, impoundment, and early payment discounts for Dubai, Abu Dhabi, and Sharjah.",
+    },
+    {
         title: "Mobile Plan Calculator",
         slug: "mobile-plan-calculator",
         icon: "📱",
