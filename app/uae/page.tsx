@@ -43,6 +43,13 @@ const UAE_CALCULATORS = [
         tag: "Property",
         description: "Calculate the maximum legal rent increase in Dubai and Abu Dhabi. Based on RERA Smart Rental Index, Decree No. 43/2013 tiers, and Abu Dhabi's 5% cap.",
     },
+    {
+        title: "Salary Calculator",
+        slug: "salary-calculator",
+        icon: "💰",
+        tag: "Employment",
+        description: "Calculate your UAE salary breakdown: gross to net, GPSSA pension, overtime pay, and unemployment insurance. Covers both expat and Emirati salaries.",
+    },
 ];
 
 export default function UAEPage() {
@@ -65,7 +72,7 @@ export default function UAEPage() {
                         <span className="uae-hero__stat-label">Calculators</span>
                     </div>
                     <div className="uae-hero__stat">
-                        <span className="uae-hero__stat-num">60+</span>
+                        <span className="uae-hero__stat-num">75+</span>
                         <span className="uae-hero__stat-label">FAQs</span>
                     </div>
                     <div className="uae-hero__stat">
