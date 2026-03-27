@@ -17,7 +17,7 @@ import { canonicalUrl } from "@/lib/seo";
 import { SITE_NAME, SITE_URL, TOTAL_CALCULATORS, TOTAL_CATEGORIES } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: `${TOTAL_CALCULATORS}+ Free Online Calculators | ${SITE_NAME}`,
+  title: `${TOTAL_CALCULATORS}+ Free Calculators — Finance, Health & More | ${SITE_NAME}`,
   description:
     `Numerral offers ${TOTAL_CALCULATORS}+ free online calculators across finance, construction, health, EV, and everyday math. Instant results, transparent formulas, zero data collection. Available in 6 languages.`,
   keywords:
