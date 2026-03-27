@@ -71,6 +71,13 @@ const UAE_CALCULATORS = [
         tag: "Finance",
         description: "Convert AED to 22+ major currencies with indicative mid-market rates. Covers USD peg, GCC currencies, and top remittance corridors to India, Pakistan, and Philippines.",
     },
+    {
+        title: "Car Loan & Salik Calculator",
+        slug: "car-loan-calculator",
+        icon: "🚗",
+        tag: "Auto",
+        description: "Calculate your car loan EMI with flat-to-reducing rate conversion. Estimate Salik toll costs with 2025 variable pricing. Includes bank rate comparison and ownership cost breakdown.",
+    },
 ];
 
 export default function UAEPage() {
@@ -93,7 +100,7 @@ export default function UAEPage() {
                         <span className="uae-hero__stat-label">Calculators</span>
                     </div>
                     <div className="uae-hero__stat">
-                        <span className="uae-hero__stat-num">120+</span>
+                        <span className="uae-hero__stat-num">135+</span>
                         <span className="uae-hero__stat-label">FAQs</span>
                     </div>
                     <div className="uae-hero__stat">
