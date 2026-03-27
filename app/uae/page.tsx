@@ -64,6 +64,13 @@ const UAE_CALCULATORS = [
         tag: "Utilities",
         description: "Calculate your monthly DEWA electricity and water bill with 2025 slab tariffs. Includes fuel surcharge, sewerage fee, housing fee, and 5% VAT.",
     },
+    {
+        title: "Currency Converter",
+        slug: "currency-converter",
+        icon: "💱",
+        tag: "Finance",
+        description: "Convert AED to 22+ major currencies with indicative mid-market rates. Covers USD peg, GCC currencies, and top remittance corridors to India, Pakistan, and Philippines.",
+    },
 ];
 
 export default function UAEPage() {
@@ -86,7 +93,7 @@ export default function UAEPage() {
                         <span className="uae-hero__stat-label">Calculators</span>
                     </div>
                     <div className="uae-hero__stat">
-                        <span className="uae-hero__stat-num">105+</span>
+                        <span className="uae-hero__stat-num">120+</span>
                         <span className="uae-hero__stat-label">FAQs</span>
                     </div>
                     <div className="uae-hero__stat">
