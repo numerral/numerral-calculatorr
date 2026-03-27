@@ -72,6 +72,13 @@ const UAE_CALCULATORS = [
         description: "Convert AED to 22+ major currencies with indicative mid-market rates. Covers USD peg, GCC currencies, and top remittance corridors to India, Pakistan, and Philippines.",
     },
     {
+        title: "Visa Cost Calculator",
+        slug: "visa-cost-calculator",
+        icon: "🛂",
+        tag: "Immigration",
+        description: "Calculate the total cost of any UAE visa: tourist, employment, Golden, Green, family, student, and remote work. Instant itemized fee breakdown with overstay fine calculator.",
+    },
+    {
         title: "Car Loan & Salik Calculator",
         slug: "car-loan-calculator",
         icon: "🚗",
