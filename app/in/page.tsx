@@ -57,6 +57,13 @@ const IN_CALCULATORS = [
         tag: "Savings & Tax",
         description: "Calculate PPF maturity amount at 7.1% interest rate. Compare deposit timing strategies, plan 5-year extensions, and understand Section 80C tax benefits with EEE status.",
     },
+    {
+        title: "BMI Calculator",
+        slug: "bmi-calculator",
+        icon: "🏋️",
+        tag: "Health & Wellness",
+        description: "Calculate BMI with Asian-Indian cutoffs (Overweight ≥23, Obese ≥25). Dual WHO vs Indian categories, ideal weight range, and waist-to-height ratio for abdominal obesity check.",
+    },
 ];
 export default function IndiaPage() {
     return (
