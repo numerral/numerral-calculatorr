@@ -2761,6 +2761,373 @@ function EndpointTab() {
     </div>);
 }
 
+/* Grade Calculator — 4 modes */
+const LETTER_TO_GPA: Record<string, number> = { "A+": 4.33, "A": 4.0, "A-": 3.67, "B+": 3.33, "B": 3.0, "B-": 2.67, "C+": 2.33, "C": 2.0, "C-": 1.67, "D+": 1.33, "D": 1.0, "D-": 0.67, "F": 0.0 };
+const LETTER_OPTIONS = Object.keys(LETTER_TO_GPA).map(l => ({ value: l, label: l }));
+function letterToGPA(letter: string): number { return LETTER_TO_GPA[letter] ?? 0; }
+function gpaToLetter(gpa: number): string {
+    if (gpa >= 4.15) return "A+"; if (gpa >= 3.85) return "A"; if (gpa >= 3.5) return "A-";
+    if (gpa >= 3.15) return "B+"; if (gpa >= 2.85) return "B"; if (gpa >= 2.5) return "B-";
+    if (gpa >= 2.15) return "C+"; if (gpa >= 1.85) return "C"; if (gpa >= 1.5) return "C-";
+    if (gpa >= 1.15) return "D+"; if (gpa >= 0.85) return "D"; if (gpa >= 0.5) return "D-";
+    return "F";
+}
+function percentToLetter(pct: number): string {
+    if (pct >= 97) return "A+"; if (pct >= 93) return "A"; if (pct >= 90) return "A-";
+    if (pct >= 87) return "B+"; if (pct >= 83) return "B"; if (pct >= 80) return "B-";
+    if (pct >= 77) return "C+"; if (pct >= 73) return "C"; if (pct >= 70) return "C-";
+    if (pct >= 67) return "D+"; if (pct >= 65) return "D"; if (pct >= 60) return "D-";
+    return "F";
+}
+
+function GradeCalc() {
+    const [mode, setMode] = useState<"weighted" | "final" | "gpa" | "semester">("weighted");
+
+    /* ── Weighted Grade state ── */
+    interface AssignmentRow { name: string; grade: string; weight: string; gradeType: string }
+    const [rows, setRows] = useState<AssignmentRow[]>([
+        { name: "Assignment 1", grade: "90", weight: "20", gradeType: "percent" },
+        { name: "Assignment 2", grade: "85", weight: "30", gradeType: "percent" },
+        { name: "Final Exam", grade: "78", weight: "50", gradeType: "percent" },
+    ]);
+    const updateRow = (i: number, field: keyof AssignmentRow, val: string) => {
+        const nr = [...rows]; nr[i] = { ...nr[i], [field]: val }; setRows(nr);
+    };
+    const addRow = () => setRows([...rows, { name: `Assignment ${rows.length + 1}`, grade: "80", weight: "10", gradeType: "percent" }]);
+    const removeRow = (i: number) => { if (rows.length > 1) { const nr = [...rows]; nr.splice(i, 1); setRows(nr); } };
+
+    /* ── Final Exam state ── */
+    const [curGrade, setCurGrade] = useState("82");
+    const [desiredGrade, setDesiredGrade] = useState("90");
+    const [finalWeight, setFinalWeight] = useState("30");
+
+    /* ── GPA state ── */
+    interface CourseRow { name: string; grade: string; credits: string; courseType: string }
+    const [courses, setCourses] = useState<CourseRow[]>([
+        { name: "English 101", grade: "A", credits: "3", courseType: "regular" },
+        { name: "Calculus I", grade: "B+", credits: "4", courseType: "regular" },
+        { name: "AP History", grade: "A-", credits: "3", courseType: "ap" },
+        { name: "Biology", grade: "B", credits: "3", courseType: "regular" },
+    ]);
+    const updateCourse = (i: number, field: keyof CourseRow, val: string) => {
+        const nc = [...courses]; nc[i] = { ...nc[i], [field]: val }; setCourses(nc);
+    };
+    const addCourse = () => setCourses([...courses, { name: `Course ${courses.length + 1}`, grade: "B", credits: "3", courseType: "regular" }]);
+    const removeCourse = (i: number) => { if (courses.length > 1) { const nc = [...courses]; nc.splice(i, 1); setCourses(nc); } };
+    const [gpaWeighted, setGpaWeighted] = useState(false);
+
+    /* ── Semester GPA state ── */
+    interface SemCourse { name: string; grade: string; credits: string; courseType: string }
+    interface Semester { name: string; courses: SemCourse[] }
+    const [semesters, setSemesters] = useState<Semester[]>([
+        { name: "Fall 2025", courses: [{ name: "English", grade: "A", credits: "3", courseType: "regular" }, { name: "Math", grade: "B+", credits: "4", courseType: "regular" }] },
+        { name: "Spring 2026", courses: [{ name: "History", grade: "A-", credits: "3", courseType: "regular" }, { name: "Science", grade: "B", credits: "3", courseType: "regular" }] },
+    ]);
+    const addSemester = () => setSemesters([...semesters, { name: `Semester ${semesters.length + 1}`, courses: [{ name: "Course 1", grade: "B", credits: "3", courseType: "regular" }] }]);
+
+    /* ── Weighted Grade calc ── */
+    const weightedResult = useMemo(() => {
+        let totalWeighted = 0, totalWeight = 0;
+        const breakdown: { name: string; pct: number; weight: number; contribution: number }[] = [];
+        for (const r of rows) {
+            const w = parseFloat(r.weight) || 0;
+            let pct = 0;
+            if (r.gradeType === "percent") pct = parseFloat(r.grade) || 0;
+            else if (r.gradeType === "letter") pct = (letterToGPA(r.grade) / 4.33) * 100;
+            else if (r.gradeType === "points") {
+                const parts = r.grade.split("/"); const earned = parseFloat(parts[0]) || 0; const total = parseFloat(parts[1]) || 100;
+                pct = total > 0 ? (earned / total) * 100 : 0;
+            }
+            totalWeighted += pct * w; totalWeight += w;
+            breakdown.push({ name: r.name, pct, weight: w, contribution: pct * w });
+        }
+        const avg = totalWeight > 0 ? totalWeighted / totalWeight : 0;
+        return { avg, letter: percentToLetter(avg), gpa: letterToGPA(percentToLetter(avg)), totalWeight, breakdown };
+    }, [rows]);
+
+    /* ── Final Exam calc ── */
+    const finalResult = useMemo(() => {
+        const cur = parseFloat(curGrade) || 0;
+        const desired = parseFloat(desiredGrade) || 0;
+        const fw = (parseFloat(finalWeight) || 0) / 100;
+        if (fw <= 0 || fw > 1) return { needed: 0, possible: false, message: "Invalid final exam weight" };
+        const needed = (desired - cur * (1 - fw)) / fw;
+        return { needed, possible: needed <= 100, message: needed > 100 ? `⚠️ You need ${fmt(needed, 1)}% — this exceeds 100% and may be impossible.` : `You need ${fmt(needed, 1)}% on the final exam.` };
+    }, [curGrade, desiredGrade, finalWeight]);
+
+    /* ── GPA calc ── */
+    const gpaResult = useMemo(() => {
+        let totalQP = 0, totalCredits = 0;
+        const courseResults: { name: string; grade: string; gpa: number; weighted: number; credits: number; qualityPts: number }[] = [];
+        for (const c of courses) {
+            const credits = parseFloat(c.credits) || 0;
+            let gpa = letterToGPA(c.grade);
+            let weighted = gpa;
+            if (gpaWeighted) {
+                if (c.courseType === "ap" || c.courseType === "ib") weighted = gpa + 1.0;
+                else if (c.courseType === "honors") weighted = gpa + 0.5;
+            }
+            const qp = weighted * credits;
+            totalQP += qp; totalCredits += credits;
+            courseResults.push({ name: c.name, grade: c.grade, gpa, weighted, credits, qualityPts: qp });
+        }
+        const cumulativeGPA = totalCredits > 0 ? totalQP / totalCredits : 0;
+        return { gpa: cumulativeGPA, letter: gpaToLetter(cumulativeGPA), totalCredits, totalQP, courseResults };
+    }, [courses, gpaWeighted]);
+
+    /* ── Semester GPA calc ── */
+    const semesterResult = useMemo(() => {
+        let cumulQP = 0, cumulCredits = 0;
+        const semResults: { name: string; gpa: number; credits: number; qp: number }[] = [];
+        for (const sem of semesters) {
+            let semQP = 0, semCredits = 0;
+            for (const c of sem.courses) {
+                const credits = parseFloat(c.credits) || 0;
+                const gpa = letterToGPA(c.grade);
+                semQP += gpa * credits; semCredits += credits;
+            }
+            cumulQP += semQP; cumulCredits += semCredits;
+            semResults.push({ name: sem.name, gpa: semCredits > 0 ? semQP / semCredits : 0, credits: semCredits, qp: semQP });
+        }
+        return { cumulativeGPA: cumulCredits > 0 ? cumulQP / cumulCredits : 0, totalCredits: cumulCredits, semesters: semResults };
+    }, [semesters]);
+
+    const modes: { key: typeof mode; label: string }[] = [
+        { key: "weighted", label: "📊 Weighted Grade" },
+        { key: "final", label: "📝 Final Exam" },
+        { key: "gpa", label: "🎓 GPA Calculator" },
+        { key: "semester", label: "📅 Semester GPA" },
+    ];
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">🎓 Grade Calculator</h3>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "var(--s-1)", marginBottom: "var(--s-3)" }}>
+                {modes.map(m => (
+                    <button key={m.key} onClick={() => setMode(m.key)}
+                        style={{ padding: "var(--s-1) var(--s-2)", border: mode === m.key ? "2px solid var(--primary)" : "1px solid var(--border)", borderRadius: "var(--radius)", background: mode === m.key ? "var(--primary)" : "var(--bg-card)", color: mode === m.key ? "#fff" : "var(--text)", cursor: "pointer", fontWeight: mode === m.key ? 600 : 400, fontSize: "0.85rem" }}>
+                        {m.label}
+                    </button>
+                ))}
+            </div>
+
+            {/* ── MODE 1: Weighted Grade ── */}
+            {mode === "weighted" && (
+                <div>
+                    <div className="con-calc__inputs">
+                        {rows.map((r, i) => (
+                            <div key={i} style={{ display: "flex", gap: "var(--s-1)", alignItems: "flex-end", flexWrap: "wrap", marginBottom: "var(--s-1)" }}>
+                                <div style={{ flex: "2", minWidth: "120px" }}>
+                                    <label className="con-input__label">Assignment</label>
+                                    <input className="con-input__field" value={r.name} onChange={e => updateRow(i, "name", e.target.value)} />
+                                </div>
+                                <div style={{ flex: "1", minWidth: "80px" }}>
+                                    <label className="con-input__label">Type</label>
+                                    <select className="con-input__field" value={r.gradeType} onChange={e => updateRow(i, "gradeType", e.target.value)}>
+                                        <option value="percent">%</option><option value="letter">Letter</option><option value="points">Points</option>
+                                    </select>
+                                </div>
+                                <div style={{ flex: "1", minWidth: "80px" }}>
+                                    <label className="con-input__label">Grade</label>
+                                    {r.gradeType === "letter" ? (
+                                        <select className="con-input__field" value={r.grade} onChange={e => updateRow(i, "grade", e.target.value)}>
+                                            {LETTER_OPTIONS.map(o => <option key={o.value} value={o.value}>{o.label}</option>)}
+                                        </select>
+                                    ) : (
+                                        <input className="con-input__field" value={r.grade} onChange={e => updateRow(i, "grade", e.target.value)} placeholder={r.gradeType === "points" ? "85/100" : "90"} />
+                                    )}
+                                </div>
+                                <div style={{ flex: "1", minWidth: "70px" }}>
+                                    <label className="con-input__label">Weight (%)</label>
+                                    <input className="con-input__field" type="number" value={r.weight} onChange={e => updateRow(i, "weight", e.target.value)} />
+                                </div>
+                                <button onClick={() => removeRow(i)} style={{ padding: "var(--s-1)", background: "none", border: "1px solid var(--border)", borderRadius: "var(--radius)", cursor: "pointer", color: "var(--text-muted)", fontSize: "0.8rem" }}>✕</button>
+                            </div>
+                        ))}
+                        <div style={{ display: "flex", gap: "var(--s-2)", marginTop: "var(--s-2)" }}>
+                            <button onClick={addRow} style={{ padding: "var(--s-1) var(--s-2)", background: "var(--primary)", color: "#fff", border: "none", borderRadius: "var(--radius)", cursor: "pointer", fontSize: "0.85rem" }}>+ Add Row</button>
+                            <button onClick={() => setRows([{ name: "Assignment 1", grade: "80", weight: "100", gradeType: "percent" }])} style={{ padding: "var(--s-1) var(--s-2)", background: "none", border: "1px solid var(--border)", borderRadius: "var(--radius)", cursor: "pointer", fontSize: "0.85rem", color: "var(--text-muted)" }}>Clear All</button>
+                        </div>
+                    </div>
+                    <div className="con-calc__results">
+                        <h4>Your Grade</h4>
+                        <div style={{ textAlign: "center", padding: "var(--s-3)" }}>
+                            <div style={{ fontSize: "2.5rem", fontWeight: 700, color: "var(--primary)" }}>{fmt(weightedResult.avg, 1)}%</div>
+                            <div style={{ fontSize: "1.5rem", fontWeight: 600, marginTop: "var(--s-1)" }}>Letter Grade: {weightedResult.letter}</div>
+                            <div style={{ fontSize: "0.9rem", color: "var(--text-muted)", marginTop: "var(--s-1)" }}>GPA: {fmt(weightedResult.gpa, 2)} / 4.0</div>
+                            {weightedResult.totalWeight !== 100 && <div style={{ fontSize: "0.85rem", color: "#c0392b", marginTop: "var(--s-1)" }}>⚠️ Weights total {fmt(weightedResult.totalWeight, 0)}% (not 100%)</div>}
+                        </div>
+                        <details style={{ marginTop: "var(--s-2)" }}>
+                            <summary style={{ cursor: "pointer", fontWeight: 600 }}>📊 Assignment Breakdown</summary>
+                            <table style={{ width: "100%", marginTop: "var(--s-2)", borderCollapse: "collapse" }}>
+                                <thead><tr style={{ borderBottom: "2px solid var(--border)" }}>
+                                    <th style={{ textAlign: "left", padding: "var(--s-1)" }}>Assignment</th>
+                                    <th style={{ textAlign: "right", padding: "var(--s-1)" }}>Grade</th>
+                                    <th style={{ textAlign: "right", padding: "var(--s-1)" }}>Weight</th>
+                                    <th style={{ textAlign: "right", padding: "var(--s-1)" }}>Contribution</th>
+                                </tr></thead>
+                                <tbody>{weightedResult.breakdown.map((b, i) => (
+                                    <tr key={i} style={{ borderBottom: "1px solid var(--border)" }}>
+                                        <td style={{ padding: "var(--s-1)" }}>{b.name}</td>
+                                        <td style={{ textAlign: "right", padding: "var(--s-1)" }}>{fmt(b.pct, 1)}%</td>
+                                        <td style={{ textAlign: "right", padding: "var(--s-1)" }}>{b.weight}%</td>
+                                        <td style={{ textAlign: "right", padding: "var(--s-1)" }}>{fmt(b.contribution / (weightedResult.totalWeight || 1), 2)}</td>
+                                    </tr>
+                                ))}</tbody>
+                            </table>
+                        </details>
+                    </div>
+                </div>
+            )}
+
+            {/* ── MODE 2: Final Exam ── */}
+            {mode === "final" && (
+                <div>
+                    <div className="con-calc__inputs">
+                        <InputField label="Current Grade" value={curGrade} onChange={setCurGrade} unit="%" />
+                        <InputField label="Desired Final Grade" value={desiredGrade} onChange={setDesiredGrade} unit="%" />
+                        <InputField label="Final Exam Weight" value={finalWeight} onChange={setFinalWeight} unit="%" />
+                    </div>
+                    <div className="con-calc__results">
+                        <h4>Required Final Exam Score</h4>
+                        <div style={{ textAlign: "center", padding: "var(--s-3)" }}>
+                            <div style={{ fontSize: "2.5rem", fontWeight: 700, color: finalResult.possible ? "var(--primary)" : "#c0392b" }}>
+                                {fmt(finalResult.needed, 1)}%
+                            </div>
+                            <div style={{ fontSize: "0.9rem", color: finalResult.possible ? "var(--text-muted)" : "#c0392b", marginTop: "var(--s-1)" }}>{finalResult.message}</div>
+                        </div>
+                        <h4>Formula</h4>
+                        <ResultRow label="Formula" value="Needed = (Desired − Current × (1 − Weight)) / Weight" />
+                        <ResultRow label="Substitution" value={`(${desiredGrade} − ${curGrade} × (1 − ${parseFloat(finalWeight) / 100})) / ${parseFloat(finalWeight) / 100}`} />
+                        <ResultRow label="Result" value={`${fmt(finalResult.needed, 2)}%`} />
+                    </div>
+                </div>
+            )}
+
+            {/* ── MODE 3: GPA Calculator ── */}
+            {mode === "gpa" && (
+                <div>
+                    <div className="con-calc__inputs">
+                        <div style={{ marginBottom: "var(--s-2)" }}>
+                            <label style={{ display: "flex", alignItems: "center", gap: "var(--s-1)", cursor: "pointer" }}>
+                                <input type="checkbox" checked={gpaWeighted} onChange={e => setGpaWeighted(e.target.checked)} />
+                                <span style={{ fontWeight: 600 }}>Weighted GPA (AP/IB: +1.0, Honors: +0.5)</span>
+                            </label>
+                        </div>
+                        {courses.map((c, i) => (
+                            <div key={i} style={{ display: "flex", gap: "var(--s-1)", alignItems: "flex-end", flexWrap: "wrap", marginBottom: "var(--s-1)" }}>
+                                <div style={{ flex: "2", minWidth: "120px" }}>
+                                    <label className="con-input__label">Course</label>
+                                    <input className="con-input__field" value={c.name} onChange={e => updateCourse(i, "name", e.target.value)} />
+                                </div>
+                                <div style={{ flex: "1", minWidth: "80px" }}>
+                                    <label className="con-input__label">Grade</label>
+                                    <select className="con-input__field" value={c.grade} onChange={e => updateCourse(i, "grade", e.target.value)}>
+                                        {LETTER_OPTIONS.map(o => <option key={o.value} value={o.value}>{o.label}</option>)}
+                                    </select>
+                                </div>
+                                <div style={{ flex: "1", minWidth: "70px" }}>
+                                    <label className="con-input__label">Credits</label>
+                                    <input className="con-input__field" type="number" value={c.credits} onChange={e => updateCourse(i, "credits", e.target.value)} min={0} max={10} />
+                                </div>
+                                {gpaWeighted && (
+                                    <div style={{ flex: "1", minWidth: "90px" }}>
+                                        <label className="con-input__label">Type</label>
+                                        <select className="con-input__field" value={c.courseType} onChange={e => updateCourse(i, "courseType", e.target.value)}>
+                                            <option value="regular">Regular</option><option value="honors">Honors</option><option value="ap">AP</option><option value="ib">IB</option>
+                                        </select>
+                                    </div>
+                                )}
+                                <button onClick={() => removeCourse(i)} style={{ padding: "var(--s-1)", background: "none", border: "1px solid var(--border)", borderRadius: "var(--radius)", cursor: "pointer", color: "var(--text-muted)", fontSize: "0.8rem" }}>✕</button>
+                            </div>
+                        ))}
+                        <button onClick={addCourse} style={{ padding: "var(--s-1) var(--s-2)", background: "var(--primary)", color: "#fff", border: "none", borderRadius: "var(--radius)", cursor: "pointer", fontSize: "0.85rem", marginTop: "var(--s-2)" }}>+ Add Course</button>
+                    </div>
+                    <div className="con-calc__results">
+                        <h4>Your GPA</h4>
+                        <div style={{ textAlign: "center", padding: "var(--s-3)" }}>
+                            <div style={{ fontSize: "2.5rem", fontWeight: 700, color: "var(--primary)" }}>{fmt(gpaResult.gpa, 2)}</div>
+                            <div style={{ fontSize: "1.2rem", marginTop: "var(--s-1)" }}>Letter: {gpaResult.letter} • Credits: {gpaResult.totalCredits} • Quality Points: {fmt(gpaResult.totalQP, 1)}</div>
+                            <div style={{ fontSize: "0.85rem", color: "var(--text-muted)", marginTop: "var(--s-1)" }}>{gpaWeighted ? "Weighted GPA (5.0 scale)" : "Unweighted GPA (4.0 scale)"}</div>
+                        </div>
+                        <details open>
+                            <summary style={{ cursor: "pointer", fontWeight: 600 }}>📋 Course Breakdown</summary>
+                            <table style={{ width: "100%", marginTop: "var(--s-2)", borderCollapse: "collapse" }}>
+                                <thead><tr style={{ borderBottom: "2px solid var(--border)" }}>
+                                    <th style={{ textAlign: "left", padding: "var(--s-1)" }}>Course</th>
+                                    <th style={{ textAlign: "right", padding: "var(--s-1)" }}>Grade</th>
+                                    <th style={{ textAlign: "right", padding: "var(--s-1)" }}>GPA</th>
+                                    {gpaWeighted && <th style={{ textAlign: "right", padding: "var(--s-1)" }}>Wtd</th>}
+                                    <th style={{ textAlign: "right", padding: "var(--s-1)" }}>Cr</th>
+                                    <th style={{ textAlign: "right", padding: "var(--s-1)" }}>QP</th>
+                                </tr></thead>
+                                <tbody>{gpaResult.courseResults.map((c, i) => (
+                                    <tr key={i} style={{ borderBottom: "1px solid var(--border)" }}>
+                                        <td style={{ padding: "var(--s-1)" }}>{c.name}</td>
+                                        <td style={{ textAlign: "right", padding: "var(--s-1)" }}>{c.grade}</td>
+                                        <td style={{ textAlign: "right", padding: "var(--s-1)" }}>{fmt(c.gpa, 2)}</td>
+                                        {gpaWeighted && <td style={{ textAlign: "right", padding: "var(--s-1)" }}>{fmt(c.weighted, 2)}</td>}
+                                        <td style={{ textAlign: "right", padding: "var(--s-1)" }}>{c.credits}</td>
+                                        <td style={{ textAlign: "right", padding: "var(--s-1)" }}>{fmt(c.qualityPts, 1)}</td>
+                                    </tr>
+                                ))}</tbody>
+                            </table>
+                        </details>
+                    </div>
+                </div>
+            )}
+
+            {/* ── MODE 4: Semester GPA ── */}
+            {mode === "semester" && (
+                <div>
+                    <div className="con-calc__inputs">
+                        {semesters.map((sem, si) => (
+                            <div key={si} style={{ marginBottom: "var(--s-3)", padding: "var(--s-2)", border: "1px solid var(--border)", borderRadius: "var(--radius)" }}>
+                                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "var(--s-2)" }}>
+                                    <input className="con-input__field" value={sem.name} onChange={e => { const ns = [...semesters]; ns[si] = { ...ns[si], name: e.target.value }; setSemesters(ns); }} style={{ fontWeight: 600, maxWidth: "200px" }} />
+                                    {semesters.length > 1 && <button onClick={() => { const ns = [...semesters]; ns.splice(si, 1); setSemesters(ns); }} style={{ padding: "var(--s-1)", background: "none", border: "1px solid var(--border)", borderRadius: "var(--radius)", cursor: "pointer", color: "var(--text-muted)", fontSize: "0.8rem" }}>Remove</button>}
+                                </div>
+                                {sem.courses.map((c, ci) => (
+                                    <div key={ci} style={{ display: "flex", gap: "var(--s-1)", alignItems: "flex-end", flexWrap: "wrap", marginBottom: "var(--s-1)" }}>
+                                        <div style={{ flex: "2", minWidth: "100px" }}>
+                                            <label className="con-input__label">Course</label>
+                                            <input className="con-input__field" value={c.name} onChange={e => { const ns = [...semesters]; ns[si].courses[ci] = { ...c, name: e.target.value }; setSemesters(ns); }} />
+                                        </div>
+                                        <div style={{ flex: "1", minWidth: "70px" }}>
+                                            <label className="con-input__label">Grade</label>
+                                            <select className="con-input__field" value={c.grade} onChange={e => { const ns = [...semesters]; ns[si].courses[ci] = { ...c, grade: e.target.value }; setSemesters(ns); }}>
+                                                {LETTER_OPTIONS.map(o => <option key={o.value} value={o.value}>{o.label}</option>)}
+                                            </select>
+                                        </div>
+                                        <div style={{ flex: "1", minWidth: "60px" }}>
+                                            <label className="con-input__label">Credits</label>
+                                            <input className="con-input__field" type="number" value={c.credits} onChange={e => { const ns = [...semesters]; ns[si].courses[ci] = { ...c, credits: e.target.value }; setSemesters(ns); }} min={0} max={10} />
+                                        </div>
+                                        <button onClick={() => { const ns = [...semesters]; ns[si].courses.splice(ci, 1); setSemesters(ns); }} style={{ padding: "var(--s-1)", background: "none", border: "1px solid var(--border)", borderRadius: "var(--radius)", cursor: "pointer", color: "var(--text-muted)", fontSize: "0.8rem" }}>✕</button>
+                                    </div>
+                                ))}
+                                <button onClick={() => { const ns = [...semesters]; ns[si].courses.push({ name: `Course ${sem.courses.length + 1}`, grade: "B", credits: "3", courseType: "regular" }); setSemesters(ns); }} style={{ padding: "var(--s-1) var(--s-2)", background: "var(--bg-card)", border: "1px solid var(--border)", borderRadius: "var(--radius)", cursor: "pointer", fontSize: "0.8rem", marginTop: "var(--s-1)" }}>+ Add Course</button>
+                            </div>
+                        ))}
+                        <button onClick={addSemester} style={{ padding: "var(--s-1) var(--s-2)", background: "var(--primary)", color: "#fff", border: "none", borderRadius: "var(--radius)", cursor: "pointer", fontSize: "0.85rem" }}>+ Add Semester</button>
+                    </div>
+                    <div className="con-calc__results">
+                        <h4>Cumulative GPA</h4>
+                        <div style={{ textAlign: "center", padding: "var(--s-3)" }}>
+                            <div style={{ fontSize: "2.5rem", fontWeight: 700, color: "var(--primary)" }}>{fmt(semesterResult.cumulativeGPA, 2)}</div>
+                            <div style={{ fontSize: "1rem", marginTop: "var(--s-1)" }}>Across {semesters.length} semester{semesters.length > 1 ? "s" : ""} • {semesterResult.totalCredits} total credits</div>
+                        </div>
+                        <h4>Semester Breakdown</h4>
+                        {semesterResult.semesters.map((s, i) => (
+                            <ResultRow key={i} label={s.name} value={`GPA: ${fmt(s.gpa, 2)} (${s.credits} credits)`} />
+                        ))}
+                    </div>
+                </div>
+            )}
+        </div>
+    );
+}
+
 const CALC_MAP: Record<string, React.FC> = {
     "percentage": PercentageCalc,
     "fraction": FractionCalc,
@@ -2800,6 +3167,7 @@ const CALC_MAP: Record<string, React.FC> = {
     "cube-root": CubeRootCalc,
     "significant-figures": SigFigsCalc,
     "midpoint": MidpointCalc,
+    "grade": GradeCalc,
 };
 
 export default function MathCalculatorCore({ calcType }: { calcType: string }) {

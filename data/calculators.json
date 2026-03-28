@@ -23735,5 +23735,48 @@
       ],
       "glossary": "atv-loan"
     }
+  },
+  {
+    "id": "grade-calculator",
+    "category": "math",
+    "title": "Grade Calculator",
+    "slug": "grade-calculator",
+    "categorySlug": "math-calculators",
+    "icon": "🎓",
+    "calcType": "grade",
+    "description": "Calculate your weighted grade, final exam score needed, GPA (weighted and unweighted), and semester GPA. Supports percentage, letter grade, and points input with the full US A–F grading scale.",
+    "stars": 5,
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "grade calculator, weighted grade calculator, final grade calculator, GPA calculator, college GPA calculator, high school GPA, weighted GPA, unweighted GPA, grade average calculator, test grade calculator, class grade calculator",
+    "links": {
+      "related": [
+        "math-percentage-calculator",
+        "average-calculator",
+        "fraction-to-percent-calculator",
+        "standard-deviation-calculator"
+      ]
+    }
   }
 ]
+

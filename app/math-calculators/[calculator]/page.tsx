@@ -5021,6 +5021,286 @@ const HUB_CONTENT: Record<string, {
             { title: "Angle Converter", slug: "angle-converter-calculator", categorySlug: "math-calculators", description: "Convert angle units for polygon calculations" },
         ],
     },
+
+    /* ─── GRADE CALCULATOR — RICH CONTENT (Competitor-beating, US audience) ─── */
+    "grade-calculator": {
+        subtitle: "Calculate your weighted grade, final exam score, GPA (weighted and unweighted), and semester GPA. Supports percentage, letter grade, and points input — with the full US A+ through F grading scale.",
+        contentHTML: `
+            <h2 id="what-is-a-grade-calculator">What Is a Grade Calculator?</h2>
+            <p>A <strong>grade calculator</strong> is a tool that helps students, parents, and educators compute overall grades from individual assignments, tests, and exams. It answers essential questions: <em>"What is my current grade?"</em>, <em>"What do I need on the final?"</em>, and <em>"What is my GPA?"</em> Our calculator above supports <strong>four modes</strong> — Weighted Grade, Final Exam, GPA, and Semester GPA — covering every grade calculation scenario you'll encounter in the US education system.</p>
+            <p>Unlike simple average calculators, a <strong>weighted grade calculator</strong> accounts for the fact that different assignments carry different weights. A final exam worth 40% of your grade has a far greater impact than a homework assignment worth 5%. Understanding how weights affect your grade is the key to strategic academic planning. Use this tool alongside our <a href="/math-calculators/percentage-calculator">Percentage Calculator</a> for complete math support.</p>
+
+            <h2 id="weighted-grade-formula">How to Calculate Your Weighted Grade</h2>
+            <p>The <strong>weighted grade formula</strong> is:</p>
+            <div class="explanation__highlight">
+                <strong>Weighted Grade = Σ(Grade × Weight) / Σ(Weight)</strong>
+            </div>
+            <p>Where:</p>
+            <ul>
+                <li><strong>Grade</strong> — your score on each assignment (as a percentage, letter grade, or points)</li>
+                <li><strong>Weight</strong> — the percentage contribution of that assignment to your overall grade</li>
+                <li><strong>Σ</strong> — the sum across all assignments</li>
+            </ul>
+            <p>If your weights add up to 100%, the formula simplifies to: <strong>Weighted Grade = Σ(Grade × Weight) / 100</strong>.</p>
+
+            <h3 id="weighted-grade-example">Step-by-Step Example — Percentage Grades</h3>
+            <p>Suppose your class has three graded components:</p>
+            <table>
+                <thead><tr><th>Component</th><th>Grade</th><th>Weight</th><th>Grade × Weight</th></tr></thead>
+                <tbody>
+                    <tr><td>Homework</td><td>92%</td><td>20%</td><td>92 × 0.20 = <strong>18.4</strong></td></tr>
+                    <tr><td>Midterm</td><td>78%</td><td>30%</td><td>78 × 0.30 = <strong>23.4</strong></td></tr>
+                    <tr><td>Final Exam</td><td>85%</td><td>50%</td><td>85 × 0.50 = <strong>42.5</strong></td></tr>
+                    <tr><td colspan="3"><strong>Total</strong></td><td><strong>84.3%</strong></td></tr>
+                </tbody>
+            </table>
+            <p>Your weighted grade is <strong>84.3%</strong>, which is a <strong>B</strong> on the standard US grading scale. Without weighting (simple average), the grade would be (92 + 78 + 85) / 3 = 85.0% — a slightly misleading result because it doesn't account for the final exam's 50% weight.</p>
+
+            <h3 id="letter-grade-example">Example — Letter Grades with Weights</h3>
+            <p>What if your grades are given as letters? Convert each letter to its GPA point value, calculate the weighted GPA, then convert back. For example: Homework = A (4.0, 20%), Midterm = C+ (2.33, 30%), Final = B+ (3.33, 50%).</p>
+            <p>Weighted GPA = (4.0 × 0.20) + (2.33 × 0.30) + (3.33 × 0.50) = 0.80 + 0.70 + 1.67 = <strong>3.17 GPA</strong> → <strong>B+</strong>.</p>
+
+            <h3 id="points-grade-example">Example — Points-Based Calculation</h3>
+            <p>Some classes use a points system. If you earned 85/100 on a test worth 30% and 42/50 on a quiz worth 20%, convert points to percentages first: Test = 85%, Quiz = 84%. Then apply the weighted formula normally.</p>
+
+            <h2 id="final-exam-grade-formula">Final Exam Grade Calculator — What Score Do I Need?</h2>
+            <p>The <strong>final exam grade formula</strong> answers the question: <em>"What do I need on the final to get my desired grade?"</em></p>
+            <div class="explanation__highlight">
+                <strong>Required Score = (Desired Grade − Current Grade × (1 − Final Weight)) / Final Weight</strong>
+            </div>
+            <p>Where:</p>
+            <ul>
+                <li><strong>Desired Grade</strong> — the overall grade you want to achieve (e.g., 90% for an A−)</li>
+                <li><strong>Current Grade</strong> — your grade before the final exam</li>
+                <li><strong>Final Weight</strong> — the percentage weight of the final exam (as a decimal)</li>
+            </ul>
+
+            <h3 id="final-exam-example">Worked Example</h3>
+            <p>You currently have an <strong>82%</strong> in the class. You want to finish with a <strong>90%</strong> (A−). The final exam is worth <strong>30%</strong> of your grade.</p>
+            <ol>
+                <li><strong>Plug in:</strong> Required = (90 − 82 × (1 − 0.30)) / 0.30</li>
+                <li><strong>Simplify:</strong> = (90 − 82 × 0.70) / 0.30 = (90 − 57.4) / 0.30</li>
+                <li><strong>Result:</strong> = 32.6 / 0.30 = <strong>108.7%</strong></li>
+            </ol>
+            <p><strong>⚠️ You would need 108.7% on the final</strong> — which exceeds 100% and is likely impossible without extra credit. This means an A− is not achievable in this scenario. Try adjusting your desired grade to see what's realistic. Our calculator displays a clear warning when the required score exceeds 100%.</p>
+
+            <h2 id="gpa-calculation">How to Calculate Your GPA — Step by Step</h2>
+            <p>Your <strong>Grade Point Average (GPA)</strong> is calculated using the <strong>quality points method</strong>:</p>
+            <div class="explanation__highlight">
+                <strong>GPA = Σ(Grade Points × Credit Hours) / Σ(Credit Hours)</strong>
+            </div>
+            <p>This is called a <strong>credit-weighted average</strong>. A 4-credit course has twice the impact on your GPA as a 2-credit course.</p>
+
+            <h3 id="gpa-example">Worked Example — Unweighted GPA</h3>
+            <table>
+                <thead><tr><th>Course</th><th>Grade</th><th>GPA Points</th><th>Credits</th><th>Quality Points</th></tr></thead>
+                <tbody>
+                    <tr><td>English 101</td><td>A</td><td>4.00</td><td>3</td><td>4.00 × 3 = <strong>12.00</strong></td></tr>
+                    <tr><td>Calculus I</td><td>B+</td><td>3.33</td><td>4</td><td>3.33 × 4 = <strong>13.32</strong></td></tr>
+                    <tr><td>US History</td><td>A−</td><td>3.67</td><td>3</td><td>3.67 × 3 = <strong>11.01</strong></td></tr>
+                    <tr><td>Biology</td><td>B</td><td>3.00</td><td>3</td><td>3.00 × 3 = <strong>9.00</strong></td></tr>
+                    <tr><td colspan="3"><strong>Totals</strong></td><td><strong>13</strong></td><td><strong>45.33</strong></td></tr>
+                </tbody>
+            </table>
+            <p><strong>GPA = 45.33 / 13 = 3.49</strong> — a solid GPA that falls in the B+ range and qualifies for many Dean's List requirements.</p>
+
+            <h2 id="weighted-vs-unweighted-gpa">Weighted GPA vs. Unweighted GPA</h2>
+            <p>This is one of the most important distinctions in the US education system, especially for <strong>high school students</strong> applying to college.</p>
+            <table>
+                <thead><tr><th>Feature</th><th>Unweighted GPA</th><th>Weighted GPA</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Scale</strong></td><td>0.0 – 4.0</td><td>0.0 – 5.0</td></tr>
+                    <tr><td><strong>AP/IB bonus</strong></td><td>No bonus</td><td><strong>+1.0 point</strong> (A in AP = 5.0)</td></tr>
+                    <tr><td><strong>Honors bonus</strong></td><td>No bonus</td><td><strong>+0.5 point</strong> (A in Honors = 4.5)</td></tr>
+                    <tr><td><strong>Regular courses</strong></td><td>Standard scale</td><td>Standard scale (no bonus)</td></tr>
+                    <tr><td><strong>Used by</strong></td><td>Most colleges for admission</td><td>High school transcripts, class rank</td></tr>
+                    <tr><td><strong>Purpose</strong></td><td>Standardized comparison</td><td>Rewards course rigor</td></tr>
+                </tbody>
+            </table>
+            <div class="explanation__highlight">
+                <strong>Example:</strong> A student with an A in AP Chemistry gets a 4.0 unweighted but a <strong>5.0 weighted</strong> GPA for that course. A student with an A in regular Chemistry gets 4.0 in both systems. The weighted GPA rewards the student who took the harder class.
+            </div>
+            <p><strong>College admissions tip:</strong> Most US colleges and universities <em>recalculate</em> GPAs using their own formula. Some use unweighted 4.0 only; others give partial weight to AP/IB courses. Check each school's admissions policy. However, a strong weighted GPA signals <strong>course rigor</strong>, which is independently important to admissions officers.</p>
+
+            <h3 id="ap-ib-weighting-table">AP, IB, and Honors Weighting Table</h3>
+            <table>
+                <thead><tr><th>Letter Grade</th><th>Regular</th><th>Honors (+0.5)</th><th>AP / IB (+1.0)</th></tr></thead>
+                <tbody>
+                    <tr><td>A+</td><td>4.33</td><td>4.83</td><td>5.33</td></tr>
+                    <tr><td>A</td><td>4.00</td><td>4.50</td><td><strong>5.00</strong></td></tr>
+                    <tr><td>A−</td><td>3.67</td><td>4.17</td><td>4.67</td></tr>
+                    <tr><td>B+</td><td>3.33</td><td>3.83</td><td>4.33</td></tr>
+                    <tr><td>B</td><td>3.00</td><td>3.50</td><td>4.00</td></tr>
+                    <tr><td>B−</td><td>2.67</td><td>3.17</td><td>3.67</td></tr>
+                    <tr><td>C+</td><td>2.33</td><td>2.83</td><td>3.33</td></tr>
+                    <tr><td>C</td><td>2.00</td><td>2.50</td><td>3.00</td></tr>
+                    <tr><td>C−</td><td>1.67</td><td>2.17</td><td>2.67</td></tr>
+                    <tr><td>D+</td><td>1.33</td><td>1.83</td><td>2.33</td></tr>
+                    <tr><td>D</td><td>1.00</td><td>1.50</td><td>2.00</td></tr>
+                    <tr><td>F</td><td>0.00</td><td>0.00</td><td>0.00</td></tr>
+                </tbody>
+            </table>
+            <p><strong>Note:</strong> Some school districts cap weighted GPAs at 5.0 regardless of +/− grading. Others allow 5.33 for A+ in AP. Check your school's specific policy.</p>
+
+            <h2 id="us-grading-scale">US Grading Scale — Letter Grade to GPA to Percentage</h2>
+            <p>The United States uses the <strong>A–F letter grading system</strong> with <strong>plus/minus modifiers</strong> at most institutions. Here is the complete conversion table used by the majority of US colleges and universities:</p>
+            <table>
+                <thead><tr><th>Letter</th><th>GPA (4.0 Scale)</th><th>Percentage Range</th><th>Description</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>A+</strong></td><td>4.00 (4.33 at some schools)</td><td>97–100%</td><td>Exceptional</td></tr>
+                    <tr><td><strong>A</strong></td><td>4.00</td><td>93–96%</td><td>Excellent</td></tr>
+                    <tr><td><strong>A−</strong></td><td>3.67</td><td>90–92%</td><td>Very Good</td></tr>
+                    <tr><td><strong>B+</strong></td><td>3.33</td><td>87–89%</td><td>Good</td></tr>
+                    <tr><td><strong>B</strong></td><td>3.00</td><td>83–86%</td><td>Above Average</td></tr>
+                    <tr><td><strong>B−</strong></td><td>2.67</td><td>80–82%</td><td>Slightly Above Average</td></tr>
+                    <tr><td><strong>C+</strong></td><td>2.33</td><td>77–79%</td><td>Average</td></tr>
+                    <tr><td><strong>C</strong></td><td>2.00</td><td>73–76%</td><td>Satisfactory</td></tr>
+                    <tr><td><strong>C−</strong></td><td>1.67</td><td>70–72%</td><td>Below Average</td></tr>
+                    <tr><td><strong>D+</strong></td><td>1.33</td><td>67–69%</td><td>Below Average</td></tr>
+                    <tr><td><strong>D</strong></td><td>1.00</td><td>65–66%</td><td>Barely Passing</td></tr>
+                    <tr><td><strong>D−</strong></td><td>0.67</td><td>60–64%</td><td>Barely Passing</td></tr>
+                    <tr><td><strong>F</strong></td><td>0.00</td><td>Below 60%</td><td>Failing</td></tr>
+                </tbody>
+            </table>
+            <div class="explanation__highlight">
+                <strong>Important:</strong> US grading scales are not standardized nationally. Some schools use 90–100 = A, while others use 93–100. Some don't use +/− modifiers at all. Always check your institution's specific grading policy. The table above represents the most common system.
+            </div>
+
+            <h2 id="latin-honors">Latin Honors — Cum Laude, Magna Cum Laude, Summa Cum Laude</h2>
+            <p><strong>Latin honors</strong> are academic distinctions awarded at graduation based on cumulative GPA. They appear on your diploma, transcript, and resume — and are a significant achievement recognized across all industries. The three levels are:</p>
+            <table>
+                <thead><tr><th>Honor</th><th>Latin Translation</th><th>Typical GPA Requirement</th><th>Approximate Percentile</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Cum Laude</strong></td><td>"With praise"</td><td>3.50 – 3.64</td><td>Top ~25–30%</td></tr>
+                    <tr><td><strong>Magna Cum Laude</strong></td><td>"With great praise"</td><td>3.65 – 3.84</td><td>Top ~10–15%</td></tr>
+                    <tr><td><strong>Summa Cum Laude</strong></td><td>"With highest praise"</td><td>3.85 – 4.00</td><td>Top ~1–5%</td></tr>
+                </tbody>
+            </table>
+            <p><strong>Variations by school:</strong></p>
+            <ul>
+                <li><strong>Harvard University</strong> — Uses class percentile rather than fixed GPA cutoffs (top 5% Summa, top 15% Magna, top 50% Cum Laude).</li>
+                <li><strong>University of Michigan</strong> — Requires a minimum of 62 credits and a 3.4+ GPA for any Latin honor.</li>
+                <li><strong>State universities</strong> — Most use fixed GPA thresholds similar to the table above, but exact cutoffs vary.</li>
+                <li><strong>Community colleges</strong> — Most award Latin honors using the same GPA thresholds. Some use "with distinction" instead of Latin terminology.</li>
+            </ul>
+            <p>If you're close to a cutoff, even 0.01 GPA points can make the difference. Use our GPA Calculator mode to plan which grades you need in remaining courses to reach your target GPA.</p>
+
+            <h2 id="deans-list">Dean's List Requirements</h2>
+            <p>The <strong>Dean's List</strong> is a semester-based academic honor recognizing students with high GPAs for that specific term. Unlike Latin honors (which are cumulative), the Dean's List is awarded each semester independently.</p>
+            <p><strong>Common requirements across US colleges:</strong></p>
+            <ul>
+                <li><strong>Minimum GPA:</strong> Typically <strong>3.5 or higher</strong> for the semester (some schools require 3.7+)</li>
+                <li><strong>Minimum credit load:</strong> Usually <strong>12 or more credits</strong> (full-time enrollment)</li>
+                <li><strong>No failing grades:</strong> Most schools require no grade below C or D in any course</li>
+                <li><strong>No incomplete grades:</strong> All coursework must be completed by the end of the semester</li>
+            </ul>
+            <p><strong>Why it matters:</strong> Dean's List appears on your transcript and is valued by employers (especially for entry-level positions), graduate school admissions, and scholarship committees. Being on the Dean's List consistently signals academic reliability.</p>
+            <p>Use our <strong>Semester GPA</strong> calculator mode to track whether you're on pace for Dean's List each term.</p>
+
+            <h2 id="college-vs-high-school-grading">College vs. High School Grading — Key Differences</h2>
+            <p>The transition from high school to college grading surprises many students. Here are the critical differences every US student should understand:</p>
+            <table>
+                <thead><tr><th>Feature</th><th>High School</th><th>College</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Passing grade</strong></td><td>D (60–64%)</td><td><strong>C (70%+)</strong> in most programs; C− or higher for major courses</td></tr>
+                    <tr><td><strong>GPA scale</strong></td><td>4.0 or 5.0 (weighted)</td><td><strong>4.0 only</strong> (unweighted)</td></tr>
+                    <tr><td><strong>+/− grading</strong></td><td>Varies by district</td><td>Common (B+ = 3.33, B = 3.00, B− = 2.67)</td></tr>
+                    <tr><td><strong>Grade weighting</strong></td><td>AP/IB/Honors get bonus points</td><td><strong>No weighting</strong> — all courses equal</td></tr>
+                    <tr><td><strong>Class rank</strong></td><td>Often reported and used for admission</td><td>Rarely reported; GPA used instead</td></tr>
+                    <tr><td><strong>Grade inflation</strong></td><td>Moderate in public schools; higher in private</td><td>Varies widely by department and institution</td></tr>
+                    <tr><td><strong>Failed courses</strong></td><td>Can retake; original grade sometimes replaced</td><td><strong>Both grades typically remain</strong> on transcript (varies by school)</td></tr>
+                    <tr><td><strong>Extra credit</strong></td><td>Commonly offered</td><td><strong>Rarely offered</strong> in college</td></tr>
+                    <tr><td><strong>Grade disputes</strong></td><td>Parents can intervene</td><td><strong>Student must self-advocate</strong> through formal grade appeal process</td></tr>
+                </tbody>
+            </table>
+            <div class="explanation__highlight">
+                <strong>Critical insight:</strong> A "D" that kept you in the game in high school <strong>may not count</strong> in college. Many degree programs require a C or higher in all major courses. A D in a required course often means retaking it — at full tuition cost.
+            </div>
+
+            <h2 id="what-is-a-passing-grade">What Is a Passing Grade?</h2>
+            <p>The definition of a "passing grade" depends on the level of education and the institution:</p>
+            <ul>
+                <li><strong>K–12 (most US states):</strong> A D (60% or above) is technically passing. However, many school districts require a C (70%+) for promotion to the next grade level in core subjects.</li>
+                <li><strong>College — undergraduate:</strong> A D counts for elective credit but most degree programs require <strong>C or higher</strong> in major courses. Graduate school applications typically consider anything below a B to be substandard.</li>
+                <li><strong>Graduate school:</strong> A B (3.0) is typically the minimum acceptable grade. Many programs require a <strong>3.0 cumulative GPA</strong> to remain in good standing; anything below a B− may trigger academic probation.</li>
+                <li><strong>Professional programs (Law, Medical):</strong> Varies significantly. Some use pass/fail; others use letter grades with C+ as the minimum.</li>
+                <li><strong>Pass/Fail (P/F) option:</strong> Many colleges allow students to take certain courses on a pass/fail basis. "Pass" typically equals a C or better, and the grade does not affect GPA.</li>
+            </ul>
+            <p>Use our <a href="/math-calculators/percentage-calculator">Percentage Calculator</a> to convert between percentage scores and letter grades quickly.</p>
+
+            <h2 id="how-will-a-zero-affect-my-grade">How Will a Zero Affect My Grade?</h2>
+            <p>A zero is devastating to your grade because it pulls down the <a href="/math-calculators/average-calculator">weighted average</a> far more than you might expect. Here's a concrete example:</p>
+            <p><strong>Scenario:</strong> You have 4 assignments, each worth 25%. You scored 90%, 85%, 88%, and 0% (missed).</p>
+            <p>Without the zero: (90 + 85 + 88) / 3 = <strong>87.7% (B+)</strong></p>
+            <p>With the zero: (90 + 85 + 88 + 0) / 4 = <strong>65.75% (D)</strong></p>
+            <p>One missed assignment dropped the grade by <strong>22 points</strong> — from a B+ to a D. This is why many educators and psychologists advocate for <strong>minimum grading policies</strong> (where the lowest possible grade is 50% instead of 0%), arguing that a single zero creates mathematical damage disproportionate to the learning failure.</p>
+            <p><strong>Strategy:</strong> If you've missed an assignment, use our Weighted Grade calculator to model different scenarios — what would you need on remaining work to recover? This is far more productive than panicking.</p>
+
+            <h2 id="tips-to-improve-grades">Tips to Improve Your Grades — Evidence-Based Strategies</h2>
+            <p>Academic research consistently shows that these strategies improve performance:</p>
+            <ol>
+                <li><strong>Prioritize high-weight assignments:</strong> Use the weighted grade breakdown to identify which assignments have the most impact. A 1% improvement on a 40%-weight final exam is worth more than a 10% improvement on a 5%-weight homework.</li>
+                <li><strong>Calculate your target early:</strong> At the start of each semester, use the Final Exam mode to determine what scores you need. Planning ahead prevents end-of-semester scrambling.</li>
+                <li><strong>Never take a zero:</strong> Submitting something — even if incomplete — is almost always better than a 0%. If the assignment is worth 10%, a 50% score costs you only 5 points; a 0% costs you 10 points.</li>
+                <li><strong>Use the <a href="/math-calculators/average-calculator">Average Calculator</a> for practice tests:</strong> Track your test scores over time and calculate whether you're trending up or down.</li>
+                <li><strong>Attend office hours:</strong> Studies show that students who regularly attend professor/teacher office hours score 0.5–1.0 GPA points higher on average.</li>
+                <li><strong>Use spaced repetition:</strong> Reviewing material at increasing intervals (1 day, 3 days, 1 week, 2 weeks) is 2–3× more effective than cramming according to cognitive psychology research.</li>
+                <li><strong>Study in 25-minute intervals (Pomodoro Technique):</strong> Short, focused sessions with breaks improve retention compared to marathon study sessions.</li>
+                <li><strong>Form study groups:</strong> Teaching concepts to peers reinforces your own understanding. Students in study groups score an average of 5–10% higher.</li>
+            </ol>
+
+            <h2 id="grade-calculator-excel">How to Calculate Grades in Excel & Google Sheets</h2>
+            <p>For students and teachers who want to track grades in a spreadsheet:</p>
+            <h3>Weighted Grade Formula</h3>
+            <p>If grades are in column B and weights in column C (rows 2–6):</p>
+            <div class="explanation__highlight">
+                <strong>=SUMPRODUCT(B2:B6, C2:C6) / SUM(C2:C6)</strong>
+            </div>
+            <p>This multiplies each grade by its weight and divides by the total weight — exactly what our calculator does.</p>
+            <h3>GPA Formula</h3>
+            <p>If GPA values are in column B and credit hours in column C:</p>
+            <div class="explanation__highlight">
+                <strong>=SUMPRODUCT(B2:B6, C2:C6) / SUM(C2:C6)</strong>
+            </div>
+            <p>The formula is identical — GPA is simply a credit-weighted average of grade points. Use <strong>VLOOKUP</strong> to convert letter grades to GPA values automatically.</p>
+        `,
+        formula: {
+            formula: "Weighted Grade = Σ(Grade × Weight) / Σ(Weight)",
+            variables: [
+                { symbol: "Grade", meaning: "Your score on each assignment (percentage, letter grade, or raw points)" },
+                { symbol: "Weight", meaning: "The percentage contribution of each assignment to your overall grade" },
+                { symbol: "Σ", meaning: "Sum across all assignments" },
+            ],
+            example: [
+                { label: "Homework 92% (20w) + Midterm 78% (30w) + Final 85% (50w)", substitution: "(92×20 + 78×30 + 85×50) / (20+30+50)", result: "84.3% → B" },
+                { label: "Final Exam: Current 82%, Want 90%, Final is 30%", substitution: "(90 − 82 × 0.70) / 0.30", result: "108.7% needed (impossible)" },
+                { label: "GPA: A (3cr) + B+ (4cr) + A− (3cr) + B (3cr)", substitution: "(4.0×3 + 3.33×4 + 3.67×3 + 3.0×3) / 13", result: "3.49 GPA" },
+            ],
+        },
+        faq: [
+            { question: "How do I calculate my weighted grade?", answer: "Multiply each assignment grade by its weight (as a percentage), sum all the products, then divide by the total weight. Formula: Weighted Grade = Σ(Grade × Weight) / Σ(Weight). Example: Homework 90% (20%) + Final 80% (80%) = (90×20 + 80×80) / 100 = 82%." },
+            { question: "What grade do I need on my final exam?", answer: "Use the formula: Required = (Desired Grade − Current Grade × (1 − Final Weight)) / Final Weight. For example, if you have an 80% and want a 90% with a 40% final: (90 − 80 × 0.60) / 0.40 = (90 − 48) / 0.40 = 105%. Since this exceeds 100%, it's likely impossible." },
+            { question: "How is GPA calculated?", answer: "GPA = Σ(Grade Points × Credit Hours) / Σ(Credit Hours). Convert each letter grade to GPA points (A=4.0, B=3.0, etc.), multiply by the course's credit hours, sum all quality points, and divide by total credits. This is a credit-weighted average." },
+            { question: "What is the difference between weighted and unweighted GPA?", answer: "Unweighted GPA uses the standard 4.0 scale for all courses. Weighted GPA adds bonus points for advanced courses: +0.5 for Honors and +1.0 for AP/IB classes, creating a 5.0 scale. Most US colleges primarily use unweighted GPA but consider course rigor separately." },
+            { question: "What GPA do I need for the Dean's List?", answer: "Most US colleges require a semester GPA of 3.5 or higher for Dean's List, along with full-time enrollment (typically 12+ credits) and no failing grades. Some competitive schools require 3.7+. Check your specific institution's requirements." },
+            { question: "What is a passing grade in college?", answer: "A D (1.0 GPA, ~60-64%) is technically passing at most colleges, but most degree programs require a C (2.0 GPA, 70%+) or better in major courses. Graduate programs typically require a B (3.0) minimum. A D in a required course usually means you must retake it." },
+            { question: "What GPA do I need for Cum Laude?", answer: "Cum Laude typically requires a 3.5+ GPA, Magna Cum Laude requires 3.65-3.84, and Summa Cum Laude requires 3.85-4.0. These are cumulative GPA thresholds calculated at graduation. Requirements vary by institution — some use class percentile rather than fixed cutoffs." },
+            { question: "How will a zero affect my grade?", answer: "A zero is devastating. Example: Four assignments worth 25% each. Scores of 90, 85, 88, and 0 give a weighted average of 65.75% (D) instead of 87.7% (B+). One zero dropped the grade 22 points. Always submit something — even a partial assignment scores higher than zero." },
+            { question: "What is the 4.0 GPA scale?", answer: "The 4.0 scale is the standard US grading system: A = 4.0, B = 3.0, C = 2.0, D = 1.0, F = 0.0. Most schools also use +/− modifiers: A− = 3.67, B+ = 3.33, etc. Some schools give A+ = 4.33, while others cap A+ at 4.0." },
+            { question: "How do AP and IB courses affect my GPA?", answer: "In weighted GPA systems, AP (Advanced Placement) and IB (International Baccalaureate) courses receive a +1.0 bonus. An A in AP = 5.0 (instead of 4.0). Honors courses receive +0.5 (A = 4.5). This rewards students for taking challenging courses." },
+            { question: "Can my GPA be higher than 4.0?", answer: "Yes, if your school uses a weighted GPA scale. With AP/IB bonuses (+1.0) or A+ = 4.33, your GPA can exceed 4.0. On an unweighted scale, 4.0 is the maximum (except at schools that give A+ = 4.33)." },
+            { question: "How do I convert letter grades to percentages?", answer: "The most common conversion: A+ = 97-100%, A = 93-96%, A− = 90-92%, B+ = 87-89%, B = 83-86%, B− = 80-82%, C+ = 77-79%, C = 73-76%, C− = 70-72%, D+ = 67-69%, D = 65-66%, F = below 65%. Check your school's specific scale." },
+            { question: "What is the formula for calculating final grade?", answer: "Final Grade = Σ(Assignment Grade × Assignment Weight) / Σ(Weights). If weights total 100%, this simplifies to: sum of (grade × weight as decimal). Example: 90% homework (20%) + 80% test (30%) + 75% final (50%) = 0.90×20 + 0.80×30 + 0.75×50 = 18 + 24 + 37.5 = 79.5%." },
+            { question: "How many credits do I need for full-time enrollment?", answer: "Most US colleges define full-time enrollment as 12-15 credit hours per semester. This is important because Dean's List, financial aid, insurance coverage, and visa status (for international students) typically require full-time enrollment." },
+            { question: "What is grade inflation?", answer: "Grade inflation is the trend of rising average grades over time without corresponding increases in student achievement. A 2023 study found the average college GPA has risen from 2.52 in 1950 to 3.17 today. Private universities tend to have higher average GPAs than public ones." },
+        ],
+        relatedCalculators: [
+            { title: "Percentage Calculator", slug: "percentage-calculator", categorySlug: "math-calculators", description: "Calculate percentages — convert between grades and percentages" },
+            { title: "Average Calculator", slug: "average-calculator", categorySlug: "math-calculators", description: "Calculate mean, median, and mode for test scores" },
+            { title: "Fraction to Percent", slug: "fraction-to-percent-calculator", categorySlug: "math-calculators", description: "Convert fraction scores to percentages" },
+            { title: "Standard Deviation", slug: "standard-deviation-calculator", categorySlug: "math-calculators", description: "Measure grade distribution and variability" },
+        ],
+    },
 };
 
 export default async function MathCalculatorHubPage({ params }: PageProps) {
