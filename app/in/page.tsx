@@ -30,14 +30,34 @@ const IN_CALCULATORS = [
         description: "Calculate personal loan EMI, check eligibility, compare bank rates, and see how prepayment saves money. CIBIL score guide and RBI prepayment rules included.",
     },
     {
+        title: "Car Loan EMI Calculator",
+        slug: "car-loan-calculator",
+        icon: "🚗",
+        tag: "Finance & Loans",
+        description: "Calculate car loan EMI with down payment, compare new vs used car rates, check eligibility, and see prepayment savings. 10 bank rates, CIBIL guide, and popular car examples.",
+    },
+    {
         title: "Fuel Cost Calculator",
         slug: "fuel-cost-calculator",
         icon: "⛽",
         tag: "Auto & Travel",
         description: "Calculate petrol, diesel, and CNG costs for daily commutes and road trips. City-wise fuel prices, mileage data for 20+ popular cars, and cost comparison.",
     },
+    {
+        title: "Age Calculator",
+        slug: "age-calculator",
+        icon: "🎂",
+        tag: "Everyday Tools",
+        description: "Calculate exact age in years, months, days. Track India legal milestones — voting, driving, marriage, senior citizen, retirement. Compare ages and birthday countdown.",
+    },
+    {
+        title: "PPF Calculator",
+        slug: "ppf-calculator",
+        icon: "📊",
+        tag: "Savings & Tax",
+        description: "Calculate PPF maturity amount at 7.1% interest rate. Compare deposit timing strategies, plan 5-year extensions, and understand Section 80C tax benefits with EEE status.",
+    },
 ];
-
 export default function IndiaPage() {
     return (
         <main className="container" style={{ paddingTop: "var(--s-4)" }}>
