@@ -64,6 +64,13 @@ const IN_CALCULATORS = [
         tag: "Health & Wellness",
         description: "Calculate BMI with Asian-Indian cutoffs (Overweight ≥23, Obese ≥25). Dual WHO vs Indian categories, ideal weight range, and waist-to-height ratio for abdominal obesity check.",
     },
+    {
+        title: "SIP Calculator",
+        slug: "sip-calculator",
+        icon: "📈",
+        tag: "Investment & Wealth",
+        description: "Calculate mutual fund SIP returns with step-up comparison, lumpsum, goal planning & inflation-adjusted modes. Includes 2026 LTCG/STCG tax guide, SEBI categories, and ELSS vs PPF vs FD comparison.",
+    },
 ];
 export default function IndiaPage() {
     return (
