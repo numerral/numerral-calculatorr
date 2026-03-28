@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useCallback, useMemo } from "react";
 
 /* ── Indian number formatting (₹1,23,456) ── */
 function formatINR(n: number): string {
@@ -23,34 +23,42 @@ function formatINR(n: number): string {
     return (isNeg ? "-" : "") + "₹" + formatted + (decPart !== "00" ? "." + decPart : "");
 }
 
+function formatINRFull(n: number): string {
+    if (isNaN(n) || !isFinite(n)) return "₹0";
+    const abs = Math.abs(n);
+    if (abs >= 1_00_00_000) return formatINR(n / 1_00_00_000).replace("₹", "₹") + " Cr";
+    if (abs >= 1_00_000) return formatINR(n / 1_00_000).replace("₹", "₹") + " Lakh";
+    return formatINR(n);
+}
+
 function lakhLabel(n: number): string {
     if (n >= 1_00_00_000) return (n / 1_00_00_000).toFixed(2).replace(/\.?0+$/, "") + " Crore";
     if (n >= 1_00_000) return (n / 1_00_000).toFixed(2).replace(/\.?0+$/, "") + " Lakh";
     return n.toLocaleString("en-IN");
 }
 
-type CalcMode = "emi" | "eligibility" | "prepay" | "compare";
+type CalcMode = "emi" | "eligibility" | "prepay" | "afford";
 
 /* ── EMI formula ── */
-function calcEMI(P: number, annualRate: number, tenureMonths: number): number {
-    if (P <= 0 || annualRate <= 0 || tenureMonths <= 0) return 0;
+function calcEMI(P: number, annualRate: number, tenureYears: number): number {
+    if (P <= 0 || annualRate <= 0 || tenureYears <= 0) return 0;
     const R = annualRate / 12 / 100;
-    const N = tenureMonths;
+    const N = tenureYears * 12;
     return (P * R * Math.pow(1 + R, N)) / (Math.pow(1 + R, N) - 1);
 }
 
 /* ── Amortization schedule ── */
 interface AmortRow { year: number; principal: number; interest: number; balance: number; }
-function calcAmortization(P: number, annualRate: number, tenureMonths: number): AmortRow[] {
+function calcAmortization(P: number, annualRate: number, tenureYears: number): AmortRow[] {
     const R = annualRate / 12 / 100;
-    const emi = calcEMI(P, annualRate, tenureMonths);
+    const N = tenureYears * 12;
+    const emi = calcEMI(P, annualRate, tenureYears);
     if (emi <= 0) return [];
     let balance = P;
     const rows: AmortRow[] = [];
-    const totalYears = Math.ceil(tenureMonths / 12);
-    for (let yr = 1; yr <= totalYears; yr++) {
+    for (let yr = 1; yr <= tenureYears; yr++) {
         let yearPrincipal = 0, yearInterest = 0;
-        const months = Math.min(12, tenureMonths - (yr - 1) * 12);
+        const months = Math.min(12, N - (yr - 1) * 12);
         for (let m = 0; m < months; m++) {
             const intPart = balance * R;
             const prinPart = emi - intPart;
@@ -64,72 +72,72 @@ function calcAmortization(P: number, annualRate: number, tenureMonths: number): 
     return rows;
 }
 
-export default function PersonalLoanCalculatorCore() {
+export default function HomeLoanCalculatorCore() {
     const [mode, setMode] = useState<CalcMode>("emi");
 
     /* Mode 1: EMI Calculator */
-    const [loanAmt, setLoanAmt] = useState(5_00_000);
-    const [rate, setRate] = useState(10.99);
-    const [tenureYrs, setTenureYrs] = useState(3);
+    const [loanAmt, setLoanAmt] = useState(50_00_000);
+    const [rate, setRate] = useState(8.5);
+    const [tenure, setTenure] = useState(20);
     const [showAmort, setShowAmort] = useState(false);
 
     /* Mode 2: Eligibility */
-    const [monthlySalary, setMonthlySalary] = useState(50_000);
+    const [monthlyIncome, setMonthlyIncome] = useState(1_00_000);
     const [existingEMI, setExistingEMI] = useState(0);
-    const [eligRate, setEligRate] = useState(10.99);
-    const [eligTenure, setEligTenure] = useState(3);
+    const [eligRate, setEligRate] = useState(8.5);
+    const [eligTenure, setEligTenure] = useState(20);
 
     /* Mode 3: Prepayment */
-    const [prepayAmt, setPrepayAmt] = useState(5_00_000);
-    const [prepayRate, setPrepayRate] = useState(10.99);
-    const [prepayTenure, setPrepayTenure] = useState(3);
-    const [lumpSum, setLumpSum] = useState(1_00_000);
-    const [prepayMonth, setPrepayMonth] = useState(6);
+    const [prepayAmt, setPrepayAmt] = useState(50_00_000);
+    const [prepayRate, setPrepayRate] = useState(8.5);
+    const [prepayTenure, setPrepayTenure] = useState(20);
+    const [lumpSum, setLumpSum] = useState(5_00_000);
+    const [prepayYear, setPrepayYear] = useState(3);
 
-    /* Mode 4: Compare */
-    const [cmpAmt, setCmpAmt] = useState(5_00_000);
-    const [cmpRate1, setCmpRate1] = useState(10.50);
-    const [cmpTenure1, setCmpTenure1] = useState(3);
-    const [cmpRate2, setCmpRate2] = useState(14.00);
-    const [cmpTenure2, setCmpTenure2] = useState(5);
-
-    const tenureMonths = tenureYrs * 12;
+    /* Mode 4: Affordability */
+    const [monthlyBudget, setMonthlyBudget] = useState(40_000);
+    const [affordRate, setAffordRate] = useState(8.5);
+    const [affordTenure, setAffordTenure] = useState(20);
 
     /* ── EMI Results ── */
     const emiResult = useMemo(() => {
-        const emi = calcEMI(loanAmt, rate, tenureMonths);
-        const totalAmt = emi * tenureMonths;
+        const emi = calcEMI(loanAmt, rate, tenure);
+        const totalAmt = emi * tenure * 12;
         const totalInt = totalAmt - loanAmt;
+        const principalPct = (loanAmt / totalAmt) * 100;
         const interestPct = (totalInt / totalAmt) * 100;
-        return { emi, totalAmt, totalInt, interestPct };
-    }, [loanAmt, rate, tenureMonths]);
+        return { emi, totalAmt, totalInt, principalPct, interestPct };
+    }, [loanAmt, rate, tenure]);
 
     const amortRows = useMemo(() => {
         if (!showAmort) return [];
-        return calcAmortization(loanAmt, rate, tenureMonths);
-    }, [loanAmt, rate, tenureMonths, showAmort]);
+        return calcAmortization(loanAmt, rate, tenure);
+    }, [loanAmt, rate, tenure, showAmort]);
 
     /* ── Eligibility Results ── */
     const eligResult = useMemo(() => {
-        const maxEMI = (monthlySalary * 0.50) - existingEMI;
+        const maxEMI = (monthlyIncome * 0.5) - existingEMI; // 50% FOIR
         if (maxEMI <= 0) return null;
         const R = eligRate / 12 / 100;
         const N = eligTenure * 12;
         const maxLoan = maxEMI * (Math.pow(1 + R, N) - 1) / (R * Math.pow(1 + R, N));
-        return { maxEMI, maxLoan };
-    }, [monthlySalary, existingEMI, eligRate, eligTenure]);
+        const prop80 = maxLoan / 0.80; // 80% LTV
+        const prop75 = maxLoan / 0.75;
+        return { maxEMI, maxLoan, prop80, prop75 };
+    }, [monthlyIncome, existingEMI, eligRate, eligTenure]);
 
     /* ── Prepayment Results ── */
     const prepayResult = useMemo(() => {
-        const N = prepayTenure * 12;
-        const origEMI = calcEMI(prepayAmt, prepayRate, N);
-        const origTotal = origEMI * N;
+        const origEMI = calcEMI(prepayAmt, prepayRate, prepayTenure);
+        const origTotal = origEMI * prepayTenure * 12;
         const origInt = origTotal - prepayAmt;
 
+        // After prepayment at year X
         const R = prepayRate / 12 / 100;
         let balance = prepayAmt;
+        const monthsBeforePrepay = prepayYear * 12;
         let intPaidBefore = 0;
-        for (let m = 0; m < prepayMonth; m++) {
+        for (let m = 0; m < monthsBeforePrepay; m++) {
             const intPart = balance * R;
             intPaidBefore += intPart;
             balance -= (origEMI - intPart);
@@ -137,32 +145,34 @@ export default function PersonalLoanCalculatorCore() {
         balance -= lumpSum;
         if (balance < 0) balance = 0;
 
+        // New tenure with same EMI
         let newMonths = 0;
         let intPaidAfter = 0;
         let bal = balance;
-        while (bal > 1 && newMonths < 360) {
+        while (bal > 0 && newMonths < 360) {
             const intPart = bal * R;
             intPaidAfter += intPart;
             bal -= (origEMI - intPart);
             newMonths++;
         }
-        const newTotalMonths = prepayMonth + newMonths;
+        const newTotalMonths = monthsBeforePrepay + newMonths;
         const newTotalInt = intPaidBefore + intPaidAfter;
         const interestSaved = origInt - newTotalInt - lumpSum;
-        const tenureSaved = N - newTotalMonths;
+        const tenureSaved = (prepayTenure * 12) - newTotalMonths;
 
-        return { origEMI, origInt, newTotalMonths, newTotalInt, interestSaved: Math.max(0, interestSaved), tenureSaved: Math.max(0, tenureSaved) };
-    }, [prepayAmt, prepayRate, prepayTenure, lumpSum, prepayMonth]);
+        return { origEMI, origInt, origTotal, newTotalMonths, newTotalInt, interestSaved: Math.max(0, interestSaved), tenureSaved: Math.max(0, tenureSaved), balanceAtPrepay: balance + lumpSum };
+    }, [prepayAmt, prepayRate, prepayTenure, lumpSum, prepayYear]);
 
-    /* ── Compare Results ── */
-    const cmpResult = useMemo(() => {
-        const N1 = cmpTenure1 * 12, N2 = cmpTenure2 * 12;
-        const emi1 = calcEMI(cmpAmt, cmpRate1, N1);
-        const emi2 = calcEMI(cmpAmt, cmpRate2, N2);
-        const total1 = emi1 * N1, total2 = emi2 * N2;
-        const int1 = total1 - cmpAmt, int2 = total2 - cmpAmt;
-        return { emi1, emi2, total1, total2, int1, int2, diff: Math.abs(int1 - int2), cheaper: int1 < int2 ? "A" : "B" };
-    }, [cmpAmt, cmpRate1, cmpTenure1, cmpRate2, cmpTenure2]);
+    /* ── Affordability Results ── */
+    const affordResult = useMemo(() => {
+        const R = affordRate / 12 / 100;
+        const N = affordTenure * 12;
+        const maxLoan = monthlyBudget * (Math.pow(1 + R, N) - 1) / (R * Math.pow(1 + R, N));
+        return {
+            maxLoan, prop80: maxLoan / 0.80, prop85: maxLoan / 0.85, prop90: maxLoan / 0.90,
+            totalPay: monthlyBudget * N, totalInt: (monthlyBudget * N) - maxLoan,
+        };
+    }, [monthlyBudget, affordRate, affordTenure]);
 
     const tabStyle = (m: CalcMode) => mode === m
         ? { background: "#d4620a", color: "#fff", borderColor: "#d4620a" }
@@ -170,7 +180,7 @@ export default function PersonalLoanCalculatorCore() {
 
     return (
         <div className="con-calc" style={{ marginTop: "1.5rem", marginBottom: "1.5rem" }}>
-            <h3 className="con-calc__title">💳 Personal Loan EMI Calculator</h3>
+            <h3 className="con-calc__title">🏠 Home Loan EMI Calculator</h3>
 
             {/* Mode Tabs */}
             <div style={{ display: "flex", gap: "8px", marginBottom: "20px", flexWrap: "wrap" }}>
@@ -178,7 +188,7 @@ export default function PersonalLoanCalculatorCore() {
                     ["emi", "EMI Calculator"],
                     ["eligibility", "Loan Eligibility"],
                     ["prepay", "Prepayment Impact"],
-                    ["compare", "Compare Loans"],
+                    ["afford", "Affordability"],
                 ] as [CalcMode, string][]).map(([m, label]) => (
                     <button key={m} className="calc-tab-btn" onClick={() => setMode(m)} style={tabStyle(m)}>
                         {label}
@@ -192,22 +202,22 @@ export default function PersonalLoanCalculatorCore() {
                     <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "12px", marginBottom: "16px" }}>
                         <div className="con-input">
                             <label className="con-input__label">Loan Amount <span className="con-input__unit">(₹)</span></label>
-                            <input type="number" className="con-input__field" value={loanAmt} onChange={(e) => setLoanAmt(+e.target.value)} min={10000} step={10000} />
+                            <input type="number" className="con-input__field" value={loanAmt} onChange={(e) => setLoanAmt(+e.target.value)} min={100000} step={100000} />
                             <div style={{ fontSize: "0.75rem", color: "var(--text-muted)", marginTop: "4px" }}>{lakhLabel(loanAmt)}</div>
                         </div>
                         <div className="con-input">
                             <label className="con-input__label">Interest Rate <span className="con-input__unit">(% p.a.)</span></label>
-                            <input type="number" className="con-input__field" value={rate} onChange={(e) => setRate(+e.target.value)} min={5} max={36} step={0.01} />
+                            <input type="number" className="con-input__field" value={rate} onChange={(e) => setRate(+e.target.value)} min={1} max={20} step={0.1} />
                         </div>
                         <div className="con-input">
                             <label className="con-input__label">Loan Tenure <span className="con-input__unit">(Years)</span></label>
-                            <input type="number" className="con-input__field" value={tenureYrs} onChange={(e) => setTenureYrs(+e.target.value)} min={1} max={7} />
+                            <input type="number" className="con-input__field" value={tenure} onChange={(e) => setTenure(+e.target.value)} min={1} max={30} />
                         </div>
                     </div>
                     <div style={{ display: "flex", gap: "8px", marginBottom: "16px", flexWrap: "wrap" }}>
-                        {[1, 2, 3, 4, 5].map((y) => (
-                            <button key={y} className="calc-tab-btn" onClick={() => setTenureYrs(y)} style={tenureYrs === y ? { background: "#d4620a", color: "#fff", borderColor: "#d4620a", fontSize: "0.78rem" } : { fontSize: "0.78rem" }}>
-                                {y} Year{y > 1 ? "s" : ""}
+                        {[5, 10, 15, 20, 25, 30].map((y) => (
+                            <button key={y} className="calc-tab-btn" onClick={() => setTenure(y)} style={tenure === y ? { background: "#d4620a", color: "#fff", borderColor: "#d4620a", fontSize: "0.78rem" } : { fontSize: "0.78rem" }}>
+                                {y} Years
                             </button>
                         ))}
                     </div>
@@ -223,7 +233,7 @@ export default function PersonalLoanCalculatorCore() {
 
                             <div className="explanation__highlight" style={{ marginTop: "16px", fontSize: "0.85rem" }}>
                                 <strong>Formula:</strong> EMI = [P × R × (1+R)<sup>N</sup>] / [(1+R)<sup>N</sup> − 1]<br />
-                                P = {lakhLabel(loanAmt)}, R = {(rate / 12 / 100).toFixed(6)}, N = {tenureMonths} months → EMI = <strong>{formatINR(emiResult.emi)}</strong>
+                                = [{lakhLabel(loanAmt)} × {(rate / 12 / 100).toFixed(6)} × (1+{(rate / 12 / 100).toFixed(6)})<sup>{tenure * 12}</sup>] / [(1+{(rate / 12 / 100).toFixed(6)})<sup>{tenure * 12}</sup> − 1] = <strong>{formatINR(emiResult.emi)}</strong>
                             </div>
 
                             <div style={{ marginTop: "16px" }}>
@@ -265,9 +275,9 @@ export default function PersonalLoanCalculatorCore() {
                 <>
                     <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px", marginBottom: "16px" }}>
                         <div className="con-input">
-                            <label className="con-input__label">Monthly Net Salary <span className="con-input__unit">(₹)</span></label>
-                            <input type="number" className="con-input__field" value={monthlySalary} onChange={(e) => setMonthlySalary(+e.target.value)} min={10000} step={5000} />
-                            <div style={{ fontSize: "0.75rem", color: "var(--text-muted)", marginTop: "4px" }}>{lakhLabel(monthlySalary)}</div>
+                            <label className="con-input__label">Monthly Income <span className="con-input__unit">(₹)</span></label>
+                            <input type="number" className="con-input__field" value={monthlyIncome} onChange={(e) => setMonthlyIncome(+e.target.value)} min={10000} step={10000} />
+                            <div style={{ fontSize: "0.75rem", color: "var(--text-muted)", marginTop: "4px" }}>{lakhLabel(monthlyIncome)}</div>
                         </div>
                         <div className="con-input">
                             <label className="con-input__label">Existing Monthly EMIs <span className="con-input__unit">(₹)</span></label>
@@ -277,34 +287,23 @@ export default function PersonalLoanCalculatorCore() {
                     <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px", marginBottom: "16px" }}>
                         <div className="con-input">
                             <label className="con-input__label">Interest Rate <span className="con-input__unit">(% p.a.)</span></label>
-                            <input type="number" className="con-input__field" value={eligRate} onChange={(e) => setEligRate(+e.target.value)} min={5} max={36} step={0.01} />
+                            <input type="number" className="con-input__field" value={eligRate} onChange={(e) => setEligRate(+e.target.value)} min={1} max={20} step={0.1} />
                         </div>
                         <div className="con-input">
                             <label className="con-input__label">Loan Tenure <span className="con-input__unit">(Years)</span></label>
-                            <input type="number" className="con-input__field" value={eligTenure} onChange={(e) => setEligTenure(+e.target.value)} min={1} max={7} />
+                            <input type="number" className="con-input__field" value={eligTenure} onChange={(e) => setEligTenure(+e.target.value)} min={1} max={30} />
                         </div>
                     </div>
-
-                    <div style={{ display: "flex", gap: "8px", marginBottom: "16px", flexWrap: "wrap" }}>
-                        {[
-                            ["SBI ~11%", 11.0], ["HDFC ~10.5%", 10.5], ["ICICI ~10.75%", 10.75], ["Bajaj ~13%", 13.0], ["Axis ~10.49%", 10.49],
-                        ].map(([label, r]) => (
-                            <button key={label as string} className="calc-tab-btn" onClick={() => setEligRate(r as number)} style={eligRate === r ? { background: "#d4620a", color: "#fff", borderColor: "#d4620a", fontSize: "0.75rem" } : { fontSize: "0.75rem" }}>
-                                {label as string}
-                            </button>
-                        ))}
-                    </div>
-
                     {eligResult && (
                         <div className="con-calc__results">
                             <h4>Eligibility Results</h4>
-                            <div className="con-result-row"><span className="con-result-row__label">Max EMI Capacity (50% FOIR)</span><span className="con-result-row__value">{formatINR(eligResult.maxEMI)}</span></div>
+                            <div className="con-result-row"><span className="con-result-row__label">Max Affordable EMI (50% FOIR)</span><span className="con-result-row__value">{formatINR(eligResult.maxEMI)}</span></div>
                             <div className="con-result-row"><span className="con-result-row__label">Maximum Loan Amount</span><span className="con-result-row__value" style={{ color: "#d4620a", fontWeight: 800, fontSize: "1.15rem" }}>{formatINR(eligResult.maxLoan)}</span></div>
-                            <div className="con-result-row"><span className="con-result-row__label">EMI on Max Loan</span><span className="con-result-row__value">{formatINR(eligResult.maxEMI)}/month</span></div>
-                            <div className="con-result-row"><span className="con-result-row__label">Total Interest on Max Loan</span><span className="con-result-row__value">{formatINR(eligResult.maxEMI * eligTenure * 12 - eligResult.maxLoan)}</span></div>
+                            <div className="con-result-row"><span className="con-result-row__label">Property You Can Afford (80% LTV)</span><span className="con-result-row__value" style={{ fontWeight: 700 }}>{formatINR(eligResult.prop80)}</span></div>
+                            <div className="con-result-row"><span className="con-result-row__label">Property You Can Afford (75% LTV)</span><span className="con-result-row__value">{formatINR(eligResult.prop75)}</span></div>
 
                             <div className="explanation__highlight" style={{ marginTop: "16px", fontSize: "0.85rem" }}>
-                                <strong>FOIR Rule:</strong> Banks allow max 50% of net monthly income towards all EMIs. With {formatINR(monthlySalary)} salary and {formatINR(existingEMI)} existing EMIs, your capacity is <strong>{formatINR(eligResult.maxEMI)}/month</strong>, supporting a max loan of <strong>{formatINR(eligResult.maxLoan)}</strong> at {eligRate}% for {eligTenure} years.
+                                <strong>FOIR Rule:</strong> Banks typically allow max 50% of your gross monthly income towards all EMIs combined. With {formatINR(monthlyIncome)} income and {formatINR(existingEMI)} existing EMIs, your available EMI capacity is <strong>{formatINR(eligResult.maxEMI)}/month</strong>.
                             </div>
                         </div>
                     )}
@@ -317,27 +316,27 @@ export default function PersonalLoanCalculatorCore() {
                     <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "12px", marginBottom: "16px" }}>
                         <div className="con-input">
                             <label className="con-input__label">Loan Amount <span className="con-input__unit">(₹)</span></label>
-                            <input type="number" className="con-input__field" value={prepayAmt} onChange={(e) => setPrepayAmt(+e.target.value)} min={10000} step={10000} />
+                            <input type="number" className="con-input__field" value={prepayAmt} onChange={(e) => setPrepayAmt(+e.target.value)} min={100000} step={100000} />
                             <div style={{ fontSize: "0.75rem", color: "var(--text-muted)", marginTop: "4px" }}>{lakhLabel(prepayAmt)}</div>
                         </div>
                         <div className="con-input">
                             <label className="con-input__label">Interest Rate <span className="con-input__unit">(% p.a.)</span></label>
-                            <input type="number" className="con-input__field" value={prepayRate} onChange={(e) => setPrepayRate(+e.target.value)} min={5} max={36} step={0.01} />
+                            <input type="number" className="con-input__field" value={prepayRate} onChange={(e) => setPrepayRate(+e.target.value)} min={1} max={20} step={0.1} />
                         </div>
                         <div className="con-input">
                             <label className="con-input__label">Tenure <span className="con-input__unit">(Years)</span></label>
-                            <input type="number" className="con-input__field" value={prepayTenure} onChange={(e) => setPrepayTenure(+e.target.value)} min={1} max={7} />
+                            <input type="number" className="con-input__field" value={prepayTenure} onChange={(e) => setPrepayTenure(+e.target.value)} min={1} max={30} />
                         </div>
                     </div>
                     <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px", marginBottom: "16px" }}>
                         <div className="con-input">
                             <label className="con-input__label">Lump-Sum Prepayment <span className="con-input__unit">(₹)</span></label>
-                            <input type="number" className="con-input__field" value={lumpSum} onChange={(e) => setLumpSum(+e.target.value)} min={0} step={10000} />
+                            <input type="number" className="con-input__field" value={lumpSum} onChange={(e) => setLumpSum(+e.target.value)} min={0} step={50000} />
                             <div style={{ fontSize: "0.75rem", color: "var(--text-muted)", marginTop: "4px" }}>{lakhLabel(lumpSum)}</div>
                         </div>
                         <div className="con-input">
-                            <label className="con-input__label">Prepayment After <span className="con-input__unit">(Months)</span></label>
-                            <input type="number" className="con-input__field" value={prepayMonth} onChange={(e) => setPrepayMonth(+e.target.value)} min={1} max={prepayTenure * 12 - 1} />
+                            <label className="con-input__label">Prepayment After <span className="con-input__unit">(Years)</span></label>
+                            <input type="number" className="con-input__field" value={prepayYear} onChange={(e) => setPrepayYear(+e.target.value)} min={1} max={prepayTenure - 1} />
                         </div>
                     </div>
 
@@ -347,7 +346,7 @@ export default function PersonalLoanCalculatorCore() {
                         <div className="con-result-row"><span className="con-result-row__label">Original Total Interest</span><span className="con-result-row__value">{formatINR(prepayResult.origInt)}</span></div>
 
                         <div style={{ margin: "12px 0", borderTop: "1px dashed var(--border)", paddingTop: "12px" }}>
-                            <div style={{ fontSize: "0.8rem", textTransform: "uppercase", fontWeight: 700, marginBottom: "8px", letterSpacing: "0.5px", color: "var(--text-muted)" }}>After Prepaying {formatINR(lumpSum)} at Month {prepayMonth}</div>
+                            <div style={{ fontSize: "0.8rem", textTransform: "uppercase", fontWeight: 700, marginBottom: "8px", letterSpacing: "0.5px", color: "var(--text-muted)" }}>After Prepaying {formatINR(lumpSum)} in Year {prepayYear}</div>
                         </div>
 
                         <div className="con-result-row"><span className="con-result-row__label">New Total Interest</span><span className="con-result-row__value">{formatINR(prepayResult.newTotalInt)}</span></div>
@@ -356,67 +355,46 @@ export default function PersonalLoanCalculatorCore() {
                         <div className="con-result-row"><span className="con-result-row__label">Tenure Reduced By</span><span className="con-result-row__value" style={{ color: "#16a34a", fontWeight: 700 }}>{Math.floor(prepayResult.tenureSaved / 12)} yrs {prepayResult.tenureSaved % 12} mo</span></div>
 
                         <div className="explanation__highlight" style={{ marginTop: "16px", fontSize: "0.85rem" }}>
-                            <strong>RBI Rule (Jan 2026):</strong> Banks cannot charge prepayment/foreclosure penalty on <strong>floating-rate personal loans</strong> for individual borrowers. If your loan is floating rate, this prepayment costs you <strong>₹0 in penalty</strong>.
+                            <strong>Key Insight:</strong> A one-time prepayment of {formatINR(lumpSum)} in Year {prepayYear} saves you <strong>{formatINR(prepayResult.interestSaved)}</strong> in interest and shortens your loan by <strong>{Math.floor(prepayResult.tenureSaved / 12)} years {prepayResult.tenureSaved % 12} months</strong>. Earlier prepayments save more because the outstanding balance is higher.
                         </div>
                     </div>
                 </>
             )}
 
-            {/* ═══════ MODE: COMPARE ═══════ */}
-            {mode === "compare" && (
+            {/* ═══════ MODE: AFFORDABILITY ═══════ */}
+            {mode === "afford" && (
                 <>
-                    <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: "12px", marginBottom: "16px" }}>
+                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "12px", marginBottom: "16px" }}>
                         <div className="con-input">
-                            <label className="con-input__label">Loan Amount <span className="con-input__unit">(₹)</span></label>
-                            <input type="number" className="con-input__field" value={cmpAmt} onChange={(e) => setCmpAmt(+e.target.value)} min={10000} step={10000} />
-                            <div style={{ fontSize: "0.75rem", color: "var(--text-muted)", marginTop: "4px" }}>{lakhLabel(cmpAmt)}</div>
+                            <label className="con-input__label">Monthly Budget for EMI <span className="con-input__unit">(₹)</span></label>
+                            <input type="number" className="con-input__field" value={monthlyBudget} onChange={(e) => setMonthlyBudget(+e.target.value)} min={5000} step={5000} />
                         </div>
-                    </div>
-                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px", marginBottom: "16px" }}>
-                        <div style={{ padding: "16px", border: "2px solid #d4620a", borderRadius: "12px", background: "rgba(212,98,10,0.03)" }}>
-                            <div style={{ fontWeight: 700, marginBottom: "12px", color: "#d4620a", fontSize: "0.85rem", textTransform: "uppercase", letterSpacing: "0.5px" }}>Option A</div>
-                            <div className="con-input" style={{ marginBottom: "8px" }}>
-                                <label className="con-input__label">Interest Rate <span className="con-input__unit">(% p.a.)</span></label>
-                                <input type="number" className="con-input__field" value={cmpRate1} onChange={(e) => setCmpRate1(+e.target.value)} min={5} max={36} step={0.01} />
-                            </div>
-                            <div className="con-input">
-                                <label className="con-input__label">Tenure <span className="con-input__unit">(Years)</span></label>
-                                <input type="number" className="con-input__field" value={cmpTenure1} onChange={(e) => setCmpTenure1(+e.target.value)} min={1} max={7} />
-                            </div>
+                        <div className="con-input">
+                            <label className="con-input__label">Interest Rate <span className="con-input__unit">(% p.a.)</span></label>
+                            <input type="number" className="con-input__field" value={affordRate} onChange={(e) => setAffordRate(+e.target.value)} min={1} max={20} step={0.1} />
                         </div>
-                        <div style={{ padding: "16px", border: "2px solid var(--border)", borderRadius: "12px" }}>
-                            <div style={{ fontWeight: 700, marginBottom: "12px", color: "var(--text-muted)", fontSize: "0.85rem", textTransform: "uppercase", letterSpacing: "0.5px" }}>Option B</div>
-                            <div className="con-input" style={{ marginBottom: "8px" }}>
-                                <label className="con-input__label">Interest Rate <span className="con-input__unit">(% p.a.)</span></label>
-                                <input type="number" className="con-input__field" value={cmpRate2} onChange={(e) => setCmpRate2(+e.target.value)} min={5} max={36} step={0.01} />
-                            </div>
-                            <div className="con-input">
-                                <label className="con-input__label">Tenure <span className="con-input__unit">(Years)</span></label>
-                                <input type="number" className="con-input__field" value={cmpTenure2} onChange={(e) => setCmpTenure2(+e.target.value)} min={1} max={7} />
-                            </div>
+                        <div className="con-input">
+                            <label className="con-input__label">Loan Tenure <span className="con-input__unit">(Years)</span></label>
+                            <input type="number" className="con-input__field" value={affordTenure} onChange={(e) => setAffordTenure(+e.target.value)} min={1} max={30} />
                         </div>
                     </div>
 
                     <div className="con-calc__results">
-                        <h4>Loan Comparison</h4>
-                        <div style={{ overflowX: "auto" }}>
-                            <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.85rem", borderRadius: "8px", overflow: "hidden", border: "1px solid var(--border)" }}>
-                                <thead>
-                                    <tr style={{ background: "#d4620a", color: "#fff" }}>
-                                        <th style={{ padding: "10px 12px", textAlign: "left", fontWeight: 600, fontSize: "0.75rem", textTransform: "uppercase" }}>Parameter</th>
-                                        <th style={{ padding: "10px 12px", textAlign: "right", fontWeight: 600, fontSize: "0.75rem", textTransform: "uppercase" }}>Option A ({cmpRate1}%, {cmpTenure1}yr)</th>
-                                        <th style={{ padding: "10px 12px", textAlign: "right", fontWeight: 600, fontSize: "0.75rem", textTransform: "uppercase" }}>Option B ({cmpRate2}%, {cmpTenure2}yr)</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr><td style={{ padding: "8px 12px", borderBottom: "1px solid var(--border)", fontWeight: 600 }}>Monthly EMI</td><td style={{ padding: "8px 12px", textAlign: "right", borderBottom: "1px solid var(--border)" }}>{formatINR(cmpResult.emi1)}</td><td style={{ padding: "8px 12px", textAlign: "right", borderBottom: "1px solid var(--border)" }}>{formatINR(cmpResult.emi2)}</td></tr>
-                                    <tr style={{ background: "rgba(255,153,51,0.03)" }}><td style={{ padding: "8px 12px", borderBottom: "1px solid var(--border)", fontWeight: 600 }}>Total Interest</td><td style={{ padding: "8px 12px", textAlign: "right", borderBottom: "1px solid var(--border)" }}>{formatINR(cmpResult.int1)}</td><td style={{ padding: "8px 12px", textAlign: "right", borderBottom: "1px solid var(--border)" }}>{formatINR(cmpResult.int2)}</td></tr>
-                                    <tr><td style={{ padding: "8px 12px", borderBottom: "1px solid var(--border)", fontWeight: 600 }}>Total Amount</td><td style={{ padding: "8px 12px", textAlign: "right", borderBottom: "1px solid var(--border)", fontWeight: 700 }}>{formatINR(cmpResult.total1)}</td><td style={{ padding: "8px 12px", textAlign: "right", borderBottom: "1px solid var(--border)", fontWeight: 700 }}>{formatINR(cmpResult.total2)}</td></tr>
-                                </tbody>
-                            </table>
+                        <h4>What Can You Afford?</h4>
+                        <div className="con-result-row"><span className="con-result-row__label">Maximum Loan Amount</span><span className="con-result-row__value" style={{ color: "#d4620a", fontWeight: 800, fontSize: "1.2rem" }}>{formatINR(affordResult.maxLoan)}</span></div>
+                        <div className="con-result-row"><span className="con-result-row__label">Total You Will Pay</span><span className="con-result-row__value">{formatINR(affordResult.totalPay)}</span></div>
+                        <div className="con-result-row"><span className="con-result-row__label">Total Interest</span><span className="con-result-row__value">{formatINR(affordResult.totalInt)}</span></div>
+
+                        <div style={{ margin: "12px 0", borderTop: "1px dashed var(--border)", paddingTop: "12px" }}>
+                            <div style={{ fontSize: "0.8rem", textTransform: "uppercase", fontWeight: 700, marginBottom: "8px", letterSpacing: "0.5px", color: "var(--text-muted)" }}>Property Price You Can Afford</div>
                         </div>
+
+                        <div className="con-result-row"><span className="con-result-row__label">With 10% Down Payment</span><span className="con-result-row__value" style={{ fontWeight: 700 }}>{formatINR(affordResult.prop90)}</span></div>
+                        <div className="con-result-row"><span className="con-result-row__label">With 15% Down Payment</span><span className="con-result-row__value" style={{ fontWeight: 700 }}>{formatINR(affordResult.prop85)}</span></div>
+                        <div className="con-result-row"><span className="con-result-row__label">With 20% Down Payment</span><span className="con-result-row__value" style={{ fontWeight: 700 }}>{formatINR(affordResult.prop80)}</span></div>
+
                         <div className="explanation__highlight" style={{ marginTop: "16px", fontSize: "0.85rem" }}>
-                            <strong>Verdict:</strong> Option <strong>{cmpResult.cheaper}</strong> saves <strong>{formatINR(cmpResult.diff)}</strong> in total interest compared to Option {cmpResult.cheaper === "A" ? "B" : "A"}. {cmpResult.cheaper === "A" ? `The lower rate of ${cmpRate1}% and shorter tenure of ${cmpTenure1} years makes Option A significantly cheaper despite a higher EMI.` : `Option B's terms result in lower total cost despite the rate/tenure difference.`}
+                            <strong>How it works:</strong> If you can comfortably pay {formatINR(monthlyBudget)}/month as EMI at {affordRate}% for {affordTenure} years, you can borrow up to <strong>{formatINR(affordResult.maxLoan)}</strong>. With a 20% down payment, the property you can target is worth <strong>{formatINR(affordResult.prop80)}</strong>.
                         </div>
                     </div>
                 </>
