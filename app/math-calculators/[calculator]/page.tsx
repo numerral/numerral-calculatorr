@@ -254,6 +254,279 @@ const HUB_CONTENT: Record<string, {
         ],
     },
 
+    /* ─── 1b-ii. PERCENTAGE INCREASE CALCULATOR — RICH CONTENT (Competitor-beating) ─── */
+    "percentage-increase-calculator": {
+        subtitle: "Calculate the percentage increase between two values. Enter the starting value and new value to see the percent increase, the formula, step-by-step solution, and the absolute difference — instantly.",
+        contentHTML: `
+            <h2 id="how-to-calculate-percentage-increase">How to Calculate Percentage Increase</h2>
+            <p>A <strong>percentage increase</strong> measures how much a value has risen relative to its original amount, expressed as a percent. It answers the question: <em>"By what percent did this value go up?"</em> Whether you're tracking a salary raise, a price hike, stock market gains, or population growth, the percentage increase tells you the <strong>relative magnitude</strong> of the change — which is often more meaningful than the raw number alone.</p>
+            <p>To calculate the percentage increase between a starting value and a new (larger) value, follow these four steps:</p>
+            <ol>
+                <li><strong>Find the difference:</strong> Subtract the starting value from the final value. This gives you the <em>absolute increase</em>.</li>
+                <li><strong>Divide by the starting value:</strong> Divide the difference by the <strong>absolute value</strong> of the starting number. This gives a decimal representing the relative rise.</li>
+                <li><strong>Multiply by 100:</strong> Convert the decimal to a percentage by multiplying by 100.</li>
+                <li><strong>Interpret the result:</strong> The resulting number is the percentage increase. A positive number confirms an increase; a negative number would indicate the value actually <em>decreased</em>.</li>
+            </ol>
+            <p>Our calculator above performs all four steps automatically. Just enter any two values — the starting and the final — and the percentage increase, absolute difference, and step-by-step formula are displayed instantly.</p>
+
+            <h2 id="percentage-increase-formula">Percentage Increase Formula</h2>
+            <p>The <strong>percent increase formula</strong> is:</p>
+            <div class="explanation__highlight">
+                <strong>Percentage Increase = ((Final Value − Starting Value) / |Starting Value|) × 100</strong>
+            </div>
+            <p>Where:</p>
+            <ul>
+                <li><strong>Final Value</strong> — the ending amount (after the increase)</li>
+                <li><strong>Starting Value</strong> — the original amount (before the increase)</li>
+                <li><strong>|Starting Value|</strong> — the absolute value of the starting number, used as the reference point for the relative calculation</li>
+            </ul>
+            <p>The formula divides by the <em>starting</em> value because we want to express the rise as a proportion of where we began. This is the same formula used in our <a href="/math-calculators/percentage-calculator">Percentage Calculator</a> when set to "percentage change" mode, but focused specifically on increases.</p>
+            <p><strong>Why absolute value?</strong> If the starting value is negative (for example, a temperature rising from −10°C to −4°C), the absolute value ensures the denominator is positive and the formula returns a meaningful result. Without it, negative starting values would flip the sign of the result.</p>
+
+            <h2 id="step-by-step-example">Step-by-Step Example</h2>
+            <p>Let's walk through a real example: last year your favorite jeans cost <strong>$36</strong> per pair. This year they cost <strong>$45</strong> per pair. What is the percentage increase?</p>
+            <ol>
+                <li><strong>Find the difference:</strong> $45 − $36 = <strong>$9</strong></li>
+                <li><strong>Divide by the starting value:</strong> $9 / $36 = <strong>0.25</strong></li>
+                <li><strong>Multiply by 100:</strong> 0.25 × 100 = <strong>25%</strong></li>
+                <li><strong>Result:</strong> The price increased by <strong>25%</strong>.</li>
+            </ol>
+            <p>You can verify this by using our calculator above: enter 36 as the starting value and 45 as the final value.</p>
+
+            <h3 id="salary-raise-example">Worked Example — Salary Raise</h3>
+            <p>Suppose your annual salary was <strong>$68,000</strong> and you received a raise to <strong>$73,440</strong>. To find the percentage increase:</p>
+            <ol>
+                <li>Difference: $73,440 − $68,000 = <strong>$5,440</strong></li>
+                <li>Divide: $5,440 / $68,000 = <strong>0.08</strong></li>
+                <li>Multiply: 0.08 × 100 = <strong>8%</strong></li>
+                <li>You received an <strong>8% raise</strong>.</li>
+            </ol>
+
+            <h3 id="investment-example">Worked Example — Investment Return</h3>
+            <p>You invested <strong>$10,000</strong> in an S&P 500 index fund. After one year, the portfolio is worth <strong>$12,650</strong>. What is the percentage increase?</p>
+            <ol>
+                <li>Difference: $12,650 − $10,000 = <strong>$2,650</strong></li>
+                <li>Divide: $2,650 / $10,000 = <strong>0.265</strong></li>
+                <li>Multiply: 0.265 × 100 = <strong>26.5%</strong></li>
+                <li>Your investment grew by <strong>26.5%</strong> in one year.</li>
+            </ol>
+
+            <h2 id="common-percentage-increase-table">Common Percentage Increase Reference Table</h2>
+            <p>Here is a quick-reference table showing the percentage increase for common value rises. Use this to quickly verify your calculations or get a sense of popular increase scenarios.</p>
+            <table>
+                <thead>
+                    <tr><th>Starting Value</th><th>Final Value</th><th>Increase</th><th>% Increase</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>50</td><td>75</td><td>25</td><td><strong>50%</strong></td></tr>
+                    <tr><td>80</td><td>100</td><td>20</td><td><strong>25%</strong></td></tr>
+                    <tr><td>100</td><td>110</td><td>10</td><td><strong>10%</strong></td></tr>
+                    <tr><td>100</td><td>125</td><td>25</td><td><strong>25%</strong></td></tr>
+                    <tr><td>100</td><td>150</td><td>50</td><td><strong>50%</strong></td></tr>
+                    <tr><td>100</td><td>200</td><td>100</td><td><strong>100%</strong></td></tr>
+                    <tr><td>200</td><td>250</td><td>50</td><td><strong>25%</strong></td></tr>
+                    <tr><td>500</td><td>625</td><td>125</td><td><strong>25%</strong></td></tr>
+                    <tr><td>1,000</td><td>1,150</td><td>150</td><td><strong>15%</strong></td></tr>
+                    <tr><td>5,000</td><td>7,500</td><td>2,500</td><td><strong>50%</strong></td></tr>
+                    <tr><td>10,000</td><td>12,500</td><td>2,500</td><td><strong>25%</strong></td></tr>
+                    <tr><td>50,000</td><td>55,000</td><td>5,000</td><td><strong>10%</strong></td></tr>
+                </tbody>
+            </table>
+
+            <h2 id="percentage-increase-vs-decrease">Percentage Increase vs. Percentage Decrease</h2>
+            <p>Percentage increase and <a href="/math-calculators/percentage-decrease-calculator">percentage decrease</a> are mirror concepts. Both use the same core formula, but they describe opposite directions of change:</p>
+            <table>
+                <thead>
+                    <tr><th>Feature</th><th>Percentage Increase</th><th>Percentage Decrease</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>Direction</strong></td><td>Value goes up</td><td>Value goes down</td></tr>
+                    <tr><td><strong>Formula</strong></td><td>((Final − Start) / |Start|) × 100</td><td>((Start − Final) / |Start|) × 100</td></tr>
+                    <tr><td><strong>Result sign</strong></td><td>Positive when Final > Start</td><td>Positive when Start > Final</td></tr>
+                    <tr><td><strong>Can exceed 100%?</strong></td><td>Yes — a value can more than double</td><td>No (100% decrease = value reaches zero)</td></tr>
+                    <tr><td><strong>Symmetry</strong></td><td colspan="2">A 50% increase followed by a 50% decrease does <strong>NOT</strong> return you to the original value</td></tr>
+                </tbody>
+            </table>
+            <div class="explanation__highlight">
+                <strong>Important asymmetry:</strong> If a $100 stock increases 50% to $150, and then decreases 50%, it drops to $75 — <strong>not</strong> back to $100. This is because the decrease is calculated from the new (higher) base. This is called the <strong>"percentage trap"</strong> and is one of the most common misconceptions in finance and statistics.
+            </div>
+
+            <h2 id="percentage-increase-vs-difference">Percentage Increase vs. Percentage Difference</h2>
+            <p>These two concepts are often confused, but they measure different things:</p>
+            <ul>
+                <li><strong>Percentage increase</strong> always uses the <em>starting</em> (original) value as the denominator. It has a clear direction: from old to new.</li>
+                <li><strong>Percentage difference</strong> uses the <em>average</em> of the two values as the denominator. It is directionless — it measures how far apart two values are relative to their midpoint.</li>
+            </ul>
+            <p><strong>Example:</strong> For values 80 and 100:</p>
+            <ul>
+                <li>Percentage increase (from 80 to 100): (100 − 80) / 80 × 100 = <strong>25%</strong></li>
+                <li>Percentage difference: |100 − 80| / ((100 + 80) / 2) × 100 = 20 / 90 × 100 = <strong>22.22%</strong></li>
+            </ul>
+            <p>Use <strong>percentage increase</strong> when you know which value came first (the "before" value). Use our <a href="/math-calculators/percentage-calculator">Percentage Calculator</a> for percentage difference, percentage change, or percentage decrease calculations.</p>
+
+            <h2 id="real-world-applications">Real-World Applications of Percentage Increase</h2>
+            <p>Percentage increase is used across virtually every domain. Here are common real-life applications that are particularly relevant in the United States:</p>
+
+            <h3 id="salary-raises">Salary Raises & Cost-of-Living Adjustments</h3>
+            <p>Employers express raises as a percentage increase. The Bureau of Labor Statistics reported that wages and salaries increased <strong>3.5%</strong> on average for civilian workers in 2024. Knowing how to calculate percentage increase lets you verify whether your raise matches or exceeds the national average, and whether it outpaces <a href="/math-calculators/percentage-calculator">inflation</a>.</p>
+            <p>Social Security benefits receive an annual Cost-of-Living Adjustment (COLA) expressed as a percentage increase. The 2025 COLA was <strong>2.5%</strong>, meaning a beneficiary receiving $1,900/month would receive $1,900 × 1.025 = <strong>$1,947.50</strong> per month.</p>
+
+            <h3 id="investing-stock-market">Investing & Stock Market Returns</h3>
+            <p>Investment returns are always reported as percentage increases. The S&P 500 returned approximately <strong>23%</strong> in 2024 — meaning a $10,000 investment at the start of the year would be worth about $12,300 by year-end. Investors compare percentage returns across different assets (stocks, bonds, real estate, crypto) to evaluate performance.</p>
+            <p>Compound growth applies percentage increase repeatedly. Use our <a href="/utility-calculators/compound-interest-calculator">Compound Interest Calculator</a> to see how repeated percentage increases compound over time.</p>
+
+            <h3 id="inflation-prices">Inflation & Consumer Prices</h3>
+            <p>The Consumer Price Index (CPI) measures the percentage increase in the cost of a basket of goods and services. When the CPI rises 3% year-over-year, that means consumer prices have increased by an average of 3%. The Federal Reserve targets approximately <strong>2% annual inflation</strong> — a slow, steady percentage increase in the price level.</p>
+
+            <h3 id="population-growth">Population Growth</h3>
+            <p>The U.S. Census Bureau reports population changes as a percentage increase. For example, Texas grew by approximately <strong>1.6%</strong> in 2024 (about 473,000 new residents), making it the fastest-growing large state. Population percentage increase is used by urban planners to project infrastructure needs, school capacity, and housing demand.</p>
+
+            <h3 id="business-revenue">Business Revenue & Profit Growth</h3>
+            <p>Companies report quarterly and annual earnings using percentage increases. When Apple reports "15% year-over-year revenue growth," they mean revenue increased by 15% compared to the same quarter last year. Investors, analysts, and the financial press rely heavily on percentage increase to evaluate business performance. Use our <a href="/business-calculators/profit-margin-calculator">Profit Margin Calculator</a> alongside this tool for complete business analysis.</p>
+
+            <h3 id="grades-test-scores">Grades & Test Score Improvements</h3>
+            <p>Students and educators track academic progress using percentage increase. If a student scored 72 on the midterm and 90 on the final, that's a (90 − 72) / 72 × 100 = <strong>25% improvement</strong>. This is more meaningful than saying the score went up "18 points" because it contextualizes the gain relative to the starting point.</p>
+
+            <h2 id="how-to-reverse">How to Reverse a Percentage Increase — Finding the Original Value</h2>
+            <p>Sometimes you know the percentage increase and the new value, and you need to find the original (starting) value. The reverse formula is:</p>
+            <div class="explanation__highlight">
+                <strong>Original Value = Final Value / (1 + Percentage Increase / 100)</strong>
+            </div>
+            <p><strong>Example:</strong> A product now costs $150 after a 25% increase. What was the original price?</p>
+            <p>Original = $150 / (1 + 0.25) = $150 / 1.25 = <strong>$120</strong>.</p>
+            <p><strong>Another example:</strong> Your salary is now $81,000 after a 8% raise. What was the previous salary?</p>
+            <p>Original = $81,000 / 1.08 = <strong>$75,000</strong>.</p>
+
+            <h2 id="applying-percentage-increase">How to Apply a Percentage Increase to a Number</h2>
+            <p>To increase a number by a given percentage, use this formula:</p>
+            <div class="explanation__highlight">
+                <strong>New Value = Original Value × (1 + Percentage / 100)</strong>
+            </div>
+            <p><strong>Example:</strong> Increase $500 by 15%:</p>
+            <p>$500 × (1 + 0.15) = $500 × 1.15 = <strong>$575</strong>.</p>
+            <p><strong>Shortcut multipliers for common increases:</strong></p>
+            <table>
+                <thead>
+                    <tr><th>% Increase</th><th>Multiplier</th><th>Example: $200 ×</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>5%</td><td>× 1.05</td><td>$210</td></tr>
+                    <tr><td>10%</td><td>× 1.10</td><td>$220</td></tr>
+                    <tr><td>15%</td><td>× 1.15</td><td>$230</td></tr>
+                    <tr><td>20%</td><td>× 1.20</td><td>$240</td></tr>
+                    <tr><td>25%</td><td>× 1.25</td><td>$250</td></tr>
+                    <tr><td>50%</td><td>× 1.50</td><td>$300</td></tr>
+                    <tr><td>75%</td><td>× 1.75</td><td>$350</td></tr>
+                    <tr><td>100%</td><td>× 2.00</td><td>$400</td></tr>
+                    <tr><td>200%</td><td>× 3.00</td><td>$600</td></tr>
+                </tbody>
+            </table>
+
+            <h2 id="common-mistakes">Common Mistakes When Calculating Percentage Increase</h2>
+            <p>Even simple math can trip you up. Watch out for these common errors:</p>
+            <ol>
+                <li><strong>Dividing by the wrong value:</strong> Always divide by the <em>starting</em> (original) value, not the final value. Dividing by the final value gives you a different (and incorrect) percentage.</li>
+                <li><strong>Confusing increase with difference:</strong> Percentage increase is directional (old → new). Percentage difference is symmetric. See the <a href="#percentage-increase-vs-difference">comparison above</a>.</li>
+                <li><strong>Assuming symmetry:</strong> A 25% increase followed by a 25% decrease does NOT return to the original value. From 100: 100 → 125 (+25%) → 93.75 (−25%). You end up <em>lower</em> than you started.</li>
+                <li><strong>Confusing "increased by" with "increased to":</strong> A <a href="/math-calculators/percentage-calculator">20% increase</a> of 100 gives you 120 (increased <em>to</em> 120). The <em>increase amount</em> is 20, but the new value is 120.</li>
+                <li><strong>Forgetting absolute value:</strong> If the starting value is negative (like a temperature rising from −10 to −4), use the absolute value of the starting number in the denominator.</li>
+                <li><strong>Reversing the values:</strong> If the final value is <em>smaller</em> than the starting value, the result is a percentage <em>decrease</em>, not an increase. Make sure you're entering them in the right order.</li>
+                <li><strong>Confusing percentage points with percent:</strong> If inflation goes from 2% to 3%, that's a 1 <em>percentage point</em> increase — but a 50% <em>increase</em> in the rate itself. These are different metrics.</li>
+            </ol>
+
+            <h2 id="percentage-increase-excel-sheets">How to Calculate Percentage Increase in Excel & Google Sheets</h2>
+            <p>Calculating percentage increase in spreadsheets is a common task in workplaces across the United States. Here's how to do it:</p>
+            <h3>Excel / Google Sheets Formula</h3>
+            <p>If the starting value is in cell <strong>A1</strong> and the final value is in cell <strong>B1</strong>, the formula is:</p>
+            <div class="explanation__highlight">
+                <strong>=(B1-A1)/ABS(A1)*100</strong>
+            </div>
+            <p>Or, to display as a properly formatted percentage:</p>
+            <div class="explanation__highlight">
+                <strong>=(B1-A1)/ABS(A1)</strong><br/>
+                Then format the cell as Percentage (Ctrl+Shift+5).
+            </div>
+            <p><strong>Tips:</strong></p>
+            <ul>
+                <li>Use <strong>ABS(A1)</strong> to handle cases where the starting value might be negative.</li>
+                <li>Wrap in <strong>IFERROR()</strong> to handle division by zero: <code>=IFERROR((B1-A1)/ABS(A1)*100, "N/A")</code></li>
+                <li>For an entire column of data, drag the formula down to calculate percentage increase for each row.</li>
+                <li>For <strong>Year-over-Year</strong> growth in a data series, reference the previous row: <code>=(B2-B1)/ABS(B1)*100</code></li>
+            </ul>
+
+            <h2 id="percentage-increase-over-100">Can Percentage Increase Be More Than 100%?</h2>
+            <p><strong>Yes!</strong> Unlike percentage decrease (which maxes out at 100% when a value drops to zero), percentage increase has no upper limit. A value can increase by 100% (doubling), 200% (tripling), 1,000% (increasing 11×), or more.</p>
+            <table>
+                <thead>
+                    <tr><th>Starting Value</th><th>Final Value</th><th>% Increase</th><th>Interpretation</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>100</td><td>200</td><td><strong>100%</strong></td><td>Value doubled</td></tr>
+                    <tr><td>100</td><td>300</td><td><strong>200%</strong></td><td>Value tripled</td></tr>
+                    <tr><td>100</td><td>500</td><td><strong>400%</strong></td><td>Value quintupled</td></tr>
+                    <tr><td>100</td><td>1,000</td><td><strong>900%</strong></td><td>Value is 10× the original</td></tr>
+                    <tr><td>100</td><td>1,100</td><td><strong>1,000%</strong></td><td>Value is 11× the original</td></tr>
+                </tbody>
+            </table>
+            <p>This is important in contexts like investment returns, cryptocurrency price changes, and viral growth metrics where values can increase many times over.</p>
+
+            <h2 id="compound-percentage-increase">Compound Percentage Increase</h2>
+            <p>When a value increases by the same percentage repeatedly over multiple periods, the growth is <strong>compounded</strong> — meaning each period's increase is applied to the <em>new</em> (larger) base, not the original. This is how interest, population growth, and investment returns actually work.</p>
+            <div class="explanation__highlight">
+                <strong>Compound Growth: Final = Starting × (1 + Rate/100)<sup>n</sup></strong>
+            </div>
+            <p>Where <strong>n</strong> is the number of periods.</p>
+            <p><strong>Example:</strong> $1,000 growing at 8% per year for 10 years:</p>
+            <p>$1,000 × (1.08)<sup>10</sup> = $1,000 × 2.1589 = <strong>$2,158.92</strong></p>
+            <p>The total percentage increase is 115.89% — much more than 8% × 10 = 80% would suggest. That extra 35.89% is the effect of compounding. Use our <a href="/utility-calculators/compound-interest-calculator">Compound Interest Calculator</a> to see this effect in action.</p>
+
+            <h2 id="related-concepts">Related Percentage Concepts</h2>
+            <p>Percentage increase is one of several related percentage calculations. Understanding the differences helps you choose the right formula:</p>
+            <ul>
+                <li><strong><a href="/math-calculators/percentage-calculator">Percentage Calculator</a>:</strong> The comprehensive tool for all percentage operations — X% of Y, percentage change, increase, decrease, and "what % is A of B."</li>
+                <li><strong><a href="/math-calculators/percentage-decrease-calculator">Percentage Decrease Calculator</a>:</strong> The mirror tool — calculates how much a value has fallen as a percentage of the original. Uses the same formula with subtraction reversed.</li>
+                <li><strong><a href="/math-calculators/percent-error-calculator">Percent Error Calculator</a>:</strong> Measures how far an experimental value deviates from a theoretical value. Used in science and engineering.</li>
+                <li><strong><a href="/math-calculators/fraction-to-percent-calculator">Fraction to Percent Calculator</a>:</strong> Convert fractions like 1/4 to 25%. Useful when your increase is expressed as a fraction (e.g., "revenues grew by a quarter" = 25% increase).</li>
+                <li><strong><a href="/utility-calculators/compound-interest-calculator">Compound Interest Calculator</a>:</strong> Apply repeated percentage increases over time to see how investments, savings, or debts grow.</li>
+            </ul>
+        `,
+        formula: {
+            formula: "Percentage Increase = ((Final Value − Starting Value) / |Starting Value|) × 100",
+            variables: [
+                { symbol: "Final Value", meaning: "The ending value (after the increase)" },
+                { symbol: "Starting Value", meaning: "The original value (before the increase)" },
+                { symbol: "|Starting Value|", meaning: "Absolute value of the starting number — ensures a correct result even if the starting value is negative" },
+                { symbol: "× 100", meaning: "Converts the decimal to a percentage" },
+            ],
+            example: [
+                { label: "Price rise: $36 → $45", substitution: "((45 − 36) / 36) × 100 = (9/36) × 100", result: "25% increase" },
+                { label: "Salary raise: $68,000 → $73,440", substitution: "((73440 − 68000) / 68000) × 100", result: "8% increase" },
+                { label: "Investment: $10,000 → $12,650", substitution: "((12650 − 10000) / 10000) × 100", result: "26.5% increase" },
+            ],
+        },
+        faq: [
+            { question: "What is the percentage increase from 36 to 45?", answer: "The percentage increase from 36 to 45 is 25%. The calculation: (45 − 36) / 36 × 100 = 9 / 36 × 100 = 25%." },
+            { question: "What is the percentage increase from 80 to 100?", answer: "The percentage increase is 25%. Calculation: (100 − 80) / 80 × 100 = 20/80 × 100 = 25%." },
+            { question: "How do I calculate a 20% increase?", answer: "Multiply the original value by 1.20. Example: 20% increase of 500 = 500 × 1.20 = 600. Alternatively, find 20% of the value (500 × 0.20 = 100) and add it to the original (500 + 100 = 600)." },
+            { question: "What is the formula for percentage increase?", answer: "Percentage Increase = ((Final Value − Starting Value) / |Starting Value|) × 100. The result tells you what percent the value rose relative to the starting amount." },
+            { question: "Can percentage increase be negative?", answer: "If the final value is smaller than the starting value, the formula gives a negative result — meaning the value actually decreased, not increased. In that case, use our Percentage Decrease Calculator for a more appropriate label." },
+            { question: "Can percentage increase be more than 100%?", answer: "Yes! A 100% increase means the value doubled. A 200% increase means it tripled. There is no upper limit for percentage increase, unlike percentage decrease which maxes out at 100% (when a value drops to zero)." },
+            { question: "What is the difference between percentage increase and percentage change?", answer: "Percentage change is the general concept covering both increases and decreases. Percentage increase is specifically when the change is upward (final value > starting value). They use the same formula." },
+            { question: "Is a 50% increase followed by a 50% decrease equal to zero change?", answer: "No. This is a common misconception. Starting at 100: a 50% increase gives 150. Then a 50% decrease of 150 gives 75. You end up 25% lower than you started. This asymmetry occurs because the decrease is applied to the new, higher base." },
+            { question: "How do I calculate percentage increase in Excel?", answer: "Use the formula =(B1-A1)/ABS(A1)*100, where A1 is the starting value and B1 is the final value. Format the cell as Number with decimal places, or use =(B1-A1)/ABS(A1) and format as Percentage." },
+            { question: "What is the percentage increase from 100 to 200?", answer: "The percentage increase from 100 to 200 is 100%. Calculation: (200 − 100) / 100 × 100 = 100%. A 100% increase means the value exactly doubled." },
+            { question: "How do I find the original value before a percentage increase?", answer: "Use the reverse formula: Original Value = Final Value / (1 + Percentage/100). For example, if a product costs $150 after a 25% increase: Original = $150 / 1.25 = $120." },
+            { question: "What is the difference between 'percentage points' and 'percent'?", answer: "If inflation rises from 2% to 3%, that's a 1 percentage point increase but a 50% increase in the rate itself. 'Percentage points' measure the arithmetic difference between two percentages; 'percent increase' measures the relative change." },
+        ],
+        relatedCalculators: [
+            { title: "Percentage Calculator", slug: "percentage-calculator", categorySlug: "math-calculators", description: "All percentage operations — change, increase, decrease, X% of Y" },
+            { title: "Percentage Decrease", slug: "percentage-decrease-calculator", categorySlug: "math-calculators", description: "Calculate how much a value has dropped" },
+            { title: "Percent Error", slug: "percent-error-calculator", categorySlug: "math-calculators", description: "Measure experimental accuracy" },
+            { title: "Fraction to Percent", slug: "fraction-to-percent-calculator", categorySlug: "math-calculators", description: "Convert fractions to percentages" },
+            { title: "Compound Interest", slug: "compound-interest-calculator", categorySlug: "utility-calculators", description: "Apply repeated percentage growth over time" },
+        ],
+    },
+
     /* ─── 1c. NUMBERS TO WORDS CONVERTER — RICH CONTENT (Competitor-beating) ─── */
     "numbers-to-words-converter": {
         subtitle: "Convert any number to English words instantly. Supports integers, decimals, negative numbers, USD currency for check writing, and ordinal numbers (1st, 2nd, 3rd). Choose lowercase, UPPERCASE, Title Case, or Sentence case.",

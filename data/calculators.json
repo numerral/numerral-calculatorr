@@ -17851,6 +17851,49 @@
     }
   },
   {
+    "id": "percentage-increase-calculator",
+    "category": "math",
+    "title": "Percentage Increase Calculator",
+    "slug": "percentage-increase-calculator",
+    "categorySlug": "math-calculators",
+    "icon": "📈",
+    "description": "Calculate the percentage increase between two values instantly. See the percent increase formula, step-by-step solution, absolute difference, and visual breakdown.",
+    "stars": 5,
+    "calcType": "percentage",
+    "defaults": {
+      "amount": 20,
+      "rate": 100,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 0,
+        "max": 100,
+        "step": 0.01
+      },
+      "rate": {
+        "min": 0,
+        "max": 1000000,
+        "step": 1
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "percentage increase calculator, percent increase formula, how to calculate percentage increase, percentage rise calculator, percentage growth calculator, calculate percent increase between two numbers, percent increase from one number to another",
+    "links": {
+      "related": [
+        "percentage-decrease-calculator",
+        "math-percentage-calculator",
+        "fraction-to-percent-calculator",
+        "average-calculator"
+      ],
+      "glossary": "percentage-term"
+    }
+  },
+  {
     "id": "numbers-to-words-converter",
     "category": "math",
     "title": "Numbers to Words Converter",
