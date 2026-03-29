@@ -127,6 +127,20 @@ const IN_CALCULATORS = [
         tag: "Retirement Income",
         description: "Systematic Withdrawal Plan Calculator with 4 modes: Withdrawal Planner (month-by-month depletion, inflation toggle), SWP vs FD Income comparison, Corpus Required reverse calculator, and Safe Withdrawal Rate Finder (India-adapted 2.5-3.5% SWR).",
     },
+    {
+        title: "XIRR Calculator",
+        slug: "xirr-calculator",
+        icon: "📊",
+        tag: "Investment Analytics",
+        description: "XIRR Calculator with 4 modes: True XIRR (custom date + amount rows, Newton-Raphson solver), SIP XIRR Quick (vs CAGR), XIRR vs CAGR vs Absolute Return comparison, and What-If Analyser (target XIRR reverse solver).",
+    },
+    {
+        title: "FIDE Rating Calculator",
+        slug: "fide-rating-calculator",
+        icon: "♟️",
+        tag: "Chess",
+        description: "FIDE Elo Rating Calculator with 4 modes: Elo Calculator (multi-game tournament, K-factor 10/20/40, round-by-round breakdown), Performance Rating (TPR), Title Progress Tracker (GM/IM/FM/CM), and Win Probability (expected score table).",
+    },
 ];
 export default function IndiaPage() {
     return (
