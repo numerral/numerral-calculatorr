@@ -92,6 +92,13 @@ const IN_CALCULATORS = [
         tag: "Retirement & Pension",
         description: "Plan your retirement with 4 modes: Retirement Corpus Planner, NPS Calculator (80CCD tax benefits), EPS/EPFO Pension (formula with early/deferred), and Annuity Income Estimator. NPS vs EPF vs PPF, OPS vs NPS, and healthcare cost planning.",
     },
+    {
+        title: "Income Tax Calculator",
+        slug: "income-tax-calculator",
+        icon: "🧾",
+        tag: "Tax & Filing",
+        description: "Calculate income tax for FY 2025-26 with 3 modes: New Regime (Budget 2025, ₹12L tax-free), Old Regime (80C/80D/HRA/24b), and side-by-side Regime Comparison. Includes slab breakdown, surcharge, 87A rebate, advance tax dates, and ITR form guide.",
+    },
 ];
 export default function IndiaPage() {
     return (
