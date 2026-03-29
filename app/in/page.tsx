@@ -69,7 +69,14 @@ const IN_CALCULATORS = [
         slug: "sip-calculator",
         icon: "📈",
         tag: "Investment & Wealth",
-        description: "Calculate mutual fund SIP returns with step-up comparison, lumpsum, goal planning & inflation-adjusted modes. Includes 2026 LTCG/STCG tax guide, SEBI categories, and ELSS vs PPF vs FD comparison.",
+        description: "Calculate mutual fund SIP returns with step-up comparison, lumpsum, goal planning & inflation-adjusted modes. Includes 2026 LTCG/STCG tax guide, SEBI categories, ELSS tax saving guide, Direct vs Regular comparison, and SIP vs PPF vs FD.",
+    },
+    {
+        title: "Human Life Value (HLV) Calculator",
+        slug: "hlv-calculator",
+        icon: "🛡️",
+        tag: "Insurance & Protection",
+        description: "Calculate required life insurance cover using Income Replacement, Need-Based, and Quick Estimate methods. Includes IRDAI FY25 data, MWP Act guide, age-based multiplier table, term vs ULIP comparison, and Section 80C tax benefits.",
     },
 ];
 export default function IndiaPage() {
