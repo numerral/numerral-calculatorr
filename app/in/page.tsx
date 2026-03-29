@@ -78,6 +78,20 @@ const IN_CALCULATORS = [
         tag: "Insurance & Protection",
         description: "Calculate required life insurance cover using Income Replacement, Need-Based, and Quick Estimate methods. Includes IRDAI FY25 data, MWP Act guide, age-based multiplier table, term vs ULIP comparison, and Section 80C tax benefits.",
     },
+    {
+        title: "Compound Interest Calculator",
+        slug: "compound-interest-calculator",
+        icon: "📊",
+        tag: "Savings & Investment",
+        description: "Calculate compound interest with 4 modes: Lump Sum, Recurring SIP, FD Comparison (SBI/HDFC/ICICI/PPF/NSC/SCSS rates), and Cost of Delay. Includes compounding frequency selector, Rule of 72, CI vs SI table, and Section 80C tax guide.",
+    },
+    {
+        title: "Pension Calculator",
+        slug: "pension-calculator",
+        icon: "🏦",
+        tag: "Retirement & Pension",
+        description: "Plan your retirement with 4 modes: Retirement Corpus Planner, NPS Calculator (80CCD tax benefits), EPS/EPFO Pension (formula with early/deferred), and Annuity Income Estimator. NPS vs EPF vs PPF, OPS vs NPS, and healthcare cost planning.",
+    },
 ];
 export default function IndiaPage() {
     return (
