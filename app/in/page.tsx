@@ -99,6 +99,34 @@ const IN_CALCULATORS = [
         tag: "Tax & Filing",
         description: "Calculate income tax for FY 2025-26 with 3 modes: New Regime (Budget 2025, ₹12L tax-free), Old Regime (80C/80D/HRA/24b), and side-by-side Regime Comparison. Includes slab breakdown, surcharge, 87A rebate, advance tax dates, and ITR form guide.",
     },
+    {
+        title: "Crorepati Calculator",
+        slug: "crorepati-calculator",
+        icon: "💰",
+        tag: "Wealth Creation",
+        description: "Plan your path to ₹1 Crore+ with 4 modes: Goal Planner (SIP + Lump Sum with inflation toggle), Step-Up SIP (annual increase projection), Cost of Delay (impact of starting late), and Milestone Tracker (₹25L to ₹10Cr timeline). Includes Rule of 72, investment comparison, and tax guide.",
+    },
+    {
+        title: "Lumpsum Calculator",
+        slug: "lumpsum-calculator",
+        icon: "📊",
+        tag: "Investment",
+        description: "Calculate one-time mutual fund investment returns with 4 modes: Returns Estimator (compounding frequency, inflation & LTCG tax toggles), Lump Sum vs SIP comparison, STP Strategy Planner (Liquid→Equity), and Goal-Based Reverse Calculator. Covers CAGR, return types, and asset comparison.",
+    },
+    {
+        title: "SSY Calculator",
+        slug: "sukanya-samriddhi-yojana-calculator",
+        icon: "🎀",
+        tag: "Girl Child Savings",
+        description: "Sukanya Samriddhi Yojana Calculator with 4 modes: Maturity Estimator (21-year growth schedule, inflation toggle), Partial Withdrawal Simulator (50% at 18), SSY vs PPF vs FD comparison, and Goal-Based Reverse. Current rate 8.2%, EEE tax-free, Section 80C.",
+    },
+    {
+        title: "SWP Calculator",
+        slug: "swp-calculator",
+        icon: "💸",
+        tag: "Retirement Income",
+        description: "Systematic Withdrawal Plan Calculator with 4 modes: Withdrawal Planner (month-by-month depletion, inflation toggle), SWP vs FD Income comparison, Corpus Required reverse calculator, and Safe Withdrawal Rate Finder (India-adapted 2.5-3.5% SWR).",
+    },
 ];
 export default function IndiaPage() {
     return (
