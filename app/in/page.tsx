@@ -171,6 +171,154 @@ const IN_CALCULATORS = [
         tag: "Trading & Risk",
         description: "Calculate optimal trade size with 4 modes: Basic Position Sizer (% risk model with STT/GST cost toggle), F&O Lot Calculator (NSE 2026 lot sizes for Nifty, Bank Nifty, FinNifty), Risk-Reward Analyser, and Kelly Criterion. Includes loss recovery table and SEBI regulations.",
     },
+
+    // ─── Salary & Payroll (India-specific) ───
+    {
+        title: "Salary After Tax Calculator",
+        slug: "salary-after-tax-calculator",
+        icon: "💰",
+        tag: "Salary & Payroll",
+        description: "Calculate net take-home salary after income tax, EPF, professional tax for FY 2025-26. Old vs New Regime comparison, CTC breakdown, and monthly in-hand calculation.",
+    },
+    {
+        title: "In-Hand Salary Calculator",
+        slug: "in-hand-salary-calculator",
+        icon: "🏧",
+        tag: "Salary & Payroll",
+        description: "Find your exact monthly bank credit. Detailed CTC to in-hand breakdown with EPF, professional tax, TDS deductions under Old and New Regime.",
+    },
+    {
+        title: "CTC to Take Home Calculator",
+        slug: "ctc-to-take-home-calculator",
+        icon: "📋",
+        tag: "Salary & Payroll",
+        description: "Deconstruct your CTC package — see how much goes to EPF, gratuity, taxes, and your actual take-home pay. Compare job offers and plan your budget.",
+    },
+    {
+        title: "HRA Calculator",
+        slug: "hra-calculator",
+        icon: "🏠",
+        tag: "Salary & Tax",
+        description: "Calculate HRA tax exemption under Section 10(13A). 3-rule system for metro vs non-metro, rent-to-parents strategy, and Old vs New Regime impact.",
+    },
+    {
+        title: "Gratuity Calculator",
+        slug: "gratuity-calculator",
+        icon: "🎖️",
+        tag: "Salary & Benefits",
+        description: "Estimate gratuity payout under the Payment of Gratuity Act, 1972. 15/26 formula, 5-year eligibility, and tax exemption up to ₹25 Lakhs.",
+    },
+    {
+        title: "Bonus Calculator",
+        slug: "bonus-calculator",
+        icon: "🎁",
+        tag: "Salary & Benefits",
+        description: "Calculate statutory bonus under the Payment of Bonus Act, 1965. Eligibility check, ₹7,000 salary cap, 8.33% minimum to 20% maximum calculation.",
+    },
+
+    // ─── Tax (India-specific) ───
+    {
+        title: "GST Calculator",
+        slug: "gst-calculator",
+        icon: "🧾",
+        tag: "Tax & Compliance",
+        description: "Calculate GST for all slab rates — 5%, 12%, 18%, 28%. Add or remove GST, reverse calculation, and HSN code reference for Indian goods and services.",
+    },
+    {
+        title: "HRA Exemption Calculator",
+        slug: "hra-exemption-calculator",
+        icon: "🏘️",
+        tag: "Tax & Deductions",
+        description: "Calculate HRA exemption under Section 10(13A) of the Income Tax Act. Three-rule formula, metro vs non-metro classification, and annual tax savings.",
+    },
+    {
+        title: "TDS Calculator",
+        slug: "tds-calculator",
+        icon: "📑",
+        tag: "Tax & Compliance",
+        description: "Calculate TDS deductions on salary, interest, rent, professional fees. Section-wise breakdowns with Form 16, 16A, 26AS reference and TDS return deadlines.",
+    },
+    {
+        title: "Capital Gains Tax Calculator",
+        slug: "capital-gains-tax-calculator",
+        icon: "📈",
+        tag: "Tax & Investment",
+        description: "Calculate LTCG and STCG tax on equity, mutual funds, property, and gold. Includes indexation benefit, Section 54 exemptions, and FY 2025-26 rates.",
+    },
+    {
+        title: "Professional Tax Calculator",
+        slug: "professional-tax-calculator",
+        icon: "🏛️",
+        tag: "Tax & Compliance",
+        description: "Calculate state-wise professional tax deductions across Maharashtra, Karnataka, West Bengal, Telangana, and more. Monthly and annual breakdown with slab rates.",
+    },
+
+    // ─── Investment (India-specific) ───
+    {
+        title: "RD Calculator",
+        slug: "rd-calculator",
+        icon: "🏦",
+        tag: "Savings & Investment",
+        description: "Calculate Recurring Deposit maturity amount. Compare RD rates across SBI, HDFC, ICICI, and Post Office. Quarterly compounding with TDS impact and premature withdrawal rules.",
+    },
+    {
+        title: "NPS Calculator",
+        slug: "nps-calculator",
+        icon: "🏛️",
+        tag: "Retirement & Pension",
+        description: "Calculate National Pension System returns and retirement corpus. Tier I and II comparison, 80CCD(1B) additional ₹50K deduction, and annuity planning at 60.",
+    },
+    {
+        title: "Mutual Fund Returns Calculator",
+        slug: "mutual-fund-returns-calculator",
+        icon: "📊",
+        tag: "Investment & Wealth",
+        description: "Calculate mutual fund returns with CAGR, absolute return, and XIRR methods. SEBI category comparison, direct vs regular funds, and LTCG/STCG tax guide.",
+    },
+    {
+        title: "Retirement Corpus Calculator",
+        slug: "retirement-corpus-calculator",
+        icon: "🛡️",
+        tag: "Retirement Planning",
+        description: "Plan your retirement corpus with inflation adjustment. Compare NPS, PPF, EPF, and mutual fund strategies. Includes India-specific healthcare and lifestyle cost projections.",
+    },
+    {
+        title: "FIRE Calculator",
+        slug: "fire-calculator",
+        icon: "🔥",
+        tag: "Financial Independence",
+        description: "Calculate your Financial Independence path with India-specific SIP and NPS strategies. Safe withdrawal rate adapted for Indian inflation and healthcare costs.",
+    },
+
+    // ─── Loans (India-specific) ───
+    {
+        title: "Education Loan Calculator",
+        slug: "education-loan-calculator",
+        icon: "🎓",
+        tag: "Finance & Loans",
+        description: "Calculate education loan EMI for India and abroad studies. SBI, HDFC Credila, and Avanse rates. Includes Section 80E tax benefit, moratorium period, and collateral rules.",
+    },
+    {
+        title: "Bike Loan Calculator",
+        slug: "bike-loan-calculator",
+        icon: "🏍️",
+        tag: "Finance & Loans",
+        description: "Calculate two-wheeler loan EMI. Compare rates across SBI, HDFC, ICICI for new and used bikes. Includes down payment guide, CIBIL requirement, and insurance costs.",
+    },
+    {
+        title: "Business Loan Calculator",
+        slug: "business-loan-calculator",
+        icon: "🏢",
+        tag: "Finance & Loans",
+        description: "Calculate business loan EMI for MSME and startups. Mudra Loan (up to ₹10L), SBI SME loans, and NBFC options. Includes CIBIL requirement, collateral guide, and GST impact.",
+    },
+    {
+        title: "Loan Eligibility Calculator",
+        slug: "loan-eligibility-calculator",
+        icon: "✅",
+        tag: "Finance & Loans",
+        description: "Check your loan eligibility based on income, CIBIL score, existing EMIs, and age. Covers home loan, personal loan, and car loan with bank-specific criteria.",
+    },
 ];
 export default function IndiaPage() {
     return (
@@ -192,7 +340,7 @@ export default function IndiaPage() {
                         <span className="in-hero__stat-label">Calculators</span>
                     </div>
                     <div className="in-hero__stat">
-                        <span className="in-hero__stat-num">15+</span>
+                        <span className="in-hero__stat-num">200+</span>
                         <span className="in-hero__stat-label">FAQs</span>
                     </div>
                     <div className="in-hero__stat">
