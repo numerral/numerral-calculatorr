@@ -7,6 +7,7 @@ import "../../ksa/ksa.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
 import CrorepatiCalculatorCore from "@/components/calculator/CrorepatiCalculatorCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
+import { buildCountryAlternates } from "@/lib/geo-seo";
 import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
     title: "Crorepati Calculator 2026 — How to Become Crorepati with SIP, Step-Up & Lump Sum",
     description: "Free Crorepati Calculator with 4 modes: Goal Planner (SIP + Lump Sum → time to ₹1 Crore), Step-Up SIP (annual increase projection), Cost of Delay (impact of starting late), and Milestone Tracker (₹25L to ₹10Cr timeline). Includes Rule of 72, inflation adjustment, SIP vs Lump Sum, and investment comparison.",
     keywords: ["crorepati calculator", "how to become crorepati", "1 crore SIP calculator", "crorepati calculator India", "SIP calculator 1 crore", "step up SIP calculator", "wealth creation India", "mutual fund crorepati", "cost of delay investing", "crorepati by age"],
-    alternates: { canonical: canonicalUrl("/in/crorepati-calculator") },
+    alternates: buildCountryAlternates("IN", "/in/crorepati-calculator", "crorepati-calculator"),
 };
 
 const FAQ_ITEMS = [

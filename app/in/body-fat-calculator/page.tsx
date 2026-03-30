@@ -7,6 +7,7 @@ import "../../ksa/ksa.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
 import BodyFatCalculatorCore from "@/components/calculator/BodyFatCalculatorCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
+import { buildCountryAlternates } from "@/lib/geo-seo";
 import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
     title: "Body Fat Calculator India 2026 — US Navy Method, BMI Estimate, Lean Body Mass & Category Reference",
     description: "Free Body Fat Calculator with 4 modes: US Navy Method (gender-aware, neck/waist/hip circumference), BMI-Based Estimate (Deurenberg formula), Body Fat Category Reference (age-wise tables for men & women), and Lean Body Mass Target Weight Planner. Covers Indian thin-fat phenotype, ICMR guidelines, subcutaneous vs visceral fat, and how to measure circumferences.",
     keywords: ["body fat calculator", "body fat percentage India", "US Navy body fat formula", "body fat calculator men women", "lean body mass calculator", "body fat categories", "Indian thin-fat phenotype", "visceral fat India", "body fat percentage chart", "ICMR body fat guidelines"],
-    alternates: { canonical: canonicalUrl("/in/body-fat-calculator") },
+    alternates: buildCountryAlternates("IN", "/in/body-fat-calculator", "body-fat-calculator"),
 };
 
 const FAQ_ITEMS = [

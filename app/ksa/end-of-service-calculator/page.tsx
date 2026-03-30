@@ -9,6 +9,7 @@ import "../ksa.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
 import KSACalculatorCore from "@/components/calculator/KSACalculatorCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
+import { buildCountryAlternates } from "@/lib/geo-seo";
 import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
@@ -16,7 +17,7 @@ export const metadata: Metadata = {
     title: "End of Service Benefit Calculator (KSA) — Saudi Labor Law EOSB",
     description: "Calculate your End of Service Benefit (EOSB) under Saudi Labor Law. Applies Articles 84, 85, and 87 for termination, resignation, and special cases. Free, accurate, and step-by-step.",
     keywords: ["end of service benefit calculator", "EOSB calculator", "Saudi Arabia gratuity calculator", "Saudi labor law", "مكافأة نهاية الخدمة", "end of service Saudi Arabia", "KSA gratuity", "Article 84", "Article 85"],
-    alternates: { canonical: canonicalUrl("/ksa/end-of-service-calculator") },
+    alternates: buildCountryAlternates("SA", "/ksa/end-of-service-calculator", "end-of-service-calculator"),
 };
 
 const FAQ_ITEMS = [

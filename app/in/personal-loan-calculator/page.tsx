@@ -10,6 +10,7 @@ import "../../ksa/ksa.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
 import PersonalLoanCalculatorCore from "@/components/calculator/PersonalLoanCalculatorCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
+import { buildCountryAlternates } from "@/lib/geo-seo";
 import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
@@ -17,7 +18,7 @@ export const metadata: Metadata = {
     title: "Personal Loan EMI Calculator India 2026 — Monthly EMI, Eligibility & Interest Rates",
     description: "Free personal loan EMI calculator for India. Calculate monthly EMI, total interest, loan eligibility, and prepayment savings. Compare bank rates — SBI, HDFC, ICICI, Axis — with CIBIL score guide, RBI prepayment rules, and documents checklist.",
     keywords: ["personal loan EMI calculator India", "personal loan calculator", "personal loan interest rate 2026", "personal loan eligibility calculator", "personal loan prepayment calculator", "SBI personal loan rate", "HDFC personal loan EMI", "personal loan CIBIL score", "personal loan vs credit card"],
-    alternates: { canonical: canonicalUrl("/in/personal-loan-calculator") },
+    alternates: buildCountryAlternates("IN", "/in/personal-loan-calculator", "personal-loan-calculator"),
 };
 
 const FAQ_ITEMS = [

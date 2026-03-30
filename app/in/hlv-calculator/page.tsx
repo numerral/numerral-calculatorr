@@ -7,6 +7,7 @@ import "../../ksa/ksa.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
 import HLVCalculatorIndiaCore from "@/components/calculator/HLVCalculatorIndiaCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
+import { buildCountryAlternates } from "@/lib/geo-seo";
 import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
     title: "Human Life Value (HLV) Calculator India 2026 — Free Insurance Cover Guide",
     description: "Free HLV calculator for India. Calculate required life insurance cover using Income Replacement, Need-Based, and Quick Estimate methods. Includes IRDAI FY25 data, MWP Act guide, age-based multiplier table, term vs ULIP comparison, and Section 80C tax benefits.",
     keywords: ["HLV calculator India", "human life value calculator", "life insurance calculator India", "how much life insurance do I need", "insurance cover calculator", "HLV formula", "IRDAI life insurance", "term insurance calculator", "MWP Act life insurance", "insurance gap calculator India"],
-    alternates: { canonical: canonicalUrl("/in/hlv-calculator") },
+    alternates: buildCountryAlternates("IN", "/in/hlv-calculator", "hlv-calculator"),
 };
 
 const FAQ_ITEMS = [

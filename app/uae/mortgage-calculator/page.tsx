@@ -10,6 +10,7 @@ import "../uae.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
 import UAEMortgageCalculatorCore from "@/components/calculator/UAEMortgageCalculatorCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
+import { buildCountryAlternates } from "@/lib/geo-seo";
 import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
@@ -17,7 +18,7 @@ export const metadata: Metadata = {
     title: "UAE Mortgage Calculator 2026 — Dubai & Abu Dhabi Home Loan",
     description: "Calculate your monthly mortgage payment in the UAE. Covers Dubai & Abu Dhabi property fees, CBUAE LTV limits, DBR check, Islamic & conventional financing, and upfront cost estimator.",
     keywords: ["UAE mortgage calculator", "Dubai mortgage calculator", "Abu Dhabi mortgage calculator", "حاسبة الرهن العقاري", "UAE home loan", "CBUAE LTV", "DLD fees calculator", "expat mortgage UAE", "Islamic mortgage UAE", "Murabaha mortgage Dubai", "EIBOR mortgage rate"],
-    alternates: { canonical: canonicalUrl("/uae/mortgage-calculator") },
+    alternates: buildCountryAlternates("AE", "/uae/mortgage-calculator", "mortgage-calculator"),
 };
 
 const FAQ_ITEMS = [

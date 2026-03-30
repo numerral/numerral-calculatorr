@@ -7,6 +7,7 @@ import "../uae.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
 import UAEDEWACalculatorCore from "@/components/calculator/UAEDEWACalculatorCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
+import { buildCountryAlternates } from "@/lib/geo-seo";
 import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
     title: "DEWA Bill Calculator 2026 — Electricity & Water Dubai",
     description: "Calculate your monthly DEWA bill with accurate 2026 slab tariffs for electricity (23–38 fils/kWh) and water (3.5–4.6 fils/IG). Includes fuel surcharge, sewerage fee, housing fee, and 5% VAT.",
     keywords: ["DEWA bill calculator", "Dubai electricity calculator", "DEWA tariff rates 2026", "حاسبة فاتورة ديوا", "DEWA slab rates", "Dubai water charges", "fuel surcharge DEWA", "housing fee Dubai", "DEWA vs ADDC", "sewerage fee Dubai 2026"],
-    alternates: { canonical: canonicalUrl("/uae/dewa-calculator") },
+    alternates: buildCountryAlternates("AE", "/uae/dewa-calculator", "dewa-calculator"),
 };
 
 const FAQ_ITEMS = [

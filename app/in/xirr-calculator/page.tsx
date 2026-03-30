@@ -7,6 +7,7 @@ import "../../ksa/ksa.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
 import XIRRCalculatorCore from "@/components/calculator/XIRRCalculatorCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
+import { buildCountryAlternates } from "@/lib/geo-seo";
 import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
     title: "XIRR Calculator India 2026 — True SIP Return, XIRR vs CAGR, Newton-Raphson Solver",
     description: "Free XIRR Calculator with 4 modes: True XIRR (add custom date + amount rows, Newton-Raphson solver), SIP XIRR Quick (vs CAGR comparison), XIRR vs CAGR vs Absolute Return, and What-If Analyser (target XIRR reverse solver). Covers XIRR formula, Excel guide, FIFO taxation, negative XIRR meaning.",
     keywords: ["XIRR calculator", "XIRR mutual fund India", "XIRR vs CAGR", "SIP return calculator", "extended internal rate of return", "XIRR formula", "XIRR Excel India", "Newton-Raphson XIRR", "portfolio return calculator"],
-    alternates: { canonical: canonicalUrl("/in/xirr-calculator") },
+    alternates: buildCountryAlternates("IN", "/in/xirr-calculator", "xirr-calculator"),
 };
 
 const FAQ_ITEMS = [

@@ -7,6 +7,7 @@ import "../../ksa/ksa.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
 import PositionSizeCalculatorCore from "@/components/calculator/PositionSizeCalculatorCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
+import { buildCountryAlternates } from "@/lib/geo-seo";
 import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
     title: "Position Size Calculator India 2026 — Calculate Shares to Buy, F&O Lots & Risk-Reward",
     description: "Free Position Size Calculator for Indian traders with 4 modes: Basic Position Sizer (% risk model), F&O Lot Calculator (NSE 2026 lot sizes for Nifty, Bank Nifty, FinNifty), Risk-Reward Analyser, and Kelly Criterion. Includes STT/GST cost breakdown, ATR-based sizing guide, and SEBI F&O regulations.",
     keywords: ["position size calculator", "position sizing India", "lot size calculator NSE", "F&O position size", "risk per trade calculator", "Kelly criterion calculator", "shares to buy calculator", "stock trading risk management", "intraday position sizing", "NSE lot size 2026", "Bank Nifty lot size", "Nifty lot size", "risk reward calculator", "STT calculator", "trading cost calculator India"],
-    alternates: { canonical: canonicalUrl("/in/position-size-calculator") },
+    alternates: buildCountryAlternates("IN", "/in/position-size-calculator", "position-size-calculator"),
 };
 
 const FAQ_ITEMS = [

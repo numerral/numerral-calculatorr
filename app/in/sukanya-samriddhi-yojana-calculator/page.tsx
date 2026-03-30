@@ -7,6 +7,7 @@ import "../../ksa/ksa.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
 import SSYCalculatorCore from "@/components/calculator/SSYCalculatorCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
+import { buildCountryAlternates } from "@/lib/geo-seo";
 import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
     title: "Sukanya Samriddhi Yojana Calculator 2026 — SSY Interest Rate 8.2%, Maturity & Withdrawal",
     description: "Free SSY Calculator with 4 modes: Maturity Estimator (21-year growth schedule, inflation toggle), Partial Withdrawal Simulator (50% at age 18), SSY vs PPF vs FD comparison, and Goal-Based Reverse Calculator. Current rate 8.2%, EEE tax-free, Section 80C. Complete guide with eligibility, documents, bank list.",
     keywords: ["SSY calculator", "Sukanya Samriddhi Yojana calculator", "SSY interest rate 2026", "SSY maturity calculator", "SSY vs PPF", "girl child savings scheme", "SSY withdrawal rules", "SSY tax benefits", "sukanya samriddhi account"],
-    alternates: { canonical: canonicalUrl("/in/sukanya-samriddhi-yojana-calculator") },
+    alternates: buildCountryAlternates("IN", "/in/sukanya-samriddhi-yojana-calculator", "sukanya-samriddhi-yojana-calculator"),
 };
 
 const FAQ_ITEMS = [

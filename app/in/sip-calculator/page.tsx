@@ -7,6 +7,7 @@ import "../../ksa/ksa.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
 import SIPCalculatorIndiaCore from "@/components/calculator/SIPCalculatorIndiaCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
+import { buildCountryAlternates } from "@/lib/geo-seo";
 import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
     title: "SIP Calculator India 2026 — Step-up SIP, Returns & Mutual Fund Tax Guide",
     description: "Free SIP calculator for India. Calculate mutual fund SIP returns with step-up, lumpsum, goal planning & inflation-adjusted modes. Includes 2026 LTCG/STCG tax rates, SEBI categories, ELSS tax saving guide, Direct vs Regular comparison, and SIP vs PPF vs FD.",
     keywords: ["SIP calculator India", "SIP calculator", "mutual fund SIP", "step-up SIP calculator", "SIP returns calculator", "ELSS tax saving", "SIP vs lumpsum", "mutual fund tax India 2026", "LTCG STCG mutual fund", "SIP goal calculator"],
-    alternates: { canonical: canonicalUrl("/in/sip-calculator") },
+    alternates: buildCountryAlternates("IN", "/in/sip-calculator", "sip-calculator"),
 };
 
 const FAQ_ITEMS = [

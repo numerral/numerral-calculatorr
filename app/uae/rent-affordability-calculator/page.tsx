@@ -7,6 +7,7 @@ import "../uae.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
 import UAERentAffordabilityCalculatorCore from "@/components/calculator/UAERentAffordabilityCalculatorCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
+import { buildCountryAlternates } from "@/lib/geo-seo";
 import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
     title: "Rent Affordability Calculator UAE 2026 — Dubai & Abu Dhabi",
     description: "How much rent can you afford in the UAE? Enter your salary to find your max rent, total move-in costs (deposit, agency, Ejari), monthly housing budget, and affordable areas in Dubai & Abu Dhabi. Updated with 2026 average rents.",
     keywords: ["rent affordability calculator UAE", "how much rent can I afford Dubai", "Dubai rent budget calculator", "Abu Dhabi rent calculator", "UAE rent to income ratio", "Dubai upfront rental costs", "Ejari cost 2026", "security deposit Dubai", "average rent Dubai by area 2026", "rent affordability Abu Dhabi"],
-    alternates: { canonical: canonicalUrl("/uae/rent-affordability-calculator") },
+    alternates: buildCountryAlternates("AE", "/uae/rent-affordability-calculator", "rent-affordability-calculator"),
 };
 
 const FAQ_ITEMS = [

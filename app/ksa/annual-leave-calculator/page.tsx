@@ -9,6 +9,7 @@ import "../ksa.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
 import KSACalculatorCore from "@/components/calculator/KSACalculatorCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
+import { buildCountryAlternates } from "@/lib/geo-seo";
 import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
@@ -16,7 +17,7 @@ export const metadata: Metadata = {
     title: "Annual Leave Calculator (KSA) — Saudi Labor Law",
     description: "Calculate your annual leave entitlement in Saudi Arabia. 21 days under 5 years, 30 days for 5+ years. Covers encashment, carry-forward, and all Saudi leave types.",
     keywords: ["Saudi annual leave calculator", "Article 109", "حاسبة الإجازة السنوية", "Saudi vacation days", "KSA leave entitlement", "leave encashment Saudi", "Saudi labor law leave", "annual leave pay calculator"],
-    alternates: { canonical: canonicalUrl("/ksa/annual-leave-calculator") },
+    alternates: buildCountryAlternates("SA", "/ksa/annual-leave-calculator", "annual-leave-calculator"),
 };
 
 const FAQ_ITEMS = [

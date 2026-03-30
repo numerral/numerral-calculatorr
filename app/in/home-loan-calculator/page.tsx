@@ -10,6 +10,7 @@ import "../../ksa/ksa.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
 import HomeLoanCalculatorCore from "@/components/calculator/HomeLoanCalculatorCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
+import { buildCountryAlternates } from "@/lib/geo-seo";
 import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
@@ -17,7 +18,7 @@ export const metadata: Metadata = {
     title: "Home Loan EMI Calculator India 2026 — Monthly EMI, Eligibility & Amortization",
     description: "Free home loan EMI calculator for India. Calculate monthly EMI, total interest, amortization schedule, loan eligibility, and prepayment savings. Compare bank interest rates — SBI, HDFC, ICICI — with tax benefit guide (Sec 80C/24b).",
     keywords: ["home loan EMI calculator India", "home loan calculator", "housing loan calculator", "EMI calculator India", "home loan interest rate 2026", "home loan eligibility calculator", "home loan prepayment calculator", "SBI home loan rate", "HDFC home loan EMI", "amortization schedule home loan"],
-    alternates: { canonical: canonicalUrl("/in/home-loan-calculator") },
+    alternates: buildCountryAlternates("IN", "/in/home-loan-calculator", "home-loan-calculator"),
 };
 
 const FAQ_ITEMS = [

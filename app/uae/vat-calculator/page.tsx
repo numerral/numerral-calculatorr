@@ -7,6 +7,7 @@ import "../uae.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
 import UAEVATCalculatorCore from "@/components/calculator/UAEVATCalculatorCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
+import { buildCountryAlternates } from "@/lib/geo-seo";
 import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
     title: "UAE VAT Calculator 2026 — Add, Remove & Tourist Refund",
     description: "Calculate UAE 5% VAT instantly. Add or remove VAT, estimate tourist refunds, and manage bulk invoices. Covers zero-rated, exempt, and standard-rated supplies under Federal Decree-Law No. 8 of 2017.",
     keywords: ["UAE VAT calculator", "VAT calculator Dubai", "ضريبة القيمة المضافة حاسبة", "5% VAT UAE", "tourist VAT refund UAE", "FTA VAT", "zero-rated VAT UAE", "exempt VAT supplies UAE", "reverse charge UAE", "e-invoicing UAE"],
-    alternates: { canonical: canonicalUrl("/uae/vat-calculator") },
+    alternates: buildCountryAlternates("AE", "/uae/vat-calculator", "vat-calculator"),
 };
 
 const FAQ_ITEMS = [

@@ -7,6 +7,7 @@ import "../uae.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
 import UAESalaryCalculatorCore from "@/components/calculator/UAESalaryCalculatorCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
+import { buildCountryAlternates } from "@/lib/geo-seo";
 import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
     title: "UAE Salary Calculator 2026 — Gross to Net, Overtime & Pension",
     description: "Calculate your UAE salary breakdown: gross to net, GPSSA pension, overtime pay, and unemployment insurance. Covers expat & Emirati salaries, WPS, allowances, and leave entitlements.",
     keywords: ["UAE salary calculator", "Dubai salary calculator", "حاسبة الراتب الإمارات", "gross to net UAE", "GPSSA pension calculator", "UAE overtime calculator", "WPS wage protection", "UAE allowances housing transport", "Emirati pension deduction", "MOHRE salary"],
-    alternates: { canonical: canonicalUrl("/uae/salary-calculator") },
+    alternates: buildCountryAlternates("AE", "/uae/salary-calculator", "salary-calculator"),
 };
 
 const FAQ_ITEMS = [

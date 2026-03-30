@@ -127,7 +127,7 @@ export function faqSchema(
 /**
  * Build JSON-LD WebApplication schema.
  */
-export function webAppSchema(name: string, url: string): object {
+export function webAppSchema(name: string, url: string, currency = "USD"): object {
     return {
         "@context": "https://schema.org",
         "@type": "WebApplication",
@@ -135,6 +135,6 @@ export function webAppSchema(name: string, url: string): object {
         url,
         applicationCategory: "FinanceApplication",
         operatingSystem: "Any",
-        offers: { "@type": "Offer", price: "0", priceCurrency: "INR" },
+        offers: { "@type": "Offer", price: "0", priceCurrency: currency },
     };
 }

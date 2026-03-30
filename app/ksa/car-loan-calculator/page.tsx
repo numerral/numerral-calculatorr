@@ -9,6 +9,7 @@ import "../ksa.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
 import KSACalculatorCore from "@/components/calculator/KSACalculatorCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
+import { buildCountryAlternates } from "@/lib/geo-seo";
 import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
@@ -16,7 +17,7 @@ export const metadata: Metadata = {
     title: "Car Loan Calculator (KSA) — Saudi Auto Financing",
     description: "Calculate your monthly car installment in Saudi Arabia. Covers Murabaha, Ijara, and balloon payments. SAMA 60-month limit with DTI check and bank comparison.",
     keywords: ["Saudi car loan calculator", "KSA auto financing", "حاسبة تمويل السيارات", "Murabaha auto", "Ijara car", "Al Rajhi car loan", "Saudi vehicle financing", "car installment Saudi"],
-    alternates: { canonical: canonicalUrl("/ksa/car-loan-calculator") },
+    alternates: buildCountryAlternates("SA", "/ksa/car-loan-calculator", "car-loan-calculator"),
 };
 
 const FAQ_ITEMS = [

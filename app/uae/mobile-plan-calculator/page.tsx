@@ -7,6 +7,7 @@ import "../uae.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
 import UAEMobilePlanCalculatorCore from "@/components/calculator/UAEMobilePlanCalculatorCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
+import { buildCountryAlternates } from "@/lib/geo-seo";
 import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
     title: "UAE Mobile Plan Calculator 2026 — e& (Etisalat) vs du Comparison",
     description: "Compare all UAE mobile plans: e& (Etisalat) Freedom/Wasel vs du Power/Prepaid. Find the best postpaid, prepaid, or tourist SIM by budget and data needs. Includes USSD codes, MNP guide, and roaming rates.",
     keywords: ["UAE mobile plan calculator", "Etisalat vs du", "e& plans 2026", "du prepaid plans", "best mobile plan UAE", "tourist SIM Dubai", "Wasel plan", "du Power plan", "TDRA number portability", "eSIM UAE"],
-    alternates: { canonical: canonicalUrl("/uae/mobile-plan-calculator") },
+    alternates: buildCountryAlternates("AE", "/uae/mobile-plan-calculator", "mobile-plan-calculator"),
 };
 
 const FAQ_ITEMS = [

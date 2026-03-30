@@ -7,6 +7,7 @@ import "../../ksa/ksa.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
 import FDCalculatorIndiaCore from "@/components/calculator/FDCalculatorIndiaCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
+import { buildCountryAlternates } from "@/lib/geo-seo";
 import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
     title: "FD Calculator India 2026 — Fixed Deposit Interest Rate Calculator with Bank Comparison",
     description: "Free FD calculator with 4 modes: Maturity Calculator, Bank Rate Comparison (SBI/HDFC/ICICI/Axis/BOB), TDS & Tax Impact analyser, and FD vs PPF/SCSS/MF comparison. Includes year-by-year breakdown, senior citizen rates, Section 80C guide, and FD laddering strategy.",
     keywords: ["FD calculator", "fixed deposit calculator India", "FD interest calculator", "FD maturity calculator", "bank FD rates 2026", "TDS on FD", "tax-saver FD Section 80C", "FD vs PPF", "senior citizen FD rates", "FD laddering strategy", "DICGC insurance", "compound interest FD", "cumulative vs non-cumulative FD"],
-    alternates: { canonical: canonicalUrl("/in/fd-calculator") },
+    alternates: buildCountryAlternates("IN", "/in/fd-calculator", "fd-calculator"),
 };
 
 const FAQ_ITEMS = [

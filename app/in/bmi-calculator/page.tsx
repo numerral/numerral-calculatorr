@@ -7,6 +7,7 @@ import "../../ksa/ksa.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
 import BMICalculatorIndiaCore from "@/components/calculator/BMICalculatorIndiaCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
+import { buildCountryAlternates } from "@/lib/geo-seo";
 import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
     title: "BMI Calculator India 2026 — Asian-Indian BMI, Ideal Weight & Waist-to-Height Ratio",
     description: "Free BMI calculator for India with Asian-Indian cutoffs (Overweight ≥23, Obese ≥25). Calculate BMI, ideal weight range, and waist-to-height ratio. Includes WHO vs Indian BMI comparison, thin-fat phenotype guide, ICMR guidelines, and health risk assessment.",
     keywords: ["BMI calculator India", "BMI calculator", "Indian BMI chart", "Asian BMI cutoff", "ideal weight India", "waist to height ratio", "Body Mass Index India", "overweight BMI 23", "obesity India", "ICMR dietary guidelines"],
-    alternates: { canonical: canonicalUrl("/in/bmi-calculator") },
+    alternates: buildCountryAlternates("IN", "/in/bmi-calculator", "bmi-calculator"),
 };
 
 const FAQ_ITEMS = [

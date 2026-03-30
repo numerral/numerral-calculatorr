@@ -7,6 +7,7 @@ import "../../ksa/ksa.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
 import LumpsumCalculatorCore from "@/components/calculator/LumpsumCalculatorCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
+import { buildCountryAlternates } from "@/lib/geo-seo";
 import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
     title: "Lumpsum Calculator India 2026 — One-Time Mutual Fund Investment Returns with LTCG Tax",
     description: "Free Lumpsum Calculator with 4 modes: Returns Estimator (compounding frequency, inflation & LTCG tax toggles, year-by-year schedule), Lump Sum vs SIP comparison, STP Strategy Planner (Liquid→Equity), and Goal-Based Reverse Calculator. Covers CAGR, return types, tax implications, and asset comparison for India.",
     keywords: ["lumpsum calculator", "lump sum calculator India", "lumpsum investment calculator", "mutual fund lumpsum returns", "one time investment calculator", "lump sum vs SIP", "STP calculator", "CAGR calculator", "lumpsum tax calculator"],
-    alternates: { canonical: canonicalUrl("/in/lumpsum-calculator") },
+    alternates: buildCountryAlternates("IN", "/in/lumpsum-calculator", "lumpsum-calculator"),
 };
 
 const FAQ_ITEMS = [

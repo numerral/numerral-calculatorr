@@ -5,13 +5,22 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import { canonicalUrl } from "@/lib/seo";
+import { buildCountryAlternates } from "@/lib/geo-seo";
 import "../ksa/ksa.css";
 import "./in.css";
 
 export const metadata: Metadata = {
     title: "India Calculators — Free Financial & Utility Tools for India",
     description: "Free India-specific calculators: Fuel Cost, EMI, GST, HRA, Tax, and more. Accurate, step-by-step, based on Indian tax laws, RBI guidelines, and government regulations.",
-    alternates: { canonical: canonicalUrl("/in") },
+    alternates: {
+        canonical: canonicalUrl("/in"),
+        languages: {
+            "en-SA": "https://www.numerral.com/ksa",
+            "en-AE": "https://www.numerral.com/uae",
+            "en-IN": "https://www.numerral.com/in",
+            "x-default": "https://www.numerral.com/in",
+        }
+    },
 };
 
 const IN_CALCULATORS = [

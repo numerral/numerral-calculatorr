@@ -7,6 +7,7 @@ import "../uae.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
 import UAEGoldCalculatorCore from "@/components/calculator/UAEGoldCalculatorCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
+import { buildCountryAlternates } from "@/lib/geo-seo";
 import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
     title: "UAE Gold Price Calculator 2026 — Buy, Sell & Making Charges",
     description: "Calculate gold jewellery prices in Dubai and UAE. Enter today's 24K rate, select karat (22K/21K/18K), add making charges and 5% VAT. Includes buyback estimator and ESMA hallmark guide.",
     keywords: ["UAE gold price calculator", "Dubai gold calculator", "حاسبة سعر الذهب", "gold making charges Dubai", "22 karat gold price UAE", "gold buyback Dubai", "ESMA hallmark gold", "Dubai Gold Souk", "gold VAT UAE", "sell gold Dubai"],
-    alternates: { canonical: canonicalUrl("/uae/gold-calculator") },
+    alternates: buildCountryAlternates("AE", "/uae/gold-calculator", "gold-calculator"),
 };
 
 const FAQ_ITEMS = [

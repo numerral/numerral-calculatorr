@@ -10,6 +10,7 @@ import "../../ksa/ksa.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
 import FuelCostCalculatorCore from "@/components/calculator/FuelCostCalculatorCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
+import { buildCountryAlternates } from "@/lib/geo-seo";
 import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
@@ -17,7 +18,7 @@ export const metadata: Metadata = {
     title: "Fuel Cost Calculator India 2026 — Petrol, Diesel & CNG Cost per KM",
     description: "Free fuel cost calculator for India. Calculate petrol, diesel, and CNG costs for daily commutes and road trips. City-wise fuel prices, mileage data for popular cars, trip cost estimator, and fuel comparison tool.",
     keywords: ["fuel cost calculator India", "petrol cost calculator", "diesel cost calculator", "CNG cost per km", "fuel cost per km calculator", "petrol price calculator India", "daily fuel cost calculator", "trip fuel cost calculator India", "fuel mileage calculator", "petrol diesel price comparison"],
-    alternates: { canonical: canonicalUrl("/in/fuel-cost-calculator") },
+    alternates: buildCountryAlternates("IN", "/in/fuel-cost-calculator", "fuel-cost-calculator"),
 };
 
 const FAQ_ITEMS = [

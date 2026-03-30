@@ -9,6 +9,7 @@ import "../ksa.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
 import ZakatCalculatorCore from "@/components/calculator/ZakatCalculatorCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
+import { buildCountryAlternates } from "@/lib/geo-seo";
 import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
@@ -16,7 +17,7 @@ export const metadata: Metadata = {
     title: "Zakat Calculator (KSA) — حاسبة الزكاة السعودية (2026)",
     description: "Calculate your Zakat on gold, silver, cash, stocks, investments, and business assets in SAR. Covers Nisab thresholds, ZATCA regulations, Tadawul stocks, real estate rental income, and Saudi-specific Zakat rules.",
     keywords: ["Zakat calculator Saudi Arabia", "حاسبة الزكاة", "zakat calculator KSA", "nisab in SAR", "zakat on gold Saudi", "ZATCA zakat", "zakat on stocks Tadawul", "zakat on savings", "how to calculate zakat", "zakat al-mal calculator", "Islamic finance Saudi Arabia", "zakat 2026"],
-    alternates: { canonical: canonicalUrl("/ksa/zakat-calculator") },
+    alternates: buildCountryAlternates("SA", "/ksa/zakat-calculator", "zakat-calculator"),
 };
 
 const FAQ_ITEMS = [

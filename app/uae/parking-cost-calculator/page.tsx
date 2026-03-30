@@ -7,6 +7,7 @@ import "../uae.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
 import UAEParkingCostCalculatorCore from "@/components/calculator/UAEParkingCostCalculatorCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
+import { buildCountryAlternates } from "@/lib/geo-seo";
 import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
     title: "Parking Cost Calculator UAE 2026 — Dubai RTA & Abu Dhabi Mawaqif",
     description: "Calculate parking costs in Dubai and Abu Dhabi. Updated April 2025 variable tariffs (current rates) with peak/off-peak pricing. RTA zones, Mawaqif rates, monthly commuter costs, parking fines, and free parking schedule.",
     keywords: ["parking cost calculator UAE", "Dubai parking rates 2026", "RTA parking zones", "Mawaqif parking Abu Dhabi", "Dubai parking fine", "free parking Dubai", "mParking Dubai", "parking cost per hour Dubai", "Abu Dhabi parking permit cost", "Dubai variable parking tariff 2026"],
-    alternates: { canonical: canonicalUrl("/uae/parking-cost-calculator") },
+    alternates: buildCountryAlternates("AE", "/uae/parking-cost-calculator", "parking-cost-calculator"),
 };
 
 const FAQ_ITEMS = [

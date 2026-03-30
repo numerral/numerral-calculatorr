@@ -9,6 +9,7 @@ import "../ksa.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
 import KSACalculatorCore from "@/components/calculator/KSACalculatorCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
+import { buildCountryAlternates } from "@/lib/geo-seo";
 import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
@@ -16,7 +17,7 @@ export const metadata: Metadata = {
     title: "Overtime Calculator (KSA) — Saudi Labor Law Article 107",
     description: "Calculate your overtime pay in Saudi Arabia. 150% rate for weekdays, weekends, and holidays. Covers normal and Ramadan hours based on Saudi Labor Law.",
     keywords: ["Saudi overtime calculator", "Article 107", "حاسبة العمل الإضافي", "Saudi labor law overtime", "KSA overtime rate", "Ramadan working hours", "Saudi hourly rate calculator", "weekend overtime Saudi"],
-    alternates: { canonical: canonicalUrl("/ksa/overtime-calculator") },
+    alternates: buildCountryAlternates("SA", "/ksa/overtime-calculator", "overtime-calculator"),
 };
 
 const FAQ_ITEMS = [

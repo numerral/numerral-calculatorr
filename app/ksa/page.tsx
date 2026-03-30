@@ -5,12 +5,21 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import { canonicalUrl } from "@/lib/seo";
+import { buildCountryAlternates } from "@/lib/geo-seo";
 import "./ksa.css";
 
 export const metadata: Metadata = {
     title: "KSA Calculators — Saudi Arabia Tools",
     description: "Free KSA-specific calculators: End of Service Benefit (EOSB), GOSI, Salary, Overtime, Leave, Home Loan, Car Loan, and VAT. Accurate, step-by-step, based on Saudi regulations.",
-    alternates: { canonical: canonicalUrl("/ksa") },
+    alternates: {
+        canonical: canonicalUrl("/ksa"),
+        languages: {
+            "en-SA": "https://www.numerral.com/ksa",
+            "en-AE": "https://www.numerral.com/uae",
+            "en-IN": "https://www.numerral.com/in",
+            "x-default": "https://www.numerral.com/ksa",
+        }
+    },
 };
 
 const KSA_CALCULATORS = [

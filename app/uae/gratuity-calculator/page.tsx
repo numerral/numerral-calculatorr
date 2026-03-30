@@ -10,6 +10,7 @@ import "../uae.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
 import UAEGratuityCalculatorCore from "@/components/calculator/UAEGratuityCalculatorCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
+import { buildCountryAlternates } from "@/lib/geo-seo";
 import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
@@ -17,7 +18,7 @@ export const metadata: Metadata = {
     title: "UAE Gratuity Calculator 2026 — End of Service Benefits",
     description: "Calculate your UAE end-of-service gratuity. Covers private sector, domestic workers, part-time, DIFC DEWS, and ADGM. Based on Federal Decree-Law No. 33 of 2021 and MoHRE guidelines.",
     keywords: ["UAE gratuity calculator", "end of service calculator UAE", "حاسبة مكافأة نهاية الخدمة", "EOSB calculator UAE", "Dubai gratuity calculator", "DIFC DEWS calculator", "UAE Labour Law gratuity", "domestic worker gratuity UAE", "MoHRE gratuity", "Federal Decree-Law 33"],
-    alternates: { canonical: canonicalUrl("/uae/gratuity-calculator") },
+    alternates: buildCountryAlternates("AE", "/uae/gratuity-calculator", "gratuity-calculator"),
 };
 
 const FAQ_ITEMS = [

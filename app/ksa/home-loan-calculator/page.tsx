@@ -9,6 +9,7 @@ import "../ksa.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
 import KSACalculatorCore from "@/components/calculator/KSACalculatorCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
+import { buildCountryAlternates } from "@/lib/geo-seo";
 import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
@@ -16,7 +17,7 @@ export const metadata: Metadata = {
     title: "Home Loan Calculator (KSA) — Saudi Mortgage & Financing",
     description: "Calculate your monthly mortgage payment in Saudi Arabia. Covers Murabaha, Ijara, and Musharaka. SAMA-compliant with DTI check and bank rate comparison.",
     keywords: ["Saudi home loan calculator", "KSA mortgage calculator", "حاسبة التمويل العقاري", "Murabaha financing", "Ijara home loan", "Saudi real estate", "SAMA mortgage rules", "Vision 2030 housing"],
-    alternates: { canonical: canonicalUrl("/ksa/home-loan-calculator") },
+    alternates: buildCountryAlternates("SA", "/ksa/home-loan-calculator", "home-loan-calculator"),
 };
 
 const FAQ_ITEMS = [

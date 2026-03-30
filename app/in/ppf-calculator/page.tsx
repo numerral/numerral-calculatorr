@@ -7,6 +7,7 @@ import "../../ksa/ksa.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
 import PPFCalculatorCore from "@/components/calculator/PPFCalculatorCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
+import { buildCountryAlternates } from "@/lib/geo-seo";
 import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
     title: "PPF Calculator India 2026 — Maturity Amount, Interest Rate 7.1% & Tax Benefits",
     description: "Free PPF calculator for India. Calculate maturity amount at 7.1% interest rate with yearly breakdown. Compare deposit timing strategies, plan extensions, and understand Section 80C tax benefits. PPF vs EPF vs NPS vs ELSS comparison included.",
     keywords: ["PPF calculator India", "PPF calculator", "PPF interest rate 2026", "PPF maturity amount", "PPF Section 80C", "Public Provident Fund calculator", "PPF vs ELSS", "PPF withdrawal rules", "PPF extension rules", "PPF tax benefits EEE"],
-    alternates: { canonical: canonicalUrl("/in/ppf-calculator") },
+    alternates: buildCountryAlternates("IN", "/in/ppf-calculator", "ppf-calculator"),
 };
 
 const FAQ_ITEMS = [

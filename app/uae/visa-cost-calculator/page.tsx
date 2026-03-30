@@ -7,6 +7,7 @@ import "../uae.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
 import UAEVisaCostCalculatorCore from "@/components/calculator/UAEVisaCostCalculatorCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
+import { buildCountryAlternates } from "@/lib/geo-seo";
 import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
     title: "UAE Visa Cost Calculator 2026 — Tourist, Employment, Golden & Green Visa Fees",
     description: "Calculate the total cost of any UAE visa: tourist, employment, Golden Visa, Green Visa, family, student, and remote work. Instant breakdown of application fees, medical, Emirates ID, and stamping costs. Includes overstay fine calculator and 2026 visa fee guide.",
     keywords: ["UAE visa cost calculator", "Dubai visa fees 2026", "Golden Visa cost UAE", "Green Visa cost", "UAE employment visa fees", "family visa UAE cost", "UAE overstay fine calculator", "tourist visa Dubai price", "UAE visa types 2026", "Emirates ID cost"],
-    alternates: { canonical: canonicalUrl("/uae/visa-cost-calculator") },
+    alternates: buildCountryAlternates("AE", "/uae/visa-cost-calculator", "visa-cost-calculator"),
 };
 
 const FAQ_ITEMS = [

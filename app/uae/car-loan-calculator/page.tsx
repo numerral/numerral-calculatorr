@@ -7,6 +7,7 @@ import "../uae.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
 import UAECarLoanSalikCalculatorCore from "@/components/calculator/UAECarLoanSalikCalculatorCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
+import { buildCountryAlternates } from "@/lib/geo-seo";
 import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
     title: "UAE Car Loan & Salik Calculator 2026 — Auto EMI + Toll Costs",
     description: "Calculate your monthly car loan EMI in the UAE with flat-to-reducing rate conversion. Estimate Salik toll costs with 2025 variable pricing (AED 6 peak / AED 4 off-peak). Includes bank rate comparison and ownership cost breakdown.",
     keywords: ["UAE car loan calculator", "Dubai auto finance EMI", "Salik calculator", "حاسبة قرض السيارة", "flat rate vs reducing rate", "car loan interest rate UAE 2026", "Salik toll charges 2026", "CBUAE car loan rules", "car ownership cost Dubai"],
-    alternates: { canonical: canonicalUrl("/uae/car-loan-calculator") },
+    alternates: buildCountryAlternates("AE", "/uae/car-loan-calculator", "car-loan-calculator"),
 };
 
 const FAQ_ITEMS = [

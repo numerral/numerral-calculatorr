@@ -7,6 +7,7 @@ import "../../ksa/ksa.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
 import CarLoanCalculatorCore from "@/components/calculator/CarLoanCalculatorCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
+import { buildCountryAlternates } from "@/lib/geo-seo";
 import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
     title: "Car Loan EMI Calculator India 2026 — Monthly EMI, Eligibility & Interest Rates",
     description: "Free car loan EMI calculator for India. Calculate monthly EMI, down payment, eligibility, and prepayment savings. Compare new vs used car loan rates from SBI, HDFC, ICICI, Axis Bank with CIBIL score guide, RBI rules, and documents checklist.",
     keywords: ["car loan EMI calculator India", "car loan calculator", "car loan interest rate 2026", "car loan eligibility calculator", "new car loan vs used car loan", "SBI car loan rate", "HDFC car loan EMI", "car loan CIBIL score", "car loan down payment"],
-    alternates: { canonical: canonicalUrl("/in/car-loan-calculator") },
+    alternates: buildCountryAlternates("IN", "/in/car-loan-calculator", "car-loan-calculator"),
 };
 
 const FAQ_ITEMS = [

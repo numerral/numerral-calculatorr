@@ -9,6 +9,7 @@ import "../ksa.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
 import KSACalculatorCore from "@/components/calculator/KSACalculatorCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
+import { buildCountryAlternates } from "@/lib/geo-seo";
 import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
@@ -16,7 +17,7 @@ export const metadata: Metadata = {
     title: "Saudization Calculator (Nitaqat) — حاسبة السعودة نطاقات",
     description: "Calculate your company's Saudization percentage and Nitaqat band. See sector-specific targets for 2026, weighted employee counting rules, gap analysis, and compliance status.",
     keywords: ["Saudization calculator", "حاسبة السعودة", "Nitaqat calculator", "نطاقات", "Saudization percentage", "Nitaqat bands Saudi Arabia", "Saudization ratio formula", "sector targets 2026", "Qiwa platform", "MHRSD compliance"],
-    alternates: { canonical: canonicalUrl("/ksa/saudization-calculator") },
+    alternates: buildCountryAlternates("SA", "/ksa/saudization-calculator", "saudization-calculator"),
 };
 
 const FAQ_ITEMS = [

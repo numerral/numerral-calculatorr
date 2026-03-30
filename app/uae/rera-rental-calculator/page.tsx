@@ -7,6 +7,7 @@ import "../uae.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
 import UAERERARentalCalculatorCore from "@/components/calculator/UAERERARentalCalculatorCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
+import { buildCountryAlternates } from "@/lib/geo-seo";
 import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
     title: "RERA Rental Increase Calculator 2026 — Dubai & Abu Dhabi",
     description: "Calculate the maximum legal rent increase in Dubai and Abu Dhabi. Based on RERA Smart Rental Index, Decree No. 43 of 2013 tiers, and Abu Dhabi's 5% cap. Includes Ejari guide and tenant rights.",
     keywords: ["RERA rental increase calculator", "Dubai rent increase calculator", "حاسبة زيادة الإيجار", "Smart Rental Index 2025", "Decree 43 2013", "Ejari registration", "Abu Dhabi Tawtheeq", "tenant rights Dubai", "landlord rental increase UAE", "RDC rental disputes"],
-    alternates: { canonical: canonicalUrl("/uae/rera-rental-calculator") },
+    alternates: buildCountryAlternates("AE", "/uae/rera-rental-calculator", "rera-rental-calculator"),
 };
 
 const FAQ_ITEMS = [

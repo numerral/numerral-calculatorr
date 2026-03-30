@@ -9,6 +9,7 @@ import "../ksa.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
 import CalorieCalculatorCore from "@/components/calculator/CalorieCalculatorCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
+import { buildCountryAlternates } from "@/lib/geo-seo";
 import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
@@ -16,7 +17,7 @@ export const metadata: Metadata = {
     title: "Calorie Calculator (KSA) — حاسبة السعرات الحرارية | BMR & TDEE (2026)",
     description: "Calculate your daily calorie needs with SFDA-aligned guidelines. BMR, TDEE, calorie deficit for weight loss, macronutrient breakdown, and Saudi food calorie reference table — Kabsa, Mandi, Shawarma & more.",
     keywords: ["calorie calculator Saudi Arabia", "حاسبة السعرات الحرارية", "BMR calculator KSA", "TDEE calculator", "calorie deficit weight loss", "Saudi food calories", "SFDA dietary guidelines", "حساب السعرات الحرارية", "Kabsa calories", "حاسبة الوزن المثالي"],
-    alternates: { canonical: canonicalUrl("/ksa/calorie-calculator") },
+    alternates: buildCountryAlternates("SA", "/ksa/calorie-calculator", "calorie-calculator"),
 };
 
 const FAQ_ITEMS = [

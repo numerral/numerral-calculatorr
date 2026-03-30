@@ -7,6 +7,7 @@ import "../uae.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
 import UAEEjariTenancyCalculatorCore from "@/components/calculator/UAEEjariTenancyCalculatorCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
+import { buildCountryAlternates } from "@/lib/geo-seo";
 import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
     title: "Ejari & Tenancy Cost Calculator UAE 2026 — Dubai & Abu Dhabi",
     description: "Calculate the total cost of renting in the UAE: security deposit, agency fee, Ejari/Tawtheeq registration, DEWA/ADDC deposit, and first-year total. Covers Dubai (Ejari) and Abu Dhabi (Tawtheeq) with 2026 fees.",
     keywords: ["Ejari calculator", "Ejari cost 2026", "Dubai tenancy calculator", "Tawtheeq Abu Dhabi cost", "total cost renting Dubai", "security deposit Dubai", "agency fee UAE", "DEWA deposit", "move-in cost Dubai", "first year rent cost UAE"],
-    alternates: { canonical: canonicalUrl("/uae/ejari-tenancy-calculator") },
+    alternates: buildCountryAlternates("AE", "/uae/ejari-tenancy-calculator", "ejari-tenancy-calculator"),
 };
 
 const FAQ_ITEMS = [

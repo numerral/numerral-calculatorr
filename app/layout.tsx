@@ -28,14 +28,12 @@ export const metadata: Metadata = {
     template: `%s | ${SITE_NAME}`,
   },
   description:
-    "India's smartest calculator platform. 50+ free calculators for loan EMI, SIP returns, income tax, and more.",
+    "Free online calculator platform — 565+ calculators for finance, construction, health, EV, and everyday math. Instant results, transparent formulas, zero data collection.",
   keywords: [
-    "EMI calculator", "loan calculator", "SIP calculator", "income tax calculator",
-    "home loan EMI", "car loan EMI", "personal loan EMI", "FD calculator",
-    "compound interest calculator", "GST calculator", "HRA calculator",
-    "mutual fund returns", "PPF calculator", "NPS calculator",
-    "financial calculator India", "free online calculator", "Numerral",
-    "loan eligibility", "CIBIL score", "tax calculator India",
+    "online calculator", "financial calculator", "loan calculator", "mortgage calculator",
+    "salary calculator", "compound interest calculator", "percentage calculator",
+    "construction calculator", "health calculator", "BMI calculator",
+    "free online calculator", "Numerral",
   ],
   verification: {
     google: "MeU9cYu9W1hGdmNRzzMugVl6RYD6P-77U7R7FS1OpTY",
@@ -43,7 +41,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     siteName: SITE_NAME,
-    locale: "en_IN",
+    locale: "en_US",
   },
 };
 

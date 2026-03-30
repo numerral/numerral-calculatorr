@@ -7,6 +7,7 @@ import "../uae.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
 import UAETrafficFineCalculatorCore from "@/components/calculator/UAETrafficFineCalculatorCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
+import { buildCountryAlternates } from "@/lib/geo-seo";
 import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
     title: "UAE Traffic Fine Calculator 2026 — Dubai, Abu Dhabi & Sharjah",
     description: "Look up any UAE traffic fine by violation type: speeding, red light, parking, DUI. See fines, black points, impoundment, vehicle release fees, and early payment discounts for Dubai, Abu Dhabi, and Sharjah. Updated for Federal Decree-Law No. 14/2024.",
     keywords: ["UAE traffic fine calculator", "Dubai traffic fines 2026", "Abu Dhabi traffic fines", "Sharjah traffic fines", "UAE speeding fines", "black points UAE", "traffic fine discount Dubai", "red light fine UAE", "Federal Decree-Law 14/2024", "UAE traffic law 2026"],
-    alternates: { canonical: canonicalUrl("/uae/traffic-fine-calculator") },
+    alternates: buildCountryAlternates("AE", "/uae/traffic-fine-calculator", "traffic-fine-calculator"),
 };
 
 const FAQ_ITEMS = [

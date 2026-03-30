@@ -7,6 +7,7 @@ import "../../ksa/ksa.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
 import FIDERatingCalculatorCore from "@/components/calculator/FIDERatingCalculatorCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
+import { buildCountryAlternates } from "@/lib/geo-seo";
 import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
     title: "FIDE Rating Calculator India 2026 — Chess Elo Calculator, Performance Rating & Title Tracker",
     description: "Free FIDE Rating Calculator with 4 modes: Elo Calculator (multi-game tournament, K-factor 10/20/40, round-by-round breakdown), Performance Rating (TPR), Title Progress Tracker (GM/IM/FM/CM path), and Win Probability (expected score table). Covers Elo formula, K-factor rules, how to get FIDE rating in India (AICF), and FIDE title requirements.",
     keywords: ["FIDE rating calculator", "chess Elo calculator", "FIDE rating India", "chess rating calculator", "K-factor chess", "performance rating chess", "GM title requirements", "AICF rating", "Elo formula", "expected score chess"],
-    alternates: { canonical: canonicalUrl("/in/fide-rating-calculator") },
+    alternates: buildCountryAlternates("IN", "/in/fide-rating-calculator", "fide-rating-calculator"),
 };
 
 const FAQ_ITEMS = [

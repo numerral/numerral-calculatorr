@@ -9,6 +9,7 @@ import "../ksa.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
 import KSACalculatorCore from "@/components/calculator/KSACalculatorCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
+import { buildCountryAlternates } from "@/lib/geo-seo";
 import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
@@ -16,7 +17,7 @@ export const metadata: Metadata = {
     title: "Commercial Registration Fee Calculator (KSA) — حاسبة رسوم السجل التجاري",
     description: "Calculate total commercial registration (CR) cost in Saudi Arabia for 2026. Covers all entity types, Chamber of Commerce, municipality license, MISA fees for foreign investors, sub-CRs, and late penalties.",
     keywords: ["commercial registration fee calculator Saudi Arabia", "حاسبة رسوم السجل التجاري", "CR fee KSA 2026", "LLC registration cost Saudi", "Chamber of Commerce fee KSA", "MISA license fee", "business registration Saudi Arabia", "Sijil commercial registration", "sole proprietorship fee KSA"],
-    alternates: { canonical: canonicalUrl("/ksa/commercial-registration-calculator") },
+    alternates: buildCountryAlternates("SA", "/ksa/commercial-registration-calculator", "commercial-registration-calculator"),
 };
 
 const FAQ_ITEMS = [

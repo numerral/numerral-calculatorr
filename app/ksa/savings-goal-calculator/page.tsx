@@ -9,6 +9,7 @@ import "../ksa.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
 import KSACalculatorCore from "@/components/calculator/KSACalculatorCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
+import { buildCountryAlternates } from "@/lib/geo-seo";
 import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
@@ -16,7 +17,7 @@ export const metadata: Metadata = {
     title: "Savings Goal Calculator (KSA) — حاسبة هدف الادخار",
     description: "Plan your savings in Saudi Arabia. Calculate how long to reach your goal or how much to save monthly. Covers Hajj, emergency fund, home, car, wedding goals with Sharia-compliant profit rates.",
     keywords: ["savings goal calculator Saudi Arabia", "حاسبة هدف الادخار", "KSA savings calculator", "Saudi savings plan", "Hajj savings calculator", "emergency fund Saudi", "Murabaha savings rate", "how to save money Saudi Arabia", "50/30/20 budget KSA", "Sah Sukuk savings"],
-    alternates: { canonical: canonicalUrl("/ksa/savings-goal-calculator") },
+    alternates: buildCountryAlternates("SA", "/ksa/savings-goal-calculator", "savings-goal-calculator"),
 };
 
 const FAQ_ITEMS = [

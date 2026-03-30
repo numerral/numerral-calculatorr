@@ -9,6 +9,7 @@ import "../ksa.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
 import KSACalculatorCore from "@/components/calculator/KSACalculatorCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
+import { buildCountryAlternates } from "@/lib/geo-seo";
 import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
@@ -16,7 +17,7 @@ export const metadata: Metadata = {
     title: "VAT Calculator (KSA) — Saudi Arabia 15% VAT",
     description: "Add or remove 15% VAT for Saudi Arabia. Calculate VAT-inclusive and VAT-exclusive prices instantly. Covers ZATCA rules, zero-rated goods, exempt supplies, and e-invoicing.",
     keywords: ["VAT calculator Saudi Arabia", "Saudi VAT 15%", "حاسبة ضريبة القيمة المضافة", "add VAT KSA", "remove VAT Saudi", "ZATCA VAT", "Saudi Arabia tax calculator", "VAT inclusive exclusive"],
-    alternates: { canonical: canonicalUrl("/ksa/vat-calculator") },
+    alternates: buildCountryAlternates("SA", "/ksa/vat-calculator", "vat-calculator"),
 };
 
 const FAQ_ITEMS = [

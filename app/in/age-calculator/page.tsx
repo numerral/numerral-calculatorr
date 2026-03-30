@@ -7,6 +7,7 @@ import "../../ksa/ksa.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
 import AgeCalculatorIndiaCore from "@/components/calculator/AgeCalculatorIndiaCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
+import { buildCountryAlternates } from "@/lib/geo-seo";
 import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
     title: "Age Calculator India 2026 — Exact Age, Legal Milestones & Age Difference",
     description: "Free age calculator for India. Calculate exact age in years, months, days. Track India legal milestones — voting age 18, driving license, marriage age, senior citizen 60+, retirement, school admission (NEP 2020). Compare ages and find birthday countdown.",
     keywords: ["age calculator India", "age calculator", "calculate age from date of birth", "India legal age milestones", "voting age India", "senior citizen age India", "driving license age", "marriage age India", "school admission age NEP 2020", "age difference calculator"],
-    alternates: { canonical: canonicalUrl("/in/age-calculator") },
+    alternates: buildCountryAlternates("IN", "/in/age-calculator", "age-calculator"),
 };
 
 const FAQ_ITEMS = [

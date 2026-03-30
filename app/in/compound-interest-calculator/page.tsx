@@ -7,6 +7,7 @@ import "../../ksa/ksa.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
 import CompoundInterestIndiaCore from "@/components/calculator/CompoundInterestIndiaCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
+import { buildCountryAlternates } from "@/lib/geo-seo";
 import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
     title: "Compound Interest Calculator India 2026 — FD, PPF, SIP Returns Calculator",
     description: "Free compound interest calculator for India with 4 modes: Lump Sum, Recurring SIP, FD Comparison (SBI/HDFC/ICICI/PPF/NSC/SCSS rates), and Cost of Delay. Includes compounding frequency selector, Rule of 72, CI vs SI comparison, year-by-year growth table, and Section 80C tax guide.",
     keywords: ["compound interest calculator India", "compound interest formula", "FD interest calculator", "CI calculator", "power of compounding", "Rule of 72", "compound interest vs simple interest", "PPF interest rate", "FD comparison calculator", "cost of delay investing"],
-    alternates: { canonical: canonicalUrl("/in/compound-interest-calculator") },
+    alternates: buildCountryAlternates("IN", "/in/compound-interest-calculator", "compound-interest-calculator"),
 };
 
 const FAQ_ITEMS = [

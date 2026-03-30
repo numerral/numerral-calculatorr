@@ -7,6 +7,7 @@ import "../../ksa/ksa.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
 import PensionCalculatorIndiaCore from "@/components/calculator/PensionCalculatorIndiaCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
+import { buildCountryAlternates } from "@/lib/geo-seo";
 import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
     title: "Pension Calculator India 2026 — NPS, EPS, Retirement Corpus & Annuity Planner",
     description: "Free pension calculator for India with 4 modes: Retirement Corpus Planner, NPS Calculator (80CCD tax benefits), EPS/EPFO Pension (formula with early/deferred), and Annuity Income Estimator. Includes NPS vs EPF vs PPF comparison, OPS vs NPS, annuity options guide, and healthcare cost planning.",
     keywords: ["pension calculator India", "NPS calculator", "retirement calculator India", "EPS pension formula", "EPF pension calculator", "annuity calculator India", "retirement corpus calculator", "NPS tax benefits 80CCD", "pension plan India 2026", "old pension scheme vs new pension scheme"],
-    alternates: { canonical: canonicalUrl("/in/pension-calculator") },
+    alternates: buildCountryAlternates("IN", "/in/pension-calculator", "pension-calculator"),
 };
 
 const FAQ_ITEMS = [

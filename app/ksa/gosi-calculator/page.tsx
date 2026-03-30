@@ -9,6 +9,7 @@ import "../ksa.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
 import KSACalculatorCore from "@/components/calculator/KSACalculatorCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
+import { buildCountryAlternates } from "@/lib/geo-seo";
 import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
@@ -16,7 +17,7 @@ export const metadata: Metadata = {
     title: "GOSI Calculator (KSA) — Saudi Social Insurance Contributions",
     description: "Calculate your GOSI contributions for Saudi and non-Saudi employees. Covers Annuities (pension), SANED (unemployment), and Occupational Hazards. Based on 2026 GOSI rates.",
     keywords: ["GOSI calculator", "Saudi Arabia social insurance", "GOSI contribution rates", "التأمينات الاجتماعية", "Saudi pension calculator", "SANED unemployment insurance", "GOSI employer employee contribution", "Saudi payroll deductions"],
-    alternates: { canonical: canonicalUrl("/ksa/gosi-calculator") },
+    alternates: buildCountryAlternates("SA", "/ksa/gosi-calculator", "gosi-calculator"),
 };
 
 const FAQ_ITEMS = [

@@ -14,6 +14,7 @@ import { ID_CALCULATORS } from "@/data/id-calculators";
 import { TR_CALCULATORS } from "@/data/tr-calculators";
 import { DE_CALCULATORS } from "@/data/de-calculators";
 import { CH_CALCULATORS } from "@/data/ch-calculators";
+import { KSA_PAGES, UAE_PAGES, IN_PAGES } from "@/lib/geo-seo";
 
 export const dynamic = "force-static";
 
@@ -101,6 +102,30 @@ function buildEntries(): SitemapEntry[] {
     for (const c of CH_CALCULATORS) {
         entries.push({ loc: `${SITE_URL}/ch/${c.id}`, lastmod: now });
     }
+
+    // ─── Country-specific hub index pages ───
+    entries.push({ loc: canonicalUrl("/ksa"), lastmod: now });
+    entries.push({ loc: canonicalUrl("/uae"), lastmod: now });
+    entries.push({ loc: canonicalUrl("/in"), lastmod: now });
+
+    // ─── KSA calculator pages ───
+    for (const slug of KSA_PAGES) {
+        entries.push({ loc: canonicalUrl(`/ksa/${slug}`), lastmod: now });
+    }
+
+    // ─── UAE calculator pages ───
+    for (const slug of UAE_PAGES) {
+        entries.push({ loc: canonicalUrl(`/uae/${slug}`), lastmod: now });
+    }
+
+    // ─── India calculator pages ───
+    for (const slug of IN_PAGES) {
+        entries.push({ loc: canonicalUrl(`/in/${slug}`), lastmod: now });
+    }
+
+    // ─── KSA glossary and guides ───
+    entries.push({ loc: canonicalUrl("/ksa/glossary"), lastmod: now });
+    entries.push({ loc: canonicalUrl("/ksa/guides"), lastmod: now });
 
     return entries;
 }

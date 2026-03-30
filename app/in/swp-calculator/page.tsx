@@ -7,6 +7,7 @@ import "../../ksa/ksa.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
 import SWPCalculatorCore from "@/components/calculator/SWPCalculatorCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
+import { buildCountryAlternates } from "@/lib/geo-seo";
 import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
     title: "SWP Calculator India 2026 — Systematic Withdrawal Plan Monthly Income & Safe Withdrawal Rate",
     description: "Free SWP Calculator with 4 modes: Withdrawal Planner (month-by-month depletion schedule, inflation toggle), SWP vs FD Income comparison, Corpus Required reverse calculator, and Safe Withdrawal Rate Finder (India-adapted SWR). Covers SWP tax (LTCG/STCG/FIFO), retirement planning, and best fund types.",
     keywords: ["SWP calculator", "systematic withdrawal plan calculator", "SWP mutual fund India", "retirement income calculator", "safe withdrawal rate India", "SWP vs FD", "SWP tax India", "monthly income from mutual fund", "corpus required for retirement"],
-    alternates: { canonical: canonicalUrl("/in/swp-calculator") },
+    alternates: buildCountryAlternates("IN", "/in/swp-calculator", "swp-calculator"),
 };
 
 const FAQ_ITEMS = [

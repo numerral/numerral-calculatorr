@@ -7,6 +7,7 @@ import "../uae.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
 import UAEADDCBillCalculatorCore from "@/components/calculator/UAEADDCBillCalculatorCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
+import { buildCountryAlternates } from "@/lib/geo-seo";
 import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
     title: "ADDC Bill Calculator 2026 — Abu Dhabi Electricity & Water (TAQA Distribution)",
     description: "Calculate your ADDC / TAQA Distribution bill for Abu Dhabi. Instant breakdown of electricity (Green/Red Band), water, meter fee, municipality fee, and VAT. Includes ADDC vs DEWA comparison and 2026 tariff tables for UAE Nationals and expatriates.",
     keywords: ["ADDC bill calculator", "Abu Dhabi electricity rates 2026", "TAQA Distribution tariff", "ADDC electricity water charges", "Abu Dhabi utility bill", "Green Band Red Band ADDC", "ADDC vs DEWA", "Abu Dhabi municipality fee", "ADDC expat rates", "Abu Dhabi water tariff"],
-    alternates: { canonical: canonicalUrl("/uae/addc-bill-calculator") },
+    alternates: buildCountryAlternates("AE", "/uae/addc-bill-calculator", "addc-bill-calculator"),
 };
 
 const FAQ_ITEMS = [

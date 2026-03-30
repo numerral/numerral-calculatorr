@@ -11,12 +11,13 @@ import KSACalculatorCore from "@/components/calculator/KSACalculatorCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
 import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
+import { buildCountryAlternates } from "@/lib/geo-seo";
 
 export const metadata: Metadata = {
     title: "Salary Calculator (KSA) — Saudi Arabia Net Pay",
     description: "Calculate your net salary in Saudi Arabia. No income tax — only GOSI deduction. Covers basic salary, housing, transport allowances for Saudi and non-Saudi employees.",
     keywords: ["Saudi Arabia salary calculator", "KSA net salary", "حاسبة الراتب", "GOSI salary deduction", "Saudi take home pay", "expat salary Saudi Arabia", "Saudi payroll calculator", "no income tax Saudi"],
-    alternates: { canonical: canonicalUrl("/ksa/salary-calculator") },
+    alternates: buildCountryAlternates("SA", "/ksa/salary-calculator", "salary-calculator"),
 };
 
 const FAQ_ITEMS = [

@@ -7,6 +7,7 @@ import "../../ksa/ksa.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
 import IncomeTaxIndiaCore from "@/components/calculator/IncomeTaxIndiaCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
+import { buildCountryAlternates } from "@/lib/geo-seo";
 import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
     title: "Income Tax Calculator India FY 2025-26 — New & Old Regime Comparison | Budget 2025",
     description: "Free income tax calculator for FY 2025-26 (AY 2026-27) with 3 modes: New Regime (Budget 2025 slabs, ₹12L tax-free), Old Regime (80C/80D/HRA/24b deductions), and side-by-side Regime Comparison. Includes surcharge rates, Section 87A rebate, advance tax dates, ITR form guide, and tax-saving investments.",
     keywords: ["income tax calculator India", "income tax calculator FY 2025-26", "new tax regime 2025-26", "old vs new regime", "income tax slabs 2025-26", "Section 80C deductions", "87A rebate", "tax calculator India 2026", "budget 2025 income tax", "HRA exemption calculator"],
-    alternates: { canonical: canonicalUrl("/in/income-tax-calculator") },
+    alternates: buildCountryAlternates("IN", "/in/income-tax-calculator", "income-tax-calculator"),
 };
 
 const FAQ_ITEMS = [

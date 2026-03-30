@@ -9,6 +9,7 @@ import "../ksa.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
 import KSACalculatorCore from "@/components/calculator/KSACalculatorCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
+import { buildCountryAlternates } from "@/lib/geo-seo";
 import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
@@ -16,7 +17,7 @@ export const metadata: Metadata = {
     title: "Iqama Renewal Cost Calculator (KSA) — حاسبة تكلفة تجديد الإقامة",
     description: "Calculate total Iqama renewal cost in Saudi Arabia for 2026. Includes base fee, work permit (Maktab Amal), dependent levy, Absher processing, health insurance, exit/re-entry visa, and late penalties.",
     keywords: ["Iqama renewal cost calculator", "حاسبة تكلفة تجديد الإقامة", "Iqama renewal fee Saudi Arabia 2026", "dependent levy SAR 400", "Maktab Amal fee", "Absher Iqama renewal", "work permit fee KSA", "exit re-entry visa Saudi", "Iqama late penalty", "Muqeem platform"],
-    alternates: { canonical: canonicalUrl("/ksa/iqama-renewal-calculator") },
+    alternates: buildCountryAlternates("SA", "/ksa/iqama-renewal-calculator", "iqama-renewal-calculator"),
 };
 
 const FAQ_ITEMS = [

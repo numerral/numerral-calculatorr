@@ -5,13 +5,22 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import { canonicalUrl } from "@/lib/seo";
+import { buildCountryAlternates } from "@/lib/geo-seo";
 import "../ksa/ksa.css";
 import "./uae.css";
 
 export const metadata: Metadata = {
     title: "UAE Calculators — United Arab Emirates Tools",
     description: "Free UAE-specific calculators: Mortgage, Rent, Salary, Gratuity, VAT, and more. Accurate, step-by-step, based on CBUAE regulations and UAE Federal Law.",
-    alternates: { canonical: canonicalUrl("/uae") },
+    alternates: {
+        canonical: canonicalUrl("/uae"),
+        languages: {
+            "en-SA": "https://www.numerral.com/ksa",
+            "en-AE": "https://www.numerral.com/uae",
+            "en-IN": "https://www.numerral.com/in",
+            "x-default": "https://www.numerral.com/uae",
+        }
+    },
 };
 
 const UAE_CALCULATORS = [
