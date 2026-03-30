@@ -155,6 +155,13 @@ const IN_CALCULATORS = [
         tag: "Savings & Investment",
         description: "FD interest calculator with 4 modes: Maturity Calculator (cumulative/non-cumulative, year-by-year breakdown), Bank Rate Comparison (SBI/HDFC/ICICI/Axis/BOB + 7 more), TDS & Tax Impact (Form 15G/15H, post-tax return), and FD vs PPF/SCSS/MF comparison.",
     },
+    {
+        title: "Position Size Calculator",
+        slug: "position-size-calculator",
+        icon: "📊",
+        tag: "Trading & Risk",
+        description: "Calculate optimal trade size with 4 modes: Basic Position Sizer (% risk model with STT/GST cost toggle), F&O Lot Calculator (NSE 2026 lot sizes for Nifty, Bank Nifty, FinNifty), Risk-Reward Analyser, and Kelly Criterion. Includes loss recovery table and SEBI regulations.",
+    },
 ];
 export default function IndiaPage() {
     return (
