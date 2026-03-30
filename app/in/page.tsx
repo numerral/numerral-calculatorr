@@ -148,6 +148,13 @@ const IN_CALCULATORS = [
         tag: "Health & Fitness",
         description: "Body Fat Calculator with 4 modes: US Navy Method (gender-aware, neck/waist/hip), BMI-Based Estimate (Deurenberg formula), Body Fat Category Reference (age-wise tables), and Lean Body Mass Target Weight Planner.",
     },
+    {
+        title: "Fixed Deposit (FD) Calculator",
+        slug: "fd-calculator",
+        icon: "🏦",
+        tag: "Savings & Investment",
+        description: "FD interest calculator with 4 modes: Maturity Calculator (cumulative/non-cumulative, year-by-year breakdown), Bank Rate Comparison (SBI/HDFC/ICICI/Axis/BOB + 7 more), TDS & Tax Impact (Form 15G/15H, post-tax return), and FD vs PPF/SCSS/MF comparison.",
+    },
 ];
 export default function IndiaPage() {
     return (
