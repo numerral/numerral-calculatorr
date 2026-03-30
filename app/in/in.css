@@ -456,3 +456,107 @@
 [data-theme="dark"] .in-content tbody tr:hover { background: rgba(255, 165, 77, 0.06); }
 [data-theme="dark"] .in-content a { color: #ffa94d; border-bottom-color: rgba(255, 165, 77, 0.3); }
 [data-theme="dark"] .in-related-link:hover { border-color: rgba(255, 165, 77, 0.3); background: rgba(255, 165, 77, 0.05); }
+
+/* ═══════════════════════════════════════════════
+   CALCULATOR COMPONENT — DARK MODE OVERRIDES
+   Targets inline styles with hardcoded light colors
+   ═══════════════════════════════════════════════ */
+
+/* Card container & surfaces */
+[data-theme="dark"] [style*="--c-card-bg"] { --c-card-bg: var(--n-surface) !important; }
+[data-theme="dark"] [style*="--c-bg"] { --c-bg: var(--n-bg) !important; }
+[data-theme="dark"] [style*="--c-surface"] { --c-surface: var(--n-surface-alt) !important; }
+[data-theme="dark"] [style*="--c-border"] { --c-border: var(--n-border) !important; }
+[data-theme="dark"] [style*="--c-text"] { --c-text: var(--n-text) !important; }
+[data-theme="dark"] [style*="--c-text-muted"] { --c-text-muted: var(--n-text-muted) !important; }
+[data-theme="dark"] [style*="--c-primary"] { --c-primary: var(--n-primary) !important; }
+[data-theme="dark"] [style*="--c-primary-bg"] { --c-primary-bg: hsla(234, 50%, 15%, 1) !important; }
+[data-theme="dark"] [style*="--font-mono"] { --font-mono: var(--t-mono) !important; }
+
+/* Green pastel backgrounds → dark-friendly green */
+[data-theme="dark"] [style*="background"][style*="#dcfce7"],
+[data-theme="dark"] [style*="background"][style*="linear-gradient(135deg, #dcfce7"] {
+    background: rgba(22, 163, 106, 0.12) !important;
+}
+
+/* Red pastel backgrounds → dark-friendly red */
+[data-theme="dark"] [style*="background"][style*="#fee2e2"] {
+    background: rgba(220, 38, 38, 0.12) !important;
+}
+
+/* Yellow/amber pastel backgrounds → dark-friendly amber */
+[data-theme="dark"] [style*="background"][style*="#fef3c7"] {
+    background: rgba(245, 158, 11, 0.12) !important;
+    color: #fbbf24 !important;
+}
+
+/* Blue pastel backgrounds → dark-friendly blue */
+[data-theme="dark"] [style*="background"][style*="#dbeafe"] {
+    background: rgba(59, 130, 246, 0.12) !important;
+}
+[data-theme="dark"] [style*="background"][style*="#e8f0fe"] {
+    background: rgba(59, 130, 246, 0.1) !important;
+}
+
+/* Input fields — dark mode styling */
+[data-theme="dark"] .container input[type="number"],
+[data-theme="dark"] .container input[type="text"],
+[data-theme="dark"] .container select {
+    background: var(--n-surface-input) !important;
+    color: var(--n-text) !important;
+    border-color: var(--n-border) !important;
+}
+[data-theme="dark"] .container input[type="number"]:focus,
+[data-theme="dark"] .container input[type="text"]:focus {
+    border-color: var(--n-primary) !important;
+    box-shadow: 0 0 0 3px var(--n-primary-glow) !important;
+}
+
+/* Buttons inside calculator */
+[data-theme="dark"] .container button[style*="border: 1px solid"] {
+    border-color: var(--n-border) !important;
+}
+
+/* Table header colors for category reference */
+[data-theme="dark"] [style*="background: \"#fee2e2\""],
+[data-theme="dark"] th[style*="#fee2e2"] {
+    background: rgba(220, 38, 38, 0.15) !important;
+    color: #fca5a5 !important;
+}
+[data-theme="dark"] th[style*="#dbeafe"] {
+    background: rgba(59, 130, 246, 0.15) !important;
+    color: #93c5fd !important;
+}
+[data-theme="dark"] th[style*="#dcfce7"] {
+    background: rgba(22, 163, 106, 0.15) !important;
+    color: #86efac !important;
+}
+[data-theme="dark"] th[style*="#fef3c7"] {
+    background: rgba(245, 158, 11, 0.15) !important;
+    color: #fbbf24 !important;
+}
+
+/* Category table — dark text colors → lighter versions */
+[data-theme="dark"] [style*="color: \"#991b1b\""],
+[data-theme="dark"] [style*="color"][style*="#991b1b"],
+[data-theme="dark"] th[style*="#991b1b"] {
+    color: #fca5a5 !important;
+}
+[data-theme="dark"] [style*="color"][style*="#1e40af"],
+[data-theme="dark"] th[style*="#1e40af"] {
+    color: #93c5fd !important;
+}
+[data-theme="dark"] [style*="color"][style*="#166534"],
+[data-theme="dark"] th[style*="#166534"] {
+    color: #86efac !important;
+}
+[data-theme="dark"] [style*="color"][style*="#92400e"],
+[data-theme="dark"] th[style*="#92400e"],
+[data-theme="dark"] [style*="color"][style*="#92400e"] {
+    color: #fbbf24 !important;
+}
+
+/* Dark slate header gradient for FIDE/XIRR calculators */
+[data-theme="dark"] [style*="background: \"linear-gradient(135deg, #1e293b"] {
+    background: linear-gradient(135deg, hsl(222,30%,12%), hsl(222,25%,16%)) !important;
+}

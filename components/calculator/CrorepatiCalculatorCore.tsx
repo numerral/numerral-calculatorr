@@ -68,12 +68,12 @@ function InputRow({ label, value, set, max, step, suffix, hint }: {
         <div style={{ marginBottom: 14 }}>
             <label style={{ display: "flex", justifyContent: "space-between", fontWeight: 600, fontSize: "0.88rem", marginBottom: 4 }}>
                 <span>{label}</span>
-                <span style={{ color: "var(--c-primary)", fontFamily: "var(--font-mono, monospace)" }}>{displayVal}</span>
+                <span style={{ color: "var(--n-primary)", fontFamily: "var(--font-mono, monospace)" }}>{displayVal}</span>
             </label>
             <input type="range" min={0} max={max || 50_00_000} step={step || 5000} value={value}
                 onChange={e => set(Number(e.target.value))}
-                style={{ width: "100%", accentColor: "var(--c-primary)" }} />
-            {hint && <div style={{ fontSize: "0.72rem", color: "var(--c-text-muted)", marginTop: 2 }}>{hint}</div>}
+                style={{ width: "100%", accentColor: "var(--n-primary)" }} />
+            {hint && <div style={{ fontSize: "0.72rem", color: "var(--n-text-muted)", marginTop: 2 }}>{hint}</div>}
         </div>
     );
 }
@@ -117,9 +117,9 @@ function GoalPlannerMode() {
                 {GOAL_PRESETS.map(p => (
                     <button key={p.value} onClick={() => setGoal(p.value)} style={{
                         padding: "8px 14px", borderRadius: 8, fontSize: "0.82rem", cursor: "pointer",
-                        border: goal === p.value ? "2px solid var(--c-primary)" : "1px solid var(--c-border)",
-                        background: goal === p.value ? "var(--c-primary-bg, #e8f0fe)" : "var(--c-bg)",
-                        fontWeight: goal === p.value ? 700 : 500, color: goal === p.value ? "var(--c-primary)" : "var(--c-text)",
+                        border: goal === p.value ? "2px solid var(--n-primary)" : "1px solid var(--n-border)",
+                        background: goal === p.value ? "var(--n-primary-light)" : "var(--n-surface)",
+                        fontWeight: goal === p.value ? 700 : 500, color: goal === p.value ? "var(--n-primary)" : "var(--n-text)",
                     }}>{p.label}</button>
                 ))}
             </div>
@@ -135,26 +135,26 @@ function GoalPlannerMode() {
             {showInflation && <InputRow label="Expected Inflation" value={inflation} set={setInflation} max={12} step={0.5} suffix="%" />}
 
             {/* Results */}
-            <div style={{ background: "var(--c-surface)", borderRadius: 12, padding: "var(--s-4)", textAlign: "center" }}>
-                <div style={{ fontSize: "0.82rem", fontWeight: 700, color: "var(--c-primary)", textTransform: "uppercase", letterSpacing: 1, marginBottom: "var(--s-2)" }}>
+            <div style={{ background: "var(--n-surface-alt)", borderRadius: 12, padding: "var(--s-4)", textAlign: "center" }}>
+                <div style={{ fontSize: "0.82rem", fontWeight: 700, color: "var(--n-primary)", textTransform: "uppercase", letterSpacing: 1, marginBottom: "var(--s-2)" }}>
                     Time to reach {fmtCr(goal)}
                 </div>
                 <div style={{ fontSize: "2.4rem", fontWeight: 800, fontFamily: "var(--font-mono, monospace)", marginBottom: "var(--s-2)" }}>
                     {formatDuration(result.months)}
                 </div>
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "var(--s-3)", marginTop: "var(--s-3)" }}>
-                    <div style={{ background: "var(--c-bg)", borderRadius: 8, padding: "10px" }}>
-                        <div style={{ fontSize: "0.72rem", color: "var(--c-text-muted)" }}>Total Invested</div>
+                    <div style={{ background: "var(--n-surface)", borderRadius: 8, padding: "10px" }}>
+                        <div style={{ fontSize: "0.72rem", color: "var(--n-text-muted)" }}>Total Invested</div>
                         <div style={{ fontSize: "1.1rem", fontWeight: 700 }}>{fmtCr(result.totalInvested)}</div>
                     </div>
-                    <div style={{ background: "var(--c-bg)", borderRadius: 8, padding: "10px" }}>
-                        <div style={{ fontSize: "0.72rem", color: "var(--c-text-muted)" }}>Wealth Gained</div>
+                    <div style={{ background: "var(--n-surface)", borderRadius: 8, padding: "10px" }}>
+                        <div style={{ fontSize: "0.72rem", color: "var(--n-text-muted)" }}>Wealth Gained</div>
                         <div style={{ fontSize: "1.1rem", fontWeight: 700, color: "#16a34a" }}>{fmtCr(result.wealthGained)}</div>
                     </div>
                 </div>
                 {showInflation && (
-                    <div style={{ background: "#fef3c7", borderRadius: 8, padding: "10px 14px", marginTop: "var(--s-3)", fontSize: "0.82rem" }}>
-                        <div style={{ fontWeight: 700, color: "#92400e" }}>⚠️ Inflation-Adjusted Value</div>
+                    <div style={{ background: "var(--n-gold-light)", borderRadius: 8, padding: "10px 14px", marginTop: "var(--s-3)", fontSize: "0.82rem" }}>
+                        <div style={{ fontWeight: 700, color: "var(--n-gold-text)" }}>⚠️ Inflation-Adjusted Value</div>
                         <div style={{ color: "#78350f" }}>
                             {fmtCr(goal)} in {formatDuration(result.months)} = <strong>{fmtCr(result.realValue)}</strong> in today&rsquo;s money
                         </div>
@@ -193,9 +193,9 @@ function StepUpMode() {
                 {GOAL_PRESETS.map(p => (
                     <button key={p.value} onClick={() => setGoal(p.value)} style={{
                         padding: "8px 14px", borderRadius: 8, fontSize: "0.82rem", cursor: "pointer",
-                        border: goal === p.value ? "2px solid var(--c-primary)" : "1px solid var(--c-border)",
-                        background: goal === p.value ? "var(--c-primary-bg, #e8f0fe)" : "var(--c-bg)",
-                        fontWeight: goal === p.value ? 700 : 500, color: goal === p.value ? "var(--c-primary)" : "var(--c-text)",
+                        border: goal === p.value ? "2px solid var(--n-primary)" : "1px solid var(--n-border)",
+                        background: goal === p.value ? "var(--n-primary-light)" : "var(--n-surface)",
+                        fontWeight: goal === p.value ? 700 : 500, color: goal === p.value ? "var(--n-primary)" : "var(--n-text)",
                     }}>{p.label}</button>
                 ))}
             </div>
@@ -205,15 +205,15 @@ function StepUpMode() {
             <InputRow label="Target Corpus" value={goal} set={setGoal} max={50_00_00_000} step={25_00_000} />
 
             {/* Comparison */}
-            <div style={{ background: result.savedMonths > 0 ? "#dcfce7" : "var(--c-surface)", border: `2px solid ${result.savedMonths > 0 ? "#16a34a" : "var(--c-border)"}`, borderRadius: 12, padding: "16px", textAlign: "center", marginBottom: "var(--s-3)" }}>
-                <div style={{ fontSize: "1.1rem", fontWeight: 800, color: result.savedMonths > 0 ? "#16a34a" : "var(--c-text)" }}>
+            <div style={{ background: result.savedMonths > 0 ? "var(--n-success-light)" : "var(--n-surface-alt)", border: `2px solid ${result.savedMonths > 0 ? "#16a34a" : "var(--n-border)"}`, borderRadius: 12, padding: "16px", textAlign: "center", marginBottom: "var(--s-3)" }}>
+                <div style={{ fontSize: "1.1rem", fontWeight: 800, color: result.savedMonths > 0 ? "#16a34a" : "var(--n-text)" }}>
                     📈 Step-Up SIP saves you {formatDuration(result.savedMonths)}!
                 </div>
             </div>
 
             <div style={{ overflowX: "auto" }}>
                 <table style={{ width: "100%", fontSize: "0.82rem", borderCollapse: "collapse" }}>
-                    <thead><tr style={{ borderBottom: "2px solid var(--c-border)" }}>
+                    <thead><tr style={{ borderBottom: "2px solid var(--n-border)" }}>
                         <th style={{ textAlign: "left", padding: "8px 4px" }}>Parameter</th>
                         <th style={{ textAlign: "right", padding: "8px 4px" }}>Flat SIP</th>
                         <th style={{ textAlign: "right", padding: "8px 4px", color: "#16a34a" }}>Step-Up SIP ({stepUp}%)</th>
@@ -225,7 +225,7 @@ function StepUpMode() {
                             ["Total Invested", fmtCr(result.flatInvested), fmtCr(result.stepInvested)],
                             ["Target Corpus", fmtCr(goal), fmtCr(goal)],
                         ].map(([l, f, s], i) => (
-                            <tr key={i} style={{ borderBottom: "1px solid var(--c-border)" }}>
+                            <tr key={i} style={{ borderBottom: "1px solid var(--n-border)" }}>
                                 <td style={{ padding: "6px 4px" }}>{l}</td>
                                 <td style={{ textAlign: "right", padding: "6px 4px" }}>{f}</td>
                                 <td style={{ textAlign: "right", padding: "6px 4px", fontWeight: 600, color: "#16a34a" }}>{s}</td>
@@ -274,7 +274,7 @@ function CostOfDelayMode() {
 
             <div style={{ overflowX: "auto" }}>
                 <table style={{ width: "100%", fontSize: "0.82rem", borderCollapse: "collapse" }}>
-                    <thead><tr style={{ borderBottom: "2px solid var(--c-border)" }}>
+                    <thead><tr style={{ borderBottom: "2px solid var(--n-border)" }}>
                         <th style={{ textAlign: "left", padding: "8px 4px" }}>Delay</th>
                         <th style={{ textAlign: "right", padding: "8px 4px" }}>Time to Goal</th>
                         <th style={{ textAlign: "right", padding: "8px 4px" }}>SIP Needed (same timeline)</th>
@@ -283,8 +283,8 @@ function CostOfDelayMode() {
                     <tbody>
                         {results.map((r, i) => (
                             <tr key={i} style={{
-                                borderBottom: "1px solid var(--c-border)",
-                                background: i === 0 ? "#dcfce7" : i >= 4 ? "#fef2f2" : undefined,
+                                borderBottom: "1px solid var(--n-border)",
+                                background: i === 0 ? "var(--n-success-light)" : i >= 4 ? "#fef2f2" : undefined,
                             }}>
                                 <td style={{ padding: "6px 4px", fontWeight: i === 0 ? 700 : 400 }}>
                                     {r.delay === 0 ? "🟢 Start Now" : `⏳ ${r.delay} year${r.delay > 1 ? "s" : ""} late`}
@@ -303,8 +303,8 @@ function CostOfDelayMode() {
             </div>
 
             {results[0].months !== Infinity && (
-                <div style={{ background: "#fef3c7", borderRadius: 10, padding: "12px 16px", marginTop: "var(--s-3)", fontSize: "0.82rem" }}>
-                    <strong style={{ color: "#92400e" }}>💡 Key Insight:</strong>
+                <div style={{ background: "var(--n-gold-light)", borderRadius: 10, padding: "12px 16px", marginTop: "var(--s-3)", fontSize: "0.82rem" }}>
+                    <strong style={{ color: "var(--n-gold-text)" }}>💡 Key Insight:</strong>
                     <span style={{ color: "#78350f" }}> Delaying by just 5 years requires <strong>{fmt(results[4]?.extraSip || 0)}/month extra</strong> to reach the same goal in the same timeframe. Start today!</span>
                 </div>
             )}
@@ -335,7 +335,7 @@ function MilestoneMode() {
             <InputRow label="One-Time Lump Sum" value={lump} set={setLump} max={5_00_00_000} step={50_000} />
             <InputRow label="Expected Return" value={rate} set={setRate} max={20} step={0.5} suffix="%" />
 
-            <div style={{ fontSize: "0.82rem", fontWeight: 700, color: "var(--c-primary)", textTransform: "uppercase", letterSpacing: 1, marginBottom: "var(--s-2)" }}>
+            <div style={{ fontSize: "0.82rem", fontWeight: 700, color: "var(--n-primary)", textTransform: "uppercase", letterSpacing: 1, marginBottom: "var(--s-2)" }}>
                 🏆 Your Wealth Milestones
             </div>
 
@@ -346,13 +346,13 @@ function MilestoneMode() {
                     return (
                         <div key={i} style={{
                             display: "flex", alignItems: "center", gap: 12,
-                            background: "var(--c-surface)", borderRadius: 10, padding: "12px 16px",
+                            background: "var(--n-surface-alt)", borderRadius: 10, padding: "12px 16px",
                             borderLeft: `4px solid ${r.months <= 240 ? "#16a34a" : r.months <= 480 ? "#f59e0b" : "#dc2626"}`,
                         }}>
                             <div style={{ minWidth: 80, fontWeight: 800, fontSize: "1rem" }}>{fmtCr(r.target)}</div>
                             <div style={{ flex: 1 }}>
                                 <div style={{ fontWeight: 700, fontSize: "0.9rem" }}>{formatDuration(r.months)}</div>
-                                <div style={{ fontSize: "0.72rem", color: "var(--c-text-muted)" }}>
+                                <div style={{ fontSize: "0.72rem", color: "var(--n-text-muted)" }}>
                                     Invested: {fmtCr(r.invested)} • Gained: {fmtCr(r.gained)}
                                     {i > 0 && gap > 0 && ` • Gap from prev: ${formatDuration(gap)}`}
                                 </div>
@@ -365,9 +365,9 @@ function MilestoneMode() {
                 })}
             </div>
 
-            <div style={{ background: "#e8f0fe", borderRadius: 10, padding: "12px 16px", marginTop: "var(--s-3)", fontSize: "0.82rem" }}>
-                <strong style={{ color: "var(--c-primary)" }}>📊 Notice the Pattern:</strong>
-                <span style={{ color: "var(--c-text)" }}> Each successive crore takes <em>less</em> time than the previous one. That&rsquo;s the power of compounding — your first ₹1 Cr is the hardest, the next ones come faster!</span>
+            <div style={{ background: "var(--n-primary-light)", borderRadius: 10, padding: "12px 16px", marginTop: "var(--s-3)", fontSize: "0.82rem" }}>
+                <strong style={{ color: "var(--n-primary)" }}>📊 Notice the Pattern:</strong>
+                <span style={{ color: "var(--n-text)" }}> Each successive crore takes <em>less</em> time than the previous one. That&rsquo;s the power of compounding — your first ₹1 Cr is the hardest, the next ones come faster!</span>
             </div>
         </>
     );
@@ -378,21 +378,21 @@ export default function CrorepatiCalculatorCore() {
     const [mode, setMode] = useState<Mode>("goal");
 
     return (
-        <div style={{ background: "var(--c-card-bg, #fff)", borderRadius: 16, border: "1px solid var(--c-border)", overflow: "hidden", marginBottom: "var(--s-6)" }}>
-            <div style={{ padding: "var(--s-4) var(--s-5)", borderBottom: "1px solid var(--c-border)", background: "linear-gradient(135deg, var(--c-primary-bg, #e8f0fe), var(--c-surface))" }}>
+        <div style={{ background: "var(--n-surface)", borderRadius: 16, border: "1px solid var(--n-border)", overflow: "hidden", marginBottom: "var(--s-6)" }}>
+            <div style={{ padding: "var(--s-4) var(--s-5)", borderBottom: "1px solid var(--n-border)", background: "linear-gradient(135deg, var(--n-primary-light), var(--n-surface-alt))" }}>
                 <h2 style={{ margin: 0, fontSize: "1.25rem", fontWeight: 700 }}>💰 Crorepati Calculator</h2>
-                <div style={{ fontSize: "0.82rem", color: "var(--c-text-muted)", marginTop: 4 }}>Plan your path to ₹1 Crore and beyond • SIP • Step-Up • Delay Analysis • Milestones</div>
+                <div style={{ fontSize: "0.82rem", color: "var(--n-text-muted)", marginTop: 4 }}>Plan your path to ₹1 Crore and beyond • SIP • Step-Up • Delay Analysis • Milestones</div>
             </div>
 
-            <div style={{ display: "flex", borderBottom: "1px solid var(--c-border)", flexWrap: "wrap" }}>
+            <div style={{ display: "flex", borderBottom: "1px solid var(--n-border)", flexWrap: "wrap" }}>
                 {MODES.map(m => (
                     <button key={m.key} onClick={() => setMode(m.key)}
                         style={{
                             flex: 1, minWidth: 120, padding: "12px 8px", border: "none", cursor: "pointer",
-                            borderBottom: mode === m.key ? "3px solid var(--c-primary)" : "3px solid transparent",
-                            background: mode === m.key ? "var(--c-primary-bg, #e8f0fe)" : "transparent",
+                            borderBottom: mode === m.key ? "3px solid var(--n-primary)" : "3px solid transparent",
+                            background: mode === m.key ? "var(--n-primary-light)" : "transparent",
                             fontWeight: mode === m.key ? 700 : 500, fontSize: "0.82rem",
-                            color: mode === m.key ? "var(--c-primary)" : "var(--c-text-muted)",
+                            color: mode === m.key ? "var(--n-primary)" : "var(--n-text-muted)",
                         }}>
                         {m.icon} {m.label}
                     </button>

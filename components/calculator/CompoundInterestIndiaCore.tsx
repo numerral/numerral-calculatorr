@@ -39,14 +39,14 @@ function SliderRow({ label, value, set, min, max, step, suffix }: {
         <div style={{ marginBottom: "var(--s-4)" }}>
             <label style={{ display: "flex", justifyContent: "space-between", fontWeight: 600, marginBottom: 4, fontSize: "0.92rem" }}>
                 <span>{label}</span>
-                <span style={{ color: "var(--c-primary)" }}>
+                <span style={{ color: "var(--n-primary)" }}>
                     {suffix === "%" ? `${value}%` : suffix === "yrs" ? `${value} yrs` : suffix === "num" ? `${value}` : fmt(value)}
                 </span>
             </label>
             <input type="range" min={min} max={max} step={step} value={value}
                 onChange={e => set(Number(e.target.value))}
-                style={{ width: "100%", accentColor: "var(--c-primary)" }} />
-            <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.75rem", color: "var(--c-text-muted)" }}>
+                style={{ width: "100%", accentColor: "var(--n-primary)" }} />
+            <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.75rem", color: "var(--n-text-muted)" }}>
                 <span>{suffix === "%" ? `${min}%` : suffix === "yrs" ? `${min} yrs` : suffix === "num" ? `${min}` : fmt(min)}</span>
                 <span>{suffix === "%" ? `${max}%` : suffix === "yrs" ? `${max} yrs` : suffix === "num" ? `${max}` : fmt(max)}</span>
             </div>
@@ -63,10 +63,10 @@ function FreqSelector({ value, set }: { value: number; set: (v: number) => void 
                 {FREQ.map((f, i) => (
                     <button key={i} onClick={() => set(i)} style={{
                         padding: "8px 14px", borderRadius: 8, fontSize: "0.82rem", cursor: "pointer",
-                        border: i === value ? "2px solid var(--c-primary)" : "1px solid var(--c-border)",
-                        background: i === value ? "var(--c-primary-bg, #e8f0fe)" : "var(--c-bg)",
+                        border: i === value ? "2px solid var(--n-primary)" : "1px solid var(--n-border)",
+                        background: i === value ? "var(--n-primary-light)" : "var(--n-surface)",
                         fontWeight: i === value ? 700 : 500,
-                        color: i === value ? "var(--c-primary)" : "var(--c-text)",
+                        color: i === value ? "var(--n-primary)" : "var(--n-text)",
                     }}>{f.label}</button>
                 ))}
             </div>
@@ -106,35 +106,35 @@ function LumpSumMode() {
             <SliderRow label="Time Period" value={years} set={setYears} min={1} max={50} step={1} suffix="yrs" />
             <FreqSelector value={freqIdx} set={setFreqIdx} />
 
-            <div style={{ background: "var(--c-surface)", borderRadius: 12, padding: "var(--s-5)", marginTop: "var(--s-4)" }}>
-                <div style={{ fontSize: "0.85rem", fontWeight: 700, color: "var(--c-primary)", textTransform: "uppercase", letterSpacing: 1, marginBottom: "var(--s-3)" }}>Results — {FREQ[freqIdx].label} Compounding</div>
+            <div style={{ background: "var(--n-surface-alt)", borderRadius: 12, padding: "var(--s-5)", marginTop: "var(--s-4)" }}>
+                <div style={{ fontSize: "0.85rem", fontWeight: 700, color: "var(--n-primary)", textTransform: "uppercase", letterSpacing: 1, marginBottom: "var(--s-3)" }}>Results — {FREQ[freqIdx].label} Compounding</div>
                 <div style={{ textAlign: "center" }}>
-                    <div style={{ fontSize: "2.5rem", fontWeight: 800, fontFamily: "var(--font-mono, monospace)", color: "var(--c-text)" }}>{fmt(maturity)}</div>
-                    <div style={{ fontSize: "0.9rem", color: "var(--c-text-muted)", marginTop: 4 }}>Maturity Amount</div>
+                    <div style={{ fontSize: "2.5rem", fontWeight: 800, fontFamily: "var(--font-mono, monospace)", color: "var(--n-text)" }}>{fmt(maturity)}</div>
+                    <div style={{ fontSize: "0.9rem", color: "var(--n-text-muted)", marginTop: 4 }}>Maturity Amount</div>
                 </div>
 
                 <table style={{ width: "100%", marginTop: "var(--s-4)", fontSize: "0.88rem" }}>
                     <tbody>
-                        <tr><td style={{ padding: "6px 0", color: "var(--c-text-muted)" }}>Principal Invested</td><td style={{ textAlign: "right", fontWeight: 600 }}>{fmt(principal)}</td></tr>
-                        <tr><td style={{ padding: "6px 0", color: "var(--c-text-muted)" }}>Compound Interest Earned</td><td style={{ textAlign: "right", fontWeight: 600, color: "#16a34a" }}>{fmt(interest)}</td></tr>
-                        <tr style={{ borderTop: "1px dashed var(--c-border)" }}><td style={{ padding: "6px 0", color: "var(--c-text-muted)" }}>Simple Interest (for comparison)</td><td style={{ textAlign: "right", fontWeight: 600 }}>{fmt(siInterest)}</td></tr>
-                        <tr><td style={{ padding: "6px 0", color: "var(--c-text-muted)" }}>CI Advantage over SI</td><td style={{ textAlign: "right", fontWeight: 600, color: "var(--c-primary)" }}>+{fmt(ciAdvantage)}</td></tr>
+                        <tr><td style={{ padding: "6px 0", color: "var(--n-text-muted)" }}>Principal Invested</td><td style={{ textAlign: "right", fontWeight: 600 }}>{fmt(principal)}</td></tr>
+                        <tr><td style={{ padding: "6px 0", color: "var(--n-text-muted)" }}>Compound Interest Earned</td><td style={{ textAlign: "right", fontWeight: 600, color: "#16a34a" }}>{fmt(interest)}</td></tr>
+                        <tr style={{ borderTop: "1px dashed var(--n-border)" }}><td style={{ padding: "6px 0", color: "var(--n-text-muted)" }}>Simple Interest (for comparison)</td><td style={{ textAlign: "right", fontWeight: 600 }}>{fmt(siInterest)}</td></tr>
+                        <tr><td style={{ padding: "6px 0", color: "var(--n-text-muted)" }}>CI Advantage over SI</td><td style={{ textAlign: "right", fontWeight: 600, color: "var(--n-primary)" }}>+{fmt(ciAdvantage)}</td></tr>
                     </tbody>
                 </table>
 
-                <div style={{ marginTop: "var(--s-3)", padding: "10px 14px", background: "var(--c-bg)", borderRadius: 8, fontSize: "0.82rem", color: "var(--c-text-muted)" }}>
+                <div style={{ marginTop: "var(--s-3)", padding: "10px 14px", background: "var(--n-surface)", borderRadius: 8, fontSize: "0.82rem", color: "var(--n-text-muted)" }}>
                     <strong>Formula:</strong> A = P × (1 + r/n)<sup>n×t</sup> = {fmt(principal)} × (1 + {rate}%/{n})<sup>{n}×{years}</sup> = <strong>{fmt(maturity)}</strong>
                 </div>
 
                 <button onClick={() => setShowTable(!showTable)} style={{
-                    marginTop: "var(--s-3)", width: "100%", padding: "10px", border: "1px solid var(--c-border)",
-                    borderRadius: 8, background: "var(--c-bg)", cursor: "pointer", fontWeight: 600, fontSize: "0.88rem",
+                    marginTop: "var(--s-3)", width: "100%", padding: "10px", border: "1px solid var(--n-border)",
+                    borderRadius: 8, background: "var(--n-surface)", cursor: "pointer", fontWeight: 600, fontSize: "0.88rem",
                 }}>{showTable ? "▲ Hide" : "▼ Show"} Year-by-Year Breakdown</button>
 
                 {showTable && (
                     <div style={{ marginTop: "var(--s-3)", overflowX: "auto" }}>
                         <table style={{ width: "100%", fontSize: "0.82rem", borderCollapse: "collapse" }}>
-                            <thead><tr style={{ borderBottom: "2px solid var(--c-border)" }}>
+                            <thead><tr style={{ borderBottom: "2px solid var(--n-border)" }}>
                                 <th style={{ textAlign: "left", padding: "8px 4px" }}>Year</th>
                                 <th style={{ textAlign: "right", padding: "8px 4px" }}>Opening Balance</th>
                                 <th style={{ textAlign: "right", padding: "8px 4px" }}>Interest Earned</th>
@@ -142,7 +142,7 @@ function LumpSumMode() {
                             </tr></thead>
                             <tbody>
                                 {yearlyData.map(r => (
-                                    <tr key={r.year} style={{ borderBottom: "1px solid var(--c-border)" }}>
+                                    <tr key={r.year} style={{ borderBottom: "1px solid var(--n-border)" }}>
                                         <td style={{ padding: "6px 4px" }}>{r.year}</td>
                                         <td style={{ textAlign: "right", padding: "6px 4px" }}>{fmt(r.opening)}</td>
                                         <td style={{ textAlign: "right", padding: "6px 4px", color: "#16a34a" }}>+{fmt(r.interestEarned)}</td>
@@ -189,30 +189,30 @@ function RecurringMode() {
             <SliderRow label="Investment Period" value={years} set={setYears} min={1} max={40} step={1} suffix="yrs" />
             <SliderRow label="Annual Step-up" value={stepUp} set={setStepUp} min={0} max={25} step={1} suffix="%" />
 
-            <div style={{ background: "var(--c-surface)", borderRadius: 12, padding: "var(--s-5)", marginTop: "var(--s-4)" }}>
-                <div style={{ fontSize: "0.85rem", fontWeight: 700, color: "var(--c-primary)", textTransform: "uppercase", letterSpacing: 1, marginBottom: "var(--s-3)" }}>Maturity Value</div>
+            <div style={{ background: "var(--n-surface-alt)", borderRadius: 12, padding: "var(--s-5)", marginTop: "var(--s-4)" }}>
+                <div style={{ fontSize: "0.85rem", fontWeight: 700, color: "var(--n-primary)", textTransform: "uppercase", letterSpacing: 1, marginBottom: "var(--s-3)" }}>Maturity Value</div>
                 <div style={{ textAlign: "center" }}>
-                    <div style={{ fontSize: "2.5rem", fontWeight: 800, fontFamily: "var(--font-mono, monospace)", color: "var(--c-text)" }}>{fmt(result.totalValue)}</div>
-                    <div style={{ fontSize: "0.9rem", color: "var(--c-text-muted)", marginTop: 4 }}>After {years} years{stepUp > 0 ? ` with ${stepUp}% annual step-up` : ""}</div>
+                    <div style={{ fontSize: "2.5rem", fontWeight: 800, fontFamily: "var(--font-mono, monospace)", color: "var(--n-text)" }}>{fmt(result.totalValue)}</div>
+                    <div style={{ fontSize: "0.9rem", color: "var(--n-text-muted)", marginTop: 4 }}>After {years} years{stepUp > 0 ? ` with ${stepUp}% annual step-up` : ""}</div>
                 </div>
 
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "var(--s-3)", marginTop: "var(--s-4)", textAlign: "center" }}>
-                    <div style={{ background: "var(--c-bg)", borderRadius: 8, padding: "12px" }}>
-                        <div style={{ fontSize: "0.78rem", color: "var(--c-text-muted)", marginBottom: 4 }}>Total Invested</div>
+                    <div style={{ background: "var(--n-surface)", borderRadius: 8, padding: "12px" }}>
+                        <div style={{ fontSize: "0.78rem", color: "var(--n-text-muted)", marginBottom: 4 }}>Total Invested</div>
                         <div style={{ fontWeight: 700, fontSize: "0.95rem" }}>{fmt(result.totalInvested)}</div>
                     </div>
-                    <div style={{ background: "var(--c-bg)", borderRadius: 8, padding: "12px" }}>
-                        <div style={{ fontSize: "0.78rem", color: "var(--c-text-muted)", marginBottom: 4 }}>Interest Earned</div>
+                    <div style={{ background: "var(--n-surface)", borderRadius: 8, padding: "12px" }}>
+                        <div style={{ fontSize: "0.78rem", color: "var(--n-text-muted)", marginBottom: 4 }}>Interest Earned</div>
                         <div style={{ fontWeight: 700, fontSize: "0.95rem", color: "#16a34a" }}>{fmt(result.interest)}</div>
                     </div>
-                    <div style={{ background: "var(--c-bg)", borderRadius: 8, padding: "12px" }}>
-                        <div style={{ fontSize: "0.78rem", color: "var(--c-text-muted)", marginBottom: 4 }}>Wealth Gain</div>
-                        <div style={{ fontWeight: 700, fontSize: "0.95rem", color: "var(--c-primary)" }}>{result.totalInvested > 0 ? ((result.totalValue / result.totalInvested - 1) * 100).toFixed(1) : 0}%</div>
+                    <div style={{ background: "var(--n-surface)", borderRadius: 8, padding: "12px" }}>
+                        <div style={{ fontSize: "0.78rem", color: "var(--n-text-muted)", marginBottom: 4 }}>Wealth Gain</div>
+                        <div style={{ fontWeight: 700, fontSize: "0.95rem", color: "var(--n-primary)" }}>{result.totalInvested > 0 ? ((result.totalValue / result.totalInvested - 1) * 100).toFixed(1) : 0}%</div>
                     </div>
                 </div>
 
                 {stepUp > 0 && (
-                    <div style={{ marginTop: "var(--s-3)", padding: "10px 14px", background: "var(--c-bg)", borderRadius: 8, fontSize: "0.82rem", color: "var(--c-text-muted)" }}>
+                    <div style={{ marginTop: "var(--s-3)", padding: "10px 14px", background: "var(--n-surface)", borderRadius: 8, fontSize: "0.82rem", color: "var(--n-text-muted)" }}>
                         <strong>Step-up Note:</strong> Monthly investment starts at {fmt(monthly)} in Year 1 and grows to {fmt(monthly * Math.pow(1 + stepUp / 100, years - 1))} by Year {years}
                     </div>
                 )}
@@ -255,18 +255,18 @@ function FDCompareMode() {
             <div style={{ marginBottom: "var(--s-4)" }}>
                 <label style={{ display: "flex", alignItems: "center", gap: 10, fontWeight: 600, fontSize: "0.92rem", cursor: "pointer" }}>
                     <input type="checkbox" checked={isSenior} onChange={e => setIsSenior(e.target.checked)}
-                        style={{ width: 18, height: 18, accentColor: "var(--c-primary)" }} />
+                        style={{ width: 18, height: 18, accentColor: "var(--n-primary)" }} />
                     Senior Citizen (60+) — Higher FD Rates
                 </label>
             </div>
 
-            <div style={{ background: "var(--c-surface)", borderRadius: 12, padding: "var(--s-5)", marginTop: "var(--s-4)" }}>
-                <div style={{ fontSize: "0.85rem", fontWeight: 700, color: "var(--c-primary)", textTransform: "uppercase", letterSpacing: 1, marginBottom: "var(--s-3)" }}>
+            <div style={{ background: "var(--n-surface-alt)", borderRadius: 12, padding: "var(--s-5)", marginTop: "var(--s-4)" }}>
+                <div style={{ fontSize: "0.85rem", fontWeight: 700, color: "var(--n-primary)", textTransform: "uppercase", letterSpacing: 1, marginBottom: "var(--s-3)" }}>
                     Comparison — {fmt(principal)} Investment
                 </div>
                 <div style={{ overflowX: "auto" }}>
                     <table style={{ width: "100%", fontSize: "0.82rem", borderCollapse: "collapse" }}>
-                        <thead><tr style={{ borderBottom: "2px solid var(--c-border)" }}>
+                        <thead><tr style={{ borderBottom: "2px solid var(--n-border)" }}>
                             <th style={{ textAlign: "left", padding: "8px 4px" }}>Scheme</th>
                             <th style={{ textAlign: "right", padding: "8px 4px" }}>Rate</th>
                             <th style={{ textAlign: "center", padding: "8px 4px" }}>Freq.</th>
@@ -278,8 +278,8 @@ function FDCompareMode() {
                         <tbody>
                             {computed.map((s, i) => (
                                 <tr key={i} style={{
-                                    borderBottom: "1px solid var(--c-border)",
-                                    background: i === bestIdx ? "var(--c-primary-bg, #e8f0fe)" : "transparent",
+                                    borderBottom: "1px solid var(--n-border)",
+                                    background: i === bestIdx ? "var(--n-primary-light)" : "transparent",
                                 }}>
                                     <td style={{ padding: "8px 4px", fontWeight: i === bestIdx ? 700 : 500 }}>
                                         {i === bestIdx && "⭐ "}{s.name}
@@ -295,7 +295,7 @@ function FDCompareMode() {
                         </tbody>
                     </table>
                 </div>
-                <div style={{ marginTop: "var(--s-3)", padding: "10px 14px", background: "var(--c-bg)", borderRadius: 8, fontSize: "0.82rem", color: "var(--c-text-muted)" }}>
+                <div style={{ marginTop: "var(--s-3)", padding: "10px 14px", background: "var(--n-surface)", borderRadius: 8, fontSize: "0.82rem", color: "var(--n-text-muted)" }}>
                     <strong>Note:</strong> Rates as of Q1 FY 2025-26. Bank FDs compound quarterly; PPF and NSC compound annually. EEE = Exempt-Exempt-Exempt (no tax on investment, interest, or maturity).
                 </div>
             </div>
@@ -335,34 +335,34 @@ function DelayMode() {
             <SliderRow label="Early Bird — Start at Age" value={startA} set={setStartA} min={18} max={45} step={1} suffix="yrs" />
             <SliderRow label="Late Starter — Start at Age" value={startB} set={setStartB} min={20} max={55} step={1} suffix="yrs" />
 
-            <div style={{ background: "var(--c-surface)", borderRadius: 12, padding: "var(--s-5)", marginTop: "var(--s-4)" }}>
+            <div style={{ background: "var(--n-surface-alt)", borderRadius: 12, padding: "var(--s-5)", marginTop: "var(--s-4)" }}>
                 <div style={{ fontSize: "0.85rem", fontWeight: 700, color: "#dc2626", textTransform: "uppercase", letterSpacing: 1, marginBottom: "var(--s-3)" }}>
                     Cost of {delaYears}-Year Delay
                 </div>
                 <div style={{ textAlign: "center" }}>
                     <div style={{ fontSize: "2.5rem", fontWeight: 800, fontFamily: "var(--font-mono, monospace)", color: "#dc2626" }}>{fmt(costOfDelay)}</div>
-                    <div style={{ fontSize: "0.9rem", color: "var(--c-text-muted)", marginTop: 4 }}>Lost wealth due to {delaYears}-year delay</div>
+                    <div style={{ fontSize: "0.9rem", color: "var(--n-text-muted)", marginTop: 4 }}>Lost wealth due to {delaYears}-year delay</div>
                 </div>
 
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "var(--s-3)", marginTop: "var(--s-4)" }}>
-                    <div style={{ background: "#dcfce7", borderRadius: 10, padding: "var(--s-4)", textAlign: "center" }}>
+                    <div style={{ background: "var(--n-success-light)", borderRadius: 10, padding: "var(--s-4)", textAlign: "center" }}>
                         <div style={{ fontSize: "0.78rem", fontWeight: 700, color: "#16a34a", textTransform: "uppercase", letterSpacing: 0.5, marginBottom: 8 }}>🟢 Start at Age {startA}</div>
                         <div style={{ fontSize: "1.5rem", fontWeight: 800, fontFamily: "var(--font-mono, monospace)" }}>{fmt(corpusA)}</div>
-                        <div style={{ fontSize: "0.82rem", color: "var(--c-text-muted)", marginTop: 4 }}>Invested: {fmt(investedA)}</div>
+                        <div style={{ fontSize: "0.82rem", color: "var(--n-text-muted)", marginTop: 4 }}>Invested: {fmt(investedA)}</div>
                         <div style={{ fontSize: "0.82rem", color: "#16a34a", fontWeight: 600, marginTop: 2 }}>Interest: +{fmt(corpusA - investedA)}</div>
-                        <div style={{ fontSize: "0.78rem", color: "var(--c-text-muted)", marginTop: 4 }}>{retireAge - startA} years of investing</div>
+                        <div style={{ fontSize: "0.78rem", color: "var(--n-text-muted)", marginTop: 4 }}>{retireAge - startA} years of investing</div>
                     </div>
 
                     <div style={{ background: "#fef2f2", borderRadius: 10, padding: "var(--s-4)", textAlign: "center" }}>
                         <div style={{ fontSize: "0.78rem", fontWeight: 700, color: "#dc2626", textTransform: "uppercase", letterSpacing: 0.5, marginBottom: 8 }}>🔴 Start at Age {startB}</div>
                         <div style={{ fontSize: "1.5rem", fontWeight: 800, fontFamily: "var(--font-mono, monospace)" }}>{fmt(corpusB)}</div>
-                        <div style={{ fontSize: "0.82rem", color: "var(--c-text-muted)", marginTop: 4 }}>Invested: {fmt(investedB)}</div>
+                        <div style={{ fontSize: "0.82rem", color: "var(--n-text-muted)", marginTop: 4 }}>Invested: {fmt(investedB)}</div>
                         <div style={{ fontSize: "0.82rem", color: "#16a34a", fontWeight: 600, marginTop: 2 }}>Interest: +{fmt(corpusB - investedB)}</div>
-                        <div style={{ fontSize: "0.78rem", color: "var(--c-text-muted)", marginTop: 4 }}>{retireAge - startB} years of investing</div>
+                        <div style={{ fontSize: "0.78rem", color: "var(--n-text-muted)", marginTop: 4 }}>{retireAge - startB} years of investing</div>
                     </div>
                 </div>
 
-                <div style={{ marginTop: "var(--s-3)", padding: "10px 14px", background: "var(--c-bg)", borderRadius: 8, fontSize: "0.82rem", color: "var(--c-text-muted)" }}>
+                <div style={{ marginTop: "var(--s-3)", padding: "10px 14px", background: "var(--n-surface)", borderRadius: 8, fontSize: "0.82rem", color: "var(--n-text-muted)" }}>
                     <strong>Insight:</strong> Starting {delaYears} years earlier at {fmt(monthly)}/mo, you invest {fmt(investedA - investedB)} more — but earn {fmt(costOfDelay)} more in total. The extra interest alone is {investedA - investedB > 0 ? ((costOfDelay / (investedA - investedB)).toFixed(1)) : "∞"}× your additional investment.
                 </div>
             </div>
@@ -375,20 +375,20 @@ export default function CompoundInterestIndiaCore() {
     const [mode, setMode] = useState<Mode>("lumpsum");
 
     return (
-        <div style={{ background: "var(--c-card-bg, #fff)", borderRadius: 16, border: "1px solid var(--c-border)", overflow: "hidden", marginBottom: "var(--s-6)" }}>
-            <div style={{ padding: "var(--s-4) var(--s-5)", borderBottom: "1px solid var(--c-border)", background: "linear-gradient(135deg, var(--c-primary-bg, #e8f0fe), var(--c-surface))" }}>
+        <div style={{ background: "var(--n-surface)", borderRadius: 16, border: "1px solid var(--n-border)", overflow: "hidden", marginBottom: "var(--s-6)" }}>
+            <div style={{ padding: "var(--s-4) var(--s-5)", borderBottom: "1px solid var(--n-border)", background: "linear-gradient(135deg, var(--n-primary-light), var(--n-surface-alt))" }}>
                 <h2 style={{ margin: 0, fontSize: "1.25rem", fontWeight: 700 }}>📊 Compound Interest Calculator</h2>
             </div>
 
-            <div style={{ display: "flex", borderBottom: "1px solid var(--c-border)", overflow: "auto" }}>
+            <div style={{ display: "flex", borderBottom: "1px solid var(--n-border)", overflow: "auto" }}>
                 {MODES.map(m => (
                     <button key={m.key} onClick={() => setMode(m.key)}
                         style={{
                             flex: 1, padding: "12px 8px", border: "none", cursor: "pointer",
-                            borderBottom: mode === m.key ? "3px solid var(--c-primary)" : "3px solid transparent",
-                            background: mode === m.key ? "var(--c-primary-bg, #e8f0fe)" : "transparent",
+                            borderBottom: mode === m.key ? "3px solid var(--n-primary)" : "3px solid transparent",
+                            background: mode === m.key ? "var(--n-primary-light)" : "transparent",
                             fontWeight: mode === m.key ? 700 : 500, fontSize: "0.82rem",
-                            color: mode === m.key ? "var(--c-primary)" : "var(--c-text-muted)",
+                            color: mode === m.key ? "var(--n-primary)" : "var(--n-text-muted)",
                             whiteSpace: "nowrap",
                         }}>
                         {m.icon} {m.label}

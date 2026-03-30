@@ -30,12 +30,12 @@ function SliderRow({ label, value, set, min, max, step, suffix }: {
         <div style={{ marginBottom: "var(--s-4)" }}>
             <label style={{ display: "flex", justifyContent: "space-between", fontWeight: 600, marginBottom: 4, fontSize: "0.92rem" }}>
                 <span>{label}</span>
-                <span style={{ color: "var(--c-primary)" }}>{suffix === "%" ? `${value}%` : suffix === "yrs" ? `${value} yrs` : suffix === "num" ? `${value}` : fmt(value)}</span>
+                <span style={{ color: "var(--n-primary)" }}>{suffix === "%" ? `${value}%` : suffix === "yrs" ? `${value} yrs` : suffix === "num" ? `${value}` : fmt(value)}</span>
             </label>
             <input type="range" min={min} max={max} step={step} value={value}
                 onChange={e => set(Number(e.target.value))}
-                style={{ width: "100%", accentColor: "var(--c-primary)" }} />
-            <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.75rem", color: "var(--c-text-muted)" }}>
+                style={{ width: "100%", accentColor: "var(--n-primary)" }} />
+            <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.75rem", color: "var(--n-text-muted)" }}>
                 <span>{suffix === "%" ? `${min}%` : suffix === "yrs" ? `${min} yrs` : suffix === "num" ? `${min}` : fmt(min)}</span>
                 <span>{suffix === "%" ? `${max}%` : suffix === "yrs" ? `${max} yrs` : suffix === "num" ? `${max}` : fmt(max)}</span>
             </div>
@@ -51,9 +51,9 @@ function NumField({ label, value, set, prefix }: {
         <div style={{ marginBottom: "var(--s-3)" }}>
             <label style={{ fontWeight: 600, fontSize: "0.88rem", display: "block", marginBottom: 4 }}>{label}</label>
             <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
-                {prefix && <span style={{ fontWeight: 600, color: "var(--c-text-muted)" }}>{prefix}</span>}
+                {prefix && <span style={{ fontWeight: 600, color: "var(--n-text-muted)" }}>{prefix}</span>}
                 <input type="number" value={value || ""} onChange={e => set(Number(e.target.value) || 0)}
-                    style={{ width: "100%", padding: "8px 12px", border: "1px solid var(--c-border)", borderRadius: 8, fontSize: "0.95rem" }} />
+                    style={{ width: "100%", padding: "8px 12px", border: "1px solid var(--n-border)", borderRadius: 8, fontSize: "0.95rem" }} />
             </div>
         </div>
     );
@@ -91,11 +91,11 @@ function IncomeMode() {
             <SliderRow label="Existing Life Insurance Cover" value={existingCover} set={setExistingCover} min={0} max={10_00_00_000} step={1_00_000} />
             <SliderRow label="Existing Savings & Investments" value={existingSavings} set={setExistingSavings} min={0} max={10_00_00_000} step={1_00_000} />
 
-            <div style={{ background: "var(--c-surface)", borderRadius: 12, padding: "var(--s-5)", marginTop: "var(--s-4)" }}>
-                <div style={{ fontSize: "0.85rem", fontWeight: 700, color: "var(--c-primary)", textTransform: "uppercase", letterSpacing: 1, marginBottom: "var(--s-3)" }}>Required Life Cover</div>
+            <div style={{ background: "var(--n-surface-alt)", borderRadius: 12, padding: "var(--s-5)", marginTop: "var(--s-4)" }}>
+                <div style={{ fontSize: "0.85rem", fontWeight: 700, color: "var(--n-primary)", textTransform: "uppercase", letterSpacing: 1, marginBottom: "var(--s-3)" }}>Required Life Cover</div>
                 <div style={{ textAlign: "center" }}>
-                    <div style={{ fontSize: "2.5rem", fontWeight: 800, fontFamily: "var(--font-mono, monospace)", color: "var(--c-text)" }}>{fmt(requiredCorpus)}</div>
-                    <div style={{ fontSize: "0.9rem", color: "var(--c-text-muted)", marginTop: 4 }}>Total PV of future income contribution</div>
+                    <div style={{ fontSize: "2.5rem", fontWeight: 800, fontFamily: "var(--font-mono, monospace)", color: "var(--n-text)" }}>{fmt(requiredCorpus)}</div>
+                    <div style={{ fontSize: "0.9rem", color: "var(--n-text-muted)", marginTop: 4 }}>Total PV of future income contribution</div>
                 </div>
 
                 {(existingCover > 0 || existingSavings > 0) && (
@@ -108,14 +108,14 @@ function IncomeMode() {
 
                 <table style={{ width: "100%", marginTop: "var(--s-4)", fontSize: "0.88rem" }}>
                     <tbody>
-                        <tr><td style={{ padding: "6px 0", color: "var(--c-text-muted)" }}>Working Years Remaining</td><td style={{ textAlign: "right", fontWeight: 600 }}>{years} years</td></tr>
-                        <tr><td style={{ padding: "6px 0", color: "var(--c-text-muted)" }}>Net Annual Contribution to Family</td><td style={{ textAlign: "right", fontWeight: 600 }}>{fmt(netContribution)}/yr</td></tr>
-                        <tr><td style={{ padding: "6px 0", color: "var(--c-text-muted)" }}>Real Discount Rate (Return − Inflation)</td><td style={{ textAlign: "right", fontWeight: 600 }}>{realRate.toFixed(2)}%</td></tr>
-                        <tr><td style={{ padding: "6px 0", color: "var(--c-text-muted)" }}>Existing Cover + Savings</td><td style={{ textAlign: "right", fontWeight: 600 }}>{fmt(existingCover + existingSavings)}</td></tr>
+                        <tr><td style={{ padding: "6px 0", color: "var(--n-text-muted)" }}>Working Years Remaining</td><td style={{ textAlign: "right", fontWeight: 600 }}>{years} years</td></tr>
+                        <tr><td style={{ padding: "6px 0", color: "var(--n-text-muted)" }}>Net Annual Contribution to Family</td><td style={{ textAlign: "right", fontWeight: 600 }}>{fmt(netContribution)}/yr</td></tr>
+                        <tr><td style={{ padding: "6px 0", color: "var(--n-text-muted)" }}>Real Discount Rate (Return − Inflation)</td><td style={{ textAlign: "right", fontWeight: 600 }}>{realRate.toFixed(2)}%</td></tr>
+                        <tr><td style={{ padding: "6px 0", color: "var(--n-text-muted)" }}>Existing Cover + Savings</td><td style={{ textAlign: "right", fontWeight: 600 }}>{fmt(existingCover + existingSavings)}</td></tr>
                     </tbody>
                 </table>
 
-                <div style={{ marginTop: "var(--s-3)", padding: "10px 14px", background: "var(--c-bg)", borderRadius: 8, fontSize: "0.82rem", color: "var(--c-text-muted)" }}>
+                <div style={{ marginTop: "var(--s-3)", padding: "10px 14px", background: "var(--n-surface)", borderRadius: 8, fontSize: "0.82rem", color: "var(--n-text-muted)" }}>
                     <strong>Formula:</strong> PV = Net Annual Contribution × [(1 − (1 + r)<sup>−n</sup>) / r], where r = real discount rate, n = working years
                 </div>
             </div>
@@ -151,7 +151,7 @@ function NeedsMode() {
 
     return (
         <>
-            <h4 style={{ fontSize: "0.95rem", fontWeight: 700, marginBottom: "var(--s-3)", color: "var(--c-primary)" }}>Outstanding Liabilities</h4>
+            <h4 style={{ fontSize: "0.95rem", fontWeight: 700, marginBottom: "var(--s-3)", color: "var(--n-primary)" }}>Outstanding Liabilities</h4>
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0 var(--s-3)" }}>
                 <NumField label="Home Loan (₹)" value={homeLoan} set={setHomeLoan} prefix="₹" />
                 <NumField label="Car Loan (₹)" value={carLoan} set={setCarLoan} prefix="₹" />
@@ -159,25 +159,25 @@ function NeedsMode() {
                 <NumField label="Credit Card Debt (₹)" value={creditCard} set={setCreditCard} prefix="₹" />
             </div>
 
-            <h4 style={{ fontSize: "0.95rem", fontWeight: 700, margin: "var(--s-4) 0 var(--s-3)", color: "var(--c-primary)" }}>Future Financial Goals</h4>
+            <h4 style={{ fontSize: "0.95rem", fontWeight: 700, margin: "var(--s-4) 0 var(--s-3)", color: "var(--n-primary)" }}>Future Financial Goals</h4>
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0 var(--s-3)" }}>
                 <NumField label="Children's Education (₹)" value={eduFund} set={setEduFund} prefix="₹" />
                 <NumField label="Children's Marriage (₹)" value={marriageFund} set={setMarriageFund} prefix="₹" />
             </div>
 
-            <h4 style={{ fontSize: "0.95rem", fontWeight: 700, margin: "var(--s-4) 0 var(--s-3)", color: "var(--c-primary)" }}>Living Expenses & Emergency</h4>
+            <h4 style={{ fontSize: "0.95rem", fontWeight: 700, margin: "var(--s-4) 0 var(--s-3)", color: "var(--n-primary)" }}>Living Expenses & Emergency</h4>
             <NumField label="Annual Household Expenses (₹)" value={annualHousehold} set={setAnnualHousehold} prefix="₹" />
             <SliderRow label="Years of Expenses to Cover" value={yearsExpenses} set={setYearsExpenses} min={5} max={40} step={1} suffix="yrs" />
             <NumField label="Emergency Fund (₹)" value={emergency} set={setEmergency} prefix="₹" />
             <SliderRow label="Expected Inflation Rate" value={inflation} set={setInflation} min={3} max={12} step={0.5} suffix="%" />
 
-            <h4 style={{ fontSize: "0.95rem", fontWeight: 700, margin: "var(--s-4) 0 var(--s-3)", color: "var(--c-primary)" }}>Existing Coverage & Assets</h4>
+            <h4 style={{ fontSize: "0.95rem", fontWeight: 700, margin: "var(--s-4) 0 var(--s-3)", color: "var(--n-primary)" }}>Existing Coverage & Assets</h4>
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0 var(--s-3)" }}>
                 <NumField label="Existing Life Cover (₹)" value={existingCover} set={setExistingCover} prefix="₹" />
                 <NumField label="Savings & Investments (₹)" value={existingSavings} set={setExistingSavings} prefix="₹" />
             </div>
 
-            <div style={{ background: "var(--c-surface)", borderRadius: 12, padding: "var(--s-5)", marginTop: "var(--s-4)" }}>
+            <div style={{ background: "var(--n-surface-alt)", borderRadius: 12, padding: "var(--s-5)", marginTop: "var(--s-4)" }}>
                 <div style={{ fontSize: "0.85rem", fontWeight: 700, color: assessColor, textTransform: "uppercase", letterSpacing: 1, marginBottom: "var(--s-3)" }}>Insurance Gap Analysis</div>
                 <div style={{ textAlign: "center" }}>
                     <div style={{ fontSize: "2.5rem", fontWeight: 800, fontFamily: "var(--font-mono, monospace)", color: assessColor }}>{fmt(gap)}</div>
@@ -186,11 +186,11 @@ function NeedsMode() {
 
                 <table style={{ width: "100%", marginTop: "var(--s-4)", fontSize: "0.88rem" }}>
                     <tbody>
-                        <tr style={{ borderBottom: "1px solid var(--c-border)" }}><td style={{ padding: "8px 0", fontWeight: 600 }}>Total Liabilities</td><td style={{ textAlign: "right", fontWeight: 600 }}>{fmt(totalLoans)}</td></tr>
-                        <tr style={{ borderBottom: "1px solid var(--c-border)" }}><td style={{ padding: "8px 0", fontWeight: 600 }}>Future Goals (Education + Marriage)</td><td style={{ textAlign: "right", fontWeight: 600 }}>{fmt(totalGoals)}</td></tr>
-                        <tr style={{ borderBottom: "1px solid var(--c-border)" }}><td style={{ padding: "8px 0", fontWeight: 600 }}>Living Expenses Corpus ({yearsExpenses} yrs, inflation-adj.)</td><td style={{ textAlign: "right", fontWeight: 600 }}>{fmt(livingCorpus)}</td></tr>
-                        <tr style={{ borderBottom: "1px solid var(--c-border)" }}><td style={{ padding: "8px 0", fontWeight: 600 }}>Emergency Fund</td><td style={{ textAlign: "right", fontWeight: 600 }}>{fmt(emergency)}</td></tr>
-                        <tr style={{ borderBottom: "2px solid var(--c-primary)" }}><td style={{ padding: "8px 0", fontWeight: 700 }}>Total Requirement</td><td style={{ textAlign: "right", fontWeight: 700, color: "var(--c-primary)" }}>{fmt(totalNeeds)}</td></tr>
+                        <tr style={{ borderBottom: "1px solid var(--n-border)" }}><td style={{ padding: "8px 0", fontWeight: 600 }}>Total Liabilities</td><td style={{ textAlign: "right", fontWeight: 600 }}>{fmt(totalLoans)}</td></tr>
+                        <tr style={{ borderBottom: "1px solid var(--n-border)" }}><td style={{ padding: "8px 0", fontWeight: 600 }}>Future Goals (Education + Marriage)</td><td style={{ textAlign: "right", fontWeight: 600 }}>{fmt(totalGoals)}</td></tr>
+                        <tr style={{ borderBottom: "1px solid var(--n-border)" }}><td style={{ padding: "8px 0", fontWeight: 600 }}>Living Expenses Corpus ({yearsExpenses} yrs, inflation-adj.)</td><td style={{ textAlign: "right", fontWeight: 600 }}>{fmt(livingCorpus)}</td></tr>
+                        <tr style={{ borderBottom: "1px solid var(--n-border)" }}><td style={{ padding: "8px 0", fontWeight: 600 }}>Emergency Fund</td><td style={{ textAlign: "right", fontWeight: 600 }}>{fmt(emergency)}</td></tr>
+                        <tr style={{ borderBottom: "2px solid var(--n-primary)" }}><td style={{ padding: "8px 0", fontWeight: 700 }}>Total Requirement</td><td style={{ textAlign: "right", fontWeight: 700, color: "var(--n-primary)" }}>{fmt(totalNeeds)}</td></tr>
                         <tr><td style={{ padding: "8px 0", fontWeight: 600 }}>Less: Existing Cover + Savings</td><td style={{ textAlign: "right", fontWeight: 600, color: "#16a34a" }}>− {fmt(existingTotal)}</td></tr>
                         <tr style={{ borderTop: "2px solid " + assessColor }}><td style={{ padding: "8px 0", fontWeight: 700 }}>Additional Cover Needed</td><td style={{ textAlign: "right", fontWeight: 700, color: assessColor }}>{fmt(gap)}</td></tr>
                     </tbody>
@@ -233,10 +233,10 @@ function QuickMode() {
                     {AGE_GROUPS.map((g, i) => (
                         <button key={i} onClick={() => setAgeGroup(i)}
                             style={{
-                                padding: "10px 8px", borderRadius: 8, border: i === ageGroup ? "2px solid var(--c-primary)" : "1px solid var(--c-border)",
-                                background: i === ageGroup ? "var(--c-primary-bg, #e8f0fe)" : "var(--c-bg)",
+                                padding: "10px 8px", borderRadius: 8, border: i === ageGroup ? "2px solid var(--n-primary)" : "1px solid var(--n-border)",
+                                background: i === ageGroup ? "var(--n-primary-light)" : "var(--n-surface)",
                                 fontWeight: i === ageGroup ? 700 : 500, fontSize: "0.82rem", cursor: "pointer",
-                                color: i === ageGroup ? "var(--c-primary)" : "var(--c-text)",
+                                color: i === ageGroup ? "var(--n-primary)" : "var(--n-text)",
                             }}>
                             {g.label}
                         </button>
@@ -247,20 +247,20 @@ function QuickMode() {
             <SliderRow label="Number of Dependents" value={dependents} set={setDependents} min={0} max={5} step={1} suffix="num" />
             <SliderRow label="Outstanding Loans (Total)" value={loans} set={setLoans} min={0} max={5_00_00_000} step={1_00_000} />
 
-            <div style={{ background: "var(--c-surface)", borderRadius: 12, padding: "var(--s-5)", marginTop: "var(--s-4)" }}>
-                <div style={{ fontSize: "0.85rem", fontWeight: 700, color: "var(--c-primary)", textTransform: "uppercase", letterSpacing: 1, marginBottom: "var(--s-3)" }}>Recommended Life Cover</div>
+            <div style={{ background: "var(--n-surface-alt)", borderRadius: 12, padding: "var(--s-5)", marginTop: "var(--s-4)" }}>
+                <div style={{ fontSize: "0.85rem", fontWeight: 700, color: "var(--n-primary)", textTransform: "uppercase", letterSpacing: 1, marginBottom: "var(--s-3)" }}>Recommended Life Cover</div>
                 <div style={{ textAlign: "center" }}>
-                    <div style={{ fontSize: "2.5rem", fontWeight: 800, fontFamily: "var(--font-mono, monospace)", color: "var(--c-text)" }}>{fmt(recommended)}</div>
-                    <div style={{ fontSize: "0.9rem", color: "var(--c-text-muted)", marginTop: 4 }}>{effectiveMultiplier}× annual income + outstanding loans</div>
+                    <div style={{ fontSize: "2.5rem", fontWeight: 800, fontFamily: "var(--font-mono, monospace)", color: "var(--n-text)" }}>{fmt(recommended)}</div>
+                    <div style={{ fontSize: "0.9rem", color: "var(--n-text-muted)", marginTop: 4 }}>{effectiveMultiplier}× annual income + outstanding loans</div>
                 </div>
 
-                <div style={{ marginTop: "var(--s-3)", padding: "10px 14px", background: "var(--c-bg)", borderRadius: 8, fontSize: "0.82rem", color: "var(--c-text-muted)" }}>
+                <div style={{ marginTop: "var(--s-3)", padding: "10px 14px", background: "var(--n-surface)", borderRadius: 8, fontSize: "0.82rem", color: "var(--n-text-muted)" }}>
                     <strong>Based on:</strong> Age group {group.label} → base {group.multiplier}×{depBonus > 0 ? ` + ${depBonus}× for ${dependents} dependents` : ""} = {effectiveMultiplier}× multiplier
                 </div>
 
                 <h4 style={{ fontSize: "0.9rem", fontWeight: 700, marginTop: "var(--s-4)", marginBottom: "var(--s-2)" }}>Coverage Comparison</h4>
                 <table style={{ width: "100%", fontSize: "0.88rem" }}>
-                    <thead><tr style={{ borderBottom: "2px solid var(--c-border)" }}>
+                    <thead><tr style={{ borderBottom: "2px solid var(--n-border)" }}>
                         <th style={{ textAlign: "left", padding: "8px 0" }}>Multiplier</th>
                         <th style={{ textAlign: "right", padding: "8px 0" }}>Cover Amount</th>
                         <th style={{ textAlign: "center", padding: "8px 0" }}>Suitability</th>
@@ -269,7 +269,7 @@ function QuickMode() {
                         <tr><td style={{ padding: "6px 0" }}>10× Income + Loans</td><td style={{ textAlign: "right", fontWeight: 600 }}>{fmt(compare10)}</td><td style={{ textAlign: "center", color: "#d97706" }}>⚠️ Minimum</td></tr>
                         <tr><td style={{ padding: "6px 0" }}>15× Income + Loans</td><td style={{ textAlign: "right", fontWeight: 600 }}>{fmt(compare15)}</td><td style={{ textAlign: "center", color: "#2563eb" }}>🔵 Moderate</td></tr>
                         <tr><td style={{ padding: "6px 0" }}>20× Income + Loans</td><td style={{ textAlign: "right", fontWeight: 600 }}>{fmt(compare20)}</td><td style={{ textAlign: "center", color: "#16a34a" }}>✅ Comprehensive</td></tr>
-                        <tr style={{ background: "var(--c-primary-bg, #e8f0fe)" }}><td style={{ padding: "6px 0", fontWeight: 700 }}>{effectiveMultiplier}× (Recommended)</td><td style={{ textAlign: "right", fontWeight: 700, color: "var(--c-primary)" }}>{fmt(recommended)}</td><td style={{ textAlign: "center", fontWeight: 700 }}>⭐ Best Fit</td></tr>
+                        <tr style={{ background: "var(--n-primary-light)" }}><td style={{ padding: "6px 0", fontWeight: 700 }}>{effectiveMultiplier}× (Recommended)</td><td style={{ textAlign: "right", fontWeight: 700, color: "var(--n-primary)" }}>{fmt(recommended)}</td><td style={{ textAlign: "center", fontWeight: 700 }}>⭐ Best Fit</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -282,20 +282,20 @@ export default function HLVCalculatorIndiaCore() {
     const [mode, setMode] = useState<Mode>("income");
 
     return (
-        <div style={{ background: "var(--c-card-bg, #fff)", borderRadius: 16, border: "1px solid var(--c-border)", overflow: "hidden", marginBottom: "var(--s-6)" }}>
-            <div style={{ padding: "var(--s-4) var(--s-5)", borderBottom: "1px solid var(--c-border)", background: "linear-gradient(135deg, var(--c-primary-bg, #e8f0fe), var(--c-surface))" }}>
+        <div style={{ background: "var(--n-surface)", borderRadius: 16, border: "1px solid var(--n-border)", overflow: "hidden", marginBottom: "var(--s-6)" }}>
+            <div style={{ padding: "var(--s-4) var(--s-5)", borderBottom: "1px solid var(--n-border)", background: "linear-gradient(135deg, var(--n-primary-light), var(--n-surface-alt))" }}>
                 <h2 style={{ margin: 0, fontSize: "1.25rem", fontWeight: 700 }}>🛡️ Human Life Value Calculator</h2>
             </div>
 
-            <div style={{ display: "flex", borderBottom: "1px solid var(--c-border)", overflow: "auto" }}>
+            <div style={{ display: "flex", borderBottom: "1px solid var(--n-border)", overflow: "auto" }}>
                 {MODES.map(m => (
                     <button key={m.key} onClick={() => setMode(m.key)}
                         style={{
                             flex: 1, padding: "12px 8px", border: "none", cursor: "pointer",
-                            borderBottom: mode === m.key ? "3px solid var(--c-primary)" : "3px solid transparent",
-                            background: mode === m.key ? "var(--c-primary-bg, #e8f0fe)" : "transparent",
+                            borderBottom: mode === m.key ? "3px solid var(--n-primary)" : "3px solid transparent",
+                            background: mode === m.key ? "var(--n-primary-light)" : "transparent",
                             fontWeight: mode === m.key ? 700 : 500, fontSize: "0.85rem",
-                            color: mode === m.key ? "var(--c-primary)" : "var(--c-text-muted)",
+                            color: mode === m.key ? "var(--n-primary)" : "var(--n-text-muted)",
                             whiteSpace: "nowrap",
                         }}>
                         {m.icon} {m.label}

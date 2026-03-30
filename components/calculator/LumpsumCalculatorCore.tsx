@@ -35,11 +35,11 @@ function InputRow({ label, value, set, max, step, suffix, hint, min }: {
         <div style={{ marginBottom: 14 }}>
             <label style={{ display: "flex", justifyContent: "space-between", fontWeight: 600, fontSize: "0.88rem", marginBottom: 4 }}>
                 <span>{label}</span>
-                <span style={{ color: "var(--c-primary)", fontFamily: "var(--font-mono, monospace)" }}>{display}</span>
+                <span style={{ color: "var(--n-primary)", fontFamily: "var(--font-mono, monospace)" }}>{display}</span>
             </label>
             <input type="range" min={min || 0} max={max || 50_00_000} step={step || 5000} value={value}
-                onChange={e => set(Number(e.target.value))} style={{ width: "100%", accentColor: "var(--c-primary)" }} />
-            {hint && <div style={{ fontSize: "0.72rem", color: "var(--c-text-muted)", marginTop: 2 }}>{hint}</div>}
+                onChange={e => set(Number(e.target.value))} style={{ width: "100%", accentColor: "var(--n-primary)" }} />
+            {hint && <div style={{ fontSize: "0.72rem", color: "var(--n-text-muted)", marginTop: 2 }}>{hint}</div>}
         </div>
     );
 }
@@ -89,9 +89,9 @@ function ReturnsMode() {
                     {FREQS.map(f => (
                         <button key={f.value} onClick={() => setFreq(f.value)} style={{
                             flex: 1, padding: "8px 6px", borderRadius: 8, fontSize: "0.78rem", cursor: "pointer",
-                            border: freq === f.value ? "2px solid var(--c-primary)" : "1px solid var(--c-border)",
-                            background: freq === f.value ? "var(--c-primary-bg, #e8f0fe)" : "var(--c-bg)",
-                            fontWeight: freq === f.value ? 700 : 500, color: freq === f.value ? "var(--c-primary)" : "var(--c-text)",
+                            border: freq === f.value ? "2px solid var(--n-primary)" : "1px solid var(--n-border)",
+                            background: freq === f.value ? "var(--n-primary-light)" : "var(--n-surface)",
+                            fontWeight: freq === f.value ? 700 : 500, color: freq === f.value ? "var(--n-primary)" : "var(--n-text)",
                         }}>{f.label}</button>
                     ))}
                 </div>
@@ -107,9 +107,9 @@ function ReturnsMode() {
             </div>
             {showInflation && <InputRow label="Expected Inflation" value={inflation} set={setInflation} max={12} step={0.5} suffix="%" min={1} />}
 
-            <div style={{ background: "var(--c-surface)", borderRadius: 12, padding: "var(--s-4)" }}>
+            <div style={{ background: "var(--n-surface-alt)", borderRadius: 12, padding: "var(--s-4)" }}>
                 <div style={{ textAlign: "center", marginBottom: "var(--s-3)" }}>
-                    <div style={{ fontSize: "0.78rem", fontWeight: 700, color: "var(--c-primary)", textTransform: "uppercase", letterSpacing: 1 }}>Maturity Value</div>
+                    <div style={{ fontSize: "0.78rem", fontWeight: 700, color: "var(--n-primary)", textTransform: "uppercase", letterSpacing: 1 }}>Maturity Value</div>
                     <div style={{ fontSize: "2.2rem", fontWeight: 800, fontFamily: "var(--font-mono, monospace)" }}>{fmtCr(showTax ? result.postTax : result.maturity)}</div>
                     {showTax && <div style={{ fontSize: "0.78rem", color: "#dc2626" }}>LTCG Tax (12.5%): −{fmt(result.taxAmount)}</div>}
                 </div>
@@ -117,34 +117,34 @@ function ReturnsMode() {
                     {[
                         ["Invested", fmtCr(principal), undefined],
                         ["Returns", fmtCr(result.returns), "#16a34a"],
-                        ["CAGR", `${result.cagr.toFixed(2)}%`, "var(--c-primary)"],
+                        ["CAGR", `${result.cagr.toFixed(2)}%`, "var(--n-primary)"],
                     ].map(([l, v, c], i) => (
-                        <div key={i} style={{ background: "var(--c-bg)", borderRadius: 8, padding: 10, textAlign: "center" }}>
-                            <div style={{ fontSize: "0.72rem", color: "var(--c-text-muted)" }}>{l}</div>
+                        <div key={i} style={{ background: "var(--n-surface)", borderRadius: 8, padding: 10, textAlign: "center" }}>
+                            <div style={{ fontSize: "0.72rem", color: "var(--n-text-muted)" }}>{l}</div>
                             <div style={{ fontSize: "1rem", fontWeight: 700, color: c as string || undefined }}>{v}</div>
                         </div>
                     ))}
                 </div>
                 {showInflation && (
-                    <div style={{ background: "#fef3c7", borderRadius: 8, padding: "8px 12px", marginTop: "var(--s-3)", fontSize: "0.82rem" }}>
-                        <strong style={{ color: "#92400e" }}>Real Value:</strong> <span style={{ color: "#78350f" }}>{fmtCr(result.realValue)} in today&rsquo;s purchasing power</span>
+                    <div style={{ background: "var(--n-gold-light)", borderRadius: 8, padding: "8px 12px", marginTop: "var(--s-3)", fontSize: "0.82rem" }}>
+                        <strong style={{ color: "var(--n-gold-text)" }}>Real Value:</strong> <span style={{ color: "#78350f" }}>{fmtCr(result.realValue)} in today&rsquo;s purchasing power</span>
                     </div>
                 )}
 
                 {/* Year-by-year breakdown */}
                 {result.schedule.length > 0 && (
                     <details style={{ marginTop: "var(--s-3)" }}>
-                        <summary style={{ cursor: "pointer", fontWeight: 700, fontSize: "0.85rem", color: "var(--c-primary)" }}>📅 Year-by-Year Growth Schedule</summary>
+                        <summary style={{ cursor: "pointer", fontWeight: 700, fontSize: "0.85rem", color: "var(--n-primary)" }}>📅 Year-by-Year Growth Schedule</summary>
                         <div style={{ overflowX: "auto", marginTop: 8 }}>
                             <table style={{ width: "100%", fontSize: "0.78rem", borderCollapse: "collapse" }}>
-                                <thead><tr style={{ borderBottom: "2px solid var(--c-border)" }}>
+                                <thead><tr style={{ borderBottom: "2px solid var(--n-border)" }}>
                                     <th style={{ textAlign: "left", padding: "6px 4px" }}>Year</th>
                                     <th style={{ textAlign: "right", padding: "6px 4px" }}>Value</th>
                                     <th style={{ textAlign: "right", padding: "6px 4px" }}>Total Gain</th>
                                 </tr></thead>
                                 <tbody>
                                     {result.schedule.map(s => (
-                                        <tr key={s.year} style={{ borderBottom: "1px solid var(--c-border)" }}>
+                                        <tr key={s.year} style={{ borderBottom: "1px solid var(--n-border)" }}>
                                             <td style={{ padding: "5px 4px" }}>Year {s.year}</td>
                                             <td style={{ textAlign: "right", padding: "5px 4px", fontWeight: 600 }}>{fmtCr(s.value)}</td>
                                             <td style={{ textAlign: "right", padding: "5px 4px", color: "#16a34a" }}>+{fmtCr(s.gain)}</td>
@@ -186,19 +186,19 @@ function VsSipMode() {
 
             <div style={{
                 padding: 16, borderRadius: 12, textAlign: "center", marginBottom: "var(--s-3)",
-                background: result.better === "lump" ? "#e8f0fe" : "#dcfce7",
-                border: `2px solid ${result.better === "lump" ? "var(--c-primary)" : "#16a34a"}`,
+                background: result.better === "lump" ? "var(--n-primary-light)" : "var(--n-success-light)",
+                border: `2px solid ${result.better === "lump" ? "var(--n-primary)" : "#16a34a"}`,
             }}>
-                <div style={{ fontSize: "1.05rem", fontWeight: 800, color: result.better === "lump" ? "var(--c-primary)" : "#16a34a" }}>
+                <div style={{ fontSize: "1.05rem", fontWeight: 800, color: result.better === "lump" ? "var(--n-primary)" : "#16a34a" }}>
                     {result.better === "lump" ? "📊 Lump Sum" : "📈 SIP"} generates {fmtCr(result.diff)} more
                 </div>
-                <div style={{ fontSize: "0.82rem", color: "var(--c-text-muted)", marginTop: 4 }}>
+                <div style={{ fontSize: "0.82rem", color: "var(--n-text-muted)", marginTop: 4 }}>
                     (at constant {rate}% — in volatile markets, SIP often wins via rupee cost averaging)
                 </div>
             </div>
 
             <table style={{ width: "100%", fontSize: "0.82rem", borderCollapse: "collapse" }}>
-                <thead><tr style={{ borderBottom: "2px solid var(--c-border)" }}>
+                <thead><tr style={{ borderBottom: "2px solid var(--n-border)" }}>
                     <th style={{ textAlign: "left", padding: "8px 4px" }}>Parameter</th>
                     <th style={{ textAlign: "right", padding: "8px 4px" }}>📊 Lump Sum</th>
                     <th style={{ textAlign: "right", padding: "8px 4px" }}>📈 SIP</th>
@@ -210,17 +210,17 @@ function VsSipMode() {
                         ["Maturity Value", fmtCr(result.lumpVal), fmtCr(result.sipVal)],
                         ["Wealth Gained", fmtCr(result.lumpReturn), fmtCr(result.sipReturn)],
                     ].map(([l, a, b], i) => (
-                        <tr key={i} style={{ borderBottom: "1px solid var(--c-border)" }}>
+                        <tr key={i} style={{ borderBottom: "1px solid var(--n-border)" }}>
                             <td style={{ padding: "6px 4px" }}>{l}</td>
-                            <td style={{ textAlign: "right", padding: "6px 4px", fontWeight: 600, color: result.better === "lump" ? "var(--c-primary)" : undefined }}>{a}</td>
+                            <td style={{ textAlign: "right", padding: "6px 4px", fontWeight: 600, color: result.better === "lump" ? "var(--n-primary)" : undefined }}>{a}</td>
                             <td style={{ textAlign: "right", padding: "6px 4px", fontWeight: 600, color: result.better === "sip" ? "#16a34a" : undefined }}>{b}</td>
                         </tr>
                     ))}
                 </tbody>
             </table>
 
-            <div style={{ background: "#e8f0fe", borderRadius: 10, padding: "12px 16px", marginTop: "var(--s-3)", fontSize: "0.82rem" }}>
-                <strong style={{ color: "var(--c-primary)" }}>⚖️ Important:</strong> At a constant return rate, lump sum always wins because the full amount compounds from day 1. However, in real volatile markets, SIP often outperforms because of <strong>rupee cost averaging</strong>. Best strategy: Deploy via <strong>STP</strong> (see STP Planner tab).
+            <div style={{ background: "var(--n-primary-light)", borderRadius: 10, padding: "12px 16px", marginTop: "var(--s-3)", fontSize: "0.82rem" }}>
+                <strong style={{ color: "var(--n-primary)" }}>⚖️ Important:</strong> At a constant return rate, lump sum always wins because the full amount compounds from day 1. However, in real volatile markets, SIP often outperforms because of <strong>rupee cost averaging</strong>. Best strategy: Deploy via <strong>STP</strong> (see STP Planner tab).
             </div>
         </>
     );
@@ -270,30 +270,30 @@ function STPMode() {
             <InputRow label="Total Investment Horizon" value={totalYears} set={setTotalYears} max={30} step={1} suffix="yr" min={1} />
 
             <table style={{ width: "100%", fontSize: "0.82rem", borderCollapse: "collapse", marginBottom: "var(--s-3)" }}>
-                <thead><tr style={{ borderBottom: "2px solid var(--c-border)" }}>
+                <thead><tr style={{ borderBottom: "2px solid var(--n-border)" }}>
                     <th style={{ textAlign: "left", padding: "8px 4px" }}>Strategy</th>
                     <th style={{ textAlign: "right", padding: "8px 4px" }}>Final Value</th>
                 </tr></thead>
                 <tbody>
-                    <tr style={{ borderBottom: "1px solid var(--c-border)" }}>
+                    <tr style={{ borderBottom: "1px solid var(--n-border)" }}>
                         <td style={{ padding: "6px 4px" }}>📊 Direct Lump Sum → Equity</td>
                         <td style={{ textAlign: "right", padding: "6px 4px", fontWeight: 700 }}>{fmtCr(result.directVal)}</td>
                     </tr>
-                    <tr style={{ borderBottom: "1px solid var(--c-border)" }}>
+                    <tr style={{ borderBottom: "1px solid var(--n-border)" }}>
                         <td style={{ padding: "6px 4px" }}>🔄 STP ({stpMonths} months: Liquid → Equity)</td>
                         <td style={{ textAlign: "right", padding: "6px 4px", fontWeight: 700 }}>{fmtCr(result.stpTotal)}</td>
                     </tr>
-                    <tr style={{ borderTop: "2px solid var(--c-border)" }}>
+                    <tr style={{ borderTop: "2px solid var(--n-border)" }}>
                         <td style={{ padding: "6px 4px", fontWeight: 700 }}>Difference</td>
-                        <td style={{ textAlign: "right", padding: "6px 4px", fontWeight: 700, color: result.diff > 0 ? "var(--c-primary)" : "#16a34a" }}>
+                        <td style={{ textAlign: "right", padding: "6px 4px", fontWeight: 700, color: result.diff > 0 ? "var(--n-primary)" : "#16a34a" }}>
                             {result.diff > 0 ? `Direct wins by ${fmtCr(result.diff)}` : `STP wins by ${fmtCr(Math.abs(result.diff))}`}
                         </td>
                     </tr>
                 </tbody>
             </table>
 
-            <div style={{ background: "#e8f0fe", borderRadius: 10, padding: "12px 16px", fontSize: "0.82rem" }}>
-                <strong style={{ color: "var(--c-primary)" }}>🔄 STP Insight:</strong> While direct lump sum often gives higher absolute returns (full compound from day 1), STP reduces <strong>sequence-of-returns risk</strong>. If markets drop 15% right after your lump sum, STP protects you. STP is recommended when markets are near all-time highs or you&rsquo;re investing a windfall.
+            <div style={{ background: "var(--n-primary-light)", borderRadius: 10, padding: "12px 16px", fontSize: "0.82rem" }}>
+                <strong style={{ color: "var(--n-primary)" }}>🔄 STP Insight:</strong> While direct lump sum often gives higher absolute returns (full compound from day 1), STP reduces <strong>sequence-of-returns risk</strong>. If markets drop 15% right after your lump sum, STP protects you. STP is recommended when markets are near all-time highs or you&rsquo;re investing a windfall.
             </div>
         </>
     );
@@ -322,9 +322,9 @@ function GoalMode() {
                 {PRESETS.map(p => (
                     <button key={p.v} onClick={() => setTarget(p.v)} style={{
                         padding: "8px 14px", borderRadius: 8, fontSize: "0.82rem", cursor: "pointer",
-                        border: target === p.v ? "2px solid var(--c-primary)" : "1px solid var(--c-border)",
-                        background: target === p.v ? "var(--c-primary-bg, #e8f0fe)" : "var(--c-bg)",
-                        fontWeight: target === p.v ? 700 : 500, color: target === p.v ? "var(--c-primary)" : "var(--c-text)",
+                        border: target === p.v ? "2px solid var(--n-primary)" : "1px solid var(--n-border)",
+                        background: target === p.v ? "var(--n-primary-light)" : "var(--n-surface)",
+                        fontWeight: target === p.v ? 700 : 500, color: target === p.v ? "var(--n-primary)" : "var(--n-text)",
                     }}>{p.l}</button>
                 ))}
             </div>
@@ -332,12 +332,12 @@ function GoalMode() {
             <InputRow label="Time Horizon" value={years} set={setYears} max={40} step={1} suffix="yr" min={1} />
             <InputRow label="Expected Return" value={rate} set={setRate} max={25} step={0.5} suffix="%" min={1} />
 
-            <div style={{ background: "var(--c-surface)", borderRadius: 12, padding: "var(--s-4)", textAlign: "center" }}>
-                <div style={{ fontSize: "0.78rem", fontWeight: 700, color: "var(--c-primary)", textTransform: "uppercase", letterSpacing: 1 }}>
+            <div style={{ background: "var(--n-surface-alt)", borderRadius: 12, padding: "var(--s-4)", textAlign: "center" }}>
+                <div style={{ fontSize: "0.78rem", fontWeight: 700, color: "var(--n-primary)", textTransform: "uppercase", letterSpacing: 1 }}>
                     Invest Today
                 </div>
                 <div style={{ fontSize: "2.4rem", fontWeight: 800, fontFamily: "var(--font-mono, monospace)", margin: "8px 0" }}>{fmtCr(result.required)}</div>
-                <div style={{ fontSize: "0.85rem", color: "var(--c-text-muted)" }}>
+                <div style={{ fontSize: "0.85rem", color: "var(--n-text-muted)" }}>
                     to get <strong>{fmtCr(target)}</strong> in <strong>{years} years</strong> at {rate}% return
                 </div>
                 <div style={{ fontSize: "0.82rem", color: "#16a34a", fontWeight: 700, marginTop: 8 }}>
@@ -353,19 +353,19 @@ export default function LumpsumCalculatorCore() {
     const [mode, setMode] = useState<Mode>("returns");
 
     return (
-        <div style={{ background: "var(--c-card-bg, #fff)", borderRadius: 16, border: "1px solid var(--c-border)", overflow: "hidden", marginBottom: "var(--s-6)" }}>
-            <div style={{ padding: "var(--s-4) var(--s-5)", borderBottom: "1px solid var(--c-border)", background: "linear-gradient(135deg, var(--c-primary-bg, #e8f0fe), var(--c-surface))" }}>
+        <div style={{ background: "var(--n-surface)", borderRadius: 16, border: "1px solid var(--n-border)", overflow: "hidden", marginBottom: "var(--s-6)" }}>
+            <div style={{ padding: "var(--s-4) var(--s-5)", borderBottom: "1px solid var(--n-border)", background: "linear-gradient(135deg, var(--n-primary-light), var(--n-surface-alt))" }}>
                 <h2 style={{ margin: 0, fontSize: "1.25rem", fontWeight: 700 }}>📊 Lumpsum Calculator</h2>
-                <div style={{ fontSize: "0.82rem", color: "var(--c-text-muted)", marginTop: 4 }}>One-time investment returns • Lump Sum vs SIP • STP Strategy • Goal Reverse</div>
+                <div style={{ fontSize: "0.82rem", color: "var(--n-text-muted)", marginTop: 4 }}>One-time investment returns • Lump Sum vs SIP • STP Strategy • Goal Reverse</div>
             </div>
-            <div style={{ display: "flex", borderBottom: "1px solid var(--c-border)", flexWrap: "wrap" }}>
+            <div style={{ display: "flex", borderBottom: "1px solid var(--n-border)", flexWrap: "wrap" }}>
                 {MODES.map(m => (
                     <button key={m.key} onClick={() => setMode(m.key)} style={{
                         flex: 1, minWidth: 120, padding: "12px 8px", border: "none", cursor: "pointer",
-                        borderBottom: mode === m.key ? "3px solid var(--c-primary)" : "3px solid transparent",
-                        background: mode === m.key ? "var(--c-primary-bg, #e8f0fe)" : "transparent",
+                        borderBottom: mode === m.key ? "3px solid var(--n-primary)" : "3px solid transparent",
+                        background: mode === m.key ? "var(--n-primary-light)" : "transparent",
                         fontWeight: mode === m.key ? 700 : 500, fontSize: "0.82rem",
-                        color: mode === m.key ? "var(--c-primary)" : "var(--c-text-muted)",
+                        color: mode === m.key ? "var(--n-primary)" : "var(--n-text-muted)",
                     }}>{m.icon} {m.label}</button>
                 ))}
             </div>

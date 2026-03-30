@@ -134,12 +134,12 @@ function InputRow({ label, value, set, max, suffix, hint }: {
         <div style={{ marginBottom: 14 }}>
             <label style={{ display: "flex", justifyContent: "space-between", fontWeight: 600, fontSize: "0.88rem", marginBottom: 4 }}>
                 <span>{label}</span>
-                <span style={{ color: "var(--c-primary)", fontFamily: "var(--font-mono, monospace)" }}>{fmt(value)}{suffix || ""}</span>
+                <span style={{ color: "var(--n-primary)", fontFamily: "var(--font-mono, monospace)" }}>{fmt(value)}{suffix || ""}</span>
             </label>
             <input type="range" min={0} max={max || 50_00_000} step={5000} value={value}
                 onChange={e => set(Number(e.target.value))}
-                style={{ width: "100%", accentColor: "var(--c-primary)" }} />
-            {hint && <div style={{ fontSize: "0.72rem", color: "var(--c-text-muted)", marginTop: 2 }}>{hint}</div>}
+                style={{ width: "100%", accentColor: "var(--n-primary)" }} />
+            {hint && <div style={{ fontSize: "0.72rem", color: "var(--n-text-muted)", marginTop: 2 }}>{hint}</div>}
         </div>
     );
 }
@@ -147,15 +147,15 @@ function InputRow({ label, value, set, max, suffix, hint }: {
 /* ─── Sub: Result Panel ─── */
 function ResultPanel({ r, label }: { r: ReturnType<typeof computeFullTax>; label: string }) {
     return (
-        <div style={{ background: "var(--c-surface)", borderRadius: 12, padding: "var(--s-4)" }}>
-            <div style={{ fontSize: "0.82rem", fontWeight: 700, color: "var(--c-primary)", textTransform: "uppercase", letterSpacing: 1, marginBottom: "var(--s-3)" }}>
+        <div style={{ background: "var(--n-surface-alt)", borderRadius: 12, padding: "var(--s-4)" }}>
+            <div style={{ fontSize: "0.82rem", fontWeight: 700, color: "var(--n-primary)", textTransform: "uppercase", letterSpacing: 1, marginBottom: "var(--s-3)" }}>
                 {label}
             </div>
             <div style={{ textAlign: "center", marginBottom: "var(--s-3)" }}>
                 <div style={{ fontSize: "2.2rem", fontWeight: 800, fontFamily: "var(--font-mono, monospace)" }}>
                     {r.totalTax < 1 ? "₹0 (No Tax)" : fmt(r.totalTax)}
                 </div>
-                <div style={{ fontSize: "0.85rem", color: "var(--c-text-muted)" }}>
+                <div style={{ fontSize: "0.85rem", color: "var(--n-text-muted)" }}>
                     Effective Rate: {pct(r.effectiveRate)} • Monthly TDS: {fmt(r.monthlyTax)}
                 </div>
             </div>
@@ -163,7 +163,7 @@ function ResultPanel({ r, label }: { r: ReturnType<typeof computeFullTax>; label
             {/* Slab breakdown */}
             <div style={{ overflowX: "auto" }}>
                 <table style={{ width: "100%", fontSize: "0.78rem", borderCollapse: "collapse" }}>
-                    <thead><tr style={{ borderBottom: "2px solid var(--c-border)" }}>
+                    <thead><tr style={{ borderBottom: "2px solid var(--n-border)" }}>
                         <th style={{ textAlign: "left", padding: "6px 4px" }}>Slab</th>
                         <th style={{ textAlign: "right", padding: "6px 4px" }}>Amount</th>
                         <th style={{ textAlign: "right", padding: "6px 4px" }}>Rate</th>
@@ -171,7 +171,7 @@ function ResultPanel({ r, label }: { r: ReturnType<typeof computeFullTax>; label
                     </tr></thead>
                     <tbody>
                         {r.breakdown.map((b, i) => (
-                            <tr key={i} style={{ borderBottom: "1px solid var(--c-border)" }}>
+                            <tr key={i} style={{ borderBottom: "1px solid var(--n-border)" }}>
                                 <td style={{ padding: "5px 4px" }}>{b.slab}</td>
                                 <td style={{ textAlign: "right", padding: "5px 4px" }}>{fmt(b.taxableAmount)}</td>
                                 <td style={{ textAlign: "right", padding: "5px 4px" }}>{b.rate}%</td>
@@ -183,33 +183,33 @@ function ResultPanel({ r, label }: { r: ReturnType<typeof computeFullTax>; label
             </div>
 
             {/* Summary */}
-            <div style={{ background: "var(--c-bg)", borderRadius: 8, padding: "10px 12px", marginTop: "var(--s-3)", fontSize: "0.82rem" }}>
+            <div style={{ background: "var(--n-surface)", borderRadius: 8, padding: "10px 12px", marginTop: "var(--s-3)", fontSize: "0.82rem" }}>
                 <div style={{ display: "flex", justifyContent: "space-between", padding: "3px 0" }}>
-                    <span style={{ color: "var(--c-text-muted)" }}>Gross Income</span><span style={{ fontWeight: 600 }}>{fmt(r.grossIncome)}</span>
+                    <span style={{ color: "var(--n-text-muted)" }}>Gross Income</span><span style={{ fontWeight: 600 }}>{fmt(r.grossIncome)}</span>
                 </div>
                 <div style={{ display: "flex", justifyContent: "space-between", padding: "3px 0" }}>
-                    <span style={{ color: "var(--c-text-muted)" }}>Standard Deduction</span><span style={{ fontWeight: 600 }}>−{fmt(r.standardDeduction)}</span>
+                    <span style={{ color: "var(--n-text-muted)" }}>Standard Deduction</span><span style={{ fontWeight: 600 }}>−{fmt(r.standardDeduction)}</span>
                 </div>
                 <div style={{ display: "flex", justifyContent: "space-between", padding: "3px 0" }}>
-                    <span style={{ color: "var(--c-text-muted)" }}>Other Deductions</span><span style={{ fontWeight: 600 }}>−{fmt(r.totalDeductions - r.standardDeduction)}</span>
+                    <span style={{ color: "var(--n-text-muted)" }}>Other Deductions</span><span style={{ fontWeight: 600 }}>−{fmt(r.totalDeductions - r.standardDeduction)}</span>
                 </div>
-                <div style={{ display: "flex", justifyContent: "space-between", padding: "3px 0", borderTop: "1px dashed var(--c-border)" }}>
+                <div style={{ display: "flex", justifyContent: "space-between", padding: "3px 0", borderTop: "1px dashed var(--n-border)" }}>
                     <span style={{ fontWeight: 700 }}>Taxable Income</span><span style={{ fontWeight: 700 }}>{fmt(r.taxableIncome)}</span>
                 </div>
                 <div style={{ display: "flex", justifyContent: "space-between", padding: "3px 0" }}>
-                    <span style={{ color: "var(--c-text-muted)" }}>Tax on Income</span><span>{fmt(r.rawTax)}</span>
+                    <span style={{ color: "var(--n-text-muted)" }}>Tax on Income</span><span>{fmt(r.rawTax)}</span>
                 </div>
                 {r.rebate > 0 && <div style={{ display: "flex", justifyContent: "space-between", padding: "3px 0" }}>
                     <span style={{ color: "#16a34a" }}>Less: Rebate u/s 87A</span><span style={{ color: "#16a34a", fontWeight: 600 }}>−{fmt(r.rebate)}</span>
                 </div>}
                 {r.surcharge > 0 && <div style={{ display: "flex", justifyContent: "space-between", padding: "3px 0" }}>
-                    <span style={{ color: "var(--c-text-muted)" }}>Surcharge</span><span>{fmt(r.surcharge)}</span>
+                    <span style={{ color: "var(--n-text-muted)" }}>Surcharge</span><span>{fmt(r.surcharge)}</span>
                 </div>}
                 <div style={{ display: "flex", justifyContent: "space-between", padding: "3px 0" }}>
-                    <span style={{ color: "var(--c-text-muted)" }}>Health &amp; Education Cess (4%)</span><span>{fmt(r.cess)}</span>
+                    <span style={{ color: "var(--n-text-muted)" }}>Health &amp; Education Cess (4%)</span><span>{fmt(r.cess)}</span>
                 </div>
-                <div style={{ display: "flex", justifyContent: "space-between", padding: "5px 0", borderTop: "2px solid var(--c-border)", fontWeight: 800, fontSize: "1rem" }}>
-                    <span>Total Tax Payable</span><span style={{ color: r.totalTax < 1 ? "#16a34a" : "var(--c-text)" }}>{r.totalTax < 1 ? "₹0" : fmt(r.totalTax)}</span>
+                <div style={{ display: "flex", justifyContent: "space-between", padding: "5px 0", borderTop: "2px solid var(--n-border)", fontWeight: 800, fontSize: "1rem" }}>
+                    <span>Total Tax Payable</span><span style={{ color: r.totalTax < 1 ? "#16a34a" : "var(--n-text)" }}>{r.totalTax < 1 ? "₹0" : fmt(r.totalTax)}</span>
                 </div>
             </div>
         </div>
@@ -275,10 +275,10 @@ function OldRegimeMode() {
                     {["0-60", "60-80", "80+"].map(a => (
                         <button key={a} onClick={() => setAge(a)} style={{
                             flex: 1, padding: "10px 12px", borderRadius: 8, fontSize: "0.82rem", cursor: "pointer",
-                            border: age === a ? "2px solid var(--c-primary)" : "1px solid var(--c-border)",
-                            background: age === a ? "var(--c-primary-bg, #e8f0fe)" : "var(--c-bg)",
+                            border: age === a ? "2px solid var(--n-primary)" : "1px solid var(--n-border)",
+                            background: age === a ? "var(--n-primary-light)" : "var(--n-surface)",
                             fontWeight: age === a ? 700 : 500,
-                            color: age === a ? "var(--c-primary)" : "var(--c-text)",
+                            color: age === a ? "var(--n-primary)" : "var(--n-text)",
                         }}>
                             {a === "0-60" ? "Below 60" : a === "60-80" ? "Senior (60–80)" : "Super Senior (80+)"}
                         </button>
@@ -291,7 +291,7 @@ function OldRegimeMode() {
             <InputRow label="Rental Income" value={rental} set={setRental} max={20_00_000} />
             <InputRow label="Other Income" value={other} set={setOther} max={10_00_000} />
 
-            <div style={{ padding: "12px 14px", background: "var(--c-surface)", borderRadius: 10, marginBottom: 14 }}>
+            <div style={{ padding: "12px 14px", background: "var(--n-surface-alt)", borderRadius: 10, marginBottom: 14 }}>
                 <div style={{ fontWeight: 700, fontSize: "0.88rem", marginBottom: 10 }}>📋 Deductions (Old Regime Only)</div>
                 <InputRow label="Section 80C (PPF, ELSS, LIC, EPF)" value={sec80C} set={setSec80C} max={1_50_000} hint="Max ₹1,50,000" />
                 <InputRow label="80D — Health Insurance (Self)" value={sec80D} set={setSec80D} max={50_000} hint={age === "0-60" ? "Max ₹25,000 (below 60)" : "Max ₹50,000 (senior)"} />
@@ -346,9 +346,9 @@ function CompareMode() {
                     {["0-60", "60-80", "80+"].map(a => (
                         <button key={a} onClick={() => setAge(a)} style={{
                             flex: 1, padding: "10px", borderRadius: 8, fontSize: "0.82rem", cursor: "pointer",
-                            border: age === a ? "2px solid var(--c-primary)" : "1px solid var(--c-border)",
-                            background: age === a ? "var(--c-primary-bg, #e8f0fe)" : "var(--c-bg)",
-                            fontWeight: age === a ? 700 : 500, color: age === a ? "var(--c-primary)" : "var(--c-text)",
+                            border: age === a ? "2px solid var(--n-primary)" : "1px solid var(--n-border)",
+                            background: age === a ? "var(--n-primary-light)" : "var(--n-surface)",
+                            fontWeight: age === a ? 700 : 500, color: age === a ? "var(--n-primary)" : "var(--n-text)",
                         }}>{a === "0-60" ? "Below 60" : a === "60-80" ? "Senior (60–80)" : "Super Senior (80+)"}</button>
                     ))}
                 </div>
@@ -359,7 +359,7 @@ function CompareMode() {
             <InputRow label="Rental Income" value={rental} set={setRental} max={20_00_000} />
             <InputRow label="Other Income" value={other} set={setOther} max={10_00_000} />
 
-            <div style={{ padding: "12px 14px", background: "var(--c-surface)", borderRadius: 10, marginBottom: 14 }}>
+            <div style={{ padding: "12px 14px", background: "var(--n-surface-alt)", borderRadius: 10, marginBottom: 14 }}>
                 <div style={{ fontWeight: 700, fontSize: "0.88rem", marginBottom: 10 }}>📋 Deductions (Applied to Old Regime)</div>
                 <InputRow label="Section 80C" value={sec80C} set={setSec80C} max={1_50_000} />
                 <InputRow label="80D — Self" value={sec80D} set={setSec80D} max={50_000} />
@@ -375,13 +375,13 @@ function CompareMode() {
             {/* Winner banner */}
             <div style={{
                 padding: "16px", borderRadius: 12, textAlign: "center", marginBottom: "var(--s-4)",
-                background: better === "new" ? "#e8f0fe" : "#dcfce7",
-                border: `2px solid ${better === "new" ? "var(--c-primary)" : "#16a34a"}`,
+                background: better === "new" ? "var(--n-primary-light)" : "var(--n-success-light)",
+                border: `2px solid ${better === "new" ? "var(--n-primary)" : "#16a34a"}`,
             }}>
-                <div style={{ fontSize: "1.1rem", fontWeight: 800, color: better === "new" ? "var(--c-primary)" : "#16a34a" }}>
+                <div style={{ fontSize: "1.1rem", fontWeight: 800, color: better === "new" ? "var(--n-primary)" : "#16a34a" }}>
                     {better === "new" ? "🆕 New Regime" : "📋 Old Regime"} saves you {fmt(savings)}
                 </div>
-                <div style={{ fontSize: "0.85rem", color: "var(--c-text-muted)", marginTop: 4 }}>
+                <div style={{ fontSize: "0.85rem", color: "var(--n-text-muted)", marginTop: 4 }}>
                     New: {fmt(newResult.totalTax)} ({pct(newResult.effectiveRate)}) vs Old: {fmt(oldResult.totalTax)} ({pct(oldResult.effectiveRate)})
                 </div>
             </div>
@@ -389,9 +389,9 @@ function CompareMode() {
             {/* Side-by-side comparison table */}
             <div style={{ overflowX: "auto" }}>
                 <table style={{ width: "100%", fontSize: "0.82rem", borderCollapse: "collapse" }}>
-                    <thead><tr style={{ borderBottom: "2px solid var(--c-border)" }}>
+                    <thead><tr style={{ borderBottom: "2px solid var(--n-border)" }}>
                         <th style={{ textAlign: "left", padding: "8px 4px" }}>Parameter</th>
-                        <th style={{ textAlign: "right", padding: "8px 4px", color: better === "new" ? "var(--c-primary)" : undefined }}>🆕 New Regime</th>
+                        <th style={{ textAlign: "right", padding: "8px 4px", color: better === "new" ? "var(--n-primary)" : undefined }}>🆕 New Regime</th>
                         <th style={{ textAlign: "right", padding: "8px 4px", color: better === "old" ? "#16a34a" : undefined }}>📋 Old Regime</th>
                     </tr></thead>
                     <tbody>
@@ -405,15 +405,15 @@ function CompareMode() {
                             ["Surcharge", fmt(newResult.surcharge), fmt(oldResult.surcharge)],
                             ["Cess (4%)", fmt(newResult.cess), fmt(oldResult.cess)],
                         ].map(([l, n, o], i) => (
-                            <tr key={i} style={{ borderBottom: "1px solid var(--c-border)" }}>
+                            <tr key={i} style={{ borderBottom: "1px solid var(--n-border)" }}>
                                 <td style={{ padding: "6px 4px" }}>{l}</td>
                                 <td style={{ textAlign: "right", padding: "6px 4px", fontWeight: 600 }}>{n}</td>
                                 <td style={{ textAlign: "right", padding: "6px 4px", fontWeight: 600 }}>{o}</td>
                             </tr>
                         ))}
-                        <tr style={{ borderTop: "2px solid var(--c-border)", fontWeight: 800, fontSize: "0.95rem" }}>
+                        <tr style={{ borderTop: "2px solid var(--n-border)", fontWeight: 800, fontSize: "0.95rem" }}>
                             <td style={{ padding: "8px 4px" }}>Total Tax Payable</td>
-                            <td style={{ textAlign: "right", padding: "8px 4px", color: better === "new" ? "var(--c-primary)" : undefined }}>
+                            <td style={{ textAlign: "right", padding: "8px 4px", color: better === "new" ? "var(--n-primary)" : undefined }}>
                                 {better === "new" ? "⭐ " : ""}{fmt(newResult.totalTax)}
                             </td>
                             <td style={{ textAlign: "right", padding: "8px 4px", color: better === "old" ? "#16a34a" : undefined }}>
@@ -421,12 +421,12 @@ function CompareMode() {
                             </td>
                         </tr>
                         <tr>
-                            <td style={{ padding: "6px 4px", color: "var(--c-text-muted)" }}>Effective Rate</td>
+                            <td style={{ padding: "6px 4px", color: "var(--n-text-muted)" }}>Effective Rate</td>
                             <td style={{ textAlign: "right", padding: "6px 4px" }}>{pct(newResult.effectiveRate)}</td>
                             <td style={{ textAlign: "right", padding: "6px 4px" }}>{pct(oldResult.effectiveRate)}</td>
                         </tr>
                         <tr>
-                            <td style={{ padding: "6px 4px", color: "var(--c-text-muted)" }}>Monthly TDS</td>
+                            <td style={{ padding: "6px 4px", color: "var(--n-text-muted)" }}>Monthly TDS</td>
                             <td style={{ textAlign: "right", padding: "6px 4px" }}>{fmt(newResult.monthlyTax)}</td>
                             <td style={{ textAlign: "right", padding: "6px 4px" }}>{fmt(oldResult.monthlyTax)}</td>
                         </tr>
@@ -442,21 +442,21 @@ export default function IncomeTaxIndiaCore() {
     const [mode, setMode] = useState<Mode>("new");
 
     return (
-        <div style={{ background: "var(--c-card-bg, #fff)", borderRadius: 16, border: "1px solid var(--c-border)", overflow: "hidden", marginBottom: "var(--s-6)" }}>
-            <div style={{ padding: "var(--s-4) var(--s-5)", borderBottom: "1px solid var(--c-border)", background: "linear-gradient(135deg, var(--c-primary-bg, #e8f0fe), var(--c-surface))" }}>
+        <div style={{ background: "var(--n-surface)", borderRadius: 16, border: "1px solid var(--n-border)", overflow: "hidden", marginBottom: "var(--s-6)" }}>
+            <div style={{ padding: "var(--s-4) var(--s-5)", borderBottom: "1px solid var(--n-border)", background: "linear-gradient(135deg, var(--n-primary-light), var(--n-surface-alt))" }}>
                 <h2 style={{ margin: 0, fontSize: "1.25rem", fontWeight: 700 }}>🧾 Income Tax Calculator — FY 2025-26</h2>
-                <div style={{ fontSize: "0.82rem", color: "var(--c-text-muted)", marginTop: 4 }}>Budget 2025 • New slabs • ₹12L tax-free • ₹75K standard deduction</div>
+                <div style={{ fontSize: "0.82rem", color: "var(--n-text-muted)", marginTop: 4 }}>Budget 2025 • New slabs • ₹12L tax-free • ₹75K standard deduction</div>
             </div>
 
-            <div style={{ display: "flex", borderBottom: "1px solid var(--c-border)" }}>
+            <div style={{ display: "flex", borderBottom: "1px solid var(--n-border)" }}>
                 {MODES.map(m => (
                     <button key={m.key} onClick={() => setMode(m.key)}
                         style={{
                             flex: 1, padding: "12px 8px", border: "none", cursor: "pointer",
-                            borderBottom: mode === m.key ? "3px solid var(--c-primary)" : "3px solid transparent",
-                            background: mode === m.key ? "var(--c-primary-bg, #e8f0fe)" : "transparent",
+                            borderBottom: mode === m.key ? "3px solid var(--n-primary)" : "3px solid transparent",
+                            background: mode === m.key ? "var(--n-primary-light)" : "transparent",
                             fontWeight: mode === m.key ? 700 : 500, fontSize: "0.85rem",
-                            color: mode === m.key ? "var(--c-primary)" : "var(--c-text-muted)",
+                            color: mode === m.key ? "var(--n-primary)" : "var(--n-text-muted)",
                         }}>
                         {m.icon} {m.label}
                     </button>

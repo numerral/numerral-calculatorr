@@ -270,7 +270,7 @@ function GratuityForm() {
                 </div>
                 <div className="calc-result__breakdown">
                     <p className="calc-result__breakdown-title">Calculation Formula</p>
-                    <p className="calc-result__breakdown-line" style={{ fontSize: "1rem", fontFamily: "var(--font-mono)" }}>{result.formula}</p>
+                    <p className="calc-result__breakdown-line" style={{ fontSize: "1rem", fontFamily: "var(--t-mono)" }}>{result.formula}</p>
                     <p className="t-body-sm text-muted" style={{ marginTop: "12px", borderTop: "1px dashed rgba(255,255,255,0.2)", paddingTop: "12px" }}>
                         Note: Gratuity up to ₹25 Lakh is tax-exempt. Amount above ₹25 Lakh is added to your taxable income.
                     </p>

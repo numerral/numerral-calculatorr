@@ -1,281 +1,353 @@
 "use client";
 import { useState, useMemo } from "react";
 
-/* ── Helpers ── */
-const fmt = (n: number, d = 1) => n.toFixed(d);
+type Mode = "navy" | "bmi" | "categories" | "lbm";
+type Gender = "male" | "female";
+const MODES: { key: Mode; icon: string; label: string }[] = [
+    { key: "navy", icon: "📏", label: "US Navy Method" },
+    { key: "bmi", icon: "⚖️", label: "BMI-Based Estimate" },
+    { key: "categories", icon: "📊", label: "Category Reference" },
+    { key: "lbm", icon: "💪", label: "Lean Body Mass" },
+];
 
-/* ── Sub-components ── */
-function InputField({ label, value, onChange, unit, min, max, step, note }: {
-    label: string; value: string; onChange: (v: string) => void; unit?: string; min?: number; max?: number; step?: number; note?: string;
-}) {
+/* ─── Formulas ─── */
+function navyBF(gender: Gender, heightCm: number, neckCm: number, waistCm: number, hipCm: number): number | null {
+    const h = heightCm / 2.54, n = neckCm / 2.54, w = waistCm / 2.54, hi = hipCm / 2.54;
+    if (h <= 0 || n <= 0 || w <= 0) return null;
+    if (gender === "male") {
+        const v = w - n;
+        if (v <= 0) return null;
+        return 86.010 * Math.log10(v) - 70.041 * Math.log10(h) + 36.76;
+    } else {
+        if (hi <= 0) return null;
+        const v = w + hi - n;
+        if (v <= 0) return null;
+        return 163.205 * Math.log10(v) - 97.684 * Math.log10(h) - 78.387;
+    }
+}
+
+function bmiBF(bmi: number, age: number, gender: Gender): number {
+    return 1.20 * bmi + 0.23 * age - 10.8 * (gender === "male" ? 1 : 0) - 5.4;
+}
+
+function getCategory(bf: number, gender: Gender): { label: string; color: string } {
+    if (gender === "male") {
+        if (bf < 6) return { label: "Essential Fat", color: "#ef4444" };
+        if (bf < 14) return { label: "Athletes", color: "#3b82f6" };
+        if (bf < 18) return { label: "Fitness", color: "#16a34a" };
+        if (bf < 25) return { label: "Average", color: "#f59e0b" };
+        return { label: "Obese", color: "#dc2626" };
+    } else {
+        if (bf < 14) return { label: "Essential Fat", color: "#ef4444" };
+        if (bf < 21) return { label: "Athletes", color: "#3b82f6" };
+        if (bf < 25) return { label: "Fitness", color: "#16a34a" };
+        if (bf < 32) return { label: "Average", color: "#f59e0b" };
+        return { label: "Obese", color: "#dc2626" };
+    }
+}
+
+function getCategoryBarPct(bf: number, gender: Gender): number {
+    const max = gender === "male" ? 40 : 50;
+    return Math.min(100, Math.max(0, (bf / max) * 100));
+}
+
+function GenderToggle({ gender, setGender }: { gender: Gender; setGender: (g: Gender) => void }) {
     return (
-        <div className="con-input">
-            <label className="con-input__label">{label}{unit ? <span className="con-input__unit"> ({unit})</span> : null}</label>
-            <input type="number" className="con-input__field" value={value} onChange={(e) => onChange(e.target.value)} min={min ?? 0} max={max} step={step || 0.1} placeholder="0" />
-            {note && <p style={{ fontSize: "0.73rem", color: "var(--n-text-muted)", marginTop: "var(--s-1)" }}>{note}</p>}
+        <div style={{ display: "flex", gap: 6, marginBottom: 14 }}>
+            {(["male", "female"] as Gender[]).map(g => (
+                <button key={g} onClick={() => setGender(g)} style={{
+                    flex: 1, padding: "10px 6px", borderRadius: 8, cursor: "pointer",
+                    border: gender === g ? "2px solid var(--n-primary)" : "1px solid var(--n-border)",
+                    background: gender === g ? "var(--n-primary-light)" : "var(--n-surface)",
+                    fontWeight: gender === g ? 800 : 500, fontSize: "0.9rem",
+                    color: gender === g ? "var(--n-primary)" : "var(--n-text)",
+                }}>{g === "male" ? "♂ Male" : "♀ Female"}</button>
+            ))}
         </div>
     );
 }
 
-/* ── BF categories (ACE) ── */
-interface BFCat { nameAr: string; maleMin: number; maleMax: number; femaleMin: number; femaleMax: number; color: string; emoji: string; }
-const BF_CATS: BFCat[] = [
-    { nameAr: "دهون أساسية", maleMin: 0, maleMax: 5, femaleMin: 0, femaleMax: 13, color: "#0284c7", emoji: "💪" },
-    { nameAr: "رياضي", maleMin: 6, maleMax: 13, femaleMin: 14, femaleMax: 20, color: "#059669", emoji: "🏃" },
-    { nameAr: "لياقة", maleMin: 14, maleMax: 17, femaleMin: 21, femaleMax: 24, color: "#2e7d32", emoji: "✅" },
-    { nameAr: "متوسط", maleMin: 18, maleMax: 24, femaleMin: 25, femaleMax: 31, color: "#d97706", emoji: "🟡" },
-    { nameAr: "سمنة", maleMin: 25, maleMax: 100, femaleMin: 32, femaleMax: 100, color: "#c62828", emoji: "🔴" },
-];
-
-function getBFCat(bf: number, gender: string): BFCat {
-    for (const c of BF_CATS) {
-        const min = gender === "male" ? c.maleMin : c.femaleMin;
-        const max = gender === "male" ? c.maleMax : c.femaleMax;
-        if (bf >= min && bf <= max) return c;
-    }
-    return BF_CATS[BF_CATS.length - 1];
-}
-
-/* ── Tabs ── */
-type TabKey = "methods" | "categories" | "age";
-
-/* ── Main Component ── */
-export default function BodyFatCalculatorCore() {
-    const [gender, setGender] = useState("male");
-    const [age, setAge] = useState("30");
-    const [weight, setWeight] = useState("80");
-    const [heightCm, setHeightCm] = useState("175");
-    const [waist, setWaist] = useState("85");
-    const [neck, setNeck] = useState("38");
-    const [hip, setHip] = useState("95");
-    const [activeTab, setActiveTab] = useState<TabKey>("methods");
-
-    const result = useMemo(() => {
-        const w = Math.max(30, parseFloat(weight) || 80);
-        const h = Math.max(100, parseFloat(heightCm) || 175);
-        const a = Math.max(15, parseFloat(age) || 30);
-        const waistCm = Math.max(50, parseFloat(waist) || 85);
-        const neckCm = Math.max(25, parseFloat(neck) || 38);
-        const hipCm = Math.max(60, parseFloat(hip) || 95);
-        const hM = h / 100;
-
-        // Convert to inches for Navy formula
-        const hIn = h / 2.54;
-        const waistIn = waistCm / 2.54;
-        const neckIn = neckCm / 2.54;
-        const hipIn = hipCm / 2.54;
-
-        // US Navy Method
-        let navy: number;
-        if (gender === "male") {
-            navy = 86.010 * Math.log10(waistIn - neckIn) - 70.041 * Math.log10(hIn) + 36.76;
-        } else {
-            navy = 163.205 * Math.log10(waistIn + hipIn - neckIn) - 97.684 * Math.log10(hIn) - 78.387;
-        }
-        navy = Math.max(2, Math.min(60, navy));
-
-        // BMI Method
-        const bmi = w / (hM * hM);
-        let bmiMethod: number;
-        if (gender === "male") {
-            bmiMethod = 1.20 * bmi + 0.23 * a - 16.2;
-        } else {
-            bmiMethod = 1.20 * bmi + 0.23 * a - 5.4;
-        }
-        bmiMethod = Math.max(2, Math.min(60, bmiMethod));
-
-        // Average
-        const avg = (navy + bmiMethod) / 2;
-
-        // Body composition
-        const fatMass = w * (avg / 100);
-        const lbm = w - fatMass;
-
-        // BMI category
-        const cat = getBFCat(avg, gender);
-
-        // FFMI
-        const ffmi = lbm / (hM * hM);
-        const ffmiNorm = ffmi + 6.3 * (1.8 - hM);
-
-        return { navy, bmiMethod, avg, bmi, fatMass, lbm, cat, ffmi, ffmiNorm, w };
-    }, [gender, age, weight, heightCm, waist, neck, hip]);
+function ResultDisplay({ bf, weightKg, gender }: { bf: number; weightKg: number; gender: Gender }) {
+    const cat = getCategory(bf, gender);
+    const fatMass = weightKg * (bf / 100);
+    const leanMass = weightKg - fatMass;
+    const barPct = getCategoryBarPct(bf, gender);
 
     return (
-        <div className="con-calc" style={{ maxWidth: 720 }}>
-            <div className="con-calc__header">
-                <h2 className="con-calc__title">حاسبة نسبة الدهون في الجسم</h2>
-                <p className="con-calc__desc">احسب نسبة دهون جسمك بطريقتين (Navy + BMI) مع تصنيف ACE وتحليل تركيب الجسم.</p>
-            </div>
-
-            <div className="con-calc__body" style={{ display: "flex", flexDirection: "column", gap: "var(--s-3)" }}>
-                <div style={{ padding: "var(--s-3) var(--s-4)", background: "var(--n-surface)", border: "1px solid var(--n-border)", borderRadius: "var(--r-sm)" }}>
-                    <p style={{ fontWeight: 700, fontSize: "0.88rem", marginBottom: "var(--s-3)", color: "var(--n-text)" }}>📋 بياناتك</p>
-                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "var(--s-2)" }}>
-                        <div className="con-input">
-                            <label className="con-input__label">الجنس</label>
-                            <select className="con-input__field" value={gender} onChange={(e) => setGender(e.target.value)}>
-                                <option value="male">ذكر</option>
-                                <option value="female">أنثى</option>
-                            </select>
-                        </div>
-                        <InputField label="العمر" value={age} onChange={setAge} unit="سنة" min={15} max={80} step={1} />
-                    </div>
-                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "var(--s-2)" }}>
-                        <InputField label="الوزن" value={weight} onChange={setWeight} unit="كجم" min={30} max={250} step={0.5} />
-                        <InputField label="الطول" value={heightCm} onChange={setHeightCm} unit="سم" min={100} max={230} step={1} />
-                    </div>
+        <div style={{ background: "var(--n-surface-alt)", borderRadius: 12, padding: 16 }}>
+            <div style={{ textAlign: "center", marginBottom: 12 }}>
+                <div style={{ fontSize: "0.78rem", fontWeight: 700, color: cat.color, textTransform: "uppercase", letterSpacing: 1 }}>
+                    Body Fat Percentage — {cat.label}
                 </div>
-
-                <div style={{ padding: "var(--s-3) var(--s-4)", background: "var(--n-surface)", border: "1px solid var(--n-border)", borderRadius: "var(--r-sm)" }}>
-                    <p style={{ fontWeight: 700, fontSize: "0.88rem", marginBottom: "var(--s-3)", color: "var(--n-text)" }}>📏 القياسات (لطريقة Navy)</p>
-                    <p style={{ fontSize: "0.72rem", color: "var(--n-text-muted)", marginBottom: "var(--s-2)" }}>قيسي بشريط القياس — شدّي بدون ضغط على الجلد</p>
-                    <InputField label="محيط الخصر" value={waist} onChange={setWaist} unit="سم" min={50} max={180} note="عند السرة — أضيق نقطة" />
-                    <InputField label="محيط الرقبة" value={neck} onChange={setNeck} unit="سم" min={25} max={60} note="تحت تفاحة آدم مباشرة" />
-                    {gender === "female" && (
-                        <InputField label="محيط الأرداف" value={hip} onChange={setHip} unit="سم" min={60} max={180} note="أعرض نقطة في الأرداف" />
-                    )}
+                <div style={{ fontSize: "2.6rem", fontWeight: 800, fontFamily: "var(--t-mono)", color: cat.color }}>
+                    {bf.toFixed(1)}%
                 </div>
             </div>
-
-            {/* ── Results ── */}
-            <div className="con-calc__results" style={{ marginTop: "var(--s-5)" }}>
-                <h4>نتائج نسبة الدهون</h4>
-
-                {/* Main result */}
-                <div style={{
-                    textAlign: "center", padding: "var(--s-5)",
-                    background: `${result.cat.color}08`, borderRadius: "var(--r-md)",
-                    border: `1px solid ${result.cat.color}20`, marginBottom: "var(--s-4)",
-                }}>
-                    <p style={{ fontSize: "0.82rem", color: "var(--n-text-muted)" }}>نسبة الدهون (متوسط الطريقتين)</p>
-                    <p style={{ fontSize: "2.5rem", fontWeight: 800, color: result.cat.color }}>{fmt(result.avg)}%</p>
-                    <p style={{ fontSize: "0.92rem", fontWeight: 700, color: result.cat.color }}>{result.cat.emoji} {result.cat.nameAr}</p>
-
-                    {/* Visual bar */}
-                    <div style={{ display: "flex", height: 18, borderRadius: 9, overflow: "hidden", margin: "var(--s-3) 0 var(--s-2)", border: "1px solid var(--n-border)" }}>
-                        <div style={{ width: `${100 - result.avg}%`, background: "linear-gradient(90deg, #059669, #2e7d32)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "0.6rem", color: "#fff", fontWeight: 700 }}>
-                            كتلة خالية {fmt(100 - result.avg, 0)}%
-                        </div>
-                        <div style={{ flex: 1, background: `${result.cat.color}25`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: "0.6rem", color: result.cat.color, fontWeight: 700 }}>
-                            دهون {fmt(result.avg, 0)}%
-                        </div>
-                    </div>
+            <div style={{ position: "relative", height: 28, borderRadius: 8, overflow: "hidden", marginBottom: 12,
+                background: "linear-gradient(to right, #ef4444 0%, #3b82f6 20%, #16a34a 40%, #f59e0b 60%, #dc2626 85%, #7f1d1d 100%)" }}>
+                <div style={{ position: "absolute", left: `${barPct}%`, top: 0, width: 3, height: "100%", background: "var(--n-text)", transform: "translateX(-50%)" }} />
+                <div style={{ position: "absolute", left: `${barPct}%`, top: -2, transform: "translateX(-50%)", fontSize: "0.7rem", fontWeight: 800, color: "var(--n-text)", background: "var(--n-surface)", padding: "1px 6px", borderRadius: 4 }}>
+                    {bf.toFixed(1)}%
                 </div>
+            </div>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 8 }}>
+                {[
+                    ["Fat Mass", `${fatMass.toFixed(1)} kg`, "#dc2626"],
+                    ["Lean Mass", `${leanMass.toFixed(1)} kg`, "#16a34a"],
+                    ["Category", cat.label, cat.color],
+                ].map(([l, v, c], i) => (
+                    <div key={i} style={{ background: "var(--n-surface)", borderRadius: 8, padding: 10, textAlign: "center" }}>
+                        <div style={{ fontSize: "0.72rem", color: "var(--n-text-muted)" }}>{l}</div>
+                        <div style={{ fontSize: "0.95rem", fontWeight: 700, color: c as string }}>{v}</div>
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
+}
 
-                {/* Key metrics */}
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(120px, 1fr))", gap: "var(--s-2)", marginBottom: "var(--s-3)" }}>
+function NavyMode() {
+    const [gender, setGender] = useState<Gender>("male");
+    const [age, setAge] = useState(30);
+    const [heightCm, setHeightCm] = useState(175);
+    const [weightKg, setWeightKg] = useState(80);
+    const [neckCm, setNeckCm] = useState(38);
+    const [waistCm, setWaistCm] = useState(90);
+    const [hipCm, setHipCm] = useState(100);
+
+    const bf = useMemo(() => navyBF(gender, heightCm, neckCm, waistCm, hipCm), [gender, heightCm, neckCm, waistCm, hipCm]);
+
+    const inputs: [string, number, (v: number) => void, string][] = [
+        ["Age", age, setAge, "years"],
+        ["Height", heightCm, setHeightCm, "cm"],
+        ["Weight", weightKg, setWeightKg, "kg"],
+        ["Neck Circumference", neckCm, setNeckCm, "cm"],
+        ["Waist Circumference", waistCm, setWaistCm, "cm"],
+    ];
+    if (gender === "female") inputs.push(["Hip Circumference", hipCm, setHipCm, "cm"]);
+
+    return (
+        <>
+            <GenderToggle gender={gender} setGender={setGender} />
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginBottom: 14 }}>
+                {inputs.map(([label, val, setter, unit]) => (
+                    <div key={label}>
+                        <label style={{ fontWeight: 600, fontSize: "0.82rem", display: "block", marginBottom: 3, color: "var(--n-text)" }}>{label} ({unit})</label>
+                        <input type="number" value={val} onChange={e => setter(Number(e.target.value) || 0)}
+                            style={{ width: "100%", padding: "8px 10px", borderRadius: 8, border: "1px solid var(--n-border)", fontSize: "0.9rem", background: "var(--n-surface-input)", color: "var(--n-text)" }} />
+                    </div>
+                ))}
+            </div>
+            <div style={{ fontSize: "0.75rem", color: "var(--n-text-muted)", marginBottom: 12 }}>
+                📏 <strong>Measurement guide:</strong> Neck — measure below the Adam&apos;s apple. Waist — at navel level for men, narrowest point for women. Hip — at widest point of buttocks (women only).
+            </div>
+            {bf !== null && bf > 0 && bf < 60 && <ResultDisplay bf={bf} weightKg={weightKg} gender={gender} />}
+            {(bf === null || bf <= 0 || bf >= 60) && (
+                <div style={{ background: "var(--n-gold-light)", padding: 12, borderRadius: 10, fontSize: "0.82rem", color: "var(--n-gold-text)" }}>
+                    Please enter valid measurements. Ensure waist is larger than neck circumference.
+                </div>
+            )}
+        </>
+    );
+}
+
+function BmiMode() {
+    const [gender, setGender] = useState<Gender>("male");
+    const [age, setAge] = useState(30);
+    const [heightCm, setHeightCm] = useState(175);
+    const [weightKg, setWeightKg] = useState(80);
+
+    const result = useMemo(() => {
+        const hm = heightCm / 100;
+        if (hm <= 0 || weightKg <= 0) return null;
+        const bmi = weightKg / (hm * hm);
+        const bf = bmiBF(bmi, age, gender);
+        return { bmi, bf: Math.max(3, bf) };
+    }, [gender, age, heightCm, weightKg]);
+
+    return (
+        <>
+            <GenderToggle gender={gender} setGender={setGender} />
+            <div style={{ fontSize: "0.78rem", color: "var(--n-text-muted)", marginBottom: 10 }}>
+                Simpler method — no tape measure needed. Uses the Deurenberg formula based on BMI, age, and gender.
+            </div>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginBottom: 14 }}>
+                {([["Age", age, setAge, "years"], ["Height", heightCm, setHeightCm, "cm"], ["Weight", weightKg, setWeightKg, "kg"]] as [string, number, (v: number) => void, string][]).map(([label, val, setter, unit]) => (
+                    <div key={label}>
+                        <label style={{ fontWeight: 600, fontSize: "0.82rem", display: "block", marginBottom: 3, color: "var(--n-text)" }}>{label} ({unit})</label>
+                        <input type="number" value={val} onChange={e => setter(Number(e.target.value) || 0)}
+                            style={{ width: "100%", padding: "8px 10px", borderRadius: 8, border: "1px solid var(--n-border)", fontSize: "0.9rem", background: "var(--n-surface-input)", color: "var(--n-text)" }} />
+                    </div>
+                ))}
+            </div>
+            {result && result.bf > 0 && result.bf < 60 && (
+                <>
+                    <div style={{ background: "var(--n-primary-light)", borderRadius: 10, padding: "10px 14px", marginBottom: 12, fontSize: "0.82rem", border: "1px solid var(--n-border)" }}>
+                        <strong style={{ color: "var(--n-primary)" }}>Your BMI: {result.bmi.toFixed(1)}</strong>
+                        <span style={{ color: "var(--n-text-muted)" }}> — used to estimate body fat below</span>
+                    </div>
+                    <ResultDisplay bf={result.bf} weightKg={weightKg} gender={gender} />
+                    <div style={{ background: "var(--n-gold-light)", borderRadius: 10, padding: "10px 14px", marginTop: 12, fontSize: "0.78rem", color: "var(--n-gold-text)", border: "1px solid var(--n-border)" }}>
+                        ⚠️ BMI-based estimates are less accurate than circumference methods. For better results, use the US Navy Method tab.
+                    </div>
+                </>
+            )}
+        </>
+    );
+}
+
+function CategoryMode() {
+    const [gender, setGender] = useState<Gender>("male");
+
+    const MALE_TABLE = [
+        ["20–29", "3–5%", "6–13%", "14–17%", "18–24%", "≥25%"],
+        ["30–39", "3–5%", "6–14%", "15–18%", "19–25%", "≥26%"],
+        ["40–49", "3–5%", "6–16%", "17–20%", "21–27%", "≥28%"],
+        ["50–59", "3–5%", "6–17%", "18–21%", "22–28%", "≥29%"],
+        ["60+", "3–5%", "6–18%", "19–22%", "23–29%", "≥30%"],
+    ];
+    const FEMALE_TABLE = [
+        ["20–29", "10–13%", "14–20%", "21–24%", "25–31%", "≥32%"],
+        ["30–39", "10–13%", "14–21%", "22–25%", "26–32%", "≥33%"],
+        ["40–49", "10–13%", "14–23%", "24–27%", "28–34%", "≥35%"],
+        ["50–59", "10–13%", "14–24%", "25–28%", "29–35%", "≥36%"],
+        ["60+", "10–13%", "14–25%", "26–29%", "30–36%", "≥37%"],
+    ];
+    const table = gender === "male" ? MALE_TABLE : FEMALE_TABLE;
+
+    return (
+        <>
+            <GenderToggle gender={gender} setGender={setGender} />
+            <h4 style={{ fontSize: "0.9rem", fontWeight: 700, marginBottom: 8, color: "var(--n-text)" }}>Body Fat % Ranges by Age — {gender === "male" ? "Men" : "Women"}</h4>
+            <div style={{ overflowX: "auto" }}>
+                <table style={{ width: "100%", fontSize: "0.78rem", borderCollapse: "collapse" }}>
+                    <thead><tr style={{ borderBottom: "2px solid var(--n-border)" }}>
+                        <th style={{ textAlign: "left", padding: "6px 4px", color: "var(--n-text)" }}>Age</th>
+                        <th style={{ padding: "6px 4px", background: "var(--n-danger-light)", color: "var(--n-danger)" }}>Essential</th>
+                        <th style={{ padding: "6px 4px", background: "var(--n-primary-light)", color: "var(--n-primary)" }}>Athletes</th>
+                        <th style={{ padding: "6px 4px", background: "var(--n-success-light)", color: "var(--n-success)" }}>Fitness</th>
+                        <th style={{ padding: "6px 4px", background: "var(--n-gold-light)", color: "var(--n-gold-text)" }}>Average</th>
+                        <th style={{ padding: "6px 4px", background: "var(--n-danger-light)", color: "var(--n-danger)" }}>Obese</th>
+                    </tr></thead>
+                    <tbody>
+                        {table.map((row, i) => (
+                            <tr key={i} style={{ borderBottom: "1px solid var(--n-border)" }}>
+                                <td style={{ padding: "6px 4px", fontWeight: 700, color: "var(--n-text)" }}>{row[0]}</td>
+                                {row.slice(1).map((v, j) => (
+                                    <td key={j} style={{ padding: "6px 4px", textAlign: "center", color: "var(--n-text-secondary)" }}>{v}</td>
+                                ))}
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+            <div style={{ background: "var(--n-primary-light)", borderRadius: 10, padding: "10px 14px", marginTop: 12, fontSize: "0.78rem", border: "1px solid var(--n-border)" }}>
+                <strong style={{ color: "var(--n-primary)" }}>🇮🇳 India Note:</strong>{" "}
+                <span style={{ color: "var(--n-text-secondary)" }}>Indians tend to carry higher visceral fat at lower BMI/BF% due to the &quot;thin-fat phenotype.&quot; ICMR and Asian guidelines use lower thresholds — a BMI of 23 (not 25) is considered overweight for South Asians. Body fat risk may start 2–3% lower than Western standards.</span>
+            </div>
+        </>
+    );
+}
+
+function LbmMode() {
+    const [weightKg, setWeightKg] = useState(80);
+    const [currentBf, setCurrentBf] = useState(22);
+    const [targetBf, setTargetBf] = useState(15);
+
+    const result = useMemo(() => {
+        const fatMass = weightKg * (currentBf / 100);
+        const leanMass = weightKg - fatMass;
+        const targetWeight = leanMass / (1 - targetBf / 100);
+        const fatToLose = weightKg - targetWeight;
+        return { fatMass, leanMass, targetWeight, fatToLose };
+    }, [weightKg, currentBf, targetBf]);
+
+    return (
+        <>
+            <div style={{ fontSize: "0.78rem", color: "var(--n-text-muted)", marginBottom: 10 }}>
+                Enter your weight and body fat % (from US Navy or BMI method) to see your fat/lean split and target weight.
+            </div>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 10, marginBottom: 14 }}>
+                <div>
+                    <label style={{ fontWeight: 600, fontSize: "0.82rem", display: "block", marginBottom: 3, color: "var(--n-text)" }}>Weight (kg)</label>
+                    <input type="number" value={weightKg} onChange={e => setWeightKg(Number(e.target.value) || 0)}
+                        style={{ width: "100%", padding: "8px 10px", borderRadius: 8, border: "1px solid var(--n-border)", fontSize: "0.9rem", background: "var(--n-surface-input)", color: "var(--n-text)" }} />
+                </div>
+                <div>
+                    <label style={{ fontWeight: 600, fontSize: "0.82rem", display: "block", marginBottom: 3, color: "var(--n-text)" }}>Current BF%</label>
+                    <input type="number" value={currentBf} onChange={e => setCurrentBf(Number(e.target.value) || 0)}
+                        style={{ width: "100%", padding: "8px 10px", borderRadius: 8, border: "1px solid var(--n-border)", fontSize: "0.9rem", background: "var(--n-surface-input)", color: "var(--n-text)" }} />
+                </div>
+                <div>
+                    <label style={{ fontWeight: 600, fontSize: "0.82rem", display: "block", marginBottom: 3, color: "var(--n-text)" }}>Target BF%</label>
+                    <input type="number" value={targetBf} onChange={e => setTargetBf(Number(e.target.value) || 0)}
+                        style={{ width: "100%", padding: "8px 10px", borderRadius: 8, border: "1px solid var(--n-border)", fontSize: "0.9rem", background: "var(--n-surface-input)", color: "var(--n-text)" }} />
+                </div>
+            </div>
+
+            <div style={{ background: "var(--n-surface-alt)", borderRadius: 12, padding: 16 }}>
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, marginBottom: 12 }}>
                     {[
-                        { label: "كتلة الدهون", value: `${fmt(result.fatMass)} كجم`, color: "#d97706" },
-                        { label: "كتلة خالية (LBM)", value: `${fmt(result.lbm)} كجم`, color: "#059669" },
-                        { label: "BMI", value: fmt(result.bmi), color: "var(--n-text)" },
-                        { label: "FFMI المعدّل", value: fmt(result.ffmiNorm), color: result.ffmiNorm > 25 ? "#c62828" : "#059669" },
-                    ].map(m => (
-                        <div key={m.label} style={{ padding: "var(--s-3)", textAlign: "center", background: "var(--n-surface)", border: "1px solid var(--n-border)", borderRadius: "var(--r-sm)" }}>
-                            <p style={{ fontSize: "0.7rem", color: "var(--n-text-muted)" }}>{m.label}</p>
-                            <p style={{ fontSize: "1rem", fontWeight: 700, color: m.color }}>{m.value}</p>
+                        ["Current Fat Mass", `${result.fatMass.toFixed(1)} kg`, "#dc2626"],
+                        ["Lean Body Mass", `${result.leanMass.toFixed(1)} kg`, "#16a34a"],
+                    ].map(([l, v, c], i) => (
+                        <div key={i} style={{ background: "var(--n-surface)", borderRadius: 8, padding: 12, textAlign: "center" }}>
+                            <div style={{ fontSize: "0.72rem", color: "var(--n-text-muted)" }}>{l}</div>
+                            <div style={{ fontSize: "1.2rem", fontWeight: 700, color: c as string }}>{v}</div>
                         </div>
                     ))}
                 </div>
-
-                {/* Two methods */}
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "var(--s-2)", marginBottom: "var(--s-3)" }}>
-                    <div style={{ padding: "var(--s-3)", textAlign: "center", background: "rgba(2,132,199,0.05)", border: "1px solid rgba(2,132,199,0.15)", borderRadius: "var(--r-sm)" }}>
-                        <p style={{ fontSize: "0.7rem", color: "var(--n-text-muted)" }}>🎖️ Navy Method</p>
-                        <p style={{ fontSize: "1.2rem", fontWeight: 700, color: "#0284c7" }}>{fmt(result.navy)}%</p>
+                <div style={{ display: "flex", height: 30, borderRadius: 8, overflow: "hidden", marginBottom: 12 }}>
+                    <div style={{ width: `${100 - currentBf}%`, background: "#16a34a", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "0.72rem", fontWeight: 700, color: "#fff" }}>
+                        Lean {(100 - currentBf).toFixed(0)}%
                     </div>
-                    <div style={{ padding: "var(--s-3)", textAlign: "center", background: "rgba(147,51,234,0.05)", border: "1px solid rgba(147,51,234,0.15)", borderRadius: "var(--r-sm)" }}>
-                        <p style={{ fontSize: "0.7rem", color: "var(--n-text-muted)" }}>📊 BMI Method</p>
-                        <p style={{ fontSize: "1.2rem", fontWeight: 700, color: "#9333ea" }}>{fmt(result.bmiMethod)}%</p>
+                    <div style={{ width: `${currentBf}%`, background: "#f59e0b", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "0.72rem", fontWeight: 700, color: "#fff" }}>
+                        Fat {currentBf}%
                     </div>
                 </div>
-
-                {/* ── Tabs ── */}
-                <div style={{ height: 2, background: "var(--n-border)", margin: "var(--s-4) 0 var(--s-3)" }} />
-                <div style={{ display: "flex", gap: "var(--s-2)", marginBottom: "var(--s-3)", flexWrap: "wrap" }}>
-                    {([
-                        { key: "methods" as TabKey, label: "📐 طرق القياس" },
-                        { key: "categories" as TabKey, label: "📊 فئات الدهون" },
-                        { key: "age" as TabKey, label: "👤 حسب العمر" },
-                    ]).map(t => (
-                        <button key={t.key} onClick={() => setActiveTab(t.key)} style={{
-                            padding: "6px 14px", borderRadius: 6, fontSize: "0.8rem", fontWeight: 600,
-                            border: activeTab === t.key ? "1.5px solid #0284c7" : "1px solid var(--n-border)",
-                            background: activeTab === t.key ? "rgba(2,132,199,0.06)" : "var(--n-surface)",
-                            color: activeTab === t.key ? "#0284c7" : "var(--n-text-secondary)",
-                            cursor: "pointer",
-                        }}>{t.label}</button>
-                    ))}
+                <div style={{ background: "var(--n-surface)", borderRadius: 10, padding: "12px 16px", textAlign: "center" }}>
+                    <div style={{ fontSize: "0.78rem", fontWeight: 700, color: "var(--n-primary)", textTransform: "uppercase", letterSpacing: 1 }}>
+                        Target: {targetBf}% Body Fat
+                    </div>
+                    <div style={{ fontSize: "1.8rem", fontWeight: 800, fontFamily: "var(--t-mono)", margin: "6px 0", color: "var(--n-text)" }}>
+                        {result.targetWeight.toFixed(1)} kg
+                    </div>
+                    <div style={{ fontSize: "0.82rem", color: result.fatToLose > 0 ? "#dc2626" : "#16a34a" }}>
+                        {result.fatToLose > 0
+                            ? `Need to lose ${result.fatToLose.toFixed(1)} kg of fat (keeping lean mass constant)`
+                            : `You're already below target — maintain current composition`}
+                    </div>
                 </div>
+            </div>
+        </>
+    );
+}
 
-                {activeTab === "methods" && (
-                    <div style={{ display: "grid", gap: "var(--s-2)" }}>
-                        {[
-                            { name: "DEXA Scan", accuracy: "±1.5%", cost: "مرتفع", note: "الأدق — أشعة سينية ثنائية" },
-                            { name: "Hydrostatic (تحت الماء)", accuracy: "±2%", cost: "مرتفع", note: "وزن تحت الماء" },
-                            { name: "Bod Pod (ضغط هواء)", accuracy: "±2%", cost: "مرتفع", note: "نادر التوفر" },
-                            { name: "مقبض الدهون (Calipers)", accuracy: "±3-4%", cost: "منخفض", note: "قياس ثنيات الجلد" },
-                            { name: "US Navy Method (محيطات)", accuracy: "±3%", cost: "صفر", note: "شريط قياس فقط ✅" },
-                            { name: "ميزان BIA (ذكي)", accuracy: "±4-5%", cost: "متوسط", note: "التحليل الكهربائي" },
-                        ].map(m => (
-                            <div key={m.name} style={{
-                                display: "grid", gridTemplateColumns: "1fr auto auto",
-                                gap: "var(--s-2)", alignItems: "center",
-                                padding: "var(--s-2) var(--s-3)", background: "var(--n-surface)",
-                                border: "1px solid var(--n-border)", borderRadius: "var(--r-sm)", fontSize: "0.8rem",
-                            }}>
-                                <div>
-                                    <span style={{ fontWeight: 700 }}>{m.name}</span>
-                                    <p style={{ fontSize: "0.68rem", color: "var(--n-text-muted)" }}>{m.note}</p>
-                                </div>
-                                <span style={{ color: "#059669", fontWeight: 700 }}>{m.accuracy}</span>
-                                <span style={{ color: "var(--n-text-muted)", fontSize: "0.72rem" }}>{m.cost}</span>
-                            </div>
-                        ))}
-                    </div>
-                )}
+export default function BodyFatCalculatorCore() {
+    const [mode, setMode] = useState<Mode>("navy");
 
-                {activeTab === "categories" && (
-                    <div style={{ display: "grid", gap: "var(--s-2)" }}>
-                        {BF_CATS.map(c => (
-                            <div key={c.nameAr} style={{
-                                display: "flex", justifyContent: "space-between", alignItems: "center",
-                                padding: "var(--s-2) var(--s-3)",
-                                background: result.cat.nameAr === c.nameAr ? `${c.color}0a` : "var(--n-surface)",
-                                border: result.cat.nameAr === c.nameAr ? `2px solid ${c.color}28` : "1px solid var(--n-border)",
-                                borderRadius: "var(--r-sm)", fontSize: "0.82rem",
-                            }}>
-                                <span>{c.emoji} <strong>{c.nameAr}</strong></span>
-                                <span style={{ color: c.color, fontWeight: 700 }}>
-                                    ♂ {c.maleMin}-{c.maleMax === 100 ? "+" : c.maleMax}% · ♀ {c.femaleMin}-{c.femaleMax === 100 ? "+" : c.femaleMax}%
-                                </span>
-                            </div>
-                        ))}
-                        <p style={{ fontSize: "0.7rem", color: "var(--n-text-muted)" }}>المصدر: American Council on Exercise (ACE)</p>
-                    </div>
-                )}
-
-                {activeTab === "age" && (
-                    <div style={{ display: "grid", gap: "var(--s-1)" }}>
-                        {[
-                            { age: "20-39", male: "8-19%", female: "21-32%" },
-                            { age: "40-59", male: "11-21%", female: "23-33%" },
-                            { age: "60-79", male: "13-24%", female: "24-35%" },
-                        ].map(r => (
-                            <div key={r.age} style={{
-                                display: "grid", gridTemplateColumns: "auto 1fr 1fr",
-                                gap: "var(--s-3)", alignItems: "center",
-                                padding: "8px var(--s-3)", background: "var(--n-surface)",
-                                border: "1px solid var(--n-border)", borderRadius: "var(--r-sm)", fontSize: "0.82rem",
-                            }}>
-                                <span style={{ fontWeight: 700 }}>{r.age} سنة</span>
-                                <span style={{ color: "#0284c7" }}>♂ {r.male}</span>
-                                <span style={{ color: "#be185d" }}>♀ {r.female}</span>
-                            </div>
-                        ))}
-                        <p style={{ fontSize: "0.7rem", color: "var(--n-text-muted)" }}>المرجع: ACSM + Forbes Health</p>
-                    </div>
-                )}
+    return (
+        <div style={{ background: "var(--n-surface)", borderRadius: 16, border: "1px solid var(--n-border)", overflow: "hidden", marginBottom: 24 }}>
+            <div style={{ padding: "16px 20px", borderBottom: "1px solid var(--n-border)", background: "var(--n-primary-light)" }}>
+                <h2 style={{ margin: 0, fontSize: "1.25rem", fontWeight: 700, color: "var(--n-text)" }}>📏 Body Fat Calculator — US Navy &amp; BMI Methods</h2>
+                <div style={{ fontSize: "0.82rem", color: "var(--n-text-muted)", marginTop: 4 }}>Estimate body fat %, lean mass &amp; fat mass • India-adapted categories • Target weight planner</div>
+            </div>
+            <div style={{ display: "flex", borderBottom: "1px solid var(--n-border)", flexWrap: "wrap" }}>
+                {MODES.map(m => (
+                    <button key={m.key} onClick={() => setMode(m.key)} style={{
+                        flex: 1, minWidth: 110, padding: "12px 6px", border: "none", cursor: "pointer",
+                        borderBottom: mode === m.key ? "3px solid var(--n-primary)" : "3px solid transparent",
+                        background: mode === m.key ? "var(--n-primary-light)" : "transparent",
+                        fontWeight: mode === m.key ? 700 : 500, fontSize: "0.78rem",
+                        color: mode === m.key ? "var(--n-primary)" : "var(--n-text-muted)",
+                    }}>{m.icon} {m.label}</button>
+                ))}
+            </div>
+            <div style={{ padding: 20 }}>
+                {mode === "navy" && <NavyMode />}
+                {mode === "bmi" && <BmiMode />}
+                {mode === "categories" && <CategoryMode />}
+                {mode === "lbm" && <LbmMode />}
             </div>
         </div>
     );

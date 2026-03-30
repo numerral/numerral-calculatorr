@@ -17,7 +17,7 @@ function whoCategory(bmi: number): BMICat {
     if (bmi < 30) return { label: "Overweight", color: "#f59e0b", bg: "rgba(245,158,11,0.08)" };
     if (bmi < 35) return { label: "Obese Class I", color: "#ef4444", bg: "rgba(239,68,68,0.08)" };
     if (bmi < 40) return { label: "Obese Class II", color: "#dc2626", bg: "rgba(220,38,38,0.08)" };
-    return { label: "Obese Class III", color: "#991b1b", bg: "rgba(153,27,27,0.08)" };
+    return { label: "Obese Class III", color: "var(--n-danger)", bg: "rgba(153,27,27,0.08)" };
 }
 function indianCategory(bmi: number): BMICat {
     if (bmi < 18.5) return { label: "Underweight", color: "#3b82f6", bg: "rgba(59,130,246,0.08)" };
@@ -25,7 +25,7 @@ function indianCategory(bmi: number): BMICat {
     if (bmi < 25) return { label: "Overweight", color: "#f59e0b", bg: "rgba(245,158,11,0.08)" };
     if (bmi < 30) return { label: "Obese Class I", color: "#ef4444", bg: "rgba(239,68,68,0.08)" };
     if (bmi < 35) return { label: "Obese Class II", color: "#dc2626", bg: "rgba(220,38,38,0.08)" };
-    return { label: "Obese Class III", color: "#991b1b", bg: "rgba(153,27,27,0.08)" };
+    return { label: "Obese Class III", color: "var(--n-danger)", bg: "rgba(153,27,27,0.08)" };
 }
 function healthRisk(bmi: number): { level: string; conditions: string } {
     if (bmi < 18.5) return { level: "Moderate", conditions: "Malnutrition, anemia, weak immunity, osteoporosis" };

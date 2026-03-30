@@ -25,11 +25,11 @@ function InputRow({ label, value, set, max, step, suffix, hint, min }: {
         <div style={{ marginBottom: 14 }}>
             <label style={{ display: "flex", justifyContent: "space-between", fontWeight: 600, fontSize: "0.88rem", marginBottom: 4 }}>
                 <span>{label}</span>
-                <span style={{ color: "var(--c-primary)", fontFamily: "var(--font-mono, monospace)" }}>{display}</span>
+                <span style={{ color: "var(--n-primary)", fontFamily: "var(--font-mono, monospace)" }}>{display}</span>
             </label>
             <input type="range" min={min ?? 0} max={max ?? 100} step={step ?? 1} value={value}
-                onChange={e => set(Number(e.target.value))} style={{ width: "100%", accentColor: "var(--c-primary)" }} />
-            {hint && <div style={{ fontSize: "0.72rem", color: "var(--c-text-muted)", marginTop: 2 }}>{hint}</div>}
+                onChange={e => set(Number(e.target.value))} style={{ width: "100%", accentColor: "var(--n-primary)" }} />
+            {hint && <div style={{ fontSize: "0.72rem", color: "var(--n-text-muted)", marginTop: 2 }}>{hint}</div>}
         </div>
     );
 }
@@ -88,15 +88,15 @@ function PlannerMode() {
             </div>
             {showInflation && <InputRow label="Annual Increase" value={inflation} set={setInflation} max={10} step={0.5} suffix="%" min={3} />}
 
-            <div style={{ background: "var(--c-surface)", borderRadius: 12, padding: "var(--s-4)" }}>
+            <div style={{ background: "var(--n-surface-alt)", borderRadius: 12, padding: "var(--s-4)" }}>
                 {depleted && (
                     <div style={{ background: "#fef2f2", borderRadius: 8, padding: "10px 14px", marginBottom: "var(--s-3)", border: "1px solid #fca5a5" }}>
                         <strong style={{ color: "#dc2626" }}>⚠️ Corpus Depletes in {Math.ceil(result.depletionMonth / 12)} years ({result.depletionMonth} months)</strong>
-                        <div style={{ fontSize: "0.78rem", color: "#991b1b", marginTop: 4 }}>Reduce withdrawal or increase return rate to sustain for {years} years.</div>
+                        <div style={{ fontSize: "0.78rem", color: "var(--n-danger)", marginTop: 4 }}>Reduce withdrawal or increase return rate to sustain for {years} years.</div>
                     </div>
                 )}
                 <div style={{ textAlign: "center", marginBottom: "var(--s-3)" }}>
-                    <div style={{ fontSize: "0.78rem", fontWeight: 700, color: depleted ? "#dc2626" : "var(--c-primary)", textTransform: "uppercase", letterSpacing: 1 }}>
+                    <div style={{ fontSize: "0.78rem", fontWeight: 700, color: depleted ? "#dc2626" : "var(--n-primary)", textTransform: "uppercase", letterSpacing: 1 }}>
                         {depleted ? "Corpus Exhausted" : "Final Corpus After " + years + " Years"}
                     </div>
                     <div style={{ fontSize: "2.2rem", fontWeight: 800, fontFamily: "var(--font-mono, monospace)" }}>{fmtCr(result.finalCorpus)}</div>
@@ -105,20 +105,20 @@ function PlannerMode() {
                     {[
                         ["Initial Corpus", fmtCr(corpus), undefined],
                         ["Total Withdrawn", fmtCr(result.totalWithdrawn), "#16a34a"],
-                        ["Withdrawal Rate", `${((monthly * 12 / corpus) * 100).toFixed(1)}%/yr`, "var(--c-primary)"],
+                        ["Withdrawal Rate", `${((monthly * 12 / corpus) * 100).toFixed(1)}%/yr`, "var(--n-primary)"],
                     ].map(([l, v, c], i) => (
-                        <div key={i} style={{ background: "var(--c-bg)", borderRadius: 8, padding: 10, textAlign: "center" }}>
-                            <div style={{ fontSize: "0.72rem", color: "var(--c-text-muted)" }}>{l}</div>
+                        <div key={i} style={{ background: "var(--n-surface)", borderRadius: 8, padding: 10, textAlign: "center" }}>
+                            <div style={{ fontSize: "0.72rem", color: "var(--n-text-muted)" }}>{l}</div>
                             <div style={{ fontSize: "1rem", fontWeight: 700, color: c as string || undefined }}>{v}</div>
                         </div>
                     ))}
                 </div>
 
                 <details style={{ marginTop: "var(--s-3)" }}>
-                    <summary style={{ cursor: "pointer", fontWeight: 700, fontSize: "0.85rem", color: "var(--c-primary)" }}>📅 Month-by-Month Schedule</summary>
+                    <summary style={{ cursor: "pointer", fontWeight: 700, fontSize: "0.85rem", color: "var(--n-primary)" }}>📅 Month-by-Month Schedule</summary>
                     <div style={{ overflowX: "auto", marginTop: 8, maxHeight: 350, overflow: "auto" }}>
                         <table style={{ width: "100%", fontSize: "0.72rem", borderCollapse: "collapse" }}>
-                            <thead><tr style={{ borderBottom: "2px solid var(--c-border)", position: "sticky", top: 0, background: "var(--c-surface)" }}>
+                            <thead><tr style={{ borderBottom: "2px solid var(--n-border)", position: "sticky", top: 0, background: "var(--n-surface-alt)" }}>
                                 <th style={{ textAlign: "left", padding: "5px 3px" }}>Month</th>
                                 <th style={{ textAlign: "right", padding: "5px 3px" }}>Withdrawal</th>
                                 <th style={{ textAlign: "right", padding: "5px 3px" }}>Interest</th>
@@ -126,7 +126,7 @@ function PlannerMode() {
                             </tr></thead>
                             <tbody>
                                 {result.schedule.filter((_, i) => i < 24 || i % 12 === 11 || i === result.schedule.length - 1).map(s => (
-                                    <tr key={s.month} style={{ borderBottom: "1px solid var(--c-border)", background: s.balance <= 0 ? "#fef2f2" : undefined }}>
+                                    <tr key={s.month} style={{ borderBottom: "1px solid var(--n-border)", background: s.balance <= 0 ? "#fef2f2" : undefined }}>
                                         <td style={{ padding: "4px 3px" }}>Mo {s.month}</td>
                                         <td style={{ textAlign: "right", padding: "4px 3px", color: "#dc2626" }}>−{fmt(s.withdrawal)}</td>
                                         <td style={{ textAlign: "right", padding: "4px 3px", color: "#16a34a" }}>+{fmt(s.interest)}</td>
@@ -168,9 +168,9 @@ function CompareMode() {
             </div>
 
             <table style={{ width: "100%", fontSize: "0.82rem", borderCollapse: "collapse" }}>
-                <thead><tr style={{ borderBottom: "2px solid var(--c-border)" }}>
+                <thead><tr style={{ borderBottom: "2px solid var(--n-border)" }}>
                     <th style={{ textAlign: "left", padding: "8px 4px" }}>Parameter</th>
-                    <th style={{ textAlign: "right", padding: "8px 4px", color: "var(--c-primary)" }}>💸 SWP (Hybrid MF)</th>
+                    <th style={{ textAlign: "right", padding: "8px 4px", color: "var(--n-primary)" }}>💸 SWP (Hybrid MF)</th>
                     <th style={{ textAlign: "right", padding: "8px 4px" }}>🏦 FD (Post-Tax)</th>
                 </tr></thead>
                 <tbody>
@@ -183,17 +183,17 @@ function CompareMode() {
                         ["Tax on Gains", "LTCG 12.5% (only on gains)", "Slab rate on ALL interest"],
                         ["TDS", "None", "Yes (if interest > ₹50K sr. citizen)"],
                     ].map(([l, s, f], i) => (
-                        <tr key={i} style={{ borderBottom: "1px solid var(--c-border)" }}>
+                        <tr key={i} style={{ borderBottom: "1px solid var(--n-border)" }}>
                             <td style={{ padding: "6px 4px" }}>{l}</td>
-                            <td style={{ textAlign: "right", padding: "6px 4px", fontWeight: 600, color: "var(--c-primary)" }}>{s}</td>
+                            <td style={{ textAlign: "right", padding: "6px 4px", fontWeight: 600, color: "var(--n-primary)" }}>{s}</td>
                             <td style={{ textAlign: "right", padding: "6px 4px", fontWeight: 600 }}>{f}</td>
                         </tr>
                     ))}
                 </tbody>
             </table>
 
-            <div style={{ background: "#fef3c7", borderRadius: 10, padding: "12px 16px", marginTop: "var(--s-3)", fontSize: "0.82rem" }}>
-                <strong style={{ color: "#92400e" }}>💡 Why SWP wins:</strong>
+            <div style={{ background: "var(--n-gold-light)", borderRadius: 10, padding: "12px 16px", marginTop: "var(--s-3)", fontSize: "0.82rem" }}>
+                <strong style={{ color: "var(--n-gold-text)" }}>💡 Why SWP wins:</strong>
                 <span style={{ color: "#78350f" }}> SWP is tax-efficient because each withdrawal is part capital return + part gain. Only the gain portion is taxed. FD interest is 100% taxable at your slab rate. For 30% bracket, FD effective rate drops to ~4.9%.</span>
             </div>
         </>
@@ -231,9 +231,9 @@ function CorpusMode() {
                 {PRESETS.map(p => (
                     <button key={p.v} onClick={() => setMonthlyNeed(p.v)} style={{
                         padding: "8px 14px", borderRadius: 8, fontSize: "0.82rem", cursor: "pointer",
-                        border: monthlyNeed === p.v ? "2px solid var(--c-primary)" : "1px solid var(--c-border)",
-                        background: monthlyNeed === p.v ? "var(--c-primary-bg, #e8f0fe)" : "var(--c-bg)",
-                        fontWeight: monthlyNeed === p.v ? 700 : 500, color: monthlyNeed === p.v ? "var(--c-primary)" : "var(--c-text)",
+                        border: monthlyNeed === p.v ? "2px solid var(--n-primary)" : "1px solid var(--n-border)",
+                        background: monthlyNeed === p.v ? "var(--n-primary-light)" : "var(--n-surface)",
+                        fontWeight: monthlyNeed === p.v ? 700 : 500, color: monthlyNeed === p.v ? "var(--n-primary)" : "var(--n-text)",
                     }}>{p.l}</button>
                 ))}
             </div>
@@ -241,10 +241,10 @@ function CorpusMode() {
             <InputRow label="Duration Needed" value={years} set={setYears} max={40} step={1} suffix="yr" min={10} />
             <InputRow label="Expected Return (p.a.)" value={rate} set={setRate} max={15} step={0.5} suffix="%" min={4} />
 
-            <div style={{ background: "var(--c-surface)", borderRadius: 12, padding: "var(--s-4)", textAlign: "center" }}>
-                <div style={{ fontSize: "0.78rem", fontWeight: 700, color: "var(--c-primary)", textTransform: "uppercase", letterSpacing: 1 }}>Required Initial Corpus</div>
+            <div style={{ background: "var(--n-surface-alt)", borderRadius: 12, padding: "var(--s-4)", textAlign: "center" }}>
+                <div style={{ fontSize: "0.78rem", fontWeight: 700, color: "var(--n-primary)", textTransform: "uppercase", letterSpacing: 1 }}>Required Initial Corpus</div>
                 <div style={{ fontSize: "2.2rem", fontWeight: 800, fontFamily: "var(--font-mono, monospace)", margin: "8px 0" }}>{fmtCr(result.requiredCorpus)}</div>
-                <div style={{ fontSize: "0.85rem", color: "var(--c-text-muted)" }}>
+                <div style={{ fontSize: "0.85rem", color: "var(--n-text-muted)" }}>
                     to withdraw <strong>{fmt(monthlyNeed)}/month</strong> for <strong>{years} years</strong> at {rate}% return
                 </div>
                 <div style={{ fontSize: "0.82rem", color: "#16a34a", fontWeight: 700, marginTop: 8 }}>
@@ -282,10 +282,10 @@ function SafeRateMode() {
             <InputRow label="Required Duration" value={years} set={setYears} max={40} step={5} suffix="yr" min={15} />
             <InputRow label="Expected Return (p.a.)" value={rate} set={setRate} max={15} step={0.5} suffix="%" min={4} />
 
-            <div style={{ background: "var(--c-surface)", borderRadius: 12, padding: "var(--s-4)", textAlign: "center" }}>
-                <div style={{ fontSize: "0.78rem", fontWeight: 700, color: "var(--c-primary)", textTransform: "uppercase", letterSpacing: 1 }}>Maximum Safe Monthly Withdrawal</div>
+            <div style={{ background: "var(--n-surface-alt)", borderRadius: 12, padding: "var(--s-4)", textAlign: "center" }}>
+                <div style={{ fontSize: "0.78rem", fontWeight: 700, color: "var(--n-primary)", textTransform: "uppercase", letterSpacing: 1 }}>Maximum Safe Monthly Withdrawal</div>
                 <div style={{ fontSize: "2.2rem", fontWeight: 800, fontFamily: "var(--font-mono, monospace)", margin: "8px 0" }}>{fmt(result.safeMonthly)}</div>
-                <div style={{ fontSize: "0.85rem", color: "var(--c-text-muted)" }}>
+                <div style={{ fontSize: "0.85rem", color: "var(--n-text-muted)" }}>
                     from {fmtCr(corpus)} corpus for {years} years at {rate}% return
                 </div>
                 <div style={{
@@ -296,13 +296,13 @@ function SafeRateMode() {
                 </div>
             </div>
 
-            <div style={{ background: "#e8f0fe", borderRadius: 10, padding: "12px 16px", marginTop: "var(--s-3)", fontSize: "0.82rem" }}>
-                <strong style={{ color: "var(--c-primary)" }}>🇮🇳 India Context:</strong>
-                <span style={{ color: "var(--c-text)" }}> The US &ldquo;4% rule&rdquo; doesn&rsquo;t directly apply in India due to higher inflation (6% vs 2%). Indian financial planners recommend <strong>2.5–3.5% initial withdrawal rate</strong> for a 30-year retirement horizon. Our calculator finds your exact safe rate based on your corpus, return expectations, and duration.</span>
+            <div style={{ background: "var(--n-primary-light)", borderRadius: 10, padding: "12px 16px", marginTop: "var(--s-3)", fontSize: "0.82rem" }}>
+                <strong style={{ color: "var(--n-primary)" }}>🇮🇳 India Context:</strong>
+                <span style={{ color: "var(--n-text)" }}> The US &ldquo;4% rule&rdquo; doesn&rsquo;t directly apply in India due to higher inflation (6% vs 2%). Indian financial planners recommend <strong>2.5–3.5% initial withdrawal rate</strong> for a 30-year retirement horizon. Our calculator finds your exact safe rate based on your corpus, return expectations, and duration.</span>
             </div>
 
             <table style={{ width: "100%", fontSize: "0.82rem", borderCollapse: "collapse", marginTop: "var(--s-3)" }}>
-                <thead><tr style={{ borderBottom: "2px solid var(--c-border)" }}>
+                <thead><tr style={{ borderBottom: "2px solid var(--n-border)" }}>
                     <th style={{ textAlign: "left", padding: "6px 4px" }}>SWR</th>
                     <th style={{ textAlign: "left", padding: "6px 4px" }}>Risk Level</th>
                     <th style={{ textAlign: "left", padding: "6px 4px" }}>Best For</th>
@@ -314,10 +314,10 @@ function SafeRateMode() {
                         ["3.5–5.0%", "Moderate Risk", "15–20 years, aggressive returns"],
                         ["5.0%+", "High Risk", "Short duration only, equity heavy"],
                     ].map(([r, l, b], i) => (
-                        <tr key={i} style={{ borderBottom: "1px solid var(--c-border)" }}>
+                        <tr key={i} style={{ borderBottom: "1px solid var(--n-border)" }}>
                             <td style={{ padding: "5px 4px", fontWeight: 700 }}>{r}</td>
                             <td style={{ padding: "5px 4px" }}>{l}</td>
-                            <td style={{ padding: "5px 4px", fontSize: "0.78rem", color: "var(--c-text-muted)" }}>{b}</td>
+                            <td style={{ padding: "5px 4px", fontSize: "0.78rem", color: "var(--n-text-muted)" }}>{b}</td>
                         </tr>
                     ))}
                 </tbody>
@@ -331,19 +331,19 @@ export default function SWPCalculatorCore() {
     const [mode, setMode] = useState<Mode>("planner");
 
     return (
-        <div style={{ background: "var(--c-card-bg, #fff)", borderRadius: 16, border: "1px solid var(--c-border)", overflow: "hidden", marginBottom: "var(--s-6)" }}>
-            <div style={{ padding: "var(--s-4) var(--s-5)", borderBottom: "1px solid var(--c-border)", background: "linear-gradient(135deg, #dbeafe, var(--c-surface))" }}>
+        <div style={{ background: "var(--n-surface)", borderRadius: 16, border: "1px solid var(--n-border)", overflow: "hidden", marginBottom: "var(--s-6)" }}>
+            <div style={{ padding: "var(--s-4) var(--s-5)", borderBottom: "1px solid var(--n-border)", background: "linear-gradient(135deg, #dbeafe, var(--n-surface-alt))" }}>
                 <h2 style={{ margin: 0, fontSize: "1.25rem", fontWeight: 700 }}>💸 SWP Calculator — Systematic Withdrawal Plan</h2>
-                <div style={{ fontSize: "0.82rem", color: "var(--c-text-muted)", marginTop: 4 }}>Regular income from mutual fund corpus • Retirement planning • Tax-efficient withdrawals</div>
+                <div style={{ fontSize: "0.82rem", color: "var(--n-text-muted)", marginTop: 4 }}>Regular income from mutual fund corpus • Retirement planning • Tax-efficient withdrawals</div>
             </div>
-            <div style={{ display: "flex", borderBottom: "1px solid var(--c-border)", flexWrap: "wrap" }}>
+            <div style={{ display: "flex", borderBottom: "1px solid var(--n-border)", flexWrap: "wrap" }}>
                 {MODES.map(m => (
                     <button key={m.key} onClick={() => setMode(m.key)} style={{
                         flex: 1, minWidth: 120, padding: "12px 8px", border: "none", cursor: "pointer",
-                        borderBottom: mode === m.key ? "3px solid var(--c-primary)" : "3px solid transparent",
-                        background: mode === m.key ? "var(--c-primary-bg, #e8f0fe)" : "transparent",
+                        borderBottom: mode === m.key ? "3px solid var(--n-primary)" : "3px solid transparent",
+                        background: mode === m.key ? "var(--n-primary-light)" : "transparent",
                         fontWeight: mode === m.key ? 700 : 500, fontSize: "0.82rem",
-                        color: mode === m.key ? "var(--c-primary)" : "var(--c-text-muted)",
+                        color: mode === m.key ? "var(--n-primary)" : "var(--n-text-muted)",
                     }}>{m.icon} {m.label}</button>
                 ))}
             </div>

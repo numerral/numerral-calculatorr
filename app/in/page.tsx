@@ -141,6 +141,13 @@ const IN_CALCULATORS = [
         tag: "Chess",
         description: "FIDE Elo Rating Calculator with 4 modes: Elo Calculator (multi-game tournament, K-factor 10/20/40, round-by-round breakdown), Performance Rating (TPR), Title Progress Tracker (GM/IM/FM/CM), and Win Probability (expected score table).",
     },
+    {
+        title: "Body Fat Calculator",
+        slug: "body-fat-calculator",
+        icon: "📏",
+        tag: "Health & Fitness",
+        description: "Body Fat Calculator with 4 modes: US Navy Method (gender-aware, neck/waist/hip), BMI-Based Estimate (Deurenberg formula), Body Fat Category Reference (age-wise tables), and Lean Body Mass Target Weight Planner.",
+    },
 ];
 export default function IndiaPage() {
     return (

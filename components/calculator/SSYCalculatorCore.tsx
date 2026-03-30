@@ -25,11 +25,11 @@ function InputRow({ label, value, set, max, step, suffix, hint, min }: {
         <div style={{ marginBottom: 14 }}>
             <label style={{ display: "flex", justifyContent: "space-between", fontWeight: 600, fontSize: "0.88rem", marginBottom: 4 }}>
                 <span>{label}</span>
-                <span style={{ color: "var(--c-primary)", fontFamily: "var(--font-mono, monospace)" }}>{display}</span>
+                <span style={{ color: "var(--n-primary)", fontFamily: "var(--font-mono, monospace)" }}>{display}</span>
             </label>
             <input type="range" min={min ?? 0} max={max ?? 1_50_000} step={step ?? 1000} value={value}
-                onChange={e => set(Number(e.target.value))} style={{ width: "100%", accentColor: "var(--c-primary)" }} />
-            {hint && <div style={{ fontSize: "0.72rem", color: "var(--c-text-muted)", marginTop: 2 }}>{hint}</div>}
+                onChange={e => set(Number(e.target.value))} style={{ width: "100%", accentColor: "var(--n-primary)" }} />
+            {hint && <div style={{ fontSize: "0.72rem", color: "var(--n-text-muted)", marginTop: 2 }}>{hint}</div>}
         </div>
     );
 }
@@ -90,35 +90,35 @@ function MaturityMode() {
             </div>
             {showInflation && <InputRow label="Expected Inflation" value={inflation} set={setInflation} max={10} step={0.5} suffix="%" min={3} />}
 
-            <div style={{ background: "var(--c-surface)", borderRadius: 12, padding: "var(--s-4)" }}>
+            <div style={{ background: "var(--n-surface-alt)", borderRadius: 12, padding: "var(--s-4)" }}>
                 <div style={{ textAlign: "center", marginBottom: "var(--s-3)" }}>
-                    <div style={{ fontSize: "0.78rem", fontWeight: 700, color: "var(--c-primary)", textTransform: "uppercase", letterSpacing: 1 }}>Maturity Value (Year 21)</div>
+                    <div style={{ fontSize: "0.78rem", fontWeight: 700, color: "var(--n-primary)", textTransform: "uppercase", letterSpacing: 1 }}>Maturity Value (Year 21)</div>
                     <div style={{ fontSize: "2.2rem", fontWeight: 800, fontFamily: "var(--font-mono, monospace)" }}>{fmtCr(result.maturityValue)}</div>
-                    <div style={{ fontSize: "0.82rem", color: "var(--c-text-muted)" }}>Girl&rsquo;s age at maturity: <strong>{maturityAge} years</strong></div>
+                    <div style={{ fontSize: "0.82rem", color: "var(--n-text-muted)" }}>Girl&rsquo;s age at maturity: <strong>{maturityAge} years</strong></div>
                 </div>
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 8 }}>
                     {[
                         ["Total Deposited", fmtCr(result.totalDeposit), undefined],
                         ["Interest Earned", fmtCr(result.totalInterest), "#16a34a"],
-                        ["CAGR Effective", `${rate}%`, "var(--c-primary)"],
+                        ["CAGR Effective", `${rate}%`, "var(--n-primary)"],
                     ].map(([l, v, c], i) => (
-                        <div key={i} style={{ background: "var(--c-bg)", borderRadius: 8, padding: 10, textAlign: "center" }}>
-                            <div style={{ fontSize: "0.72rem", color: "var(--c-text-muted)" }}>{l}</div>
+                        <div key={i} style={{ background: "var(--n-surface)", borderRadius: 8, padding: 10, textAlign: "center" }}>
+                            <div style={{ fontSize: "0.72rem", color: "var(--n-text-muted)" }}>{l}</div>
                             <div style={{ fontSize: "1rem", fontWeight: 700, color: c as string || undefined }}>{v}</div>
                         </div>
                     ))}
                 </div>
                 {showInflation && (
-                    <div style={{ background: "#fef3c7", borderRadius: 8, padding: "8px 12px", marginTop: "var(--s-3)", fontSize: "0.82rem" }}>
-                        <strong style={{ color: "#92400e" }}>Real Value:</strong> <span style={{ color: "#78350f" }}>{fmtCr(realValue)} in today&rsquo;s purchasing power</span>
+                    <div style={{ background: "var(--n-gold-light)", borderRadius: 8, padding: "8px 12px", marginTop: "var(--s-3)", fontSize: "0.82rem" }}>
+                        <strong style={{ color: "var(--n-gold-text)" }}>Real Value:</strong> <span style={{ color: "#78350f" }}>{fmtCr(realValue)} in today&rsquo;s purchasing power</span>
                     </div>
                 )}
 
                 <details style={{ marginTop: "var(--s-3)" }}>
-                    <summary style={{ cursor: "pointer", fontWeight: 700, fontSize: "0.85rem", color: "var(--c-primary)" }}>📅 21-Year Growth Schedule</summary>
+                    <summary style={{ cursor: "pointer", fontWeight: 700, fontSize: "0.85rem", color: "var(--n-primary)" }}>📅 21-Year Growth Schedule</summary>
                     <div style={{ overflowX: "auto", marginTop: 8 }}>
                         <table style={{ width: "100%", fontSize: "0.75rem", borderCollapse: "collapse" }}>
-                            <thead><tr style={{ borderBottom: "2px solid var(--c-border)" }}>
+                            <thead><tr style={{ borderBottom: "2px solid var(--n-border)" }}>
                                 <th style={{ textAlign: "left", padding: "5px 3px" }}>Year</th>
                                 <th style={{ textAlign: "right", padding: "5px 3px" }}>Deposit</th>
                                 <th style={{ textAlign: "right", padding: "5px 3px" }}>Interest</th>
@@ -126,7 +126,7 @@ function MaturityMode() {
                             </tr></thead>
                             <tbody>
                                 {result.schedule.map(s => (
-                                    <tr key={s.year} style={{ borderBottom: "1px solid var(--c-border)", background: s.year > 15 ? "#f0fdf4" : undefined }}>
+                                    <tr key={s.year} style={{ borderBottom: "1px solid var(--n-border)", background: s.year > 15 ? "#f0fdf4" : undefined }}>
                                         <td style={{ padding: "4px 3px" }}>Yr {s.year} {s.year > 15 ? "★" : ""}</td>
                                         <td style={{ textAlign: "right", padding: "4px 3px" }}>{s.deposit > 0 ? fmt(s.deposit) : "—"}</td>
                                         <td style={{ textAlign: "right", padding: "4px 3px", color: "#16a34a" }}>{fmt(s.interest)}</td>
@@ -135,7 +135,7 @@ function MaturityMode() {
                                 ))}
                             </tbody>
                         </table>
-                        <div style={{ fontSize: "0.72rem", color: "var(--c-text-muted)", marginTop: 4 }}>★ Years 16–21: No deposit required, interest continues to accrue</div>
+                        <div style={{ fontSize: "0.72rem", color: "var(--n-text-muted)", marginTop: 4 }}>★ Years 16–21: No deposit required, interest continues to accrue</div>
                     </div>
                 </details>
             </div>
@@ -156,15 +156,15 @@ function WithdrawalMode() {
             <InputRow label="Yearly Deposit" value={yearly} set={setYearly} max={1_50_000} step={5_000} min={250} />
             <InputRow label="SSY Interest Rate" value={rate} set={setRate} max={9.5} step={0.1} suffix="%" min={7} />
 
-            <div style={{ background: "#e8f0fe", borderRadius: 12, padding: 16, marginBottom: "var(--s-3)" }}>
-                <div style={{ fontWeight: 700, fontSize: "0.9rem", color: "var(--c-primary)", marginBottom: 8 }}>📚 Partial Withdrawal at Age 18 (for Higher Education)</div>
-                <div style={{ fontSize: "0.82rem", color: "var(--c-text)" }}>
+            <div style={{ background: "var(--n-primary-light)", borderRadius: 12, padding: 16, marginBottom: "var(--s-3)" }}>
+                <div style={{ fontWeight: 700, fontSize: "0.9rem", color: "var(--n-primary)", marginBottom: 8 }}>📚 Partial Withdrawal at Age 18 (for Higher Education)</div>
+                <div style={{ fontSize: "0.82rem", color: "var(--n-text)" }}>
                     SSY allows withdrawal of up to <strong>50% of the balance</strong> when the girl turns 18 for higher education expenses.
                 </div>
             </div>
 
             <table style={{ width: "100%", fontSize: "0.82rem", borderCollapse: "collapse" }}>
-                <thead><tr style={{ borderBottom: "2px solid var(--c-border)" }}>
+                <thead><tr style={{ borderBottom: "2px solid var(--n-border)" }}>
                     <th style={{ textAlign: "left", padding: "8px 4px" }}>Parameter</th>
                     <th style={{ textAlign: "right", padding: "8px 4px" }}>No Withdrawal</th>
                     <th style={{ textAlign: "right", padding: "8px 4px", color: "#7c3aed" }}>50% at Year 18</th>
@@ -176,7 +176,7 @@ function WithdrawalMode() {
                         ["Maturity (Yr 21)", fmtCr(noWithdraw.maturityValue), fmtCr(withWithdraw.maturityValue)],
                         ["Total Received", fmtCr(noWithdraw.maturityValue), fmtCr(withWithdraw.maturityValue + withWithdraw.withdrawnAmount)],
                     ].map(([l, a, b], i) => (
-                        <tr key={i} style={{ borderBottom: "1px solid var(--c-border)" }}>
+                        <tr key={i} style={{ borderBottom: "1px solid var(--n-border)" }}>
                             <td style={{ padding: "6px 4px" }}>{l}</td>
                             <td style={{ textAlign: "right", padding: "6px 4px", fontWeight: 600 }}>{a}</td>
                             <td style={{ textAlign: "right", padding: "6px 4px", fontWeight: 600, color: "#7c3aed" }}>{b}</td>
@@ -185,8 +185,8 @@ function WithdrawalMode() {
                 </tbody>
             </table>
 
-            <div style={{ background: "#fef3c7", borderRadius: 10, padding: "12px 16px", marginTop: "var(--s-3)", fontSize: "0.82rem" }}>
-                <strong style={{ color: "#92400e" }}>💡 Impact:</strong>
+            <div style={{ background: "var(--n-gold-light)", borderRadius: 10, padding: "12px 16px", marginTop: "var(--s-3)", fontSize: "0.82rem" }}>
+                <strong style={{ color: "var(--n-gold-text)" }}>💡 Impact:</strong>
                 <span style={{ color: "#78350f" }}> Withdrawing 50% at year 18 reduces maturity by {fmtCr(noWithdraw.maturityValue - withWithdraw.maturityValue)}, but you receive {fmtCr(withWithdraw.withdrawnAmount)} for education. Total payout across both = {fmtCr(withWithdraw.maturityValue + withWithdraw.withdrawnAmount)}.</span>
             </div>
         </>
@@ -226,7 +226,7 @@ function CompareMode() {
             </div>
 
             <table style={{ width: "100%", fontSize: "0.82rem", borderCollapse: "collapse" }}>
-                <thead><tr style={{ borderBottom: "2px solid var(--c-border)" }}>
+                <thead><tr style={{ borderBottom: "2px solid var(--n-border)" }}>
                     <th style={{ textAlign: "left", padding: "8px 4px" }}>Feature</th>
                     <th style={{ textAlign: "right", padding: "8px 4px", color: "#e11d48" }}>🎀 SSY</th>
                     <th style={{ textAlign: "right", padding: "8px 4px" }}>📗 PPF</th>
@@ -242,7 +242,7 @@ function CompareMode() {
                         ["Lock-in", "21 years", "15 years", "Flexible"],
                         ["Risk", "Zero (Govt)", "Zero (Govt)", "Zero (Insured to ₹5L)"],
                     ].map(([l, s, p, f], i) => (
-                        <tr key={i} style={{ borderBottom: "1px solid var(--c-border)" }}>
+                        <tr key={i} style={{ borderBottom: "1px solid var(--n-border)" }}>
                             <td style={{ padding: "6px 4px" }}>{l}</td>
                             <td style={{ textAlign: "right", padding: "6px 4px", fontWeight: 600, color: "#e11d48" }}>{s}</td>
                             <td style={{ textAlign: "right", padding: "6px 4px", fontWeight: 600 }}>{p}</td>
@@ -286,9 +286,9 @@ function GoalMode() {
                 {PRESETS.map(p => (
                     <button key={p.v} onClick={() => setTarget(p.v)} style={{
                         padding: "8px 14px", borderRadius: 8, fontSize: "0.82rem", cursor: "pointer",
-                        border: target === p.v ? "2px solid var(--c-primary)" : "1px solid var(--c-border)",
-                        background: target === p.v ? "var(--c-primary-bg, #e8f0fe)" : "var(--c-bg)",
-                        fontWeight: target === p.v ? 700 : 500, color: target === p.v ? "var(--c-primary)" : "var(--c-text)",
+                        border: target === p.v ? "2px solid var(--n-primary)" : "1px solid var(--n-border)",
+                        background: target === p.v ? "var(--n-primary-light)" : "var(--n-surface)",
+                        fontWeight: target === p.v ? 700 : 500, color: target === p.v ? "var(--n-primary)" : "var(--n-text)",
                     }}>{p.l}</button>
                 ))}
             </div>
@@ -296,8 +296,8 @@ function GoalMode() {
             <InputRow label="SSY Interest Rate" value={rate} set={setRate} max={9.5} step={0.1} suffix="%" min={7} />
             <InputRow label="Girl's Current Age" value={age} set={setAge} max={10} step={1} suffix="yr" min={0} />
 
-            <div style={{ background: "var(--c-surface)", borderRadius: 12, padding: "var(--s-4)", textAlign: "center" }}>
-                <div style={{ fontSize: "0.78rem", fontWeight: 700, color: "var(--c-primary)", textTransform: "uppercase", letterSpacing: 1 }}>
+            <div style={{ background: "var(--n-surface-alt)", borderRadius: 12, padding: "var(--s-4)", textAlign: "center" }}>
+                <div style={{ fontSize: "0.78rem", fontWeight: 700, color: "var(--n-primary)", textTransform: "uppercase", letterSpacing: 1 }}>
                     Required Yearly Deposit
                 </div>
                 <div style={{ fontSize: "2.2rem", fontWeight: 800, fontFamily: "var(--font-mono, monospace)", margin: "8px 0" }}>
@@ -305,7 +305,7 @@ function GoalMode() {
                 </div>
                 {result.achievable ? (
                     <>
-                        <div style={{ fontSize: "0.85rem", color: "var(--c-text-muted)" }}>
+                        <div style={{ fontSize: "0.85rem", color: "var(--n-text-muted)" }}>
                             ≈ {fmt(result.requiredMonthly)}/month for 15 years → <strong>{fmtCr(target)}</strong> at maturity
                         </div>
                         <div style={{ fontSize: "0.82rem", color: "#16a34a", fontWeight: 700, marginTop: 8 }}>
@@ -327,19 +327,19 @@ export default function SSYCalculatorCore() {
     const [mode, setMode] = useState<Mode>("maturity");
 
     return (
-        <div style={{ background: "var(--c-card-bg, #fff)", borderRadius: 16, border: "1px solid var(--c-border)", overflow: "hidden", marginBottom: "var(--s-6)" }}>
-            <div style={{ padding: "var(--s-4) var(--s-5)", borderBottom: "1px solid var(--c-border)", background: "linear-gradient(135deg, #ffe4e6, var(--c-surface))" }}>
+        <div style={{ background: "var(--n-surface)", borderRadius: 16, border: "1px solid var(--n-border)", overflow: "hidden", marginBottom: "var(--s-6)" }}>
+            <div style={{ padding: "var(--s-4) var(--s-5)", borderBottom: "1px solid var(--n-border)", background: "linear-gradient(135deg, #ffe4e6, var(--n-surface-alt))" }}>
                 <h2 style={{ margin: 0, fontSize: "1.25rem", fontWeight: 700 }}>🎀 Sukanya Samriddhi Yojana Calculator</h2>
-                <div style={{ fontSize: "0.82rem", color: "var(--c-text-muted)", marginTop: 4 }}>Girl child savings • 8.2% EEE tax-free • 21-year maturity • Govt guaranteed</div>
+                <div style={{ fontSize: "0.82rem", color: "var(--n-text-muted)", marginTop: 4 }}>Girl child savings • 8.2% EEE tax-free • 21-year maturity • Govt guaranteed</div>
             </div>
-            <div style={{ display: "flex", borderBottom: "1px solid var(--c-border)", flexWrap: "wrap" }}>
+            <div style={{ display: "flex", borderBottom: "1px solid var(--n-border)", flexWrap: "wrap" }}>
                 {MODES.map(m => (
                     <button key={m.key} onClick={() => setMode(m.key)} style={{
                         flex: 1, minWidth: 120, padding: "12px 8px", border: "none", cursor: "pointer",
-                        borderBottom: mode === m.key ? "3px solid var(--c-primary)" : "3px solid transparent",
-                        background: mode === m.key ? "var(--c-primary-bg, #e8f0fe)" : "transparent",
+                        borderBottom: mode === m.key ? "3px solid var(--n-primary)" : "3px solid transparent",
+                        background: mode === m.key ? "var(--n-primary-light)" : "transparent",
                         fontWeight: mode === m.key ? 700 : 500, fontSize: "0.82rem",
-                        color: mode === m.key ? "var(--c-primary)" : "var(--c-text-muted)",
+                        color: mode === m.key ? "var(--n-primary)" : "var(--n-text-muted)",
                     }}>{m.icon} {m.label}</button>
                 ))}
             </div>

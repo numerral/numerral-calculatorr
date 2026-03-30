@@ -107,32 +107,32 @@ function TrueXIRRMode() {
 
     return (
         <>
-            <div style={{ fontSize: "0.78rem", color: "var(--c-text-muted)", marginBottom: 12 }}>
+            <div style={{ fontSize: "0.78rem", color: "var(--n-text-muted)", marginBottom: 12 }}>
                 Enter investments as <strong>negative</strong> (−) amounts and redemptions/current value as <strong>positive</strong> (+).
                 The last row should be today&rsquo;s date with your current portfolio value.
             </div>
             <div style={{ overflowX: "auto", maxHeight: 380, overflow: "auto", marginBottom: 14 }}>
                 <table style={{ width: "100%", fontSize: "0.82rem", borderCollapse: "collapse" }}>
-                    <thead><tr style={{ borderBottom: "2px solid var(--c-border)", position: "sticky", top: 0, background: "var(--c-surface)" }}>
+                    <thead><tr style={{ borderBottom: "2px solid var(--n-border)", position: "sticky", top: 0, background: "var(--n-surface-alt)" }}>
                         <th style={{ textAlign: "left", padding: "6px 4px", width: "40%" }}>Date</th>
                         <th style={{ textAlign: "right", padding: "6px 4px", width: "45%" }}>Amount (₹)</th>
                         <th style={{ textAlign: "center", padding: "6px 4px", width: "15%" }}></th>
                     </tr></thead>
                     <tbody>
                         {rows.map(r => (
-                            <tr key={r.id} style={{ borderBottom: "1px solid var(--c-border)", background: r.amount < 0 ? "#fef2f2" : r.amount > 0 ? "#f0fdf4" : undefined }}>
+                            <tr key={r.id} style={{ borderBottom: "1px solid var(--n-border)", background: r.amount < 0 ? "#fef2f2" : r.amount > 0 ? "#f0fdf4" : undefined }}>
                                 <td style={{ padding: "4px" }}>
                                     <input type="date" value={r.date} onChange={e => updateRow(r.id, "date", e.target.value)}
-                                        style={{ width: "100%", padding: "6px 8px", borderRadius: 6, border: "1px solid var(--c-border)", fontSize: "0.82rem" }} />
+                                        style={{ width: "100%", padding: "6px 8px", borderRadius: 6, border: "1px solid var(--n-border)", fontSize: "0.82rem" }} />
                                 </td>
                                 <td style={{ padding: "4px" }}>
                                     <input type="number" value={r.amount} onChange={e => updateRow(r.id, "amount", e.target.value)}
-                                        style={{ width: "100%", padding: "6px 8px", borderRadius: 6, border: "1px solid var(--c-border)", fontSize: "0.82rem", textAlign: "right",
+                                        style={{ width: "100%", padding: "6px 8px", borderRadius: 6, border: "1px solid var(--n-border)", fontSize: "0.82rem", textAlign: "right",
                                             color: r.amount < 0 ? "#dc2626" : r.amount > 0 ? "#16a34a" : undefined }} />
                                 </td>
                                 <td style={{ textAlign: "center", padding: "4px" }}>
                                     {rows.length > 2 && <button onClick={() => removeRow(r.id)} style={{
-                                        border: "none", background: "#fee2e2", color: "#dc2626", borderRadius: 6, padding: "4px 10px", cursor: "pointer", fontSize: "0.78rem"
+                                        border: "none", background: "var(--n-danger-light)", color: "#dc2626", borderRadius: 6, padding: "4px 10px", cursor: "pointer", fontSize: "0.78rem"
                                     }}>✕</button>}
                                 </td>
                             </tr>
@@ -141,12 +141,12 @@ function TrueXIRRMode() {
                 </table>
             </div>
             <button onClick={addRow} style={{
-                padding: "8px 16px", borderRadius: 8, border: "1px dashed var(--c-primary)", background: "var(--c-primary-bg, #e8f0fe)",
-                color: "var(--c-primary)", fontWeight: 700, cursor: "pointer", fontSize: "0.82rem", marginBottom: 14, width: "100%"
+                padding: "8px 16px", borderRadius: 8, border: "1px dashed var(--n-primary)", background: "var(--n-primary-light)",
+                color: "var(--n-primary)", fontWeight: 700, cursor: "pointer", fontSize: "0.82rem", marginBottom: 14, width: "100%"
             }}>+ Add Cash Flow Row</button>
 
             {result && result.xirr !== null && (
-                <div style={{ background: "var(--c-surface)", borderRadius: 12, padding: "var(--s-4)" }}>
+                <div style={{ background: "var(--n-surface-alt)", borderRadius: 12, padding: "var(--s-4)" }}>
                     <div style={{ textAlign: "center", marginBottom: "var(--s-3)" }}>
                         <div style={{ fontSize: "0.78rem", fontWeight: 700, color: (result.xirr >= 0 ? "#16a34a" : "#dc2626"), textTransform: "uppercase", letterSpacing: 1 }}>
                             Your XIRR (Annualized Return)
@@ -161,8 +161,8 @@ function TrueXIRRMode() {
                             ["Current Value", fmtCr(result.totalReturned), "#16a34a"],
                             [result.gain >= 0 ? "Gain" : "Loss", fmtCr(Math.abs(result.gain)), result.gain >= 0 ? "#16a34a" : "#dc2626"],
                         ].map(([l, v, c], i) => (
-                            <div key={i} style={{ background: "var(--c-bg)", borderRadius: 8, padding: 10, textAlign: "center" }}>
-                                <div style={{ fontSize: "0.72rem", color: "var(--c-text-muted)" }}>{l}</div>
+                            <div key={i} style={{ background: "var(--n-surface)", borderRadius: 8, padding: 10, textAlign: "center" }}>
+                                <div style={{ fontSize: "0.72rem", color: "var(--n-text-muted)" }}>{l}</div>
                                 <div style={{ fontSize: "1rem", fontWeight: 700, color: c as string || undefined }}>{v}</div>
                             </div>
                         ))}
@@ -170,7 +170,7 @@ function TrueXIRRMode() {
                 </div>
             )}
             {result && result.xirr === null && (
-                <div style={{ background: "#fef2f2", padding: 14, borderRadius: 10, fontSize: "0.82rem", color: "#991b1b" }}>
+                <div style={{ background: "#fef2f2", padding: 14, borderRadius: 10, fontSize: "0.82rem", color: "var(--n-danger)" }}>
                     Could not converge. Check that you have at least one negative (investment) and one positive (current value) amount.
                 </div>
             )}
@@ -204,30 +204,30 @@ function SIPXIRRMode() {
             <div style={{ marginBottom: 14 }}>
                 <label style={{ display: "flex", justifyContent: "space-between", fontWeight: 600, fontSize: "0.88rem", marginBottom: 4 }}>
                     <span>Monthly SIP Amount</span>
-                    <span style={{ color: "var(--c-primary)", fontFamily: "var(--font-mono)" }}>{fmt(sipAmt)}</span>
+                    <span style={{ color: "var(--n-primary)", fontFamily: "var(--t-mono)" }}>{fmt(sipAmt)}</span>
                 </label>
-                <input type="range" min={1000} max={100000} step={1000} value={sipAmt} onChange={e => setSipAmt(Number(e.target.value))} style={{ width: "100%", accentColor: "var(--c-primary)" }} />
+                <input type="range" min={1000} max={100000} step={1000} value={sipAmt} onChange={e => setSipAmt(Number(e.target.value))} style={{ width: "100%", accentColor: "var(--n-primary)" }} />
             </div>
             <div style={{ marginBottom: 14 }}>
                 <label style={{ display: "flex", justifyContent: "space-between", fontWeight: 600, fontSize: "0.88rem", marginBottom: 4 }}>
                     <span>SIP Duration</span>
-                    <span style={{ color: "var(--c-primary)", fontFamily: "var(--font-mono)" }}>{months} months ({(months / 12).toFixed(1)} yrs)</span>
+                    <span style={{ color: "var(--n-primary)", fontFamily: "var(--t-mono)" }}>{months} months ({(months / 12).toFixed(1)} yrs)</span>
                 </label>
-                <input type="range" min={3} max={120} step={1} value={months} onChange={e => setMonths(Number(e.target.value))} style={{ width: "100%", accentColor: "var(--c-primary)" }} />
+                <input type="range" min={3} max={120} step={1} value={months} onChange={e => setMonths(Number(e.target.value))} style={{ width: "100%", accentColor: "var(--n-primary)" }} />
             </div>
             <div style={{ marginBottom: 14 }}>
                 <label style={{ display: "flex", justifyContent: "space-between", fontWeight: 600, fontSize: "0.88rem", marginBottom: 4 }}>
                     <span>Current Portfolio Value</span>
-                    <span style={{ color: "var(--c-primary)", fontFamily: "var(--font-mono)" }}>{fmtCr(currentVal)}</span>
+                    <span style={{ color: "var(--n-primary)", fontFamily: "var(--t-mono)" }}>{fmtCr(currentVal)}</span>
                 </label>
-                <input type="range" min={sipAmt} max={sipAmt * months * 3} step={sipAmt} value={currentVal} onChange={e => setCurrentVal(Number(e.target.value))} style={{ width: "100%", accentColor: "var(--c-primary)" }} />
+                <input type="range" min={sipAmt} max={sipAmt * months * 3} step={sipAmt} value={currentVal} onChange={e => setCurrentVal(Number(e.target.value))} style={{ width: "100%", accentColor: "var(--n-primary)" }} />
             </div>
 
             {result.xirr !== null && (
-                <div style={{ background: "var(--c-surface)", borderRadius: 12, padding: "var(--s-4)" }}>
+                <div style={{ background: "var(--n-surface-alt)", borderRadius: 12, padding: "var(--s-4)" }}>
                     <div style={{ textAlign: "center", marginBottom: "var(--s-3)" }}>
-                        <div style={{ fontSize: "0.78rem", fontWeight: 700, color: "var(--c-primary)", textTransform: "uppercase", letterSpacing: 1 }}>SIP XIRR (True Return)</div>
-                        <div style={{ fontSize: "2.6rem", fontWeight: 800, fontFamily: "var(--font-mono)", color: result.xirr >= 0 ? "#16a34a" : "#dc2626" }}>
+                        <div style={{ fontSize: "0.78rem", fontWeight: 700, color: "var(--n-primary)", textTransform: "uppercase", letterSpacing: 1 }}>SIP XIRR (True Return)</div>
+                        <div style={{ fontSize: "2.6rem", fontWeight: 800, fontFamily: "var(--t-mono)", color: result.xirr >= 0 ? "#16a34a" : "#dc2626" }}>
                             {(result.xirr * 100).toFixed(2)}%
                         </div>
                     </div>
@@ -237,15 +237,15 @@ function SIPXIRRMode() {
                             ["Current Value", fmtCr(result.currentVal), "#16a34a"],
                             ["Gain", fmtCr(Math.abs(result.gain)), result.gain >= 0 ? "#16a34a" : "#dc2626"],
                         ].map(([l, v, c], i) => (
-                            <div key={i} style={{ background: "var(--c-bg)", borderRadius: 8, padding: 10, textAlign: "center" }}>
-                                <div style={{ fontSize: "0.72rem", color: "var(--c-text-muted)" }}>{l}</div>
+                            <div key={i} style={{ background: "var(--n-surface)", borderRadius: 8, padding: 10, textAlign: "center" }}>
+                                <div style={{ fontSize: "0.72rem", color: "var(--n-text-muted)" }}>{l}</div>
                                 <div style={{ fontSize: "1rem", fontWeight: 700, color: c as string || undefined }}>{v}</div>
                             </div>
                         ))}
                     </div>
                     {result.cagr !== null && (
-                        <div style={{ background: "#fef3c7", borderRadius: 10, padding: "12px 16px", fontSize: "0.82rem" }}>
-                            <strong style={{ color: "#92400e" }}>💡 CAGR (point-to-point) would show: {(result.cagr * 100).toFixed(2)}%</strong>
+                        <div style={{ background: "var(--n-gold-light)", borderRadius: 10, padding: "12px 16px", fontSize: "0.82rem" }}>
+                            <strong style={{ color: "var(--n-gold-text)" }}>💡 CAGR (point-to-point) would show: {(result.cagr * 100).toFixed(2)}%</strong>
                             <div style={{ color: "#78350f", marginTop: 4 }}>CAGR ignores that your money entered at different times. XIRR accounts for each SIP installment&rsquo;s actual holding period, giving a more accurate picture.</div>
                         </div>
                     )}
@@ -280,25 +280,25 @@ function CompareMode() {
         <>
             <div style={{ marginBottom: 14 }}>
                 <label style={{ display: "flex", justifyContent: "space-between", fontWeight: 600, fontSize: "0.88rem", marginBottom: 4 }}>
-                    <span>Monthly SIP</span><span style={{ color: "var(--c-primary)", fontFamily: "var(--font-mono)" }}>{fmt(sipAmt)}</span>
+                    <span>Monthly SIP</span><span style={{ color: "var(--n-primary)", fontFamily: "var(--t-mono)" }}>{fmt(sipAmt)}</span>
                 </label>
-                <input type="range" min={1000} max={100000} step={1000} value={sipAmt} onChange={e => setSipAmt(Number(e.target.value))} style={{ width: "100%", accentColor: "var(--c-primary)" }} />
+                <input type="range" min={1000} max={100000} step={1000} value={sipAmt} onChange={e => setSipAmt(Number(e.target.value))} style={{ width: "100%", accentColor: "var(--n-primary)" }} />
             </div>
             <div style={{ marginBottom: 14 }}>
                 <label style={{ display: "flex", justifyContent: "space-between", fontWeight: 600, fontSize: "0.88rem", marginBottom: 4 }}>
-                    <span>Duration</span><span style={{ color: "var(--c-primary)", fontFamily: "var(--font-mono)" }}>{months} months</span>
+                    <span>Duration</span><span style={{ color: "var(--n-primary)", fontFamily: "var(--t-mono)" }}>{months} months</span>
                 </label>
-                <input type="range" min={6} max={120} step={1} value={months} onChange={e => setMonths(Number(e.target.value))} style={{ width: "100%", accentColor: "var(--c-primary)" }} />
+                <input type="range" min={6} max={120} step={1} value={months} onChange={e => setMonths(Number(e.target.value))} style={{ width: "100%", accentColor: "var(--n-primary)" }} />
             </div>
             <div style={{ marginBottom: 14 }}>
                 <label style={{ display: "flex", justifyContent: "space-between", fontWeight: 600, fontSize: "0.88rem", marginBottom: 4 }}>
-                    <span>Current Value</span><span style={{ color: "var(--c-primary)", fontFamily: "var(--font-mono)" }}>{fmtCr(currentVal)}</span>
+                    <span>Current Value</span><span style={{ color: "var(--n-primary)", fontFamily: "var(--t-mono)" }}>{fmtCr(currentVal)}</span>
                 </label>
-                <input type="range" min={sipAmt} max={sipAmt * months * 3} step={sipAmt} value={currentVal} onChange={e => setCurrentVal(Number(e.target.value))} style={{ width: "100%", accentColor: "var(--c-primary)" }} />
+                <input type="range" min={sipAmt} max={sipAmt * months * 3} step={sipAmt} value={currentVal} onChange={e => setCurrentVal(Number(e.target.value))} style={{ width: "100%", accentColor: "var(--n-primary)" }} />
             </div>
 
             <table style={{ width: "100%", fontSize: "0.82rem", borderCollapse: "collapse" }}>
-                <thead><tr style={{ borderBottom: "2px solid var(--c-border)" }}>
+                <thead><tr style={{ borderBottom: "2px solid var(--n-border)" }}>
                     <th style={{ textAlign: "left", padding: "8px 4px" }}>Metric</th>
                     <th style={{ textAlign: "center", padding: "8px 4px" }}>Value</th>
                     <th style={{ textAlign: "left", padding: "8px 4px" }}>Best For</th>
@@ -309,18 +309,18 @@ function CompareMode() {
                         ["📈 CAGR", result.cagr !== null ? `${(result.cagr * 100).toFixed(2)}%` : "N/A", "Lump sum, point-to-point growth"],
                         ["💰 Absolute Return", `${result.absReturn.toFixed(2)}%`, "Quick snapshot, not annualized"],
                     ].map(([m, v, b], i) => (
-                        <tr key={i} style={{ borderBottom: "1px solid var(--c-border)" }}>
+                        <tr key={i} style={{ borderBottom: "1px solid var(--n-border)" }}>
                             <td style={{ padding: "8px 4px", fontWeight: 700 }}>{m}</td>
-                            <td style={{ textAlign: "center", padding: "8px 4px", fontWeight: 700, fontSize: "1.1rem", color: "var(--c-primary)" }}>{v}</td>
-                            <td style={{ padding: "8px 4px", fontSize: "0.78rem", color: "var(--c-text-muted)" }}>{b}</td>
+                            <td style={{ textAlign: "center", padding: "8px 4px", fontWeight: 700, fontSize: "1.1rem", color: "var(--n-primary)" }}>{v}</td>
+                            <td style={{ padding: "8px 4px", fontSize: "0.78rem", color: "var(--n-text-muted)" }}>{b}</td>
                         </tr>
                     ))}
                 </tbody>
             </table>
 
-            <div style={{ background: "#e8f0fe", borderRadius: 10, padding: "12px 16px", marginTop: "var(--s-3)", fontSize: "0.82rem" }}>
-                <strong style={{ color: "var(--c-primary)" }}>Why are they different?</strong>
-                <div style={{ color: "var(--c-text)", marginTop: 4 }}>
+            <div style={{ background: "var(--n-primary-light)", borderRadius: 10, padding: "12px 16px", marginTop: "var(--s-3)", fontSize: "0.82rem" }}>
+                <strong style={{ color: "var(--n-primary)" }}>Why are they different?</strong>
+                <div style={{ color: "var(--n-text)", marginTop: 4 }}>
                     CAGR treats your ₹{fmtCr(result.totalInvested)} as if it was all invested on day 1. In reality, your last SIP installment has only been invested for 1 month.
                     XIRR correctly weights each installment by its actual holding period — making it the <strong>gold standard for SIP return measurement</strong>.
                 </div>
@@ -361,27 +361,27 @@ function WhatIfMode() {
         <>
             <div style={{ marginBottom: 14 }}>
                 <label style={{ display: "flex", justifyContent: "space-between", fontWeight: 600, fontSize: "0.88rem", marginBottom: 4 }}>
-                    <span>Monthly SIP</span><span style={{ color: "var(--c-primary)", fontFamily: "var(--font-mono)" }}>{fmt(sipAmt)}</span>
+                    <span>Monthly SIP</span><span style={{ color: "var(--n-primary)", fontFamily: "var(--t-mono)" }}>{fmt(sipAmt)}</span>
                 </label>
-                <input type="range" min={1000} max={100000} step={1000} value={sipAmt} onChange={e => setSipAmt(Number(e.target.value))} style={{ width: "100%", accentColor: "var(--c-primary)" }} />
+                <input type="range" min={1000} max={100000} step={1000} value={sipAmt} onChange={e => setSipAmt(Number(e.target.value))} style={{ width: "100%", accentColor: "var(--n-primary)" }} />
             </div>
             <div style={{ marginBottom: 14 }}>
                 <label style={{ display: "flex", justifyContent: "space-between", fontWeight: 600, fontSize: "0.88rem", marginBottom: 4 }}>
-                    <span>SIP Duration</span><span style={{ color: "var(--c-primary)", fontFamily: "var(--font-mono)" }}>{months} months</span>
+                    <span>SIP Duration</span><span style={{ color: "var(--n-primary)", fontFamily: "var(--t-mono)" }}>{months} months</span>
                 </label>
-                <input type="range" min={3} max={120} step={1} value={months} onChange={e => setMonths(Number(e.target.value))} style={{ width: "100%", accentColor: "var(--c-primary)" }} />
+                <input type="range" min={3} max={120} step={1} value={months} onChange={e => setMonths(Number(e.target.value))} style={{ width: "100%", accentColor: "var(--n-primary)" }} />
             </div>
             <div style={{ marginBottom: 14 }}>
                 <label style={{ display: "flex", justifyContent: "space-between", fontWeight: 600, fontSize: "0.88rem", marginBottom: 4 }}>
-                    <span>Target XIRR</span><span style={{ color: "var(--c-primary)", fontFamily: "var(--font-mono)" }}>{targetXIRR}%</span>
+                    <span>Target XIRR</span><span style={{ color: "var(--n-primary)", fontFamily: "var(--t-mono)" }}>{targetXIRR}%</span>
                 </label>
-                <input type="range" min={5} max={50} step={1} value={targetXIRR} onChange={e => setTargetXIRR(Number(e.target.value))} style={{ width: "100%", accentColor: "var(--c-primary)" }} />
+                <input type="range" min={5} max={50} step={1} value={targetXIRR} onChange={e => setTargetXIRR(Number(e.target.value))} style={{ width: "100%", accentColor: "var(--n-primary)" }} />
             </div>
 
-            <div style={{ background: "var(--c-surface)", borderRadius: 12, padding: "var(--s-4)", textAlign: "center" }}>
-                <div style={{ fontSize: "0.78rem", fontWeight: 700, color: "var(--c-primary)", textTransform: "uppercase", letterSpacing: 1 }}>Required Portfolio Value for {targetXIRR}% XIRR</div>
-                <div style={{ fontSize: "2.2rem", fontWeight: 800, fontFamily: "var(--font-mono)", margin: "8px 0" }}>{fmtCr(result.requiredVal)}</div>
-                <div style={{ fontSize: "0.85rem", color: "var(--c-text-muted)" }}>
+            <div style={{ background: "var(--n-surface-alt)", borderRadius: 12, padding: "var(--s-4)", textAlign: "center" }}>
+                <div style={{ fontSize: "0.78rem", fontWeight: 700, color: "var(--n-primary)", textTransform: "uppercase", letterSpacing: 1 }}>Required Portfolio Value for {targetXIRR}% XIRR</div>
+                <div style={{ fontSize: "2.2rem", fontWeight: 800, fontFamily: "var(--t-mono)", margin: "8px 0" }}>{fmtCr(result.requiredVal)}</div>
+                <div style={{ fontSize: "0.85rem", color: "var(--n-text-muted)" }}>
                     After {months} months of {fmt(sipAmt)}/month SIP (Total invested: {fmtCr(result.totalInvested)})
                 </div>
                 <div style={{ fontSize: "0.85rem", color: result.gain >= 0 ? "#16a34a" : "#dc2626", fontWeight: 700, marginTop: 8 }}>
@@ -397,19 +397,19 @@ export default function XIRRCalculatorCore() {
     const [mode, setMode] = useState<Mode>("true");
 
     return (
-        <div style={{ background: "var(--c-card-bg, #fff)", borderRadius: 16, border: "1px solid var(--c-border)", overflow: "hidden", marginBottom: "var(--s-6)" }}>
-            <div style={{ padding: "var(--s-4) var(--s-5)", borderBottom: "1px solid var(--c-border)", background: "linear-gradient(135deg, #dbeafe, var(--c-surface))" }}>
+        <div style={{ background: "var(--n-surface)", borderRadius: 16, border: "1px solid var(--n-border)", overflow: "hidden", marginBottom: "var(--s-6)" }}>
+            <div style={{ padding: "var(--s-4) var(--s-5)", borderBottom: "1px solid var(--n-border)", background: "linear-gradient(135deg, #dbeafe, var(--n-surface-alt))" }}>
                 <h2 style={{ margin: 0, fontSize: "1.25rem", fontWeight: 700 }}>📊 XIRR Calculator — Extended Internal Rate of Return</h2>
-                <div style={{ fontSize: "0.82rem", color: "var(--c-text-muted)", marginTop: 4 }}>True annualized return for SIP, irregular investments &amp; portfolios • Newton-Raphson solver</div>
+                <div style={{ fontSize: "0.82rem", color: "var(--n-text-muted)", marginTop: 4 }}>True annualized return for SIP, irregular investments &amp; portfolios • Newton-Raphson solver</div>
             </div>
-            <div style={{ display: "flex", borderBottom: "1px solid var(--c-border)", flexWrap: "wrap" }}>
+            <div style={{ display: "flex", borderBottom: "1px solid var(--n-border)", flexWrap: "wrap" }}>
                 {MODES.map(m => (
                     <button key={m.key} onClick={() => setMode(m.key)} style={{
                         flex: 1, minWidth: 120, padding: "12px 8px", border: "none", cursor: "pointer",
-                        borderBottom: mode === m.key ? "3px solid var(--c-primary)" : "3px solid transparent",
-                        background: mode === m.key ? "var(--c-primary-bg, #e8f0fe)" : "transparent",
+                        borderBottom: mode === m.key ? "3px solid var(--n-primary)" : "3px solid transparent",
+                        background: mode === m.key ? "var(--n-primary-light)" : "transparent",
                         fontWeight: mode === m.key ? 700 : 500, fontSize: "0.82rem",
-                        color: mode === m.key ? "var(--c-primary)" : "var(--c-text-muted)",
+                        color: mode === m.key ? "var(--n-primary)" : "var(--n-text-muted)",
                     }}>{m.icon} {m.label}</button>
                 ))}
             </div>
