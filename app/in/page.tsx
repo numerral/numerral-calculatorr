@@ -266,7 +266,7 @@ const IN_CALCULATORS = [
         slug: "nps-calculator",
         icon: "🏛️",
         tag: "Retirement & Pension",
-        description: "Calculate National Pension System returns and retirement corpus. Tier I and II comparison, 80CCD(1B) additional ₹50K deduction, and annuity planning at 60.",
+        description: "NPS Calculator with 4 modes: Corpus & Pension Estimator (Active/Auto Choice LC75/LC50/LC25), 80CCD Tax Benefit Calculator (Old vs New Regime), NPS vs PPF vs ELSS vs MF comparison, and Annuity Planner. Covers 2026 withdrawal rules (80:20), employer 80CCD(2), Tier I vs II, and PFM comparison.",
     },
     {
         title: "Mutual Fund Returns Calculator",
