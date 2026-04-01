@@ -7,11 +7,9 @@ import AuthorBadge from "@/components/shared/AuthorBadge";
 import ConstructionCalculatorCore from "@/components/calculator/ConstructionCalculatorCore";
 import DynamicExplanation from "@/components/shared/DynamicExplanation";
 import FAQAccordion from "@/components/shared/FAQAccordion";
-import TrendingCalculations from "@/components/shared/TrendingCalculations";
 import { getCalculatorsByCategory } from "@/lib/data";
 import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
-import RelatedCalculators from "@/components/shared/RelatedCalculators";
 import GuideCTA from "@/components/shared/GuideCTA";
 import GlossaryChip from "@/components/shared/GlossaryChip";
 
@@ -5908,6 +5906,109 @@ Net lawn area: 10,890 − 1,900 = <strong>8,990 sq ft</strong></p>
             { question: "How many cubic feet is a standard refrigerator?", answer: "Top-freezer: 15–22 cu ft. Bottom-freezer: 18–25 cu ft. Side-by-side: 22–28 cu ft. French door: 20–30 cu ft. The most popular size for US families of 3–5 is 22–25 cu ft. Compact/apartment refrigerators range from 3–10 cu ft." },
         ],
     },
+
+    "plastering-calculator": {
+        subtitle: "Calculate cement and sand needed for wall plastering. Choose mix ratio (1:3 to 1:6), plaster thickness, and number of coats to get material quantities in bags and cubic feet with cost.",
+        contentHTML: `<h2>What Is Plastering?</h2><p><strong>Plastering</strong> is the process of applying a thin coat of cement mortar on walls, ceilings, and columns to create a smooth, protective, and aesthetically pleasing surface. It protects masonry from moisture, provides a base for painting, and improves structural durability.</p><h2>Plastering Mix Ratios</h2><table><thead><tr><th>Mix Ratio</th><th>Application</th><th>Thickness</th></tr></thead><tbody><tr><td><strong>1:3</strong></td><td>External walls, waterproofing</td><td>15–20 mm</td></tr><tr><td><strong>1:4</strong></td><td>External walls (standard)</td><td>12–15 mm</td></tr><tr><td><strong>1:5</strong></td><td>Internal walls</td><td>12 mm</td></tr><tr><td><strong>1:6</strong></td><td>Ceilings, internal lean plaster</td><td>6–8 mm</td></tr></tbody></table><h2>How to Calculate Plastering Materials</h2><ol><li><strong>Find the area</strong> — Length × Height of each wall. Subtract door/window openings.</li><li><strong>Calculate wet volume</strong> — Area × Thickness (in meters).</li><li><strong>Convert to dry volume</strong> — Multiply wet volume by 1.35 (shrinkage factor).</li><li><strong>Split by ratio</strong> — For 1:4, cement = dry vol × 1/5, sand = dry vol × 4/5.</li><li><strong>Convert cement to bags</strong> — 1 bag of 50 kg cement = 0.035 m³.</li></ol><h2>Plastering Cost (India, 2025)</h2><table><thead><tr><th>Component</th><th>Rate</th></tr></thead><tbody><tr><td>Cement (50 kg bag)</td><td>₹340–₹400</td></tr><tr><td>Sand (per cu ft)</td><td>₹30–₹50</td></tr><tr><td>Labor (internal)</td><td>₹18–₹25/sq ft</td></tr><tr><td>Labor (external)</td><td>₹22–₹30/sq ft</td></tr></tbody></table>`,
+        faq: [
+            { question: "What is the standard plastering thickness for internal walls?", answer: "12 mm (½ inch) is the standard thickness for internal wall plastering. External walls typically require 15–20 mm. Ceilings use 6–8 mm. Thicker plaster wastes material without adding strength." },
+            { question: "Which mix ratio is best for plastering?", answer: "1:4 (cement:sand) for external walls and 1:5 or 1:6 for internal walls and ceilings. Richer mixes (1:3) are used for waterproof areas like bathrooms." },
+            { question: "How much cement is needed for 100 sq ft plastering?", answer: "For 12mm thick internal plaster at 1:5 ratio: approximately 0.8 bags of cement and 2 cu ft of sand per 100 sq ft. Exact quantities depend on thickness and mix ratio." },
+            { question: "Why is dry volume 35% more than wet volume?", answer: "When cement and sand are mixed with water, the fine cement particles fill the voids between sand grains, causing the volume to shrink. The 1.35 factor (35% increase) accounts for this shrinkage." },
+            { question: "How long should plastering cure?", answer: "Plaster must be cured by spraying water for at least 7 days. Start curing 24 hours after plastering. Proper curing prevents cracks and ensures full strength development." },
+        ],
+    },
+    "pcc-calculator": {
+        subtitle: "Calculate cement, sand, and aggregate for Plain Cement Concrete (PCC) work. Select from standard mix ratios (M5 to M20) and get dry volume quantities with the 1.54 conversion factor.",
+        contentHTML: `<h2>What Is PCC (Plain Cement Concrete)?</h2><p><strong>PCC</strong> is a mix of cement, sand (fine aggregate), and stone chips (coarse aggregate) without any steel reinforcement. It is used for leveling, bedding, and non-structural applications like flooring base, foundation bed, and pathways.</p><h2>Standard PCC Mix Ratios</h2><table><thead><tr><th>Grade</th><th>Ratio (C:S:A)</th><th>Strength</th><th>Common Uses</th></tr></thead><tbody><tr><td>M5</td><td>1:5:10</td><td>5 N/mm²</td><td>Leveling course</td></tr><tr><td>M7.5</td><td>1:4:8</td><td>7.5 N/mm²</td><td>Foundation bed, lean concrete</td></tr><tr><td>M10</td><td>1:3:6</td><td>10 N/mm²</td><td>Floor base, substructure</td></tr><tr><td>M15</td><td>1:2:4</td><td>15 N/mm²</td><td>Standard PCC work</td></tr><tr><td>M20</td><td>1:1.5:3</td><td>20 N/mm²</td><td>Heavy-duty PCC</td></tr></tbody></table><h2>Why 1.54 Dry Volume Factor?</h2><p>When concrete ingredients are mixed with water, the dry materials compact into a smaller wet volume. To get 1 m³ of wet PCC, you need 1.54 m³ of dry materials. This accounts for the voids in loose sand and aggregate that get filled during compaction.</p>`,
+        faq: [
+            { question: "What is the difference between PCC and RCC?", answer: "PCC (Plain Cement Concrete) has no steel reinforcement and is used for leveling, bedding, and non-load-bearing applications. RCC (Reinforced Cement Concrete) includes steel bars for structural strength in beams, columns, slabs, and footings." },
+            { question: "What grade of PCC is used for foundation?", answer: "M7.5 (1:4:8) or M10 (1:3:6) is typically used as a foundation bed/leveling course. M15 (1:2:4) is used for standard PCC work. The grade depends on the load and soil condition." },
+            { question: "How many bags of cement for 1 cubic meter of PCC?", answer: "For M15 (1:2:4): approximately 6.3 bags. For M10 (1:3:6): approximately 4.6 bags. For M20 (1:1.5:3): approximately 8.4 bags of 50 kg cement." },
+            { question: "What is the minimum PCC thickness?", answer: "75mm (3 inches) is the minimum PCC thickness for foundation beds per IS code. For floor bases, 100mm (4 inches) is standard. For road sub-base, 150mm (6 inches) or more." },
+        ],
+    },
+    "rcc-calculator": {
+        subtitle: "Calculate cement, sand, aggregate, and steel reinforcement for RCC work. Includes steel percentage input for different structural members — beams, columns, slabs, and footings.",
+        contentHTML: `<h2>What Is RCC (Reinforced Cement Concrete)?</h2><p><strong>RCC</strong> is concrete strengthened with steel reinforcement bars (rebar). Concrete is strong in compression but weak in tension; steel bars handle the tensile forces. Together, they form the structural backbone of modern construction — beams, columns, slabs, footings, and retaining walls.</p><h2>Steel Percentage by Member</h2><table><thead><tr><th>Structural Member</th><th>Steel %</th><th>Typical Use</th></tr></thead><tbody><tr><td>Slab</td><td>0.7–1.0%</td><td>Floor and roof slabs</td></tr><tr><td>Beam</td><td>1.0–2.0%</td><td>Load-bearing beams</td></tr><tr><td>Column</td><td>1.5–3.0%</td><td>Vertical load transfer</td></tr><tr><td>Footing</td><td>0.5–0.8%</td><td>Foundation footings</td></tr><tr><td>Staircase</td><td>1.0–1.5%</td><td>Stair waist slab</td></tr></tbody></table><h2>Thumb Rule for Steel in Buildings</h2><p>For residential buildings: <strong>3.5–5.5 kg of steel per sq ft</strong> of built-up area. For commercial: 5–7 kg/sq ft. This includes all structural members (foundation, columns, beams, slabs).</p>`,
+        faq: [
+            { question: "How much steel is needed per cubic meter of RCC?", answer: "Typically 80–120 kg of steel per cubic meter of RCC. Slabs use 80–100 kg/m³, beams use 100–150 kg/m³, and columns use 150–250 kg/m³. The exact amount depends on the structural design." },
+            { question: "What is the standard RCC mix ratio?", answer: "M20 (1:1.5:3) is the most commonly used mix for general RCC work in India. M25 (1:1:2) for columns and heavily loaded beams. M15 (1:2:4) for lightly loaded footings." },
+            { question: "How to reduce steel in RCC construction?", answer: "Use higher-grade steel (Fe 500D instead of Fe 415), optimize structural design with proper software analysis, use post-tensioned slabs for large spans, and ensure proper cover to prevent wastage." },
+        ],
+    },
+    "construction-cost-estimator": {
+        subtitle: "Estimate total house construction cost based on built-up area, floors, quality level, and city tier. Get a detailed percentage breakdown of structure, finishing, plumbing, and electrical costs.",
+        contentHTML: `<h2>House Construction Cost in India (2025)</h2><p>Construction costs vary significantly based on location, quality of materials, and finishing level. Here are approximate rates per square foot of built-up area:</p><table><thead><tr><th>Quality</th><th>Rate (₹/sq ft)</th><th>Description</th></tr></thead><tbody><tr><td><strong>Economy</strong></td><td>₹1,000–₹1,400</td><td>Basic materials, standard fittings, minimal finishing</td></tr><tr><td><strong>Standard</strong></td><td>₹1,500–₹2,000</td><td>Good quality materials, branded fittings, vitrified tiles</td></tr><tr><td><strong>Premium</strong></td><td>₹2,200–₹3,000</td><td>Premium brands, Italian marble, modular kitchen</td></tr><tr><td><strong>Luxury</strong></td><td>₹3,000–₹5,000+</td><td>Imported materials, smart home, architect-designed</td></tr></tbody></table><h2>Cost Breakdown</h2><table><thead><tr><th>Component</th><th>Share</th></tr></thead><tbody><tr><td>Structure (foundation, RCC, masonry)</td><td>40–50%</td></tr><tr><td>Finishing (flooring, painting, doors)</td><td>25–35%</td></tr><tr><td>Plumbing & Sanitary</td><td>7–10%</td></tr><tr><td>Electrical</td><td>6–8%</td></tr><tr><td>Miscellaneous & Contingency</td><td>5–10%</td></tr></tbody></table>`,
+        faq: [
+            { question: "How much does it cost to build a 1000 sq ft house in India?", answer: "At standard quality in a Tier-2 city: approximately ₹15–20 lakhs. Economy: ₹10–14 lakhs. Premium: ₹22–30 lakhs. Costs vary significantly by city — Tier-1 cities can be 30% higher." },
+            { question: "What is included in construction cost per sq ft?", answer: "It includes foundation, structure (RCC, masonry), flooring, plastering, painting, plumbing, electrical, doors and windows, and basic finishing. It excludes land cost, compound wall, overhead water tank, and interior decoration." },
+            { question: "How to save money on house construction?", answer: "Use local materials, avoid unnecessary design complexity, buy materials in bulk, plan thoroughly to avoid changes during construction, and hire experienced contractors who can minimize waste." },
+        ],
+    },
+    "carpet-area-calculator": {
+        subtitle: "Convert between carpet area, built-up area, and super built-up area instantly. Enter any one value with loading percentages to calculate the other two. RERA compliant for Indian real estate.",
+        contentHTML: `<h2>Understanding Carpet, Built-Up, and Super Built-Up Area</h2><table><thead><tr><th>Area Type</th><th>What It Includes</th><th>RERA Status</th></tr></thead><tbody><tr><td><strong>Carpet Area</strong></td><td>Usable floor area inside walls (excludes wall thickness)</td><td>✅ Mandatory for pricing</td></tr><tr><td><strong>Built-Up Area</strong></td><td>Carpet area + wall thickness + balcony</td><td>–</td></tr><tr><td><strong>Super Built-Up Area</strong></td><td>Built-up area + share of common areas (lobby, stairs, lift)</td><td>❌ Not for pricing post-RERA</td></tr></tbody></table><h2>Conversion Formulas</h2><ul><li><strong>Built-Up Area</strong> = Carpet Area × (1 + 15–25%)</li><li><strong>Super Built-Up Area</strong> = Built-Up Area × (1 + 25–50%)</li><li><strong>Carpet Area</strong> = Usually 60–75% of Super Built-Up Area</li></ul><h2>What Is RERA?</h2><p>The <strong>Real Estate (Regulation and Development) Act, 2016</strong> mandates that developers sell properties based on <strong>carpet area only</strong>, not super built-up area. This protects buyers from inflated area figures.</p>`,
+        faq: [
+            { question: "What is carpet area?", answer: "Carpet area is the net usable floor area within the walls of a flat — the area where you can actually 'lay a carpet.' It excludes wall thickness, balcony, terrace, and common areas. Under RERA, this is the only area basis for property pricing." },
+            { question: "How to calculate built-up area from carpet area?", answer: "Built-up area = Carpet Area × (1 + loading factor). Typical loading: 15–25%. For a 1,000 sq ft carpet area with 20% loading, built-up area = 1,200 sq ft. The loading covers wall thickness and small projections." },
+            { question: "What is a good carpet-to-super-built-up ratio?", answer: "A ratio of 70% or higher is considered good. This means if super built-up is 1,000 sq ft, carpet should be at least 700 sq ft. Ratios below 65% indicate excessive common area loading." },
+        ],
+    },
+    "steel-quantity-calculator": {
+        subtitle: "Estimate total steel reinforcement for house construction based on built-up area and structure type. Get weight in kg/tons, bar count by diameter (8mm to 20mm), and cost estimate.",
+        contentHTML: `<h2>Steel in Construction — Thumb Rules</h2><table><thead><tr><th>Structure Type</th><th>Steel (kg/sq ft)</th><th>Steel (kg/m²)</th></tr></thead><tbody><tr><td><strong>Residential (G+1/G+2)</strong></td><td>3.5–5.5</td><td>38–60</td></tr><tr><td><strong>Commercial</strong></td><td>5–7</td><td>55–75</td></tr><tr><td><strong>Industrial</strong></td><td>7–10</td><td>75–110</td></tr></tbody></table><h2>Steel Bar Weight Table</h2><table><thead><tr><th>Diameter</th><th>Weight per meter</th><th>Weight per 12m bar</th><th>Typical Use</th></tr></thead><tbody><tr><td>8 mm</td><td>0.395 kg</td><td>4.74 kg</td><td>Stirrups, ties</td></tr><tr><td>10 mm</td><td>0.617 kg</td><td>7.40 kg</td><td>Slab reinforcement</td></tr><tr><td>12 mm</td><td>0.888 kg</td><td>10.66 kg</td><td>Beams, slabs</td></tr><tr><td>16 mm</td><td>1.580 kg</td><td>18.96 kg</td><td>Columns, beams</td></tr><tr><td>20 mm</td><td>2.466 kg</td><td>29.60 kg</td><td>Heavy columns, footings</td></tr></tbody></table><h2>Bar Distribution (General Rule)</h2><ul><li>8mm stirrups: ~10% of total steel</li><li>10mm: ~15%</li><li>12mm: ~30%</li><li>16mm: ~30%</li><li>20mm: ~15%</li></ul>`,
+        faq: [
+            { question: "How much steel is needed for a 1000 sq ft house?", answer: "For a standard G+1 residential building: approximately 4,000–5,500 kg (4–5.5 tons) of steel. This includes foundation, columns, beams, slabs, and staircase. The exact amount depends on the structural design and soil condition." },
+            { question: "What is the current steel price in India?", answer: "TMT steel bars (Fe 500D) cost approximately ₹50–₹65 per kg in 2025, varying by brand and location. Major brands: Tata Tiscon, JSW NeoSteel, SAIL, Jindal Panther." },
+            { question: "How to calculate steel weight from diameter?", answer: "Weight (kg/m) = d² / 162.2, where d is diameter in mm. For a 12mm bar: 12² / 162.2 = 0.888 kg/m. For a 12-meter standard bar: 0.888 × 12 = 10.66 kg per bar." },
+        ],
+    },
+    "anti-termite-calculator": {
+        subtitle: "Calculate chemical solution for pre-construction anti-termite treatment per IS 6313. Enter plinth area, foundation perimeter, trench dimensions, and chemical concentration.",
+        contentHTML: `<h2>What Is Anti-Termite Treatment?</h2><p><strong>Pre-construction anti-termite treatment</strong> creates a chemical barrier between the soil and the building foundation to prevent termites from entering the structure. It is applied during construction before flooring, as per <strong>IS 6313 (Part II)</strong>.</p><h2>Treatment Stages</h2><ol><li><strong>Soil Treatment</strong> — Chemical emulsion applied to the excavated soil and backfill around the foundation at 5 liters/m² of surface.</li><li><strong>Foundation Trench</strong> — Emulsion poured along the foundation trench perimeter at 7.5 liters/m³.</li><li><strong>Plinth Filling</strong> — Top soil layer treated before PCC/flooring.</li></ol><h2>Common Chemicals</h2><table><thead><tr><th>Chemical</th><th>Concentration</th><th>Life</th></tr></thead><tbody><tr><td>Chlorpyriphos</td><td>1% EC</td><td>5–10 years</td></tr><tr><td>Imidacloprid</td><td>0.05%</td><td>10–15 years</td></tr><tr><td>Fipronil</td><td>0.1%</td><td>10+ years</td></tr></tbody></table>`,
+        faq: [
+            { question: "Is anti-termite treatment mandatory?", answer: "Yes — IS 6313 (Part II) mandates pre-construction anti-termite treatment for all buildings in India. Most municipal corporations require a certificate before occupancy. It is also required for home loan documentation." },
+            { question: "How long does anti-termite treatment last?", answer: "Pre-construction treatment typically lasts 5–15 years depending on the chemical used. Chlorpyriphos lasts 5–10 years, while newer chemicals like Imidacloprid and Fipronil can last 10–15 years." },
+            { question: "What is the cost of anti-termite treatment?", answer: "Pre-construction: ₹3–₹6 per sq ft. Post-construction: ₹5–₹10 per sq ft. For a 1,000 sq ft house, pre-construction treatment costs ₹3,000–₹6,000." },
+        ],
+    },
+    "compound-wall-calculator": {
+        subtitle: "Calculate precast panels, pillars, and foundation materials for boundary/compound wall construction. Enter wall length, height, and pillar spacing for complete material and cost estimate.",
+        contentHTML: `<h2>What Is a Compound Wall?</h2><p>A <strong>compound wall</strong> (boundary wall or fencing wall) encloses a property for security and privacy. <strong>Precast compound walls</strong> use factory-made concrete panels and pillars — they are faster to install, more economical, and more uniform than brick walls.</p><h2>Components</h2><ul><li><strong>Precast Panels</strong> — Concrete slabs (typically 4' × 1.5' or 5' × 1.5') that slot between pillars</li><li><strong>Precast Pillars</strong> — Reinforced columns (typically 4" × 6") at regular intervals</li><li><strong>Foundation</strong> — PCC pad for each pillar (typically 1.5' × 1.5' × 2' deep)</li></ul><h2>Precast vs Brick Compound Wall</h2><table><thead><tr><th>Feature</th><th>Precast</th><th>Brick</th></tr></thead><tbody><tr><td>Cost</td><td>₹70–₹120/sq ft</td><td>₹100–₹180/sq ft</td></tr><tr><td>Speed</td><td>50–100 ft/day</td><td>15–25 ft/day</td></tr><tr><td>Durability</td><td>25–30 years</td><td>40–50 years</td></tr><tr><td>Appearance</td><td>Uniform, smooth</td><td>Customizable</td></tr></tbody></table>`,
+        faq: [
+            { question: "How much does a compound wall cost per foot?", answer: "Precast: ₹500–₹900 per running foot (7 ft height). Brick: ₹800–₹1,500 per running foot. For a 100 ft compound wall, precast costs ₹50,000–₹90,000 and brick costs ₹80,000–₹1,50,000." },
+            { question: "What is the standard height for a compound wall?", answer: "6–7 feet above ground is standard for residential properties. In India, most municipalities allow up to 5 feet without permission and require approval for walls above 5 feet. Industrial sites may have 8–10 feet walls." },
+            { question: "What spacing should pillars have?", answer: "Standard pillar spacing is 8–10 feet for precast walls. Closer spacing (6 ft) provides more strength for tall walls or windy areas. Wider spacing (12 ft) is possible for short walls but risks panel sagging." },
+        ],
+    },
+    "countertop-calculator": {
+        subtitle: "Calculate countertop material for kitchens and vanities. Choose from granite, quartz, marble, laminate, or butcher block — get total area, slabs needed, and installed cost estimate.",
+        contentHTML: `<h2>How to Measure for Countertops</h2><ol><li><strong>Measure each run</strong> — the straight sections of counter along walls. Include L-shapes and U-shapes as separate runs.</li><li><strong>Measure depth</strong> — Standard kitchen counter depth is 25 inches (including overhang). Bathroom vanity: 22 inches. Island: 36–42 inches.</li><li><strong>Add backsplash</strong> — Standard backsplash is 4 inches tall. Full-height backsplash goes to the upper cabinets (15–18 inches).</li></ol><h2>Countertop Material Comparison (US 2025)</h2><table><thead><tr><th>Material</th><th>$/sq ft</th><th>Installed $/sq ft</th><th>Durability</th></tr></thead><tbody><tr><td>Laminate</td><td>$10–$20</td><td>$30–$45</td><td>10–15 years</td></tr><tr><td>Butcher Block</td><td>$35–$55</td><td>$55–$80</td><td>20+ years</td></tr><tr><td>Granite</td><td>$40–$60</td><td>$60–$100</td><td>25+ years</td></tr><tr><td>Quartz</td><td>$50–$80</td><td>$75–$120</td><td>25+ years</td></tr><tr><td>Marble</td><td>$60–$100</td><td>$85–$135</td><td>25+ years</td></tr></tbody></table>`,
+        faq: [
+            { question: "How much countertop do I need for a standard kitchen?", answer: "A typical U-shaped kitchen has 20–25 linear feet of counter. At 25 inches deep, that is 42–52 sq ft of countertop. An L-shaped kitchen is 15–20 linear feet (31–42 sq ft)." },
+            { question: "How much does a granite countertop cost?", answer: "Granite countertops cost $40–$60 per sq ft for material and $60–$100 installed. A typical kitchen (40 sq ft) costs $2,400–$4,000 installed. Exotic granites can exceed $100/sq ft." },
+            { question: "How many slabs do I need?", answer: "A standard granite/quartz slab is approximately 45–55 sq ft (55 × 120 inches). Most kitchens need 2–3 slabs. A simple L-shape may fit in 1–2 slabs. Seams are placed at corners or behind the sink." },
+        ],
+    },
+    "solar-rooftop-calculator": {
+        subtitle: "Estimate solar panel system size for your roof. Enter available area, peak sun hours, and panel wattage to get system capacity, annual generation, electricity savings, and payback period.",
+        contentHTML: `<h2>Solar Rooftop System Sizing</h2><p>A rooftop solar system converts sunlight into electricity using photovoltaic (PV) panels. Sizing depends on three factors: <strong>available roof area</strong>, <strong>peak sun hours</strong> in your location, and <strong>panel efficiency</strong>.</p><h2>Quick Sizing Rules</h2><table><thead><tr><th>System Size</th><th>Roof Area Needed</th><th>Monthly Generation</th><th>Suitable For</th></tr></thead><tbody><tr><td>1 kW</td><td>100 sq ft</td><td>120–150 kWh</td><td>1–2 BHK, low usage</td></tr><tr><td>3 kW</td><td>300 sq ft</td><td>360–450 kWh</td><td>2–3 BHK, moderate usage</td></tr><tr><td>5 kW</td><td>500 sq ft</td><td>600–750 kWh</td><td>3–4 BHK, AC usage</td></tr><tr><td>10 kW</td><td>1000 sq ft</td><td>1200–1500 kWh</td><td>Large house / commercial</td></tr></tbody></table><h2>Government Subsidies (India 2025)</h2><p>Under the PM Surya Ghar scheme: <strong>₹30,000/kW subsidy for up to 3 kW</strong> and ₹18,000/kW for 3–10 kW capacity. This can reduce system cost by 30–40%.</p>`,
+        faq: [
+            { question: "How much roof area do I need for solar panels?", answer: "Approximately 100 sq ft per 1 kW of solar capacity. A 5 kW system needs about 500 sq ft of shadow-free, south-facing roof area. Only 70% of total roof area is typically usable after accounting for obstructions." },
+            { question: "What is the payback period for rooftop solar?", answer: "4–6 years in India after subsidies. Without subsidies: 5–7 years. The system produces free electricity for 20+ years after payback, making it an excellent long-term investment." },
+            { question: "How much can I save with solar panels?", answer: "A 5 kW system generates approximately 600–750 kWh/month. At ₹8/kWh, that saves ₹5,000–₹6,000/month or ₹60,000–₹72,000/year. Savings increase as electricity tariffs rise." },
+        ],
+    },
+    "solar-water-heater-calculator": {
+        subtitle: "Calculate the right solar water heater size for your household. Enter family size, daily usage, and climate zone to get recommended tank size, collector area, and energy savings.",
+        contentHTML: `<h2>How Solar Water Heaters Work</h2><p>Solar water heaters use <strong>flat plate collectors</strong> or <strong>evacuated tube collectors (ETC)</strong> to absorb sunlight and heat water stored in an insulated tank. They can provide 60–85% of a household's hot water needs, dramatically reducing electricity or gas bills.</p><h2>System Types</h2><table><thead><tr><th>Type</th><th>Efficiency</th><th>Cost</th><th>Best For</th></tr></thead><tbody><tr><td>Flat Plate (FPC)</td><td>60–70%</td><td>₹15,000–₹25,000 per 100L</td><td>Year-round hot climate</td></tr><tr><td>Evacuated Tube (ETC)</td><td>70–85%</td><td>₹10,000–₹18,000 per 100L</td><td>Cold/cloudy climates</td></tr></tbody></table><h2>Sizing Guide</h2><table><thead><tr><th>Family Size</th><th>Daily Hot Water</th><th>Recommended Tank</th></tr></thead><tbody><tr><td>2 persons</td><td>80–100 liters</td><td>100 liters</td></tr><tr><td>3–4 persons</td><td>150–200 liters</td><td>200 liters</td></tr><tr><td>5–6 persons</td><td>250–300 liters</td><td>300 liters</td></tr><tr><td>7–8 persons</td><td>350–400 liters</td><td>500 liters</td></tr></tbody></table>`,
+        faq: [
+            { question: "What size solar water heater do I need?", answer: "Plan 40–50 liters of hot water per person per day. A family of 4 needs a 200-liter system. In cold climates, size up by 25% since solar efficiency drops. Round up to the nearest standard size (100, 200, 300, 500 liters)." },
+            { question: "Does a solar water heater work in winter?", answer: "Yes, but with reduced efficiency. In moderate winters, expect 50–60% of summer output. ETC systems perform better in cold/cloudy weather than flat plate systems. Most systems include an electric backup element." },
+            { question: "What is the payback period for a solar water heater?", answer: "2–4 years depending on existing energy costs and usage. A 200L system costing ₹25,000 saves approximately ₹8,000–₹12,000/year in electricity, paying for itself in 2–3 years." },
+        ],
+    },
 };
 
 
@@ -5967,12 +6068,50 @@ export default async function ConstructionCalculatorHubPage({ params }: PageProp
                             {content.faq && <FAQAccordion title={`${calc.title} FAQ`} items={content.faq} />}
                         </>
                     )}
-                    <RelatedCalculators calcId={calc.id} />
                     <GuideCTA calcId={calc.id} />
                     <GlossaryChip calcId={calc.id} />
                 </div>
                 <aside className="layout-2col__sidebar">
-                    <TrendingCalculations variant="sidebar" />
+                    <nav style={{
+                        background: "var(--n-surface)",
+                        border: "1px solid var(--n-border)",
+                        borderRadius: "var(--r-md)",
+                        padding: "var(--s-5)",
+                    }}>
+                        <h3 style={{ fontSize: "var(--t-body)", fontWeight: 700, marginBottom: "var(--s-4)", display: "flex", alignItems: "center", gap: "var(--s-2)" }}>
+                            🏗️ Construction Tools
+                        </h3>
+                        {[
+                            { label: "Concrete Calculator", href: "/construction-calculators/concrete-calculator" },
+                            { label: "Roofing Calculator", href: "/construction-calculators/roofing-calculator" },
+                            { label: "Flooring Calculator", href: "/construction-calculators/flooring-calculator" },
+                            { label: "Paint Calculator", href: "/construction-calculators/paint-calculator" },
+                            { label: "Drywall Calculator", href: "/construction-calculators/drywall-calculator" },
+                            { label: "Tile Calculator", href: "/construction-calculators/tile-calculator" },
+                            { label: "Square Footage", href: "/construction-calculators/square-footage-calculator" },
+                            { label: "Cubic Yards", href: "/construction-calculators/cubic-yards-calculator" },
+                            { label: "Gravel Calculator", href: "/construction-calculators/gravel-calculator" },
+                            { label: "Fence Calculator", href: "/construction-calculators/fence-calculator" },
+                            { label: "Lumber Calculator", href: "/construction-calculators/lumber-calculator" },
+                            { label: "Brick Calculator", href: "/construction-calculators/brick-calculator" },
+                        ].map(link => (
+                            <a key={link.href} href={link.href} style={{
+                                display: "flex", alignItems: "center", justifyContent: "space-between",
+                                padding: "var(--s-3) 0", borderBottom: "1px solid var(--n-border)",
+                                color: "var(--n-text-secondary)", fontSize: "var(--t-body-sm)",
+                                textDecoration: "none", transition: "color 0.2s",
+                            }}>
+                                {link.label} <span style={{ color: "var(--n-text-muted)" }}>→</span>
+                            </a>
+                        ))}
+                        <a href="/construction-calculators" style={{
+                            display: "block", marginTop: "var(--s-4)",
+                            color: "var(--n-primary)", fontSize: "var(--t-body-sm)",
+                            fontWeight: 600, textDecoration: "none",
+                        }}>
+                            View all Construction Calculators →
+                        </a>
+                    </nav>
                 </aside>
             </div>
         </main>

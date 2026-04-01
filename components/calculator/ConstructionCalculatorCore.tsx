@@ -8591,6 +8591,629 @@ function VinylSidingCalc() {
 }
 
 /* ──────────── DISPATCHER ──────────── */
+
+/* ──────────── PLASTERING CALCULATOR ──────────── */
+function PlasteringCalc() {
+    const [area, setArea] = useState(100);
+    const [thickness, setThickness] = useState(12);
+    const [mixRatio, setMixRatio] = useState("1:4");
+    const [coats, setCoats] = useState(1);
+    const [cementPrice, setCementPrice] = useState(350);
+
+    const RATIOS: Record<string, { cement: number; sand: number }> = {
+        "1:3": { cement: 1, sand: 3 },
+        "1:4": { cement: 1, sand: 4 },
+        "1:5": { cement: 1, sand: 5 },
+        "1:6": { cement: 1, sand: 6 },
+    };
+
+    const result = useMemo(() => {
+        const r = RATIOS[mixRatio] || RATIOS["1:4"];
+        const thicknessM = thickness / 1000;
+        const wetVolM3 = (area * 0.0929) * thicknessM * coats;
+        const dryVolM3 = wetVolM3 * 1.35;
+        const totalParts = r.cement + r.sand;
+        const cementM3 = dryVolM3 * (r.cement / totalParts);
+        const sandM3 = dryVolM3 * (r.sand / totalParts);
+        const cementBags = cementM3 / 0.035;
+        const sandCuFt = sandM3 * 35.3147;
+        const waterLiters = cementBags * 25;
+        const cost = Math.ceil(cementBags) * cementPrice;
+        return { wetVolM3, dryVolM3, cementBags, sandCuFt, sandM3, waterLiters, cost };
+    }, [area, thickness, mixRatio, coats, cementPrice]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">🏗️ Plastering Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Wall Area" value={area} onChange={setArea} unit="sq ft" min={1} />
+                <InputField label="Plaster Thickness" value={thickness} onChange={setThickness} unit="mm" min={6} max={25} />
+                <SelectField label="Mix Ratio (Cement : Sand)" value={mixRatio} onChange={setMixRatio} options={[
+                    { value: "1:3", label: "1:3 (Rich — external walls)" },
+                    { value: "1:4", label: "1:4 (Standard — external)" },
+                    { value: "1:5", label: "1:5 (Standard — internal)" },
+                    { value: "1:6", label: "1:6 (Lean — ceiling)" },
+                ]} />
+                <InputField label="Number of Coats" value={coats} onChange={setCoats} min={1} max={3} />
+                <InputField label="Cement Price per Bag" value={cementPrice} onChange={setCementPrice} unit="₹" min={0} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Volume</h4>
+                <ResultRow label="Wet Volume" value={fmt(result.wetVolM3, 3)} unit="m³" />
+                <ResultRow label="Dry Volume (×1.35)" value={fmt(result.dryVolM3, 3)} unit="m³" />
+                <h4>Materials</h4>
+                <ResultRow label="Cement" value={fmt(result.cementBags, 1)} unit="bags (50 kg)" />
+                <ResultRow label="Sand" value={fmt(result.sandCuFt, 1)} unit="cu ft" />
+                <ResultRow label="Sand" value={fmt(result.sandM3, 3)} unit="m³" />
+                <ResultRow label="Water (approx)" value={fmtInt(result.waterLiters)} unit="liters" />
+                <h4>Cost</h4>
+                <ResultRow label="Cement Cost" value={`₹${fmtInt(result.cost)}`} />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── PCC CALCULATOR ──────────── */
+function PCCCalc() {
+    const [length, setLength] = useState(10);
+    const [width, setWidth] = useState(10);
+    const [depth, setDepth] = useState(6);
+    const [depthUnit, setDepthUnit] = useState("inches");
+    const [mixRatio, setMixRatio] = useState("1:2:4");
+    const [cementPrice, setCementPrice] = useState(350);
+
+    const RATIOS: Record<string, { c: number; s: number; a: number }> = {
+        "1:1.5:3": { c: 1, s: 1.5, a: 3 },
+        "1:2:4": { c: 1, s: 2, a: 4 },
+        "1:3:6": { c: 1, s: 3, a: 6 },
+        "1:4:8": { c: 1, s: 4, a: 8 },
+        "1:5:10": { c: 1, s: 5, a: 10 },
+    };
+
+    const result = useMemo(() => {
+        const depthFt = depthUnit === "inches" ? depth / 12 : depth;
+        const volCuFt = length * width * depthFt;
+        const volM3 = volCuFt * 0.0283168;
+        const dryVolM3 = volM3 * 1.54;
+        const r = RATIOS[mixRatio] || RATIOS["1:2:4"];
+        const totalParts = r.c + r.s + r.a;
+        const cementM3 = dryVolM3 * (r.c / totalParts);
+        const sandM3 = dryVolM3 * (r.s / totalParts);
+        const aggM3 = dryVolM3 * (r.a / totalParts);
+        const cementBags = cementM3 / 0.035;
+        const sandCuFt = sandM3 * 35.3147;
+        const aggCuFt = aggM3 * 35.3147;
+        const cost = Math.ceil(cementBags) * cementPrice;
+        return { volCuFt, volM3, dryVolM3, cementBags, sandCuFt, sandM3, aggCuFt, aggM3, cost };
+    }, [length, width, depth, depthUnit, mixRatio, cementPrice]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">🧱 PCC Calculator (Plain Cement Concrete)</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Length" value={length} onChange={setLength} unit="ft" min={0.5} step={0.5} />
+                <InputField label="Width" value={width} onChange={setWidth} unit="ft" min={0.5} step={0.5} />
+                <InputField label="Depth / Thickness" value={depth} onChange={setDepth} unit={depthUnit} min={1} step={0.5} />
+                <SelectField label="Depth Unit" value={depthUnit} onChange={setDepthUnit} options={[
+                    { value: "inches", label: "Inches" }, { value: "feet", label: "Feet" },
+                ]} />
+                <SelectField label="Mix Ratio (C:S:A)" value={mixRatio} onChange={setMixRatio} options={[
+                    { value: "1:1.5:3", label: "M20 — 1:1.5:3 (High strength)" },
+                    { value: "1:2:4", label: "M15 — 1:2:4 (Standard)" },
+                    { value: "1:3:6", label: "M10 — 1:3:6 (Lean)" },
+                    { value: "1:4:8", label: "M7.5 — 1:4:8 (Foundation)" },
+                    { value: "1:5:10", label: "M5 — 1:5:10 (Leveling)" },
+                ]} />
+                <InputField label="Cement Price per Bag" value={cementPrice} onChange={setCementPrice} unit="₹" min={0} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Volume</h4>
+                <ResultRow label="Wet Volume" value={fmt(result.volCuFt)} unit="cu ft" />
+                <ResultRow label="Wet Volume" value={fmt(result.volM3, 3)} unit="m³" />
+                <ResultRow label="Dry Volume (×1.54)" value={fmt(result.dryVolM3, 3)} unit="m³" />
+                <h4>Materials</h4>
+                <ResultRow label="Cement" value={fmt(result.cementBags, 1)} unit="bags (50 kg)" />
+                <ResultRow label="Sand" value={fmt(result.sandCuFt, 1)} unit="cu ft" />
+                <ResultRow label="Aggregate (Coarse)" value={fmt(result.aggCuFt, 1)} unit="cu ft" />
+                <h4>Cost</h4>
+                <ResultRow label="Cement Cost" value={`₹${fmtInt(result.cost)}`} />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── RCC CALCULATOR ──────────── */
+function RCCCalc() {
+    const [length, setLength] = useState(10);
+    const [width, setWidth] = useState(10);
+    const [depth, setDepth] = useState(6);
+    const [depthUnit, setDepthUnit] = useState("inches");
+    const [mixRatio, setMixRatio] = useState("1:1.5:3");
+    const [steelPercent, setSteelPercent] = useState(1);
+    const [cementPrice, setCementPrice] = useState(350);
+    const [steelPrice, setSteelPrice] = useState(55);
+
+    const RATIOS: Record<string, { c: number; s: number; a: number }> = {
+        "1:1:2": { c: 1, s: 1, a: 2 },
+        "1:1.5:3": { c: 1, s: 1.5, a: 3 },
+        "1:2:4": { c: 1, s: 2, a: 4 },
+    };
+
+    const result = useMemo(() => {
+        const depthFt = depthUnit === "inches" ? depth / 12 : depth;
+        const volCuFt = length * width * depthFt;
+        const volM3 = volCuFt * 0.0283168;
+        const dryVolM3 = volM3 * 1.54;
+        const r = RATIOS[mixRatio] || RATIOS["1:1.5:3"];
+        const totalParts = r.c + r.s + r.a;
+        const cementBags = (dryVolM3 * r.c / totalParts) / 0.035;
+        const sandCuFt = (dryVolM3 * r.s / totalParts) * 35.3147;
+        const aggCuFt = (dryVolM3 * r.a / totalParts) * 35.3147;
+        const steelKg = volM3 * 7850 * (steelPercent / 100);
+        const cementCost = Math.ceil(cementBags) * cementPrice;
+        const steelCost = steelKg * steelPrice;
+        return { volCuFt, volM3, cementBags, sandCuFt, aggCuFt, steelKg, cementCost, steelCost, totalCost: cementCost + steelCost };
+    }, [length, width, depth, depthUnit, mixRatio, steelPercent, cementPrice, steelPrice]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">🏛️ RCC Calculator (Reinforced Cement Concrete)</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Length" value={length} onChange={setLength} unit="ft" min={0.5} step={0.5} />
+                <InputField label="Width" value={width} onChange={setWidth} unit="ft" min={0.5} step={0.5} />
+                <InputField label="Depth / Thickness" value={depth} onChange={setDepth} unit={depthUnit} min={1} step={0.5} />
+                <SelectField label="Depth Unit" value={depthUnit} onChange={setDepthUnit} options={[
+                    { value: "inches", label: "Inches" }, { value: "feet", label: "Feet" },
+                ]} />
+                <SelectField label="Mix Ratio" value={mixRatio} onChange={setMixRatio} options={[
+                    { value: "1:1:2", label: "M25 — 1:1:2 (Columns, beams)" },
+                    { value: "1:1.5:3", label: "M20 — 1:1.5:3 (Standard RCC)" },
+                    { value: "1:2:4", label: "M15 — 1:2:4 (Footings)" },
+                ]} />
+                <InputField label="Steel %" value={steelPercent} onChange={setSteelPercent} unit="%" min={0.5} max={4} step={0.25} />
+                <InputField label="Cement ₹/bag" value={cementPrice} onChange={setCementPrice} unit="₹" min={0} />
+                <InputField label="Steel ₹/kg" value={steelPrice} onChange={setSteelPrice} unit="₹" min={0} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Volume</h4>
+                <ResultRow label="Volume" value={fmt(result.volCuFt)} unit="cu ft" />
+                <ResultRow label="Volume" value={fmt(result.volM3, 3)} unit="m³" />
+                <h4>Concrete Materials</h4>
+                <ResultRow label="Cement" value={fmt(result.cementBags, 1)} unit="bags (50 kg)" />
+                <ResultRow label="Sand" value={fmt(result.sandCuFt, 1)} unit="cu ft" />
+                <ResultRow label="Aggregate" value={fmt(result.aggCuFt, 1)} unit="cu ft" />
+                <h4>Steel Reinforcement</h4>
+                <ResultRow label="Steel Weight" value={fmt(result.steelKg, 1)} unit="kg" />
+                <ResultRow label="Steel Weight" value={fmt(result.steelKg / 1000, 3)} unit="tons" />
+                <h4>Cost Estimate</h4>
+                <ResultRow label="Cement Cost" value={`₹${fmtInt(result.cementCost)}`} />
+                <ResultRow label="Steel Cost" value={`₹${fmtInt(result.steelCost)}`} />
+                <ResultRow label="Total (Cement + Steel)" value={`₹${fmtInt(result.totalCost)}`} />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── CONSTRUCTION COST ESTIMATOR ──────────── */
+function ConstructionCostCalc() {
+    const [builtUpArea, setBuiltUpArea] = useState(1000);
+    const [floors, setFloors] = useState(1);
+    const [quality, setQuality] = useState("standard");
+    const [cityTier, setCityTier] = useState("tier2");
+
+    const QUALITY_RATES: Record<string, { rate: number; label: string }> = {
+        economy: { rate: 1200, label: "Economy (₹1,200/sq ft)" },
+        standard: { rate: 1700, label: "Standard (₹1,700/sq ft)" },
+        premium: { rate: 2500, label: "Premium (₹2,500/sq ft)" },
+        luxury: { rate: 3500, label: "Luxury (₹3,500/sq ft)" },
+    };
+    const CITY_MULT: Record<string, { mult: number; label: string }> = {
+        tier1: { mult: 1.3, label: "Tier-1 (Mumbai, Delhi, Bangalore)" },
+        tier2: { mult: 1.0, label: "Tier-2 (Pune, Jaipur, Lucknow)" },
+        tier3: { mult: 0.8, label: "Tier-3 / Rural" },
+    };
+
+    const result = useMemo(() => {
+        const totalArea = builtUpArea * floors;
+        const baseRate = QUALITY_RATES[quality]?.rate || 1700;
+        const mult = CITY_MULT[cityTier]?.mult || 1;
+        const effectiveRate = baseRate * mult;
+        const totalCost = totalArea * effectiveRate;
+        const structure = totalCost * 0.45;
+        const finishing = totalCost * 0.30;
+        const plumbing = totalCost * 0.08;
+        const electrical = totalCost * 0.07;
+        const misc = totalCost * 0.10;
+        return { totalArea, effectiveRate, totalCost, structure, finishing, plumbing, electrical, misc };
+    }, [builtUpArea, floors, quality, cityTier]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">🏠 Construction Cost Estimator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Built-Up Area (per floor)" value={builtUpArea} onChange={setBuiltUpArea} unit="sq ft" min={100} step={50} />
+                <InputField label="Number of Floors" value={floors} onChange={setFloors} min={1} max={10} />
+                <SelectField label="Construction Quality" value={quality} onChange={setQuality} options={Object.entries(QUALITY_RATES).map(([k, v]) => ({ value: k, label: v.label }))} />
+                <SelectField label="City Tier" value={cityTier} onChange={setCityTier} options={Object.entries(CITY_MULT).map(([k, v]) => ({ value: k, label: v.label }))} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Summary</h4>
+                <ResultRow label="Total Built-Up Area" value={fmtInt(result.totalArea)} unit="sq ft" />
+                <ResultRow label="Effective Rate" value={`₹${fmtInt(result.effectiveRate)}`} unit="/sq ft" />
+                <ResultRow label="Estimated Total Cost" value={`₹${fmtInt(result.totalCost)}`} />
+                <h4>Cost Breakdown (Approx)</h4>
+                <ResultRow label="Structure (45%)" value={`₹${fmtInt(result.structure)}`} />
+                <ResultRow label="Finishing (30%)" value={`₹${fmtInt(result.finishing)}`} />
+                <ResultRow label="Plumbing (8%)" value={`₹${fmtInt(result.plumbing)}`} />
+                <ResultRow label="Electrical (7%)" value={`₹${fmtInt(result.electrical)}`} />
+                <ResultRow label="Misc / Contingency (10%)" value={`₹${fmtInt(result.misc)}`} />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── CARPET AREA CALCULATOR ──────────── */
+function CarpetAreaCalc() {
+    const [inputType, setInputType] = useState("carpet");
+    const [inputArea, setInputArea] = useState(1000);
+    const [builtUpLoading, setBuiltUpLoading] = useState(20);
+    const [superLoading, setSuperLoading] = useState(35);
+
+    const result = useMemo(() => {
+        let carpet = 0, builtUp = 0, superBuiltUp = 0;
+        const buFactor = 1 + builtUpLoading / 100;
+        const sbuFactor = 1 + superLoading / 100;
+        if (inputType === "carpet") {
+            carpet = inputArea;
+            builtUp = carpet * buFactor;
+            superBuiltUp = builtUp * sbuFactor;
+        } else if (inputType === "builtup") {
+            builtUp = inputArea;
+            carpet = builtUp / buFactor;
+            superBuiltUp = builtUp * sbuFactor;
+        } else {
+            superBuiltUp = inputArea;
+            builtUp = superBuiltUp / sbuFactor;
+            carpet = builtUp / buFactor;
+        }
+        const carpetM2 = carpet * 0.0929;
+        const builtUpM2 = builtUp * 0.0929;
+        const superM2 = superBuiltUp * 0.0929;
+        return { carpet, builtUp, superBuiltUp, carpetM2, builtUpM2, superM2 };
+    }, [inputType, inputArea, builtUpLoading, superLoading]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">📐 Carpet Area Calculator</h3>
+            <div className="con-calc__inputs">
+                <SelectField label="I Know The" value={inputType} onChange={setInputType} options={[
+                    { value: "carpet", label: "Carpet Area" },
+                    { value: "builtup", label: "Built-Up Area" },
+                    { value: "super", label: "Super Built-Up Area" },
+                ]} />
+                <InputField label={inputType === "carpet" ? "Carpet Area" : inputType === "builtup" ? "Built-Up Area" : "Super Built-Up Area"} value={inputArea} onChange={setInputArea} unit="sq ft" min={100} step={10} />
+                <InputField label="Built-Up Loading %" value={builtUpLoading} onChange={setBuiltUpLoading} unit="%" min={10} max={40} />
+                <InputField label="Super Built-Up Loading %" value={superLoading} onChange={setSuperLoading} unit="%" min={20} max={60} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Area Conversion (sq ft)</h4>
+                <ResultRow label="Carpet Area" value={fmtInt(result.carpet)} unit="sq ft" />
+                <ResultRow label="Built-Up Area" value={fmtInt(result.builtUp)} unit="sq ft" />
+                <ResultRow label="Super Built-Up Area" value={fmtInt(result.superBuiltUp)} unit="sq ft" />
+                <h4>Area (sq m)</h4>
+                <ResultRow label="Carpet Area" value={fmt(result.carpetM2, 1)} unit="sq m" />
+                <ResultRow label="Built-Up Area" value={fmt(result.builtUpM2, 1)} unit="sq m" />
+                <ResultRow label="Super Built-Up Area" value={fmt(result.superM2, 1)} unit="sq m" />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── STEEL QUANTITY CALCULATOR ──────────── */
+function SteelQuantityCalc() {
+    const [builtUpArea, setBuiltUpArea] = useState(1000);
+    const [floors, setFloors] = useState(2);
+    const [structureType, setStructureType] = useState("residential");
+    const [steelPrice, setSteelPrice] = useState(55);
+
+    const STEEL_RATES: Record<string, { kgPerSqFt: number; label: string }> = {
+        residential: { kgPerSqFt: 4.5, label: "Residential (3.5–5.5 kg/sq ft)" },
+        commercial: { kgPerSqFt: 6, label: "Commercial (5–7 kg/sq ft)" },
+        industrial: { kgPerSqFt: 8, label: "Industrial (7–10 kg/sq ft)" },
+    };
+
+    const result = useMemo(() => {
+        const totalArea = builtUpArea * floors;
+        const rate = STEEL_RATES[structureType]?.kgPerSqFt || 4.5;
+        const steelKg = totalArea * rate;
+        const steelTons = steelKg / 1000;
+        const cost = steelKg * steelPrice;
+        const bars8mm = Math.ceil(steelKg * 0.10 / 3.95);
+        const bars10mm = Math.ceil(steelKg * 0.15 / 6.17);
+        const bars12mm = Math.ceil(steelKg * 0.30 / 8.88);
+        const bars16mm = Math.ceil(steelKg * 0.30 / 15.78);
+        const bars20mm = Math.ceil(steelKg * 0.15 / 24.66);
+        return { totalArea, steelKg, steelTons, cost, bars8mm, bars10mm, bars12mm, bars16mm, bars20mm };
+    }, [builtUpArea, floors, structureType, steelPrice]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">⚙️ Steel Quantity Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Built-Up Area (per floor)" value={builtUpArea} onChange={setBuiltUpArea} unit="sq ft" min={100} step={50} />
+                <InputField label="Number of Floors" value={floors} onChange={setFloors} min={1} max={10} />
+                <SelectField label="Structure Type" value={structureType} onChange={setStructureType} options={Object.entries(STEEL_RATES).map(([k, v]) => ({ value: k, label: v.label }))} />
+                <InputField label="Steel Price" value={steelPrice} onChange={setSteelPrice} unit="₹/kg" min={0} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Steel Quantity</h4>
+                <ResultRow label="Total Built-Up Area" value={fmtInt(result.totalArea)} unit="sq ft" />
+                <ResultRow label="Total Steel" value={fmt(result.steelKg, 0)} unit="kg" />
+                <ResultRow label="Total Steel" value={fmt(result.steelTons, 2)} unit="metric tons" />
+                <h4>Bars by Diameter (approx)</h4>
+                <ResultRow label="8 mm (stirrups)" value={fmtInt(result.bars8mm)} unit="bars (12m)" />
+                <ResultRow label="10 mm" value={fmtInt(result.bars10mm)} unit="bars (12m)" />
+                <ResultRow label="12 mm" value={fmtInt(result.bars12mm)} unit="bars (12m)" />
+                <ResultRow label="16 mm" value={fmtInt(result.bars16mm)} unit="bars (12m)" />
+                <ResultRow label="20 mm" value={fmtInt(result.bars20mm)} unit="bars (12m)" />
+                <h4>Cost</h4>
+                <ResultRow label="Estimated Steel Cost" value={`₹${fmtInt(result.cost)}`} />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── ANTI-TERMITE CALCULATOR ──────────── */
+function AntiTermiteCalc() {
+    const [plinthArea, setPlinthArea] = useState(1000);
+    const [perimeterLength, setPerimeterLength] = useState(130);
+    const [trenchDepth, setTrenchDepth] = useState(1.5);
+    const [trenchWidth, setTrenchWidth] = useState(1);
+    const [chemConc, setChemConc] = useState(1);
+
+    const result = useMemo(() => {
+        const soilTreatmentArea = plinthArea * 0.0929;
+        const soilRate = 5;
+        const soilSolution = soilTreatmentArea * soilRate;
+        const trenchVol = perimeterLength * 0.3048 * trenchDepth * 0.3048 * trenchWidth * 0.3048;
+        const trenchRate = 7.5;
+        const trenchSolution = trenchVol * trenchRate;
+        const totalSolution = soilSolution + trenchSolution;
+        const chemicalLiters = totalSolution * (chemConc / 100);
+        const waterLiters = totalSolution - chemicalLiters;
+        return { soilSolution, trenchSolution, totalSolution, chemicalLiters, waterLiters };
+    }, [plinthArea, perimeterLength, trenchDepth, trenchWidth, chemConc]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">🐜 Anti-Termite Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Plinth Area" value={plinthArea} onChange={setPlinthArea} unit="sq ft" min={100} step={50} />
+                <InputField label="Foundation Perimeter" value={perimeterLength} onChange={setPerimeterLength} unit="ft" min={10} />
+                <InputField label="Trench Depth" value={trenchDepth} onChange={setTrenchDepth} unit="ft" min={0.5} step={0.5} />
+                <InputField label="Trench Width" value={trenchWidth} onChange={setTrenchWidth} unit="ft" min={0.5} step={0.5} />
+                <InputField label="Chemical Concentration" value={chemConc} onChange={setChemConc} unit="%" min={0.5} max={5} step={0.25} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Solution Required</h4>
+                <ResultRow label="Soil Treatment" value={fmt(result.soilSolution, 1)} unit="liters" />
+                <ResultRow label="Trench Treatment" value={fmt(result.trenchSolution, 1)} unit="liters" />
+                <ResultRow label="Total Solution" value={fmt(result.totalSolution, 1)} unit="liters" />
+                <h4>Chemical Breakdown</h4>
+                <ResultRow label="Chemical (concentrate)" value={fmt(result.chemicalLiters, 2)} unit="liters" />
+                <ResultRow label="Water" value={fmt(result.waterLiters, 1)} unit="liters" />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── COMPOUND WALL CALCULATOR ──────────── */
+function CompoundWallCalc() {
+    const [wallLength, setWallLength] = useState(100);
+    const [wallHeight, setWallHeight] = useState(7);
+    const [pillarSpacing, setPillarSpacing] = useState(10);
+    const [panelCost, setPanelCost] = useState(350);
+    const [pillarCost, setPillarCost] = useState(1500);
+
+    const result = useMemo(() => {
+        const pillars = Math.ceil(wallLength / pillarSpacing) + 1;
+        const panelsPerBay = Math.ceil(wallHeight / 1.5);
+        const totalPanels = (pillars - 1) * panelsPerBay;
+        const pillarFoundVol = pillars * 1.5 * 1.5 * 2;
+        const panelTotalCost = totalPanels * panelCost;
+        const pillarTotalCost = pillars * pillarCost;
+        const foundationCost = pillarFoundVol * 130;
+        const totalCost = panelTotalCost + pillarTotalCost + foundationCost;
+        return { pillars, panelsPerBay, totalPanels, pillarFoundVol, panelTotalCost, pillarTotalCost, foundationCost, totalCost };
+    }, [wallLength, wallHeight, pillarSpacing, panelCost, pillarCost]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">🧱 Compound Wall Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Total Wall Length" value={wallLength} onChange={setWallLength} unit="ft" min={10} />
+                <InputField label="Wall Height" value={wallHeight} onChange={setWallHeight} unit="ft" min={3} max={12} />
+                <InputField label="Pillar Spacing" value={pillarSpacing} onChange={setPillarSpacing} unit="ft" min={5} max={15} />
+                <InputField label="Panel Cost (each)" value={panelCost} onChange={setPanelCost} unit="₹" min={0} />
+                <InputField label="Pillar Cost (each)" value={pillarCost} onChange={setPillarCost} unit="₹" min={0} />
+            </div>
+            <div className="con-calc__results">
+                <h4>Quantities</h4>
+                <ResultRow label="Pillars Needed" value={fmtInt(result.pillars)} unit="pillars" />
+                <ResultRow label="Panels per Bay" value={fmtInt(result.panelsPerBay)} unit="panels" />
+                <ResultRow label="Total Panels" value={fmtInt(result.totalPanels)} unit="panels" />
+                <ResultRow label="Foundation Concrete" value={fmt(result.pillarFoundVol, 1)} unit="cu ft" />
+                <h4>Cost</h4>
+                <ResultRow label="Panels" value={`₹${fmtInt(result.panelTotalCost)}`} />
+                <ResultRow label="Pillars" value={`₹${fmtInt(result.pillarTotalCost)}`} />
+                <ResultRow label="Foundation" value={`₹${fmtInt(result.foundationCost)}`} />
+                <ResultRow label="Total Estimated Cost" value={`₹${fmtInt(result.totalCost)}`} />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── COUNTERTOP CALCULATOR ──────────── */
+function CountertopCalc() {
+    const [runs, setRuns] = useState(10);
+    const [depth, setDepth] = useState(25);
+    const [material, setMaterial] = useState("granite");
+    const [includeBacksplash, setIncludeBacksplash] = useState(true);
+    const [backsplashHeight, setBacksplashHeight] = useState(4);
+
+    const MATERIALS: Record<string, { price: number; label: string }> = {
+        laminate: { price: 15, label: "Laminate ($10–$20/sq ft)" },
+        granite: { price: 50, label: "Granite ($40–$60/sq ft)" },
+        quartz: { price: 65, label: "Quartz ($50–$80/sq ft)" },
+        marble: { price: 75, label: "Marble ($60–$100/sq ft)" },
+        butcher: { price: 45, label: "Butcher Block ($35–$55/sq ft)" },
+        concrete_ct: { price: 70, label: "Concrete ($60–$80/sq ft)" },
+    };
+
+    const result = useMemo(() => {
+        const depthFt = depth / 12;
+        const counterArea = runs * depthFt;
+        const bsArea = includeBacksplash ? runs * (backsplashHeight / 12) : 0;
+        const totalArea = counterArea + bsArea;
+        const pricePerSqFt = MATERIALS[material]?.price || 50;
+        const materialCost = totalArea * pricePerSqFt;
+        const installCost = totalArea * 25;
+        const totalCost = materialCost + installCost;
+        const slabs = Math.ceil(totalArea / 45);
+        return { counterArea, bsArea, totalArea, materialCost, installCost, totalCost, slabs };
+    }, [runs, depth, material, includeBacksplash, backsplashHeight]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">🍳 Countertop Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Counter Length (total runs)" value={runs} onChange={setRuns} unit="ft" min={1} />
+                <InputField label="Counter Depth" value={depth} onChange={setDepth} unit="in" min={12} max={42} />
+                <SelectField label="Material" value={material} onChange={setMaterial} options={Object.entries(MATERIALS).map(([k, v]) => ({ value: k, label: v.label }))} />
+                <div className="con-input">
+                    <label className="con-input__label"><input type="checkbox" checked={includeBacksplash} onChange={(e) => setIncludeBacksplash(e.target.checked)} /> Include Backsplash</label>
+                </div>
+                {includeBacksplash && <InputField label="Backsplash Height" value={backsplashHeight} onChange={setBacksplashHeight} unit="in" min={2} max={18} />}
+            </div>
+            <div className="con-calc__results">
+                <h4>Area</h4>
+                <ResultRow label="Counter Area" value={fmt(result.counterArea)} unit="sq ft" />
+                {includeBacksplash && <ResultRow label="Backsplash Area" value={fmt(result.bsArea)} unit="sq ft" />}
+                <ResultRow label="Total Area" value={fmt(result.totalArea)} unit="sq ft" />
+                <ResultRow label="Slabs Needed (~45 sq ft each)" value={fmtInt(result.slabs)} unit="slabs" />
+                <h4>Cost</h4>
+                <ResultRow label="Material Cost" value={`$${fmtInt(result.materialCost)}`} />
+                <ResultRow label="Installation (~$25/sq ft)" value={`$${fmtInt(result.installCost)}`} />
+                <ResultRow label="Total Estimated Cost" value={`$${fmtInt(result.totalCost)}`} />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── SOLAR ROOFTOP CALCULATOR ──────────── */
+function SolarRooftopCalc() {
+    const [roofArea, setRoofArea] = useState(500);
+    const [sunHours, setSunHours] = useState(5);
+    const [panelWatt, setPanelWatt] = useState(400);
+    const [electricityRate, setElectricityRate] = useState(8);
+    const [systemCost, setSystemCost] = useState(55000);
+
+    const result = useMemo(() => {
+        const usableArea = roofArea * 0.7;
+        const panelArea = 18;
+        const panelCount = Math.floor(usableArea / panelArea);
+        const systemKW = (panelCount * panelWatt) / 1000;
+        const dailyKWh = systemKW * sunHours * 0.80;
+        const annualKWh = dailyKWh * 365;
+        const annualSavings = annualKWh * electricityRate;
+        const totalSystemCost = systemKW * systemCost;
+        const paybackYears = annualSavings > 0 ? totalSystemCost / annualSavings : 0;
+        const co2Saved = annualKWh * 0.82;
+        return { panelCount, systemKW, dailyKWh, annualKWh, annualSavings, totalSystemCost, paybackYears, co2Saved };
+    }, [roofArea, sunHours, panelWatt, electricityRate, systemCost]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">☀️ Solar Rooftop Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Available Roof Area" value={roofArea} onChange={setRoofArea} unit="sq ft" min={50} step={10} />
+                <InputField label="Peak Sun Hours" value={sunHours} onChange={setSunHours} unit="hrs/day" min={2} max={8} step={0.5} />
+                <InputField label="Panel Wattage" value={panelWatt} onChange={setPanelWatt} unit="W" min={250} max={600} step={50} />
+                <InputField label="Electricity Rate" value={electricityRate} onChange={setElectricityRate} unit="₹/kWh" min={1} step={0.5} />
+                <InputField label="System Cost" value={systemCost} onChange={setSystemCost} unit="₹/kW" min={30000} step={5000} />
+            </div>
+            <div className="con-calc__results">
+                <h4>System Size</h4>
+                <ResultRow label="Panels" value={fmtInt(result.panelCount)} unit="panels" />
+                <ResultRow label="System Capacity" value={fmt(result.systemKW, 1)} unit="kW" />
+                <h4>Generation</h4>
+                <ResultRow label="Daily Output" value={fmt(result.dailyKWh, 1)} unit="kWh/day" />
+                <ResultRow label="Annual Output" value={fmtInt(result.annualKWh)} unit="kWh/year" />
+                <ResultRow label="CO₂ Saved" value={fmt(result.co2Saved / 1000, 1)} unit="tons/year" />
+                <h4>Financials</h4>
+                <ResultRow label="System Cost" value={`₹${fmtInt(result.totalSystemCost)}`} />
+                <ResultRow label="Annual Savings" value={`₹${fmtInt(result.annualSavings)}`} />
+                <ResultRow label="Payback Period" value={fmt(result.paybackYears, 1)} unit="years" />
+            </div>
+        </div>
+    );
+}
+
+/* ──────────── SOLAR WATER HEATER CALCULATOR ──────────── */
+function SolarWaterHeaterCalc() {
+    const [familySize, setFamilySize] = useState(4);
+    const [usagePerPerson, setUsagePerPerson] = useState(50);
+    const [climate, setClimate] = useState("moderate");
+    const [electricityRate, setElectricityRate] = useState(8);
+
+    const CLIMATE_FACTOR: Record<string, { factor: number; label: string }> = {
+        hot: { factor: 0.85, label: "Hot / Tropical (High solar)" },
+        moderate: { factor: 0.70, label: "Moderate / Temperate" },
+        cold: { factor: 0.55, label: "Cold / Cloudy" },
+    };
+
+    const result = useMemo(() => {
+        const dailyHotWater = familySize * usagePerPerson;
+        const tankCapacity = Math.ceil(dailyHotWater / 25) * 25;
+        const collectorArea = Math.ceil(dailyHotWater / 50);
+        const solarFraction = CLIMATE_FACTOR[climate]?.factor || 0.7;
+        const energyPerLiter = 0.05;
+        const dailySavedKWh = dailyHotWater * energyPerLiter * solarFraction;
+        const annualSavedKWh = dailySavedKWh * 365;
+        const annualSavings = annualSavedKWh * electricityRate;
+        const systemCost = tankCapacity * 100;
+        const paybackYears = annualSavings > 0 ? systemCost / annualSavings : 0;
+        return { dailyHotWater, tankCapacity, collectorArea, solarFraction, dailySavedKWh, annualSavedKWh, annualSavings, systemCost, paybackYears };
+    }, [familySize, usagePerPerson, climate, electricityRate]);
+
+    return (
+        <div className="con-calc">
+            <h3 className="con-calc__title">🌊 Solar Water Heater Calculator</h3>
+            <div className="con-calc__inputs">
+                <InputField label="Family Members" value={familySize} onChange={setFamilySize} min={1} max={20} />
+                <InputField label="Hot Water per Person" value={usagePerPerson} onChange={setUsagePerPerson} unit="liters/day" min={20} max={100} />
+                <SelectField label="Climate Zone" value={climate} onChange={setClimate} options={Object.entries(CLIMATE_FACTOR).map(([k, v]) => ({ value: k, label: v.label }))} />
+                <InputField label="Electricity Rate" value={electricityRate} onChange={setElectricityRate} unit="₹/kWh" min={1} step={0.5} />
+            </div>
+            <div className="con-calc__results">
+                <h4>System Sizing</h4>
+                <ResultRow label="Daily Hot Water Need" value={fmtInt(result.dailyHotWater)} unit="liters" />
+                <ResultRow label="Recommended Tank" value={fmtInt(result.tankCapacity)} unit="liters" />
+                <ResultRow label="Collector Area" value={fmtInt(result.collectorArea)} unit="sq m" />
+                <ResultRow label="Solar Fraction" value={fmt(result.solarFraction * 100, 0)} unit="%" />
+                <h4>Energy Savings</h4>
+                <ResultRow label="Daily Savings" value={fmt(result.dailySavedKWh, 1)} unit="kWh" />
+                <ResultRow label="Annual Savings" value={fmtInt(result.annualSavedKWh)} unit="kWh" />
+                <h4>Financials</h4>
+                <ResultRow label="Estimated System Cost" value={`₹${fmtInt(result.systemCost)}`} />
+                <ResultRow label="Annual Monetary Savings" value={`₹${fmtInt(result.annualSavings)}`} />
+                <ResultRow label="Payback Period" value={fmt(result.paybackYears, 1)} unit="years" />
+            </div>
+        </div>
+    );
+}
+
+
 const CALC_MAP: Record<string, React.FC> = {
     "concrete": ConcreteCalc,
     "concrete-block": ConcreteBlockCalc,
@@ -8754,6 +9377,17 @@ const CALC_MAP: Record<string, React.FC> = {
     "clapboard-siding": ClapboardSidingCalc,
     "siding-material": SidingMaterialCalc,
     "vinyl-siding": VinylSidingCalc,
+    "plastering": PlasteringCalc,
+    "pcc": PCCCalc,
+    "rcc": RCCCalc,
+    "construction-cost": ConstructionCostCalc,
+    "carpet-area": CarpetAreaCalc,
+    "steel-quantity": SteelQuantityCalc,
+    "anti-termite": AntiTermiteCalc,
+    "compound-wall": CompoundWallCalc,
+    "countertop": CountertopCalc,
+    "solar-rooftop": SolarRooftopCalc,
+    "solar-water-heater": SolarWaterHeaterCalc,
 };
 
 export default function ConstructionCalculatorCore({ calcType }: { calcType: string }) {

@@ -24666,5 +24666,464 @@
     "stars": 5,
     "calcType": "mpg-l100km",
     "keywords": "mpg to l100km, liters per 100km to mpg, fuel economy converter, km/L to mpg, mpg imperial vs us"
+  },
+  {
+    "id": "plastering-calculator",
+    "category": "construction",
+    "title": "Plastering Calculator",
+    "slug": "plastering-calculator",
+    "categorySlug": "construction-calculators",
+    "icon": "🏗️",
+    "calcType": "plastering",
+    "description": "Calculate cement and sand needed for plastering walls and ceilings. Enter wall area, plaster thickness, and mix ratio to get material quantities in bags and cubic feet with cost estimate.",
+    "stars": 5,
+    "defaults": {
+      "amount": 100,
+      "rate": 12,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 1,
+        "max": 5000,
+        "step": 1
+      },
+      "rate": {
+        "min": 6,
+        "max": 25,
+        "step": 1
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "plastering calculator, cement for plastering, sand for plastering, plaster thickness calculator, wall plastering material, plastering cost calculator",
+    "links": {
+      "related": [
+        "concrete-calculator",
+        "brick-calculator",
+        "mortar-calculator",
+        "paint-calculator"
+      ]
+    }
+  },
+  {
+    "id": "pcc-calculator",
+    "category": "construction",
+    "title": "PCC Calculator",
+    "slug": "pcc-calculator",
+    "categorySlug": "construction-calculators",
+    "icon": "🧱",
+    "calcType": "pcc",
+    "description": "Calculate cement, sand, and aggregate for Plain Cement Concrete (PCC) work. Choose from standard mix ratios (1:2:4, 1:3:6, 1:4:8, 1:1.5:3) and get material quantities with dry volume factor.",
+    "stars": 5,
+    "defaults": {
+      "amount": 10,
+      "rate": 10,
+      "tenure": 4
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 1,
+        "max": 200,
+        "step": 1
+      },
+      "rate": {
+        "min": 1,
+        "max": 200,
+        "step": 1
+      },
+      "tenure": {
+        "min": 1,
+        "max": 48,
+        "step": 1
+      }
+    },
+    "keywords": "PCC calculator, plain cement concrete calculator, PCC mix ratio, 1:2:4 concrete, cement sand aggregate calculator, PCC material calculator",
+    "links": {
+      "related": [
+        "concrete-calculator",
+        "rcc-calculator",
+        "concrete-mix-calculator",
+        "foundation-calculator"
+      ]
+    }
+  },
+  {
+    "id": "rcc-calculator",
+    "category": "construction",
+    "title": "RCC Calculator",
+    "slug": "rcc-calculator",
+    "categorySlug": "construction-calculators",
+    "icon": "🏛️",
+    "calcType": "rcc",
+    "description": "Calculate cement, sand, aggregate, and steel reinforcement for Reinforced Cement Concrete (RCC) work. Includes steel percentage input for beams, columns, slabs, and footings with material and cost breakdown.",
+    "stars": 5,
+    "defaults": {
+      "amount": 10,
+      "rate": 10,
+      "tenure": 4
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 1,
+        "max": 200,
+        "step": 1
+      },
+      "rate": {
+        "min": 1,
+        "max": 200,
+        "step": 1
+      },
+      "tenure": {
+        "min": 1,
+        "max": 48,
+        "step": 1
+      }
+    },
+    "keywords": "RCC calculator, reinforced cement concrete calculator, RCC steel calculation, RCC material calculator, concrete with steel calculator, RCC mix design",
+    "links": {
+      "related": [
+        "pcc-calculator",
+        "concrete-calculator",
+        "rebar-calculator",
+        "steel-quantity-calculator"
+      ]
+    }
+  },
+  {
+    "id": "construction-cost-estimator",
+    "category": "construction",
+    "title": "Construction Cost Estimator",
+    "slug": "construction-cost-estimator",
+    "categorySlug": "construction-calculators",
+    "icon": "🏠",
+    "calcType": "construction-cost",
+    "description": "Estimate total house construction cost based on built-up area, number of floors, construction quality, and city tier. Get a detailed breakdown of material, labor, and finishing costs.",
+    "stars": 5,
+    "defaults": {
+      "amount": 1000,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 100,
+        "max": 10000,
+        "step": 50
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "construction cost estimator, house construction cost, building cost calculator, cost per square foot construction, house building cost, construction budget calculator",
+    "links": {
+      "related": [
+        "concrete-calculator",
+        "brick-calculator",
+        "steel-quantity-calculator",
+        "carpet-area-calculator"
+      ]
+    }
+  },
+  {
+    "id": "carpet-area-calculator",
+    "category": "construction",
+    "title": "Carpet Area Calculator",
+    "slug": "carpet-area-calculator",
+    "categorySlug": "construction-calculators",
+    "icon": "📐",
+    "calcType": "carpet-area",
+    "description": "Convert between carpet area, built-up area, and super built-up area for real estate. Enter any one area to calculate the other two using standard loading percentages. RERA compliant.",
+    "stars": 5,
+    "defaults": {
+      "amount": 1000,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 100,
+        "max": 10000,
+        "step": 10
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "carpet area calculator, built up area calculator, super built up area, RERA carpet area, carpet to built up conversion, flat area calculator",
+    "links": {
+      "related": [
+        "square-footage-calculator",
+        "construction-cost-estimator",
+        "flooring-calculator"
+      ]
+    }
+  },
+  {
+    "id": "steel-quantity-calculator",
+    "category": "construction",
+    "title": "Steel Quantity Calculator",
+    "slug": "steel-quantity-calculator",
+    "categorySlug": "construction-calculators",
+    "icon": "⚙️",
+    "calcType": "steel-quantity",
+    "description": "Estimate total steel reinforcement needed for house construction based on built-up area, structure type, and number of floors. Get weight in kg/tons and number of bars by diameter.",
+    "stars": 5,
+    "defaults": {
+      "amount": 1000,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 100,
+        "max": 10000,
+        "step": 50
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "steel quantity calculator, steel for house construction, reinforcement calculator, steel weight calculator, TMT bar calculator, construction steel estimate",
+    "links": {
+      "related": [
+        "rcc-calculator",
+        "rebar-calculator",
+        "construction-cost-estimator",
+        "concrete-calculator"
+      ]
+    }
+  },
+  {
+    "id": "anti-termite-calculator",
+    "category": "construction",
+    "title": "Anti-Termite Calculator",
+    "slug": "anti-termite-calculator",
+    "categorySlug": "construction-calculators",
+    "icon": "🐜",
+    "calcType": "anti-termite",
+    "description": "Calculate chemical solution quantity for pre-construction anti-termite treatment. Enter plinth area, treatment depth, and chemical concentration to get total solution needed per IS 6313 standard.",
+    "stars": 4,
+    "defaults": {
+      "amount": 1000,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 100,
+        "max": 10000,
+        "step": 50
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "anti termite calculator, termite treatment calculator, pre construction termite treatment, anti termite chemical quantity, IS 6313 termite treatment",
+    "links": {
+      "related": [
+        "foundation-calculator",
+        "construction-cost-estimator",
+        "excavation-calculator"
+      ]
+    }
+  },
+  {
+    "id": "compound-wall-calculator",
+    "category": "construction",
+    "title": "Compound Wall Calculator",
+    "slug": "compound-wall-calculator",
+    "categorySlug": "construction-calculators",
+    "icon": "🧱",
+    "calcType": "compound-wall",
+    "description": "Calculate precast panels, pillars, and foundation concrete for compound/boundary wall construction. Enter total wall length, height, and pillar spacing to get complete material quantities and cost.",
+    "stars": 4,
+    "defaults": {
+      "amount": 100,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 10,
+        "max": 5000,
+        "step": 5
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "compound wall calculator, boundary wall calculator, precast wall calculator, compound wall cost, fencing calculator, boundary wall material",
+    "links": {
+      "related": [
+        "fence-calculator",
+        "concrete-calculator",
+        "brick-calculator",
+        "construction-cost-estimator"
+      ]
+    }
+  },
+  {
+    "id": "countertop-calculator",
+    "category": "construction",
+    "title": "Countertop Calculator",
+    "slug": "countertop-calculator",
+    "categorySlug": "construction-calculators",
+    "icon": "🍳",
+    "calcType": "countertop",
+    "description": "Calculate countertop material for kitchen platforms and vanities. Enter counter dimensions and material type (granite, quartz, marble, laminate) to get area, slabs needed, and cost estimate.",
+    "stars": 4,
+    "defaults": {
+      "amount": 10,
+      "rate": 25,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 1,
+        "max": 100,
+        "step": 1
+      },
+      "rate": {
+        "min": 12,
+        "max": 42,
+        "step": 1
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "countertop calculator, kitchen countertop estimator, granite countertop calculator, quartz countertop cost, kitchen platform calculator, countertop square footage",
+    "links": {
+      "related": [
+        "backsplash-calculator",
+        "tile-calculator",
+        "kitchen-renovation-cost-calculator",
+        "square-footage-calculator"
+      ]
+    }
+  },
+  {
+    "id": "solar-rooftop-calculator",
+    "category": "construction",
+    "title": "Solar Rooftop Calculator",
+    "slug": "solar-rooftop-calculator",
+    "categorySlug": "construction-calculators",
+    "icon": "☀️",
+    "calcType": "solar-rooftop",
+    "description": "Estimate solar panel system size for your rooftop. Enter roof area, monthly electricity bill, and location to get system capacity (kW), panel count, annual generation, and payback period.",
+    "stars": 5,
+    "defaults": {
+      "amount": 500,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 50,
+        "max": 5000,
+        "step": 10
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "solar rooftop calculator, solar panel calculator, solar system size calculator, rooftop solar cost, solar energy calculator, solar panel for home",
+    "links": {
+      "related": [
+        "solar-water-heater-calculator",
+        "electrical-cost-calculator",
+        "roofing-calculator",
+        "square-footage-calculator"
+      ]
+    }
+  },
+  {
+    "id": "solar-water-heater-calculator",
+    "category": "construction",
+    "title": "Solar Water Heater Calculator",
+    "slug": "solar-water-heater-calculator",
+    "categorySlug": "construction-calculators",
+    "icon": "🌊",
+    "calcType": "solar-water-heater",
+    "description": "Estimate the right solar water heater size for your household. Enter family size, daily hot water usage, and climate zone to get tank capacity, collector area, and annual energy savings.",
+    "stars": 4,
+    "defaults": {
+      "amount": 4,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": {
+        "min": 1,
+        "max": 20,
+        "step": 1
+      },
+      "rate": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "tenure": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      }
+    },
+    "keywords": "solar water heater calculator, solar water heater size, solar geyser calculator, hot water solar panel, solar water heater for home, solar heater capacity",
+    "links": {
+      "related": [
+        "solar-rooftop-calculator",
+        "furnace-btu-calculator",
+        "pipe-volume-calculator"
+      ]
+    }
   }
 ]
