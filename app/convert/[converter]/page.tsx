@@ -7,7 +7,6 @@ import AuthorBadge from "@/components/shared/AuthorBadge";
 import ConversionCalculatorCore from "@/components/calculator/ConversionCalculatorCore";
 import DynamicExplanation from "@/components/shared/DynamicExplanation";
 import FAQAccordion from "@/components/shared/FAQAccordion";
-import TrendingCalculations from "@/components/shared/TrendingCalculations";
 import RelatedCalculators from "@/components/shared/RelatedCalculators";
 import GuideCTA from "@/components/shared/GuideCTA";
 import GlossaryChip from "@/components/shared/GlossaryChip";
@@ -4771,28 +4770,67 @@ export default async function ConvertHubPage({ params }: PageProps) {
 
             <h1 className="t-h1" style={{ marginBottom: "var(--s-2)" }}>{calc.title}</h1>
             <p className="t-body text-muted" style={{ marginBottom: "var(--s-6)" }}>{hub.subtitle}</p>
-            <AuthorBadge categoryKey="utility" />
 
-            <div className="calculator-layout">
-                <div className="calculator-layout__main">
+            <div className="layout-2col">
+                <div className="layout-2col__main">
                     <ConversionCalculatorCore calcType={calc.calcType || "ml-to-gram"} />
+
+                    <AuthorBadge categoryKey="utility" />
+
+                    <DynamicExplanation
+                        heading={hub.explanation?.heading}
+                        paragraphs={hub.explanation?.paragraphs}
+                        highlight={hub.explanation?.highlight}
+                        contentHTML={hub.contentHTML}
+                    />
+
+                    {hub.faq && <FAQAccordion title={`${calc.title} FAQ`} items={hub.faq} />}
+                    <RelatedCalculators calcId={calc.id} />
+                    <GuideCTA calcId={calc.id} />
+                    <GlossaryChip calcId={calc.id} />
                 </div>
-                <aside className="calculator-layout__sidebar">
-                    <TrendingCalculations />
+
+                <aside className="layout-2col__sidebar">
+                    <nav style={{
+                        background: "var(--n-surface)",
+                        border: "1px solid var(--n-border)",
+                        borderRadius: "var(--r-md)",
+                        padding: "var(--s-5)",
+                    }}>
+                        <h3 style={{ fontSize: "var(--t-body)", fontWeight: 700, marginBottom: "var(--s-4)", display: "flex", alignItems: "center", gap: "var(--s-2)" }}>
+                            🔄 Unit Conversion Tools
+                        </h3>
+                        {[
+                            { label: "mL to Grams", href: "/convert/ml-to-gram-converter" },
+                            { label: "Grams to mL", href: "/convert/gram-to-ml-converter" },
+                            { label: "Grams to Cups", href: "/convert/gram-to-cup-converter" },
+                            { label: "Tablespoons to Grams", href: "/convert/tbsp-to-gram-converter" },
+                            { label: "Grams to Teaspoons", href: "/convert/gram-to-tsp-converter" },
+                            { label: "Liters to kg", href: "/convert/liter-to-kg-converter" },
+                            { label: "kg to Liters", href: "/convert/kg-to-liter-converter" },
+                            { label: "mg to mL", href: "/convert/mg-to-ml-converter" },
+                            { label: "Inches to cm", href: "/convert/inch-to-cm-converter" },
+                            { label: "Stone to kg", href: "/convert/stone-to-kg-converter" },
+                        ].map(link => (
+                            <a key={link.href} href={link.href} style={{
+                                display: "flex", alignItems: "center", justifyContent: "space-between",
+                                padding: "var(--s-3) 0", borderBottom: "1px solid var(--n-border)",
+                                color: "var(--n-text-secondary)", fontSize: "var(--t-body-sm)",
+                                textDecoration: "none", transition: "color 0.2s",
+                            }}>
+                                {link.label} <span style={{ color: "var(--n-text-muted)" }}>→</span>
+                            </a>
+                        ))}
+                        <a href="/convert" style={{
+                            display: "block", marginTop: "var(--s-4)",
+                            color: "var(--n-primary)", fontSize: "var(--t-body-sm)",
+                            fontWeight: 600, textDecoration: "none",
+                        }}>
+                            View all Converters →
+                        </a>
+                    </nav>
                 </aside>
             </div>
-
-            <DynamicExplanation
-                heading={hub.explanation?.heading}
-                paragraphs={hub.explanation?.paragraphs}
-                highlight={hub.explanation?.highlight}
-                contentHTML={hub.contentHTML}
-            />
-
-            {hub.faq && <FAQAccordion title={`${calc.title} FAQ`} items={hub.faq} />}
-            <RelatedCalculators calcId={calc.id} />
-            <GuideCTA calcId={calc.id} />
-            <GlossaryChip calcId={calc.id} />
         </main >
     );
 }
