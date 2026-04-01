@@ -304,6 +304,13 @@ const IN_CALCULATORS = [
         description: "HRA Exemption Calculator with 4 modes: HRA Exemption (3-rule formula under Section 10(13A) — Actual HRA, 50/40% of Basic+DA, Rent−10% of Salary), Old vs New Regime comparison, Rent to Parents strategy with net family savings, and Rent Optimiser. Covers 8 metro cities, landlord PAN rules, Form 12BB, Section 80GG for non-HRA recipients.",
     },
     {
+        title: "Bonus Calculator",
+        slug: "bonus-calculator",
+        icon: "🎁",
+        tag: "Tax & Compliance",
+        description: "Statutory Bonus Calculator with 4 modes: Employee Bonus Calculator (8.33%-20% with ₹21,000 eligibility and ₹7,000 calculation ceiling), Employer Cost Estimator (workforce-level liability + monthly provisioning), Compliance Guide (Payment of Bonus Act 1965 — eligibility, disqualification, penalties, Form A/B/C/D), and Allocable Surplus Calculator (gross profit, prior charges, 67%/60% split, set-on/set-off).",
+    },
+    {
         title: "Mutual Fund Returns Calculator",
         slug: "mutual-fund-returns-calculator",
         icon: "📊",
