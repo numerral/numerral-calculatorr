@@ -283,6 +283,13 @@ const IN_CALCULATORS = [
         description: "Capital Gains Tax Calculator with 4 modes: CG Tax Calculator (9 asset types — equity, MF, property, gold, crypto, bonds), Asset Tax Comparison, Section 54/54EC/54F Exemption Planner, and Tax Loss Harvesting Optimiser. Post-Budget 2024 rules: 12.5% LTCG, 20% STCG equity, indexation removal, ₹1.25L exemption, grandfathering, CII table, and 30% VDA flat tax.",
     },
     {
+        title: "TDS Calculator",
+        slug: "tds-calculator",
+        icon: "📋",
+        tag: "Tax & Compliance",
+        description: "TDS Calculator with 4 modes: Section-wise TDS Calculator (23+ sections including 194A, 194C, 194H, 194I, 194IA, 194J, 194S, 194T with PAN/No-PAN impact), Complete Rate Chart with filters, Penalty & Interest Calculator (Sec 201/234E/271H), and Filing Calendar with Form 24Q/26Q/27Q due dates. Covers FY 2025-26 rates and new Section 194T for partner payments.",
+    },
+    {
         title: "Mutual Fund Returns Calculator",
         slug: "mutual-fund-returns-calculator",
         icon: "📊",
