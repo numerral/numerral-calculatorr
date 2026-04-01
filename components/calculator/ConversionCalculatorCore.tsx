@@ -152,21 +152,20 @@ function GramToMlCalc() {
                 </div>
             )}
 
-            <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
-                <p className="calc-field__label">VOLUME IN MILLILITERS</p>
-                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
+                <p className="calc-result__label">VOLUME IN MILLILITERS</p>
+                <p className="calc-result__emi">
                     {ml.toLocaleString("en-US", { maximumFractionDigits: 2 })} mL
                 </p>
-                <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "var(--s-3)" }}>
-                    <div><p className="calc-field__label">FLUID OUNCES</p><p style={{ fontWeight: 700 }}>{flOz.toFixed(3)} fl oz</p></div>
-                    <div><p className="calc-field__label">US CUPS</p><p style={{ fontWeight: 700 }}>{cups.toFixed(3)} cups</p></div>
-                    <div><p className="calc-field__label">FORMULA</p><p style={{ fontWeight: 700, fontSize: "var(--t-body-sm)" }}>{grams} ÷ {density}</p></div>
+                <div className="calc-result__stats">
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{flOz.toFixed(3)} fl oz</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{cups.toFixed(3)} cups</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{grams} ÷ {density}</p></div>
                 </div>
             </div>
 
             {/* Quick Reference Table */}
-            <div style={{ marginTop: "var(--s-4)" }}>
+            <div style={{ marginTop: "var(--s-6)" }}>
                 <h3 className="t-h3" style={{ marginBottom: "var(--s-3)" }}>Quick Reference — {substance.label}</h3>
                 <table className="calc-table">
                     <thead>
@@ -238,21 +237,20 @@ function LiterToKgCalc() {
                 </div>
             )}
 
-            <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
-                <p className="calc-field__label">WEIGHT IN KILOGRAMS</p>
-                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
+                <p className="calc-result__label">WEIGHT IN KILOGRAMS</p>
+                <p className="calc-result__emi">
                     {kg.toLocaleString("en-US", { maximumFractionDigits: 3 })} kg
                 </p>
-                <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "var(--s-3)" }}>
-                    <div><p className="calc-field__label">POUNDS</p><p style={{ fontWeight: 700 }}>{lbs.toFixed(3)} lbs</p></div>
-                    <div><p className="calc-field__label">US GALLONS</p><p style={{ fontWeight: 700 }}>{gallons.toFixed(3)} gal</p></div>
-                    <div><p className="calc-field__label">FORMULA</p><p style={{ fontWeight: 700, fontSize: "var(--t-body-sm)" }}>{liters} × {density}</p></div>
+                <div className="calc-result__stats">
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{lbs.toFixed(3)} lbs</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{gallons.toFixed(3)} gal</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{liters} × {density}</p></div>
                 </div>
             </div>
 
             {/* Quick Reference Table */}
-            <div style={{ marginTop: "var(--s-4)" }}>
+            <div style={{ marginTop: "var(--s-6)" }}>
                 <h3 className="t-h3" style={{ marginBottom: "var(--s-3)" }}>Quick Reference — {substance.label}</h3>
                 <table className="calc-table">
                     <thead>
@@ -322,21 +320,20 @@ function GramToCupCalc() {
                 </div>
             )}
 
-            <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
-                <p className="calc-field__label">VOLUME IN US CUPS</p>
-                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
+                <p className="calc-result__label">VOLUME IN US CUPS</p>
+                <p className="calc-result__emi">
                     {cups.toFixed(3)} cups
                 </p>
-                <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "var(--s-3)" }}>
-                    <div><p className="calc-field__label">TABLESPOONS</p><p style={{ fontWeight: 700 }}>{tbsp.toFixed(2)} tbsp</p></div>
-                    <div><p className="calc-field__label">TEASPOONS</p><p style={{ fontWeight: 700 }}>{tsp.toFixed(2)} tsp</p></div>
-                    <div><p className="calc-field__label">FORMULA</p><p style={{ fontWeight: 700, fontSize: "var(--t-body-sm)" }}>{grams} ÷ ({density} × 236.59)</p></div>
+                <div className="calc-result__stats">
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{tbsp.toFixed(2)} tbsp</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{tsp.toFixed(2)} tsp</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{grams} ÷ ({density} × 236.59)</p></div>
                 </div>
             </div>
 
             {/* Quick Reference Table */}
-            <div style={{ marginTop: "var(--s-4)" }}>
+            <div style={{ marginTop: "var(--s-6)" }}>
                 <h3 className="t-h3" style={{ marginBottom: "var(--s-3)" }}>Quick Reference — {substance.label}</h3>
                 <table className="calc-table">
                     <thead>
@@ -416,22 +413,21 @@ function InchToCmCalc() {
                 </select>
             </div>
 
-            <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
-                <p className="calc-field__label">LENGTH IN CENTIMETERS</p>
-                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
+                <p className="calc-result__label">LENGTH IN CENTIMETERS</p>
+                <p className="calc-result__emi">
                     {cm.toLocaleString("en-US", { maximumFractionDigits: 4 })} cm
                 </p>
-                <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "var(--s-3)" }}>
-                    <div><p className="calc-field__label">MILLIMETERS</p><p style={{ fontWeight: 700 }}>{mm.toFixed(2)} mm</p></div>
-                    <div><p className="calc-field__label">METERS</p><p style={{ fontWeight: 700 }}>{meters.toFixed(4)} m</p></div>
-                    <div><p className="calc-field__label">FEET</p><p style={{ fontWeight: 700 }}>{feet.toFixed(4)} ft</p></div>
-                    <div><p className="calc-field__label">FORMULA</p><p style={{ fontWeight: 700, fontSize: "var(--t-body-sm)" }}>{totalInches} × 2.54</p></div>
+                <div className="calc-result__stats">
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{mm.toFixed(2)} mm</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{meters.toFixed(4)} m</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{feet.toFixed(4)} ft</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{totalInches} × 2.54</p></div>
                 </div>
             </div>
 
             {/* Quick Reference Table */}
-            <div style={{ marginTop: "var(--s-4)" }}>
+            <div style={{ marginTop: "var(--s-6)" }}>
                 <h3 className="t-h3" style={{ marginBottom: "var(--s-3)" }}>Inches to Centimeters — Reference Table</h3>
                 <table className="calc-table">
                     <thead>
@@ -488,22 +484,21 @@ function StonesToKgCalc() {
                 </div>
             </div>
 
-            <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
-                <p className="calc-field__label">WEIGHT IN KILOGRAMS</p>
-                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
+                <p className="calc-result__label">WEIGHT IN KILOGRAMS</p>
+                <p className="calc-result__emi">
                     {kg.toLocaleString("en-US", { maximumFractionDigits: 2 })} kg
                 </p>
-                <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "var(--s-3)" }}>
-                    <div><p className="calc-field__label">GRAMS</p><p style={{ fontWeight: 700 }}>{grams.toFixed(0)} g</p></div>
-                    <div><p className="calc-field__label">TOTAL POUNDS</p><p style={{ fontWeight: 700 }}>{poundsOnly} lbs</p></div>
+                <div className="calc-result__stats">
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{grams.toFixed(0)} g</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{poundsOnly} lbs</p></div>
                     <div><p className="calc-field__label">STONE + LBS</p><p style={{ fontWeight: 700 }}>{stone} st {lbs} lbs</p></div>
-                    <div><p className="calc-field__label">FORMULA</p><p style={{ fontWeight: 700, fontSize: "var(--t-body-sm)" }}>{totalLbs} × 0.4536</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{totalLbs} × 0.4536</p></div>
                 </div>
             </div>
 
             {/* Quick Reference Table */}
-            <div style={{ marginTop: "var(--s-4)" }}>
+            <div style={{ marginTop: "var(--s-6)" }}>
                 <h3 className="t-h3" style={{ marginBottom: "var(--s-3)" }}>Stones to Kilograms — Reference Table</h3>
                 <table className="calc-table">
                     <thead>
@@ -576,22 +571,21 @@ function TbspToGramCalc() {
                 </div>
             )}
 
-            <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
-                <p className="calc-field__label">WEIGHT IN GRAMS</p>
-                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
+                <p className="calc-result__label">WEIGHT IN GRAMS</p>
+                <p className="calc-result__emi">
                     {grams.toFixed(2)} g
                 </p>
-                <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "var(--s-3)" }}>
-                    <div><p className="calc-field__label">OUNCES</p><p style={{ fontWeight: 700 }}>{oz.toFixed(3)} oz</p></div>
-                    <div><p className="calc-field__label">TEASPOONS</p><p style={{ fontWeight: 700 }}>{tsp.toFixed(1)} tsp</p></div>
-                    <div><p className="calc-field__label">MILLILITERS</p><p style={{ fontWeight: 700 }}>{ml.toFixed(2)} mL</p></div>
-                    <div><p className="calc-field__label">FORMULA</p><p style={{ fontWeight: 700, fontSize: "var(--t-body-sm)" }}>{tbsp} × 14.79 × {density}</p></div>
+                <div className="calc-result__stats">
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{oz.toFixed(3)} oz</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{tsp.toFixed(1)} tsp</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{ml.toFixed(2)} mL</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{tbsp} × 14.79 × {density}</p></div>
                 </div>
             </div>
 
             {/* Quick Reference Table */}
-            <div style={{ marginTop: "var(--s-4)" }}>
+            <div style={{ marginTop: "var(--s-6)" }}>
                 <h3 className="t-h3" style={{ marginBottom: "var(--s-3)" }}>Quick Reference — {substance.label}</h3>
                 <table className="calc-table">
                     <thead>
@@ -664,22 +658,21 @@ function KgToLiterCalc() {
                 </div>
             )}
 
-            <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
-                <p className="calc-field__label">VOLUME IN LITERS</p>
-                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
+                <p className="calc-result__label">VOLUME IN LITERS</p>
+                <p className="calc-result__emi">
                     {liters.toLocaleString("en-US", { maximumFractionDigits: 3 })} L
                 </p>
-                <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "var(--s-3)" }}>
-                    <div><p className="calc-field__label">US GALLONS</p><p style={{ fontWeight: 700 }}>{gallons.toFixed(3)} gal</p></div>
-                    <div><p className="calc-field__label">US QUARTS</p><p style={{ fontWeight: 700 }}>{quarts.toFixed(3)} qt</p></div>
-                    <div><p className="calc-field__label">POUNDS</p><p style={{ fontWeight: 700 }}>{lbs.toFixed(2)} lbs</p></div>
-                    <div><p className="calc-field__label">FORMULA</p><p style={{ fontWeight: 700, fontSize: "var(--t-body-sm)" }}>{kg} ÷ {density}</p></div>
+                <div className="calc-result__stats">
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{gallons.toFixed(3)} gal</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{quarts.toFixed(3)} qt</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{lbs.toFixed(2)} lbs</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{kg} ÷ {density}</p></div>
                 </div>
             </div>
 
             {/* Quick Reference Table */}
-            <div style={{ marginTop: "var(--s-4)" }}>
+            <div style={{ marginTop: "var(--s-6)" }}>
                 <h3 className="t-h3" style={{ marginBottom: "var(--s-3)" }}>Quick Reference — {substance.label}</h3>
                 <table className="calc-table">
                     <thead>
@@ -752,22 +745,21 @@ function MgToMlCalc() {
                 </div>
             )}
 
-            <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
-                <p className="calc-field__label">VOLUME IN MILLILITERS</p>
-                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
+                <p className="calc-result__label">VOLUME IN MILLILITERS</p>
+                <p className="calc-result__emi">
                     {ml.toLocaleString("en-US", { maximumFractionDigits: 4 })} mL
                 </p>
-                <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "var(--s-3)" }}>
-                    <div><p className="calc-field__label">FLUID OUNCES</p><p style={{ fontWeight: 700 }}>{flOz.toFixed(4)} fl oz</p></div>
-                    <div><p className="calc-field__label">TEASPOONS</p><p style={{ fontWeight: 700 }}>{tsp.toFixed(4)} tsp</p></div>
+                <div className="calc-result__stats">
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{flOz.toFixed(4)} fl oz</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{tsp.toFixed(4)} tsp</p></div>
                     <div><p className="calc-field__label">DROPS (~20/mL)</p><p style={{ fontWeight: 700 }}>{drops.toFixed(1)} drops</p></div>
-                    <div><p className="calc-field__label">FORMULA</p><p style={{ fontWeight: 700, fontSize: "var(--t-body-sm)" }}>{mg} ÷ ({density}×1000)</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{mg} ÷ ({density}×1000)</p></div>
                 </div>
             </div>
 
             {/* Quick Reference Table */}
-            <div style={{ marginTop: "var(--s-4)" }}>
+            <div style={{ marginTop: "var(--s-6)" }}>
                 <h3 className="t-h3" style={{ marginBottom: "var(--s-3)" }}>Quick Reference — {substance.label}</h3>
                 <table className="calc-table">
                     <thead>
@@ -840,22 +832,21 @@ function GramToTspCalc() {
                 </div>
             )}
 
-            <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
-                <p className="calc-field__label">VOLUME IN TEASPOONS</p>
-                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
+                <p className="calc-result__label">VOLUME IN TEASPOONS</p>
+                <p className="calc-result__emi">
                     {tsp.toFixed(2)} tsp
                 </p>
-                <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "var(--s-3)" }}>
-                    <div><p className="calc-field__label">TABLESPOONS</p><p style={{ fontWeight: 700 }}>{tbsp.toFixed(2)} tbsp</p></div>
-                    <div><p className="calc-field__label">CUPS</p><p style={{ fontWeight: 700 }}>{cups.toFixed(3)} cups</p></div>
-                    <div><p className="calc-field__label">MILLILITERS</p><p style={{ fontWeight: 700 }}>{ml.toFixed(2)} mL</p></div>
-                    <div><p className="calc-field__label">FORMULA</p><p style={{ fontWeight: 700, fontSize: "var(--t-body-sm)" }}>{grams} ÷ (4.93×{density})</p></div>
+                <div className="calc-result__stats">
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{tbsp.toFixed(2)} tbsp</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{cups.toFixed(3)} cups</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{ml.toFixed(2)} mL</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{grams} ÷ (4.93×{density})</p></div>
                 </div>
             </div>
 
             {/* Quick Reference Table */}
-            <div style={{ marginTop: "var(--s-4)" }}>
+            <div style={{ marginTop: "var(--s-6)" }}>
                 <h3 className="t-h3" style={{ marginBottom: "var(--s-3)" }}>Quick Reference — {substance.label}</h3>
                 <table className="calc-table">
                     <thead>
@@ -913,22 +904,21 @@ function TspToCupCalc() {
                 </div>
             </div>
 
-            <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
+            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
                 <p className="calc-field__label">VOLUME IN CUPS</p>
-                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+                <p className="calc-result__emi">
                     {cups.toFixed(3)} cups
                 </p>
-                <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "var(--s-3)" }}>
-                    <div><p className="calc-field__label">TABLESPOONS</p><p style={{ fontWeight: 700 }}>{tbsp.toFixed(2)} tbsp</p></div>
-                    <div><p className="calc-field__label">FLUID OUNCES</p><p style={{ fontWeight: 700 }}>{flOz.toFixed(2)} fl oz</p></div>
-                    <div><p className="calc-field__label">MILLILITERS</p><p style={{ fontWeight: 700 }}>{ml.toFixed(1)} mL</p></div>
-                    <div><p className="calc-field__label">FORMULA</p><p style={{ fontWeight: 700, fontSize: "var(--t-body-sm)" }}>{tsp} ÷ 48</p></div>
+                <div className="calc-result__stats">
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{tbsp.toFixed(2)} tbsp</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{flOz.toFixed(2)} fl oz</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{ml.toFixed(1)} mL</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{tsp} ÷ 48</p></div>
                 </div>
             </div>
 
             {/* Quick Reference Table */}
-            <div style={{ marginTop: "var(--s-4)" }}>
+            <div style={{ marginTop: "var(--s-6)" }}>
                 <h3 className="t-h3" style={{ marginBottom: "var(--s-3)" }}>Teaspoons to Cups — Quick Reference</h3>
                 <table className="calc-table">
                     <thead>
@@ -977,22 +967,21 @@ function ButterTspToGramCalc() {
                 </div>
             </div>
 
-            <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
-                <p className="calc-field__label">WEIGHT IN GRAMS</p>
-                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
+                <p className="calc-result__label">WEIGHT IN GRAMS</p>
+                <p className="calc-result__emi">
                     {grams.toFixed(2)} g
                 </p>
-                <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "var(--s-3)" }}>
-                    <div><p className="calc-field__label">OUNCES</p><p style={{ fontWeight: 700 }}>{oz.toFixed(3)} oz</p></div>
-                    <div><p className="calc-field__label">TABLESPOONS</p><p style={{ fontWeight: 700 }}>{tbsp.toFixed(2)} tbsp</p></div>
-                    <div><p className="calc-field__label">STICKS</p><p style={{ fontWeight: 700 }}>{sticks.toFixed(3)} sticks</p></div>
-                    <div><p className="calc-field__label">CUPS</p><p style={{ fontWeight: 700 }}>{cups.toFixed(3)} cups</p></div>
+                <div className="calc-result__stats">
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{oz.toFixed(3)} oz</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{tbsp.toFixed(2)} tbsp</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{sticks.toFixed(3)} sticks</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{cups.toFixed(3)} cups</p></div>
                 </div>
             </div>
 
             {/* Quick Reference Table */}
-            <div style={{ marginTop: "var(--s-4)" }}>
+            <div style={{ marginTop: "var(--s-6)" }}>
                 <h3 className="t-h3" style={{ marginBottom: "var(--s-3)" }}>Butter — Teaspoons to Grams</h3>
                 <table className="calc-table">
                     <thead>
@@ -1044,22 +1033,21 @@ function KgToStoneCalc() {
                 </div>
             </div>
 
-            <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
+            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
                 <p className="calc-field__label">WEIGHT IN STONE & POUNDS</p>
-                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+                <p className="calc-result__emi">
                     {wholeStones} st {remainingLbs.toFixed(1)} lbs
                 </p>
-                <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "var(--s-3)" }}>
-                    <div><p className="calc-field__label">DECIMAL STONE</p><p style={{ fontWeight: 700 }}>{totalStones.toFixed(4)} st</p></div>
-                    <div><p className="calc-field__label">TOTAL POUNDS</p><p style={{ fontWeight: 700 }}>{totalLbs.toFixed(2)} lbs</p></div>
-                    <div><p className="calc-field__label">TOTAL OUNCES</p><p style={{ fontWeight: 700 }}>{totalOz.toFixed(0)} oz</p></div>
-                    <div><p className="calc-field__label">FORMULA</p><p style={{ fontWeight: 700, fontSize: "var(--t-body-sm)" }}>{kg} ÷ 6.35</p></div>
+                <div className="calc-result__stats">
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{totalStones.toFixed(4)} st</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{totalLbs.toFixed(2)} lbs</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{totalOz.toFixed(0)} oz</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{kg} ÷ 6.35</p></div>
                 </div>
             </div>
 
             {/* Quick Reference Table */}
-            <div style={{ marginTop: "var(--s-4)" }}>
+            <div style={{ marginTop: "var(--s-6)" }}>
                 <h3 className="t-h3" style={{ marginBottom: "var(--s-3)" }}>Common Body Weights — kg to Stone & Pounds</h3>
                 <table className="calc-table">
                     <thead>
@@ -1134,22 +1122,21 @@ function GramToLiterCalc() {
                 </div>
             )}
 
-            <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
-                <p className="calc-field__label">VOLUME IN LITERS</p>
-                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
+                <p className="calc-result__label">VOLUME IN LITERS</p>
+                <p className="calc-result__emi">
                     {liters.toLocaleString("en-US", { maximumFractionDigits: 4 })} L
                 </p>
-                <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "var(--s-3)" }}>
-                    <div><p className="calc-field__label">US GALLONS</p><p style={{ fontWeight: 700 }}>{gallons.toFixed(4)} gal</p></div>
-                    <div><p className="calc-field__label">US QUARTS</p><p style={{ fontWeight: 700 }}>{quarts.toFixed(4)} qt</p></div>
-                    <div><p className="calc-field__label">MILLILITERS</p><p style={{ fontWeight: 700 }}>{ml.toFixed(2)} mL</p></div>
-                    <div><p className="calc-field__label">FORMULA</p><p style={{ fontWeight: 700, fontSize: "var(--t-body-sm)" }}>{grams} ÷ ({density}×1000)</p></div>
+                <div className="calc-result__stats">
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{gallons.toFixed(4)} gal</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{quarts.toFixed(4)} qt</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{ml.toFixed(2)} mL</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{grams} ÷ ({density}×1000)</p></div>
                 </div>
             </div>
 
             {/* Quick Reference Table */}
-            <div style={{ marginTop: "var(--s-4)" }}>
+            <div style={{ marginTop: "var(--s-6)" }}>
                 <h3 className="t-h3" style={{ marginBottom: "var(--s-3)" }}>Quick Reference — {substance.label}</h3>
                 <table className="calc-table">
                     <thead>
@@ -1222,22 +1209,21 @@ function MlToMgCalc() {
                 </div>
             )}
 
-            <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
+            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
                 <p className="calc-field__label">WEIGHT IN MILLIGRAMS</p>
-                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+                <p className="calc-result__emi">
                     {mg.toLocaleString("en-US", { maximumFractionDigits: 1 })} mg
                 </p>
-                <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "var(--s-3)" }}>
-                    <div><p className="calc-field__label">GRAMS</p><p style={{ fontWeight: 700 }}>{grams.toFixed(2)} g</p></div>
-                    <div><p className="calc-field__label">OUNCES</p><p style={{ fontWeight: 700 }}>{oz.toFixed(4)} oz</p></div>
-                    <div><p className="calc-field__label">TEASPOONS</p><p style={{ fontWeight: 700 }}>{tsp.toFixed(2)} tsp</p></div>
-                    <div><p className="calc-field__label">FORMULA</p><p style={{ fontWeight: 700, fontSize: "var(--t-body-sm)" }}>{ml}×{density}×1000</p></div>
+                <div className="calc-result__stats">
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{grams.toFixed(2)} g</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{oz.toFixed(4)} oz</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{tsp.toFixed(2)} tsp</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{ml}×{density}×1000</p></div>
                 </div>
             </div>
 
             {/* Quick Reference Table */}
-            <div style={{ marginTop: "var(--s-4)" }}>
+            <div style={{ marginTop: "var(--s-6)" }}>
                 <h3 className="t-h3" style={{ marginBottom: "var(--s-3)" }}>Quick Reference — {substance.label}</h3>
                 <table className="calc-table">
                     <thead>
@@ -1310,22 +1296,21 @@ function LiterToGramCalc() {
                 </div>
             )}
 
-            <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
-                <p className="calc-field__label">WEIGHT IN GRAMS</p>
-                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
+                <p className="calc-result__label">WEIGHT IN GRAMS</p>
+                <p className="calc-result__emi">
                     {grams.toLocaleString("en-US", { maximumFractionDigits: 1 })} g
                 </p>
-                <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "var(--s-3)" }}>
-                    <div><p className="calc-field__label">KILOGRAMS</p><p style={{ fontWeight: 700 }}>{kg.toFixed(3)} kg</p></div>
-                    <div><p className="calc-field__label">POUNDS</p><p style={{ fontWeight: 700 }}>{lbs.toFixed(2)} lbs</p></div>
-                    <div><p className="calc-field__label">US CUPS</p><p style={{ fontWeight: 700 }}>{cups.toFixed(2)} cups</p></div>
-                    <div><p className="calc-field__label">FORMULA</p><p style={{ fontWeight: 700, fontSize: "var(--t-body-sm)" }}>{liters}×{density}×1000</p></div>
+                <div className="calc-result__stats">
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{kg.toFixed(3)} kg</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{lbs.toFixed(2)} lbs</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{cups.toFixed(2)} cups</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{liters}×{density}×1000</p></div>
                 </div>
             </div>
 
             {/* Quick Reference Table */}
-            <div style={{ marginTop: "var(--s-4)" }}>
+            <div style={{ marginTop: "var(--s-6)" }}>
                 <h3 className="t-h3" style={{ marginBottom: "var(--s-3)" }}>Quick Reference — {substance.label}</h3>
                 <table className="calc-table">
                     <thead>
@@ -1400,22 +1385,21 @@ function CupToGramCalc() {
                 </div>
             )}
 
-            <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
-                <p className="calc-field__label">WEIGHT IN GRAMS</p>
-                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
+                <p className="calc-result__label">WEIGHT IN GRAMS</p>
+                <p className="calc-result__emi">
                     {grams.toLocaleString("en-US", { maximumFractionDigits: 1 })} g
                 </p>
-                <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "var(--s-3)" }}>
-                    <div><p className="calc-field__label">OUNCES</p><p style={{ fontWeight: 700 }}>{oz.toFixed(2)} oz</p></div>
-                    <div><p className="calc-field__label">TABLESPOONS</p><p style={{ fontWeight: 700 }}>{tbsp.toFixed(0)} tbsp</p></div>
-                    <div><p className="calc-field__label">MILLILITERS</p><p style={{ fontWeight: 700 }}>{ml.toFixed(1)} mL</p></div>
-                    <div><p className="calc-field__label">FORMULA</p><p style={{ fontWeight: 700, fontSize: "var(--t-body-sm)" }}>{cups}×236.6×{density}</p></div>
+                <div className="calc-result__stats">
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{oz.toFixed(2)} oz</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{tbsp.toFixed(0)} tbsp</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{ml.toFixed(1)} mL</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{cups}×236.6×{density}</p></div>
                 </div>
             </div>
 
             {/* Quick Reference Table */}
-            <div style={{ marginTop: "var(--s-4)" }}>
+            <div style={{ marginTop: "var(--s-6)" }}>
                 <h3 className="t-h3" style={{ marginBottom: "var(--s-3)" }}>Quick Reference — {substance.label}</h3>
                 <table className="calc-table">
                     <thead>
@@ -1466,22 +1450,21 @@ function MinToHourCalc() {
                 </div>
             </div>
 
-            <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
+            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
                 <p className="calc-field__label">TIME IN HOURS & MINUTES</p>
-                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+                <p className="calc-result__emi">
                     {wholeHours}h {remainingMinutes}m
                 </p>
-                <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "var(--s-3)" }}>
-                    <div><p className="calc-field__label">DECIMAL HOURS</p><p style={{ fontWeight: 700 }}>{decimalHours.toFixed(4)} hr</p></div>
-                    <div><p className="calc-field__label">TOTAL SECONDS</p><p style={{ fontWeight: 700 }}>{totalSeconds.toLocaleString()} s</p></div>
+                <div className="calc-result__stats">
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{decimalHours.toFixed(4)} hr</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{totalSeconds.toLocaleString()} s</p></div>
                     <div><p className="calc-field__label">% OF DAY</p><p style={{ fontWeight: 700 }}>{(fractionOfDay * 100).toFixed(2)}%</p></div>
-                    <div><p className="calc-field__label">FORMULA</p><p style={{ fontWeight: 700, fontSize: "var(--t-body-sm)" }}>{minutes} ÷ 60</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{minutes} ÷ 60</p></div>
                 </div>
             </div>
 
             {/* Quick Reference Table */}
-            <div style={{ marginTop: "var(--s-4)" }}>
+            <div style={{ marginTop: "var(--s-6)" }}>
                 <h3 className="t-h3" style={{ marginBottom: "var(--s-3)" }}>Minutes to Hours — Quick Reference</h3>
                 <table className="calc-table">
                     <thead>
@@ -1534,22 +1517,21 @@ function InchToFootCalc() {
                 </div>
             </div>
 
-            <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
+            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
                 <p className="calc-field__label">LENGTH IN FEET & INCHES</p>
-                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+                <p className="calc-result__emi">
                     {wholeFeet}&prime; {remainingInches}&Prime;
                 </p>
-                <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "var(--s-3)" }}>
-                    <div><p className="calc-field__label">DECIMAL FEET</p><p style={{ fontWeight: 700 }}>{decimalFeet.toFixed(4)} ft</p></div>
-                    <div><p className="calc-field__label">YARDS</p><p style={{ fontWeight: 700 }}>{yards.toFixed(4)} yd</p></div>
-                    <div><p className="calc-field__label">CENTIMETERS</p><p style={{ fontWeight: 700 }}>{cm.toFixed(2)} cm</p></div>
-                    <div><p className="calc-field__label">METERS</p><p style={{ fontWeight: 700 }}>{meters.toFixed(4)} m</p></div>
+                <div className="calc-result__stats">
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{decimalFeet.toFixed(4)} ft</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{yards.toFixed(4)} yd</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{cm.toFixed(2)} cm</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{meters.toFixed(4)} m</p></div>
                 </div>
             </div>
 
             {/* Quick Reference Table */}
-            <div style={{ marginTop: "var(--s-4)" }}>
+            <div style={{ marginTop: "var(--s-6)" }}>
                 <h3 className="t-h3" style={{ marginBottom: "var(--s-3)" }}>Inches to Feet — Quick Reference</h3>
                 <table className="calc-table">
                     <thead>
@@ -1613,22 +1595,21 @@ function KiloohmToOhmCalc() {
                 </div>
             </div>
 
-            <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
-                <p className="calc-field__label">RESISTANCE IN OHMS</p>
-                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
+                <p className="calc-result__label">RESISTANCE IN OHMS</p>
+                <p className="calc-result__emi">
                     {ohms.toLocaleString("en-US", { maximumFractionDigits: 1 })} Ω
                 </p>
-                <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "var(--s-3)" }}>
-                    <div><p className="calc-field__label">MEGAOHMS</p><p style={{ fontWeight: 700 }}>{megaohms.toFixed(4)} MΩ</p></div>
-                    <div><p className="calc-field__label">MILLIOHMS</p><p style={{ fontWeight: 700 }}>{milliohms.toLocaleString()} mΩ</p></div>
+                <div className="calc-result__stats">
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{megaohms.toFixed(4)} MΩ</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{milliohms.toLocaleString()} mΩ</p></div>
                     <div><p className="calc-field__label">CURRENT (I=V/R)</p><p style={{ fontWeight: 700 }}>{currentMA.toFixed(3)} mA</p></div>
-                    <div><p className="calc-field__label">FORMULA</p><p style={{ fontWeight: 700, fontSize: "var(--t-body-sm)" }}>{kohms} × 1000</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{kohms} × 1000</p></div>
                 </div>
             </div>
 
             {/* Quick Reference Table */}
-            <div style={{ marginTop: "var(--s-4)" }}>
+            <div style={{ marginTop: "var(--s-6)" }}>
                 <h3 className="t-h3" style={{ marginBottom: "var(--s-3)" }}>Kiloohms to Ohms — Quick Reference</h3>
                 <table className="calc-table">
                     <thead>
@@ -1702,22 +1683,21 @@ function GalToLbCalc() {
                 </div>
             )}
 
-            <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
+            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
                 <p className="calc-field__label">WEIGHT IN POUNDS</p>
-                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+                <p className="calc-result__emi">
                     {lbs.toFixed(2)} lbs
                 </p>
-                <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "var(--s-3)" }}>
-                    <div><p className="calc-field__label">OUNCES</p><p style={{ fontWeight: 700 }}>{oz.toFixed(1)} oz</p></div>
-                    <div><p className="calc-field__label">KILOGRAMS</p><p style={{ fontWeight: 700 }}>{kg.toFixed(2)} kg</p></div>
-                    <div><p className="calc-field__label">LITERS</p><p style={{ fontWeight: 700 }}>{liters.toFixed(2)} L</p></div>
-                    <div><p className="calc-field__label">FORMULA</p><p style={{ fontWeight: 700, fontSize: "var(--t-body-sm)" }}>{gallons}×8.35×{density}</p></div>
+                <div className="calc-result__stats">
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{oz.toFixed(1)} oz</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{kg.toFixed(2)} kg</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{liters.toFixed(2)} L</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{gallons}×8.35×{density}</p></div>
                 </div>
             </div>
 
             {/* Quick Reference Table */}
-            <div style={{ marginTop: "var(--s-4)" }}>
+            <div style={{ marginTop: "var(--s-6)" }}>
                 <h3 className="t-h3" style={{ marginBottom: "var(--s-3)" }}>Quick Reference — {substance.label}</h3>
                 <table className="calc-table">
                     <thead>
@@ -1767,22 +1747,21 @@ function SecToMinCalc() {
                 </div>
             </div>
 
-            <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
+            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
                 <p className="calc-field__label">TIME IN MINUTES & SECONDS</p>
-                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+                <p className="calc-result__emi">
                     {wholeMinutes}m {remainingSeconds}s
                 </p>
-                <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "var(--s-3)" }}>
-                    <div><p className="calc-field__label">DECIMAL MINUTES</p><p style={{ fontWeight: 700 }}>{decimalMinutes.toFixed(4)} min</p></div>
-                    <div><p className="calc-field__label">HOURS</p><p style={{ fontWeight: 700 }}>{hours.toFixed(4)} hr</p></div>
-                    <div><p className="calc-field__label">MILLISECONDS</p><p style={{ fontWeight: 700 }}>{milliseconds.toLocaleString()} ms</p></div>
-                    <div><p className="calc-field__label">FORMULA</p><p style={{ fontWeight: 700, fontSize: "var(--t-body-sm)" }}>{seconds} ÷ 60</p></div>
+                <div className="calc-result__stats">
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{decimalMinutes.toFixed(4)} min</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{hours.toFixed(4)} hr</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{milliseconds.toLocaleString()} ms</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{seconds} ÷ 60</p></div>
                 </div>
             </div>
 
             {/* Quick Reference Table */}
-            <div style={{ marginTop: "var(--s-4)" }}>
+            <div style={{ marginTop: "var(--s-6)" }}>
                 <h3 className="t-h3" style={{ marginBottom: "var(--s-3)" }}>Seconds to Minutes — Quick Reference</h3>
                 <table className="calc-table">
                     <thead>
@@ -1834,22 +1813,21 @@ function FlOzToMlCalc() {
                 </div>
             </div>
 
-            <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
-                <p className="calc-field__label">VOLUME IN MILLILITERS</p>
-                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
+                <p className="calc-result__label">VOLUME IN MILLILITERS</p>
+                <p className="calc-result__emi">
                     {ml.toFixed(1)} mL
                 </p>
-                <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "var(--s-3)" }}>
-                    <div><p className="calc-field__label">LITERS</p><p style={{ fontWeight: 700 }}>{liters.toFixed(4)} L</p></div>
-                    <div><p className="calc-field__label">US CUPS</p><p style={{ fontWeight: 700 }}>{cups.toFixed(2)} cups</p></div>
-                    <div><p className="calc-field__label">TABLESPOONS</p><p style={{ fontWeight: 700 }}>{tbsp.toFixed(0)} tbsp</p></div>
-                    <div><p className="calc-field__label">FORMULA</p><p style={{ fontWeight: 700, fontSize: "var(--t-body-sm)" }}>{floz} × 29.57</p></div>
+                <div className="calc-result__stats">
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{liters.toFixed(4)} L</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{cups.toFixed(2)} cups</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{tbsp.toFixed(0)} tbsp</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{floz} × 29.57</p></div>
                 </div>
             </div>
 
             {/* Quick Reference Table */}
-            <div style={{ marginTop: "var(--s-4)" }}>
+            <div style={{ marginTop: "var(--s-6)" }}>
                 <h3 className="t-h3" style={{ marginBottom: "var(--s-3)" }}>Fluid Ounces to Milliliters — Quick Reference</h3>
                 <table className="calc-table">
                     <thead>
@@ -1899,22 +1877,21 @@ function SqMToSqFtCalc() {
                 </div>
             </div>
 
-            <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
-                <p className="calc-field__label">AREA IN SQUARE FEET</p>
-                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
+                <p className="calc-result__label">AREA IN SQUARE FEET</p>
+                <p className="calc-result__emi">
                     {sqft.toLocaleString("en-US", { maximumFractionDigits: 1 })} ft²
                 </p>
-                <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "var(--s-3)" }}>
-                    <div><p className="calc-field__label">ACRES</p><p style={{ fontWeight: 700 }}>{acres.toFixed(4)} ac</p></div>
-                    <div><p className="calc-field__label">SQUARE YARDS</p><p style={{ fontWeight: 700 }}>{sqyd.toFixed(1)} yd²</p></div>
-                    <div><p className="calc-field__label">SQUARE INCHES</p><p style={{ fontWeight: 700 }}>{sqin.toLocaleString()} in²</p></div>
-                    <div><p className="calc-field__label">FORMULA</p><p style={{ fontWeight: 700, fontSize: "var(--t-body-sm)" }}>{sqm} × 10.764</p></div>
+                <div className="calc-result__stats">
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{acres.toFixed(4)} ac</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{sqyd.toFixed(1)} yd²</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{sqin.toLocaleString()} in²</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{sqm} × 10.764</p></div>
                 </div>
             </div>
 
             {/* Quick Reference Table */}
-            <div style={{ marginTop: "var(--s-4)" }}>
+            <div style={{ marginTop: "var(--s-6)" }}>
                 <h3 className="t-h3" style={{ marginBottom: "var(--s-3)" }}>Square Meters to Square Feet — Quick Reference</h3>
                 <table className="calc-table">
                     <thead>
@@ -1965,22 +1942,21 @@ function SqFtToSqMCalc() {
                 </div>
             </div>
 
-            <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
-                <p className="calc-field__label">AREA IN SQUARE METERS</p>
-                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
+                <p className="calc-result__label">AREA IN SQUARE METERS</p>
+                <p className="calc-result__emi">
                     {sqm.toLocaleString("en-US", { maximumFractionDigits: 2 })} m²
                 </p>
-                <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "var(--s-3)" }}>
-                    <div><p className="calc-field__label">SQUARE CM</p><p style={{ fontWeight: 700 }}>{sqcm.toLocaleString(undefined, { maximumFractionDigits: 0 })} cm²</p></div>
-                    <div><p className="calc-field__label">ACRES</p><p style={{ fontWeight: 700 }}>{acres.toFixed(4)} ac</p></div>
-                    <div><p className="calc-field__label">SQUARE YARDS</p><p style={{ fontWeight: 700 }}>{sqyd.toFixed(1)} yd²</p></div>
-                    <div><p className="calc-field__label">FORMULA</p><p style={{ fontWeight: 700, fontSize: "var(--t-body-sm)" }}>{sqft.toLocaleString()} × 0.0929</p></div>
+                <div className="calc-result__stats">
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{sqcm.toLocaleString(undefined, { maximumFractionDigits: 0 })} cm²</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{acres.toFixed(4)} ac</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{sqyd.toFixed(1)} yd²</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{sqft.toLocaleString()} × 0.0929</p></div>
                 </div>
             </div>
 
             {/* Quick Reference Table */}
-            <div style={{ marginTop: "var(--s-4)" }}>
+            <div style={{ marginTop: "var(--s-6)" }}>
                 <h3 className="t-h3" style={{ marginBottom: "var(--s-3)" }}>Square Feet to Square Meters — Quick Reference</h3>
                 <table className="calc-table">
                     <thead>
@@ -2031,22 +2007,21 @@ function SqMiToSqKmCalc() {
                 </div>
             </div>
 
-            <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
+            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
                 <p className="calc-field__label">AREA IN SQUARE KILOMETERS</p>
-                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+                <p className="calc-result__emi">
                     {sqkm.toLocaleString("en-US", { maximumFractionDigits: 4 })} km²
                 </p>
-                <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "var(--s-3)" }}>
-                    <div><p className="calc-field__label">HECTARES</p><p style={{ fontWeight: 700 }}>{hectares.toLocaleString(undefined, { maximumFractionDigits: 1 })} ha</p></div>
-                    <div><p className="calc-field__label">ACRES</p><p style={{ fontWeight: 700 }}>{acres.toLocaleString(undefined, { maximumFractionDigits: 0 })} ac</p></div>
-                    <div><p className="calc-field__label">SQUARE METERS</p><p style={{ fontWeight: 700 }}>{sqm.toLocaleString(undefined, { maximumFractionDigits: 0 })} m²</p></div>
-                    <div><p className="calc-field__label">FORMULA</p><p style={{ fontWeight: 700, fontSize: "var(--t-body-sm)" }}>{sqmi} × 2.59</p></div>
+                <div className="calc-result__stats">
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{hectares.toLocaleString(undefined, { maximumFractionDigits: 1 })} ha</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{acres.toLocaleString(undefined, { maximumFractionDigits: 0 })} ac</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{sqm.toLocaleString(undefined, { maximumFractionDigits: 0 })} m²</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{sqmi} × 2.59</p></div>
                 </div>
             </div>
 
             {/* Quick Reference Table */}
-            <div style={{ marginTop: "var(--s-4)" }}>
+            <div style={{ marginTop: "var(--s-6)" }}>
                 <h3 className="t-h3" style={{ marginBottom: "var(--s-3)" }}>Square Miles to Square Kilometers — Quick Reference</h3>
                 <table className="calc-table">
                     <thead>
@@ -2097,22 +2072,21 @@ function SqKmToSqMiCalc() {
                 </div>
             </div>
 
-            <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
+            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
                 <p className="calc-field__label">AREA IN SQUARE MILES</p>
-                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+                <p className="calc-result__emi">
                     {sqmi.toLocaleString("en-US", { maximumFractionDigits: 4 })} mi²
                 </p>
-                <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "var(--s-3)" }}>
-                    <div><p className="calc-field__label">ACRES</p><p style={{ fontWeight: 700 }}>{acres.toLocaleString(undefined, { maximumFractionDigits: 0 })} ac</p></div>
-                    <div><p className="calc-field__label">HECTARES</p><p style={{ fontWeight: 700 }}>{hectares.toLocaleString(undefined, { maximumFractionDigits: 1 })} ha</p></div>
-                    <div><p className="calc-field__label">SQUARE METERS</p><p style={{ fontWeight: 700 }}>{sqm.toLocaleString(undefined, { maximumFractionDigits: 0 })} m²</p></div>
-                    <div><p className="calc-field__label">FORMULA</p><p style={{ fontWeight: 700, fontSize: "var(--t-body-sm)" }}>{sqkm} × 0.3861</p></div>
+                <div className="calc-result__stats">
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{acres.toLocaleString(undefined, { maximumFractionDigits: 0 })} ac</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{hectares.toLocaleString(undefined, { maximumFractionDigits: 1 })} ha</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{sqm.toLocaleString(undefined, { maximumFractionDigits: 0 })} m²</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{sqkm} × 0.3861</p></div>
                 </div>
             </div>
 
             {/* Quick Reference Table */}
-            <div style={{ marginTop: "var(--s-4)" }}>
+            <div style={{ marginTop: "var(--s-6)" }}>
                 <h3 className="t-h3" style={{ marginBottom: "var(--s-3)" }}>Square Kilometers to Square Miles — Quick Reference</h3>
                 <table className="calc-table">
                     <thead>
@@ -2186,22 +2160,21 @@ function OzToMlCalc() {
                 </div>
             )}
 
-            <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
-                <p className="calc-field__label">VOLUME IN MILLILITERS</p>
-                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
+                <p className="calc-result__label">VOLUME IN MILLILITERS</p>
+                <p className="calc-result__emi">
                     {ml.toFixed(1)} mL
                 </p>
-                <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "var(--s-3)" }}>
-                    <div><p className="calc-field__label">LITERS</p><p style={{ fontWeight: 700 }}>{liters.toFixed(4)} L</p></div>
-                    <div><p className="calc-field__label">FLUID OUNCES</p><p style={{ fontWeight: 700 }}>{floz.toFixed(2)} fl oz</p></div>
-                    <div><p className="calc-field__label">CUPS</p><p style={{ fontWeight: 700 }}>{cups.toFixed(2)} cups</p></div>
-                    <div><p className="calc-field__label">FORMULA</p><p style={{ fontWeight: 700, fontSize: "var(--t-body-sm)" }}>{oz}×28.35÷{density}</p></div>
+                <div className="calc-result__stats">
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{liters.toFixed(4)} L</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{floz.toFixed(2)} fl oz</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{cups.toFixed(2)} cups</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{oz}×28.35÷{density}</p></div>
                 </div>
             </div>
 
             {/* Quick Reference Table */}
-            <div style={{ marginTop: "var(--s-4)" }}>
+            <div style={{ marginTop: "var(--s-6)" }}>
                 <h3 className="t-h3" style={{ marginBottom: "var(--s-3)" }}>Ounces to Milliliters — {substance.label}</h3>
                 <table className="calc-table">
                     <thead>
@@ -2262,22 +2235,21 @@ function RpmToRadCalc() {
                 </div>
             </div>
 
-            <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
+            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
                 <p className="calc-field__label">ANGULAR VELOCITY</p>
-                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+                <p className="calc-result__emi">
                     {rads.toFixed(3)} rad/s
                 </p>
-                <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "var(--s-3)" }}>
-                    <div><p className="calc-field__label">DEGREES/SEC</p><p style={{ fontWeight: 700 }}>{degsPerSec.toFixed(1)} °/s</p></div>
+                <div className="calc-result__stats">
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{degsPerSec.toFixed(1)} °/s</p></div>
                     <div><p className="calc-field__label">HERTZ (rev/s)</p><p style={{ fontWeight: 700 }}>{hz.toFixed(2)} Hz</p></div>
                     <div><p className="calc-field__label">LINEAR VEL (v=ωr)</p><p style={{ fontWeight: 700 }}>{linearVel.toFixed(2)} m/s</p></div>
-                    <div><p className="calc-field__label">FORMULA</p><p style={{ fontWeight: 700, fontSize: "var(--t-body-sm)" }}>{rpm}×2π/60</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{rpm}×2π/60</p></div>
                 </div>
             </div>
 
             {/* Quick Reference Table */}
-            <div style={{ marginTop: "var(--s-4)" }}>
+            <div style={{ marginTop: "var(--s-6)" }}>
                 <h3 className="t-h3" style={{ marginBottom: "var(--s-3)" }}>RPM to Radians/Second — Quick Reference</h3>
                 <table className="calc-table">
                     <thead>
@@ -2347,22 +2319,21 @@ function GramFlourToCupCalc() {
                 </select>
             </div>
 
-            <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
+            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
                 <p className="calc-field__label">VOLUME IN CUPS</p>
-                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+                <p className="calc-result__emi">
                     {cups.toFixed(2)} cups
                 </p>
-                <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "var(--s-3)" }}>
-                    <div><p className="calc-field__label">TABLESPOONS</p><p style={{ fontWeight: 700 }}>{tbsp.toFixed(0)} tbsp</p></div>
-                    <div><p className="calc-field__label">OUNCES</p><p style={{ fontWeight: 700 }}>{oz.toFixed(1)} oz</p></div>
-                    <div><p className="calc-field__label">POUNDS</p><p style={{ fontWeight: 700 }}>{lbs.toFixed(2)} lbs</p></div>
-                    <div><p className="calc-field__label">FORMULA</p><p style={{ fontWeight: 700, fontSize: "var(--t-body-sm)" }}>{grams}÷{flour.gPerCup}</p></div>
+                <div className="calc-result__stats">
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{tbsp.toFixed(0)} tbsp</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{oz.toFixed(1)} oz</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{lbs.toFixed(2)} lbs</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{grams}÷{flour.gPerCup}</p></div>
                 </div>
             </div>
 
             {/* Quick Reference Table */}
-            <div style={{ marginTop: "var(--s-4)" }}>
+            <div style={{ marginTop: "var(--s-6)" }}>
                 <h3 className="t-h3" style={{ marginBottom: "var(--s-3)" }}>Grams to Cups — {flour.label}</h3>
                 <table className="calc-table">
                     <thead>
@@ -2410,22 +2381,21 @@ function InLbToFtLbCalc() {
                 </div>
             </div>
 
-            <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
+            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
                 <p className="calc-field__label">TORQUE IN FOOT-POUNDS</p>
-                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+                <p className="calc-result__emi">
                     {ftlbs.toFixed(2)} ft-lbs
                 </p>
-                <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "var(--s-3)" }}>
-                    <div><p className="calc-field__label">NEWTON-METERS</p><p style={{ fontWeight: 700 }}>{nm.toFixed(2)} N·m</p></div>
-                    <div><p className="calc-field__label">KG-CM</p><p style={{ fontWeight: 700 }}>{kgcm.toFixed(1)} kg·cm</p></div>
-                    <div><p className="calc-field__label">INCH-OUNCES</p><p style={{ fontWeight: 700 }}>{(inlbs * 16).toLocaleString()} in-oz</p></div>
-                    <div><p className="calc-field__label">FORMULA</p><p style={{ fontWeight: 700, fontSize: "var(--t-body-sm)" }}>{inlbs} ÷ 12</p></div>
+                <div className="calc-result__stats">
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{nm.toFixed(2)} N·m</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{kgcm.toFixed(1)} kg·cm</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{(inlbs * 16).toLocaleString()} in-oz</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{inlbs} ÷ 12</p></div>
                 </div>
             </div>
 
             {/* Quick Reference Table */}
-            <div style={{ marginTop: "var(--s-4)" }}>
+            <div style={{ marginTop: "var(--s-6)" }}>
                 <h3 className="t-h3" style={{ marginBottom: "var(--s-3)" }}>Inch-Pounds to Foot-Pounds — Quick Reference</h3>
                 <table className="calc-table">
                     <thead>
@@ -2487,22 +2457,21 @@ function CalToKgCalc() {
                 </div>
             </div>
 
-            <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
+            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
                 <p className="calc-field__label">WEIGHT EQUIVALENT</p>
-                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+                <p className="calc-result__emi">
                     {kg.toFixed(2)} kg ({lbs.toFixed(1)} lbs)
                 </p>
-                <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "var(--s-3)" }}>
-                    <div><p className="calc-field__label">GRAMS</p><p style={{ fontWeight: 700 }}>{grams.toFixed(0)} g</p></div>
-                    <div><p className="calc-field__label">POUNDS</p><p style={{ fontWeight: 700 }}>{lbs.toFixed(2)} lbs</p></div>
+                <div className="calc-result__stats">
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{grams.toFixed(0)} g</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{lbs.toFixed(2)} lbs</p></div>
                     <div><p className="calc-field__label">WEEKS (at {deficit} kcal/day)</p><p style={{ fontWeight: 700 }}>{weeksAtDeficit.toFixed(1)} wks</p></div>
-                    <div><p className="calc-field__label">FORMULA</p><p style={{ fontWeight: 700, fontSize: "var(--t-body-sm)" }}>{cals.toLocaleString()}÷7700</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{cals.toLocaleString()}÷7700</p></div>
                 </div>
             </div>
 
             {/* Quick Reference Table */}
-            <div style={{ marginTop: "var(--s-4)" }}>
+            <div style={{ marginTop: "var(--s-6)" }}>
                 <h3 className="t-h3" style={{ marginBottom: "var(--s-3)" }}>Calories to Weight Loss — Quick Reference</h3>
                 <table className="calc-table">
                     <thead>
@@ -2553,22 +2522,21 @@ function CupButterToGramCalc() {
                 </div>
             </div>
 
-            <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
-                <p className="calc-field__label">WEIGHT IN GRAMS</p>
-                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
+                <p className="calc-result__label">WEIGHT IN GRAMS</p>
+                <p className="calc-result__emi">
                     {grams.toFixed(0)} g
                 </p>
-                <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "var(--s-3)" }}>
-                    <div><p className="calc-field__label">STICKS</p><p style={{ fontWeight: 700 }}>{sticks.toFixed(1)} sticks</p></div>
-                    <div><p className="calc-field__label">TABLESPOONS</p><p style={{ fontWeight: 700 }}>{tbsp.toFixed(0)} tbsp</p></div>
-                    <div><p className="calc-field__label">OUNCES</p><p style={{ fontWeight: 700 }}>{oz.toFixed(1)} oz</p></div>
-                    <div><p className="calc-field__label">POUNDS</p><p style={{ fontWeight: 700 }}>{lbs.toFixed(2)} lbs</p></div>
+                <div className="calc-result__stats">
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{sticks.toFixed(1)} sticks</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{tbsp.toFixed(0)} tbsp</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{oz.toFixed(1)} oz</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{lbs.toFixed(2)} lbs</p></div>
                 </div>
             </div>
 
             {/* Quick Reference Table */}
-            <div style={{ marginTop: "var(--s-4)" }}>
+            <div style={{ marginTop: "var(--s-6)" }}>
                 <h3 className="t-h3" style={{ marginBottom: "var(--s-3)" }}>Cups of Butter — Quick Reference</h3>
                 <table className="calc-table">
                     <thead>
@@ -2620,22 +2588,21 @@ function DayToMonthCalc() {
                 </div>
             </div>
 
-            <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
+            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
                 <p className="calc-field__label">TIME IN MONTHS</p>
-                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+                <p className="calc-result__emi">
                     {months.toFixed(2)} months
                 </p>
-                <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "var(--s-3)" }}>
-                    <div><p className="calc-field__label">BREAKDOWN</p><p style={{ fontWeight: 700 }}>{years > 0 ? `${years}y ` : ""}{remMonths}m {remDays > 0 ? `${remDays}d` : ""}</p></div>
-                    <div><p className="calc-field__label">WEEKS</p><p style={{ fontWeight: 700 }}>{weeks.toFixed(1)} wks</p></div>
-                    <div><p className="calc-field__label">HOURS</p><p style={{ fontWeight: 700 }}>{hours.toLocaleString()} hrs</p></div>
-                    <div><p className="calc-field__label">FORMULA</p><p style={{ fontWeight: 700, fontSize: "var(--t-body-sm)" }}>{days}÷30.44</p></div>
+                <div className="calc-result__stats">
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{years > 0 ? `${years}y ` : ""}{remMonths}m {remDays > 0 ? `${remDays}d` : ""}</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{weeks.toFixed(1)} wks</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{hours.toLocaleString()} hrs</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{days}÷30.44</p></div>
                 </div>
             </div>
 
             {/* Quick Reference Table */}
-            <div style={{ marginTop: "var(--s-4)" }}>
+            <div style={{ marginTop: "var(--s-6)" }}>
                 <h3 className="t-h3" style={{ marginBottom: "var(--s-3)" }}>Days to Months — Quick Reference</h3>
                 <table className="calc-table">
                     <thead>
@@ -2686,22 +2653,21 @@ function CcToM3Calc() {
                 </div>
             </div>
 
-            <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
+            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
                 <p className="calc-field__label">VOLUME IN CUBIC METERS</p>
-                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+                <p className="calc-result__emi">
                     {m3 < 0.001 ? m3.toExponential(4) : m3.toFixed(6)} m³
                 </p>
-                <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "var(--s-3)" }}>
-                    <div><p className="calc-field__label">LITERS</p><p style={{ fontWeight: 700 }}>{liters.toFixed(3)} L</p></div>
-                    <div><p className="calc-field__label">US GALLONS</p><p style={{ fontWeight: 700 }}>{gallons.toFixed(2)} gal</p></div>
-                    <div><p className="calc-field__label">CUBIC FEET</p><p style={{ fontWeight: 700 }}>{cuFt.toFixed(4)} ft³</p></div>
-                    <div><p className="calc-field__label">FORMULA</p><p style={{ fontWeight: 700, fontSize: "var(--t-body-sm)" }}>{cc.toLocaleString()}÷10⁶</p></div>
+                <div className="calc-result__stats">
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{liters.toFixed(3)} L</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{gallons.toFixed(2)} gal</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{cuFt.toFixed(4)} ft³</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{cc.toLocaleString()}÷10⁶</p></div>
                 </div>
             </div>
 
             {/* Quick Reference Table */}
-            <div style={{ marginTop: "var(--s-4)" }}>
+            <div style={{ marginTop: "var(--s-6)" }}>
                 <h3 className="t-h3" style={{ marginBottom: "var(--s-3)" }}>Cubic Centimeters to Cubic Meters — Quick Reference</h3>
                 <table className="calc-table">
                     <thead>
@@ -2751,22 +2717,21 @@ function FahToCelCalc() {
                 </div>
             </div>
 
-            <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
-                <p className="calc-field__label">TEMPERATURE IN CELSIUS</p>
-                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
+                <p className="calc-result__label">TEMPERATURE IN CELSIUS</p>
+                <p className="calc-result__emi">
                     {cel.toFixed(2)} °C
                 </p>
-                <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "var(--s-3)" }}>
-                    <div><p className="calc-field__label">KELVIN</p><p style={{ fontWeight: 700 }}>{kelvin.toFixed(2)} K</p></div>
-                    <div><p className="calc-field__label">RANKINE</p><p style={{ fontWeight: 700 }}>{rankine.toFixed(2)} °R</p></div>
+                <div className="calc-result__stats">
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{kelvin.toFixed(2)} K</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{rankine.toFixed(2)} °R</p></div>
                     <div><p className="calc-field__label">FREEZING?</p><p style={{ fontWeight: 700 }}>{fah <= 32 ? "❄️ Yes" : "☀️ No"}</p></div>
-                    <div><p className="calc-field__label">FORMULA</p><p style={{ fontWeight: 700, fontSize: "var(--t-body-sm)" }}>({fah}−32)×⅝</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">({fah}−32)×⅝</p></div>
                 </div>
             </div>
 
             {/* Quick Reference Table */}
-            <div style={{ marginTop: "var(--s-4)" }}>
+            <div style={{ marginTop: "var(--s-6)" }}>
                 <h3 className="t-h3" style={{ marginBottom: "var(--s-3)" }}>Fahrenheit to Celsius — Quick Reference</h3>
                 <table className="calc-table">
                     <thead>
@@ -2816,22 +2781,21 @@ function CelToFahCalc() {
                 </div>
             </div>
 
-            <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
-                <p className="calc-field__label">TEMPERATURE IN FAHRENHEIT</p>
-                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
+                <p className="calc-result__label">TEMPERATURE IN FAHRENHEIT</p>
+                <p className="calc-result__emi">
                     {fah.toFixed(2)} °F
                 </p>
-                <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "var(--s-3)" }}>
-                    <div><p className="calc-field__label">KELVIN</p><p style={{ fontWeight: 700 }}>{kelvin.toFixed(2)} K</p></div>
-                    <div><p className="calc-field__label">RANKINE</p><p style={{ fontWeight: 700 }}>{rankine.toFixed(2)} °R</p></div>
+                <div className="calc-result__stats">
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{kelvin.toFixed(2)} K</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{rankine.toFixed(2)} °R</p></div>
                     <div><p className="calc-field__label">FREEZING?</p><p style={{ fontWeight: 700 }}>{cel <= 0 ? "❄️ Yes" : "☀️ No"}</p></div>
-                    <div><p className="calc-field__label">FORMULA</p><p style={{ fontWeight: 700, fontSize: "var(--t-body-sm)" }}>({cel}×⁹⁄₅)+32</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">({cel}×⁹⁄₅)+32</p></div>
                 </div>
             </div>
 
             {/* Quick Reference Table */}
-            <div style={{ marginTop: "var(--s-4)" }}>
+            <div style={{ marginTop: "var(--s-6)" }}>
                 <h3 className="t-h3" style={{ marginBottom: "var(--s-3)" }}>Celsius to Fahrenheit — Quick Reference</h3>
                 <table className="calc-table">
                     <thead>
@@ -2881,22 +2845,21 @@ function FahToKelCalc() {
                 </div>
             </div>
 
-            <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
+            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
                 <p className="calc-field__label">TEMPERATURE IN KELVIN</p>
-                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+                <p className="calc-result__emi">
                     {kelvin.toFixed(2)} K
                 </p>
-                <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "var(--s-3)" }}>
-                    <div><p className="calc-field__label">CELSIUS</p><p style={{ fontWeight: 700 }}>{cel.toFixed(2)} °C</p></div>
-                    <div><p className="calc-field__label">RANKINE</p><p style={{ fontWeight: 700 }}>{rankine.toFixed(2)} °R</p></div>
+                <div className="calc-result__stats">
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{cel.toFixed(2)} °C</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{rankine.toFixed(2)} °R</p></div>
                     <div><p className="calc-field__label">ABS ZERO?</p><p style={{ fontWeight: 700 }}>{kelvin <= 0 ? "⚠️ Below!" : kelvin < 10 ? "🧊 Near" : "✅ Above"}</p></div>
-                    <div><p className="calc-field__label">FORMULA</p><p style={{ fontWeight: 700, fontSize: "var(--t-body-sm)" }}>({fah}−32)×⅝+273</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">({fah}−32)×⅝+273</p></div>
                 </div>
             </div>
 
             {/* Quick Reference Table */}
-            <div style={{ marginTop: "var(--s-4)" }}>
+            <div style={{ marginTop: "var(--s-6)" }}>
                 <h3 className="t-h3" style={{ marginBottom: "var(--s-3)" }}>Fahrenheit to Kelvin — Quick Reference</h3>
                 <table className="calc-table">
                     <thead>
@@ -2946,22 +2909,21 @@ function CelToKelCalc() {
                 </div>
             </div>
 
-            <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
+            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
                 <p className="calc-field__label">TEMPERATURE IN KELVIN</p>
-                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+                <p className="calc-result__emi">
                     {kelvin.toFixed(2)} K
                 </p>
-                <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "var(--s-3)" }}>
-                    <div><p className="calc-field__label">FAHRENHEIT</p><p style={{ fontWeight: 700 }}>{fah.toFixed(2)} °F</p></div>
-                    <div><p className="calc-field__label">RANKINE</p><p style={{ fontWeight: 700 }}>{rankine.toFixed(2)} °R</p></div>
+                <div className="calc-result__stats">
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{fah.toFixed(2)} °F</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{rankine.toFixed(2)} °R</p></div>
                     <div><p className="calc-field__label">ABS ZERO?</p><p style={{ fontWeight: 700 }}>{kelvin <= 0 ? "⚠️ Below!" : kelvin < 10 ? "🧊 Near" : "✅ Above"}</p></div>
-                    <div><p className="calc-field__label">FORMULA</p><p style={{ fontWeight: 700, fontSize: "var(--t-body-sm)" }}>{cel}+273.15</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{cel}+273.15</p></div>
                 </div>
             </div>
 
             {/* Quick Reference Table */}
-            <div style={{ marginTop: "var(--s-4)" }}>
+            <div style={{ marginTop: "var(--s-6)" }}>
                 <h3 className="t-h3" style={{ marginBottom: "var(--s-3)" }}>Celsius to Kelvin — Quick Reference</h3>
                 <table className="calc-table">
                     <thead>
@@ -3012,22 +2974,21 @@ function MphToKmhCalc() {
                 </div>
             </div>
 
-            <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
+            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
                 <p className="calc-field__label">SPEED IN KM/H</p>
-                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+                <p className="calc-result__emi">
                     {kmh.toFixed(2)} km/h
                 </p>
-                <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "var(--s-3)" }}>
-                    <div><p className="calc-field__label">METERS/SEC</p><p style={{ fontWeight: 700 }}>{ms.toFixed(2)} m/s</p></div>
-                    <div><p className="calc-field__label">FEET/SEC</p><p style={{ fontWeight: 700 }}>{fts.toFixed(2)} ft/s</p></div>
-                    <div><p className="calc-field__label">KNOTS</p><p style={{ fontWeight: 700 }}>{knots.toFixed(2)} kn</p></div>
-                    <div><p className="calc-field__label">FORMULA</p><p style={{ fontWeight: 700, fontSize: "var(--t-body-sm)" }}>{mph}×1.609</p></div>
+                <div className="calc-result__stats">
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{ms.toFixed(2)} m/s</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{fts.toFixed(2)} ft/s</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{knots.toFixed(2)} kn</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{mph}×1.609</p></div>
                 </div>
             </div>
 
             {/* Quick Reference Table */}
-            <div style={{ marginTop: "var(--s-4)" }}>
+            <div style={{ marginTop: "var(--s-6)" }}>
                 <h3 className="t-h3" style={{ marginBottom: "var(--s-3)" }}>MPH to KM/H — Quick Reference</h3>
                 <table className="calc-table">
                     <thead>
@@ -3078,22 +3039,21 @@ function MmBtuToMwhCalc() {
                 </div>
             </div>
 
-            <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
+            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
                 <p className="calc-field__label">ENERGY IN MEGAWATT HOURS</p>
-                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+                <p className="calc-result__emi">
                     {mwh.toFixed(4)} MWh
                 </p>
-                <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "var(--s-3)" }}>
-                    <div><p className="calc-field__label">KILOWATT HOURS</p><p style={{ fontWeight: 700 }}>{kwh.toFixed(1)} kWh</p></div>
-                    <div><p className="calc-field__label">GIGAJOULES</p><p style={{ fontWeight: 700 }}>{gj.toFixed(4)} GJ</p></div>
-                    <div><p className="calc-field__label">THERMS</p><p style={{ fontWeight: 700 }}>{therms.toFixed(1)}</p></div>
-                    <div><p className="calc-field__label">FORMULA</p><p style={{ fontWeight: 700, fontSize: "var(--t-body-sm)" }}>{mmbtu}×0.2931</p></div>
+                <div className="calc-result__stats">
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{kwh.toFixed(1)} kWh</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{gj.toFixed(4)} GJ</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{therms.toFixed(1)}</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{mmbtu}×0.2931</p></div>
                 </div>
             </div>
 
             {/* Quick Reference Table */}
-            <div style={{ marginTop: "var(--s-4)" }}>
+            <div style={{ marginTop: "var(--s-6)" }}>
                 <h3 className="t-h3" style={{ marginBottom: "var(--s-3)" }}>MMBtu to MWh — Quick Reference</h3>
                 <table className="calc-table">
                     <thead>
@@ -3144,22 +3104,21 @@ function MwhToKwhCalc() {
                 </div>
             </div>
 
-            <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
+            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
                 <p className="calc-field__label">ENERGY IN KILOWATT HOURS</p>
-                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+                <p className="calc-result__emi">
                     {kwh.toLocaleString(undefined, { maximumFractionDigits: 2 })} kWh
                 </p>
-                <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "var(--s-3)" }}>
-                    <div><p className="calc-field__label">WATT HOURS</p><p style={{ fontWeight: 700 }}>{wh.toLocaleString()} Wh</p></div>
+                <div className="calc-result__stats">
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{wh.toLocaleString()} Wh</p></div>
                     <div><p className="calc-field__label">MMBtu</p><p style={{ fontWeight: 700 }}>{mmbtu.toFixed(4)}</p></div>
-                    <div><p className="calc-field__label">GIGAJOULES</p><p style={{ fontWeight: 700 }}>{gj.toFixed(4)} GJ</p></div>
-                    <div><p className="calc-field__label">FORMULA</p><p style={{ fontWeight: 700, fontSize: "var(--t-body-sm)" }}>{mwh}×1,000</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{gj.toFixed(4)} GJ</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{mwh}×1,000</p></div>
                 </div>
             </div>
 
             {/* Quick Reference Table */}
-            <div style={{ marginTop: "var(--s-4)" }}>
+            <div style={{ marginTop: "var(--s-6)" }}>
                 <h3 className="t-h3" style={{ marginBottom: "var(--s-3)" }}>MWh to kWh — Quick Reference</h3>
                 <table className="calc-table">
                     <thead>
@@ -3210,22 +3169,21 @@ function KcalToCalCalc() {
                 </div>
             </div>
 
-            <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
-                <p className="calc-field__label">ENERGY IN CALORIES</p>
-                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
+                <p className="calc-result__label">ENERGY IN CALORIES</p>
+                <p className="calc-result__emi">
                     {cal.toLocaleString()} cal
                 </p>
-                <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "var(--s-3)" }}>
-                    <div><p className="calc-field__label">FOOD CALORIES</p><p style={{ fontWeight: 700 }}>{foodCal.toLocaleString()} Cal</p></div>
-                    <div><p className="calc-field__label">KILOJOULES</p><p style={{ fontWeight: 700 }}>{kj.toFixed(1)} kJ</p></div>
-                    <div><p className="calc-field__label">BTU</p><p style={{ fontWeight: 700 }}>{btu.toFixed(1)}</p></div>
-                    <div><p className="calc-field__label">FORMULA</p><p style={{ fontWeight: 700, fontSize: "var(--t-body-sm)" }}>{kcal}×1,000</p></div>
+                <div className="calc-result__stats">
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{foodCal.toLocaleString()} Cal</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{kj.toFixed(1)} kJ</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{btu.toFixed(1)}</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{kcal}×1,000</p></div>
                 </div>
             </div>
 
             {/* Quick Reference Table */}
-            <div style={{ marginTop: "var(--s-4)" }}>
+            <div style={{ marginTop: "var(--s-6)" }}>
                 <h3 className="t-h3" style={{ marginBottom: "var(--s-3)" }}>Kilocalories to Calories — Quick Reference</h3>
                 <table className="calc-table">
                     <thead>
@@ -3275,22 +3233,21 @@ function Lper100kmToMpgCalc() {
                 </div>
             </div>
 
-            <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
-                <p className="calc-field__label">FUEL ECONOMY IN US MPG</p>
-                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
+                <p className="calc-result__label">FUEL ECONOMY IN US MPG</p>
+                <p className="calc-result__emi">
                     {usMpg.toFixed(1)} mpg
                 </p>
-                <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "var(--s-3)" }}>
-                    <div><p className="calc-field__label">UK MPG</p><p style={{ fontWeight: 700 }}>{ukMpg.toFixed(1)} mpg (imp)</p></div>
-                    <div><p className="calc-field__label">KM PER LITER</p><p style={{ fontWeight: 700 }}>{kmPerL.toFixed(1)} km/L</p></div>
-                    <div><p className="calc-field__label">EFFICIENCY</p><p style={{ fontWeight: 700 }}>{usMpg >= 30 ? "🟢 Great" : usMpg >= 20 ? "🟡 Average" : "🔴 Poor"}</p></div>
-                    <div><p className="calc-field__label">FORMULA</p><p style={{ fontWeight: 700, fontSize: "var(--t-body-sm)" }}>235.215÷{lper100}</p></div>
+                <div className="calc-result__stats">
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{ukMpg.toFixed(1)} mpg (imp)</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{kmPerL.toFixed(1)} km/L</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{usMpg >= 30 ? "🟢 Great" : usMpg >= 20 ? "🟡 Average" : "🔴 Poor"}</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">235.215÷{lper100}</p></div>
                 </div>
             </div>
 
             {/* Quick Reference Table */}
-            <div style={{ marginTop: "var(--s-4)" }}>
+            <div style={{ marginTop: "var(--s-6)" }}>
                 <h3 className="t-h3" style={{ marginBottom: "var(--s-3)" }}>L/100km to MPG — Quick Reference</h3>
                 <table className="calc-table">
                     <thead>
@@ -3340,22 +3297,21 @@ function MpgToLper100kmCalc() {
                 </div>
             </div>
 
-            <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
+            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
                 <p className="calc-field__label">FUEL CONSUMPTION IN L/100KM</p>
-                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+                <p className="calc-result__emi">
                     {lper100.toFixed(1)} L/100km
                 </p>
-                <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "var(--s-3)" }}>
-                    <div><p className="calc-field__label">UK MPG</p><p style={{ fontWeight: 700 }}>{ukMpg.toFixed(1)} mpg (imp)</p></div>
-                    <div><p className="calc-field__label">KM PER LITER</p><p style={{ fontWeight: 700 }}>{kmPerL.toFixed(1)} km/L</p></div>
-                    <div><p className="calc-field__label">EFFICIENCY</p><p style={{ fontWeight: 700 }}>{lper100 <= 6 ? "🟢 Great" : lper100 <= 10 ? "🟡 Average" : "🔴 Poor"}</p></div>
-                    <div><p className="calc-field__label">FORMULA</p><p style={{ fontWeight: 700, fontSize: "var(--t-body-sm)" }}>235.215÷{mpg}</p></div>
+                <div className="calc-result__stats">
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{ukMpg.toFixed(1)} mpg (imp)</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{kmPerL.toFixed(1)} km/L</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{lper100 <= 6 ? "🟢 Great" : lper100 <= 10 ? "🟡 Average" : "🔴 Poor"}</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">235.215÷{mpg}</p></div>
                 </div>
             </div>
 
             {/* Quick Reference Table */}
-            <div style={{ marginTop: "var(--s-4)" }}>
+            <div style={{ marginTop: "var(--s-6)" }}>
                 <h3 className="t-h3" style={{ marginBottom: "var(--s-3)" }}>MPG to L/100km — Quick Reference</h3>
                 <table className="calc-table">
                     <thead>
@@ -3405,22 +3361,21 @@ function KmPerLToMpgCalc() {
                 </div>
             </div>
 
-            <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
-                <p className="calc-field__label">FUEL ECONOMY IN US MPG</p>
-                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
+                <p className="calc-result__label">FUEL ECONOMY IN US MPG</p>
+                <p className="calc-result__emi">
                     {usMpg.toFixed(1)} mpg
                 </p>
-                <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "var(--s-3)" }}>
-                    <div><p className="calc-field__label">L/100KM</p><p style={{ fontWeight: 700 }}>{lper100.toFixed(1)}</p></div>
-                    <div><p className="calc-field__label">UK MPG</p><p style={{ fontWeight: 700 }}>{ukMpg.toFixed(1)} mpg (imp)</p></div>
-                    <div><p className="calc-field__label">EFFICIENCY</p><p style={{ fontWeight: 700 }}>{usMpg >= 30 ? "🟢 Great" : usMpg >= 20 ? "🟡 Average" : "🔴 Poor"}</p></div>
-                    <div><p className="calc-field__label">FORMULA</p><p style={{ fontWeight: 700, fontSize: "var(--t-body-sm)" }}>{kml}×2.352</p></div>
+                <div className="calc-result__stats">
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{lper100.toFixed(1)}</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{ukMpg.toFixed(1)} mpg (imp)</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{usMpg >= 30 ? "🟢 Great" : usMpg >= 20 ? "🟡 Average" : "🔴 Poor"}</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{kml}×2.352</p></div>
                 </div>
             </div>
 
             {/* Quick Reference Table */}
-            <div style={{ marginTop: "var(--s-4)" }}>
+            <div style={{ marginTop: "var(--s-6)" }}>
                 <h3 className="t-h3" style={{ marginBottom: "var(--s-3)" }}>km/L to MPG — Quick Reference</h3>
                 <table className="calc-table">
                     <thead>
@@ -3470,22 +3425,21 @@ function MpgToKmPerLCalc() {
                 </div>
             </div>
 
-            <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
+            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
                 <p className="calc-field__label">FUEL ECONOMY IN KM/L</p>
-                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+                <p className="calc-result__emi">
                     {kml.toFixed(1)} km/L
                 </p>
-                <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "var(--s-3)" }}>
-                    <div><p className="calc-field__label">L/100KM</p><p style={{ fontWeight: 700 }}>{lper100.toFixed(1)}</p></div>
-                    <div><p className="calc-field__label">UK MPG</p><p style={{ fontWeight: 700 }}>{ukMpg.toFixed(1)} mpg (imp)</p></div>
-                    <div><p className="calc-field__label">EFFICIENCY</p><p style={{ fontWeight: 700 }}>{kml >= 13 ? "🟢 Great" : kml >= 8 ? "🟡 Average" : "🔴 Poor"}</p></div>
-                    <div><p className="calc-field__label">FORMULA</p><p style={{ fontWeight: 700, fontSize: "var(--t-body-sm)" }}>{mpg}×0.425</p></div>
+                <div className="calc-result__stats">
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{lper100.toFixed(1)}</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{ukMpg.toFixed(1)} mpg (imp)</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{kml >= 13 ? "🟢 Great" : kml >= 8 ? "🟡 Average" : "🔴 Poor"}</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{mpg}×0.425</p></div>
                 </div>
             </div>
 
             {/* Quick Reference Table */}
-            <div style={{ marginTop: "var(--s-4)" }}>
+            <div style={{ marginTop: "var(--s-6)" }}>
                 <h3 className="t-h3" style={{ marginBottom: "var(--s-3)" }}>MPG to km/L — Quick Reference</h3>
                 <table className="calc-table">
                     <thead>
@@ -3535,22 +3489,21 @@ function MegaohmToOhmCalc() {
                 </div>
             </div>
 
-            <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
-                <p className="calc-field__label">RESISTANCE IN OHMS</p>
-                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
+                <p className="calc-result__label">RESISTANCE IN OHMS</p>
+                <p className="calc-result__emi">
                     {ohm.toLocaleString()} Ω
                 </p>
-                <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "var(--s-3)" }}>
-                    <div><p className="calc-field__label">KILOHMS</p><p style={{ fontWeight: 700 }}>{kohm.toLocaleString()} kΩ</p></div>
-                    <div><p className="calc-field__label">GIGAOHMS</p><p style={{ fontWeight: 700 }}>{gohm.toFixed(6)} GΩ</p></div>
-                    <div><p className="calc-field__label">CONDUCTANCE</p><p style={{ fontWeight: 700 }}>{(1/ohm * 1000000).toFixed(3)} µS</p></div>
-                    <div><p className="calc-field__label">FORMULA</p><p style={{ fontWeight: 700, fontSize: "var(--t-body-sm)" }}>{mohm}×10⁶</p></div>
+                <div className="calc-result__stats">
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{kohm.toLocaleString()} kΩ</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{gohm.toFixed(6)} GΩ</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{(1/ohm * 1000000).toFixed(3)} µS</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{mohm}×10⁶</p></div>
                 </div>
             </div>
 
             {/* Quick Reference Table */}
-            <div style={{ marginTop: "var(--s-4)" }}>
+            <div style={{ marginTop: "var(--s-6)" }}>
                 <h3 className="t-h3" style={{ marginBottom: "var(--s-3)" }}>MΩ to Ω — Quick Reference</h3>
                 <table className="calc-table">
                     <thead>
@@ -3600,22 +3553,21 @@ function OhmToKiloohmCalc() {
                 </div>
             </div>
 
-            <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
+            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
                 <p className="calc-field__label">RESISTANCE IN KILOHMS</p>
-                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+                <p className="calc-result__emi">
                     {kohm.toFixed(kohm < 1 ? 3 : kohm < 10 ? 2 : 1)} kΩ
                 </p>
-                <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "var(--s-3)" }}>
-                    <div><p className="calc-field__label">MEGAOHMS</p><p style={{ fontWeight: 700 }}>{mohm.toFixed(6)} MΩ</p></div>
-                    <div><p className="calc-field__label">MILLIOHMS</p><p style={{ fontWeight: 700 }}>{milliohm.toLocaleString()} mΩ</p></div>
-                    <div><p className="calc-field__label">CONDUCTANCE</p><p style={{ fontWeight: 700 }}>{(1/ohm * 1000).toFixed(3)} mS</p></div>
-                    <div><p className="calc-field__label">FORMULA</p><p style={{ fontWeight: 700, fontSize: "var(--t-body-sm)" }}>{ohm.toLocaleString()}÷1000</p></div>
+                <div className="calc-result__stats">
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{mohm.toFixed(6)} MΩ</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{milliohm.toLocaleString()} mΩ</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{(1/ohm * 1000).toFixed(3)} mS</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{ohm.toLocaleString()}÷1000</p></div>
                 </div>
             </div>
 
             {/* Quick Reference Table */}
-            <div style={{ marginTop: "var(--s-4)" }}>
+            <div style={{ marginTop: "var(--s-6)" }}>
                 <h3 className="t-h3" style={{ marginBottom: "var(--s-3)" }}>Ω to kΩ — Quick Reference</h3>
                 <table className="calc-table">
                     <thead>
@@ -3672,22 +3624,21 @@ function DegToRadCalc() {
                 </div>
             </div>
 
-            <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
-                <p className="calc-field__label">ANGLE IN RADIANS</p>
-                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
+                <p className="calc-result__label">ANGLE IN RADIANS</p>
+                <p className="calc-result__emi">
                     {rad.toFixed(6)} rad
                 </p>
-                <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "var(--s-3)" }}>
-                    <div><p className="calc-field__label">EXACT</p><p style={{ fontWeight: 700 }}>{exactFrac(deg)}</p></div>
-                    <div><p className="calc-field__label">TURNS</p><p style={{ fontWeight: 700 }}>{turns.toFixed(4)}</p></div>
+                <div className="calc-result__stats">
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{exactFrac(deg)}</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{turns.toFixed(4)}</p></div>
                     <div><p className="calc-field__label">SIN({deg}°)</p><p style={{ fontWeight: 700 }}>{sinVal.toFixed(6)}</p></div>
                     <div><p className="calc-field__label">COS({deg}°)</p><p style={{ fontWeight: 700 }}>{cosVal.toFixed(6)}</p></div>
                 </div>
             </div>
 
             {/* Quick Reference Table */}
-            <div style={{ marginTop: "var(--s-4)" }}>
+            <div style={{ marginTop: "var(--s-6)" }}>
                 <h3 className="t-h3" style={{ marginBottom: "var(--s-3)" }}>Degrees to Radians — Key Angles</h3>
                 <table className="calc-table">
                     <thead>
@@ -3742,22 +3693,21 @@ function RadToDegCalc() {
                 </div>
             </div>
 
-            <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
-                <p className="calc-field__label">ANGLE IN DEGREES</p>
-                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
+                <p className="calc-result__label">ANGLE IN DEGREES</p>
+                <p className="calc-result__emi">
                     {deg.toFixed(4)}°
                 </p>
-                <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "var(--s-3)" }}>
-                    <div><p className="calc-field__label">EXACT</p><p style={{ fontWeight: 700, fontSize: "var(--t-body-sm)" }}>{exactLabel(rad)}</p></div>
-                    <div><p className="calc-field__label">TURNS</p><p style={{ fontWeight: 700 }}>{turns.toFixed(4)}</p></div>
-                    <div><p className="calc-field__label">SIN</p><p style={{ fontWeight: 700 }}>{sinVal.toFixed(6)}</p></div>
-                    <div><p className="calc-field__label">COS</p><p style={{ fontWeight: 700 }}>{cosVal.toFixed(6)}</p></div>
+                <div className="calc-result__stats">
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{exactLabel(rad)}</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{turns.toFixed(4)}</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{sinVal.toFixed(6)}</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{cosVal.toFixed(6)}</p></div>
                 </div>
             </div>
 
             {/* Quick Reference Table */}
-            <div style={{ marginTop: "var(--s-4)" }}>
+            <div style={{ marginTop: "var(--s-6)" }}>
                 <h3 className="t-h3" style={{ marginBottom: "var(--s-3)" }}>Radians to Degrees — Key Values</h3>
                 <table className="calc-table">
                     <thead>
@@ -3808,22 +3758,21 @@ function DegToMradCalc() {
                 </div>
             </div>
 
-            <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
+            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
                 <p className="calc-field__label">ANGLE IN MILLIRADIANS</p>
-                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+                <p className="calc-result__emi">
                     {mrad.toFixed(4)} mrad
                 </p>
-                <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "var(--s-3)" }}>
-                    <div><p className="calc-field__label">NATO MILS</p><p style={{ fontWeight: 700 }}>{natoMil.toFixed(2)}</p></div>
-                    <div><p className="calc-field__label">RADIANS</p><p style={{ fontWeight: 700 }}>{rad.toFixed(6)}</p></div>
-                    <div><p className="calc-field__label">MOA</p><p style={{ fontWeight: 700 }}>{moa.toFixed(1)}</p></div>
-                    <div><p className="calc-field__label">FORMULA</p><p style={{ fontWeight: 700, fontSize: "var(--t-body-sm)" }}>{deg}×17.45</p></div>
+                <div className="calc-result__stats">
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{natoMil.toFixed(2)}</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{rad.toFixed(6)}</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{moa.toFixed(1)}</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{deg}×17.45</p></div>
                 </div>
             </div>
 
             {/* Quick Reference Table */}
-            <div style={{ marginTop: "var(--s-4)" }}>
+            <div style={{ marginTop: "var(--s-6)" }}>
                 <h3 className="t-h3" style={{ marginBottom: "var(--s-3)" }}>Degrees to Milliradians — Quick Reference</h3>
                 <table className="calc-table">
                     <thead>
@@ -3875,22 +3824,21 @@ function MradToDegCalc() {
                 </div>
             </div>
 
-            <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
-                <p className="calc-field__label">ANGLE IN DEGREES</p>
-                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
+                <p className="calc-result__label">ANGLE IN DEGREES</p>
+                <p className="calc-result__emi">
                     {deg.toFixed(6)}°
                 </p>
-                <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "var(--s-3)" }}>
-                    <div><p className="calc-field__label">MOA</p><p style={{ fontWeight: 700 }}>{moa.toFixed(2)}</p></div>
-                    <div><p className="calc-field__label">NATO MILS</p><p style={{ fontWeight: 700 }}>{natoMil.toFixed(2)}</p></div>
+                <div className="calc-result__stats">
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{moa.toFixed(2)}</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{natoMil.toFixed(2)}</p></div>
                     <div><p className="calc-field__label">@ 100 YD</p><p style={{ fontWeight: 700 }}>{inchAt100.toFixed(2)}"</p></div>
-                    <div><p className="calc-field__label">RADIANS</p><p style={{ fontWeight: 700 }}>{rad.toFixed(6)}</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{rad.toFixed(6)}</p></div>
                 </div>
             </div>
 
             {/* Quick Reference Table */}
-            <div style={{ marginTop: "var(--s-4)" }}>
+            <div style={{ marginTop: "var(--s-6)" }}>
                 <h3 className="t-h3" style={{ marginBottom: "var(--s-3)" }}>Milliradians to Degrees — Quick Reference</h3>
                 <table className="calc-table">
                     <thead>
@@ -3952,25 +3900,24 @@ function AngleHubCalc() {
                 </div>
             </div>
 
-            <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
+            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
                 <p className="calc-field__label">ALL ANGLE UNITS</p>
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "var(--s-3)", marginTop: "var(--s-2)" }}>
                     <div><p className="calc-field__label">RADIANS</p><p style={{ fontWeight: 700, color: "var(--n-primary)" }}>{rad.toFixed(6)}</p></div>
                     <div><p className="calc-field__label">MILLIRADIANS</p><p style={{ fontWeight: 700, color: "var(--n-primary)" }}>{mrad.toFixed(2)}</p></div>
-                    <div><p className="calc-field__label">NATO MILS</p><p style={{ fontWeight: 700 }}>{natoMil.toFixed(2)}</p></div>
-                    <div><p className="calc-field__label">MOA</p><p style={{ fontWeight: 700 }}>{moa.toFixed(1)}</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{natoMil.toFixed(2)}</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{moa.toFixed(1)}</p></div>
                 </div>
-                <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "var(--s-3)" }}>
-                    <div><p className="calc-field__label">GRADIANS</p><p style={{ fontWeight: 700 }}>{grad.toFixed(2)}</p></div>
-                    <div><p className="calc-field__label">TURNS</p><p style={{ fontWeight: 700 }}>{turns.toFixed(6)}</p></div>
+                <div className="calc-result__stats">
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{grad.toFixed(2)}</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{turns.toFixed(6)}</p></div>
                     <div><p className="calc-field__label">SIN({deg}°)</p><p style={{ fontWeight: 700 }}>{sinVal.toFixed(6)}</p></div>
                     <div><p className="calc-field__label">COS({deg}°)</p><p style={{ fontWeight: 700 }}>{cosVal.toFixed(6)}</p></div>
                 </div>
             </div>
 
             {/* Links to individual converters */}
-            <div style={{ marginTop: "var(--s-4)" }}>
+            <div style={{ marginTop: "var(--s-6)" }}>
                 <h3 className="t-h3" style={{ marginBottom: "var(--s-3)" }}>Angle Conversion Calculators</h3>
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "var(--s-3)" }}>
                     {converters.map((c) => (
