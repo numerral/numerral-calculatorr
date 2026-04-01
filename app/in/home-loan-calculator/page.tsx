@@ -8,6 +8,7 @@ import Breadcrumb from "@/components/layout/Breadcrumb";
 import "../in.css";
 import "../../ksa/ksa.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
+import PageDesc from "@/components/shared/PageDesc";
 import HomeLoanCalculatorCore from "@/components/calculator/HomeLoanCalculatorCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
 import { buildCountryAlternates } from "@/lib/geo-seo";
@@ -67,9 +68,9 @@ export default function HomeLoanCalculatorPage() {
             ]} />
 
             <h1 className="t-h1" style={{ marginBottom: "var(--s-2)" }}>Home Loan EMI Calculator India 2026</h1>
-            <p className="t-body text-muted" style={{ marginBottom: "var(--s-6)" }}>
+            <PageDesc>
                 Calculate your home loan EMI, total interest, and amortization schedule. Check your loan eligibility, see how prepayment saves lakhs in interest, and find out how much property you can afford — all based on 2026 Indian bank rates and RBI guidelines.
-            </p>
+            </PageDesc>
             <AuthorBadge categoryKey="salary" />
             <HomeLoanCalculatorCore />
 

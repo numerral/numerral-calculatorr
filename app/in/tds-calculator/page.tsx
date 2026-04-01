@@ -5,6 +5,7 @@ import Breadcrumb from "@/components/layout/Breadcrumb";
 import "../in.css";
 import "../../ksa/ksa.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
+import PageDesc from "@/components/shared/PageDesc";
 import TDSCalculatorCore from "@/components/calculator/TDSCalculatorCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
 import { buildCountryAlternates } from "@/lib/geo-seo";
@@ -64,9 +65,9 @@ export default function TDSCalculatorPage() {
             ]} />
 
             <h1 className="t-h1" style={{ marginBottom: "var(--s-2)" }}>TDS Calculator India 2026</h1>
-            <p className="t-body text-muted" style={{ marginBottom: "var(--s-6)" }}>
+            <PageDesc>
                 Free TDS Calculator with 4 modes: Section-wise TDS Calculator covering 23+ sections (194A, 194C, 194H, 194I, 194IA, 194IB, 194J, 194K, 194O, 194Q, 194R, 194S, 194T, and more) with PAN/No-PAN impact and Individual vs Company rates, Complete TDS Rate Chart with category filters, Penalty &amp; Interest Calculator for late deposit and non-deduction (Sections 201, 234E, 271H), and Quarterly Filing Calendar with Form 24Q/26Q/27Q due dates. Updated for FY 2025-26 including the new Section 194T for partner payments.
-            </p>
+            </PageDesc>
             <AuthorBadge categoryKey="tax" />
             <TDSCalculatorCore />
 

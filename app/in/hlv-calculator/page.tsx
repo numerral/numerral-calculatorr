@@ -5,6 +5,7 @@ import Breadcrumb from "@/components/layout/Breadcrumb";
 import "../in.css";
 import "../../ksa/ksa.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
+import PageDesc from "@/components/shared/PageDesc";
 import HLVCalculatorIndiaCore from "@/components/calculator/HLVCalculatorIndiaCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
 import { buildCountryAlternates } from "@/lib/geo-seo";
@@ -64,9 +65,9 @@ export default function HLVCalculatorPage() {
             ]} />
 
             <h1 className="t-h1" style={{ marginBottom: "var(--s-2)" }}>Human Life Value (HLV) Calculator India 2026</h1>
-            <p className="t-body text-muted" style={{ marginBottom: "var(--s-6)" }}>
+            <PageDesc>
                 Calculate how much life insurance cover you actually need using three methods — Income Replacement (Present Value), Need-Based Analysis, and the Quick 10×–20× Estimate. Includes IRDAI FY25 data, MWP Act guide, age-based multiplier table, and Section 80C tax benefits.
-            </p>
+            </PageDesc>
             <AuthorBadge categoryKey="salary" />
             <HLVCalculatorIndiaCore />
 

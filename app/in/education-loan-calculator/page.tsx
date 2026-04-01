@@ -8,6 +8,7 @@ import Breadcrumb from "@/components/layout/Breadcrumb";
 import "../in.css";
 import "../../ksa/ksa.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
+import PageDesc from "@/components/shared/PageDesc";
 import EducationLoanCalculatorCore from "@/components/calculator/EducationLoanCalculatorCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
 import { buildCountryAlternates } from "@/lib/geo-seo";
@@ -67,9 +68,9 @@ export default function EducationLoanCalculatorPage() {
             ]} />
 
             <h1 className="t-h1" style={{ marginBottom: "var(--s-2)" }}>Education Loan EMI Calculator India 2026</h1>
-            <p className="t-body text-muted" style={{ marginBottom: "var(--s-6)" }}>
+            <PageDesc>
                 Free education loan EMI calculator with moratorium impact analysis, Section 80E tax savings calculator, India vs abroad cost comparison, and 7-bank interest rate comparison. Covers PM-Vidyalakshmi subsidy, CSIS scheme, collateral rules, and course-wise EMI examples for B.Tech, MBA, MBBS, and study abroad.
-            </p>
+            </PageDesc>
             <AuthorBadge categoryKey="salary" />
             <EducationLoanCalculatorCore />
 

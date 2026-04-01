@@ -5,6 +5,7 @@ import Breadcrumb from "@/components/layout/Breadcrumb";
 import "../in.css";
 import "../../ksa/ksa.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
+import PageDesc from "@/components/shared/PageDesc";
 import FIDERatingCalculatorCore from "@/components/calculator/FIDERatingCalculatorCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
 import { buildCountryAlternates } from "@/lib/geo-seo";
@@ -62,11 +63,11 @@ export default function FIDERatingCalculatorPage() {
                 { label: "FIDE Rating Calculator" },
             ]} />
             <h1 className="t-h1" style={{ marginBottom: "var(--s-2)" }}>FIDE Rating Calculator India 2026</h1>
-            <p className="t-body text-muted" style={{ marginBottom: "var(--s-6)" }}>
+            <PageDesc>
                 Calculate your new FIDE Elo rating with 4 modes — Elo Calculator (multi-game tournament mode with K-factor
                 selection and round-by-round breakdown), Performance Rating (TPR), Title Progress Tracker (GM/IM/FM/CM
                 path with progress bar), and Win Probability Calculator (expected score formula with visual probability bar).
-            </p>
+            </PageDesc>
             <AuthorBadge categoryKey="salary" />
             <FIDERatingCalculatorCore />
 

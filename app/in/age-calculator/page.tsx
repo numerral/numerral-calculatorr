@@ -5,6 +5,7 @@ import Breadcrumb from "@/components/layout/Breadcrumb";
 import "../in.css";
 import "../../ksa/ksa.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
+import PageDesc from "@/components/shared/PageDesc";
 import AgeCalculatorIndiaCore from "@/components/calculator/AgeCalculatorIndiaCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
 import { buildCountryAlternates } from "@/lib/geo-seo";
@@ -64,9 +65,9 @@ export default function AgeCalculatorPage() {
             ]} />
 
             <h1 className="t-h1" style={{ marginBottom: "var(--s-2)" }}>Age Calculator India 2026</h1>
-            <p className="t-body text-muted" style={{ marginBottom: "var(--s-6)" }}>
+            <PageDesc>
                 Calculate your exact age in years, months, and days. Track your India legal milestones — voting age, driving license, marriage age, senior citizen benefits, and retirement. Compare two ages and countdown to your next birthday.
-            </p>
+            </PageDesc>
             <AuthorBadge categoryKey="salary" />
             <AgeCalculatorIndiaCore />
 

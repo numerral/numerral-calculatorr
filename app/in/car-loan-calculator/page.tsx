@@ -5,6 +5,7 @@ import Breadcrumb from "@/components/layout/Breadcrumb";
 import "../in.css";
 import "../../ksa/ksa.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
+import PageDesc from "@/components/shared/PageDesc";
 import CarLoanCalculatorCore from "@/components/calculator/CarLoanCalculatorCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
 import { buildCountryAlternates } from "@/lib/geo-seo";
@@ -64,9 +65,9 @@ export default function CarLoanCalculatorPage() {
             ]} />
 
             <h1 className="t-h1" style={{ marginBottom: "var(--s-2)" }}>Car Loan EMI Calculator India 2026</h1>
-            <p className="t-body text-muted" style={{ marginBottom: "var(--s-6)" }}>
+            <PageDesc>
                 Calculate your car loan EMI with down payment, compare new vs used car rates, check eligibility, and see how prepayment saves you money. Based on 2026 Indian bank rates — SBI, HDFC, ICICI, Axis, and more.
-            </p>
+            </PageDesc>
             <AuthorBadge categoryKey="salary" />
             <CarLoanCalculatorCore />
 

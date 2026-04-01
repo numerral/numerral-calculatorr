@@ -5,6 +5,7 @@ import Breadcrumb from "@/components/layout/Breadcrumb";
 import "../in.css";
 import "../../ksa/ksa.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
+import PageDesc from "@/components/shared/PageDesc";
 import CrorepatiCalculatorCore from "@/components/calculator/CrorepatiCalculatorCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
 import { buildCountryAlternates } from "@/lib/geo-seo";
@@ -64,11 +65,11 @@ export default function CrorepatiCalculatorPage() {
             ]} />
 
             <h1 className="t-h1" style={{ marginBottom: "var(--s-2)" }}>Crorepati Calculator India 2026</h1>
-            <p className="t-body text-muted" style={{ marginBottom: "var(--s-6)" }}>
+            <PageDesc>
                 Plan your path to ₹1 Crore and beyond with 4 modes — Goal Planner (SIP + Lump Sum with inflation adjustment),
                 Step-Up SIP (annual increase projection), Cost of Delay (impact of starting late), and Milestone Tracker
                 (₹25 Lakh to ₹10 Crore timeline). Includes Rule of 72, SIP vs Lump Sum, investment comparison, and tax guide.
-            </p>
+            </PageDesc>
             <AuthorBadge categoryKey="salary" />
             <CrorepatiCalculatorCore />
 

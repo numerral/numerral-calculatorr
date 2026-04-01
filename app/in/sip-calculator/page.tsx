@@ -5,6 +5,7 @@ import Breadcrumb from "@/components/layout/Breadcrumb";
 import "../in.css";
 import "../../ksa/ksa.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
+import PageDesc from "@/components/shared/PageDesc";
 import SIPCalculatorIndiaCore from "@/components/calculator/SIPCalculatorIndiaCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
 import { buildCountryAlternates } from "@/lib/geo-seo";
@@ -64,9 +65,9 @@ export default function SIPCalculatorPage() {
             ]} />
 
             <h1 className="t-h1" style={{ marginBottom: "var(--s-2)" }}>SIP Calculator India 2026</h1>
-            <p className="t-body text-muted" style={{ marginBottom: "var(--s-6)" }}>
+            <PageDesc>
                 Calculate mutual fund SIP returns with step-up comparison, lumpsum projections, goal-based planning, and inflation-adjusted real value. Includes complete 2026 LTCG/STCG tax guide, SEBI fund categories, ELSS tax saving, and Direct vs Regular plan analysis.
-            </p>
+            </PageDesc>
             <AuthorBadge categoryKey="salary" />
             <SIPCalculatorIndiaCore />
 

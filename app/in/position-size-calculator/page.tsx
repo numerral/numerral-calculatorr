@@ -5,6 +5,7 @@ import Breadcrumb from "@/components/layout/Breadcrumb";
 import "../in.css";
 import "../../ksa/ksa.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
+import PageDesc from "@/components/shared/PageDesc";
 import PositionSizeCalculatorCore from "@/components/calculator/PositionSizeCalculatorCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
 import { buildCountryAlternates } from "@/lib/geo-seo";
@@ -63,11 +64,11 @@ export default function PositionSizeCalculatorPage() {
             ]} />
 
             <h1 className="t-h1" style={{ marginBottom: "var(--s-2)" }}>Position Size Calculator India 2026 — Calculate Shares to Buy, F&O Lots &amp; Risk-Reward</h1>
-            <p className="t-body text-muted" style={{ marginBottom: "var(--s-6)" }}>
+            <PageDesc>
                 Free Position Size Calculator with 4 modes — Basic Position Sizer with STT/GST cost breakdown, F&amp;O Lot Calculator (NSE 2026 lot sizes for Nifty 50, Bank Nifty, FinNifty),
                 Risk-Reward Analyser with colour-coded ratio, and Kelly Criterion for optimal allocation.
                 Includes SEBI regulations, ATR-based sizing guide, and loss recovery table.
-            </p>
+            </PageDesc>
             <AuthorBadge categoryKey="salary" />
             <PositionSizeCalculatorCore />
 

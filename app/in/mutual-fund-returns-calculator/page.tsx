@@ -5,6 +5,7 @@ import Breadcrumb from "@/components/layout/Breadcrumb";
 import "../in.css";
 import "../../ksa/ksa.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
+import PageDesc from "@/components/shared/PageDesc";
 import MutualFundReturnsCalculatorCore from "@/components/calculator/MutualFundReturnsCalculatorCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
 import { buildCountryAlternates } from "@/lib/geo-seo";
@@ -64,9 +65,9 @@ export default function MutualFundReturnsCalculatorPage() {
             ]} />
 
             <h1 className="t-h1" style={{ marginBottom: "var(--s-2)" }}>Mutual Fund Returns Calculator India 2026</h1>
-            <p className="t-body text-muted" style={{ marginBottom: "var(--s-6)" }}>
+            <PageDesc>
                 Free mutual fund returns calculator with 4 modes: Returns Calculator (Lump Sum + SIP with inflation adjustment, LTCG tax, and exit load), Lump Sum vs SIP vs STP comparison, LTCG/STCG Tax Impact Analyser by SEBI fund category, and Goal Reverse Planner. Covers CAGR formula, XIRR for SIP, direct vs regular expense ratio impact, Section 80C ELSS, and 2026 taxation rules for India.
-            </p>
+            </PageDesc>
             <AuthorBadge categoryKey="salary" />
             <MutualFundReturnsCalculatorCore />
 

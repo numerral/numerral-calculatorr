@@ -5,6 +5,7 @@ import Breadcrumb from "@/components/layout/Breadcrumb";
 import "../in.css";
 import "../../ksa/ksa.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
+import PageDesc from "@/components/shared/PageDesc";
 import XIRRCalculatorCore from "@/components/calculator/XIRRCalculatorCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
 import { buildCountryAlternates } from "@/lib/geo-seo";
@@ -62,11 +63,11 @@ export default function XIRRCalculatorPage() {
                 { label: "XIRR Calculator" },
             ]} />
             <h1 className="t-h1" style={{ marginBottom: "var(--s-2)" }}>XIRR Calculator India 2026</h1>
-            <p className="t-body text-muted" style={{ marginBottom: "var(--s-6)" }}>
+            <PageDesc>
                 Calculate true annualized return with 4 modes — True XIRR (add custom date + amount rows with Newton-Raphson
                 solver), SIP XIRR Quick Mode (vs CAGR comparison), XIRR vs CAGR vs Absolute Return, and What-If Analyser
                 (reverse-solve target XIRR). Covers the XIRR formula, Excel/Sheets guide, and negative XIRR meaning.
-            </p>
+            </PageDesc>
             <AuthorBadge categoryKey="salary" />
             <XIRRCalculatorCore />
 

@@ -5,6 +5,7 @@ import Breadcrumb from "@/components/layout/Breadcrumb";
 import "../in.css";
 import "../../ksa/ksa.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
+import PageDesc from "@/components/shared/PageDesc";
 import ProfessionalTaxCalculatorCore from "@/components/calculator/ProfessionalTaxCalculatorCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
 import { buildCountryAlternates } from "@/lib/geo-seo";
@@ -64,9 +65,9 @@ export default function ProfessionalTaxCalculatorPage() {
             ]} />
 
             <h1 className="t-h1" style={{ marginBottom: "var(--s-2)" }}>Professional Tax Calculator India 2026</h1>
-            <p className="t-body text-muted" style={{ marginBottom: "var(--s-6)" }}>
+            <PageDesc>
                 Free Professional Tax calculator with 4 modes: State-wise PT Calculator covering 18 states with detailed slab tables (Maharashtra, Karnataka, West Bengal, Gujarat, Tamil Nadu, Telangana, Kerala, AP and more), Annual PT &amp; Section 16(iii) Income Tax Impact calculator, PT Comparison Across All States, and Employer PTRC/PTEC Compliance Dashboard with penalty estimation. Updated for 2026 state-wise rates and Article 276 constitutional limits.
-            </p>
+            </PageDesc>
             <AuthorBadge categoryKey="salary" />
             <ProfessionalTaxCalculatorCore />
 

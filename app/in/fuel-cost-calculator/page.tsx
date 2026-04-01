@@ -8,6 +8,7 @@ import Breadcrumb from "@/components/layout/Breadcrumb";
 import "../in.css";
 import "../../ksa/ksa.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
+import PageDesc from "@/components/shared/PageDesc";
 import FuelCostCalculatorCore from "@/components/calculator/FuelCostCalculatorCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
 import { buildCountryAlternates } from "@/lib/geo-seo";
@@ -67,9 +68,9 @@ export default function FuelCostCalculatorPage() {
             ]} />
 
             <h1 className="t-h1" style={{ marginBottom: "var(--s-2)" }}>Fuel Cost Calculator India 2026</h1>
-            <p className="t-body text-muted" style={{ marginBottom: "var(--s-6)" }}>
+            <PageDesc>
                 Calculate petrol, diesel, and CNG costs for daily commutes, monthly budgets, and road trips across India. Compare fuel types, estimate trip costs, and find how far your budget takes you — with live city-wise prices for 15+ Indian cities.
-            </p>
+            </PageDesc>
             <AuthorBadge categoryKey="salary" />
             <FuelCostCalculatorCore />
 

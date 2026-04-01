@@ -5,6 +5,7 @@ import Breadcrumb from "@/components/layout/Breadcrumb";
 import "../in.css";
 import "../../ksa/ksa.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
+import PageDesc from "@/components/shared/PageDesc";
 import BMICalculatorIndiaCore from "@/components/calculator/BMICalculatorIndiaCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
 import { buildCountryAlternates } from "@/lib/geo-seo";
@@ -64,9 +65,9 @@ export default function BMICalculatorPage() {
             ]} />
 
             <h1 className="t-h1" style={{ marginBottom: "var(--s-2)" }}>BMI Calculator India 2026</h1>
-            <p className="t-body text-muted" style={{ marginBottom: "var(--s-6)" }}>
+            <PageDesc>
                 Calculate your Body Mass Index with <strong>Asian-Indian cutoffs</strong> (Overweight ≥23, Obese ≥25) — clinically recommended for South Asians. Compare WHO vs Indian BMI categories, find your ideal weight, and check your waist-to-height ratio for abdominal obesity risk.
-            </p>
+            </PageDesc>
             <AuthorBadge categoryKey="salary" />
             <BMICalculatorIndiaCore />
 

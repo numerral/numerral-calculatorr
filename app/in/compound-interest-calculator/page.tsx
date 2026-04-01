@@ -5,6 +5,7 @@ import Breadcrumb from "@/components/layout/Breadcrumb";
 import "../in.css";
 import "../../ksa/ksa.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
+import PageDesc from "@/components/shared/PageDesc";
 import CompoundInterestIndiaCore from "@/components/calculator/CompoundInterestIndiaCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
 import { buildCountryAlternates } from "@/lib/geo-seo";
@@ -64,10 +65,10 @@ export default function CompoundInterestPage() {
             ]} />
 
             <h1 className="t-h1" style={{ marginBottom: "var(--s-2)" }}>Compound Interest Calculator India 2026</h1>
-            <p className="t-body text-muted" style={{ marginBottom: "var(--s-6)" }}>
+            <PageDesc>
                 Calculate compound interest with 4 modes — Lump Sum, Recurring SIP, FD Comparison (SBI/HDFC/ICICI/PPF/NSC/SCSS rates), and Cost of Delay. Includes compounding frequency selector, year-by-year growth table,
                 Rule of 72, CI vs SI comparison, and Section 80C tax guide.
-            </p>
+            </PageDesc>
             <AuthorBadge categoryKey="salary" />
             <CompoundInterestIndiaCore />
 

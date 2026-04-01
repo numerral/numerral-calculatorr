@@ -5,6 +5,7 @@ import Breadcrumb from "@/components/layout/Breadcrumb";
 import "../in.css";
 import "../../ksa/ksa.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
+import PageDesc from "@/components/shared/PageDesc";
 import HRAExemptionCalculatorCore from "@/components/calculator/HRAExemptionCalculatorCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
 import { buildCountryAlternates } from "@/lib/geo-seo";
@@ -64,9 +65,9 @@ export default function HRAExemptionCalculatorPage() {
             ]} />
 
             <h1 className="t-h1" style={{ marginBottom: "var(--s-2)" }}>HRA Exemption Calculator India 2026</h1>
-            <p className="t-body text-muted" style={{ marginBottom: "var(--s-6)" }}>
+            <PageDesc>
                 Free HRA Exemption Calculator with 4 modes: HRA Tax Exemption Calculator using the 3-rule formula under Section 10(13A) &amp; Rule 2A (Actual HRA, 50/40% of Basic+DA, Rent−10% of Salary), Old vs New Regime comparison showing how HRA impacts your regime choice, Rent to Parents strategy calculator with net family savings, and Rent Optimiser to find the exact rent level for maximum tax benefit. Covers metro/non-metro classification (8 metros including Bengaluru, Hyderabad, Pune, Ahmedabad), landlord PAN rules, Form 12BB compliance, and Section 80GG for non-HRA recipients.
-            </p>
+            </PageDesc>
             <AuthorBadge categoryKey="tax" />
             <HRAExemptionCalculatorCore />
 

@@ -8,6 +8,7 @@ import Breadcrumb from "@/components/layout/Breadcrumb";
 import "../in.css";
 import "../../ksa/ksa.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
+import PageDesc from "@/components/shared/PageDesc";
 import HomeLoanEligibilityCore from "@/components/calculator/HomeLoanEligibilityCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
 import { buildCountryAlternates } from "@/lib/geo-seo";
@@ -67,9 +68,9 @@ export default function HomeLoanEligibilityPage() {
             ]} />
 
             <h1 className="t-h1" style={{ marginBottom: "var(--s-2)" }}>Home Loan Eligibility Calculator India 2026</h1>
-            <p className="t-body text-muted" style={{ marginBottom: "var(--s-6)" }}>
+            <PageDesc>
                 Check your maximum home loan eligibility based on income, CIBIL score, and existing obligations. Compare bank-wise criteria, see how a co-applicant boosts your limit, and understand RBI LTV guidelines — all with 2026 Indian bank rates and FOIR calculations.
-            </p>
+            </PageDesc>
             <AuthorBadge categoryKey="salary" />
             <HomeLoanEligibilityCore />
 

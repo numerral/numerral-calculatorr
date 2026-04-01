@@ -5,6 +5,7 @@ import Breadcrumb from "@/components/layout/Breadcrumb";
 import "../in.css";
 import "../../ksa/ksa.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
+import PageDesc from "@/components/shared/PageDesc";
 import FIRECalculatorIndiaCore from "@/components/calculator/FIRECalculatorIndiaCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
 import { buildCountryAlternates } from "@/lib/geo-seo";
@@ -61,11 +62,11 @@ export default function FIRECalculatorPage() {
             ]} />
 
             <h1 className="t-h1" style={{ marginBottom: "var(--s-2)" }}>FIRE Calculator India 2026 — Financial Independence, Retire Early</h1>
-            <p className="t-body text-muted" style={{ marginBottom: "var(--s-6)" }}>
+            <PageDesc>
                 Free FIRE calculator with 4 modes — FIRE Number (Lean/Standard/Conservative/Fat with India-adapted 3.5% SWR),
                 Coast FIRE, Barista FIRE, and FIRE Readiness Scorecard. Includes SIP bridge calculator, NPS/EPF/PPF integration guidance,
                 healthcare cost planning, bucket withdrawal strategy, and city-wise FIRE targets for India.
-            </p>
+            </PageDesc>
             <AuthorBadge categoryKey="salary" />
             <FIRECalculatorIndiaCore />
 

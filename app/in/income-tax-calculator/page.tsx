@@ -5,6 +5,7 @@ import Breadcrumb from "@/components/layout/Breadcrumb";
 import "../in.css";
 import "../../ksa/ksa.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
+import PageDesc from "@/components/shared/PageDesc";
 import IncomeTaxIndiaCore from "@/components/calculator/IncomeTaxIndiaCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
 import { buildCountryAlternates } from "@/lib/geo-seo";
@@ -64,11 +65,11 @@ export default function IncomeTaxCalculatorPage() {
             ]} />
 
             <h1 className="t-h1" style={{ marginBottom: "var(--s-2)" }}>Income Tax Calculator India — FY 2025-26</h1>
-            <p className="t-body text-muted" style={{ marginBottom: "var(--s-6)" }}>
+            <PageDesc>
                 Calculate your income tax for FY 2025-26 (AY 2026-27) with 3 modes — New Regime (Budget 2025 slabs, ₹12 lakh tax-free),
                 Old Regime (full 80C/80D/HRA/home loan deductions), and instant side-by-side Regime Comparison.
                 Includes slab-by-slab breakdown, surcharge, 4% cess, Section 87A rebate, and monthly TDS.
-            </p>
+            </PageDesc>
             <AuthorBadge categoryKey="salary" />
             <IncomeTaxIndiaCore />
 

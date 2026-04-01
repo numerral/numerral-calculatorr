@@ -5,6 +5,7 @@ import Breadcrumb from "@/components/layout/Breadcrumb";
 import "../in.css";
 import "../../ksa/ksa.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
+import PageDesc from "@/components/shared/PageDesc";
 import LumpsumCalculatorCore from "@/components/calculator/LumpsumCalculatorCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
 import { buildCountryAlternates } from "@/lib/geo-seo";
@@ -62,11 +63,11 @@ export default function LumpsumCalculatorPage() {
                 { label: "Lumpsum Calculator" },
             ]} />
             <h1 className="t-h1" style={{ marginBottom: "var(--s-2)" }}>Lumpsum Calculator India 2026</h1>
-            <p className="t-body text-muted" style={{ marginBottom: "var(--s-6)" }}>
+            <PageDesc>
                 Calculate one-time mutual fund investment returns with 4 modes — Returns Estimator (compounding frequency,
                 inflation &amp; LTCG tax toggles, year-by-year schedule), Lump Sum vs SIP comparison, STP Strategy Planner
                 (Liquid→Equity transfer), and Goal-Based Reverse Calculator. Covers CAGR, return types, and asset comparison.
-            </p>
+            </PageDesc>
             <AuthorBadge categoryKey="salary" />
             <LumpsumCalculatorCore />
 

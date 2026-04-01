@@ -5,6 +5,7 @@ import Breadcrumb from "@/components/layout/Breadcrumb";
 import "../in.css";
 import "../../ksa/ksa.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
+import PageDesc from "@/components/shared/PageDesc";
 import PensionCalculatorIndiaCore from "@/components/calculator/PensionCalculatorIndiaCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
 import { buildCountryAlternates } from "@/lib/geo-seo";
@@ -64,11 +65,11 @@ export default function PensionCalculatorPage() {
             ]} />
 
             <h1 className="t-h1" style={{ marginBottom: "var(--s-2)" }}>Pension Calculator India 2026</h1>
-            <p className="t-body text-muted" style={{ marginBottom: "var(--s-6)" }}>
+            <PageDesc>
                 Plan your retirement with 4 modes — Retirement Corpus Planner, NPS Calculator (with 80CCD tax savings),
                 EPS/EPFO Pension (formula with early/deferred adjustments), and Annuity Income Estimator. Includes NPS vs EPF vs PPF comparison,
                 OPS vs NPS analysis, annuity options guide, and India-specific healthcare cost planning.
-            </p>
+            </PageDesc>
             <AuthorBadge categoryKey="salary" />
             <PensionCalculatorIndiaCore />
 

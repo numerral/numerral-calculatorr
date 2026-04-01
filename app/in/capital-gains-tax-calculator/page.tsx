@@ -5,6 +5,7 @@ import Breadcrumb from "@/components/layout/Breadcrumb";
 import "../in.css";
 import "../../ksa/ksa.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
+import PageDesc from "@/components/shared/PageDesc";
 import CapitalGainsTaxCalculatorCore from "@/components/calculator/CapitalGainsTaxCalculatorCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
 import { buildCountryAlternates } from "@/lib/geo-seo";
@@ -64,9 +65,9 @@ export default function CapitalGainsTaxCalculatorPage() {
             ]} />
 
             <h1 className="t-h1" style={{ marginBottom: "var(--s-2)" }}>Capital Gains Tax Calculator India 2026</h1>
-            <p className="t-body text-muted" style={{ marginBottom: "var(--s-6)" }}>
+            <PageDesc>
                 Free Capital Gains Tax calculator with 4 modes: CG Tax Calculator for 9 asset types (listed equity, unlisted shares, equity MF, debt MF, real estate, gold, crypto/VDA, bonds, and other assets), Asset Tax Comparison across all classes, Section 54/54EC/54F Exemption Planner, and Tax Loss Harvesting optimiser. Updated for post-Budget 2024 rules including 12.5% LTCG, 20% equity STCG, indexation removal, ₹1.25 lakh annual exemption, grandfathering provision, and 30% VDA flat tax.
-            </p>
+            </PageDesc>
             <AuthorBadge categoryKey="tax" />
             <CapitalGainsTaxCalculatorCore />
 

@@ -5,6 +5,7 @@ import Breadcrumb from "@/components/layout/Breadcrumb";
 import "../in.css";
 import "../../ksa/ksa.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
+import PageDesc from "@/components/shared/PageDesc";
 import BodyFatCalculatorCore from "@/components/calculator/BodyFatCalculatorCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
 import { buildCountryAlternates } from "@/lib/geo-seo";
@@ -62,12 +63,12 @@ export default function BodyFatCalculatorPage() {
                 { label: "Body Fat Calculator" },
             ]} />
             <h1 className="t-h1" style={{ marginBottom: "var(--s-2)" }}>Body Fat Calculator India 2026</h1>
-            <p className="t-body text-muted" style={{ marginBottom: "var(--s-6)" }}>
+            <PageDesc>
                 Estimate your body fat percentage with 4 methods — US Navy Body Fat Formula (gender-aware with neck, waist,
                 and hip measurements), BMI-Based Estimate (Deurenberg formula, no tape needed), Body Fat Category Reference
                 (age-wise tables for men &amp; women), and Lean Body Mass Target Weight Planner. India-adapted with
                 thin-fat phenotype guidance and ICMR/Asian BMI thresholds.
-            </p>
+            </PageDesc>
             <AuthorBadge categoryKey="salary" />
             <BodyFatCalculatorCore />
 

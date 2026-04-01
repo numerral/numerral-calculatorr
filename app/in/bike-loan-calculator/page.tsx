@@ -8,6 +8,7 @@ import Breadcrumb from "@/components/layout/Breadcrumb";
 import "../in.css";
 import "../../ksa/ksa.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
+import PageDesc from "@/components/shared/PageDesc";
 import BikeLoanCalculatorCore from "@/components/calculator/BikeLoanCalculatorCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
 import { buildCountryAlternates } from "@/lib/geo-seo";
@@ -68,9 +69,9 @@ export default function BikeLoanCalculatorPage() {
             ]} />
 
             <h1 className="t-h1" style={{ marginBottom: "var(--s-2)" }}>Bike Loan EMI Calculator India 2026</h1>
-            <p className="t-body text-muted" style={{ marginBottom: "var(--s-6)" }}>
+            <PageDesc>
                 Calculate your two-wheeler loan EMI, compare 12+ bank and NBFC interest rates (SBI, HDFC, ICICI, Bajaj Finance, TVS Credit), check eligibility, and see how prepayment saves money. Covers scooters, commuters, sports bikes, and superbikes — with model-wise EMI examples and the PM E-DRIVE EV subsidy guide.
-            </p>
+            </PageDesc>
             <AuthorBadge categoryKey="salary" />
             <BikeLoanCalculatorCore />
 

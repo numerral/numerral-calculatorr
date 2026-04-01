@@ -8,6 +8,7 @@ import Breadcrumb from "@/components/layout/Breadcrumb";
 import "../in.css";
 import "../../ksa/ksa.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
+import PageDesc from "@/components/shared/PageDesc";
 import PersonalLoanCalculatorCore from "@/components/calculator/PersonalLoanCalculatorCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
 import { buildCountryAlternates } from "@/lib/geo-seo";
@@ -67,9 +68,9 @@ export default function PersonalLoanCalculatorPage() {
             ]} />
 
             <h1 className="t-h1" style={{ marginBottom: "var(--s-2)" }}>Personal Loan EMI Calculator India 2026</h1>
-            <p className="t-body text-muted" style={{ marginBottom: "var(--s-6)" }}>
+            <PageDesc>
                 Calculate your personal loan EMI, total interest, and eligibility. Compare bank offers side-by-side, see how prepayment saves you money (zero penalty on floating rate per RBI), and check your maximum loan amount — all based on 2026 Indian bank rates.
-            </p>
+            </PageDesc>
             <AuthorBadge categoryKey="salary" />
             <PersonalLoanCalculatorCore />
 

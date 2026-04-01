@@ -5,6 +5,7 @@ import Breadcrumb from "@/components/layout/Breadcrumb";
 import "../in.css";
 import "../../ksa/ksa.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
+import PageDesc from "@/components/shared/PageDesc";
 import FDCalculatorIndiaCore from "@/components/calculator/FDCalculatorIndiaCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
 import { buildCountryAlternates } from "@/lib/geo-seo";
@@ -64,10 +65,10 @@ export default function FDCalculatorPage() {
             ]} />
 
             <h1 className="t-h1" style={{ marginBottom: "var(--s-2)" }}>FD Calculator India 2026 — Fixed Deposit Interest Rate Calculator</h1>
-            <p className="t-body text-muted" style={{ marginBottom: "var(--s-6)" }}>
+            <PageDesc>
                 Free FD interest calculator with 4 modes — Maturity Calculator with year-by-year breakdown, Bank Rate Comparison (SBI, HDFC, ICICI, Axis, BOB + 7 more), TDS &amp; Tax Impact analyser, and FD vs PPF/SCSS/MF/NPS comparison.
                 Includes senior citizen rates, Section 80C tax-saver guide, and FD laddering strategy.
-            </p>
+            </PageDesc>
             <AuthorBadge categoryKey="salary" />
             <FDCalculatorIndiaCore />
 

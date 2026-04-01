@@ -5,6 +5,7 @@ import Breadcrumb from "@/components/layout/Breadcrumb";
 import "../in.css";
 import "../../ksa/ksa.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
+import PageDesc from "@/components/shared/PageDesc";
 import SWPCalculatorCore from "@/components/calculator/SWPCalculatorCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
 import { buildCountryAlternates } from "@/lib/geo-seo";
@@ -62,11 +63,11 @@ export default function SWPCalculatorPage() {
                 { label: "SWP Calculator" },
             ]} />
             <h1 className="t-h1" style={{ marginBottom: "var(--s-2)" }}>SWP Calculator India 2026</h1>
-            <p className="t-body text-muted" style={{ marginBottom: "var(--s-6)" }}>
+            <PageDesc>
                 Calculate systematic withdrawal plan returns with 4 modes — Withdrawal Planner (month-by-month depletion
                 schedule with inflation toggle), SWP vs FD Income comparison, Corpus Required reverse calculator, and
                 Safe Withdrawal Rate Finder (India-adapted SWR). Covers SWP tax (LTCG/STCG/FIFO) and retirement planning.
-            </p>
+            </PageDesc>
             <AuthorBadge categoryKey="salary" />
             <SWPCalculatorCore />
 

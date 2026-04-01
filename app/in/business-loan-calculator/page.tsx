@@ -5,6 +5,7 @@ import Breadcrumb from "@/components/layout/Breadcrumb";
 import "../in.css";
 import "../../ksa/ksa.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
+import PageDesc from "@/components/shared/PageDesc";
 import BusinessLoanCalculatorCore from "@/components/calculator/BusinessLoanCalculatorCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
 import { buildCountryAlternates } from "@/lib/geo-seo";
@@ -65,9 +66,9 @@ export default function BusinessLoanCalculatorPage() {
             ]} />
 
             <h1 className="t-h1" style={{ marginBottom: "var(--s-2)" }}>Business Loan EMI Calculator India 2026</h1>
-            <p className="t-body text-muted" style={{ marginBottom: "var(--s-6)" }}>
+            <PageDesc>
                 Calculate your MSME and business loan EMI, compare 13+ bank, NBFC and fintech interest rates (SBI, HDFC, Bajaj Finserv, Lendingkart), check eligibility, see prepayment impact with tax analysis, and compare secured vs unsecured loans. Complete guide to Mudra PMMY, CGTMSE, PMEGP subsidies, RBI April 2026 ₹20L collateral-free mandate, and Section 36(1)(iii) tax benefits.
-            </p>
+            </PageDesc>
             <AuthorBadge categoryKey="salary" />
             <BusinessLoanCalculatorCore />
 

@@ -5,6 +5,7 @@ import Breadcrumb from "@/components/layout/Breadcrumb";
 import "../in.css";
 import "../../ksa/ksa.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
+import PageDesc from "@/components/shared/PageDesc";
 import SSYCalculatorCore from "@/components/calculator/SSYCalculatorCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
 import { buildCountryAlternates } from "@/lib/geo-seo";
@@ -62,11 +63,11 @@ export default function SSYCalculatorPage() {
                 { label: "SSY Calculator" },
             ]} />
             <h1 className="t-h1" style={{ marginBottom: "var(--s-2)" }}>Sukanya Samriddhi Yojana Calculator 2026</h1>
-            <p className="t-body text-muted" style={{ marginBottom: "var(--s-6)" }}>
+            <PageDesc>
                 Calculate SSY maturity with 4 modes — Maturity Estimator (21-year growth schedule with inflation toggle),
                 Partial Withdrawal Simulator (50% at age 18 for education), SSY vs PPF vs FD comparison, and Goal-Based
                 Reverse Calculator. Current interest rate: <strong>8.2% p.a.</strong> | EEE tax-free | Section 80C.
-            </p>
+            </PageDesc>
             <AuthorBadge categoryKey="salary" />
             <SSYCalculatorCore />
 

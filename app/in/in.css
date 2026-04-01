@@ -403,6 +403,54 @@
 .in-related-link__desc { font-size: 0.78rem; color: var(--text-muted); margin-top: 2px; }
 
 /* ═══════════════════════════════════════════════
+   PAGE INTRO DESCRIPTION — MOBILE TRUNCATION
+   Full text stays in DOM for SEO; visually clamped on mobile
+   ═══════════════════════════════════════════════ */
+.in-page-desc {
+    margin-bottom: var(--s-6, 1.5rem);
+    position: relative;
+}
+
+.in-page-desc__toggle { display: none; }
+.in-page-desc__btn { display: none; }
+
+@media (max-width: 768px) {
+    .in-page-desc .t-body {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        margin-bottom: 0;
+        transition: all 0.3s ease;
+    }
+
+    .in-page-desc__btn {
+        display: inline-block;
+        font-size: 0.78rem;
+        font-weight: 600;
+        color: #d4620a;
+        cursor: pointer;
+        padding: 4px 0;
+        border: none;
+        background: none;
+        margin-top: 2px;
+    }
+
+    .in-page-desc__btn::after { content: "Read more ▾"; }
+
+    .in-page-desc__toggle:checked ~ .t-body {
+        -webkit-line-clamp: unset;
+        overflow: visible;
+    }
+
+    .in-page-desc__toggle:checked ~ .in-page-desc__btn::after {
+        content: "Show less ▴";
+    }
+}
+
+[data-theme="dark"] .in-page-desc__btn { color: #ffa94d; }
+
+/* ═══════════════════════════════════════════════
    MOBILE RESPONSIVE
    ═══════════════════════════════════════════════ */
 @media (max-width: 768px) {

@@ -5,6 +5,7 @@ import Breadcrumb from "@/components/layout/Breadcrumb";
 import "../in.css";
 import "../../ksa/ksa.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
+import PageDesc from "@/components/shared/PageDesc";
 import PPFCalculatorCore from "@/components/calculator/PPFCalculatorCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
 import { buildCountryAlternates } from "@/lib/geo-seo";
@@ -64,9 +65,9 @@ export default function PPFCalculatorPage() {
             ]} />
 
             <h1 className="t-h1" style={{ marginBottom: "var(--s-2)" }}>PPF Calculator India 2026</h1>
-            <p className="t-body text-muted" style={{ marginBottom: "var(--s-6)" }}>
+            <PageDesc>
                 Calculate your PPF maturity amount at the current 7.1% interest rate with year-by-year breakdown. Learn the optimal deposit timing strategy, plan post-maturity extensions, and understand Section 80C tax benefits with EEE status.
-            </p>
+            </PageDesc>
             <AuthorBadge categoryKey="salary" />
             <PPFCalculatorCore />
 

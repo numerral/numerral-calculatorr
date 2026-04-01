@@ -5,6 +5,7 @@ import Breadcrumb from "@/components/layout/Breadcrumb";
 import "../in.css";
 import "../../ksa/ksa.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
+import PageDesc from "@/components/shared/PageDesc";
 import NPSCalculatorIndiaCore from "@/components/calculator/NPSCalculatorIndiaCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
 import { buildCountryAlternates } from "@/lib/geo-seo";
@@ -64,9 +65,9 @@ export default function NPSCalculatorPage() {
             ]} />
 
             <h1 className="t-h1" style={{ marginBottom: "var(--s-2)" }}>NPS Calculator India 2026</h1>
-            <p className="t-body text-muted" style={{ marginBottom: "var(--s-6)" }}>
+            <PageDesc>
                 Free NPS (National Pension System) calculator with 4 modes: Corpus &amp; Pension Estimator with Active/Auto Choice asset allocation (LC75/LC50/LC25), 80CCD Tax Benefit Calculator for Old &amp; New Regime, NPS vs PPF vs ELSS vs Mutual Fund comparison, and Annuity Planner with 5 annuity types. Updated for 2026 PFRDA withdrawal rules (new 80:20 rule) and employer 80CCD(2) benefits.
-            </p>
+            </PageDesc>
             <AuthorBadge categoryKey="salary" />
             <NPSCalculatorIndiaCore />
 

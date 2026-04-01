@@ -8,6 +8,7 @@ import Breadcrumb from "@/components/layout/Breadcrumb";
 import "../in.css";
 import "../../ksa/ksa.css";
 import AuthorBadge from "@/components/shared/AuthorBadge";
+import PageDesc from "@/components/shared/PageDesc";
 import RetirementCorpusCalculatorCore from "@/components/calculator/RetirementCorpusCalculatorCore";
 import FAQAccordion from "@/components/shared/FAQAccordion";
 import { buildCountryAlternates } from "@/lib/geo-seo";
@@ -67,9 +68,9 @@ export default function RetirementCorpusCalculatorPage() {
             ]} />
 
             <h1 className="t-h1" style={{ marginBottom: "var(--s-2)" }}>Retirement Corpus Calculator India 2026</h1>
-            <p className="t-body text-muted" style={{ marginBottom: "var(--s-6)" }}>
+            <PageDesc>
                 Free retirement corpus calculator with NPS+EPF+PPF pension stack analysis, healthcare inflation modelling (14%), post-retirement income planner with SCSS 8.2% and bucket strategy, and retirement readiness score. Covers Section 80C/80CCD tax benefits, EPS-95 pension formula, city-wise expense benchmarks, and SWP vs annuity comparison for India.
-            </p>
+            </PageDesc>
             <AuthorBadge categoryKey="salary" />
             <RetirementCorpusCalculatorCore />
 
