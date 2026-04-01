@@ -6916,6 +6916,16 @@ select.con-input__field {
     border-bottom: 1px solid var(--n-border);
 }
 
+/* On mobile, push author badge below the calculator */
+@media (max-width: 768px) {
+    main.container {
+        display: flex;
+        flex-direction: column;
+    }
+    main.container > * { order: 0; }
+    main.container > .author-badge { order: 5; margin-top: var(--s-4); }
+}
+
 .author-badge__line {
     display: flex;
     align-items: center;
