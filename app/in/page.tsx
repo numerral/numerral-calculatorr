@@ -290,6 +290,20 @@ const IN_CALCULATORS = [
         description: "TDS Calculator with 4 modes: Section-wise TDS Calculator (23+ sections including 194A, 194C, 194H, 194I, 194IA, 194J, 194S, 194T with PAN/No-PAN impact), Complete Rate Chart with filters, Penalty & Interest Calculator (Sec 201/234E/271H), and Filing Calendar with Form 24Q/26Q/27Q due dates. Covers FY 2025-26 rates and new Section 194T for partner payments.",
     },
     {
+        title: "GST Calculator",
+        slug: "gst-calculator",
+        icon: "🧾",
+        tag: "Tax & Compliance",
+        description: "GST Calculator with 4 modes: Add/Remove GST (exclusive & inclusive) with CGST+SGST vs IGST split across all 8 slabs, Category-wise Rate Chart with HSN/SAC codes for 30+ items, ITC Calculator with blocked credit (Sec 17(5)) and net cash liability, and Return Calendar (GSTR-1/3B/9/CMP-08 with QRMP scheme). Covers GST 2.0 reforms, 40% sin goods rate, and compensation cess abolition.",
+    },
+    {
+        title: "HRA Exemption Calculator",
+        slug: "hra-exemption-calculator",
+        icon: "🏠",
+        tag: "Tax & Compliance",
+        description: "HRA Exemption Calculator with 4 modes: HRA Exemption (3-rule formula under Section 10(13A) — Actual HRA, 50/40% of Basic+DA, Rent−10% of Salary), Old vs New Regime comparison, Rent to Parents strategy with net family savings, and Rent Optimiser. Covers 8 metro cities, landlord PAN rules, Form 12BB, Section 80GG for non-HRA recipients.",
+    },
+    {
         title: "Mutual Fund Returns Calculator",
         slug: "mutual-fund-returns-calculator",
         icon: "📊",
