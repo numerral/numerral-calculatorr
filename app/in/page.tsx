@@ -269,6 +269,13 @@ const IN_CALCULATORS = [
         description: "NPS Calculator with 4 modes: Corpus & Pension Estimator (Active/Auto Choice LC75/LC50/LC25), 80CCD Tax Benefit Calculator (Old vs New Regime), NPS vs PPF vs ELSS vs MF comparison, and Annuity Planner. Covers 2026 withdrawal rules (80:20), employer 80CCD(2), Tier I vs II, and PFM comparison.",
     },
     {
+        title: "Professional Tax Calculator",
+        slug: "professional-tax-calculator",
+        icon: "🏛️",
+        tag: "Salary & Tax",
+        description: "Professional Tax Calculator with 4 modes: State-wise PT Calculator (18 states with slab tables, Maharashtra gender exemption), Annual PT & Section 16(iii) Tax Impact, Cross-State PT Comparison, and Employer PTRC/PTEC Compliance Dashboard. Covers Article 276 ₹2,500 cap, February adjustment, exemptions, penalties, and self-employed PT registration.",
+    },
+    {
         title: "Mutual Fund Returns Calculator",
         slug: "mutual-fund-returns-calculator",
         icon: "📊",
