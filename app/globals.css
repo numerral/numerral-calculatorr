@@ -7827,3 +7827,42 @@ select.con-input__field {
 [data-theme="dark"] .hub-content tbody tr:hover {
     background: var(--n-surface-raised);
 }
+
+/* ═══════════════════════════════════════════════
+   GLOBAL — Mobile page description truncation
+   Clamps long subtitles to 2 lines on mobile (≤768px).
+   Full text stays in DOM for SEO; visually truncated via
+   -webkit-line-clamp. Works on ALL calculator pages globally.
+   ═══════════════════════════════════════════════ */
+@media (max-width: 768px) {
+    /* Target page subtitles: any p.t-body.text-muted that is a sibling of h1 */
+    h1.t-h1 + p.t-body.text-muted,
+    h1.t-h1 ~ p.t-body.text-muted {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        position: relative;
+    }
+
+    /* Fade-out hint at the cutoff */
+    h1.t-h1 + p.t-body.text-muted::after,
+    h1.t-h1 ~ p.t-body.text-muted::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 30%;
+        height: 1.6em;
+        background: linear-gradient(to right, transparent, var(--n-bg));
+        pointer-events: none;
+    }
+}
+
+/* Dark mode gradient for the fade-out */
+@media (max-width: 768px) {
+    [data-theme="dark"] h1.t-h1 + p.t-body.text-muted::after,
+    [data-theme="dark"] h1.t-h1 ~ p.t-body.text-muted::after {
+        background: linear-gradient(to right, transparent, var(--n-bg));
+    }
+}
