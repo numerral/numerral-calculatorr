@@ -5,8 +5,8 @@ import Link from "next/link";
 import { TOTAL_CALCULATORS, TOTAL_CATEGORIES } from "@/lib/constants";
 
 const LANGUAGES = [
-    { label: "English", href: "/", code: "en" },
-    { label: "العربية", href: "/ar", code: "ar" },
+    { label: "English", href: "/", code: "en-US" },
+    { label: "العربية", href: "/ar", code: "ar-SA" },
     { label: "中文", href: "/ch", code: "zh" },
     { label: "Deutsch", href: "/de", code: "de" },
     { label: "Bahasa Indonesia", href: "/id", code: "id" },
@@ -60,6 +60,7 @@ export default function MegaFooter() {
                 {/* Countries & Languages */}
                 <div className="mega-footer__col">
                     <h4 className="mega-footer__col-title">🌍 Countries & Languages</h4>
+                    <Link href="/in" className="mega-footer__link">🇮🇳 India Calculators</Link>
                     <Link href="/uae" className="mega-footer__link">🇦🇪 UAE Calculators</Link>
                     <Link href="/ksa" className="mega-footer__link">🇸🇦 KSA Calculators</Link>
                     <div className="mega-footer__languages" style={{ marginTop: "var(--s-3)" }}>

@@ -26,7 +26,17 @@ export const metadata: Metadata = {
     openGraph: {
         type: "website",
         siteName: "Numerral",
-        locale: "ar_AE",
+        locale: "ar_SA",
+        alternateLocale: ["ar_AE"],
+    },
+    alternates: {
+        languages: {
+            "ar-SA": `${SITE_URL}/ar`,
+            "ar-AE": `${SITE_URL}/ar`,
+            "en-SA": `${SITE_URL}/ksa`,
+            "en-AE": `${SITE_URL}/uae`,
+            "x-default": `${SITE_URL}/ar`,
+        },
     },
 };
 

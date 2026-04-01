@@ -2,14 +2,23 @@
 // This layout wraps ALL pages under /ksa/* and sets region-specific metadata.
 
 import type { Metadata } from "next";
+import { SITE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
     openGraph: {
         locale: "en_SA",
+        alternateLocale: ["ar_SA"],
     },
     other: {
         "geo.region": "SA",
         "geo.placename": "Saudi Arabia",
+    },
+    alternates: {
+        languages: {
+            "en-SA": `${SITE_URL}/ksa`,
+            "ar-SA": `${SITE_URL}/ar`,
+            "x-default": `${SITE_URL}/ksa`,
+        },
     },
 };
 

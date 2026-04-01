@@ -5,7 +5,7 @@ import { SITE_URL } from "./constants";
 
 // ─── Country codes and locale constants ───
 
-export type CountryCode = "SA" | "AE" | "IN" | "US";
+export type CountryCode = "SA" | "AE" | "IN" | "US" | "AR_SA" | "AR_AE";
 
 export interface CountryGeoConfig {
     /** ISO 3166-1 alpha-2 country code */
@@ -60,6 +60,24 @@ export const GEO_CONFIG: Record<CountryCode, CountryGeoConfig> = {
         pathPrefix: "",
         geoRegion: "US",
         label: "United States",
+    },
+    AR_SA: {
+        code: "AR_SA",
+        hreflang: "ar-SA",
+        ogLocale: "ar_SA",
+        currency: "SAR",
+        pathPrefix: "/ar",
+        geoRegion: "SA",
+        label: "Saudi Arabia (Arabic)",
+    },
+    AR_AE: {
+        code: "AR_AE",
+        hreflang: "ar-AE",
+        ogLocale: "ar_AE",
+        currency: "AED",
+        pathPrefix: "/ar",
+        geoRegion: "AE",
+        label: "UAE (Arabic)",
     },
 };
 

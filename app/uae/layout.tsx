@@ -2,14 +2,23 @@
 // This layout wraps ALL pages under /uae/* and sets region-specific metadata.
 
 import type { Metadata } from "next";
+import { SITE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
     openGraph: {
         locale: "en_AE",
+        alternateLocale: ["ar_AE"],
     },
     other: {
         "geo.region": "AE",
         "geo.placename": "United Arab Emirates",
+    },
+    alternates: {
+        languages: {
+            "en-AE": `${SITE_URL}/uae`,
+            "ar-AE": `${SITE_URL}/ar`,
+            "x-default": `${SITE_URL}/uae`,
+        },
     },
 };
 
