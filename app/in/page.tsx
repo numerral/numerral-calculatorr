@@ -287,7 +287,7 @@ const IN_CALCULATORS = [
         slug: "fire-calculator",
         icon: "🔥",
         tag: "Financial Independence",
-        description: "Calculate your Financial Independence path with India-specific SIP and NPS strategies. Safe withdrawal rate adapted for Indian inflation and healthcare costs.",
+        description: "FIRE Calculator with 4 modes: FIRE Number (Lean/Standard/Fat with India-adapted 3.5% SWR), Coast FIRE, Barista FIRE, and Readiness Scorecard. Includes SIP bridge calculator, city-wise FIRE targets, bucket withdrawal strategy, NPS/EPF/PPF stack, and healthcare cost planning.",
     },
 
     // ─── Loans (India-specific) ───
@@ -296,7 +296,7 @@ const IN_CALCULATORS = [
         slug: "education-loan-calculator",
         icon: "🎓",
         tag: "Finance & Loans",
-        description: "Calculate education loan EMI for India and abroad studies. SBI, HDFC Credila, and Avanse rates. Includes Section 80E tax benefit, moratorium period, and collateral rules.",
+        description: "Education Loan EMI Calculator with 4 modes: EMI with Moratorium Impact, Loan Eligibility, Section 80E Tax Benefit Calculator, and India vs Abroad Cost Comparison. 7-bank rate comparison (SBI, BoB, PNB, Canara, Axis, ICICI, HDFC Credila), PM-Vidyalakshmi & CSIS subsidy guide, collateral rules, and course-wise EMI examples.",
     },
     {
         title: "Bike Loan Calculator",
