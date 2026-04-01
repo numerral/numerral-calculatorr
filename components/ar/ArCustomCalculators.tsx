@@ -3,6 +3,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
+import ArDiscountCalculatorCore from "@/components/ar/ArDiscountCalculatorCore";
 
 // ─── Formatting ───
 function fmtNum(n: number): string {
@@ -659,6 +660,7 @@ const CUSTOM_CALCS: Record<string, React.FC> = {
     "vat": VatCalc,
     "salary": SalaryCalc,
     "commission": CommissionCalc,
+    "ar-discount": ArDiscountCalculatorCore,
 };
 
 export default function ArCustomCalculatorCore({ calcType }: Props) {

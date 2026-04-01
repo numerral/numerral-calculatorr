@@ -40,52 +40,52 @@ function MlToGramCalc() {
     const quickRef = [1, 5, 10, 15, 30, 50, 100, 150, 200, 250, 500, 1000];
 
     return (
-        <div className="calc-card">
-            <div className="calc-field">
-                <label className="calc-field__label">🧪 VOLUME (MILLILITERS)</label>
-                <input type="range" className="calc-field__slider" min={1} max={1000} step={1}
-                    value={ml} onChange={(e) => setMl(Number(e.target.value))} />
-                <div style={{ display: "flex", gap: "var(--s-2)", alignItems: "center" }}>
-                    <input type="number" className="calc-field__input" value={ml}
-                        onChange={(e) => setMl(Number(e.target.value))} style={{ flex: 1 }} />
-                    <span className="t-body-sm text-muted">mL</span>
-                </div>
-            </div>
-            <div className="calc-field">
-                <label className="calc-field__label">🥄 SUBSTANCE / INGREDIENT</label>
-                <select className="calc-field__input" value={substanceIdx}
-                    onChange={(e) => setSubstanceIdx(Number(e.target.value))}>
-                    {SUBSTANCES.map((s, i) => (
-                        <option key={i} value={i}>{s.label} ({s.density} g/mL)</option>
-                    ))}
-                </select>
-            </div>
-
-            {substance.label === "Custom" && (
+        <div>
+            <div className="calc-input-panel">
                 <div className="calc-field">
-                    <label className="calc-field__label">⚙️ CUSTOM DENSITY (g/mL)</label>
-                    <input type="range" className="calc-field__slider" min={0.1} max={3.0} step={0.01}
-                        value={customDensity} onChange={(e) => setCustomDensity(Number(e.target.value))} />
-                    <input type="number" className="calc-field__input" value={customDensity}
-                        onChange={(e) => setCustomDensity(Number(e.target.value))} />
+                    <label className="calc-field__label">🧪 VOLUME (MILLILITERS)</label>
+                    <input type="range" className="calc-field__slider" min={1} max={1000} step={1}
+                        value={ml} onChange={(e) => setMl(Number(e.target.value))} />
+                    <div style={{ display: "flex", gap: "var(--s-2)", alignItems: "center" }}>
+                        <input type="number" className="calc-field__input" value={ml}
+                            onChange={(e) => setMl(Number(e.target.value))} style={{ flex: 1 }} />
+                        <span className="t-body-sm text-muted">mL</span>
+                    </div>
                 </div>
-            )}
+                <div className="calc-field">
+                    <label className="calc-field__label">🥄 SUBSTANCE / INGREDIENT</label>
+                    <select className="calc-field__input" value={substanceIdx}
+                        onChange={(e) => setSubstanceIdx(Number(e.target.value))}>
+                        {SUBSTANCES.map((s, i) => (
+                            <option key={i} value={i}>{s.label} ({s.density} g/mL)</option>
+                        ))}
+                    </select>
+                </div>
+                {substance.label === "Custom" && (
+                    <div className="calc-field">
+                        <label className="calc-field__label">⚙️ CUSTOM DENSITY (g/mL)</label>
+                        <input type="range" className="calc-field__slider" min={0.1} max={3.0} step={0.01}
+                            value={customDensity} onChange={(e) => setCustomDensity(Number(e.target.value))} />
+                        <input type="number" className="calc-field__input" value={customDensity}
+                            onChange={(e) => setCustomDensity(Number(e.target.value))} />
+                    </div>
+                )}
+            </div>
 
-            <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
-                <p className="calc-field__label">WEIGHT IN GRAMS</p>
-                <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
+            <div className="calc-result">
+                <p className="calc-result__label">WEIGHT IN GRAMS</p>
+                <p className="calc-result__emi">
                     {grams.toLocaleString("en-US", { maximumFractionDigits: 2 })} g
                 </p>
-                <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "var(--s-3)" }}>
-                    <div><p className="calc-field__label">OUNCES</p><p style={{ fontWeight: 700 }}>{ounces.toFixed(3)} oz</p></div>
-                    <div><p className="calc-field__label">DENSITY</p><p style={{ fontWeight: 700 }}>{density} g/mL</p></div>
-                    <div><p className="calc-field__label">FORMULA</p><p style={{ fontWeight: 700, fontSize: "var(--t-body-sm)" }}>{ml} × {density}</p></div>
+                <div className="calc-result__stats">
+                    <div><p className="calc-result__stat-label">OUNCES</p><p className="calc-result__stat-value">{ounces.toFixed(3)} oz</p></div>
+                    <div><p className="calc-result__stat-label">DENSITY</p><p className="calc-result__stat-value">{density} g/mL</p></div>
+                    <div><p className="calc-result__stat-label">FORMULA</p><p className="calc-result__stat-value">{ml} × {density}</p></div>
                 </div>
             </div>
 
             {/* Quick Reference Table */}
-            <div style={{ marginTop: "var(--s-4)" }}>
+            <div style={{ marginTop: "var(--s-6)" }}>
                 <h3 className="t-h3" style={{ marginBottom: "var(--s-3)" }}>Quick Reference — {substance.label}</h3>
                 <table className="calc-table">
                     <thead>
