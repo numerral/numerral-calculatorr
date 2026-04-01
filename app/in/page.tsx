@@ -273,14 +273,14 @@ const IN_CALCULATORS = [
         slug: "mutual-fund-returns-calculator",
         icon: "📊",
         tag: "Investment & Wealth",
-        description: "Calculate mutual fund returns with CAGR, absolute return, and XIRR methods. SEBI category comparison, direct vs regular funds, and LTCG/STCG tax guide.",
+        description: "Mutual Fund Returns Calculator with 4 modes: Returns Calculator (Lump Sum + SIP with inflation & exit load), Lump Sum vs SIP vs STP comparison, LTCG/STCG Tax Impact Analyser by SEBI category, and Goal Reverse Planner. Covers CAGR, XIRR, direct vs regular expense ratio, and 2026 tax rules.",
     },
     {
         title: "Retirement Corpus Calculator",
         slug: "retirement-corpus-calculator",
         icon: "🛡️",
         tag: "Retirement Planning",
-        description: "Plan your retirement corpus with inflation adjustment. Compare NPS, PPF, EPF, and mutual fund strategies. Includes India-specific healthcare and lifestyle cost projections.",
+        description: "Retirement Corpus Calculator with 4 modes: Corpus Needed (healthcare inflation 14% modelling), NPS+EPF+PPF pension stack, Post-Retirement Income Planner (SCSS 8.2%, SWP, bucket strategy), and Readiness Score. Covers Section 80C/80CCD tax benefits, EPS-95 pension formula, city-wise expense benchmarks, and SWP vs annuity comparison.",
     },
     {
         title: "FIRE Calculator",
