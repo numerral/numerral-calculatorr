@@ -156,6 +156,9 @@ export const CALC_AUTHOR_MAP: Record<string, CategoryAuthors> = {
     math: { writer: "priya-sharma", reviewer: "arjun-mehta", factChecker: "neha-kapoor" },
     time: { writer: "priya-sharma", reviewer: "arjun-mehta", factChecker: "neha-kapoor" },
     pet: { writer: "priya-sharma", reviewer: "arjun-mehta", factChecker: "neha-kapoor" },
+    engine: { writer: "priya-sharma", reviewer: "arjun-mehta", factChecker: "neha-kapoor" },
+    fuel: { writer: "priya-sharma", reviewer: "arjun-mehta", factChecker: "neha-kapoor" },
+    wheels: { writer: "priya-sharma", reviewer: "arjun-mehta", factChecker: "neha-kapoor" },
 };
 
 // ─── Helper Functions ───────────────────────────────────────

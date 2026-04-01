@@ -430,26 +430,87 @@ ol {
 
 /* ── 7. BREADCRUMB ─────────────────────── */
 .breadcrumb {
+    margin-bottom: var(--s-4);
+}
+
+.breadcrumb__list {
     display: flex;
     align-items: center;
-    gap: var(--s-2);
-    padding-block: var(--s-4);
-    font-size: var(--t-body-sm);
-    color: var(--n-text-muted);
     flex-wrap: wrap;
+    gap: 0;
+    list-style: none;
+    padding: 6px 14px;
+    margin: 0;
+    background: var(--n-surface);
+    border: 1px solid var(--n-border);
+    border-radius: var(--r-full);
+    width: fit-content;
+    max-width: 100%;
 }
 
-.breadcrumb a {
+.breadcrumb__item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0;
+    font-size: 0.8rem;
+    font-weight: 500;
+    line-height: 1;
+    white-space: nowrap;
+}
+
+.breadcrumb__chevron {
+    flex-shrink: 0;
+    width: 14px;
+    height: 14px;
+    color: var(--n-border-hover);
+    margin-inline: 6px;
+    opacity: 0.6;
+}
+
+.breadcrumb__link {
     color: var(--n-text-muted);
+    text-decoration: none;
+    padding: 3px 6px;
+    border-radius: var(--r-sm);
+    transition: all var(--ease-default);
+    position: relative;
 }
 
-.breadcrumb a:hover {
+.breadcrumb__link:hover {
     color: var(--n-primary);
+    background: var(--n-primary-light);
 }
 
-.breadcrumb__sep {
-    color: var(--n-border);
-    font-size: 12px;
+.breadcrumb__current {
+    color: var(--n-text);
+    font-weight: 600;
+    padding: 3px 6px;
+}
+
+/* ── Dark mode breadcrumb ── */
+[data-theme="dark"] .breadcrumb__list {
+    background: var(--n-surface);
+    border-color: var(--n-border);
+}
+
+[data-theme="dark"] .breadcrumb__link:hover {
+    background: var(--n-primary-light);
+}
+
+/* ── Mobile breadcrumb ── */
+@media (max-width: 768px) {
+    .breadcrumb__list {
+        padding: 5px 10px;
+        gap: 0;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+    .breadcrumb__list::-webkit-scrollbar { display: none; }
+    .breadcrumb__item { font-size: 0.75rem; }
+    .breadcrumb__chevron { width: 12px; height: 12px; margin-inline: 3px; }
+    .breadcrumb__link { padding: 2px 4px; }
+    .breadcrumb__current { padding: 2px 4px; }
 }
 
 /* ── 8. HEADER ─────────────────────────── */

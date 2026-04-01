@@ -86,6 +86,21 @@ function buildEntries(): SitemapEntry[] {
         });
     }
 
+    // ─── Automotive calculators (3-level URL structure) ───
+    entries.push({ loc: canonicalUrl("/automotive-calculators"), lastmod: now });
+    entries.push({ loc: canonicalUrl("/automotive-calculators/engine-performance"), lastmod: now });
+    entries.push({ loc: canonicalUrl("/automotive-calculators/fuel-economy"), lastmod: now });
+    entries.push({ loc: canonicalUrl("/automotive-calculators/wheels-tires"), lastmod: now });
+    for (const c of getCalculatorsByCategory("engine")) {
+        entries.push({ loc: canonicalUrl(`/automotive-calculators/engine-performance/${c.slug}`), lastmod: now });
+    }
+    for (const c of getCalculatorsByCategory("fuel")) {
+        entries.push({ loc: canonicalUrl(`/automotive-calculators/fuel-economy/${c.slug}`), lastmod: now });
+    }
+    for (const c of getCalculatorsByCategory("wheels")) {
+        entries.push({ loc: canonicalUrl(`/automotive-calculators/wheels-tires/${c.slug}`), lastmod: now });
+    }
+
     // ─── Locale calculator pages ───
     for (const c of AR_CALCULATORS) {
         entries.push({ loc: `${SITE_URL}/ar/${c.id}`, lastmod: now });

@@ -142,5 +142,29 @@
         "description": "Car, boat, motorcycle, RV & ATV loan payment tools",
         "count": 7,
         "href": "/vehicle-loan-calculators"
+    },
+    {
+        "key": "engine",
+        "icon": "🔧",
+        "name": "Engine & Performance Calculators",
+        "description": "Horsepower, torque, displacement, compression ratio & quarter mile tools",
+        "count": 10,
+        "href": "/automotive-calculators/engine-performance"
+    },
+    {
+        "key": "fuel",
+        "icon": "⛽",
+        "name": "Fuel Economy Calculators",
+        "description": "Gas mileage, fuel cost, MPG, range & fuel savings tools",
+        "count": 9,
+        "href": "/automotive-calculators/fuel-economy"
+    },
+    {
+        "key": "wheels",
+        "icon": "🛞",
+        "name": "Wheels & Tires Calculators",
+        "description": "Tire size, comparison, offset, speedometer & bolt pattern tools",
+        "count": 8,
+        "href": "/automotive-calculators/wheels-tires"
     }
 ]
