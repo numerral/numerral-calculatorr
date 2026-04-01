@@ -4785,7 +4785,6 @@ export default async function ConvertHubPage({ params }: PageProps) {
                     />
 
                     {hub.faq && <FAQAccordion title={`${calc.title} FAQ`} items={hub.faq} />}
-                    <RelatedCalculators calcId={calc.id} />
                     <GuideCTA calcId={calc.id} />
                     <GlossaryChip calcId={calc.id} />
                 </div>
