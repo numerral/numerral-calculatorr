@@ -121,7 +121,7 @@ function GramToMlCalc() {
     const quickRef = [1, 5, 10, 25, 50, 100, 150, 200, 250, 500, 750, 1000];
 
     return (
-        <div className="calc-card">
+        <div className="calc-input-panel">
             <div className="calc-field">
                 <label className="calc-field__label">⚖️ WEIGHT (GRAMS)</label>
                 <input type="range" className="calc-field__slider" min={1} max={1000} step={1}
@@ -152,7 +152,7 @@ function GramToMlCalc() {
                 </div>
             )}
 
-            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
+            <div className="calc-result">
                 <p className="calc-result__label">VOLUME IN MILLILITERS</p>
                 <p className="calc-result__emi">
                     {ml.toLocaleString("en-US", { maximumFractionDigits: 2 })} mL
@@ -206,7 +206,7 @@ function LiterToKgCalc() {
     const quickRef = [0.25, 0.5, 1, 1.5, 2, 3, 4, 5, 10, 20, 50, 100];
 
     return (
-        <div className="calc-card">
+        <div className="calc-input-panel">
             <div className="calc-field">
                 <label className="calc-field__label">🧪 VOLUME (LITERS)</label>
                 <input type="range" className="calc-field__slider" min={0.1} max={100} step={0.1}
@@ -237,7 +237,7 @@ function LiterToKgCalc() {
                 </div>
             )}
 
-            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
+            <div className="calc-result">
                 <p className="calc-result__label">WEIGHT IN KILOGRAMS</p>
                 <p className="calc-result__emi">
                     {kg.toLocaleString("en-US", { maximumFractionDigits: 3 })} kg
@@ -289,7 +289,7 @@ function GramToCupCalc() {
     const quickRef = [25, 50, 75, 100, 125, 150, 200, 250, 300, 400, 500, 1000];
 
     return (
-        <div className="calc-card">
+        <div className="calc-input-panel">
             <div className="calc-field">
                 <label className="calc-field__label">⚖️ WEIGHT (GRAMS)</label>
                 <input type="range" className="calc-field__slider" min={1} max={1000} step={1}
@@ -320,7 +320,7 @@ function GramToCupCalc() {
                 </div>
             )}
 
-            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
+            <div className="calc-result">
                 <p className="calc-result__label">VOLUME IN US CUPS</p>
                 <p className="calc-result__emi">
                     {cups.toFixed(3)} cups
@@ -392,7 +392,7 @@ function InchToCmCalc() {
     const quickRef = [0.25, 0.5, 1, 2, 3, 4, 5, 6, 8, 10, 12, 18, 24, 36, 48, 60, 72, 84, 96, 100];
 
     return (
-        <div className="calc-card">
+        <div className="calc-input-panel">
             <div className="calc-field">
                 <label className="calc-field__label">📏 INCHES (WHOLE NUMBER)</label>
                 <input type="range" className="calc-field__slider" min={0} max={120} step={1}
@@ -413,7 +413,7 @@ function InchToCmCalc() {
                 </select>
             </div>
 
-            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
+            <div className="calc-result">
                 <p className="calc-result__label">LENGTH IN CENTIMETERS</p>
                 <p className="calc-result__emi">
                     {cm.toLocaleString("en-US", { maximumFractionDigits: 4 })} cm
@@ -462,7 +462,7 @@ function StonesToKgCalc() {
     const quickRef = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 15, 20, 30];
 
     return (
-        <div className="calc-card">
+        <div className="calc-input-panel">
             <div className="calc-field">
                 <label className="calc-field__label">🪨 STONES</label>
                 <input type="range" className="calc-field__slider" min={0} max={50} step={1}
@@ -484,7 +484,7 @@ function StonesToKgCalc() {
                 </div>
             </div>
 
-            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
+            <div className="calc-result">
                 <p className="calc-result__label">WEIGHT IN KILOGRAMS</p>
                 <p className="calc-result__emi">
                     {kg.toLocaleString("en-US", { maximumFractionDigits: 2 })} kg
@@ -492,7 +492,7 @@ function StonesToKgCalc() {
                 <div className="calc-result__stats">
                     <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{grams.toFixed(0)} g</p></div>
                     <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{poundsOnly} lbs</p></div>
-                    <div><p className="calc-field__label">STONE + LBS</p><p style={{ fontWeight: 700 }}>{stone} st {lbs} lbs</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{stone} st {lbs} lbs</p></div>
                     <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{totalLbs} × 0.4536</p></div>
                 </div>
             </div>
@@ -540,7 +540,7 @@ function TbspToGramCalc() {
     const quickRef = [0.5, 1, 1.5, 2, 3, 4, 5, 6, 8, 10, 15, 20];
 
     return (
-        <div className="calc-card">
+        <div className="calc-input-panel">
             <div className="calc-field">
                 <label className="calc-field__label">🥄 TABLESPOONS</label>
                 <input type="range" className="calc-field__slider" min={0.25} max={50} step={0.25}
@@ -571,7 +571,7 @@ function TbspToGramCalc() {
                 </div>
             )}
 
-            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
+            <div className="calc-result">
                 <p className="calc-result__label">WEIGHT IN GRAMS</p>
                 <p className="calc-result__emi">
                     {grams.toFixed(2)} g
@@ -627,7 +627,7 @@ function KgToLiterCalc() {
     const quickRef = [0.5, 1, 2, 3, 5, 10, 15, 20, 25, 50, 75, 100];
 
     return (
-        <div className="calc-card">
+        <div className="calc-input-panel">
             <div className="calc-field">
                 <label className="calc-field__label">⚖️ WEIGHT (KILOGRAMS)</label>
                 <input type="range" className="calc-field__slider" min={0.1} max={100} step={0.1}
@@ -658,7 +658,7 @@ function KgToLiterCalc() {
                 </div>
             )}
 
-            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
+            <div className="calc-result">
                 <p className="calc-result__label">VOLUME IN LITERS</p>
                 <p className="calc-result__emi">
                     {liters.toLocaleString("en-US", { maximumFractionDigits: 3 })} L
@@ -714,7 +714,7 @@ function MgToMlCalc() {
     const quickRef = [10, 25, 50, 100, 200, 250, 500, 750, 1000, 1500, 2000, 5000];
 
     return (
-        <div className="calc-card">
+        <div className="calc-input-panel">
             <div className="calc-field">
                 <label className="calc-field__label">💊 MILLIGRAMS (mg)</label>
                 <input type="range" className="calc-field__slider" min={1} max={5000} step={1}
@@ -745,7 +745,7 @@ function MgToMlCalc() {
                 </div>
             )}
 
-            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
+            <div className="calc-result">
                 <p className="calc-result__label">VOLUME IN MILLILITERS</p>
                 <p className="calc-result__emi">
                     {ml.toLocaleString("en-US", { maximumFractionDigits: 4 })} mL
@@ -753,7 +753,7 @@ function MgToMlCalc() {
                 <div className="calc-result__stats">
                     <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{flOz.toFixed(4)} fl oz</p></div>
                     <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{tsp.toFixed(4)} tsp</p></div>
-                    <div><p className="calc-field__label">DROPS (~20/mL)</p><p style={{ fontWeight: 700 }}>{drops.toFixed(1)} drops</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{drops.toFixed(1)} drops</p></div>
                     <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{mg} ÷ ({density}×1000)</p></div>
                 </div>
             </div>
@@ -801,7 +801,7 @@ function GramToTspCalc() {
     const quickRef = [1, 2, 3, 5, 7, 10, 15, 20, 25, 50, 100, 200];
 
     return (
-        <div className="calc-card">
+        <div className="calc-input-panel">
             <div className="calc-field">
                 <label className="calc-field__label">⚖️ GRAMS</label>
                 <input type="range" className="calc-field__slider" min={0.5} max={500} step={0.5}
@@ -832,7 +832,7 @@ function GramToTspCalc() {
                 </div>
             )}
 
-            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
+            <div className="calc-result">
                 <p className="calc-result__label">VOLUME IN TEASPOONS</p>
                 <p className="calc-result__emi">
                     {tsp.toFixed(2)} tsp
@@ -892,7 +892,7 @@ function TspToCupCalc() {
     };
 
     return (
-        <div className="calc-card">
+        <div className="calc-input-panel">
             <div className="calc-field">
                 <label className="calc-field__label">🥄 TEASPOONS</label>
                 <input type="range" className="calc-field__slider" min={0.25} max={192} step={0.25}
@@ -904,8 +904,8 @@ function TspToCupCalc() {
                 </div>
             </div>
 
-            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
-                <p className="calc-field__label">VOLUME IN CUPS</p>
+            <div className="calc-result">
+                <p className="calc-result__label">VOLUME IN CUPS</p>
                 <p className="calc-result__emi">
                     {cups.toFixed(3)} cups
                 </p>
@@ -955,7 +955,7 @@ function ButterTspToGramCalc() {
     const quickRef = [0.5, 1, 1.5, 2, 3, 4, 6, 8, 12, 16, 24, 32, 48, 96];
 
     return (
-        <div className="calc-card">
+        <div className="calc-input-panel">
             <div className="calc-field">
                 <label className="calc-field__label">🧈 TEASPOONS OF BUTTER</label>
                 <input type="range" className="calc-field__slider" min={0.25} max={96} step={0.25}
@@ -967,7 +967,7 @@ function ButterTspToGramCalc() {
                 </div>
             </div>
 
-            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
+            <div className="calc-result">
                 <p className="calc-result__label">WEIGHT IN GRAMS</p>
                 <p className="calc-result__emi">
                     {grams.toFixed(2)} g
@@ -1021,7 +1021,7 @@ function KgToStoneCalc() {
     const quickRef = [40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 100, 120, 150];
 
     return (
-        <div className="calc-card">
+        <div className="calc-input-panel">
             <div className="calc-field">
                 <label className="calc-field__label">⚖️ KILOGRAMS</label>
                 <input type="range" className="calc-field__slider" min={1} max={250} step={0.5}
@@ -1033,8 +1033,8 @@ function KgToStoneCalc() {
                 </div>
             </div>
 
-            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
-                <p className="calc-field__label">WEIGHT IN STONE & POUNDS</p>
+            <div className="calc-result">
+                <p className="calc-result__label">WEIGHT IN STONE & POUNDS</p>
                 <p className="calc-result__emi">
                     {wholeStones} st {remainingLbs.toFixed(1)} lbs
                 </p>
@@ -1091,7 +1091,7 @@ function GramToLiterCalc() {
     const quickRef = [10, 25, 50, 100, 200, 250, 500, 750, 1000, 2000, 3000, 5000];
 
     return (
-        <div className="calc-card">
+        <div className="calc-input-panel">
             <div className="calc-field">
                 <label className="calc-field__label">⚖️ GRAMS</label>
                 <input type="range" className="calc-field__slider" min={1} max={5000} step={1}
@@ -1122,7 +1122,7 @@ function GramToLiterCalc() {
                 </div>
             )}
 
-            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
+            <div className="calc-result">
                 <p className="calc-result__label">VOLUME IN LITERS</p>
                 <p className="calc-result__emi">
                     {liters.toLocaleString("en-US", { maximumFractionDigits: 4 })} L
@@ -1178,7 +1178,7 @@ function MlToMgCalc() {
     const quickRef = [0.5, 1, 2, 2.5, 5, 10, 15, 20, 25, 30, 50, 100];
 
     return (
-        <div className="calc-card">
+        <div className="calc-input-panel">
             <div className="calc-field">
                 <label className="calc-field__label">💧 MILLILITERS</label>
                 <input type="range" className="calc-field__slider" min={0.1} max={1000} step={0.1}
@@ -1209,8 +1209,8 @@ function MlToMgCalc() {
                 </div>
             )}
 
-            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
-                <p className="calc-field__label">WEIGHT IN MILLIGRAMS</p>
+            <div className="calc-result">
+                <p className="calc-result__label">WEIGHT IN MILLIGRAMS</p>
                 <p className="calc-result__emi">
                     {mg.toLocaleString("en-US", { maximumFractionDigits: 1 })} mg
                 </p>
@@ -1265,7 +1265,7 @@ function LiterToGramCalc() {
     const quickRef = [0.1, 0.25, 0.5, 0.75, 1, 1.5, 2, 2.5, 3, 4, 5, 10];
 
     return (
-        <div className="calc-card">
+        <div className="calc-input-panel">
             <div className="calc-field">
                 <label className="calc-field__label">🧴 LITERS</label>
                 <input type="range" className="calc-field__slider" min={0.01} max={20} step={0.01}
@@ -1296,7 +1296,7 @@ function LiterToGramCalc() {
                 </div>
             )}
 
-            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
+            <div className="calc-result">
                 <p className="calc-result__label">WEIGHT IN GRAMS</p>
                 <p className="calc-result__emi">
                     {grams.toLocaleString("en-US", { maximumFractionDigits: 1 })} g
@@ -1354,7 +1354,7 @@ function CupToGramCalc() {
     const fracLabels: Record<number, string> = { 0.25: "¼", 0.333: "⅓", 0.5: "½", 0.667: "⅔", 0.75: "¾" };
 
     return (
-        <div className="calc-card">
+        <div className="calc-input-panel">
             <div className="calc-field">
                 <label className="calc-field__label">🥤 US CUPS</label>
                 <input type="range" className="calc-field__slider" min={0.25} max={10} step={0.25}
@@ -1385,7 +1385,7 @@ function CupToGramCalc() {
                 </div>
             )}
 
-            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
+            <div className="calc-result">
                 <p className="calc-result__label">WEIGHT IN GRAMS</p>
                 <p className="calc-result__emi">
                     {grams.toLocaleString("en-US", { maximumFractionDigits: 1 })} g
@@ -1438,7 +1438,7 @@ function MinToHourCalc() {
     const quickRef = [5, 10, 15, 20, 30, 45, 60, 90, 120, 180, 240, 360, 480, 1440];
 
     return (
-        <div className="calc-card">
+        <div className="calc-input-panel">
             <div className="calc-field">
                 <label className="calc-field__label">⏱️ MINUTES</label>
                 <input type="range" className="calc-field__slider" min={1} max={1440} step={1}
@@ -1450,15 +1450,15 @@ function MinToHourCalc() {
                 </div>
             </div>
 
-            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
-                <p className="calc-field__label">TIME IN HOURS & MINUTES</p>
+            <div className="calc-result">
+                <p className="calc-result__label">TIME IN HOURS & MINUTES</p>
                 <p className="calc-result__emi">
                     {wholeHours}h {remainingMinutes}m
                 </p>
                 <div className="calc-result__stats">
                     <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{decimalHours.toFixed(4)} hr</p></div>
                     <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{totalSeconds.toLocaleString()} s</p></div>
-                    <div><p className="calc-field__label">% OF DAY</p><p style={{ fontWeight: 700 }}>{(fractionOfDay * 100).toFixed(2)}%</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{(fractionOfDay * 100).toFixed(2)}%</p></div>
                     <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{minutes} ÷ 60</p></div>
                 </div>
             </div>
@@ -1505,7 +1505,7 @@ function InchToFootCalc() {
     const quickRef = [1, 3, 6, 12, 18, 24, 30, 36, 48, 60, 72, 84, 96, 120];
 
     return (
-        <div className="calc-card">
+        <div className="calc-input-panel">
             <div className="calc-field">
                 <label className="calc-field__label">📏 INCHES</label>
                 <input type="range" className="calc-field__slider" min={1} max={240} step={0.5}
@@ -1517,8 +1517,8 @@ function InchToFootCalc() {
                 </div>
             </div>
 
-            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
-                <p className="calc-field__label">LENGTH IN FEET & INCHES</p>
+            <div className="calc-result">
+                <p className="calc-result__label">LENGTH IN FEET & INCHES</p>
                 <p className="calc-result__emi">
                     {wholeFeet}&prime; {remainingInches}&Prime;
                 </p>
@@ -1573,7 +1573,7 @@ function KiloohmToOhmCalc() {
     const quickRef = [0.1, 0.22, 0.47, 1, 2.2, 4.7, 10, 22, 47, 100, 220, 470];
 
     return (
-        <div className="calc-card">
+        <div className="calc-input-panel">
             <div className="calc-field">
                 <label className="calc-field__label">⚡ KILOOHMS (kΩ)</label>
                 <input type="range" className="calc-field__slider" min={0.001} max={1000} step={0.001}
@@ -1595,7 +1595,7 @@ function KiloohmToOhmCalc() {
                 </div>
             </div>
 
-            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
+            <div className="calc-result">
                 <p className="calc-result__label">RESISTANCE IN OHMS</p>
                 <p className="calc-result__emi">
                     {ohms.toLocaleString("en-US", { maximumFractionDigits: 1 })} Ω
@@ -1603,7 +1603,7 @@ function KiloohmToOhmCalc() {
                 <div className="calc-result__stats">
                     <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{megaohms.toFixed(4)} MΩ</p></div>
                     <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{milliohms.toLocaleString()} mΩ</p></div>
-                    <div><p className="calc-field__label">CURRENT (I=V/R)</p><p style={{ fontWeight: 700 }}>{currentMA.toFixed(3)} mA</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{currentMA.toFixed(3)} mA</p></div>
                     <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{kohms} × 1000</p></div>
                 </div>
             </div>
@@ -1652,7 +1652,7 @@ function GalToLbCalc() {
     const quickRef = [0.25, 0.5, 1, 1.5, 2, 3, 4, 5, 7.5, 10];
 
     return (
-        <div className="calc-card">
+        <div className="calc-input-panel">
             <div className="calc-field">
                 <label className="calc-field__label">🪣 US GALLONS</label>
                 <input type="range" className="calc-field__slider" min={0.25} max={100} step={0.25}
@@ -1683,8 +1683,8 @@ function GalToLbCalc() {
                 </div>
             )}
 
-            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
-                <p className="calc-field__label">WEIGHT IN POUNDS</p>
+            <div className="calc-result">
+                <p className="calc-result__label">WEIGHT IN POUNDS</p>
                 <p className="calc-result__emi">
                     {lbs.toFixed(2)} lbs
                 </p>
@@ -1735,7 +1735,7 @@ function SecToMinCalc() {
     const quickRef = [1, 5, 10, 15, 30, 45, 60, 90, 120, 180, 300, 600, 3600, 86400];
 
     return (
-        <div className="calc-card">
+        <div className="calc-input-panel">
             <div className="calc-field">
                 <label className="calc-field__label">⏱️ SECONDS</label>
                 <input type="range" className="calc-field__slider" min={1} max={86400} step={1}
@@ -1747,8 +1747,8 @@ function SecToMinCalc() {
                 </div>
             </div>
 
-            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
-                <p className="calc-field__label">TIME IN MINUTES & SECONDS</p>
+            <div className="calc-result">
+                <p className="calc-result__label">TIME IN MINUTES & SECONDS</p>
                 <p className="calc-result__emi">
                     {wholeMinutes}m {remainingSeconds}s
                 </p>
@@ -1801,7 +1801,7 @@ function FlOzToMlCalc() {
     const quickRef = [0.5, 1, 2, 4, 6, 8, 12, 16, 24, 32, 64, 128];
 
     return (
-        <div className="calc-card">
+        <div className="calc-input-panel">
             <div className="calc-field">
                 <label className="calc-field__label">🥛 US FLUID OUNCES</label>
                 <input type="range" className="calc-field__slider" min={0.5} max={128} step={0.5}
@@ -1813,7 +1813,7 @@ function FlOzToMlCalc() {
                 </div>
             </div>
 
-            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
+            <div className="calc-result">
                 <p className="calc-result__label">VOLUME IN MILLILITERS</p>
                 <p className="calc-result__emi">
                     {ml.toFixed(1)} mL
@@ -1865,7 +1865,7 @@ function SqMToSqFtCalc() {
     const quickRef = [1, 5, 10, 20, 50, 100, 150, 200, 300, 500, 750, 1000];
 
     return (
-        <div className="calc-card">
+        <div className="calc-input-panel">
             <div className="calc-field">
                 <label className="calc-field__label">📐 SQUARE METERS (m²)</label>
                 <input type="range" className="calc-field__slider" min={1} max={10000} step={1}
@@ -1877,7 +1877,7 @@ function SqMToSqFtCalc() {
                 </div>
             </div>
 
-            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
+            <div className="calc-result">
                 <p className="calc-result__label">AREA IN SQUARE FEET</p>
                 <p className="calc-result__emi">
                     {sqft.toLocaleString("en-US", { maximumFractionDigits: 1 })} ft²
@@ -1930,7 +1930,7 @@ function SqFtToSqMCalc() {
     const quickRef = [1, 10, 50, 100, 200, 500, 750, 1000, 1500, 2000, 2500, 3000, 5000, 10000];
 
     return (
-        <div className="calc-card">
+        <div className="calc-input-panel">
             <div className="calc-field">
                 <label className="calc-field__label">📐 SQUARE FEET (ft²)</label>
                 <input type="range" className="calc-field__slider" min={1} max={100000} step={1}
@@ -1942,7 +1942,7 @@ function SqFtToSqMCalc() {
                 </div>
             </div>
 
-            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
+            <div className="calc-result">
                 <p className="calc-result__label">AREA IN SQUARE METERS</p>
                 <p className="calc-result__emi">
                     {sqm.toLocaleString("en-US", { maximumFractionDigits: 2 })} m²
@@ -1995,7 +1995,7 @@ function SqMiToSqKmCalc() {
     const quickRef = [0.01, 0.1, 0.5, 1, 2, 5, 10, 25, 50, 100, 500, 1000, 3000, 10000];
 
     return (
-        <div className="calc-card">
+        <div className="calc-input-panel">
             <div className="calc-field">
                 <label className="calc-field__label">🗺️ SQUARE MILES (mi²)</label>
                 <input type="range" className="calc-field__slider" min={0.01} max={10000} step={0.01}
@@ -2007,8 +2007,8 @@ function SqMiToSqKmCalc() {
                 </div>
             </div>
 
-            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
-                <p className="calc-field__label">AREA IN SQUARE KILOMETERS</p>
+            <div className="calc-result">
+                <p className="calc-result__label">AREA IN SQUARE KILOMETERS</p>
                 <p className="calc-result__emi">
                     {sqkm.toLocaleString("en-US", { maximumFractionDigits: 4 })} km²
                 </p>
@@ -2060,7 +2060,7 @@ function SqKmToSqMiCalc() {
     const quickRef = [0.01, 0.1, 0.5, 1, 2.59, 5, 10, 50, 100, 500, 1000, 5000, 10000, 20000];
 
     return (
-        <div className="calc-card">
+        <div className="calc-input-panel">
             <div className="calc-field">
                 <label className="calc-field__label">🗺️ SQUARE KILOMETERS (km²)</label>
                 <input type="range" className="calc-field__slider" min={0.01} max={20000} step={0.01}
@@ -2072,8 +2072,8 @@ function SqKmToSqMiCalc() {
                 </div>
             </div>
 
-            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
-                <p className="calc-field__label">AREA IN SQUARE MILES</p>
+            <div className="calc-result">
+                <p className="calc-result__label">AREA IN SQUARE MILES</p>
                 <p className="calc-result__emi">
                     {sqmi.toLocaleString("en-US", { maximumFractionDigits: 4 })} mi²
                 </p>
@@ -2129,7 +2129,7 @@ function OzToMlCalc() {
     const quickRef = [0.5, 1, 2, 3, 4, 5, 8, 10, 12, 16];
 
     return (
-        <div className="calc-card">
+        <div className="calc-input-panel">
             <div className="calc-field">
                 <label className="calc-field__label">⚖️ OUNCES (weight oz)</label>
                 <input type="range" className="calc-field__slider" min={0.1} max={100} step={0.1}
@@ -2160,7 +2160,7 @@ function OzToMlCalc() {
                 </div>
             )}
 
-            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
+            <div className="calc-result">
                 <p className="calc-result__label">VOLUME IN MILLILITERS</p>
                 <p className="calc-result__emi">
                     {ml.toFixed(1)} mL
@@ -2213,7 +2213,7 @@ function RpmToRadCalc() {
     const quickRef = [1, 10, 60, 100, 300, 600, 1000, 1800, 3600, 7200, 10000, 15000];
 
     return (
-        <div className="calc-card">
+        <div className="calc-input-panel">
             <div className="calc-field">
                 <label className="calc-field__label">🔄 REVOLUTIONS PER MINUTE (RPM)</label>
                 <input type="range" className="calc-field__slider" min={1} max={20000} step={1}
@@ -2235,15 +2235,15 @@ function RpmToRadCalc() {
                 </div>
             </div>
 
-            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
-                <p className="calc-field__label">ANGULAR VELOCITY</p>
+            <div className="calc-result">
+                <p className="calc-result__label">ANGULAR VELOCITY</p>
                 <p className="calc-result__emi">
                     {rads.toFixed(3)} rad/s
                 </p>
                 <div className="calc-result__stats">
                     <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{degsPerSec.toFixed(1)} °/s</p></div>
-                    <div><p className="calc-field__label">HERTZ (rev/s)</p><p style={{ fontWeight: 700 }}>{hz.toFixed(2)} Hz</p></div>
-                    <div><p className="calc-field__label">LINEAR VEL (v=ωr)</p><p style={{ fontWeight: 700 }}>{linearVel.toFixed(2)} m/s</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{hz.toFixed(2)} Hz</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{linearVel.toFixed(2)} m/s</p></div>
                     <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{rpm}×2π/60</p></div>
                 </div>
             </div>
@@ -2298,7 +2298,7 @@ function GramFlourToCupCalc() {
     const quickRef = [25, 50, 100, 125, 150, 200, 250, 300, 400, 500];
 
     return (
-        <div className="calc-card">
+        <div className="calc-input-panel">
             <div className="calc-field">
                 <label className="calc-field__label">⚖️ GRAMS OF FLOUR</label>
                 <input type="range" className="calc-field__slider" min={1} max={1000} step={1}
@@ -2319,8 +2319,8 @@ function GramFlourToCupCalc() {
                 </select>
             </div>
 
-            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
-                <p className="calc-field__label">VOLUME IN CUPS</p>
+            <div className="calc-result">
+                <p className="calc-result__label">VOLUME IN CUPS</p>
                 <p className="calc-result__emi">
                     {cups.toFixed(2)} cups
                 </p>
@@ -2369,7 +2369,7 @@ function InLbToFtLbCalc() {
     const quickRef = [1, 5, 12, 24, 36, 48, 72, 96, 120, 240, 360, 600];
 
     return (
-        <div className="calc-card">
+        <div className="calc-input-panel">
             <div className="calc-field">
                 <label className="calc-field__label">🔧 INCH-POUNDS (in-lbs)</label>
                 <input type="range" className="calc-field__slider" min={1} max={1200} step={1}
@@ -2381,8 +2381,8 @@ function InLbToFtLbCalc() {
                 </div>
             </div>
 
-            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
-                <p className="calc-field__label">TORQUE IN FOOT-POUNDS</p>
+            <div className="calc-result">
+                <p className="calc-result__label">TORQUE IN FOOT-POUNDS</p>
                 <p className="calc-result__emi">
                     {ftlbs.toFixed(2)} ft-lbs
                 </p>
@@ -2435,7 +2435,7 @@ function CalToKgCalc() {
     const quickRef = [500, 1000, 2000, 3500, 5000, 7700, 10000, 15000, 23100, 38500];
 
     return (
-        <div className="calc-card">
+        <div className="calc-input-panel">
             <div className="calc-field">
                 <label className="calc-field__label">🔥 CALORIES BURNED (kcal)</label>
                 <input type="range" className="calc-field__slider" min={100} max={50000} step={100}
@@ -2457,15 +2457,15 @@ function CalToKgCalc() {
                 </div>
             </div>
 
-            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
-                <p className="calc-field__label">WEIGHT EQUIVALENT</p>
+            <div className="calc-result">
+                <p className="calc-result__label">WEIGHT EQUIVALENT</p>
                 <p className="calc-result__emi">
                     {kg.toFixed(2)} kg ({lbs.toFixed(1)} lbs)
                 </p>
                 <div className="calc-result__stats">
                     <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{grams.toFixed(0)} g</p></div>
                     <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{lbs.toFixed(2)} lbs</p></div>
-                    <div><p className="calc-field__label">WEEKS (at {deficit} kcal/day)</p><p style={{ fontWeight: 700 }}>{weeksAtDeficit.toFixed(1)} wks</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{weeksAtDeficit.toFixed(1)} wks</p></div>
                     <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{cals.toLocaleString()}÷7700</p></div>
                 </div>
             </div>
@@ -2510,7 +2510,7 @@ function CupButterToGramCalc() {
     const quickRef = [0.125, 0.25, 0.333, 0.5, 0.667, 0.75, 1, 1.5, 2, 3];
 
     return (
-        <div className="calc-card">
+        <div className="calc-input-panel">
             <div className="calc-field">
                 <label className="calc-field__label">🧈 CUPS OF BUTTER</label>
                 <input type="range" className="calc-field__slider" min={0.0625} max={5} step={0.0625}
@@ -2522,7 +2522,7 @@ function CupButterToGramCalc() {
                 </div>
             </div>
 
-            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
+            <div className="calc-result">
                 <p className="calc-result__label">WEIGHT IN GRAMS</p>
                 <p className="calc-result__emi">
                     {grams.toFixed(0)} g
@@ -2576,7 +2576,7 @@ function DayToMonthCalc() {
     const quickRef = [1, 7, 14, 30, 60, 90, 120, 180, 270, 365, 548, 730];
 
     return (
-        <div className="calc-card">
+        <div className="calc-input-panel">
             <div className="calc-field">
                 <label className="calc-field__label">📅 DAYS</label>
                 <input type="range" className="calc-field__slider" min={1} max={1825} step={1}
@@ -2588,8 +2588,8 @@ function DayToMonthCalc() {
                 </div>
             </div>
 
-            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
-                <p className="calc-field__label">TIME IN MONTHS</p>
+            <div className="calc-result">
+                <p className="calc-result__label">TIME IN MONTHS</p>
                 <p className="calc-result__emi">
                     {months.toFixed(2)} months
                 </p>
@@ -2641,7 +2641,7 @@ function CcToM3Calc() {
     const quickRef = [1, 10, 100, 1000, 5000, 10000, 100000, 500000, 1000000, 5000000];
 
     return (
-        <div className="calc-card">
+        <div className="calc-input-panel">
             <div className="calc-field">
                 <label className="calc-field__label">📐 CUBIC CENTIMETERS (cm³ / cc)</label>
                 <input type="range" className="calc-field__slider" min={1} max={10000000} step={1000}
@@ -2653,8 +2653,8 @@ function CcToM3Calc() {
                 </div>
             </div>
 
-            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
-                <p className="calc-field__label">VOLUME IN CUBIC METERS</p>
+            <div className="calc-result">
+                <p className="calc-result__label">VOLUME IN CUBIC METERS</p>
                 <p className="calc-result__emi">
                     {m3 < 0.001 ? m3.toExponential(4) : m3.toFixed(6)} m³
                 </p>
@@ -2705,7 +2705,7 @@ function FahToCelCalc() {
     const quickRef = [-40, 0, 32, 50, 68, 72, 77, 98.6, 100, 120, 212, 350, 400, 450];
 
     return (
-        <div className="calc-card">
+        <div className="calc-input-panel">
             <div className="calc-field">
                 <label className="calc-field__label">🌡️ FAHRENHEIT (°F)</label>
                 <input type="range" className="calc-field__slider" min={-100} max={500} step={1}
@@ -2717,7 +2717,7 @@ function FahToCelCalc() {
                 </div>
             </div>
 
-            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
+            <div className="calc-result">
                 <p className="calc-result__label">TEMPERATURE IN CELSIUS</p>
                 <p className="calc-result__emi">
                     {cel.toFixed(2)} °C
@@ -2725,7 +2725,7 @@ function FahToCelCalc() {
                 <div className="calc-result__stats">
                     <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{kelvin.toFixed(2)} K</p></div>
                     <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{rankine.toFixed(2)} °R</p></div>
-                    <div><p className="calc-field__label">FREEZING?</p><p style={{ fontWeight: 700 }}>{fah <= 32 ? "❄️ Yes" : "☀️ No"}</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{fah <= 32 ? "❄️ Yes" : "☀️ No"}</p></div>
                     <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">({fah}−32)×⅝</p></div>
                 </div>
             </div>
@@ -2769,7 +2769,7 @@ function CelToFahCalc() {
     const quickRef = [-40, -18, 0, 10, 20, 22, 25, 30, 37, 38, 100, 180, 200, 230];
 
     return (
-        <div className="calc-card">
+        <div className="calc-input-panel">
             <div className="calc-field">
                 <label className="calc-field__label">🌡️ CELSIUS (°C)</label>
                 <input type="range" className="calc-field__slider" min={-50} max={300} step={1}
@@ -2781,7 +2781,7 @@ function CelToFahCalc() {
                 </div>
             </div>
 
-            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
+            <div className="calc-result">
                 <p className="calc-result__label">TEMPERATURE IN FAHRENHEIT</p>
                 <p className="calc-result__emi">
                     {fah.toFixed(2)} °F
@@ -2789,7 +2789,7 @@ function CelToFahCalc() {
                 <div className="calc-result__stats">
                     <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{kelvin.toFixed(2)} K</p></div>
                     <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{rankine.toFixed(2)} °R</p></div>
-                    <div><p className="calc-field__label">FREEZING?</p><p style={{ fontWeight: 700 }}>{cel <= 0 ? "❄️ Yes" : "☀️ No"}</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{cel <= 0 ? "❄️ Yes" : "☀️ No"}</p></div>
                     <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">({cel}×⁹⁄₅)+32</p></div>
                 </div>
             </div>
@@ -2833,7 +2833,7 @@ function FahToKelCalc() {
     const quickRef = [-459.67, -40, 0, 32, 68, 72, 98.6, 100, 212, 350, 400, 450, 500, 1000];
 
     return (
-        <div className="calc-card">
+        <div className="calc-input-panel">
             <div className="calc-field">
                 <label className="calc-field__label">🌡️ FAHRENHEIT (°F)</label>
                 <input type="range" className="calc-field__slider" min={-460} max={1000} step={1}
@@ -2845,15 +2845,15 @@ function FahToKelCalc() {
                 </div>
             </div>
 
-            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
-                <p className="calc-field__label">TEMPERATURE IN KELVIN</p>
+            <div className="calc-result">
+                <p className="calc-result__label">TEMPERATURE IN KELVIN</p>
                 <p className="calc-result__emi">
                     {kelvin.toFixed(2)} K
                 </p>
                 <div className="calc-result__stats">
                     <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{cel.toFixed(2)} °C</p></div>
                     <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{rankine.toFixed(2)} °R</p></div>
-                    <div><p className="calc-field__label">ABS ZERO?</p><p style={{ fontWeight: 700 }}>{kelvin <= 0 ? "⚠️ Below!" : kelvin < 10 ? "🧊 Near" : "✅ Above"}</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{kelvin <= 0 ? "⚠️ Below!" : kelvin < 10 ? "🧊 Near" : "✅ Above"}</p></div>
                     <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">({fah}−32)×⅝+273</p></div>
                 </div>
             </div>
@@ -2897,7 +2897,7 @@ function CelToKelCalc() {
     const quickRef = [-273.15, -196, -78.5, -40, 0, 20, 22, 25, 37, 100, 180, 1538, 5505];
 
     return (
-        <div className="calc-card">
+        <div className="calc-input-panel">
             <div className="calc-field">
                 <label className="calc-field__label">🌡️ CELSIUS (°C)</label>
                 <input type="range" className="calc-field__slider" min={-273} max={6000} step={1}
@@ -2909,15 +2909,15 @@ function CelToKelCalc() {
                 </div>
             </div>
 
-            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
-                <p className="calc-field__label">TEMPERATURE IN KELVIN</p>
+            <div className="calc-result">
+                <p className="calc-result__label">TEMPERATURE IN KELVIN</p>
                 <p className="calc-result__emi">
                     {kelvin.toFixed(2)} K
                 </p>
                 <div className="calc-result__stats">
                     <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{fah.toFixed(2)} °F</p></div>
                     <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{rankine.toFixed(2)} °R</p></div>
-                    <div><p className="calc-field__label">ABS ZERO?</p><p style={{ fontWeight: 700 }}>{kelvin <= 0 ? "⚠️ Below!" : kelvin < 10 ? "🧊 Near" : "✅ Above"}</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{kelvin <= 0 ? "⚠️ Below!" : kelvin < 10 ? "🧊 Near" : "✅ Above"}</p></div>
                     <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{cel}+273.15</p></div>
                 </div>
             </div>
@@ -2962,7 +2962,7 @@ function MphToKmhCalc() {
     const quickRef = [5, 15, 25, 30, 35, 45, 55, 60, 65, 70, 75, 100];
 
     return (
-        <div className="calc-card">
+        <div className="calc-input-panel">
             <div className="calc-field">
                 <label className="calc-field__label">🚗 MILES PER HOUR (mph)</label>
                 <input type="range" className="calc-field__slider" min={0} max={250} step={1}
@@ -2974,8 +2974,8 @@ function MphToKmhCalc() {
                 </div>
             </div>
 
-            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
-                <p className="calc-field__label">SPEED IN KM/H</p>
+            <div className="calc-result">
+                <p className="calc-result__label">SPEED IN KM/H</p>
                 <p className="calc-result__emi">
                     {kmh.toFixed(2)} km/h
                 </p>
@@ -3027,7 +3027,7 @@ function MmBtuToMwhCalc() {
     const quickRef = [0.1, 0.5, 1, 3, 5, 10, 20, 50, 100, 1000];
 
     return (
-        <div className="calc-card">
+        <div className="calc-input-panel">
             <div className="calc-field">
                 <label className="calc-field__label">⚡ MILLION BTU (MMBtu)</label>
                 <input type="range" className="calc-field__slider" min={0.1} max={1000} step={0.1}
@@ -3039,8 +3039,8 @@ function MmBtuToMwhCalc() {
                 </div>
             </div>
 
-            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
-                <p className="calc-field__label">ENERGY IN MEGAWATT HOURS</p>
+            <div className="calc-result">
+                <p className="calc-result__label">ENERGY IN MEGAWATT HOURS</p>
                 <p className="calc-result__emi">
                     {mwh.toFixed(4)} MWh
                 </p>
@@ -3092,7 +3092,7 @@ function MwhToKwhCalc() {
     const quickRef = [0.001, 0.01, 0.05, 0.1, 0.5, 1, 5, 10, 100, 1000];
 
     return (
-        <div className="calc-card">
+        <div className="calc-input-panel">
             <div className="calc-field">
                 <label className="calc-field__label">⚡ MEGAWATT HOURS (MWh)</label>
                 <input type="range" className="calc-field__slider" min={0.001} max={1000} step={0.001}
@@ -3104,14 +3104,14 @@ function MwhToKwhCalc() {
                 </div>
             </div>
 
-            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
-                <p className="calc-field__label">ENERGY IN KILOWATT HOURS</p>
+            <div className="calc-result">
+                <p className="calc-result__label">ENERGY IN KILOWATT HOURS</p>
                 <p className="calc-result__emi">
                     {kwh.toLocaleString(undefined, { maximumFractionDigits: 2 })} kWh
                 </p>
                 <div className="calc-result__stats">
                     <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{wh.toLocaleString()} Wh</p></div>
-                    <div><p className="calc-field__label">MMBtu</p><p style={{ fontWeight: 700 }}>{mmbtu.toFixed(4)}</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{mmbtu.toFixed(4)}</p></div>
                     <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{gj.toFixed(4)} GJ</p></div>
                     <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{mwh}×1,000</p></div>
                 </div>
@@ -3157,7 +3157,7 @@ function KcalToCalCalc() {
     const quickRef = [1, 5, 10, 50, 100, 200, 500, 1000, 2000, 3000];
 
     return (
-        <div className="calc-card">
+        <div className="calc-input-panel">
             <div className="calc-field">
                 <label className="calc-field__label">🔥 KILOCALORIES (kcal)</label>
                 <input type="range" className="calc-field__slider" min={0} max={5000} step={1}
@@ -3169,7 +3169,7 @@ function KcalToCalCalc() {
                 </div>
             </div>
 
-            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
+            <div className="calc-result">
                 <p className="calc-result__label">ENERGY IN CALORIES</p>
                 <p className="calc-result__emi">
                     {cal.toLocaleString()} cal
@@ -3221,7 +3221,7 @@ function Lper100kmToMpgCalc() {
     const quickRef = [3, 4, 5, 6, 7, 8, 10, 12, 15, 20];
 
     return (
-        <div className="calc-card">
+        <div className="calc-input-panel">
             <div className="calc-field">
                 <label className="calc-field__label">⛽ LITERS PER 100 KM (L/100km)</label>
                 <input type="range" className="calc-field__slider" min={1} max={30} step={0.1}
@@ -3233,7 +3233,7 @@ function Lper100kmToMpgCalc() {
                 </div>
             </div>
 
-            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
+            <div className="calc-result">
                 <p className="calc-result__label">FUEL ECONOMY IN US MPG</p>
                 <p className="calc-result__emi">
                     {usMpg.toFixed(1)} mpg
@@ -3285,7 +3285,7 @@ function MpgToLper100kmCalc() {
     const quickRef = [10, 15, 20, 25, 30, 35, 40, 50, 60, 80];
 
     return (
-        <div className="calc-card">
+        <div className="calc-input-panel">
             <div className="calc-field">
                 <label className="calc-field__label">⛽ US MILES PER GALLON (MPG)</label>
                 <input type="range" className="calc-field__slider" min={5} max={100} step={1}
@@ -3297,8 +3297,8 @@ function MpgToLper100kmCalc() {
                 </div>
             </div>
 
-            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
-                <p className="calc-field__label">FUEL CONSUMPTION IN L/100KM</p>
+            <div className="calc-result">
+                <p className="calc-result__label">FUEL CONSUMPTION IN L/100KM</p>
                 <p className="calc-result__emi">
                     {lper100.toFixed(1)} L/100km
                 </p>
@@ -3349,7 +3349,7 @@ function KmPerLToMpgCalc() {
     const quickRef = [5, 8, 10, 12, 14, 16, 18, 20, 25, 30];
 
     return (
-        <div className="calc-card">
+        <div className="calc-input-panel">
             <div className="calc-field">
                 <label className="calc-field__label">⛽ KILOMETERS PER LITER (km/L)</label>
                 <input type="range" className="calc-field__slider" min={1} max={40} step={0.1}
@@ -3361,7 +3361,7 @@ function KmPerLToMpgCalc() {
                 </div>
             </div>
 
-            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
+            <div className="calc-result">
                 <p className="calc-result__label">FUEL ECONOMY IN US MPG</p>
                 <p className="calc-result__emi">
                     {usMpg.toFixed(1)} mpg
@@ -3413,7 +3413,7 @@ function MpgToKmPerLCalc() {
     const quickRef = [10, 15, 20, 25, 30, 35, 40, 50, 60, 80];
 
     return (
-        <div className="calc-card">
+        <div className="calc-input-panel">
             <div className="calc-field">
                 <label className="calc-field__label">⛽ US MILES PER GALLON (MPG)</label>
                 <input type="range" className="calc-field__slider" min={5} max={100} step={1}
@@ -3425,8 +3425,8 @@ function MpgToKmPerLCalc() {
                 </div>
             </div>
 
-            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
-                <p className="calc-field__label">FUEL ECONOMY IN KM/L</p>
+            <div className="calc-result">
+                <p className="calc-result__label">FUEL ECONOMY IN KM/L</p>
                 <p className="calc-result__emi">
                     {kml.toFixed(1)} km/L
                 </p>
@@ -3477,7 +3477,7 @@ function MegaohmToOhmCalc() {
     const quickRef = [0.001, 0.01, 0.1, 0.5, 1, 2, 5, 10, 100, 1000];
 
     return (
-        <div className="calc-card">
+        <div className="calc-input-panel">
             <div className="calc-field">
                 <label className="calc-field__label">🔌 MEGAOHMS (MΩ)</label>
                 <input type="range" className="calc-field__slider" min={0.001} max={1000} step={0.001}
@@ -3489,7 +3489,7 @@ function MegaohmToOhmCalc() {
                 </div>
             </div>
 
-            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
+            <div className="calc-result">
                 <p className="calc-result__label">RESISTANCE IN OHMS</p>
                 <p className="calc-result__emi">
                     {ohm.toLocaleString()} Ω
@@ -3541,7 +3541,7 @@ function OhmToKiloohmCalc() {
     const quickRef = [1, 10, 47, 100, 220, 470, 1000, 4700, 10000, 100000];
 
     return (
-        <div className="calc-card">
+        <div className="calc-input-panel">
             <div className="calc-field">
                 <label className="calc-field__label">🔌 OHMS (Ω)</label>
                 <input type="range" className="calc-field__slider" min={1} max={100000} step={1}
@@ -3553,8 +3553,8 @@ function OhmToKiloohmCalc() {
                 </div>
             </div>
 
-            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
-                <p className="calc-field__label">RESISTANCE IN KILOHMS</p>
+            <div className="calc-result">
+                <p className="calc-result__label">RESISTANCE IN KILOHMS</p>
                 <p className="calc-result__emi">
                     {kohm.toFixed(kohm < 1 ? 3 : kohm < 10 ? 2 : 1)} kΩ
                 </p>
@@ -3612,7 +3612,7 @@ function DegToRadCalc() {
     };
 
     return (
-        <div className="calc-card">
+        <div className="calc-input-panel">
             <div className="calc-field">
                 <label className="calc-field__label">📐 DEGREES (°)</label>
                 <input type="range" className="calc-field__slider" min={0} max={720} step={1}
@@ -3624,7 +3624,7 @@ function DegToRadCalc() {
                 </div>
             </div>
 
-            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
+            <div className="calc-result">
                 <p className="calc-result__label">ANGLE IN RADIANS</p>
                 <p className="calc-result__emi">
                     {rad.toFixed(6)} rad
@@ -3632,8 +3632,8 @@ function DegToRadCalc() {
                 <div className="calc-result__stats">
                     <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{exactFrac(deg)}</p></div>
                     <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{turns.toFixed(4)}</p></div>
-                    <div><p className="calc-field__label">SIN({deg}°)</p><p style={{ fontWeight: 700 }}>{sinVal.toFixed(6)}</p></div>
-                    <div><p className="calc-field__label">COS({deg}°)</p><p style={{ fontWeight: 700 }}>{cosVal.toFixed(6)}</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{sinVal.toFixed(6)}</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{cosVal.toFixed(6)}</p></div>
                 </div>
             </div>
 
@@ -3681,7 +3681,7 @@ function RadToDegCalc() {
     };
 
     return (
-        <div className="calc-card">
+        <div className="calc-input-panel">
             <div className="calc-field">
                 <label className="calc-field__label">📐 RADIANS (rad)</label>
                 <input type="range" className="calc-field__slider" min={0} max={6.2832} step={0.0001}
@@ -3693,7 +3693,7 @@ function RadToDegCalc() {
                 </div>
             </div>
 
-            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
+            <div className="calc-result">
                 <p className="calc-result__label">ANGLE IN DEGREES</p>
                 <p className="calc-result__emi">
                     {deg.toFixed(4)}°
@@ -3746,7 +3746,7 @@ function DegToMradCalc() {
     const quickRef = [0.1, 0.25, 0.5, 1, 2, 5, 10, 15, 30, 45, 90, 360];
 
     return (
-        <div className="calc-card">
+        <div className="calc-input-panel">
             <div className="calc-field">
                 <label className="calc-field__label">📐 DEGREES (°)</label>
                 <input type="range" className="calc-field__slider" min={0} max={360} step={0.01}
@@ -3758,8 +3758,8 @@ function DegToMradCalc() {
                 </div>
             </div>
 
-            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
-                <p className="calc-field__label">ANGLE IN MILLIRADIANS</p>
+            <div className="calc-result">
+                <p className="calc-result__label">ANGLE IN MILLIRADIANS</p>
                 <p className="calc-result__emi">
                     {mrad.toFixed(4)} mrad
                 </p>
@@ -3812,7 +3812,7 @@ function MradToDegCalc() {
     const quickRef = [0.1, 0.2, 0.5, 1, 2, 3, 5, 10, 17.45, 50];
 
     return (
-        <div className="calc-card">
+        <div className="calc-input-panel">
             <div className="calc-field">
                 <label className="calc-field__label">🎯 MILLIRADIANS (mrad)</label>
                 <input type="range" className="calc-field__slider" min={0} max={100} step={0.01}
@@ -3824,7 +3824,7 @@ function MradToDegCalc() {
                 </div>
             </div>
 
-            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
+            <div className="calc-result">
                 <p className="calc-result__label">ANGLE IN DEGREES</p>
                 <p className="calc-result__emi">
                     {deg.toFixed(6)}°
@@ -3832,7 +3832,7 @@ function MradToDegCalc() {
                 <div className="calc-result__stats">
                     <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{moa.toFixed(2)}</p></div>
                     <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{natoMil.toFixed(2)}</p></div>
-                    <div><p className="calc-field__label">@ 100 YD</p><p style={{ fontWeight: 700 }}>{inchAt100.toFixed(2)}"</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{inchAt100.toFixed(2)}"</p></div>
                     <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{rad.toFixed(6)}</p></div>
                 </div>
             </div>
@@ -3888,7 +3888,7 @@ function AngleHubCalc() {
     ];
 
     return (
-        <div className="calc-card">
+        <div className="calc-input-panel">
             <div className="calc-field">
                 <label className="calc-field__label">📐 ENTER ANGLE IN DEGREES (°)</label>
                 <input type="range" className="calc-field__slider" min={0} max={720} step={0.1}
@@ -3900,19 +3900,19 @@ function AngleHubCalc() {
                 </div>
             </div>
 
-            <div className="calc-card" style={{ marginTop: "var(--s-6)", background: "var(--n-surface-alt)" }}>
-                <p className="calc-field__label">ALL ANGLE UNITS</p>
+            <div className="calc-result">
+                <p className="calc-result__label">ALL ANGLE UNITS</p>
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "var(--s-3)", marginTop: "var(--s-2)" }}>
-                    <div><p className="calc-field__label">RADIANS</p><p style={{ fontWeight: 700, color: "var(--n-primary)" }}>{rad.toFixed(6)}</p></div>
-                    <div><p className="calc-field__label">MILLIRADIANS</p><p style={{ fontWeight: 700, color: "var(--n-primary)" }}>{mrad.toFixed(2)}</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{rad.toFixed(6)}</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{mrad.toFixed(2)}</p></div>
                     <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{natoMil.toFixed(2)}</p></div>
                     <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{moa.toFixed(1)}</p></div>
                 </div>
                 <div className="calc-result__stats">
                     <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{grad.toFixed(2)}</p></div>
                     <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{turns.toFixed(6)}</p></div>
-                    <div><p className="calc-field__label">SIN({deg}°)</p><p style={{ fontWeight: 700 }}>{sinVal.toFixed(6)}</p></div>
-                    <div><p className="calc-field__label">COS({deg}°)</p><p style={{ fontWeight: 700 }}>{cosVal.toFixed(6)}</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{sinVal.toFixed(6)}</p></div>
+                    <div><p className="calc-result__stat-label"></p><p className="calc-result__stat-value">{cosVal.toFixed(6)}</p></div>
                 </div>
             </div>
 
