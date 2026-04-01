@@ -311,6 +311,13 @@ const IN_CALCULATORS = [
         description: "Statutory Bonus Calculator with 4 modes: Employee Bonus Calculator (8.33%-20% with ₹21,000 eligibility and ₹7,000 calculation ceiling), Employer Cost Estimator (workforce-level liability + monthly provisioning), Compliance Guide (Payment of Bonus Act 1965 — eligibility, disqualification, penalties, Form A/B/C/D), and Allocable Surplus Calculator (gross profit, prior charges, 67%/60% split, set-on/set-off).",
     },
     {
+        title: "Gratuity Calculator",
+        slug: "gratuity-calculator",
+        icon: "🏆",
+        tag: "Tax & Compliance",
+        description: "Gratuity Calculator with 4 modes: Gratuity Calculator (covered ÷26 vs not-covered ÷30 formula, year rounding, Basic+DA), Tax Exemption Calculator (Section 10(10) — govt 100% exempt, private least-of-3 rule, ₹20 lakh lifetime limit), Employer Liability Estimator (AS-15/Ind AS-19, monthly provisioning), and Eligibility Guide (5-year rule, 240-day rule, forfeiture Sec 4(6), death/disability waiver).",
+    },
+    {
         title: "Mutual Fund Returns Calculator",
         slug: "mutual-fund-returns-calculator",
         icon: "📊",
