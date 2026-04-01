@@ -303,14 +303,14 @@ const IN_CALCULATORS = [
         slug: "bike-loan-calculator",
         icon: "🏍️",
         tag: "Finance & Loans",
-        description: "Calculate two-wheeler loan EMI. Compare rates across SBI, HDFC, ICICI for new and used bikes. Includes down payment guide, CIBIL requirement, and insurance costs.",
+        description: "Calculate two-wheeler loan EMI with 4 modes: EMI Calculator (model presets), Loan Eligibility, Prepayment Impact, and Bank vs NBFC comparison. 12+ lender rates (SBI, HDFC, Bajaj Finance, TVS Credit), model-wise EMI (Activa to RE Classic), PM E-DRIVE EV subsidy guide, RBI 2025 prepayment rules, and insurance guide.",
     },
     {
         title: "Business Loan Calculator",
         slug: "business-loan-calculator",
         icon: "🏢",
         tag: "Finance & Loans",
-        description: "Calculate business loan EMI for MSME and startups. Mudra Loan (up to ₹10L), SBI SME loans, and NBFC options. Includes CIBIL requirement, collateral guide, and GST impact.",
+        description: "Calculate business loan EMI with 4 modes: EMI Calculator (with tax benefit), Loan Eligibility, Prepayment Impact (with tax analysis), and Secured vs Unsecured comparison. 13+ lender rates (SBI, HDFC, Bajaj Finserv, Lendingkart), Mudra PMMY, CGTMSE ₹10Cr guide, PMEGP subsidy, RBI April 2026 ₹20L collateral-free mandate, and Section 36(1)(iii) tax deduction.",
     },
     {
         title: "Loan Eligibility Calculator",
