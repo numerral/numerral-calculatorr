@@ -276,6 +276,13 @@ const IN_CALCULATORS = [
         description: "Professional Tax Calculator with 4 modes: State-wise PT Calculator (18 states with slab tables, Maharashtra gender exemption), Annual PT & Section 16(iii) Tax Impact, Cross-State PT Comparison, and Employer PTRC/PTEC Compliance Dashboard. Covers Article 276 ₹2,500 cap, February adjustment, exemptions, penalties, and self-employed PT registration.",
     },
     {
+        title: "Capital Gains Tax Calculator",
+        slug: "capital-gains-tax-calculator",
+        icon: "📈",
+        tag: "Investment & Tax",
+        description: "Capital Gains Tax Calculator with 4 modes: CG Tax Calculator (9 asset types — equity, MF, property, gold, crypto, bonds), Asset Tax Comparison, Section 54/54EC/54F Exemption Planner, and Tax Loss Harvesting Optimiser. Post-Budget 2024 rules: 12.5% LTCG, 20% STCG equity, indexation removal, ₹1.25L exemption, grandfathering, CII table, and 30% VDA flat tax.",
+    },
+    {
         title: "Mutual Fund Returns Calculator",
         slug: "mutual-fund-returns-calculator",
         icon: "📊",
