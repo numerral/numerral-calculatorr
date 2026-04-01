@@ -6910,29 +6910,52 @@ select.con-input__field {
 }
 
 /* ── EEAT AUTHOR BADGE ───────────────────── */
+
+/* ═ Global page reflow: push author badge below calculator ═
+   Works on ALL devices. Calculator (<div>) stays order 0,
+   badge gets order 1, content <section>s get order 2.        */
+main.container {
+    display: flex;
+    flex-direction: column;
+}
+main.container > * { order: 0; }
+main.container > .author-badge { order: 1; }
+main.container > section { order: 2; }
+
+/* ═ Badge design — horizontal credibility strip ═ */
 .author-badge {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--s-1) var(--s-5);
+    padding: var(--s-3) var(--s-5);
+    margin-top: var(--s-5);
     margin-bottom: var(--s-6);
-    padding-bottom: var(--s-4);
-    border-bottom: 1px solid var(--n-border);
+    background: var(--n-surface-alt);
+    border-radius: var(--r-sm);
+    border: 1px solid var(--n-border);
+    border-left: 3px solid var(--n-primary);
 }
 
-/* On mobile, push author badge below the calculator */
-@media (max-width: 768px) {
-    main.container {
-        display: flex;
-        flex-direction: column;
-    }
-    main.container > * { order: 0; }
-    main.container > .author-badge { order: 5; margin-top: var(--s-4); }
+[data-theme="dark"] .author-badge {
+    background: var(--n-surface);
 }
 
 .author-badge__line {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     gap: var(--s-2);
-    flex-wrap: wrap;
     font-size: var(--t-caption);
-    line-height: 1.8;
+    line-height: 1.6;
+    white-space: nowrap;
+}
+
+/* Pipe separator between lines on desktop */
+.author-badge__line:not(:last-child)::after {
+    content: "|";
+    margin-left: var(--s-3);
+    color: var(--n-border-hover);
+    font-weight: 300;
 }
 
 .author-badge__label {
@@ -6945,7 +6968,7 @@ select.con-input__field {
     color: var(--n-text);
     text-decoration: none;
     letter-spacing: 0.02em;
-    border-bottom: 1px dotted var(--n-text-muted);
+    border-bottom: 1px dotted transparent;
     transition: all var(--ease-default);
 }
 
@@ -6957,7 +6980,7 @@ select.con-input__field {
 .author-badge__date {
     color: var(--n-text-muted);
     font-weight: 400;
-    margin-left: var(--s-2);
+    margin-left: var(--s-1);
 }
 
 .author-badge__date::before {
@@ -6966,7 +6989,25 @@ select.con-input__field {
     color: var(--n-text-muted);
 }
 
+/* Tablet — keep horizontal but tighten gaps */
+@media (max-width: 1023px) {
+    .author-badge {
+        gap: var(--s-1) var(--s-3);
+        padding: var(--s-3) var(--s-4);
+    }
+}
+
+/* Mobile — stack vertically */
 @media (max-width: 640px) {
+    .author-badge {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--s-1);
+        padding: var(--s-3) var(--s-4);
+    }
+    .author-badge__line:not(:last-child)::after {
+        display: none;
+    }
     .author-badge__date {
         margin-left: 0;
     }
