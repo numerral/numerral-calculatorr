@@ -123,6 +123,42 @@ export default function TimeCalculatorsPage() {
                             <span className="calc-index-card__stars">★★★★★</span>
                         </div>
                     </Link>
+                    {/* Weeks From Today */}
+                    <Link href="/time-calculators/weeks-from-today" className="calc-index-card">
+                        <span className="calc-index-card__icon">📆</span>
+                        <div className="calc-index-card__body">
+                            <h3>Weeks From Today</h3>
+                            <p>Find the exact date any number of weeks from today. 1–52 week reference table.</p>
+                            <span className="calc-index-card__stars">★★★★★</span>
+                        </div>
+                    </Link>
+                    {/* Months From Today */}
+                    <Link href="/time-calculators/months-from-today" className="calc-index-card">
+                        <span className="calc-index-card__icon">🗓️</span>
+                        <div className="calc-index-card__body">
+                            <h3>Months From Today</h3>
+                            <p>Find the exact date any number of months from today. 1–24 month reference.</p>
+                            <span className="calc-index-card__stars">★★★★★</span>
+                        </div>
+                    </Link>
+                    {/* Hours From Now */}
+                    <Link href="/time-calculators/hours-from-now" className="calc-index-card">
+                        <span className="calc-index-card__icon">🕐</span>
+                        <div className="calc-index-card__body">
+                            <h3>Hours From Now</h3>
+                            <p>What time will it be X hours from now? 1–72 hour reference table.</p>
+                            <span className="calc-index-card__stars">★★★★★</span>
+                        </div>
+                    </Link>
+                    {/* Minutes From Now */}
+                    <Link href="/time-calculators/minutes-from-now" className="calc-index-card">
+                        <span className="calc-index-card__icon">⏰</span>
+                        <div className="calc-index-card__body">
+                            <h3>Minutes From Now</h3>
+                            <p>What time will it be X minutes from now? 5–120 minute reference.</p>
+                            <span className="calc-index-card__stars">★★★★★</span>
+                        </div>
+                    </Link>
                     {timeCalcs.map((calc: CalculatorDef) => (
                         <Link
                             key={calc.id}
