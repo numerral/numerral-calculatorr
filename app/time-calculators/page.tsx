@@ -60,6 +60,15 @@ export default function TimeCalculatorsPage() {
             <section style={{ marginBottom: "var(--s-12)" }}>
                 <h2 className="t-h2" style={{ marginBottom: "var(--s-5)" }}>All Time & Date Calculators</h2>
                 <div className="calc-index-grid">
+                    {/* Days From Today — standalone hub page */}
+                    <Link href="/time-calculators/days-from-today" className="calc-index-card">
+                        <span className="calc-index-card__icon">📅</span>
+                        <div className="calc-index-card__body">
+                            <h3>Days From Today Calculator</h3>
+                            <p>Find the exact date any number of days from today. Get calendar-day and business-day results with US deadline context.</p>
+                            <span className="calc-index-card__stars">★★★★★</span>
+                        </div>
+                    </Link>
                     {timeCalcs.map((calc: CalculatorDef) => (
                         <Link
                             key={calc.id}

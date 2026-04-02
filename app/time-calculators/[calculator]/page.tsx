@@ -6,7 +6,7 @@ import Breadcrumb from "@/components/layout/Breadcrumb";
 import TimeDateCalculatorCore from "@/components/calculator/TimeDateCalculatorCore";
 import DynamicExplanation from "@/components/shared/DynamicExplanation";
 import FAQAccordion from "@/components/shared/FAQAccordion";
-import TrendingCalculations from "@/components/shared/TrendingCalculations";
+import Link from "next/link";
 import { getCalculatorsByCategory } from "@/lib/data";
 import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
@@ -564,7 +564,26 @@ export default async function TimeCalculatorHubPage({ params }: PageProps) {
                     <GlossaryChip calcId={calc.id} />
                 </div>
                 <aside className="layout-2col__sidebar">
-                    <TrendingCalculations variant="sidebar" />
+                    <div className="trending">
+                        <h3>📅 Related Time & Date Tools</h3>
+                        <div className="trending__list">
+                            <Link href="/time-calculators/days-from-today" className="trending__item">Days From Today Calculator</Link>
+                            <Link href="/time-calculators/date-calculator" className="trending__item">Date Calculator</Link>
+                            <Link href="/time-calculators/business-days-calculator" className="trending__item">Business Days Calculator</Link>
+                            <Link href="/time-calculators/date-duration-calculator" className="trending__item">Date Duration Calculator</Link>
+                            <Link href="/time-calculators/days-until-calculator" className="trending__item">Days Until Calculator</Link>
+                            <Link href="/time-calculators/deadline-calculator" className="trending__item">Deadline Calculator</Link>
+                            <Link href="/time-calculators/time-calculator" className="trending__item">Time Calculator</Link>
+                            <Link href="/time-calculators/time-duration-calculator" className="trending__item">Time Duration Calculator</Link>
+                            <Link href="/time-calculators/hours-calculator" className="trending__item">Hours Calculator</Link>
+                            <Link href="/time-calculators/time-card-calculator" className="trending__item">Time Card Calculator</Link>
+                            <Link href="/time-calculators/work-hours-calculator" className="trending__item">Work Hours Calculator</Link>
+                            <Link href="/time-calculators/military-time-converter" className="trending__item">Military Time Converter</Link>
+                            <Link href="/time-calculators/week-calculator" className="trending__item">Week Calculator</Link>
+                            <Link href="/time-calculators/days-left-in-year-calculator" className="trending__item">Days Left in Year</Link>
+                            <Link href="/time-calculators/birth-year-calculator" className="trending__item">Birth Year Calculator</Link>
+                        </div>
+                    </div>
                 </aside>
             </div>
         </main>
