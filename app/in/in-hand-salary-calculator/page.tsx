@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import Link from "next/link";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import "../in.css";
 import "../../ksa/ksa.css";
@@ -75,42 +74,10 @@ export default function InHandSalaryCalculatorPage() {
             </section>
 
             <FAQAccordion title="In-Hand Salary Calculator FAQ — India 2026" items={FAQ_ITEMS} />
-
-            <section className="in-related">
-                <h3>Related India Calculators</h3>
-                <div className="in-related-links">
-                    {RELATED.map((r, i) => (
-                        <Link key={i} href={r.href} className="in-related-link">
-                            <span className="in-related-link__icon">{r.icon}</span>
-                            <div className="in-related-link__text">
-                                <div className="in-related-link__title">{r.title}</div>
-                                <div className="in-related-link__desc">{r.desc}</div>
-                            </div>
-                        </Link>
-                    ))}
-                </div>
-            </section>
         </main>
     );
 }
 
-const RELATED = [
-    { href: "/in/income-tax-calculator", icon: "🧾", title: "Income Tax Calculator", desc: "Old vs New Regime — complete tax computation with all deductions" },
-    { href: "/in/hra-exemption-calculator", icon: "🏠", title: "HRA Exemption Calculator", desc: "Section 10(13A) — 3-rule HRA exemption for metro and non-metro cities" },
-    { href: "/in/professional-tax-calculator", icon: "🏛️", title: "Professional Tax Calculator", desc: "State-wise PT slabs — Maharashtra, Karnataka, West Bengal & more" },
-    { href: "/in/tds-calculator", icon: "📋", title: "TDS Calculator", desc: "TDS on salary under Section 192 — monthly deduction estimation" },
-    { href: "/in/gratuity-calculator", icon: "🎁", title: "Gratuity Calculator", desc: "15/26 formula — eligibility, tax exemption under Section 10(10)" },
-    { href: "/in/bonus-calculator", icon: "💵", title: "Bonus Calculator", desc: "Statutory bonus 8.33%–20% under Payment of Bonus Act, 1965" },
-    { href: "/in/ppf-calculator", icon: "🏦", title: "PPF/EPF Calculator", desc: "12% EPF contribution — 8.25% tax-free interest & retirement corpus" },
-    { href: "/in/nps-calculator", icon: "🏛️", title: "NPS Calculator", desc: "Section 80CCD(2) — employer NPS allowed in BOTH tax regimes" },
-    { href: "/in/sip-calculator", icon: "📈", title: "SIP Calculator", desc: "Invest your savings — step-up SIP aligned with salary increments" },
-    { href: "/in/fd-calculator", icon: "🏛️", title: "FD Calculator", desc: "Park emergency fund in FD — compare bank rates for 2026" },
-    { href: "/in/home-loan-calculator", icon: "🏠", title: "Home Loan EMI Calculator", desc: "Section 24(b) interest deduction — impacts Old Regime take-home" },
-    { href: "/in/retirement-corpus-calculator", icon: "🛡️", title: "Retirement Corpus Calculator", desc: "EPF + NPS + Gratuity = total retirement benefits projection" },
-    { href: "/in/fire-calculator", icon: "🔥", title: "FIRE Calculator", desc: "Financial independence planning with salary deductions factored in" },
-    { href: "/in/capital-gains-tax-calculator", icon: "📊", title: "Capital Gains Tax Calculator", desc: "LTCG/STCG on equity, debt, property — impacts total tax" },
-    { href: "/in", icon: "🇮🇳", title: "All India Calculators", desc: "Browse all India-specific financial tools" },
-];
 
 const CONTENT_HTML = `
     <h2 id="what-is-in-hand-salary">What Is In-Hand Salary?</h2>
