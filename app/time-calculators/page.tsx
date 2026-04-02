@@ -78,6 +78,51 @@ export default function TimeCalculatorsPage() {
                             <span className="calc-index-card__stars">★★★★★</span>
                         </div>
                     </Link>
+                    {/* Timer — standalone hub page */}
+                    <Link href="/time-calculators/timer" className="calc-index-card">
+                        <span className="calc-index-card__icon">⏱️</span>
+                        <div className="calc-index-card__body">
+                            <h3>Online Timer</h3>
+                            <p>Set a countdown timer with hours, minutes, and seconds. Get an alert when time is up — preset timers included.</p>
+                            <span className="calc-index-card__stars">★★★★★</span>
+                        </div>
+                    </Link>
+                    {/* Stopwatch — standalone page */}
+                    <Link href="/time-calculators/stopwatch" className="calc-index-card">
+                        <span className="calc-index-card__icon">⏱</span>
+                        <div className="calc-index-card__body">
+                            <h3>Online Stopwatch</h3>
+                            <p>Centisecond-precision stopwatch with lap split tracking. Start, stop, lap, and reset in your browser.</p>
+                            <span className="calc-index-card__stars">★★★★★</span>
+                        </div>
+                    </Link>
+                    {/* Birthday Countdown */}
+                    <Link href="/time-calculators/birthday-countdown" className="calc-index-card">
+                        <span className="calc-index-card__icon">🎂</span>
+                        <div className="calc-index-card__body">
+                            <h3>Birthday Countdown</h3>
+                            <p>How many days until your birthday? Live countdown to your next birthday with milestone age references.</p>
+                            <span className="calc-index-card__stars">★★★★★</span>
+                        </div>
+                    </Link>
+                    {/* Wedding Countdown */}
+                    <Link href="/time-calculators/wedding-countdown" className="calc-index-card">
+                        <span className="calc-index-card__icon">💍</span>
+                        <div className="calc-index-card__body">
+                            <h3>Wedding Countdown</h3>
+                            <p>Count down to your wedding day with a planning timeline, budget breakdown, and vendor booking deadlines.</p>
+                            <span className="calc-index-card__stars">★★★★★</span>
+                        </div>
+                    </Link>
+                    {/* School Countdown */}
+                    <Link href="/time-calculators/school-countdown" className="calc-index-card">
+                        <span className="calc-index-card__icon">🏫</span>
+                        <div className="calc-index-card__body">
+                            <h3>School Countdown</h3>
+                            <p>Days until the end of school or back to school. Regional US start and end dates by state.</p>
+                            <span className="calc-index-card__stars">★★★★★</span>
+                        </div>
+                    </Link>
                     {timeCalcs.map((calc: CalculatorDef) => (
                         <Link
                             key={calc.id}

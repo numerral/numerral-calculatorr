@@ -569,6 +569,11 @@ export default async function TimeCalculatorHubPage({ params }: PageProps) {
                         <div className="trending__list">
                             <Link href="/time-calculators/days-from-today" className="trending__item">Days From Today Calculator</Link>
                             <Link href="/time-calculators/countdown-timer" className="trending__item">Countdown Timer</Link>
+                            <Link href="/time-calculators/timer" className="trending__item">Online Timer</Link>
+                            <Link href="/time-calculators/stopwatch" className="trending__item">Stopwatch</Link>
+                            <Link href="/time-calculators/birthday-countdown" className="trending__item">Birthday Countdown</Link>
+                            <Link href="/time-calculators/wedding-countdown" className="trending__item">Wedding Countdown</Link>
+                            <Link href="/time-calculators/school-countdown" className="trending__item">School Countdown</Link>
                             <Link href="/time-calculators/date-calculator" className="trending__item">Date Calculator</Link>
                             <Link href="/time-calculators/business-days-calculator" className="trending__item">Business Days Calculator</Link>
                             <Link href="/time-calculators/date-duration-calculator" className="trending__item">Date Duration Calculator</Link>
