@@ -159,6 +159,60 @@ export default function TimeCalculatorsPage() {
                             <span className="calc-index-card__stars">★★★★★</span>
                         </div>
                     </Link>
+                    {/* Today's Date */}
+                    <Link href="/time-calculators/todays-date" className="calc-index-card">
+                        <span className="calc-index-card__icon">📋</span>
+                        <div className="calc-index-card__body">
+                            <h3>Today&apos;s Date</h3>
+                            <p>Current date in multiple formats with day number, week number, and year progress.</p>
+                            <span className="calc-index-card__stars">★★★★★</span>
+                        </div>
+                    </Link>
+                    {/* Digital Clock */}
+                    <Link href="/time-calculators/digital-clock" className="calc-index-card">
+                        <span className="calc-index-card__icon">🕐</span>
+                        <div className="calc-index-card__body">
+                            <h3>Digital Clock</h3>
+                            <p>Live online clock with seconds, 12/24-hour formats, and auto timezone detection.</p>
+                            <span className="calc-index-card__stars">★★★★★</span>
+                        </div>
+                    </Link>
+                    {/* Day of the Year */}
+                    <Link href="/time-calculators/day-of-the-year" className="calc-index-card">
+                        <span className="calc-index-card__icon">📊</span>
+                        <div className="calc-index-card__body">
+                            <h3>Day of the Year</h3>
+                            <p>What day number is it? Progress bar and month-by-day reference table.</p>
+                            <span className="calc-index-card__stars">★★★★★</span>
+                        </div>
+                    </Link>
+                    {/* Week of the Year */}
+                    <Link href="/time-calculators/week-of-the-year" className="calc-index-card">
+                        <span className="calc-index-card__icon">📈</span>
+                        <div className="calc-index-card__body">
+                            <h3>Week of the Year</h3>
+                            <p>Current ISO week number with quarterly reference table and year progress.</p>
+                            <span className="calc-index-card__stars">★★★★★</span>
+                        </div>
+                    </Link>
+                    {/* Current Month */}
+                    <Link href="/time-calculators/current-month" className="calc-index-card">
+                        <span className="calc-index-card__icon">🗓</span>
+                        <div className="calc-index-card__body">
+                            <h3>What Month Is It?</h3>
+                            <p>Current month with birthstones, flowers, seasons, and months-of-the-year reference.</p>
+                            <span className="calc-index-card__stars">★★★★★</span>
+                        </div>
+                    </Link>
+                    {/* Weeks Left in Year */}
+                    <Link href="/time-calculators/weeks-left-in-year" className="calc-index-card">
+                        <span className="calc-index-card__icon">⏳</span>
+                        <div className="calc-index-card__body">
+                            <h3>Weeks Left in Year</h3>
+                            <p>How many weeks remain in the year? Progress bar and upcoming milestones.</p>
+                            <span className="calc-index-card__stars">★★★★★</span>
+                        </div>
+                    </Link>
                     {timeCalcs.map((calc: CalculatorDef) => (
                         <Link
                             key={calc.id}
