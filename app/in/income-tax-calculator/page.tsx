@@ -78,40 +78,6 @@ export default function IncomeTaxCalculatorPage() {
             </section>
 
             <FAQAccordion title="Income Tax Calculator FAQ — India FY 2025-26" items={FAQ_ITEMS} />
-
-            <section className="in-related">
-                <h3>Related India Calculators</h3>
-                <div className="in-related-links">
-                    <Link href="/in/sip-calculator" className="in-related-link">
-                        <span className="in-related-link__icon">📈</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">SIP Calculator</div>
-                            <div className="in-related-link__desc">ELSS SIPs qualify under Section 80C tax saving</div>
-                        </div>
-                    </Link>
-                    <Link href="/in/ppf-calculator" className="in-related-link">
-                        <span className="in-related-link__icon">📊</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">PPF Calculator</div>
-                            <div className="in-related-link__desc">PPF qualifies under 80C + EEE tax-free returns</div>
-                        </div>
-                    </Link>
-                    <Link href="/in/pension-calculator" className="in-related-link">
-                        <span className="in-related-link__icon">🏦</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">Pension Calculator</div>
-                            <div className="in-related-link__desc">NPS contributions save ₹50K extra under 80CCD(1B)</div>
-                        </div>
-                    </Link>
-                    <Link href="/in/hlv-calculator" className="in-related-link">
-                        <span className="in-related-link__icon">🛡️</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">HLV Calculator</div>
-                            <div className="in-related-link__desc">Term insurance premium qualifies under Section 80C</div>
-                        </div>
-                    </Link>
-                </div>
-            </section>
         </main>
     );
 }

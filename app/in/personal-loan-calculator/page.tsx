@@ -3,7 +3,6 @@
 
 import type { Metadata } from "next";
 import Script from "next/script";
-import Link from "next/link";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import "../in.css";
 import "../../ksa/ksa.css";
@@ -79,40 +78,6 @@ export default function PersonalLoanCalculatorPage() {
             </section>
 
             <FAQAccordion title="Personal Loan EMI Calculator FAQ — India 2026" items={FAQ_ITEMS} />
-
-            <section className="in-related">
-                <h3>Related India Calculators</h3>
-                <div className="in-related-links">
-                    <Link href="/in/home-loan-calculator" className="in-related-link">
-                        <span className="in-related-link__icon">🏠</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">Home Loan EMI Calculator</div>
-                            <div className="in-related-link__desc">Housing loan EMI & eligibility</div>
-                        </div>
-                    </Link>
-                    <Link href="/in/fuel-cost-calculator" className="in-related-link">
-                        <span className="in-related-link__icon">⛽</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">Fuel Cost Calculator</div>
-                            <div className="in-related-link__desc">Petrol, diesel & CNG costs</div>
-                        </div>
-                    </Link>
-                    <Link href="/utility-calculators/compound-interest-calculator" className="in-related-link">
-                        <span className="in-related-link__icon">💰</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">Compound Interest</div>
-                            <div className="in-related-link__desc">Grow your savings & investments</div>
-                        </div>
-                    </Link>
-                    <Link href="/in" className="in-related-link">
-                        <span className="in-related-link__icon">🇮🇳</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">All India Calculators</div>
-                            <div className="in-related-link__desc">Browse all India tools</div>
-                        </div>
-                    </Link>
-                </div>
-            </section>
         </main>
     );
 }

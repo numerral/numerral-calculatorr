@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import Link from "next/link";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import "../in.css";
 import "../../ksa/ksa.css";
@@ -76,40 +75,10 @@ export default function CapitalGainsTaxCalculatorPage() {
             </section>
 
             <FAQAccordion title="Capital Gains Tax Calculator FAQ — India 2026" items={FAQ_ITEMS} />
-
-            <section className="in-related">
-                <h3>Related India Calculators</h3>
-                <div className="in-related-links">
-                    {RELATED.map((r, i) => (
-                        <Link key={i} href={r.href} className="in-related-link">
-                            <span className="in-related-link__icon">{r.icon}</span>
-                            <div className="in-related-link__text">
-                                <div className="in-related-link__title">{r.title}</div>
-                                <div className="in-related-link__desc">{r.desc}</div>
-                            </div>
-                        </Link>
-                    ))}
-                </div>
-            </section>
         </main>
     );
 }
 
-const RELATED = [
-    { href: "/in/income-tax-calculator", icon: "🧾", title: "Income Tax Calculator", desc: "Old vs New Regime — see how capital gains add to your total taxable income" },
-    { href: "/in/mutual-fund-returns-calculator", icon: "📊", title: "Mutual Fund Returns Calculator", desc: "Calculate MF returns with LTCG/STCG tax impact factored in" },
-    { href: "/in/sip-calculator", icon: "📈", title: "SIP Calculator", desc: "Systematic Investment Plan returns — factor in tax on exit" },
-    { href: "/in/fd-calculator", icon: "🏛️", title: "FD Calculator", desc: "Compare post-tax returns: FD (slab rate) vs Equity (12.5% LTCG)" },
-    { href: "/in/ppf-calculator", icon: "🏦", title: "PPF Calculator", desc: "PPF is EEE — completely tax-free vs capital gains taxation" },
-    { href: "/in/nps-calculator", icon: "🏛️", title: "NPS Calculator", desc: "NPS taxation on withdrawal — 60% lump sum tax-free" },
-    { href: "/in/tds-calculator", icon: "📋", title: "TDS Calculator", desc: "TDS on property sale, TDS on crypto transfers (1%)" },
-    { href: "/in/retirement-corpus-calculator", icon: "🛡️", title: "Retirement Corpus Calculator", desc: "Post-tax corpus planning — equity vs debt allocation" },
-    { href: "/in/fire-calculator", icon: "🔥", title: "FIRE Calculator", desc: "Financial independence with post-tax withdrawal planning" },
-    { href: "/in/compound-interest-calculator", icon: "📊", title: "Compound Interest Calculator", desc: "Pre-tax vs post-tax compounding comparison" },
-    { href: "/in/professional-tax-calculator", icon: "🏛️", title: "Professional Tax Calculator", desc: "Another payroll deduction — PT under Section 16(iii)" },
-    { href: "/in/hra-calculator", icon: "🏠", title: "HRA Calculator", desc: "Salary deductions and tax-saving strategy" },
-    { href: "/in", icon: "🇮🇳", title: "All India Calculators", desc: "Browse all India-specific financial tools" },
-];
 
 const CONTENT_HTML = `
     <h2 id="what-is-capital-gains">What is Capital Gains Tax in India?</h2>

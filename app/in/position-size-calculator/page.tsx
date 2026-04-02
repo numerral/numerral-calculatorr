@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import Link from "next/link";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import "../in.css";
 import "../../ksa/ksa.css";
@@ -77,40 +76,6 @@ export default function PositionSizeCalculatorPage() {
             </section>
 
             <FAQAccordion title="Position Size Calculator FAQ — India 2026" items={FAQ_ITEMS} />
-
-            <section className="in-related">
-                <h3>Related India Calculators</h3>
-                <div className="in-related-links">
-                    <Link href="/in/sip-calculator" className="in-related-link">
-                        <span className="in-related-link__icon">📈</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">SIP Calculator</div>
-                            <div className="in-related-link__desc">Long-term wealth creation via systematic investing</div>
-                        </div>
-                    </Link>
-                    <Link href="/in/income-tax-calculator" className="in-related-link">
-                        <span className="in-related-link__icon">🧾</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">Income Tax Calculator</div>
-                            <div className="in-related-link__desc">STCG (20%) and LTCG (12.5%) tax on trading profits</div>
-                        </div>
-                    </Link>
-                    <Link href="/in/xirr-calculator" className="in-related-link">
-                        <span className="in-related-link__icon">📊</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">XIRR Calculator</div>
-                            <div className="in-related-link__desc">Calculate true returns on irregular trading P&amp;L</div>
-                        </div>
-                    </Link>
-                    <Link href="/in/compound-interest-calculator" className="in-related-link">
-                        <span className="in-related-link__icon">📊</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">Compound Interest Calculator</div>
-                            <div className="in-related-link__desc">See how consistent trading profits compound over time</div>
-                        </div>
-                    </Link>
-                </div>
-            </section>
         </main>
     );
 }

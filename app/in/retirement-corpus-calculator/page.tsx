@@ -3,7 +3,6 @@
 
 import type { Metadata } from "next";
 import Script from "next/script";
-import Link from "next/link";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import "../in.css";
 import "../../ksa/ksa.css";
@@ -79,110 +78,6 @@ export default function RetirementCorpusCalculatorPage() {
             </section>
 
             <FAQAccordion title="Retirement Corpus Calculator FAQ — India 2026" items={FAQ_ITEMS} />
-
-            <section className="in-related">
-                <h3>Related India Calculators</h3>
-                <div className="in-related-links">
-                    <Link href="/in/nps-calculator" className="in-related-link">
-                        <span className="in-related-link__icon">📈</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">NPS Calculator</div>
-                            <div className="in-related-link__desc">Model NPS corpus, annuity income & 80CCD(1B) tax savings</div>
-                        </div>
-                    </Link>
-                    <Link href="/in/pension-calculator" className="in-related-link">
-                        <span className="in-related-link__icon">🏛️</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">Pension Calculator</div>
-                            <div className="in-related-link__desc">EPS-95 & NPS pension projections for retirement</div>
-                        </div>
-                    </Link>
-                    <Link href="/in/ppf-calculator" className="in-related-link">
-                        <span className="in-related-link__icon">🏦</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">PPF Calculator</div>
-                            <div className="in-related-link__desc">Tax-free maturity at 7.1% — 15-year retirement backbone</div>
-                        </div>
-                    </Link>
-                    <Link href="/in/sip-calculator" className="in-related-link">
-                        <span className="in-related-link__icon">📊</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">SIP Calculator</div>
-                            <div className="in-related-link__desc">Monthly SIP needed to reach your retirement corpus target</div>
-                        </div>
-                    </Link>
-                    <Link href="/in/swp-calculator" className="in-related-link">
-                        <span className="in-related-link__icon">💰</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">SWP Calculator</div>
-                            <div className="in-related-link__desc">Systematic withdrawal for regular post-retirement income</div>
-                        </div>
-                    </Link>
-                    <Link href="/in/fd-calculator" className="in-related-link">
-                        <span className="in-related-link__icon">🏦</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">FD Calculator</div>
-                            <div className="in-related-link__desc">Senior citizen FD rates & SCSS comparison for safety</div>
-                        </div>
-                    </Link>
-                    <Link href="/in/income-tax-calculator" className="in-related-link">
-                        <span className="in-related-link__icon">🧾</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">Income Tax Calculator</div>
-                            <div className="in-related-link__desc">Old vs New Regime — maximise 80C + 80CCD retirement savings</div>
-                        </div>
-                    </Link>
-                    <Link href="/in/fire-calculator" className="in-related-link">
-                        <span className="in-related-link__icon">🔥</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">FIRE Calculator</div>
-                            <div className="in-related-link__desc">Early retirement? Compare FIRE corpus vs traditional retirement</div>
-                        </div>
-                    </Link>
-                    <Link href="/in/lumpsum-calculator" className="in-related-link">
-                        <span className="in-related-link__icon">💎</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">Lumpsum Calculator</div>
-                            <div className="in-related-link__desc">What will your EPF/NPS lump sum grow to post-retirement?</div>
-                        </div>
-                    </Link>
-                    <Link href="/in/compound-interest-calculator" className="in-related-link">
-                        <span className="in-related-link__icon">📊</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">Compound Interest Calculator</div>
-                            <div className="in-related-link__desc">Visualise compounding power over 30 years of saving</div>
-                        </div>
-                    </Link>
-                    <Link href="/in/crorepati-calculator" className="in-related-link">
-                        <span className="in-related-link__icon">💰</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">Crorepati Calculator</div>
-                            <div className="in-related-link__desc">When will you hit the ₹1Cr / ₹5Cr retirement milestone?</div>
-                        </div>
-                    </Link>
-                    <Link href="/in/hra-calculator" className="in-related-link">
-                        <span className="in-related-link__icon">🏠</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">HRA Calculator</div>
-                            <div className="in-related-link__desc">Working years: maximise HRA + 80C + 80CCD together</div>
-                        </div>
-                    </Link>
-                    <Link href="/in/education-loan-calculator" className="in-related-link">
-                        <span className="in-related-link__icon">🎓</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">Education Loan Calculator</div>
-                            <div className="in-related-link__desc">Don&apos;t drain retirement for education — plan smart</div>
-                        </div>
-                    </Link>
-                    <Link href="/in" className="in-related-link">
-                        <span className="in-related-link__icon">🇮🇳</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">All India Calculators</div>
-                            <div className="in-related-link__desc">Browse all India-specific financial tools</div>
-                        </div>
-                    </Link>
-                </div>
-            </section>
         </main>
     );
 }

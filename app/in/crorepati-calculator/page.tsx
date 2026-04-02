@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import Link from "next/link";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import "../in.css";
 import "../../ksa/ksa.css";
@@ -78,40 +77,6 @@ export default function CrorepatiCalculatorPage() {
             </section>
 
             <FAQAccordion title="Crorepati Calculator FAQ — India 2026" items={FAQ_ITEMS} />
-
-            <section className="in-related">
-                <h3>Related India Calculators</h3>
-                <div className="in-related-links">
-                    <Link href="/in/sip-calculator" className="in-related-link">
-                        <span className="in-related-link__icon">📈</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">SIP Calculator</div>
-                            <div className="in-related-link__desc">Calculate exact SIP returns with detailed projections</div>
-                        </div>
-                    </Link>
-                    <Link href="/in/compound-interest-calculator" className="in-related-link">
-                        <span className="in-related-link__icon">💰</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">Compound Interest Calculator</div>
-                            <div className="in-related-link__desc">See how compounding accelerates your wealth</div>
-                        </div>
-                    </Link>
-                    <Link href="/in/pension-calculator" className="in-related-link">
-                        <span className="in-related-link__icon">🏦</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">Pension Calculator</div>
-                            <div className="in-related-link__desc">Plan retirement corpus with NPS &amp; EPS</div>
-                        </div>
-                    </Link>
-                    <Link href="/in/income-tax-calculator" className="in-related-link">
-                        <span className="in-related-link__icon">🧾</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">Income Tax Calculator</div>
-                            <div className="in-related-link__desc">Plan ELSS tax savings under Section 80C</div>
-                        </div>
-                    </Link>
-                </div>
-            </section>
         </main>
     );
 }

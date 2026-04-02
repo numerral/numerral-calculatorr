@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import Link from "next/link";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import "../in.css";
 import "../../ksa/ksa.css";
@@ -76,39 +75,10 @@ export default function BonusCalculatorPage() {
             </section>
 
             <FAQAccordion title="Statutory Bonus Calculator FAQ — India 2026" items={FAQ_ITEMS} />
-
-            <section className="in-related">
-                <h3>Related India Calculators</h3>
-                <div className="in-related-links">
-                    {RELATED.map((r, i) => (
-                        <Link key={i} href={r.href} className="in-related-link">
-                            <span className="in-related-link__icon">{r.icon}</span>
-                            <div className="in-related-link__text">
-                                <div className="in-related-link__title">{r.title}</div>
-                                <div className="in-related-link__desc">{r.desc}</div>
-                            </div>
-                        </Link>
-                    ))}
-                </div>
-            </section>
         </main>
     );
 }
 
-const RELATED = [
-    { href: "/in/salary-calculator", icon: "💰", title: "Salary Calculator", desc: "Bonus is part of CTC — see complete net take-home breakdown" },
-    { href: "/in/income-tax-calculator", icon: "🧾", title: "Income Tax Calculator", desc: "Statutory bonus is fully taxable — compute your total tax impact" },
-    { href: "/in/tds-calculator", icon: "📋", title: "TDS Calculator", desc: "Employer deducts TDS on bonus as part of salary income" },
-    { href: "/in/professional-tax-calculator", icon: "🏛️", title: "Professional Tax Calculator", desc: "Another payroll deduction — state-wise PT on total earnings" },
-    { href: "/in/hra-exemption-calculator", icon: "🏠", title: "HRA Exemption Calculator", desc: "Another salary component with tax benefit under old regime" },
-    { href: "/in/gst-calculator", icon: "🧾", title: "GST Calculator", desc: "Bonus relates to profits — GST impacts your gross profit computation" },
-    { href: "/in/fd-calculator", icon: "🏛️", title: "FD Calculator", desc: "Invest bonus in FD for additional returns and 80C benefit" },
-    { href: "/in/ppf-calculator", icon: "🏦", title: "PPF Calculator", desc: "Park bonus savings in PPF for 80C deduction + tax-free returns" },
-    { href: "/in/nps-calculator", icon: "🏛️", title: "NPS Calculator", desc: "Invest bonus in NPS for additional 80CCD(1B) ₹50K deduction" },
-    { href: "/in/business-loan-calculator", icon: "🏢", title: "Business Loan Calculator", desc: "Bonus liability impacts cash flow — plan with MSME loan EMI" },
-    { href: "/in/retirement-corpus-calculator", icon: "🛡️", title: "Retirement Calculator", desc: "Include annual bonus in retirement accumulation projections" },
-    { href: "/in", icon: "🇮🇳", title: "All India Calculators", desc: "Browse all India-specific financial tools" },
-];
 
 const CONTENT_HTML = `
     <h2 id="what-is-bonus">What is Statutory Bonus?</h2>

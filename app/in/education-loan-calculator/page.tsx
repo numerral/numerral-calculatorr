@@ -3,7 +3,6 @@
 
 import type { Metadata } from "next";
 import Script from "next/script";
-import Link from "next/link";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import "../in.css";
 import "../../ksa/ksa.css";
@@ -79,96 +78,6 @@ export default function EducationLoanCalculatorPage() {
             </section>
 
             <FAQAccordion title="Education Loan EMI Calculator FAQ — India 2026" items={FAQ_ITEMS} />
-
-            <section className="in-related">
-                <h3>Related India Calculators</h3>
-                <div className="in-related-links">
-                    <Link href="/in/income-tax-calculator" className="in-related-link">
-                        <span className="in-related-link__icon">🧾</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">Income Tax Calculator</div>
-                            <div className="in-related-link__desc">Verify Section 80E tax savings — Old vs New Regime</div>
-                        </div>
-                    </Link>
-                    <Link href="/in/sip-calculator" className="in-related-link">
-                        <span className="in-related-link__icon">📈</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">SIP Calculator</div>
-                            <div className="in-related-link__desc">Invest instead of prepaying? Compare returns</div>
-                        </div>
-                    </Link>
-                    <Link href="/in/home-loan-calculator" className="in-related-link">
-                        <span className="in-related-link__icon">🏠</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">Home Loan EMI Calculator</div>
-                            <div className="in-related-link__desc">Using property as collateral? Check home loan rates</div>
-                        </div>
-                    </Link>
-                    <Link href="/in/personal-loan-calculator" className="in-related-link">
-                        <span className="in-related-link__icon">💳</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">Personal Loan EMI Calculator</div>
-                            <div className="in-related-link__desc">Unsecured alternative — compare rates & terms</div>
-                        </div>
-                    </Link>
-                    <Link href="/in/ppf-calculator" className="in-related-link">
-                        <span className="in-related-link__icon">📊</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">PPF Calculator</div>
-                            <div className="in-related-link__desc">Parents: build education fund with PPF</div>
-                        </div>
-                    </Link>
-                    <Link href="/in/fd-calculator" className="in-related-link">
-                        <span className="in-related-link__icon">🏦</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">FD Calculator</div>
-                            <div className="in-related-link__desc">Park education funds before disbursement</div>
-                        </div>
-                    </Link>
-                    <Link href="/in/pension-calculator" className="in-related-link">
-                        <span className="in-related-link__icon">🏛️</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">Pension Calculator</div>
-                            <div className="in-related-link__desc">Don't drain retirement for child's education</div>
-                        </div>
-                    </Link>
-                    <Link href="/in/compound-interest-calculator" className="in-related-link">
-                        <span className="in-related-link__icon">📊</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">Compound Interest Calculator</div>
-                            <div className="in-related-link__desc">Understand moratorium interest growth</div>
-                        </div>
-                    </Link>
-                    <Link href="/in/xirr-calculator" className="in-related-link">
-                        <span className="in-related-link__icon">📊</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">XIRR Calculator</div>
-                            <div className="in-related-link__desc">Calculate true education investment ROI</div>
-                        </div>
-                    </Link>
-                    <Link href="/in/hra-calculator" className="in-related-link">
-                        <span className="in-related-link__icon">🏠</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">HRA Calculator</div>
-                            <div className="in-related-link__desc">Working graduates: claim HRA + 80E together</div>
-                        </div>
-                    </Link>
-                    <Link href="/in/crorepati-calculator" className="in-related-link">
-                        <span className="in-related-link__icon">💰</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">Crorepati Calculator</div>
-                            <div className="in-related-link__desc">Education as investment — future wealth planning</div>
-                        </div>
-                    </Link>
-                    <Link href="/in" className="in-related-link">
-                        <span className="in-related-link__icon">🇮🇳</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">All India Calculators</div>
-                            <div className="in-related-link__desc">Browse all India-specific financial tools</div>
-                        </div>
-                    </Link>
-                </div>
-            </section>
         </main>
     );
 }

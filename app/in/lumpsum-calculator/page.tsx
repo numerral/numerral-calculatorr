@@ -75,40 +75,6 @@ export default function LumpsumCalculatorPage() {
                 <div dangerouslySetInnerHTML={{ __html: CONTENT_HTML }} />
             </section>
             <FAQAccordion title="Lumpsum Calculator FAQ — India 2026" items={FAQ_ITEMS} />
-
-            <section className="in-related">
-                <h3>Related India Calculators</h3>
-                <div className="in-related-links">
-                    <Link href="/in/sip-calculator" className="in-related-link">
-                        <span className="in-related-link__icon">📈</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">SIP Calculator</div>
-                            <div className="in-related-link__desc">Compare lump sum vs systematic monthly investment</div>
-                        </div>
-                    </Link>
-                    <Link href="/in/compound-interest-calculator" className="in-related-link">
-                        <span className="in-related-link__icon">💰</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">Compound Interest Calculator</div>
-                            <div className="in-related-link__desc">See how compounding accelerates your one-time investment</div>
-                        </div>
-                    </Link>
-                    <Link href="/in/crorepati-calculator" className="in-related-link">
-                        <span className="in-related-link__icon">🏆</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">Crorepati Calculator</div>
-                            <div className="in-related-link__desc">Plan your path to ₹1 Crore using lump sum or SIP</div>
-                        </div>
-                    </Link>
-                    <Link href="/in/income-tax-calculator" className="in-related-link">
-                        <span className="in-related-link__icon">🧾</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">Income Tax Calculator</div>
-                            <div className="in-related-link__desc">Calculate LTCG/STCG tax on your investment gains</div>
-                        </div>
-                    </Link>
-                </div>
-            </section>
         </main>
     );
 }

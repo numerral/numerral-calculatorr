@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import Link from "next/link";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import "../in.css";
 import "../../ksa/ksa.css";
@@ -76,39 +75,10 @@ export default function GSTCalculatorPage() {
             </section>
 
             <FAQAccordion title="GST Calculator FAQ — India 2026" items={FAQ_ITEMS} />
-
-            <section className="in-related">
-                <h3>Related India Calculators</h3>
-                <div className="in-related-links">
-                    {RELATED.map((r, i) => (
-                        <Link key={i} href={r.href} className="in-related-link">
-                            <span className="in-related-link__icon">{r.icon}</span>
-                            <div className="in-related-link__text">
-                                <div className="in-related-link__title">{r.title}</div>
-                                <div className="in-related-link__desc">{r.desc}</div>
-                            </div>
-                        </Link>
-                    ))}
-                </div>
-            </section>
         </main>
     );
 }
 
-const RELATED = [
-    { href: "/in/income-tax-calculator", icon: "🧾", title: "Income Tax Calculator", desc: "GST is indirect tax — income tax is direct. Compare your total tax burden." },
-    { href: "/in/tds-calculator", icon: "📋", title: "TDS Calculator", desc: "TDS on professional fees, rent, and payments — 23+ sections covered" },
-    { href: "/in/salary-calculator", icon: "💰", title: "Salary Calculator", desc: "Net take-home salary after income tax, EPF, PT, and other deductions" },
-    { href: "/in/business-loan-calculator", icon: "🏢", title: "Business Loan Calculator", desc: "EMI and eligibility for MSME/Mudra loans to grow your GST-registered business" },
-    { href: "/in/home-loan-calculator", icon: "🏠", title: "Home Loan Calculator", desc: "GST on under-construction property: 1% affordable, 5% non-affordable" },
-    { href: "/in/car-loan-calculator", icon: "🚗", title: "Car Loan Calculator", desc: "28% GST on automobiles — compute EMI and total cost of ownership" },
-    { href: "/in/fd-calculator", icon: "🏛️", title: "FD Calculator", desc: "Park GST refunds in FD for additional returns" },
-    { href: "/in/compound-interest-calculator", icon: "📊", title: "Compound Interest Calculator", desc: "18% p.a. interest on late GST payment — compute the compounding impact" },
-    { href: "/in/professional-tax-calculator", icon: "🏛️", title: "Professional Tax Calculator", desc: "Another business compliance — state-wise PT on salary/income" },
-    { href: "/in/capital-gains-tax-calculator", icon: "📈", title: "Capital Gains Tax Calculator", desc: "GST on gold (3%) + LTCG if you sell — complete tax picture" },
-    { href: "/in/hra-exemption-calculator", icon: "🏠", title: "HRA Exemption Calculator", desc: "Rent payments and HRA exemption under Section 10(13A)" },
-    { href: "/in", icon: "🇮🇳", title: "All India Calculators", desc: "Browse all India-specific financial tools" },
-];
 
 const CONTENT_HTML = `
     <h2 id="what-is-gst">What is GST (Goods and Services Tax)?</h2>

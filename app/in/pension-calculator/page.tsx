@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import Link from "next/link";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import "../in.css";
 import "../../ksa/ksa.css";
@@ -78,40 +77,6 @@ export default function PensionCalculatorPage() {
             </section>
 
             <FAQAccordion title="Pension Calculator FAQ — India 2026" items={FAQ_ITEMS} />
-
-            <section className="in-related">
-                <h3>Related India Calculators</h3>
-                <div className="in-related-links">
-                    <Link href="/in/sip-calculator" className="in-related-link">
-                        <span className="in-related-link__icon">📈</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">SIP Calculator</div>
-                            <div className="in-related-link__desc">Bridge your retirement gap via SIP investments</div>
-                        </div>
-                    </Link>
-                    <Link href="/in/ppf-calculator" className="in-related-link">
-                        <span className="in-related-link__icon">📊</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">PPF Calculator</div>
-                            <div className="in-related-link__desc">7.1% EEE tax-free retirement savings</div>
-                        </div>
-                    </Link>
-                    <Link href="/in/compound-interest-calculator" className="in-related-link">
-                        <span className="in-related-link__icon">💰</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">Compound Interest Calculator</div>
-                            <div className="in-related-link__desc">See how compounding grows your retirement corpus</div>
-                        </div>
-                    </Link>
-                    <Link href="/in/hlv-calculator" className="in-related-link">
-                        <span className="in-related-link__icon">🛡️</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">HLV Calculator</div>
-                            <div className="in-related-link__desc">Life cover to protect family during wealth accumulation</div>
-                        </div>
-                    </Link>
-                </div>
-            </section>
         </main>
     );
 }

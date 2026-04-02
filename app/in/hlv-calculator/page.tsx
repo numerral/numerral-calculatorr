@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import Link from "next/link";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import "../in.css";
 import "../../ksa/ksa.css";
@@ -76,40 +75,6 @@ export default function HLVCalculatorPage() {
             </section>
 
             <FAQAccordion title="Human Life Value Calculator FAQ — India 2026" items={FAQ_ITEMS} />
-
-            <section className="in-related">
-                <h3>Related India Calculators</h3>
-                <div className="in-related-links">
-                    <Link href="/in/sip-calculator" className="in-related-link">
-                        <span className="in-related-link__icon">📈</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">SIP Calculator</div>
-                            <div className="in-related-link__desc">Invest the coverage gap via SIP</div>
-                        </div>
-                    </Link>
-                    <Link href="/in/ppf-calculator" className="in-related-link">
-                        <span className="in-related-link__icon">📊</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">PPF Calculator</div>
-                            <div className="in-related-link__desc">Safe corpus for existing savings</div>
-                        </div>
-                    </Link>
-                    <Link href="/in/home-loan-calculator" className="in-related-link">
-                        <span className="in-related-link__icon">🏠</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">Home Loan EMI Calculator</div>
-                            <div className="in-related-link__desc">Outstanding loan for HLV input</div>
-                        </div>
-                    </Link>
-                    <Link href="/in/age-calculator" className="in-related-link">
-                        <span className="in-related-link__icon">🎂</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">Age Calculator</div>
-                            <div className="in-related-link__desc">Exact age for retirement planning</div>
-                        </div>
-                    </Link>
-                </div>
-            </section>
         </main>
     );
 }

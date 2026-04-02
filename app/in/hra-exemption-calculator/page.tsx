@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import Link from "next/link";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import "../in.css";
 import "../../ksa/ksa.css";
@@ -76,39 +75,10 @@ export default function HRAExemptionCalculatorPage() {
             </section>
 
             <FAQAccordion title="HRA Exemption Calculator FAQ — India 2026" items={FAQ_ITEMS} />
-
-            <section className="in-related">
-                <h3>Related India Calculators</h3>
-                <div className="in-related-links">
-                    {RELATED.map((r, i) => (
-                        <Link key={i} href={r.href} className="in-related-link">
-                            <span className="in-related-link__icon">{r.icon}</span>
-                            <div className="in-related-link__text">
-                                <div className="in-related-link__title">{r.title}</div>
-                                <div className="in-related-link__desc">{r.desc}</div>
-                            </div>
-                        </Link>
-                    ))}
-                </div>
-            </section>
         </main>
     );
 }
 
-const RELATED = [
-    { href: "/in/income-tax-calculator", icon: "🧾", title: "Income Tax Calculator", desc: "HRA exemption reduces taxable income — see full Old vs New Regime tax" },
-    { href: "/in/salary-calculator", icon: "💰", title: "Salary Calculator", desc: "Compute net take-home salary after HRA, EPF, TDS, and PT deductions" },
-    { href: "/in/tds-calculator", icon: "📋", title: "TDS Calculator", desc: "HRA affects your employer's TDS — submit Form 12BB to reduce TDS" },
-    { href: "/in/capital-gains-tax-calculator", icon: "📈", title: "Capital Gains Tax Calculator", desc: "If you own property + rent elsewhere — dual HRA + Sec 24b benefit" },
-    { href: "/in/fd-calculator", icon: "🏛️", title: "FD Calculator", desc: "Park HRA tax savings in FD for additional returns" },
-    { href: "/in/ppf-calculator", icon: "🏦", title: "PPF Calculator", desc: "Combine HRA + 80C (PPF ₹1.5L) for maximum old regime savings" },
-    { href: "/in/nps-calculator", icon: "🏛️", title: "NPS Calculator", desc: "80CCD(2) works in BOTH regimes — combine with HRA in old regime" },
-    { href: "/in/home-loan-calculator", icon: "🏠", title: "Home Loan Calculator", desc: "Claim both HRA + home loan interest if properties at different locations" },
-    { href: "/in/professional-tax-calculator", icon: "🏛️", title: "Professional Tax Calculator", desc: "Another salary deduction — PT under Section 16(iii)" },
-    { href: "/in/mutual-fund-returns-calculator", icon: "📊", title: "Mutual Fund Calculator", desc: "Invest HRA tax savings in ELSS for 80C + wealth creation" },
-    { href: "/in/retirement-corpus-calculator", icon: "🛡️", title: "Retirement Calculator", desc: "HRA savings during working years boost retirement corpus" },
-    { href: "/in", icon: "🇮🇳", title: "All India Calculators", desc: "Browse all India-specific financial tools" },
-];
 
 const CONTENT_HTML = `
     <h2 id="what-is-hra">What is HRA (House Rent Allowance)?</h2>

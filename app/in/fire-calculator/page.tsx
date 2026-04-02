@@ -75,40 +75,6 @@ export default function FIRECalculatorPage() {
             </section>
 
             <FAQAccordion title="FIRE Calculator FAQ — India 2026" items={FAQ_ITEMS} />
-
-            <section className="in-related">
-                <h3>Related India Calculators</h3>
-                <div className="in-related-links">
-                    <Link href="/in/sip-calculator" className="in-related-link">
-                        <span className="in-related-link__icon">📈</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">SIP Calculator</div>
-                            <div className="in-related-link__desc">Calculate monthly SIP needed to reach your FIRE number</div>
-                        </div>
-                    </Link>
-                    <Link href="/in/swp-calculator" className="in-related-link">
-                        <span className="in-related-link__icon">💸</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">SWP Calculator</div>
-                            <div className="in-related-link__desc">Plan post-FIRE withdrawals with bucket strategy</div>
-                        </div>
-                    </Link>
-                    <Link href="/in/pension-calculator" className="in-related-link">
-                        <span className="in-related-link__icon">🏦</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">Pension Calculator</div>
-                            <div className="in-related-link__desc">NPS tax benefits and EPS pension for FIRE planning</div>
-                        </div>
-                    </Link>
-                    <Link href="/in/retirement-corpus-calculator" className="in-related-link">
-                        <span className="in-related-link__icon">🛡️</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">Retirement Corpus Calculator</div>
-                            <div className="in-related-link__desc">Traditional vs FIRE retirement — compare corpus needs</div>
-                        </div>
-                    </Link>
-                </div>
-            </section>
         </main>
     );
 }

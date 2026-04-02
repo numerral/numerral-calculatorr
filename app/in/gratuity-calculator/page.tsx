@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import Link from "next/link";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import "../in.css";
 import "../../ksa/ksa.css";
@@ -76,39 +75,10 @@ export default function GratuityCalculatorPage() {
             </section>
 
             <FAQAccordion title="Gratuity Calculator FAQ — India 2026" items={FAQ_ITEMS} />
-
-            <section className="in-related">
-                <h3>Related India Calculators</h3>
-                <div className="in-related-links">
-                    {RELATED.map((r, i) => (
-                        <Link key={i} href={r.href} className="in-related-link">
-                            <span className="in-related-link__icon">{r.icon}</span>
-                            <div className="in-related-link__text">
-                                <div className="in-related-link__title">{r.title}</div>
-                                <div className="in-related-link__desc">{r.desc}</div>
-                            </div>
-                        </Link>
-                    ))}
-                </div>
-            </section>
         </main>
     );
 }
 
-const RELATED = [
-    { href: "/in/salary-calculator", icon: "💰", title: "Salary Calculator", desc: "Gratuity is part of CTC — see complete salary breakdown with all deductions" },
-    { href: "/in/income-tax-calculator", icon: "🧾", title: "Income Tax Calculator", desc: "Gratuity above ₹20L is taxable — compute total tax impact" },
-    { href: "/in/retirement-corpus-calculator", icon: "🛡️", title: "Retirement Calculator", desc: "Include gratuity in your retirement corpus projection" },
-    { href: "/in/bonus-calculator", icon: "🎁", title: "Bonus Calculator", desc: "Statutory bonus is another terminal benefit — 8.33% to 20% of salary" },
-    { href: "/in/nps-calculator", icon: "🏛️", title: "NPS Calculator", desc: "Gratuity + NPS combined retirement strategy for tax-efficient exit" },
-    { href: "/in/ppf-calculator", icon: "🏦", title: "PPF Calculator", desc: "Park gratuity proceeds in PPF for tax-free compounding" },
-    { href: "/in/fd-calculator", icon: "🏛️", title: "FD Calculator", desc: "Invest gratuity in FD — earn 7-8% for senior citizens" },
-    { href: "/in/tds-calculator", icon: "📋", title: "TDS Calculator", desc: "TDS on gratuity above exemption limit — employer obligations" },
-    { href: "/in/pension-calculator", icon: "📊", title: "Pension Calculator", desc: "EPS-95 pension + gratuity = total retirement benefits" },
-    { href: "/in/hra-exemption-calculator", icon: "🏠", title: "HRA Exemption Calculator", desc: "Another salary component with tax exemption rules" },
-    { href: "/in/professional-tax-calculator", icon: "🏛️", title: "Professional Tax Calculator", desc: "PT is deducted from salary — another payroll compliance" },
-    { href: "/in", icon: "🇮🇳", title: "All India Calculators", desc: "Browse all India-specific financial tools" },
-];
 
 const CONTENT_HTML = `
     <h2 id="what-is-gratuity">What is Gratuity?</h2>

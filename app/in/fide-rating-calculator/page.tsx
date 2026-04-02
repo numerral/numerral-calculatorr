@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import Link from "next/link";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import "../in.css";
 import "../../ksa/ksa.css";
@@ -73,26 +72,6 @@ export default function FIDERatingCalculatorPage() {
 
             <section className="in-content"><div dangerouslySetInnerHTML={{ __html: CONTENT_HTML }} /></section>
             <FAQAccordion title="FIDE Rating Calculator FAQ — India 2026" items={FAQ_ITEMS} />
-
-            <section className="in-related">
-                <h3>More India Calculators</h3>
-                <div className="in-related-links">
-                    <Link href="/in" className="in-related-link">
-                        <span className="in-related-link__icon">🇮🇳</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">All India Calculators</div>
-                            <div className="in-related-link__desc">Browse all financial, tax, and utility calculators</div>
-                        </div>
-                    </Link>
-                    <Link href="/in/sip-calculator" className="in-related-link">
-                        <span className="in-related-link__icon">📈</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">SIP Calculator</div>
-                            <div className="in-related-link__desc">Invest your chess winnings via systematic investment plan</div>
-                        </div>
-                    </Link>
-                </div>
-            </section>
         </main>
     );
 }

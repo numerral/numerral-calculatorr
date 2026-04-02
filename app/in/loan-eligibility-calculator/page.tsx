@@ -3,7 +3,6 @@
 
 import type { Metadata } from "next";
 import Script from "next/script";
-import Link from "next/link";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import "../in.css";
 import "../../ksa/ksa.css";
@@ -79,54 +78,6 @@ export default function HomeLoanEligibilityPage() {
             </section>
 
             <FAQAccordion title="Home Loan Eligibility FAQ — India 2026" items={FAQ_ITEMS} />
-
-            <section className="in-related">
-                <h3>Related India Calculators</h3>
-                <div className="in-related-links">
-                    <Link href="/in/home-loan-calculator" className="in-related-link">
-                        <span className="in-related-link__icon">🏠</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">Home Loan EMI Calculator</div>
-                            <div className="in-related-link__desc">Calculate EMI & amortization</div>
-                        </div>
-                    </Link>
-                    <Link href="/in/income-tax-calculator" className="in-related-link">
-                        <span className="in-related-link__icon">🧾</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">Income Tax Calculator</div>
-                            <div className="in-related-link__desc">80C & 24b tax savings</div>
-                        </div>
-                    </Link>
-                    <Link href="/in/personal-loan-calculator" className="in-related-link">
-                        <span className="in-related-link__icon">💳</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">Personal Loan Calculator</div>
-                            <div className="in-related-link__desc">Clear loans to boost FOIR</div>
-                        </div>
-                    </Link>
-                    <Link href="/in/sip-calculator" className="in-related-link">
-                        <span className="in-related-link__icon">📈</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">SIP Calculator</div>
-                            <div className="in-related-link__desc">Build your down payment</div>
-                        </div>
-                    </Link>
-                    <Link href="/in/ppf-calculator" className="in-related-link">
-                        <span className="in-related-link__icon">📊</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">PPF Calculator</div>
-                            <div className="in-related-link__desc">Safe down payment savings</div>
-                        </div>
-                    </Link>
-                    <Link href="/in" className="in-related-link">
-                        <span className="in-related-link__icon">🇮🇳</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">All India Calculators</div>
-                            <div className="in-related-link__desc">Browse all 41+ India tools</div>
-                        </div>
-                    </Link>
-                </div>
-            </section>
         </main>
     );
 }

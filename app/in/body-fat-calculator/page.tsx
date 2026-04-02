@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import Link from "next/link";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import "../in.css";
 import "../../ksa/ksa.css";
@@ -74,26 +73,6 @@ export default function BodyFatCalculatorPage() {
 
             <section className="in-content"><div dangerouslySetInnerHTML={{ __html: CONTENT_HTML }} /></section>
             <FAQAccordion title="Body Fat Calculator FAQ — India 2026" items={FAQ_ITEMS} />
-
-            <section className="in-related">
-                <h3>Related India Calculators</h3>
-                <div className="in-related-links">
-                    <Link href="/in" className="in-related-link">
-                        <span className="in-related-link__icon">🇮🇳</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">All India Calculators</div>
-                            <div className="in-related-link__desc">Browse all financial, tax, and health calculators</div>
-                        </div>
-                    </Link>
-                    <Link href="/bmi-calculator" className="in-related-link">
-                        <span className="in-related-link__icon">⚖️</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">BMI Calculator</div>
-                            <div className="in-related-link__desc">Body Mass Index — a simpler starting point</div>
-                        </div>
-                    </Link>
-                </div>
-            </section>
         </main>
     );
 }

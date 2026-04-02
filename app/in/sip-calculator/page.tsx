@@ -76,40 +76,6 @@ export default function SIPCalculatorPage() {
             </section>
 
             <FAQAccordion title="SIP Calculator FAQ — India 2026" items={FAQ_ITEMS} />
-
-            <section className="in-related">
-                <h3>Related India Calculators</h3>
-                <div className="in-related-links">
-                    <Link href="/in/ppf-calculator" className="in-related-link">
-                        <span className="in-related-link__icon">📊</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">PPF Calculator</div>
-                            <div className="in-related-link__desc">Compare PPF vs SIP returns</div>
-                        </div>
-                    </Link>
-                    <Link href="/in/home-loan-calculator" className="in-related-link">
-                        <span className="in-related-link__icon">🏠</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">Home Loan EMI Calculator</div>
-                            <div className="in-related-link__desc">Plan SIP alongside EMI</div>
-                        </div>
-                    </Link>
-                    <Link href="/in/bmi-calculator" className="in-related-link">
-                        <span className="in-related-link__icon">🏋️</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">BMI Calculator</div>
-                            <div className="in-related-link__desc">Health & wellness tools</div>
-                        </div>
-                    </Link>
-                    <Link href="/in/age-calculator" className="in-related-link">
-                        <span className="in-related-link__icon">🎂</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">Age Calculator</div>
-                            <div className="in-related-link__desc">Retirement age & milestones</div>
-                        </div>
-                    </Link>
-                </div>
-            </section>
         </main>
     );
 }

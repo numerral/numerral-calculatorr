@@ -76,41 +76,7 @@ export default function FDCalculatorPage() {
                 <div dangerouslySetInnerHTML={{ __html: CONTENT_HTML }} />
             </section>
 
-            <FAQAccordion title="Fixed Deposit Calculator FAQ — India 2026" items={FAQ_ITEMS} />
-
-            <section className="in-related">
-                <h3>Related India Calculators</h3>
-                <div className="in-related-links">
-                    <Link href="/in/compound-interest-calculator" className="in-related-link">
-                        <span className="in-related-link__icon">📊</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">Compound Interest Calculator</div>
-                            <div className="in-related-link__desc">CI formula explained with FD comparison mode</div>
-                        </div>
-                    </Link>
-                    <Link href="/in/ppf-calculator" className="in-related-link">
-                        <span className="in-related-link__icon">📊</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">PPF Calculator</div>
-                            <div className="in-related-link__desc">7.1% tax-free returns — compare with FD</div>
-                        </div>
-                    </Link>
-                    <Link href="/in/sip-calculator" className="in-related-link">
-                        <span className="in-related-link__icon">📈</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">SIP Calculator</div>
-                            <div className="in-related-link__desc">Mutual fund SIP returns vs FD growth</div>
-                        </div>
-                    </Link>
-                    <Link href="/in/income-tax-calculator" className="in-related-link">
-                        <span className="in-related-link__icon">🧾</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">Income Tax Calculator</div>
-                            <div className="in-related-link__desc">Check your tax slab to see FD post-tax return</div>
-                        </div>
-                    </Link>
-                </div>
-            </section>
+            <FAQAccordion title="Fixed Deposit Calculator FAQ — India 2026" items={FAQ_ITEMS} />
         </main>
     );
 }

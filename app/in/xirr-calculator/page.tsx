@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import Link from "next/link";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import "../in.css";
 import "../../ksa/ksa.css";
@@ -73,40 +72,6 @@ export default function XIRRCalculatorPage() {
 
             <section className="in-content"><div dangerouslySetInnerHTML={{ __html: CONTENT_HTML }} /></section>
             <FAQAccordion title="XIRR Calculator FAQ — India 2026" items={FAQ_ITEMS} />
-
-            <section className="in-related">
-                <h3>Related India Calculators</h3>
-                <div className="in-related-links">
-                    <Link href="/in/sip-calculator" className="in-related-link">
-                        <span className="in-related-link__icon">📈</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">SIP Calculator</div>
-                            <div className="in-related-link__desc">Estimate SIP returns, then verify with XIRR</div>
-                        </div>
-                    </Link>
-                    <Link href="/in/lumpsum-calculator" className="in-related-link">
-                        <span className="in-related-link__icon">📊</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">Lumpsum Calculator</div>
-                            <div className="in-related-link__desc">CAGR suits lump sum; XIRR suits SIP</div>
-                        </div>
-                    </Link>
-                    <Link href="/in/swp-calculator" className="in-related-link">
-                        <span className="in-related-link__icon">💸</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">SWP Calculator</div>
-                            <div className="in-related-link__desc">Track withdrawal returns using XIRR</div>
-                        </div>
-                    </Link>
-                    <Link href="/in/compound-interest-calculator" className="in-related-link">
-                        <span className="in-related-link__icon">💰</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">Compound Interest Calculator</div>
-                            <div className="in-related-link__desc">Understand the compounding XIRR annualizes</div>
-                        </div>
-                    </Link>
-                </div>
-            </section>
         </main>
     );
 }

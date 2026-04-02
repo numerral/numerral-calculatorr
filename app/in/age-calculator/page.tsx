@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import Link from "next/link";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import "../in.css";
 import "../../ksa/ksa.css";
@@ -76,40 +75,6 @@ export default function AgeCalculatorPage() {
             </section>
 
             <FAQAccordion title="Age Calculator FAQ — India 2026" items={FAQ_ITEMS} />
-
-            <section className="in-related">
-                <h3>Related India Calculators</h3>
-                <div className="in-related-links">
-                    <Link href="/in/home-loan-calculator" className="in-related-link">
-                        <span className="in-related-link__icon">🏠</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">Home Loan EMI Calculator</div>
-                            <div className="in-related-link__desc">Housing loan EMI & eligibility</div>
-                        </div>
-                    </Link>
-                    <Link href="/in/car-loan-calculator" className="in-related-link">
-                        <span className="in-related-link__icon">🚗</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">Car Loan EMI Calculator</div>
-                            <div className="in-related-link__desc">New vs used car loan comparison</div>
-                        </div>
-                    </Link>
-                    <Link href="/in/personal-loan-calculator" className="in-related-link">
-                        <span className="in-related-link__icon">💳</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">Personal Loan EMI Calculator</div>
-                            <div className="in-related-link__desc">Unsecured loan EMI & CIBIL guide</div>
-                        </div>
-                    </Link>
-                    <Link href="/in" className="in-related-link">
-                        <span className="in-related-link__icon">🇮🇳</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">All India Calculators</div>
-                            <div className="in-related-link__desc">Browse all India tools</div>
-                        </div>
-                    </Link>
-                </div>
-            </section>
         </main>
     );
 }

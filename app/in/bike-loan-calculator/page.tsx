@@ -80,54 +80,6 @@ export default function BikeLoanCalculatorPage() {
             </section>
 
             <FAQAccordion title="Bike Loan EMI Calculator FAQ — India 2026" items={FAQ_ITEMS} />
-
-            <section className="in-related">
-                <h3>Related India Calculators</h3>
-                <div className="in-related-links">
-                    <Link href="/in/car-loan-calculator" className="in-related-link">
-                        <span className="in-related-link__icon">🚗</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">Car Loan EMI Calculator</div>
-                            <div className="in-related-link__desc">Upgrading to four wheels? Compare rates</div>
-                        </div>
-                    </Link>
-                    <Link href="/in/personal-loan-calculator" className="in-related-link">
-                        <span className="in-related-link__icon">💳</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">Personal Loan EMI Calculator</div>
-                            <div className="in-related-link__desc">Unsecured loan EMI & CIBIL guide</div>
-                        </div>
-                    </Link>
-                    <Link href="/in/fuel-cost-calculator" className="in-related-link">
-                        <span className="in-related-link__icon">⛽</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">Fuel Cost Calculator</div>
-                            <div className="in-related-link__desc">Daily commute running cost</div>
-                        </div>
-                    </Link>
-                    <Link href="/in/loan-eligibility-calculator" className="in-related-link">
-                        <span className="in-related-link__icon">✅</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">Loan Eligibility Calculator</div>
-                            <div className="in-related-link__desc">Check eligibility across loan types</div>
-                        </div>
-                    </Link>
-                    <Link href="/in/income-tax-calculator" className="in-related-link">
-                        <span className="in-related-link__icon">🧾</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">Income Tax Calculator</div>
-                            <div className="in-related-link__desc">FY 2025-26 tax computation</div>
-                        </div>
-                    </Link>
-                    <Link href="/in" className="in-related-link">
-                        <span className="in-related-link__icon">🇮🇳</span>
-                        <div className="in-related-link__text">
-                            <div className="in-related-link__title">All India Calculators</div>
-                            <div className="in-related-link__desc">Browse all India tools</div>
-                        </div>
-                    </Link>
-                </div>
-            </section>
         </main>
     );
 }

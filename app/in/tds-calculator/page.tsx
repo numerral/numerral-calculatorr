@@ -76,39 +76,10 @@ export default function TDSCalculatorPage() {
             </section>
 
             <FAQAccordion title="TDS Calculator FAQ — India 2026" items={FAQ_ITEMS} />
-
-            <section className="in-related">
-                <h3>Related India Calculators</h3>
-                <div className="in-related-links">
-                    {RELATED.map((r, i) => (
-                        <Link key={i} href={r.href} className="in-related-link">
-                            <span className="in-related-link__icon">{r.icon}</span>
-                            <div className="in-related-link__text">
-                                <div className="in-related-link__title">{r.title}</div>
-                                <div className="in-related-link__desc">{r.desc}</div>
-                            </div>
-                        </Link>
-                    ))}
-                </div>
-            </section>
         </main>
     );
 }
 
-const RELATED = [
-    { href: "/in/income-tax-calculator", icon: "🧾", title: "Income Tax Calculator", desc: "TDS is advance tax — see total liability under Old vs New Regime" },
-    { href: "/in/capital-gains-tax-calculator", icon: "📈", title: "Capital Gains Tax Calculator", desc: "LTCG/STCG tax on equity, MF, property — TDS applies on property" },
-    { href: "/in/hra-calculator", icon: "🏠", title: "HRA Calculator", desc: "Rent TDS under 194I/194IB and HRA exemption" },
-    { href: "/in/salary-calculator", icon: "💰", title: "Salary Calculator", desc: "TDS on salary under Section 192 — net take-home computation" },
-    { href: "/in/fd-calculator", icon: "🏛️", title: "FD Calculator", desc: "TDS on FD interest under Section 194A at 10%" },
-    { href: "/in/mutual-fund-returns-calculator", icon: "📊", title: "Mutual Fund Calculator", desc: "TDS on MF dividend under Section 194K at 10%" },
-    { href: "/in/professional-tax-calculator", icon: "🏛️", title: "Professional Tax Calculator", desc: "Another payroll deduction — state-wise PT" },
-    { href: "/in/nps-calculator", icon: "🏛️", title: "NPS Calculator", desc: "NPS employer contribution — 80CCD(2) and TDS implications" },
-    { href: "/in/ppf-calculator", icon: "🏦", title: "PPF Calculator", desc: "PPF interest is exempt — no TDS applicable" },
-    { href: "/in/rd-calculator", icon: "🏦", title: "RD Calculator", desc: "TDS on RD interest under Section 194A" },
-    { href: "/in/retirement-corpus-calculator", icon: "🛡️", title: "Retirement Calculator", desc: "Post-tax retirement planning" },
-    { href: "/in", icon: "🇮🇳", title: "All India Calculators", desc: "Browse all India-specific financial tools" },
-];
 
 const CONTENT_HTML = `
     <h2 id="what-is-tds">What is TDS (Tax Deducted at Source)?</h2>

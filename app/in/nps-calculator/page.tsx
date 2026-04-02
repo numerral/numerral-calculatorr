@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import Link from "next/link";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import "../in.css";
 import "../../ksa/ksa.css";
@@ -76,41 +75,10 @@ export default function NPSCalculatorPage() {
             </section>
 
             <FAQAccordion title="NPS Calculator FAQ — India 2026" items={FAQ_ITEMS} />
-
-            <section className="in-related">
-                <h3>Related India Calculators</h3>
-                <div className="in-related-links">
-                    {RELATED.map((r, i) => (
-                        <Link key={i} href={r.href} className="in-related-link">
-                            <span className="in-related-link__icon">{r.icon}</span>
-                            <div className="in-related-link__text">
-                                <div className="in-related-link__title">{r.title}</div>
-                                <div className="in-related-link__desc">{r.desc}</div>
-                            </div>
-                        </Link>
-                    ))}
-                </div>
-            </section>
         </main>
     );
 }
 
-const RELATED = [
-    { href: "/in/retirement-corpus-calculator", icon: "🛡️", title: "Retirement Corpus Calculator", desc: "NPS + EPF + PPF stack, healthcare inflation, post-retirement income planner" },
-    { href: "/in/ppf-calculator", icon: "🏦", title: "PPF Calculator", desc: "Tax-free 7.1% returns — NPS vs PPF for Section 80C planning" },
-    { href: "/in/income-tax-calculator", icon: "🧾", title: "Income Tax Calculator", desc: "Old vs New Regime — maximise 80CCD(1B) + 80C deductions" },
-    { href: "/in/fire-calculator", icon: "🔥", title: "FIRE Calculator", desc: "Early retirement with NPS + MF + EPF combined strategy" },
-    { href: "/in/sip-calculator", icon: "📈", title: "SIP Calculator", desc: "Compare NPS returns with mutual fund SIP growth" },
-    { href: "/in/mutual-fund-returns-calculator", icon: "📊", title: "Mutual Fund Calculator", desc: "MF vs NPS: LTCG tax, CAGR, and post-tax returns comparison" },
-    { href: "/in/fd-calculator", icon: "🏛️", title: "FD Calculator", desc: "NPS vs FD: market-linked vs guaranteed returns" },
-    { href: "/in/hra-calculator", icon: "🏠", title: "HRA Calculator", desc: "Salary structure — understand Basic + DA for NPS 80CCD limit" },
-    { href: "/in/gratuity-calculator", icon: "🎁", title: "Gratuity Calculator", desc: "Complete retirement benefits: Gratuity + EPF + NPS stack" },
-    { href: "/in/compound-interest-calculator", icon: "📊", title: "Compound Interest Calculator", desc: "Visualise compounding behind NPS corpus growth" },
-    { href: "/in/swp-calculator", icon: "💰", title: "SWP Calculator", desc: "Post-retirement income: NPS annuity vs MF SWP strategy" },
-    { href: "/in/crorepati-calculator", icon: "💎", title: "Crorepati Calculator", desc: "When will your NPS + SIP make you a crorepati?" },
-    { href: "/in/education-loan-calculator", icon: "🎓", title: "Education Loan Calculator", desc: "Financial planning tools for India" },
-    { href: "/in", icon: "🇮🇳", title: "All India Calculators", desc: "Browse all India-specific financial tools" },
-];
 
 const CONTENT_HTML = `
     <h2 id="what-is-nps">What is NPS (National Pension System)?</h2>
