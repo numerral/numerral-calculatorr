@@ -40,6 +40,13 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      // ─── Fix dead internal links: /in/salary-calculator → actual page ───
+      {
+        source: '/in/salary-calculator',
+        destination: '/in/in-hand-salary-calculator',
+        permanent: true,
+      },
+
       // ─── India-specific SALARY calculators → /in/ ───
       {
         source: '/salary-calculators/salary-after-tax',
