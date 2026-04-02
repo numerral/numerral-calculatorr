@@ -6398,12 +6398,12 @@
   {
     "id": "time-calculator",
     "category": "time",
-    "title": "Time Calculator",
+    "title": "Time Calculator — Add & Subtract Hours, Minutes",
     "slug": "time-calculator",
     "categorySlug": "time-calculators",
     "icon": "⏱️",
     "calcType": "time-calc",
-    "description": "Add or subtract hours, minutes, and seconds from any time. Convert to decimal hours, calculate durations, and handle midnight crossings automatically.",
+    "description": "Add or subtract hours, minutes, and seconds from any time. Convert results to decimal hours for payroll and project tracking.",
     "stars": 5,
     "defaults": {
       "amount": 0,
@@ -6440,12 +6440,12 @@
   {
     "id": "time-duration-calculator",
     "category": "time",
-    "title": "Time Duration Calculator",
+    "title": "Time Duration Calculator — Hours Between Two Times",
     "slug": "time-duration-calculator",
     "categorySlug": "time-calculators",
     "icon": "⏳",
     "calcType": "time-duration",
-    "description": "Calculate the exact duration between two times. Shows hours, minutes, seconds, and total minutes — handles overnight spans.",
+    "description": "Calculate exact elapsed time between two clock times. Shows hours, minutes, and seconds — handles overnight spans automatically.",
     "stars": 5,
     "defaults": {
       "amount": 0,
@@ -6482,12 +6482,12 @@
   {
     "id": "time-card-calculator",
     "category": "time",
-    "title": "Time Card Calculator",
+    "title": "Time Card Calculator — Track Clock In & Out Hours",
     "slug": "time-card-calculator",
     "categorySlug": "time-calculators",
     "icon": "🕑",
     "calcType": "time-card",
-    "description": "Track work hours with clock in/out times and break deductions. Get net hours worked in both standard and decimal format.",
+    "description": "Enter clock-in and clock-out times with breaks to calculate net work hours. Export results in standard or decimal format.",
     "stars": 5,
     "defaults": {
       "amount": 0,
@@ -6526,12 +6526,12 @@
   {
     "id": "work-hours-calculator",
     "category": "time",
-    "title": "Work Hours Calculator",
+    "title": "Work Hours Calculator — Weekly Timesheet & Overtime",
     "slug": "work-hours-calculator",
     "categorySlug": "time-calculators",
     "icon": "📋",
     "calcType": "work-hours",
-    "description": "Add up your weekly work hours with this time sheet calculator. Enter start time, end time, and breaks for each day. See total hours in decimal format with FLSA overtime and optional gross pay calculation.",
+    "description": "Add daily start/end times and breaks for a full week. Calculates total hours, FLSA overtime, and optional gross pay.",
     "stars": 5,
     "defaults": {
       "amount": 0,
@@ -6569,12 +6569,12 @@
   {
     "id": "hours-calculator",
     "category": "time",
-    "title": "Hours Calculator",
+    "title": "Hours Calculator — Total Hours Between Two Dates",
     "slug": "hours-calculator",
     "categorySlug": "time-calculators",
     "icon": "🕐",
     "calcType": "hours-calc",
-    "description": "Calculate the total number of hours and minutes between two date-times. Perfect for tracking project hours and event durations.",
+    "description": "Count the total hours and minutes between any two date-times. Ideal for project duration, event planning, and billing.",
     "stars": 4,
     "defaults": {
       "amount": 0,
@@ -6611,12 +6611,12 @@
   {
     "id": "military-time-converter",
     "category": "time",
-    "title": "Military Time Converter",
+    "title": "Military Time Converter — 12h to 24h & Back",
     "slug": "military-time-converter",
     "categorySlug": "time-calculators",
     "icon": "🎖️",
     "calcType": "military-time",
-    "description": "Convert between 12-hour (AM/PM) and 24-hour (military) time format. Instant, accurate conversions for any time of day.",
+    "description": "Convert any time between 12-hour AM/PM and 24-hour military format. Includes a full conversion chart for quick reference.",
     "stars": 5,
     "defaults": {
       "amount": 0,
@@ -6652,12 +6652,12 @@
   {
     "id": "reading-time-calculator",
     "category": "time",
-    "title": "Reading Time Calculator",
+    "title": "Reading Time Calculator — Estimate Read Duration",
     "slug": "reading-time-calculator",
     "categorySlug": "time-calculators",
     "icon": "📖",
     "calcType": "reading-time",
-    "description": "Estimate how long it takes to read any text. Get reading and speaking times based on average word-per-minute rates.",
+    "description": "Paste text or enter a word count to estimate reading and speaking time. Adjustable WPM for speed readers and presentations.",
     "stars": 4,
     "defaults": {
       "amount": 0,
@@ -6693,12 +6693,12 @@
   {
     "id": "playback-speed-calculator",
     "category": "time",
-    "title": "Playback Speed Calculator",
+    "title": "Playback Speed Calculator — Time Saved at 2×",
     "slug": "playback-speed-calculator",
     "categorySlug": "time-calculators",
     "icon": "⏩",
     "calcType": "playback-speed",
-    "description": "See how much time you save at different playback speeds. Compare 1×, 1.25×, 1.5×, 2× and more for podcasts, videos, and audiobooks.",
+    "description": "See exactly how much time you save watching videos or podcasts at 1.25×, 1.5×, or 2× speed. Compare durations side by side.",
     "stars": 4,
     "defaults": {
       "amount": 0,
@@ -6734,12 +6734,12 @@
   {
     "id": "date-calculator",
     "category": "time",
-    "title": "Date Calculator",
+    "title": "Date Calculator — Add Days, Weeks & Months",
     "slug": "date-calculator",
     "categorySlug": "time-calculators",
     "icon": "📅",
     "calcType": "date-calc",
-    "description": "Add or subtract days, weeks, months, and years from any date. Find future or past dates with a single click.",
+    "description": "Add or subtract days, weeks, months, or years from any date. Find exact future or past dates for deadlines and planning.",
     "stars": 5,
     "defaults": {
       "amount": 0,
@@ -6776,12 +6776,12 @@
   {
     "id": "date-duration-calculator",
     "category": "time",
-    "title": "Date Duration Calculator",
+    "title": "Date Duration Calculator — Days Between Dates",
     "slug": "date-duration-calculator",
     "categorySlug": "time-calculators",
     "icon": "📆",
     "calcType": "date-duration",
-    "description": "Calculate the exact duration between two dates in years, months, days, and total weeks. Perfect for tracking timelines and age differences.",
+    "description": "Find the exact difference between two dates in years, months, weeks, and days. Useful for age gaps, contracts, and timelines.",
     "stars": 5,
     "defaults": {
       "amount": 0,
@@ -6818,12 +6818,12 @@
   {
     "id": "business-days-calculator",
     "category": "time",
-    "title": "Business Days Calculator",
+    "title": "Business Days Calculator — Count Working Days",
     "slug": "business-days-calculator",
     "categorySlug": "time-calculators",
     "icon": "💼",
     "calcType": "business-days",
-    "description": "Count working days between two dates, excluding weekends. Essential for project planning, SLAs, and delivery timelines.",
+    "description": "Count weekdays between two dates, excluding weekends. Essential for SLA tracking, shipping estimates, and project deadlines.",
     "stars": 5,
     "defaults": {
       "amount": 0,
@@ -6860,12 +6860,12 @@
   {
     "id": "days-until-calculator",
     "category": "time",
-    "title": "Days Until Calculator",
+    "title": "Days Until Calculator — Countdown to Any Date",
     "slug": "days-until-calculator",
     "categorySlug": "time-calculators",
     "icon": "🎯",
     "calcType": "days-until",
-    "description": "Countdown to any future date. See days, weeks, months, and hours remaining until your target date arrives.",
+    "description": "Enter a future date to see the days, weeks, and months remaining. Live countdown for events, deadlines, and milestones.",
     "stars": 5,
     "defaults": {
       "amount": 0,
@@ -6902,12 +6902,12 @@
   {
     "id": "birth-year-calculator",
     "category": "time",
-    "title": "Birth Year Calculator",
+    "title": "Birth Year Calculator — Find Year Born From Age",
     "slug": "birth-year-calculator",
     "categorySlug": "time-calculators",
     "icon": "🎂",
     "calcType": "birth-year",
-    "description": "Find the birth year from a person's current age. Shows both possible birth years depending on whether their birthday has passed.",
+    "description": "Enter a person's current age to find their birth year. Shows both possible years based on whether their birthday has passed.",
     "stars": 4,
     "defaults": {
       "amount": 0,
@@ -6943,12 +6943,12 @@
   {
     "id": "days-left-in-year-calculator",
     "category": "time",
-    "title": "Days Left in the Year Calculator",
+    "title": "Days Left in the Year — Year Progress Tracker",
     "slug": "days-left-in-year-calculator",
     "categorySlug": "time-calculators",
     "icon": "📊",
     "calcType": "days-left-year",
-    "description": "See how many days are left in the current year. Track year progress with days passed, percentage complete, and weeks remaining.",
+    "description": "See how many days remain in the current year. Includes days elapsed, year percentage, and weeks remaining for goal tracking.",
     "stars": 4,
     "defaults": {
       "amount": 0,
@@ -6985,12 +6985,12 @@
   {
     "id": "deadline-calculator",
     "category": "time",
-    "title": "Deadline Calculator",
+    "title": "Deadline Calculator — Due Date From Lead Time",
     "slug": "deadline-calculator",
     "categorySlug": "time-calculators",
     "icon": "🗓️",
     "calcType": "deadline-calc",
-    "description": "Calculate a deadline from a start date and lead time. Shows both calendar-day and business-day deadlines for project planning.",
+    "description": "Set a start date and lead time to calculate the deadline. Shows both calendar-day and business-day results for project planning.",
     "stars": 4,
     "defaults": {
       "amount": 0,
@@ -7027,12 +7027,12 @@
   {
     "id": "week-calculator",
     "category": "time",
-    "title": "Week Calculator",
+    "title": "Week Calculator — ISO Week Number Lookup",
     "slug": "week-calculator",
     "categorySlug": "time-calculators",
     "icon": "📋",
     "calcType": "week-calc",
-    "description": "Find the ISO week number of any date. See the start and end of the week, day of the year, and more.",
+    "description": "Find the ISO week number for any date. See week start/end dates, day of year, and quarter for business and payroll planning.",
     "stars": 4,
     "defaults": {
       "amount": 0,

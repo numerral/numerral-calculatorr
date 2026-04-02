@@ -7,8 +7,8 @@ import { canonicalUrl, breadcrumbSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
-    title: "Time Converter — Convert Hours, Minutes, Seconds & Days | Numerral",
-    description: "Free online time converter. Convert between hours, minutes, seconds, days, and weeks with instant reference tables and formulas.",
+    title: "Time Unit Converter — Hours, Minutes, Seconds",
+    description: "Convert between hours, minutes, seconds, days, and weeks. 12 conversion tools with instant reference tables and formulas.",
     keywords: ["time converter", "convert hours to minutes", "convert minutes to seconds", "time unit converter"],
     alternates: { canonical: canonicalUrl("/time-calculators/time-converter") },
 };

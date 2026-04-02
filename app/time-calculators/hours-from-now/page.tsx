@@ -24,8 +24,8 @@ function fmtTime(d: Date) { return d.toLocaleTimeString("en-US", { hour: "numeri
 function fmtDate(d: Date) { return d.toLocaleDateString("en-US", { weekday: "long", year: "numeric", month: "long", day: "numeric" }); }
 
 export const metadata: Metadata = {
-    title: "Hours From Now Calculator — What Time Is It X Hours From Now? | Numerral",
-    description: "Find the exact time and date any number of hours from now. Quick reference for 1–72 hours from the current time.",
+    title: "Hours From Now — What Time Will It Be in X Hours?",
+    description: "Find the exact time and date 1 to 72 hours from now. Accounts for midnight crossovers and day changes automatically.",
     keywords: ["hours from now", "what time is it in 8 hours", "12 hours from now", "24 hours from now", "48 hours from now", "72 hours from now"],
     alternates: { canonical: canonicalUrl("/time-calculators/hours-from-now") },
 };

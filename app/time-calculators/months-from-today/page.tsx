@@ -22,8 +22,8 @@ function addMonths(m: number) { const d = new Date(); d.setMonth(d.getMonth() + 
 function fmt(d: Date) { return d.toLocaleDateString("en-US", { weekday: "long", year: "numeric", month: "long", day: "numeric" }); }
 
 export const metadata: Metadata = {
-    title: "Months From Today Calculator — What Date Is X Months From Now? | Numerral",
-    description: "Find the exact date any number of months from today. Quick reference for 1–24 months from now with US regulatory and planning context.",
+    title: "Months From Today — Future Date by Month Count",
+    description: "Calculate the date 1 to 24 months from today. Covers lease terms, COBRA deadlines, CD maturity, and planning milestones.",
     keywords: ["months from today", "months from now", "3 months from today", "6 months from today", "date months from now"],
     alternates: { canonical: canonicalUrl("/time-calculators/months-from-today") },
 };

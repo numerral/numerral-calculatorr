@@ -8,8 +8,8 @@ import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
-    title: "Birthday Countdown — How Many Days Until My Birthday? | Numerral",
-    description: "Count down the days, hours, minutes, and seconds until your birthday. Enter your birthdate and see a live countdown to your next birthday celebration.",
+    title: "Birthday Countdown — Days Until Your Next Birthday",
+    description: "Enter your birthdate to see days, hours, and minutes until your next birthday. Includes age milestones and zodiac info.",
     keywords: ["birthday countdown", "how many days until my birthday", "days until birthday", "birthday timer", "next birthday countdown"],
     alternates: { canonical: canonicalUrl("/time-calculators/birthday-countdown") },
 };

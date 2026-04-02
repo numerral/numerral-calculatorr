@@ -24,8 +24,8 @@ function addWeeks(weeks: number) {
 function fmt(d: Date) { return d.toLocaleDateString("en-US", { weekday: "long", year: "numeric", month: "long", day: "numeric" }); }
 
 export const metadata: Metadata = {
-    title: "Weeks From Today Calculator — What Date Is X Weeks From Now? | Numerral",
-    description: "Find the exact date any number of weeks from today. Quick reference for 1, 2, 4, 6, 8, 12, 16, 20, and 52 weeks from now with US context.",
+    title: "Weeks From Today — Date Calculator by Week Count",
+    description: "Find the exact date 1 to 52 weeks from today. Reference table with day, month, and use-case context for each week count.",
     keywords: ["weeks from today", "weeks from now", "date weeks from today", "4 weeks from today", "6 weeks from today", "12 weeks from today"],
     alternates: { canonical: canonicalUrl("/time-calculators/weeks-from-today") },
 };

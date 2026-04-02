@@ -45,8 +45,8 @@ function hourSlug(h: number) {
 }
 
 export const metadata: Metadata = {
-    title: "Countdown Timer to Any Date and Time — Live Days, Hours, Minutes & Seconds | Numerral",
-    description: "Set a countdown timer to any future date and time. Watch days, hours, minutes, and seconds tick down live. Countdown to holidays, deadlines, events, and more.",
+    title: "Countdown Timer — Days Until Holidays & Events",
+    description: "Live countdown to holidays, seasons, and any custom date. See days, hours, minutes, and seconds remaining in real time.",
     keywords: ["countdown timer", "countdown to date", "how long until", "days until christmas", "countdown clock", "event countdown", "timer to date"],
     alternates: { canonical: canonicalUrl("/time-calculators/countdown-timer") },
 };

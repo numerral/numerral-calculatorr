@@ -8,8 +8,8 @@ import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
-    title: "Online Stopwatch — Free Stopwatch with Lap Splits | Numerral",
-    description: "Free online stopwatch with centisecond precision and lap split tracking. Start, stop, lap, and reset — perfect for sports, workouts, cooking, and time management.",
+    title: "Online Stopwatch — Lap Splits & Precision",
+    description: "Free stopwatch with centisecond precision and lap split tracking. Time events, races, and intervals right in your browser.",
     keywords: ["online stopwatch", "stopwatch", "lap timer", "free stopwatch", "split timer", "elapsed time", "digital stopwatch"],
     alternates: { canonical: canonicalUrl("/time-calculators/stopwatch") },
 };

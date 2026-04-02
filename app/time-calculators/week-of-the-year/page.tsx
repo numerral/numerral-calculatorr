@@ -8,8 +8,8 @@ import { SITE_URL } from "@/lib/constants";
 export const revalidate = 86400;
 
 export const metadata: Metadata = {
-    title: "What Week of the Year Is It? — Current Week Number | Numerral",
-    description: "Find the current ISO week number. See how many weeks have passed and how many remain in the year, with a complete week-number reference table.",
+    title: "Week of the Year — Current ISO Week Number",
+    description: "See the current ISO week number with a quarterly reference table. Used in payroll, manufacturing, logistics, and Agile sprints.",
     keywords: ["week of the year", "what week is it", "week number", "ISO week", "current week number"],
     alternates: { canonical: canonicalUrl("/time-calculators/week-of-the-year") },
 };

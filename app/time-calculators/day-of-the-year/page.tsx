@@ -8,8 +8,8 @@ import { SITE_URL } from "@/lib/constants";
 export const revalidate = 86400;
 
 export const metadata: Metadata = {
-    title: "What Day of the Year Is It? — Day Number Counter | Numerral",
-    description: "Find today's day number out of 365 (or 366 in leap years). See the exact year progress with days elapsed and remaining.",
+    title: "Day of the Year — What Day Number Is Today?",
+    description: "Find today's ordinal day number out of 365. Includes a month-by-day reference table used in military and food industry.",
     keywords: ["day of the year", "what day of the year is it", "day number", "julian day", "day count"],
     alternates: { canonical: canonicalUrl("/time-calculators/day-of-the-year") },
 };

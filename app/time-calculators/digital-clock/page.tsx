@@ -8,8 +8,8 @@ import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
-    title: "Digital Clock — Live Online Clock with Seconds | Numerral",
-    description: "Free online digital clock showing the current time with seconds. Displays 12-hour and 24-hour formats with automatic timezone detection.",
+    title: "Digital Clock — Live Current Time with Seconds",
+    description: "Live online clock showing your local time in 12-hour and 24-hour formats. Auto-detects your timezone with seconds display.",
     keywords: ["digital clock", "online clock", "current time", "live clock", "clock with seconds"],
     alternates: { canonical: canonicalUrl("/time-calculators/digital-clock") },
 };

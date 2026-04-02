@@ -8,8 +8,8 @@ import { SITE_URL } from "@/lib/constants";
 export const revalidate = 86400;
 
 export const metadata: Metadata = {
-    title: "What Month Is It? — Current Month & Year Info | Numerral",
-    description: "Find out what month it is right now. See the current month number, days remaining, and season with a complete months-of-the-year reference.",
+    title: "What Month Is It? — Current Month & Year Info",
+    description: "Current month with days remaining, season, birthstone, and flower. Full 12-month reference table with the knuckle mnemonic.",
     keywords: ["what month is it", "current month", "month number", "months of the year"],
     alternates: { canonical: canonicalUrl("/time-calculators/current-month") },
 };

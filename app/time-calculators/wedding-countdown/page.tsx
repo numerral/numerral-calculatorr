@@ -8,8 +8,8 @@ import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
-    title: "Wedding Countdown — How Many Days Until My Wedding? | Numerral",
-    description: "Count down the days to your wedding day. Enter your wedding date to see a live countdown with planning milestones, timeline checklists, and important deadlines.",
+    title: "Wedding Countdown — Days Until Your Wedding Date",
+    description: "Set your wedding date for a live countdown with planning milestones. Includes average US wedding cost and season context.",
     keywords: ["wedding countdown", "how many days until my wedding", "wedding timer", "wedding day countdown", "days until wedding"],
     alternates: { canonical: canonicalUrl("/time-calculators/wedding-countdown") },
 };

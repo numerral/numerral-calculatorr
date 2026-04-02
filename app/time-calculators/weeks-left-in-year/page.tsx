@@ -8,8 +8,8 @@ import { SITE_URL } from "@/lib/constants";
 export const revalidate = 86400;
 
 export const metadata: Metadata = {
-    title: "How Many Weeks Are Left in the Year? — Weeks Remaining Counter | Numerral",
-    description: "See how many weeks are left in the current year. Real-time weeks remaining counter with year-progress visualization and planning milestones.",
+    title: "Weeks Left in the Year — Remaining Week Count",
+    description: "See how many weeks remain in the current year. Includes upcoming US holiday milestones and year-end planning tips.",
     keywords: ["weeks left in year", "how many weeks left", "weeks remaining", "weeks left in 2026"],
     alternates: { canonical: canonicalUrl("/time-calculators/weeks-left-in-year") },
 };

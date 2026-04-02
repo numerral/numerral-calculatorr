@@ -10,8 +10,8 @@ import { SITE_URL } from "@/lib/constants";
 export const revalidate = 86400;
 
 export const metadata: Metadata = {
-    title: "School Countdown — Days Until End of School & Back to School 2026 | Numerral",
-    description: "Count down the days until the end of school or the start of the new school year. Live countdown timer for students, parents, and teachers across all US states.",
+    title: "School Countdown — Days Until School Starts or Ends",
+    description: "Count down to the last day of school or back-to-school. Region-aware dates for US public school academic calendars.",
     keywords: ["school countdown", "end of school countdown", "how many days until school ends", "back to school countdown", "last day of school", "first day of school 2026"],
     alternates: { canonical: canonicalUrl("/time-calculators/school-countdown") },
 };

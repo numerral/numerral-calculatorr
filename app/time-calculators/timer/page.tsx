@@ -8,8 +8,8 @@ import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
-    title: "Online Timer — Set Hours, Minutes & Seconds | Free Countdown Timer | Numerral",
-    description: "Free online timer with hours, minutes, and seconds. Set any duration, start the countdown, and get an alert when time is up. Includes preset timers from 15 seconds to 4 hours.",
+    title: "Online Timer — Set Hours, Minutes & Seconds",
+    description: "Free countdown timer with custom duration input. Set any time, start the countdown, and get an audio alert when time expires.",
     keywords: ["online timer", "countdown timer", "set timer", "timer online", "minute timer", "timer with alarm", "free timer"],
     alternates: { canonical: canonicalUrl("/time-calculators/timer") },
 };

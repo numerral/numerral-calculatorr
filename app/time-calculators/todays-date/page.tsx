@@ -8,8 +8,8 @@ import { SITE_URL } from "@/lib/constants";
 export const revalidate = 86400;
 
 export const metadata: Metadata = {
-    title: "What Is Today's Date? — Current Date & Day of the Week | Numerral",
-    description: "Today's date displayed in multiple formats. See the current day of the week, day number of the year, week number, and days remaining in the year.",
+    title: "What Is Today's Date? — Current Date & Formats",
+    description: "Today's date in ISO, US, and EU formats. See the day number, week number, quarter, and year progress at a glance.",
     keywords: ["today's date", "what is today's date", "current date", "what day is it", "today date"],
     alternates: { canonical: canonicalUrl("/time-calculators/todays-date") },
 };

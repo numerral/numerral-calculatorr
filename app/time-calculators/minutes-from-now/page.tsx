@@ -20,8 +20,8 @@ function addMinutes(m: number) { const d = new Date(); d.setMinutes(d.getMinutes
 function fmtTime(d: Date) { return d.toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit", hour12: true }); }
 
 export const metadata: Metadata = {
-    title: "Minutes From Now Calculator — What Time Is It X Minutes From Now? | Numerral",
-    description: "Find the exact time any number of minutes from now. Quick reference for 5, 10, 15, 20, 30, 45, 60, 90, and 120 minutes from the current time.",
+    title: "Minutes From Now — Time Calculator for Short Spans",
+    description: "Calculate the exact time 5 to 120 minutes from now. Quick reference for cooking timers, meetings, and transit arrivals.",
     keywords: ["minutes from now", "10 minutes from now", "15 minutes from now", "30 minutes from now", "what time in 30 minutes"],
     alternates: { canonical: canonicalUrl("/time-calculators/minutes-from-now") },
 };

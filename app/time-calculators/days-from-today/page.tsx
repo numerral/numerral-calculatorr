@@ -19,8 +19,8 @@ function futureDate(n: number) {
 export const revalidate = 86400; // ISR — refresh once per day
 
 export const metadata: Metadata = {
-    title: "Days From Today Calculator — Find Any Future or Past Date | Numerral",
-    description: "Calculate the exact date any number of days from today. Get calendar-day and business-day results, US federal holiday impact, Excel formulas, and common deadline reference tables.",
+    title: "Days From Today Calculator — Find Future & Past Dates",
+    description: "Enter any number of days to find the exact date forward or backward from today. Includes business-day results and US context, Excel formulas, and common deadline reference tables.",
     keywords: ["days from today", "days from today calculator", "30 days from today", "60 days from today", "90 days from today", "what date is 30 days from today", "business days calculator", "date calculator"],
     alternates: { canonical: canonicalUrl("/time-calculators/days-from-today") },
 };

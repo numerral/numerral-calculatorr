@@ -11,9 +11,9 @@ import { canonicalUrl, breadcrumbSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
-    title: "Time & Date Calculators — Duration, Business Days, Countdown & More",
+    title: "Time & Date Calculators — Free Online Tools",
     description:
-        "Free time and date calculators: duration between times, business days counter, date math, military time converter, reading time estimator, and more. Instant results.",
+        "Free time and date calculators for duration, deadlines, work hours, countdowns, and date math. Tools for scheduling, payroll, and planning.",
     alternates: { canonical: canonicalUrl("/time-calculators") },
 };
 
