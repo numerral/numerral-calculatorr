@@ -69,6 +69,15 @@ export default function TimeCalculatorsPage() {
                             <span className="calc-index-card__stars">★★★★★</span>
                         </div>
                     </Link>
+                    {/* Countdown Timer — standalone hub page */}
+                    <Link href="/time-calculators/countdown-timer" className="calc-index-card">
+                        <span className="calc-index-card__icon">⏱️</span>
+                        <div className="calc-index-card__body">
+                            <h3>Countdown Timer</h3>
+                            <p>Live countdown to any date and time. Count down days, hours, minutes, and seconds to holidays, events, and deadlines.</p>
+                            <span className="calc-index-card__stars">★★★★★</span>
+                        </div>
+                    </Link>
                     {timeCalcs.map((calc: CalculatorDef) => (
                         <Link
                             key={calc.id}
