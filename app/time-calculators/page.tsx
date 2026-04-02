@@ -213,6 +213,15 @@ export default function TimeCalculatorsPage() {
                             <span className="calc-index-card__stars">★★★★★</span>
                         </div>
                     </Link>
+                    {/* Time Converter */}
+                    <Link href="/time-calculators/time-converter" className="calc-index-card">
+                        <span className="calc-index-card__icon">🔄</span>
+                        <div className="calc-index-card__body">
+                            <h3>Time Converter</h3>
+                            <p>Convert hours, minutes, seconds, days & weeks. 12 conversion tools with reference tables.</p>
+                            <span className="calc-index-card__stars">★★★★★</span>
+                        </div>
+                    </Link>
                     {timeCalcs.map((calc: CalculatorDef) => (
                         <Link
                             key={calc.id}

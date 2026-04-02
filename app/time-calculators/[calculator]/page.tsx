@@ -584,6 +584,7 @@ export default async function TimeCalculatorHubPage({ params }: PageProps) {
                             <Link href="/time-calculators/week-of-the-year" className="trending__item">Week of the Year</Link>
                             <Link href="/time-calculators/current-month" className="trending__item">Current Month</Link>
                             <Link href="/time-calculators/weeks-left-in-year" className="trending__item">Weeks Left in Year</Link>
+                            <Link href="/time-calculators/time-converter" className="trending__item">Time Converter</Link>
                             <Link href="/time-calculators/date-calculator" className="trending__item">Date Calculator</Link>
                             <Link href="/time-calculators/business-days-calculator" className="trending__item">Business Days Calculator</Link>
                             <Link href="/time-calculators/date-duration-calculator" className="trending__item">Date Duration Calculator</Link>
