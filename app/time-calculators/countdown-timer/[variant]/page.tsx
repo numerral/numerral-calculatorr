@@ -200,6 +200,44 @@ const HOLIDAY_VARIANTS: HolidayVariant[] = [
         context: "The Super Bowl is the most-watched annual sporting event in the US, with over 115 million viewers. It's typically held on the 2nd Sunday in February. Super Bowl Sunday is the 2nd-largest food consumption day in the US after Thanksgiving.",
         adjacentSlugs: ["days-until-new-years-eve", "days-until-new-years", "days-until-valentines-day"],
     },
+    /* ── Season Countdowns ── */
+    {
+        slug: "days-until-spring", label: "Spring (Vernal Equinox)", emoji: "🌷",
+        getNextDate: () => nextOccurrence(2, 20),
+        context: "Spring begins with the vernal equinox around March 20. It signals the start of longer days, warmer weather, spring cleaning, and the gardening season across the United States.",
+        adjacentSlugs: ["days-until-summer", "days-until-easter", "days-until-st-patricks-day"],
+    },
+    {
+        slug: "days-until-summer", label: "Summer (Summer Solstice)", emoji: "☀️",
+        getNextDate: () => nextOccurrence(5, 21),
+        context: "Summer begins with the summer solstice around June 21 — the longest day of the year. It marks the start of summer vacation, outdoor activities, and the peak travel season. Summer spending in the US exceeds $100 billion annually.",
+        adjacentSlugs: ["days-until-spring", "days-until-fall", "days-until-fourth-of-july"],
+    },
+    {
+        slug: "days-until-fall", label: "Fall (Autumnal Equinox)", emoji: "🍂",
+        getNextDate: () => nextOccurrence(8, 22),
+        context: "Fall begins with the autumnal equinox around September 22. It marks the start of back-to-school, football season, pumpkin spice season, and fall foliage road trips across the Northeast.",
+        adjacentSlugs: ["days-until-summer", "days-until-winter", "days-until-halloween"],
+    },
+    {
+        slug: "days-until-winter", label: "Winter (Winter Solstice)", emoji: "❄️",
+        getNextDate: () => nextOccurrence(11, 21),
+        context: "Winter begins with the winter solstice around December 21 — the shortest day of the year. It marks the start of ski season, holiday celebrations, and the peak of the retail shopping season.",
+        adjacentSlugs: ["days-until-fall", "days-until-spring", "days-until-christmas"],
+    },
+    /* ── Month Countdowns ── */
+    { slug: "days-until-january", label: "January", emoji: "📅", getNextDate: () => nextOccurrence(0, 1), context: "January is the first month of the year, named after Janus, the Roman god of beginnings. It's a time for New Year's resolutions, winter sports, and the start of tax season preparations.", adjacentSlugs: ["days-until-february", "days-until-december", "days-until-new-years"] },
+    { slug: "days-until-february", label: "February", emoji: "💝", getNextDate: () => nextOccurrence(1, 1), context: "February is the shortest month (28-29 days) and home to Valentine's Day, Presidents' Day, and Black History Month. Leap year adds an extra day every 4 years.", adjacentSlugs: ["days-until-january", "days-until-march", "days-until-valentines-day"] },
+    { slug: "days-until-march", label: "March", emoji: "🍀", getNextDate: () => nextOccurrence(2, 1), context: "March marks the transition from winter to spring. It's home to St. Patrick's Day, March Madness, Daylight Saving Time begins, and Women's History Month.", adjacentSlugs: ["days-until-february", "days-until-april", "days-until-spring"] },
+    { slug: "days-until-april", label: "April", emoji: "🌧️", getNextDate: () => nextOccurrence(3, 1), context: "April is Tax Month — the IRS filing deadline is April 15. Earth Day is April 22. Spring is in full swing with cherry blossoms in Washington, D.C.", adjacentSlugs: ["days-until-march", "days-until-may", "days-until-easter"] },
+    { slug: "days-until-may", label: "May", emoji: "🌸", getNextDate: () => nextOccurrence(4, 1), context: "May brings Mother's Day (2nd Sunday), Memorial Day (last Monday), and the unofficial start of summer. It's also Asian American and Pacific Islander Heritage Month.", adjacentSlugs: ["days-until-april", "days-until-june", "days-until-mothers-day"] },
+    { slug: "days-until-june", label: "June", emoji: "🌞", getNextDate: () => nextOccurrence(5, 1), context: "June is the most popular month for weddings and marks the start of summer. Father's Day (3rd Sunday), Juneteenth (June 19), and the summer solstice all fall in June.", adjacentSlugs: ["days-until-may", "days-until-july", "days-until-summer"] },
+    { slug: "days-until-july", label: "July", emoji: "🎆", getNextDate: () => nextOccurrence(6, 1), context: "July is defined by Independence Day (July 4). It's the peak of summer with the highest temperatures, peak vacation travel, and Amazon Prime Day.", adjacentSlugs: ["days-until-june", "days-until-august", "days-until-fourth-of-july"] },
+    { slug: "days-until-august", label: "August", emoji: "🏖️", getNextDate: () => nextOccurrence(7, 1), context: "August is the last full month of summer. Back-to-school shopping peaks in August — the second-largest US retail event. Tax-free weekends occur in many states.", adjacentSlugs: ["days-until-july", "days-until-september", "days-until-labor-day"] },
+    { slug: "days-until-september", label: "September", emoji: "📚", getNextDate: () => nextOccurrence(8, 1), context: "September marks Labor Day (1st Monday), back-to-school, and the start of fall. It's the start of football season and one of the most popular wedding months.", adjacentSlugs: ["days-until-august", "days-until-october", "days-until-labor-day"] },
+    { slug: "days-until-october", label: "October", emoji: "🎃", getNextDate: () => nextOccurrence(9, 1), context: "October brings Halloween (Oct 31), breast cancer awareness, fall foliage, and Oktoberfest. It's one of the top 3 most popular wedding months.", adjacentSlugs: ["days-until-september", "days-until-november", "days-until-halloween"] },
+    { slug: "days-until-november", label: "November", emoji: "🦃", getNextDate: () => nextOccurrence(10, 1), context: "November is home to Thanksgiving, Veterans Day, Election Day (even years), and the start of holiday shopping with Black Friday and Cyber Monday.", adjacentSlugs: ["days-until-october", "days-until-december", "days-until-thanksgiving"] },
+    { slug: "days-until-december", label: "December", emoji: "🎄", getNextDate: () => nextOccurrence(11, 1), context: "December is the peak holiday season — Christmas, Hanukkah, Kwanzaa, and New Year's Eve. Retail sales exceed $900 billion during November-December combined.", adjacentSlugs: ["days-until-november", "days-until-january", "days-until-christmas"] },
 ];
 
 const ALL_VARIANTS = [

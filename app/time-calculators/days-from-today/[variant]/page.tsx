@@ -11,8 +11,18 @@ export const revalidate = 86400; // ISR — refresh once per day
 /* ── Variant Definitions ── */
 interface Variant { slug: string; days: number; direction: "future" | "past"; label: string; }
 
-const FUTURE = [3, 5, 7, 10, 14, 15, 21, 28, 30, 45, 60, 75, 90, 100, 120, 150, 180, 200, 270, 365];
-const PAST   = [3, 7, 14, 30, 45, 60, 90, 120, 180, 365];
+const FUTURE = [
+    1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
+    11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+    21, 22, 23, 24, 25, 28, 30, 35, 40, 45,
+    50, 55, 60, 65, 70, 75, 80, 85, 90, 95,
+    100, 110, 120, 130, 140, 150, 160, 170, 180, 190,
+    200, 210, 220, 240, 250, 270, 280, 300, 330, 365,
+];
+const PAST = [
+    1, 2, 3, 5, 7, 10, 14, 15, 21, 28,
+    30, 45, 60, 75, 90, 100, 120, 150, 180, 200, 270, 365,
+];
 
 function makeVariants(): Variant[] {
     const out: Variant[] = [];
@@ -65,30 +75,70 @@ function businessDaysResult(days: number, dir: "future" | "past") {
 
 /* ── US Context per Day Count ── */
 const DAY_CONTEXT: Record<number, string> = {
+    1: "One day is a <strong>24-hour period</strong>. Many legal notices, shipping delivery estimates, and medical hold periods reference a single-day window. In real estate, a 1-day cure notice exists in some states.",
+    2: "Two days is a common <strong>shipping window</strong> (Amazon Prime's 2-day delivery) and many medical test results are returned within 2 business days.",
     3: "The <strong>Right of Rescission</strong> under the Truth in Lending Act (TILA) gives borrowers 3 business days to cancel certain home equity loans after closing. Employers must also complete <strong>Form I-9 verification</strong> within 3 business days of a new hire's start date.",
+    4: "Four days is a common <strong>short-stay hospital observation</strong> window under Medicare guidelines and a popular long-weekend travel duration.",
     5: "Five days is a common <strong>demand letter response window</strong> in small claims court. Many employers use a 5-day window for disciplinary response requirements.",
+    6: "Six days is the typical <strong>standard shipping window</strong> for USPS Priority Mail across the continental US.",
     7: "Seven days is a standard <strong>return/exchange window</strong> for many retailers and the standard <strong>weekly pay cycle</strong>. In some states, landlords must return security deposits within 7 days.",
+    8: "Eight days is the duration of <strong>Hanukkah</strong> and a common medical clearance window for pre-surgical evaluations.",
+    9: "Nine days is the typical <strong>Couch to 5K rest interval</strong> between training increases and a common quarantine period.",
     10: "The IRS often gives <strong>10 days to respond</strong> to certain notices. Many states use 10 days as the <strong>eviction notice</strong> period for non-payment of rent.",
-    14: "Fourteen days is the <strong>biweekly pay cycle</strong> used by most US employers. The <strong>FTC Cooling-Off Rule</strong> originally set a 14-day window (now 3 days for door-to-door sales). Amazon and many online retailers use a 14-day standard return period.",
-    15: "Fifteen days is a common<strong> grace period for mortgage payments</strong>. Most mortgage servicers don't charge a late fee until 15 days after the due date.",
+    11: "Eleven days is a common <strong>international shipping estimate</strong> for standard USPS packages to European destinations.",
+    12: "Twelve days references the <strong>12 Days of Christmas</strong> and is a common project sprint duration for some Agile teams.",
+    13: "Thirteen days is a notable period in history — the <strong>Cuban Missile Crisis</strong> lasted 13 days (October 1962).",
+    14: "Fourteen days is the <strong>biweekly pay cycle</strong> used by most US employers. Amazon and many online retailers use a 14-day standard return period.",
+    15: "Fifteen days is a common <strong>grace period for mortgage payments</strong>. Most mortgage servicers don't charge a late fee until 15 days after the due date.",
+    16: "Sixteen days is the duration of the <strong>Summer Olympic Games</strong> competition schedule.",
+    17: "Seventeen days with weekends excluded equals approximately <strong>12 business days</strong>, a standard turnaround for background checks.",
+    18: "Eighteen days is the average <strong>chicken egg incubation period</strong> and a common estimate for overseas package delivery.",
+    19: "Nineteen days is approximately <strong>2.7 weeks</strong> — close to the typical <strong>credit card billing cycle</strong> minimum.",
+    20: "Twenty days is a common <strong>appeals window</strong> in many state administrative proceedings and a standard period for international wire transfer disputes.",
     21: "Under the <strong>CARD Act</strong>, credit card issuers must give at least 21 days between the statement closing date and the payment due date — this is the minimum <strong>grace period</strong> for credit card bills.",
+    22: "Twenty-two days is approximately <strong>one business month</strong> (22 working days is the average per calendar month).",
+    23: "Twenty-three days is close to the average <strong>menstrual cycle length</strong> for some individuals (normal range: 21–35 days).",
+    24: "Twenty-four days represents <strong>24 business days</strong> — just over one calendar month of working time.",
+    25: "Twenty-five days is the typical <strong>escrow deposit period</strong> in many states and a common trial period for subscription services.",
     28: "Twenty-eight days is a <strong>lunar month</strong> and the standard billing cycle length for many subscription services. It's also the typical duration of a <strong>medication prescription</strong> (4-week supply).",
-    30: "<strong>Net-30</strong> is the most common US payment term — invoices are due within 30 calendar days. It's also the standard <strong>lease termination notice</strong> for month-to-month rentals and the typical <strong>credit card billing cycle</strong>.",
-    45: "Investors in a <strong>1031 tax-deferred exchange</strong> have 45 days from closing to identify replacement properties. <strong>HIPAA</strong> requires covered entities to notify individuals within 45 days of receiving an access request.",
-    60: "The <strong>COBRA election period</strong> gives employees 60 calendar days to elect continuation health coverage after a qualifying event. The <strong>WARN Act</strong> requires employers with 100+ employees to give 60 days' advance notice before mass layoffs. An <strong>IRA rollover</strong> must be completed within 60 days to avoid taxes and penalties.",
-    75: "Seventy-five days is a common <strong>escrow timeline</strong> for residential real estate transactions in competitive markets, allowing time for inspections, appraisals, and loan processing.",
-    90: "Ninety days is the standard <strong>probationary period</strong> for new hires. <strong>FMLA</strong> protects employees' jobs for up to 12 weeks (approximately 90 days). The IRS offers <strong>90-day payment extensions</strong> for taxpayers who owe less than $100,000. Standard US <strong>passport processing</strong> takes 6–8 weeks but can approach 90 days during peak season.",
-    100: "One hundred days is a milestone often used in <strong>presidential administration tracking</strong> and <strong>project management</strong> for initial phase assessments.",
-    120: "The <strong>IRS extended filing deadline</strong> (October 15) is approximately 120 business days from the original April 15 deadline. Many states use 120 days for <strong>professional license renewal</strong>. Some real estate escrows for complex properties (commercial, short sales) can extend to 120 days.",
-    150: "One hundred fifty days is approximately <strong>5 months</strong> — a common timeline for <strong>construction project milestones</strong>, mid-year performance reviews, and some government procurement cycles.",
-    180: "One hundred eighty days (≈6 months) is a common <strong>statute of limitations</strong> for many tort claims. The <strong>EEOC</strong> requires charges of discrimination to be filed within 180 days (300 days if your state has a fair employment practices agency). Many insurance policies use 180 days as a review period.",
-    200: "Two hundred days is approximately <strong>6.5 months</strong> — commonly used as a long-range planning horizon in business forecasting and the approximate length of a <strong>US school year</strong> (180 instructional days + breaks).",
-    270: "Two hundred seventy days is approximately <strong>9 months</strong> — the average <strong>human gestation period</strong> and a common timeline for major capital projects, organizational restructuring, and long-term business planning.",
-    365: "Three hundred sixty-five days is <strong>one calendar year</strong> (366 in a leap year). Used for annual contract terms, lease agreements, insurance policy periods, and <strong>employment anniversary</strong> calculations. The standard US work year contains approximately <strong>261 business days</strong> (365 − 104 weekend days).",
+    30: "<strong>Net-30</strong> is the most common US payment term — invoices are due within 30 calendar days. It's also the standard <strong>lease termination notice</strong> for month-to-month rentals.",
+    35: "Thirty-five days is five weeks — a common <strong>return window</strong> for major appliances and the approximate processing time for some state tax refunds.",
+    40: "Forty days has religious significance (<strong>Lent</strong> lasts 40 days) and is a common medical follow-up timeline after surgery.",
+    45: "Investors in a <strong>1031 tax-deferred exchange</strong> have 45 days from closing to identify replacement properties. <strong>HIPAA</strong> requires responses within 45 days.",
+    50: "Fifty days is approximately <strong>7 weeks</strong> — a common timeline for state professional exam result processing.",
+    55: "Fifty-five days is roughly <strong>8 weeks</strong> — the typical US passport renewal processing time.",
+    60: "The <strong>COBRA election period</strong> gives employees 60 calendar days to elect continuation health coverage. The <strong>WARN Act</strong> requires 60 days' advance notice before mass layoffs.",
+    65: "Sixty-five days is the IRS deadline for providing <strong>Form 1099</strong> to recipients (January 31 → March 31 correction window).",
+    70: "Seventy days is <strong>10 weeks</strong> — a common semester midpoint and the typical timeline for green card EAD processing.",
+    75: "Seventy-five days is a common <strong>escrow timeline</strong> for residential real estate transactions.",
+    80: "Eighty days references Jules Verne's classic '<strong>Around the World in 80 Days</strong>' and is approximately 11.5 weeks.",
+    85: "Eighty-five days is roughly <strong>12 weeks</strong> — the FMLA protected leave period for eligible employees.",
+    90: "Ninety days is the standard <strong>probationary period</strong> for new hires. <strong>FMLA</strong> protects employees' jobs for up to 12 weeks (~90 days).",
+    95: "Ninety-five days is approximately <strong>one fiscal quarter plus one week</strong> — common in business planning.",
+    100: "One hundred days is a milestone used in <strong>presidential administration tracking</strong> and project management.",
+    110: "One hundred ten days is approximately <strong>16 weeks</strong> — a common academic semester length.",
+    120: "The <strong>IRS extended filing deadline</strong> (October 15) is approximately 120 business days from April 15.",
+    130: "One hundred thirty days is approximately <strong>4.3 months</strong> — a common timeline for visa processing.",
+    140: "One hundred forty days is <strong>20 weeks</strong> — the midpoint of a standard pregnancy.",
+    150: "One hundred fifty days (~5 months) is a common timeline for <strong>construction project milestones</strong>.",
+    160: "One hundred sixty days is approximately <strong>23 weeks</strong> — a standard academic year less holidays.",
+    170: "One hundred seventy days matches the <strong>minimum school year requirement</strong> in many US states.",
+    180: "One hundred eighty days (≈6 months) is a common <strong>statute of limitations</strong> for many tort claims. The <strong>EEOC</strong> requires discrimination charges within 180 days.",
+    190: "One hundred ninety days is approximately <strong>27 weeks</strong> — the standard duration of regular unemployment benefits in many states.",
+    200: "Two hundred days is approximately <strong>6.5 months</strong> — the approximate length of a US school year.",
+    210: "Two hundred ten days is <strong>30 weeks</strong> — a common pregnancy milestone (third trimester begins).",
+    220: "Two hundred twenty days is approximately <strong>7.2 months</strong>.",
+    240: "Two hundred forty days is <strong>8 months</strong> — close to the average human gestation period.",
+    250: "Two hundred fifty days is approximately <strong>250 business days</strong> (roughly one work year).",
+    270: "Two hundred seventy days is approximately <strong>9 months</strong> — the average human gestation period.",
+    280: "Two hundred eighty days (<strong>40 weeks</strong>) is the standard medical definition of a full-term pregnancy.",
+    300: "Three hundred days is approximately <strong>10 months</strong> — many legal jurisdictions use 300 days for presumption of paternity.",
+    330: "Three hundred thirty days is approximately <strong>11 months</strong> — close to one full calendar year.",
+    365: "Three hundred sixty-five days is <strong>one calendar year</strong>. The standard US work year contains approximately <strong>261 business days</strong> (365 − 104 weekend days).",
 };
 
-const ADJACENT_FUTURE = [3, 5, 7, 10, 14, 15, 21, 28, 30, 45, 60, 75, 90, 100, 120, 150, 180, 200, 270, 365];
-const ADJACENT_PAST   = [3, 7, 14, 30, 45, 60, 90, 120, 180, 365];
+const ADJACENT_FUTURE = FUTURE;
+const ADJACENT_PAST   = PAST;
 
 function getAdjacentLinks(v: Variant): { label: string; href: string }[] {
     const pool = v.direction === "future" ? ADJACENT_FUTURE : ADJACENT_PAST;
