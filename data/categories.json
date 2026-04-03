@@ -166,5 +166,13 @@
         "description": "Tire size, comparison, offset, speedometer & bolt pattern tools",
         "count": 8,
         "href": "/automotive-calculators/wheels-tires"
+    },
+    {
+        "key": "cooking",
+        "icon": "🥄",
+        "name": "Cooking & Baking Calculators",
+        "description": "Recipe scaling, ingredients matching & baking math",
+        "count": 3,
+        "href": "/cooking-calculators"
     }
 ]

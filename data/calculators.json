@@ -25125,5 +25125,352 @@
         "pipe-volume-calculator"
       ]
     }
+  },
+  {
+    "id": "recipe-scale-calculator",
+    "category": "cooking",
+    "title": "Recipe Scale Calculator",
+    "slug": "recipe-scale-calculator",
+    "categorySlug": "cooking-calculators",
+    "icon": "⚖️",
+    "calcType": "cooking-recipe-scale",
+    "description": "Scale any recipe up or down automatically. Halve, double, or scale to exact serving sizes without messy kitchen math.",
+    "stars": 5,
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": { "min": 0, "max": 0, "step": 0 },
+      "rate": { "min": 0, "max": 0, "step": 0 },
+      "tenure": { "min": 0, "max": 0, "step": 0 }
+    },
+    "keywords": "recipe scale calculator, scale recipe up down, recipe multiplier, recipe divider, serving size calculator, baking scale",
+    "links": {
+      "related": [
+        "oven-to-air-fryer-converter",
+        "cups-to-grams-converter"
+      ]
+    }
+  },
+  {
+    "id": "oven-to-air-fryer-converter",
+    "category": "cooking",
+    "title": "Oven to Air Fryer Converter",
+    "slug": "oven-to-air-fryer-converter",
+    "categorySlug": "cooking-calculators",
+    "icon": "💨",
+    "calcType": "cooking-air-fryer",
+    "description": "Convert conventional oven cooking times and temperatures for your air fryer to get the perfect crispy result every time.",
+    "stars": 5,
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": { "min": 0, "max": 0, "step": 0 },
+      "rate": { "min": 0, "max": 0, "step": 0 },
+      "tenure": { "min": 0, "max": 0, "step": 0 }
+    },
+    "keywords": "oven to air fryer conversion, air fryer calculator, conventional to air fryer, air fryer temp converter, baking temperature",
+    "links": {
+      "related": [
+        "recipe-scale-calculator",
+        "cups-to-grams-converter"
+      ]
+    }
+  },
+  {
+    "id": "cups-to-grams-converter",
+    "category": "cooking",
+    "title": "Cups to Grams Converter",
+    "slug": "cups-to-grams-converter",
+    "categorySlug": "cooking-calculators",
+    "icon": "🥄",
+    "calcType": "cooking-cups-grams",
+    "description": "Convert baking ingredient volumes (US Cups) to precise weights (Grams). Exact conversions for flour, sugar, butter, and more.",
+    "stars": 5,
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": { "min": 0, "max": 0, "step": 0 },
+      "rate": { "min": 0, "max": 0, "step": 0 },
+      "tenure": { "min": 0, "max": 0, "step": 0 }
+    },
+    "keywords": "cups to grams, flour to grams, baking converter, weight to volume cooking, US customary to metric baking",
+    "links": {
+      "related": [
+        "recipe-scale-calculator",
+        "oven-to-air-fryer-converter"
+      ]
+    }
+  },
+  {
+    "id": "pizza-calculator",
+    "slug": "pizza-calculator",
+    "title": "Pizza Dough Calculator",
+    "category": "cooking",
+    "categorySlug": "cooking-calculators",
+    "icon": "🍕",
+    "calcType": "cooking-pizza",
+    "description": "Calculate exact ingredient weights for the perfect Neapolitan, New York, or Chicago style pizza dough using professional baker's percentages.",
+    "stars": 5,
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": { "min": 0, "max": 0, "step": 0 },
+      "rate": { "min": 0, "max": 0, "step": 0 },
+      "tenure": { "min": 0, "max": 0, "step": 0 }
+    },
+    "keywords": "pizza dough calculator, pizza calculator, neapolitan dough math, baker's percentage pizza, pizza dough recipe scaling",
+    "links": {
+      "related": [
+        "recipe-scale-calculator",
+        "cups-to-grams-converter"
+      ]
+    }
+  },
+  {
+    "id": "cake-calculator",
+    "slug": "cake-calculator",
+    "title": "Cake Calculator",
+    "category": "cooking",
+    "categorySlug": "cooking-calculators",
+    "icon": "🍰",
+    "calcType": "cooking-cake",
+    "description": "Scale your cake batter ingredients perfectly between different pan sizes (round, square, and sheet pans) without sacrificing thickness.",
+    "stars": 5,
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": { "min": 0, "max": 0, "step": 0 },
+      "rate": { "min": 0, "max": 0, "step": 0 },
+      "tenure": { "min": 0, "max": 0, "step": 0 }
+    },
+    "keywords": "cake pad calculator, cake scale calculator, adjust cake recipe to different pan, round to square pan conversion",
+    "links": {
+      "related": [
+        "pizza-calculator",
+        "recipe-scale-calculator"
+      ]
+    }
+  },
+  {
+    "id": "turkey-size-calculator",
+    "slug": "turkey-size-calculator",
+    "title": "Turkey Size Calculator",
+    "category": "cooking",
+    "categorySlug": "cooking-calculators",
+    "icon": "🦃",
+    "calcType": "cooking-turkey",
+    "description": "Calculate exactly how big of a turkey you need to buy for Thanksgiving based on your number of guests and whether you want leftovers.",
+    "stars": 5,
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": { "min": 0, "max": 0, "step": 0 },
+      "rate": { "min": 0, "max": 0, "step": 0 },
+      "tenure": { "min": 0, "max": 0, "step": 0 }
+    },
+    "keywords": "turkey size calculator, how big of a turkey to buy, lbs per person turkey, thanksgiving turkey calculator",
+    "links": {
+      "related": [
+        "turkey-cooking-time-calculator",
+        "turkey-thawing-calculator"
+      ]
+    }
+  },
+  {
+    "id": "turkey-cooking-time-calculator",
+    "slug": "turkey-cooking-time-calculator",
+    "title": "Turkey Cooking Time Calculator",
+    "category": "cooking",
+    "categorySlug": "cooking-calculators",
+    "icon": "⏲️",
+    "calcType": "cooking-turkey",
+    "description": "Calculate the exact baking time and temperature for your turkey, whether stuffed or unstuffed, to hit the safe 165°F internal temperature.",
+    "stars": 5,
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": { "min": 0, "max": 0, "step": 0 },
+      "rate": { "min": 0, "max": 0, "step": 0 },
+      "tenure": { "min": 0, "max": 0, "step": 0 }
+    },
+    "keywords": "how long to cook a turkey, turkey cooking time calculator, usda turkey roasting chart, stuffed turkey baking time",
+    "links": {
+      "related": [
+        "turkey-size-calculator",
+        "oven-to-air-fryer-converter"
+      ]
+    }
+  },
+  {
+    "id": "turkey-thawing-calculator",
+    "slug": "turkey-thawing-time-calculator",
+    "title": "Turkey Thawing Time Calculator",
+    "category": "cooking",
+    "categorySlug": "cooking-calculators",
+    "icon": "❄️",
+    "calcType": "cooking-turkey",
+    "description": "Find out exactly how many days a frozen turkey needs to defrost safely in the refrigerator, or how many hours in cold water.",
+    "stars": 5,
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": { "min": 0, "max": 0, "step": 0 },
+      "rate": { "min": 0, "max": 0, "step": 0 },
+      "tenure": { "min": 0, "max": 0, "step": 0 }
+    },
+    "keywords": "how long to thaw a turkey, turkey defrost time, thawing calculate turkey, usda frozen turkey thawing time",
+    "links": {
+      "related": [
+        "turkey-cooking-time-calculator",
+        "turkey-size-calculator"
+      ]
+    }
+  },
+  {
+    "id": "ham-calculator",
+    "slug": "ham-calculator",
+    "title": "Ham Cooking Time & Size Calculator",
+    "category": "cooking",
+    "categorySlug": "cooking-calculators",
+    "icon": "🍖",
+    "calcType": "cooking-ham",
+    "description": "Calculate the perfect ham size for your holiday dinner and determine exact cooking times for spiral-sliced, bone-in, and boneless hams.",
+    "stars": 5,
+    "defaults": {
+      "amount": 0,
+      "rate": 0,
+      "tenure": 0
+    },
+    "sliderRanges": {
+      "amount": { "min": 0, "max": 0, "step": 0 },
+      "rate": { "min": 0, "max": 0, "step": 0 },
+      "tenure": { "min": 0, "max": 0, "step": 0 }
+    },
+    "keywords": "ham calculator, how long to cook a ham, spiral ham baking time, how big of a ham to buy, ham size per person",
+    "links": {
+      "related": [
+        "turkey-size-calculator",
+        "recipe-scale-calculator"
+      ]
+    }
+  },
+  {
+    "id": "grams-to-cups-converter",
+    "slug": "grams-to-cups-converter",
+    "title": "Grams to Cups Converter",
+    "category": "cooking",
+    "categorySlug": "cooking-calculators",
+    "icon": "⚖️",
+    "calcType": "cooking-universal",
+    "description": "Instantly convert metric grams to US customary cups based on the specific density of over 100 common baking ingredients.",
+    "stars": 5,
+    "defaults": { "amount": 0, "rate": 0, "tenure": 0 },
+    "sliderRanges": {
+      "amount": { "min": 0, "max": 0, "step": 0 },
+      "rate": { "min": 0, "max": 0, "step": 0 },
+      "tenure": { "min": 0, "max": 0, "step": 0 }
+    },
+    "keywords": "grams to cups, grams to cups converter, flour grams to cups, convert grams to volume",
+    "links": { "related": ["cups-to-grams-converter", "recipe-scale-calculator"] }
+  },
+  {
+    "id": "grams-to-tablespoons-converter",
+    "slug": "grams-to-tablespoons-converter",
+    "title": "Grams to Tablespoons",
+    "category": "cooking",
+    "categorySlug": "cooking-calculators",
+    "icon": "🥄",
+    "calcType": "cooking-universal",
+    "description": "Convert metric grams into US tablespoons depending on exactly what dry or liquid ingredient you are measuring.",
+    "stars": 5,
+    "defaults": { "amount": 0, "rate": 0, "tenure": 0 },
+    "sliderRanges": {
+      "amount": { "min": 0, "max": 0, "step": 0 },
+      "rate": { "min": 0, "max": 0, "step": 0 },
+      "tenure": { "min": 0, "max": 0, "step": 0 }
+    },
+    "keywords": "grams to tablespoons, grams to tbsp, convert grams to spoons",
+    "links": { "related": ["grams-to-cups-converter", "teaspoons-to-tablespoons-converter"] }
+  },
+  {
+    "id": "ounces-to-grams-converter",
+    "slug": "ounces-to-grams-converter",
+    "title": "Ounces to Grams Calculator",
+    "category": "cooking",
+    "categorySlug": "cooking-calculators",
+    "icon": "⚖️",
+    "calcType": "cooking-universal",
+    "description": "Instantly and accurately convert standard dry weight ounces directly into metric grams for precise baking measurements.",
+    "stars": 5,
+    "defaults": { "amount": 0, "rate": 0, "tenure": 0 },
+    "sliderRanges": {
+      "amount": { "min": 0, "max": 0, "step": 0 },
+      "rate": { "min": 0, "max": 0, "step": 0 },
+      "tenure": { "min": 0, "max": 0, "step": 0 }
+    },
+    "keywords": "ounces to grams, oz to g, weight conversion baking, dry ounces to metric",
+    "links": { "related": ["grams-to-cups-converter", "cups-to-grams-converter"] }
+  },
+  {
+    "id": "tablespoons-to-cups-converter",
+    "slug": "tablespoons-to-cups-converter",
+    "title": "Tablespoons to Cups",
+    "category": "cooking",
+    "categorySlug": "cooking-calculators",
+    "icon": "🥄",
+    "calcType": "cooking-universal",
+    "description": "Fast volume converter bridging the gap between US tablespoons and US cups. Perfect for scaling recipes up or down.",
+    "stars": 5,
+    "defaults": { "amount": 0, "rate": 0, "tenure": 0 },
+    "sliderRanges": {
+      "amount": { "min": 0, "max": 0, "step": 0 },
+      "rate": { "min": 0, "max": 0, "step": 0 },
+      "tenure": { "min": 0, "max": 0, "step": 0 }
+    },
+    "keywords": "tablespoons to cups, tbsp to cups, how many tablespoons in a cup",
+    "links": { "related": ["teaspoons-to-tablespoons-converter", "recipe-scale-calculator"] }
+  },
+  {
+    "id": "teaspoons-to-tablespoons-converter",
+    "slug": "teaspoons-to-tablespoons-converter",
+    "title": "Teaspoons to Tablespoons",
+    "category": "cooking",
+    "categorySlug": "cooking-calculators",
+    "icon": "🥄",
+    "calcType": "cooking-universal",
+    "description": "Simple kitchen volumetric tool to scale US teaspoons up to tablespoons instantly.",
+    "stars": 5,
+    "defaults": { "amount": 0, "rate": 0, "tenure": 0 },
+    "sliderRanges": {
+      "amount": { "min": 0, "max": 0, "step": 0 },
+      "rate": { "min": 0, "max": 0, "step": 0 },
+      "tenure": { "min": 0, "max": 0, "step": 0 }
+    },
+    "keywords": "teaspoons to tablespoons, tsp to tbsp, spoon volume converter",
+    "links": { "related": ["tablespoons-to-cups-converter", "recipe-scale-calculator"] }
   }
 ]
