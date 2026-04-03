@@ -502,26 +502,146 @@ const HUB_CONTENT: Record<string, any> = {
         ]
     },
     "ham-calculator": {
-        subtitle: "Calculate the perfect ham size for your holiday dinner and determine exact cooking times for spiral-sliced, bone-in, and boneless hams.",
+        subtitle: "Calculate the exact ham size for your holiday dinner — with cooking times, USDA temperatures, glaze amounts, and serving charts for bone-in, boneless, and spiral-sliced hams.",
         explanation: {
-            heading: "Ham Sizing and Cooking Physics",
-            contentHTML: `<p>Hams are entirely different from poultry. First, almost all holiday hams purchased in the USA are "City Hams," meaning they are already fully cooked and smoked. <strong>You are technically just reheating a ham, not cooking it.</strong></p>
-<h3>How Much Ham Per Person?</h3>
-<p>Because ham is dense and rich, you need less per person than turkey.</p>
+            heading: "How Much Ham Do You Need Per Person? — The Complete Guide",
+            contentHTML: `<p>Whether you're planning a <strong>Christmas ham</strong>, an <strong>Easter dinner</strong>, or a <strong>Thanksgiving feast</strong> with both turkey and ham, the most common question is: <em>"How much ham do I actually need to buy?"</em> The answer depends on three factors: the type of ham, your guest count, and whether you want leftovers for sandwiches (you do).</p>
+<p>This comprehensive guide covers everything — from <strong>per-person serving sizes</strong> for boneless, bone-in, and spiral-sliced hams, to <strong>USDA-safe cooking temperatures</strong>, reheating times, glaze amounts, and what to do with leftover ham. Use the calculator above for instant results, then explore the reference charts below for detailed planning.</p>
+
+<h2>Boneless Ham — How Much Per Person?</h2>
+<p>The <a href="https://www.honeybaked.com/whole-ham">HoneyBaked Ham Company</a> — America's leading ham brand since 1957 — recommends <strong>½ pound (0.5 lb) of boneless ham per person</strong>. Boneless hams have no waste from bones, so every pound goes directly to servings. If you want generous leftovers for <strong>midnight ham sandwiches</strong>, the "With Leftovers" column adds 30% more weight.</p>
+
+<table>
+<thead><tr><th>Guests</th><th>Ham Size (lbs)</th><th>With Leftovers</th></tr></thead>
+<tbody>
+<tr><td>4–6</td><td>2–3 lbs</td><td>3–4 lbs</td></tr>
+<tr><td>6–8</td><td>3–4 lbs</td><td>4–5 lbs</td></tr>
+<tr><td>8–10</td><td>4–5 lbs</td><td>5–7 lbs</td></tr>
+<tr><td>10–15</td><td>5–8 lbs</td><td>8–10 lbs</td></tr>
+<tr><td>15–20</td><td>8–10 lbs</td><td>10–13 lbs</td></tr>
+<tr><td>25–30</td><td>13–15 lbs</td><td>15–18 lbs</td></tr>
+</tbody>
+</table>
+
+<h2>Bone-In Ham — How Much Per Person?</h2>
+<p>According to <a href="https://www.marthastewart.com/268082/ham-101">Martha Stewart's Ham 101</a>, you should plan for <strong>¾ pound (0.75 lb) of bone-in ham per person</strong>. The extra weight accounts for the bone and connective tissue — roughly 25–30% of a bone-in ham's weight is inedible. However, that flavor-soaked ham bone makes <strong>incredible split pea soup, bean stew, and stock</strong> — so save it in the freezer.</p>
+
+<table>
+<thead><tr><th>Guests</th><th>Ham Size (lbs)</th><th>With Leftovers</th></tr></thead>
+<tbody>
+<tr><td>4–6</td><td>3–4½ lbs</td><td>5–6 lbs</td></tr>
+<tr><td>6–8</td><td>4½–6 lbs</td><td>6–8 lbs</td></tr>
+<tr><td>8–10</td><td>6–7½ lbs</td><td>8–10 lbs</td></tr>
+<tr><td>10–15</td><td>7½–11 lbs</td><td>10–14 lbs</td></tr>
+<tr><td>15–20</td><td>11–15 lbs</td><td>14–18 lbs</td></tr>
+<tr><td>25–30</td><td>19–22½ lbs</td><td>22–27 lbs</td></tr>
+</tbody>
+</table>
+
+<p>Planning to serve both turkey and ham at the same meal? Scale back the per-person math: use <strong>0.75 lbs of <a href="/cooking-calculators/turkey-size-calculator">turkey per person</a></strong> and <strong>0.25 lbs of ham</strong> — enough for everyone to sample both without waste. Use our <a href="/cooking-calculators/recipe-scale-calculator">recipe scale calculator</a> to adjust your side dishes accordingly.</p>
+
+<h2>Spiral-Sliced Ham — The American Holiday Standard</h2>
+<p>Spiral-sliced hams are the most popular holiday ham in America — pre-cooked, pre-sliced, and ready to reheat. Use <strong>½ pound per person</strong>, the same as boneless, since spiral hams have been mechanically sliced around the bone for easy serving.</p>
+<p><strong>Critical warning for spiral hams:</strong> Because they've been pre-sliced, they have <em>drastically more surface area</em>, which means they dry out much faster during reheating. Always cook them <strong>tightly wrapped in foil</strong> at a lower temperature (275°F), only unwrapping for the final 15 minutes to apply your glaze and caramelize.</p>
+
+<h2>Ham Cooking Time & Temperature — USDA Guidelines</h2>
+<p>Almost all holiday hams sold in the United States are <strong>"City Hams"</strong> — meaning they are <strong>already fully cooked and smoked</strong>. You are technically just reheating a ham, not cooking it from raw. The <a href="https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/meat/hams-and-food-safety">USDA Food Safety and Inspection Service</a> provides the following temperature guidelines:</p>
 <ul>
-<li><strong>Bone-in Ham:</strong> Calculate 0.5 to 0.75 lbs per person.</li>
-<li><strong>Boneless Ham:</strong> Calculate 0.33 to 0.5 lbs per person.</li>
+<li><strong>Pre-cooked smoked ham:</strong> Reheat to an internal temperature of <strong>140°F (60°C)</strong></li>
+<li><strong>Fresh (raw) ham:</strong> Cook to <strong>145°F (63°C)</strong> + a 3-minute rest period</li>
+<li><strong>Country ham (dry-cured):</strong> Cook to <strong>160°F (71°C)</strong></li>
 </ul>
-<h3>Reheating Times</h3>
-<div class="explanation__highlight"><strong>Rule of Thumb: Reheat at 325°F until internal temp reaches 140°F.</strong><br/>- Bone-in: ~15 to 18 minutes per lb<br/>- Boneless: ~10 to 15 minutes per lb</div>
-<p>Spiral cut hams are particularly vulnerable to drying out because they have been pre-sliced, maximizing surface area. Always cook them covered tightly in foil, only uncovering for the final 15 minutes to glaze and caramelize.</p>`,
-            highlight: "Pro Tip: If you are serving both a Turkey and a Ham (a massive holiday feast), scale back the per-person math to 0.75 lbs for the turkey and 0.25 lbs for the ham.",
+<p>Always use a meat thermometer. Insert the probe into the <strong>thickest part of the ham</strong>, away from the bone. Let the ham rest for 15 minutes after cooking — this allows juices to redistribute back into the meat, resulting in a juicier cut. Estimate your <a href="/cooking-calculators/turkey-cooking-time-calculator">cooking time</a> carefully to have the ham ready when guests arrive.</p>
+
+<table>
+<thead><tr><th>Ham Type</th><th>Weight Range</th><th>Oven Temp</th><th>Time per lb</th><th>Internal Temp</th></tr></thead>
+<tbody>
+<tr><td>Bone-In (pre-cooked)</td><td>10–14 lbs</td><td>325°F</td><td>15–18 min/lb</td><td>140°F</td></tr>
+<tr><td>Bone-In (pre-cooked)</td><td>14–20 lbs</td><td>325°F</td><td>15–18 min/lb</td><td>140°F</td></tr>
+<tr><td>Boneless (pre-cooked)</td><td>6–10 lbs</td><td>325°F</td><td>10–15 min/lb</td><td>140°F</td></tr>
+<tr><td>Spiral-Sliced</td><td>7–10 lbs</td><td>275°F</td><td>12–15 min/lb</td><td>140°F</td></tr>
+<tr><td>Fresh Ham (raw, bone-in)</td><td>10–14 lbs</td><td>325°F</td><td>22–25 min/lb</td><td>145°F + rest</td></tr>
+<tr><td>Fresh Ham (raw, boneless)</td><td>6–10 lbs</td><td>325°F</td><td>18–22 min/lb</td><td>145°F + rest</td></tr>
+<tr><td>Country Ham (dry-cured)</td><td>10–14 lbs</td><td>325°F</td><td>18–25 min/lb</td><td>160°F</td></tr>
+</tbody>
+</table>
+
+<h2>City Ham vs. Country Ham — What's the Difference?</h2>
+<p>Most Americans have only ever eaten <strong>City Ham</strong> — wet-brined, smoked, and fully cooked. But <strong>Country Ham</strong> is a completely different product with different preparation requirements. Understanding the difference is critical for food safety.</p>
+
+<table>
+<thead><tr><th>Feature</th><th>City Ham</th><th>Country Ham</th></tr></thead>
+<tbody>
+<tr><td>Curing Method</td><td>Wet-brined (injected with brine)</td><td>Dry-cured (salt-rubbed, aged 6–12 months)</td></tr>
+<tr><td>Pre-Cooked?</td><td>Yes — safe to eat cold</td><td>No — must be soaked and fully cooked</td></tr>
+<tr><td>Moisture</td><td>High (juicy, tender)</td><td>Low (dense, firm, intense)</td></tr>
+<tr><td>Flavor</td><td>Mild, sweet, smoky</td><td>Intensely salty, complex, savory</td></tr>
+<tr><td>Popular Brands</td><td>HoneyBaked, Smithfield, Hormel</td><td>Benton's, Edwards, Colonel Newsom's</td></tr>
+<tr><td>Best Served</td><td>Holiday dinners, thick slices</td><td>Thin-sliced, biscuits, red-eye gravy</td></tr>
+<tr><td>Internal Temp</td><td>140°F (reheat)</td><td>160°F (cook from raw)</td></tr>
+</tbody>
+</table>
+
+<h2>Ham Glaze — How Much Do You Need?</h2>
+<p>A proper glaze transforms a simple reheated ham into a caramelized, sticky, holiday centerpiece. The classic American ham glaze is a simple mixture of <strong>brown sugar, honey (or maple syrup), and Dijon mustard</strong>. Adjust quantities based on ham size — too little glaze results in patchy coverage, while too much pools at the bottom of the pan. Use our <a href="/cooking-calculators/cups-to-grams-converter">cups to grams converter</a> or <a href="/cooking-calculators/grams-to-tablespoons-converter">grams to tablespoons converter</a> if your recipe uses metric measurements.</p>
+
+<table>
+<thead><tr><th>Ham Size</th><th>Brown Sugar</th><th>Honey or Maple</th><th>Dijon Mustard</th><th>Pineapple Juice</th></tr></thead>
+<tbody>
+<tr><td>5 lbs</td><td>½ cup</td><td>¼ cup</td><td>2 tbsp</td><td>2 tbsp</td></tr>
+<tr><td>8 lbs</td><td>¾ cup</td><td>⅓ cup</td><td>3 tbsp</td><td>3 tbsp</td></tr>
+<tr><td>10 lbs</td><td>1 cup</td><td>½ cup</td><td>¼ cup</td><td>¼ cup</td></tr>
+<tr><td>14 lbs</td><td>1½ cups</td><td>¾ cup</td><td>⅓ cup</td><td>⅓ cup</td></tr>
+<tr><td>20 lbs</td><td>2 cups</td><td>1 cup</td><td>½ cup</td><td>½ cup</td></tr>
+</tbody>
+</table>
+
+<h2>How to Avoid Drying Out Your Ham</h2>
+<p>The #1 complaint about holiday ham is dryness. Here's the science: when you reheat a pre-cooked ham, the heat causes moisture to evaporate from the surface faster than it migrates from the interior. Spiral-sliced hams are especially vulnerable because slicing increases surface area by 300–400%.</p>
+<ol>
+<li><strong>Keep it covered:</strong> Wrap the ham tightly in aluminum foil for the first 80% of cooking. This traps steam and prevents surface moisture loss.</li>
+<li><strong>Add liquid:</strong> Pour ½ cup of water, apple juice, or pineapple juice into the bottom of the roasting pan before sealing with foil.</li>
+<li><strong>Lower the temperature:</strong> Spiral hams should be reheated at 275°F, not 325°F. The lower temperature reduces moisture evaporation by ~40%.</li>
+<li><strong>Glaze late:</strong> Only apply the glaze in the <strong>final 15 minutes</strong> and uncover the ham. The high sugar content in glazes burns quickly at sustained high heat.</li>
+<li><strong>Rest before carving:</strong> Let the ham rest for <strong>15 minutes</strong> after removing from the oven. This allows the juices to redistribute throughout the meat. Cover loosely with foil during resting.</li>
+</ol>
+<p>If you're also serving turkey at your holiday meal, use our <a href="/cooking-calculators/turkey-thawing-time-calculator">turkey thawing time calculator</a> to plan backwards from your cook date and ensure everything is ready simultaneously.</p>
+
+<h2>What to Do with Leftover Ham</h2>
+<p>According to the <a href="https://www.foodsafety.gov/food-safety-charts/cold-food-storage-charts">USDA Cold Food Storage Chart</a>, cooked ham can be safely stored in the refrigerator for <strong>3–5 days</strong> and in the freezer for <strong>1–2 months</strong>. Here are the best uses for leftover holiday ham:</p>
+<ul>
+<li><strong>Ham and Split Pea Soup</strong> — simmer the ham bone with split peas, carrots, and celery for 2 hours</li>
+<li><strong>Ham Sandwiches</strong> — the classic midnight leftover snack</li>
+<li><strong>Ham and Cheese Quiche</strong> — dice the ham and fold into a savory egg and cheese custard</li>
+<li><strong>Ham Fried Rice</strong> — cube the ham and stir-fry with day-old rice, scrambled egg, and green onions</li>
+<li><strong>Monte Cristo Sandwich</strong> — layer ham, turkey, and Swiss cheese, dip in egg batter, and pan-fry</li>
+</ul>
+<p>Need to convert ingredient measurements for your leftover ham recipes? Use our <a href="/cooking-calculators/tablespoons-to-cups-converter">tablespoons to cups converter</a> or <a href="/cooking-calculators/teaspoons-to-tablespoons-converter">teaspoons to tablespoons converter</a> for precise measurements.</p>
+
+<h2>Holiday Ham Planning Timeline</h2>
+<ol>
+<li><strong>5–7 days before:</strong> Purchase your ham. Frozen hams need 24 hours per 5 lbs to thaw in the refrigerator.</li>
+<li><strong>2 days before:</strong> If frozen, move ham from freezer to refrigerator to begin thawing.</li>
+<li><strong>Morning of:</strong> Remove ham from refrigerator 1 hour before cooking to take the chill off. Preheat oven.</li>
+<li><strong>3–4 hours before dinner:</strong> Start cooking (for a 10–14 lb bone-in ham at 325°F).</li>
+<li><strong>15 min before done:</strong> Uncover, apply glaze, return to oven at higher heat to caramelize.</li>
+<li><strong>Done:</strong> Remove from oven, tent with foil, rest for 15 minutes. Carve and serve.</li>
+</ol>
+<p>Serving <a href="/cooking-calculators/pizza-calculator">pizza</a> or <a href="/cooking-calculators/cake-calculator">cake</a> as sides or dessert? Plan those quantities with our dedicated calculators. For air fryer side dishes, use our <a href="/cooking-calculators/oven-to-air-fryer-converter">oven to air fryer time converter</a> to adjust recipes.</p>`,
+            highlight: "USDA Guideline: Most holiday hams are 'City Hams' — already fully cooked and smoked. You're reheating, not cooking. Target 140°F (60°C) internal temperature. Fresh (raw) hams must reach 145°F (63°C) + a 3-minute rest.",
         },
         faq: [
-            { question: "How long do I cook a 10lb spiral ham?", answer: "At 325°F, it should take roughly 10-15 minutes per pound, so about 1.5 to 2.5 hours. Check with a thermometer to ensure it hits 140°F." },
-            { question: "Do I have to cook a city ham?", answer: "Technically, no. City hams are fully cured and smoked. You can legally and safely eat them cold right out of the package. We heat them purely for culinary pleasure." }
+            { question: "How much ham do I need for 20 people?", answer: "For 20 guests with a bone-in ham, buy 15 lbs (0.75 lbs per person). With a boneless ham, buy 10 lbs (0.5 lbs per person). Add 25-30% more if you want leftovers — so 18-20 lbs bone-in or 12-13 lbs boneless." },
+            { question: "How long do I cook a 10 lb spiral ham?", answer: "A 10 lb spiral-sliced ham should be reheated at 275°F for approximately 12–15 minutes per pound, or about 2 to 2.5 hours total. Keep it tightly covered in foil. Uncover only for the final 15 minutes to glaze. Target internal temperature: 140°F." },
+            { question: "Can you eat ham cold right out of the package?", answer: "Yes. City hams (the type sold by HoneyBaked, Smithfield, and most grocery stores) are fully cooked and smoked during processing. They are safe to eat cold. Heating is purely for culinary preference. Country hams, however, are NOT pre-cooked and must be fully cooked before eating." },
+            { question: "What internal temperature should ham reach?", answer: "Pre-cooked smoked hams should be reheated to an internal temperature of 140°F (60°C). Fresh (raw) hams must be cooked to 145°F (63°C) and then allowed to rest for 3 minutes before carving. Country hams (dry-cured) should reach 160°F (71°C). Always use a meat thermometer." },
+            { question: "How long can leftover ham stay in the fridge?", answer: "According to the USDA, cooked ham can be safely refrigerated for 3–5 days at 40°F or below. For longer storage, freeze it — ham keeps for 1–2 months in the freezer without significant quality loss. Wrap tightly in foil or plastic wrap before freezing." },
+            { question: "Should I cover the ham with foil while cooking?", answer: "Absolutely. Cover the ham tightly in aluminum foil for the first 80% of the cooking time. This traps moisture and prevents the surface from drying out. Add ½ cup of water or juice to the bottom of the pan before sealing. Uncover only for the final 15 minutes to apply glaze." },
+            { question: "How do I keep a spiral ham from drying out?", answer: "Spiral hams dry out because the pre-slicing increases surface area by 300%+. Three key techniques: (1) Wrap tightly in foil with liquid in the pan, (2) Lower the oven temperature to 275°F instead of 325°F, (3) Only uncover for the last 15 minutes to glaze. Never overcook — pull at 140°F internal." },
+            { question: "What is the danger zone for ham?", answer: "The USDA 'Danger Zone' is 40°F to 140°F (4°C to 60°C). Bacteria multiply rapidly in this range, doubling every 20 minutes. Ham should not sit at room temperature for more than 2 hours (or 1 hour if the ambient temperature exceeds 90°F). Refrigerate leftovers promptly." }
         ]
     },
+
     "grams-to-cups-converter": {
         subtitle: "Instantly convert metric grams to US customary cups based on the specific density of over 100 common baking ingredients.",
         explanation: {

@@ -25367,12 +25367,12 @@
   {
     "id": "ham-calculator",
     "slug": "ham-calculator",
-    "title": "Ham Cooking Time & Size Calculator",
+    "title": "Ham Size & Cooking Time Calculator — How Much Ham Per Person",
     "category": "cooking",
     "categorySlug": "cooking-calculators",
     "icon": "🍖",
     "calcType": "cooking-ham",
-    "description": "Calculate the perfect ham size for your holiday dinner and determine exact cooking times for spiral-sliced, bone-in, and boneless hams.",
+    "description": "Calculate the exact ham size for your holiday dinner — with cooking times, USDA temperatures, glaze amounts, and serving charts for bone-in, boneless, and spiral-sliced hams. Covers city ham vs country ham, leftover planning, and the danger zone.",
     "stars": 5,
     "defaults": {
       "amount": 0,
@@ -25384,14 +25384,19 @@
       "rate": { "min": 0, "max": 0, "step": 0 },
       "tenure": { "min": 0, "max": 0, "step": 0 }
     },
-    "keywords": "ham calculator, how long to cook a ham, spiral ham baking time, how big of a ham to buy, ham size per person",
+    "keywords": "ham calculator, ham size calculator, how much ham per person, how long to cook a ham, ham cooking time, spiral ham cooking time, ham per person calculator, how much ham for 20 people, ham temperature, ham size chart, city ham vs country ham, ham glaze recipe",
     "links": {
       "related": [
         "turkey-size-calculator",
-        "recipe-scale-calculator"
+        "turkey-cooking-time-calculator",
+        "turkey-thawing-time-calculator",
+        "recipe-scale-calculator",
+        "cups-to-grams-converter",
+        "oven-to-air-fryer-converter"
       ]
     }
   },
+
   {
     "id": "grams-to-cups-converter",
     "slug": "grams-to-cups-converter",
