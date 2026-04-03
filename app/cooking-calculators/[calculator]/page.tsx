@@ -350,8 +350,6 @@ export default async function CookingCalculatorRoute({ params }: PageProps) {
             <h1 className="t-h1" style={{ marginBottom: "var(--s-2)" }}>{calc.title}</h1>
             {content && <p className="t-body text-muted" style={{ marginBottom: "var(--s-6)" }}>{content.subtitle}</p>}
             
-            <AuthorBadge categoryKey="cooking" />
-
             <div className="layout-2col">
                 <div className="layout-2col__main">
                     
@@ -368,6 +366,8 @@ export default async function CookingCalculatorRoute({ params }: PageProps) {
                     
                     {calc.calcType === "cooking-universal" && <CookingUniversalConverterCore calculatorId={calc.id} />}
 
+                    <AuthorBadge categoryKey="cooking" />
+
                     {content && (<>
                         <DynamicExplanation 
                             heading={content.explanation?.heading} 
@@ -382,29 +382,33 @@ export default async function CookingCalculatorRoute({ params }: PageProps) {
                     <GuideCTA calcId={calc.id} />
                     <GlossaryChip calcId={calc.id} />
                 </div>
-                <aside className="layout-2col__sidebar relative">
-                    <div className="bg-emerald-50/50 dark:bg-emerald-900/10 rounded-2xl border border-emerald-100 dark:border-emerald-800/30 p-6 sticky top-24">
-                        <h3 className="text-lg font-bold text-emerald-800 dark:text-emerald-400 mb-4 border-b border-emerald-200 dark:border-emerald-800/50 pb-2">
+                
+                <aside className="layout-2col__sidebar">
+                    <nav style={{
+                        background: "var(--n-surface)",
+                        border: "1px solid var(--n-border)",
+                        borderRadius: "var(--r-md)",
+                        padding: "var(--s-5)",
+                    }}>
+                        <h3 style={{ fontSize: "var(--t-body)", fontWeight: 700, marginBottom: "var(--s-4)", display: "flex", alignItems: "center", gap: "var(--s-2)" }}>
                             🥘 Cooking Measurements
                         </h3>
-                        <div className="flex flex-col space-y-2">
-                            {getCalculatorsByCategory("cooking").map((item) => (
-                                <Link
-                                    key={item.id}
-                                    href={`/cooking-calculators/${item.slug}`}
-                                    style={{ display: 'flex', alignItems: 'flex-start', padding: '0.5rem 0' }}
-                                    className={`group text-sm transition-colors ${
-                                        item.id === calc.id 
-                                        ? "text-emerald-600 dark:text-emerald-400 font-semibold" 
-                                        : "text-gray-600 dark:text-gray-400 hover:text-emerald-500"
-                                    }`}
-                                >
-                                    <span className="opacity-0 group-hover:opacity-100 transition-opacity text-emerald-500 mr-2 -ml-4 absolute">▹</span>
-                                    <span>{item.title.replace(/ Calculator.*$/, "").replace(/ Converter.*$/, "")}</span>
-                                </Link>
-                            ))}
-                        </div>
-                    </div>
+                        {getCalculatorsByCategory("cooking").map((item) => (
+                            <a
+                                key={item.id}
+                                href={`/cooking-calculators/${item.slug}`}
+                                style={{
+                                    display: "flex", alignItems: "center", justifyContent: "space-between",
+                                    padding: "var(--s-3) 0", borderBottom: "1px solid var(--n-border)",
+                                    color: item.id === calc.id ? "var(--n-primary)" : "var(--n-text-secondary)",
+                                    fontWeight: item.id === calc.id ? 600 : 400,
+                                    fontSize: "var(--t-body-sm)", textDecoration: "none", transition: "color 0.2s",
+                                }}
+                            >
+                                {item.title.replace(/ Calculator.*$/, "").replace(/ Converter.*$/, "")} <span style={{ color: "var(--n-text-muted)" }}>→</span>
+                            </a>
+                        ))}
+                    </nav>
                 </aside>
             </div>
         </main>
