@@ -9,6 +9,7 @@ interface HeightConverterProps {
   initialFt?: string;
   initialIn?: string;
   defaultMode?: "cm" | "imperial";
+  intent?: "imperial" | "metric" | "hub";
 }
 
 export default function HeightConverterCore({
@@ -16,6 +17,7 @@ export default function HeightConverterCore({
   initialFt = "5",
   initialIn = "6.93",
   defaultMode = "cm",
+  intent = "hub",
 }: HeightConverterProps) {
   const [cmStr, setCmStr] = useState<string>(initialCm);
   const [ftStr, setFtStr] = useState<string>(initialFt);
@@ -59,6 +61,19 @@ export default function HeightConverterCore({
 
   const currentCm = parseFloat(cmStr) || 0;
 
+  // Semantic UI Output String Generator
+  const displayFt = ftStr || "0";
+  const displayIn = Number(inStr || 0).toFixed(1);
+  const displayCm = Number(cmStr || 0).toFixed(1);
+  const totalInches = (parseFloat(displayFt) * 12 + parseFloat(inStr || "0")).toFixed(1);
+
+  let headerText = `${displayFt}' ${displayIn}" = ${displayCm} cm`; // Hub / Default
+  if (intent === "imperial") {
+      headerText = `${displayFt}' ${displayIn}" = ${totalInches}"`;
+  } else if (intent === "metric") {
+      headerText = `${displayCm} cm = ${displayFt}' ${displayIn}"`;
+  }
+
   return (
     <div 
        style={{ 
@@ -91,7 +106,7 @@ export default function HeightConverterCore({
             display: "inline-block",
             filter: "drop-shadow(0 4px 12px rgba(96, 165, 250, 0.3))" 
         }}>
-            {ftStr || "0"}' {Number(inStr || 0).toFixed(1)}" = {Number(cmStr || 0).toFixed(1)} cm
+            {headerText}
         </div>
       </div>
 

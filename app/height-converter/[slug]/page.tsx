@@ -265,6 +265,7 @@ export default async function HeightConverterQueryPage({ params }: PageProps) {
              initialFt={ft.toString()}
              initialIn={incFormatted}
              defaultMode={type === "imperial" ? "imperial" : "cm"}
+             intent={type === "imperial" ? "imperial" : "metric"}
           />
         </section>
 
@@ -279,15 +280,14 @@ export default async function HeightConverterQueryPage({ params }: PageProps) {
           {type === "imperial" ? (
              <>
                <p>
-                 To calculate how many inches and centimeters are in <strong>{ft} feet and {incFormatted} inches</strong>, we first convert everything to inches, then apply the exact standard where <mark>1 inch = 2.54 cm</mark>.
+                 You can convert <strong>{ft} feet and {incFormatted} inches</strong> to inches by following two simple steps. First, convert the feet to inches by multiplying by 12. Then, add that value to the remaining inches.
                </p>
-               <pre style={{ background: "var(--n-surface)", padding: "1.5rem", borderRadius: "0.5rem", border: "1px solid var(--n-border)", color: "#8b5cf6", fontSize: "1.1rem", fontFamily: "monospace", overflowX: "auto" }}>
-{`inches = (${ft}' × 12) + ${incFormatted}"
-inches = ${ft * 12}" + ${incFormatted}"
-inches = ${ft * 12 + inc}"
+               <pre style={{ background: "var(--n-surface)", padding: "1.5rem", borderRadius: "0.5rem", border: "1px solid var(--n-border)", color: "#8b5cf6", fontSize: "1.1rem", fontFamily: "monospace", overflowX: "auto", lineHeight: "1.6" }}>
+{`Step 1: Convert feet to inches
+${ft} ft × 12 = ${ft * 12} in
 
-centimeters = ${ft * 12 + inc}" × 2.54
-centimeters = ${cmFormatted} cm`}
+Step 2: Add the remaining inches
+${ft * 12} in + ${incFormatted} in = ${ft * 12 + inc} in`}
                </pre>
              </>
           ) : (
@@ -308,11 +308,17 @@ remaining inches ≈ ${incFormatted}"`}
              </>
           )}
 
-          <div className="highlight-box" style={{ marginTop: "var(--s-6)" }}>
+          <div className="highlight-box" style={{ marginTop: "var(--s-6)", marginBottom: "var(--s-4)" }}>
               <p style={{ margin: 0, fontWeight: "bold", fontSize: "1.1rem" }}>
-                Conclusion: {type === "imperial" ? `${ft}' ${incFormatted}"` : `${cm} cm`} is equal to <span style={{ color: "#3b82f6" }}>{type === "imperial" ? `${totalInches}" (or ${cmFormatted} cm)` : `${ft}' ${incFormatted}"`}</span>.
+                Conclusion: {type === "imperial" ? `${ft}' ${incFormatted}"` : `${cm} cm`} is exactly equal to <span style={{ color: "#3b82f6" }}>{type === "imperial" ? `${totalInches} total inches.` : `${ft}' ${incFormatted}".`}</span>
               </p>
           </div>
+          
+          {type === "imperial" && (
+            <p className="t-body text-muted" style={{ fontSize: "0.95rem" }}>
+              *Note: If you need this height in the metric system, multiplying the total inches by 2.54 reveals that {ft}&apos; {incFormatted}&quot; is equal to <strong>{cmFormatted} centimeters</strong>.
+            </p>
+          )}
         </section>
 
         {/* Contextual Reference Chart */}
