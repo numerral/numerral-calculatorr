@@ -1,5 +1,4 @@
 // AuthorBadge — EEAT attribution strip
-// "By AUTHOR · Updated DATE / Reviewed by REVIEWER / Fact checked by FACT_CHECKER"
 // Displayed below H1 on every calculator hub page
 
 import Link from "next/link";
@@ -19,31 +18,60 @@ export default function AuthorBadge({ categoryKey, updatedDate }: AuthorBadgePro
         : new Date().toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
 
     return (
-        <div className="author-badge" role="contentinfo" aria-label="Article attribution">
+        <div 
+            role="contentinfo" 
+            aria-label="Article attribution"
+            style={{
+                display: "flex",
+                flexWrap: "wrap",
+                alignItems: "center",
+                gap: "0.5rem",
+                padding: "0.6rem 1.25rem",
+                background: "var(--n-surface-alt)",
+                border: "1px solid var(--n-border)",
+                borderLeft: "4px solid #3b82f6",
+                borderRadius: "0.5rem",
+                fontSize: "0.82rem",
+                color: "var(--n-foreground)",
+                opacity: 0.9,
+                width: "100%",
+                maxWidth: "800px",
+                margin: "0 auto",
+            }}
+        >
             {writer && (
-                <div className="author-badge__line">
-                    <span className="author-badge__label">By</span>
-                    <Link href={`/authors/${writer.slug}`} className="author-badge__name">
+                <div style={{ display: "flex", alignItems: "center", gap: "0.35rem" }}>
+                    <span style={{ color: "var(--n-foreground-muted)" }}>By</span>
+                    <Link href={`/authors/${writer.slug}`} style={{ fontWeight: 600, color: "var(--n-foreground)", textDecoration: "none" }}>
                         {writer.name.toUpperCase()}
                     </Link>
-                    <span className="author-badge__date">Updated {displayDate}</span>
+                    <span style={{ color: "var(--n-border)", marginLeft: "0.15rem", marginRight: "0.15rem" }}>•</span>
+                    <span style={{ color: "var(--n-foreground-muted)" }}>Updated {displayDate}</span>
                 </div>
             )}
+            
             {reviewer && (
-                <div className="author-badge__line">
-                    <span className="author-badge__label">Reviewed by</span>
-                    <Link href={`/authors/${reviewer.slug}`} className="author-badge__name">
-                        {reviewer.name.toUpperCase()}
-                    </Link>
-                </div>
+                <>
+                  <span style={{ color: "var(--n-border)", margin: "0 0.25rem" }}>|</span>
+                  <div style={{ display: "flex", alignItems: "center", gap: "0.35rem" }}>
+                      <span style={{ color: "var(--n-foreground-muted)" }}>Reviewed by</span>
+                      <Link href={`/authors/${reviewer.slug}`} style={{ fontWeight: 600, color: "var(--n-foreground)", textDecoration: "none" }}>
+                          {reviewer.name.toUpperCase()}
+                      </Link>
+                  </div>
+                </>
             )}
+            
             {factChecker && (
-                <div className="author-badge__line">
-                    <span className="author-badge__label">Fact checked by</span>
-                    <Link href={`/authors/${factChecker.slug}`} className="author-badge__name">
-                        {factChecker.name.toUpperCase()}
-                    </Link>
-                </div>
+                <>
+                  <span style={{ color: "var(--n-border)", margin: "0 0.25rem" }}>|</span>
+                  <div style={{ display: "flex", alignItems: "center", gap: "0.35rem" }}>
+                      <span style={{ color: "var(--n-foreground-muted)" }}>Fact checked by</span>
+                      <Link href={`/authors/${factChecker.slug}`} style={{ fontWeight: 600, color: "var(--n-foreground)", textDecoration: "none" }}>
+                          {factChecker.name.toUpperCase()}
+                      </Link>
+                  </div>
+                </>
             )}
         </div>
     );

@@ -243,7 +243,7 @@ remaining inches ≈ 5"`}
               ].map(slug => (
                   <Link 
                      key={slug} 
-                     href={`/height-converter/${slug}`} 
+                     href={`/height-converter/${slug}-to-inches`} 
                      className="pill-link"
                      style={{ 
                          padding: "0.85rem 1rem", 
@@ -257,7 +257,7 @@ remaining inches ≈ 5"`}
                          boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1)"
                      }}
                   >
-                      {slug.replace("ft", "'").replace("-", " ").replace("in", '"')} to cm
+                      {slug.replace("ft", "'").replace("-", " ").replace("in", '"')} to inches
                   </Link>
               ))}
               {[
@@ -265,7 +265,7 @@ remaining inches ≈ 5"`}
               ].map(slug => (
                   <Link 
                      key={slug} 
-                     href={`/height-converter/${slug}`} 
+                     href={`/height-converter/${slug}-to-feet`} 
                      className="pill-link pill-link-alt"
                      style={{ 
                          padding: "0.85rem 1rem", 
@@ -279,7 +279,7 @@ remaining inches ≈ 5"`}
                          boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1)"
                      }}
                   >
-                      {slug} to ft & in
+                      {slug} to feet
                   </Link>
               ))}
           </div>
