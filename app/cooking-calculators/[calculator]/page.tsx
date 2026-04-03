@@ -7,7 +7,7 @@ import AuthorBadge from "@/components/shared/AuthorBadge";
 import DynamicExplanation from "@/components/shared/DynamicExplanation";
 import FAQAccordion from "@/components/shared/FAQAccordion";
 import TrendingCalculations from "@/components/shared/TrendingCalculations";
-import RelatedCalculators from "@/components/shared/RelatedCalculators";
+
 import GuideCTA from "@/components/shared/GuideCTA";
 import GlossaryChip from "@/components/shared/GlossaryChip";
 
@@ -1453,7 +1453,7 @@ export default async function CookingCalculatorRoute({ params }: PageProps) {
                         {content.faq && <FAQAccordion title={`${calc.title} FAQ`} items={content.faq} />}
                     </>)}
                     
-                    <RelatedCalculators calcId={calc.id} />
+                    
                     <GuideCTA calcId={calc.id} />
                     <GlossaryChip calcId={calc.id} />
                 </div>
