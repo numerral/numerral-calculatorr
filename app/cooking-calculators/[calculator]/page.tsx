@@ -232,25 +232,134 @@ const HUB_CONTENT: Record<string, any> = {
         ]
     },
     "cake-calculator": {
-        subtitle: "Scale your cake batter perfectly between different pan sizes without sacrificing thickness. Instantly convert an 8-inch round layer to a 9x13 rectangular sheet pan.",
+        subtitle: "Calculate how many cakes you need for your wedding, birthday, or party — with instant serving estimates for round, square, and sheet cakes. Plus: convert batter recipes between any pan size with precision math.",
         explanation: {
-            heading: "The Mathematics of Cake Pans",
-            contentHTML: `<p>A common baking mistake is assuming that increasing a cake pan's diameter by 1 or 2 inches only requires a tiny bit more batter. Because pans are three-dimensional cylinders, <strong>volume increases exponentially with the radius.</strong></p>
-<h3>Calculating Pan Volume</h3>
-<div class="explanation__highlight"><strong>Area of a Round Pan = π × Radius²</strong><br/><br/>An 8-inch pan: 3.14 × (4)² = 50.24 sq inches<br/>A 10-inch pan: 3.14 × (5)² = 78.50 sq inches</br><strong>That is a mathematically massive 56% increase in volume!</strong></div>
-<p>If you put an 8-inch cake recipe into a 10-inch pan without scaling the ingredients, your final baked layer will be paper-thin and dry.</p>
-<h3>Baking Thermodynamics (Time & Temp)</h3>
-<p>Scaling batter volume perfectly using our calculator guarantees the cake layers will have the identical height. However, the <strong>baking time must be adjusted manually.</strong></p>
+            heading: "How to Estimate Cake Servings for Your Event — Complete Guide",
+            contentHTML: `<p>Whether you're planning a backyard birthday party for 25 or a formal wedding reception for 200, the question is always the same: <strong>how much cake do I need?</strong> Getting it wrong means either running out of cake (a party disaster) or having so much leftover that your freezer is full for months.</p>
+<p>This comprehensive guide covers the exact <a href="/cooking-calculators/recipe-scale-calculator">serving calculations</a> used by professional bakers and event planners, explains why wedding portions differ from party portions, and provides the complete reference charts you need to order or bake with confidence.<sup>[1]</sup></p>
+
+<h3>Standard Portion Sizes — Wedding vs. Party</h3>
+<p>The single most important concept in cake estimation is understanding that <strong>portion sizes vary dramatically by event type</strong>. Expert pastry chef Michelle Anderson defines the two universal standards:<sup>[1]</sup></p>
 <ul>
-<li><strong>Larger Pan = Lower Temp + More Time.</strong> If you scale up to a massive sheet pan, the exterior perimeter of the batter will burn long before the center rises. Drop your oven temperature by 25°F and increase the baking time.</li>
-<li><strong>Smaller Pans.</strong> Cupcakes or tiny 6-inch rounds bake much faster. </li>
-</ul>`,
-            highlight: "Rule of Thumb: Never fill any cake pan more than 2/3 full, regardless of how you scaled the recipe. Always leave room for the batter to rise.",
+<li><strong>Wedding portions:</strong> 1 inch wide × 2 inches long × the full height of the cake (typically 4 inches). These are intentionally small because wedding cake is usually served alongside a full meal, dessert bar, or other sweets.</li>
+<li><strong>Party / dessert portions:</strong> 2 inches wide × 2 inches long × the full height. These are larger because at a birthday party, graduation, or retirement celebration, the cake is often the <em>primary</em> dessert — and guests expect a generous slice.</li>
+</ul>
+<div class="explanation__highlight"><strong>Quick Rule:</strong> Wedding-size portions yield roughly <strong>twice as many servings</strong> as party-size portions from the same cake. A 10″ round cake serves ~38 wedding guests but only ~19 party guests.</div>
+
+<h2>Cake Serving Charts — Round, Square & Sheet Cakes</h2>
+<p>The tables below show exact serving counts for every standard cake pan size based on data from Wilton and professional bakery guides.<sup>[2]</sup> All figures assume a standard 4-inch cake height (two stacked 2-inch layers).</p>
+
+<h3>Round Cake Serving Chart</h3>
+<table><thead><tr><th>Cake Size</th><th>Pan Area</th><th>Batter Capacity</th><th>Wedding Servings (1″×2″)</th><th>Party Servings (2″×2″)</th></tr></thead><tbody>
+<tr><td><strong>6″ round</strong></td><td>28.3 sq in</td><td>~4 cups</td><td>11</td><td>5–6</td></tr>
+<tr><td><strong>8″ round</strong></td><td>50.3 sq in</td><td>~6 cups</td><td>20</td><td>10–12</td></tr>
+<tr><td><strong>9″ round</strong></td><td>63.6 sq in</td><td>~8 cups</td><td>27</td><td>14</td></tr>
+<tr><td><strong>10″ round</strong></td><td>78.5 sq in</td><td>~10 cups</td><td>38</td><td>19–20</td></tr>
+<tr><td><strong>12″ round</strong></td><td>113.1 sq in</td><td>~15 cups</td><td>56</td><td>28–30</td></tr>
+<tr><td><strong>14″ round</strong></td><td>153.9 sq in</td><td>~21 cups</td><td>64</td><td>32</td></tr>
+<tr><td><strong>16″ round</strong></td><td>201.1 sq in</td><td>~28 cups</td><td>72</td><td>36</td></tr>
+</tbody></table>
+
+<h3>Square Cake Serving Chart</h3>
+<table><thead><tr><th>Cake Size</th><th>Pan Area</th><th>Batter Capacity</th><th>Wedding Servings (1″×2″)</th><th>Party Servings (2″×2″)</th></tr></thead><tbody>
+<tr><td><strong>6″ square</strong></td><td>36 sq in</td><td>~5 cups</td><td>18</td><td>8–9</td></tr>
+<tr><td><strong>8″ square</strong></td><td>64 sq in</td><td>~8 cups</td><td>32</td><td>16–18</td></tr>
+<tr><td><strong>9″ square</strong></td><td>81 sq in</td><td>~10 cups</td><td>40</td><td>20</td></tr>
+<tr><td><strong>10″ square</strong></td><td>100 sq in</td><td>~12 cups</td><td>50</td><td>24–25</td></tr>
+<tr><td><strong>12″ square</strong></td><td>144 sq in</td><td>~18 cups</td><td>72</td><td>36</td></tr>
+<tr><td><strong>14″ square</strong></td><td>196 sq in</td><td>~24 cups</td><td>98</td><td>48</td></tr>
+<tr><td><strong>16″ square</strong></td><td>256 sq in</td><td>~32 cups</td><td>128</td><td>64</td></tr>
+</tbody></table>
+
+<h3>Sheet Cake Serving Chart</h3>
+<p>Sheet cakes are the workhorses of large events — they're economical, easy to transport, and simple to cut into uniform portions. Most grocery store bakeries and commercial bakeries offer three standard sizes:</p>
+<table><thead><tr><th>Sheet Size</th><th>Dimensions</th><th>Pan Area</th><th>Wedding Servings</th><th>Party Servings</th></tr></thead><tbody>
+<tr><td><strong>Quarter Sheet</strong></td><td>9″ × 13″</td><td>117 sq in</td><td>40–50</td><td>20–25</td></tr>
+<tr><td><strong>Half Sheet</strong></td><td>13″ × 18″</td><td>234 sq in</td><td>70–80</td><td>40–50</td></tr>
+<tr><td><strong>Full Sheet</strong></td><td>18″ × 26″</td><td>468 sq in</td><td>130+</td><td>70–80</td></tr>
+</tbody></table>
+
+<h3>How to Calculate Servings for a Tiered Wedding Cake</h3>
+<p>Tiered cakes look complicated, but the math is simple: <strong>calculate the servings for each tier individually, then add them together.</strong></p>
+<p>For example, a classic 3-tier wedding cake with 6″ + 10″ + 14″ round tiers yields: 11 + 38 + 64 = <strong>113 wedding-size servings</strong>. For really large weddings (200+ guests), many couples save money by using a smaller display cake for the ceremonial cutting and supplementing with "kitchen cakes" — plain sheet cakes served from behind the scenes.<sup>[2]</sup></p>
+
+<h2>How to Convert Cake Recipes Between Pan Sizes</h2>
+<p>If your recipe calls for an 8-inch round pan but you only have a 9×13 sheet pan, you can't just pour the same batter in and hope for the best. The pan's <strong>surface area</strong> determines how much batter you need, and our <a href="/cooking-calculators/cake-calculator">cake pan converter</a> (use the "Pan Converter" tab above) does the math instantly.</p>
+
+<h3>The Pan Area Formula — Why Size Matters Exponentially</h3>
+<div class="explanation__highlight"><strong>Area of a Round Pan = π × (diameter ÷ 2)²</strong><br/><br/>8-inch round: 3.14 × 4² = <strong>50.3 sq in</strong><br/>10-inch round: 3.14 × 5² = <strong>78.5 sq in</strong><br/><br/><strong>That's a 56% increase in area — nearly 1.6× more batter needed!</strong></div>
+<p>Many home bakers assume that adding 2 inches to a pan diameter is a small change. In reality, because area scales with the <em>square</em> of the radius, even small diameter increases create massive volume changes.<sup>[3]</sup></p>
+
+<h3>Common Pan Substitution Chart</h3>
+<p>This quick-reference chart shows which pans are interchangeable without adjusting your recipe, based on volume equivalency data from King Arthur Baking and Sally's Baking Addiction.<sup>[3][5]</sup></p>
+<table><thead><tr><th>If Recipe Calls For</th><th>You Can Substitute</th><th>Multiplier</th><th>Notes</th></tr></thead><tbody>
+<tr><td><strong>8″ round</strong></td><td>8″ square</td><td>1.27×</td><td>Square has ~27% more area</td></tr>
+<tr><td><strong>8″ round</strong></td><td>9×5″ loaf pan</td><td>~1.0×</td><td>Near-identical volume</td></tr>
+<tr><td><strong>9″ round</strong></td><td>8″ square</td><td>~1.0×</td><td>Almost perfect 1:1 swap</td></tr>
+<tr><td><strong>9″ round</strong></td><td>9″ square</td><td>1.27×</td><td>Square is ~27% larger</td></tr>
+<tr><td><strong>Two 8″ rounds</strong></td><td>9×13″ sheet</td><td>1.17×</td><td>Popular layer-to-sheet swap</td></tr>
+<tr><td><strong>Two 9″ rounds</strong></td><td>9×13″ sheet</td><td>~1.0×</td><td>Very close match</td></tr>
+<tr><td><strong>10″ round</strong></td><td>9″ square</td><td>~1.0×</td><td>Near-perfect swap</td></tr>
+</tbody></table>
+<p><strong>Pro tip:</strong> If you're unsure whether a substitute will work, use the <strong>water test</strong>. Fill the original pan with water, then pour it into the new pan. If the water level is similar, the swap is safe. For precise baking, always <a href="/cooking-calculators/cups-to-grams-converter">convert cups to grams</a> and measure ingredients by weight.<sup>[5]</sup></p>
+
+<h2>Cake Baking Science — Temperature, Time & Texture</h2>
+<p>Understanding the physics of baking helps you troubleshoot problems before they happen — especially when scaling recipes up or down.</p>
+
+<h3>How Pan Size Affects Baking Time</h3>
+<p>When you scale a recipe to a larger pan, the batter layer is thicker, which changes how heat reaches the center.</p>
+<ul>
+<li><strong>Larger pans (thicker batter):</strong> Lower the oven temperature by 25°F and increase baking time. Use our <a href="/cooking-calculators/oven-to-air-fryer-converter">oven temperature converter</a> for precise adjustments. The lower temperature gives the center time to cook through before the edges burn.<sup>[4]</sup></li>
+<li><strong>Smaller pans (thinner batter):</strong> Check for doneness 5–10 minutes earlier than the recipe states.</li>
+<li><strong>Glass or ceramic pans:</strong> Reduce oven temperature by 25°F compared to metal pans — these materials retain heat longer and brown the edges more aggressively.<sup>[3]</sup></li>
+</ul>
+
+<h3>How Altitude Affects Cake Baking</h3>
+<p>If you live above 3,000–3,500 feet elevation, atmospheric pressure is lower, which causes gas bubbles to expand faster and your cake to rise too quickly — then collapse. The Auguste Escoffier School of Culinary Arts recommends these adjustments:<sup>[4]</sup></p>
+<table><thead><tr><th>Adjustment</th><th>What to Change</th><th>Why</th></tr></thead><tbody>
+<tr><td><strong>Leavening</strong></td><td>Reduce by 15–25%</td><td>Prevents over-expansion and collapse</td></tr>
+<tr><td><strong>Liquid</strong></td><td>Increase by 2–4 tbsp per cup</td><td>Compensates for faster evaporation. Convert precisely with our <a href="/cooking-calculators/tablespoons-to-cups-converter">tablespoons to cups converter</a></td></tr>
+<tr><td><strong>Sugar</strong></td><td>Reduce by 1–3 tbsp per cup</td><td>Excess sugar weakens cell walls at altitude</td></tr>
+<tr><td><strong>Flour</strong></td><td>Increase by 2–4 tbsp per cup</td><td>Strengthens gluten structure</td></tr>
+<tr><td><strong>Oven temp</strong></td><td>Increase by 15–25°F</td><td>Sets the structure before over-expansion</td></tr>
+</tbody></table>
+
+<h3>The Creaming Method — Why Room-Temperature Butter Matters</h3>
+<p>The creaming method (beating butter and sugar together until light and fluffy) is where the magic happens. You're physically trapping millions of tiny air bubbles in the fat matrix — and those air bubbles are exactly what expands during baking to create a light, tender crumb. If your butter is too cold, it won't incorporate air. If it's too warm and greasy, the air escapes. The ideal butter temperature is 65–68°F (18–20°C).</p>
+
+<h3>Overmixing & Gluten — The #1 Texture Mistake</h3>
+<p>Once you add flour to your wet ingredients, mix only until the flour <em>just</em> disappears. Every additional stir develops gluten strands that make the final cake tough, chewy, and dense — more bread than cake. Professional bakers fold flour in by hand with a spatula rather than using an electric mixer for this exact reason.</p>
+
+<h2>Professional Baker Tips for Perfect Cakes</h2>
+<ul>
+<li><strong>Measure ingredients by weight, not volume.</strong> A cup of flour can vary by 30% depending on how tightly it's packed. Use a kitchen scale and our <a href="/cooking-calculators/grams-to-cups-converter">grams to cups converter</a> for accurate measurements.</li>
+<li><strong>Use an oven thermometer.</strong> Most home oven dials are off by 25–50°F. A $10 oven thermometer is the single best investment you can make.</li>
+<li><strong>Never open the oven door in the first 20 minutes.</strong> A rush of cool air can collapse the cake's structure before the proteins and starches have set.</li>
+<li><strong>The toothpick test.</strong> Insert a wooden toothpick into the center of the cake. It should come out with a few moist crumbs clinging to it — not wet batter and not completely dry.</li>
+<li><strong>Never fill a pan more than ⅔ full.</strong> This leaves room for the batter to rise without overflowing. If you have excess batter after scaling, use it to make <a href="/cooking-calculators/teaspoons-to-tablespoons-converter">cupcakes</a> — typically 2–3 tablespoons of batter per cup.</li>
+<li><strong>Level your layers.</strong> Use a serrated knife or cake leveler to trim domed tops before frosting. This gives you a professional, flat finish.</li>
+</ul>
+<p>For precise recipe scaling when making cakes for large events, our <a href="/cooking-calculators/recipe-scale-calculator">recipe scale calculator</a> can instantly multiply or divide every ingredient in your recipe. Planning the full party menu? Our <a href="/cooking-calculators/pizza-calculator">pizza dough calculator</a> and <a href="/cooking-calculators/turkey-size-calculator">turkey size calculator</a> will help you estimate quantities for other dishes.<sup>[1][2]</sup></p>
+
+<h2>References</h2>
+<ol class="references-list">
+<li>Michelle Anderson, <em>Cake Sizes and Portion Sizes</em>, The Spruce Eats — <a href="https://www.thespruceeats.com/cake-sizes-and-portion-sizes-486914" target="_blank" rel="noopener noreferrer nofollow">thespruceeats.com</a></li>
+<li>Wilton, <em>Cake Serving Chart Guide</em> — <a href="https://www.wilton.com" target="_blank" rel="noopener noreferrer nofollow">wilton.com</a></li>
+<li>King Arthur Baking, <em>Cake Pan Sizes and Substitutions</em> — <a href="https://www.kingarthurbaking.com" target="_blank" rel="noopener noreferrer nofollow">kingarthurbaking.com</a></li>
+<li>Auguste Escoffier School of Culinary Arts, <em>High-Altitude Baking Adjustments</em> — <a href="https://www.escoffier.edu" target="_blank" rel="noopener noreferrer nofollow">escoffier.edu</a></li>
+<li>Sally's Baking Addiction, <em>Cake Pan Conversion Guide</em> — <a href="https://sallysbakingaddiction.com" target="_blank" rel="noopener noreferrer nofollow">sallysbakingaddiction.com</a></li>
+</ol>`,
+            highlight: "Rule of Thumb: Never fill any cake pan more than ⅔ full, regardless of how you scaled the recipe. Always leave room for the batter to rise.",
         },
         faq: [
-            { question: "Can I use an 8x8 square pan instead of a 9-inch round pan?", answer: "Yes, they hold almost exactly the same volume. An 8x8 square pan is 64 square inches, and a 9-inch round pan is 63.5 square inches. You can substitute them 1:1." },
-            { question: "Why did my scaled cake sink in the middle?", answer: "Usually this happens when baking a large cake (like a 10-inch or 12-inch round) at too high a temperature. The edges set immediately, while the massive center remains liquid. Try using a heating core or baking strips around the pan." },
-            { question: "How do I calculate the area of a rectangular pan?", answer: "Length × Width. A standard 9x13 sheet pan is 117 square inches. This is roughly double the volume of a single 9-inch round cake pan." }
+            { question: "How much cake do I need for 50 guests?", answer: "For a party with 50 guests using standard party-size portions (2\"×2\"), you'll need approximately two 10\" round cakes or one half-sheet cake (13\"×18\"). For a wedding with smaller portions (1\"×2\"), a single 12\" round cake will serve about 56 guests." },
+            { question: "How much cake do I need for 100 guests?", answer: "For 100 guests with standard party portions, you'll need approximately three 12\" round cakes, two half-sheet cakes, or one full-sheet cake (18\"×26\"). For a wedding, a three-tier cake with 6\", 10\", and 14\" tiers provides about 113 wedding-size servings." },
+            { question: "How many people does a 9-inch round cake serve?", answer: "A standard 9\" round cake (4\" tall) serves approximately 27 people with wedding-size portions (1\"×2\") or about 14 people with party-size portions (2\"×2\")." },
+            { question: "How many servings in a full sheet cake?", answer: "A full sheet cake (18\"×26\") serves approximately 70–80 people with standard party portions or 130+ with smaller wedding-style portions. Most grocery store bakeries offer full sheet cakes as economical options for large events." },
+            { question: "How do I convert a cake recipe to a different pan size?", answer: "Calculate the surface area of both pans, then divide the new pan's area by the original pan's area. The result is your batter multiplier. For example, converting from an 8\" round (50.3 sq in) to a 9×13\" sheet (117 sq in): 117 ÷ 50.3 = 2.33×. Multiply all ingredients by 2.33." },
+            { question: "Can I substitute a round pan for a square pan?", answer: "Yes. An 8\" round pan has approximately the same volume as a 9\" square pan, and a 9\" round pan has approximately the same volume as an 8\" square pan. These are near-perfect substitutions that require no batter adjustment." },
+            { question: "How do I adjust baking time when changing pan sizes?", answer: "When moving to a larger pan (thinner batter layer), check for doneness 5–10 minutes earlier than the original recipe. When moving to a smaller pan (thicker batter), increase baking time and lower the oven temperature by 25°F to prevent the edges from burning before the center is fully cooked." },
+            { question: "How do I calculate servings for a tiered wedding cake?", answer: "Calculate the servings for each tier individually using the serving chart, then add them together. For example, a 3-tier cake with 6\" (11 servings), 10\" (38 servings), and 14\" (64 servings) tiers yields approximately 113 wedding-size servings total." }
         ]
     },
     "recipe-scale-calculator": {

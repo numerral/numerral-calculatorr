@@ -25241,12 +25241,12 @@
   {
     "id": "cake-calculator",
     "slug": "cake-calculator",
-    "title": "Cake Calculator",
+    "title": "Cake Calculator — How Much Cake Do You Need?",
     "category": "cooking",
     "categorySlug": "cooking-calculators",
     "icon": "🍰",
     "calcType": "cooking-cake",
-    "description": "Scale your cake batter ingredients perfectly between different pan sizes (round, square, and sheet pans) without sacrificing thickness.",
+    "description": "Calculate how many cakes you need for a wedding, birthday, or party — with instant serving estimates for round, square, and sheet cakes. Plus: convert batter recipes between any pan size.",
     "stars": 5,
     "defaults": {
       "amount": 0,
@@ -25258,11 +25258,13 @@
       "rate": { "min": 0, "max": 0, "step": 0 },
       "tenure": { "min": 0, "max": 0, "step": 0 }
     },
-    "keywords": "cake pad calculator, cake scale calculator, adjust cake recipe to different pan, round to square pan conversion",
+    "keywords": "cake calculator, how much cake do I need, cake serving chart, cake servings per size, cake pan conversion, round cake servings, square cake servings, sheet cake servings, wedding cake servings, tiered cake calculator, cake pan size converter",
     "links": {
       "related": [
         "pizza-calculator",
-        "recipe-scale-calculator"
+        "recipe-scale-calculator",
+        "cups-to-grams-converter",
+        "turkey-size-calculator"
       ]
     }
   },
