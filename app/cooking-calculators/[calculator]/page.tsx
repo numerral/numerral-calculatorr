@@ -254,21 +254,73 @@ const HUB_CONTENT: Record<string, any> = {
         ]
     },
     "recipe-scale-calculator": {
-        subtitle: "Scale any recipe up or down with perfect mathematical precision. Whether doubling a cookie batch or halving a casserole, this tool automatically adjusts ingredient volumes and weights without messy kitchen fractions.",
+        subtitle: "Scale a recipe, adjust ingredients precisely, and change your final yield effortlessly using our professional recipe multiplier and scale conversion calculator.",
         explanation: {
-            heading: "How to Scale a Recipe",
-            contentHTML: `<p>Scaling a recipe manually often leads to fractional disasters — like trying to measure "0.33 of a quarter-cup." Our recipe scale calculator standardizes this process by applying a universal <strong>conversion factor</strong> across all ingredients.</p>
-<h3>The Scaling Formula</h3>
-<div class="explanation__highlight"><strong>Conversion Factor = Desired Yield ÷ Original Yield</strong><br/><br/>If a recipe serves 4 and you want it to serve 10:<br/>Factor = 10 / 4 = <strong>2.5</strong></div>
-<p>Every single ingredient (both weight and volume) is multiplied by 2.5.</p>
-<h3>Baking Limitations</h3>
-<p>While multiplying yields mathematically works perfectly, <strong>baking physics</strong> do not always scale linearly. If you double a cake recipe, you cannot simply double the baking time or temperature. A larger pan has a different surface-to-mass ratio, affecting thermal transfer. <strong>Always monitor larger batches physically, and rely on internal temperatures rather than structural timers.</strong></p>`,
-            highlight: "Rule of Thumb: Never scale spices (like salt and cayenne) strictly linearly on huge batches. Spices compound quickly. When quadrupling a recipe, start with 3× the spices and taste.",
+            heading: "How to Scale a Recipe Proportionally",
+            contentHTML: `<p>Whether you are a professional chef scaling a commercial recipe for a 200-guest catering event, or a home cook trying to cut a batch of cookies in half, manual recipe scaling is notorious for causing mathematical errors. Specifically in the USA, where recipes rely heavily on US Customary Units (fractions of cups, tablespoons, and ounces), improper math leads to ruined bakes.</p>
+            <p>Our recipe multiplier eliminates the fractional guesswork by automatically converting values, but understanding the core math is critical for any cook.</p>
+
+            <h3>Step One: Determining the Conversion Factor</h3>
+            <p>The foundation of all recipe scaling is finding your <strong>conversion factor</strong> (often called the multiplying factor). Industry professionals refer to the number of portions or total volume a recipe produces as its <strong>yield</strong>.</p>
+            <div class="explanation__highlight">
+                <strong>Conversion Factor = Desired Yield ÷ Original Recipe Yield</strong><br/><br/>
+                <em>Example 1:</em> A chili recipe feeds 4 people. You have 10 guests coming.<br/>
+                10 ÷ 4 = <strong>2.5 (Conversion Factor)</strong><br/><br/>
+                <em>Example 2:</em> A brownie recipe yields 24 squares, but you only want 12.<br/>
+                12 ÷ 24 = <strong>0.5 (Conversion Factor)</strong>
+            </div>
+
+            <h3>Step Two: Calculating Scaled Ingredients</h3>
+            <p>Once you have the conversion factor, you multiply the amount of every single ingredient in the original recipe by this number.</p>
+            <ul>
+                <li>If the recipe calls for 3 tablespoons of olive oil, and your factor is 2.5:<br/><code>3 × 2.5 = 7.5 tablespoons</code>.</li>
+                <li>If the recipe calls for 1.5 cups of flour, and your factor is 0.5:<br/><code>1.5 × 0.5 = 0.75 cups (or 3/4 cup)</code>.</li>
+            </ul>
+
+            <h3>Step Three: Converting Kitchen Measurements (The US Customary Rule)</h3>
+            <p>When you scale a recipe aggressively, the original units of measurement quickly become impractical. If your math tells you to use "16 tablespoons of butter," you should convert that up to a more logical unit.</p>
+            <p><strong>Professional Kitchen Conversions:</strong></p>
+            <ul>
+                <li><strong>Ounces to Pounds:</strong> If multiplying a recipe takes your ground beef requirement from 4 ounces to 24 ounces, convert it to pounds. (24 oz ÷ 16 = <strong>1.5 lbs</strong>).</li>
+                <li><strong>Tablespoons to Cups:</strong> Instead of measuring 16 tablespoons of milk, our culinary logic dictates you convert it to <strong>1 Cup</strong>.</li>
+                <li><strong>Teaspoons to Tablespoons:</strong> 3 teaspoons equals exactly 1 tablespoon. Use our <a href="/cooking-calculators/teaspoons-to-tablespoons-converter">Teaspoons to Tablespoons Converter</a> for granular fractional scaling.</li>
+            </ul>
+
+            <h3>Measuring by Weight vs. Volume</h3>
+            <p>When scaling baked goods (like breads, cakes, and pastries), scaling up <strong>volume measurements</strong> heavily compounds your margin of error. Dry ingredients, especially flour and powdered sugar, have highly variable densities based on how much they are compacted or aerated in the bag.</p>
+            <p><strong>PRO TIP:</strong> Never scoop flour directly from the bag using a measuring cup. It compacts the flour, adding up to 25% more mass per cup. Instead, use a whisk to aerate the dry ingredient, spoon it into the cup, and level it with a knife.</p>
+            <p>According to the National Institute of Standards and Technology (NIST), for absolute accuracy in scaling, dry ingredients should be weighed rather than measured by volume. A digital kitchen scale is the most valuable tool you can buy. You can instantly bridge this gap using our <a href="/cooking-calculators/cups-to-grams-converter">Cups to Grams Converter</a> or <a href="/cooking-calculators/grams-to-cups-converter">Grams to Cups Converter</a> to find exact masses for over 100 common baking ingredients based on their specific physical densities.</p>
+
+            <h3>How Cooking and Baking Times Change</h3>
+            <p>Multiplying a recipe's yield mathematically works perfectly for the ingredients, but <strong>thermodynamics do not scale linearly</strong>. You cannot simply multiply your oven time or temperature by your conversion factor.</p>
+            <ul>
+                <li><strong>Double yield in the same pan?</strong> It will be twice as deep. The edges will burn before the core reaches a safe temperature. You must lower the heat and extend the cooking time.</li>
+                <li><strong>Double yield split across two pans?</strong> The baking time remains largely the same, but the oven's ambient heat recovery will be significantly slower.</li>
+                <li><strong>Using an Air Fryer?</strong> Because of the violent convection physics, you must alter times entirely. Use our <a href="/cooking-calculators/oven-to-air-fryer-converter">Oven to Air Fryer Conversion Calculator</a> to scale recipes specifically for countertop fryers.</li>
+            </ul>
+
+            <h3>Scaling Limits: Spices, Leaveners, and Alcohol</h3>
+            <p>While base ingredients (flour, meats, stock, vegetables) scale reliably, certain chemical compounds do not behave linearly at massive margins:</p>
+            <ul>
+                <li><strong>Spices (Salt, Cayenne, Garlic Powder):</strong> Capsaicin and sodium compound aggressively. If quadrupling a chili recipe, start by multiplying spices by 3, then taste. Over-salting is the #1 mistake in bulk cooking.</li>
+                <li><strong>Leavening Agents (Baking Soda/Powder):</strong> In bulk yeast doughs or massive cakes, you often need slightly <em>less</em> leavening agent proportionally than the direct math suggests, due to increased chemical surface-area activity.</li>
+                <li><strong>Alcohol and Acids:</strong> Reductions involving wine or vinegar will take significantly longer to evaporate in a larger pot, altering the final flavor profile.</li>
+            </ul>
+
+            <h3 class="mt-8 border-t border-gray-200 dark:border-gray-800 pt-6">References & Culinary Citations</h3>
+            <ul class="text-sm text-gray-500 dark:text-gray-400 space-y-2 list-disc pl-5">
+                <li><em>Handbook 44 (HB 44)</em>. National Institute of Standards and Technology (NIST) - Specifications, Tolerances, and Other Technical Requirements for Weighing and Measuring Devices.</li>
+                <li><em>Culinary Math Fundamentals</em>. The proportional laws of recipe scaling, yield derivation, and fractional division.</li>
+                <li><em>FSIS Roasting Guidelines</em>. United States Department of Agriculture (USDA) - Core temperature protocols for scaled batch cooking.</li>
+            </ul>`,
+            highlight: "Kitchen Arithmetic: The fundamental step to manually scaling any difficult USA Customary ingredient is converting it to its smallest whole unit first. E.g., rather than scaling '1 1/4 cups', convert it entirely to '20 tablespoons' or '10 fluid ounces' before applying your multiplier.",
         },
         faq: [
-            { question: "Can I just multiply everything in a recipe by two?", answer: "Mathematically, yes. Practically, you must be careful with strong spices, baking soda, and yeast. These ingredients compound, and doubling them can sometimes overpower the dish. It is safer to scale them by 1.5x and adjust to taste." },
-            { question: "How do I cut a recipe in half?", answer: "Divide your desired yield by the original yield to get 0.5. Multiply all ingredients by 0.5. Half of 3/4 cup is 3/8 cup (which is exactly 6 tablespoons)." },
-            { question: "Does baking time scale when I double a recipe?", answer: "No! Doubling a cake recipe and using a larger pan will require more time, but not double the time. You must bake until an internal thermometer reads the correct temperature (e.g., 200°F for bread)." }
+            { question: "How do I cut a recipe in half if it calls for 1 egg?", answer: "This is a notorious baking dilemma. Crack the egg into a small bowl, whisk it thoroughly until the yolk and white are completely homogenized, and then measure out exactly 2 tablespoons of the mixture. One standard large US egg yields roughly 3 to 4 tablespoons of liquid volume." },
+            { question: "Can I just multiply everything in a recipe by two?", answer: "Mathematically, yes. Practically, you must be careful with strong spices, salt, and leaveners. These chemical components compound, and strictly doubling them can sometimes overpower the dish or cause a cake to collapse. It is safer to scale intense spices by 1.5x and adjust to taste." },
+            { question: "What is the formula to scale a recipe?", answer: "The formula is: New Yield ÷ Old Yield = Conversion Factor. Then, multiply every single ingredient amount by that factor. If a recipe makes 6 cookies and you want 15, the factor is 15 ÷ 6 = 2.5." },
+            { question: "How do I scale an 8x8 pan recipe to a 9x13 pan?", answer: "An 8x8 square pan holds 64 square inches of volume. A 9x13 pan holds 117 square inches. 117 ÷ 64 = 1.82. You should multiply all ingredients in the recipe by 1.8 (or scale up by 80%) to achieve the exact same thickness in the larger pan." },
+            { question: "Does baking time scale when I double a recipe?", answer: "No! Never double the time if you double the recipe. If you split the doubled batter into two identical pans, the cooking time remains essentially the same. If you put it into one massive pan, you must lower the temperature by roughly 25°F and bake longer until a thermometer registers the correct internal finish." }
         ]
     },
     "oven-to-air-fryer-converter": {
