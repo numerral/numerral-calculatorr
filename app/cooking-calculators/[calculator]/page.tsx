@@ -472,26 +472,130 @@ const HUB_CONTENT: Record<string, any> = {
         faq: []
     },
     "pizza-calculator": {
-        subtitle: "Calculate exact ingredient weights for the perfect Neapolitan, New York, or Chicago style pizza dough using professional baker's percentages.",
+        subtitle: "Calculate how many pizzas to order for your party — with size charts, slices per person, and surface area math. Plus: a professional baker's dough calculator for Neapolitan, New York, and Detroit-style pizza.",
         explanation: {
-            heading: "What is Baker's Percentage?",
-            contentHTML: `<p>Baker's percentage is a mathematical method used by professional bakers and pizzaiolos to formulaically balance dough. Instead of measuring by volume, <strong>every ingredient is expressed as a percentage of the total flour weight.</strong></p>
-<h3>Understanding Hydration</h3>
-<div class="explanation__highlight"><strong>Hydration = (Water Weight ÷ Flour Weight) × 100</strong><br/><br/>If you use 1000g of flour and 650g of water, your dough is exactly <strong>65% hydration.</strong></div>
-<p>Different pizza styles demand precise hydration levels:</p>
+            heading: "How Many Pizzas Do You Need? — Complete Party Planning & Dough Guide",
+            contentHTML: `<p>Whether you're ordering pizza for a Super Bowl party, a kid's birthday, a corporate lunch, or a casual Friday night, the question is always the same: <strong>how many pizzas should I order?</strong> Get it wrong and you're either scrambling for late-night delivery or staring at eight boxes of cold leftovers.</p>
+<p>This comprehensive guide covers the proven ordering formulas used by event planners, the <a href="/cooking-calculators/recipe-scale-calculator">math behind pizza sizing</a>, and — for home bakers — the exact dough calculations for every major pizza style.<sup>[1]</sup></p>
+
+<h2>The 3-Slice Rule — How Many Slices Per Person?</h2>
+<p>The universal starting point for pizza estimation is the <strong>3-slice rule</strong>:</p>
+<div class="explanation__highlight"><strong>Plan for 3 slices per adult and 2 slices per child.</strong><br/><br/>This assumes a standard large (14″) pizza cut into 8–10 slices, with pizza as the main course and no significant sides.</div>
+<p>However, this rule needs adjustment based on context:</p>
 <ul>
-<li><strong>Neapolitan (Wood-fired):</strong> ≈ 58% - 65% hydration. High heat means less water is needed to avoid a gummy interior.</li>
-<li><strong>New York Style (Home Oven):</strong> ≈ 60% - 68% hydration. The standard for foldable, crispy crusts.</li>
-<li><strong>Detroit / Pan Pizza:</strong> ≈ 70% - 80%+ hydration. High water content creates massive air bubbles within thick crusts.</li>
+<li><strong>Light appetite (2 slices/adult):</strong> You're serving heavy appetizers, salads, or other main dishes alongside the pizza. Common at cocktail parties, corporate events, and holiday buffets.</li>
+<li><strong>Average appetite (3 slices/adult):</strong> Pizza is the main food. Standard for birthday parties, game day, and casual dinners.</li>
+<li><strong>Hungry crowd (4+ slices/adult):</strong> Teenagers, athletes, late-night events, or any situation where pizza is literally the only food. If you're feeding a college dorm or a sports team, plan for 4–5 slices per person.<sup>[1]</sup></li>
 </ul>
-<h3>Salt and Yeast</h3>
-<p>Salt is typically fixed around <strong>2% to 3%</strong> of flour weight. This regulates fermentation and strengthens the gluten network. Yeast amounts vary drastically based on fermentation time (e.g., a 72-hour cold ferment might only use 0.2% yeast, whereas a 2-hour rapid ferment might require 1.5%).</p>`,
-            highlight: "Pro Tip: Always weigh your ingredients in grams. The margin of error when measuring flour or water by volume (cups) is easily high enough to completely ruin a high-hydration dough.",
+
+<h2>The Pizza Ordering Formula</h2>
+<p>The simplified formula used by professional event planners is:</p>
+<div class="explanation__highlight"><strong>Pizzas = (Adults × 3 + Children × 2) ÷ Slices Per Pizza</strong><br/><br/>For a party with 20 adults ordering 14″ large pizzas (10 slices each): (20 × 3) ÷ 10 = <strong>6 pizzas</strong>. Add one extra for safety = <strong>7 pizzas</strong>.</div>
+<p>The classic shortcut version — popularized by pizzerias across the country — is even simpler: <strong>p = 3a ÷ 8</strong>, where <em>p</em> is the number of pizzas and <em>a</em> is the number of adult guests. This assumes 3 slices/person and 8 slices/pizza.<sup>[2]</sup></p>
+
+<h2>Pizza Size Chart — Slices, Surface Area & Servings</h2>
+<p>Pizza is a circle, and circles obey the <strong>area formula: A = π × r²</strong>. This means a pizza's actual food content scales with the <em>square</em> of the radius — not the diameter. A 16″ pizza is not "twice as much food" as an 8″; it's <strong>four times as much</strong>.</p>
+<table><thead><tr><th>Pizza Size</th><th>Diameter</th><th>Area (sq in)</th><th>Typical Slices</th><th>Feeds (avg)</th></tr></thead><tbody>
+<tr><td><strong>Small</strong></td><td>10″</td><td>78.5 sq in</td><td>6 slices</td><td>1–2 people</td></tr>
+<tr><td><strong>Medium</strong></td><td>12″</td><td>113.1 sq in</td><td>8 slices</td><td>2–3 people</td></tr>
+<tr><td><strong>Large</strong></td><td>14″</td><td>153.9 sq in</td><td>8–10 slices</td><td>3–4 people</td></tr>
+<tr><td><strong>Extra Large</strong></td><td>16″</td><td>201.1 sq in</td><td>10–12 slices</td><td>4–5 people</td></tr>
+<tr><td><strong>XXL / Party</strong></td><td>18″</td><td>254.5 sq in</td><td>12–14 slices</td><td>5–7 people</td></tr>
+</tbody></table>
+<p><em>Area calculated as π × (diameter ÷ 2)². Slice counts vary by restaurant and cutting style. Always confirm with your pizzeria.</em></p>
+
+<h2>How Many Pizzas to Order — By Guest Count</h2>
+<p>The following chart shows how many <strong>14″ large pizzas (10 slices each)</strong> to order based on the number of guests and hunger level:</p>
+<table><thead><tr><th>Guests</th><th>Light Appetite (2 slices)</th><th>Average (3 slices)</th><th>Hungry Crowd (4 slices)</th></tr></thead><tbody>
+<tr><td><strong>5</strong></td><td>1 pizza</td><td>2 pizzas</td><td>2 pizzas</td></tr>
+<tr><td><strong>10</strong></td><td>2 pizzas</td><td>3 pizzas</td><td>4 pizzas</td></tr>
+<tr><td><strong>15</strong></td><td>3 pizzas</td><td>5 pizzas</td><td>6 pizzas</td></tr>
+<tr><td><strong>20</strong></td><td>4 pizzas</td><td>6 pizzas</td><td>8 pizzas</td></tr>
+<tr><td><strong>25</strong></td><td>5 pizzas</td><td>8 pizzas</td><td>10 pizzas</td></tr>
+<tr><td><strong>30</strong></td><td>6 pizzas</td><td>9 pizzas</td><td>12 pizzas</td></tr>
+<tr><td><strong>40</strong></td><td>8 pizzas</td><td>12 pizzas</td><td>16 pizzas</td></tr>
+<tr><td><strong>50</strong></td><td>10 pizzas</td><td>15 pizzas</td><td>20 pizzas</td></tr>
+</tbody></table>
+<p><em>These figures assume large 14″ pizzas. For 12″ medium pizzas, add 30–40% more pies. For 18″ party-size pizzas, reduce by about 35%. If you're also hosting a celebration, check our <a href="/cooking-calculators/cake-calculator">cake calculator</a> for dessert.</em></p>
+
+<h2>Why Pizza Size Matters — The Surface Area Surprise</h2>
+<p>This is the most counter-intuitive fact in pizza math, and it goes viral every few years: <strong>one 18-inch pizza contains more pizza than two 12-inch pizzas combined.</strong><sup>[3]</sup></p>
+<table><thead><tr><th>Comparison</th><th>Total Area</th><th>Result</th></tr></thead><tbody>
+<tr><td><strong>2 × 12″</strong> vs. <strong>1 × 18″</strong></td><td>226 vs. 254 sq in</td><td>The single 18″ has <strong>12% MORE pizza</strong></td></tr>
+<tr><td><strong>2 × 10″</strong> vs. <strong>1 × 14″</strong></td><td>157 vs. 154 sq in</td><td>Nearly identical — two smalls barely beat one large</td></tr>
+<tr><td><strong>3 × 10″</strong> vs. <strong>1 × 18″</strong></td><td>236 vs. 254 sq in</td><td>The single 18″ <strong>STILL wins</strong></td></tr>
+</tbody></table>
+<p><em>This happens because area scales with r², not r. Doubling the diameter quadruples the area. This is why experienced party planners always order the largest available size — you get more food per dollar.</em><sup>[3]</sup></p>
+
+<h2>Pro Tips for Ordering Pizza for a Group</h2>
+<h3>Always Order the Largest Size</h3>
+<p>Price-per-square-inch drops dramatically as pizza size increases. A typical 18″ pizza costs only 30–50% more than a 12″ but delivers 125% more food. This is the single most cost-effective decision you can make when ordering for a group.</p>
+<h3>Mix Toppings Strategically — The 70/30 Rule</h3>
+<p>Professional caterers recommend the <strong>70/30 split</strong>: 70% of your pizzas should be crowd-pleasers (pepperoni, cheese, margherita) and 30% can be specialty or adventurous options. This prevents the "nobody's eating the anchovy pizza" problem.</p>
+<h3>Account for Dietary Restrictions</h3>
+<p>Always order at least one gluten-free or vegan option for groups over 15. At that size, there's almost certainly someone with a dietary restriction. Label boxes clearly.</p>
+<h3>Pick Up Instead of Delivery</h3>
+<p>Save 15–25% on fees and tips by picking up your order. Call ahead 30–60 minutes before your event. Many pizzerias offer bulk discounts if you call directly rather than using delivery apps. If you're also hosting Thanksgiving or Easter, our <a href="/cooking-calculators/turkey-size-calculator">turkey size calculator</a> and <a href="/cooking-calculators/ham-calculator">ham calculator</a> can help with those meals too.</p>
+
+<h2>How to Make Pizza Dough from Scratch — Baker's Percentages</h2>
+<p>If you prefer homemade pizza, the <strong>Baker's Lab</strong> mode above calculates exact ingredient weights using the <a href="/cooking-calculators/cups-to-grams-converter">professional baker's percentage system</a>.</p>
+<h3>What Is Baker's Percentage?</h3>
+<p>Baker's percentage is a formula system where the total flour weight is always 100%, and every other ingredient is expressed relative to that flour weight. If you use 500g of flour and 325g of water, your hydration is 65%.<sup>[5]</sup></p>
+<div class="explanation__highlight"><strong>Hydration = (Water Weight ÷ Flour Weight) × 100</strong><br/><br/>Higher hydration = lighter, airier crumb with larger bubbles. Lower hydration = denser, chewier, easier-to-handle dough.</div>
+
+<h3>Hydration Guide by Pizza Style</h3>
+<ul>
+<li><strong>Neapolitan (58–65%):</strong> Classic wood-fired style. The low hydration creates a soft, pillowy cornicione (rim) that chars beautifully at 800–900°F. Use Italian 00 flour.<sup>[4]</sup></li>
+<li><strong>New York (60–68%):</strong> Thin, foldable, with a crispy underside. Often includes 2–3% olive oil and a touch of sugar for browning in a standard home oven at 500–550°F.</li>
+<li><strong>Detroit / Pan (70–80%+):</strong> Ultra-high hydration creates massive air pockets in a thick, focaccia-like crust. Baked in an oiled steel pan, producing crispy, fried edges. Use bread flour for extra structure.</li>
+<li><strong>Thin Crust (55–60%):</strong> Cracker-crisp with minimal chew, rolled thin rather than hand-stretched. Lower hydration makes the dough easy to roll without springing back.</li>
+</ul>
+
+<h3>Dough Ball Weight Guide</h3>
+<p>How much dough per pizza depends on the size and thickness you want. Use this as a starting point and adjust based on your oven:</p>
+<ul>
+<li><strong>10″ pizza:</strong> 180–200g dough ball</li>
+<li><strong>12″ pizza:</strong> 250–280g dough ball</li>
+<li><strong>14″ pizza:</strong> 300–330g dough ball</li>
+<li><strong>16″ pizza:</strong> 350–380g dough ball</li>
+</ul>
+<p>Use our <a href="/cooking-calculators/grams-to-cups-converter">grams to cups converter</a> if your recipe lists ingredients by volume, and our <a href="/cooking-calculators/oven-to-air-fryer-converter">oven to air fryer converter</a> for reheating leftover pizza to perfection.</p>
+
+<h2>Pizza Dough Recipe by Style — Comparison Chart</h2>
+<table><thead><tr><th>Style</th><th>Hydration</th><th>Salt</th><th>Yeast</th><th>Oil</th><th>Oven Temp</th><th>Ball Weight</th><th>Key Trait</th></tr></thead><tbody>
+<tr><td><strong>Neapolitan</strong></td><td>58–65%</td><td>2.5–3%</td><td>0.1–0.3%</td><td>0%</td><td>800–900°F</td><td>250g</td><td>Soft, blistered, leopard-spotted</td></tr>
+<tr><td><strong>New York</strong></td><td>60–68%</td><td>2–2.5%</td><td>0.3–0.5%</td><td>2–3%</td><td>500–550°F</td><td>280g</td><td>Thin, foldable, crispy</td></tr>
+<tr><td><strong>Detroit / Pan</strong></td><td>70–80%</td><td>2–2.5%</td><td>0.5–1%</td><td>3–5%</td><td>475–525°F</td><td>350g</td><td>Thick, airy, fried edges</td></tr>
+<tr><td><strong>Thin Crust</strong></td><td>55–60%</td><td>2%</td><td>0.3–0.5%</td><td>1–2%</td><td>475–550°F</td><td>200g</td><td>Cracker-crisp, minimal chew</td></tr>
+</tbody></table>
+<p><em>Salt and yeast percentages are relative to flour weight (baker's percentage). Fermentation time dramatically affects yeast amounts — a 24-hour cold ferment needs about 0.2% yeast, while a 2-hour room-temp rise may need 1%+. Use our <a href="/cooking-calculators/teaspoons-to-tablespoons-converter">teaspoons to tablespoons converter</a> for small measurement conversions, and our <a href="/cooking-calculators/grams-to-tablespoons-converter">grams to tablespoons converter</a> if your recipe lists yeast by weight.</em></p>
+
+<h3>Pro Tip: Always Weigh in Grams</h3>
+<p>The margin of error when measuring flour by volume (cups) can be as high as 20–30% depending on scooping technique, humidity, and flour brand. For high-hydration doughs especially, this difference between 350g and 450g of flour in a "cup" will ruin your dough. Use a digital kitchen scale and measure everything in grams.<sup>[5]</sup></p>
+
+<h3>Salt and Yeast — The Hidden Science</h3>
+<p>Salt does far more than add flavor. At 2–3% of flour weight, salt <strong>tightens the gluten network</strong>, making dough more elastic and less prone to tearing. It also acts as a natural antioxidant and slows yeast activity, preventing over-fermentation during long cold rises.<sup>[5]</sup></p>
+<p>Yeast amounts vary enormously based on your fermentation plan. A traditional Neapolitan pizza uses as little as 0.1–0.2% yeast for a 24–72 hour cold ferment, producing complex, slightly tangy flavors. A rapid 2-hour room-temperature rise requires 1–1.5% yeast but sacrifices flavor development. Use our <a href="/cooking-calculators/recipe-scale-calculator">recipe scale calculator</a> if you need to scale a dough recipe up or down for different batch sizes.</p>
+
+<h3>References</h3>
+<ol class="references-list">
+<li>Brittany Burke, <em>The Right Amount of Pizza to Order for a Party</em>, The Kitchn. <a href="https://www.thekitchn.com/the-right-amount-of-pizza-to-order-for-a-party-242283" target="_blank" rel="noopener noreferrer">thekitchn.com</a></li>
+<li>C. Fichter, <em>How Many Pizzas Do You Need to Order?</em>, Green Lantern Pizza. <a href="https://greenlanternpizza.com/blog/how-many-pizzas-do-you-need/" target="_blank" rel="noopener noreferrer">greenlanternpizza.com</a></li>
+<li>J. Kenji López-Alt, <em>The Pizza Lab: The Math of Pizza Sizes</em>, Serious Eats. <a href="https://www.seriouseats.com/" target="_blank" rel="noopener noreferrer">seriouseats.com</a></li>
+<li><em>Pizza Dough Hydration Guide</em>, Ooni Pizza Ovens. <a href="https://ooni.com/" target="_blank" rel="noopener noreferrer">ooni.com</a></li>
+<li><em>Baker's Percentage — Professional Dough Formulas</em>, Caputo Flour. <a href="https://www.caputoflour.com/" target="_blank" rel="noopener noreferrer">caputoflour.com</a></li>
+</ol>`,
+            highlight: "Quick Rule: Order 3 slices per adult and 2 per child. For 14″ large pizzas (10 slices), that's roughly 1 pizza for every 3 adults.",
         },
         faq: [
-            { question: "Why do my dough balls end up sticky and unworkable?", answer: "Your hydration level is likely too high for your flour's protein content. Try dropping the hydration back to 60%. High protein flour (like Bread Flour or 00) can absorb significantly more water than standard All-Purpose flour." },
-            { question: "How much dough is needed for a 12-inch pizza?", answer: "A classic 12-inch Neapolitan pizza requires about 250g to 260g of dough. For a thicker, more American style 12-inch, you might want 300g to 330g of dough." },
-            { question: "What does salt do in pizza dough besides add flavor?", answer: "Salt tightens the gluten structure, making the dough less extensible (stretchy) but more elastic (strong). It also acts as an antioxidant and slows down the activity of the yeast, preventing over-fermentation." }
+            { question: "How many pizzas do I need for 20 adults?", answer: "Plan for 3 slices per adult. For 20 adults, that's 60 slices. A large 14\" pizza has 8–10 slices, so you'll need approximately 6 to 8 large pizzas. For heavy eaters (teens, athletes), increase to 4 slices per person — about 8–10 pizzas." },
+            { question: "How many slices are in a large pizza?", answer: "Most large (14\") pizzas are cut into 8 to 10 slices. Some chains cut into 12 slices using a \"party cut\" (squares instead of triangles). Always confirm with your pizzeria before ordering." },
+            { question: "How much bigger is a 16-inch pizza than a 12-inch?", answer: "A 16\" pizza has 201 square inches of surface area versus 113 square inches for a 12\" — that's 78% more pizza, not just 33% more. Pizza area scales with the square of the radius (π × r²), not linearly." },
+            { question: "Is it cheaper to order two medium pizzas or one large?", answer: "Almost always one large pizza is the better value. A 14\" pizza has 154 sq in of pizza, while two 10\" pizzas have only 157 sq in combined — nearly the same amount of food but the two mediums typically cost 50–70% more." },
+            { question: "How much dough do I need per pizza?", answer: "For a standard 12\" pizza: about 250g (8.8 oz) of dough. For a 14\" large: about 280–300g. For a thick Detroit-style pan pizza: 350–400g. The exact amount depends on your desired crust thickness and style." },
+            { question: "What hydration percentage should I use for pizza dough?", answer: "Neapolitan: 58–65%. New York: 60–68%. Detroit/Pan: 70–80%+. Higher hydration creates airier, lighter crusts but makes the dough stickier and harder to handle. Start at 62% if you're a beginner." },
+            { question: "How many slices of pizza should each person eat?", answer: "The standard estimate is 3 slices per adult and 2 slices per child for a standard meal. Reduce to 2 per adult if serving sides. Increase to 4 per adult for teen parties, game day, or late-night events." },
+            { question: "What is the 3/8 pizza formula?", answer: "The quick formula for ordering pizza is: Pizzas = (3 × number of guests) ÷ 8. This assumes 3 slices per person and 8 slices per large pizza. For 20 guests: (3 × 20) ÷ 8 = 7.5, round up to 8 pizzas." }
         ]
     },
     "cake-calculator": {

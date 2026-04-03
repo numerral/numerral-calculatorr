@@ -25213,12 +25213,12 @@
   {
     "id": "pizza-calculator",
     "slug": "pizza-calculator",
-    "title": "Pizza Dough Calculator",
+    "title": "Pizza Calculator — How Many Pizzas to Order for a Party",
     "category": "cooking",
     "categorySlug": "cooking-calculators",
     "icon": "🍕",
     "calcType": "cooking-pizza",
-    "description": "Calculate exact ingredient weights for the perfect Neapolitan, New York, or Chicago style pizza dough using professional baker's percentages.",
+    "description": "Calculate how many pizzas to order for your party — with size charts, slices per person, and surface area math. Plus: a professional baker's dough calculator for Neapolitan, New York, and Detroit-style pizza.",
     "stars": 5,
     "defaults": {
       "amount": 0,
@@ -25230,11 +25230,15 @@
       "rate": { "min": 0, "max": 0, "step": 0 },
       "tenure": { "min": 0, "max": 0, "step": 0 }
     },
-    "keywords": "pizza dough calculator, pizza calculator, neapolitan dough math, baker's percentage pizza, pizza dough recipe scaling",
+    "keywords": "pizza calculator, how many pizzas to order, pizza size chart, how many slices in a large pizza, pizza for a party calculator, pizza dough calculator, pizza ordering formula, how many pizzas for 20 people, pizza surface area, neapolitan dough recipe, baker's percentage pizza",
     "links": {
       "related": [
         "recipe-scale-calculator",
-        "cups-to-grams-converter"
+        "cups-to-grams-converter",
+        "cake-calculator",
+        "turkey-size-calculator",
+        "ham-calculator",
+        "oven-to-air-fryer-converter"
       ]
     }
   },
