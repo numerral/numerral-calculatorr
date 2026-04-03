@@ -15,6 +15,7 @@ import { TR_CALCULATORS } from "@/data/tr-calculators";
 import { DE_CALCULATORS } from "@/data/de-calculators";
 import { CH_CALCULATORS } from "@/data/ch-calculators";
 import { KSA_PAGES, UAE_PAGES, IN_PAGES } from "@/lib/geo-seo";
+import { generateStaticParams as getHeightParams } from "@/app/height-converter/[slug]/page";
 
 export const dynamic = "force-static";
 
@@ -141,6 +142,13 @@ function buildEntries(): SitemapEntry[] {
     // ─── KSA glossary and guides ───
     entries.push({ loc: canonicalUrl("/ksa/glossary"), lastmod: now });
     entries.push({ loc: canonicalUrl("/ksa/guides"), lastmod: now });
+
+    // ─── Height Converter Programmatic URLs ───
+    entries.push({ loc: canonicalUrl("/height-converter"), lastmod: now });
+    const heightSlugs = getHeightParams();
+    for (const h of heightSlugs) {
+        entries.push({ loc: canonicalUrl(`/height-converter/${h.slug}`), lastmod: now });
+    }
 
     return entries;
 }
