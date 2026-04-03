@@ -345,25 +345,160 @@ const HUB_CONTENT: Record<string, any> = {
         ]
     },
     "turkey-thawing-time-calculator": {
-        subtitle: "Find out exactly how many days a frozen turkey needs to defrost safely in the refrigerator, or how many hours in cold water.",
+        subtitle: "Calculate exactly how long to thaw your turkey safely — with refrigerator, cold water, and microwave methods, plus a countdown date planner to time your thaw perfectly for Thanksgiving.",
         explanation: {
-            heading: "Safe Thawing Protocols",
-            contentHTML: `<p>Thawing a turkey incorrectly on a kitchen counter places the exterior of the bird in the "Danger Zone" (40°F - 140°F) for days while the core remains frozen, allowing catastrophic bacterial growth.</p>
-<h3>Refrigerator Thawing (Recommended)</h3>
-<div class="explanation__highlight"><strong>Rule: Allow 24 hours (1 day) of fridge thawing for every 4 to 5 pounds of turkey.</strong></div>
-<p>This is the safest method. A 20lb turkey will take 4 to 5 full days to thaw in a 40°F refrigerator. Because the entire environment is below the danger zone, the turkey can safely sit in the fridge for an additional 2 days after it is completely thawed before cooking.</p>
-<h3>Cold Water Thawing (Emergency Method)</h3>
-<p>If you forgot to take the turkey out, you can thaw it rapidly by submerging it in cold tap water.</p>
+            heading: "How Long Does It Take to Thaw a Turkey? — Complete Defrosting Guide",
+            contentHTML: `<p>Every Thanksgiving, millions of Americans face the same question: <strong>when should I start thawing my turkey?</strong> Start too late and you're scrambling with cold water in the sink at midnight. Start too early and you're Googling "how long can a thawed turkey sit in the fridge" in a panic.</p>
+<p>This comprehensive guide covers the three USDA-approved thawing methods, the exact formulas behind each one, and — critically — the food safety science that keeps your family safe. Whether you're thawing a 12-pound bird for a small gathering or a 24-pound monster for the whole family, the calculator above handles the math. This guide explains <em>why</em> the math works.<sup>[1]</sup></p>
+
+<h2>The 3 Safe Thawing Methods (USDA-Approved)</h2>
+<p>According to the United States Department of Agriculture, there are exactly <strong>three safe ways to thaw a frozen turkey</strong> — and all three keep the meat below the critical 40°F bacterial danger threshold at all times.<sup>[1]</sup></p>
+<div class="explanation__highlight"><strong>The Golden Rules:</strong><br/><br/>❄️ <strong>Refrigerator:</strong> 24 hours per 4–5 lbs (slowest, safest)<br/>🚰 <strong>Cold Water:</strong> 30 minutes per lb (medium, requires attention)<br/>📡 <strong>Microwave:</strong> 6 minutes per lb (fastest, riskiest)</div>
+
+<h2>Refrigerator Thawing — The Gold Standard</h2>
+<h3>How the Fridge Method Works</h3>
+<p>Place the frozen turkey (still in its original wrapping) on a rimmed baking sheet or in a roasting pan on the lowest shelf of your refrigerator. The baking sheet catches any drips and prevents cross-contamination with other foods. Set your refrigerator to 40°F or below — most modern fridges are already calibrated to this temperature.<sup>[1]</sup></p>
+<p>The USDA rule is simple: <strong>allow 24 hours of fridge thawing for every 4 to 5 pounds of turkey.</strong> This means a 20-pound turkey needs approximately 5 full days in the refrigerator. If you're cooking on Thanksgiving Thursday, that means you need to start thawing on the Saturday before — a full 5 days ahead. Use the <strong>"When are you cooking?"</strong> date picker in the calculator above to get your exact start date. Before you thaw, make sure you've bought the right size bird using our <a href="/cooking-calculators/turkey-size-calculator">turkey size calculator</a>.</p>
+
+<h3>Refrigerator Thawing Time Chart</h3>
+<table><thead><tr><th>Turkey Weight</th><th>Fridge Thawing Time</th><th>Start Before Cook Day</th></tr></thead><tbody>
+<tr><td><strong>8 lbs</strong></td><td>2 days</td><td>2 days before</td></tr>
+<tr><td><strong>10 lbs</strong></td><td>2–3 days</td><td>3 days before</td></tr>
+<tr><td><strong>12 lbs</strong></td><td>3 days</td><td>3 days before</td></tr>
+<tr><td><strong>14 lbs</strong></td><td>3–4 days</td><td>4 days before</td></tr>
+<tr><td><strong>16 lbs</strong></td><td>4 days</td><td>4 days before</td></tr>
+<tr><td><strong>18 lbs</strong></td><td>4–5 days</td><td>5 days before</td></tr>
+<tr><td><strong>20 lbs</strong></td><td>5 days</td><td>5 days before</td></tr>
+<tr><td><strong>22 lbs</strong></td><td>5–6 days</td><td>6 days before</td></tr>
+<tr><td><strong>24 lbs</strong></td><td>6 days</td><td>6 days before</td></tr>
+</tbody></table>
+<p><em>Based on USDA guideline of 24 hours per 4–5 lbs at 40°F. Always err on the side of starting one day earlier — a fully thawed turkey can safely remain in the fridge for 1–2 additional days before cooking.</em><sup>[2]</sup></p>
+
+<h3>How Long Can a Thawed Turkey Stay in the Fridge?</h3>
+<p>A turkey thawed in the refrigerator can safely remain in the fridge for an additional <strong>1 to 2 days</strong> before cooking. This is the primary advantage of refrigerator thawing — it gives you flexibility. If plans change, the turkey is still safe. However, turkeys thawed via cold water or microwave <strong>must be cooked immediately</strong> and cannot be refrozen or stored.<sup>[2]</sup></p>
+
+<h2>Cold Water Thawing — The Emergency Method</h2>
+<h3>Step-by-Step Cold Water Instructions</h3>
+<p>If you forgot to start the fridge thaw in time (it happens to everyone), cold water thawing is your best backup. Follow these steps exactly:</p>
+<ol>
+<li><strong>Wrap the turkey tightly</strong> in its original packaging. If the wrapper is torn, place the turkey in a leak-proof plastic bag. Water contact with raw turkey creates a food safety hazard.</li>
+<li><strong>Submerge completely</strong> in a clean sink, large pot, or cooler filled with cold tap water (not warm, not hot — cold).</li>
+<li><strong>Allow 30 minutes per pound.</strong> A 15-pound turkey takes approximately 7.5 hours.</li>
+<li><strong>Change the water every 30 minutes.</strong> This is not optional. Stagnant water warms up rapidly, and if the water exceeds 40°F, you're entering the bacterial danger zone.</li>
+<li><strong>Cook immediately</strong> after thawing. A cold-water-thawed turkey cannot be stored in the fridge or refrozen.<sup>[1]</sup></li>
+</ol>
+
+<h3>Cold Water Thawing Time Chart</h3>
+<table><thead><tr><th>Turkey Weight</th><th>Cold Water Time</th><th>Water Changes Needed</th></tr></thead><tbody>
+<tr><td><strong>8 lbs</strong></td><td>4 hours</td><td>8 changes</td></tr>
+<tr><td><strong>10 lbs</strong></td><td>5 hours</td><td>10 changes</td></tr>
+<tr><td><strong>12 lbs</strong></td><td>6 hours</td><td>12 changes</td></tr>
+<tr><td><strong>14 lbs</strong></td><td>7 hours</td><td>14 changes</td></tr>
+<tr><td><strong>16 lbs</strong></td><td>8 hours</td><td>16 changes</td></tr>
+<tr><td><strong>18 lbs</strong></td><td>9 hours</td><td>18 changes</td></tr>
+<tr><td><strong>20 lbs</strong></td><td>10 hours</td><td>20 changes</td></tr>
+<tr><td><strong>24 lbs</strong></td><td>12 hours</td><td>24 changes</td></tr>
+</tbody></table>
+<p><em>Based on USDA guideline of 30 minutes per pound. Water changes required every 30 minutes. This is an active, hands-on process — not something you can start and forget.</em></p>
+
+<h3>Why You MUST Change the Water Every 30 Minutes</h3>
+<p>Cold tap water starts at roughly 50–60°F. As it absorbs heat from the frozen turkey, the surrounding water temperature drops. But as the turkey warms toward 40°F, the water temperature rises. Without regular changes, the water eventually reaches room temperature — and the outer layer of the turkey enters the Danger Zone (40°F–140°F) where <em>Salmonella</em>, <em>E. coli</em>, and other pathogens double every 20 minutes.<sup>[1]</sup></p>
+
+<h2>Microwave Thawing — Last Resort</h2>
+<h3>How to Microwave-Thaw a Turkey Safely</h3>
+<p>If you need the turkey thawed in under 2 hours and it's small enough to fit in your microwave, this method works — but it requires constant attention and has significant limitations:<sup>[3]</sup></p>
 <ul>
-<li><strong>Rule:</strong> Allow 30 minutes per pound.</li>
-<li><strong>Requirement:</strong> You MUST change the water every 30 minutes to ensure it stays cold enough to prevent bacterial growth while accelerating the ambient thermal transfer.</li>
-<li>A 15lb turkey will take about 7.5 hours in cold water.</li>
-</ul>`,
-            highlight: "Safety Warning: Never thaw a turkey with hot water. The exterior will literally begin poaching and breeding bacteria while the interior remains ice-solid.",
+<li><strong>Check your microwave's manual first.</strong> Not all microwaves can safely defrost a whole turkey. Verify the wattage and maximum capacity.</li>
+<li><strong>Use the defrost setting</strong> at approximately <strong>6 minutes per pound.</strong></li>
+<li><strong>Rotate the turkey frequently</strong> — at least every 15 minutes — to ensure even thawing. Microwaves create hot spots.</li>
+<li><strong>The turkey may begin to partially cook.</strong> This is normal and expected. The edges and thin areas will start cooking while the thick center is still cold. For this reason, you <strong>must cook the turkey immediately</strong> after microwave thawing.</li>
+<li><strong>Practical size limit: ~12–14 lbs.</strong> Turkeys larger than this won't fit in standard consumer microwaves.</li>
+</ul>
+
+<h3>Microwave Thawing Time Chart</h3>
+<table><thead><tr><th>Turkey Weight</th><th>Microwave Time</th><th>Practical?</th></tr></thead><tbody>
+<tr><td><strong>8 lbs</strong></td><td>~48 minutes</td><td>✅ Yes</td></tr>
+<tr><td><strong>10 lbs</strong></td><td>~60 minutes</td><td>✅ Yes</td></tr>
+<tr><td><strong>12 lbs</strong></td><td>~72 minutes</td><td>⚠️ Tight fit</td></tr>
+<tr><td><strong>14 lbs</strong></td><td>~84 minutes</td><td>⚠️ May not fit</td></tr>
+<tr><td><strong>16 lbs</strong></td><td>~96 minutes</td><td>❌ Too large</td></tr>
+<tr><td><strong>20 lbs</strong></td><td>~120 minutes</td><td>❌ Too large</td></tr>
+</tbody></table>
+<p><em>Rule: 6 minutes per pound on defrost setting. Rotate frequently. Cook immediately after thawing. Turkeys over 14 lbs generally do not fit in standard consumer microwaves.</em><sup>[3]</sup></p>
+
+<h2>Thawing Method Comparison — Which Should You Use?</h2>
+<table><thead><tr><th>Method</th><th>Speed</th><th>Safety</th><th>Effort</th><th>Best For</th></tr></thead><tbody>
+<tr><td><strong>Refrigerator</strong></td><td>Slowest (days)</td><td>⭐⭐⭐ Safest</td><td>Set-and-forget</td><td>Planned thawing (most common)</td></tr>
+<tr><td><strong>Cold Water</strong></td><td>Medium (hours)</td><td>⭐⭐ Safe with care</td><td>Active every 30 min</td><td>Forgot 1–2 days before</td></tr>
+<tr><td><strong>Microwave</strong></td><td>Fastest (minutes)</td><td>⭐ Riskiest</td><td>Constant monitoring</td><td>Emergency, small turkeys only</td></tr>
+<tr><td><strong>Cook from Frozen</strong></td><td>N/A</td><td>⭐⭐⭐ Safe</td><td>+50% cooking time</td><td>Completely forgot</td></tr>
+</tbody></table>
+<p><em>For most families, refrigerator thawing is the best option. Start early, set it on the lowest shelf, and forget about it. If you need to convert oven temperatures for alternative cooking methods, try our <a href="/cooking-calculators/oven-to-air-fryer-converter">oven to air fryer converter</a>. Once thawed, calculate your exact cooking time with our <a href="/cooking-calculators/turkey-cooking-time-calculator">turkey cooking time calculator</a>.</em></p>
+
+<h2>How NOT to Thaw a Turkey — Food Safety Dangers</h2>
+<h3>The Danger Zone: 40°F – 140°F</h3>
+<p>The single most important number in turkey food safety is <strong>40°F (4.4°C)</strong>. Above this temperature, bacteria like <em>Salmonella</em>, <em>Staphylococcus aureus</em>, and <em>Clostridium perfringens</em> begin multiplying rapidly — doubling their population every 20 minutes. The "Danger Zone" extends from 40°F to 140°F, and any food left in this range for more than 2 hours is considered unsafe by the USDA.<sup>[4]</sup></p>
+
+<h3>Why Counter-Thawing Is Dangerous</h3>
+<p>When you thaw a turkey on the kitchen counter, the outer layer reaches 40°F within just 2 hours — while the core is still rock-solid frozen. This means the exterior sits in the Danger Zone for <em>the entire multi-day thawing process</em>, potentially accumulating dangerous levels of bacteria. Even cooking the turkey thoroughly may not eliminate all toxins produced by bacteria during this extended warm period.</p>
+
+<h3>4 Things You Should NEVER Do</h3>
+<ul>
+<li><strong>Do NOT thaw a turkey on the counter.</strong> The exterior enters the Danger Zone within 2 hours.</li>
+<li><strong>Do NOT thaw a turkey outside on the porch.</strong> Outdoor temperatures fluctuate and attract pests.</li>
+<li><strong>Do NOT thaw a turkey in hot water.</strong> The exterior will literally begin poaching and breeding bacteria while the interior remains ice-solid.</li>
+<li><strong>Do NOT thaw a turkey in a garage, car, or basement.</strong> Temperatures are uncontrolled and above 40°F.</li>
+</ul>
+<p><em>If you're serving ham alongside your turkey, use our <a href="/cooking-calculators/ham-calculator">ham calculator</a> for proper cooking times and serving portions.</em><sup>[4]</sup></p>
+
+<h2>Turkey Thawing Planning Timeline</h2>
+<h3>Working Backwards from Thanksgiving</h3>
+<p>The smartest approach is to work backwards from your cook date. Here's a sample Thanksgiving timeline for a 20-pound turkey:</p>
+<ul>
+<li><strong>Saturday (5 days before):</strong> Move turkey from freezer to the lowest shelf of the fridge.</li>
+<li><strong>Tuesday–Wednesday:</strong> Turkey should be mostly or fully thawed. Prepare your brine if brining.</li>
+<li><strong>Wednesday night:</strong> Turkey is fully thawed. Optionally dry-brine or season overnight.</li>
+<li><strong>Thursday morning:</strong> Remove from fridge 1 hour before cooking to take the chill off. Begin roasting.</li>
+</ul>
+<p>Use the <strong>date picker</strong> in the calculator above to set your exact cooking date — the calculator will tell you exactly when to start thawing. If you're <a href="/cooking-calculators/recipe-scale-calculator">scaling your stuffing or side dish recipes</a>, our recipe scaler handles the math.</p>
+
+<h3>What If You Completely Forgot to Thaw?</h3>
+<p>Don't panic. You have two options:</p>
+<ol>
+<li><strong>Cold water thaw:</strong> Even a 20-pound turkey can be thawed in about 10 hours with cold water. Start early in the morning and you can cook by evening.</li>
+<li><strong>Cook from frozen:</strong> The USDA confirms you can safely roast a completely frozen turkey — it will simply take approximately <strong>50% longer</strong> than a fully thawed bird. A 20-pound turkey that normally takes 4–4.5 hours will take 6–6.75 hours from frozen. You cannot deep fry, grill, or smoke a frozen turkey. Remove the giblet bag when it loosens during cooking.<sup>[5]</sup></li>
+</ol>
+<p>If you need help converting <a href="/cooking-calculators/cups-to-grams-converter">cups to grams</a> for your gravy or side dishes, or converting <a href="/cooking-calculators/grams-to-cups-converter">grams to cups</a> for European recipes, our measurement converters are designed for exactly this. For smaller measurement conversions like spices, use our <a href="/cooking-calculators/teaspoons-to-tablespoons-converter">teaspoons to tablespoons converter</a> or <a href="/cooking-calculators/grams-to-tablespoons-converter">grams to tablespoons converter</a>.</p>
+
+<h2>Can You Cook a Frozen Turkey?</h2>
+<p>Yes — and it's perfectly safe. A completely frozen turkey can go directly from the freezer into the oven. However, there are important differences:<sup>[5]</sup></p>
+<ul>
+<li><strong>Cooking time increases by ~50%.</strong> A turkey that normally takes 4 hours will take about 6 hours from frozen.</li>
+<li><strong>The giblet bag cannot be removed at first.</strong> Wait until the turkey has been cooking for about 2 hours, then check if the bag can be pulled free.</li>
+<li><strong>Internal temperature is everything.</strong> Use a meat thermometer to verify the thickest part of the thigh reaches 165°F (74°C) before serving.</li>
+<li><strong>You CANNOT deep-fry a frozen turkey.</strong> The ice rapidly expands into steam when it contacts 350°F oil, causing a violent eruption. This causes dozens of house fires every Thanksgiving.</li>
+</ul>
+<p>Not feeling turkey this year? Try our <a href="/cooking-calculators/pizza-calculator">pizza calculator</a> for a Thanksgiving pizza party, or check our <a href="/cooking-calculators/cake-calculator">cake calculator</a> for dessert planning.</p>
+
+<h3>References</h3>
+<ol class="references-list">
+<li>USDA Food Safety and Inspection Service, <em>Turkey Basics: Safe Thawing</em>. <a href="https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/poultry/turkey-basics-safe-thawing" target="_blank" rel="noopener noreferrer">fsis.usda.gov</a></li>
+<li>U.S. Department of Health & Human Services, <em>Meat and Poultry Charts</em>. <a href="https://www.foodsafety.gov/food-safety-charts/meat-poultry-charts" target="_blank" rel="noopener noreferrer">foodsafety.gov</a></li>
+<li>Farmers' Almanac, <em>How to Safely Thaw a Frozen Turkey</em>. <a href="https://www.farmersalmanac.com/how-to-safely-thaw-a-frozen-turkey-33573" target="_blank" rel="noopener noreferrer">farmersalmanac.com</a></li>
+<li>Emma Christensen, <em>All the Wrong Ways to Thaw a Turkey</em>, The Kitchn. <a href="https://www.thekitchn.com/all-the-wrong-ways-to-thaw-a-turkey-225711" target="_blank" rel="noopener noreferrer">thekitchn.com</a></li>
+<li>Butterball, <em>How to Thaw a Turkey</em>. <a href="https://www.butterball.com/how-tos/thaw-a-turkey" target="_blank" rel="noopener noreferrer">butterball.com</a></li>
+</ol>`,
+            highlight: "USDA Rule: Allow 24 hours of fridge thawing per 4–5 lbs of turkey. A 20 lb turkey needs about 5 full days. Use the date picker above to set your cook date and get the exact start date.",
         },
         faq: [
-            { question: "How long does a 20lb turkey take to thaw in the fridge?", answer: "A 20lb turkey takes 4 to 5 full days to thaw in the refrigerator (roughly 24 hours per 4-5 lbs)." },
-            { question: "Can I cook a completely frozen turkey?", answer: "Yes! According to the USDA, you can cook a frozen turkey safely, but it will take roughly 50% longer to cook than a fully thawed turkey. You cannot, however, deep fry a frozen turkey." }
+            { question: "How long does it take to thaw a 20-pound turkey in the refrigerator?", answer: "A 20-pound turkey takes approximately 5 full days to thaw safely in a 40°F refrigerator. The USDA rule is 24 hours per 4–5 lbs. If cooking on Thursday, start thawing on Saturday — 5 days before." },
+            { question: "Can you thaw a turkey in cold water overnight?", answer: "You should NOT leave a turkey unattended in cold water. The USDA requires you to change the water every 30 minutes to keep it below 40°F. A 15 lb turkey takes about 7.5 hours — requiring active attention the entire time." },
+            { question: "How long can a thawed turkey stay in the fridge before cooking?", answer: "A turkey thawed in the refrigerator can safely remain in the fridge for an additional 1 to 2 days before cooking. Turkeys thawed via cold water or microwave must be cooked immediately and cannot be stored." },
+            { question: "Can I thaw a turkey at room temperature on the counter?", answer: "Absolutely not. The USDA warns that the outer layer of a counter-thawed turkey enters the 'Danger Zone' (40°F–140°F) within 2 hours, allowing rapid bacterial growth even while the interior remains frozen. This is one of the most common Thanksgiving food safety mistakes." },
+            { question: "Can you cook a completely frozen turkey?", answer: "Yes! The USDA confirms you can roast a turkey directly from frozen, but it will take approximately 50% longer than a fully thawed turkey. You cannot deep fry, grill, or smoke a frozen turkey. Use a meat thermometer to verify the thigh reaches 165°F." },
+            { question: "Is it safe to thaw a turkey in the microwave?", answer: "Yes, but with caveats. Use the defrost setting at approximately 6 minutes per pound, rotating frequently. The turkey may begin to partially cook — this is normal but means you must cook it immediately afterward. Only practical for turkeys under 12–14 lbs due to microwave size constraints." },
+            { question: "What happens if I thaw a turkey in hot water?", answer: "Hot water rapidly raises the turkey's exterior temperature above 40°F while the interior stays frozen, creating ideal conditions for Salmonella and other pathogens. The exterior literally begins poaching while breeding bacteria. Always use cold tap water, changed every 30 minutes." },
+            { question: "How many times do I need to change the water when thawing a turkey?", answer: "You must change the cold water every 30 minutes. For a 15 lb turkey (7.5 hours), that's 15 water changes. For a 20 lb turkey (10 hours), that's 20 water changes. This is why cold water thawing requires your active, hands-on attention." }
         ]
     },
     "ham-calculator": {
@@ -1181,7 +1316,7 @@ export default async function CookingCalculatorRoute({ params }: PageProps) {
                     {calc.id === "cake-calculator" && <CookingCakeCore />}
                     {calc.id === "turkey-size-calculator" && <CookingTurkeySizeCore />}
                     {calc.id === "turkey-cooking-time-calculator" && <CookingTurkeyTimeCore />}
-                    {calc.id === "turkey-thawing-time-calculator" && <CookingTurkeyThawCore />}
+                    {calc.slug === "turkey-thawing-time-calculator" && <CookingTurkeyThawCore />}
                     {calc.id === "ham-calculator" && <CookingHamCore />}
                     
                     {calc.calcType === "cooking-universal" && <CookingUniversalConverterCore calculatorId={calc.id} />}

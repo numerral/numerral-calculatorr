@@ -25335,12 +25335,12 @@
   {
     "id": "turkey-thawing-calculator",
     "slug": "turkey-thawing-time-calculator",
-    "title": "Turkey Thawing Time Calculator",
+    "title": "Turkey Thawing Time Calculator — How Long to Defrost a Turkey",
     "category": "cooking",
     "categorySlug": "cooking-calculators",
     "icon": "❄️",
     "calcType": "cooking-turkey",
-    "description": "Find out exactly how many days a frozen turkey needs to defrost safely in the refrigerator, or how many hours in cold water.",
+    "description": "Calculate exactly how long to thaw your turkey safely — with refrigerator, cold water, and microwave methods, thawing charts by weight, and a countdown date planner to time your thaw perfectly for Thanksgiving.",
     "stars": 5,
     "defaults": {
       "amount": 0,
@@ -25352,11 +25352,15 @@
       "rate": { "min": 0, "max": 0, "step": 0 },
       "tenure": { "min": 0, "max": 0, "step": 0 }
     },
-    "keywords": "how long to thaw a turkey, turkey defrost time, thawing calculate turkey, usda frozen turkey thawing time",
+    "keywords": "turkey thawing time calculator, how long to thaw a turkey, turkey defrost time, how long to defrost a 20 pound turkey, when to start thawing turkey for thanksgiving, turkey thawing chart, cold water turkey thaw time, can you cook frozen turkey, USDA turkey thawing guidelines, how many days to thaw turkey in fridge",
     "links": {
       "related": [
         "turkey-cooking-time-calculator",
-        "turkey-size-calculator"
+        "turkey-size-calculator",
+        "ham-calculator",
+        "cake-calculator",
+        "recipe-scale-calculator",
+        "oven-to-air-fryer-converter"
       ]
     }
   },
