@@ -25129,12 +25129,13 @@
   {
     "id": "recipe-scale-calculator",
     "category": "cooking",
-    "title": "Recipe Scale Calculator",
+    "title": "Recipe Scale Conversion Calculator – Recipe Multiplier",
     "slug": "recipe-scale-calculator",
     "categorySlug": "cooking-calculators",
     "icon": "⚖️",
     "calcType": "cooking-recipe-scale",
-    "description": "Scale any recipe up or down automatically. Halve, double, or scale to exact serving sizes without messy kitchen math.",
+    "description": "Scale a recipe and adjust the ingredients using our recipe converter and multiplier. Easily double, halve, or scale to any number of servings with fraction support and smart unit conversion.",
+    "keywords": "recipe scale calculator, recipe multiplier, recipe converter, double a recipe, halve a recipe, recipe conversion factor, scale recipe for 50 people, recipe scaling, cooking math, baking conversion",
     "stars": 5,
     "defaults": {
       "amount": 0,
@@ -25146,7 +25147,6 @@
       "rate": { "min": 0, "max": 0, "step": 0 },
       "tenure": { "min": 0, "max": 0, "step": 0 }
     },
-    "keywords": "recipe scale calculator, scale recipe up down, recipe multiplier, recipe divider, serving size calculator, baking scale",
     "links": {
       "related": [
         "oven-to-air-fryer-converter",
