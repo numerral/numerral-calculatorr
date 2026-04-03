@@ -25271,12 +25271,12 @@
   {
     "id": "turkey-size-calculator",
     "slug": "turkey-size-calculator",
-    "title": "Turkey Size Calculator",
+    "title": "Turkey Size Calculator — How Much Turkey Do You Need?",
     "category": "cooking",
     "categorySlug": "cooking-calculators",
     "icon": "🦃",
     "calcType": "cooking-turkey",
-    "description": "Calculate exactly how big of a turkey you need to buy for Thanksgiving based on your number of guests and whether you want leftovers.",
+    "description": "Calculate exactly how much turkey you need for Thanksgiving — with serving charts, bone-in vs. boneless guides, USDA thawing schedules, cooking times, and food safety guidelines.",
     "stars": 5,
     "defaults": {
       "amount": 0,
@@ -25288,11 +25288,13 @@
       "rate": { "min": 0, "max": 0, "step": 0 },
       "tenure": { "min": 0, "max": 0, "step": 0 }
     },
-    "keywords": "turkey size calculator, how big of a turkey to buy, lbs per person turkey, thanksgiving turkey calculator",
+    "keywords": "turkey size calculator, how much turkey per person, turkey size chart, turkey serving calculator, how much turkey for 10 people, thanksgiving turkey calculator, turkey pounds per person, bone-in vs boneless turkey, turkey thawing time chart, turkey cooking time calculator",
     "links": {
       "related": [
         "turkey-cooking-time-calculator",
-        "turkey-thawing-calculator"
+        "turkey-thawing-time-calculator",
+        "ham-calculator",
+        "cake-calculator"
       ]
     }
   },

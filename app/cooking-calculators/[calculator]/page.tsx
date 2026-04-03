@@ -46,22 +46,150 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 const HUB_CONTENT: Record<string, any> = {
     "turkey-size-calculator": {
-        subtitle: "Calculate exactly how big of a turkey you need to buy for Thanksgiving based on your number of guests and whether you want leftovers.",
+        subtitle: "Calculate exactly how much turkey you need for Thanksgiving — with size charts, thawing schedules, cooking times, and USDA food safety guidelines.",
         explanation: {
-            heading: "How Much Turkey Per Person?",
-            contentHTML: `<p>Buying the right size turkey ensures everyone is fed without spending money on massive excess. The mathematics of turkey sizing fundamentally depend on the bone-to-meat ratio of poultry.</p>
-<h3>The General Rule</h3>
-<div class="explanation__highlight"><strong>Rule of Thumb: Buy 1.25 lbs of turkey for every adult.</strong><br/><br/>Turkeys have a very high bone-to-meat ratio. A 16lb turkey will not yield 16lbs of meat. You can expect about 50% to 55% meat yield after roasting and carving.</div>
+            heading: "How to Estimate Turkey Size for Your Event — Complete Guide",
+            contentHTML: `<p>Whether you're hosting a cozy Thanksgiving for 4 or feeding a crowd of 30, the question is always the same: <strong>how much turkey do I need?</strong> Getting it wrong means either running out of food (a holiday nightmare) or spending money on a bird too large to cook evenly. This guide gives you the USDA-backed math, serving charts, thawing schedules, and cooking times to plan the perfect turkey.</p>
+
+<h2>How Much Turkey Per Person?</h2>
+
+<p>The fundamental challenge with whole turkeys is the <strong>bone-to-meat ratio</strong>. A 16-pound turkey does <em>not</em> yield 16 pounds of edible meat. After subtracting the skeleton, skin, drippings, and shrinkage from cooking, you can expect roughly <strong>50–55% meat yield</strong> from a whole bird.<sup>[1]</sup></p>
+
+<h3>The 1-Pound Rule — Standard Portions</h3>
+<p>The <strong>USDA recommends 1 pound of raw whole turkey per adult guest</strong>. This accounts for bone weight and cooking loss, yielding approximately 6–8 ounces of cooked meat per person — enough for a generous plate with sides.<sup>[2]</sup></p>
+
+<h3>Bone-In vs. Boneless Turkey — How Much to Buy</h3>
+<p>How much you buy depends heavily on whether you're purchasing a whole bird, a bone-in breast (crown), or a boneless cut. Use our calculator above to toggle between these turkey types and get instant results.</p>
+
+<table class="explanation__table">
+<thead><tr><th>Turkey Type</th><th>Per Person (No Leftovers)</th><th>Per Person (With Leftovers)</th><th>Why</th></tr></thead>
+<tbody>
+<tr><td><strong>Whole Turkey</strong></td><td>1 lb</td><td>1.5 lbs</td><td>~50% of raw weight is bone, skin, and drippings</td></tr>
+<tr class="alt"><td><strong>Bone-In Breast</strong></td><td>0.75 lb</td><td>1 lb</td><td>Higher meat ratio than whole bird</td></tr>
+<tr><td><strong>Boneless Breast</strong></td><td>0.5 lb</td><td>0.75 lb</td><td>Nearly all edible — most efficient option</td></tr>
+<tr class="alt"><td><strong>Turkey Legs/Thighs</strong></td><td>0.75 lb</td><td>1 lb</td><td>Similar bone ratio to breast</td></tr>
+</tbody>
+</table>
+
+<h3>Planning for Leftovers — The 1.5× Rule</h3>
+<p>Turkey sandwiches, soups, and casseroles are practically a <em>tradition</em> unto themselves. If leftovers are part of your plan, bump your per-person estimate to <strong>1.5 pounds per adult</strong>. For generous leftovers that last several days, go to 2 pounds per person.</p>
+
+<h3>The Small Bird Adjustment (Under 12 lbs)</h3>
+<p>Turkeys under 12 lbs have a <strong>proportionally higher bone-to-meat ratio</strong> because the skeleton doesn't shrink as fast as the muscle mass. For small gatherings, multiply your calculated weight by 1.5 — or consider buying a bone-in turkey breast instead, which gives you more edible meat per pound.<sup>[1]</sup></p>
+
+<h3>The Two-Turkey Rule (Over 20 lbs)</h3>
+<div class="explanation__highlight"><strong>If you need more than 20 lbs of turkey, cook two smaller birds instead of one massive one.</strong><br/><br/>A 12-pound turkey cooks in ~3 hours versus 5+ hours for a 24-pound bird. Smaller turkeys roast more evenly, yield juicier breast meat (less time for outer layers to dry out), and are far easier to handle in and out of the oven.</div>
+
+<h2>Turkey Size Chart — Whole Turkey by Guest Count</h2>
+
+<p>This chart shows how much <strong>whole, unstuffed turkey</strong> to buy based on the number of guests. Use our calculator above for precise results with your exact guest count.</p>
+
+<table class="explanation__table">
+<thead><tr><th>Number of Guests</th><th>Turkey Size (No Leftovers)</th><th>Turkey Size (With Leftovers)</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td><strong>4</strong></td><td>4 lbs</td><td>6 lbs</td><td>Consider a turkey breast instead — better meat ratio</td></tr>
+<tr class="alt"><td><strong>6</strong></td><td>6 lbs</td><td>9 lbs</td><td>Small bird — increase by 50% for bone-to-meat ratio</td></tr>
+<tr><td><strong>8</strong></td><td>8 lbs</td><td>12 lbs</td><td>Minimum practical whole turkey size</td></tr>
+<tr class="alt"><td><strong>10</strong></td><td>10 lbs</td><td>15 lbs</td><td>Sweet spot for most American families</td></tr>
+<tr><td><strong>12</strong></td><td>12 lbs</td><td>18 lbs</td><td>Standard Thanksgiving turkey</td></tr>
+<tr class="alt"><td><strong>15</strong></td><td>15 lbs</td><td>22 lbs</td><td>Common grocery store size</td></tr>
+<tr><td><strong>20</strong></td><td>20 lbs</td><td>30 lbs</td><td>⚠️ Consider TWO smaller turkeys</td></tr>
+<tr class="alt"><td><strong>25</strong></td><td>25 lbs</td><td>37 lbs</td><td>⚠️ TWO turkeys strongly recommended</td></tr>
+<tr><td><strong>30</strong></td><td>30 lbs</td><td>45 lbs</td><td>⚠️ TWO or THREE turkeys required</td></tr>
+</tbody>
+</table>
+
+<h2>Turkey Thawing Guide — How to Safely Defrost Your Bird</h2>
+
+<p>A frozen turkey must be properly thawed before cooking. The exterior of the bird enters the USDA "Danger Zone" (40°F–140°F) long before the core thaws, creating a breeding ground for Salmonella and Campylobacter if left at room temperature.<sup>[2]</sup> Need precise thawing times? Use our <a href="/cooking-calculators/turkey-thawing-time-calculator">turkey thawing time calculator</a>.</p>
+
+<h3>Refrigerator Thawing — The USDA-Recommended Method</h3>
+<p><strong>Allow 24 hours for every 4–5 pounds of turkey in the refrigerator (40°F or below).</strong> This is the safest method because the entire bird stays below the danger zone. Once thawed, the turkey can safely remain in the fridge for 1–2 additional days before cooking.<sup>[2]</sup></p>
+
+<h3>Cold Water Thawing — The Emergency Method</h3>
+<p>If you forgot to start fridge-thawing in time, submerge the turkey (in its original leak-proof packaging) in cold tap water. <strong>Change the water every 30 minutes</strong> to keep it cold. Allow about <strong>30 minutes per pound</strong>. Cook the turkey <em>immediately</em> after thawing — do not refrigerate and wait.<sup>[2]</sup></p>
+
+<h3>Turkey Thawing Time Chart<sup>[2]</sup></h3>
+
+<table class="explanation__table">
+<thead><tr><th>Turkey Weight</th><th>Refrigerator (40°F)</th><th>Cold Water (change every 30 min)</th></tr></thead>
+<tbody>
+<tr><td><strong>4–12 lbs</strong></td><td>1–3 days</td><td>2–6 hours</td></tr>
+<tr class="alt"><td><strong>12–16 lbs</strong></td><td>3–4 days</td><td>6–8 hours</td></tr>
+<tr><td><strong>16–20 lbs</strong></td><td>4–5 days</td><td>8–10 hours</td></tr>
+<tr class="alt"><td><strong>20–24 lbs</strong></td><td>5–6 days</td><td>10–12 hours</td></tr>
+</tbody>
+</table>
+
+<h2>Turkey Cooking Time Guide</h2>
+
+<p>The USDA recommends roasting turkey at <strong>no lower than 325°F</strong>. Always use a <strong>food thermometer</strong> — time estimates are guidelines, not guarantees. Oven calibration, pan shape, and stuffing all affect actual cooking time. Use our <a href="/cooking-calculators/turkey-cooking-time-calculator">turkey cooking time calculator</a> for precise results based on your exact bird weight.</p>
+
+<h3>Cooking Time Chart — 325°F Oven<sup>[3][4]</sup></h3>
+
+<table class="explanation__table">
+<thead><tr><th>Turkey Weight</th><th>Unstuffed</th><th>Stuffed</th></tr></thead>
+<tbody>
+<tr><td><strong>8–12 lbs</strong></td><td>2¾ – 3 hours</td><td>3 – 3½ hours</td></tr>
+<tr class="alt"><td><strong>12–14 lbs</strong></td><td>3 – 3¾ hours</td><td>3½ – 4 hours</td></tr>
+<tr><td><strong>14–18 lbs</strong></td><td>3¾ – 4¼ hours</td><td>4 – 4¼ hours</td></tr>
+<tr class="alt"><td><strong>18–20 lbs</strong></td><td>4¼ – 4½ hours</td><td>4¼ – 4¾ hours</td></tr>
+<tr><td><strong>20–24 lbs</strong></td><td>4½ – 5 hours</td><td>4¾ – 5¼ hours</td></tr>
+</tbody>
+</table>
+
+<h3>Safe Internal Temperature — The 165°F Rule</h3>
+<p>A whole turkey is <strong>safely cooked when it reaches a minimum internal temperature of 165°F (73.9°C)</strong> in the innermost part of the thigh, the wing, and the thickest part of the breast. If the turkey is stuffed, the center of the stuffing must also reach 165°F.<sup>[3]</sup></p>
+
+<h3>Carry-Over Cooking — Why to Pull at 160°F</h3>
+<p>When you remove a 15-pound turkey from a 325°F oven, the intense heat trapped in the outer layers continues migrating inward. The internal temperature will rise <strong>5–10°F</strong> during the resting period. Professional chefs pull the bird when the breast reads <strong>155–160°F</strong> and let it rest for 30–45 minutes, allowing carry-over cooking to bring it to the USDA-safe 165°F without overdrying the breast meat.</p>
+
+<h3>Stuffed vs. Unstuffed — The Critical Difference</h3>
+<p>A stuffed turkey takes <strong>20–30% longer to cook</strong> because the dense stuffing inside the cavity blocks heat from penetrating the center. The center of the stuffing <em>must</em> reach 165°F — not just the meat. Many food safety experts now recommend cooking stuffing <em>outside</em> the bird (called "dressing") to eliminate this risk entirely.<sup>[3]</sup></p>
+
+<h2>Turkey Food Safety — USDA Guidelines</h2>
+
+<h3>Never Thaw on the Counter</h3>
+<p>The USDA explicitly warns against thawing turkey at room temperature. The outer layers enter the Danger Zone (40°F–140°F) hours before the core thaws, allowing bacteria to multiply to dangerous levels even though the interior is still frozen.<sup>[2]</sup></p>
+
+<h3>How Long Can Leftover Turkey Stay in the Fridge?</h3>
+<p>Cooked turkey can be safely stored in the refrigerator for <strong>3–4 days</strong> after cooking. For longer storage, freeze leftover turkey within 2 hours of cooking — it will keep for <strong>2–6 months</strong> in the freezer at 0°F.<sup>[2]</sup></p>
+
+<h3>Can You Cook a Turkey from Frozen?</h3>
+<p>Yes — the USDA considers this safe, but it takes approximately <strong>50% longer</strong> than cooking a fully thawed turkey. Remove the giblets package as soon as the cavity thaws enough. Important: you <em>cannot</em> stuff a frozen turkey.<sup>[2]</sup></p>
+
+<h2>Professional Tips for a Perfect Thanksgiving Turkey</h2>
+
 <ul>
-<li><strong>Minimal Leftovers:</strong> Calculate 1.0 to 1.25 lbs per guest.</li>
-<li><strong>Standard Leftovers:</strong> Calculate 1.5 lbs per guest. This guarantees enough for sandwiches the next day.</li>
-<li><strong>Massive Birds (20+ lbs):</strong> Turkeys larger than 20 lbs actually yield a slightly higher percentage of meat because the skeleton stops growing proportionally as fast as the breast muscle.</li>
-</ul>`,
-            highlight: "Pro Tip: If you need to feed 20+ people, it is mathematically and thermodynamically better to buy two 12lb turkeys rather than one gigantic 24lb turkey. The smaller birds will cook faster, more evenly, and be less dry.",
+<li><strong>Dry brine 24–48 hours before cooking.</strong> Rub kosher salt (1 tablespoon per 4 lbs of turkey) under the skin and refrigerate uncovered. This draws moisture out, dissolves the salt, and reabsorbs it — producing meat that's seasoned throughout, not just on the surface. Need help with brine measurements? Our <a href="/cooking-calculators/teaspoons-to-tablespoons-converter">teaspoons to tablespoons converter</a> can help.</li>
+<li><strong>Use an oven thermometer.</strong> Most home oven dials are off by 25–50°F. A $10 oven thermometer is the best investment you can make for consistent results. For air fryer conversions, use our <a href="/cooking-calculators/oven-to-air-fryer-converter">oven to air fryer converter</a>.</li>
+<li><strong>Tent with foil to prevent over-browning.</strong> If the skin reaches your desired golden color before the thigh hits 155°F, loosely tent the breast with aluminum foil to prevent burning while the deeper meat finishes.</li>
+<li><strong>Let the turkey rest 30 minutes before carving.</strong> Cutting into a turkey immediately after pulling it from the oven causes the juices to pour out onto the cutting board instead of staying in the meat. Resting allows the muscle fibers to relax and reabsorb their juices.</li>
+<li><strong>Separate dark and white meat for reheating.</strong> Breast meat dries out easily when reheated. Store dark meat (legs, thighs) and white meat (breast) separately so you can reheat each to its ideal temperature.</li>
+<li><strong>Save the carcass for stock.</strong> A turkey carcass simmered with carrots, celery, and onion for 4–6 hours yields 2–3 quarts of rich stock — the base for turkey noodle soup, gravy, and risotto. Scaling your soup recipe? Use our <a href="/cooking-calculators/recipe-scale-calculator">recipe scale calculator</a> to adjust ingredient quantities.</li>
+</ul>
+
+<p>Planning the full holiday menu? Our <a href="/cooking-calculators/ham-calculator">ham cooking calculator</a> estimates size and cooking time if you're serving both turkey and ham. For dessert planning, our <a href="/cooking-calculators/cake-calculator">cake calculator</a> estimates how much cake you need per guest. And for leftover conversions, our <a href="/cooking-calculators/cups-to-grams-converter">cups to grams converter</a> and <a href="/cooking-calculators/tablespoons-to-cups-converter">tablespoons to cups converter</a> ensure precision when using leftover turkey in new recipes.<sup>[1][5]</sup></p>
+
+<h2>References</h2>
+<ol class="references-list">
+<li>Martha Stewart, <em>Our Step-by-Step Guide to Cooking Turkey for Thanksgiving</em> — <a href="https://www.marthastewart.com/274812/turkey-tips" target="_blank" rel="noopener noreferrer">marthastewart.com</a></li>
+<li>USDA Food Safety and Inspection Service, <em>Turkey Basics: Safe Thawing</em> — <a href="https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/poultry/turkey-basics-safe-thawing" target="_blank" rel="noopener noreferrer">fsis.usda.gov</a></li>
+<li>University of Illinois Extension, <em>Turkey: Safely From Farm to Table</em> — <a href="https://extension.illinois.edu/turkey" target="_blank" rel="noopener noreferrer">extension.illinois.edu</a></li>
+<li>University of Wisconsin Extension, <em>Turkey Cooking Time and Temperature Chart</em> — <a href="https://fyi.extension.wisc.edu/safefood/turkey/" target="_blank" rel="noopener noreferrer">fyi.extension.wisc.edu</a></li>
+<li>USDA, <em>Let's Talk Turkey — A Consumer Guide to Safely Roasting a Turkey</em> — <a href="https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/poultry/lets-talk-turkey" target="_blank" rel="noopener noreferrer">fsis.usda.gov</a></li>
+</ol>`,
+            highlight: "Safety Warning: Never rely purely on time. Times are estimates based on standard conditions. Always verify with a digital meat thermometer inserted into the thickest part of the thigh — it must read at least 165°F (73.9°C).",
         },
         faq: [
-            { question: "How much turkey do I need for 10 adults?", answer: "For 10 adults with moderate leftovers, you should buy a 15-pound turkey (1.5 lbs per person)." },
-            { question: "Do children count as a full portion?", answer: "Calculate children under 12 as a half-portion (0.5 to 0.75 lbs)." }
+            { question: "How much turkey do I need for 10 people?", answer: "For 10 adults with no leftovers, buy a 10-pound whole turkey. If you want leftovers for sandwiches and soup, plan for 15 pounds (1.5 lbs per person). If children are part of your guest count, calculate each child as 0.5 lbs of turkey." },
+            { question: "How much turkey do I need for 20 people?", answer: "For 20 guests, you'll need 20–30 lbs of turkey depending on leftovers. However, most experts recommend cooking two smaller turkeys (10–15 lbs each) rather than one massive 30-lb bird. Smaller turkeys cook more evenly, are easier to handle, and yield juicier meat." },
+            { question: "How much turkey per person with leftovers?", answer: "Plan for 1.5 pounds of whole turkey per person to guarantee enough for next-day sandwiches, soups, and casseroles. For generous leftovers that last several days, plan 2 pounds per person." },
+            { question: "What temperature should I cook a turkey?", answer: "The USDA recommends roasting at 325°F in a conventional oven. The turkey is done when a food thermometer inserted into the thickest part of the thigh reads 165°F (73.9°C). If stuffed, the center of the stuffing must also reach 165°F." },
+            { question: "How long does it take to thaw a turkey in the refrigerator?", answer: "Allow approximately 24 hours for every 4–5 pounds of turkey in the refrigerator (40°F). A 16-pound turkey needs 4–5 days to thaw completely. Once thawed, the turkey can remain safely in the fridge for 1–2 additional days before cooking." },
+            { question: "Can I cook a turkey from frozen?", answer: "Yes, but it takes approximately 50% longer than a fully thawed turkey. The USDA considers this safe, but remove the giblets package as soon as the cavity thaws enough. Important: You cannot stuff a frozen turkey." },
+            { question: "How long do turkey leftovers last?", answer: "Cooked turkey can be safely stored in the refrigerator for 3–4 days after cooking. For longer storage, freeze leftover turkey within 2 hours of cooking — it will keep for 2–6 months in the freezer at 0°F." },
+            { question: "Should I cook one large turkey or two small ones?", answer: "For gatherings requiring more than 15–20 pounds of turkey, two smaller birds are usually better. A 12-pound turkey cooks in about 3 hours versus 5+ hours for a 24-pound bird. Smaller turkeys also yield juicier breast meat because there's less time for the outer layers to dry out while the center cooks through." }
         ]
     },
     "turkey-cooking-time-calculator": {
