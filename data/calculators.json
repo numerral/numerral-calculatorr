@@ -25157,12 +25157,12 @@
   {
     "id": "oven-to-air-fryer-converter",
     "category": "cooking",
-    "title": "Oven to Air Fryer Converter",
+    "title": "Oven to Air Fryer Conversion Calculator — Temperature & Time Converter",
     "slug": "oven-to-air-fryer-converter",
     "categorySlug": "cooking-calculators",
     "icon": "💨",
     "calcType": "cooking-air-fryer",
-    "description": "Convert conventional oven cooking times and temperatures for your air fryer to get the perfect crispy result every time.",
+    "description": "Convert conventional oven cooking temperatures and times for your air fryer instantly. Enter your oven recipe settings and get precise air fryer instructions — including °F and °C — for perfectly crispy results.",
     "stars": 5,
     "defaults": {
       "amount": 0,
@@ -25174,7 +25174,7 @@
       "rate": { "min": 0, "max": 0, "step": 0 },
       "tenure": { "min": 0, "max": 0, "step": 0 }
     },
-    "keywords": "oven to air fryer conversion, air fryer calculator, conventional to air fryer, air fryer temp converter, baking temperature",
+    "keywords": "oven to air fryer conversion, air fryer temperature converter, oven to air fryer conversion chart, air fryer cooking times, convert oven temp to air fryer, air fryer temperature and time, conventional oven to air fryer, air fryer calculator",
     "links": {
       "related": [
         "recipe-scale-calculator",

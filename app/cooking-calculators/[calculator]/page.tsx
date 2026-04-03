@@ -417,25 +417,224 @@ const HUB_CONTENT: Record<string, any> = {
         ]
     },
     "oven-to-air-fryer-converter": {
-        subtitle: "Instantly convert conventional or convection oven instructions into precise air fryer settings. Save time and energy while achieving the perfect crispy texture.",
+        subtitle: "Convert conventional oven cooking temperatures and times for your air fryer instantly. Enter your oven recipe settings and get precise air fryer instructions — including Fahrenheit and Celsius — for perfectly crispy results every time.",
         explanation: {
-            heading: "The Air Fryer Conversion Rule",
-            contentHTML: `<p>An air fryer is essentially a high-powered convection oven. Because the heating element is extremely close to the food and the fan circulates hot air aggressively within a tiny chamber, thermal transfer is significantly more intense than in a standard oven.</p>
-<h3>The 25/20 Rule</h3>
-<p>To convert an oven recipe for the air fryer, you must reduce both the temperature and the time to prevent burning the exterior before the interior is fully cooked.</p>
+            heading: "How to Convert Oven Recipes for an Air Fryer — Complete Guide",
+            contentHTML: `<p>Most recipes you'll find online, in cookbooks, or on food packaging are written for a conventional oven. But air fryers cook food significantly faster and more efficiently — which means you can't simply use the same settings. Using oven settings in an air fryer will almost always result in overcooked, dried-out, or burnt food.</p>
+<p>This guide explains the exact conversion formula used by professional chefs, why it works from a physics standpoint, and provides complete reference charts for temperature, time, and 18 popular foods so you never have to guess again.<sup><a href="#ref-1">[1]</a></sup></p>
+
+<h3>The 25°F / 20% Rule — The Universal Conversion Formula</h3>
+<p>According to air fryer cookbook author <strong>Linda Larsen</strong>, the general rule of thumb when converting conventional oven recipes for an air fryer is:<sup><a href="#ref-1">[1]</a></sup></p>
 <ul>
-<li><strong>Reduce Temperature:</strong> Subtract 25°F (or ~15°C) from the oven temperature.</li>
-<li><strong>Reduce Time:</strong> Multiply the original cooking time by 80% (a 20% reduction).</li>
+<li><strong>Reduce the temperature by 25°F</strong> (approximately 15°C)</li>
+<li><strong>Reduce the cooking time by 20%</strong> (multiply by 0.8)</li>
 </ul>
-<div class="explanation__highlight">Oven: 400°F for 20 minutes<br/>Air Fryer: <strong>375°F for 16 minutes</strong></div>
-<h3>Why Does This Happen?</h3>
-<p>In thermodynamics, convection heating works by displacing the static boundary layer of cooler air that surrounds food. The aggressive fan in an air fryer strips this layer away constantly, exposing the food to violent direct heat. This causes the Maillard reaction (browning) to happen much faster.</p>`,
-            highlight: "Air Fryer warning: Always check your food halfway through the assigned time. Small chambers meaning that sugar or marinades can caramelize and burn in a matter of minutes.",
+<div class="explanation__highlight">
+<strong>Example:</strong> A recipe calls for 400°F for 30 minutes in the oven.<br/>
+Air Fryer setting: <strong>375°F for 24 minutes</strong><br/>
+Formula: 400 − 25 = 375°F | 30 × 0.8 = 24 minutes
+</div>
+<p>This rule works because air fryers use rapid convection — a powerful fan forces hot air around food in a tiny enclosed chamber. The result is faster, more intense heat transfer than a conventional oven can achieve.</p>
+
+<h3>Step 1: Lower the Temperature by 25°F</h3>
+<p>If your recipe calls for baking at 350°F in a conventional oven, set your air fryer to 325°F. If it calls for 425°F, use 400°F. This 25-degree reduction applies universally across the standard cooking range (250°F to 500°F).</p>
+<p>Need to work in Celsius? The equivalent reduction is approximately 15°C. Our calculator above handles this conversion automatically.</p>
+
+<h3>Step 2: Reduce the Cooking Time by 20%</h3>
+<p>Multiply the original oven time by 0.8. For a recipe that calls for 20 minutes in the oven, the air fryer time is 20 × 0.8 = 16 minutes. For a 45-minute oven recipe, air fryer time is 45 × 0.8 = 36 minutes.</p>
+<p>If you're <a href="/cooking-calculators/recipe-scale-calculator">scaling a recipe</a> and converting for the air fryer simultaneously, always scale the ingredients first, then convert the temperature and time.</p>
+
+<h3>Step 3: Check for Doneness 2–3 Minutes Early</h3>
+<p>Air fryer models vary considerably in wattage (800W to 1,800W), basket size, and heating element proximity. Always start checking your food 2–3 minutes before the calculated time. If it's not ready, continue cooking in 2-minute increments.</p>
+<p>For proteins like chicken, pork, or beef, <strong>always use a digital instant-read thermometer</strong> to verify the internal temperature has reached the USDA-recommended safe minimum (see the food safety section below).<sup><a href="#ref-2">[2]</a></sup></p>
+
+<h3>Step 4: Don't Overcrowd the Basket</h3>
+<p>Air fryers rely on 360° air circulation to crisp food evenly.<sup><a href="#ref-3">[3]</a></sup> When the basket is overcrowded, the air can't circulate — food steams instead of crisping, and cooking becomes uneven. Arrange food in a <strong>single layer</strong> with small gaps between pieces. If you have a large quantity, cook in batches.</p>
+
+<h3>Step 5: Shake or Flip Halfway Through</h3>
+<p>For loose items like fries, vegetables, chicken wings, or nuggets, shake the basket or flip the food at the halfway point. This exposes all surfaces to the direct heat and produces even, golden browning on all sides.</p>
+
+<h2>Oven to Air Fryer Conversion Chart</h2>
+<p>This comprehensive reference table converts every common oven temperature to the equivalent air fryer setting. We include both Fahrenheit (standard in US recipes) and Celsius (for international recipes) so you never have to calculate manually.</p>
+
+<h3>Temperature Conversion Table</h3>
+<table>
+<thead><tr><th>Oven Temp (°F)</th><th>Air Fryer Temp (°F)</th><th>Oven Temp (°C)</th><th>Air Fryer Temp (°C)</th></tr></thead>
+<tbody>
+<tr><td><strong>250°F</strong></td><td>225°F</td><td>120°C</td><td>107°C</td></tr>
+<tr><td><strong>275°F</strong></td><td>250°F</td><td>135°C</td><td>120°C</td></tr>
+<tr><td><strong>300°F</strong></td><td>275°F</td><td>150°C</td><td>135°C</td></tr>
+<tr><td><strong>325°F</strong></td><td>300°F</td><td>165°C</td><td>150°C</td></tr>
+<tr><td><strong>350°F</strong></td><td>325°F</td><td>175°C</td><td>165°C</td></tr>
+<tr><td><strong>375°F</strong></td><td>350°F</td><td>190°C</td><td>175°C</td></tr>
+<tr><td><strong>400°F</strong></td><td>375°F</td><td>200°C</td><td>190°C</td></tr>
+<tr><td><strong>425°F</strong></td><td>400°F</td><td>220°C</td><td>200°C</td></tr>
+<tr><td><strong>450°F</strong></td><td>425°F</td><td>230°C</td><td>220°C</td></tr>
+<tr><td><strong>475°F</strong></td><td>450°F</td><td>245°C</td><td>230°C</td></tr>
+<tr><td><strong>500°F</strong></td><td>475°F</td><td>260°C</td><td>245°C</td></tr>
+</tbody>
+</table>
+
+<h3>Cooking Time Conversion Table</h3>
+<table>
+<thead><tr><th>Oven Time</th><th>Air Fryer Time (×0.8)</th><th>Time Saved</th></tr></thead>
+<tbody>
+<tr><td>10 minutes</td><td><strong>8 minutes</strong></td><td>2 mins</td></tr>
+<tr><td>15 minutes</td><td><strong>12 minutes</strong></td><td>3 mins</td></tr>
+<tr><td>20 minutes</td><td><strong>16 minutes</strong></td><td>4 mins</td></tr>
+<tr><td>25 minutes</td><td><strong>20 minutes</strong></td><td>5 mins</td></tr>
+<tr><td>30 minutes</td><td><strong>24 minutes</strong></td><td>6 mins</td></tr>
+<tr><td>35 minutes</td><td><strong>28 minutes</strong></td><td>7 mins</td></tr>
+<tr><td>40 minutes</td><td><strong>32 minutes</strong></td><td>8 mins</td></tr>
+<tr><td>45 minutes</td><td><strong>36 minutes</strong></td><td>9 mins</td></tr>
+<tr><td>60 minutes</td><td><strong>48 minutes</strong></td><td>12 mins</td></tr>
+<tr><td>90 minutes</td><td><strong>72 minutes</strong></td><td>18 mins</td></tr>
+</tbody>
+</table>
+
+<h2>Air Fryer Cooking Times for Common Foods</h2>
+<p>These recommended settings are for a standard basket-style air fryer at 1,500 watts. Always use a meat thermometer for proteins and adjust timing by ±2 minutes based on your specific model.</p>
+
+<h3>Proteins</h3>
+<table>
+<thead><tr><th>Food</th><th>Air Fryer Temp</th><th>Time</th><th>Tips</th></tr></thead>
+<tbody>
+<tr><td><strong>Chicken wings</strong></td><td>380°F (193°C)</td><td>20–25 min</td><td>Flip at halfway. Internal temp must reach 165°F.<sup><a href="#ref-2">[2]</a></sup></td></tr>
+<tr><td><strong>Chicken breast (boneless)</strong></td><td>375°F (190°C)</td><td>15–18 min</td><td>Pound to even thickness. Internal: 165°F.</td></tr>
+<tr><td><strong>Chicken thighs</strong></td><td>380°F (193°C)</td><td>18–22 min</td><td>Skin side up for crispy skin. Internal: 165°F.</td></tr>
+<tr><td><strong>Chicken tenders</strong></td><td>400°F (200°C)</td><td>8–10 min</td><td>Shake basket at 5-minute mark.</td></tr>
+<tr><td><strong>Salmon fillet</strong></td><td>390°F (199°C)</td><td>8–10 min</td><td>Skin side down. Internal: 145°F.</td></tr>
+<tr><td><strong>Steak (1-inch thick)</strong></td><td>400°F (200°C)</td><td>10–14 min</td><td>Flip at halfway. Rest 5 minutes before cutting.</td></tr>
+<tr><td><strong>Bacon</strong></td><td>350°F (175°C)</td><td>8–10 min</td><td>Thick-cut: add 2–3 minutes.</td></tr>
+</tbody>
+</table>
+
+<h3>Frozen Foods</h3>
+<table>
+<thead><tr><th>Food</th><th>Air Fryer Temp</th><th>Time</th><th>Tips</th></tr></thead>
+<tbody>
+<tr><td><strong>Frozen french fries</strong></td><td>400°F (200°C)</td><td>12–15 min</td><td>Shake basket every 5 minutes. No oil needed.</td></tr>
+<tr><td><strong>Sweet potato fries</strong></td><td>380°F (193°C)</td><td>10–14 min</td><td>Toss with 1 tsp oil for extra crisp.</td></tr>
+<tr><td><strong>Frozen pizza rolls</strong></td><td>380°F (193°C)</td><td>6–8 min</td><td>Single layer. No oil needed.</td></tr>
+<tr><td><strong>Mozzarella sticks</strong></td><td>390°F (199°C)</td><td>6–8 min</td><td>Cook from frozen — thawing causes breading to fall off.</td></tr>
+<tr><td><strong>Frozen nuggets</strong></td><td>400°F (200°C)</td><td>8–10 min</td><td>No oil needed. Flip at halfway.</td></tr>
+</tbody>
+</table>
+
+<h3>Vegetables &amp; Others</h3>
+<table>
+<thead><tr><th>Food</th><th>Air Fryer Temp</th><th>Time</th><th>Tips</th></tr></thead>
+<tbody>
+<tr><td><strong>Brussels sprouts</strong></td><td>375°F (190°C)</td><td>12–15 min</td><td>Halve, toss with oil + salt. Shake at halfway.</td></tr>
+<tr><td><strong>Broccoli florets</strong></td><td>375°F (190°C)</td><td>8–10 min</td><td>Toss with oil. Don't overlap pieces.</td></tr>
+<tr><td><strong>Zucchini chips</strong></td><td>370°F (188°C)</td><td>8–12 min</td><td>Slice thin. Pat dry to remove moisture first.</td></tr>
+<tr><td><strong>Reheating pizza</strong></td><td>350°F (175°C)</td><td>3–5 min</td><td>Transforms soggy leftover crust into crispy perfection.</td></tr>
+<tr><td><strong>Cookies</strong></td><td>325°F (165°C)</td><td>6–8 min</td><td>Reduce temp significantly from oven recipe.</td></tr>
+<tr><td><strong>Toast</strong></td><td>350°F (175°C)</td><td>3–4 min</td><td>Watch closely — burns quickly in small chamber.</td></tr>
+</tbody>
+</table>
+<p>Need to convert ingredient measurements for your air fryer recipe? Our <a href="/cooking-calculators/cups-to-grams-converter">cups to grams converter</a> and <a href="/cooking-calculators/ounces-to-grams-converter">ounces to grams converter</a> provide precise weight-based measurements for consistent results.</p>
+
+<h2>How an Air Fryer Works — The Science Behind Convection Cooking</h2>
+<p>Understanding <em>why</em> the 25°F / 20% rule works requires a basic understanding of heat transfer physics. An air fryer is not a fundamentally different cooking technology — it's a <strong>supercharged convection oven</strong>.<sup><a href="#ref-3">[3]</a></sup></p>
+
+<h3>Air Fryer vs. Conventional Oven vs. Convection Oven</h3>
+<table>
+<thead><tr><th>Feature</th><th>Conventional Oven</th><th>Convection Oven</th><th>Air Fryer</th></tr></thead>
+<tbody>
+<tr><td><strong>Heat source</strong></td><td>Top + bottom elements</td><td>Top + bottom + rear element</td><td>Top element (close proximity)</td></tr>
+<tr><td><strong>Fan</strong></td><td>None (relies on radiant heat)</td><td>Rear fan (moderate)</td><td>Powerful top-mounted fan</td></tr>
+<tr><td><strong>Chamber size</strong></td><td>Large (4–6 cu ft)</td><td>Large (4–6 cu ft)</td><td>Tiny (0.1–0.8 cu ft)</td></tr>
+<tr><td><strong>Air velocity</strong></td><td>Still air</td><td>Gentle circulation</td><td>Aggressive, focused circulation</td></tr>
+<tr><td><strong>Preheat time</strong></td><td>10–15 minutes</td><td>8–12 minutes</td><td>2–5 minutes</td></tr>
+<tr><td><strong>Typical wattage</strong></td><td>2,000–5,000W</td><td>2,000–5,000W</td><td>800–1,800W</td></tr>
+<tr><td><strong>Energy cost per hour*</strong></td><td>~$0.50–$1.00</td><td>~$0.50–$1.00</td><td>~$0.15–$0.30</td></tr>
+</tbody>
+</table>
+<p><em>*Based on US average electricity rate of $0.16/kWh (EIA, 2024).</em></p>
+
+<h3>The Maillard Reaction — Why Air-Fried Food Gets So Crispy</h3>
+<p>The characteristic golden-brown crust on air-fried food is produced by the <strong>Maillard reaction</strong>, a chemical reaction between amino acids and reducing sugars that occurs at temperatures above approximately 285°F (140°C).<sup><a href="#ref-5">[5]</a></sup></p>
+<p>In a conventional oven, still air creates an insulating boundary layer of cooler air around the food surface. This boundary layer acts like a thermal blanket, slowing down surface browning. An air fryer's powerful fan strips this boundary layer away continuously, exposing the food's surface to the full intensity of the chamber heat. The result is rapid, intense browning without the need for deep frying in oil.</p>
+<p>This is also why air fryers can achieve results similar to deep-frying with <strong>70–80% less oil</strong> — the aggressive convection handles the browning that oil would normally accomplish through conductive heat transfer.</p>
+
+<h3>Why Air Fryers Use Less Energy Than Ovens</h3>
+<p>An air fryer draws 800–1,800 watts compared to 2,000–5,000 watts for a full-size oven. Combined with faster cook times (20% shorter) and shorter preheating (2–5 minutes vs. 10–15 minutes), an air fryer typically uses <strong>50–75% less electricity</strong> per cooking session. For US households at the average rate of $0.16/kWh, switching from oven to air fryer for daily cooking can save $50–$100 per year in electricity costs.</p>
+
+<h2>Air Fryer Safety Tips and Common Mistakes</h2>
+<p>Air fryers are exceptionally safe when used correctly, but a few common mistakes can lead to poor results, damaged equipment, or — in rare cases — fire hazards.<sup><a href="#ref-4">[4]</a></sup></p>
+
+<h3>USDA Safe Internal Temperatures for Air-Fried Foods</h3>
+<p>The USDA Food Safety and Inspection Service requires all cooked proteins to reach these minimum internal temperatures to kill harmful bacteria like <em>Salmonella</em> and <em>E. coli</em>:<sup><a href="#ref-2">[2]</a></sup></p>
+<table>
+<thead><tr><th>Food</th><th>Minimum Internal Temp (°F)</th><th>Minimum Internal Temp (°C)</th></tr></thead>
+<tbody>
+<tr><td><strong>Poultry (chicken, turkey, duck)</strong></td><td>165°F</td><td>74°C</td></tr>
+<tr><td><strong>Ground meat (beef, pork, lamb)</strong></td><td>160°F</td><td>71°C</td></tr>
+<tr><td><strong>Whole cuts (beef, pork, lamb, veal)</strong></td><td>145°F + 3-min rest</td><td>63°C + 3-min rest</td></tr>
+<tr><td><strong>Fish &amp; shellfish</strong></td><td>145°F</td><td>63°C</td></tr>
+<tr><td><strong>Leftovers (reheating)</strong></td><td>165°F</td><td>74°C</td></tr>
+</tbody>
+</table>
+<p><strong>Pro tip:</strong> An instant-read digital thermometer is the single most important kitchen tool for air fryer cooking. Air fryers brown the exterior so aggressively that food can look perfectly done on the outside while remaining dangerously undercooked inside.</p>
+
+<h3>Can You Use Aluminum Foil in an Air Fryer?</h3>
+<p>Yes, but with important safety precautions. Always weigh the foil down with food — the powerful fan can blow loose foil into the heating element, creating a fire hazard. Never cover the entire basket floor (it blocks the essential airflow), and avoid using aluminum foil with acidic foods like tomato sauce or vinegar-based marinades, which cause the foil to break down and leach into your food.</p>
+
+<h3>Can You Use Parchment Paper in an Air Fryer?</h3>
+<p>Yes. Perforated air fryer parchment liners are the safest option because they maintain airflow while preventing sticking. <strong>Never</strong> place parchment paper in the basket during preheating without food on top — the fan will blow the lightweight paper directly into the heating element.</p>
+
+<h3>Do You Need to Preheat an Air Fryer?</h3>
+<p>While not strictly required, preheating for 3–5 minutes is recommended for most foods. Preheating ensures the cooking chamber is at the target temperature when you add food, producing more consistent browning — especially critical for frozen foods, thin proteins like fish fillets, and baked goods like <a href="/cooking-calculators/cake-calculator">cakes</a> and cookies that need precise rise timing.</p>
+
+<h3>Foods You Should Never Put in an Air Fryer</h3>
+<ul>
+<li><strong>Wet batters</strong> (beer batter, tempura batter) — liquid drips through the basket before it can set, creating smoke and a mess</li>
+<li><strong>Large whole roasts</strong> that fill the entire basket — airflow is completely blocked</li>
+<li><strong>Loose leafy greens</strong> (kale chips are fine if weighed down) — the fan blows lightweight leaves into the element</li>
+<li><strong>Fresh uncovered cheese</strong> — it melts through the basket grate. Use a ramekin or foil cup instead</li>
+<li><strong>Foods with high liquid content</strong> — soups, stews, and sauces have no place in an air fryer</li>
+</ul>
+<p>For cooking larger cuts like <a href="/cooking-calculators/turkey-cooking-time-calculator">whole turkeys</a> or <a href="/cooking-calculators/ham-calculator">holiday hams</a>, a conventional oven remains the right tool. Air fryers excel at smaller portions — wings, fillets, vegetables, and frozen snacks.</p>
+
+<h2>Convection Oven to Air Fryer — A Special Case</h2>
+<p>If your recipe was <em>already written for a convection oven</em>, the adjustment is smaller. Convection ovens already use fan-assisted heat, so the difference between a convection oven and an air fryer is primarily <strong>chamber size</strong> and <strong>fan intensity</strong>.</p>
+<ul>
+<li><strong>Temperature adjustment:</strong> Reduce by only 10–15°F (not the full 25°F)</li>
+<li><strong>Time adjustment:</strong> Reduce by only 10% (not the full 20%)</li>
+</ul>
+<p>This is because the convection oven has already accounted for fan-assisted cooking in its recipe settings. Our calculator uses the standard conventional-to-air-fryer formula (−25°F, ×0.8).</p>
+
+<h2>Measurement Resources for Air Fryer Cooking</h2>
+<p>When adapting recipes for an air fryer, you may need to adjust ingredient quantities — especially if you're cooking in smaller batches. These converters can help:</p>
+<ul>
+<li>Use our <a href="/cooking-calculators/recipe-scale-calculator">recipe scale calculator</a> to halve or quarter recipes for smaller air fryer batches</li>
+<li>Convert volume measurements with our <a href="/cooking-calculators/tablespoons-to-cups-converter">tablespoons to cups converter</a> or <a href="/cooking-calculators/teaspoons-to-tablespoons-converter">teaspoons to tablespoons converter</a></li>
+<li>Get precise weight-based measurements using our <a href="/cooking-calculators/grams-to-cups-converter">grams to cups converter</a> or <a href="/cooking-calculators/grams-to-tablespoons-converter">grams to tablespoons converter</a></li>
+</ul>
+
+<h2 id="references">References</h2>
+<ol>
+<li id="ref-1">Randolph, L., <em>A Guide to Converting Any Oven, Stovetop, or Deep-Fryer Recipe for Your Air Fryer</em>, Business Insider, Feb 23, 2022. <a href="https://www.businessinsider.com/guides/kitchen/oven-to-air-fryer-conversion" target="_blank" rel="noopener noreferrer">Source</a></li>
+<li id="ref-2">USDA Food Safety and Inspection Service, <em>Safe Minimum Internal Temperature Chart</em>, U.S. Department of Agriculture. <a href="https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/food-safety-basics/safe-minimum-internal-temperature-chart" target="_blank" rel="noopener noreferrer">Source</a></li>
+<li id="ref-3">KitchenAid, <em>How Does an Air Fryer Work?</em>, KitchenAid Brand. <a href="https://www.kitchenaid.com/pinch-of-help/countertop-appliances/how-does-an-air-fryer-work.html" target="_blank" rel="noopener noreferrer">Source</a></li>
+<li id="ref-4">University of Nebraska-Lincoln Extension, <em>Air Fryer Food Safety</em>, Nebraska Extension in Lancaster County. <a href="https://food.unl.edu/air-fryer-food-safety" target="_blank" rel="noopener noreferrer">Source</a></li>
+<li id="ref-5">University of Arkansas Division of Agriculture, <em>Air Fryers</em>, Cooperative Extension Service. <a href="https://www.uaex.uada.edu/life-skills-wellness/food-safety/air-fryers.aspx" target="_blank" rel="noopener noreferrer">Source</a></li>
+</ol>
+<div class="explanation__highlight">
+<strong>Pro Tip from food safety experts:</strong> The most common air fryer mistake is trusting appearance over temperature. Air fryers brown food so aggressively that chicken can look perfectly golden-brown at 140°F internal — 25 degrees below the safe minimum. Always use a thermometer, never guess.<sup><a href="#ref-4">[4]</a></sup>
+</div>`,
+            highlight: "Air fryers cook food 20% faster than conventional ovens by using rapid convection to strip away the insulating boundary layer of air around food. Always reduce temperature by 25°F and time by 20% when converting oven recipes.",
         },
         faq: [
-            { question: "How do I convert oven temp to air fryer temp?", answer: "Reduce the conventional oven temperature by 25°F. If the recipe calls for 400°F, set your air fryer to 375°F." },
-            { question: "How much time do I cut for an air fryer?", answer: "Reduce the cooking time by 20% to 25%. If something takes 20 minutes in the oven, check it at 15 or 16 minutes in the air fryer." },
-            { question: "Can I put aluminum foil in an air fryer?", answer: "Yes, you can use aluminum foil in most air fryers, but make sure it doesn't block the air flow (the fan) perfectly. Weigh it down with food so it doesn't get sucked into the heating element." }
+            { question: "How do I convert oven temperature to air fryer?", answer: "Reduce the oven temperature by 25°F (about 15°C). For example, if a recipe calls for baking at 400°F in a conventional oven, set your air fryer to 375°F. This adjustment accounts for the air fryer's more efficient convection heating system, which circulates hot air rapidly in a compact chamber." },
+            { question: "How much time do I reduce for an air fryer?", answer: "Reduce the cooking time by 20%. Multiply the original oven time by 0.8. For example: 30 minutes × 0.8 = 24 minutes. Always start checking for doneness 2–3 minutes before the calculated time because air fryer models vary in power output and efficiency." },
+            { question: "Do I need to preheat my air fryer?", answer: "While not strictly required, preheating for 3–5 minutes is recommended for most foods. Preheating ensures the cooking chamber is at the target temperature when you add food, which produces more consistent browning and crispier results — especially for frozen foods, baked goods, and thin proteins like fish fillets." },
+            { question: "Can you put aluminum foil in an air fryer?", answer: "Yes, but with important safety precautions. Always weigh the foil down with food to prevent it from being blown into the heating element by the fan. Never cover the entire basket floor (it blocks airflow), and avoid using foil with acidic foods like tomato sauce or vinegar-based marinades, which can cause the foil to leach." },
+            { question: "Can you use parchment paper in an air fryer?", answer: "Yes. Perforated air fryer parchment liners are the safest option because they allow airflow while preventing sticking. Never place parchment paper in an air fryer during preheating without food on top — the fan can blow lightweight paper into the heating element and cause a fire." },
+            { question: "What foods should you not put in an air fryer?", answer: "Avoid: (1) wet batters like beer or tempura batter — they drip through the basket and smoke, (2) large whole roasts that block airflow, (3) loose leafy greens that blow around and burn, (4) fresh cheese without containment — it melts through the basket, and (5) foods with high liquid content like soups." },
+            { question: "Is an air fryer healthier than a conventional oven?", answer: "Air fryers can produce results similar to deep-frying with 70–80% less oil, making air-fried food significantly lower in fat and calories compared to traditional frying. Compared to baking in a conventional oven, the nutritional difference is minimal — both use dry heat with little or no added fat." },
+            { question: "Why is my air fryer food not crispy?", answer: "The three most common causes: (1) overcrowding — food must be in a single layer with space between pieces for air to circulate, (2) too much moisture — pat food dry before cooking and lightly coat with a thin layer of oil, (3) not preheating — starting with a cold air fryer means the first few minutes are spent heating up rather than crisping." }
         ]
     },
     "cups-to-grams-converter": {
