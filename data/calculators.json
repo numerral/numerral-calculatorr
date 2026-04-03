@@ -25301,12 +25301,12 @@
   {
     "id": "turkey-cooking-time-calculator",
     "slug": "turkey-cooking-time-calculator",
-    "title": "Turkey Cooking Time Calculator",
+    "title": "Turkey Cooking Time Calculator — How Long to Cook a Turkey",
     "category": "cooking",
     "categorySlug": "cooking-calculators",
     "icon": "⏲️",
     "calcType": "cooking-turkey",
-    "description": "Calculate the exact baking time and temperature for your turkey, whether stuffed or unstuffed, to hit the safe 165°F internal temperature.",
+    "description": "Calculate exactly how long to cook your turkey — with time charts for oven roasting, deep frying, convection, smoking, and spatchcocking, plus USDA-backed temperature and food safety guidelines.",
     "stars": 5,
     "defaults": {
       "amount": 0,
@@ -25318,11 +25318,13 @@
       "rate": { "min": 0, "max": 0, "step": 0 },
       "tenure": { "min": 0, "max": 0, "step": 0 }
     },
-    "keywords": "how long to cook a turkey, turkey cooking time calculator, usda turkey roasting chart, stuffed turkey baking time",
+    "keywords": "turkey cooking time calculator, how long to cook a turkey, turkey roasting time chart, how long to deep fry a turkey, turkey cooking temperature, convection oven turkey time, smoked turkey time per pound, spatchcocked turkey cooking time, stuffed turkey baking time, turkey internal temperature",
     "links": {
       "related": [
         "turkey-size-calculator",
-        "oven-to-air-fryer-converter"
+        "turkey-thawing-time-calculator",
+        "oven-to-air-fryer-converter",
+        "ham-calculator"
       ]
     }
   },

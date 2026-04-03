@@ -193,20 +193,155 @@ const HUB_CONTENT: Record<string, any> = {
         ]
     },
     "turkey-cooking-time-calculator": {
-        subtitle: "Calculate the exact baking time and temperature for your turkey, whether stuffed or unstuffed, to hit the safe 165°F internal temperature.",
+        subtitle: "Calculate exactly how long to cook your turkey — with time charts for oven roasting, deep frying, convection, smoking, and spatchcocking, plus USDA-backed temperature and food safety guidelines.",
         explanation: {
-            heading: "The Thermodynamics of Roasting a Turkey",
-            contentHTML: `<p>A turkey is a massive, irregularly shaped object. Cooking it safely to 165°F (74°C) without drying out the breast meat requires understanding standard USDA roasting times.</p>
-<h3>Stuffed vs Unstuffed</h3>
-<p>Because the cavity of a stuffed bird is filled with dense breading, heat cannot penetrate the center of the turkey effectively. <strong>A stuffed turkey takes roughly 20% to 30% longer to cook.</strong> The center of the stuffing MUST also reach 165°F.</p>
-<div class="explanation__highlight"><strong>USDA Standard Roasting Times (at 325°F)</strong><br/>Unstuffed: 13 - 15 minutes per pound<br/>Stuffed: 15 - 18 minutes per pound</div>
-<h3>Carryover Cooking</h3>
-<p>When you pull a 15lb turkey out of a 325°F oven, the intense heat trapped in the outer layers will continue to migrate toward the interior. The temperature will rise by roughly 5°F to 10°F while resting. <strong>Pull the turkey when the breast hits 155°F or 160°F</strong> and let it rest for 30-45 minutes. It will finish cooking on the counter.</p>`,
-            highlight: "Safety Warning: Never rely purely on time. Times are estimates based on standard ambient conditions. You must always verify with a digital meat thermometer inserted into the thickest part of the thigh and the deepest part of the breast.",
+            heading: "How Long to Cook a Turkey — Complete Guide",
+            contentHTML: `<p>Whether you're roasting your first Thanksgiving turkey or your twentieth, the question is always the same: <strong>how long do I cook this thing?</strong> The answer depends on three variables — the bird's weight, your cooking method, and whether it's stuffed. Get it wrong, and you're either serving dry cardboard or dangerously undercooked poultry.</p>
+<p>This guide gives you <strong>USDA-backed time charts</strong> for five cooking methods, internal temperature targets, thermometer placement instructions, and the carry-over cooking science that professional chefs use to pull a perfectly juicy bird every time. Not sure what size turkey to buy? Use our <a href="/cooking-calculators/turkey-size-calculator">turkey size calculator</a> first.</p>
+
+<h2>How Long Should You Cook a Turkey?</h2>
+<p>The classic rule — <strong>about 13 to 15 minutes per pound at 325°F for an unstuffed turkey, and 15 to 18 minutes per pound for a stuffed bird</strong> — provides a useful starting point, but it's only reliable for conventional oven roasting. Deep frying, convection cooking, smoking, and spatchcocking all follow completely different timelines.<sup>[1]</sup></p>
+<div class="explanation__highlight"><strong>The #1 Rule:</strong> Time charts are estimates. The ONLY reliable way to tell if a turkey is done is with a meat thermometer. The thickest part of the thigh must reach <strong>165°F (74°C)</strong>.<sup>[2]</sup></div>
+
+<h2>Turkey Roasting Time Chart — 325°F Conventional Oven</h2>
+<p>The following USDA-based chart shows approximate cooking times for a whole turkey roasted at 325°F. Times assume the turkey is fully thawed — make sure to plan ahead using our <a href="/cooking-calculators/turkey-thawing-time-calculator">turkey thawing time calculator</a>.<sup>[1][2]</sup></p>
+<table class="explanation__table">
+<thead><tr><th>Turkey Weight</th><th>Unstuffed</th><th>Stuffed</th></tr></thead>
+<tbody>
+<tr><td><strong>6–8 lbs</strong></td><td>2¼ – 3¼ hours</td><td>3 – 3½ hours</td></tr>
+<tr class="alt"><td><strong>8–12 lbs</strong></td><td>2¾ – 3 hours</td><td>3 – 3½ hours</td></tr>
+<tr><td><strong>12–14 lbs</strong></td><td>3 – 3¾ hours</td><td>3½ – 4 hours</td></tr>
+<tr class="alt"><td><strong>14–18 lbs</strong></td><td>3¾ – 4¼ hours</td><td>4 – 4¼ hours</td></tr>
+<tr><td><strong>18–20 lbs</strong></td><td>4¼ – 4½ hours</td><td>4¼ – 4¾ hours</td></tr>
+<tr class="alt"><td><strong>20–24 lbs</strong></td><td>4½ – 5 hours</td><td>4¾ – 5¼ hours</td></tr>
+</tbody>
+</table>
+<p>Conventional gas and electric ovens should be set to 325°F (163°C). This "low and slow" method allows for even heat distribution throughout the irregularly shaped bird. Ovens vary in calibration, so consider hanging an analog oven thermometer inside to verify your oven's actual temperature.<sup>[1]</sup></p>
+
+<h2>How to Deep Fry a Turkey — Time and Temperature</h2>
+<p>Deep frying produces a juicy turkey with incredibly crispy skin in a fraction of the time — but it requires <strong>strict supervision at every stage</strong>. Fry at 350°F (177°C) in peanut or canola oil.</p>
+<h3>Deep Fry Time Formula</h3>
+<div class="explanation__highlight"><strong>Frying Time = (Turkey Weight in lbs × 3 minutes) + 5 minutes</strong><br/><br/>Example: A 16-pound turkey takes (16 × 3) + 5 = <strong>53 minutes</strong>.<sup>[2]</sup></div>
+<table class="explanation__table">
+<thead><tr><th>Turkey Weight</th><th>Frying Time at 350°F</th></tr></thead>
+<tbody>
+<tr><td><strong>8 lbs</strong></td><td>29 minutes</td></tr>
+<tr class="alt"><td><strong>10 lbs</strong></td><td>35 minutes</td></tr>
+<tr><td><strong>12 lbs</strong></td><td>41 minutes</td></tr>
+<tr class="alt"><td><strong>14 lbs</strong></td><td>47 minutes</td></tr>
+<tr><td><strong>16 lbs</strong></td><td>53 minutes</td></tr>
+<tr class="alt"><td><strong>18 lbs</strong></td><td>59 minutes</td></tr>
+<tr><td><strong>20 lbs</strong></td><td>65 minutes</td></tr>
+</tbody>
+</table>
+<h3>Deep Fry Safety — Essential Precautions</h3>
+<p>Deep frying a turkey is the most dangerous cooking method. The USDA and fire departments report thousands of turkey fryer fires each year. Follow these rules:</p>
+<ul>
+<li><strong>Fry OUTDOORS ONLY</strong> — on a flat surface, at least 10 feet away from any structure.</li>
+<li><strong>Turkey MUST be fully thawed and dried</strong> — ice crystals cause explosive oil splatter.</li>
+<li><strong>Never fill the pot more than ⅔ full with oil</strong> — the turkey displaces oil when lowered in.</li>
+<li><strong>Never stuff a deep-fried turkey</strong> — stuffing prevents even oil contact and creates a food safety hazard.</li>
+<li>Keep a fire extinguisher (Class B, rated for grease fires) within arm's reach at all times.</li>
+<li>Monitor oil temperature with a clip-on <strong>deep-fry thermometer</strong> — never let it exceed 375°F.</li>
+</ul>
+
+<h2>Convection Oven Turkey — Faster and Crispier</h2>
+<p>Convection ovens circulate hot air with an internal fan, creating more even heat distribution and <strong>reducing cooking time by approximately 25%</strong> compared to conventional ovens. Converting your oven time? Our <a href="/cooking-calculators/oven-to-air-fryer-converter">oven to air fryer converter</a> can help for similar conversions.</p>
+<h3>Convection Adjustments</h3>
+<ul>
+<li><strong>Reduce temperature by 25°F</strong> — set to 300°F instead of 325°F.</li>
+<li><strong>Check 30–45 minutes earlier</strong> than conventional oven times.</li>
+<li>The cirulating air browns skin more evenly — you may not need to tent with foil.</li>
+</ul>
+<p>For a 15-pound unstuffed turkey in a convection oven at 300°F, expect approximately <strong>2½ to 3 hours</strong> — about 45 minutes to 1 hour faster than conventional roasting.<sup>[3]</sup></p>
+
+<h2>Smoked Turkey — Low and Slow</h2>
+<p>Smoking a turkey at 225–250°F produces deep, complex flavor that oven roasting can't replicate. Plan for approximately <strong>25 to 30 minutes per pound</strong>.<sup>[4]</sup></p>
+<h3>Smoking Temperature and Time</h3>
+<ul>
+<li><strong>Smoker temperature:</strong> Maintain 225°F–250°F throughout the entire cook.</li>
+<li><strong>Time per pound:</strong> 25–30 minutes (a 15-pound turkey takes ~6 to 7.5 hours).</li>
+<li><strong>Critical safety rule:</strong> The turkey MUST pass through the USDA danger zone (40°F to 140°F) within 4 hours. If your smoker temperature drops too low, the turkey may spend too long in the danger zone, allowing bacteria to multiply.<sup>[2]</sup></li>
+</ul>
+<h3>Wood Chip Recommendations</h3>
+<p><strong>Hickory</strong> delivers a bold, classic smoky flavor. <strong>Apple</strong> and <strong>cherry</strong> provide milder, sweeter smoke that pairs beautifully with poultry. <strong>Mesquite</strong> is too aggressive for turkey — use it for beef brisket instead.</p>
+<p>Pro tip: <strong>Brine the turkey for 24 hours before smoking</strong> to lock in moisture. Smoking at low temperatures for extended periods can dry out the breast meat if the bird isn't properly brined. For brine quantities, our <a href="/cooking-calculators/cups-to-grams-converter">cups to grams converter</a> helps with precision measurements.</p>
+
+<h2>Spatchcocked Turkey — The Fastest Method</h2>
+<p>Spatchcocking (also called butterflying) involves removing the backbone and flattening the bird so it lies flat on the roasting pan. This technique <strong>cuts cooking time by 40–50%</strong> and produces the most evenly cooked turkey of any method.</p>
+<h3>How to Spatchcock a Turkey</h3>
+<ol>
+<li>Place turkey breast-side down on a cutting board.</li>
+<li>Using heavy-duty kitchen shears, cut along both sides of the backbone to remove it.</li>
+<li>Flip the turkey breast-side up and press down firmly on the breastbone until it cracks and the bird lies flat.</li>
+<li>Tuck wing tips behind the breast.</li>
+</ol>
+<h3>Spatchcock Cooking Time</h3>
+<p>Roast at <strong>425–450°F</strong> for approximately <strong>6–10 minutes per pound</strong>. A 15-pound spatchcocked turkey can be done in as little as <strong>90 minutes to 2.5 hours</strong> — compared to nearly 4 hours for a conventional roast.<sup>[3]</sup></p>
+<p>The flattened profile means both legs and breast are exposed to equal heat. You get crispier skin over more surface area and more even internal temperatures throughout the bird.</p>
+
+<h2>Cooking Method Comparison Chart</h2>
+<p>This chart compares all five turkey cooking methods side by side.</p>
+<table class="explanation__table">
+<thead><tr><th>Method</th><th>Temperature</th><th>Time Per Pound</th><th>Best For</th><th>Key Advantage</th></tr></thead>
+<tbody>
+<tr><td><strong>Oven (Conventional)</strong></td><td>325°F</td><td>13–18 min/lb</td><td>Traditional whole turkey</td><td>Familiar, consistent results</td></tr>
+<tr class="alt"><td><strong>Deep Fried</strong></td><td>350°F oil</td><td>~3 min/lb + 5 min</td><td>Crispy skin, juicy interior</td><td>Dramatically faster</td></tr>
+<tr><td><strong>Convection Oven</strong></td><td>300°F</td><td>10–14 min/lb</td><td>Even browning, crispier skin</td><td>25% faster than conventional</td></tr>
+<tr class="alt"><td><strong>Smoked</strong></td><td>225–250°F</td><td>25–30 min/lb</td><td>Rich smoky flavor</td><td>Deep, complex flavor profile</td></tr>
+<tr><td><strong>Spatchcocked</strong></td><td>425–450°F</td><td>6–10 min/lb</td><td>Fastest, most even</td><td>Cuts time by 40–50%</td></tr>
+</tbody>
+</table>
+
+<h2>Internal Temperature Guide — White Meat vs. Dark Meat</h2>
+<p>While the USDA sets a universal safe minimum of 165°F (74°C), professional chefs target slightly different temperatures for white and dark meat to achieve optimal texture.<sup>[5]</sup></p>
+<table class="explanation__table">
+<thead><tr><th>Location</th><th>USDA Safe Minimum</th><th>Chef's Target</th><th>Why</th></tr></thead>
+<tbody>
+<tr><td><strong>Breast (white meat)</strong></td><td>165°F</td><td>160–165°F</td><td>Lean meat dries out rapidly above 170°F</td></tr>
+<tr class="alt"><td><strong>Thigh (dark meat)</strong></td><td>165°F</td><td>170–175°F</td><td>Connective tissue requires higher temps to break down into gelatin</td></tr>
+<tr><td><strong>Stuffing center</strong></td><td>165°F</td><td>165°F</td><td>Absorbs raw turkey juices during cooking</td></tr>
+<tr class="alt"><td><strong>Wing joint</strong></td><td>165°F</td><td>165°F</td><td>Dense area, slow to heat — easy to miss</td></tr>
+</tbody>
+</table>
+<h3>Where to Place the Thermometer</h3>
+<p>For an accurate reading, insert a digital meat thermometer into the <strong>thickest part of the thigh</strong>, angling toward the body cavity without touching bone. Bone conducts heat faster than meat and will give a falsely high reading. Check three locations: the innermost thigh, the wing joint, and the deepest part of the breast.<sup>[3][5]</sup></p>
+
+<h2>Carry-Over Cooking — Why to Pull at 155–160°F</h2>
+<p>When you remove a turkey from a 325°F oven, residual heat trapped in the outer layers continues migrating toward the center. This phenomenon — called <strong>carry-over cooking</strong> — raises the internal temperature by <strong>5°F to 10°F</strong> during the resting period.<sup>[5]</sup></p>
+<div class="explanation__highlight"><strong>Pull the turkey when the breast reaches 155–160°F</strong> and the thigh reaches 170°F. Tent loosely with foil and rest for <strong>20 to 30 minutes</strong>. The breast will coast up to 165°F on its own — resulting in juicier meat than if you wait until the thermometer shows 165°F in the oven.</div>
+<h3>Why Resting Is Non-Negotiable</h3>
+<p>Cutting into a turkey immediately after pulling it from the oven releases all the pressurized juices onto the cutting board. Resting for 20–30 minutes allows the muscle fibers to relax and reabsorb those juices, resulting in noticeably moister slices. This is the single biggest difference between a dry turkey and a restaurant-quality one.</p>
+
+<h2>Professional Tips for a Perfect Turkey</h2>
+<ul>
+<li><strong>Dry brine 24–48 hours ahead.</strong> Rub ½ to ¾ tablespoon of kosher salt per pound directly onto the skin and refrigerate uncovered. The salt draws out moisture, dissolves into a brine, then reabsorbs into the meat. The uncovered skin dehydrates in the fridge, producing crispier skin when roasted. For dry brine measurements, our <a href="/cooking-calculators/teaspoons-to-tablespoons-converter">teaspoons to tablespoons converter</a> ensures precision.</li>
+<li><strong>Tent with foil to prevent over-browning.</strong> If the skin reaches your desired golden color before the thigh hits 155°F, loosely tent the breast with aluminum foil to prevent burning while the deeper meat finishes.</li>
+<li><strong>Let the turkey rest 30 minutes before carving.</strong> Cutting immediately causes the juices to pour out onto the cutting board instead of staying in the meat.</li>
+<li><strong>Separate dark and white meat for reheating.</strong> Breast meat dries out easily when reheated. Store legs, thighs (dark) and breast (white) separately so you can reheat each to its ideal temperature.</li>
+<li><strong>Save the carcass for stock.</strong> A turkey carcass simmered with carrots, celery, and onion for 4–6 hours yields 2–3 quarts of rich stock — the base for turkey noodle soup, gravy, and risotto. Scaling your soup recipe? Use our <a href="/cooking-calculators/recipe-scale-calculator">recipe scale calculator</a> to adjust ingredient quantities.</li>
+</ul>
+<p>Planning the full holiday menu? Our <a href="/cooking-calculators/ham-calculator">ham cooking calculator</a> estimates size and cooking time if you're serving both turkey and ham. For dessert planning, our <a href="/cooking-calculators/cake-calculator">cake calculator</a> estimates how much cake you need per guest. And for leftover conversions, our <a href="/cooking-calculators/tablespoons-to-cups-converter">tablespoons to cups converter</a> and <a href="/cooking-calculators/grams-to-cups-converter">grams to cups converter</a> ensure precision when using leftover turkey in new recipes.<sup>[1][5]</sup></p>
+
+<h2>References</h2>
+<ol class="explanation__references">
+<li>United States Department of Agriculture. <em>Let's Talk Turkey — A Consumer Guide to Safely Roasting a Turkey.</em> USDA Food Safety and Inspection Service. <a href="https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/poultry/lets-talk-turkey-roasting" target="_blank" rel="noopener noreferrer">fsis.usda.gov</a></li>
+<li>U.S. Department of Health & Human Services. <em>Meat and Poultry Charts — Turkey Roasting Time by Size.</em> FoodSafety.gov. <a href="https://www.foodsafety.gov/food-safety-charts/meat-poultry-charts" target="_blank" rel="noopener noreferrer">foodsafety.gov</a></li>
+<li>University of Illinois Extension. <em>Turkey for the Holidays — Safe Cooking and Handling.</em> College of Agricultural, Consumer and Environmental Sciences. <a href="https://extension.illinois.edu/" target="_blank" rel="noopener noreferrer">extension.illinois.edu</a></li>
+<li>University of Wisconsin Extension. <em>Turkey Cooking Charts and Food Safety Guidelines.</em> Division of Extension. <a href="https://fyi.extension.wisc.edu/" target="_blank" rel="noopener noreferrer">fyi.extension.wisc.edu</a></li>
+<li>ThermoWorks. <em>Turkey Temperature: Where to Probe and Ideal Temps.</em> ThermoWorks Blog. <a href="https://www.thermoworks.com/" target="_blank" rel="noopener noreferrer">thermoworks.com</a></li>
+</ol>`,
+            highlight: "Safety Warning: Never rely purely on time charts. Always verify doneness with a digital meat thermometer inserted into the thickest part of the thigh, the wing joint, and the deepest part of the breast. The USDA safe minimum internal temperature is 165°F (74°C) in all locations.",
         },
         faq: [
-            { question: "Should I cook my turkey at 325°F or 350°F?", answer: "325°F is the USDA standard for safe, even roasting of a large fowl. 350°F works, but dramatically increases the risk of the skin burning before the deep thigh meat is fully cooked." },
-            { question: "How long to cook a 15lb unstuffed turkey?", answer: "At 325°F, an unstuffed 15lb turkey will take roughly 3 hours and 15 minutes to 3 hours and 45 minutes." }
+            { question: "How long to cook a 15-pound turkey?", answer: "At 325°F, a 15-pound unstuffed turkey takes approximately 3¾ to 4¼ hours. A stuffed 15-pound turkey takes about 4 to 4¼ hours. Always verify with a meat thermometer — the thigh must reach 165°F." },
+            { question: "Should I cook my turkey at 325°F or 350°F?", answer: "325°F is the USDA standard for safe, even roasting. It provides a larger margin of error against burning. 350°F works but requires more monitoring. Never cook a turkey below 325°F — lower temperatures keep the bird in the USDA danger zone (40–140°F) too long." },
+            { question: "How long does it take to deep fry a turkey?", answer: "Use the formula: (weight in lbs × 3 minutes) + 5 minutes. A 15-pound turkey takes about 50 minutes in 350°F oil. Deep frying is dramatically faster than oven roasting but requires constant supervision and proper safety equipment." },
+            { question: "What temperature should a turkey be when done?", answer: "The USDA safe minimum is 165°F (73.9°C) in the thickest part of the thigh, the wing, and the breast. If the turkey is stuffed, the center of the stuffing must also reach 165°F. Many chefs recommend pulling at 155–160°F and resting for 30 minutes, since carry-over cooking raises the temp another 5–10°F." },
+            { question: "How long to cook a turkey in a convection oven?", answer: "Convection ovens reduce cooking time by about 25%. Set the temperature 25°F lower than conventional recipes (300°F instead of 325°F). A 15-pound unstuffed turkey takes approximately 2½ to 3 hours in a convection oven." },
+            { question: "How long should a turkey rest before carving?", answer: "Rest the turkey for at least 20–30 minutes after removing from the oven. The internal temperature will rise 5–10°F during this time (carry-over cooking), and the juices will redistribute throughout the meat, resulting in juicier slices." },
+            { question: "How long does it take to smoke a turkey?", answer: "At 225–250°F, plan for 25–30 minutes per pound. A 15-pound turkey takes about 6–7.5 hours to smoke. Maintain consistent smoker temperature and ensure the bird passes through the USDA danger zone within 4 hours." },
+            { question: "What is spatchcocking and how fast does it cook?", answer: "Spatchcocking means removing the backbone and flattening the turkey. Roast at 425–450°F for 6–10 minutes per pound — a 15-pound spatchcocked turkey can be done in 90 minutes to 2.5 hours, about 40–50% faster than conventional roasting." }
         ]
     },
     "turkey-thawing-time-calculator": {
