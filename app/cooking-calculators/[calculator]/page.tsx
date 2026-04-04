@@ -940,14 +940,130 @@ const HUB_CONTENT: Record<string, any> = {
         ]
     },
     "ounces-to-grams-converter": {
-        subtitle: "Instantly and accurately convert standard dry weight ounces directly into metric grams for precise baking measurements.",
+        subtitle: "Convert ounces (oz) to grams (g) instantly. This is a pure mass-to-mass conversion — the density of the ingredient does not matter. Accurate to 6 decimal places using the international standard conversion factor.",
         explanation: {
-            heading: "The Mass Conversion",
-            contentHTML: `<p>This is a pure mass-to-mass mathematical conversion. Unlike volume-to-mass conversions, the density of the ingredient does not matter when converting Dry Ounces to Grams.</p>`,
-            highlight: "Mathematical Constant: 1 Dry Ounce = 28.3495 Grams exactly.",
+            heading: "How to Convert Ounces to Grams",
+            contentHTML: `<p>Converting ounces to grams is a straightforward mathematical calculation. Unlike <a href="/cooking-calculators/grams-to-tablespoons-converter">grams-to-tablespoons</a> or <a href="/cooking-calculators/grams-to-cups-converter">grams-to-cups</a> conversions (which depend on ingredient density), ounces and grams both measure <strong>mass</strong>. The conversion factor is a fixed constant — it never changes regardless of what you're weighing.</p>
+<p>To convert ounces to grams, multiply the weight in ounces by the conversion factor:</p>
+<div class="explanation__highlight">
+    <strong>grams = ounces × 28.3495</strong><br/><br/>
+    <strong>Step 1:</strong> Identify the weight in ounces.<br/>
+    <strong>Step 2:</strong> Multiply by 28.3495 (the grams-per-ounce constant).<br/>
+    <strong>Step 3:</strong> Round to the nearest tenth for practical kitchen use.<br/><br/>
+    <strong>Example — 1 oz:</strong> 1 × 28.3495 = <strong>28.35 grams</strong><br/><br/>
+    <strong>Example — 4 oz (1 stick of butter):</strong> 4 × 28.3495 = <strong>113.40 grams</strong><br/><br/>
+    <strong>Example — 8 oz (½ pound):</strong> 8 × 28.3495 = <strong>226.80 grams</strong>
+</div>
+<p>The precise conversion factor is <strong>28.349523125 grams per ounce</strong>, defined by the International Yard and Pound Agreement of 1959. In practice, rounding to 28.3495 g/oz introduces less than 0.0001% error — negligible for all cooking and most laboratory applications.<sup>[2]</sup></p>
+
+<h3 id="snippet-1oz">How Many Grams Is 1 Ounce?</h3>
+<p><strong>1 ounce = 28.35 grams.</strong> This is the foundational conversion constant. One ounce is roughly the weight of a standard slice of bread, a single AA battery, or about 6 US quarters stacked together.</p>
+
+<h3 id="snippet-2oz">How Many Grams Is 2 Ounces?</h3>
+<p><strong>2 ounces = 56.70 grams.</strong> This is approximately the weight of a small chocolate bar, a single large egg without the shell, or 2 tablespoons of <a href="/cooking-calculators/cups-to-grams-converter">butter</a>.</p>
+
+<h3 id="snippet-4oz">How Many Grams Is 4 Ounces?</h3>
+<p><strong>4 ounces = 113.40 grams = ¼ pound.</strong> In US baking, 4 oz is exactly <strong>1 stick of butter</strong> (½ cup). This is one of the most commonly used conversions in American kitchens. When a recipe calls for "4 ounces of chocolate," weigh out 113g on your <a href="/cooking-calculators/recipe-scale-calculator">kitchen scale</a>.</p>
+
+<h3 id="snippet-6oz">How Many Grams Is 6 Ounces?</h3>
+<p><strong>6 ounces = 170.10 grams.</strong> This is approximately the weight of a standard single-serve yogurt container, a medium chicken breast, or ¾ of a standard US butter stick pair.</p>
+
+<h3 id="snippet-8oz">How Many Grams Is 8 Ounces?</h3>
+<p><strong>8 ounces = 226.80 grams = ½ pound.</strong> In US baking, 8 oz equals <strong>2 sticks of butter</strong> (1 cup). This is also the weight of a standard block of cream cheese. Do not confuse 8 dry ounces (weight) with 8 fluid ounces (volume) — they are completely different measurements.</p>
+
+<h3 id="snippet-12oz">How Many Grams Is 12 Ounces?</h3>
+<p><strong>12 ounces = 340.19 grams = ¾ pound.</strong> This is the weight of a standard bag of chocolate chips (Nestlé Toll House), a can of soda, or 3 sticks of butter. When <a href="/cooking-calculators/cake-calculator">baking a cake</a> that calls for 12 oz of flour, weigh out 340g.</p>
+
+<h3 id="snippet-16oz">How Many Grams Is 16 Ounces?</h3>
+<p><strong>16 ounces = 453.59 grams = exactly 1 pound.</strong> This is the most important ounce-to-gram conversion to memorize. One pound equals 16 ounces, which equals 453.59 grams. A standard box of pasta, a pound of ground beef, or 4 sticks of butter all weigh approximately 1 pound.</p>
+
+<h3 id="snippet-32oz">How Many Grams Is 32 Ounces?</h3>
+<p><strong>32 ounces = 907.18 grams = 2 pounds.</strong> This is approximately the weight of a standard container of yogurt (quart size) or a large bag of shredded cheese. At nearly 1 kilogram, 32 oz is a useful benchmark for larger <a href="/cooking-calculators/pizza-calculator">bulk recipe</a> quantities.</p>
+
+<h3 id="oz-gram-chart">Ounce to Gram Conversion Chart</h3>
+<p>Use this master reference table for quick ounce-to-gram lookups. The "Kitchen Reference" column provides real-world context for common US food weights sourced from the <a href="https://fdc.nal.usda.gov/" target="_blank" rel="noopener">USDA FoodData Central</a> and <a href="https://www.kingarthurbaking.com/learn/ingredient-weight-chart" target="_blank" rel="noopener">King Arthur Baking</a>.<sup>[4][5]</sup></p>
+<table>
+    <thead><tr><th>Ounces (oz)</th><th>Grams (g)</th><th>Pounds (lb)</th><th>Kitchen Reference</th></tr></thead>
+    <tbody>
+        <tr><td><strong>0.5 oz</strong></td><td>14.17 g</td><td>—</td><td>1 tbsp butter</td></tr>
+        <tr><td><strong>1 oz</strong></td><td>28.35 g</td><td>1/16 lb</td><td>1 slice of bread</td></tr>
+        <tr><td><strong>2 oz</strong></td><td>56.70 g</td><td>⅛ lb</td><td>1 large egg (no shell)</td></tr>
+        <tr><td><strong>3 oz</strong></td><td>85.05 g</td><td>—</td><td>Standard serving of meat (USDA)</td></tr>
+        <tr><td><strong>4 oz</strong></td><td>113.40 g</td><td>¼ lb</td><td>1 stick of butter</td></tr>
+        <tr><td><strong>5 oz</strong></td><td>141.75 g</td><td>—</td><td>Standard yogurt cup</td></tr>
+        <tr><td><strong>6 oz</strong></td><td>170.10 g</td><td>⅜ lb</td><td>Medium chicken breast</td></tr>
+        <tr><td><strong>8 oz</strong></td><td>226.80 g</td><td>½ lb</td><td>2 sticks butter / 1 block cream cheese</td></tr>
+        <tr><td><strong>10 oz</strong></td><td>283.50 g</td><td>⅝ lb</td><td>Package of frozen spinach</td></tr>
+        <tr><td><strong>12 oz</strong></td><td>340.19 g</td><td>¾ lb</td><td>Bag of chocolate chips / soda can</td></tr>
+        <tr><td><strong>14 oz</strong></td><td>396.89 g</td><td>⅞ lb</td><td>Can of sweetened condensed milk</td></tr>
+        <tr><td><strong>16 oz</strong></td><td>453.59 g</td><td>1 lb</td><td>Box of pasta / lb of ground beef</td></tr>
+        <tr><td><strong>20 oz</strong></td><td>566.99 g</td><td>1.25 lb</td><td>Large bottle of soda</td></tr>
+        <tr><td><strong>24 oz</strong></td><td>680.39 g</td><td>1.5 lb</td><td>Standard pork tenderloin</td></tr>
+        <tr><td><strong>32 oz</strong></td><td>907.18 g</td><td>2 lb</td><td>Large yogurt container</td></tr>
+        <tr><td><strong>40 oz</strong></td><td>1,133.98 g</td><td>2.5 lb</td><td>Small whole chicken</td></tr>
+        <tr><td><strong>48 oz</strong></td><td>1,360.78 g</td><td>3 lb</td><td>Average whole chicken</td></tr>
+        <tr><td><strong>64 oz</strong></td><td>1,814.37 g</td><td>4 lb</td><td>Large bag of sugar / flour</td></tr>
+        <tr><td><strong>80 oz</strong></td><td>2,267.96 g</td><td>5 lb</td><td>Standard bag of all-purpose flour</td></tr>
+        <tr><td><strong>160 oz</strong></td><td>4,535.92 g</td><td>10 lb</td><td>Large bag of potatoes</td></tr>
+    </tbody>
+</table>
+
+<h3>Ounces vs. Troy Ounces — A Critical Distinction</h3>
+<p>The ounce used in cooking and everyday weighing is the <strong>avoirdupois ounce</strong> (28.3495g). This is what our calculator converts. However, there is a completely different unit called the <strong>troy ounce</strong> (31.1035g), which is used exclusively for weighing precious metals like gold, silver, and platinum.<sup>[1]</sup></p>
+<table>
+    <thead><tr><th>Unit</th><th>Grams</th><th>Used For</th></tr></thead>
+    <tbody>
+        <tr><td><strong>Avoirdupois ounce (oz)</strong></td><td>28.3495 g</td><td>Food, cooking, shipping, everyday</td></tr>
+        <tr><td><strong>Troy ounce (oz t)</strong></td><td>31.1035 g</td><td>Gold, silver, platinum, gemstones</td></tr>
+    </tbody>
+</table>
+<p>A troy ounce is approximately <strong>10% heavier</strong> than a standard ounce. If you see gold priced at "$2,000 per ounce," that's per <em>troy</em> ounce. Never use troy ounces for cooking — your recipes will be off by 10%.</p>
+
+<h3>When to Convert Ounces to Grams</h3>
+<p>Ounces and grams are both units of mass commonly used in American kitchens and laboratories. The <a href="https://www.nist.gov/pml/owm/culinary-measurement-tips" target="_blank" rel="noopener">NIST recommends</a> measuring ingredients by weight for improved accuracy.<sup>[1]</sup></p>
+<ul>
+    <li><strong>Following metric recipes</strong>: Most international recipes specify ingredients in grams. If your kitchen scale reads in ounces, you need to convert. Or switch your scale to grams — most modern digital scales support both units.</li>
+    <li><strong>Precise baking measurements</strong>: Professional bakers measure flour, sugar, and butter in grams because it eliminates the inconsistency of <a href="/cooking-calculators/cups-to-grams-converter">cup measurements</a>. Converting your familiar ounce amounts to grams is the first step to more consistent results.</li>
+    <li><strong>Nutritional tracking</strong>: The FDA requires all US nutrition labels to display serving sizes in grams.<sup>[3]</sup> If you're tracking macros and your food scale reads in ounces, you'll need to convert to match the label.</li>
+    <li><strong>Scaling recipes</strong>: When using our <a href="/cooking-calculators/recipe-scale-calculator">recipe scale calculator</a> for large batches, converting everything to grams first prevents rounding errors that compound when multiplying fractional ounce amounts.</li>
+    <li><strong>International shipping</strong>: Most countries outside the US use the metric system. Package weights must be listed in grams or kilograms for international commerce.</li>
+</ul>
+
+<h3>Common Mistakes When Converting Ounces to Grams</h3>
+<ul>
+    <li><strong>Confusing dry ounces with fluid ounces</strong> — A dry ounce (oz) measures <strong>weight</strong>. A fluid ounce (fl oz) measures <strong>volume</strong>. 1 fl oz of water weighs approximately 29.57g (not 28.35g). 1 fl oz of honey weighs about 42g. They are completely different units. Use our <a href="/convert/ml-to-gram-converter">milliliters to grams converter</a> for volume-based measurements.</li>
+    <li><strong>Using troy ounces for cooking</strong> — If you're using a jewelry scale or a precious metals calculator, it likely uses troy ounces (31.1g). This creates a 10% error in your recipes.</li>
+    <li><strong>Rounding too aggressively</strong> — Using "28 grams per ounce" instead of 28.35g introduces a 1.2% error. For a single ounce, that's only 0.35g — negligible. But for a 5-lb bag of flour (80 oz), the error grows to 28g — nearly an extra ounce. Always use at least 28.35g/oz.</li>
+    <li><strong>Confusing ounces with <a href="/cooking-calculators/grams-to-tablespoons-converter">tablespoons</a> or cups</strong> — Ounces measure weight. <a href="/cooking-calculators/tablespoons-to-cups-converter">Tablespoons and cups</a> measure volume. You cannot convert ounces directly to tablespoons without knowing the ingredient's density.</li>
+</ul>
+
+<h3>What Is an Ounce?</h3>
+<p>An <strong>ounce</strong> (oz) is a US customary and imperial unit of mass equal to 1/16 of a pound, or 28.349523 grams. The term "ounce" refers to the <strong>avoirdupois ounce</strong>, which is the standard unit of weight used in the United States for food, commerce, and everyday measurement. The avoirdupois system has been the legal standard in the US since 1959, when the International Yard and Pound Agreement defined 1 pound as exactly 0.45359237 kilograms.<sup>[2]</sup></p>
+<p>Ounces can be abbreviated as <strong>oz</strong> — for example, 1 ounce can be written as 1 oz. The common ounce should not be confused with the troy ounce (oz t), which equals 31.1035g and is used exclusively for precious metals.</p>
+
+<h3>What Is a Gram?</h3>
+<p>A <strong>gram</strong> (g) is a metric unit of mass equal to 1/1,000 of a <a href="/convert/liter-to-kg-converter">kilogram</a>, or 0.035274 ounces. It is equivalent to the mass of one cubic centimeter (one milliliter) of water at 4°C. The gram is an SI unit of mass in the metric system and can be abbreviated as <strong>g</strong> — for example, 1 gram can be written as 1 g.</p>
+<p>The gram is the most commonly used unit for measuring food ingredients worldwide. In the United States, while ounces and pounds dominate everyday usage, grams are required on all FDA nutrition labels and are the preferred unit for precise baking.<sup>[3]</sup></p>
+
+<h3>References</h3>
+<ol>
+    <li>National Institute of Standards &amp; Technology, <em>Culinary Measurement Tips</em>, <a href="https://www.nist.gov/pml/owm/culinary-measurement-tips" target="_blank" rel="noopener">nist.gov</a></li>
+    <li>Bureau International des Poids et Mesures (BIPM), <em>International Yard and Pound Agreement</em>, <a href="https://www.bipm.org/" target="_blank" rel="noopener">bipm.org</a></li>
+    <li>U.S. Food &amp; Drug Administration, <em>Guidance for Industry: Guidelines for Determining Metric Equivalents of Household Measures</em>, <a href="https://www.fda.gov/regulatory-information/search-fda-guidance-documents/guidance-industry-guidelines-determining-metric-equivalents-household-measures" target="_blank" rel="noopener">fda.gov</a></li>
+    <li>U.S. Department of Agriculture, <em>FoodData Central</em>, <a href="https://fdc.nal.usda.gov/" target="_blank" rel="noopener">fdc.nal.usda.gov</a></li>
+    <li>King Arthur Baking Company, <em>Ingredient Weight Chart</em>, <a href="https://www.kingarthurbaking.com/learn/ingredient-weight-chart" target="_blank" rel="noopener">kingarthurbaking.com</a></li>
+</ol>`,
+            highlight: "Conversion Constant: 1 avoirdupois ounce = 28.3495 grams (rounded). The exact value is 28.349523125 g, defined by the International Yard and Pound Agreement of 1959. This is a pure mass-to-mass conversion — ingredient density does not matter.",
         },
         faq: [
-            { question: "Is a dry ounce the same as a fluid ounce?", answer: "No! A dry ounce measures mass (weight). A fluid ounce measures volume (space). Do not confuse them." }
+            { question: "How many grams is 1 ounce?", answer: "1 ounce = 28.3495 grams (commonly rounded to 28.35g). The precise value is 28.349523125 grams, defined by the International Yard and Pound Agreement of 1959. This conversion factor is a fixed constant — it applies to all ingredients equally because both ounces and grams measure mass." },
+            { question: "Is a dry ounce the same as a fluid ounce?", answer: "No. A dry ounce (oz) measures weight/mass. A fluid ounce (fl oz) measures volume. They are completely different units that happen to share the word 'ounce.' 1 fl oz of water weighs about 29.57g (not 28.35g), and 1 fl oz of honey weighs about 42g. Never substitute one for the other." },
+            { question: "How many ounces in a pound?", answer: "There are exactly 16 ounces in 1 pound. So 1 pound = 16 oz = 453.592 grams. This is a common weight used in US grocery stores — when you buy 'a pound of ground beef,' you're getting 16 ounces or about 454 grams." },
+            { question: "Is 1 oz exactly 28 grams?", answer: "No. 1 oz = 28.3495 grams. Using 28g introduces a 1.2% error. For small amounts (1–2 oz), the difference is negligible. But for larger quantities — say, 5 lbs of flour (80 oz) — using 28g/oz instead of 28.35g/oz means you're off by 28 grams, nearly a full ounce." },
+            { question: "What is the difference between ounces and troy ounces?", answer: "The standard (avoirdupois) ounce = 28.3495g, used for food, shipping, and everyday weighing. The troy ounce = 31.1035g, used exclusively for precious metals (gold, silver, platinum). A troy ounce is about 10% heavier than a standard ounce. Our calculator uses the avoirdupois ounce." },
+            { question: "How do I convert ounces to grams without a calculator?", answer: "Multiply the ounces by 28.35. For a quick mental estimate, multiply by 28 and add 1% (or just round to 28.4). For example: 5 oz × 28.35 = 141.75g. For very rough estimates, 'ounces × 30' gets you within 6% — close enough for most cooking." },
+            { question: "How many grams is 8 ounces?", answer: "8 ounces = 226.80 grams = ½ pound. In US baking, this equals 2 sticks of butter (1 cup) or 1 standard block of cream cheese. This is one of the most commonly referenced conversions in American recipes." },
+            { question: "Why do recipes use grams instead of ounces?", answer: "Grams provide higher precision without fractions. In ounces, you deal with awkward amounts like '3 and 7/8 ounces.' In grams, that's simply 110g. Grams are also the international standard — recipes from Europe, Asia, and most of the world use grams. Professional bakers worldwide prefer grams because a 1g error matters far less than a 1oz (28g) error." }
         ]
     },
     "tablespoons-to-cups-converter": {
