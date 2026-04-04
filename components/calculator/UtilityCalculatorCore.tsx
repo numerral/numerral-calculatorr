@@ -55,21 +55,56 @@ function AgeCalc() {
             </div>
 
             {result && (
-                <div className="calc-card" style={{ marginTop: "var(--s-4)", background: "var(--n-surface-alt)" }}>
-                    <p className="calc-field__label">YOUR AGE</p>
-                    <p style={{ fontSize: "var(--t-h1)", fontWeight: 700, color: "var(--n-primary)", marginBottom: "var(--s-3)" }}>
-                        {result.years} years, {result.months} months, {result.days} days
-                    </p>
-                    <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
-                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "var(--s-3)" }}>
-                        <div><p className="calc-field__label">TOTAL DAYS</p><p style={{ fontWeight: 700, color: "var(--n-text)" }}>{result.totalDays.toLocaleString("en-IN")}</p></div>
-                        <div><p className="calc-field__label">TOTAL MONTHS</p><p style={{ fontWeight: 700, color: "var(--n-text)" }}>{result.totalMonths}</p></div>
-                        <div><p className="calc-field__label">TOTAL WEEKS</p><p style={{ fontWeight: 700, color: "var(--n-text)" }}>{result.totalWeeks.toLocaleString("en-IN")}</p></div>
+                <div style={{ marginTop: "var(--s-5)" }}>
+                    {/* ── Primary Age Result ── */}
+                    <div style={{
+                        background: "linear-gradient(135deg, var(--n-primary), hsl(252, 75%, 55%))",
+                        borderRadius: "var(--r-lg)",
+                        padding: "var(--s-6) var(--s-5)",
+                        textAlign: "center",
+                        marginBottom: "var(--s-4)",
+                    }}>
+                        <p style={{ fontSize: "var(--t-caption)", fontWeight: 600, color: "rgba(255,255,255,0.7)", letterSpacing: "0.08em", marginBottom: "var(--s-2)", textTransform: "uppercase" }}>YOUR AGE</p>
+                        <p style={{ fontSize: "clamp(1.5rem, 4vw, 2.25rem)", fontWeight: 800, color: "#fff", lineHeight: 1.2, marginBottom: "var(--s-1)" }}>
+                            {result.years} years, {result.months} months, {result.days} days
+                        </p>
                     </div>
-                    <hr style={{ borderColor: "var(--n-border)", margin: "var(--s-3) 0" }} />
-                    <p style={{ fontSize: "var(--t-body-sm)", color: "var(--n-text-muted)" }}>
-                        🎉 <strong style={{ color: "var(--n-primary)" }}>{result.nextBirthday}</strong> days until your next birthday!
-                    </p>
+
+                    {/* ── Stats Grid ── */}
+                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "var(--s-3)", marginBottom: "var(--s-4)" }}>
+                        {[
+                            { label: "Total Days", value: result.totalDays.toLocaleString("en-US"), icon: "📅" },
+                            { label: "Total Months", value: result.totalMonths.toLocaleString("en-US"), icon: "📆" },
+                            { label: "Total Weeks", value: result.totalWeeks.toLocaleString("en-US"), icon: "🗓️" },
+                        ].map((stat) => (
+                            <div key={stat.label} style={{
+                                background: "var(--n-surface-alt)",
+                                border: "1px solid var(--n-border)",
+                                borderRadius: "var(--r-md)",
+                                padding: "var(--s-4) var(--s-3)",
+                                textAlign: "center",
+                            }}>
+                                <p style={{ fontSize: "var(--t-caption)", fontWeight: 600, color: "var(--n-text-muted)", letterSpacing: "0.05em", textTransform: "uppercase", marginBottom: "var(--s-2)" }}>{stat.icon} {stat.label}</p>
+                                <p style={{ fontSize: "var(--t-h3)", fontWeight: 700, color: "var(--n-text)" }}>{stat.value}</p>
+                            </div>
+                        ))}
+                    </div>
+
+                    {/* ── Birthday Countdown ── */}
+                    <div style={{
+                        background: "var(--n-surface-alt)",
+                        border: "1px solid var(--n-border)",
+                        borderRadius: "var(--r-md)",
+                        padding: "var(--s-3) var(--s-4)",
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "var(--s-3)",
+                    }}>
+                        <span style={{ fontSize: "1.25rem" }}>🎉</span>
+                        <p style={{ fontSize: "var(--t-body-sm)", color: "var(--n-text-secondary)", margin: 0 }}>
+                            <strong style={{ color: "var(--n-primary)" }}>{result.nextBirthday}</strong> days until your next birthday!
+                        </p>
+                    </div>
                 </div>
             )}
         </div>
