@@ -181,6 +181,11 @@ const nextConfig: NextConfig = {
         destination: '/convert/gram-to-cup-converter',
         permanent: true,
       },
+      {
+        source: '/cooking-calculators/cups-to-grams-converter',
+        destination: '/convert/cup-to-gram-converter',
+        permanent: true,
+      },
     ];
   },
 };

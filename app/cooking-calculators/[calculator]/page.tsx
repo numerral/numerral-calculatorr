@@ -169,7 +169,7 @@ const HUB_CONTENT: Record<string, any> = {
 <li><strong>Save the carcass for stock.</strong> A turkey carcass simmered with carrots, celery, and onion for 4–6 hours yields 2–3 quarts of rich stock — the base for turkey noodle soup, gravy, and risotto. Scaling your soup recipe? Use our <a href="/cooking-calculators/recipe-scale-calculator">recipe scale calculator</a> to adjust ingredient quantities.</li>
 </ul>
 
-<p>Planning the full holiday menu? Our <a href="/cooking-calculators/ham-calculator">ham cooking calculator</a> estimates size and cooking time if you're serving both turkey and ham. For dessert planning, our <a href="/cooking-calculators/cake-calculator">cake calculator</a> estimates how much cake you need per guest. And for leftover conversions, our <a href="/cooking-calculators/cups-to-grams-converter">cups to grams converter</a> and <a href="/cooking-calculators/tablespoons-to-cups-converter">tablespoons to cups converter</a> ensure precision when using leftover turkey in new recipes.<sup>[1][5]</sup></p>
+<p>Planning the full holiday menu? Our <a href="/cooking-calculators/ham-calculator">ham cooking calculator</a> estimates size and cooking time if you're serving both turkey and ham. For dessert planning, our <a href="/cooking-calculators/cake-calculator">cake calculator</a> estimates how much cake you need per guest. And for leftover conversions, our <a href="/convert/cup-to-gram-converter">cups to grams converter</a> and <a href="/cooking-calculators/tablespoons-to-cups-converter">tablespoons to cups converter</a> ensure precision when using leftover turkey in new recipes.<sup>[1][5]</sup></p>
 
 <h2>References</h2>
 <ol class="references-list">
@@ -265,7 +265,7 @@ const HUB_CONTENT: Record<string, any> = {
 </ul>
 <h3>Wood Chip Recommendations</h3>
 <p><strong>Hickory</strong> delivers a bold, classic smoky flavor. <strong>Apple</strong> and <strong>cherry</strong> provide milder, sweeter smoke that pairs beautifully with poultry. <strong>Mesquite</strong> is too aggressive for turkey — use it for beef brisket instead.</p>
-<p>Pro tip: <strong>Brine the turkey for 24 hours before smoking</strong> to lock in moisture. Smoking at low temperatures for extended periods can dry out the breast meat if the bird isn't properly brined. For brine quantities, our <a href="/cooking-calculators/cups-to-grams-converter">cups to grams converter</a> helps with precision measurements.</p>
+<p>Pro tip: <strong>Brine the turkey for 24 hours before smoking</strong> to lock in moisture. Smoking at low temperatures for extended periods can dry out the breast meat if the bird isn't properly brined. For brine quantities, our <a href="/convert/cup-to-gram-converter">cups to grams converter</a> helps with precision measurements.</p>
 
 <h2>Spatchcocked Turkey — The Fastest Method</h2>
 <p>Spatchcocking (also called butterflying) involves removing the backbone and flattening the bird so it lies flat on the roasting pan. This technique <strong>cuts cooking time by 40–50%</strong> and produces the most evenly cooked turkey of any method.</p>
@@ -468,7 +468,7 @@ const HUB_CONTENT: Record<string, any> = {
 <li><strong>Cold water thaw:</strong> Even a 20-pound turkey can be thawed in about 10 hours with cold water. Start early in the morning and you can cook by evening.</li>
 <li><strong>Cook from frozen:</strong> The USDA confirms you can safely roast a completely frozen turkey — it will simply take approximately <strong>50% longer</strong> than a fully thawed bird. A 20-pound turkey that normally takes 4–4.5 hours will take 6–6.75 hours from frozen. You cannot deep fry, grill, or smoke a frozen turkey. Remove the giblet bag when it loosens during cooking.<sup>[5]</sup></li>
 </ol>
-<p>If you need help converting <a href="/cooking-calculators/cups-to-grams-converter">cups to grams</a> for your gravy or side dishes, or converting <a href="/convert/gram-to-cup-converter">grams to cups</a> for European recipes, our measurement converters are designed for exactly this. For smaller measurement conversions like spices, use our <a href="/cooking-calculators/teaspoons-to-tablespoons-converter">teaspoons to tablespoons converter</a> or <a href="/cooking-calculators/grams-to-tablespoons-converter">grams to tablespoons converter</a>.</p>
+<p>If you need help converting <a href="/convert/cup-to-gram-converter">cups to grams</a> for your gravy or side dishes, or converting <a href="/convert/gram-to-cup-converter">grams to cups</a> for European recipes, our measurement converters are designed for exactly this. For smaller measurement conversions like spices, use our <a href="/cooking-calculators/teaspoons-to-tablespoons-converter">teaspoons to tablespoons converter</a> or <a href="/cooking-calculators/grams-to-tablespoons-converter">grams to tablespoons converter</a>.</p>
 
 <h2>Can You Cook a Frozen Turkey?</h2>
 <p>Yes — and it's perfectly safe. A completely frozen turkey can go directly from the freezer into the oven. However, there are important differences:<sup>[5]</sup></p>
@@ -583,7 +583,7 @@ const HUB_CONTENT: Record<string, any> = {
 </table>
 
 <h2>Ham Glaze — How Much Do You Need?</h2>
-<p>A proper glaze transforms a simple reheated ham into a caramelized, sticky, holiday centerpiece. The classic American ham glaze is a simple mixture of <strong>brown sugar, honey (or maple syrup), and Dijon mustard</strong>. Adjust quantities based on ham size — too little glaze results in patchy coverage, while too much pools at the bottom of the pan. Use our <a href="/cooking-calculators/cups-to-grams-converter">cups to grams converter</a> or <a href="/cooking-calculators/grams-to-tablespoons-converter">grams to tablespoons converter</a> if your recipe uses metric measurements.</p>
+<p>A proper glaze transforms a simple reheated ham into a caramelized, sticky, holiday centerpiece. The classic American ham glaze is a simple mixture of <strong>brown sugar, honey (or maple syrup), and Dijon mustard</strong>. Adjust quantities based on ham size — too little glaze results in patchy coverage, while too much pools at the bottom of the pan. Use our <a href="/convert/cup-to-gram-converter">cups to grams converter</a> or <a href="/cooking-calculators/grams-to-tablespoons-converter">grams to tablespoons converter</a> if your recipe uses metric measurements.</p>
 
 <table>
 <thead><tr><th>Ham Size</th><th>Brown Sugar</th><th>Honey or Maple</th><th>Dijon Mustard</th><th>Pineapple Juice</th></tr></thead>
@@ -960,7 +960,7 @@ const HUB_CONTENT: Record<string, any> = {
 <p><strong>1 ounce = 28.35 grams.</strong> This is the foundational conversion constant. One ounce is roughly the weight of a standard slice of bread, a single AA battery, or about 6 US quarters stacked together.</p>
 
 <h3 id="snippet-2oz">How Many Grams Is 2 Ounces?</h3>
-<p><strong>2 ounces = 56.70 grams.</strong> This is approximately the weight of a small chocolate bar, a single large egg without the shell, or 2 tablespoons of <a href="/cooking-calculators/cups-to-grams-converter">butter</a>.</p>
+<p><strong>2 ounces = 56.70 grams.</strong> This is approximately the weight of a small chocolate bar, a single large egg without the shell, or 2 tablespoons of <a href="/convert/cup-to-gram-converter">butter</a>.</p>
 
 <h3 id="snippet-4oz">How Many Grams Is 4 Ounces?</h3>
 <p><strong>4 ounces = 113.40 grams = ¼ pound.</strong> In US baking, 4 oz is exactly <strong>1 stick of butter</strong> (½ cup). This is one of the most commonly used conversions in American kitchens. When a recipe calls for "4 ounces of chocolate," weigh out 113g on your <a href="/cooking-calculators/recipe-scale-calculator">kitchen scale</a>.</p>
@@ -1023,7 +1023,7 @@ const HUB_CONTENT: Record<string, any> = {
 <p>Ounces and grams are both units of mass commonly used in American kitchens and laboratories. The <a href="https://www.nist.gov/pml/owm/culinary-measurement-tips" target="_blank" rel="noopener">NIST recommends</a> measuring ingredients by weight for improved accuracy.<sup>[1]</sup></p>
 <ul>
     <li><strong>Following metric recipes</strong>: Most international recipes specify ingredients in grams. If your kitchen scale reads in ounces, you need to convert. Or switch your scale to grams — most modern digital scales support both units.</li>
-    <li><strong>Precise baking measurements</strong>: Professional bakers measure flour, sugar, and butter in grams because it eliminates the inconsistency of <a href="/cooking-calculators/cups-to-grams-converter">cup measurements</a>. Converting your familiar ounce amounts to grams is the first step to more consistent results.</li>
+    <li><strong>Precise baking measurements</strong>: Professional bakers measure flour, sugar, and butter in grams because it eliminates the inconsistency of <a href="/convert/cup-to-gram-converter">cup measurements</a>. Converting your familiar ounce amounts to grams is the first step to more consistent results.</li>
     <li><strong>Nutritional tracking</strong>: The FDA requires all US nutrition labels to display serving sizes in grams.<sup>[3]</sup> If you're tracking macros and your food scale reads in ounces, you'll need to convert to match the label.</li>
     <li><strong>Scaling recipes</strong>: When using our <a href="/cooking-calculators/recipe-scale-calculator">recipe scale calculator</a> for large batches, converting everything to grams first prevents rounding errors that compound when multiplying fractional ounce amounts.</li>
     <li><strong>International shipping</strong>: Most countries outside the US use the metric system. Package weights must be listed in grams or kilograms for international commerce.</li>
@@ -1090,7 +1090,7 @@ const HUB_CONTENT: Record<string, any> = {
 <p><strong>12 tablespoons = ¾ cup.</strong> This is one of the most commonly searched kitchen conversions. Three-quarters of a cup equals 12 tablespoons, 6 fluid ounces, or 177.44 mL. If you don't have a ¾ cup measuring cup, scoop 12 level tablespoons.</p>
 
 <h3>How Many Tablespoons Are in ⅔ Cup?</h3>
-<p><strong>10 tablespoons + 2 teaspoons = ⅔ cup.</strong> This is the trickiest common fraction because ⅔ of 16 is 10.667 — not a whole number. The precise answer is 10⅔ tablespoons, which equals 10 tablespoons plus 2 teaspoons. When a recipe calls for ⅔ cup of <a href="/cooking-calculators/cups-to-grams-converter">flour</a>, use this exact measurement for best results.</p>
+<p><strong>10 tablespoons + 2 teaspoons = ⅔ cup.</strong> This is the trickiest common fraction because ⅔ of 16 is 10.667 — not a whole number. The precise answer is 10⅔ tablespoons, which equals 10 tablespoons plus 2 teaspoons. When a recipe calls for ⅔ cup of <a href="/convert/cup-to-gram-converter">flour</a>, use this exact measurement for best results.</p>
 
 <h3>How Many Tablespoons Are in ½ Cup?</h3>
 <p><strong>8 tablespoons = ½ cup.</strong> Half a cup is exactly 8 tablespoons, 4 fluid ounces, or 118.29 mL. This is also the volume of 1 stick of butter (4 oz / 113g). If you're halving a recipe that calls for 1 cup, measure 8 tablespoons.</p>
@@ -1160,7 +1160,7 @@ const HUB_CONTENT: Record<string, any> = {
         <tr><td><strong>Japanese cup</strong></td><td>200 mL</td><td>−15.5%</td><td>Japan</td></tr>
     </tbody>
 </table>
-<p>A 5.7% difference (US vs metric) may seem small, but in baking it compounds across multiple ingredients. If an Australian recipe calls for 3 cups of flour and you use US cups, you'll have about 40 mL (nearly 3 tablespoons) less flour than intended — enough to noticeably change the texture of a cake. When following international recipes, always check which cup standard is being used, or better yet, convert to <a href="/cooking-calculators/cups-to-grams-converter">grams</a> for precision.</p>
+<p>A 5.7% difference (US vs metric) may seem small, but in baking it compounds across multiple ingredients. If an Australian recipe calls for 3 cups of flour and you use US cups, you'll have about 40 mL (nearly 3 tablespoons) less flour than intended — enough to noticeably change the texture of a cake. When following international recipes, always check which cup standard is being used, or better yet, convert to <a href="/convert/cup-to-gram-converter">grams</a> for precision.</p>
 
 <h3>Common Mistakes When Converting Tablespoons to Cups</h3>
 <ul>
@@ -1177,7 +1177,7 @@ const HUB_CONTENT: Record<string, any> = {
 <h3>What Is a Cup?</h3>
 <p>A <strong>cup</strong> (c) is a US customary unit of volume equal to 16 tablespoons, 8 fluid ounces, or 48 teaspoons. One US customary cup equals precisely 236.588 milliliters, but for FDA nutrition labeling, one cup is defined as <strong>240 milliliters</strong>.<sup>[2]</sup></p>
 <p>The cup should not be confused with the metric cup (250 mL), the Japanese cup (200 mL), or the teacup (which has no standardized volume). Cups can be abbreviated as <strong>c</strong> or <strong>C</strong> — for example, 1 cup can be written as 1 c.</p>
-<p>In professional baking, cups are increasingly being replaced by <a href="/cooking-calculators/cups-to-grams-converter">gram measurements</a> because a "cup of flour" can weigh anywhere from 120g to 150g depending on how it's scooped — a 25% variation that can ruin a recipe. The <a href="https://www.nist.gov/pml/owm/culinary-measurement-tips" target="_blank" rel="noopener">NIST recommends</a> weighing ingredients for accuracy.<sup>[3]</sup></p>
+<p>In professional baking, cups are increasingly being replaced by <a href="/convert/cup-to-gram-converter">gram measurements</a> because a "cup of flour" can weigh anywhere from 120g to 150g depending on how it's scooped — a 25% variation that can ruin a recipe. The <a href="https://www.nist.gov/pml/owm/culinary-measurement-tips" target="_blank" rel="noopener">NIST recommends</a> weighing ingredients for accuracy.<sup>[3]</sup></p>
 
 <h3>Quick Conversion Links</h3>
 <div class="explanation__quick-links">
@@ -1234,7 +1234,7 @@ const HUB_CONTENT: Record<string, any> = {
 <p><strong>1½ teaspoons = ½ tablespoon.</strong> This comes up frequently in recipes that call for "half a tablespoon" of an ingredient. Since most measuring spoon sets include a ½ teaspoon but not a ½ tablespoon, measure 1 teaspoon plus ½ teaspoon to get the right amount.</p>
 
 <h3>How Many Teaspoons Are in 2 Tablespoons?</h3>
-<p><strong>6 teaspoons = 2 tablespoons.</strong> Two tablespoons equals 1 fluid ounce or approximately 30 mL. This is a common measurement for salad dressing portions, <a href="/cooking-calculators/cups-to-grams-converter">butter</a> pats (1 oz), and many sauce recipes.</p>
+<p><strong>6 teaspoons = 2 tablespoons.</strong> Two tablespoons equals 1 fluid ounce or approximately 30 mL. This is a common measurement for salad dressing portions, <a href="/convert/cup-to-gram-converter">butter</a> pats (1 oz), and many sauce recipes.</p>
 
 <h3>How Many Teaspoons Are in 3 Tablespoons?</h3>
 <p><strong>9 teaspoons = 3 tablespoons.</strong> When tripling a recipe that calls for 1 tablespoon, you need 3 tablespoons (9 teaspoons). Rather than scooping 9 teaspoons individually, it's far more efficient to use a tablespoon measure 3 times.</p>
@@ -1405,7 +1405,7 @@ const HUB_CONTENT: Record<string, any> = {
 <p>Save 15–25% on fees and tips by picking up your order. Call ahead 30–60 minutes before your event. Many pizzerias offer bulk discounts if you call directly rather than using delivery apps. If you're also hosting Thanksgiving or Easter, our <a href="/cooking-calculators/turkey-size-calculator">turkey size calculator</a> and <a href="/cooking-calculators/ham-calculator">ham calculator</a> can help with those meals too.</p>
 
 <h2>How to Make Pizza Dough from Scratch — Baker's Percentages</h2>
-<p>If you prefer homemade pizza, the <strong>Baker's Lab</strong> mode above calculates exact ingredient weights using the <a href="/cooking-calculators/cups-to-grams-converter">professional baker's percentage system</a>.</p>
+<p>If you prefer homemade pizza, the <strong>Baker's Lab</strong> mode above calculates exact ingredient weights using the <a href="/convert/cup-to-gram-converter">professional baker's percentage system</a>.</p>
 <h3>What Is Baker's Percentage?</h3>
 <p>Baker's percentage is a formula system where the total flour weight is always 100%, and every other ingredient is expressed relative to that flour weight. If you use 500g of flour and 325g of water, your hydration is 65%.<sup>[5]</sup></p>
 <div class="explanation__highlight"><strong>Hydration = (Water Weight ÷ Flour Weight) × 100</strong><br/><br/>Higher hydration = lighter, airier crumb with larger bubbles. Lower hydration = denser, chewier, easier-to-handle dough.</div>
@@ -1535,7 +1535,7 @@ const HUB_CONTENT: Record<string, any> = {
 <tr><td><strong>Two 9″ rounds</strong></td><td>9×13″ sheet</td><td>~1.0×</td><td>Very close match</td></tr>
 <tr><td><strong>10″ round</strong></td><td>9″ square</td><td>~1.0×</td><td>Near-perfect swap</td></tr>
 </tbody></table>
-<p><strong>Pro tip:</strong> If you're unsure whether a substitute will work, use the <strong>water test</strong>. Fill the original pan with water, then pour it into the new pan. If the water level is similar, the swap is safe. For precise baking, always <a href="/cooking-calculators/cups-to-grams-converter">convert cups to grams</a> and measure ingredients by weight.<sup>[5]</sup></p>
+<p><strong>Pro tip:</strong> If you're unsure whether a substitute will work, use the <strong>water test</strong>. Fill the original pan with water, then pour it into the new pan. If the water level is similar, the swap is safe. For precise baking, always <a href="/convert/cup-to-gram-converter">convert cups to grams</a> and measure ingredients by weight.<sup>[5]</sup></p>
 
 <h2>Cake Baking Science — Temperature, Time & Texture</h2>
 <p>Understanding the physics of baking helps you troubleshoot problems before they happen — especially when scaling recipes up or down.</p>
@@ -1661,7 +1661,7 @@ const HUB_CONTENT: Record<string, any> = {
 <tr><td>16 oz (1 lb)</td><td>454 g</td><td>Standard baking measurement</td></tr>
 </tbody>
 </table>
-<p>Need to convert between weight and volume? Use our <a href="/cooking-calculators/cups-to-grams-converter">cups to grams converter</a> or <a href="/convert/gram-to-cup-converter">grams to cups converter</a> for ingredient-specific results.</p>
+<p>Need to convert between weight and volume? Use our <a href="/convert/cup-to-gram-converter">cups to grams converter</a> or <a href="/convert/gram-to-cup-converter">grams to cups converter</a> for ingredient-specific results.</p>
 
 <h3>Fraction-to-Decimal Quick Reference</h3>
 <p>When your scaled recipe shows a decimal result, use this table to convert it back to a practical kitchen fraction:</p>
@@ -1701,7 +1701,7 @@ const HUB_CONTENT: Record<string, any> = {
 <p>For example: quadrupling a recipe that calls for 2 cups of flour could mean using anywhere from 960g to 1,200g — a 240-gram difference. That's nearly an entire extra cup of flour, enough to turn a moist cake into a dry brick.</p>
 
 <h3>The Flour Problem</h3>
-<p>Flour is the single most commonly mismeasured ingredient in American kitchens. The correct technique is the <strong>spoon-and-level method</strong>: use a spoon to aerate and transfer flour into the measuring cup, then level the top with a straight edge. Never scoop directly from the bag — the compression adds 20–30% more flour. Better yet, use a kitchen scale. Our <a href="/cooking-calculators/cups-to-grams-converter">cups to grams converter</a> and <a href="/convert/gram-to-cup-converter">grams to cups converter</a> can help you convert any recipe from volume to weight measurements before scaling.</p>
+<p>Flour is the single most commonly mismeasured ingredient in American kitchens. The correct technique is the <strong>spoon-and-level method</strong>: use a spoon to aerate and transfer flour into the measuring cup, then level the top with a straight edge. Never scoop directly from the bag — the compression adds 20–30% more flour. Better yet, use a kitchen scale. Our <a href="/convert/cup-to-gram-converter">cups to grams converter</a> and <a href="/convert/gram-to-cup-converter">grams to cups converter</a> can help you convert any recipe from volume to weight measurements before scaling.</p>
 
 <h3>Essential Kitchen Tools for Accurate Scaling</h3>
 <ul>
@@ -1876,7 +1876,7 @@ Formula: 400 − 25 = 375°F | 30 × 0.8 = 24 minutes
 <tr><td><strong>Toast</strong></td><td>350°F (175°C)</td><td>3–4 min</td><td>Watch closely — burns quickly in small chamber.</td></tr>
 </tbody>
 </table>
-<p>Need to convert ingredient measurements for your air fryer recipe? Our <a href="/cooking-calculators/cups-to-grams-converter">cups to grams converter</a> and <a href="/cooking-calculators/ounces-to-grams-converter">ounces to grams converter</a> provide precise weight-based measurements for consistent results.</p>
+<p>Need to convert ingredient measurements for your air fryer recipe? Our <a href="/convert/cup-to-gram-converter">cups to grams converter</a> and <a href="/cooking-calculators/ounces-to-grams-converter">ounces to grams converter</a> provide precise weight-based measurements for consistent results.</p>
 
 <h2>How an Air Fryer Works — The Science Behind Convection Cooking</h2>
 <p>Understanding <em>why</em> the 25°F / 20% rule works requires a basic understanding of heat transfer physics. An air fryer is not a fundamentally different cooking technology — it's a <strong>supercharged convection oven</strong>.<sup><a href="#ref-3">[3]</a></sup></p>
