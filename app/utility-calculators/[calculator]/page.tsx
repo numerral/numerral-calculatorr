@@ -7,7 +7,7 @@ import AuthorBadge from "@/components/shared/AuthorBadge";
 import UtilityCalculatorCore from "@/components/calculator/UtilityCalculatorCore";
 import DynamicExplanation from "@/components/shared/DynamicExplanation";
 import FAQAccordion from "@/components/shared/FAQAccordion";
-import TrendingCalculations from "@/components/shared/TrendingCalculations";
+import Link from "next/link";
 import RelatedCalculators from "@/components/shared/RelatedCalculators";
 import GuideCTA from "@/components/shared/GuideCTA";
 import GlossaryChip from "@/components/shared/GlossaryChip";
@@ -43,18 +43,196 @@ const HUB_CONTENT: Record<string, {
 }> = {
     "age-calculator": {
         subtitle: "Find your exact age in years, months, and days from your date of birth — or calculate age between any two dates.",
-        explanation: {
-            heading: "How the Age Calculator Works",
-            paragraphs: [
-                "Our age calculator works by computing the precise difference between your date of birth and a target date. It accounts for varying month lengths (28, 29, 30, or 31 days) and correctly handles leap years, giving you accurate results in years, months, and days.",
-                "Beyond basic age, this tool also calculates your total age in days, weeks, and months — which is often needed for insurance applications, passport forms, scholarship eligibility, and government scheme verification. It also tells you how many days remain until your next birthday.",
-            ],
-            highlight: "Born on Jan 15, 2000 → As of today, you are 26 years, 1 month, and 17 days old. That's 9,545 days, 1,363 weeks, or 313 months of life!",
-        },
+        contentHTML: `
+            <h2>How Old Am I? — How This Calculator Works</h2>
+            <p>Our age calculator computes the precise difference between your <strong>date of birth</strong> and a target date (defaulting to today). It accounts for varying month lengths (28, 29, 30, or 31 days) and correctly handles <strong>leap years</strong>, giving you accurate results in years, months, and days. Beyond basic age, it also shows your total age in <strong>days, weeks, and months</strong> — and tells you exactly how many days remain until your next birthday.</p>
+            <p>The calculation uses the international (Western) age system where you are age 0 at birth and your age increments on each birthday. If you enter a target date in the future, the calculator shows what your age <em>will be</em> on that date — useful for eligibility checks, milestone planning, and event countdowns.</p>
+
+            <h2>How to Calculate Age by Hand</h2>
+            <p>There are two reliable methods for calculating age manually. Both give accurate results; the first is more intuitive for everyday use, while the second is useful for spreadsheet-based calculations.</p>
+
+            <h3>Method 1: Long Subtraction (Borrowing)</h3>
+            <p>This method works like subtraction with carrying, using the date format <strong>YYYY MM DD</strong>. Place the more recent date on top and the older date on the bottom, then subtract right to left:</p>
+            <ol>
+                <li><strong>Subtract days.</strong> If the result is negative, borrow 1 from the months column. The number of days you borrow equals the number of days in the previous month.</li>
+                <li><strong>Subtract months.</strong> If the result is negative, borrow 1 from the years column (add 12 months).</li>
+                <li><strong>Subtract years.</strong></li>
+            </ol>
+            <p><strong>Worked Example:</strong> Calculate the age of someone born <strong>November 15, 1995</strong> as of <strong>April 4, 2026</strong>.</p>
+            <ul>
+                <li>Set up: <strong>2026 04 04</strong> (top) minus <strong>1995 11 15</strong> (bottom)</li>
+                <li>Days: 4 − 15 = negative → borrow 1 month. March has 31 days, so: 4 + 31 = 35. Then 35 − 15 = <strong>20 days</strong></li>
+                <li>Months: 4 − 1 (borrowed) = 3. Then 3 − 11 = negative → borrow 1 year (add 12): 3 + 12 = 15. Then 15 − 11 = <strong>4 months</strong></li>
+                <li>Years: 2026 − 1 (borrowed) = 2025. Then 2025 − 1995 = <strong>30 years</strong></li>
+            </ul>
+            <div class="explanation__highlight">
+                <strong>Result:</strong> The person is <strong>30 years, 4 months, and 20 days old</strong>. Use this calculator above to verify instantly.
+            </div>
+
+            <h3>Method 2: Total Days Division</h3>
+            <p>Count the total number of days between the two dates, then divide by <strong>365.2425</strong> (the average length of a Gregorian calendar year, accounting for leap years):</p>
+            <ul>
+                <li>Total days between Nov 15, 1995 and Apr 4, 2026 = <strong>11,098 days</strong></li>
+                <li>11,098 ÷ 365.2425 = <strong>30.38 years</strong> ≈ 30 years and ~4.6 months</li>
+            </ul>
+            <p>This method gives an approximate result. For exact years/months/days, the long subtraction method or our calculator is more precise.</p>
+
+            <h2>Age in Different Units — Conversion Chart</h2>
+            <p>How old are you in days? In weeks? In hours? This reference chart converts common ages into different time units. Approximate values assume 365.25 days per year (accounting for leap years).</p>
+            <table>
+                <thead><tr><th>Age (Years)</th><th>Days</th><th>Weeks</th><th>Months</th><th>Hours</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>1</strong></td><td>365</td><td>52</td><td>12</td><td>8,766</td></tr>
+                    <tr><td><strong>5</strong></td><td>1,826</td><td>261</td><td>60</td><td>43,830</td></tr>
+                    <tr><td><strong>10</strong></td><td>3,652</td><td>522</td><td>120</td><td>87,660</td></tr>
+                    <tr><td><strong>16</strong></td><td>5,844</td><td>835</td><td>192</td><td>140,256</td></tr>
+                    <tr><td><strong>18</strong></td><td>6,574</td><td>939</td><td>216</td><td>157,766</td></tr>
+                    <tr><td><strong>21</strong></td><td>7,670</td><td>1,096</td><td>252</td><td>184,082</td></tr>
+                    <tr><td><strong>25</strong></td><td>9,131</td><td>1,304</td><td>300</td><td>219,145</td></tr>
+                    <tr><td><strong>30</strong></td><td>10,957</td><td>1,565</td><td>360</td><td>262,974</td></tr>
+                    <tr><td><strong>40</strong></td><td>14,610</td><td>2,087</td><td>480</td><td>350,640</td></tr>
+                    <tr><td><strong>50</strong></td><td>18,262</td><td>2,609</td><td>600</td><td>438,300</td></tr>
+                    <tr><td><strong>62</strong></td><td>22,645</td><td>3,235</td><td>744</td><td>543,490</td></tr>
+                    <tr><td><strong>65</strong></td><td>23,741</td><td>3,392</td><td>780</td><td>569,790</td></tr>
+                    <tr><td><strong>67</strong></td><td>24,472</td><td>3,496</td><td>804</td><td>587,322</td></tr>
+                    <tr><td><strong>80</strong></td><td>29,220</td><td>4,174</td><td>960</td><td>701,280</td></tr>
+                </tbody>
+            </table>
+            <p><em>Leap years add 1 day for every 4 years. A person who turns 40 has experienced approximately 10 leap days.</em></p>
+
+            <h2>Age Systems Around the World</h2>
+            <p>Age is not counted the same way in every culture. Our calculator uses the <strong>international (Western) system</strong>, which is the legal standard in the United States and most countries. Here's how systems differ:</p>
+
+            <h3>International (Western) Age System</h3>
+            <p>You are <strong>age 0 at birth</strong>, and your age increases by 1 on each birthday. A person born on March 15, 2000 turns 26 on March 15, 2026. This is the system used in the <strong>United States</strong>, all of Europe, and most of the modern world. It is the basis for all legal age calculations — voting eligibility, drinking age, Social Security benefits, etc.</p>
+
+            <h3>Korean Age System</h3>
+            <p>In the traditional Korean system, you are <strong>age 1 at birth</strong>, and everyone's age increments by 1 on <strong>January 1</strong> (not on their birthday). A baby born on December 31 would be "1" at birth and turn "2" the very next day on January 1 — making them "2 years old" when only 1 day old.</p>
+            <p><strong>Important update:</strong> South Korea officially <a href="https://www.bbc.com/news/world-asia-65838842" target="_blank" rel="noopener noreferrer">switched to the international age system in June 2023</a> for all legal and administrative purposes. Korean age is still used informally in social contexts.</p>
+
+            <h3>Chinese Lunar Age System</h3>
+            <p>Similar to Korean age, the traditional Chinese system counts you as <strong>1 at birth</strong>, with age incrementing on <strong>Lunar New Year</strong> (late January or February). This system is used in some traditional Chinese contexts and is sometimes referenced in Chinese astrology.</p>
+
+            <h3>Comparison Example</h3>
+            <table>
+                <thead><tr><th>System</th><th>Born Dec 20, 2000</th><th>Age on Jan 5, 2026</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>International (Western)</strong></td><td>Age 0 at birth</td><td><strong>25 years old</strong></td></tr>
+                    <tr><td><strong>Korean (traditional)</strong></td><td>Age 1 at birth</td><td><strong>27 years old</strong></td></tr>
+                    <tr><td><strong>Chinese Lunar</strong></td><td>Age 1 at birth</td><td><strong>27 years old</strong> (if after Lunar New Year)</td></tr>
+                </tbody>
+            </table>
+
+            <h2>What If You Were Born on a Leap Day? (February 29)</h2>
+            <p>Approximately <strong>4.1 million Americans</strong> have a February 29 birthday — roughly a 1-in-1,461 chance. Leap Day babies (sometimes called "leaplings") face a unique question: <em>what is your birthday in non-leap years?</em></p>
+            <ul>
+                <li><strong>Most U.S. states</strong> legally recognize <strong>March 1</strong> as the birthday in non-leap years for age-related milestones (driver's license, voting, drinking age).</li>
+                <li>Some states and agencies use <strong>February 28</strong> instead.</li>
+                <li>The <strong>Social Security Administration</strong> uses March 1 for benefit calculations in non-leap years.</li>
+                <li>International practice varies — in New Zealand, the legal birthday in non-leap years is February 28; in Hong Kong and Taiwan, it is March 1.</li>
+            </ul>
+            <p>Our calculator handles leap year birthdays correctly — it counts your exact chronological age regardless of whether the current year is a leap year.</p>
+
+            <h2>How to Calculate Age in Excel or Google Sheets</h2>
+            <p>You can calculate exact age in <strong>Microsoft Excel</strong> or <strong>Google Sheets</strong> using the <code>DATEDIF</code> function. Although this function is undocumented in Excel's official help, it works reliably in all versions.</p>
+
+            <h3>Step-by-Step Formulas</h3>
+            <p>Assume your date of birth is in cell <strong>A1</strong> (e.g., 11/15/1995):</p>
+            <table>
+                <thead><tr><th>What to Calculate</th><th>Formula</th><th>Result Example</th></tr></thead>
+                <tbody>
+                    <tr><td>Years</td><td><code>=DATEDIF(A1, TODAY(), "Y")</code></td><td>30</td></tr>
+                    <tr><td>Remaining Months</td><td><code>=DATEDIF(A1, TODAY(), "YM")</code></td><td>4</td></tr>
+                    <tr><td>Remaining Days</td><td><code>=DATEDIF(A1, TODAY(), "MD")</code></td><td>20</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Combine into One Cell</h3>
+            <p>To display the full age as a single readable string:</p>
+            <blockquote style="background:var(--n-surface-alt);border-left:4px solid var(--n-primary);padding:var(--s-3) var(--s-4);border-radius:var(--r-md);font-size:0.95em;font-weight:600;font-style:normal;margin:var(--s-3) 0;font-family:monospace">
+                =DATEDIF(A1,TODAY(),"Y") & " years, " & DATEDIF(A1,TODAY(),"YM") & " months, " & DATEDIF(A1,TODAY(),"MD") & " days"
+            </blockquote>
+            <p>This outputs: <strong>30 years, 4 months, 20 days</strong>. The same formulas work identically in <strong>Google Sheets</strong>.</p>
+
+            <h2>How Old Is My Baby?</h2>
+            <p>Pediatricians in the United States use age-specific milestones that require precise age tracking in different units:</p>
+            <ul>
+                <li><strong>First 6 months:</strong> Baby age is measured in <strong>weeks</strong> (e.g., "my baby is 12 weeks old")</li>
+                <li><strong>6 months to 2 years:</strong> Age is measured in <strong>months</strong> (e.g., "she is 14 months old")</li>
+                <li><strong>After 2 years:</strong> Age is measured in <strong>years and months</strong> (e.g., "he is 3 years and 2 months")</li>
+            </ul>
+            <p>Our calculator automatically shows <strong>total weeks</strong> in the results, which is exactly what you need for well-baby checkup scheduling. The <a href="https://www.cdc.gov/vaccines/schedules/hcp/imz/child-adolescent.html" target="_blank" rel="noopener noreferrer">CDC recommended immunization schedule</a> uses weeks and months for all pediatric appointments.</p>
+
+            <h3>Standard Pediatric Checkup Schedule</h3>
+            <table>
+                <thead><tr><th>Checkup</th><th>Baby Age</th><th>Key Milestone</th></tr></thead>
+                <tbody>
+                    <tr><td>Newborn</td><td>3–5 days</td><td>Weight check, jaundice screening</td></tr>
+                    <tr><td>1 month</td><td>4 weeks</td><td>Feeding assessment, Hep B vaccine</td></tr>
+                    <tr><td>2 months</td><td>8 weeks</td><td>DTaP, IPV, Hib, PCV13, Rotavirus vaccines</td></tr>
+                    <tr><td>4 months</td><td>16 weeks</td><td>Second round of infant vaccines</td></tr>
+                    <tr><td>6 months</td><td>26 weeks</td><td>Flu vaccine (first eligible age)</td></tr>
+                    <tr><td>9 months</td><td>39 weeks</td><td>Developmental screening</td></tr>
+                    <tr><td>12 months</td><td>52 weeks</td><td>MMR, Varicella, Hep A vaccines</td></tr>
+                </tbody>
+            </table>
+
+            <h2>Days Per Month Reference</h2>
+            <table>
+                <thead><tr><th>Month</th><th>Days</th><th>Note</th></tr></thead>
+                <tbody>
+                    <tr><td>January</td><td>31</td><td></td></tr>
+                    <tr><td>February</td><td>28 / 29</td><td>29 in leap years</td></tr>
+                    <tr><td>March</td><td>31</td><td></td></tr>
+                    <tr><td>April</td><td>30</td><td></td></tr>
+                    <tr><td>May</td><td>31</td><td></td></tr>
+                    <tr><td>June</td><td>30</td><td></td></tr>
+                    <tr><td>July</td><td>31</td><td></td></tr>
+                    <tr><td>August</td><td>31</td><td></td></tr>
+                    <tr><td>September</td><td>30</td><td></td></tr>
+                    <tr><td>October</td><td>31</td><td></td></tr>
+                    <tr><td>November</td><td>30</td><td></td></tr>
+                    <tr><td>December</td><td>31</td><td></td></tr>
+                </tbody>
+            </table>
+            <p><strong>Mnemonic:</strong> "Thirty days hath September, April, June, and November. All the rest have thirty-one, except February alone."</p>
+            <p><strong>Leap year rule:</strong> A year is a leap year if divisible by 4, <em>except</em> for century years — unless they're also divisible by 400. So <strong>2000 was a leap year</strong> (divisible by 400), but <strong>1900 was not</strong> (divisible by 100 but not 400). The next century leap year is <strong>2400</strong>.</p>
+
+            <h2>U.S. Legal Age Milestones</h2>
+            <p>Many rights and responsibilities in the United States are tied to specific age thresholds. Use this calculator to check eligibility:</p>
+            <table>
+                <thead><tr><th>Milestone</th><th>Minimum Age</th><th>Notes</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Driver's Learner Permit</strong></td><td>14–16</td><td>Varies by state (14 in South Dakota, 15 in many states, 16 in some)</td></tr>
+                    <tr><td><strong>Driver's License</strong></td><td>16–17</td><td>16 in most states with restrictions; full license at 18 in many</td></tr>
+                    <tr><td><strong>Voting</strong></td><td>18</td><td>26th Amendment (1971); must register before Election Day</td></tr>
+                    <tr><td><strong>Military Enlistment</strong></td><td>17–18</td><td>17 with parental consent; 18 without</td></tr>
+                    <tr><td><strong>Legal Drinking Age</strong></td><td>21</td><td>National Minimum Drinking Age Act (1984) — all 50 states</td></tr>
+                    <tr><td><strong>Car Rental (most companies)</strong></td><td>25</td><td>Can rent at 21 with surcharge; 25 with no surcharge at most agencies</td></tr>
+                    <tr><td><strong>Running for U.S. House</strong></td><td>25</td><td>U.S. Constitution, Article I, Section 2</td></tr>
+                    <tr><td><strong>Running for U.S. Senate</strong></td><td>30</td><td>U.S. Constitution, Article I, Section 3</td></tr>
+                    <tr><td><strong>Running for President</strong></td><td>35</td><td>U.S. Constitution, Article II, Section 1</td></tr>
+                    <tr><td><strong>Social Security (early)</strong></td><td>62</td><td>Reduced benefits; benefit reduced ~6.7%/yr before full retirement age</td></tr>
+                    <tr><td><strong>Medicare Eligibility</strong></td><td>65</td><td>Parts A & B; enrollment window is 7 months around 65th birthday</td></tr>
+                    <tr><td><strong>Social Security (full)</strong></td><td>66–67</td><td>Full retirement age depends on birth year (1960+: age 67)</td></tr>
+                </tbody>
+            </table>
+
+            <h2>How Many Days Until My Birthday?</h2>
+            <p>Our calculator automatically shows the number of <strong>days remaining until your next birthday</strong> at the top of the results. This countdown is recalculated each time you use the tool.</p>
+            <p>For countdowns to other events — vacations, deadlines, holidays, or milestones — use our <a href="/time-calculators/days-until-calculator">Days Until Calculator</a> or <a href="/time-calculators/birthday-countdown">Birthday Countdown Timer</a>.</p>
+        `,
         faq: [
-            { question: "How accurate is this age calculator?", answer: "It is precise to the exact day. The calculator accounts for leap years, varying month lengths, and correctly handles boundary cases like February 28 to March 31." },
-            { question: "Can I calculate age on a future date?", answer: "Yes. Set the 'Age on Date' to any future date and the calculator instantly shows what your age will be — helpful for upcoming events, deadlines, or eligibility checks." },
-            { question: "What documents need age proof in India?", answer: "Many documents require age proof including passports, school admissions, pension applications, insurance policies, government job applications, and voter ID processing." },
+            { question: "How old am I if I was born in 1995?", answer: "If you were born in 1995 and your birthday has already passed in 2026, you are 31 years old. If your birthday hasn't occurred yet this year, you are still 30. Enter your exact date of birth above for a precise result in years, months, and days." },
+            { question: "How do I calculate my age in days?", answer: "Multiply your age in years by 365.25 (which accounts for leap years) to get an approximate number. For example, 30 years × 365.25 = approximately 10,958 days. For an exact count, use our calculator above — it tallies every day including leap days." },
+            { question: "What is the difference between chronological age and biological age?", answer: "Chronological age is the number of years since your birth — the number our calculator computes. Biological age reflects how well your body functions relative to your chronological age, based on biomarkers like telomere length, cardiovascular fitness, and metabolic health. A 50-year-old marathon runner may have a biological age of 35." },
+            { question: "How does a leap year affect my age?", answer: "Your chronological age is not affected by leap years — you still age one year per year. However, if you were born on February 29 (Leap Day), your birthday occurs only once every 4 years. In non-leap years, most U.S. states consider your legal birthday to be March 1." },
+            { question: "Can I calculate someone's date of birth from their age?", answer: "If you know someone's exact age (years, months, days) and the date on which they were that age, you can reverse-calculate their date of birth by subtracting. Our Birth Year Calculator provides the birth year from just an age in years." },
+            { question: "How is Korean age calculated?", answer: "In the traditional Korean system, you are 1 at birth and everyone ages 1 year on January 1. A baby born on December 31 becomes 2 on January 1 — just 1 day after birth. South Korea officially adopted the international (Western) age system for legal purposes in June 2023." },
+            { question: "What is the legal drinking age in the United States?", answer: "The legal drinking age in all 50 states is 21, established by the National Minimum Drinking Age Act of 1984. This means you must be 21 years old to purchase or publicly possess alcoholic beverages anywhere in the U.S." },
+            { question: "How many days are in a year?", answer: "A standard year has 365 days. A leap year has 366 days (with February 29 added). The average Gregorian year is 365.2425 days. Leap years occur every 4 years, except for century years not divisible by 400. For example, 2024 was a leap year, but 1900 was not." },
+            { question: "How do I calculate age in Excel?", answer: "Use the DATEDIF function: =DATEDIF(A1, TODAY(), \\\"Y\\\") for years, =DATEDIF(A1, TODAY(), \\\"YM\\\") for remaining months, and =DATEDIF(A1, TODAY(), \\\"MD\\\") for remaining days. Combine them with: =DATEDIF(A1,TODAY(),\\\"Y\\\") & \\\" years, \\\" & DATEDIF(A1,TODAY(),\\\"YM\\\") & \\\" months\\\"" },
+            { question: "At what age can I collect Social Security?", answer: "You can claim Social Security retirement benefits as early as age 62, but your benefit will be permanently reduced (approximately 6.7% per year before full retirement age). Full retirement age is 66 for people born 1943–1954, and 67 for those born in 1960 or later. Delaying benefits past full retirement age increases your payment by 8% per year up to age 70." },
         ],
     },
     "percentage-calculator": {
@@ -449,28 +627,67 @@ export default async function UtilityCalculatorHubPage({ params }: PageProps) {
 
             <h1 className="t-h1" style={{ marginBottom: "var(--s-2)" }}>{calc.title}</h1>
             <p className="t-body text-muted" style={{ marginBottom: "var(--s-6)" }}>{hub.subtitle}</p>
-            <AuthorBadge categoryKey="utility" />
 
-            <div className="calculator-layout">
-                <div className="calculator-layout__main">
+            <div className="layout-2col">
+                <div className="layout-2col__main">
                     <UtilityCalculatorCore calcType={calc.calcType || "percentage"} />
+                    <AuthorBadge categoryKey="utility" />
+
+                    <DynamicExplanation
+                        heading={hub.explanation?.heading}
+                        paragraphs={hub.explanation?.paragraphs}
+                        highlight={hub.explanation?.highlight}
+                        contentHTML={hub.contentHTML}
+                    />
+
+                    {hub.faq && <FAQAccordion title={`${calc.title} FAQ`} items={hub.faq} />}
+                    <RelatedCalculators calcId={calc.id} />
+                    <GuideCTA calcId={calc.id} />
+                    <GlossaryChip calcId={calc.id} />
                 </div>
-                <aside className="calculator-layout__sidebar">
-                    <TrendingCalculations />
+                <aside className="layout-2col__sidebar">
+                    <nav style={{
+                        background: "var(--n-surface)",
+                        border: "1px solid var(--n-border)",
+                        borderRadius: "var(--r-md)",
+                        padding: "var(--s-5)",
+                    }}>
+                        <h3 style={{ fontSize: "var(--t-body)", fontWeight: 700, marginBottom: "var(--s-4)", display: "flex", alignItems: "center", gap: "var(--s-2)" }}>
+                            📅 Time & Date Tools
+                        </h3>
+                        {[
+                            { label: "Age Calculator", href: "/utility-calculators/age-calculator" },
+                            { label: "Date Calculator", href: "/time-calculators/date-calculator" },
+                            { label: "Birth Year Calculator", href: "/time-calculators/birth-year-calculator" },
+                            { label: "Days Until Calculator", href: "/time-calculators/days-until-calculator" },
+                            { label: "Date Duration", href: "/time-calculators/date-duration-calculator" },
+                            { label: "Business Days", href: "/time-calculators/business-days-calculator" },
+                            { label: "Birthday Countdown", href: "/time-calculators/birthday-countdown" },
+                            { label: "Days From Today", href: "/time-calculators/days-from-today" },
+                            { label: "Weeks From Today", href: "/time-calculators/weeks-from-today" },
+                            { label: "Hours Calculator", href: "/time-calculators/hours-calculator" },
+                            { label: "Time Calculator", href: "/time-calculators/time-calculator" },
+                            { label: "Days Left in Year", href: "/time-calculators/days-left-in-year-calculator" },
+                            { label: "Deadline Calculator", href: "/time-calculators/deadline-calculator" },
+                            { label: "Week Calculator", href: "/time-calculators/week-calculator" },
+                        ].map((item) => (
+                            <Link
+                                key={item.href}
+                                href={item.href}
+                                style={{
+                                    display: "flex", alignItems: "center", justifyContent: "space-between",
+                                    padding: "var(--s-3) 0", borderBottom: "1px solid var(--n-border)",
+                                    color: item.href === `/utility-calculators/${calc.slug}` ? "var(--n-primary)" : "var(--n-text-secondary)",
+                                    fontWeight: item.href === `/utility-calculators/${calc.slug}` ? 600 : 400,
+                                    fontSize: "var(--t-body-sm)", textDecoration: "none", transition: "color 0.2s",
+                                }}
+                            >
+                                {item.label} <span style={{ color: "var(--n-text-muted)" }}>→</span>
+                            </Link>
+                        ))}
+                    </nav>
                 </aside>
             </div>
-
-            <DynamicExplanation
-                heading={hub.explanation?.heading}
-                paragraphs={hub.explanation?.paragraphs}
-                highlight={hub.explanation?.highlight}
-                contentHTML={hub.contentHTML}
-            />
-
-            {hub.faq && <FAQAccordion title={`${calc.title} FAQ`} items={hub.faq} />}
-            <RelatedCalculators calcId={calc.id} />
-            <GuideCTA calcId={calc.id} />
-            <GlossaryChip calcId={calc.id} />
         </main >
     );
 }
