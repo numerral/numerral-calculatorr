@@ -1427,6 +1427,118 @@ ol {
     }
 }
 
+/* ── Quick Conversion Links grid ────────── */
+.explanation__quick-links {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--s-3);
+    margin-top: var(--s-4);
+    margin-bottom: var(--s-5);
+}
+
+@media (max-width: 640px) {
+    .explanation__quick-links {
+        grid-template-columns: 1fr;
+    }
+}
+
+.explanation__quick-link {
+    display: flex;
+    align-items: center;
+    gap: var(--s-3);
+    padding: var(--s-3) var(--s-4);
+    background: var(--n-surface);
+    border: 1px solid var(--n-border);
+    border-radius: var(--r-md);
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.explanation__quick-link:hover {
+    border-color: var(--n-primary);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-1px);
+}
+
+.explanation__quick-link-icon {
+    font-size: 1.2rem;
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+}
+
+.explanation__quick-link:hover .explanation__quick-link-icon {
+    transform: scale(1.15);
+}
+
+.explanation__quick-link-text {
+    font-size: var(--t-body-sm);
+    font-weight: 500;
+    color: var(--n-text);
+    transition: color 0.2s ease;
+}
+
+.explanation__quick-link:hover .explanation__quick-link-text {
+    color: var(--n-primary);
+}
+
+/* ── References / Citations section ─────── */
+.explanation__references {
+    margin-top: var(--s-6);
+    padding-top: var(--s-5);
+    border-top: 1px solid var(--n-border);
+}
+
+.explanation__references ol {
+    list-style: none;
+    counter-reset: ref-counter;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-2);
+}
+
+.explanation__references ol li {
+    counter-increment: ref-counter;
+    display: flex;
+    align-items: baseline;
+    gap: var(--s-2);
+    font-size: var(--t-caption);
+    color: var(--n-text-muted);
+    line-height: 1.5;
+    padding: var(--s-2) var(--s-3);
+    border-radius: var(--r-sm);
+    transition: background 0.15s ease;
+}
+
+.explanation__references ol li:hover {
+    background: var(--n-surface-alt);
+}
+
+.explanation__references ol li::before {
+    content: "[" counter(ref-counter) "]";
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--n-primary);
+    flex-shrink: 0;
+    min-width: 22px;
+}
+
+.explanation__references ol li em {
+    font-style: italic;
+}
+
+.explanation__references ol li a {
+    color: var(--n-primary);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.explanation__references ol li a:hover {
+    text-decoration: underline;
+}
+
+
 /* ── 14b. FORMULA BLOCK ─────────────────── */
 .formula-block {
     margin-top: var(--s-6);

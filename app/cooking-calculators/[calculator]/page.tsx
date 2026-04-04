@@ -178,7 +178,7 @@ const HUB_CONTENT: Record<string, any> = {
 <li>University of Illinois Extension, <em>Turkey: Safely From Farm to Table</em> — <a href="https://extension.illinois.edu/turkey" target="_blank" rel="noopener noreferrer">extension.illinois.edu</a></li>
 <li>University of Wisconsin Extension, <em>Turkey Cooking Time and Temperature Chart</em> — <a href="https://fyi.extension.wisc.edu/safefood/turkey/" target="_blank" rel="noopener noreferrer">fyi.extension.wisc.edu</a></li>
 <li>USDA, <em>Let's Talk Turkey — A Consumer Guide to Safely Roasting a Turkey</em> — <a href="https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/poultry/lets-talk-turkey" target="_blank" rel="noopener noreferrer">fsis.usda.gov</a></li>
-</ol>`,
+</ol></div>`,
             highlight: "Safety Warning: Never rely purely on time. Times are estimates based on standard conditions. Always verify with a digital meat thermometer inserted into the thickest part of the thigh — it must read at least 165°F (73.9°C).",
         },
         faq: [
@@ -330,7 +330,7 @@ const HUB_CONTENT: Record<string, any> = {
 <li>University of Illinois Extension. <em>Turkey for the Holidays — Safe Cooking and Handling.</em> College of Agricultural, Consumer and Environmental Sciences. <a href="https://extension.illinois.edu/" target="_blank" rel="noopener noreferrer">extension.illinois.edu</a></li>
 <li>University of Wisconsin Extension. <em>Turkey Cooking Charts and Food Safety Guidelines.</em> Division of Extension. <a href="https://fyi.extension.wisc.edu/" target="_blank" rel="noopener noreferrer">fyi.extension.wisc.edu</a></li>
 <li>ThermoWorks. <em>Turkey Temperature: Where to Probe and Ideal Temps.</em> ThermoWorks Blog. <a href="https://www.thermoworks.com/" target="_blank" rel="noopener noreferrer">thermoworks.com</a></li>
-</ol>`,
+</ol></div>`,
             highlight: "Safety Warning: Never rely purely on time charts. Always verify doneness with a digital meat thermometer inserted into the thickest part of the thigh, the wing joint, and the deepest part of the breast. The USDA safe minimum internal temperature is 165°F (74°C) in all locations.",
         },
         faq: [
@@ -487,7 +487,7 @@ const HUB_CONTENT: Record<string, any> = {
 <li>Farmers' Almanac, <em>How to Safely Thaw a Frozen Turkey</em>. <a href="https://www.farmersalmanac.com/how-to-safely-thaw-a-frozen-turkey-33573" target="_blank" rel="noopener noreferrer">farmersalmanac.com</a></li>
 <li>Emma Christensen, <em>All the Wrong Ways to Thaw a Turkey</em>, The Kitchn. <a href="https://www.thekitchn.com/all-the-wrong-ways-to-thaw-a-turkey-225711" target="_blank" rel="noopener noreferrer">thekitchn.com</a></li>
 <li>Butterball, <em>How to Thaw a Turkey</em>. <a href="https://www.butterball.com/how-tos/thaw-a-turkey" target="_blank" rel="noopener noreferrer">butterball.com</a></li>
-</ol>`,
+</ol></div>`,
             highlight: "USDA Rule: Allow 24 hours of fridge thawing per 4–5 lbs of turkey. A 20 lb turkey needs about 5 full days. Use the date picker above to set your cook date and get the exact start date.",
         },
         faq: [
@@ -650,13 +650,13 @@ const HUB_CONTENT: Record<string, any> = {
 <h3>Ingredient Differences</h3>
 <p>For example, 100 grams of water is exactly 100 milliliters. But 100 grams of flour is incredibly fluffy and takes up much more physical space (volume). Therefore, 100 grams of flour requires more cups than 100 grams of water.</p>
 <h3>Quick Conversion Links</h3>
-<div class="not-prose grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
-    <a href="/cooking-calculators/grams-to-cups-converter?amount=50" class="flex items-center p-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl hover:border-emerald-400 hover:shadow-md transition-all group w-full"><span class="mr-3 text-emerald-500 group-hover:scale-110 transition-transform">🥄</span><span class="text-sm font-medium text-gray-700 dark:text-gray-200 group-hover:text-emerald-600 dark:group-hover:text-emerald-400">How Many Cups is 50 Grams?</span></a>
-    <a href="/cooking-calculators/grams-to-cups-converter?amount=100" class="flex items-center p-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl hover:border-emerald-400 hover:shadow-md transition-all group w-full"><span class="mr-3 text-emerald-500 group-hover:scale-110 transition-transform">🥄</span><span class="text-sm font-medium text-gray-700 dark:text-gray-200 group-hover:text-emerald-600 dark:group-hover:text-emerald-400">How Many Cups is 100 Grams?</span></a>
-    <a href="/cooking-calculators/grams-to-cups-converter?amount=150" class="flex items-center p-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl hover:border-emerald-400 hover:shadow-md transition-all group w-full"><span class="mr-3 text-emerald-500 group-hover:scale-110 transition-transform">🥄</span><span class="text-sm font-medium text-gray-700 dark:text-gray-200 group-hover:text-emerald-600 dark:group-hover:text-emerald-400">How Many Cups is 150 Grams?</span></a>
-    <a href="/cooking-calculators/grams-to-cups-converter?amount=200" class="flex items-center p-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl hover:border-emerald-400 hover:shadow-md transition-all group w-full"><span class="mr-3 text-emerald-500 group-hover:scale-110 transition-transform">🥄</span><span class="text-sm font-medium text-gray-700 dark:text-gray-200 group-hover:text-emerald-600 dark:group-hover:text-emerald-400">How Many Cups is 200 Grams?</span></a>
-    <a href="/cooking-calculators/grams-to-cups-converter?amount=250" class="flex items-center p-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl hover:border-emerald-400 hover:shadow-md transition-all group w-full"><span class="mr-3 text-emerald-500 group-hover:scale-110 transition-transform">🥄</span><span class="text-sm font-medium text-gray-700 dark:text-gray-200 group-hover:text-emerald-600 dark:group-hover:text-emerald-400">How Many Cups is 250 Grams?</span></a>
-    <a href="/cooking-calculators/grams-to-cups-converter?amount=500" class="flex items-center p-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl hover:border-emerald-400 hover:shadow-md transition-all group w-full"><span class="mr-3 text-emerald-500 group-hover:scale-110 transition-transform">🥄</span><span class="text-sm font-medium text-gray-700 dark:text-gray-200 group-hover:text-emerald-600 dark:group-hover:text-emerald-400">How Many Cups is 500 Grams?</span></a>
+<div class="explanation__quick-links">
+    <a href="/cooking-calculators/grams-to-cups-converter?amount=50" class="explanation__quick-link"><span class="explanation__quick-link-icon">🥄</span><span class="explanation__quick-link-text">How Many Cups is 50 Grams?</span></a>
+    <a href="/cooking-calculators/grams-to-cups-converter?amount=100" class="explanation__quick-link"><span class="explanation__quick-link-icon">🥄</span><span class="explanation__quick-link-text">How Many Cups is 100 Grams?</span></a>
+    <a href="/cooking-calculators/grams-to-cups-converter?amount=150" class="explanation__quick-link"><span class="explanation__quick-link-icon">🥄</span><span class="explanation__quick-link-text">How Many Cups is 150 Grams?</span></a>
+    <a href="/cooking-calculators/grams-to-cups-converter?amount=200" class="explanation__quick-link"><span class="explanation__quick-link-icon">🥄</span><span class="explanation__quick-link-text">How Many Cups is 200 Grams?</span></a>
+    <a href="/cooking-calculators/grams-to-cups-converter?amount=250" class="explanation__quick-link"><span class="explanation__quick-link-icon">🥄</span><span class="explanation__quick-link-text">How Many Cups is 250 Grams?</span></a>
+    <a href="/cooking-calculators/grams-to-cups-converter?amount=500" class="explanation__quick-link"><span class="explanation__quick-link-icon">🥄</span><span class="explanation__quick-link-text">How Many Cups is 500 Grams?</span></a>
 </div>`,
             highlight: "Pro Tip: If possible, always bake using grams. It completely removes the margin of error caused by how heavily you pack a cup.",
         },
@@ -919,13 +919,13 @@ const HUB_CONTENT: Record<string, any> = {
 <p>A US tablespoon (14.79 mL) is smaller than an Australian tablespoon (20 mL) and a British tablespoon (17.76 mL). There are exactly 16 tablespoons in a US <a href="/cooking-calculators/tablespoons-to-cups-converter">cup</a>, and 48 teaspoons in a cup. The tablespoon should not be confused with the dessert spoon (10 mL), which is used in some British and Commonwealth recipes.</p>
 
 <h3>References</h3>
-<ol>
+<div class="explanation__references"><ol>
     <li>U.N. Food and Agriculture Organization, <em>FAO/INFOODS Databases — Density Database Version 2.0</em>, <a href="https://www.fao.org/4/ap815e/ap815e.pdf" target="_blank" rel="noopener">fao.org</a></li>
     <li>National Institute of Standards &amp; Technology, <em>Culinary Measurement Tips</em>, <a href="https://www.nist.gov/pml/owm/culinary-measurement-tips" target="_blank" rel="noopener">nist.gov</a></li>
     <li>U.S. Food &amp; Drug Administration, <em>Guidance for Industry: Guidelines for Determining Metric Equivalents of Household Measures</em>, <a href="https://www.fda.gov/regulatory-information/search-fda-guidance-documents/guidance-industry-guidelines-determining-metric-equivalents-household-measures" target="_blank" rel="noopener">fda.gov</a></li>
     <li>King Arthur Baking Company, <em>Ingredient Weight Chart</em>, <a href="https://www.kingarthurbaking.com/learn/ingredient-weight-chart" target="_blank" rel="noopener">kingarthurbaking.com</a></li>
     <li>U.S. Department of Agriculture, <em>FoodData Central</em>, <a href="https://fdc.nal.usda.gov/" target="_blank" rel="noopener">fdc.nal.usda.gov</a></li>
-</ol>`,
+</ol></div>`,
             highlight: "Quick Reference: 1 US Tablespoon = 14.7868 mL = 3 teaspoons = ½ fluid ounce. But the weight in grams depends on the ingredient — 1 tbsp of water is ~15g, 1 tbsp of flour is ~8g, and 1 tbsp of honey is ~21g.",
         },
         faq: [
@@ -1046,13 +1046,13 @@ const HUB_CONTENT: Record<string, any> = {
 <p>The gram is the most commonly used unit for measuring food ingredients worldwide. In the United States, while ounces and pounds dominate everyday usage, grams are required on all FDA nutrition labels and are the preferred unit for precise baking.<sup>[3]</sup></p>
 
 <h3>References</h3>
-<ol>
+<div class="explanation__references"><ol>
     <li>National Institute of Standards &amp; Technology, <em>Culinary Measurement Tips</em>, <a href="https://www.nist.gov/pml/owm/culinary-measurement-tips" target="_blank" rel="noopener">nist.gov</a></li>
     <li>Bureau International des Poids et Mesures (BIPM), <em>International Yard and Pound Agreement</em>, <a href="https://www.bipm.org/" target="_blank" rel="noopener">bipm.org</a></li>
     <li>U.S. Food &amp; Drug Administration, <em>Guidance for Industry: Guidelines for Determining Metric Equivalents of Household Measures</em>, <a href="https://www.fda.gov/regulatory-information/search-fda-guidance-documents/guidance-industry-guidelines-determining-metric-equivalents-household-measures" target="_blank" rel="noopener">fda.gov</a></li>
     <li>U.S. Department of Agriculture, <em>FoodData Central</em>, <a href="https://fdc.nal.usda.gov/" target="_blank" rel="noopener">fdc.nal.usda.gov</a></li>
     <li>King Arthur Baking Company, <em>Ingredient Weight Chart</em>, <a href="https://www.kingarthurbaking.com/learn/ingredient-weight-chart" target="_blank" rel="noopener">kingarthurbaking.com</a></li>
-</ol>`,
+</ol></div>`,
             highlight: "Conversion Constant: 1 avoirdupois ounce = 28.3495 grams (rounded). The exact value is 28.349523125 g, defined by the International Yard and Pound Agreement of 1959. This is a pure mass-to-mass conversion — ingredient density does not matter.",
         },
         faq: [
@@ -1180,23 +1180,23 @@ const HUB_CONTENT: Record<string, any> = {
 <p>In professional baking, cups are increasingly being replaced by <a href="/cooking-calculators/cups-to-grams-converter">gram measurements</a> because a "cup of flour" can weigh anywhere from 120g to 150g depending on how it's scooped — a 25% variation that can ruin a recipe. The <a href="https://www.nist.gov/pml/owm/culinary-measurement-tips" target="_blank" rel="noopener">NIST recommends</a> weighing ingredients for accuracy.<sup>[3]</sup></p>
 
 <h3>Quick Conversion Links</h3>
-<div class="not-prose grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
-    <a href="/cooking-calculators/tablespoons-to-cups-converter?amount=1" class="flex items-center p-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl hover:border-emerald-400 hover:shadow-md transition-all group w-full"><span class="mr-3 text-emerald-500 group-hover:scale-110 transition-transform">🥄</span><span class="text-sm font-medium text-gray-700 dark:text-gray-200 group-hover:text-emerald-600 dark:group-hover:text-emerald-400">How Many Tablespoons In 1 Cup?</span></a>
-    <a href="/cooking-calculators/tablespoons-to-cups-converter?amount=1/2" class="flex items-center p-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl hover:border-emerald-400 hover:shadow-md transition-all group w-full"><span class="mr-3 text-emerald-500 group-hover:scale-110 transition-transform">🥄</span><span class="text-sm font-medium text-gray-700 dark:text-gray-200 group-hover:text-emerald-600 dark:group-hover:text-emerald-400">How Many Tablespoons In 1/2 Cup?</span></a>
-    <a href="/cooking-calculators/tablespoons-to-cups-converter?amount=1/3" class="flex items-center p-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl hover:border-emerald-400 hover:shadow-md transition-all group w-full"><span class="mr-3 text-emerald-500 group-hover:scale-110 transition-transform">🥄</span><span class="text-sm font-medium text-gray-700 dark:text-gray-200 group-hover:text-emerald-600 dark:group-hover:text-emerald-400">How Many Tablespoons In 1/3 Cup?</span></a>
-    <a href="/cooking-calculators/tablespoons-to-cups-converter?amount=1/4" class="flex items-center p-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl hover:border-emerald-400 hover:shadow-md transition-all group w-full"><span class="mr-3 text-emerald-500 group-hover:scale-110 transition-transform">🥄</span><span class="text-sm font-medium text-gray-700 dark:text-gray-200 group-hover:text-emerald-600 dark:group-hover:text-emerald-400">How Many Tablespoons In 1/4 Cup?</span></a>
-    <a href="/cooking-calculators/tablespoons-to-cups-converter?amount=2/3" class="flex items-center p-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl hover:border-emerald-400 hover:shadow-md transition-all group w-full"><span class="mr-3 text-emerald-500 group-hover:scale-110 transition-transform">🥄</span><span class="text-sm font-medium text-gray-700 dark:text-gray-200 group-hover:text-emerald-600 dark:group-hover:text-emerald-400">How Many Tablespoons In 2/3 Cup?</span></a>
-    <a href="/cooking-calculators/tablespoons-to-cups-converter?amount=3/4" class="flex items-center p-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl hover:border-emerald-400 hover:shadow-md transition-all group w-full"><span class="mr-3 text-emerald-500 group-hover:scale-110 transition-transform">🥄</span><span class="text-sm font-medium text-gray-700 dark:text-gray-200 group-hover:text-emerald-600 dark:group-hover:text-emerald-400">How Many Tablespoons In 3/4 Cup?</span></a>
+<div class="explanation__quick-links">
+    <a href="/cooking-calculators/tablespoons-to-cups-converter?amount=1" class="explanation__quick-link"><span class="explanation__quick-link-icon">🥄</span><span class="explanation__quick-link-text">How Many Tablespoons In 1 Cup?</span></a>
+    <a href="/cooking-calculators/tablespoons-to-cups-converter?amount=1/2" class="explanation__quick-link"><span class="explanation__quick-link-icon">🥄</span><span class="explanation__quick-link-text">How Many Tablespoons In 1/2 Cup?</span></a>
+    <a href="/cooking-calculators/tablespoons-to-cups-converter?amount=1/3" class="explanation__quick-link"><span class="explanation__quick-link-icon">🥄</span><span class="explanation__quick-link-text">How Many Tablespoons In 1/3 Cup?</span></a>
+    <a href="/cooking-calculators/tablespoons-to-cups-converter?amount=1/4" class="explanation__quick-link"><span class="explanation__quick-link-icon">🥄</span><span class="explanation__quick-link-text">How Many Tablespoons In 1/4 Cup?</span></a>
+    <a href="/cooking-calculators/tablespoons-to-cups-converter?amount=2/3" class="explanation__quick-link"><span class="explanation__quick-link-icon">🥄</span><span class="explanation__quick-link-text">How Many Tablespoons In 2/3 Cup?</span></a>
+    <a href="/cooking-calculators/tablespoons-to-cups-converter?amount=3/4" class="explanation__quick-link"><span class="explanation__quick-link-icon">🥄</span><span class="explanation__quick-link-text">How Many Tablespoons In 3/4 Cup?</span></a>
 </div>
 
 <h3>References</h3>
-<ol>
+<div class="explanation__references"><ol>
     <li>Merriam-Webster, <em>tablespoon</em>, <a href="https://www.merriam-webster.com/dictionary/tablespoon" target="_blank" rel="noopener">merriam-webster.com</a></li>
     <li>U.S. Food &amp; Drug Administration, <em>Guidance for Industry: Guidelines for Determining Metric Equivalents of Household Measures</em>, <a href="https://www.fda.gov/regulatory-information/search-fda-guidance-documents/guidance-industry-guidelines-determining-metric-equivalents-household-measures" target="_blank" rel="noopener">fda.gov</a></li>
     <li>National Institute of Standards &amp; Technology, <em>Culinary Measurement Tips</em>, <a href="https://www.nist.gov/pml/owm/culinary-measurement-tips" target="_blank" rel="noopener">nist.gov</a></li>
     <li>U.S. Department of Agriculture, <em>FoodData Central</em>, <a href="https://fdc.nal.usda.gov/" target="_blank" rel="noopener">fdc.nal.usda.gov</a></li>
     <li>King Arthur Baking Company, <em>Ingredient Weight Chart</em>, <a href="https://www.kingarthurbaking.com/learn/ingredient-weight-chart" target="_blank" rel="noopener">kingarthurbaking.com</a></li>
-</ol>`,
+</ol></div>`,
             highlight: "Standard Scale: There are exactly 16 US tablespoons in 1 US customary cup. The tricky fractions: ⅓ cup = 5 tbsp + 1 tsp, and ⅔ cup = 10 tbsp + 2 tsp.",
         },
         faq: [
@@ -1311,20 +1311,20 @@ const HUB_CONTENT: Record<string, any> = {
 <p>In professional baking, tablespoon measurements are increasingly replaced by <a href="/cooking-calculators/grams-to-tablespoons-converter">gram measurements</a> for improved consistency. The <a href="https://www.nist.gov/pml/owm/culinary-measurement-tips" target="_blank" rel="noopener">NIST recommends</a> weighing ingredients for accuracy.<sup>[4]</sup></p>
 
 <h3>Quick Conversion Links</h3>
-<div class="not-prose grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
-    <a href="/cooking-calculators/teaspoons-to-tablespoons-converter?amount=1/2" class="flex items-center p-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl hover:border-emerald-400 hover:shadow-md transition-all group w-full"><span class="mr-3 text-emerald-500 group-hover:scale-110 transition-transform">🥄</span><span class="text-sm font-medium text-gray-700 dark:text-gray-200 group-hover:text-emerald-600 dark:group-hover:text-emerald-400">How Many Teaspoons in a 1/2 Tablespoon?</span></a>
-    <a href="/cooking-calculators/teaspoons-to-tablespoons-converter?amount=1" class="flex items-center p-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl hover:border-emerald-400 hover:shadow-md transition-all group w-full"><span class="mr-3 text-emerald-500 group-hover:scale-110 transition-transform">🥄</span><span class="text-sm font-medium text-gray-700 dark:text-gray-200 group-hover:text-emerald-600 dark:group-hover:text-emerald-400">How Many Teaspoons in a Tablespoon?</span></a>
-    <a href="/cooking-calculators/teaspoons-to-tablespoons-converter?amount=2" class="flex items-center p-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl hover:border-emerald-400 hover:shadow-md transition-all group w-full"><span class="mr-3 text-emerald-500 group-hover:scale-110 transition-transform">🥄</span><span class="text-sm font-medium text-gray-700 dark:text-gray-200 group-hover:text-emerald-600 dark:group-hover:text-emerald-400">How Many Teaspoons in 2 Tablespoons?</span></a>
+<div class="explanation__quick-links">
+    <a href="/cooking-calculators/teaspoons-to-tablespoons-converter?amount=1/2" class="explanation__quick-link"><span class="explanation__quick-link-icon">🥄</span><span class="explanation__quick-link-text">How Many Teaspoons in a 1/2 Tablespoon?</span></a>
+    <a href="/cooking-calculators/teaspoons-to-tablespoons-converter?amount=1" class="explanation__quick-link"><span class="explanation__quick-link-icon">🥄</span><span class="explanation__quick-link-text">How Many Teaspoons in a Tablespoon?</span></a>
+    <a href="/cooking-calculators/teaspoons-to-tablespoons-converter?amount=2" class="explanation__quick-link"><span class="explanation__quick-link-icon">🥄</span><span class="explanation__quick-link-text">How Many Teaspoons in 2 Tablespoons?</span></a>
 </div>
 
 <h3>References</h3>
-<ol>
+<div class="explanation__references"><ol>
     <li>Florida Department of Agriculture &amp; Consumer Services, <em>Cooking Conversion Guide</em>, <a href="https://www.fdacs.gov/content/download/17165/file/P-01775.pdf" target="_blank" rel="noopener">fdacs.gov</a></li>
     <li>U.S. Food &amp; Drug Administration, <em>Guidance for Industry: Guidelines for Determining Metric Equivalents of Household Measures</em>, <a href="https://www.fda.gov/regulatory-information/search-fda-guidance-documents/guidance-industry-guidelines-determining-metric-equivalents-household-measures" target="_blank" rel="noopener">fda.gov</a></li>
     <li>Merriam-Webster, <em>tablespoon</em>, <a href="https://www.merriam-webster.com/dictionary/tablespoon" target="_blank" rel="noopener">merriam-webster.com</a></li>
     <li>National Institute of Standards &amp; Technology, <em>Culinary Measurement Tips</em>, <a href="https://www.nist.gov/pml/owm/culinary-measurement-tips" target="_blank" rel="noopener">nist.gov</a></li>
     <li>King Arthur Baking Company, <em>Ingredient Weight Chart</em>, <a href="https://www.kingarthurbaking.com/learn/ingredient-weight-chart" target="_blank" rel="noopener">kingarthurbaking.com</a></li>
-</ol>`,
+</ol></div>`,
             highlight: "Standard Scale: There are exactly 3 teaspoons in 1 tablespoon. The full chain: 1 cup = 16 tbsp = 48 tsp. One teaspoon = 4.93 mL precisely (5 mL per FDA labeling).",
         },
         faq: [
@@ -1451,7 +1451,7 @@ const HUB_CONTENT: Record<string, any> = {
 <li>J. Kenji López-Alt, <em>The Pizza Lab: The Math of Pizza Sizes</em>, Serious Eats. <a href="https://www.seriouseats.com/" target="_blank" rel="noopener noreferrer">seriouseats.com</a></li>
 <li><em>Pizza Dough Hydration Guide</em>, Ooni Pizza Ovens. <a href="https://ooni.com/" target="_blank" rel="noopener noreferrer">ooni.com</a></li>
 <li><em>Baker's Percentage — Professional Dough Formulas</em>, Caputo Flour. <a href="https://www.caputoflour.com/" target="_blank" rel="noopener noreferrer">caputoflour.com</a></li>
-</ol>`,
+</ol></div>`,
             highlight: "Quick Rule: Order 3 slices per adult and 2 per child. For 14″ large pizzas (10 slices), that's roughly 1 pizza for every 3 adults.",
         },
         faq: [
@@ -1582,7 +1582,7 @@ const HUB_CONTENT: Record<string, any> = {
 <li>King Arthur Baking, <em>Cake Pan Sizes and Substitutions</em> — <a href="https://www.kingarthurbaking.com" target="_blank" rel="noopener noreferrer nofollow">kingarthurbaking.com</a></li>
 <li>Auguste Escoffier School of Culinary Arts, <em>High-Altitude Baking Adjustments</em> — <a href="https://www.escoffier.edu" target="_blank" rel="noopener noreferrer nofollow">escoffier.edu</a></li>
 <li>Sally's Baking Addiction, <em>Cake Pan Conversion Guide</em> — <a href="https://sallysbakingaddiction.com" target="_blank" rel="noopener noreferrer nofollow">sallysbakingaddiction.com</a></li>
-</ol>`,
+</ol></div>`,
             highlight: "Rule of Thumb: Never fill any cake pan more than ⅔ full, regardless of how you scaled the recipe. Always leave room for the batter to rise.",
         },
         faq: [
@@ -1745,7 +1745,7 @@ const HUB_CONTENT: Record<string, any> = {
 <li id="ref-3">USDA Food Safety and Inspection Service, <em>Safe Minimum Internal Temperature Chart</em>. <a href="https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/food-safety-basics/safe-temperature-chart" target="_blank" rel="noopener noreferrer">Source</a></li>
 <li id="ref-4">Auguste Escoffier School of Culinary Arts, <em>How to Scale a Recipe Up or Down</em>. <a href="https://www.escoffier.edu/blog/culinary-arts/how-to-scale-a-recipe/" target="_blank" rel="noopener noreferrer">Source</a></li>
 <li id="ref-5">Culinary Institute of America, <em>Baking Formulas and Recipe Conversion</em>. <a href="https://www.ciafoodies.com" target="_blank" rel="noopener noreferrer">Source</a></li>
-</ol>`,
+</ol></div>`,
             highlight: "Pro Tip from the Escoffier School: Never scoop dry ingredients like flour or powdered sugar directly from the bag with a measuring cup — it's settled and compacted from storage. Use a whisk to aerate dry ingredients, then spoon into the cup and level with a straight edge for accurate results.",
         },
         faq: [
