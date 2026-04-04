@@ -174,6 +174,13 @@ const nextConfig: NextConfig = {
         destination: '/in/fd-calculator',
         permanent: true,
       },
+
+      // ─── Duplicate cooking calculator → canonical convert hub ───
+      {
+        source: '/cooking-calculators/grams-to-cups-converter',
+        destination: '/convert/gram-to-cup-converter',
+        permanent: true,
+      },
     ];
   },
 };
