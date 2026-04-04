@@ -1211,19 +1211,132 @@ const HUB_CONTENT: Record<string, any> = {
         ]
     },
     "teaspoons-to-tablespoons-converter": {
-        subtitle: "Simple kitchen volumetric tool to scale US teaspoons up to tablespoons instantly.",
+        subtitle: "Convert teaspoons (tsp) to tablespoons (tbsp) instantly. There are exactly 3 teaspoons in 1 tablespoon. This is a pure volume-to-volume conversion — ingredient type does not matter.",
         explanation: {
-            heading: "Tiny Measurements",
-            contentHTML: `<p>When doubling or tripling a recipe, you quickly end up needing 9 or 12 teaspoons of an ingredient. It is highly inefficient to measure that out 12 times.</p>
+            heading: "How to Convert Teaspoons to Tablespoons",
+            contentHTML: `<p>Converting teaspoons to tablespoons is the most fundamental kitchen measurement conversion. Both teaspoons and tablespoons are US customary units of <strong>volume</strong> — they measure the space an ingredient occupies, not its weight. The conversion factor is a simple whole number (3), making the math straightforward division.</p>
+<p>To convert teaspoons to tablespoons, divide the number of teaspoons by 3:</p>
+<div class="explanation__highlight">
+    <strong>tablespoons = teaspoons ÷ 3</strong><br/><br/>
+    <strong>Step 1:</strong> Count the number of teaspoons.<br/>
+    <strong>Step 2:</strong> Divide by 3.<br/>
+    <strong>Step 3:</strong> Express the result as a fraction for practical kitchen use.<br/><br/>
+    <strong>Example — 3 tsp:</strong> 3 ÷ 3 = <strong>1 tablespoon</strong><br/><br/>
+    <strong>Example — 6 tsp:</strong> 6 ÷ 3 = <strong>2 tablespoons</strong><br/><br/>
+    <strong>Example — 1½ tsp:</strong> 1.5 ÷ 3 = <strong>0.5 tablespoons = ½ tablespoon</strong>
+</div>
+<p>The conversion works in reverse too: to convert tablespoons to teaspoons, multiply by 3. For example, 2 tablespoons × 3 = 6 teaspoons. This is especially useful when <a href="/cooking-calculators/recipe-scale-calculator">scaling recipes</a> — if a recipe calls for ½ tablespoon but you only have a teaspoon, measure 1½ teaspoons instead.</p>
+
+<h3>How Many Teaspoons Are in 1 Tablespoon?</h3>
+<p><strong>3 teaspoons = 1 tablespoon.</strong> This is the foundational conversion constant for small-volume kitchen measurements. One tablespoon also equals ½ fluid ounce, 1/16 of a <a href="/cooking-calculators/tablespoons-to-cups-converter">cup</a>, or approximately 15 milliliters. Memorizing "3 tsp = 1 tbsp" is the single most useful kitchen math fact.</p>
+
+<h3>How Many Teaspoons Are in ½ Tablespoon?</h3>
+<p><strong>1½ teaspoons = ½ tablespoon.</strong> This comes up frequently in recipes that call for "half a tablespoon" of an ingredient. Since most measuring spoon sets include a ½ teaspoon but not a ½ tablespoon, measure 1 teaspoon plus ½ teaspoon to get the right amount.</p>
+
+<h3>How Many Teaspoons Are in 2 Tablespoons?</h3>
+<p><strong>6 teaspoons = 2 tablespoons.</strong> Two tablespoons equals 1 fluid ounce or approximately 30 mL. This is a common measurement for salad dressing portions, <a href="/cooking-calculators/cups-to-grams-converter">butter</a> pats (1 oz), and many sauce recipes.</p>
+
+<h3>How Many Teaspoons Are in 3 Tablespoons?</h3>
+<p><strong>9 teaspoons = 3 tablespoons.</strong> When tripling a recipe that calls for 1 tablespoon, you need 3 tablespoons (9 teaspoons). Rather than scooping 9 teaspoons individually, it's far more efficient to use a tablespoon measure 3 times.</p>
+
+<h3>How Many Teaspoons Are in ¼ Cup?</h3>
+<p><strong>12 teaspoons = 4 tablespoons = ¼ cup.</strong> This bridges the tsp-to-cup gap. If you don't have a ¼ cup measure, you can use 4 tablespoons or 12 teaspoons. This equivalency is essential for small-batch recipes like a single serving of <a href="/cooking-calculators/cake-calculator">cake batter</a> or a marinade.</p>
+
+<h3>How Many Teaspoons Are in ⅓ Cup?</h3>
+<p><strong>16 teaspoons = 5⅓ tablespoons = ⅓ cup.</strong> This is one of the trickiest conversions because 16 ÷ 3 = 5.333 tablespoons. In practice, measure 5 tablespoons plus 1 teaspoon. Refer to our <a href="/cooking-calculators/tablespoons-to-cups-converter">tablespoons to cups converter</a> for all fraction-based cup conversions.</p>
+
+<h3>How Many Teaspoons Are in ½ Cup?</h3>
+<p><strong>24 teaspoons = 8 tablespoons = ½ cup.</strong> Half a cup is 4 fluid ounces or approximately 118 mL. While you'd never want to measure ½ cup using teaspoons (24 scoops!), knowing this relationship helps verify measurements when converting between units.</p>
+
+<h3>How Many Teaspoons Are in 1 Cup?</h3>
+<p><strong>48 teaspoons = 16 tablespoons = 1 cup.</strong> The full chain: 1 cup = 16 tbsp = 48 tsp = 8 fl oz = 236.59 mL. Understanding this hierarchy lets you convert between any US volume unit mentally. Use our <a href="/cooking-calculators/tablespoons-to-cups-converter">tablespoons-to-cups converter</a> for larger volumes.</p>
+
+<h3>Teaspoon to Tablespoon Conversion Chart</h3>
+<p>This master reference table covers every common teaspoon-to-tablespoon conversion you'll encounter in US recipes. The fluid ounce and milliliter columns are included for cross-referencing with international recipes and FDA nutrition labels.<sup>[2]</sup></p>
+<table>
+    <thead><tr><th>Teaspoons</th><th>Tablespoons (Decimal)</th><th>Tablespoons (Fraction)</th><th>Fluid Ounces</th><th>Milliliters</th></tr></thead>
+    <tbody>
+        <tr><td><strong>¼ tsp</strong></td><td>0.083</td><td>1/12 tbsp</td><td>—</td><td>1.23 mL</td></tr>
+        <tr><td><strong>½ tsp</strong></td><td>0.167</td><td>⅙ tbsp</td><td>—</td><td>2.46 mL</td></tr>
+        <tr><td><strong>¾ tsp</strong></td><td>0.25</td><td>¼ tbsp</td><td>—</td><td>3.70 mL</td></tr>
+        <tr><td><strong>1 tsp</strong></td><td>0.333</td><td>⅓ tbsp</td><td>⅙ fl oz</td><td>4.93 mL</td></tr>
+        <tr><td><strong>1½ tsp</strong></td><td>0.5</td><td>½ tbsp</td><td>¼ fl oz</td><td>7.39 mL</td></tr>
+        <tr><td><strong>2 tsp</strong></td><td>0.667</td><td>⅔ tbsp</td><td>⅓ fl oz</td><td>9.86 mL</td></tr>
+        <tr><td><strong>3 tsp</strong></td><td>1.0</td><td>1 tbsp</td><td>½ fl oz</td><td>14.79 mL</td></tr>
+        <tr><td><strong>4 tsp</strong></td><td>1.333</td><td>1⅓ tbsp</td><td>⅔ fl oz</td><td>19.72 mL</td></tr>
+        <tr><td><strong>6 tsp</strong></td><td>2.0</td><td>2 tbsp</td><td>1 fl oz</td><td>29.57 mL</td></tr>
+        <tr><td><strong>9 tsp</strong></td><td>3.0</td><td>3 tbsp</td><td>1½ fl oz</td><td>44.36 mL</td></tr>
+        <tr><td><strong>12 tsp</strong></td><td>4.0</td><td>4 tbsp (¼ cup)</td><td>2 fl oz</td><td>59.15 mL</td></tr>
+        <tr><td><strong>18 tsp</strong></td><td>6.0</td><td>6 tbsp (⅜ cup)</td><td>3 fl oz</td><td>88.72 mL</td></tr>
+        <tr><td><strong>24 tsp</strong></td><td>8.0</td><td>8 tbsp (½ cup)</td><td>4 fl oz</td><td>118.29 mL</td></tr>
+        <tr><td><strong>36 tsp</strong></td><td>12.0</td><td>12 tbsp (¾ cup)</td><td>6 fl oz</td><td>177.44 mL</td></tr>
+        <tr><td><strong>48 tsp</strong></td><td>16.0</td><td>16 tbsp (1 cup)</td><td>8 fl oz</td><td>236.59 mL</td></tr>
+    </tbody>
+</table>
+
+<h3>Common Spice &amp; Ingredient Measurements</h3>
+<p>Teaspoons and tablespoons are the primary units for measuring spices, leavening agents, and flavor extracts. Here are the most common measurements used in American cooking, sourced from <a href="https://www.kingarthurbaking.com/learn/ingredient-weight-chart" target="_blank" rel="noopener">King Arthur Baking</a> and the <a href="https://fdc.nal.usda.gov/" target="_blank" rel="noopener">USDA FoodData Central</a>:<sup>[4][5]</sup></p>
+<table>
+    <thead><tr><th>Ingredient</th><th>Common Amount</th><th>Equivalent</th><th>Grams</th></tr></thead>
+    <tbody>
+        <tr><td><strong>Table salt</strong></td><td>1 tsp</td><td>⅓ tbsp</td><td>~6g</td></tr>
+        <tr><td><strong>Baking powder</strong></td><td>1 tsp per cup flour</td><td>⅓ tbsp</td><td>~4g</td></tr>
+        <tr><td><strong>Baking soda</strong></td><td>½ tsp per cup flour</td><td>⅙ tbsp</td><td>~3g</td></tr>
+        <tr><td><strong>Vanilla extract</strong></td><td>1 tsp per batch</td><td>⅓ tbsp</td><td>~4g</td></tr>
+        <tr><td><strong>Ground cinnamon</strong></td><td>1 tsp</td><td>⅓ tbsp</td><td>~2.6g</td></tr>
+        <tr><td><strong>Active dry yeast</strong></td><td>2¼ tsp (1 packet)</td><td>¾ tbsp</td><td>~7g</td></tr>
+        <tr><td><strong>Olive oil</strong></td><td>1 tbsp</td><td>3 tsp</td><td>~13.5g</td></tr>
+        <tr><td><strong>Honey</strong></td><td>1 tbsp</td><td>3 tsp</td><td>~21g</td></tr>
+        <tr><td><strong>Butter (melted)</strong></td><td>1 tbsp</td><td>3 tsp</td><td>~14g</td></tr>
+        <tr><td><strong>Granulated sugar</strong></td><td>1 tsp</td><td>⅓ tbsp</td><td>~4g</td></tr>
+    </tbody>
+</table>
+<p>Notice that 1 teaspoon of different ingredients weighs different amounts — salt is 6g while cinnamon is only 2.6g. This is because teaspoons measure <strong>volume</strong>, not weight. For precise baking, convert to <a href="/cooking-calculators/grams-to-tablespoons-converter">grams</a> using our density-based converters.</p>
+
+<h3>Common Mistakes When Converting Teaspoons to Tablespoons</h3>
+<ul>
+    <li><strong>Confusing tsp and tbsp abbreviations</strong> — This is the single most dangerous kitchen measurement error. Using tablespoons (tbsp) when a recipe calls for teaspoons (tsp) means you're adding <strong>3 times</strong> the intended amount. For salt, this can ruin a dish. For baking soda, it can make food taste bitter and metallic. Always double-check which abbreviation the recipe uses.</li>
+    <li><strong>Using heaped teaspoons for baking</strong> — A heaped teaspoon can hold nearly twice as much as a level one. For cooking (soups, stews), a heaped teaspoon is usually fine. For baking (where precision matters), always level off with a straight edge — the difference between 1 tsp and 1 heaped tsp of baking powder can mean the difference between a fluffy cake and a collapsed one.</li>
+    <li><strong>Using silverware teaspoons instead of measuring spoons</strong> — A silverware teaspoon (the kind you stir coffee with) is <em>not</em> standardized. Silverware teaspoons typically hold between 2.5 mL and 7 mL — the standard is 4.93 mL. Always use a proper measuring spoon — the flat kind that nests in a set.</li>
+    <li><strong>Not knowing the ½ teaspoon measurement</strong> — The smallest standard US measuring spoon is ¼ teaspoon. Many recipes call for ½ tsp, ¼ tsp, or even ⅛ tsp. If your set doesn't include ⅛ tsp, fill the ¼ tsp halfway. For critical measurements like <a href="/cooking-calculators/ounces-to-grams-converter">baking</a>, a digital scale (accurate to 0.1g) is more reliable than fractional teaspoons.</li>
+</ul>
+
+<h3>What Is a Teaspoon?</h3>
+<p>A <strong>teaspoon</strong> (tsp) is a US customary unit of volume equal to ⅓ of a tablespoon, ⅙ of a fluid ounce, or 1/48 of a cup. One teaspoon equals precisely <strong>4.92892 milliliters</strong>, but for FDA nutrition labeling purposes, one teaspoon is rounded to <strong>5 milliliters</strong>.<sup>[1][2]</sup></p>
+<p>Teaspoons can be abbreviated as <strong>tsp</strong>, and are also sometimes written as t, ts, or tspn — for example, 1 teaspoon can be written as 1 tsp. The teaspoon should not be confused with a dessert spoon (10 mL, used in some British recipes) or a coffee spoon (2 mL, used for espresso). In pharmaceutical dosing, 1 teaspoon = 5 mL is the standard.</p>
+
+<h3>What Is a Tablespoon?</h3>
+<p>A <strong>tablespoon</strong> (tbsp) is a US customary unit of volume equal to 3 teaspoons, ½ fluid ounce, or 1/16 of a <a href="/cooking-calculators/tablespoons-to-cups-converter">cup</a>. One tablespoon equals precisely <strong>14.7868 milliliters</strong>, but for FDA nutrition labeling purposes, one tablespoon is rounded to <strong>15 milliliters</strong>.<sup>[2][3]</sup></p>
+<p>Tablespoons can be abbreviated as <strong>tbsp</strong>, and are also sometimes written as T, Tbls, or Tb — for example, 1 tablespoon can be written as 1 tbsp. The uppercase "T" versus lowercase "t" convention (T = tablespoon, t = teaspoon) is used in some cookbooks but is not universal — always check the recipe's key or legend.</p>
+<p>In professional baking, tablespoon measurements are increasingly replaced by <a href="/cooking-calculators/grams-to-tablespoons-converter">gram measurements</a> for improved consistency. The <a href="https://www.nist.gov/pml/owm/culinary-measurement-tips" target="_blank" rel="noopener">NIST recommends</a> weighing ingredients for accuracy.<sup>[4]</sup></p>
+
 <h3>Quick Conversion Links</h3>
 <div class="not-prose grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
     <a href="/cooking-calculators/teaspoons-to-tablespoons-converter?amount=1/2" class="flex items-center p-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl hover:border-emerald-400 hover:shadow-md transition-all group w-full"><span class="mr-3 text-emerald-500 group-hover:scale-110 transition-transform">🥄</span><span class="text-sm font-medium text-gray-700 dark:text-gray-200 group-hover:text-emerald-600 dark:group-hover:text-emerald-400">How Many Teaspoons in a 1/2 Tablespoon?</span></a>
     <a href="/cooking-calculators/teaspoons-to-tablespoons-converter?amount=1" class="flex items-center p-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl hover:border-emerald-400 hover:shadow-md transition-all group w-full"><span class="mr-3 text-emerald-500 group-hover:scale-110 transition-transform">🥄</span><span class="text-sm font-medium text-gray-700 dark:text-gray-200 group-hover:text-emerald-600 dark:group-hover:text-emerald-400">How Many Teaspoons in a Tablespoon?</span></a>
     <a href="/cooking-calculators/teaspoons-to-tablespoons-converter?amount=2" class="flex items-center p-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl hover:border-emerald-400 hover:shadow-md transition-all group w-full"><span class="mr-3 text-emerald-500 group-hover:scale-110 transition-transform">🥄</span><span class="text-sm font-medium text-gray-700 dark:text-gray-200 group-hover:text-emerald-600 dark:group-hover:text-emerald-400">How Many Teaspoons in 2 Tablespoons?</span></a>
-</div>`,
-            highlight: "Standard Scale: There are exactly 3 Teaspoons in 1 Tablespoon.",
+</div>
+
+<h3>References</h3>
+<ol>
+    <li>Florida Department of Agriculture &amp; Consumer Services, <em>Cooking Conversion Guide</em>, <a href="https://www.fdacs.gov/content/download/17165/file/P-01775.pdf" target="_blank" rel="noopener">fdacs.gov</a></li>
+    <li>U.S. Food &amp; Drug Administration, <em>Guidance for Industry: Guidelines for Determining Metric Equivalents of Household Measures</em>, <a href="https://www.fda.gov/regulatory-information/search-fda-guidance-documents/guidance-industry-guidelines-determining-metric-equivalents-household-measures" target="_blank" rel="noopener">fda.gov</a></li>
+    <li>Merriam-Webster, <em>tablespoon</em>, <a href="https://www.merriam-webster.com/dictionary/tablespoon" target="_blank" rel="noopener">merriam-webster.com</a></li>
+    <li>National Institute of Standards &amp; Technology, <em>Culinary Measurement Tips</em>, <a href="https://www.nist.gov/pml/owm/culinary-measurement-tips" target="_blank" rel="noopener">nist.gov</a></li>
+    <li>King Arthur Baking Company, <em>Ingredient Weight Chart</em>, <a href="https://www.kingarthurbaking.com/learn/ingredient-weight-chart" target="_blank" rel="noopener">kingarthurbaking.com</a></li>
+</ol>`,
+            highlight: "Standard Scale: There are exactly 3 teaspoons in 1 tablespoon. The full chain: 1 cup = 16 tbsp = 48 tsp. One teaspoon = 4.93 mL precisely (5 mL per FDA labeling).",
         },
-        faq: []
+        faq: [
+            { question: "How many teaspoons are in a tablespoon?", answer: "There are exactly 3 teaspoons in 1 tablespoon. This is the fundamental small-volume conversion in US cooking. One tablespoon also equals ½ fluid ounce, 1/16 cup, or approximately 15 milliliters." },
+            { question: "How many teaspoons are in ½ tablespoon?", answer: "1½ teaspoons = ½ tablespoon. Since most measuring spoon sets include a ½ teaspoon but not a ½ tablespoon, measure 1 teaspoon plus ½ teaspoon to get precisely ½ tablespoon." },
+            { question: "How many tablespoons are in a teaspoon?", answer: "There is ⅓ (one-third) of a tablespoon in 1 teaspoon. To convert teaspoons to tablespoons, divide by 3. For example: 6 teaspoons ÷ 3 = 2 tablespoons." },
+            { question: "Is a teaspoon 5 mL or 4.93 mL?", answer: "Both are correct depending on context. The precise volume of 1 US teaspoon is 4.92892 mL. However, the FDA defines 1 teaspoon as exactly 5 mL for nutrition labeling and pharmaceutical dosing. For cooking, the difference (0.07 mL — about 1 drop) is negligible. Use 5 mL for simplicity." },
+            { question: "What's the difference between tsp and tbsp?", answer: "tsp = teaspoon (the smaller spoon, ~5 mL). tbsp = tablespoon (the larger spoon, ~15 mL). A tablespoon is exactly 3 times the volume of a teaspoon. Confusing the two is the most common kitchen measurement error — using tbsp instead of tsp means adding 3× the intended amount." },
+            { question: "How many teaspoons are in a cup?", answer: "48 teaspoons = 16 tablespoons = 1 cup. The full volume chain: 1 cup = 16 tbsp = 48 tsp = 8 fl oz = 236.59 mL. While you'd never measure a full cup in teaspoons, knowing this relationship helps bridge between small and large measurements." },
+            { question: "Can I use my silverware teaspoon for measuring?", answer: "No. Silverware teaspoons (the kind you stir coffee with) are not standardized and typically hold between 2.5 mL and 7 mL — the standard measuring teaspoon is 4.93 mL. For cooking, the variation is usually acceptable. For baking, always use a proper measuring spoon from a nested set." },
+            { question: "How do I measure ½ teaspoon without a ½ tsp spoon?", answer: "Fill the ¼ teaspoon measure twice, or fill a standard teaspoon measure halfway. For critical baking measurements, a digital kitchen scale accurate to 0.1g is more reliable than estimating fractional teaspoons. Most measuring spoon sets include ¼ tsp, ½ tsp, 1 tsp, and 1 tbsp." }
+        ]
     },
     "pizza-calculator": {
         subtitle: "Calculate how many pizzas to order for your party — with size charts, slices per person, and surface area math. Plus: a professional baker's dough calculator for Neapolitan, New York, and Detroit-style pizza.",
