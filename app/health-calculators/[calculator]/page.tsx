@@ -7,7 +7,6 @@ import AuthorBadge from "@/components/shared/AuthorBadge";
 import HealthCalculatorCore from "@/components/calculator/HealthCalculatorCore";
 import DynamicExplanation from "@/components/shared/DynamicExplanation";
 import FAQAccordion from "@/components/shared/FAQAccordion";
-import TrendingCalculations from "@/components/shared/TrendingCalculations";
 import { getCalculatorsByCategory } from "@/lib/data";
 import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
@@ -564,10 +563,10 @@ export default async function HealthCalculatorHubPage({ params }: PageProps) {
             <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Health Calculators", href: "/health-calculators" }, { label: calc.title.replace(" Calculator", "") }]} />
             <h1 className="t-h1" style={{ marginBottom: "var(--s-2)" }}>{calc.title}</h1>
             {content && <p className="t-body text-muted" style={{ marginBottom: "var(--s-6)" }}>{content.subtitle}</p>}
-            <AuthorBadge categoryKey="health" />
             <div className="layout-2col">
                 <div className="layout-2col__main">
                     <HealthCalculatorCore calcType={calc.calcType || "bmi"} />
+                    <AuthorBadge categoryKey="health" />
                     {content && (<>
                         <DynamicExplanation heading={content.explanation?.heading} paragraphs={content.explanation?.paragraphs} contentHTML={content.explanation?.contentHTML} highlight={content.explanation?.highlight} />
                         {content.faq && <FAQAccordion title={`${calc.title} FAQ`} items={content.faq} />}
@@ -576,7 +575,33 @@ export default async function HealthCalculatorHubPage({ params }: PageProps) {
                     <GuideCTA calcId={calc.id} />
                     <GlossaryChip calcId={calc.id} />
                 </div>
-                <aside className="layout-2col__sidebar"><TrendingCalculations variant="sidebar" /></aside>
+                <aside className="layout-2col__sidebar">
+                    <nav style={{
+                        background: "var(--n-surface)",
+                        border: "1px solid var(--n-border)",
+                        borderRadius: "var(--r-md)",
+                        padding: "var(--s-5)",
+                    }}>
+                        <h3 style={{ fontSize: "var(--t-body)", fontWeight: 700, marginBottom: "var(--s-4)", display: "flex", alignItems: "center", gap: "var(--s-2)" }}>
+                            💪 Health & Fitness
+                        </h3>
+                        {getCalculatorsByCategory("health").map((item) => (
+                            <a
+                                key={item.id}
+                                href={`/health-calculators/${item.slug}`}
+                                style={{
+                                    display: "flex", alignItems: "center", justifyContent: "space-between",
+                                    padding: "var(--s-3) 0", borderBottom: "1px solid var(--n-border)",
+                                    color: item.id === calc.id ? "var(--n-primary)" : "var(--n-text-secondary)",
+                                    fontWeight: item.id === calc.id ? 600 : 400,
+                                    fontSize: "var(--t-body-sm)", textDecoration: "none", transition: "color 0.2s",
+                                }}
+                            >
+                                {item.title.replace(/ Calculator.*$/, "").replace(/ Converter.*$/, "")} <span style={{ color: "var(--n-text-muted)" }}>→</span>
+                            </a>
+                        ))}
+                    </nav>
+                </aside>
             </div>
         </main>
     );
