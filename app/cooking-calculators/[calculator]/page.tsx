@@ -665,21 +665,278 @@ const HUB_CONTENT: Record<string, any> = {
         ]
     },
     "grams-to-tablespoons-converter": {
-        subtitle: "Convert metric grams into US tablespoons depending on exactly what dry or liquid ingredient you are measuring.",
+        subtitle: "Convert grams (g) to US tablespoons (tbsp) for any ingredient. Select from 20 common cooking and baking ingredients or enter a custom density. Accurate results based on ingredient-specific densities.",
         explanation: {
-            heading: "Tablespoon Yields",
-            contentHTML: `<p>A US Tablespoon is a volumetric measurement equal to exactly 14.7868 milliliters. When converting from grams to tablespoons, the weight of the ingredient changes how many spoons you need.</p>
-<h3>Quick Conversion Links</h3>
-<div class="not-prose grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
-    <a href="/cooking-calculators/grams-to-tablespoons-converter?amount=10" class="flex items-center p-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl hover:border-emerald-400 hover:shadow-md transition-all group w-full"><span class="mr-3 text-emerald-500 group-hover:scale-110 transition-transform">🥄</span><span class="text-sm font-medium text-gray-700 dark:text-gray-200 group-hover:text-emerald-600 dark:group-hover:text-emerald-400">How Many Tablespoons is 10 Grams?</span></a>
-    <a href="/cooking-calculators/grams-to-tablespoons-converter?amount=15" class="flex items-center p-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl hover:border-emerald-400 hover:shadow-md transition-all group w-full"><span class="mr-3 text-emerald-500 group-hover:scale-110 transition-transform">🥄</span><span class="text-sm font-medium text-gray-700 dark:text-gray-200 group-hover:text-emerald-600 dark:group-hover:text-emerald-400">How Many Tablespoons is 15 Grams?</span></a>
-    <a href="/cooking-calculators/grams-to-tablespoons-converter?amount=20" class="flex items-center p-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl hover:border-emerald-400 hover:shadow-md transition-all group w-full"><span class="mr-3 text-emerald-500 group-hover:scale-110 transition-transform">🥄</span><span class="text-sm font-medium text-gray-700 dark:text-gray-200 group-hover:text-emerald-600 dark:group-hover:text-emerald-400">How Many Tablespoons is 20 Grams?</span></a>
-    <a href="/cooking-calculators/grams-to-tablespoons-converter?amount=50" class="flex items-center p-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl hover:border-emerald-400 hover:shadow-md transition-all group w-full"><span class="mr-3 text-emerald-500 group-hover:scale-110 transition-transform">🥄</span><span class="text-sm font-medium text-gray-700 dark:text-gray-200 group-hover:text-emerald-600 dark:group-hover:text-emerald-400">How Many Tablespoons is 50 Grams?</span></a>
-</div>`,
-            highlight: "Quick Reference: 1 Tablespoon of water is 15 grams. 1 Tablespoon of butter is 14.2 grams. 1 Tablespoon of flour is roughly 8 grams.",
+            heading: "How to Convert Grams to Tablespoons",
+            contentHTML: `<p>Grams (g) measure <strong>weight</strong>. US tablespoons (tbsp) measure <strong>volume</strong>. Because every ingredient has a different <a href="/convert/ml-to-gram-converter">density</a>, the same weight of two ingredients fills a different number of tablespoons. For example, 10 grams of flour fills more than a full tablespoon, while 10 grams of honey barely fills two-thirds of one.</p>
+<p>The easiest way to convert grams to tablespoons is to use the calculator above or one of the reference tables below. For manual calculation, the formula is:</p>
+<div class="explanation__highlight">
+    <strong>tablespoons = grams ÷ (density in g/mL × 14.7868)</strong><br/><br/>
+    <strong>Step 1:</strong> Find the ingredient's density in g/mL (see the <a href="#density-chart">density chart below</a>).<br/>
+    <strong>Step 2:</strong> Multiply the density by 14.7868 (mL per US tablespoon) to get <strong>grams per tablespoon</strong>.<br/>
+    <strong>Step 3:</strong> Divide the weight in grams by that number to get tablespoons.<br/><br/>
+    <strong>Example — 20 g brown sugar:</strong><br/>
+    Brown sugar density = 0.930 g/mL<br/>
+    Grams per tbsp = 0.930 × 14.7868 = <strong>13.75 g/tbsp</strong><br/>
+    Tablespoons = 20 ÷ 13.75 = <strong>1.45 tbsp ≈ 1½ tbsp</strong><br/><br/>
+    <strong>Example — 15 g all-purpose flour:</strong><br/>
+    Flour density = 0.529 g/mL<br/>
+    Grams per tbsp = 0.529 × 14.7868 = <strong>7.82 g/tbsp</strong><br/>
+    Tablespoons = 15 ÷ 7.82 = <strong>1.92 tbsp ≈ 2 tbsp</strong>
+</div>
+
+<h3 id="snippet-5g">How Many Tablespoons Is 5 Grams?</h3>
+<table>
+    <thead><tr><th>Ingredient</th><th>5g in Tablespoons</th><th>Approximate</th></tr></thead>
+    <tbody>
+        <tr><td><strong>All-Purpose Flour</strong></td><td>0.64 tbsp</td><td>⅔ tbsp</td></tr>
+        <tr><td><strong>Granulated Sugar</strong></td><td>0.40 tbsp</td><td>~⅖ tbsp</td></tr>
+        <tr><td><strong>Brown Sugar (packed)</strong></td><td>0.36 tbsp</td><td>~⅓ tbsp</td></tr>
+        <tr><td><strong>Butter</strong></td><td>0.35 tbsp</td><td>~⅓ tbsp</td></tr>
+        <tr><td><strong>Cocoa Powder</strong></td><td>0.65 tbsp</td><td>⅔ tbsp</td></tr>
+        <tr><td><strong>Honey</strong></td><td>0.24 tbsp</td><td>¼ tbsp</td></tr>
+        <tr><td><strong>Milk (whole)</strong></td><td>0.33 tbsp</td><td>⅓ tbsp</td></tr>
+        <tr><td><strong>Water</strong></td><td>0.34 tbsp</td><td>⅓ tbsp</td></tr>
+        <tr><td><strong>Baking Powder</strong></td><td>0.36 tbsp</td><td>⅓ tbsp</td></tr>
+        <tr><td><strong>Olive Oil</strong></td><td>0.37 tbsp</td><td>⅓ tbsp</td></tr>
+    </tbody>
+</table>
+
+<h3 id="snippet-10g">How Many Tablespoons Is 10 Grams?</h3>
+<table>
+    <thead><tr><th>Ingredient</th><th>10g in Tablespoons</th><th>Approximate</th><th>Notes</th></tr></thead>
+    <tbody>
+        <tr><td><strong>All-Purpose Flour</strong></td><td>1.28 tbsp</td><td>1¼ tbsp</td><td>Spoon &amp; level</td></tr>
+        <tr><td><strong>Granulated Sugar</strong></td><td>0.80 tbsp</td><td>¾ tbsp</td><td>Level scoop</td></tr>
+        <tr><td><strong>Brown Sugar (packed)</strong></td><td>0.73 tbsp</td><td>¾ tbsp</td><td>Pack firmly</td></tr>
+        <tr><td><strong>Butter</strong></td><td>0.70 tbsp</td><td>¾ tbsp</td><td>≈ 2 tsp</td></tr>
+        <tr><td><strong>Cocoa Powder</strong></td><td>1.30 tbsp</td><td>1⅓ tbsp</td><td>Sift first</td></tr>
+        <tr><td><strong>Honey</strong></td><td>0.48 tbsp</td><td>½ tbsp</td><td>Coat spoon w/ oil</td></tr>
+        <tr><td><strong>Milk (whole)</strong></td><td>0.66 tbsp</td><td>⅔ tbsp</td><td>Volume ≈ weight</td></tr>
+        <tr><td><strong>Water</strong></td><td>0.68 tbsp</td><td>⅔ tbsp</td><td>1 g ≈ 1 mL</td></tr>
+        <tr><td><strong>Baking Powder</strong></td><td>0.72 tbsp</td><td>¾ tbsp</td><td>Level carefully</td></tr>
+        <tr><td><strong>Olive Oil</strong></td><td>0.74 tbsp</td><td>¾ tbsp</td><td>Light olive</td></tr>
+    </tbody>
+</table>
+
+<h3 id="snippet-15g">How Many Tablespoons Is 15 Grams?</h3>
+<table>
+    <thead><tr><th>Ingredient</th><th>15g in Tablespoons</th><th>Approximate</th></tr></thead>
+    <tbody>
+        <tr><td><strong>All-Purpose Flour</strong></td><td>1.92 tbsp</td><td>≈ 2 tbsp</td></tr>
+        <tr><td><strong>Granulated Sugar</strong></td><td>1.20 tbsp</td><td>1¼ tbsp</td></tr>
+        <tr><td><strong>Brown Sugar (packed)</strong></td><td>1.09 tbsp</td><td>1 tbsp + 1 tsp</td></tr>
+        <tr><td><strong>Butter</strong></td><td>1.06 tbsp</td><td>≈ 1 tbsp</td></tr>
+        <tr><td><strong>Cocoa Powder</strong></td><td>1.95 tbsp</td><td>≈ 2 tbsp</td></tr>
+        <tr><td><strong>Honey</strong></td><td>0.71 tbsp</td><td>¾ tbsp</td></tr>
+        <tr><td><strong>Milk (whole)</strong></td><td>0.98 tbsp</td><td>≈ 1 tbsp</td></tr>
+        <tr><td><strong>Water</strong></td><td>1.01 tbsp</td><td>≈ 1 tbsp exactly</td></tr>
+        <tr><td><strong>Baking Powder</strong></td><td>1.08 tbsp</td><td>1 tbsp</td></tr>
+        <tr><td><strong>Olive Oil</strong></td><td>1.11 tbsp</td><td>1 tbsp + ⅓ tsp</td></tr>
+    </tbody>
+</table>
+
+<h3 id="snippet-20g">How Many Tablespoons Is 20 Grams?</h3>
+<table>
+    <thead><tr><th>Ingredient</th><th>20g in Tablespoons</th><th>Notes</th></tr></thead>
+    <tbody>
+        <tr><td><strong>All-Purpose Flour</strong></td><td>2.56 tbsp</td><td>2½ tbsp</td></tr>
+        <tr><td><strong>Granulated Sugar</strong></td><td>1.60 tbsp</td><td>1½ tbsp + ½ tsp</td></tr>
+        <tr><td><strong>Brown Sugar (packed)</strong></td><td>1.45 tbsp</td><td>1½ tbsp</td></tr>
+        <tr><td><strong>Butter</strong></td><td>1.41 tbsp</td><td>1½ tbsp</td></tr>
+        <tr><td><strong>Cocoa Powder</strong></td><td>2.60 tbsp</td><td>2½ tbsp</td></tr>
+        <tr><td><strong>Honey</strong></td><td>0.95 tbsp</td><td>≈ 1 tbsp</td></tr>
+        <tr><td><strong>Milk (whole)</strong></td><td>1.31 tbsp</td><td>1⅓ tbsp</td></tr>
+        <tr><td><strong>Water</strong></td><td>1.35 tbsp</td><td>1⅓ tbsp</td></tr>
+        <tr><td><strong>Baking Powder</strong></td><td>1.44 tbsp</td><td>1½ tbsp</td></tr>
+        <tr><td><strong>Olive Oil</strong></td><td>1.48 tbsp</td><td>1½ tbsp</td></tr>
+    </tbody>
+</table>
+
+<h3 id="snippet-25g">How Many Tablespoons Is 25 Grams?</h3>
+<table>
+    <thead><tr><th>Ingredient</th><th>25g in Tablespoons</th></tr></thead>
+    <tbody>
+        <tr><td><strong>All-Purpose Flour</strong></td><td>3.20 tbsp</td></tr>
+        <tr><td><strong>Granulated Sugar</strong></td><td>2.00 tbsp</td></tr>
+        <tr><td><strong>Brown Sugar</strong></td><td>1.82 tbsp</td></tr>
+        <tr><td><strong>Butter</strong></td><td>1.76 tbsp</td></tr>
+        <tr><td><strong>Cocoa Powder</strong></td><td>3.25 tbsp</td></tr>
+        <tr><td><strong>Honey</strong></td><td>1.19 tbsp</td></tr>
+        <tr><td><strong>Milk</strong></td><td>1.64 tbsp</td></tr>
+        <tr><td><strong>Water</strong></td><td>1.69 tbsp</td></tr>
+        <tr><td><strong>Baking Powder</strong></td><td>1.80 tbsp</td></tr>
+        <tr><td><strong>Olive Oil</strong></td><td>1.85 tbsp</td></tr>
+    </tbody>
+</table>
+
+<h3 id="snippet-30g">How Many Tablespoons Is 30 Grams?</h3>
+<table>
+    <thead><tr><th>Ingredient</th><th>30g in Tablespoons</th><th>Approximate</th></tr></thead>
+    <tbody>
+        <tr><td><strong>All-Purpose Flour</strong></td><td>3.84 tbsp</td><td>≈ 4 tbsp (¼ cup)</td></tr>
+        <tr><td><strong>Granulated Sugar</strong></td><td>2.40 tbsp</td><td>2½ tbsp</td></tr>
+        <tr><td><strong>Brown Sugar</strong></td><td>2.18 tbsp</td><td>2¼ tbsp</td></tr>
+        <tr><td><strong>Butter</strong></td><td>2.11 tbsp</td><td>2 tbsp (1 oz)</td></tr>
+        <tr><td><strong>Cocoa Powder</strong></td><td>3.90 tbsp</td><td>≈ 4 tbsp (¼ cup)</td></tr>
+        <tr><td><strong>Honey</strong></td><td>1.43 tbsp</td><td>1½ tbsp</td></tr>
+        <tr><td><strong>Milk</strong></td><td>1.97 tbsp</td><td>≈ 2 tbsp</td></tr>
+        <tr><td><strong>Water</strong></td><td>2.03 tbsp</td><td>≈ 2 tbsp</td></tr>
+        <tr><td><strong>Baking Powder</strong></td><td>2.16 tbsp</td><td>2¼ tbsp</td></tr>
+        <tr><td><strong>Olive Oil</strong></td><td>2.22 tbsp</td><td>2¼ tbsp</td></tr>
+    </tbody>
+</table>
+
+<h3 id="snippet-40g">How Many Tablespoons Is 40 Grams?</h3>
+<table>
+    <thead><tr><th>Ingredient</th><th>40g in Tablespoons</th></tr></thead>
+    <tbody>
+        <tr><td><strong>All-Purpose Flour</strong></td><td>5.12 tbsp</td></tr>
+        <tr><td><strong>Granulated Sugar</strong></td><td>3.20 tbsp</td></tr>
+        <tr><td><strong>Brown Sugar</strong></td><td>2.91 tbsp</td></tr>
+        <tr><td><strong>Butter</strong></td><td>2.82 tbsp</td></tr>
+        <tr><td><strong>Cocoa Powder</strong></td><td>5.21 tbsp</td></tr>
+        <tr><td><strong>Honey</strong></td><td>1.91 tbsp</td></tr>
+        <tr><td><strong>Milk</strong></td><td>2.63 tbsp</td></tr>
+        <tr><td><strong>Water</strong></td><td>2.70 tbsp</td></tr>
+        <tr><td><strong>Baking Powder</strong></td><td>2.88 tbsp</td></tr>
+        <tr><td><strong>Olive Oil</strong></td><td>2.96 tbsp</td></tr>
+    </tbody>
+</table>
+
+<h3 id="snippet-50g">How Many Tablespoons Is 50 Grams?</h3>
+<table>
+    <thead><tr><th>Ingredient</th><th>50g in Tablespoons</th><th>Approximate</th></tr></thead>
+    <tbody>
+        <tr><td><strong>All-Purpose Flour</strong></td><td>6.39 tbsp</td><td>6⅓ tbsp</td></tr>
+        <tr><td><strong>Granulated Sugar</strong></td><td>4.00 tbsp</td><td>4 tbsp (¼ cup)</td></tr>
+        <tr><td><strong>Brown Sugar</strong></td><td>3.64 tbsp</td><td>3⅔ tbsp</td></tr>
+        <tr><td><strong>Butter</strong></td><td>3.52 tbsp</td><td>3½ tbsp</td></tr>
+        <tr><td><strong>Cocoa Powder</strong></td><td>6.51 tbsp</td><td>6½ tbsp</td></tr>
+        <tr><td><strong>Honey</strong></td><td>2.38 tbsp</td><td>2⅓ tbsp</td></tr>
+        <tr><td><strong>Milk</strong></td><td>3.28 tbsp</td><td>3¼ tbsp</td></tr>
+        <tr><td><strong>Water</strong></td><td>3.38 tbsp</td><td>3⅓ tbsp</td></tr>
+        <tr><td><strong>Baking Powder</strong></td><td>3.60 tbsp</td><td>3½ tbsp</td></tr>
+        <tr><td><strong>Olive Oil</strong></td><td>3.69 tbsp</td><td>3⅔ tbsp</td></tr>
+    </tbody>
+</table>
+
+<h3 id="snippet-75g">How Many Tablespoons Is 75 Grams?</h3>
+<table>
+    <thead><tr><th>Ingredient</th><th>75g in Tablespoons</th></tr></thead>
+    <tbody>
+        <tr><td><strong>All-Purpose Flour</strong></td><td>9.59 tbsp</td></tr>
+        <tr><td><strong>Granulated Sugar</strong></td><td>6.00 tbsp</td></tr>
+        <tr><td><strong>Brown Sugar</strong></td><td>5.45 tbsp</td></tr>
+        <tr><td><strong>Butter</strong></td><td>5.29 tbsp</td></tr>
+        <tr><td><strong>Cocoa Powder</strong></td><td>9.76 tbsp</td></tr>
+        <tr><td><strong>Honey</strong></td><td>3.57 tbsp</td></tr>
+        <tr><td><strong>Milk</strong></td><td>4.93 tbsp</td></tr>
+        <tr><td><strong>Water</strong></td><td>5.07 tbsp</td></tr>
+        <tr><td><strong>Baking Powder</strong></td><td>5.39 tbsp</td></tr>
+        <tr><td><strong>Olive Oil</strong></td><td>5.54 tbsp</td></tr>
+    </tbody>
+</table>
+
+<h3 id="snippet-100g">How Many Tablespoons Is 100 Grams?</h3>
+<table>
+    <thead><tr><th>Ingredient</th><th>100g in Tablespoons</th><th>Approximate</th></tr></thead>
+    <tbody>
+        <tr><td><strong>All-Purpose Flour</strong></td><td>12.79 tbsp</td><td>¾ cup + 1 tbsp</td></tr>
+        <tr><td><strong>Granulated Sugar</strong></td><td>8.00 tbsp</td><td>½ cup exactly</td></tr>
+        <tr><td><strong>Brown Sugar</strong></td><td>7.27 tbsp</td><td>7¼ tbsp</td></tr>
+        <tr><td><strong>Butter</strong></td><td>7.05 tbsp</td><td>7 tbsp (≈ 1 US stick)</td></tr>
+        <tr><td><strong>Cocoa Powder</strong></td><td>13.02 tbsp</td><td>¾ cup + 1 tbsp</td></tr>
+        <tr><td><strong>Honey</strong></td><td>4.76 tbsp</td><td>4¾ tbsp</td></tr>
+        <tr><td><strong>Milk</strong></td><td>6.57 tbsp</td><td>6½ tbsp</td></tr>
+        <tr><td><strong>Water</strong></td><td>6.76 tbsp</td><td>6¾ tbsp</td></tr>
+        <tr><td><strong>Baking Powder</strong></td><td>7.19 tbsp</td><td>7¼ tbsp</td></tr>
+        <tr><td><strong>Olive Oil</strong></td><td>7.39 tbsp</td><td>7⅓ tbsp</td></tr>
+    </tbody>
+</table>
+
+<h3 id="density-chart">Ingredient Density Chart — Grams per Tablespoon</h3>
+<p>Use this master reference table to manually convert grams to tablespoons for any ingredient. Density values are sourced from the <a href="https://www.fao.org/4/ap815e/ap815e.pdf" target="_blank" rel="noopener">FAO/INFOODS Density Database</a> and <a href="https://www.kingarthurbaking.com/learn/ingredient-weight-chart" target="_blank" rel="noopener">King Arthur Baking</a>.<sup>[1][4]</sup></p>
+<table>
+    <thead><tr><th>Ingredient</th><th>Density (g/mL)</th><th>Grams per Tbsp</th><th>10g = ? tbsp</th></tr></thead>
+    <tbody>
+        <tr><td><strong>All-Purpose Flour</strong></td><td>0.529</td><td>7.82 g</td><td>1.28 tbsp</td></tr>
+        <tr><td><strong>Bread Flour</strong></td><td>0.550</td><td>8.13 g</td><td>1.23 tbsp</td></tr>
+        <tr><td><strong>Cake Flour</strong></td><td>0.487</td><td>7.20 g</td><td>1.39 tbsp</td></tr>
+        <tr><td><strong>Granulated Sugar</strong></td><td>0.845</td><td>12.49 g</td><td>0.80 tbsp</td></tr>
+        <tr><td><strong>Powdered Sugar</strong></td><td>0.560</td><td>8.28 g</td><td>1.21 tbsp</td></tr>
+        <tr><td><strong>Brown Sugar (packed)</strong></td><td>0.930</td><td>13.75 g</td><td>0.73 tbsp</td></tr>
+        <tr><td><strong>Butter</strong></td><td>0.959</td><td>14.18 g</td><td>0.70 tbsp</td></tr>
+        <tr><td><strong>Honey</strong></td><td>1.420</td><td>21.00 g</td><td>0.48 tbsp</td></tr>
+        <tr><td><strong>Cocoa Powder</strong></td><td>0.520</td><td>7.69 g</td><td>1.30 tbsp</td></tr>
+        <tr><td><strong>Milk (whole)</strong></td><td>1.030</td><td>15.23 g</td><td>0.66 tbsp</td></tr>
+        <tr><td><strong>Water</strong></td><td>1.000</td><td>14.79 g</td><td>0.68 tbsp</td></tr>
+        <tr><td><strong>Olive Oil</strong></td><td>0.918</td><td>13.57 g</td><td>0.74 tbsp</td></tr>
+        <tr><td><strong>Baking Powder</strong></td><td>0.940</td><td>13.90 g</td><td>0.72 tbsp</td></tr>
+        <tr><td><strong>Cornstarch</strong></td><td>0.538</td><td>7.96 g</td><td>1.26 tbsp</td></tr>
+        <tr><td><strong>Salt (table)</strong></td><td>1.217</td><td>17.99 g</td><td>0.56 tbsp</td></tr>
+    </tbody>
+</table>
+
+<h3>Tablespoon Equivalents — Quick Reference</h3>
+<p>US recipes frequently use tablespoon fractions. This chart shows how tablespoons relate to other common kitchen measurements — useful when you need to convert <a href="/cooking-calculators/teaspoons-to-tablespoons-converter">teaspoons to tablespoons</a> or <a href="/cooking-calculators/tablespoons-to-cups-converter">tablespoons to cups</a>:</p>
+<table>
+    <thead><tr><th>Measurement</th><th>Tablespoons</th><th>Teaspoons</th><th>Cups</th><th>Milliliters</th></tr></thead>
+    <tbody>
+        <tr><td>1 tablespoon</td><td>1</td><td>3</td><td>1/16 cup</td><td>14.79 mL</td></tr>
+        <tr><td>2 tablespoons</td><td>2</td><td>6</td><td>⅛ cup</td><td>29.57 mL</td></tr>
+        <tr><td>3 tablespoons</td><td>3</td><td>9</td><td>3/16 cup</td><td>44.36 mL</td></tr>
+        <tr><td>4 tablespoons</td><td>4</td><td>12</td><td>¼ cup</td><td>59.15 mL</td></tr>
+        <tr><td>8 tablespoons</td><td>8</td><td>24</td><td>½ cup</td><td>118.29 mL</td></tr>
+        <tr><td>16 tablespoons</td><td>16</td><td>48</td><td>1 cup</td><td>236.59 mL</td></tr>
+    </tbody>
+</table>
+
+<h3>When to Convert Grams to Tablespoons</h3>
+<p>Grams and tablespoons are both commonly used to measure cooking ingredients. For cooking applications, most chefs suggest measuring dry ingredients by weight rather than volume to improve accuracy in the measurements.<sup>[2]</sup> The density of dry ingredients can vary for a variety of reasons, such as compaction and clumping.</p>
+<ul>
+    <li><strong>Measuring small quantities</strong>: Tablespoons are ideal for ingredients used in small amounts — spices, leaveners (baking powder, baking soda), extracts, and oils. When a European recipe calls for "5 grams of baking powder," converting to tablespoons is more practical than trying to weigh such a small amount.</li>
+    <li><strong>Following metric recipes with US measuring spoons</strong>: International baking recipes specify ingredients in grams. If you don't own a digital scale, you need to convert <a href="/cooking-calculators/grams-to-tablespoons-converter">grams to tablespoons</a> using the ingredient's density.</li>
+    <li><strong>Scaling baking recipes</strong>: When halving or doubling a recipe, calculating in grams first (then converting back to tablespoons) prevents rounding errors. Use our <a href="/cooking-calculators/recipe-scale-calculator">recipe scale calculator</a> for automatic scaling.</li>
+    <li><strong>Comparing nutritional information</strong>: US nutrition labels specify serving sizes in grams, but your mental reference might be tablespoons. Knowing that a 14g serving of butter = 1 tablespoon helps you visualize portion sizes.<sup>[5]</sup></li>
+    <li><strong>Converting between measurement systems</strong>: If you need to convert <a href="/cooking-calculators/grams-to-cups-converter">grams to cups</a> or <a href="/convert/gram-to-ml-converter">grams to milliliters</a>, the same density-based formula applies — only the volume factor changes (14.7868 mL/tbsp vs. 236.588 mL/cup).</li>
+</ul>
+
+<h3>Common Mistakes When Converting Grams to Tablespoons</h3>
+<ul>
+    <li><strong>"1 tablespoon = 15g for everything"</strong> — This only works for water. 1 tablespoon of flour is about 7.8g, and 1 tablespoon of honey is about 21g. The weight per tablespoon varies wildly by ingredient.</li>
+    <li><strong>Confusing tablespoon and teaspoon</strong> — A tablespoon (tbsp) is 3× a teaspoon (tsp). Mixing them up means your recipe is off by 200%. "1 Tbsp" and "1 tsp" look similar in handwritten recipes — always double-check.<sup>[4]</sup></li>
+    <li><strong>Level vs. heaped tablespoons</strong> — A "tablespoon" in recipes means a level tablespoon unless specifically stated as "heaped" or "rounded." A heaped tablespoon of flour can weigh 50% more than a level one. Professional recipes in grams eliminate this ambiguity entirely.</li>
+    <li><strong>Using the wrong tablespoon standard</strong> — A US tablespoon = 14.7868 mL. An Australian tablespoon = 20 mL (35% larger). UK tablespoons = 17.76 mL. If you're following an Australian recipe, their "1 tablespoon" is not the same as yours. Our <a href="/cooking-calculators/ounces-to-grams-converter">ounces to grams converter</a> can help with other unit confusion.</li>
+</ul>
+
+<h3>What Is a Gram?</h3>
+<p>A <strong>gram</strong> (g) is a metric unit of mass equal to 1/1,000 of a <a href="/convert/liter-to-kg-converter">kilogram</a>, or 0.035274 ounces. It is equivalent to the mass of one cubic centimeter (one milliliter) of water at 4°C. The gram is an SI unit of mass in the metric system and can be abbreviated as <strong>g</strong> — for example, 1 gram can be written as 1 g.</p>
+<p>While technically a gram measures mass (not weight), the two are equivalent for everyday calculations performed on Earth. A gram is frequently referred to as a unit of weight in cooking contexts — when a recipe says "15 grams of baking powder," it means the powder should weigh 15g on your kitchen scale.</p>
+
+<h3>What Is a Tablespoon?</h3>
+<p>A <strong>tablespoon</strong> (tbsp) is a US customary unit of volume equal to 3 <a href="/cooking-calculators/teaspoons-to-tablespoons-converter">teaspoons</a>, ½ fluid ounce, or 14.7868 <a href="/convert/ml-to-gram-converter">milliliters</a>. For nutrition labeling purposes, the FDA rounds one tablespoon to 15 milliliters.<sup>[3]</sup> Tablespoons can be abbreviated as <strong>tbsp</strong>, and are also sometimes written as T, Tbls, or Tb — for example, 1 tablespoon can be written as 1 tbsp.</p>
+<p>A US tablespoon (14.79 mL) is smaller than an Australian tablespoon (20 mL) and a British tablespoon (17.76 mL). There are exactly 16 tablespoons in a US <a href="/cooking-calculators/tablespoons-to-cups-converter">cup</a>, and 48 teaspoons in a cup. The tablespoon should not be confused with the dessert spoon (10 mL), which is used in some British and Commonwealth recipes.</p>
+
+<h3>References</h3>
+<ol>
+    <li>U.N. Food and Agriculture Organization, <em>FAO/INFOODS Databases — Density Database Version 2.0</em>, <a href="https://www.fao.org/4/ap815e/ap815e.pdf" target="_blank" rel="noopener">fao.org</a></li>
+    <li>National Institute of Standards &amp; Technology, <em>Culinary Measurement Tips</em>, <a href="https://www.nist.gov/pml/owm/culinary-measurement-tips" target="_blank" rel="noopener">nist.gov</a></li>
+    <li>U.S. Food &amp; Drug Administration, <em>Guidance for Industry: Guidelines for Determining Metric Equivalents of Household Measures</em>, <a href="https://www.fda.gov/regulatory-information/search-fda-guidance-documents/guidance-industry-guidelines-determining-metric-equivalents-household-measures" target="_blank" rel="noopener">fda.gov</a></li>
+    <li>King Arthur Baking Company, <em>Ingredient Weight Chart</em>, <a href="https://www.kingarthurbaking.com/learn/ingredient-weight-chart" target="_blank" rel="noopener">kingarthurbaking.com</a></li>
+    <li>U.S. Department of Agriculture, <em>FoodData Central</em>, <a href="https://fdc.nal.usda.gov/" target="_blank" rel="noopener">fdc.nal.usda.gov</a></li>
+</ol>`,
+            highlight: "Quick Reference: 1 US Tablespoon = 14.7868 mL = 3 teaspoons = ½ fluid ounce. But the weight in grams depends on the ingredient — 1 tbsp of water is ~15g, 1 tbsp of flour is ~8g, and 1 tbsp of honey is ~21g.",
         },
         faq: [
-            { question: "How many grams is 1 tablespoon of sugar?", answer: "1 Tablespoon of granulated white sugar weighs 12.5 grams." }
+            { question: "How many tablespoons is 10 grams of sugar?", answer: "10 grams of granulated sugar is approximately 0.80 tablespoons — just under 1 tablespoon. This is based on sugar's density of 0.845 g/mL, which gives 12.49 grams per tablespoon. So 10 ÷ 12.49 = 0.80 tbsp. You'd measure this as about 2½ teaspoons." },
+            { question: "How many grams is 1 tablespoon of flour?", answer: "1 level tablespoon of all-purpose flour weighs approximately 7.8 grams (based on a density of 0.529 g/mL). King Arthur Baking uses 8g/tbsp as their standard. The exact weight depends on how you scoop — spooned and leveled flour is lighter than flour scooped directly from the bag." },
+            { question: "How many tablespoons is 20 grams of butter?", answer: "20 grams of butter is approximately 1.41 tablespoons — about 1½ tablespoons or 4¼ teaspoons. Since 1 US stick of butter = 113g = 8 tablespoons, you can also think of 20g as roughly ¹⁄₆ of a stick." },
+            { question: "Is 15 grams the same as 1 tablespoon?", answer: "Only for water (and very close for milk). 15g of water = 1.01 tablespoons — essentially exactly 1 tablespoon. But 15g of flour = 1.92 tablespoons (almost 2 tablespoons), and 15g of honey = only 0.71 tablespoons. The conversion depends entirely on the ingredient's density." },
+            { question: "What is the formula for grams to tablespoons?", answer: "The formula is: tablespoons = grams ÷ (density in g/mL × 14.7868). For example, to convert 25g of granulated sugar: 25 ÷ (0.845 × 14.7868) = 25 ÷ 12.49 = 2.00 tablespoons. You need to know the ingredient's density, which you can find in the FAO/INFOODS database or in our density chart above." },
+            { question: "How many tablespoons in 100 grams?", answer: "It depends on the ingredient. 100g of water = 6.76 tablespoons. 100g of flour = 12.79 tablespoons (about ¾ cup + 1 tbsp). 100g of sugar = 8.00 tablespoons (exactly ½ cup). 100g of honey = only 4.76 tablespoons. There is no universal 'tablespoons per 100 grams' because tablespoons measure volume and grams measure weight." },
+            { question: "Is a tablespoon 15 mL or 14.79 mL?", answer: "Both are correct in different contexts. The exact US customary tablespoon = 14.7868 mL (this is what our calculator uses). However, the FDA rounds this to 15 mL for nutrition labeling purposes. In practice, the 1.4% difference is negligible for cooking. Note that Australian tablespoons are 20 mL — significantly larger." },
+            { question: "How do I convert grams to tablespoons without a scale?", answer: "Use our calculator above — select the ingredient from the dropdown, enter the weight in grams, and get the tablespoon measurement instantly. If your ingredient isn't listed, select 'Custom' and enter any density between 0.1 and 3.0 g/mL. You can find ingredient densities in the FAO Density Database or on the ingredient's nutrition label." },
         ]
     },
     "ounces-to-grams-converter": {
