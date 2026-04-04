@@ -297,35 +297,218 @@ const HUB_CONTENT: Record<string, {
         subtitle: "Convert grams (g) to US cups for any ingredient. Select from 20 common cooking and baking ingredients or enter a custom density. See results in cups, tablespoons, and teaspoons instantly.",
         contentHTML: `
             <h3>How to Convert Grams to Cups</h3>
-            <p>Grams (g) measure <strong>weight</strong>. US cups measure <strong>volume</strong>. Since different ingredients have different densities, the same weight of two ingredients fills different amounts of a measuring cup.</p>
-            <p>The conversion is a two-step process:</p>
+            <p>Grams (g) measure <strong>weight</strong>. US cups measure <strong>volume</strong>. Since different ingredients have different <a href="/convert/ml-to-gram-converter">densities</a>, the same weight of two ingredients fills different amounts of a measuring cup. For instance, 100 grams of flour takes up far more space than 100 grams of sugar or butter — which is why you can't just use a single "universal" multiplier.</p>
+            <p>The easiest way to convert grams to cups is to use the calculator above or one of the reference tables below. For manual calculation, the formula is:</p>
             <div class="explanation__highlight">
-                <strong>Step 1:</strong> Convert grams to milliliters: <strong>mL = grams ÷ density (g/mL)</strong><br/>
-                <strong>Step 2:</strong> Convert milliliters to cups: <strong>cups = mL ÷ 236.588</strong><br/><br/>
-                <strong>Combined formula: cups = grams ÷ (density × 236.588)</strong><br/><br/>
-                Example: 250g of all-purpose flour = 250 ÷ (0.53 × 236.588) = 250 ÷ 125.39 = <strong>1.99 cups</strong> (≈ 2 cups)
+                <strong>cups = grams ÷ (density in g/mL × 236.588)</strong><br/><br/>
+                <strong>Step 1:</strong> Find the ingredient's density in g/mL (see the <a href="#density-chart">density chart below</a>).<br/>
+                <strong>Step 2:</strong> Multiply the density by 236.588 (mL per US cup) to get <strong>grams per cup</strong>.<br/>
+                <strong>Step 3:</strong> Divide the weight in grams by that number to get cups.<br/><br/>
+                <strong>Example — 250 g all-purpose flour:</strong><br/>
+                Flour density = 0.529 g/mL<br/>
+                Grams per cup = 0.529 × 236.588 = <strong>125.16 g/cup</strong><br/>
+                Cups = 250 ÷ 125.16 = <strong>1.998 cups ≈ 2 cups</strong><br/><br/>
+                <strong>Example — 200 g granulated sugar:</strong><br/>
+                Sugar density = 0.845 g/mL<br/>
+                Grams per cup = 0.845 × 236.588 = <strong>199.92 g/cup</strong><br/>
+                Cups = 200 ÷ 199.92 = <strong>1.001 cups ≈ 1 cup exactly</strong>
             </div>
 
-            <h3>How Many Cups Is…? — Popular Answers</h3>
-            <p>These are the most commonly searched gram-to-cup conversions for baking and cooking:</p>
+            <h3 id="snippet-50g">How Many Cups Is 50 Grams?</h3>
             <table>
-                <thead><tr><th>Ingredient</th><th>50g</th><th>100g</th><th>150g</th><th>200g</th><th>250g</th><th>500g</th></tr></thead>
+                <thead><tr><th>Ingredient</th><th>50g in Cups</th><th>In Tablespoons</th><th>Notes</th></tr></thead>
                 <tbody>
-                    <tr><td><strong>All-Purpose Flour</strong></td><td>0.40 cups</td><td>0.80 cups</td><td>1.20 cups</td><td>1.59 cups</td><td>1.99 cups</td><td>3.99 cups</td></tr>
-                    <tr><td><strong>Granulated Sugar</strong></td><td>0.25 cups</td><td>0.50 cups</td><td>0.75 cups</td><td>0.99 cups</td><td>1.24 cups</td><td>2.49 cups</td></tr>
-                    <tr><td><strong>Powdered Sugar</strong></td><td>0.38 cups</td><td>0.75 cups</td><td>1.13 cups</td><td>1.51 cups</td><td>1.89 cups</td><td>3.77 cups</td></tr>
-                    <tr><td><strong>Brown Sugar (packed)</strong></td><td>0.23 cups</td><td>0.45 cups</td><td>0.68 cups</td><td>0.91 cups</td><td>1.14 cups</td><td>2.27 cups</td></tr>
-                    <tr><td><strong>Butter</strong></td><td>0.23 cups</td><td>0.46 cups</td><td>0.70 cups</td><td>0.93 cups</td><td>1.16 cups</td><td>2.32 cups</td></tr>
-                    <tr><td><strong>Honey</strong></td><td>0.15 cups</td><td>0.30 cups</td><td>0.45 cups</td><td>0.59 cups</td><td>0.74 cups</td><td>1.49 cups</td></tr>
-                    <tr><td><strong>Cocoa Powder</strong></td><td>0.41 cups</td><td>0.81 cups</td><td>1.22 cups</td><td>1.63 cups</td><td>2.03 cups</td><td>4.06 cups</td></tr>
-                    <tr><td><strong>Rolled Oats</strong></td><td>0.59 cups</td><td>1.17 cups</td><td>1.76 cups</td><td>2.35 cups</td><td>2.94 cups</td><td>5.87 cups</td></tr>
-                    <tr><td><strong>Rice (uncooked)</strong></td><td>0.25 cups</td><td>0.50 cups</td><td>0.75 cups</td><td>0.99 cups</td><td>1.24 cups</td><td>2.49 cups</td></tr>
-                    <tr><td><strong>Water</strong></td><td>0.21 cups</td><td>0.42 cups</td><td>0.63 cups</td><td>0.85 cups</td><td>1.06 cups</td><td>2.11 cups</td></tr>
+                    <tr><td><strong>All-Purpose Flour</strong></td><td>0.40 cups</td><td>6.4 tbsp</td><td>Spoon &amp; level</td></tr>
+                    <tr><td><strong>Granulated Sugar</strong></td><td>0.25 cups</td><td>4.0 tbsp</td><td>¼ cup exactly</td></tr>
+                    <tr><td><strong>Brown Sugar (packed)</strong></td><td>0.23 cups</td><td>3.6 tbsp</td><td>Pack firmly</td></tr>
+                    <tr><td><strong>Butter</strong></td><td>0.22 cups</td><td>3.5 tbsp</td><td>≈ 3½ tbsp</td></tr>
+                    <tr><td><strong>Cocoa Powder</strong></td><td>0.41 cups</td><td>6.5 tbsp</td><td>Sift first</td></tr>
+                    <tr><td><strong>Rolled Oats</strong></td><td>0.59 cups</td><td>9.4 tbsp</td><td>Don't compress</td></tr>
+                    <tr><td><strong>White Rice</strong></td><td>0.25 cups</td><td>4.0 tbsp</td><td>Long grain, uncooked</td></tr>
+                    <tr><td><strong>Honey</strong></td><td>0.15 cups</td><td>2.4 tbsp</td><td>Coat spoon w/ oil</td></tr>
+                    <tr><td><strong>Milk (whole)</strong></td><td>0.21 cups</td><td>3.3 tbsp</td><td>Volume ≈ weight</td></tr>
+                    <tr><td><strong>Water</strong></td><td>0.21 cups</td><td>3.4 tbsp</td><td>1 g ≈ 1 mL</td></tr>
+                </tbody>
+            </table>
+
+            <h3 id="snippet-100g">How Many Cups Is 100 Grams?</h3>
+            <table>
+                <thead><tr><th>Ingredient</th><th>100g in Cups</th><th>Approximate</th><th>Notes</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>All-Purpose Flour</strong></td><td>0.80 cups</td><td>¾ cup + 1 tbsp</td><td>Spoon &amp; level</td></tr>
+                    <tr><td><strong>Granulated Sugar</strong></td><td>0.50 cups</td><td>½ cup exactly</td><td>Same packed/unpacked</td></tr>
+                    <tr><td><strong>Brown Sugar (packed)</strong></td><td>0.45 cups</td><td>Just under ½ cup</td><td>Pack firmly</td></tr>
+                    <tr><td><strong>Butter</strong></td><td>0.44 cups</td><td>7 tbsp</td><td>≈ 1 US stick minus 1 tbsp</td></tr>
+                    <tr><td><strong>Cocoa Powder</strong></td><td>0.81 cups</td><td>¾ cup + 1 tbsp</td><td>Sift first</td></tr>
+                    <tr><td><strong>Rolled Oats</strong></td><td>1.17 cups</td><td>1 cup + 3 tbsp</td><td>Don't compress</td></tr>
+                    <tr><td><strong>White Rice</strong></td><td>0.50 cups</td><td>½ cup</td><td>Long grain</td></tr>
+                    <tr><td><strong>Honey</strong></td><td>0.30 cups</td><td>⅓ cup</td><td>Coat spoon w/ oil</td></tr>
+                    <tr><td><strong>Milk (whole)</strong></td><td>0.41 cups</td><td>~⅖ cup</td><td>Volume ≈ weight for liquids</td></tr>
+                    <tr><td><strong>Water</strong></td><td>0.42 cups</td><td>~⅖ cup</td><td>1 g ≈ 1 mL</td></tr>
+                </tbody>
+            </table>
+
+            <h3 id="snippet-150g">How Many Cups Is 150 Grams?</h3>
+            <table>
+                <thead><tr><th>Ingredient</th><th>150g in Cups</th><th>Notes</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>All-Purpose Flour</strong></td><td>1.20 cups</td><td>1 cup + 3 tbsp</td></tr>
+                    <tr><td><strong>Granulated Sugar</strong></td><td>0.75 cups</td><td>¾ cup exactly</td></tr>
+                    <tr><td><strong>Brown Sugar</strong></td><td>0.68 cups</td><td>⅔ cup + 1 tsp</td></tr>
+                    <tr><td><strong>Butter</strong></td><td>0.66 cups</td><td>⅔ cup (10½ tbsp)</td></tr>
+                    <tr><td><strong>Cocoa Powder</strong></td><td>1.22 cups</td><td>1 cup + 3½ tbsp</td></tr>
+                    <tr><td><strong>Rolled Oats</strong></td><td>1.76 cups</td><td>1¾ cups</td></tr>
+                    <tr><td><strong>White Rice</strong></td><td>0.75 cups</td><td>¾ cup</td></tr>
+                    <tr><td><strong>Honey</strong></td><td>0.45 cups</td><td>Just under ½ cup</td></tr>
+                    <tr><td><strong>Milk</strong></td><td>0.62 cups</td><td>⅝ cup</td></tr>
+                    <tr><td><strong>Water</strong></td><td>0.63 cups</td><td>⅝ cup</td></tr>
+                </tbody>
+            </table>
+
+            <h3 id="snippet-200g">How Many Cups Is 200 Grams?</h3>
+            <table>
+                <thead><tr><th>Ingredient</th><th>200g in Cups</th><th>Notes</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>All-Purpose Flour</strong></td><td>1.59 cups</td><td>1½ cups + 1½ tbsp</td></tr>
+                    <tr><td><strong>Granulated Sugar</strong></td><td>1.00 cup</td><td>Exactly 1 cup</td></tr>
+                    <tr><td><strong>Brown Sugar</strong></td><td>0.91 cups</td><td>Just under 1 cup</td></tr>
+                    <tr><td><strong>Butter</strong></td><td>0.88 cups</td><td>14 tbsp (1¾ sticks)</td></tr>
+                    <tr><td><strong>Cocoa Powder</strong></td><td>1.63 cups</td><td>1⅝ cups</td></tr>
+                    <tr><td><strong>Rolled Oats</strong></td><td>2.35 cups</td><td>2⅓ cups</td></tr>
+                    <tr><td><strong>White Rice</strong></td><td>1.00 cup</td><td>Exactly 1 cup</td></tr>
+                    <tr><td><strong>Honey</strong></td><td>0.60 cups</td><td>⅝ cup</td></tr>
+                    <tr><td><strong>Milk</strong></td><td>0.82 cups</td><td>~⅞ cup</td></tr>
+                    <tr><td><strong>Water</strong></td><td>0.85 cups</td><td>~⅞ cup</td></tr>
+                </tbody>
+            </table>
+
+            <h3 id="snippet-250g">How Many Cups Is 250 Grams?</h3>
+            <table>
+                <thead><tr><th>Ingredient</th><th>250g in Cups</th><th>Notes</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>All-Purpose Flour</strong></td><td>1.99 cups</td><td>≈ 2 cups</td></tr>
+                    <tr><td><strong>Granulated Sugar</strong></td><td>1.25 cups</td><td>1¼ cups</td></tr>
+                    <tr><td><strong>Brown Sugar</strong></td><td>1.14 cups</td><td>1 cup + 2 tbsp</td></tr>
+                    <tr><td><strong>Butter</strong></td><td>1.10 cups</td><td>2 sticks + 1½ tbsp</td></tr>
+                    <tr><td><strong>Cocoa Powder</strong></td><td>2.03 cups</td><td>≈ 2 cups</td></tr>
+                    <tr><td><strong>Rolled Oats</strong></td><td>2.94 cups</td><td>≈ 3 cups</td></tr>
+                    <tr><td><strong>White Rice</strong></td><td>1.24 cups</td><td>1¼ cups</td></tr>
+                    <tr><td><strong>Honey</strong></td><td>0.74 cups</td><td>¾ cup</td></tr>
+                    <tr><td><strong>Milk</strong></td><td>1.03 cups</td><td>≈ 1 cup</td></tr>
+                    <tr><td><strong>Water</strong></td><td>1.06 cups</td><td>≈ 1 cup</td></tr>
+                </tbody>
+            </table>
+
+            <h3 id="snippet-300g">How Many Cups Is 300 Grams?</h3>
+            <table>
+                <thead><tr><th>Ingredient</th><th>300g in Cups</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>All-Purpose Flour</strong></td><td>2.39 cups</td></tr>
+                    <tr><td><strong>Granulated Sugar</strong></td><td>1.50 cups</td></tr>
+                    <tr><td><strong>Brown Sugar</strong></td><td>1.36 cups</td></tr>
+                    <tr><td><strong>Butter</strong></td><td>1.32 cups</td></tr>
+                    <tr><td><strong>Cocoa Powder</strong></td><td>2.44 cups</td></tr>
+                    <tr><td><strong>Rolled Oats</strong></td><td>3.52 cups</td></tr>
+                    <tr><td><strong>White Rice</strong></td><td>1.49 cups</td></tr>
+                    <tr><td><strong>Honey</strong></td><td>0.89 cups</td></tr>
+                    <tr><td><strong>Milk</strong></td><td>1.23 cups</td></tr>
+                    <tr><td><strong>Water</strong></td><td>1.27 cups</td></tr>
+                </tbody>
+            </table>
+
+            <h3 id="snippet-350g">How Many Cups Is 350 Grams?</h3>
+            <table>
+                <thead><tr><th>Ingredient</th><th>350g in Cups</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>All-Purpose Flour</strong></td><td>2.79 cups</td></tr>
+                    <tr><td><strong>Granulated Sugar</strong></td><td>1.75 cups</td></tr>
+                    <tr><td><strong>Brown Sugar</strong></td><td>1.59 cups</td></tr>
+                    <tr><td><strong>Butter</strong></td><td>1.54 cups</td></tr>
+                    <tr><td><strong>Cocoa Powder</strong></td><td>2.85 cups</td></tr>
+                    <tr><td><strong>Rolled Oats</strong></td><td>4.11 cups</td></tr>
+                    <tr><td><strong>White Rice</strong></td><td>1.74 cups</td></tr>
+                    <tr><td><strong>Honey</strong></td><td>1.04 cups</td></tr>
+                    <tr><td><strong>Milk</strong></td><td>1.44 cups</td></tr>
+                    <tr><td><strong>Water</strong></td><td>1.48 cups</td></tr>
+                </tbody>
+            </table>
+
+            <h3 id="snippet-400g">How Many Cups Is 400 Grams?</h3>
+            <table>
+                <thead><tr><th>Ingredient</th><th>400g in Cups</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>All-Purpose Flour</strong></td><td>3.19 cups</td></tr>
+                    <tr><td><strong>Granulated Sugar</strong></td><td>2.00 cups</td></tr>
+                    <tr><td><strong>Brown Sugar</strong></td><td>1.82 cups</td></tr>
+                    <tr><td><strong>Butter</strong></td><td>1.76 cups</td></tr>
+                    <tr><td><strong>Cocoa Powder</strong></td><td>3.25 cups</td></tr>
+                    <tr><td><strong>Rolled Oats</strong></td><td>4.70 cups</td></tr>
+                    <tr><td><strong>White Rice</strong></td><td>1.99 cups</td></tr>
+                    <tr><td><strong>Honey</strong></td><td>1.19 cups</td></tr>
+                    <tr><td><strong>Milk</strong></td><td>1.64 cups</td></tr>
+                    <tr><td><strong>Water</strong></td><td>1.69 cups</td></tr>
+                </tbody>
+            </table>
+
+            <h3 id="snippet-450g">How Many Cups Is 450 Grams?</h3>
+            <table>
+                <thead><tr><th>Ingredient</th><th>450g in Cups</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>All-Purpose Flour</strong></td><td>3.59 cups</td></tr>
+                    <tr><td><strong>Granulated Sugar</strong></td><td>2.25 cups</td></tr>
+                    <tr><td><strong>Brown Sugar</strong></td><td>2.04 cups</td></tr>
+                    <tr><td><strong>Butter</strong></td><td>1.98 cups</td></tr>
+                    <tr><td><strong>Cocoa Powder</strong></td><td>3.66 cups</td></tr>
+                    <tr><td><strong>Rolled Oats</strong></td><td>5.28 cups</td></tr>
+                    <tr><td><strong>White Rice</strong></td><td>2.24 cups</td></tr>
+                    <tr><td><strong>Honey</strong></td><td>1.34 cups</td></tr>
+                    <tr><td><strong>Milk</strong></td><td>1.85 cups</td></tr>
+                    <tr><td><strong>Water</strong></td><td>1.90 cups</td></tr>
+                </tbody>
+            </table>
+
+            <h3 id="snippet-500g">How Many Cups Is 500 Grams?</h3>
+            <table>
+                <thead><tr><th>Ingredient</th><th>500g in Cups</th><th>Approximate</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>All-Purpose Flour</strong></td><td>3.99 cups</td><td>≈ 4 cups</td></tr>
+                    <tr><td><strong>Granulated Sugar</strong></td><td>2.50 cups</td><td>2½ cups</td></tr>
+                    <tr><td><strong>Brown Sugar</strong></td><td>2.27 cups</td><td>2¼ cups</td></tr>
+                    <tr><td><strong>Butter</strong></td><td>2.20 cups</td><td>4½ sticks</td></tr>
+                    <tr><td><strong>Cocoa Powder</strong></td><td>4.06 cups</td><td>≈ 4 cups</td></tr>
+                    <tr><td><strong>Rolled Oats</strong></td><td>5.87 cups</td><td>≈ 6 cups</td></tr>
+                    <tr><td><strong>White Rice</strong></td><td>2.49 cups</td><td>2½ cups</td></tr>
+                    <tr><td><strong>Honey</strong></td><td>1.49 cups</td><td>1½ cups</td></tr>
+                    <tr><td><strong>Milk</strong></td><td>2.05 cups</td><td>≈ 2 cups</td></tr>
+                    <tr><td><strong>Water</strong></td><td>2.11 cups</td><td>≈ 2 cups</td></tr>
+                </tbody>
+            </table>
+
+            <h3 id="density-chart">Ingredient Density Chart — Grams per Cup</h3>
+            <p>Use this master reference table to manually convert grams to cups for any ingredient. The density values are sourced from the <a href="https://www.fao.org/4/ap815e/ap815e.pdf" target="_blank" rel="noopener">FAO/INFOODS Density Database</a> and <a href="https://www.kingarthurbaking.com/learn/ingredient-weight-chart" target="_blank" rel="noopener">King Arthur Baking</a>.<sup>[1][4]</sup></p>
+            <table>
+                <thead><tr><th>Ingredient</th><th>Density (g/mL)</th><th>Grams per US Cup</th><th>100g in Cups</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>All-Purpose Flour</strong></td><td>0.529</td><td>125 g</td><td>0.80 cups</td></tr>
+                    <tr><td><strong>Bread Flour</strong></td><td>0.550</td><td>130 g</td><td>0.77 cups</td></tr>
+                    <tr><td><strong>Cake Flour</strong></td><td>0.487</td><td>115 g</td><td>0.87 cups</td></tr>
+                    <tr><td><strong>Granulated Sugar</strong></td><td>0.845</td><td>200 g</td><td>0.50 cups</td></tr>
+                    <tr><td><strong>Powdered Sugar</strong></td><td>0.560</td><td>132 g</td><td>0.76 cups</td></tr>
+                    <tr><td><strong>Brown Sugar (packed)</strong></td><td>0.930</td><td>220 g</td><td>0.45 cups</td></tr>
+                    <tr><td><strong>Butter</strong></td><td>0.959</td><td>227 g</td><td>0.44 cups</td></tr>
+                    <tr><td><strong>Honey</strong></td><td>1.420</td><td>336 g</td><td>0.30 cups</td></tr>
+                    <tr><td><strong>Cocoa Powder</strong></td><td>0.520</td><td>123 g</td><td>0.81 cups</td></tr>
+                    <tr><td><strong>Rolled Oats</strong></td><td>0.340</td><td>80 g</td><td>1.25 cups</td></tr>
+                    <tr><td><strong>White Rice (uncooked)</strong></td><td>0.820</td><td>194 g</td><td>0.52 cups</td></tr>
+                    <tr><td><strong>Milk (whole)</strong></td><td>1.030</td><td>244 g</td><td>0.41 cups</td></tr>
+                    <tr><td><strong>Water</strong></td><td>1.000</td><td>237 g</td><td>0.42 cups</td></tr>
+                    <tr><td><strong>Cornstarch</strong></td><td>0.538</td><td>127 g</td><td>0.79 cups</td></tr>
+                    <tr><td><strong>Baking Soda</strong></td><td>0.950</td><td>225 g</td><td>0.44 cups</td></tr>
                 </tbody>
             </table>
 
             <h3>Cup Subdivisions — Quick Reference</h3>
-            <p>US recipes often use fractions of cups. Here's how they convert to other volume units:</p>
+            <p>US recipes often use fractions of cups. Here's how they convert to other volume units — useful when you need to measure <a href="/convert/gram-to-tsp-converter">grams to teaspoons</a> or <a href="/convert/tbsp-to-gram-converter">tablespoons to grams</a>:</p>
             <table>
                 <thead><tr><th>Measurement</th><th>Cups</th><th>Tablespoons</th><th>Teaspoons</th><th>Milliliters</th></tr></thead>
                 <tbody>
@@ -340,39 +523,63 @@ const HUB_CONTENT: Record<string, {
             </table>
 
             <h3>US Cup vs. Metric Cup vs. Japanese Cup</h3>
-            <p>Not all "cups" are the same:</p>
-            <ul>
-                <li><strong>US customary cup</strong> = 236.588 mL (used in American recipes — this is what our calculator uses)</li>
-                <li><strong>US legal cup</strong> = 240 mL (used on US nutrition labels)</li>
-                <li><strong>Metric cup</strong> = 250 mL (used in Australia, New Zealand, Canada)</li>
-                <li><strong>Japanese cup</strong> = 200 mL (used in Japanese cooking)</li>
-                <li><strong>Imperial cup</strong> = 284.131 mL (historical British measurement, rarely used today)</li>
-            </ul>
-            <p>This matters: 200g of flour is 1.59 US cups, but only 1.51 metric cups, and 1.89 Japanese cups. Always check which cup standard your recipe uses.</p>
+            <p>Not every "cup" is the same. If you're following an Australian, British, or Japanese recipe, the cup size differs from the US standard. The FDA defines a separate "legal cup" for nutrition labels.<sup>[3]</sup></p>
+            <table>
+                <thead><tr><th>Cup Standard</th><th>Volume (mL)</th><th>Used In</th><th>200g Flour =</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>US customary cup</strong></td><td>236.588 mL</td><td>American recipes (this calculator)</td><td>1.59 cups</td></tr>
+                    <tr><td><strong>US legal cup</strong></td><td>240 mL</td><td>US nutrition labels</td><td>1.57 cups</td></tr>
+                    <tr><td><strong>Metric cup</strong></td><td>250 mL</td><td>Australia, NZ, Canada</td><td>1.51 cups</td></tr>
+                    <tr><td><strong>Japanese cup</strong></td><td>200 mL</td><td>Japanese cooking</td><td>1.89 cups</td></tr>
+                    <tr><td><strong>Imperial cup</strong></td><td>284.131 mL</td><td>Historical British (rarely used)</td><td>1.33 cups</td></tr>
+                </tbody>
+            </table>
+            <p>This matters: the same recipe calling for "2 cups of flour" means <strong>250g in an American kitchen</strong>, but <strong>265g in an Australian kitchen</strong>. Always check which cup standard your recipe uses — or better yet, weigh in grams.</p>
 
             <h3>When to Convert Grams to Cups</h3>
+            <p>Grams and cups are both commonly used to measure cooking ingredients. For cooking applications, most chefs suggest measuring dry ingredients by weight rather than volume to improve accuracy in the measurements.<sup>[2]</sup> The density of dry ingredients can vary for a variety of reasons, such as compaction and clumping.</p>
             <ul>
-                <li><strong>Following metric recipes with US measuring tools</strong>: European, Australian, and professional baking recipes specify ingredients in grams. If you only own a set of measuring cups and spoons, you need to convert grams to cups.</li>
-                <li><strong>Scaling baking recipes</strong>: A recipe might call for "2 cups of flour," but if you're halving or doubling it, calculating in grams first (then converting back to cups) prevents rounding errors.</li>
-                <li><strong>Comparing nutritional information</strong>: US nutrition labels specify serving sizes in grams, but your mental reference might be in cups. Knowing that a 30g serving of cereal = about 1 cup helps you visualize portion sizes.</li>
-                <li><strong>Meal planning and portioning</strong>: When you have a 500g bag of flour and need to know how many cups that gives you (about 4 cups), gram-to-cup conversion helps plan how many batches you can make.</li>
+                <li><strong>Following metric recipes with US measuring tools</strong>: European, Australian, and professional baking recipes specify ingredients in grams. If you only own a set of measuring cups and spoons, you need to convert <a href="/convert/gram-to-cup-converter">grams to cups</a>.</li>
+                <li><strong>Scaling baking recipes</strong>: A recipe might call for "2 cups of flour," but if you're halving or doubling it, calculating in grams first (then converting back to cups) prevents rounding errors. Use our <a href="/cooking-calculators/recipe-scale-calculator">recipe scale calculator</a> for automatic scaling.</li>
+                <li><strong>Comparing nutritional information</strong>: US nutrition labels specify serving sizes in grams, but your mental reference might be in cups. Knowing that a 30g serving of cereal ≈ about 1 cup helps you visualize portion sizes.<sup>[5]</sup></li>
+                <li><strong>Meal planning and portioning</strong>: When you have a 500g bag of flour and need to know how many cups that gives you (about 4 cups), gram-to-cup conversion helps plan how many batches of <a href="/cooking-calculators/cake-calculator">cake</a> or <a href="/cooking-calculators/pizza-calculator">pizza dough</a> you can make.</li>
+                <li><strong>Converting between volume units</strong>: If you need to convert <a href="/convert/ml-to-gram-converter">milliliters to grams</a> or <a href="/convert/gram-to-ml-converter">grams to milliliters</a>, the same density-based formula applies.</li>
             </ul>
 
             <h3>Common Mistakes When Converting Grams to Cups</h3>
             <ul>
-                <li><strong>"1 cup = 240g for everything"</strong> — This only works for water. 1 cup of flour is about 126g, and 1 cup of honey is about 337g. The weight per cup varies wildly by ingredient.</li>
+                <li><strong>"1 cup = 240g for everything"</strong> — This only works for water. 1 cup of flour is about 125g, and 1 cup of honey is about 336g. The weight per cup varies wildly by ingredient.</li>
                 <li><strong>Using the wrong cup size</strong> — If an Australian recipe says "1 cup," they mean 250 mL (metric cup), not 236.59 mL (US cup). That's a 5.7% difference, which matters in precision baking.</li>
-                <li><strong>Not accounting for how you scoop</strong> — A "cup of flour" can weigh 120g (spooned and leveled) or 150g (scooped and packed). Professional recipes in grams eliminate this ambiguity entirely.</li>
-                <li><strong>Confusing weight ounces and fluid ounces</strong> — 1 cup = 8 fluid ounces (volume). But 1 cup of flour weighs about 4.4 ounces (weight). These are different measurements.</li>
+                <li><strong>Not accounting for how you scoop</strong> — A "cup of flour" can weigh 120g (spooned and leveled) or 150g (scooped and packed). Professional recipes in grams eliminate this ambiguity entirely.<sup>[4]</sup></li>
+                <li><strong>Confusing weight ounces and fluid ounces</strong> — 1 cup = 8 fluid ounces (volume). But 1 cup of flour weighs about 4.4 ounces (weight). These are completely different measurements. Our <a href="/cooking-calculators/ounces-to-grams-converter">ounces to grams converter</a> helps clarify this.</li>
             </ul>
+
+            <h3>What Is a Gram?</h3>
+            <p>A <strong>gram</strong> (g) is a metric unit of mass equal to 1/1,000 of a <a href="/convert/liter-to-kg-converter">kilogram</a>, or 0.035274 ounces. It is equivalent to the mass of one cubic centimeter (one milliliter) of water at 4°C. The gram is an SI unit of mass in the metric system and can be abbreviated as <strong>g</strong> — for example, 1 gram can be written as 1 g.</p>
+            <p>While technically a gram measures mass (not weight), the two are equivalent for everyday calculations performed on Earth. A gram is frequently referred to as a unit of weight in cooking contexts — when a recipe says "250 grams of flour," it means the flour should weigh 250g on your kitchen scale.</p>
+
+            <h3>What Is a Cup?</h3>
+            <p>The <strong>cup</strong> is a US customary unit of volume equal to 16 <a href="/convert/tbsp-to-gram-converter">tablespoons</a>, 8 fluid ounces, or 236.588 <a href="/convert/ml-to-gram-converter">milliliters</a>. Cups can be abbreviated as <strong>c</strong> or <strong>C</strong> — for example, 1 cup can be written as 1 c.</p>
+            <p>One standard US cup is equal to 236.588 milliliters, but for nutrition labeling purposes, the FDA defines one cup as 240 milliliters.<sup>[3]</sup> A metric cup is even larger at 250 mL, while in Japan, a cup equals only 200 mL. The cup should not be confused with the metric cup or the teacup, which are different units of volume.</p>
+
+            <h3>References</h3>
+            <ol>
+                <li>U.N. Food and Agriculture Organization, <em>FAO/INFOODS Databases — Density Database Version 2.0</em>, <a href="https://www.fao.org/4/ap815e/ap815e.pdf" target="_blank" rel="noopener">fao.org</a></li>
+                <li>National Institute of Standards &amp; Technology, <em>Culinary Measurement Tips</em>, <a href="https://www.nist.gov/pml/owm/culinary-measurement-tips" target="_blank" rel="noopener">nist.gov</a></li>
+                <li>U.S. Food &amp; Drug Administration, <em>Guidance for Industry: Guidelines for Determining Metric Equivalents of Household Measures</em>, <a href="https://www.fda.gov/regulatory-information/search-fda-guidance-documents/guidance-industry-guidelines-determining-metric-equivalents-household-measures" target="_blank" rel="noopener">fda.gov</a></li>
+                <li>King Arthur Baking Company, <em>Ingredient Weight Chart</em>, <a href="https://www.kingarthurbaking.com/learn/ingredient-weight-chart" target="_blank" rel="noopener">kingarthurbaking.com</a></li>
+                <li>U.S. Department of Agriculture, <em>FoodData Central</em>, <a href="https://fdc.nal.usda.gov/" target="_blank" rel="noopener">fdc.nal.usda.gov</a></li>
+            </ol>
         `,
         faq: [
-            { question: "How many cups is 100 grams of flour?", answer: "100 grams of all-purpose flour is approximately 0.80 cups (about ¾ cup + 1 tablespoon). This is based on flour's density of 0.53 g/mL. The formula: 100 ÷ (0.53 × 236.588) = 0.797 cups." },
-            { question: "How many cups is 200 grams of sugar?", answer: "200 grams of granulated sugar is approximately 0.99 cups — essentially 1 cup. Sugar's density (0.85 g/mL) makes it heavier per cup than flour, so 200g fills almost exactly one measuring cup." },
-            { question: "How do I convert grams to cups without a scale?", answer: "Use our calculator above — select the ingredient, enter the weight in grams, and get the cup measurement instantly. If you don't have a specific ingredient's density, use the Custom option to enter any density between 0.1 and 3.0 g/mL." },
-            { question: "Is 250g of flour 2 cups?", answer: "Very close. 250 grams of all-purpose flour equals approximately 1.99 cups — essentially 2 cups. This is why many baking recipes round 250g of flour to 2 cups for convenience." },
-            { question: "Why doesn't 1 cup of flour weigh the same as 1 cup of sugar?", answer: "Because flour and sugar have different densities. Flour (0.53 g/mL) is less dense — it's lighter and fluffier. Sugar (0.85 g/mL) is denser — the granules pack tighter. So 1 cup of flour weighs about 126g while 1 cup of sugar weighs about 201g." },
-            { question: "What is the difference between US cups and metric cups?", answer: "A US customary cup = 236.588 mL. A metric cup (used in Australia, Canada) = 250 mL — about 5.7% larger. US nutrition labels use 240 mL. Japanese cups are only 200 mL. Always check which standard your recipe uses." },
+            { question: "How many cups is 100 grams of flour?", answer: "100 grams of all-purpose flour is approximately 0.80 cups (about ¾ cup + 1 tablespoon). This is based on flour's density of 0.529 g/mL and the formula: 100 ÷ (0.529 × 236.588) = 0.799 cups. King Arthur Baking defines 1 cup of all-purpose flour as 120g (spooned) to 130g (scooped), so 100g consistently measures just under 1 cup." },
+            { question: "How many cups is 200 grams of sugar?", answer: "200 grams of granulated sugar is approximately 1.00 cup — essentially exactly 1 cup. Sugar has a density of 0.845 g/mL, giving approximately 200g per US cup. This is one of the few ingredients where the gram-to-cup conversion produces a clean, round number." },
+            { question: "Is 250g of flour 2 cups?", answer: "Very close — 250 grams of all-purpose flour equals approximately 1.99 cups, essentially 2 cups. This is why many professional baking recipes round 250g of flour to 2 cups for convenience. The slight 1% discrepancy is negligible in home baking." },
+            { question: "How do I convert grams to cups without a scale?", answer: "Use our calculator above — select the ingredient from the dropdown, enter the weight in grams, and get the cup measurement instantly. If your ingredient isn't listed, select 'Custom' and enter any density between 0.1 and 3.0 g/mL. You can find ingredient densities in the FAO Density Database or on the ingredient's nutrition label." },
+            { question: "Why doesn't 1 cup of flour weigh the same as 1 cup of sugar?", answer: "Because flour and sugar have different densities. Flour (0.529 g/mL) is less dense — it's lighter and fluffier with air trapped between particles. Sugar (0.845 g/mL) is denser — the granules pack more tightly. So 1 cup of flour weighs about 125g while 1 cup of sugar weighs about 200g, a 60% difference for the same volume." },
+            { question: "What is the difference between a US cup and a metric cup?", answer: "A US customary cup = 236.588 mL. A metric cup (used in Australia, New Zealand, Canada) = 250 mL — about 5.7% larger. US nutrition labels use yet another definition: 240 mL (the 'legal cup'). Japanese cups are only 200 mL. Always check which standard your recipe uses — or better yet, weigh in grams for precision." },
+            { question: "How many grams in 1 cup?", answer: "It depends entirely on the ingredient. 1 cup of water = 237g. 1 cup of all-purpose flour = 125g. 1 cup of granulated sugar = 200g. 1 cup of honey = 336g. 1 cup of rolled oats = only 80g. There is no universal 'grams per cup' because cups measure volume and grams measure weight — the link between them is the ingredient's density." },
+            { question: "How many tablespoons in a cup?", answer: "There are exactly 16 US tablespoons in 1 US cup. Other common equivalents: 1 cup = 48 teaspoons = 8 fluid ounces = 236.588 mL. Half a cup = 8 tablespoons, and a quarter cup = 4 tablespoons. Our grams to cups converter also shows results in tablespoons and teaspoons for convenience." },
         ],
     },
     "inch-to-cm-converter": {
