@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
     default: `Free Online Calculators — Loan, Investment, Tax & More | ${SITE_NAME}`,
-    template: `%s | ${SITE_NAME}`,
+    template: `%s`,
   },
   description:
     "Free online calculator platform — 565+ calculators for finance, construction, health, EV, and everyday math. Instant results, transparent formulas, zero data collection.",
