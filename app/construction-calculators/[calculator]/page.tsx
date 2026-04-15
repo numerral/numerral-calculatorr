@@ -6154,14 +6154,13 @@ export default async function ConstructionCalculatorHubPage({ params }: PageProp
                     {content.subtitle}
                 </p>
             )}
-            <AuthorBadge categoryKey="construction" />
-
             <div className="layout-2col">
                 <div className="layout-2col__main">
                     <ConstructionCalculatorCore calcType={calc.calcType || "concrete"} />
 
                     {content && (
                         <>
+                            <AuthorBadge categoryKey="construction" />
                             <DynamicExplanation
                                 heading={content.explanation?.heading}
                                 paragraphs={content.explanation?.paragraphs}
