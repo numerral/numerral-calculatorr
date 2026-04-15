@@ -138,3 +138,82 @@ export function webAppSchema(name: string, url: string, currency = "USD"): objec
         offers: { "@type": "Offer", price: "0", priceCurrency: currency },
     };
 }
+
+/**
+ * Build JSON-LD SoftwareApplication schema for construction tools.
+ * Matches the competitor (CalculatorSoup) format validated by Google Rich Results.
+ *
+ * @param name        Calculator name
+ * @param url         Full canonical URL of the page
+ * @param description Descriptive sentence about what the calculator does
+ * @param additionalTypes  Product ontology URLs (e.g. Square_foot, Area)
+ */
+export function constructionAppSchema(
+    name: string,
+    url: string,
+    description: string,
+    additionalTypes: string[] = []
+): object {
+    return {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        name,
+        url,
+        description,
+        applicationCategory: "https://schema.org/WebApplication",
+        operatingSystem: "Browser required with JavaScript support, Web platform, Windows, Mac OS X, Linux, iOS, Android",
+        offers: { "@type": "Offer", price: "0" },
+        ...(additionalTypes.length > 0 ? { additionalType: additionalTypes } : {}),
+    };
+}
+
+/**
+ * Build JSON-LD Organization schema for the site.
+ */
+export function organizationSchema(siteUrl: string): object {
+    return {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        name: "Numerral",
+        url: siteUrl,
+        logo: `${siteUrl}/logo.png`,
+        sameAs: [],
+    };
+}
+
+/**
+ * Build JSON-LD WebPage schema.
+ */
+export function webPageSchema(name: string, url: string, description: string): object {
+    return {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        name,
+        url,
+        description,
+        inLanguage: "en-US",
+        isPartOf: { "@type": "WebSite", name: "Numerral", url },
+    };
+}
+
+/**
+ * Build JSON-LD HowTo schema for step-by-step calculation guides.
+ */
+export function howToSchema(
+    name: string,
+    description: string,
+    steps: { name: string; text: string }[]
+): object {
+    return {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        name,
+        description,
+        step: steps.map((s, i) => ({
+            "@type": "HowToStep",
+            position: i + 1,
+            name: s.name,
+            text: s.text,
+        })),
+    };
+}

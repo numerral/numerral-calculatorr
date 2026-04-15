@@ -8,7 +8,7 @@ import ConstructionCalculatorCore from "@/components/calculator/ConstructionCalc
 import DynamicExplanation from "@/components/shared/DynamicExplanation";
 import FAQAccordion from "@/components/shared/FAQAccordion";
 import { getCalculatorsByCategory } from "@/lib/data";
-import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
+import { canonicalUrl, breadcrumbSchema, webAppSchema, constructionAppSchema, faqSchema, howToSchema, organizationSchema, webPageSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 import GuideCTA from "@/components/shared/GuideCTA";
 import GlossaryChip from "@/components/shared/GlossaryChip";
@@ -6123,14 +6123,53 @@ export default async function ConstructionCalculatorHubPage({ params }: PageProp
     const content = HUB_CONTENT[calc.id] ?? HUB_CONTENT[calc.slug];
 
     const pageUrl = canonicalUrl(`/construction-calculators/${calc.slug}`);
-    const schemaData = JSON.stringify([
-        breadcrumbSchema([
-            { name: "Home", url: `${SITE_URL}/` },
-            { name: "Construction Calculators", url: canonicalUrl("/construction-calculators") },
-            { name: calc.title },
-        ]),
-        webAppSchema(calc.title, pageUrl),
-    ]);
+
+    // ── Square Footage: full 6-schema package matching competitor ───────────
+    let schemaData: string;
+    if (calc.slug === "square-footage-calculator" && content?.faq) {
+        const sqftDesc = "Calculate square footage for rooms, plots, and construction projects. Supports 11 shapes including rectangle, circle, triangle, trapezoid, wall-minus-window, and annulus. Enter measurements in feet and inches. Get area in sq ft, sq m, sq yd, and acres. Calculate project cost with price per sq ft, sq yd, sq m, or per box.";
+        const sqftFaq = content.faq.slice(0, 10);
+        schemaData = JSON.stringify([
+            breadcrumbSchema([
+                { name: "Home", url: `${SITE_URL}/` },
+                { name: "Construction Calculators", url: canonicalUrl("/construction-calculators") },
+                { name: calc.title },
+            ]),
+            webPageSchema(calc.title, pageUrl, sqftDesc),
+            constructionAppSchema(
+                calc.title,
+                pageUrl,
+                sqftDesc,
+                [
+                    "http://www.productontology.org/id/Software_calculator",
+                    "http://www.productontology.org/id/Square_foot",
+                    "http://www.productontology.org/id/Area",
+                ]
+            ),
+            organizationSchema(SITE_URL),
+            faqSchema(sqftFaq),
+            howToSchema(
+                "How to Calculate Square Footage",
+                "Step-by-step guide to measuring and calculating square footage for rooms, plots, and construction projects.",
+                [
+                    { name: "Choose your shape", text: "Select the shape of the space — rectangle for standard rooms, circle for round areas, or triangle/trapezoid for angled spaces." },
+                    { name: "Measure the dimensions", text: "Use a tape measure to record length and width in feet and inches. For rooms with alcoves, break them into sections and calculate each separately." },
+                    { name: "Enter feet and inches", text: "Enter the whole-foot value and the remaining inches separately. The calculator converts them automatically (e.g., 10 ft 6 in = 10.5 ft)." },
+                    { name: "Set quantity and waste factor", text: "If calculating multiple identical rooms, enter the room count. Add a waste factor — 10% for straight-lay flooring, 15% for diagonal or herringbone patterns." },
+                    { name: "Read your results", text: "The calculator outputs total area in sq ft, sq in, sq yd, sq m, and acres. If you entered a price per unit, it also shows total material cost and boxes needed." },
+                ]
+            ),
+        ]);
+    } else {
+        schemaData = JSON.stringify([
+            breadcrumbSchema([
+                { name: "Home", url: `${SITE_URL}/` },
+                { name: "Construction Calculators", url: canonicalUrl("/construction-calculators") },
+                { name: calc.title },
+            ]),
+            webAppSchema(calc.title, pageUrl),
+        ]);
+    }
 
     return (
         <main className="container" style={{ paddingTop: "var(--s-4)" }}>
