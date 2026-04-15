@@ -7406,12 +7406,12 @@
   {
     "id": "square-footage-calculator",
     "category": "construction",
-    "title": "Square Footage Calculator",
+    "title": "Square Footage Calculator for Construction (Sq Ft & Area Tool)",
     "slug": "square-footage-calculator",
     "categorySlug": "construction-calculators",
     "icon": "📏",
     "calcType": "square-footage",
-    "description": "Calculate the square footage of any space — rectangle, triangle, circle, trapezoid, or rectangular border. Convert to sq m, sq yd, and acres. Estimate project cost with price per sq ft.",
+    "description": "Calculate square footage instantly for rooms, plots, and construction projects. Get accurate area in sq ft, sq m, and more with this easy-to-use calculator.",
     "stars": 5,
     "defaults": {
       "amount": 20,
