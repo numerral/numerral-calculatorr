@@ -783,6 +783,7 @@ function SquareFootageCalc() {
     const cfg = CFG[shape] || CFG.rectangle;
 
     function FtInInput({ label, ft, ftIn, onFt, onIn }: { label: string; ft: number; ftIn: number; onFt: (v: number) => void; onIn: (v: number) => void }) {
+        const decimal = (ft + ftIn / 12).toFixed(2);
         return (
             <div className="con-input">
                 <label className="con-input__label">{label}</label>
@@ -790,7 +791,7 @@ function SquareFootageCalc() {
                     <input type="number" className="con-input__field" value={ft} onChange={e => onFt(Number(e.target.value))} min={0} step={1} style={{ flex: 2 }} placeholder="ft" />
                     <input type="number" className="con-input__field" value={ftIn} onChange={e => onIn(Number(e.target.value))} min={0} max={11} step={1} style={{ flex: 1 }} placeholder="in" />
                 </div>
-                <span style={{ fontSize: "0.72rem", color: "var(--n-text-muted)", marginTop: 2, display: "block" }}>{ft}ft {ftIn}in = {(ft + ftIn / 12).toFixed(2)}ft</span>
+                {ftIn > 0 && <span style={{ fontSize: "0.72rem", color: "var(--n-text-muted)", marginTop: 2, display: "block" }}>{ft}ft {ftIn}in = {decimal}ft</span>}
             </div>
         );
     }
@@ -799,20 +800,22 @@ function SquareFootageCalc() {
         <div className="con-calc">
             <h3 className="con-calc__title">📐 Square Footage Calculator</h3>
             <div className="con-calc__inputs">
-                <SelectField label="Shape" value={shape} onChange={setShape} options={[
-                    { value: "rectangle",     label: "Rectangle" },
-                    { value: "square",        label: "Square" },
-                    { value: "rect-border",   label: "Rectangle Border / Frame" },
-                    { value: "wall-window",   label: "Wall minus Window / Door" },
-                    { value: "cathedral",     label: "Cathedral Wall (Right Trapezoid)" },
-                    { value: "circle",        label: "Circle" },
-                    { value: "circle-border", label: "Circle Border" },
-                    { value: "annulus",       label: "Annulus (Ring / Donut)" },
-                    { value: "triangle",      label: "Triangle - 3 sides (any shape)" },
-                    { value: "triangle-bh",   label: "Triangle - Base and Height" },
-                    { value: "trapezoid",     label: "Trapezoid" },
-                ]} />
-                <div style={{ background: "var(--n-surface-alt, #f0f4ff)", border: "1px solid var(--n-border)", borderRadius: 8, padding: "8px 12px", fontSize: "0.8rem", color: "var(--n-text-secondary)" }}>
+                <div style={{ gridColumn: "1 / -1" }}>
+                    <SelectField label="Shape" value={shape} onChange={setShape} options={[
+                        { value: "rectangle",     label: "Rectangle" },
+                        { value: "square",        label: "Square" },
+                        { value: "rect-border",   label: "Rectangle Border / Frame" },
+                        { value: "wall-window",   label: "Wall minus Window / Door" },
+                        { value: "cathedral",     label: "Cathedral Wall (Right Trapezoid)" },
+                        { value: "circle",        label: "Circle" },
+                        { value: "circle-border", label: "Circle Border" },
+                        { value: "annulus",       label: "Annulus (Ring / Donut)" },
+                        { value: "triangle",      label: "Triangle - 3 sides (any shape)" },
+                        { value: "triangle-bh",   label: "Triangle - Base and Height" },
+                        { value: "trapezoid",     label: "Trapezoid" },
+                    ]} />
+                </div>
+                <div style={{ gridColumn: "1 / -1", background: "var(--n-surface-alt, #f0f4ff)", border: "1px solid var(--n-border)", borderRadius: 8, padding: "8px 12px", fontSize: "0.8rem", color: "var(--n-text-secondary)" }}>
                     Formula: <strong>{cfg.formula}</strong>
                 </div>
                 <FtInInput label={cfg.d1} ft={dim1} ftIn={dim1in} onFt={setDim1} onIn={setDim1in} />
@@ -821,9 +824,9 @@ function SquareFootageCalc() {
                 {cfg.d4 && <FtInInput label={cfg.d4} ft={dim4} ftIn={dim4in} onFt={setDim4} onIn={setDim4in} />}
                 <InputField label="Quantity (rooms or sections)" value={quantity} onChange={setQuantity} min={1} step={1} />
                 <InputField label="Waste Factor" value={waste} onChange={setWaste} unit="%" min={0} max={50} step={1} />
-                <div className="con-input">
+                <div style={{ gridColumn: "1 / -1" }} className="con-input">
                     <label className="con-input__label">Price per Unit (optional)</label>
-                    <div style={{ display: "flex", gap: 6 }}>
+                    <div style={{ display: "flex", gap: 8, maxWidth: 420 }}>
                         <input type="number" className="con-input__field" value={price} onChange={e => setPrice(Number(e.target.value))} min={0} step={0.5} style={{ flex: 2 }} placeholder="0.00" />
                         <select className="con-input__field" value={priceUnit} onChange={e => setPriceUnit(e.target.value)} style={{ flex: 2 }}>
                             <option value="sqft">$ / sq ft</option>
@@ -833,7 +836,7 @@ function SquareFootageCalc() {
                         </select>
                     </div>
                 </div>
-                {priceUnit === "box" && <InputField label="Box Coverage" value={boxCoverage} onChange={setBoxCoverage} unit="sq ft/box" min={1} step={1} />}
+                {priceUnit === "box" && <div style={{ gridColumn: "1 / -1" }}><InputField label="Box Coverage (sq ft per box)" value={boxCoverage} onChange={setBoxCoverage} unit="sq ft/box" min={1} step={1} /></div>}
             </div>
             <div className="con-calc__results">
                 <h4 className="con-calc__group-label">AREA</h4>
