@@ -914,113 +914,216 @@ const HUB_CONTENT: Record<string, {
         ],
     },
     "square-footage-calculator": {
-        subtitle: "Calculate the square footage of any space or shape — rectangle, triangle, circle, trapezoid, or rectangular border. Convert to sq m, sq yd, and acres. Estimate project cost with price per sq ft.",
+        subtitle: "Calculate square footage for any shape — rectangle, square, triangle, circle, trapezoid, or rectangular border. Get area in sq ft, sq yd, sq m, and acres. Includes cost per square foot, material waste factor, and project cost estimate.",
         explanation: {
             heading: "How to Calculate Square Footage",
             paragraphs: [
-                "Square footage measures the area of a two-dimensional space. For a rectangle: Length × Width. For a triangle: ½ × Base × Height. For a circle: π × (Diameter/2)². For a trapezoid: ½ × (Base₁ + Base₂) × Height. All measurements must be in the same units.",
-                "For irregularly shaped rooms, break the space into simple geometric shapes (rectangles, triangles), calculate each area separately, and add them together. For L-shaped rooms, split into two rectangles. For rooms with bay windows, add a triangle or trapezoid to the main rectangle.",
+                "Square footage is area measured in feet. The universal formula for any rectangular or square space is: Area = Length × Width. For a 10-foot by 14-foot bedroom: 10 × 14 = 140 square feet. If your measurements are in inches, divide by 12 to convert to feet before multiplying. For irregular shapes like L-shaped rooms, split the space into two rectangles, calculate each separately, then add the results together.",
+                "When ordering materials, always add a waste factor to your calculated square footage. For straight-lay flooring and tile: add 10%. For diagonal or herringbone patterns: add 15–20%. Running short mid-project is far more expensive than returning unused material. The formula: Materials needed = Room sq ft × (1 + waste factor). For a 200 sq ft room at 10% waste: 200 × 1.10 = 220 sq ft to purchase.",
             ],
-            highlight: "Quick conversions: 1 sq ft = 0.0929 sq m = 0.111 sq yd. 1 acre = 43,560 sq ft. A standard 2-car garage is about 400 sq ft. An average US home is about 2,300 sq ft.",
+            highlight: "Quick example: A 12×12 ft bedroom = 144 sq ft. At $5/sq ft vinyl plank flooring with 10% waste: you need 159 sq ft = about 8 boxes at 20 sq ft/box. Total material cost: ~$795. That is how material calculation works in practice.",
         },
         contentHTML: `
-<p>Square footage measures the area of a two-dimensional space. For a rectangle: Length × Width. For a triangle: ½ × Base × Height. For a circle: π × (Diameter/2)². For a trapezoid: ½ × (Base₁ + Base₂) × Height. All measurements must be in feet — convert inches to feet by dividing by 12 before calculating.</p>
-<p>For irregularly shaped rooms, break the space into simple geometric shapes (rectangles, triangles), calculate each area separately, and add them together. For L-shaped rooms, split into two rectangles. For rooms with bay windows, add a triangle or trapezoid to the main rectangle.</p>
-<p>Convert to square yards with our <a href="/construction-calculators/square-yards-calculator">square yards calculator</a>. Convert to metric with our <a href="/construction-calculators/square-meters-calculator">square meters calculator</a>. Add depth for volume with our <a href="/construction-calculators/cubic-yards-calculator">cubic yards calculator</a>.</p>
+<p>Square footage is area measured in feet — specifically, the number of 1-foot × 1-foot squares that fit inside a space. The universal formula is <strong>Length × Width = Square Feet</strong>. If your measurements are in inches, divide both by 12 before multiplying. For irregular rooms, break the space into rectangles, calculate each section, and add the totals.</p>
+<p>This calculator supports rectangles, squares, triangles, circles, trapezoids, and rectangular borders. You can enter measurements in feet and inches, add a material waste factor, and get an instant cost estimate using price per square foot, square yard, or square meter.</p>
+<p>For volume projects using square footage as a base, use our <a href="/construction-calculators/cubic-yards-calculator">cubic yards calculator</a>. For tile projects, try our <a href="/construction-calculators/tile-calculator">tile calculator</a>. For flooring quantities, see our <a href="/construction-calculators/flooring-calculator">flooring calculator</a>.</p>
 
-<h2>Square Footage Formulas</h2>
+<h2>Area Formulas for Every Shape</h2>
+
+<h3>Rectangle or Square</h3>
+<p><strong>Area = Length × Width</strong></p>
+<p>For a square, since all sides are equal: Area = Side². The most common formula for floors, walls, yards, and any flat rectangular surface.</p>
+<p><strong>Example:</strong> A rectangular living room 15 ft × 18 ft = <strong>270 sq ft</strong></p>
+
+<h3>Triangle</h3>
+<p><strong>Area = ½ × Base × Height</strong></p>
+<p>The height must be perpendicular to the base. Use this for triangular garden beds, gable walls, or bump-out additions. For a triangle where you know only the three side lengths, use Heron's Formula — the calculator handles this automatically.</p>
+<p><strong>Example:</strong> A triangular deck extension with a 12-ft base and 8-ft height: ½ × 12 × 8 = <strong>48 sq ft</strong></p>
+
+<h3>Circle</h3>
+<p><strong>Area = π × (Diameter ÷ 2)²</strong> (where π ≈ 3.14159)</p>
+<p>Enter the diameter — the full width of the circle. The calculator divides by 2 for you to get the radius before applying the formula.</p>
+<p><strong>Example:</strong> A circular patio 14 ft in diameter (radius = 7 ft): π × 7² = 3.14159 × 49 = <strong>153.9 sq ft</strong></p>
+
+<h3>Trapezoid</h3>
+<p><strong>Area = [(a + b) ÷ 2] × Height</strong></p>
+<p>Where a and b are the two parallel sides and height is the perpendicular distance between them. Cathedral ceiling walls and rooms with one angled wall typically follow this shape.</p>
+<p><strong>Example:</strong> A trapezoidal yard with parallel sides of 30 ft and 40 ft, height 20 ft: [(30+40) ÷ 2] × 20 = 35 × 20 = <strong>700 sq ft</strong></p>
+
+<h3>Rectangular Border (Frame)</h3>
+<p>Used to calculate the area of a frame or border around a pool, garden bed, or tile surround — where you need to tile or pave the surrounding area, but not the center.</p>
+<p><strong>Formula:</strong> Border Area = Total Outer Area − Inner Area</p>
+<p><strong>Example:</strong> A 10×8 ft garden bed with a 2-ft stone border: Total = (14×12) = 168 sq ft. Inner = 10×8 = 80 sq ft. <strong>Border = 88 sq ft</strong></p>
+
+<h2>Unit Conversion Reference Table</h2>
+<p>Once you have your square footage, convert to other units using these exact factors:</p>
 <table>
-<thead><tr><th>Shape</th><th>Formula</th><th>Variables</th><th>Example</th></tr></thead>
+<thead><tr><th>From</th><th>To</th><th>Multiply By</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td><strong>Rectangle / Square</strong></td><td>L × W</td><td>L = length, W = width</td><td>12 × 10 = 120 sq ft</td></tr>
-<tr><td><strong>Triangle</strong></td><td>½ × B × H</td><td>B = base, H = height</td><td>½ × 10 × 8 = 40 sq ft</td></tr>
-<tr><td><strong>Circle</strong></td><td>π × r²</td><td>r = radius (diameter ÷ 2)</td><td>π × 5² = 78.5 sq ft</td></tr>
-<tr><td><strong>Trapezoid</strong></td><td>½ × (a + b) × h</td><td>a, b = parallel sides, h = height</td><td>½ × (8 + 12) × 6 = 60 sq ft</td></tr>
-<tr><td><strong>Rectangular Border</strong></td><td>(L × W) − (l × w)</td><td>Outer minus inner rectangle</td><td>(20 × 15) − (10 × 8) = 220 sq ft</td></tr>
+<tr><td><strong>Square feet (ft²)</strong></td><td>Square inches (in²)</td><td>× 144</td><td>100 sq ft = 14,400 sq in</td></tr>
+<tr><td><strong>Square feet (ft²)</strong></td><td>Square yards (yd²)</td><td>÷ 9</td><td>180 sq ft = 20 sq yd</td></tr>
+<tr><td><strong>Square feet (ft²)</strong></td><td>Square meters (m²)</td><td>× 0.0929</td><td>1,000 sq ft = 92.9 m²</td></tr>
+<tr><td><strong>Square feet (ft²)</strong></td><td>Acres</td><td>× 0.0000230</td><td>43,560 sq ft = 1 acre</td></tr>
+<tr><td><strong>Square meters (m²)</strong></td><td>Square feet (ft²)</td><td>× 10.764</td><td>100 m² = 1,076 sq ft</td></tr>
+<tr><td><strong>Square yards (yd²)</strong></td><td>Square feet (ft²)</td><td>× 9</td><td>20 sq yd = 180 sq ft</td></tr>
+<tr><td><strong>Acres</strong></td><td>Square feet (ft²)</td><td>× 43,560</td><td>1 acre = 43,560 sq ft</td></tr>
+</tbody>
+</table>
+<p><strong>Quick facts to memorize:</strong> 1 sq ft = 144 sq in · 9 sq ft = 1 sq yd · 43,560 sq ft = 1 acre · 1 sq m ≈ 10.764 sq ft</p>
+
+<h2>How to Measure a Room Step by Step</h2>
+<ol>
+<li><strong>Clear the floor:</strong> Move furniture away from walls so you can measure wall-to-wall without obstruction.</li>
+<li><strong>Measure length and width:</strong> Extend your tape measure from wall to wall at floor level. Record both dimensions in feet and inches.</li>
+<li><strong>Convert inches to decimal feet:</strong> Divide the inches by 12 and add to feet. Example: 12 ft 6 in = 12 + (6÷12) = 12.5 ft.</li>
+<li><strong>Multiply:</strong> Length × Width = square footage.</li>
+<li><strong>Handle irregular shapes:</strong> For L-shaped, T-shaped, or rooms with bump-outs, divide the space into two or more rectangles. Calculate each, then add.</li>
+<li><strong>Add waste factor for materials:</strong> Multiply total sq ft by 1.10 for standard flooring or 1.15–1.20 for diagonal or herringbone patterns.</li>
+</ol>
+
+<h3>How to Measure an L-Shaped Room</h3>
+<p>An L-shaped room is two rectangles joined together. Divide the space by drawing an imaginary line across the corner to create Rectangle A and Rectangle B. Measure each section separately, then add both areas.</p>
+<p><strong>Example:</strong></p>
+<ul>
+<li>Rectangle A: 12 ft × 10 ft = 120 sq ft</li>
+<li>Rectangle B: 8 ft × 6 ft = 48 sq ft</li>
+<li><strong>Total: 168 sq ft</strong></li>
+</ul>
+
+<h2>How to Calculate Home Square Footage (The US Standard)</h2>
+<p>When measuring a house for a real estate listing or mortgage appraisal, US professionals follow the <strong>ANSI Z765 standard</strong> — adopted by Fannie Mae and Freddie Mac as the benchmark for Gross Living Area (GLA) calculations.</p>
+<table>
+<thead><tr><th>What Counts Toward GLA</th><th>What Does NOT Count</th></tr></thead>
+<tbody>
+<tr><td>✅ Finished, heated space above ground level</td><td>❌ Basements — even finished ones (reported separately)</td></tr>
+<tr><td>✅ Rooms with ceiling height ≥ 7 feet</td><td>❌ Attached or detached garages</td></tr>
+<tr><td>✅ For sloped ceilings: ≥50% of floor area at 7+ ft</td><td>❌ Unheated sunrooms, porches without permanent heat</td></tr>
+<tr><td>✅ All above-grade floors added together</td><td>❌ Attics unless finished, heated, and 7 ft ceiling met</td></tr>
+</tbody>
+</table>
+<p><strong>Context:</strong> The median new single-family home in the US (2024) is <strong>2,146 sq ft</strong> with an average of approximately 2,367 sq ft, per the US Census Bureau. Existing homes tend to be smaller.</p>
+
+<h2>Material Waste Factor Guide by Project Type</h2>
+<table>
+<thead><tr><th>Material / Pattern</th><th>Waste Factor</th><th>Why</th></tr></thead>
+<tbody>
+<tr><td><strong>Hardwood flooring, straight lay</strong></td><td>5–7%</td><td>Minimal cuts</td></tr>
+<tr><td><strong>Carpet (most rooms)</strong></td><td>10%</td><td>Fitting seams and obstacles</td></tr>
+<tr><td><strong>Ceramic/porcelain tile, straight lay</strong></td><td>10%</td><td>Cuts at walls and doorways</td></tr>
+<tr><td><strong>Tile, diagonal (45°) pattern</strong></td><td>15%</td><td>Many angled cuts at walls</td></tr>
+<tr><td><strong>Herringbone tile pattern</strong></td><td>15–20%</td><td>Complex cuts, high breakage</td></tr>
+<tr><td><strong>Vinyl plank (LVP), straight lay</strong></td><td>10%</td><td>Fitting around fixtures</td></tr>
+<tr><td><strong>Natural stone tile</strong></td><td>15–20%</td><td>Breakage + size variation</td></tr>
+<tr><td><strong>Sod / turf</strong></td><td>5%</td><td>Shape fitting and settling</td></tr>
+<tr><td><strong>Mulch / gravel / topsoil</strong></td><td>5–10%</td><td>Spillage and settling</td></tr>
+</tbody>
+</table>
+<p><strong>Formula for total material to order:</strong> Materials = Room sq ft × (1 + waste factor decimal)</p>
+<p>Example: 200 sq ft room with 10% waste = 200 × 1.10 = <strong>220 sq ft to purchase</strong>. Always round up to full boxes or rolls.</p>
+
+<h2>Price Per Square Foot Guide — US Benchmarks (2025)</h2>
+<h3>Flooring Cost Per Square Foot (Material + Installation)</h3>
+<table>
+<thead><tr><th>Flooring Type</th><th>Installed Cost Range (US)</th></tr></thead>
+<tbody>
+<tr><td><strong>Carpet</strong></td><td>$2 – $9/sq ft</td></tr>
+<tr><td><strong>Vinyl plank (LVP)</strong></td><td>$5 – $10/sq ft</td></tr>
+<tr><td><strong>Laminate</strong></td><td>$4 – $9/sq ft</td></tr>
+<tr><td><strong>Ceramic/Porcelain tile</strong></td><td>$6 – $14/sq ft</td></tr>
+<tr><td><strong>Hardwood</strong></td><td>$8 – $15/sq ft</td></tr>
+</tbody>
+</table>
+<h3>Cost Per Square Foot Formula</h3>
+<p><strong>Cost per sq ft = Total project cost ÷ Total sq ft</strong></p>
+<p>Example: A 2,000 sq ft home sells for $350,000 → $350,000 ÷ 2,000 = <strong>$175/sq ft</strong>. This lets you compare homes of different sizes in the same market, or estimate material budgets before getting contractor quotes.</p>
+
+<h2>Average Room Sizes in the US — Reference Table</h2>
+<table>
+<thead><tr><th>Room</th><th>Common US Dimensions</th><th>Average Sq Ft</th></tr></thead>
+<tbody>
+<tr><td><strong>Primary/master bedroom</strong></td><td>12×16 ft to 14×18 ft</td><td>200–250 sq ft</td></tr>
+<tr><td><strong>Secondary bedroom</strong></td><td>10×11 ft to 10×12 ft</td><td>110–120 sq ft</td></tr>
+<tr><td><strong>Kids bedroom</strong></td><td>9×10 ft to 10×10 ft</td><td>90–100 sq ft</td></tr>
+<tr><td><strong>Living room</strong></td><td>12×18 ft to 15×20 ft</td><td>216–300 sq ft</td></tr>
+<tr><td><strong>Kitchen</strong></td><td>10×10 ft to 12×15 ft</td><td>100–180 sq ft</td></tr>
+<tr><td><strong>Full bathroom</strong></td><td>5×8 ft to 7×10 ft</td><td>40–70 sq ft</td></tr>
+<tr><td><strong>Half bath (powder room)</strong></td><td>3×6 ft to 4×5 ft</td><td>18–20 sq ft</td></tr>
+<tr><td><strong>2-car garage</strong></td><td>20×20 ft to 22×24 ft</td><td>400–528 sq ft</td></tr>
+<tr><td><strong>Average new US home (2024)</strong></td><td>—</td><td>~2,146 sq ft</td></tr>
 </tbody>
 </table>
 
-<h2>Step-by-Step: How to Calculate Square Footage</h2>
-<h3>Step 1: Measure the Space</h3>
-<p>Use a tape measure to find the length and width of the area in feet. Measure the longest dimension of each wall. For accuracy, measure to the nearest inch and convert to feet (divide inches by 12).</p>
-
-<h3>Step 2: Choose the Right Formula</h3>
-<p>For rectangular rooms (most rooms), multiply length × width. For triangular sections (gables, bay windows), use ½ × base × height. For circular areas (round patios), use π × radius².</p>
-
-<h3>Step 3: Calculate and Add Sections</h3>
-<p>For complex rooms, split into simple shapes, calculate each section separately, and add the results. For an L-shaped room, measure two rectangles. For a room with a bay window, add the main rectangle plus a triangle or trapezoid.</p>
-
-<h3>Step 4: Estimate Cost (Optional)</h3>
-<p>Multiply total square footage by the price per square foot to estimate project cost. For flooring: $2–$12/sq ft (material). For painting: $1–$3/sq ft. For carpeting: $2–$8/sq ft installed.</p>
-
-<h2>How to Measure a Room for Square Footage</h2>
-<p>Accurate room measurement is critical for home improvement projects. Follow these tips:</p>
+<h2>Square Footage for Landscaping and Outdoor Projects</h2>
+<p>This calculator works equally well for outdoor areas. Common outdoor applications:</p>
 <ul>
-<li><strong>Standard rectangular rooms:</strong> Measure the longest wall (length) and the perpendicular wall (width). Multiply them together.</li>
-<li><strong>L-shaped rooms:</strong> Divide into two rectangles. Measure each separately and add the areas.</li>
-<li><strong>Rooms with closets:</strong> Measure the main room and closet separately. Add both if the closet will receive the same treatment (flooring, painting).</li>
-<li><strong>Rooms with bay windows:</strong> Measure the main rectangle, then add the bay area (usually a triangle or trapezoid).</li>
-<li><strong>Round or curved sections:</strong> Measure the diameter and use the circle formula. For half-circles (alcoves), divide the result by 2.</li>
+<li><strong>Lawn / sod:</strong> Measure the lawn area excluding the house footprint, walkways, and planting beds. Add 5% overage when ordering sod.</li>
+<li><strong>Garden bed / mulch:</strong> Calculate bed area in sq ft, then use our <a href="/construction-calculators/cubic-yards-calculator">cubic yards calculator</a> to find how much mulch or topsoil you need at a given depth.</li>
+<li><strong>Patio or deck:</strong> Use Rectangle for square/rectangular patios. Use Circle for circular fire pit areas. Add 10% for tile waste.</li>
+<li><strong>Driveway:</strong> Calculate the rectangle, then add any triangular flare at the entry separately using the triangle formula.</li>
 </ul>
-
-<h2>How to Calculate Home Square Footage</h2>
-<p>For real estate and appraisal purposes, calculating the <strong>Gross Living Area (GLA)</strong> of a home follows specific rules defined by ANSI (American National Standards Institute):</p>
-<ul>
-<li><strong>Included:</strong> All finished, heated/cooled rooms with walls, floor, and ceiling — bedrooms, living rooms, kitchens, bathrooms, hallways, closets.</li>
-<li><strong>Excluded:</strong> Garages, unfinished basements, unfinished attics, covered porches, balconies, patios, carports.</li>
-<li><strong>Finished basements:</strong> Counted separately as "below-grade living area" — not included in the main GLA.</li>
-<li><strong>Stairways:</strong> Counted on only one floor (typically the floor where the stairway begins).</li>
-</ul>
-<p><strong>To calculate:</strong> Measure each room individually, then add all room areas together. For multi-story homes, measure each floor separately.</p>
-
-<h2>Common Room Sizes in the US</h2>
-<table>
-<thead><tr><th>Room</th><th>Typical Size</th><th>Square Footage</th></tr></thead>
-<tbody>
-<tr><td><strong>Small Bedroom</strong></td><td>10 × 10 ft</td><td>100 sq ft</td></tr>
-<tr><td><strong>Master Bedroom</strong></td><td>14 × 16 ft</td><td>224 sq ft</td></tr>
-<tr><td><strong>Living Room</strong></td><td>12 × 18 ft</td><td>216 sq ft</td></tr>
-<tr><td><strong>Kitchen</strong></td><td>10 × 12 ft</td><td>120 sq ft</td></tr>
-<tr><td><strong>Bathroom</strong></td><td>5 × 8 ft</td><td>40 sq ft</td></tr>
-<tr><td><strong>Master Bathroom</strong></td><td>8 × 10 ft</td><td>80 sq ft</td></tr>
-<tr><td><strong>1-Car Garage</strong></td><td>12 × 20 ft</td><td>240 sq ft</td></tr>
-<tr><td><strong>2-Car Garage</strong></td><td>20 × 20 ft</td><td>400 sq ft</td></tr>
-<tr><td><strong>Average US Home</strong></td><td>—</td><td>~2,300 sq ft</td></tr>
-</tbody>
-</table>
-
-<h2>Square Footage Conversion Table</h2>
-<table>
-<thead><tr><th>From</th><th>To Square Feet</th><th>Formula</th></tr></thead>
-<tbody>
-<tr><td><strong>Square Inches</strong></td><td>sq ft</td><td>sq in ÷ 144</td></tr>
-<tr><td><strong>Square Yards</strong></td><td>sq ft</td><td>sq yd × 9</td></tr>
-<tr><td><strong>Square Meters</strong></td><td>sq ft</td><td>sq m × 10.764</td></tr>
-<tr><td><strong>Acres</strong></td><td>sq ft</td><td>acres × 43,560</td></tr>
-<tr><td><strong>Hectares</strong></td><td>sq ft</td><td>hectares × 107,639</td></tr>
-<tr><td><strong>Square Centimeters</strong></td><td>sq ft</td><td>sq cm ÷ 929.03</td></tr>
-</tbody>
-</table>
-
-<h2>Price per Square Foot Guide</h2>
-<p>Knowing the price per square foot helps estimate project costs and compare real estate values:</p>
-<ul>
-<li><strong>Calculate price per sq ft:</strong> Total price ÷ total square footage. A $200,000 home with 2,000 sq ft = $100/sq ft.</li>
-<li><strong>Estimate project cost:</strong> Square footage × price per sq ft. 300 sq ft of flooring at $5/sq ft = $1,500.</li>
-<li><strong>US median home price per sq ft (2025):</strong> $150–$200/sq ft nationally. Ranges from $80/sq ft in rural areas to $500+/sq ft in NYC or San Francisco.</li>
-</ul>
+<p><strong>Landscaping volume rule of thumb:</strong> 1 cubic yard covers 162 sq ft at 2 inches deep · 108 sq ft at 3 inches · 81 sq ft at 4 inches.</p>
 `,
         faq: [
-            { question: "How many square feet is a 12×12 room?", answer: "A 12 ft × 12 ft room is 144 square feet (12 × 12 = 144). This is a common bedroom or home office size. For flooring at $5/sq ft, that's about $720 in material." },
-            { question: "Are square feet and feet the same?", answer: "No. Feet (ft) is a one-dimensional unit of length. Square feet (sq ft or ft²) is a two-dimensional unit of area. You can't convert between them without knowing a second dimension. A 10 ft board is linear; a 10 sq ft tile covers a 10-by-1 ft area." },
-            { question: "What does 1 square foot look like?", answer: "One square foot is a 12 × 12 inch square — roughly the size of a standard floor tile. You can visualize it by arranging 4 standard 12-inch rulers in a square. A standard sheet of paper (8.5 × 11 inches) is about 0.65 sq ft." },
-            { question: "How do I calculate square footage for flooring?", answer: "Measure each room's length and width in feet. Multiply L × W for each room. Add all room areas together. Then add 10% for waste (cuts, fitting around obstacles). For diagonal or herringbone patterns, add 15–20% waste." },
-            { question: "What's the difference between square footage and linear footage?", answer: "Square footage measures area (length × width) — used for flooring, paint, etc. Linear footage measures only length in one direction — used for trim, fencing, countertops. 100 linear feet of 6-inch-wide planks covers 50 sq ft of floor." },
-            { question: "How do I calculate square footage for an irregularly shaped room?", answer: "Break the room into simple shapes: rectangles, triangles, and half-circles. Calculate the area of each section. Add the areas together. For L-shaped rooms, measure two rectangles. For rooms with alcoves, add a half-circle (πr² ÷ 2) to the main rectangle." },
-            { question: "How many square feet is an acre?", answer: "One acre = 43,560 square feet. That's about 208.7 × 208.7 ft (a square almost 209 ft per side), roughly 90% of an American football field (which is 48,000 sq ft including end zones). A quarter-acre lot — common in suburban US — is 10,890 sq ft." },
-            { question: "How do I convert square meters to square feet?", answer: "Multiply square meters by 10.764. For example: 50 sq m × 10.764 = 538.2 sq ft. To convert sq ft to sq m, divide by 10.764 (or multiply by 0.0929). A 100 sq m apartment = 1,076.4 sq ft." },
-            { question: "How do I calculate the square footage of a house?", answer: "Measure each room (length × width). Include hallways, closets, and bathrooms. Exclude garages, unfinished basements, and porches. Add all room areas together. For multi-story homes, measure each floor separately and add them. Average US home: ~2,300 sq ft." },
-            { question: "How do I calculate price per square foot?", answer: "Divide the total price by the total square footage. A $300,000 home with 2,000 sq ft = $150/sq ft. For construction: a $200,000 build on 1,500 sq ft = $133/sq ft. This metric helps compare properties of different sizes in the same market." },
+            {
+                question: "How many square feet is a 12×12 room?",
+                answer: "A 12 ft × 12 ft room is 144 square feet (12 × 12 = 144). This is a common size for secondary bedrooms and home offices in the US. At a flooring cost of $5/sq ft, that's $720 in materials before installation."
+            },
+            {
+                question: "How do I calculate square footage?",
+                answer: "Multiply the length of the space (in feet) by the width (in feet). The result is your square footage. For example, a room that is 15 ft long and 12 ft wide is 180 square feet. For irregular spaces, divide into rectangles, calculate each, and add the totals."
+            },
+            {
+                question: "What is 1 square foot?",
+                answer: "One square foot is a square where every side is exactly 12 inches (1 foot) long. Picture a standard 12×12-inch floor tile — that is exactly 1 square foot. A 10×10 ft room contains exactly 100 of these squares, so it is 100 square feet."
+            },
+            {
+                question: "Are square feet and linear feet the same?",
+                answer: "No. Linear feet measures straight-line distance — one dimension. Square feet measures flat area — two dimensions multiplied together. You buy carpet by the square foot but install baseboards by the linear foot. A 12-foot wall gives you 12 linear feet of baseboard trim."
+            },
+            {
+                question: "How many square feet is an acre?",
+                answer: "One acre equals exactly 43,560 square feet. Visually, that is roughly the size of an American football field minus both end zones. A standard US city block is typically 2 to 6 acres, depending on the city grid."
+            },
+            {
+                question: "How do I calculate square footage for flooring?",
+                answer: "Measure each room's length and width in feet, multiply to get area, then repeat for every room. Add all rooms together. Then add 10% for waste (cuts, fitting around obstacles). For diagonal or herringbone patterns, add 15–20%. Divide your total by the box coverage to find how many boxes to buy, always rounding up."
+            },
+            {
+                question: "How do I calculate square footage for tile?",
+                answer: "Use Length × Width to find floor area. Then apply a waste factor: 10% for straight-lay, 15% for diagonal, 15–20% for herringbone. Divide your total by the coverage listed on each tile box. Always round up to full boxes — never down — because running short means a second trip and potentially no matching dye lot."
+            },
+            {
+                question: "How do I calculate the square footage of a house?",
+                answer: "Use the ANSI Z765 standard followed by US appraisers. Measure the exterior walls of each above-grade floor. Include only finished, heated living space with ceiling heights of at least 7 feet. Exclude basements (reported separately), garages, and unheated porches. Add each floor level together for total Gross Living Area (GLA)."
+            },
+            {
+                question: "How do I convert square feet to square meters?",
+                answer: "Multiply square feet by 0.0929 to get square meters — or divide by 10.764. Example: a 1,500 sq ft apartment = 1,500 × 0.0929 = approximately 139 square meters. To go the other way, multiply square meters by 10.764 to get square feet."
+            },
+            {
+                question: "What is the difference between square footage and square yards?",
+                answer: "Square yards are a larger unit — 1 square yard = 9 square feet. To convert, divide square feet by 9. Carpet is sometimes sold by the square yard. A 180 sq ft room needs 180 ÷ 9 = 20 square yards of carpet."
+            },
+            {
+                question: "How do I calculate the price per square foot of a home?",
+                answer: "Divide the total sale price by the total square footage. A $400,000 home with 2,000 sq ft = $200/sq ft. A $400,000 home with 2,500 sq ft = $160/sq ft. Price per square foot helps compare homes of different sizes in the same neighborhood, but location, lot size, age, and condition matter too."
+            },
+            {
+                question: "What is the average square footage of a house in the US?",
+                answer: "Per the US Census Bureau (2024), the median new single-family home completed in the US is 2,146 square feet, with an average of approximately 2,367 sq ft. These figures are for newly built homes — the existing housing stock tends to be smaller. In the 1950s, the average new home was around 1,000 sq ft."
+            },
+            {
+                question: "Does square footage include walls?",
+                answer: "For floor area (what you use for flooring and tile estimates), square footage is measured wall-to-wall along the floor. For painting, you calculate wall surface area separately: Height × Width of each wall, minus door and window openings, multiplied by the number of coats."
+            },
+            {
+                question: "How do I calculate square footage of an irregular room?",
+                answer: "Break the room into simpler shapes. For an L-shaped room, divide into two rectangles. For a room with a curved alcove, calculate the alcove as a half-circle using (π × r²) ÷ 2. For any bump-out or bay window, add those sections separately. Sum all sections for the total."
+            },
+            {
+                question: "Can I use this calculator for outdoor areas?",
+                answer: "Yes. This calculator works for any flat surface — indoors or outdoors. Use it for patios, decks, garden beds, driveways, lawns, and parking areas. For projects that also involve depth (mulch, concrete, gravel), use our cubic yards calculator after you have your square footage."
+            },
         ],
     },
     "cubic-yards-calculator": {
