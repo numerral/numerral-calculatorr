@@ -715,70 +715,140 @@ function DrywallCalc() {
 function SquareFootageCalc() {
     const [shape, setShape] = useState("rectangle");
     const [dim1, setDim1] = useState(20);
+    const [dim1in, setDim1in] = useState(0);
     const [dim2, setDim2] = useState(15);
+    const [dim2in, setDim2in] = useState(0);
     const [dim3, setDim3] = useState(10);
+    const [dim3in, setDim3in] = useState(0);
     const [dim4, setDim4] = useState(8);
-    const [pricePerSqFt, setPricePerSqFt] = useState(0);
+    const [dim4in, setDim4in] = useState(0);
+    const [quantity, setQuantity] = useState(1);
+    const [waste, setWaste] = useState(0);
+    const [price, setPrice] = useState(0);
+    const [priceUnit, setPriceUnit] = useState("sqft");
+    const [boxCoverage, setBoxCoverage] = useState(20);
+
+    const toFt = (ft: number, inches: number) => ft + inches / 12;
+    const d1 = toFt(dim1, dim1in);
+    const d2 = toFt(dim2, dim2in);
+    const d3 = toFt(dim3, dim3in);
+    const d4 = toFt(dim4, dim4in);
 
     const result = useMemo(() => {
         let sqFt = 0;
         switch (shape) {
-            case "rectangle": sqFt = dim1 * dim2; break;
-            case "triangle": sqFt = 0.5 * dim1 * dim2; break;
-            case "circle": sqFt = Math.PI * (dim1 / 2) * (dim1 / 2); break;
-            case "trapezoid": sqFt = 0.5 * (dim1 + dim2) * dim3; break;
-            case "border": sqFt = Math.max(0, (dim1 * dim2) - (dim3 * dim4)); break;
+            case "rectangle": sqFt = d1 * d2; break;
+            case "square": sqFt = d1 * d1; break;
+            case "rect-border": sqFt = Math.max(0, (d1 * d2) - (d3 * d4)); break;
+            case "wall-window": sqFt = Math.max(0, (d1 * d2) - (d3 * d4)); break;
+            case "cathedral": sqFt = 0.5 * d1 * (d2 + d3); break;
+            case "circle": sqFt = Math.PI * (d1 / 2) * (d1 / 2); break;
+            case "circle-border": { const outerD = d1 + 2 * d2; sqFt = Math.PI * (outerD / 2) ** 2 - Math.PI * (d1 / 2) ** 2; break; }
+            case "annulus": sqFt = Math.max(0, Math.PI * (d1 / 2) ** 2 - Math.PI * (d2 / 2) ** 2); break;
+            case "triangle": { const s = (d1 + d2 + d3) / 2; const a2 = s * (s - d1) * (s - d2) * (s - d3); sqFt = a2 > 0 ? Math.sqrt(a2) : 0; break; }
+            case "triangle-bh": sqFt = 0.5 * d1 * d2; break;
+            case "trapezoid": sqFt = 0.5 * (d1 + d2) * d3; break;
         }
-        const sqM = sqFt * 0.092903;
-        const sqYd = sqFt / 9;
-        const acres = sqFt / 43560;
-        const sqIn = sqFt * 144;
-        const totalCost = pricePerSqFt > 0 ? sqFt * pricePerSqFt : 0;
-        return { sqFt, sqM, sqYd, acres, sqIn, totalCost };
-    }, [shape, dim1, dim2, dim3, dim4, pricePerSqFt]);
+        const totalSqFt = sqFt * quantity;
+        const withWaste = totalSqFt * (1 + waste / 100);
+        const sqM = withWaste * 0.092903;
+        const sqYd = withWaste / 9;
+        const acres = withWaste / 43560;
+        const sqIn = withWaste * 144;
+        let totalCost = 0;
+        if (price > 0) {
+            if (priceUnit === "sqft") totalCost = withWaste * price;
+            else if (priceUnit === "sqyd") totalCost = sqYd * price;
+            else if (priceUnit === "sqm") totalCost = sqM * price;
+            else if (priceUnit === "box") totalCost = Math.ceil(withWaste / (boxCoverage || 1)) * price;
+        }
+        const boxesNeeded = priceUnit === "box" && boxCoverage > 0 ? Math.ceil(withWaste / boxCoverage) : 0;
+        return { sqFt, totalSqFt, withWaste, sqM, sqYd, acres, sqIn, totalCost, boxesNeeded };
+    }, [shape, d1, d2, d3, d4, quantity, waste, price, priceUnit, boxCoverage]);
 
-    const labels = shape === "circle"
-        ? { d1: "Diameter", d2: "", d3: "", d4: "" }
-        : shape === "trapezoid"
-        ? { d1: "Base 1 (a)", d2: "Base 2 (b)", d3: "Height", d4: "" }
-        : shape === "triangle"
-        ? { d1: "Base", d2: "Height", d3: "", d4: "" }
-        : shape === "border"
-        ? { d1: "Outer Length", d2: "Outer Width", d3: "Inner Length", d4: "Inner Width" }
-        : { d1: "Length", d2: "Width", d3: "", d4: "" };
+    type SL = { d1: string; d2: string; d3: string; d4: string; formula: string };
+    const CFG: Record<string, SL> = {
+        rectangle:      { d1: "Length", d2: "Width", d3: "", d4: "", formula: "Area = Length x Width" },
+        square:         { d1: "Side Length", d2: "", d3: "", d4: "", formula: "Area = Side squared" },
+        "rect-border":  { d1: "Outer Length", d2: "Outer Width", d3: "Inner Length", d4: "Inner Width", formula: "Area = Outer Area minus Inner Area" },
+        "wall-window":  { d1: "Wall Width", d2: "Wall Height", d3: "Window/Door Width", d4: "Window/Door Height", formula: "Area = Wall Area minus Opening Area" },
+        cathedral:      { d1: "Width", d2: "Height 1 (short side)", d3: "Height 2 (tall side)", d4: "", formula: "Area = 0.5 x Width x (H1 + H2)" },
+        circle:         { d1: "Diameter", d2: "", d3: "", d4: "", formula: "Area = PI x (Diameter / 2) squared" },
+        "circle-border":{ d1: "Inner Diameter", d2: "Border Width", d3: "", d4: "", formula: "Area = Outer Circle minus Inner Circle" },
+        annulus:        { d1: "Outer Diameter", d2: "Inner Diameter", d3: "", d4: "", formula: "Area = PI x (Outer/2) sq minus PI x (Inner/2) sq" },
+        triangle:       { d1: "Side A", d2: "Side B", d3: "Side C", d4: "", formula: "Heron Formula - any triangle shape" },
+        "triangle-bh":  { d1: "Base", d2: "Height (perpendicular)", d3: "", d4: "", formula: "Area = 0.5 x Base x Height" },
+        trapezoid:      { d1: "Base 1 (a)", d2: "Base 2 (b)", d3: "Height", d4: "", formula: "Area = 0.5 x (a + b) x Height" },
+    };
+    const cfg = CFG[shape] || CFG.rectangle;
+
+    function FtInInput({ label, ft, ftIn, onFt, onIn }: { label: string; ft: number; ftIn: number; onFt: (v: number) => void; onIn: (v: number) => void }) {
+        return (
+            <div className="con-input">
+                <label className="con-input__label">{label}</label>
+                <div style={{ display: "flex", gap: 6 }}>
+                    <input type="number" className="con-input__field" value={ft} onChange={e => onFt(Number(e.target.value))} min={0} step={1} style={{ flex: 2 }} placeholder="ft" />
+                    <input type="number" className="con-input__field" value={ftIn} onChange={e => onIn(Number(e.target.value))} min={0} max={11} step={1} style={{ flex: 1 }} placeholder="in" />
+                </div>
+                <span style={{ fontSize: "0.72rem", color: "var(--n-text-muted)", marginTop: 2, display: "block" }}>{ft}ft {ftIn}in = {(ft + ftIn / 12).toFixed(2)}ft</span>
+            </div>
+        );
+    }
 
     return (
         <div className="con-calc">
-            <h3 className="con-calc__title">📏 Square Footage Calculator</h3>
+            <h3 className="con-calc__title">📐 Square Footage Calculator</h3>
             <div className="con-calc__inputs">
                 <SelectField label="Shape" value={shape} onChange={setShape} options={[
-                    { value: "rectangle", label: "Rectangle / Square" },
-                    { value: "triangle", label: "Triangle" },
-                    { value: "circle", label: "Circle" },
-                    { value: "trapezoid", label: "Trapezoid" },
-                    { value: "border", label: "Rectangular Border (room with cutout)" },
+                    { value: "rectangle",     label: "Rectangle" },
+                    { value: "square",        label: "Square" },
+                    { value: "rect-border",   label: "Rectangle Border / Frame" },
+                    { value: "wall-window",   label: "Wall minus Window / Door" },
+                    { value: "cathedral",     label: "Cathedral Wall (Right Trapezoid)" },
+                    { value: "circle",        label: "Circle" },
+                    { value: "circle-border", label: "Circle Border" },
+                    { value: "annulus",       label: "Annulus (Ring / Donut)" },
+                    { value: "triangle",      label: "Triangle - 3 sides (any shape)" },
+                    { value: "triangle-bh",   label: "Triangle - Base and Height" },
+                    { value: "trapezoid",     label: "Trapezoid" },
                 ]} />
-                <InputField label={labels.d1} value={dim1} onChange={setDim1} unit="ft" min={0.1} step={0.5} />
-                {labels.d2 && <InputField label={labels.d2} value={dim2} onChange={setDim2} unit="ft" min={0.1} step={0.5} />}
-                {labels.d3 && <InputField label={labels.d3} value={dim3} onChange={setDim3} unit="ft" min={0.1} step={0.5} />}
-                {labels.d4 && <InputField label={labels.d4} value={dim4} onChange={setDim4} unit="ft" min={0.1} step={0.5} />}
-                <InputField label="Price per Sq Ft (optional)" value={pricePerSqFt} onChange={setPricePerSqFt} unit="$" min={0} step={0.5} />
+                <div style={{ background: "var(--n-surface-alt, #f0f4ff)", border: "1px solid var(--n-border)", borderRadius: 8, padding: "8px 12px", fontSize: "0.8rem", color: "var(--n-text-secondary)" }}>
+                    Formula: <strong>{cfg.formula}</strong>
+                </div>
+                <FtInInput label={cfg.d1} ft={dim1} ftIn={dim1in} onFt={setDim1} onIn={setDim1in} />
+                {cfg.d2 && <FtInInput label={cfg.d2} ft={dim2} ftIn={dim2in} onFt={setDim2} onIn={setDim2in} />}
+                {cfg.d3 && <FtInInput label={cfg.d3} ft={dim3} ftIn={dim3in} onFt={setDim3} onIn={setDim3in} />}
+                {cfg.d4 && <FtInInput label={cfg.d4} ft={dim4} ftIn={dim4in} onFt={setDim4} onIn={setDim4in} />}
+                <InputField label="Quantity (rooms or sections)" value={quantity} onChange={setQuantity} min={1} step={1} />
+                <InputField label="Waste Factor" value={waste} onChange={setWaste} unit="%" min={0} max={50} step={1} />
+                <div className="con-input">
+                    <label className="con-input__label">Price per Unit (optional)</label>
+                    <div style={{ display: "flex", gap: 6 }}>
+                        <input type="number" className="con-input__field" value={price} onChange={e => setPrice(Number(e.target.value))} min={0} step={0.5} style={{ flex: 2 }} placeholder="0.00" />
+                        <select className="con-input__field" value={priceUnit} onChange={e => setPriceUnit(e.target.value)} style={{ flex: 2 }}>
+                            <option value="sqft">$ / sq ft</option>
+                            <option value="sqyd">$ / sq yd</option>
+                            <option value="sqm">$ / sq m</option>
+                            <option value="box">$ / box</option>
+                        </select>
+                    </div>
+                </div>
+                {priceUnit === "box" && <InputField label="Box Coverage" value={boxCoverage} onChange={setBoxCoverage} unit="sq ft/box" min={1} step={1} />}
             </div>
             <div className="con-calc__results">
                 <h4 className="con-calc__group-label">AREA</h4>
-                <ResultRow label="Square Feet" value={fmt(result.sqFt)} unit="sq ft" />
+                <ResultRow label={waste > 0 ? "Total Area (with waste)" : "Total Area"} value={fmt(result.withWaste)} unit="sq ft" />
                 <ResultRow label="Square Inches" value={fmtInt(result.sqIn)} unit="sq in" />
+                {quantity > 1 && <ResultRow label={"Per section x " + quantity} value={fmt(result.sqFt) + " each"} />}
                 <h4 className="con-calc__group-label">CONVERSIONS</h4>
-                <ResultRow label="Square Meters" value={fmt(result.sqM)} unit="sq m" />
                 <ResultRow label="Square Yards" value={fmt(result.sqYd)} unit="sq yd" />
-                <ResultRow label="Acres" value={fmt(result.acres, 4)} unit="acres" />
-                {pricePerSqFt > 0 && (
-                    <>
-                        <h4 className="con-calc__group-label">COST</h4>
-                        <ResultRow label="Total Cost" value={`$${fmt(result.totalCost)}`} />
-                        <ResultRow label="Price per Sq Ft" value={`$${fmt(pricePerSqFt)}`} />
-                    </>
-                )}
+                <ResultRow label="Square Meters" value={fmt(result.sqM)} unit="sq m" />
+                <ResultRow label="Acres" value={fmt(result.acres, 5)} unit="acres" />
+                {result.totalCost > 0 && (<>
+                    <h4 className="con-calc__group-label">COST</h4>
+                    <ResultRow label="Total Estimated Cost" value={"$" + fmt(result.totalCost)} />
+                    {result.boxesNeeded > 0 && <ResultRow label="Boxes Needed" value={fmtInt(result.boxesNeeded)} unit="boxes" />}
+                </>)}
             </div>
         </div>
     );
