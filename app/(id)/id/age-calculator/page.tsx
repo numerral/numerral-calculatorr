@@ -199,7 +199,7 @@ export default function AgeCalculatorPage() {
                     priority
                 />
                 <p style={{ fontSize: "0.8rem", color: "var(--muted, #888)", marginTop: "0.5rem" }}>
-                    Kalkulator umur mengukur selisih waktu antara tanggal lahir (tanggal lahir) hingga hari ini dalam tahun, bulan, dan hari.
+                    Kalkulator umur mengukur selisih waktu dari tanggal lahir hingga hari ini dalam satuan tahun, bulan, dan hari.
                 </p>
             </div>
 
@@ -207,7 +207,7 @@ export default function AgeCalculatorPage() {
             <section className="ar-explanation" aria-labelledby="definisi-kalkulator-umur">
                 <h2 className="ar-explanation__heading" id="definisi-kalkulator-umur">Apa Itu Kalkulator Umur?</h2>
                 <p className="ar-explanation__text">
-                    <strong>Kalkulator umur</strong> adalah alat digital yang menghitung <em>usia kronologis</em> seseorang secara presisi — mulai dari tahun, bulan, hingga hari — berdasarkan selisih antara <strong>tanggal lahir</strong> dan tanggal saat ini. Berbeda dengan perkiraan kasar "tahun sekarang dikurangi tahun lahir", kalkulator ini memperhitungkan jumlah hari yang berbeda tiap bulan dan <strong>tahun kabisat (leap year)</strong> secara otomatis.
+                    <strong>Kalkulator umur</strong> adalah alat digital yang menghitung <em>usia kronologis</em> seseorang secara presisi — mulai dari tahun, bulan, hingga hari — berdasarkan selisih antara <strong>tanggal lahir</strong> dan tanggal saat ini. Berbeda dengan perkiraan kasar &ldquo;tahun sekarang dikurangi tahun lahir&rdquo;, kalkulator ini memperhitungkan jumlah hari yang berbeda tiap bulan dan <strong>tahun kabisat (leap year)</strong> secara otomatis.
                 </p>
                 <p className="ar-explanation__text">
                     Di Indonesia, mengetahui usia secara tepat sangat penting untuk berbagai keperluan: verifikasi syarat usia <strong>CPNS</strong> (batas 35 tahun), <strong>PPDB masuk sekolah</strong> (SD minimal 7 tahun per 1 Juli), pengurusan <strong>KTP</strong>, <strong>klaim asuransi</strong>, dan <strong>perencanaan pensiun</strong>. Kalkulator ini gratis, tanpa registrasi, dan bisa diakses dari HP maupun komputer.
@@ -250,7 +250,7 @@ export default function AgeCalculatorPage() {
                         <li><strong>Langkah 2:</strong> Hitung selisih bulan (Bulan sekarang − Bulan lahir). Jika hasilnya negatif, tambahkan 12 dan kurangi 1 dari nilai tahun</li>
                         <li><strong>Langkah 3:</strong> Hitung selisih hari (Tanggal sekarang − Tanggal lahir). Jika negatif, tambahkan jumlah hari di bulan sebelumnya dan kurangi 1 dari nilai bulan</li>
                         <li><strong>Tahun kabisat:</strong> Tahun habis dibagi 4 adalah kabisat (366 hari). Pengecualian: tahun abad (1700, 1800, 1900) bukan kabisat, kecuali 2000, 2400 yang habis dibagi 400</li>
-                        <li><strong>Lahir 29 Februari?</strong> Ulang tahun Anda jatuh 28 Feb atau 1 Maret di tahun biasa sesuai konvensi internasional standar</li>
+                        <li><strong>Lahir 29 Februari?</strong> Ulang tahun Anda jatuh 28 Feb atau 1 Maret di tahun biasa sesuai standar konvensi internasional</li>
                         <li><strong>Zona waktu:</strong> Indonesia memiliki WIB (UTC+7), WITA (UTC+8), WIT (UTC+9). Kalkulator menggunakan waktu lokal browser Anda untuk konsistensi</li>
                     </ul>
                 </section>
