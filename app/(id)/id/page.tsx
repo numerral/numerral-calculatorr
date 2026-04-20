@@ -36,7 +36,7 @@ const ID_CATEGORIES: { name: string; icon: string; slugs: string[] }[] = [
     {
         name: "Kesehatan & Umum",
         icon: "❤️",
-        slugs: ["kalkulator-bmi", "kalkulator-usia", "kalkulator-kehamilan", "kalkulator-kurs"],
+        slugs: ["kalkulator-bmi", "kalkulator-usia", "age-calculator", "kalkulator-kehamilan", "kalkulator-kurs"],
     },
 ];
 

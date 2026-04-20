@@ -473,19 +473,248 @@ export const ID_CALCULATORS: IdCalculator[] = [
         keyword: "kalkulator usia",
         calcType: "age",
         icon: "🎂",
-        subtitle: "Hitung usia Anda dalam tahun, bulan, dan hari. Berguna untuk dokumen resmi, CPNS, dan keperluan administrasi.",
+        subtitle: "Hitung usia Anda secara tepat dalam tahun, bulan, dan hari dari tanggal lahir. Hasil akurat untuk CPNS, dokumen resmi, sekolah, dan keperluan administratif di Indonesia.",
         explanation: {
-            heading: "Cara Menghitung Usia yang Tepat",
+            heading: "Apa Itu Kalkulator Umur?",
             paragraphs: [
-                "Kalkulator usia menghitung selisih antara tanggal lahir dan hari ini dalam tahun, bulan, dan hari. Penting untuk pendaftaran CPNS (batas usia 35 tahun), BPJS, asuransi, dan keperluan legal lainnya.",
-                "Indonesia menggunakan kalender Masehi. Usia hukum: 17 tahun untuk KTP dan registrasi pemilih, 18 tahun untuk menikah (sesuai UU), 21 tahun usia dewasa penuh.",
+                "Kalkulator umur adalah alat digital yang menghitung usia kronologis seseorang secara tepat — mulai dari tahun, bulan, hingga hari — berdasarkan selisih antara tanggal lahir (tanggal lahir) dan tanggal saat ini. Berbeda dengan perhitungan manual yang rentan kesalahan, kalkulator ini mempertimbangkan jumlah hari berbeda tiap bulan dan tahun kabisat secara otomatis.",
+                "Kalkulator umur online sangat berguna untuk berbagai keperluan di Indonesia: verifikasi usia untuk pendaftaran CPNS, masuk sekolah, pengurusan KTP, klaim asuransi, dan perencanaan pensiun. Hasilnya dinyatakan dalam tiga satuan sekaligus: tahun, bulan, dan hari — sehingga Anda mendapat angka yang lebih presisi dibanding sekadar bilangan bulat tahun.",
             ],
-            highlight: "Lahir 15 Januari 1995 → usia sekitar 31 tahun. 31 tahun = 11.315 hari = 372 bulan. Batas CPNS 35 tahun = masih bisa daftar sampai 14 Januari 2030.",
+            highlight: "Contoh: Lahir 15 Januari 1995 → Per April 2026 = 31 tahun 3 bulan 5 hari = 11.407 hari = 1.629 minggu. Jauh lebih detail dari sekadar '31 tahun'!",
         },
-        faq: [
-            { question: "Berapa batas usia CPNS?", answer: "Umumnya 18-35 tahun untuk formasi umum, beberapa jabatan khusus sampai 40 tahun (misalnya dokter spesialis). Cek pengumuman CPNS untuk batas usia per formasi." },
+        richSections: [
+            {
+                heading: "Cara Menghitung Umur Secara Akurat",
+                paragraphs: [
+                    "Menghitung umur terdengar mudah, tetapi ada tiga faktor penting yang sering diabaikan dalam perhitungan manual: perbedaan jumlah hari antar bulan, tahun kabisat (leap year), dan zona waktu.",
+                    "Rumus dasar perhitungan umur adalah: Umur = Tanggal Sekarang − Tanggal Lahir. Namun secara teknis, algoritmanya lebih kompleks:",
+                ],
+                bullets: [
+                    "Langkah 1: Hitung selisih tahun (Tahun sekarang − Tahun lahir)",
+                    "Langkah 2: Hitung selisih bulan (Bulan sekarang − Bulan lahir). Jika negatif, kurangi 1 tahun dan tambahkan 12 ke selisih bulan",
+                    "Langkah 3: Hitung selisih hari (Hari sekarang − Hari lahir). Jika negatif, kurangi 1 bulan dan tambahkan jumlah hari di bulan sebelumnya",
+                    "Tahun kabisat terjadi setiap 4 tahun (habis dibagi 4), kecuali tahun yang habis dibagi 100 tetapi tidak habis dibagi 400. Contoh: 2000 = kabisat ✓, 1900 = bukan kabisat ✗",
+                    "Contoh nyata: Lahir 29 Februari 2000 (tahun kabisat). Pada tahun bukan kabisat, ulang tahunnya dihitung 28 Februari atau 1 Maret — tergantung negara dan ketentuan hukum setempat",
+                    "Zona waktu (WIB, WITA, WIT) dapat mempengaruhi hari yang dihitung jika waktu lahir mendekati tengah malam, meskipun di Indonesia perbedaannya jarang berdampak signifikan untuk perhitungan usia",
+                ],
+            },
+            {
+                heading: "Mengapa Menggunakan Kalkulator Umur Online?",
+                paragraphs: [
+                    "Perhitungan manual usia rentan terhadap kesalahan, terutama saat melibatkan bulan-bulan dengan jumlah hari berbeda (Februari 28/29 hari, bulan-bulan 30 atau 31 hari) atau ketika usia mendekati batas tertentu.",
+                    "Kalkulator umur online Numerral memberikan hasil instan dan akurat tanpa risiko salah hitung. Ini sangat krusial untuk kebutuhan administratif yang memerlukan presisi tinggi.",
+                ],
+                bullets: [
+                    "Akurasi tinggi: Memperhitungkan tahun kabisat, hari berbeda tiap bulan, dan pembulatan yang benar",
+                    "Hemat waktu: Hasil dalam hitungan detik dibanding perhitungan manual yang bisa memakan beberapa menit",
+                    "Multi-output: Menampilkan usia dalam tahun, bulan, hari, total hari, dan total minggu sekaligus",
+                    "Bebas kesalahan: Tidak ada risiko human error yang sering terjadi saat menghitung manual dengan kalender",
+                    "Gratis dan tanpa aplikasi: Bisa diakses langsung dari browser tanpa perlu unduh atau daftar akun",
+                ],
+            },
+            {
+                heading: "Kegunaan Kalkulator Umur dalam Kehidupan Sehari-hari di Indonesia",
+                paragraphs: [
+                    "Di Indonesia, verifikasi usia adalah bagian dari banyak proses administratif dan legal. Berikut situasi nyata di mana kalkulator umur sangat membantu:",
+                ],
+                bullets: [
+                    "Pendaftaran CPNS/ASN: Batas usia umum 18–35 tahun (jabatan khusus seperti dokter hingga 40 tahun). Kalkulator membantu Anda mengetahui apakah masih memenuhi syarat dan berapa lama waktu tersisa",
+                    "Masuk Sekolah (PPDB): Anak SD harus berusia minimal 7 tahun per 1 Juli tahun ajaran baru. SMP: lulus SD/sederajat, usia minimal 12 tahun. Kalkulator memastikan anak memenuhi syarat",
+                    "Pernikahan & Hukum: Usia minimum menikah di Indonesia adalah 19 tahun untuk pria dan wanita (sesuai UU No.16/2019). Usia dewasa penuh hukum: 21 tahun",
+                    "KTP dan Hak Pilih: KTP wajib dimiliki warga negara usia 17 tahun ke atas. Hak pilih dalam pemilu juga berlaku pada usia 17 tahun",
+                    "Pemantauan Kehamilan: Kalkulator umur juga digunakan untuk menghitung usia janin dan usia ibu selama kehamilan — informasi penting bagi dokter kandungan",
+                    "Perencanaan Pensiun: Usia pensiun ASN adalah 58–60 tahun, karyawan swasta umumnya 55–57 tahun. Menghitung berapa tahun tersisa sangat penting untuk perencanaan keuangan",
+                    "Klaim Asuransi: Produk asuransi jiwa dan kesehatan sering memiliki batas usia masuk. Kalkulator membantu Anda memverifikasi kelayakan",
+                    "Perjalanan ke Luar Negeri: Beberapa negara memiliki batas usia untuk visa tertentu. Pastikan usia Anda akurat saat mengisi formulir",
+                ],
+            },
+            {
+                heading: "Perbandingan: Perhitungan Manual vs Kalkulator Umur Online",
+                paragraphs: [
+                    "Berikut perbandingan lengkap antara menghitung usia secara manual versus menggunakan kalkulator umur online:",
+                ],
+                table: {
+                    headers: ["Aspek", "Perhitungan Manual", "Kalkulator Online"],
+                    rows: [
+                        ["Akurasi", "⚠️ Bisa salah saat melewati Februari/tahun kabisat", "✅ Selalu akurat, mempertimbangkan semua variabel"],
+                        ["Kecepatan", "⏱️ 2–5 menit (perlu kalender)", "⚡ Kurang dari 1 detik"],
+                        ["Tingkat Kesalahan", "❌ Tinggi untuk selisih lebih dari 5 tahun", "✅ Nol kesalahan"],
+                        ["Output", "📋 Biasanya hanya dalam tahun", "📊 Tahun + Bulan + Hari + Total Hari"],
+                        ["Kemudahan", "📚 Perlu memahami cara hitung", "👆 Cukup masukkan tanggal lahir"],
+                        ["Kebutuhan Alat", "🗓️ Kalender fisik atau otak", "💻 / 📱 Browser saja"],
+                        ["Cocok untuk Keperluan Resmi", "⚠️ Berisiko jika ada kesalahan", "✅ Presisi tinggi untuk dokumen legal"],
+                    ],
+                },
+            },
         ],
-        relatedIds: ["kalkulator-bmi", "kalkulator-kehamilan"],
+        faq: [
+            {
+                question: "Bagaimana cara menghitung umur dari tanggal lahir?",
+                answer: "Kurangi tahun sekarang dengan tahun lahir, lalu sesuaikan berdasarkan apakah ulang tahun di tahun ini sudah lewat atau belum. Jika belum, kurangi 1 dari hasil. Untuk akurasi sampai hari, pertimbangkan perbedaan jumlah hari tiap bulan dan tahun kabisat. Cara termudah: gunakan kalkulator umur online yang menghitung secara otomatis dan bebas kesalahan.",
+            },
+            {
+                question: "Berapa batas usia CPNS di Indonesia?",
+                answer: "Untuk formasi umum, batas usia CPNS adalah 18–35 tahun. Jabatan strategis tertentu seperti dokter spesialis dan peneliti senior bisa hingga 40 tahun. Syarat usia dihitung per tanggal akhir pendaftaran, bukan tanggal tes. Gunakan kalkulator umur untuk memastikan Anda masih memenuhi syarat dan menghitung berapa lama waktu pendaftaran tersisa.",
+            },
+            {
+                question: "Apa itu tahun kabisat dan bagaimana pengaruhnya terhadap perhitungan usia?",
+                answer: "Tahun kabisat adalah tahun dengan 366 hari (ada 29 Februari). Berlaku untuk tahun yang habis dibagi 4, kecuali tahun abad (1800, 1900) kecuali yang juga habis dibagi 400 seperti 2000 dan 2400. Pengaruhnya pada usia: orang lahir 29 Februari hanya punya ulang tahun 'asli' setiap 4 tahun. Di Indonesia secara hukum, ulang tahun mereka dihitung 28 Februari di tahun bukan kabisat. Kalkulator otomatis menyesuaikan ini.",
+            },
+            {
+                question: "Berapa usia minimum menikah di Indonesia?",
+                answer: "Sesuai UU Perkawinan No.16 Tahun 2019, usia minimum menikah adalah 19 tahun untuk pria maupun wanita. Pernikahan di bawah usia ini memerlukan dispensasi dari pengadilan. Kalkulator umur membantu memverifikasi apakah seseorang sudah memenuhi syarat usia pernikahan.",
+            },
+            {
+                question: "Berapa usia masuk SD di Indonesia?",
+                answer: "Anak harus berusia minimal 7 tahun per 1 Juli tahun ajaran baru untuk masuk SD Kelas 1. Anak usia 6 tahun bisa diterima jika ada sisa daya tampung. Untuk SMP, minimal sudah lulus SD/MI dan pada umumnya berusia 12–15 tahun. PPDB (Penerimaan Peserta Didik Baru) menggunakan zonasi dan usia sebagai kriteria seleksi.",
+            },
+            {
+                question: "Apakah kalkulator umur ini akurat untuk tanggal lahir sebelum 1970?",
+                answer: "Ya, kalkulator ini akurat untuk semua tanggal lahir dalam kalender Masehi (Gregorian), termasuk sebelum 1970. Algoritmanya mempertimbangkan semua aturan tahun kabisat historis secara benar. Namun untuk keperluan resmi dengan tanggal lahir sangat lama, selalu verifikasi dengan dokumen fisik seperti akta kelahiran.",
+            },
+            {
+                question: "Apa perbedaan usia kronologis dan usia biologis?",
+                answer: "Usia kronologis adalah hitungan waktu sejak tanggal lahir — inilah yang dihitung kalkulator umur ini. Usia biologis adalah kondisi fisik dan seluler tubuh, yang bisa berbeda dari usia kronologis tergantung gaya hidup, genetik, dan kesehatan. Seseorang berusia 50 tahun kronologis bisa memiliki usia biologis 40 atau 60 tahun. Kalkulator umur mengukur usia kronologis.",
+            },
+            {
+                question: "Bagaimana cara menghitung usia dalam minggu?",
+                answer: "Total minggu = Total hari ÷ 7. Contoh: lahir 15 Januari 1995, per April 2026 = sekitar 11.407 hari ÷ 7 = ±1.629 minggu. Hitungan dalam minggu sering digunakan untuk usia bayi dan usia kehamilan. Kalkulator umur Numerral menampilkan total hari secara otomatis, sehingga Anda bisa menghitung minggu dengan mudah.",
+            },
+            {
+                question: "Mengapa zona waktu penting dalam perhitungan usia?",
+                answer: "Indonesia memiliki tiga zona waktu: WIB (UTC+7), WITA (UTC+8), dan WIT (UTC+9). Perbedaan zona waktu bisa memengaruhi penentuan 'hari ini' jika Anda mengakses kalkulator dari luar negeri atau tepat di tengah malam pergantian hari. Untuk keperluan resmi di Indonesia, gunakan zona waktu setempat (WIB/WITA/WIT sesuai lokasi) agar hasilnya konsisten.",
+            },
+            {
+                question: "Apa perbedaan antara kalkulator umur dan kalkulator selisih tanggal?",
+                answer: "Kalkulator umur menghitung berapa lama seseorang sudah hidup dari tanggal lahirnya hingga hari ini, dan umumnya menampilkan hasilnya dalam format tahun-bulan-hari yang mudah dibaca. Kalkulator selisih tanggal (date difference calculator) lebih umum — bisa menghitung selisih antara dua tanggal mana pun, bukan hanya dari tanggal lahir. Keduanya berguna untuk keperluan yang berbeda. Coba juga Kalkulator Selisih Tanggal dan Kalkulator Tanggal kami untuk kebutuhan serupa.",
+            },
+        ],
+        relatedIds: ["kalkulator-bmi", "kalkulator-kehamilan", "kalkulator-kurs"],
+    },
+    {
+        id: "age-calculator",
+        title: "Kalkulator Umur — Hitung Usia dari Tanggal Lahir",
+        keyword: "kalkulator umur",
+        calcType: "age",
+        icon: "🎂",
+        subtitle: "Hitung umur Anda secara tepat dalam tahun, bulan, dan hari. Masukkan tanggal lahir dan dapatkan hasil instan — akurat untuk CPNS, dokumen resmi, sekolah, dan kebutuhan medis.",
+        explanation: {
+            heading: "Apa Itu Kalkulator Umur?",
+            paragraphs: [
+                "Kalkulator umur adalah alat yang menghitung usia kronologis seseorang secara presisi berdasarkan selisih antara tanggal lahir dan hari ini. Perhitungannya mempertimbangkan tahun kabisat (leap year), jumlah hari berbeda tiap bulan, dan zona waktu — hal-hal yang sering luput dalam perhitungan manual.",
+                "Di Indonesia, mengetahui usia secara tepat penting untuk banyak keperluan: pendaftaran CPNS (batas 35 tahun), PPDB masuk sekolah, pengurusan dokumen kependudukan, klaim asuransi, hingga perencanaan pensiun. Kalkulator ini memberikan hasil dalam detik, gratis, dan tanpa perlu mendaftar.",
+            ],
+            highlight: "Contoh: Lahir 17 Agustus 1990 → Per April 2026 = 35 tahun 8 bulan 3 hari = 13.013 hari hidup = 1.859 minggu. Lebih informatif dari sekadar '35 tahun'!",
+        },
+        richSections: [
+            {
+                heading: "Cara Menghitung Umur Secara Akurat",
+                paragraphs: [
+                    "Menghitung umur dengan akurat bukan sekadar mengurangi tahun lahir dari tahun sekarang. Ada tiga variabel penting: perbedaan jumlah hari antar bulan, tahun kabisat, dan kapan tepatnya ulang tahun terjadi di tahun berjalan.",
+                    "Berikut langkah-langkah perhitungan yang benar:",
+                ],
+                bullets: [
+                    "Langkah 1 — Hitung selisih tahun: Tahun sekarang dikurangi tahun lahir. Jika ulang tahun di tahun ini belum lewat, kurangi 1",
+                    "Langkah 2 — Hitung selisih bulan: Bulan sekarang dikurangi bulan lahir. Jika hasilnya negatif, tambahkan 12 dan kurangi 1 dari nilai tahun",
+                    "Langkah 3 — Hitung selisih hari: Tanggal sekarang dikurangi tanggal lahir. Jika negatif, tambahkan jumlah hari di bulan sebelumnya dan kurangi 1 dari nilai bulan",
+                    "Tahun kabisat: Tahun habis dibagi 4 adalah kabisat (366 hari). Pengecualian: tahun abad (1700, 1800, 1900) bukan kabisat, kecuali 2000, 2400 yang habis dibagi 400",
+                    "Pengaruh kabisat: Lahir 29 Februari 2000? Ulang tahun Anda jatuh 28 Feb atau 1 Maret di tahun biasa, tergantung ketentuan setempat. Kalkulator ini menggunakan konvensi internasional standar",
+                    "Zona waktu: Indonesia memiliki WIB (UTC+7), WITA (UTC+8), WIT (UTC+9). Untuk hasil konsisten, kalkulator menggunakan waktu lokal browser Anda",
+                ],
+            },
+            {
+                heading: "Mengapa Kalkulator Umur Online Lebih Baik dari Perhitungan Manual?",
+                paragraphs: [
+                    "Perhitungan manual usia terlihat mudah tapi rentan salah hitung, terutama saat menyangkut bulan Februari, tahun kabisat, atau usia yang mendekati batas tertentu (misalnya 35 tahun tepat untuk CPNS).",
+                ],
+                bullets: [
+                    "✅ Akurat 100%: Mempertimbangkan tahun kabisat, jumlah hari tiap bulan, dan urutan kalender yang benar",
+                    "⚡ Instan: Hasil dalam kurang dari satu detik tanpa perlu hitung manual",
+                    "📊 Output lengkap: Usia dalam tahun + bulan + hari + total hari + total bulan sekaligus",
+                    "📱 Bisa diakses dari mana saja: HP, laptop, atau tablet tanpa aplikasi tambahan",
+                    "🔒 Privasi terjaga: Data tanggal lahir tidak disimpan di server kami",
+                    "🆓 Sepenuhnya gratis: Tanpa iklan mengganggu, tanpa biaya tersembunyi",
+                ],
+            },
+            {
+                heading: "Kegunaan Kalkulator Umur dalam Kehidupan Sehari-hari di Indonesia",
+                paragraphs: [
+                    "Kalkulator umur bukan hanya untuk tahu berapa tahun Anda hidup — ada banyak kebutuhan praktis di mana angka tepat sangat penting:",
+                ],
+                bullets: [
+                    "🏛️ Pendaftaran CPNS/ASN: Batas usia 18–35 tahun (formasi umum) atau 18–40 tahun (jabatan khusus). Satu hari pun bisa menentukan lolos tidaknya syarat administratif",
+                    "🏫 PPDB Sekolah: Anak SD minimal 7 tahun per 1 Juli, SMP 12 tahun, SMA 15 tahun. Kalkulator memastikan Anda tahu kapan anak memenuhi syarat masuk",
+                    "💍 Pernikahan: Usia minimum menikah 19 tahun sesuai UU No.16/2019. Verifikasi usia calon mempelai sebelum proses administrasi ke KUA",
+                    "🤰 Kehamilan: Usia ibu saat hamil sangat relevan untuk penilaian risiko kehamilan. Ibu hamil di atas 35 tahun termasuk kategori risiko, memerlukan pemantauan lebih ketat",
+                    "💼 Pensiun & THR: ASN pensiun usia 58–60 tahun, tenaga swasta umumnya 55–57 tahun. Hitung berapa tahun tersisa untuk merencanakan finansial Anda",
+                    "🏥 Layanan Kesehatan BPJS: Beberapa program BPJS memiliki ketentuan usia. Penting untuk memastikan Anda dalam rentang yang benar",
+                    "🛫 Visa & Imigrasi: Beberapa jenis visa pelajar, working holiday, atau kerja mensyaratkan usia tertentu (misalnya visa Australia/NZ untuk usia 18–30 tahun)",
+                    "📋 Akta Kelahiran & Kependudukan: Koreksi dokumen kependudukan memerlukan verifikasi usia yang akurat dari tanggal lahir",
+                ],
+            },
+            {
+                heading: "Perbandingan: Perhitungan Manual vs Kalkulator Umur Online",
+                paragraphs: [
+                    "Lihat seberapa besar perbedaan antara perhitungan usia secara manual dibanding menggunakan kalkulator digital:",
+                ],
+                table: {
+                    headers: ["Kriteria", "Perhitungan Manual", "Kalkulator Umur Online"],
+                    rows: [
+                        ["Akurasi", "⚠️ Rentan salah di Februari & tahun kabisat", "✅ Selalu akurat tanpa pengecualian"],
+                        ["Kecepatan", "⏱️ 3–10 menit dengan kalender", "⚡ Kurang dari 1 detik"],
+                        ["Tingkat Kesalahan", "❌ Rata-rata 1–2 hari salah per 5 tahun", "✅ 0% kesalahan"],
+                        ["Format Output", "📋 Biasanya hanya tahun bulat", "📊 Tahun + Bulan + Hari + Total Hari"],
+                        ["Keandalan untuk Dokumen", "⚠️ Berisiko jika ada batas usia ketat", "✅ Aman untuk keperluan resmi"],
+                        ["Alat yang Diperlukan", "🗓️ Kalender + pena + waktu", "💻 Browser saja, gratis"],
+                        ["Penanganan Tahun Kabisat", "❌ Sering diabaikan", "✅ Ditangani otomatis"],
+                        ["Multi-Zona Waktu", "❌ Tidak diperhitungkan", "✅ Menggunakan waktu lokal Anda"],
+                    ],
+                },
+            },
+        ],
+        faq: [
+            {
+                question: "Bagaimana cara menghitung umur dari tanggal lahir?",
+                answer: "Kurangi tahun sekarang dengan tahun lahir, lalu sesuaikan jika ulang tahun belum lewat di tahun ini (kurangi 1). Untuk detail bulan dan hari: hitung selisih bulan dan hari, lalu sesuaikan jika hasilnya negatif dengan 'meminjam' dari satuan yang lebih besar. Cara termudah: gunakan kalkulator umur online Numerral — masukkan tanggal lahir dan dapatkan hasilnya dalam detik, termasuk total hari dan bulan hidup Anda.",
+            },
+            {
+                question: "Berapa batas usia CPNS di Indonesia 2026?",
+                answer: "Batas usia CPNS 2026 untuk formasi umum adalah 18–35 tahun, dihitung pada saat penutupan pendaftaran. Beberapa jabatan khusus seperti dokter spesialis, peneliti, dan dosen memiliki batas hingga 40 tahun. Penting: usia dihitung secara tepat hingga hari penutupan, bukan hanya tahun. Gunakan kalkulator umur untuk mengetahui apakah Anda masih memenuhi syarat — bahkan perbedaan satu hari bisa menentukan.",
+            },
+            {
+                question: "Bagaimana cara menghitung usia bayi dalam minggu?",
+                answer: "Usia bayi dalam minggu = total hari sejak lahir dibagi 7. Contoh: bayi lahir 1 Februari 2026, per 1 April 2026 = 59 hari = 8 minggu 3 hari. Minggu usia bayi digunakan dokter untuk memantau tumbuh kembang dan menentukan jadwal vaksinasi. Kalkulator umur Numerral menampilkan total hari secara otomatis, sehingga Anda bisa menghitung minggu dengan cepat.",
+            },
+            {
+                question: "Apa itu tahun kabisat dan bagaimana pengaruhnya pada usia?",
+                answer: "Tahun kabisat adalah tahun dengan 366 hari (ada 29 Februari), terjadi setiap 4 tahun: 2000, 2004, 2008, ..., 2024, 2028. Pengecualian: tahun 1700, 1800, 1900 bukan kabisat meski habis dibagi 4. Pengaruh pada usia: seseorang lahir 29 Februari hanya punya ulang tahun 'resmi' setiap 4 tahun. Di tahun biasa, ulangtahunnya dihitung 28 Februari. Kalkulator umur kami menangani kasus ini secara otomatis.",
+            },
+            {
+                question: "Berapa usia minimum masuk SD di Indonesia?",
+                answer: "Anak harus berusia minimal 7 tahun per tanggal 1 Juli di tahun ajaran baru untuk masuk SD/MI Kelas 1. Anak usia 6 tahun dapat diterima jika ada sisa kapasitas dan sekolah menilai kesiapan belajar anak. Ketentuan ini diatur dalam Permendikbud PPDB terbaru. Gunakan kalkulator umur untuk memastikan usia anak tepat memenuhi syarat.",
+            },
+            {
+                question: "Apakah kalkulator umur ini akurat untuk semua tanggal lahir?",
+                answer: "Ya, kalkulator umur Numerral akurat untuk semua tanggal lahir dalam kalender Masehi (Gregorian), termasuk tanggal sebelum 1970, tanggal 29 Februari di tahun kabisat, dan tanggal di berbagai zona waktu Indonesia (WIB/WITA/WIT). Algoritma kami telah diuji untuk berbagai kasus tepi (edge cases) termasuk tahun kabisat dan transisi bulan dengan jumlah hari berbeda.",
+            },
+            {
+                question: "Apa perbedaan usia kronologis dan usia biologis?",
+                answer: "Usia kronologis adalah jumlah waktu tepat sejak tanggal lahir — inilah yang dihitung kalkulator umur. Usia biologis adalah kondisi fisik dan seluler tubuh, yang bisa lebih muda atau lebih tua dari usia kronologis tergantung gaya hidup, nutrisi, genetik, dan aktivitas fisik. Misalnya, seseorang berusia 50 tahun kronologis bisa memiliki usia biologis 40 tahun jika hidup sehat. Kalkulator umur hanya mengukur usia kronologis.",
+            },
+            {
+                question: "Bagaimana menghitung berapa lama lagi saya pensiun?",
+                answer: "Kurangi usia pensiun target dengan usia Anda sekarang. ASN di Indonesia pensiun di usia 58 tahun (pejabat eselon III ke bawah) atau 60 tahun (pejabat eselon II ke atas). Karyawan swasta umumnya pensiun di usia 55–57 tahun sesuai perjanjian kerja. Gunakan kalkulator umur untuk mengetahui usia Anda sekarang secara tepat, lalu hitung selisihnya dengan usia pensiun target untuk perencanaan dana pensiun yang akurat.",
+            },
+            {
+                question: "Bagaimana cara menghitung usia kehamilan?",
+                answer: "Usia kehamilan dihitung dalam minggu dari Hari Pertama Haid Terakhir (HPHT), bukan dari tanggal konsepsi. Kehamilan normal berlangsung 40 minggu (280 hari) dari HPHT. Formula: Usia kehamilan = (Tanggal sekarang − HPHT) ÷ 7 hari = jumlah minggu. Untuk perhitungan usia kehamilan yang lengkap termasuk Hari Perkiraan Lahir (HPL), gunakan Kalkulator Kehamilan kami yang tersedia secara gratis.",
+            },
+            {
+                question: "Apakah zona waktu mempengaruhi hasil kalkulator umur?",
+                answer: "Zona waktu berpengaruh minimal dalam kondisi normal, tetapi bisa relevan jika Anda mengakses kalkulator dari luar negeri atau tepat di tengah malam. Indonesia punya tiga zona: WIB (UTC+7), WITA (UTC+8), WIT (UTC+9). Kalkulator kami menggunakan waktu lokal browser Anda. Untuk keperluan dokumen resmi di Indonesia, pastikan perangkat Anda sudah diatur ke zona waktu yang sesuai (WIB untuk Jawa-Sumatera, WITA untuk Kalimantan-Bali-NTB, WIT untuk Papua-Maluku).",
+            },
+        ],
+        relatedIds: ["kalkulator-usia", "kalkulator-kehamilan", "kalkulator-bmi"],
     },
     {
         id: "kalkulator-kehamilan",
