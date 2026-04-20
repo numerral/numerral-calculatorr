@@ -13,6 +13,8 @@ const categories = [
 ];
 
 const countries = [
+    { key: "in", name: "India Calculators", icon: "🇮🇳", href: "/in", desc: "EMI, GST, income tax, SIP" },
+    { key: "uae", name: "UAE Calculators", icon: "🇦🇪", href: "/uae", desc: "VAT, gratuity, salary, loans" },
     { key: "ksa", name: "KSA Calculators", icon: "🇸🇦", href: "/ksa", desc: "EOSB, GOSI, VAT, salary" },
 ];
 

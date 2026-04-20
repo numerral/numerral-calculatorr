@@ -33,6 +33,7 @@ export async function GET() {
         { loc: canonicalUrl("/density-calculators"), lastmod: now },
         { loc: canonicalUrl("/electrical-calculators"), lastmod: now },
         { loc: canonicalUrl("/business-calculators"), lastmod: now },
+        { loc: canonicalUrl("/cooking-calculators"), lastmod: now },
 
         // Resource pages
         { loc: canonicalUrl("/about"), lastmod: now },
@@ -47,6 +48,12 @@ export async function GET() {
         { loc: canonicalUrl("/terms"), lastmod: now },
         { loc: canonicalUrl("/privacy"), lastmod: now },
         { loc: canonicalUrl("/cookie-policy"), lastmod: now },
+
+        // Automotive hub pages
+        { loc: canonicalUrl("/automotive-calculators"), lastmod: now },
+        { loc: canonicalUrl("/automotive-calculators/engine-performance"), lastmod: now },
+        { loc: canonicalUrl("/automotive-calculators/fuel-economy"), lastmod: now },
+        { loc: canonicalUrl("/automotive-calculators/wheels-tires"), lastmod: now },
 
         // Locale hub pages
         { loc: `${SITE_URL}/ar`, lastmod: now },

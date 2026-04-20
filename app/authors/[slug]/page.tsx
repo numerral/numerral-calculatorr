@@ -33,17 +33,32 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 // Map category keys to display names and URL prefixes
 const CATEGORY_INFO: Record<string, { label: string; prefix: string }> = {
-    loan: { label: "Loan Calculators", prefix: "/loan-calculators" },
-    invest: { label: "Investment Calculators", prefix: "/investment-calculators" },
-    tax: { label: "Tax Calculators", prefix: "/tax-calculators" },
-    salary: { label: "Salary Calculators", prefix: "/salary-calculators" },
-    utility: { label: "Utility Calculators", prefix: "/utility-calculators" },
-    business: { label: "Business Calculators", prefix: "/business-calculators" },
-    construction: { label: "Construction Calculators", prefix: "/construction-calculators" },
-    ev: { label: "EV Calculators", prefix: "/ev-calculators" },
-    health: { label: "Health Calculators", prefix: "/health-calculators" },
-    math: { label: "Math Calculators", prefix: "/math-calculators" },
-    time: { label: "Time Calculators", prefix: "/time-calculators" },
+    // Finance & Business
+    loan:         { label: "Loan Calculators",             prefix: "/loan-calculators" },
+    invest:       { label: "Investment Calculators",        prefix: "/investment-calculators" },
+    tax:          { label: "Tax Calculators",               prefix: "/tax-calculators" },
+    salary:       { label: "Salary Calculators",            prefix: "/salary-calculators" },
+    business:     { label: "Business Calculators",          prefix: "/business-calculators" },
+    vehicle:      { label: "Vehicle Loan Calculators",      prefix: "/vehicle-loan-calculators" },
+    // Science & Engineering
+    physics:      { label: "Physics Calculators",           prefix: "/physics-calculators" },
+    chemistry:    { label: "Chemistry Calculators",         prefix: "/chemistry-calculators" },
+    density:      { label: "Density Calculators",           prefix: "/density-calculators" },
+    electrical:   { label: "Electrical Calculators",        prefix: "/electrical-calculators" },
+    math:         { label: "Math Calculators",              prefix: "/math-calculators" },
+    construction: { label: "Construction Calculators",      prefix: "/construction-calculators" },
+    // Health & Lifestyle
+    health:       { label: "Health Calculators",            prefix: "/health-calculators" },
+    pet:          { label: "Pet Calculators",               prefix: "/pet-calculators" },
+    cooking:      { label: "Cooking & Baking Calculators",  prefix: "/cooking-calculators" },
+    // Utility & Time
+    utility:      { label: "Utility Calculators",           prefix: "/utility-calculators" },
+    time:         { label: "Time & Date Calculators",       prefix: "/time-calculators" },
+    // Automotive
+    ev:           { label: "EV Calculators",                prefix: "/ev-calculators" },
+    engine:       { label: "Engine & Performance Calculators", prefix: "/automotive-calculators/engine-performance" },
+    fuel:         { label: "Fuel Economy Calculators",      prefix: "/automotive-calculators/fuel-economy" },
+    wheels:       { label: "Wheels & Tires Calculators",    prefix: "/automotive-calculators/wheels-tires" },
 };
 
 function getArticlesForAuthor(authorSlug: string, role: string) {

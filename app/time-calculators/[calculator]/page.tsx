@@ -8,7 +8,7 @@ import DynamicExplanation from "@/components/shared/DynamicExplanation";
 import FAQAccordion from "@/components/shared/FAQAccordion";
 import Link from "next/link";
 import { getCalculatorsByCategory } from "@/lib/data";
-import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
+import { canonicalUrl, breadcrumbSchema, webAppSchema, faqSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 import RelatedCalculators from "@/components/shared/RelatedCalculators";
 import GuideCTA from "@/components/shared/GuideCTA";
@@ -506,14 +506,18 @@ export default async function TimeCalculatorHubPage({ params }: PageProps) {
     const content = HUB_CONTENT[calc.id] ?? HUB_CONTENT[calc.slug];
 
     const pageUrl = canonicalUrl(`/time-calculators/${calc.slug}`);
-    const schemaData = JSON.stringify([
+    const schemas: Array<object | undefined> = [
         breadcrumbSchema([
             { name: "Home", url: `${SITE_URL}/` },
             { name: "Time & Date Calculators", url: canonicalUrl("/time-calculators") },
             { name: calc.title },
         ]),
-        webAppSchema(calc.title, pageUrl),
-    ]);
+        webAppSchema(calc.title, pageUrl, "USD", "UtilitiesApplication"),
+    ];
+    if (content?.faq && content.faq.length > 0) {
+        schemas.push(faqSchema(content.faq));
+    }
+    const schemaData = JSON.stringify(schemas.filter(Boolean));
 
     return (
         <main className="container" style={{ paddingTop: "var(--s-4)" }}>

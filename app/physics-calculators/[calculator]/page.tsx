@@ -1,4 +1,3 @@
-// Dynamic Hub — /physics-calculators/[calculator]/
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Script from "next/script";
@@ -9,11 +8,12 @@ import DynamicExplanation from "@/components/shared/DynamicExplanation";
 import FAQAccordion from "@/components/shared/FAQAccordion";
 import TrendingCalculations from "@/components/shared/TrendingCalculations";
 import { getCalculatorsByCategory } from "@/lib/data";
-import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
+import { canonicalUrl, breadcrumbSchema, webAppSchema, faqSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 import RelatedCalculators from "@/components/shared/RelatedCalculators";
 import GuideCTA from "@/components/shared/GuideCTA";
 import GlossaryChip from "@/components/shared/GlossaryChip";
+
 
 interface PageProps { params: Promise<{ calculator: string }>; }
 
@@ -662,7 +662,19 @@ export default async function PhysicsCalculatorHubPage({ params }: PageProps) {
     if (!calc) return notFound();
     const content = HUB_CONTENT[calc.id] ?? HUB_CONTENT[calc.slug];
     const pageUrl = canonicalUrl(`/physics-calculators/${calc.slug}`);
-    const schemaData = JSON.stringify([breadcrumbSchema([{ name: "Home", url: `${SITE_URL}/` }, { name: "Physics Calculators", url: canonicalUrl("/physics-calculators") }, { name: calc.title }]), webAppSchema(calc.title, pageUrl)]);
+    const schemas: object[] = [
+        breadcrumbSchema([
+            { name: "Home", url: `${SITE_URL}/` },
+            { name: "Physics Calculators", url: canonicalUrl("/physics-calculators") },
+            { name: calc.title },
+        ]),
+        webAppSchema(calc.title, pageUrl, "USD", "EducationalApplication"),
+    ];
+    if (content?.faq && content.faq.length > 0) {
+        schemas.push(faqSchema(content.faq));
+    }
+    const schemaData = JSON.stringify(schemas);
+
 
     return (
         <main className="container" style={{ paddingTop: "var(--s-4)" }}>

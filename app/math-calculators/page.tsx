@@ -6,8 +6,9 @@ import Breadcrumb from "@/components/layout/Breadcrumb";
 import CategoryGrid from "@/components/shared/CategoryGrid";
 import DynamicExplanation from "@/components/shared/DynamicExplanation";
 import FAQAccordion from "@/components/shared/FAQAccordion";
+import AuthorBadge from "@/components/shared/AuthorBadge";
 import { getCalculatorsByCategory, type CalculatorDef } from "@/lib/data";
-import { canonicalUrl, breadcrumbSchema } from "@/lib/seo";
+import { canonicalUrl, breadcrumbSchema, faqSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
@@ -16,6 +17,25 @@ export const metadata: Metadata = {
         "Free online math calculators: percentages, fractions, GCD, LCM, quadratic equations, exponents, factorials, averages, standard deviation, and long division. Step-by-step solutions with formulas explained.",
     alternates: { canonical: canonicalUrl("/math-calculators") },
 };
+
+const FAQ_ITEMS = [
+                    {
+                        question: "Are these calculators suitable for school and college homework?",
+                        answer: "Yes — every calculator shows the formula used and step-by-step working. This means you can verify your manual calculations against the tool's output. The detailed steps also help you understand the method, not just copy an answer.",
+                    },
+                    {
+                        question: "How accurate are these math calculators?",
+                        answer: "All calculators use standard floating-point arithmetic with precision up to 10+ decimal places. For everyday math, homework, and professional use, the results are exact. The factorial calculator supports values up to 170! (the limit of JavaScript's number representation).",
+                    },
+                    {
+                        question: "Can I use these on my phone?",
+                        answer: "Absolutely. All calculators are fully responsive and work on any screen size — phones, tablets, and desktops. No app installation required.",
+                    },
+                    {
+                        question: "Do you plan to add more math calculators?",
+                        answer: "Yes. We are actively adding calculators for geometry (area, volume, perimeter), trigonometry (sin, cos, tan), probability, logarithms, and more. Check back regularly for new tools.",
+                    },
+                ];
 
 const schemaData = JSON.stringify([
     breadcrumbSchema([
@@ -29,7 +49,8 @@ const schemaData = JSON.stringify([
         description: "Free online math calculators with step-by-step solutions for percentages, fractions, algebra, statistics, and number operations.",
         url: canonicalUrl("/math-calculators"),
     },
-]);
+,
+    faqSchema(FAQ_ITEMS)]);
 
 export default function MathCalculatorsPage() {
     const calcs = getCalculatorsByCategory("math");
@@ -52,12 +73,15 @@ export default function MathCalculatorsPage() {
             <h1 className="t-h1" style={{ marginBottom: "var(--s-2)" }}>
                 Math Calculators — Percentage, Fractions, Algebra & Statistics
             </h1>
-            <p className="t-body text-muted" style={{ marginBottom: "var(--s-8)" }}>
+            <p className="t-body text-muted" style={{ marginBottom: "var(--s-4)" }}>
                 Free math calculators with step-by-step solutions — calculate percentages, add and subtract fractions,
                 find GCD and LCM, solve quadratic equations, compute exponents and factorials, calculate averages
                 and standard deviations, and perform long division. Every tool shows the formula, explains the method,
                 and walks you through worked examples.
             </p>
+            <div style={{ marginBottom: "var(--s-8)" }}>
+                <AuthorBadge categoryKey="math" />
+            </div>
 
             <section style={{ marginBottom: "var(--s-12)" }}>
                 <h2 className="t-h2" style={{ marginBottom: "var(--s-5)" }}>All Math Calculators</h2>
@@ -92,24 +116,7 @@ export default function MathCalculatorsPage() {
 
             <FAQAccordion
                 title="Math Calculator FAQ"
-                items={[
-                    {
-                        question: "Are these calculators suitable for school and college homework?",
-                        answer: "Yes — every calculator shows the formula used and step-by-step working. This means you can verify your manual calculations against the tool's output. The detailed steps also help you understand the method, not just copy an answer.",
-                    },
-                    {
-                        question: "How accurate are these math calculators?",
-                        answer: "All calculators use standard floating-point arithmetic with precision up to 10+ decimal places. For everyday math, homework, and professional use, the results are exact. The factorial calculator supports values up to 170! (the limit of JavaScript's number representation).",
-                    },
-                    {
-                        question: "Can I use these on my phone?",
-                        answer: "Absolutely. All calculators are fully responsive and work on any screen size — phones, tablets, and desktops. No app installation required.",
-                    },
-                    {
-                        question: "Do you plan to add more math calculators?",
-                        answer: "Yes. We are actively adding calculators for geometry (area, volume, perimeter), trigonometry (sin, cos, tan), probability, logarithms, and more. Check back regularly for new tools.",
-                    },
-                ]}
+                items={FAQ_ITEMS}
             />
 
             <section style={{ marginTop: "var(--s-8)" }}>

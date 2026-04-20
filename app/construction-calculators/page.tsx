@@ -6,8 +6,9 @@ import Breadcrumb from "@/components/layout/Breadcrumb";
 import CategoryGrid from "@/components/shared/CategoryGrid";
 import DynamicExplanation from "@/components/shared/DynamicExplanation";
 import FAQAccordion from "@/components/shared/FAQAccordion";
+import AuthorBadge from "@/components/shared/AuthorBadge";
 import { getCalculatorsByCategory, type CalculatorDef } from "@/lib/data";
-import { canonicalUrl, breadcrumbSchema } from "@/lib/seo";
+import { canonicalUrl, breadcrumbSchema, faqSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
@@ -16,6 +17,25 @@ export const metadata: Metadata = {
         "Free construction calculators: concrete volume, roofing materials, flooring area, paint coverage, drywall sheets, tile estimator, and more. Instant, accurate results for every project.",
     alternates: { canonical: canonicalUrl("/construction-calculators") },
 };
+
+const FAQ_ITEMS = [
+                    {
+                        question: "How accurate are these construction calculators?",
+                        answer: "Our calculators use the same formulas professional contractors use. Concrete volumes are calculated using standard cubic measurement. Roofing uses pitch multipliers from the NRCA. Paint calculations follow manufacturer coverage guidelines (350 sq ft/gallon). For most projects, results are accurate within 5%.",
+                    },
+                    {
+                        question: "Should I include a waste factor?",
+                        answer: "Yes, always. Construction materials require extra for cuts, breakage, and fitting around obstacles. Standard practice is 10% for rectangular rooms with simple layouts and 15% for complex shapes, diagonal patterns, or beginners. Our calculators include a waste factor input for easy adjustment.",
+                    },
+                    {
+                        question: "What units do these calculators support?",
+                        answer: "All calculators use feet and inches as primary inputs. Results include conversions to metric units (square meters, cubic meters) where applicable. Depth inputs support both inches and feet to match how different trades measure.",
+                    },
+                    {
+                        question: "Can I use these for professional estimates?",
+                        answer: "These calculators are great for material quantity estimation. For professional bids, you'll also need to account for labor, equipment, permits, subcontractor costs, and local material pricing — which vary by region and project complexity.",
+                    },
+                ];
 
 const schemaData = JSON.stringify([
     breadcrumbSchema([
@@ -29,7 +49,8 @@ const schemaData = JSON.stringify([
         description: "Free construction calculators for concrete, roofing, flooring, paint, drywall, tile, square footage, and cubic yards.",
         url: canonicalUrl("/construction-calculators"),
     },
-]);
+,
+    faqSchema(FAQ_ITEMS)]);
 
 export default function ConstructionCalculatorsPage() {
     const calcs = getCalculatorsByCategory("construction");
@@ -52,11 +73,14 @@ export default function ConstructionCalculatorsPage() {
             <h1 className="t-h1" style={{ marginBottom: "var(--s-2)" }}>
                 Construction Calculators — Concrete, Roofing, Flooring & More
             </h1>
-            <p className="t-body text-muted" style={{ marginBottom: "var(--s-8)" }}>
+            <p className="t-body text-muted" style={{ marginBottom: "var(--s-4)" }}>
                 Free building & renovation calculators — estimate concrete volume, roofing materials,
                 flooring area, paint coverage, drywall sheets, tile count, and more. Get instant, accurate
                 results for any construction project.
             </p>
+            <div style={{ marginBottom: "var(--s-8)" }}>
+                <AuthorBadge categoryKey="construction" />
+            </div>
 
             <section style={{ marginBottom: "var(--s-12)" }}>
                 <h2 className="t-h2" style={{ marginBottom: "var(--s-5)" }}>All Construction Calculators</h2>
@@ -91,24 +115,7 @@ export default function ConstructionCalculatorsPage() {
 
             <FAQAccordion
                 title="Construction Calculator FAQ"
-                items={[
-                    {
-                        question: "How accurate are these construction calculators?",
-                        answer: "Our calculators use the same formulas professional contractors use. Concrete volumes are calculated using standard cubic measurement. Roofing uses pitch multipliers from the NRCA. Paint calculations follow manufacturer coverage guidelines (350 sq ft/gallon). For most projects, results are accurate within 5%.",
-                    },
-                    {
-                        question: "Should I include a waste factor?",
-                        answer: "Yes, always. Construction materials require extra for cuts, breakage, and fitting around obstacles. Standard practice is 10% for rectangular rooms with simple layouts and 15% for complex shapes, diagonal patterns, or beginners. Our calculators include a waste factor input for easy adjustment.",
-                    },
-                    {
-                        question: "What units do these calculators support?",
-                        answer: "All calculators use feet and inches as primary inputs. Results include conversions to metric units (square meters, cubic meters) where applicable. Depth inputs support both inches and feet to match how different trades measure.",
-                    },
-                    {
-                        question: "Can I use these for professional estimates?",
-                        answer: "These calculators are great for material quantity estimation. For professional bids, you'll also need to account for labor, equipment, permits, subcontractor costs, and local material pricing — which vary by region and project complexity.",
-                    },
-                ]}
+                items={FAQ_ITEMS}
             />
 
             <section style={{ marginTop: "var(--s-8)" }}>

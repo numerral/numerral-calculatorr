@@ -6,8 +6,9 @@ import Breadcrumb from "@/components/layout/Breadcrumb";
 import CategoryGrid from "@/components/shared/CategoryGrid";
 import DynamicExplanation from "@/components/shared/DynamicExplanation";
 import FAQAccordion from "@/components/shared/FAQAccordion";
+import AuthorBadge from "@/components/shared/AuthorBadge";
 import { getCalculatorsByCategory, type CalculatorDef } from "@/lib/data";
-import { canonicalUrl, breadcrumbSchema } from "@/lib/seo";
+import { canonicalUrl, breadcrumbSchema, faqSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
@@ -16,6 +17,25 @@ export const metadata: Metadata = {
         "Calculate income tax (old & new regime), GST, HRA exemption, TDS, capital gains tax & professional tax. Free, instant results for FY 2025-26.",
     alternates: { canonical: canonicalUrl("/tax-calculators") },
 };
+
+const FAQ_ITEMS = [
+                    {
+                        question: "What is the income tax rebate under the New Regime?",
+                        answer: "Under the New Regime for FY 2025-26, income up to ₹12 Lakh is effectively tax-free due to the Section 87A rebate. This means salaried individuals with income up to ₹12,75,000 (including ₹75,000 standard deduction) pay zero tax.",
+                    },
+                    {
+                        question: "How is GST calculated?",
+                        answer: "GST is calculated at 5%, 12%, 18%, or 28% depending on the item category. For intra-state supply, it's split equally into CGST and SGST. For inter-state, the full amount is IGST. Our calculator handles both inclusive and exclusive modes.",
+                    },
+                    {
+                        question: "What is HRA exemption and who can claim it?",
+                        answer: "HRA exemption is available to salaried employees who receive HRA and pay rent. The exempt amount is the minimum of: actual HRA received, 50%/40% of basic salary (metro/non-metro), or rent paid minus 10% of basic salary.",
+                    },
+                    {
+                        question: "When is TDS deducted?",
+                        answer: "TDS is deducted at source when income exceeds specified thresholds — ₹2.5L for salary, ₹40,000 for interest (bank), ₹2.4L for rent, ₹30,000 for professional fees, and ₹50L for property sale.",
+                    },
+                ];
 
 const schemaData = JSON.stringify([
     breadcrumbSchema([
@@ -29,7 +49,8 @@ const schemaData = JSON.stringify([
         description: "All tax calculators including income tax, GST, HRA exemption, TDS, capital gains, and professional tax.",
         url: canonicalUrl("/tax-calculators"),
     },
-]);
+,
+    faqSchema(FAQ_ITEMS)]);
 
 export default function TaxCalculatorsPage() {
     const taxCalcs = getCalculatorsByCategory("tax");
@@ -52,10 +73,13 @@ export default function TaxCalculatorsPage() {
             <h1 className="t-h1" style={{ marginBottom: "var(--s-2)" }}>
                 Tax Calculators — Income Tax, GST, HRA & TDS Tools
             </h1>
-            <p className="t-body text-muted" style={{ marginBottom: "var(--s-8)" }}>
+            <p className="t-body text-muted" style={{ marginBottom: "var(--s-4)" }}>
                 Estimate your tax liability accurately with our free tax calculators. Compare old vs new regime,
                 split GST, calculate HRA exemptions, and plan your tax-saving strategy for FY 2025-26.
             </p>
+            <div style={{ marginBottom: "var(--s-8)" }}>
+                <AuthorBadge categoryKey="tax" />
+            </div>
 
             <section style={{ marginBottom: "var(--s-12)" }}>
                 <h2 className="t-h2" style={{ marginBottom: "var(--s-5)" }}>All Tax Calculators</h2>
@@ -90,24 +114,7 @@ export default function TaxCalculatorsPage() {
 
             <FAQAccordion
                 title="Tax Calculator FAQ"
-                items={[
-                    {
-                        question: "What is the income tax rebate under the New Regime?",
-                        answer: "Under the New Regime for FY 2025-26, income up to ₹12 Lakh is effectively tax-free due to the Section 87A rebate. This means salaried individuals with income up to ₹12,75,000 (including ₹75,000 standard deduction) pay zero tax.",
-                    },
-                    {
-                        question: "How is GST calculated?",
-                        answer: "GST is calculated at 5%, 12%, 18%, or 28% depending on the item category. For intra-state supply, it's split equally into CGST and SGST. For inter-state, the full amount is IGST. Our calculator handles both inclusive and exclusive modes.",
-                    },
-                    {
-                        question: "What is HRA exemption and who can claim it?",
-                        answer: "HRA exemption is available to salaried employees who receive HRA and pay rent. The exempt amount is the minimum of: actual HRA received, 50%/40% of basic salary (metro/non-metro), or rent paid minus 10% of basic salary.",
-                    },
-                    {
-                        question: "When is TDS deducted?",
-                        answer: "TDS is deducted at source when income exceeds specified thresholds — ₹2.5L for salary, ₹40,000 for interest (bank), ₹2.4L for rent, ₹30,000 for professional fees, and ₹50L for property sale.",
-                    },
-                ]}
+                items={FAQ_ITEMS}
             />
 
             <section style={{ marginTop: "var(--s-8)" }}>

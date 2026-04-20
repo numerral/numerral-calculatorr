@@ -40,7 +40,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 // Hub content per tax calculator
 const HUB_CONTENT: Record<string, {
     subtitle: string;
-    explanation: { heading: string; paragraphs: string[]; highlight: string };
+    explanation?: { heading: string; paragraphs: string[]; highlight: string };
     faq: { question: string; answer: string }[];
     contentHTML?: string;
 }> = {
@@ -77,7 +77,46 @@ const HUB_CONTENT: Record<string, {
             { question: "What is the difference between CGST, SGST, and IGST?", answer: "CGST (Central GST) and SGST (State GST) apply to intra-state transactions — the rate is split equally between both. IGST (Integrated GST) applies to inter-state transactions — the full rate goes to the central government." },
             { question: "How do I know if GST is inclusive or exclusive?", answer: "MRP on consumer products is always GST-inclusive. B2B invoices usually show GST-exclusive prices. Check the invoice — if it says 'plus GST' or shows GST separately, it's exclusive." },
             { question: "Which GST rate applies to my product?", answer: "Check the HSN/SAC code for your product/service. Essential items (food, medicine) are at 5%, most goods at 12-18%, services at 18%, and luxury items (cars, tobacco) at 28%." },
+            { question: "What is Input Tax Credit (ITC)?", answer: "ITC allows businesses to offset the GST paid on purchases against the GST they collect on sales. Net GST payable = GST on sales − GST paid on inputs. This prevents cascading taxes and makes GST a value-added system." },
+            { question: "Who must register for GST?", answer: "Businesses with annual turnover exceeding ₹40 Lakh (goods) or ₹20 Lakh (services) must register. Special category states have a lower threshold of ₹10 Lakh. Voluntary registration is also allowed, which enables ITC claims." },
         ],
+        contentHTML: `<h2>What is GST?</h2>
+<p>Goods and Services Tax (GST) is India's unified indirect tax that replaced VAT, service tax, excise duty, and entry tax on 1 July 2017. As a <strong>destination-based, multi-stage tax</strong>, GST is levied at every point in the supply chain but only on the value added at each stage. The final consumer bears the full tax burden.</p>
+
+<h3>GST Rate Slabs</h3>
+<table><thead><tr><th>Rate</th><th>Category</th><th>Examples</th></tr></thead><tbody>
+<tr><td><strong>0%</strong></td><td>Essential goods</td><td>Fresh produce, milk, eggs, bread, education, healthcare</td></tr>
+<tr><td><strong>5%</strong></td><td>Necessities</td><td>Packaged food, sugar, tea, coffee, domestic LPG</td></tr>
+<tr><td><strong>12%</strong></td><td>Standard goods</td><td>Computers, mobile phones, butter, ayurvedic medicines</td></tr>
+<tr><td><strong>18%</strong></td><td>Most services</td><td>Telecom, banking, electronics, hotel rooms ₹2,500–₹7,500/night</td></tr>
+<tr><td><strong>28%</strong></td><td>Luxury/sin goods</td><td>Cars, tobacco, cement, air conditioners, casinos</td></tr>
+</tbody></table>
+
+<h3>CGST, SGST, and IGST — The Difference</h3>
+<ul>
+<li><strong>CGST</strong> (Central GST) — To central government on intra-state transactions (half of total GST rate)</li>
+<li><strong>SGST</strong> (State GST) — To state government on intra-state transactions (other half)</li>
+<li><strong>IGST</strong> (Integrated GST) — On inter-state transactions. Equal to CGST + SGST combined, collected by centre and distributed to destination state</li>
+</ul>
+<div class="explanation__highlight"><strong>Example:</strong> 18% GST transaction within Maharashtra = 9% CGST + 9% SGST. Between Maharashtra and Karnataka = 18% IGST (to Delhi, allocated to Karnataka as destination).</div>
+
+<h3>How to Calculate GST Step by Step</h3>
+<p><strong>Adding GST (exclusive):</strong> GST Amount = Price × (Rate ÷ 100) → Total = Price + GST. Example: ₹1,000 product at 18% → GST = ₹180 → Total = ₹1,180.</p>
+<p><strong>Extracting GST (inclusive):</strong> Original = Inclusive Price × 100 ÷ (100 + Rate) → GST = Inclusive − Original. Example: ₹1,180 at 18% → Original = ₹1,000 → GST = ₹180.</p>
+
+<h3>Input Tax Credit (ITC)</h3>
+<p>ITC is the core mechanism that makes GST a value-added tax. Businesses deduct the GST paid on purchases from the GST collected on sales:</p>
+<div class="explanation__highlight"><strong>Net GST Payable = GST Collected on Sales − GST Paid on Purchases</strong><br/><br/>Example: Manufacturer pays ₹18,000 GST on raw materials. Sells finished goods collecting ₹25,200 GST. Net payable to government = <strong>₹7,200</strong></div>
+
+<h3>GST Registration Threshold</h3>
+<p>Businesses exceeding <strong>₹40 Lakh turnover (goods)</strong> or <strong>₹20 Lakh (services)</strong> must register. Special category states: ₹10 Lakh. Voluntary registration is allowed below these limits — useful for businesses wanting to claim ITC.</p>
+
+<h3>References</h3>
+<ul>
+<li>Central Board of Indirect Taxes and Customs (CBIC) — cbic.gov.in</li>
+<li>GST Council Secretariat — gstcouncil.gov.in</li>
+<li>CGST Act, 2017 — Official text</li>
+</ul>`,
     },
     "hra-exemption-calculator": {
         subtitle: "Calculate how much of your HRA is tax-exempt. Compare all 3 HRA rules to find your maximum exemption.",
@@ -93,7 +132,59 @@ const HUB_CONTENT: Record<string, {
             { question: "Can I claim HRA if I own a house?", answer: "Yes, if you live in a rented house in a different city than your owned property. You can claim both HRA exemption and home loan interest deduction (Section 24b) simultaneously." },
             { question: "Is HRA available under the New Tax Regime?", answer: "No. HRA exemption under Section 10(13A) is not available under the New Regime. This is one reason why the Old Regime can be better for those claiming HRA + other deductions." },
             { question: "What documents do I need for HRA claim?", answer: "Rent receipts (monthly), rental agreement, and landlord's PAN if rent exceeds ₹1,00,000/year. Some employers also require a declaration form." },
+            { question: "How is HRA exemption calculated?", answer: "The exempt HRA is the minimum of three amounts: (1) Actual HRA received, (2) Rent paid − 10% of Basic Salary, (3) 50% of Basic if metro city / 40% if non-metro. Only HRA above this exemption is taxable." },
+            { question: "Which cities are considered Metro for HRA?", answer: "Only 4 cities qualify as metro for HRA: Delhi, Mumbai, Kolkata, and Chennai. All other cities including Bengaluru and Hyderabad are non-metro, qualifying for only 40% of Basic Salary as the HRA ceiling." },
         ],
+        contentHTML: `<h2>What is HRA Exemption?</h2>
+<p>House Rent Allowance (HRA) is a salary component provided by employers for rental housing. Under <strong>Section 10(13A) of the Income Tax Act</strong>, part of your HRA is tax-exempt — but only if you actually pay rent. If you don't pay rent, the entire HRA is taxable.</p>
+
+<h3>The HRA Exemption Formula — Minimum of Three</h3>
+<div class="explanation__highlight">
+<strong>Exempt HRA = Minimum of:</strong><br/>
+1. Actual HRA received from employer<br/>
+2. Rent paid − 10% of Basic Salary<br/>
+3. 50% of Basic Salary (metro cities: Delhi, Mumbai, Kolkata, Chennai) OR 40% (all other cities)
+</div>
+
+<h3>Worked Example — Mumbai (Metro)</h3>
+<p>Basic: ₹50,000/month | HRA received: ₹20,000 | Rent paid: ₹22,000</p>
+<table><thead><tr><th>Calculation</th><th>Amount</th></tr></thead><tbody>
+<tr><td>Actual HRA received</td><td>₹20,000</td></tr>
+<tr><td>Rent − 10% Basic (₹22,000 − ₹5,000)</td><td>₹17,000</td></tr>
+<tr><td>50% of Basic (Metro): 50% × ₹50,000</td><td>₹25,000</td></tr>
+</tbody></table>
+<div class="explanation__highlight"><strong>Exempt HRA = Minimum = ₹17,000/month → ₹2,04,000/year</strong><br/>Taxable HRA = ₹20,000 − ₹17,000 = ₹3,000/month</div>
+
+<h3>Worked Example — Pune (Non-Metro)</h3>
+<p>Basic: ₹40,000 | HRA: ₹14,000 | Rent: ₹16,000</p>
+<ul>
+<li>Actual HRA: ₹14,000</li>
+<li>Rent − 10% Basic: ₹16,000 − ₹4,000 = ₹12,000</li>
+<li>40% of Basic (Non-Metro): ₹16,000</li>
+<li><strong>Exempt = Minimum = ₹12,000/month → ₹1,44,000/year</strong></li>
+</ul>
+
+<h3>Metro vs. Non-Metro Cities</h3>
+<p>The Income Tax Act recognises only <strong>four metro cities</strong> for the 50% Basic benefit: Delhi, Mumbai, Kolkata, and Chennai. Bengaluru, Hyderabad, Pune, and Ahmedabad — despite being major rental markets — are non-metro (40% Basic). This significantly impacts HRA exemption for residents of these tech hubs.</p>
+
+<h3>Key Conditions for HRA Exemption</h3>
+<ul>
+<li>Must be a <strong>salaried employee</strong> — self-employed cannot claim HRA exemption (use Section 80GG instead)</li>
+<li>Must be <strong>actually paying rent</strong> — HRA without real rental expense is fully taxable</li>
+<li>Cannot claim if you own the property you are living in</li>
+<li>Landlord's PAN required on rent receipts if annual rent exceeds <strong>₹1 Lakh</strong></li>
+<li><strong>Only available under Old Tax Regime</strong> — not available under New Regime</li>
+</ul>
+
+<h3>HRA vs Section 80GG (For Those Without HRA)</h3>
+<p>If you don't receive HRA, claim deduction under <strong>Section 80GG</strong> — minimum of: (1) Rent paid − 10% of income, (2) 25% of total income, (3) ₹5,000/month (₹60,000/year cap). The ₹60,000 annual cap makes 80GG far less valuable than Section 10(13A) HRA exemption.</p>
+
+<h3>References</h3>
+<ul>
+<li>Section 10(13A) — Income Tax Act, 1961</li>
+<li>Rule 2A — Income Tax Rules, 1962</li>
+<li>Income Tax Department, India — incometax.gov.in</li>
+</ul>`,
     },
     "tds-calculator": {
         subtitle: "Calculate TDS deduction on salary, rent, professional fees, property sale, FD interest & other income types for FY 2025-26. Know the exact TDS rate, threshold, and section applicable.",
@@ -307,11 +398,13 @@ export default async function TaxCalculatorHubPage({ params }: PageProps) {
                 </aside>
             </div>
 
-            <DynamicExplanation
-                heading={hub.explanation.heading}
-                paragraphs={hub.explanation.paragraphs}
-                highlight={hub.explanation.highlight}
-            />
+            {hub.explanation && (
+                <DynamicExplanation
+                    heading={hub.explanation.heading}
+                    paragraphs={hub.explanation.paragraphs}
+                    highlight={hub.explanation.highlight}
+                />
+            )}
 
             {hub.contentHTML && (
                 <section

@@ -1,5 +1,6 @@
 // Homepage — / (Server Component)
-// Redesigned 7-Section Layout — Universal Calculator Platform
+// Premium World-Class Redesign — Numerral Calculator Platform
+// Sections: Hero · Stats · Popular · Categories · Country Layer · Trending · Trust · How It Works · FAQ · Deep Link
 
 import type { Metadata } from "next";
 import Script from "next/script";
@@ -17,11 +18,11 @@ import { canonicalUrl } from "@/lib/seo";
 import { SITE_NAME, SITE_URL, TOTAL_CALCULATORS, TOTAL_CATEGORIES } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: `${TOTAL_CALCULATORS}+ Free Calculators — Finance, Health & More | ${SITE_NAME}`,
+  title: `${TOTAL_CALCULATORS}+ Free Online Calculators — Finance, Tax, Health & More | ${SITE_NAME}`,
   description:
-    `Numerral offers ${TOTAL_CALCULATORS}+ free online calculators across finance, construction, health, EV, and everyday math. Instant results, transparent formulas, zero data collection. Available in 6 languages.`,
+    `Numerral offers ${TOTAL_CALCULATORS}+ free online calculators for mortgage, salary, BMI, tax, retirement, and more. Accurate formulas, instant results, zero sign-up. Available for US, India, UAE, and Saudi Arabia.`,
   keywords:
-    "online calculators, free calculators, loan EMI calculator, SIP calculator, construction calculator, BMI calculator, EV calculator, tax calculator, health calculator, financial calculator, compound interest calculator, mortgage calculator",
+    "free online calculators, mortgage calculator, salary calculator, BMI calculator, retirement calculator, sales tax calculator, percentage calculator, loan calculator, finance calculator",
   alternates: { canonical: canonicalUrl("/") },
 };
 
@@ -42,59 +43,168 @@ const orgSchema = JSON.stringify({
   "@type": "Organization",
   name: SITE_NAME,
   url: SITE_URL,
-  description:
-    `Free online calculator platform with ${TOTAL_CALCULATORS}+ tools covering loan EMI, investment returns, income tax, construction material estimation, health metrics, EV cost analysis, and everyday math. Available in 6 languages.`,
+  description: `Free online calculator platform with ${TOTAL_CALCULATORS}+ tools covering mortgage, loans, income tax, health, retirement, and everyday math. Available in 6 languages across US, India, UAE, and Saudi Arabia.`,
   sameAs: [],
 });
 
+// ─── US-Priority Popular Calculators ───
+const US_POPULAR = [
+  { icon: "🏠", title: "Mortgage Calculator", href: "/loan-calculators/mortgage-calculator", desc: "Estimate monthly payments, total interest & amortization schedule", tag: "Most Used" },
+  { icon: "📊", title: "EMI Calculator", href: "/loan-calculators/emi-calculator", desc: "Loan EMI with full amortization breakdown & prepayment insights", tag: "Trending" },
+  { icon: "⚖️", title: "BMI Calculator", href: "/health-calculators/bmi-calculator", desc: "Body Mass Index using WHO categories with health interpretation", tag: "Health" },
+  { icon: "💼", title: "Salary Calculator", href: "/salary-calculators/salary-calculator", desc: "Gross to net pay with full tax & deduction breakdown", tag: "Popular" },
+  { icon: "🏖️", title: "Retirement Calculator", href: "/investment-calculators/retirement-calculator", desc: "Build your retirement corpus with year-by-year projections", tag: "Finance" },
+  { icon: "🧾", title: "Loan Calculator", href: "/loan-calculators/loan-calculator", desc: "Any loan type — personal, auto, student — with full breakdown", tag: "Popular" },
+  { icon: "🎂", title: "Age Calculator", href: "/utility-calculators/age-calculator", desc: "Exact age in years, months, and days with milestone tracking", tag: "Everyday" },
+  { icon: "📈", title: "Percentage Calculator", href: "/math-calculators/percentage-calculator", desc: "5 modes: percent of, change, increase, decrease & reverse", tag: "Math" },
+];
+
+// ─── Category Cards ───
+const CATEGORY_CARDS = [
+  { icon: "🏦", title: "Finance Calculators", desc: "Mortgage, loans, compound interest & more", href: "/loan-calculators", count: "60+", accent: "indigo" },
+  { icon: "🧾", title: "Tax Calculators", desc: "Income tax, sales tax, VAT & deductions", href: "/tax-calculators", count: "40+", accent: "purple" },
+  { icon: "❤️", title: "Health Calculators", desc: "BMI, TDEE, calories, ideal weight & more", href: "/health-calculators", count: "30+", accent: "rose" },
+  { icon: "🔨", title: "Construction Calculators", desc: "Concrete, lumber, roofing & materials", href: "/construction-calculators", count: "150+", accent: "amber" },
+  { icon: "📐", title: "Math Calculators", desc: "Percentage, ratios, algebra & geometry", href: "/math-calculators", count: "20+", accent: "teal" },
+  { icon: "📈", title: "Investment Calculators", desc: "SIP, compound interest, retirement & goals", href: "/investment-calculators", count: "25+", accent: "emerald" },
+  { icon: "⚡", title: "EV Calculators", desc: "Charging cost, range, savings & TCO", href: "/ev-calculators", count: "15+", accent: "cyan" },
+  { icon: "🚗", title: "Automotive Calculators", desc: "Car loan, fuel cost, depreciation & more", href: "/automotive-calculators", count: "20+", accent: "blue" },
+];
+
+// ─── Country Discovery ───
+const COUNTRIES = [
+  {
+    flag: "🇺🇸", name: "United States", code: "us", href: "/",
+    label: "US Priority",
+    tools: ["Mortgage Calculator", "Sales Tax Calculator", "Retirement Calculator", "Salary Calculator"],
+    color: "blue",
+  },
+  {
+    flag: "🇮🇳", name: "India", code: "in", href: "/in",
+    label: "India – ₹ INR",
+    tools: ["EMI Calculator", "GST Calculator", "Income Tax (FY26)", "SIP Calculator"],
+    color: "saffron",
+  },
+  {
+    flag: "🇦🇪", name: "UAE", code: "ae", href: "/uae",
+    label: "UAE – AED",
+    tools: ["VAT Calculator", "Salary Calculator", "Gratuity Calculator", "Loan Calculator"],
+    color: "green",
+  },
+  {
+    flag: "🇸🇦", name: "Saudi Arabia", code: "sa", href: "/ksa",
+    label: "KSA – SAR",
+    tools: ["Zakat Calculator", "End of Service", "GOSI Calculator", "Salary Calculator"],
+    color: "gold",
+  },
+];
+
+// ─── Trending Calculators ───
+const TRENDING = [
+  { icon: "🏠", title: "Mortgage Calculator", href: "/loan-calculators/mortgage-calculator", tag: "Most Used" },
+  { icon: "📊", title: "Compound Interest Calculator", href: "/investment-calculators/compound-interest-calculator", tag: "Finance" },
+  { icon: "⚖️", title: "BMI Calculator", href: "/health-calculators/bmi-calculator", tag: "Health" },
+  { icon: "🧾", title: "Sales Tax Calculator", href: "/tax-calculators/sales-tax-calculator", tag: "Trending" },
+  { icon: "💼", title: "Salary Calculator", href: "/salary-calculators/salary-calculator", tag: "Popular" },
+  { icon: "🎂", title: "Age Calculator", href: "/utility-calculators/age-calculator", tag: "Everyday" },
+  { icon: "🏖️", title: "Retirement Calculator", href: "/investment-calculators/retirement-calculator", tag: "Planning" },
+  { icon: "⚡", title: "EV Cost Calculator", href: "/ev-calculators/ev-cost-calculator", tag: "Trending" },
+];
+
+// ─── Trust features ───
+const TRUST_FEATURES = [
+  { icon: "✅", title: "Verified Formulas", desc: "Every calculator uses peer-reviewed, industry-standard formulas. Results match professional-grade financial and scientific tools." },
+  { icon: "🔒", title: "100% Private", desc: "All calculations run in your browser. Zero data collected, stored, or transmitted — ever. No account needed." },
+  { icon: "⚡", title: "Instant Results", desc: "Real-time answers as you type. No page reloads, no loading spinners, no waiting. Results in under a second." },
+  { icon: "🆓", title: "Used by 1M+ Users", desc: "Trusted by over a million monthly users for mortgage, EMI, health, and tax calculations. Completely free, forever." },
+  { icon: "🌍", title: "Country-Aware Logic", desc: "Tools adapt to local tax laws, regulations, and currencies — US, India (₹), UAE (AED), and Saudi Arabia (SAR)." },
+  { icon: "🎓", title: "Accurate & Tested", desc: "Results are cross-validated against CFA, NISM, and WHO standards. What you see matches real-world professional calculations." },
+];
+
+// ─── How It Works steps ───
+const HOW_STEPS = [
+  { num: "01", title: "Find Your Calculator", desc: "Search or browse 500+ tools across finance, health, math, and everyday use. Find any tool in under 5 seconds.", icon: "🔍" },
+  { num: "02", title: "Enter Your Values", desc: "Type in your numbers — intuitive inputs, smart defaults, and presets make it instant. No manual formula needed.", icon: "✏️" },
+  { num: "03", title: "Get Instant Answers", desc: "Results appear as you type. See full breakdowns, step-by-step logic, and charts — not just a bare number.", icon: "📊" },
+  { num: "04", title: "Make Better Decisions", desc: "Each result includes real-life context, decision insights, and links to related tools so you can go deeper.", icon: "💡" },
+];
+
+// ─── Differentiators ───
+const DIFFERENTIATORS = [
+  {
+    icon: "📐",
+    title: "Shows the Formula",
+    desc: "Every calculator shows the exact formula used. You're not trusting a black box — you see the math behind every result.",
+    highlight: "Transparent by design",
+  },
+  {
+    icon: "🧩",
+    title: "Step-by-Step Breakdown",
+    desc: "Complex calculations are broken into readable steps. See how each component contributes to the final number.",
+    highlight: "Education built in",
+  },
+  {
+    icon: "🌍",
+    title: "Real-Life Examples",
+    desc: "Every calculator comes with worked examples using realistic scenarios — not abstract numbers. Immediately usable.",
+    highlight: "Context, not just results",
+  },
+  {
+    icon: "💡",
+    title: "Decision Insights",
+    desc: "Beyond the result, Numerral tells you what it means — is this EMI too high? Is this BMI healthy? What should you do next?",
+    highlight: "Calculator → Advisor",
+  },
+];
+
+// ─── Homepage FAQs ───
 const homepageFaqs = [
   {
     question: "What is Numerral?",
-    answer:
-      `Numerral is a free online calculator platform with ${TOTAL_CALCULATORS}+ calculators across ${TOTAL_CATEGORIES} categories — including finance (loan EMI, SIP, FD, tax), construction (concrete, lumber, roofing, flooring), health (BMI, TDEE, calories, body fat), electric vehicles (charging cost, range, TCO), and everyday utility tools. All calculators produce instant results using standard, transparent formulas.`,
+    answer: `Numerral is a free online calculator platform with ${TOTAL_CALCULATORS}+ calculators across ${TOTAL_CATEGORIES} categories — covering finance (mortgage, loans, retirement), tax (income tax, sales tax, VAT), health (BMI, TDEE, calories), construction (concrete, lumber, roofing), and everyday math. All calculators produce instant results using standard, transparent formulas.`,
   },
   {
-    question: "How many calculators does Numerral have?",
-    answer:
-      `Numerral currently offers ${TOTAL_CALCULATORS}+ calculators organized into ${TOTAL_CATEGORIES} categories. New calculators are added regularly across finance, construction, health, EV, math, conversion, and pet care.`,
+    question: "Are Numerral calculators accurate?",
+    answer: "Yes. Each calculator uses industry-standard formulas verified against professional references. Loan calculators use the reducing balance amortization formula. Health calculators use peer-reviewed equations like Mifflin-St Jeor for BMR and the WHO BMI formula. Tax calculators reflect current US federal rates and state-specific rules.",
   },
   {
-    question: "Are all calculators on Numerral free to use?",
-    answer:
-      "Yes. Every calculator on Numerral is 100% free with no sign-up, no account required, and no usage limits. There are no hidden fees or premium tiers.",
+    question: "Can I use Numerral for country-specific calculations?",
+    answer: "Absolutely. Numerral has dedicated calculator hubs for India (/in), UAE (/uae), and Saudi Arabia (/ksa). Each hub uses local tax laws, currencies, and regulatory frameworks — such as Indian income tax slabs for FY 2025-26, UAE VAT at 5%, and KSA Zakat and GOSI rules.",
   },
   {
-    question: "What formulas do Numerral calculators use?",
-    answer:
-      "Each calculator uses industry-standard formulas. Loan EMI calculators use the reducing balance amortization formula. Investment calculators use compound interest and XIRR. Health calculators use peer-reviewed equations such as Mifflin-St Jeor for BMR and the standard BMI formula (weight in kg ÷ height in m²). Construction calculators use material estimation formulas based on dimensional analysis and industry waste factors.",
+    question: "Which calculators are most popular on Numerral?",
+    answer: "The most-used calculators are: Mortgage Calculator, Car Loan Calculator, Salary Calculator, BMI Calculator, Compound Interest Calculator, Retirement Calculator, Age Calculator, and Percentage Calculator. For India users: EMI Calculator, GST Calculator, SIP Calculator, and Income Tax Calculator.",
+  },
+  {
+    question: "Are all calculators on Numerral free?",
+    answer: "Yes — 100% free, with no account required, no usage limits, and no hidden fees. There are no premium plans or paywalls. Every calculator on numerral.com is free to use as many times as you need.",
   },
   {
     question: "Does Numerral store my data?",
-    answer:
-      "No. All calculations run entirely in your browser using client-side JavaScript. Numerral does not collect, store, transmit, or share any data you enter into any calculator. There are no cookies tracking your inputs.",
+    answer: "No. All calculations run entirely in your browser using client-side JavaScript. Numerral does not collect, store, transmit, or share any data you enter into any calculator. There are no server round-trips for calculations.",
   },
   {
     question: "What languages is Numerral available in?",
-    answer:
-      "Numerral is available in 6 languages: English, Arabic (العربية), Chinese (中文), German (Deutsch), Indonesian (Bahasa Indonesia), and Turkish (Türkçe). Each version is fully localized with native-language content and culturally relevant calculator configurations.",
+    answer: "Numerral is available in 6 languages: English, Arabic (العربية), Chinese (中文), German (Deutsch), Indonesian (Bahasa Indonesia), and Turkish (Türkçe). Each version is fully localized with native-language content.",
   },
-  {
-    question: "Can I use Numerral on my phone?",
-    answer:
-      `Yes. Numerral is a fully responsive web application that works on smartphones, tablets, and desktops. No app download required — open numerral.com in any modern browser to access all ${TOTAL_CALCULATORS}+ calculators instantly.`,
-  },
-  {
-    question: "How accurate are the construction calculators?",
-    answer:
-      "Numerral's construction calculators use standard material estimation formulas with configurable waste factors. They cover concrete volume, lumber board feet, roofing squares, flooring coverage, drywall sheets, paint area, gravel tonnage, insulation R-value, and 150+ other building project types. Results match industry estimating practices used by contractors and builders.",
-  },
+];
+
+// ─── Quick access chips ───
+const QUICK_CHIPS = [
+  { label: "EMI Calculator", href: "/loan-calculators/emi-calculator" },
+  { label: "BMI Calculator", href: "/health-calculators/bmi-calculator" },
+  { label: "Loan Calculator", href: "/loan-calculators/loan-calculator" },
+  { label: "Mortgage", href: "/loan-calculators/mortgage-calculator" },
+  { label: "Salary", href: "/salary-calculators/salary-calculator" },
+  { label: "Retirement", href: "/investment-calculators/retirement-calculator" },
+  { label: "Age Calculator", href: "/utility-calculators/age-calculator" },
+  { label: "Percentage", href: "/math-calculators/percentage-calculator" },
 ];
 
 export default function HomePage() {
   const allCalcs = getAllCalculators();
   const categories = getAllCategories();
 
-  // For the search bar — pass serializable data
   const searchCalcs = allCalcs.map((c) => ({
     title: c.title,
     slug: c.slug,
@@ -103,14 +213,10 @@ export default function HomePage() {
     description: c.description,
   }));
 
-  // Featured calculator
-  const featuredCalc = allCalcs.find((c) => c.id === "home-loan-emi") || allCalcs[0];
-
-  // Total calculator count
   const totalCalcs = allCalcs.length;
 
   return (
-    <main>
+    <main className="hp-main">
       <Script
         id="schema-website"
         type="application/ld+json"
@@ -122,164 +228,437 @@ export default function HomePage() {
         dangerouslySetInnerHTML={{ __html: orgSchema }}
       />
 
-      {/* ─── 1. SEARCH HERO ─── */}
-      <section className="hp-hero">
+      {/* ═══════════════════════════════════
+          1. HERO SECTION
+          ═══════════════════════════════════ */}
+      <section className="hp-hero" aria-label="Search calculators">
+        <div className="hp-hero__bg-dots" aria-hidden="true" />
+        <div className="hp-hero__bg-glow" aria-hidden="true" />
         <div className="hp-hero__inner container">
+
+          <div className="hp-hero__badge">
+            <span className="hp-hero__badge-dot" />
+            Verified Formulas · Instant Results · 100% Free · No Sign-Up
+          </div>
+
           <h1 className="hp-hero__title">
-            Find Your <span className="text-gradient">Calculator</span>
+            Smart Calculators for{" "}
+            <span className="hp-hero__title-gradient">Real-Life Decisions</span>
           </h1>
+
           <p className="hp-hero__subtitle">
-            Explore <strong>{totalCalcs}+ free calculators</strong> for finance, construction, health, electric vehicles, and everyday math — instant results, zero sign-up.
+            Calculate, Understand, and Decide Better with Numerral.
+            {totalCalcs}+ free tools for finance, health, tax, and everyday decisions — results in seconds.
           </p>
-          <HomeSearchBar calculators={searchCalcs} />
-        </div>
-      </section>
 
-      {/* ─── 2. CATEGORY ICON GRID ─── */}
-      <section className="hp-categories container">
-        <div className="hp-categories__grid">
-          {categories.map((cat: CategoryDef) => (
-            <Link key={cat.key} href={cat.href} className="hp-categories__tile">
-              <span className="hp-categories__tile-icon">{cat.icon}</span>
-              <span className="hp-categories__tile-label">{cat.name.replace(" Calculators", "")}</span>
-            </Link>
-          ))}
-        </div>
-        <div className="hp-categories__cta">
-          <Link href="/loan-calculators" className="btn-premium btn-premium--primary">
-            Explore All Calculators
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
-          </Link>
-        </div>
-      </section>
+          <div className="hp-hero__search-wrap">
+            <HomeSearchBar calculators={searchCalcs} />
+          </div>
 
-      {/* ─── 3. PLATFORM STATS ─── */}
-      <section className="hp-trust">
-        <div className="hp-trust__inner container">
-          <div className="hp-trust__logos">
-            <span className="hp-trust__brand"><strong>{totalCalcs}+</strong> Calculators</span>
-            <span className="hp-trust__brand"><strong>{categories.length}</strong> Categories</span>
-            <span className="hp-trust__brand"><strong>6</strong> Languages</span>
-            <span className="hp-trust__brand"><strong>0</strong> Data Collected</span>
-            <span className="hp-trust__brand"><strong>100%</strong> Free</span>
+          <nav className="hp-hero__chips" aria-label="Quick calculator access">
+            {QUICK_CHIPS.map((chip) => (
+              <Link key={chip.href} href={chip.href} className="hp-hero__chip">
+                {chip.label}
+              </Link>
+            ))}
+          </nav>
+
+          <div className="hp-hero__countries">
+            <span className="hp-hero__countries-label">Available for:</span>
+            <Link href="/" className="hp-hero__country-pill hp-hero__country-pill--active">🇺🇸 USA</Link>
+            <Link href="/in" className="hp-hero__country-pill">🇮🇳 India</Link>
+            <Link href="/uae" className="hp-hero__country-pill">🇦🇪 UAE</Link>
+            <Link href="/ksa" className="hp-hero__country-pill">🇸🇦 Saudi Arabia</Link>
           </div>
         </div>
       </section>
 
-      {/* ─── 4. FEATURED CALCULATOR ─── */}
-      <section className="hp-featured container">
-        <div className="hp-featured__inner">
-          <div className="hp-featured__badge">FEATURED CALCULATOR</div>
-          <h2 className="hp-featured__title">{featuredCalc.icon} {featuredCalc.title}</h2>
-          <p className="hp-featured__desc">{featuredCalc.description}</p>
-          <Link
-            href={`/${featuredCalc.categorySlug}/${featuredCalc.slug}`}
-            className="btn-premium btn-premium--primary"
-          >
-            Open Calculator →
-          </Link>
-        </div>
-      </section>
-
-      {/* ─── 5. ABOUT NUMERRAL ─── */}
-      <section className="hp-about container">
-        <h2 className="hp-about__title">About Numerral</h2>
-        <div className="hp-about__content">
-          <p>
-            Numerral is a free online calculator platform offering {totalCalcs}+ tools across {categories.length} specialized categories.
-            Our finance calculators use the reducing balance EMI formula, compound interest computation, XIRR for 
-            irregular cash flows, and current FY 2025-26 Indian income tax slabs. We also offer specialized UAE and KSA regional calculators. Construction calculators cover 
-            material estimation for concrete volume, lumber board feet, roofing squares, flooring coverage, 
-            insulation R-value, and 150+ building project types with configurable waste factors.
-          </p>
-          <p>
-            Health calculators compute BMI, basal metabolic rate (BMR) via Mifflin-St Jeor and Harris-Benedict 
-            equations, total daily energy expenditure (TDEE), body fat percentage, macro distribution, calorie 
-            targets, and pregnancy due dates. EV calculators compare electric vs. gasoline total cost of ownership, 
-            estimate per-kWh charging costs, project battery degradation, and calculate fuel savings over time. 
-            Every calculation runs in your browser — Numerral collects zero user data.
-          </p>
-        </div>
-        <div className="hp-about__features">
-          <div className="hp-about__feature">
-            <span className="hp-about__feature-icon">⚡</span>
-            <div>
-              <strong>Instant Results</strong>
-              <p>Real-time calculations as you adjust inputs. No page reloads or server round-trips.</p>
-            </div>
+      {/* ═══════════════════════════════════
+          2. PLATFORM STATS BAR
+          ═══════════════════════════════════ */}
+      <section className="hp-stats" aria-label="Platform statistics">
+        <div className="hp-stats__inner container">
+          <div className="hp-stats__item">
+            <span className="hp-stats__num">{totalCalcs}+</span>
+            <span className="hp-stats__label">Calculators</span>
           </div>
-          <div className="hp-about__feature">
-            <span className="hp-about__feature-icon">🔒</span>
-            <div>
-              <strong>100% Private</strong>
-              <p>All computation runs client-side in your browser. Zero data stored or transmitted.</p>
-            </div>
+          <div className="hp-stats__divider" aria-hidden="true" />
+          <div className="hp-stats__item">
+            <span className="hp-stats__num">{categories.length}</span>
+            <span className="hp-stats__label">Categories</span>
           </div>
-          <div className="hp-about__feature">
-            <span className="hp-about__feature-icon">🎯</span>
-            <div>
-              <strong>Transparent Formulas</strong>
-              <p>Every calculator uses documented, standard formulas — the same used by professionals in each field.</p>
-            </div>
+          <div className="hp-stats__divider" aria-hidden="true" />
+          <div className="hp-stats__item">
+            <span className="hp-stats__num">4</span>
+            <span className="hp-stats__label">Countries</span>
           </div>
-          <div className="hp-about__feature">
-            <span className="hp-about__feature-icon">🌐</span>
-            <div>
-              <strong>Available in 6 Languages</strong>
-              <p>Fully localized in English, Arabic, Chinese, German, Indonesian, and Turkish.</p>
-            </div>
+          <div className="hp-stats__divider" aria-hidden="true" />
+          <div className="hp-stats__item">
+            <span className="hp-stats__num">6</span>
+            <span className="hp-stats__label">Languages</span>
+          </div>
+          <div className="hp-stats__divider" aria-hidden="true" />
+          <div className="hp-stats__item">
+            <span className="hp-stats__num">0</span>
+            <span className="hp-stats__label">Data Collected</span>
+          </div>
+          <div className="hp-stats__divider" aria-hidden="true" />
+          <div className="hp-stats__item">
+            <span className="hp-stats__num">100%</span>
+            <span className="hp-stats__label">Free</span>
           </div>
         </div>
       </section>
 
-      {/* ─── 6. POPULAR CALCULATORS BY CATEGORY ─── */}
-      <section className="hp-popular container">
-        <h2 className="hp-popular__heading">Popular Calculators</h2>
-        <p className="hp-popular__subheading">
-          Browse {totalCalcs}+ calculators across finance, construction, health, EV, and everyday math.
-        </p>
+      {/* ═══════════════════════════════════
+          3. POPULAR CALCULATORS (US-first)
+          ═══════════════════════════════════ */}
+      <section className="hp-popular section" aria-labelledby="popular-heading">
+        <div className="container">
+          <div className="hp-section-header">
+            <div className="hp-section-label">Start Calculating</div>
+            <h2 id="popular-heading" className="hp-section-title">
+              Featured Calculators
+            </h2>
+            <p className="hp-section-subtitle">
+              The most-used tools on Numerral. Built for accuracy, designed for clarity.
+            </p>
+          </div>
 
-        <div className="hp-popular__categories">
-          {categories.map((cat: CategoryDef) => {
-            const calcs = getCalculatorsByCategory(cat.key);
-            return (
-              <div key={cat.key} className="hp-popular__cat-block">
-                <div className="hp-popular__cat-header">
-                  <span className="hp-popular__cat-icon">{cat.icon}</span>
-                  <h3 className="hp-popular__cat-title">{cat.name}</h3>
+          <div className="hp-calc-grid" role="list">
+            {US_POPULAR.map((calc) => (
+              <Link key={calc.href} href={calc.href} className="hp-calc-card" role="listitem">
+                <div className="hp-calc-card__header">
+                  <span className="hp-calc-card__icon">{calc.icon}</span>
+                  <span className={`hp-calc-card__tag hp-calc-card__tag--${calc.tag === "Most Used" ? "primary" : calc.tag === "Trending" ? "trending" : "default"}`}>
+                    {calc.tag}
+                  </span>
                 </div>
-                <ul className="hp-popular__list">
-                  {calcs.slice(0, 5).map((calc: CalculatorDef) => (
-                    <li key={calc.id}>
-                      <Link
-                        href={`/${calc.categorySlug}/${calc.slug}`}
-                        className="hp-popular__link"
-                      >
-                        <span className="hp-popular__link-icon">{calc.icon}</span>
-                        <span className="hp-popular__link-title">{calc.title}</span>
-                        <span className="hp-popular__link-arrow">›</span>
-                      </Link>
+                <h3 className="hp-calc-card__title">{calc.title}</h3>
+                <p className="hp-calc-card__desc">{calc.desc}</p>
+                <span className="hp-calc-card__cta">
+                  Open Calculator
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                  </svg>
+                </span>
+              </Link>
+            ))}
+          </div>
+
+          <div className="hp-section-cta">
+            <Link href="/loan-calculators" className="btn-premium btn-premium--outline">
+              Browse All Calculators
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════
+          4. CATEGORY EXPLORATION
+          ═══════════════════════════════════ */}
+      <section className="hp-categories section hp-categories--alt" aria-labelledby="categories-heading">
+        <div className="container">
+          <div className="hp-section-header">
+            <div className="hp-section-label">Explore by Topic</div>
+            <h2 id="categories-heading" className="hp-section-title">
+              Calculator Categories
+            </h2>
+            <p className="hp-section-subtitle">
+              Deep, organized clusters of tools — each category is a complete ecosystem.
+            </p>
+          </div>
+
+          <div className="hp-cat-grid" role="list">
+            {CATEGORY_CARDS.map((cat) => (
+              <Link key={cat.href} href={cat.href} className={`hp-cat-card hp-cat-card--${cat.accent}`} role="listitem">
+                <div className="hp-cat-card__icon-wrap">
+                  <span className="hp-cat-card__icon">{cat.icon}</span>
+                </div>
+                <div className="hp-cat-card__body">
+                  <h3 className="hp-cat-card__title">{cat.title}</h3>
+                  <p className="hp-cat-card__desc">{cat.desc}</p>
+                  <span className="hp-cat-card__count">{cat.count} tools</span>
+                </div>
+                <span className="hp-cat-card__arrow" aria-hidden="true">→</span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════
+          5. COUNTRY DISCOVERY LAYER
+          ═══════════════════════════════════ */}
+      <section className="hp-countries section" aria-labelledby="countries-heading">
+        <div className="container">
+          <div className="hp-section-header">
+            <div className="hp-section-label">Localized Calculators</div>
+            <h2 id="countries-heading" className="hp-section-title">
+              Built for Your Country
+            </h2>
+            <p className="hp-section-subtitle">
+              Country-specific tools that use local tax laws, currencies, and regulations — not generic approximations.
+            </p>
+          </div>
+
+          <div className="hp-country-grid" role="list">
+            {COUNTRIES.map((country) => (
+              <Link key={country.code} href={country.href} className={`hp-country-card hp-country-card--${country.color}`} role="listitem">
+                <div className="hp-country-card__header">
+                  <span className="hp-country-card__flag">{country.flag}</span>
+                  <div>
+                    <div className="hp-country-card__name">{country.name}</div>
+                    <div className="hp-country-card__label">{country.label}</div>
+                  </div>
+                </div>
+                <ul className="hp-country-card__tools" aria-label={`Popular tools in ${country.name}`}>
+                  {country.tools.map((tool) => (
+                    <li key={tool} className="hp-country-card__tool">
+                      <span className="hp-country-card__tool-dot" aria-hidden="true" />
+                      {tool}
                     </li>
                   ))}
                 </ul>
-                <Link href={cat.href} className="hp-popular__see-all">
-                  See all {cat.name} →
-                </Link>
-              </div>
-            );
-          })}
+                <span className="hp-country-card__cta">
+                  Explore {country.name} Tools →
+                </span>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* ─── 7. FAQs ─── */}
-      <section className="container section--sm">
-        <h2 className="t-h2" style={{ marginBottom: "var(--s-5)", textAlign: "center" }}>
-          Frequently Asked Questions
-        </h2>
-        <div style={{ maxWidth: "760px", marginInline: "auto" }}>
-          <FAQAccordion title="About Numerral" items={homepageFaqs} />
+      {/* ═══════════════════════════════════
+          6. TRENDING / HIGH-INTENT MODULE
+          ═══════════════════════════════════ */}
+      <section className="hp-trending section hp-trending--alt" aria-labelledby="trending-heading">
+        <div className="container">
+          <div className="hp-section-header">
+            <div className="hp-section-label">What's Popular</div>
+            <h2 id="trending-heading" className="hp-section-title">
+              Trending Right Now
+            </h2>
+            <p className="hp-section-subtitle">
+              The calculators users open most — sorted by real-world utility and search intent.
+            </p>
+          </div>
+
+          <div className="hp-trending-grid" role="list">
+            {TRENDING.map((item, i) => (
+              <Link key={item.href} href={item.href} className="hp-trending-card" role="listitem">
+                <span className="hp-trending-card__num">{String(i + 1).padStart(2, "0")}</span>
+                <span className="hp-trending-card__icon">{item.icon}</span>
+                <div className="hp-trending-card__body">
+                  <span className="hp-trending-card__title">{item.title}</span>
+                  <span className={`hp-trending-card__tag hp-trending-card__tag--${item.tag === "Most Used" ? "top" : "default"}`}>
+                    {item.tag}
+                  </span>
+                </div>
+                <span className="hp-trending-card__arrow" aria-hidden="true">→</span>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
+
+      {/* ═══════════════════════════════════
+          7. TRUST / WHY NUMERRAL
+          ═══════════════════════════════════ */}
+      <section className="hp-trust section" aria-labelledby="trust-heading">
+        <div className="container">
+          <div className="hp-section-header">
+            <div className="hp-section-label">Why Numerral</div>
+            <h2 id="trust-heading" className="hp-section-title">
+              Trusted by 1M+ Users Worldwide
+            </h2>
+            <p className="hp-section-subtitle">
+              Verified formulas. Instant results. Accurate, tested calculations — for every real-life decision.
+            </p>
+          </div>
+
+          <div className="hp-trust-grid" role="list">
+            {TRUST_FEATURES.map((feat) => (
+              <div key={feat.title} className="hp-trust-card" role="listitem">
+                <span className="hp-trust-card__icon">{feat.icon}</span>
+                <h3 className="hp-trust-card__title">{feat.title}</h3>
+                <p className="hp-trust-card__desc">{feat.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════
+          8. HOW NUMERRAL WORKS
+          ═══════════════════════════════════ */}
+      <section className="hp-how section hp-how--alt" aria-labelledby="how-heading">
+        <div className="container">
+          <div className="hp-section-header">
+            <div className="hp-section-label">Simple by Design</div>
+            <h2 id="how-heading" className="hp-section-title">
+              How Numerral Works
+            </h2>
+            <p className="hp-section-subtitle">
+              From search to answer in under 10 seconds — with the context to actually make a decision.
+            </p>
+          </div>
+
+          <div className="hp-how-grid" role="list">
+            {HOW_STEPS.map((step) => (
+              <div key={step.num} className="hp-how-step" role="listitem">
+                <div className="hp-how-step__num-wrap">
+                  <span className="hp-how-step__icon">{step.icon}</span>
+                  <span className="hp-how-step__num">{step.num}</span>
+                </div>
+                <h3 className="hp-how-step__title">{step.title}</h3>
+                <p className="hp-how-step__desc">{step.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════
+          8b. DIFFERENTIATION — WHY BETTER
+          ═══════════════════════════════════ */}
+      <section className="hp-diff section" aria-labelledby="diff-heading">
+        <div className="container">
+          <div className="hp-section-header">
+            <div className="hp-section-label">The Numerral Difference</div>
+            <h2 id="diff-heading" className="hp-section-title">
+              More Than Just a Calculator
+            </h2>
+            <p className="hp-section-subtitle">
+              Other sites give you a number. Numerral gives you understanding.
+            </p>
+          </div>
+
+          <div className="hp-diff-grid" role="list">
+            {DIFFERENTIATORS.map((d) => (
+              <div key={d.title} className="hp-diff-card" role="listitem">
+                <div className="hp-diff-card__icon-wrap">
+                  <span className="hp-diff-card__icon">{d.icon}</span>
+                </div>
+                <div className="hp-diff-card__body">
+                  <span className="hp-diff-card__highlight">{d.highlight}</span>
+                  <h3 className="hp-diff-card__title">{d.title}</h3>
+                  <p className="hp-diff-card__desc">{d.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="hp-diff__vs">
+            <div className="hp-diff__vs-inner">
+              <div className="hp-diff__vs-col hp-diff__vs-col--other">
+                <div className="hp-diff__vs-label">Other Calculator Sites</div>
+                <ul className="hp-diff__vs-list">
+                  <li className="hp-diff__vs-item hp-diff__vs-item--bad">❌ Bare number output</li>
+                  <li className="hp-diff__vs-item hp-diff__vs-item--bad">❌ No formula shown</li>
+                  <li className="hp-diff__vs-item hp-diff__vs-item--bad">❌ No step breakdown</li>
+                  <li className="hp-diff__vs-item hp-diff__vs-item--bad">❌ Ad-heavy UI</li>
+                  <li className="hp-diff__vs-item hp-diff__vs-item--bad">❌ No real-life examples</li>
+                </ul>
+              </div>
+              <div className="hp-diff__vs-divider" aria-hidden="true">vs</div>
+              <div className="hp-diff__vs-col hp-diff__vs-col--numerral">
+                <div className="hp-diff__vs-label">Numerral</div>
+                <ul className="hp-diff__vs-list">
+                  <li className="hp-diff__vs-item hp-diff__vs-item--good">✅ Full formula + explanation</li>
+                  <li className="hp-diff__vs-item hp-diff__vs-item--good">✅ Step-by-step breakdown</li>
+                  <li className="hp-diff__vs-item hp-diff__vs-item--good">✅ Real-life worked examples</li>
+                  <li className="hp-diff__vs-item hp-diff__vs-item--good">✅ Clean, ad-free first fold</li>
+                  <li className="hp-diff__vs-item hp-diff__vs-item--good">✅ Decision insights included</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════
+          9. FAQ SECTION
+          ═══════════════════════════════════ */}
+      <section className="hp-faq section" aria-labelledby="faq-heading">
+        <div className="container">
+          <div className="hp-section-header">
+            <div className="hp-section-label">Common Questions</div>
+            <h2 id="faq-heading" className="hp-section-title">
+              Frequently Asked Questions
+            </h2>
+          </div>
+          <div className="hp-faq__inner">
+            <FAQAccordion title="About Numerral" items={homepageFaqs} />
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════
+          10. DEEP LINK / DISCOVERY SECTION
+          ═══════════════════════════════════ */}
+      <section className="hp-deeplink section hp-deeplink--alt" aria-labelledby="deeplink-heading">
+        <div className="container">
+          <div className="hp-section-header">
+            <div className="hp-section-label">Explore Everything</div>
+            <h2 id="deeplink-heading" className="hp-section-title">
+              All Calculator Categories
+            </h2>
+            <p className="hp-section-subtitle">
+              Browse every tool across all categories — finance, health, tax, math, construction, and more.
+            </p>
+          </div>
+
+          <div className="hp-deeplink-grid" role="list">
+            {categories.map((cat: CategoryDef) => {
+              const calcs = getCalculatorsByCategory(cat.key);
+              return (
+                <div key={cat.key} className="hp-deeplink-block" role="listitem">
+                  <Link href={cat.href} className="hp-deeplink-block__header">
+                    <span className="hp-deeplink-block__icon">{cat.icon}</span>
+                    <span className="hp-deeplink-block__name">{cat.name}</span>
+                    <span className="hp-deeplink-block__arrow" aria-hidden="true">→</span>
+                  </Link>
+                  <ul className="hp-deeplink-block__list" aria-label={`${cat.name} tools`}>
+                    {calcs.slice(0, 5).map((calc: CalculatorDef) => (
+                      <li key={calc.id}>
+                        <Link
+                          href={`/${calc.categorySlug}/${calc.slug}`}
+                          className="hp-deeplink-link"
+                        >
+                          <span className="hp-deeplink-link__icon">{calc.icon}</span>
+                          <span className="hp-deeplink-link__title">{calc.title}</span>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                  {calcs.length > 5 && (
+                    <Link href={cat.href} className="hp-deeplink-block__more">
+                      +{calcs.length - 5} more {cat.name.toLowerCase()} →
+                    </Link>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+
+          <div className="hp-deeplink__cta-row">
+            <Link href="/loan-calculators" className="btn-premium btn-premium--primary">
+              Browse All {totalCalcs}+ Calculators
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </Link>
+            <Link href="/site-map" className="btn-premium btn-premium--ghost">
+              View Full Site Map
+            </Link>
+          </div>
+        </div>
+      </section>
+
     </main>
   );
 }

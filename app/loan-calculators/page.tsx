@@ -8,9 +8,10 @@ import Breadcrumb from "@/components/layout/Breadcrumb";
 import CategoryGrid from "@/components/shared/CategoryGrid";
 import DynamicExplanation from "@/components/shared/DynamicExplanation";
 import FAQAccordion from "@/components/shared/FAQAccordion";
+import AuthorBadge from "@/components/shared/AuthorBadge";
 import TrendingCalculations from "@/components/shared/TrendingCalculations";
 import { getCalculatorsByCategory, type CalculatorDef } from "@/lib/data";
-import { canonicalUrl, breadcrumbSchema } from "@/lib/seo";
+import { canonicalUrl, breadcrumbSchema, faqSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
@@ -19,6 +20,21 @@ export const metadata: Metadata = {
         "Explore all loan calculators: Car Loan EMI, Home Loan EMI, Personal Loan EMI, Education Loan and more. Free, instant results on Numerral.",
     alternates: { canonical: canonicalUrl("/loan-calculators") },
 };
+
+const FAQ_ITEMS = [
+                    {
+                        question: "Are these calculators accurate?",
+                        answer: "Yes. Our calculators use the same reducing-balance EMI formula (PMT) used by major Indian banks and NBFCs.",
+                    },
+                    {
+                        question: "How do I choose between a longer or shorter tenure?",
+                        answer: "Shorter tenure = higher EMI but less total interest. Longer tenure = lower EMI but significantly more interest paid overall.",
+                    },
+                    {
+                        question: "Can I compare multiple loan offers?",
+                        answer: "Yes! Use our Loan Comparison tool to compare EMIs across different banks and interest rates side by side.",
+                    },
+                ];
 
 const schemaData = JSON.stringify([
     breadcrumbSchema([
@@ -32,7 +48,8 @@ const schemaData = JSON.stringify([
         description: "All loan-related calculators including EMI, eligibility and comparison tools.",
         url: canonicalUrl("/loan-calculators"),
     },
-]);
+,
+    faqSchema(FAQ_ITEMS)]);
 
 export default function LoanCalculatorsPage() {
     const loanCalcs = getCalculatorsByCategory("loan");
@@ -55,10 +72,13 @@ export default function LoanCalculatorsPage() {
             <h1 className="t-h1" style={{ marginBottom: "var(--s-2)" }}>
                 Loan Calculators — EMI, Eligibility & Comparison Tools
             </h1>
-            <p className="t-body text-muted" style={{ marginBottom: "var(--s-8)" }}>
+            <p className="t-body text-muted" style={{ marginBottom: "var(--s-4)" }}>
                 Plan smarter with our full suite of loan calculators. Get instant EMI
                 breakdowns, compare scenarios, and understand total costs before you borrow.
             </p>
+            <div style={{ marginBottom: "var(--s-8)" }}>
+                <AuthorBadge categoryKey="loan" />
+            </div>
 
             {/* Calculator index — card grid */}
             <section style={{ marginBottom: "var(--s-12)" }}>
@@ -94,20 +114,7 @@ export default function LoanCalculatorsPage() {
 
             <FAQAccordion
                 title="Loan Calculator FAQ"
-                items={[
-                    {
-                        question: "Are these calculators accurate?",
-                        answer: "Yes. Our calculators use the same reducing-balance EMI formula (PMT) used by major Indian banks and NBFCs.",
-                    },
-                    {
-                        question: "How do I choose between a longer or shorter tenure?",
-                        answer: "Shorter tenure = higher EMI but less total interest. Longer tenure = lower EMI but significantly more interest paid overall.",
-                    },
-                    {
-                        question: "Can I compare multiple loan offers?",
-                        answer: "Yes! Use our Loan Comparison tool to compare EMIs across different banks and interest rates side by side.",
-                    },
-                ]}
+                items={FAQ_ITEMS}
             />
 
             <section style={{ marginTop: "var(--s-8)" }}>

@@ -9,7 +9,7 @@ import DynamicExplanation from "@/components/shared/DynamicExplanation";
 import FAQAccordion from "@/components/shared/FAQAccordion";
 import TrendingCalculations from "@/components/shared/TrendingCalculations";
 import { getCalculatorsByCategory } from "@/lib/data";
-import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
+import { canonicalUrl, breadcrumbSchema, webAppSchema, faqSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 import RelatedCalculators from "@/components/shared/RelatedCalculators";
 import GuideCTA from "@/components/shared/GuideCTA";
@@ -248,14 +248,18 @@ export default async function BusinessCalculatorHubPage({ params }: PageProps) {
     const content = HUB_CONTENT[calc.id] ?? HUB_CONTENT[calc.slug];
 
     const pageUrl = canonicalUrl(`/business-calculators/${calc.slug}`);
-    const schemaData = JSON.stringify([
+    const schemas: Array<object | undefined> = [
         breadcrumbSchema([
             { name: "Home", url: `${SITE_URL}/` },
             { name: "Business Calculators", url: canonicalUrl("/business-calculators") },
             { name: calc.title },
         ]),
-        webAppSchema(calc.title, pageUrl),
-    ]);
+        webAppSchema(calc.title, pageUrl, "USD", "FinanceApplication"),
+    ];
+    if (content?.faq && content.faq.length > 0) {
+        schemas.push(faqSchema(content.faq));
+    }
+    const schemaData = JSON.stringify(schemas.filter(Boolean));
 
     return (
         <main className="container" style={{ paddingTop: "var(--s-4)" }}>

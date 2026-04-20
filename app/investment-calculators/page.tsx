@@ -6,8 +6,9 @@ import Breadcrumb from "@/components/layout/Breadcrumb";
 import CategoryGrid from "@/components/shared/CategoryGrid";
 import DynamicExplanation from "@/components/shared/DynamicExplanation";
 import FAQAccordion from "@/components/shared/FAQAccordion";
+import AuthorBadge from "@/components/shared/AuthorBadge";
 import { getCalculatorsByCategory, type CalculatorDef } from "@/lib/data";
-import { canonicalUrl, breadcrumbSchema } from "@/lib/seo";
+import { canonicalUrl, breadcrumbSchema, faqSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
@@ -16,6 +17,25 @@ export const metadata: Metadata = {
         "Plan your investments with free SIP, FD, RD, PPF, NPS, and mutual fund return calculators. Instant results, compare scenarios.",
     alternates: { canonical: canonicalUrl("/investment-calculators") },
 };
+
+const FAQ_ITEMS = [
+                    {
+                        question: "What is SIP and how does it work?",
+                        answer: "SIP (Systematic Investment Plan) is a disciplined way to invest a fixed amount monthly in mutual funds. It averages your purchase price over time (rupee cost averaging) and benefits from compounding.",
+                    },
+                    {
+                        question: "Is the FD calculator rate accurate?",
+                        answer: "Our FD calculator uses quarterly compounding, which matches most Indian banks. Actual rates vary by bank — check your bank's current FD rates for exact numbers.",
+                    },
+                    {
+                        question: "How much should I invest in PPF yearly?",
+                        answer: "PPF allows a minimum of ₹500 and maximum of ₹1,50,000 per year. For maximum tax benefit under Section 80C, invest the full ₹1.5 Lakh annually.",
+                    },
+                    {
+                        question: "Can I compare SIP vs lumpsum returns?",
+                        answer: "Yes! Use our SIP Calculator for monthly investments and the Mutual Fund Returns Calculator for lumpsum. Compare both side by side to see which suits your cash flow.",
+                    },
+                ];
 
 const schemaData = JSON.stringify([
     breadcrumbSchema([
@@ -29,7 +49,8 @@ const schemaData = JSON.stringify([
         description: "All investment calculators including SIP, FD, PPF, and mutual fund tools.",
         url: canonicalUrl("/investment-calculators"),
     },
-]);
+,
+    faqSchema(FAQ_ITEMS)]);
 
 export default function InvestmentCalculatorsPage() {
     const investCalcs = getCalculatorsByCategory("invest");
@@ -52,10 +73,13 @@ export default function InvestmentCalculatorsPage() {
             <h1 className="t-h1" style={{ marginBottom: "var(--s-2)" }}>
                 Investment Calculators — SIP, FD, PPF & Mutual Fund Tools
             </h1>
-            <p className="t-body text-muted" style={{ marginBottom: "var(--s-8)" }}>
+            <p className="t-body text-muted" style={{ marginBottom: "var(--s-4)" }}>
                 Grow your wealth smarter with our investment calculators. Whether you&apos;re
                 investing via SIP, fixed deposits, or PPF — compare returns and plan ahead.
             </p>
+            <div style={{ marginBottom: "var(--s-8)" }}>
+                <AuthorBadge categoryKey="invest" />
+            </div>
 
             {/* Calculator index */}
             <section style={{ marginBottom: "var(--s-12)" }}>
@@ -91,24 +115,7 @@ export default function InvestmentCalculatorsPage() {
 
             <FAQAccordion
                 title="Investment Calculator FAQ"
-                items={[
-                    {
-                        question: "What is SIP and how does it work?",
-                        answer: "SIP (Systematic Investment Plan) is a disciplined way to invest a fixed amount monthly in mutual funds. It averages your purchase price over time (rupee cost averaging) and benefits from compounding.",
-                    },
-                    {
-                        question: "Is the FD calculator rate accurate?",
-                        answer: "Our FD calculator uses quarterly compounding, which matches most Indian banks. Actual rates vary by bank — check your bank's current FD rates for exact numbers.",
-                    },
-                    {
-                        question: "How much should I invest in PPF yearly?",
-                        answer: "PPF allows a minimum of ₹500 and maximum of ₹1,50,000 per year. For maximum tax benefit under Section 80C, invest the full ₹1.5 Lakh annually.",
-                    },
-                    {
-                        question: "Can I compare SIP vs lumpsum returns?",
-                        answer: "Yes! Use our SIP Calculator for monthly investments and the Mutual Fund Returns Calculator for lumpsum. Compare both side by side to see which suits your cash flow.",
-                    },
-                ]}
+                items={FAQ_ITEMS}
             />
 
             <section style={{ marginTop: "var(--s-8)" }}>

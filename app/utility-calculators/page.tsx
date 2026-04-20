@@ -6,8 +6,9 @@ import Breadcrumb from "@/components/layout/Breadcrumb";
 import CategoryGrid from "@/components/shared/CategoryGrid";
 import DynamicExplanation from "@/components/shared/DynamicExplanation";
 import FAQAccordion from "@/components/shared/FAQAccordion";
+import AuthorBadge from "@/components/shared/AuthorBadge";
 import { getCalculatorsByCategory, type CalculatorDef } from "@/lib/data";
-import { canonicalUrl, breadcrumbSchema } from "@/lib/seo";
+import { canonicalUrl, breadcrumbSchema, faqSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
@@ -16,6 +17,21 @@ export const metadata: Metadata = {
         "Free utility calculators: Age Calculator, Percentage, Compound & Simple Interest, Discount, and Interest Rate Calculator. Instant, accurate results.",
     alternates: { canonical: canonicalUrl("/utility-calculators") },
 };
+
+const FAQ_ITEMS = [
+                    {
+                        question: "How accurate is the Age Calculator?",
+                        answer: "Our age calculator computes exact years, months, and days accounting for varying month lengths. It also shows your age in total days, weeks, and months, plus days until your next birthday.",
+                    },
+                    {
+                        question: "What is the difference between simple and compound interest?",
+                        answer: "Simple interest is calculated only on the principal amount. Compound interest is calculated on the principal plus accumulated interest. Over time, compound interest grows exponentially — the longer the tenure, the bigger the gap.",
+                    },
+                    {
+                        question: "What is the Rule of 72 and how does it work?",
+                        answer: "The Rule of 72 is a quick formula to estimate how many years it takes your money to double. Divide 72 by the annual interest rate — e.g., at 12%, your money doubles in about 6 years.",
+                    },
+                ];
 
 const schemaData = JSON.stringify([
     breadcrumbSchema([
@@ -29,7 +45,8 @@ const schemaData = JSON.stringify([
         description: "All utility calculators including age, percentage, compound interest, simple interest, discount, and interest rate.",
         url: canonicalUrl("/utility-calculators"),
     },
-]);
+,
+    faqSchema(FAQ_ITEMS)]);
 
 export default function UtilityCalculatorsPage() {
     const utilCalcs = getCalculatorsByCategory("utility");
@@ -52,10 +69,13 @@ export default function UtilityCalculatorsPage() {
             <h1 className="t-h1" style={{ marginBottom: "var(--s-2)" }}>
                 Utility Calculators — Age, Percentage, Interest & More
             </h1>
-            <p className="t-body text-muted" style={{ marginBottom: "var(--s-8)" }}>
+            <p className="t-body text-muted" style={{ marginBottom: "var(--s-4)" }}>
                 Everyday calculators for quick calculations — find your exact age, calculate percentages,
                 compare simple vs compound interest, find required rates of return, and compute discounts instantly.
             </p>
+            <div style={{ marginBottom: "var(--s-8)" }}>
+                <AuthorBadge categoryKey="utility" />
+            </div>
 
             <section style={{ marginBottom: "var(--s-12)" }}>
                 <h2 className="t-h2" style={{ marginBottom: "var(--s-5)" }}>All Utility Calculators</h2>
@@ -90,20 +110,7 @@ export default function UtilityCalculatorsPage() {
 
             <FAQAccordion
                 title="Utility Calculator FAQ"
-                items={[
-                    {
-                        question: "How accurate is the Age Calculator?",
-                        answer: "Our age calculator computes exact years, months, and days accounting for varying month lengths. It also shows your age in total days, weeks, and months, plus days until your next birthday.",
-                    },
-                    {
-                        question: "What is the difference between simple and compound interest?",
-                        answer: "Simple interest is calculated only on the principal amount. Compound interest is calculated on the principal plus accumulated interest. Over time, compound interest grows exponentially — the longer the tenure, the bigger the gap.",
-                    },
-                    {
-                        question: "What is the Rule of 72 and how does it work?",
-                        answer: "The Rule of 72 is a quick formula to estimate how many years it takes your money to double. Divide 72 by the annual interest rate — e.g., at 12%, your money doubles in about 6 years.",
-                    },
-                ]}
+                items={FAQ_ITEMS}
             />
 
             <section style={{ marginTop: "var(--s-8)" }}>

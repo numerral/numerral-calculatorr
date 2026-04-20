@@ -6,8 +6,9 @@ import Breadcrumb from "@/components/layout/Breadcrumb";
 import CategoryGrid from "@/components/shared/CategoryGrid";
 import DynamicExplanation from "@/components/shared/DynamicExplanation";
 import FAQAccordion from "@/components/shared/FAQAccordion";
+import AuthorBadge from "@/components/shared/AuthorBadge";
 import { getCalculatorsByCategory, type CalculatorDef } from "@/lib/data";
-import { canonicalUrl, breadcrumbSchema } from "@/lib/seo";
+import { canonicalUrl, breadcrumbSchema, faqSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
@@ -16,6 +17,14 @@ export const metadata: Metadata = {
         "Free automotive calculators: horsepower, torque, displacement, gas mileage, fuel cost, tire size comparison, speedometer error, vehicle loans, EV charging & more. 55+ tools with instant results.",
     alternates: { canonical: canonicalUrl("/automotive-calculators") },
 };
+
+const FAQ_ITEMS = [
+                    { question: "Are these calculators accurate for my specific vehicle?", answer: "Yes — all calculators use vehicle-agnostic engineering formulas. You input your specific vehicle's data (horsepower, weight, tire size, MPG, etc.) and get results tailored to your car, truck, or motorcycle. Presets for popular configurations are provided where applicable." },
+                    { question: "Do these work for both US and metric units?", answer: "Every calculator defaults to US units (HP, lb-ft, MPG, inches) and automatically displays metric equivalents (kW, Nm, L/100km, mm) inline below the primary result. No need to toggle or convert manually." },
+                    { question: "How do I find my vehicle's horsepower and torque specs?", answer: "Check your owner's manual, the manufacturer's website, or look up your vehicle on sites like Edmund's or Car and Driver. For modified engines, a dyno test gives the most accurate numbers — use our Dyno Correction Factor Calculator to normalize results." },
+                    { question: "What tire size is safe to upsize to?", answer: "The general rule is to stay within 3% of the OEM tire diameter to avoid speedometer errors, ABS/traction control issues, and rubbing. Use our Tire Size Comparison Calculator to check the exact diameter difference and our Speedometer Error Calculator to see the impact." },
+                    { question: "Can I use these calculators for motorcycles and trucks?", answer: "Absolutely. The engine, fuel, and tire formulas are universal. For vehicle loans, we have dedicated Motorcycle Loan and RV Loan calculators. The tire tools support any P-metric, LT-metric, or flotation tire size." },
+                ];
 
 const schemaData = JSON.stringify([
     breadcrumbSchema([
@@ -29,7 +38,8 @@ const schemaData = JSON.stringify([
         description: "Comprehensive automotive calculator suite covering engine performance, fuel economy, wheels & tires, EV charging, and vehicle loan financing.",
         url: canonicalUrl("/automotive-calculators"),
     },
-]);
+,
+    faqSchema(FAQ_ITEMS)]);
 
 /* ── Subcategory groups ── */
 const SUBCATEGORIES = [
@@ -69,9 +79,12 @@ export default function AutomotiveCalculatorsPage() {
             <h1 className="t-h1" style={{ marginBottom: "var(--s-2)" }}>
                 Automotive Calculators — Engine, Fuel, Tires, EV & Loan Tools
             </h1>
-            <p className="t-body text-muted" style={{ marginBottom: "var(--s-8)" }}>
+            <p className="t-body text-muted" style={{ marginBottom: "var(--s-4)" }}>
                 55+ free automotive calculators covering engine performance, fuel economy, wheels & tires, electric vehicles, and vehicle financing. From estimating horsepower and quarter-mile times to comparing tire sizes and calculating loan payments — instant, accurate results for every automotive need.
             </p>
+            <div style={{ marginBottom: "var(--s-8)" }}>
+                <AuthorBadge categoryKey="automotive" />
+            </div>
 
             {/* ── Subcategory Cards ── */}
             <section style={{ marginBottom: "var(--s-12)" }}>
@@ -151,13 +164,7 @@ export default function AutomotiveCalculatorsPage() {
 
             <FAQAccordion
                 title="Automotive Calculator FAQ"
-                items={[
-                    { question: "Are these calculators accurate for my specific vehicle?", answer: "Yes — all calculators use vehicle-agnostic engineering formulas. You input your specific vehicle's data (horsepower, weight, tire size, MPG, etc.) and get results tailored to your car, truck, or motorcycle. Presets for popular configurations are provided where applicable." },
-                    { question: "Do these work for both US and metric units?", answer: "Every calculator defaults to US units (HP, lb-ft, MPG, inches) and automatically displays metric equivalents (kW, Nm, L/100km, mm) inline below the primary result. No need to toggle or convert manually." },
-                    { question: "How do I find my vehicle's horsepower and torque specs?", answer: "Check your owner's manual, the manufacturer's website, or look up your vehicle on sites like Edmund's or Car and Driver. For modified engines, a dyno test gives the most accurate numbers — use our Dyno Correction Factor Calculator to normalize results." },
-                    { question: "What tire size is safe to upsize to?", answer: "The general rule is to stay within 3% of the OEM tire diameter to avoid speedometer errors, ABS/traction control issues, and rubbing. Use our Tire Size Comparison Calculator to check the exact diameter difference and our Speedometer Error Calculator to see the impact." },
-                    { question: "Can I use these calculators for motorcycles and trucks?", answer: "Absolutely. The engine, fuel, and tire formulas are universal. For vehicle loans, we have dedicated Motorcycle Loan and RV Loan calculators. The tire tools support any P-metric, LT-metric, or flotation tire size." },
-                ]}
+                items={FAQ_ITEMS}
             />
 
             <section style={{ marginTop: "var(--s-8)" }}>

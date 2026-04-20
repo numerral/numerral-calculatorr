@@ -6,8 +6,9 @@ import Breadcrumb from "@/components/layout/Breadcrumb";
 import CategoryGrid from "@/components/shared/CategoryGrid";
 import DynamicExplanation from "@/components/shared/DynamicExplanation";
 import FAQAccordion from "@/components/shared/FAQAccordion";
+import AuthorBadge from "@/components/shared/AuthorBadge";
 import { getCalculatorsByCategory, type CalculatorDef } from "@/lib/data";
-import { canonicalUrl, breadcrumbSchema } from "@/lib/seo";
+import { canonicalUrl, breadcrumbSchema, faqSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
@@ -16,6 +17,25 @@ export const metadata: Metadata = {
         "Calculate your actual in-hand salary from CTC. Includes salary after tax, EPF deductions, gratuity, bonus, and HRA exemption tools for FY 2025-26.",
     alternates: { canonical: canonicalUrl("/salary-calculators") },
 };
+
+const FAQ_ITEMS = [
+                    {
+                        question: "Why is my In-Hand salary much lower than my CTC?",
+                        answer: "Because CTC includes employer contributions to EPF and Gratuity, which you don't receive monthly. Plus, your share of EPF (12%), Professional Tax, and Income Tax (TDS) are deducted from your gross pay before it reaches your bank account.",
+                    },
+                    {
+                        question: "How is Basic Salary determined?",
+                        answer: "Most companies set basic salary at 40% to 50% of the CTC. This is crucial because HRA, EPF, and Gratuity are all calculated as a percentage of your basic salary.",
+                    },
+                    {
+                        question: "Is Gratuity paid every year?",
+                        answer: "No. Gratuity is a lump sum paid by the employer only when you leave the organization after completing a minimum of 5 continuous years of service. However, companies deduct it annually from your CTC structure.",
+                    },
+                    {
+                        question: "Is bonus part of my CTC?",
+                        answer: "Yes, guaranteed statutory bonus (minimum 8.33% of basic) or performance variable pay is usually included in the CTC. However, variable pay is only paid out based on company or individual performance.",
+                    },
+                ];
 
 const schemaData = JSON.stringify([
     breadcrumbSchema([
@@ -29,7 +49,8 @@ const schemaData = JSON.stringify([
         description: "All salary calculators including CTC to in-hand, gross payload, gratuity, bonus, and HRA.",
         url: canonicalUrl("/salary-calculators"),
     },
-]);
+,
+    faqSchema(FAQ_ITEMS)]);
 
 export default function SalaryCalculatorsPage() {
     const salaryCalcs = getCalculatorsByCategory("salary");
@@ -52,10 +73,13 @@ export default function SalaryCalculatorsPage() {
             <h1 className="t-h1" style={{ marginBottom: "var(--s-2)" }}>
                 Salary Calculators — Take Home, Gratuity & Bonus
             </h1>
-            <p className="t-body text-muted" style={{ marginBottom: "var(--s-8)" }}>
+            <p className="t-body text-muted" style={{ marginBottom: "var(--s-4)" }}>
                 Understand your exact salary breakdown with our free tools. Convert CTC to take-home pay, calculate
                 tax deductions, estimate your gratuity payout, and check your statutory bonus eligibility.
             </p>
+            <div style={{ marginBottom: "var(--s-8)" }}>
+                <AuthorBadge categoryKey="salary" />
+            </div>
 
             <section style={{ marginBottom: "var(--s-12)" }}>
                 <h2 className="t-h2" style={{ marginBottom: "var(--s-5)" }}>Salary & Income Tools</h2>
@@ -90,24 +114,7 @@ export default function SalaryCalculatorsPage() {
 
             <FAQAccordion
                 title="Salary Calculator FAQ"
-                items={[
-                    {
-                        question: "Why is my In-Hand salary much lower than my CTC?",
-                        answer: "Because CTC includes employer contributions to EPF and Gratuity, which you don't receive monthly. Plus, your share of EPF (12%), Professional Tax, and Income Tax (TDS) are deducted from your gross pay before it reaches your bank account.",
-                    },
-                    {
-                        question: "How is Basic Salary determined?",
-                        answer: "Most companies set basic salary at 40% to 50% of the CTC. This is crucial because HRA, EPF, and Gratuity are all calculated as a percentage of your basic salary.",
-                    },
-                    {
-                        question: "Is Gratuity paid every year?",
-                        answer: "No. Gratuity is a lump sum paid by the employer only when you leave the organization after completing a minimum of 5 continuous years of service. However, companies deduct it annually from your CTC structure.",
-                    },
-                    {
-                        question: "Is bonus part of my CTC?",
-                        answer: "Yes, guaranteed statutory bonus (minimum 8.33% of basic) or performance variable pay is usually included in the CTC. However, variable pay is only paid out based on company or individual performance.",
-                    },
-                ]}
+                items={FAQ_ITEMS}
             />
 
             <section style={{ marginTop: "var(--s-8)" }}>

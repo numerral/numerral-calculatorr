@@ -237,14 +237,54 @@ const HUB_CONTENT: Record<string, {
     },
     "percentage-calculator": {
         subtitle: "Calculate percentages in 5 different ways — find X% of a number, percentage change, what percent one number is of another, and more.",
-        explanation: {
-            heading: "How to Use the Percentage Calculator",
-            paragraphs: [
-                "Percentages come up everywhere — from GST on your bill to discount on a sale, from exam scores to salary hikes. Our percentage calculator handles 5 common use cases: (1) X% of Y — for example, 18% of ₹10,000 is ₹1,800. (2) X is what percent of Y — 45 out of 60 is 75%. (3) Percentage change between two values — going from 80 to 100 is a 25% increase.",
-                "Modes 4 and 5 handle direct percentage increase and decrease. Enter the original value and the percentage, and get the new value instantly. This is useful for calculating salary after a 12% hike, price after a 30% discount, or budget after a 10% reduction.",
-            ],
-            highlight: "Quick mental trick: To find 18% GST on ₹5,000, split it into 10% (₹500) + 8% (₹400) = ₹900 GST. Total payable = ₹5,900.",
-        },
+        contentHTML: `<h2>How to Calculate Percentages — A Complete Guide</h2>
+<p>Percentages are one of the most universally useful mathematical concepts in daily life. From calculating GST and discounts to understanding salary hikes, exam scores, and investment returns, percentages are the language of proportion. This guide explains the five key percentage calculation methods, shows step-by-step formulas, and covers real-world applications.</p>
+
+<h3>The 5 Percentage Calculation Modes — Explained</h3>
+<p><strong>Mode 1 — What is X% of Y?</strong><br/>Formula: Result = (X ÷ 100) × Y. Used for GST, discounts, tips, interest. Example: 18% of ₹50,000 = <strong>₹9,000</strong>. An item at ₹50,000 with 18% GST costs ₹59,000 total.</p>
+<p><strong>Mode 2 — X is what percent of Y?</strong><br/>Formula: Percentage = (X ÷ Y) × 100. Used for exam scores and proportions. If you scored 45 out of 60: (45 ÷ 60) × 100 = <strong>75%</strong>.</p>
+<p><strong>Mode 3 — Percentage Change.</strong><br/>Formula: Change% = ((New − Old) ÷ Old) × 100. A product going from ₹80 to ₹100: ((100 − 80) ÷ 80) × 100 = <strong>25% increase</strong>.</p>
+<p><strong>Mode 4 — Increase by X%.</strong><br/>Formula: New = Original × (1 + X/100). A ₹50,000 salary with 12% hike = 50,000 × 1.12 = <strong>₹56,000</strong>.</p>
+<p><strong>Mode 5 — Decrease by X%.</strong><br/>Formula: New = Original × (1 − X/100). ₹80,000 laptop at 15% discount = 80,000 × 0.85 = <strong>₹68,000</strong>.</p>
+
+<div class="explanation__highlight">
+<strong>Quick Mental Math:</strong> For 18% GST — think 10% + 5% + 3%. On ₹5,000: ₹500 + ₹250 + ₹150 = <strong>₹900 GST</strong>. Total = ₹5,900.
+</div>
+
+<h3>Reverse Percentage Calculations</h3>
+<ul>
+<li><strong>Original before discount:</strong> Original = Final ÷ (1 − Discount%/100). A jacket at ₹850 after 15% off → 850 ÷ 0.85 = <strong>₹1,000</strong>.</li>
+<li><strong>Extract GST from inclusive price:</strong> GST = Total × Rate ÷ (100 + Rate). ₹59,000 with 18% GST → GST = 59,000 × 18/118 = <strong>₹9,000</strong>.</li>
+<li><strong>Original before markup:</strong> Original = Final ÷ (1 + Markup%/100). ₹1,200 price with 20% markup → 1,200 ÷ 1.20 = <strong>₹1,000</strong> original cost.</li>
+</ul>
+
+<h3>Stacked Discounts — The Common Shopping Trap</h3>
+<p>When an offer says "30% off + extra 20% off," shoppers assume 50% total. Wrong — discounts stack sequentially:</p>
+<ul>
+<li>Original: ₹1,000 → after 30% off: ₹700 → after 20% off ₹700 = ₹560.</li>
+<li><strong>Effective discount: 44%, not 50%.</strong></li>
+</ul>
+<p>Formula: Final = Original × (1 − D1) × (1 − D2). Always verify with a calculator before assuming the advertised savings.</p>
+
+<h3>Percentage Points vs. Percentage Change</h3>
+<p>If the RBI repo rate rises from 6% to 6.5%, that is <strong>0.5 percentage points</strong> (absolute arithmetic change). As a percentage change, it is (0.5 ÷ 6) × 100 = <strong>8.33%</strong> relative increase. Headlines saying "inflation rose 2 percentage points" mean the rate moved from, say, 4% to 6% — not that it doubled.</p>
+
+<h3>Real-World Percentage Applications</h3>
+<table><thead><tr><th>Scenario</th><th>Formula</th><th>Example</th></tr></thead><tbody>
+<tr><td>GST Calculation</td><td>Amount × Rate ÷ 100</td><td>₹10,000 × 18% = ₹1,800</td></tr>
+<tr><td>Salary Hike</td><td>Salary × (1 + Hike%/100)</td><td>₹60,000 × 1.10 = ₹66,000</td></tr>
+<tr><td>Exam Score</td><td>(Marks ÷ Total) × 100</td><td>540/600 = 90%</td></tr>
+<tr><td>Investment Return</td><td>((End − Start) ÷ Start) × 100</td><td>(₹13L − ₹10L) ÷ ₹10L = 30%</td></tr>
+<tr><td>EMI-to-Income Ratio</td><td>(EMI ÷ Income) × 100</td><td>₹20K EMI / ₹60K salary = 33.3%</td></tr>
+<tr><td>Body Weight Change</td><td>((New − Old) ÷ Old) × 100</td><td>80kg → 72kg = −10%</td></tr>
+</tbody></table>
+
+<h3>References</h3>
+<ul>
+<li>CBSE Class 7–8 Mathematics — Percentage and Ratio chapters</li>
+<li>Reserve Bank of India (RBI) — Financial Literacy Program materials</li>
+<li>NISM — Investor Education: Percentage-based returns</li>
+</ul>`,
         faq: [
             { question: "How do I calculate GST from a total amount?", answer: "To find GST already included in the total, use the reverse GST formula: GST Amount = Total × (Rate ÷ (100 + Rate)). For 18% GST, divide total by 1.18 to get the base price, then subtract to get the GST." },
             { question: "What is percentage change and when do I use it?", answer: "Percentage change = ((New Value − Old Value) ÷ Old Value) × 100. Use it to measure growth in sales, change in price, returns on investment, or variation in any two comparable figures." },
@@ -253,14 +293,69 @@ const HUB_CONTENT: Record<string, {
     },
     "compound-interest-calculator": {
         subtitle: "Calculate how your money grows with compound interest. See the total amount, interest earned, and year-by-year growth over time.",
-        explanation: {
-            heading: "How Compound Interest Works",
-            paragraphs: [
-                "Compound interest means you earn interest not just on your original principal, but also on the interest you have already earned. This creates a snowball effect — the longer you stay invested, the faster your money grows. It is why Warren Buffett calls compounding the 'eighth wonder of the world'.",
-                "For example, ₹1 lakh invested at 12% per year for 20 years grows to ₹9.65 lakhs with simple interest. With compound interest (compounded annually), the same money grows to ₹9.65 lakhs too initially — but with monthly compounding, it reaches ₹10.89 lakhs. The frequency of compounding makes a real difference over time.",
-            ],
-            highlight: "Power of starting early: ₹5,000/month invested at 12% from age 25 grows to ₹1.76 Crores by age 60. Starting just 10 years later at 35 gives only ₹52 Lakhs — a ₹1.24 Crore difference from a 10-year delay.",
-        },
+        contentHTML: `<h2>How Compound Interest Works — The Complete Guide</h2>
+<p>Compound interest is the single most powerful concept in personal finance. Unlike simple interest — which earns returns only on your original principal — compound interest earns returns on both the principal and all previously accrued interest. This creates an accelerating snowball effect: the longer your money stays invested, the faster it grows.</p>
+
+<h3>The Compound Interest Formula</h3>
+<div class="explanation__highlight">
+<strong>A = P × (1 + r/n)^(n×t)</strong><br/><br/>
+<strong>A</strong> = Final Amount &nbsp;|&nbsp; <strong>P</strong> = Principal &nbsp;|&nbsp; <strong>r</strong> = Annual rate (decimal) &nbsp;|&nbsp; <strong>n</strong> = Compounding periods/year &nbsp;|&nbsp; <strong>t</strong> = Time in years<br/><br/>
+<strong>Interest Earned = A − P</strong><br/><br/>
+Example: ₹1,00,000 at 12% monthly (n=12) for 10 years → A = 1,00,000 × (1.01)^120 = <strong>₹3,30,039</strong>. Interest earned = ₹2,30,039 — a 230% return on your principal!
+</div>
+
+<h3>How Compounding Frequency Impacts Returns (₹1 Lakh at 12% for 10 Years)</h3>
+<table><thead><tr><th>Compounding Frequency</th><th>n Value</th><th>Final Amount</th><th>Interest Earned</th></tr></thead><tbody>
+<tr><td>Annually</td><td>1</td><td>₹3,10,585</td><td>₹2,10,585</td></tr>
+<tr><td>Semi-Annually</td><td>2</td><td>₹3,20,714</td><td>₹2,20,714</td></tr>
+<tr><td>Quarterly</td><td>4</td><td>₹3,26,204</td><td>₹2,26,204</td></tr>
+<tr><td>Monthly</td><td>12</td><td>₹3,30,039</td><td>₹2,30,039</td></tr>
+<tr><td>Daily</td><td>365</td><td>₹3,31,946</td><td>₹2,31,946</td></tr>
+</tbody></table>
+<p>In India, most Fixed Deposits compound quarterly. The difference between annual and daily compounding on ₹1 Lakh over 10 years is ₹21,000 — significantly more at scale. Equity mutual funds grow via daily NAV appreciation, effectively giving daily compounding.</p>
+
+<h3>The Power of Starting Early — Time Outperforms Capital</h3>
+<table><thead><tr><th>Investor</th><th>Start Age</th><th>Monthly SIP</th><th>Total Invested</th><th>Corpus at Age 60 (12% p.a.)</th></tr></thead><tbody>
+<tr><td><strong>Arjun (Early Start)</strong></td><td>25</td><td>₹5,000</td><td>₹21 Lakh</td><td><strong>₹1.76 Crore</strong></td></tr>
+<tr><td><strong>Priya (10-Yr Delay)</strong></td><td>35</td><td>₹5,000</td><td>₹15 Lakh</td><td><strong>₹52 Lakh</strong></td></tr>
+<tr><td><strong>Vikram (Later, More Capital)</strong></td><td>40</td><td>₹10,000</td><td>₹24 Lakh</td><td><strong>₹99 Lakh</strong></td></tr>
+</tbody></table>
+<p>Arjun invests the least money in rupee terms, yet accumulates the most — 3.4× more than Priya and 1.8× more than Vikram who doubled the monthly amount. A 10-year head start is worth <strong>₹1.24 Crore</strong>. Time is the most powerful input in any compound interest calculation.</p>
+
+<h3>Compound Interest vs. Simple Interest — The Diverging Paths</h3>
+<table><thead><tr><th>Time Horizon</th><th>Simple Interest (12%)</th><th>Compound Interest (12% monthly)</th><th>Compounding Advantage</th></tr></thead><tbody>
+<tr><td>5 years</td><td>₹1,60,000</td><td>₹1,81,940</td><td>+₹21,940</td></tr>
+<tr><td>10 years</td><td>₹2,20,000</td><td>₹3,30,039</td><td>+₹1,10,039</td></tr>
+<tr><td>20 years</td><td>₹3,40,000</td><td>₹10,89,255</td><td>+₹7,49,255</td></tr>
+<tr><td>30 years</td><td>₹4,60,000</td><td>₹35,94,964</td><td>+₹31,34,964</td></tr>
+</tbody></table>
+<p><em>Based on ₹1,00,000 initial investment at 12% per year. Simple interest grows linearly (same amount each year); compound interest grows exponentially (accelerating amount each year).</em></p>
+
+<h3>Common Indian Investment Products and Their Compounding</h3>
+<ul>
+<li><strong>Fixed Deposits (FDs):</strong> Compound quarterly. Current rates 7–8.5% for major banks. Ideal for capital preservation with guaranteed returns over 1–5 year horizons.</li>
+<li><strong>PPF (Public Provident Fund):</strong> Compounds annually at 7.1% (2024–25 rate). Fully tax-exempt under the EEE (Exempt-Exempt-Exempt) regime; 15-year lock-in. Real return ~1–1.5% after 6% inflation.</li>
+<li><strong>Equity Mutual Funds:</strong> Historical CAGR of 12–15% (Nifty 50 index, 20-year average). Growth through daily NAV increases. Best suited for 7+ year financial goals.</li>
+<li><strong>ELSS (Tax-Saver) Funds:</strong> Equity funds with a mandatory 3-year lock-in. Historical returns 12–14%. Provides Section 80C tax deduction on investments up to ₹1.5 Lakh per year.</li>
+<li><strong>NPS (National Pension System):</strong> Market-linked with 9–10% historical CAGR. Additional ₹50,000 deduction under Section 80CCD(1B) beyond the standard 80C limit.</li>
+</ul>
+
+<h3>The Rule of 72 — Estimate Doubling Time Instantly</h3>
+<p>A quick mental shortcut: <strong>Doubling Time ≈ 72 ÷ Annual Rate</strong></p>
+<ul>
+<li>FD at 7%: 72 ÷ 7 = <strong>~10.3 years</strong> to double your money</li>
+<li>Equity fund at 12%: 72 ÷ 12 = <strong>6 years</strong> to double</li>
+<li>Savings account at 3.5%: 72 ÷ 3.5 = <strong>~20.6 years</strong> to double</li>
+<li>Inflation at 6%: 72 ÷ 6 = <strong>12 years</strong> for prices to double — meaning your idle cash loses half its purchasing power in 12 years</li>
+</ul>
+
+<h3>References</h3>
+<ul>
+<li>SEBI Investor Education — sebi.gov.in/investor-education</li>
+<li>Reserve Bank of India Financial Literacy — rbi.org.in</li>
+<li>AMFI Mutual Fund Awareness Programme — amfiindia.com</li>
+<li>NISM Module 1: Compounding and Time Value of Money</li>
+</ul>`,
         faq: [
             { question: "What is the compound interest formula?", answer: "A = P × (1 + r/n)^(n×t) where P = principal, r = annual interest rate (as decimal), n = compounding frequency per year, t = time in years. Subtract P from A to get the interest earned." },
             { question: "Which compounding frequency is best?", answer: "More frequent compounding means slightly higher returns. Monthly compounding gives more than annual, and daily gives more than monthly. For most FDs and savings accounts in India, interest compounds quarterly." },

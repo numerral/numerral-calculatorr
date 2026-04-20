@@ -21,6 +21,23 @@ export default function EditorialPolicyPage() {
             { name: "Home", url: `${SITE_URL}/` },
             { name: "Editorial Policy" },
         ]),
+        {
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            name: "Editorial Policy — How Numerral Ensures Accuracy & Trust",
+            description: "Numerral's three-tier editorial process: written by subject-matter experts, reviewed by financial and science professionals, fact-checked against primary sources.",
+            url: canonicalUrl("/editorial-policy"),
+            publisher: {
+                "@type": "Organization",
+                name: "Numerral",
+                url: SITE_URL,
+            },
+            mainEntity: {
+                "@type": "Article",
+                headline: "Editorial Policy",
+                author: { "@type": "Organization", name: "Numerral Editorial Team" },
+            },
+        },
     ]);
 
     return (
@@ -64,8 +81,9 @@ export default function EditorialPolicyPage() {
                         <div className="editorial-process-step__number">2</div>
                         <h4>Reviewed by Professionals</h4>
                         <p>
-                            All content is reviewed by qualified financial professionals — including CFA
-                            charterholders and MBA holders — who verify technical accuracy and financial logic.
+                            All content is reviewed by qualified domain experts — including CFA
+                            charterholders, Ph.D. scientists, and accredited engineers — who verify
+                            technical accuracy, formula correctness, and factual integrity.
                         </p>
                     </div>
                     <div className="editorial-process-step">
@@ -99,7 +117,12 @@ export default function EditorialPolicyPage() {
                     <li><strong>Securities and Exchange Board of India (SEBI)</strong> — Mutual fund regulations, market data</li>
                     <li><strong>Income Tax Department, India</strong> — Tax slabs, deductions, exemptions, budget announcements</li>
                     <li><strong>Ministry of Finance</strong> — Budget documents, small savings scheme rates</li>
+                    <li><strong>NIST (National Institute of Standards and Technology)</strong> — Physical constants, SI units, scientific reference values</li>
+                    <li><strong>NFPA 70 (National Electrical Code)</strong> — Electrical wiring, circuit sizing, safety standards</li>
+                    <li><strong>U.S. Energy Information Administration (EIA)</strong> — Electricity rates, energy consumption data</li>
+                    <li><strong>U.S. EPA</strong> — Environmental and fuel economy standards</li>
                     <li><strong>Standard financial textbooks</strong> — CFA curriculum, Brealey-Myers (Corporate Finance), Bodie-Kane-Marcus (Investments)</li>
+                    <li><strong>Standard physics and engineering references</strong> — Halliday, Resnick &amp; Krane; Serway &amp; Jewett; Sadiku &amp; Alexander</li>
                     <li><strong>Peer-reviewed research</strong> — Health calculator formulas from published medical and nutrition research</li>
                 </ul>
 

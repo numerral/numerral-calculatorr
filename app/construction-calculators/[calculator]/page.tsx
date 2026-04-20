@@ -6167,7 +6167,7 @@ export default async function ConstructionCalculatorHubPage({ params }: PageProp
                 { name: "Construction Calculators", url: canonicalUrl("/construction-calculators") },
                 { name: calc.title },
             ]),
-            webAppSchema(calc.title, pageUrl),
+            webAppSchema(calc.title, pageUrl, "USD", "EducationalApplication"),
         ]);
     }
 

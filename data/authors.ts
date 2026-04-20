@@ -129,7 +129,45 @@ export const AUTHORS: Author[] = [
         image: "/images/authors/neha-kapoor.png",
         joinedDate: "2024-01-10",
     },
+    {
+        slug: "rajiv-nair",
+        name: "Dr. Rajiv Nair",
+        role: "Reviewer",
+        title: "Physics & Engineering Review Board Member",
+        education: [
+            "Ph.D. Applied Physics, Indian Institute of Science (IISc), Bangalore",
+            "M.Sc. Physics, University of Mumbai",
+        ],
+        expertise: [
+            "Classical Mechanics",
+            "Thermodynamics",
+            "Electromagnetism",
+            "Fluid Dynamics",
+            "Engineering Physics",
+            "Scientific Computing",
+        ],
+        location: "Bangalore, India",
+        bio: [
+            "Dr. Rajiv Nair is a member of Numerral's Science & Engineering Review Board, responsible for reviewing and validating the accuracy of all physics, chemistry, electrical, and engineering calculators on the platform. With over 15 years of research and teaching experience in applied physics, Dr. Nair ensures that every formula, constant, and worked example meets university-level accuracy standards.",
+            "Dr. Nair holds a Ph.D. in Applied Physics from the Indian Institute of Science (IISc) and has published research in computational thermodynamics and fluid mechanics. He has taught undergraduate and postgraduate physics at IISc for over a decade, developing a deep understanding of the conceptual foundations that make physics calculator tools effective for students and professionals alike.",
+            "At Numerral, Dr. Nair validates all physical constants against NIST (National Institute of Standards and Technology) reference values, cross-checks formulas against standard textbooks including Halliday, Resnick & Krane and Serway & Jewett, and reviews each worked example for correctness in units, significant figures, and physical reasoning.",
+        ],
+        summary: [
+            "Member of Numerral's Science & Engineering Review Board — reviews all physics, chemistry, and electrical calculators",
+            "Ph.D. Applied Physics from IISc Bangalore; 15+ years research and teaching experience",
+            "Validates all physical constants against NIST reference values",
+            "Cross-checks formulas against Halliday-Resnick, Serway-Jewett, and other standard textbooks",
+        ],
+        linkedin: "https://www.linkedin.com/",
+        image: "/images/authors/rajiv-nair.png",
+        joinedDate: "2024-03-01",
+        companyInfo: {
+            name: "Numerral Science & Engineering Review Board",
+            url: "/editorial-policy",
+        },
+    },
 ];
+
 
 // ─── Category → Author Mapping ──────────────────────────────
 
@@ -144,23 +182,36 @@ export interface CategoryAuthors {
  * All categories follow the same 3-tier editorial process.
  */
 export const CALC_AUTHOR_MAP: Record<string, CategoryAuthors> = {
-    loan: { writer: "priya-sharma", reviewer: "arjun-mehta", factChecker: "neha-kapoor" },
-    invest: { writer: "priya-sharma", reviewer: "arjun-mehta", factChecker: "neha-kapoor" },
-    tax: { writer: "priya-sharma", reviewer: "arjun-mehta", factChecker: "neha-kapoor" },
-    salary: { writer: "priya-sharma", reviewer: "arjun-mehta", factChecker: "neha-kapoor" },
-    utility: { writer: "priya-sharma", reviewer: "arjun-mehta", factChecker: "neha-kapoor" },
-    business: { writer: "priya-sharma", reviewer: "arjun-mehta", factChecker: "neha-kapoor" },
-    construction: { writer: "priya-sharma", reviewer: "arjun-mehta", factChecker: "neha-kapoor" },
-    ev: { writer: "priya-sharma", reviewer: "arjun-mehta", factChecker: "neha-kapoor" },
-    health: { writer: "priya-sharma", reviewer: "arjun-mehta", factChecker: "neha-kapoor" },
-    math: { writer: "priya-sharma", reviewer: "arjun-mehta", factChecker: "neha-kapoor" },
-    time: { writer: "priya-sharma", reviewer: "arjun-mehta", factChecker: "neha-kapoor" },
-    pet: { writer: "priya-sharma", reviewer: "arjun-mehta", factChecker: "neha-kapoor" },
-    engine: { writer: "priya-sharma", reviewer: "arjun-mehta", factChecker: "neha-kapoor" },
-    fuel: { writer: "priya-sharma", reviewer: "arjun-mehta", factChecker: "neha-kapoor" },
-    wheels: { writer: "priya-sharma", reviewer: "arjun-mehta", factChecker: "neha-kapoor" },
-    convert: { writer: "priya-sharma", reviewer: "arjun-mehta", factChecker: "neha-kapoor" },
+    // Finance & Business
+    loan:         { writer: "priya-sharma", reviewer: "arjun-mehta", factChecker: "neha-kapoor" },
+    invest:       { writer: "priya-sharma", reviewer: "arjun-mehta", factChecker: "neha-kapoor" },
+    tax:          { writer: "priya-sharma", reviewer: "arjun-mehta", factChecker: "neha-kapoor" },
+    salary:       { writer: "priya-sharma", reviewer: "arjun-mehta", factChecker: "neha-kapoor" },
+    business:     { writer: "priya-sharma", reviewer: "arjun-mehta", factChecker: "neha-kapoor" },
+    // Science & Engineering
+    physics:      { writer: "priya-sharma", reviewer: "rajiv-nair",  factChecker: "neha-kapoor" },
+    chemistry:    { writer: "priya-sharma", reviewer: "rajiv-nair",  factChecker: "neha-kapoor" },
+    density:      { writer: "priya-sharma", reviewer: "rajiv-nair",  factChecker: "neha-kapoor" },
+    electrical:   { writer: "priya-sharma", reviewer: "rajiv-nair",  factChecker: "neha-kapoor" },
+    math:         { writer: "priya-sharma", reviewer: "rajiv-nair",  factChecker: "neha-kapoor" },
+    construction: { writer: "priya-sharma", reviewer: "rajiv-nair",  factChecker: "neha-kapoor" },
+    // Health & Lifestyle
+    health:       { writer: "priya-sharma", reviewer: "arjun-mehta", factChecker: "neha-kapoor" },
+    pet:          { writer: "priya-sharma", reviewer: "arjun-mehta", factChecker: "neha-kapoor" },
+    cooking:      { writer: "priya-sharma", reviewer: "arjun-mehta", factChecker: "neha-kapoor" },
+    // Utility & Time
+    utility:      { writer: "priya-sharma", reviewer: "arjun-mehta", factChecker: "neha-kapoor" },
+    time:         { writer: "priya-sharma", reviewer: "arjun-mehta", factChecker: "neha-kapoor" },
+    convert:      { writer: "priya-sharma", reviewer: "arjun-mehta", factChecker: "neha-kapoor" },
+    // Automotive & Vehicle
+    ev:           { writer: "priya-sharma", reviewer: "rajiv-nair",  factChecker: "neha-kapoor" },
+    engine:       { writer: "priya-sharma", reviewer: "rajiv-nair",  factChecker: "neha-kapoor" },
+    fuel:         { writer: "priya-sharma", reviewer: "rajiv-nair",  factChecker: "neha-kapoor" },
+    wheels:       { writer: "priya-sharma", reviewer: "rajiv-nair",  factChecker: "neha-kapoor" },
+    automotive:   { writer: "priya-sharma", reviewer: "rajiv-nair",  factChecker: "neha-kapoor" },
+    vehicle:      { writer: "priya-sharma", reviewer: "arjun-mehta", factChecker: "neha-kapoor" },
 };
+
 
 // ─── Helper Functions ───────────────────────────────────────
 

@@ -6,6 +6,8 @@ import { Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import LocaleAwareShell from "@/components/layout/LocaleAwareShell";
 import { SITE_NAME, SITE_URL } from "@/lib/constants";
+import { organizationSchema, webSiteSchema } from "@/lib/seo";
+
 
 const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -68,6 +70,17 @@ export default function RootLayout({
         </Script>
       </head>
       <body className={`${jakarta.className} ${jakarta.variable} ${jetbrains.variable}`}>
+        {/* Site-level Entity Schemas — Organization + WebSite */}
+        <Script
+          id="schema-org-entity"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify([
+              organizationSchema(SITE_URL),
+              webSiteSchema(SITE_URL),
+            ]),
+          }}
+        />
         <LocaleAwareShell>
           {children}
         </LocaleAwareShell>

@@ -9,7 +9,7 @@ import DynamicExplanation from "@/components/shared/DynamicExplanation";
 import FAQAccordion from "@/components/shared/FAQAccordion";
 
 import { getCalculatorsByCategory } from "@/lib/data";
-import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
+import { canonicalUrl, breadcrumbSchema, webAppSchema, faqSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 import RelatedCalculators from "@/components/shared/RelatedCalculators";
 
@@ -239,7 +239,13 @@ export default async function FuelCalcHubPage({ params }: PageProps) {
     if (!calc) return notFound();
     const content = HUB_CONTENT[calc.id] ?? HUB_CONTENT[calc.slug];
     const pageUrl = canonicalUrl(`/automotive-calculators/fuel-economy/${calc.slug}`);
-    const schemaData = JSON.stringify([breadcrumbSchema([{ name: "Home", url: `${SITE_URL}/` }, { name: "Automotive Calculators", url: canonicalUrl("/automotive-calculators") }, { name: "Fuel Economy", url: canonicalUrl("/automotive-calculators/fuel-economy") }, { name: calc.title }]), webAppSchema(calc.title, pageUrl)]);
+    const schemas: object[] = [
+        breadcrumbSchema([{ name: "Home", url: `${SITE_URL}/` }, { name: "Automotive Calculators", url: canonicalUrl("/automotive-calculators") }, { name: "Fuel Economy", url: canonicalUrl("/automotive-calculators/fuel-economy") }, { name: calc.title }]), webAppSchema(calc.title, pageUrl, "USD", "UtilitiesApplication"),
+    ];
+    if (content?.faq && content.faq.length > 0) {
+        schemas.push(faqSchema(content.faq));
+    }
+    const schemaData = JSON.stringify(schemas);
     const allFuelCalcs = getCalculatorsByCategory("fuel").filter(c => c.slug !== calculator);
 
     return (

@@ -127,13 +127,25 @@ export function faqSchema(
 /**
  * Build JSON-LD WebApplication schema.
  */
-export function webAppSchema(name: string, url: string, currency = "USD"): object {
+/**
+ * applicationCategory follows schema.org vocabulary.
+ * Finance → "FinanceApplication"
+ * Health  → "HealthApplication"
+ * Science/Physics/Math → "EducationalApplication"
+ * General / Any → "WebApplication"
+ */
+export function webAppSchema(
+    name: string,
+    url: string,
+    currency = "USD",
+    applicationCategory = "WebApplication"
+): object {
     return {
         "@context": "https://schema.org",
         "@type": "WebApplication",
         name,
         url,
-        applicationCategory: "FinanceApplication",
+        applicationCategory,
         operatingSystem: "Any",
         offers: { "@type": "Offer", price: "0", priceCurrency: currency },
     };
@@ -176,8 +188,79 @@ export function organizationSchema(siteUrl: string): object {
         "@type": "Organization",
         name: "Numerral",
         url: siteUrl,
-        logo: `${siteUrl}/logo.png`,
-        sameAs: [],
+        logo: {
+            "@type": "ImageObject",
+            url: `${siteUrl}/logo.png`,
+            width: 180,
+            height: 60,
+        },
+        description: "Free online calculator platform — 500+ calculators for finance, health, math, physics, construction, and more.",
+        foundingDate: "2023",
+        sameAs: [
+            "https://twitter.com/numerral",
+            "https://www.linkedin.com/company/numerral",
+        ],
+    };
+}
+
+/**
+ * Build JSON-LD WebSite schema with Sitelinks Searchbox potential.
+ * Placing this in the root layout signals to Google that this is a
+ * site-level entity, improving Knowledge Panel eligibility.
+ */
+export function webSiteSchema(siteUrl: string): object {
+    return {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        name: "Numerral",
+        url: siteUrl,
+        description: "Free online calculator platform — 500+ calculators for finance, health, math, physics, construction, and more.",
+        potentialAction: {
+            "@type": "SearchAction",
+            target: {
+                "@type": "EntryPoint",
+                urlTemplate: `${siteUrl}/?q={search_term_string}`,
+            },
+            "query-input": "required name=search_term_string",
+        },
+    };
+}
+
+/**
+ * Build JSON-LD Person schema for author profile pages.
+ * Provides Google with structured author credentialing data (E-E-A-T).
+ */
+export function personSchema(author: {
+    name: string;
+    title: string;
+    bio: string;
+    url: string;
+    image: string;
+    linkedin?: string;
+    education?: string[];
+}): object {
+    return {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        name: author.name,
+        jobTitle: author.title,
+        description: author.bio,
+        url: author.url,
+        image: author.image,
+        ...(author.linkedin ? { sameAs: [author.linkedin] } : {}),
+        ...(author.education && author.education.length > 0
+            ? {
+                  alumniOf: author.education.map((edu) => ({
+                      "@type": "EducationalOrganization",
+                      name: edu,
+                  })),
+              }
+            : {}),
+        worksFor: {
+            "@type": "Organization",
+            name: "Numerral",
+            url: "https://www.numerral.com",
+        },
     };
 }
 

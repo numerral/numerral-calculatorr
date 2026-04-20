@@ -5,7 +5,8 @@ import Breadcrumb from "@/components/layout/Breadcrumb";
 import CategoryGrid from "@/components/shared/CategoryGrid";
 import FAQAccordion from "@/components/shared/FAQAccordion";
 import { getCalculatorsByCategory, type CalculatorDef } from "@/lib/data";
-import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
+import AuthorBadge from "@/components/shared/AuthorBadge";
+import { canonicalUrl, breadcrumbSchema, faqSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
@@ -23,26 +24,25 @@ const FAQ_ITEMS = [
     { question: "What is baker's percentage?", answer: "Baker's percentage is a mathematical method used to scale recipes where flour is always set at 100%, and all other ingredients are calculated as a percentage of the flour's weight. This makes scaling massive batches of dough incredibly easy." },
 ];
 
+// Schema outside the component — no dynamic data, avoids redundant serialization
+const schemaData = JSON.stringify([
+    breadcrumbSchema([
+        { name: "Home", url: `${SITE_URL}/` },
+        { name: "Cooking & Baking Calculators" },
+    ]),
+    {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        name: "Cooking & Baking Calculators",
+        description: "Free cooking and baking calculators for recipe scaling, unit conversions, and kitchen math.",
+        url: canonicalUrl("/cooking-calculators"),
+    },
+    faqSchema(FAQ_ITEMS),
+]);
+
 export default function CookingCalculatorsHub() {
     // 1. Fetch calculators for the grid
     const cookingCalcs = getCalculatorsByCategory("cooking");
-
-    // 2. Structured data
-    const schemaData = JSON.stringify([
-        breadcrumbSchema([
-            { name: "Home", url: `${SITE_URL}/` },
-            { name: "Cooking & Baking Calculators" },
-        ]),
-        {
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            mainEntity: FAQ_ITEMS.map(f => ({
-                "@type": "Question",
-                name: f.question,
-                acceptedAnswer: { "@type": "Answer", text: f.answer }
-            }))
-        }
-    ]);
 
     return (
         <main className="container" style={{ paddingTop: "var(--s-4)" }}>
@@ -56,9 +56,10 @@ export default function CookingCalculatorsHub() {
             {/* Hub Header */}
             <div style={{ marginBottom: "var(--s-6)" }}>
                 <h1 className="t-h1" style={{ marginBottom: "var(--s-2)" }}>Cooking & Baking Calculators</h1>
-                <p className="t-body" style={{ color: "var(--n-text-muted)", maxWidth: "800px" }}>
+                <p className="t-body" style={{ color: "var(--n-text-muted)", maxWidth: "800px", marginBottom: "var(--s-4)" }}>
                     Take the guesswork out of kitchen math. Our expert-reviewed cooking and baking calculators help you scale recipes automatically, convert ingredient weights from metric to US customary units, and calculate precise cooking times for perfect meals.
                 </p>
+                <AuthorBadge categoryKey="cooking" />
             </div>
 
             {/* The primary calculator grid */}

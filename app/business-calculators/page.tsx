@@ -6,8 +6,9 @@ import Breadcrumb from "@/components/layout/Breadcrumb";
 import CategoryGrid from "@/components/shared/CategoryGrid";
 import DynamicExplanation from "@/components/shared/DynamicExplanation";
 import FAQAccordion from "@/components/shared/FAQAccordion";
+import AuthorBadge from "@/components/shared/AuthorBadge";
 import { getCalculatorsByCategory, type CalculatorDef } from "@/lib/data";
-import { canonicalUrl, breadcrumbSchema } from "@/lib/seo";
+import { canonicalUrl, breadcrumbSchema, faqSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
@@ -16,6 +17,25 @@ export const metadata: Metadata = {
         "Free business & financial ratio calculators: Enterprise Value, EBITDA, EBIT, WACC, Cap Rate, ROI, ROAS, Beta, Net Worth & more. Instant results for valuation and analysis.",
     alternates: { canonical: canonicalUrl("/business-calculators") },
 };
+
+const FAQ_ITEMS = [
+                    {
+                        question: "What is Enterprise Value and why is it better than Market Cap?",
+                        answer: "Enterprise Value (EV) represents the total cost to acquire a business — it includes market capitalization plus debt, minus cash. Unlike market cap, EV accounts for a company's debt obligations, making it a more accurate measure of total business value for comparison and acquisition analysis.",
+                    },
+                    {
+                        question: "What is a good WACC for a company?",
+                        answer: "WACC varies by industry and risk profile. Typical ranges: mature companies 6–10%, growth companies 10–15%, startups 15–25%+. A company creates value when its return on invested capital (ROIC) exceeds its WACC — known as positive economic spread.",
+                    },
+                    {
+                        question: "How should I interpret EBITDA vs EBIT?",
+                        answer: "EBITDA adds back depreciation and amortization to show cash-flow-like operating performance — useful for comparing companies with different capital structures. EBIT is closer to true operating income and is better for companies where asset depreciation is a real economic cost.",
+                    },
+                    {
+                        question: "What is a good ROAS for digital advertising?",
+                        answer: "A ROAS of 4× (400%) is generally considered good — meaning $4 revenue for every $1 spent on ads. However, benchmarks vary by industry: e-commerce typically targets 4–10×, SaaS companies may accept 3–5× due to higher LTV, and brand awareness campaigns may have lower ROAS but higher long-term value.",
+                    },
+                ];
 
 const schemaData = JSON.stringify([
     breadcrumbSchema([
@@ -29,7 +49,8 @@ const schemaData = JSON.stringify([
         description: "All business & financial ratio calculators including Enterprise Value, WACC, ROI, and more.",
         url: canonicalUrl("/business-calculators"),
     },
-]);
+,
+    faqSchema(FAQ_ITEMS)]);
 
 export default function BusinessCalculatorsPage() {
     const bizCalcs = getCalculatorsByCategory("business");
@@ -52,10 +73,13 @@ export default function BusinessCalculatorsPage() {
             <h1 className="t-h1" style={{ marginBottom: "var(--s-2)" }}>
                 Business Calculators — Enterprise Value, WACC, ROI & Financial Ratios
             </h1>
-            <p className="t-body text-muted" style={{ marginBottom: "var(--s-8)" }}>
+            <p className="t-body text-muted" style={{ marginBottom: "var(--s-4)" }}>
                 Analyze company valuation, profitability, returns, and financial health with our
                 free business ratio calculators. Used by investors, analysts, founders, and MBA students worldwide.
             </p>
+            <div style={{ marginBottom: "var(--s-8)" }}>
+                <AuthorBadge categoryKey="business" />
+            </div>
 
             {/* Calculator index */}
             <section style={{ marginBottom: "var(--s-12)" }}>
@@ -91,24 +115,7 @@ export default function BusinessCalculatorsPage() {
 
             <FAQAccordion
                 title="Business Calculator FAQ"
-                items={[
-                    {
-                        question: "What is Enterprise Value and why is it better than Market Cap?",
-                        answer: "Enterprise Value (EV) represents the total cost to acquire a business — it includes market capitalization plus debt, minus cash. Unlike market cap, EV accounts for a company's debt obligations, making it a more accurate measure of total business value for comparison and acquisition analysis.",
-                    },
-                    {
-                        question: "What is a good WACC for a company?",
-                        answer: "WACC varies by industry and risk profile. Typical ranges: mature companies 6–10%, growth companies 10–15%, startups 15–25%+. A company creates value when its return on invested capital (ROIC) exceeds its WACC — known as positive economic spread.",
-                    },
-                    {
-                        question: "How should I interpret EBITDA vs EBIT?",
-                        answer: "EBITDA adds back depreciation and amortization to show cash-flow-like operating performance — useful for comparing companies with different capital structures. EBIT is closer to true operating income and is better for companies where asset depreciation is a real economic cost.",
-                    },
-                    {
-                        question: "What is a good ROAS for digital advertising?",
-                        answer: "A ROAS of 4× (400%) is generally considered good — meaning $4 revenue for every $1 spent on ads. However, benchmarks vary by industry: e-commerce typically targets 4–10×, SaaS companies may accept 3–5× due to higher LTV, and brand awareness campaigns may have lower ROAS but higher long-term value.",
-                    },
-                ]}
+                items={FAQ_ITEMS}
             />
 
             <section style={{ marginTop: "var(--s-8)" }}>

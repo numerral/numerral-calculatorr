@@ -13,7 +13,7 @@ import FormulaBlock from "@/components/shared/FormulaBlock";
 import RelatedCalculators from "@/components/shared/RelatedCalculators";
 import TrendingCalculations from "@/components/shared/TrendingCalculations";
 import { getCalculatorsByCategory } from "@/lib/data";
-import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
+import { canonicalUrl, breadcrumbSchema, webAppSchema, faqSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 import GuideCTA from "@/components/shared/GuideCTA";
 import GlossaryChip from "@/components/shared/GlossaryChip";
@@ -689,14 +689,18 @@ export default async function InvestmentCalculatorHubPage({ params }: PageProps)
     const content = HUB_CONTENT[calc.id] ?? HUB_CONTENT[calc.slug];
 
     const pageUrl = canonicalUrl(`/investment-calculators/${calc.slug}`);
-    const schemaData = JSON.stringify([
+    const schemas: Array<object | undefined> = [
         breadcrumbSchema([
             { name: "Home", url: `${SITE_URL}/` },
             { name: "Investment Calculators", url: canonicalUrl("/investment-calculators") },
             { name: calc.title },
         ]),
-        webAppSchema(calc.title, pageUrl),
-    ]);
+        webAppSchema(calc.title, pageUrl, "USD", "FinanceApplication"),
+    ];
+    if (content?.faq && content.faq.length > 0) {
+        schemas.push(faqSchema(content.faq));
+    }
+    const schemaData = JSON.stringify(schemas.filter(Boolean));
 
     return (
         <main className="container" style={{ paddingTop: "var(--s-4)" }}>

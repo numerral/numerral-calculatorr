@@ -6,8 +6,9 @@ import Breadcrumb from "@/components/layout/Breadcrumb";
 import CategoryGrid from "@/components/shared/CategoryGrid";
 import DynamicExplanation from "@/components/shared/DynamicExplanation";
 import FAQAccordion from "@/components/shared/FAQAccordion";
+import AuthorBadge from "@/components/shared/AuthorBadge";
 import { getCalculatorsByCategory, type CalculatorDef } from "@/lib/data";
-import { canonicalUrl, breadcrumbSchema } from "@/lib/seo";
+import { canonicalUrl, breadcrumbSchema, faqSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
@@ -16,6 +17,25 @@ export const metadata: Metadata = {
         "Free time and date calculators for duration, deadlines, work hours, countdowns, and date math. Tools for scheduling, payroll, and planning.",
     alternates: { canonical: canonicalUrl("/time-calculators") },
 };
+
+const FAQ_ITEMS = [
+                    {
+                        question: "How do I calculate the number of days between two dates?",
+                        answer: "Use our Date Duration Calculator. Enter the start date and end date, and it instantly shows the difference in years, months, days, total weeks, and total days. It handles month-length variations and leap years automatically.",
+                    },
+                    {
+                        question: "What is the difference between calendar days and business days?",
+                        answer: "Calendar days include every day (Monday through Sunday). Business days exclude weekends (Saturday and Sunday) and optionally holidays. A 14-calendar-day window contains only 10 business days. Always clarify which type is meant in contracts and deadlines.",
+                    },
+                    {
+                        question: "How does military time work?",
+                        answer: "Military (24-hour) time runs from 0000 (midnight) to 2359 (11:59 PM). To convert PM times: add 12 to the hour (3:00 PM = 1500). To convert from military: if the hour is 13 or above, subtract 12 and add PM. Our converter handles this instantly.",
+                    },
+                    {
+                        question: "What is the average reading speed?",
+                        answer: "The average adult reads at approximately 238 words per minute (wpm) for non-fiction and 260 wpm for fiction. Speed readers can reach 500–700 wpm. Our Reading Time Calculator lets you adjust the WPM to match your personal reading speed.",
+                    },
+                ];
 
 const schemaData = JSON.stringify([
     breadcrumbSchema([
@@ -29,7 +49,8 @@ const schemaData = JSON.stringify([
         description: "All time and date calculators including duration, business days, countdown, and more.",
         url: canonicalUrl("/time-calculators"),
     },
-]);
+,
+    faqSchema(FAQ_ITEMS)]);
 
 export default function TimeCalculatorsPage() {
     const timeCalcs = getCalculatorsByCategory("time");
@@ -52,10 +73,13 @@ export default function TimeCalculatorsPage() {
             <h1 className="t-h1" style={{ marginBottom: "var(--s-2)" }}>
                 Time & Date Calculators — Duration, Business Days, Countdown & More
             </h1>
-            <p className="t-body text-muted" style={{ marginBottom: "var(--s-8)" }}>
+            <p className="t-body text-muted" style={{ marginBottom: "var(--s-4)" }}>
                 Plan trips, schedule events, track work hours, and calculate deadlines with our
                 free time and date tools. Simplify every time-related task with instant, accurate results.
             </p>
+            <div style={{ marginBottom: "var(--s-8)" }}>
+                <AuthorBadge categoryKey="time" />
+            </div>
 
             <section style={{ marginBottom: "var(--s-12)" }}>
                 <h2 className="t-h2" style={{ marginBottom: "var(--s-5)" }}>All Time & Date Calculators</h2>
@@ -252,24 +276,7 @@ export default function TimeCalculatorsPage() {
 
             <FAQAccordion
                 title="Time & Date Calculator FAQ"
-                items={[
-                    {
-                        question: "How do I calculate the number of days between two dates?",
-                        answer: "Use our Date Duration Calculator. Enter the start date and end date, and it instantly shows the difference in years, months, days, total weeks, and total days. It handles month-length variations and leap years automatically.",
-                    },
-                    {
-                        question: "What is the difference between calendar days and business days?",
-                        answer: "Calendar days include every day (Monday through Sunday). Business days exclude weekends (Saturday and Sunday) and optionally holidays. A 14-calendar-day window contains only 10 business days. Always clarify which type is meant in contracts and deadlines.",
-                    },
-                    {
-                        question: "How does military time work?",
-                        answer: "Military (24-hour) time runs from 0000 (midnight) to 2359 (11:59 PM). To convert PM times: add 12 to the hour (3:00 PM = 1500). To convert from military: if the hour is 13 or above, subtract 12 and add PM. Our converter handles this instantly.",
-                    },
-                    {
-                        question: "What is the average reading speed?",
-                        answer: "The average adult reads at approximately 238 words per minute (wpm) for non-fiction and 260 wpm for fiction. Speed readers can reach 500–700 wpm. Our Reading Time Calculator lets you adjust the WPM to match your personal reading speed.",
-                    },
-                ]}
+                items={FAQ_ITEMS}
             />
 
             <section style={{ marginTop: "var(--s-8)" }}>

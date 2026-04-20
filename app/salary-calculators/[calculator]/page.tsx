@@ -14,7 +14,7 @@ import RelatedCalculators from "@/components/shared/RelatedCalculators";
 import GuideCTA from "@/components/shared/GuideCTA";
 import GlossaryChip from "@/components/shared/GlossaryChip";
 import { getCalculatorsByCategory } from "@/lib/data";
-import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
+import { canonicalUrl, breadcrumbSchema, webAppSchema, faqSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
 interface PageProps {
@@ -54,131 +54,60 @@ const HUB_CONTENT: Record<string, {
             ],
             highlight: "₹12 Lakh CTC → ~₹88,000/month in-hand (New Regime). The ₹12L income is effectively tax-free under the New Regime (FY 25-26), but you still lose ~₹12,000/month to EPF (employer + employee shares) and Professional Tax.",
         },
-        contentHTML: `<h3>What Is Salary After Tax?</h3>
-            <p><strong>Salary After Tax</strong> (also called Take-Home Salary, In-Hand Salary, or Net Salary) is the actual amount credited to your bank account every month after all deductions — income tax, EPF, professional tax, and other statutory deductions — are subtracted from your gross salary. This is the money you can actually spend.</p>
+        contentHTML: `<h2>What is Salary After Tax?</h2>
+<p>Salary after tax — also called <strong>net take-home pay</strong> or <strong>in-hand salary</strong> — is the amount your employer actually deposits into your bank account each month, after all mandatory deductions. In India, the gap between your offered CTC (Cost to Company) and your take-home can be surprisingly large — often 25–40% less than employees expect.</p>
 
-            <h3>CTC vs Gross Salary vs In-Hand Salary</h3>
-            <table>
-                <tr><th>Component</th><th>What It Includes</th><th>Formula</th></tr>
-                <tr><td><strong>CTC (Cost to Company)</strong></td><td>Total annual cost the employer spends on you</td><td>Gross Salary + Employer EPF + Gratuity + Insurance</td></tr>
-                <tr><td><strong>Gross Salary</strong></td><td>Total earnings before your deductions</td><td>CTC − Employer EPF − Gratuity − Employer Insurance</td></tr>
-                <tr><td><strong>Net/In-Hand Salary</strong></td><td>Actual monthly bank credit</td><td>Gross Salary − Employee EPF − Professional Tax − Income Tax (TDS)</td></tr>
-            </table>
-            <p><strong>Key insight:</strong> On a ₹10 Lakh CTC, your Gross Salary is approximately ₹9.1 Lakh, and your In-Hand Salary is approximately ₹70,000-73,000/month — a 15-20% gap between CTC and what you actually receive.</p>
+<h3>Anatomy of an Indian Salary Slip — CTC to Take-Home</h3>
+<table><thead><tr><th>Component</th><th>Who Pays</th><th>Typical %</th></tr></thead><tbody>
+<tr><td>Basic Salary</td><td>Employee receives</td><td>40–50% of CTC</td></tr>
+<tr><td>HRA</td><td>Employee receives</td><td>40–50% of Basic</td></tr>
+<tr><td>Allowances (Transport, Food, Medical)</td><td>Employee receives</td><td>10–15% of CTC</td></tr>
+<tr><td>Employee PF (EPF)</td><td>Deducted from employee</td><td>12% of Basic</td></tr>
+<tr><td>Employer PF (EPF)</td><td>Employer contributes</td><td>12% of Basic (added to CTC)</td></tr>
+<tr><td>Gratuity (employer contribution)</td><td>Employer sets aside</td><td>4.81% of Basic (added to CTC)</td></tr>
+<tr><td>Professional Tax</td><td>Deducted from employee</td><td>₹200/month (most states)</td></tr>
+<tr><td>Income Tax (TDS)</td><td>Deducted from employee</td><td>Varies by income slab</td></tr>
+</tbody></table>
 
-            <h3>Components of Your Salary — Complete Breakdown</h3>
-            <table>
-                <tr><th>Component</th><th>Typical %</th><th>Taxable?</th><th>Purpose</th></tr>
-                <tr><td><strong>Basic Salary</strong></td><td>40-50% of CTC</td><td>✅ Fully taxable</td><td>Foundation — HRA, EPF, Gratuity all depend on this</td></tr>
-                <tr><td><strong>House Rent Allowance (HRA)</strong></td><td>50% of Basic (metro) / 40% (non-metro)</td><td>Partially exempt (Old Regime)</td><td>Rent expenses (exemption under Sec 10(13A))</td></tr>
-                <tr><td><strong>Special Allowance</strong></td><td>Balance after all components</td><td>✅ Fully taxable</td><td>Catchall — covers food, internet, books, etc.</td></tr>
-                <tr><td><strong>Leave Travel Allowance (LTA)</strong></td><td>Varies</td><td>Exempt (Old Regime, 2 trips per 4-year block)</td><td>Domestic travel — only fare, not hotel or food</td></tr>
-                <tr><td><strong>Bonus / Performance Pay</strong></td><td>5-20% of CTC</td><td>✅ Fully taxable</td><td>Annual or quarterly performance linked</td></tr>
-                <tr><td><strong>Employee EPF (12% of Basic)</strong></td><td>~6% of CTC</td><td>Exempt (80C, up to ₹1.5L)</td><td>Retirement savings — mandated by law</td></tr>
-                <tr><td><strong>Employer EPF (12% of Basic)</strong></td><td>~6% of CTC</td><td>Exempt at deposit</td><td>Employer match — goes to your PF account</td></tr>
-                <tr><td><strong>Gratuity</strong></td><td>4.81% of Basic</td><td>Exempt (up to ₹20L at withdrawal after 5 years)</td><td>Lump sum after 5 years of service</td></tr>
-                <tr><td><strong>Professional Tax</strong></td><td>₹200/month (most states)</td><td>Deductible from income</td><td>State government levy — max ₹2,500/year</td></tr>
-                <tr><td><strong>Health Insurance (Group)</strong></td><td>₹5,000-25,000/year</td><td>Not taxable benefit</td><td>Employer-provided medical coverage</td></tr>
-            </table>
+<h3>Step-by-Step: Net Take-Home Calculation</h3>
+<div class="explanation__highlight">
+<strong>Example:</strong> CTC ₹12 LPA<br/><br/>
+Gross salary = CTC − Employer PF − Gratuity<br/>
+= ₹12,00,000 − ₹57,600 − ₹27,720 = <strong>₹11,14,680/year</strong><br/><br/>
+Monthly gross = ₹92,890<br/>
+Less EPF (employee 12% of Basic ₹40,000) = −₹4,800<br/>
+Less Professional Tax = −₹200<br/>
+Less TDS (approx, Old Regime after deductions) = −₹4,500<br/>
+<strong>Net take-home ≈ ₹83,390/month</strong>
+</div>
 
-            <h3>Worked Example — ₹15 Lakh CTC Breakdown</h3>
-            <table>
-                <tr><th>Component</th><th>Monthly</th><th>Annual</th></tr>
-                <tr><td>Basic Salary (40% of CTC)</td><td>₹50,000</td><td>₹6,00,000</td></tr>
-                <tr><td>HRA (50% of Basic — metro)</td><td>₹25,000</td><td>₹3,00,000</td></tr>
-                <tr><td>Special Allowance</td><td>₹17,200</td><td>₹2,06,400</td></tr>
-                <tr><td>LTA</td><td>₹2,000</td><td>₹24,000</td></tr>
-                <tr><td><strong>Gross Salary</strong></td><td><strong>₹94,200</strong></td><td><strong>₹11,30,400</strong></td></tr>
-                <tr><td>Less: Employee EPF (12% of Basic)</td><td>−₹6,000</td><td>−₹72,000</td></tr>
-                <tr><td>Less: Professional Tax</td><td>−₹200</td><td>−₹2,400</td></tr>
-                <tr><td>Less: Income Tax (New Regime)</td><td>−₹4,680</td><td>−₹56,160</td></tr>
-                <tr><td><strong>Salary After Tax (In-Hand)</strong></td><td><strong>₹83,320</strong></td><td><strong>₹9,99,840</strong></td></tr>
-            </table>
-            <p><strong>What you don't see in your bank:</strong> Employer EPF (₹6,000/month = ₹72,000/year) + Gratuity (₹2,400/month = ₹28,800/year) + Health Insurance (~₹800/month) — all part of CTC but never credited to your account.</p>
+<h3>Old Tax Regime vs New Tax Regime — Which is Better?</h3>
+<p>From FY 2024-25, the New Tax Regime is the default. You must actively opt for the Old Regime during ITR filing (or inform your employer at the start of the year). Key differences:</p>
+<table><thead><tr><th>Feature</th><th>Old Regime</th><th>New Regime (Default)</th></tr></thead><tbody>
+<tr><td>HRA Exemption</td><td>✅ Available</td><td>❌ Not available</td></tr>
+<tr><td>80C Deductions (EPF, ELSS, LIC)</td><td>✅ Up to ₹1.5L</td><td>❌ Not available</td></tr>
+<tr><td>80D (Health Insurance)</td><td>✅ Up to ₹25K-50K</td><td>❌ Not available</td></tr>
+<tr><td>Standard Deduction</td><td>✅ ₹50,000</td><td>✅ ₹75,000 (FY25)</td></tr>
+<tr><td>Tax Rates</td><td>Higher slabs (up to 30%)</td><td>Lower slabs (up to 30%)</td></tr>
+<tr><td>Best for</td><td>Those with high deductions</td><td>Those with few deductions</td></tr>
+</tbody></table>
+<p><strong>Rule of thumb:</strong> If your total deductions (80C + HRA + 80D + others) exceed ₹3.75 Lakh, the Old Regime likely saves you more tax. Use our Tax Regime Comparison Calculator to check your specific situation.</p>
 
-            <h3>Income Tax Slabs — FY 2025-26</h3>
-            <h4>New Tax Regime (Default)</h4>
-            <table>
-                <tr><th>Taxable Income (₹)</th><th>Rate</th></tr>
-                <tr><td>0 – 4,00,000</td><td>Nil</td></tr>
-                <tr><td>4,00,001 – 8,00,000</td><td>5%</td></tr>
-                <tr><td>8,00,001 – 12,00,000</td><td>10%</td></tr>
-                <tr><td>12,00,001 – 16,00,000</td><td>15%</td></tr>
-                <tr><td>16,00,001 – 20,00,000</td><td>20%</td></tr>
-                <tr><td>20,00,001 – 24,00,000</td><td>25%</td></tr>
-                <tr><td>Above 24,00,000</td><td>30%</td></tr>
-            </table>
-            <p><strong>Section 87A Rebate:</strong> Income up to ₹12 Lakh is effectively tax-free. With ₹75,000 standard deduction, salaried employees earning up to ₹12.75 Lakh pay zero tax under the New Regime.</p>
+<h3>How to Maximize Your Take-Home Pay</h3>
+<ul>
+<li><strong>Structure salary optimally:</strong> Negotiate higher HRA, food allowance (Sec 17(2): ₹50/meal tax-free up to ₹26,400/year), LTA, and lower Basic to reduce EPF deductions</li>
+<li><strong>Claim all exemptions:</strong> HRA (Section 10(13A)), LTA (Section 10(5)), food vouchers</li>
+<li><strong>Use 80C smartly:</strong> EPF + ELSS mutual funds + Term insurance = ₹1.5L deduction</li>
+<li><strong>Health insurance:</strong> Section 80D gives ₹25,000 deduction (₹50,000 for parents above 60)</li>
+<li><strong>NPS contribution:</strong> Extra ₹50,000 deduction under Sec 80CCD(1B) beyond the ₹1.5L 80C limit</li>
+</ul>
 
-            <h4>Old Tax Regime</h4>
-            <table>
-                <tr><th>Taxable Income (₹)</th><th>Rate</th></tr>
-                <tr><td>0 – 2,50,000</td><td>Nil</td></tr>
-                <tr><td>2,50,001 – 5,00,000</td><td>5%</td></tr>
-                <tr><td>5,00,001 – 10,00,000</td><td>20%</td></tr>
-                <tr><td>Above 10,00,000</td><td>30%</td></tr>
-            </table>
-
-            <h3>Old vs New Tax Regime — Which Gives Higher Take-Home?</h3>
-            <table>
-                <tr><th>Feature</th><th>New Regime (Default)</th><th>Old Regime</th></tr>
-                <tr><td><strong>Standard Deduction</strong></td><td>₹75,000</td><td>₹50,000</td></tr>
-                <tr><td><strong>Section 80C (₹1.5L)</strong></td><td>❌ Not allowed</td><td>✅ Allowed</td></tr>
-                <tr><td><strong>HRA Exemption</strong></td><td>❌ Not allowed</td><td>✅ Allowed</td></tr>
-                <tr><td><strong>Section 80D (Health Insurance)</strong></td><td>❌ Not allowed</td><td>✅ Up to ₹1 Lakh</td></tr>
-                <tr><td><strong>Home Loan Interest (24b)</strong></td><td>❌ Not allowed</td><td>✅ Up to ₹2 Lakh</td></tr>
-                <tr><td><strong>NPS — Employer (80CCD2)</strong></td><td>✅ Allowed</td><td>✅ Allowed</td></tr>
-                <tr><td><strong>Section 87A Rebate</strong></td><td>Up to ₹12L income</td><td>Up to ₹5L income</td></tr>
-                <tr><td><strong>Tax-Free Income Limit</strong></td><td>₹12.75L (with std deduction)</td><td>~₹5.5L (with ₹50K std deduction + 80C)</td></tr>
-            </table>
-            <p><strong>Rule of thumb:</strong> If your total deductions (80C + 80D + HRA + home loan interest) exceed ₹3.75 Lakh, the Old Regime may give you a higher take-home salary. Below that threshold, the New Regime is almost always better.</p>
-
-            <h3>Take-Home Salary at Different CTC Levels (FY 2025-26, New Regime)</h3>
-            <table>
-                <tr><th>Annual CTC</th><th>Monthly CTC</th><th>Monthly In-Hand (Approx)</th><th>Annual Tax</th><th>Effective Tax Rate</th></tr>
-                <tr><td>₹5 Lakh</td><td>₹41,667</td><td>₹36,500</td><td>₹0 (Rebate)</td><td>0%</td></tr>
-                <tr><td>₹8 Lakh</td><td>₹66,667</td><td>₹56,800</td><td>₹0 (Rebate)</td><td>0%</td></tr>
-                <tr><td>₹12 Lakh</td><td>₹1,00,000</td><td>₹83,500</td><td>₹0 (Rebate)</td><td>0%</td></tr>
-                <tr><td>₹15 Lakh</td><td>₹1,25,000</td><td>₹99,800</td><td>₹56,160</td><td>3.7%</td></tr>
-                <tr><td>₹25 Lakh</td><td>₹2,08,333</td><td>₹1,57,500</td><td>₹3,24,480</td><td>13%</td></tr>
-                <tr><td>₹50 Lakh</td><td>₹4,16,667</td><td>₹2,88,000</td><td>₹10,81,200</td><td>21.6%</td></tr>
-            </table>
-            <p><strong>Note:</strong> These are approximate figures assuming Basic = 40% of CTC, standard EPF deduction, and no additional deductions beyond standard deduction. Your actual numbers may vary based on company salary structure.</p>
-
-            <h3>How EPF Affects Your Take-Home Salary</h3>
-            <p>EPF is often the largest single deduction from your salary — even more than income tax at lower CTC levels:</p>
-            <table>
-                <tr><th>CTC</th><th>Basic (40%)</th><th>Employee EPF (12%)</th><th>Employer EPF (12%)</th><th>Total EPF Deduction from CTC</th></tr>
-                <tr><td>₹10L</td><td>₹4,00,000</td><td>₹48,000</td><td>₹48,000</td><td>₹96,000 (9.6% of CTC)</td></tr>
-                <tr><td>₹15L</td><td>₹6,00,000</td><td>₹72,000</td><td>₹72,000</td><td>₹1,44,000 (9.6% of CTC)</td></tr>
-                <tr><td>₹25L</td><td>₹10,00,000</td><td>₹1,20,000</td><td>₹1,20,000</td><td>₹2,40,000 (9.6% of CTC)</td></tr>
-            </table>
-            <p><strong>EPF is not lost money:</strong> It earns 8.25% interest (FY 2024-25) tax-free and builds into a substantial retirement corpus. ₹48,000/year EPF at 8.25% for 30 years accumulates to approximately ₹60 Lakh.</p>
-
-            <h3>Professional Tax — State-Wise Rates</h3>
-            <table>
-                <tr><th>State</th><th>Monthly Deduction</th><th>Annual Maximum</th></tr>
-                <tr><td>Maharashtra</td><td>₹200 (₹300 in Feb)</td><td>₹2,500</td></tr>
-                <tr><td>Karnataka</td><td>₹200</td><td>₹2,400</td></tr>
-                <tr><td>West Bengal</td><td>₹150-200</td><td>₹2,500</td></tr>
-                <tr><td>Tamil Nadu</td><td>Nil (no PT)</td><td>₹0</td></tr>
-                <tr><td>Telangana</td><td>₹200</td><td>₹2,500</td></tr>
-                <tr><td>Gujarat</td><td>₹200</td><td>₹2,500</td></tr>
-                <tr><td>Rajasthan</td><td>Nil (no PT)</td><td>₹0</td></tr>
-                <tr><td>Delhi</td><td>Nil (no PT)</td><td>₹0</td></tr>
-                <tr><td>Uttar Pradesh</td><td>Nil (no PT)</td><td>₹0</td></tr>
-            </table>
-            <p>Professional Tax is deductible from your taxable income under both Old and New Tax Regimes — so while it reduces your monthly take-home by ₹200, it also reduces your tax liability slightly.</p>
-
-            <h3>How to Maximize Your Take-Home Salary</h3>
-            <ol>
-                <li><strong>Choose the right tax regime:</strong> Use our calculator to compare both regimes at your CTC level. Under ₹15L with no major deductions → New Regime wins</li>
-                <li><strong>Cap EPF at statutory minimum:</strong> Ask HR to limit EPF deduction to 12% of ₹15,000 (₹1,800/month instead of 12% of full Basic). This increases monthly in-hand but reduces retirement savings</li>
-                <li><strong>Restructure salary for HRA (Old Regime):</strong> If paying rent in a metro, ensure HRA is 50% of Basic. The tax exemption can save ₹50,000-₹1 Lakh/year</li>
-                <li><strong>Claim meal coupons / food allowance:</strong> Up to ₹50/meal (₹26,400/year) is tax-free if provided through employer-issued meal cards</li>
-                <li><strong>Maximize NPS employer contribution:</strong> Employer NPS under 80CCD(2) is deductible in BOTH regimes — up to 14% of Basic for govt / 10% for private</li>
-                <li><strong>Submit rent receipts on time:</strong> Missing HRA proof submission means full HRA becomes taxable under Old Regime — a costly mistake</li>
-            </ol>`,
+<h3>References</h3>
+<ul>
+<li>CBDT — Income Tax Act, 1961 | Employee's Provident Fund Act, 1952</li>
+<li>Income Tax Department — incometax.gov.in</li>
+<li>EPFO — epfindia.gov.in</li>
+</ul>`,
         faq: [
             { question: "Why is my Salary After Tax different from my Gross Salary?", answer: "Gross Salary only removes employer contributions (like Employer EPF and Gratuity) from the CTC. Salary After Tax further removes your own deductions: Employee EPF, Professional Tax, and Income Tax (TDS). The gap between Gross and In-Hand is typically 10-25% depending on your tax bracket." },
             { question: "Does the New Tax Regime increase my take-home salary?", answer: "For most people earning up to ₹15 Lakhs without heavy deductions (like high HRA and home loans), the New Regime results in lower tax and therefore a higher in-hand salary. Income up to ₹12.75L (including ₹75,000 standard deduction) is tax-free in FY 25-26 under the New Regime." },
@@ -201,6 +130,45 @@ const HUB_CONTENT: Record<string, {
                 "The formula is: In-Hand Salary = Gross Salary − (Employee PF + Professional Tax + TDS). Note that Gross Salary equals CTC minus Employer PF, Gratuity, and Health Insurance premiums (if borne by the employer).",
             ],
             highlight: "Pro Tip: If you want a higher In-Hand salary, you can ask your employer to cap your EPF contribution to the statutory limit of 12% on ₹15,000 (i.e., ₹1,800/month) rather than 12% of your entire basic salary.",
+        contentHTML: `<h2>What is In-Hand Salary?</h2>
+<p>In-hand salary (also called take-home pay or net salary) is the actual amount credited to your bank account each month after all deductions. It is always less than your <strong>CTC (Cost to Company)</strong> — sometimes significantly so. Understanding the difference is critical before accepting any job offer.</p>
+
+<h3>CTC vs Gross vs Net Salary — Key Differences</h3>
+<div class="explanation__highlight">
+<strong>CTC</strong> = Everything the employer spends on you (including PF contribution, gratuity, insurance)<br/>
+<strong>Gross Salary</strong> = CTC − Employer PF − Gratuity (what you "earn" before deductions)<br/>
+<strong>In-Hand Salary</strong> = Gross Salary − Employee PF − Professional Tax − Income Tax (TDS)
+</div>
+
+<h3>What Gets Deducted from Your Salary?</h3>
+<ul>
+<li><strong>Employee Provident Fund (EPF):</strong> 12% of Basic Salary, compulsory for companies with 20+ employees where Basic is below ₹15,000/month (or optional above that)</li>
+<li><strong>Professional Tax:</strong> ₹200/month in most states (Maharashtra, Karnataka, Andhra Pradesh, etc.). Not applicable in Delhi, Rajasthan, UP, Haryana</li>
+<li><strong>Income Tax (TDS):</strong> Depends on your income slab and applicable deductions. Employer deducts proportionately each month based on your declared investments</li>
+<li><strong>Health Insurance Premium:</strong> If employer provides group insurance and deducts premium</li>
+<li><strong>ESI (Employee State Insurance):</strong> 0.75% of gross salary if gross &lt; ₹21,000/month</li>
+</ul>
+
+<h3>Typical In-Hand Salary at Various CTC Levels</h3>
+<table><thead><tr><th>Annual CTC</th><th>Monthly Gross</th><th>EPF + PT</th><th>TDS (approx)</th><th>Monthly In-Hand</th></tr></thead><tbody>
+<tr><td>₹4 LPA</td><td>₹29,700</td><td>₹2,000</td><td>Nil</td><td>~₹27,700</td></tr>
+<tr><td>₹6 LPA</td><td>₹44,500</td><td>₹2,200</td><td>₹800</td><td>~₹41,500</td></tr>
+<tr><td>₹8 LPA</td><td>₹59,300</td><td>₹2,400</td><td>₹1,800</td><td>~₹55,100</td></tr>
+<tr><td>₹12 LPA</td><td>₹88,900</td><td>₹5,000</td><td>₹4,500</td><td>~₹79,400</td></tr>
+<tr><td>₹20 LPA</td><td>₹1,48,000</td><td>₹8,200</td><td>₹14,000</td><td>~₹1,25,800</td></tr>
+<tr><td>₹30 LPA</td><td>₹2,22,000</td><td>₹8,800</td><td>₹30,000</td><td>~₹1,83,200</td></tr>
+</tbody></table>
+<p><em>*Estimates based on standard salary structure. Actual amounts vary with HRA exemption, declared investments, and tax regime.</em></p>
+
+<h3>Performance Bonus — Is It Part of In-Hand?</h3>
+<p>Variable pay (performance bonus, PLI, incentives) is usually paid <strong>quarterly or annually</strong> and is part of your CTC but not guaranteed monthly in-hand. When evaluating a job offer with ₹15 LPA CTC including ₹3 LPA variable, assume only ₹12 LPA as guaranteed.</p>
+
+<h3>References</h3>
+<ul>
+<li>Employees' Provident Fund Organisation (EPFO) — epfindia.gov.in</li>
+<li>Income Tax Act, 1961 — Section 192 (TDS on Salary)</li>
+<li>Professional Tax Acts of respective state governments</li>
+</ul>`,
         },
         faq: [
             { question: "What is the difference between In-Hand Salary and CTC?", answer: "CTC (Cost to Company) is the total expense the employer incurs on you annually, including indirect benefits like PF and gratuity. In-Hand Salary is the actual cash you receive every month after all direct and indirect deductions." },
@@ -508,6 +476,63 @@ const HUB_CONTENT: Record<string, {
                 "The legal formula for calculation is: (15 / 26) × Last Drawn Salary × Number of Years of Service. Here, 'Last Drawn Salary' means your Basic Salary plus Dearness Allowance (DA). For years of service, anything above 6 months is rounded up to the next full year.",
             ],
             highlight: "Tax Exemption: Gratuity received up to ₹25 Lakhs (increased from ₹20L recently) is completely exempt from income tax. Any amount received above ₹25 Lakhs is added to your salary income and taxed as per your slab rate.",
+        contentHTML: `<h2>What is Gratuity?</h2>
+<p>Gratuity is a statutory monetary benefit given by an employer to an employee as a <strong>token of appreciation for long service</strong>. It is governed by the <strong>Payment of Gratuity Act, 1972</strong> and is mandatory for all establishments with 10 or more employees. Gratuity is payable when an employee completes at least <strong>5 years of continuous service</strong> (with the exception of death or total disability, where the 5-year condition is waived).</p>
+
+<h3>Gratuity Formula</h3>
+<div class="explanation__highlight">
+<strong>Gratuity = (Last Drawn Basic + DA) × 15 × Years of Service ÷ 26</strong><br/><br/>
+Where:<br/>
+• 15 = days per year of service<br/>
+• 26 = working days per month<br/>
+• Years of Service rounds down after 6 months in a year<br/><br/>
+<strong>Example:</strong> Last Basic+DA = ₹40,000 | Service = 7 years 8 months (counts as 8 years)<br/>
+Gratuity = ₹40,000 × 15 × 8 ÷ 26 = <strong>₹1,84,615</strong>
+</div>
+
+<h3>5-Year Rule — Counting Service</h3>
+<p>A key detail: for rounding service years, the Act provides that if an employee completes <strong>more than 6 months in the final year</strong>, it counts as a full year. Examples:</p>
+<ul>
+<li>5 years 2 months → counted as <strong>5 years</strong></li>
+<li>5 years 7 months → counted as <strong>6 years</strong></li>
+<li>10 years 6 months 1 day → counted as <strong>11 years</strong></li>
+</ul>
+
+<h3>Gratuity Tax Exemption</h3>
+<p>Gratuity received is tax-exempt up to certain limits under <strong>Section 10(10) of the Income Tax Act</strong>:</p>
+<table><thead><tr><th>Employee Type</th><th>Tax-Exempt Limit</th></tr></thead><tbody>
+<tr><td>Government employees (central/state/local)</td><td>Fully exempt (no limit)</td></tr>
+<tr><td>Private sector employees covered by Gratuity Act</td><td>Exempt up to <strong>₹20 Lakh</strong> (revised from ₹10L in 2018)</td></tr>
+<tr><td>Private sector employees NOT covered by Act</td><td>Exempt up to ½ month salary per year, or ₹20L, whichever is lower</td></tr>
+</tbody></table>
+<p>Gratuity received above the exempt limit is added to taxable income and taxed at applicable slab rates.</p>
+
+<h3>When is Gratuity Paid?</h3>
+<ul>
+<li><strong>Resignation/Retirement:</strong> After completing 5+ years of service</li>
+<li><strong>Death or Total Disability:</strong> Payable regardless of service period</li>
+<li><strong>Retrenchment/Layoff:</strong> Payable if 5+ years of service completed</li>
+<li><strong>Superannuation:</strong> On reaching retirement age</li>
+</ul>
+<p>The gratuity must be paid within <strong>30 days</strong> of becoming due. If delayed, the employer must pay interest from the due date at rates specified by the government.</p>
+
+<h3>Forfeiture of Gratuity</h3>
+<p>Gratuity can be forfeited (wholly or partially) if an employee is dismissed for:</p>
+<ul>
+<li>Acts of violence, riot, or moral turpitude</li>
+<li>Willful omission or negligence causing loss to property</li>
+</ul>
+<p>Mere termination does not result in forfeiture — only dismissal for specific misconduct does.</p>
+
+<h3>Employer's CTC Contribution</h3>
+<p>Employers typically provision gratuity at <strong>4.81% of Basic+DA</strong> per year. For a ₹50,000 Basic salary, the monthly gratuity provision is ₹2,405 — this is included in your CTC but you only receive it at separation after 5+ years.</p>
+
+<h3>References</h3>
+<ul>
+<li>Payment of Gratuity Act, 1972 — Ministry of Labour &amp; Employment</li>
+<li>Section 10(10) — Income Tax Act, 1961</li>
+<li>Labour Ministry Notification S.O. 1419(E), 2018 (updating exemption limit to ₹20 Lakh)</li>
+</ul>`,
         },
         faq: [
             { question: "Is 5 years strictly mandatory for Gratuity?", answer: "Generally, yes. You must complete 5 years of continuous service. However, the condition of 5 years is waived in cases of death or disablement of the employee." },
@@ -612,17 +637,18 @@ export default async function SalaryCalculatorHubPage({ params }: PageProps) {
     const hub = HUB_CONTENT[calc.slug];
     if (!hub) notFound();
 
-    const schemaData = JSON.stringify([
+    const schemas: Array<object | undefined> = [
         breadcrumbSchema([
             { name: "Home", url: `${SITE_URL}/` },
             { name: "Salary Calculators", url: `${SITE_URL}/salary-calculators` },
             { name: calc.title },
         ]),
-        webAppSchema(
-            calc.title,
-            canonicalUrl(`/salary-calculators/${calc.slug}`),
-        ),
-    ]);
+        webAppSchema(calc.title, canonicalUrl(`/salary-calculators/${calc.slug}`), "USD", "FinanceApplication"),
+    ];
+    if (hub?.faq && hub.faq.length > 0) {
+        schemas.push(faqSchema(hub.faq));
+    }
+    const schemaData = JSON.stringify(schemas.filter(Boolean));
 
     return (
         <main className="container" style={{ paddingTop: "var(--s-4)" }} >

@@ -23,7 +23,7 @@ import CookingHamCore from "@/components/calculator/CookingHamCore";
 import CookingUniversalConverterCore from "@/components/calculator/CookingUniversalConverterCore";
 
 import { getCalculatorsByCategory } from "@/lib/data";
-import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
+import { canonicalUrl, breadcrumbSchema, webAppSchema, faqSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
 interface PageProps { params: Promise<{ calculator: string }>; }
@@ -2016,14 +2016,18 @@ export default async function CookingCalculatorRoute({ params }: PageProps) {
     const content = HUB_CONTENT[calc.id] ?? HUB_CONTENT[calc.slug];
     const pageUrl = canonicalUrl(`/cooking-calculators/${calc.slug}`);
     
-    const schemaData = JSON.stringify([
+    const schemas: object[] = [
         breadcrumbSchema([
             { name: "Home", url: `${SITE_URL}/` },
             { name: "Cooking & Baking Calculators", url: canonicalUrl("/cooking-calculators") },
             { name: calc.title }
         ]),
-        webAppSchema(calc.title, pageUrl)
-    ]);
+        webAppSchema(calc.title, pageUrl, "USD", "UtilitiesApplication"),
+    ];
+    if (content?.faq && content.faq.length > 0) {
+        schemas.push(faqSchema(content.faq));
+    }
+    const schemaData = JSON.stringify(schemas);
 
     return (
         <main className="container" style={{ paddingTop: "var(--s-4)" }}>

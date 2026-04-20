@@ -6,8 +6,9 @@ import Breadcrumb from "@/components/layout/Breadcrumb";
 import CategoryGrid from "@/components/shared/CategoryGrid";
 import DynamicExplanation from "@/components/shared/DynamicExplanation";
 import FAQAccordion from "@/components/shared/FAQAccordion";
+import AuthorBadge from "@/components/shared/AuthorBadge";
 import { getCalculatorsByCategory, type CalculatorDef } from "@/lib/data";
-import { canonicalUrl, breadcrumbSchema } from "@/lib/seo";
+import { canonicalUrl, breadcrumbSchema, faqSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
@@ -16,6 +17,25 @@ export const metadata: Metadata = {
         "Free health & fitness calculators: BMI, calorie needs, TDEE, body fat percentage, ideal weight, macros, pregnancy due date, heart rate zones, and more. Instant, science-backed results.",
     alternates: { canonical: canonicalUrl("/health-calculators") },
 };
+
+const FAQ_ITEMS = [
+                    {
+                        question: "How accurate are these health calculators?",
+                        answer: "Our calculators use established medical and scientific formulas (Mifflin-St Jeor, Harris-Benedict, Navy method, Karvonen, etc.) that are widely used by healthcare professionals. Results are estimates — for medical decisions, always consult a qualified healthcare provider.",
+                    },
+                    {
+                        question: "Which calorie calculator should I use — Calorie, TDEE, or BMR?",
+                        answer: "BMR gives you base calories at rest. TDEE adds your activity level. The Calorie Calculator combines both and shows maintenance, weight loss, and weight gain targets. For most people, start with the Calorie Calculator.",
+                    },
+                    {
+                        question: "Are these calculators suitable for all ages?",
+                        answer: "Most calculators are designed for adults (18+). The BMI Calculator and calorie-based tools use adult formulas. For children and adolescents, consult a paediatrician for appropriate growth and nutrition guidance.",
+                    },
+                    {
+                        question: "What units do these calculators use?",
+                        answer: "All calculators use metric units — kilograms for weight, centimetres for height, and litres for volume. This makes them universally applicable regardless of your location.",
+                    },
+                ];
 
 const schemaData = JSON.stringify([
     breadcrumbSchema([
@@ -29,7 +49,8 @@ const schemaData = JSON.stringify([
         description: "Free health and fitness calculators for BMI, calories, TDEE, body fat, ideal weight, macros, pregnancy, and more.",
         url: canonicalUrl("/health-calculators"),
     },
-]);
+,
+    faqSchema(FAQ_ITEMS)]);
 
 export default function HealthCalculatorsPage() {
     const calcs = getCalculatorsByCategory("health");
@@ -52,11 +73,14 @@ export default function HealthCalculatorsPage() {
             <h1 className="t-h1" style={{ marginBottom: "var(--s-2)" }}>
                 Health Calculators — BMI, Calories, TDEE, Body Fat & More
             </h1>
-            <p className="t-body text-muted" style={{ marginBottom: "var(--s-8)" }}>
+            <p className="t-body text-muted" style={{ marginBottom: "var(--s-4)" }}>
                 Free health and fitness calculators — check your BMI, calculate daily calorie needs,
                 find your TDEE and BMR, estimate body fat percentage, plan macros, track pregnancy milestones,
                 find heart rate training zones, and more. All tools use established scientific formulas for accurate results.
             </p>
+            <div style={{ marginBottom: "var(--s-8)" }}>
+                <AuthorBadge categoryKey="health" />
+            </div>
 
             <section style={{ marginBottom: "var(--s-12)" }}>
                 <h2 className="t-h2" style={{ marginBottom: "var(--s-5)" }}>All Health Calculators</h2>
@@ -91,24 +115,7 @@ export default function HealthCalculatorsPage() {
 
             <FAQAccordion
                 title="Health Calculator FAQ"
-                items={[
-                    {
-                        question: "How accurate are these health calculators?",
-                        answer: "Our calculators use established medical and scientific formulas (Mifflin-St Jeor, Harris-Benedict, Navy method, Karvonen, etc.) that are widely used by healthcare professionals. Results are estimates — for medical decisions, always consult a qualified healthcare provider.",
-                    },
-                    {
-                        question: "Which calorie calculator should I use — Calorie, TDEE, or BMR?",
-                        answer: "BMR gives you base calories at rest. TDEE adds your activity level. The Calorie Calculator combines both and shows maintenance, weight loss, and weight gain targets. For most people, start with the Calorie Calculator.",
-                    },
-                    {
-                        question: "Are these calculators suitable for all ages?",
-                        answer: "Most calculators are designed for adults (18+). The BMI Calculator and calorie-based tools use adult formulas. For children and adolescents, consult a paediatrician for appropriate growth and nutrition guidance.",
-                    },
-                    {
-                        question: "What units do these calculators use?",
-                        answer: "All calculators use metric units — kilograms for weight, centimetres for height, and litres for volume. This makes them universally applicable regardless of your location.",
-                    },
-                ]}
+                items={FAQ_ITEMS}
             />
 
             <section style={{ marginTop: "var(--s-8)" }}>

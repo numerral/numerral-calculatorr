@@ -16,7 +16,7 @@ import StepByStep from "@/components/shared/StepByStep";
 import ComparisonCallout from "@/components/shared/ComparisonCallout";
 import InsightBox from "@/components/shared/InsightBox";
 import { getAllCalculators, getCalculatorById, getCalculatorsByCategory, getVariants } from "@/lib/data";
-import { canonicalUrl, breadcrumbSchema, webAppSchema } from "@/lib/seo";
+import { canonicalUrl, breadcrumbSchema, webAppSchema, faqSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 import { amountToLabel } from "@/lib/slug";
 import { CIBIL_FAQS } from "@/lib/cibilConfig";
@@ -630,7 +630,55 @@ const HUB_CONTENT: Record<string, {
     },
     "extra-payment-calculator": {
         subtitle: "See the powerful impact of making extra monthly payments or lump-sum prepayments on your loan payoff timeline and total interest.",
-        contentHTML: `<h3>The Mathematics of Extra Payments</h3><p>When you make an extra payment, 100% goes to principal reduction. This creates a compounding benefit: less principal → less interest next month → more of your regular EMI goes to principal → loan shrinks faster.</p><ul><li><strong>₹5,000 extra/month</strong> on a ₹50L loan at 9% for 20 years saves <strong>₹13.5L in interest</strong> and finishes <strong>5 years early</strong></li><li><strong>One-time ₹5L prepayment</strong> in year 2 of the same loan saves <strong>₹8.2L in interest</strong></li></ul>`,
+        contentHTML: `<h2>The Power of Extra Loan Payments</h2>
+<p>Making extra payments on your loan is one of the most mathematically powerful personal finance decisions you can make. When you pay more than the required monthly amount, <strong>100% of the extra amount goes directly to reducing your principal</strong> — not to interest. This creates a compounding benefit that accelerates payoff dramatically and eliminates thousands in future interest charges.</p>
+
+<h3>Why Early Extra Payments Have Outsized Impact</h3>
+<p>Because loan interest is calculated on the <strong>outstanding balance</strong>, every dollar of principal reduction early in the loan eliminates multiple years of future interest accrual. A loan's amortization schedule is front-loaded with interest — meaning the earlier you reduce principal, the more interest you eliminate.</p>
+<div class="explanation__highlight">
+<strong>Impact of Extra $500/month on a $300,000 Mortgage at 6.5% (30 years):</strong><br/>
+Original payoff: 360 months | New payoff: 264 months (22 years)<br/>
+Time saved: <strong>8 years</strong> | Interest saved: <strong>$122,000+</strong><br/><br/>
+<strong>Starting same extra payment in Year 10 instead of Year 1 saves only $68,000</strong> — demonstrating the premium on starting early
+</div>
+
+<h3>Extra Payment Scenarios — Impact Comparison</h3>
+<table><thead><tr><th>Extra Monthly</th><th>Years Saved</th><th>Interest Saved</th><th>Monthly Cost Increase</th></tr></thead><tbody>
+<tr><td>$100</td><td>~4.5 years</td><td>~$44,000</td><td>Modest</td></tr>
+<tr><td>$200</td><td>~6.5 years</td><td>~$74,000</td><td>Low</td></tr>
+<tr><td>$500</td><td>~8 years</td><td>~$122,000</td><td>Moderate</td></tr>
+<tr><td>$1,000</td><td>~11 years</td><td>~$165,000</td><td>Significant</td></tr>
+</tbody></table>
+<p><em>Based on $300,000 mortgage at 6.5% for 30 years. Your results will vary based on loan balance and rate.</em></p>
+
+<h3>Lump-Sum vs Monthly Extra Payments</h3>
+<p><strong>Lump-sum prepayments</strong> (from bonuses, tax refunds, or inheritance) are highly effective but carry timing considerations. A single $10,000 lump sum applied in Year 1 can save as much in total interest as making $150/month in extra payments over the same period.</p>
+<p><strong>Monthly extra payments</strong> are more consistent and disciplined — easier to budget for and compound steadily over time. Setting up automatic overpayment with your lender is the most reliable approach.</p>
+
+<h3>Reduce EMI vs Reduce Tenure — Which is Smarter?</h3>
+<p>When you make a prepayment, many lenders give you two options:</p>
+<ul>
+<li><strong>Reduce Tenure:</strong> Keep the same monthly payment but pay off the loan sooner. <strong>This saves more total interest.</strong></li>
+<li><strong>Reduce EMI:</strong> Lower your monthly payment while keeping the same payoff date. Provides immediate cash flow relief but saves less interest.</li>
+</ul>
+<div class="explanation__highlight"><strong>Recommendation:</strong> Choose tenure reduction unless you have a specific cash flow need. Reducing tenure by 3 years on a $300K mortgage saves approximately $60,000 more than reducing EMI by the equivalent amount.</div>
+
+<h3>Biweekly Payments — The Zero-Effort Acceleration</h3>
+<p>Switching from monthly to biweekly payments results in 26 half-payments per year instead of 12 full payments — the equivalent of one extra full payment annually. This effortless switch can shave 4-5 years off a 30-year mortgage and save $40,000-$50,000 in interest on a typical loan, without any lifestyle change.</p>
+
+<h3>Should I Invest Instead of Prepaying?</h3>
+<p>This depends on your loan rate vs. expected investment returns:</p>
+<ul>
+<li><strong>Loan at 6.5%, expected equity returns 10%:</strong> Investing may generate more — but with risk</li>
+<li><strong>Prepaying gives a guaranteed, risk-free return</strong> equal to your interest rate</li>
+<li><strong>Always prioritize:</strong> (1) Employer 401k match, (2) High-interest debt payoff, (3) Emergency fund, then (4) Split between investment and prepayment based on risk tolerance</li>
+</ul>
+
+<h3>References</h3>
+<ul>
+<li>Consumer Financial Protection Bureau (CFPB) — cfpb.gov</li>
+<li>Federal Reserve — Regulation Z / Truth in Lending Act (prepayment penalty rules)</li>
+</ul>`,
         faq: [
             { question: "Should I reduce EMI or reduce tenure?", answer: "Reducing tenure saves significantly more interest. Reducing EMI gives immediate cash flow relief. If finances allow, always choose tenure reduction — it can save 15-30% more interest than EMI reduction." },
             { question: "When is the best time to prepay?", answer: "As early as possible. A ₹1L prepayment in year 1 of a 20-year loan saves 3-4× more interest than the same ₹1L prepayment in year 15. The amortization curve heavily favors early intervention." },
@@ -1540,7 +1588,49 @@ const HUB_CONTENT: Record<string, {
     },
     "apr-to-apy-calculator": {
         subtitle: "Convert between APR and APY instantly. See how compounding frequency impacts the effective interest rate on loans and savings.",
-        contentHTML: `<h2>What Is the Difference Between APR and APY?</h2><p>APR and APY are two ways to express interest rates. <strong>APR</strong> represents borrowing cost <em>without</em> compounding. <strong>APY</strong> reflects <em>actual</em> return after compounding.</p><h3>APR to APY Formula</h3><p><strong>APY = (1 + APR/n)<sup>n</sup> − 1</strong></p><h3>APY to APR Formula</h3><p><strong>APR = n × [(1 + APY)<sup>1/n</sup> − 1]</strong></p><h3>Worked Example</h3><p>Convert 6% APR with monthly compounding to APY:</p><ul><li>APY = (1 + 0.06/12)<sup>12</sup> − 1 = <strong>6.168%</strong></li></ul><h3>When Does This Matter?</h3><p>Lenders advertise the lower APR; banks advertise the higher APY. Converting between them helps you see through marketing.</p>`,
+        contentHTML: `<h2>APR vs APY — What's the Real Difference?</h2>
+<p>APR (Annual Percentage Rate) and APY (Annual Percentage Yield) are two ways to express interest rates — but they tell very different stories. Understanding the difference can literally save you thousands of dollars when comparing loans and savings products.</p>
+
+<p><strong>APR</strong> represents the nominal interest rate for a year without accounting for compounding within the year. <strong>APY</strong> includes the effect of compounding — how often interest is calculated and added to your balance. For borrowers, APR understates the true cost; APY shows the real cost.</p>
+
+<h3>The Conversion Formula</h3>
+<div class="explanation__highlight">
+<strong>APY = (1 + APR/n)^n − 1</strong><br/><br/>
+Where n = number of compounding periods per year<br/>
+(Daily = 365, Monthly = 12, Quarterly = 4, Semi-annually = 2, Annually = 1)<br/><br/>
+<strong>Example:</strong> 12% APR compounded monthly:<br/>
+APY = (1 + 0.12/12)^12 − 1 = (1.01)^12 − 1 = 1.1268 − 1 = <strong>12.68% APY</strong>
+</div>
+
+<h3>APR vs APY Comparison Table</h3>
+<table><thead><tr><th>APR</th><th>Compounding</th><th>APY</th><th>Difference</th></tr></thead><tbody>
+<tr><td>5%</td><td>Monthly</td><td>5.116%</td><td>+0.116%</td></tr>
+<tr><td>6%</td><td>Monthly</td><td>6.168%</td><td>+0.168%</td></tr>
+<tr><td>8%</td><td>Monthly</td><td>8.300%</td><td>+0.300%</td></tr>
+<tr><td>10%</td><td>Daily</td><td>10.516%</td><td>+0.516%</td></tr>
+<tr><td>12%</td><td>Monthly</td><td>12.683%</td><td>+0.683%</td></tr>
+<tr><td>18%</td><td>Monthly</td><td>19.562%</td><td>+1.562%</td></tr>
+<tr><td>20%</td><td>Daily</td><td>22.134%</td><td>+2.134%</td></tr>
+<tr><td>25%</td><td>Daily</td><td>28.400%</td><td>+3.400%</td></tr>
+</tbody></table>
+
+<h3>Which to Use When?</h3>
+<ul>
+<li><strong>Shopping for a loan?</strong> Compare using APY — it shows the true cost. A credit card advertising "15% APR (monthly compounding)" actually costs you 16.08% APY</li>
+<li><strong>Shopping for savings?</strong> Banks advertise APY (the higher number). Compare savings accounts and CDs using APY for apples-to-apples comparison</li>
+<li><strong>Mortgages:</strong> The federally mandated APR for mortgages includes fees — making it higher than the note rate. The effective monthly rate (APY equivalent) further adjusts for compounding</li>
+</ul>
+
+<h3>Credit Card APR — The Real Story</h3>
+<p>Credit cards typically compound daily. A card stated as 20% APR compounds daily at 20%/365 = 0.0548%/day. The true annual cost:</p>
+<div class="explanation__highlight">APY = (1 + 0.20/365)^365 − 1 = <strong>22.13%</strong><br/>On a $5,000 balance carried for a full year: interest cost = $1,107 (not $1,000 as APR implies)</div>
+
+<h3>References</h3>
+<ul>
+<li>Federal Reserve — Truth in Lending Act (TILA) / Regulation Z</li>
+<li>Federal Truth in Savings Act (TISA) — requires banks to disclose APY</li>
+<li>Consumer Financial Protection Bureau (CFPB) — consumerfinance.gov</li>
+</ul>`,
         faq: [
             { question: "Why is APY always higher than APR?", answer: "APY accounts for compounding — earning interest on interest. With annual compounding, APR equals APY." },
             { question: "When should I use APR vs. APY?", answer: "Use APR for loans (mortgages, car loans). Use APY for savings products (savings accounts, CDs)." },
@@ -1567,7 +1657,50 @@ const HUB_CONTENT: Record<string, {
     },
     "daily-compound-interest-calculator": {
         subtitle: "Calculate daily compound interest on savings accounts, money market funds, and high-yield accounts. See how daily compounding accelerates growth.",
-        contentHTML: `<h2>What Is Daily Compound Interest?</h2><p>Interest calculated and added <strong>every day</strong> — 365 times/year. Each day earns interest on the new, slightly larger balance.</p><h3>Formula</h3><p><strong>A = P × (1 + r/365)<sup>365t</sup></strong></p><h3>Who Uses Daily Compounding?</h3><ul><li>High-yield savings accounts</li><li>Money market accounts</li><li>Credit cards (compounds against you)</li><li>Premium CDs</li></ul><h3>Daily vs. Monthly Compounding</h3><p>$50,000 at 5% for 5 years: Daily = $64,080; Monthly = $64,031. Difference: <strong>$49</strong>.</p>`,
+        contentHTML: `<h2>What is Daily Compound Interest?</h2>
+<p>Daily compound interest is interest calculated and added to your balance <strong>every single day</strong> — 365 times per year. Each day, you earn interest not just on your original principal, but on all the interest previously earned. Over time, this compounding effect creates exponential growth that far exceeds simple interest or even monthly compounding.</p>
+
+<h3>The Daily Compound Interest Formula</h3>
+<div class="explanation__highlight">
+<strong>A = P × (1 + r/365)^(365 × t)</strong><br/><br/>
+A = Final amount | P = Principal | r = Annual interest rate (decimal) | t = Time in years<br/><br/>
+<strong>Example:</strong> $10,000 at 5% annual rate, compounded daily, for 10 years:<br/>
+A = $10,000 × (1 + 0.05/365)^3,650 = $10,000 × 1.6487 = <strong>$16,487</strong><br/>
+Interest earned: $6,487 (vs $5,000 with simple interest — 30% more)
+</div>
+
+<h3>Daily vs Monthly vs Annual Compounding</h3>
+<table><thead><tr><th>Compounding Frequency</th><th>$10,000 at 5% after 10 years</th><th>Effective APY</th></tr></thead><tbody>
+<tr><td>Annual</td><td>$16,288.95</td><td>5.000%</td></tr>
+<tr><td>Quarterly</td><td>$16,436.19</td><td>5.095%</td></tr>
+<tr><td>Monthly</td><td>$16,470.09</td><td>5.116%</td></tr>
+<tr><td><strong>Daily</strong></td><td><strong>$16,487.21</strong></td><td><strong>5.127%</strong></td></tr>
+<tr><td>Continuous</td><td>$16,487.21</td><td>5.127%</td></tr>
+</tbody></table>
+<p>The difference between daily and monthly compounding is small for savings accounts, but on large balances or long time horizons, even basis-point differences become meaningful.</p>
+
+<h3>Where Daily Compounding Matters Most</h3>
+<ul>
+<li><strong>Credit cards:</strong> Most US credit cards compound daily. A 20% APR card has an effective APY of 22.13% — costing you significantly more than the headline rate suggests</li>
+<li><strong>High-yield savings accounts and CDs:</strong> Most premium savings accounts and online banks use daily compounding, giving you a slight edge over traditional monthly-compounding accounts</li>
+<li><strong>Money market accounts:</strong> Typically compound daily, making it important to compare APY (which accounts for compounding) rather than APR</li>
+<li><strong>Margin and brokerage loans:</strong> Typically compound daily — can erode returns significantly if positions are held long-term</li>
+</ul>
+
+<h3>The Rule of 72 — Quick Doubling Time Estimate</h3>
+<p>Divide 72 by your interest rate to estimate how many years it takes to double your money:</p>
+<ul>
+<li>5% rate → 72/5 = <strong>~14.4 years</strong> to double</li>
+<li>7% rate → 72/7 = <strong>~10.3 years</strong></li>
+<li>10% rate → 72/10 = <strong>~7.2 years</strong></li>
+<li>12% rate → 72/12 = <strong>~6 years</strong></li>
+</ul>
+
+<h3>References</h3>
+<ul>
+<li>Federal Reserve — Truth in Lending Act: compounding disclosure requirements</li>
+<li>Federal Truth in Savings Act — APY calculation mandate (12 CFR Part 1030)</li>
+</ul>`,
         faq: [
             { question: "Do high-yield savings accounts compound daily?", answer: "Most online HYSAs compound daily and credit monthly. Marcus, Ally, and Discover all use daily compounding." },
             { question: "Is daily compounding really better?", answer: "Yes, but marginally. On $10,000 at 5%, daily earns ~$5.50 more/year than monthly." },
@@ -1576,7 +1709,59 @@ const HUB_CONTENT: Record<string, {
     },
     "interest-calculator": {
         subtitle: "Calculate interest earned or paid on any amount — supports both simple and compound interest with flexible compounding options.",
-        contentHTML: `<h2>How to Calculate Interest</h2><p>This calculator supports both <strong>simple interest</strong> (I = P × r × t) and <strong>compound interest</strong> (A = P × (1 + r/n)<sup>nt</sup>).</p><h3>Types of Interest</h3><ul><li><strong>Simple</strong> — charged on principal only</li><li><strong>Compound</strong> — charged on principal + accumulated interest</li></ul><h3>How Banks Calculate Interest</h3><p>US banks use the <strong>daily balance method</strong>: interest calculated daily, summed at month-end.</p><h3>Interest Rate Environment</h3><p>The Federal Reserve's funds rate influences all consumer rates. Higher Fed rates = better savings APYs but costlier loans.</p>`,
+        contentHTML: `<h2>Simple Interest vs Compound Interest — Choosing the Right Formula</h2>
+<p>Interest calculations are at the heart of every loan, savings account, and investment decision. The two fundamental methods — <strong>simple interest</strong> and <strong>compound interest</strong> — produce dramatically different outcomes over time. Understanding which applies to your situation determines how you calculate costs and returns accurately.</p>
+
+<h3>Simple Interest Formula</h3>
+<div class="explanation__highlight">
+<strong>I = P × r × t</strong>&nbsp;&nbsp; (Interest = Principal × Rate × Time)<br/>
+<strong>A = P + I = P × (1 + r × t)</strong><br/><br/>
+<strong>Example:</strong> $5,000 at 6% per year for 3 years:<br/>
+I = $5,000 × 0.06 × 3 = <strong>$900</strong><br/>
+Total amount = $5,000 + $900 = <strong>$5,900</strong>
+</div>
+
+<h3>Compound Interest Formula</h3>
+<div class="explanation__highlight">
+<strong>A = P × (1 + r/n)^(n×t)</strong><br/><br/>
+A = Amount | P = Principal | r = Annual rate | n = Compounding periods/year | t = Years<br/><br/>
+<strong>Example:</strong> $5,000 at 6% compounded monthly for 3 years:<br/>
+A = $5,000 × (1 + 0.06/12)^36 = $5,000 × 1.19668 = <strong>$5,983</strong><br/>
+Interest = $5,983 − $5,000 = <strong>$983</strong> (vs $900 simple — 9.2% more)
+</div>
+
+<h3>Where Each Method Applies in Real Life</h3>
+<table><thead><tr><th>Financial Product</th><th>Interest Method</th><th>Notes</th></tr></thead><tbody>
+<tr><td>Personal loans (India)</td><td>Reducing balance (compound)</td><td>EMI structure</td></tr>
+<tr><td>Fixed deposits</td><td>Compound (quarterly)</td><td>TDS deducted on interest at source</td></tr>
+<tr><td>Savings accounts</td><td>Compound (quarterly or monthly)</td><td>Interest credited to account</td></tr>
+<tr><td>Microfinance loans</td><td>Often flat (simple)</td><td>Watch for flat vs reducing rate difference</td></tr>
+<tr><td>US mortgages</td><td>Monthly compound (amortized)</td><td>30-day interest accrual cycle</td></tr>
+<tr><td>US savings/CDs</td><td>Daily compound</td><td>APY standardizes comparisons</td></tr>
+<tr><td>Government bonds (US)</td><td>Semi-annual simple</td><td>Coupon paid every 6 months</td></tr>
+</tbody></table>
+
+<h3>The Flat Rate vs Reducing Balance Trap</h3>
+<p>Many lenders in India (especially for vehicle and consumer durables loans) quote a <strong>flat rate</strong> that looks low but is actually very expensive:</p>
+<div class="explanation__highlight">
+<strong>Flat rate:</strong> Interest calculated on the original principal for the entire tenure<br/>
+<strong>Reducing balance:</strong> Interest calculated on outstanding amount each month (standard EMI)<br/><br/>
+<strong>Flat 8% ≈ Reducing 14.5-15%</strong> — nearly double the effective cost!<br/><br/>
+₹5L loan, 48 months:<br/>
+Flat 8%: Total interest = ₹5L × 8% × 4 = ₹1,60,000<br/>
+Reducing 8%: Total interest = ₹85,000 (nearly half)
+</div>
+
+<h3>Inflation-Adjusted Real Returns</h3>
+<p>Nominal interest rate doesn't account for inflation. To find the <strong>real interest rate</strong> (purchasing power growth):</p>
+<div class="explanation__highlight"><strong>Real Rate ≈ Nominal Rate − Inflation Rate</strong><br/>If your FD earns 6.8% and inflation is 5.1%, your real return is just <strong>1.7%</strong></div>
+
+<h3>References</h3>
+<ul>
+<li>Reserve Bank of India — Master Direction on Interest Rate Policy</li>
+<li>Securities and Exchange Board of India (SEBI) — Investment return disclosure standards</li>
+<li>Federal Reserve — Consumer protection and disclosure rules</li>
+</ul>`,
         faq: [
             { question: "How much interest will I earn on $10,000?", answer: "At 5% APY compounded monthly for 1 year: ~$512. At a traditional bank 0.05%: just $5." },
             { question: "Is interest taxable?", answer: "Yes — savings interest is taxed as ordinary income. Banks issue 1099-INT for interest exceeding $10/year." },
@@ -1584,7 +1769,53 @@ const HUB_CONTENT: Record<string, {
     },
     "interest-rate-calc": {
         subtitle: "Reverse-calculate the hidden interest rate from known principal, final amount, and time period.",
-        contentHTML: `<h2>How to Find the Interest Rate</h2><p>This calculator <strong>reverse-engineers</strong> the rate using both simple and compound interest formulas.</p><h3>Simple Rate: r = (A − P) / (P × t)</h3><h3>Compound Rate: r = (A/P)<sup>1/t</sup> − 1</h3><h3>Worked Example</h3><p>Investment grew from $8,000 to $12,500 in 4 years:</p><ul><li>Simple rate: <strong>14.06%/year</strong></li><li>Compound rate: <strong>11.82%/year</strong></li></ul>`,
+        contentHTML: `<h2>How to Calculate the Interest Rate on a Loan</h2>
+<p>Sometimes you know your loan amount, monthly payment, and tenure — but need to find the <strong>effective annual interest rate</strong>. This reverse calculation is essential when evaluating loan offers, understanding true credit card costs, or auditing a lender's quoted rate. This calculator uses iterative numerical methods (binary search) to solve the interest rate equation accurately.</p>
+
+<h3>The Mathematics of Rate Discovery</h3>
+<p>The standard EMI formula is:</p>
+<div class="explanation__highlight">
+<strong>EMI = P × r × (1 + r)^n / ((1 + r)^n − 1)</strong><br/><br/>
+Where P = Principal, r = monthly rate, n = months<br/><br/>
+Finding 'r' given EMI, P, and n has no closed-form algebraic solution — it requires iterative approximation (Newton-Raphson or binary search).
+</div>
+
+<h3>Step-by-Step: Finding the Rate</h3>
+<p>Our calculator solves this iteratively with 100+ iterations for accuracy within ±0.001%. Here's the manual approach:</p>
+<ol>
+<li><strong>Start with a guess:</strong> Try r = EMI × n / P / n (flat rate approximation)</li>
+<li><strong>Calculate EMI from your guess:</strong> Apply the EMI formula</li>
+<li><strong>Compare to actual EMI:</strong> If calculated EMI &gt; actual, rate is too high; if lower, rate is too low</li>
+<li><strong>Bisect and repeat:</strong> Narrow the range with each iteration until convergence</li>
+</ol>
+
+<h3>Flat Rate vs Reducing Balance — The Hidden Cost</h3>
+<table><thead><tr><th>Quoted Rate</th><th>Type</th><th>Effective Reducing Rate</th><th>You Really Pay</th></tr></thead><tbody>
+<tr><td>8% flat</td><td>Flat</td><td>~14.5%</td><td>81% more than stated</td></tr>
+<tr><td>10% flat</td><td>Flat</td><td>~18.2%</td><td>82% more than stated</td></tr>
+<tr><td>12% flat</td><td>Flat</td><td>~21.5%</td><td>79% more than stated</td></tr>
+<tr><td>8% reducing</td><td>Reducing</td><td>8.00%</td><td>Accurate</td></tr>
+</tbody></table>
+<div class="explanation__highlight"><strong>Real example:</strong> Car dealer quotes "8% flat, 48 months" on ₹5L loan → EMI = ₹14,583.<br/>Plug this EMI into our rate calculator → Effective reducing rate = <strong>14.8%</strong>, not 8%.</div>
+
+<h3>APR (Annual Percentage Rate) — The US Standard</h3>
+<p>In the United States, the Truth in Lending Act (TILA) requires lenders to disclose the <strong>Annual Percentage Rate (APR)</strong> — which includes both the interest rate AND lender fees (origination fees, points, broker fees). This makes APR a better apples-to-apples comparison than the quoted note rate:</p>
+<ul>
+<li><strong>Mortgage note rate 6.5% + 1% origination fee → APR ≈ 6.75%</strong></li>
+<li>When comparing mortgages: always compare APRs, not note rates</li>
+<li>For short-term loans held less than the full term, the APR is less useful — calculate your total cost instead</li>
+</ul>
+
+<h3>Credit Card Effective Rate</h3>
+<p>Credit card APR uses daily compounding, making the effective cost higher.</p>
+<div class="explanation__highlight">Credit card at 20% APR (daily compounding):<br/>Daily rate = 20%/365 = 0.0548%<br/>Effective APY = (1 + 0.20/365)^365 − 1 = <strong>22.13%</strong><br/>On $5,000 balance for 1 year: True interest cost = $1,107 (not $1,000)</div>
+
+<h3>References</h3>
+<ul>
+<li>Truth in Lending Act (TILA) — Regulation Z, 12 CFR Part 1026</li>
+<li>Reserve Bank of India — Circular on Fair Practice Code for Lenders</li>
+<li>Consumer Financial Protection Bureau (CFPB) — Rate comparison tools</li>
+</ul>`,
         faq: [
             { question: "Why are simple and compound rates different?", answer: "Compound rate accounts for reinvested interest and is always lower because compounding accelerates growth." },
             { question: "Can I find my loan's real rate?", answer: "Yes — enter loan amount, total repaid, and time period to calculate the effective annual rate." },
@@ -1592,7 +1823,57 @@ const HUB_CONTENT: Record<string, {
     },
     "cd-calculator": {
         subtitle: "Calculate Certificate of Deposit earnings at maturity. Compare rates, terms, and compounding for FDIC-insured investments.",
-        contentHTML: `<h2>What Is a Certificate of Deposit (CD)?</h2><p>A CD is a <strong>time-bound savings product</strong> with a guaranteed fixed rate. Deposit for a set term (3 months to 5 years), earn higher rates than savings accounts.</p><h3>Why CDs Are Popular</h3><ul><li><strong>FDIC insured</strong> up to $250,000</li><li><strong>Guaranteed rate</strong> — unaffected by market drops</li><li><strong>Higher than savings</strong> — typically 0.5–1% more APY</li></ul><h3>CD Laddering</h3><p>Split deposits across multiple terms. As each matures, reinvest or use the cash — balancing liquidity with higher rates.</p><h3>Worked Example</h3><p>$25,000 in 2-year CD at 4.75% daily:</p><ul><li>APY: <strong>4.866%</strong></li><li>Maturity: <strong>$27,471</strong></li><li>Interest: <strong>$2,471</strong></li></ul>`,
+        contentHTML: `<h2>What is a Certificate of Deposit (CD)?</h2>
+<p>A Certificate of Deposit (CD) is a federally insured time-deposit savings product offered by banks and credit unions. You deposit a fixed amount for a <strong>specified term</strong> (3 months to 5 years), and the bank pays you a guaranteed fixed interest rate. At maturity, you receive your principal plus all earned interest. CDs are among the safest investments available — FDIC-insured up to $250,000 per depositor per bank.</p>
+
+<h3>CD Interest Calculation</h3>
+<p>Most CDs compound interest either daily or monthly. The final value is calculated using:</p>
+<div class="explanation__highlight">
+<strong>A = P × (1 + r/n)^(n×t)</strong><br/><br/>
+A = Final amount | P = Principal | r = Annual rate | n = Compounding periods/year | t = Time in years<br/><br/>
+<strong>Example:</strong> $10,000 at 4.8% APY, compounded daily, 12-month CD:<br/>
+A = $10,000 × (1 + 0.048/365)^365 = $10,000 × 1.04918 = <strong>$10,491.80</strong>
+</div>
+
+<h3>Current CD Rate Comparison (2024)</h3>
+<table><thead><tr><th>Term</th><th>National Average APY</th><th>Best Available APY</th></tr></thead><tbody>
+<tr><td>3 months</td><td>1.60%</td><td>5.25% (online banks)</td></tr>
+<tr><td>6 months</td><td>2.00%</td><td>5.35%</td></tr>
+<tr><td>1 year</td><td>1.80%</td><td>5.15%</td></tr>
+<tr><td>2 years</td><td>1.50%</td><td>4.70%</td></tr>
+<tr><td>5 years</td><td>1.40%</td><td>4.30%</td></tr>
+</tbody></table>
+<p><em>National averages per FDIC. Best rates from top online banks and credit unions. Rates change frequently.</em></p>
+
+<h3>CD Strategies to Maximize Returns</h3>
+<p><strong>CD Ladder:</strong> Divide your investment across multiple CD terms to balance yield and liquidity. Example: $20,000 split into 1-year, 2-year, 3-year, 4-year, and 5-year CDs of $4,000 each. As each CD matures annually, reinvest at whatever rate is best at that time.</p>
+<p><strong>CD Barbell:</strong> Split funds between short-term (3-6 month) and long-term (4-5 year) CDs. Short-term CDs provide flexibility; long-term CDs capture higher yields.</p>
+<p><strong>No-Penalty CDs:</strong> Offer slightly lower rates (typically 0.3-0.5% less) but allow early withdrawal without penalty — useful when rates are expected to rise.</p>
+
+<h3>Early Withdrawal Penalties</h3>
+<p>Breaking a CD before maturity incurs penalties, typically expressed in months of interest:</p>
+<ul>
+<li><strong>3-month CD:</strong> ~30-60 days interest penalty</li>
+<li><strong>1-year CD:</strong> ~90-150 days interest penalty</li>
+<li><strong>3-5 year CD:</strong> ~150-365 days interest penalty</li>
+</ul>
+<p>Even with a penalty, withdrawing early from a CD can sometimes be worth it if you can reinvest at a significantly higher rate. Our calculator helps you compare the break-even.</p>
+
+<h3>CDs vs High-Yield Savings vs Treasury Bills</h3>
+<table><thead><tr><th>Feature</th><th>CD</th><th>High-Yield Savings</th><th>T-Bill (6-month)</th></tr></thead><tbody>
+<tr><td>Rate (2024)</td><td>4.5–5.35%</td><td>4.5–5.1%</td><td>~5.2%</td></tr>
+<tr><td>FDIC/NCUA insured</td><td>✅ Up to $250K</td><td>✅ Up to $250K</td><td>✅ US govt-backed</td></tr>
+<tr><td>Liquidity</td><td>Locked in (penalty)</td><td>Anytime</td><td>At maturity (or sell)</td></tr>
+<tr><td>State tax</td><td>Taxable</td><td>Taxable</td><td>State tax exempt</td></tr>
+<tr><td>Rate changes</td><td>Fixed — locked in</td><td>Variable — can drop</td><td>Fixed until maturity</td></tr>
+</tbody></table>
+
+<h3>References</h3>
+<ul>
+<li>FDIC — Certificate of Deposit rules and insurance limits — fdic.gov</li>
+<li>Federal Reserve Economic Data (FRED) — CD rate history</li>
+<li>National Credit Union Administration (NCUA) — credit union CD insurance</li>
+</ul>`,
         faq: [
             { question: "Are CDs safe?", answer: "Yes — FDIC insured up to $250,000 per depositor per bank." },
             { question: "What is a good CD rate in 2025?", answer: "Top rates: 4.25%–5.00% APY for 1-year terms. Online banks offer the highest." },
@@ -1665,14 +1946,18 @@ export default async function CalculatorHubPage({ params }: PageProps) {
     const content = HUB_CONTENT[calc.id];
 
     const pageUrl = canonicalUrl(`/loan-calculators/${calc.slug}`);
-    const schemaData = JSON.stringify([
+    const schemas: Array<object | undefined> = [
         breadcrumbSchema([
             { name: "Home", url: `${SITE_URL}/` },
             { name: "Loan Calculators", url: canonicalUrl("/loan-calculators") },
             { name: calc.title },
         ]),
-        webAppSchema(calc.title, pageUrl),
-    ]);
+        webAppSchema(calc.title, pageUrl, "USD", "FinanceApplication"),
+    ];
+    if (content?.faq && content.faq.length > 0) {
+        schemas.push(faqSchema(content.faq));
+    }
+    const schemaData = JSON.stringify(schemas.filter(Boolean));
 
     return (
         <main className="container" style={{ paddingTop: "var(--s-4)" }}>

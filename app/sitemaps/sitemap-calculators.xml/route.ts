@@ -48,7 +48,15 @@ function buildEntries(): SitemapEntry[] {
         { cat: "density", slug: "density-calculators" },
         { cat: "electrical", slug: "electrical-calculators" },
         { cat: "business", slug: "business-calculators" },
+        { cat: "cooking", slug: "cooking-calculators" },
     ];
+
+    // Category hub index pages
+    for (const { slug } of categories) {
+        if (slug !== "convert") {
+            entries.push({ loc: canonicalUrl(`/${slug}`), lastmod: now });
+        }
+    }
 
     for (const { cat, slug } of categories) {
         const calcs = getCalculatorsByCategory(cat);
@@ -148,6 +156,13 @@ function buildEntries(): SitemapEntry[] {
     const heightSlugs = getHeightParams();
     for (const h of heightSlugs) {
         entries.push({ loc: canonicalUrl(`/height-converter/${h.slug}`), lastmod: now });
+    }
+
+    // ─── Trust & E-E-A-T pages ───
+    entries.push({ loc: canonicalUrl("/authors"), lastmod: now });
+    entries.push({ loc: canonicalUrl("/editorial-policy"), lastmod: now });
+    for (const author of ["priya-sharma", "arjun-mehta", "neha-kapoor", "rajiv-nair"]) {
+        entries.push({ loc: canonicalUrl(`/authors/${author}`), lastmod: now });
     }
 
     return entries;

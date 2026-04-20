@@ -6,8 +6,9 @@ import Breadcrumb from "@/components/layout/Breadcrumb";
 import CategoryGrid from "@/components/shared/CategoryGrid";
 import DynamicExplanation from "@/components/shared/DynamicExplanation";
 import FAQAccordion from "@/components/shared/FAQAccordion";
+import AuthorBadge from "@/components/shared/AuthorBadge";
 import { getCalculatorsByCategory, type CalculatorDef } from "@/lib/data";
-import { canonicalUrl, breadcrumbSchema } from "@/lib/seo";
+import { canonicalUrl, breadcrumbSchema, faqSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
@@ -16,6 +17,29 @@ export const metadata: Metadata = {
         "Free vehicle loan calculators for US buyers: auto loan payment, car lease, lease vs. buy comparison, boat loan, motorcycle loan, RV loan, and ATV loan. Includes amortization schedules, trade-in values, and total cost breakdowns.",
     alternates: { canonical: canonicalUrl("/vehicle-loan-calculators") },
 };
+
+const FAQ_ITEMS = [
+                    {
+                        question: "What is a good interest rate for a car loan in 2026?",
+                        answer: "As of 2026, good auto loan rates are 4.5%–6.5% for new cars with excellent credit (750+). Used car rates are typically 1–3% higher. Credit unions often offer the best rates — check local CUs alongside national banks.",
+                    },
+                    {
+                        question: "How long should my auto loan be?",
+                        answer: "Most financial experts recommend 48–60 month terms. Loans of 72–84 months lower your payment but dramatically increase total interest and the risk of being 'upside down' (owing more than the car is worth).",
+                    },
+                    {
+                        question: "Is it better to lease or buy a car?",
+                        answer: "It depends on your situation. Leasing offers lower monthly payments and a new car every 2–3 years, but you never build equity. Buying costs more monthly but you own the car after payoff. Use our Lease vs. Buy Calculator to compare your specific numbers.",
+                    },
+                    {
+                        question: "How much should I put down on a car?",
+                        answer: "Aim for at least 20% on a new car and 10% on a used car. Larger down payments reduce your monthly payment, total interest, and the risk of negative equity. Some lenders require a minimum 10% down.",
+                    },
+                    {
+                        question: "Do these calculators work for all US states?",
+                        answer: "Yes — the calculators let you input your state's sales tax rate. Five states (Alaska, Delaware, Montana, New Hampshire, Oregon) have no sales tax. Other states range from 2.9% (Colorado) to 7.25% (California).",
+                    },
+                ];
 
 const schemaData = JSON.stringify([
     breadcrumbSchema([
@@ -29,7 +53,8 @@ const schemaData = JSON.stringify([
         description: "Free US-focused vehicle loan calculators for auto, boat, motorcycle, RV, and ATV financing.",
         url: canonicalUrl("/vehicle-loan-calculators"),
     },
-]);
+,
+    faqSchema(FAQ_ITEMS)]);
 
 export default function VehicleLoanCalculatorsPage() {
     const calcs = getCalculatorsByCategory("vehicle");
@@ -52,11 +77,14 @@ export default function VehicleLoanCalculatorsPage() {
             <h1 className="t-h1" style={{ marginBottom: "var(--s-2)" }}>
                 Vehicle Loan Calculators — Auto, Boat, Motorcycle, RV & ATV
             </h1>
-            <p className="t-body text-muted" style={{ marginBottom: "var(--s-8)" }}>
+            <p className="t-body text-muted" style={{ marginBottom: "var(--s-4)" }}>
                 Free calculators for US vehicle buyers — calculate monthly payments for car loans, auto leases,
                 boat financing, motorcycle loans, RV loans, and ATV loans. Compare lease vs. buy, see amortization
                 schedules, and find the true cost of vehicle ownership.
             </p>
+            <div style={{ marginBottom: "var(--s-8)" }}>
+                <AuthorBadge categoryKey="vehicle" />
+            </div>
 
             <section style={{ marginBottom: "var(--s-12)" }}>
                 <h2 className="t-h2" style={{ marginBottom: "var(--s-5)" }}>All Vehicle Loan Calculators</h2>
@@ -91,28 +119,7 @@ export default function VehicleLoanCalculatorsPage() {
 
             <FAQAccordion
                 title="Vehicle Loan Calculator FAQ"
-                items={[
-                    {
-                        question: "What is a good interest rate for a car loan in 2026?",
-                        answer: "As of 2026, good auto loan rates are 4.5%–6.5% for new cars with excellent credit (750+). Used car rates are typically 1–3% higher. Credit unions often offer the best rates — check local CUs alongside national banks.",
-                    },
-                    {
-                        question: "How long should my auto loan be?",
-                        answer: "Most financial experts recommend 48–60 month terms. Loans of 72–84 months lower your payment but dramatically increase total interest and the risk of being 'upside down' (owing more than the car is worth).",
-                    },
-                    {
-                        question: "Is it better to lease or buy a car?",
-                        answer: "It depends on your situation. Leasing offers lower monthly payments and a new car every 2–3 years, but you never build equity. Buying costs more monthly but you own the car after payoff. Use our Lease vs. Buy Calculator to compare your specific numbers.",
-                    },
-                    {
-                        question: "How much should I put down on a car?",
-                        answer: "Aim for at least 20% on a new car and 10% on a used car. Larger down payments reduce your monthly payment, total interest, and the risk of negative equity. Some lenders require a minimum 10% down.",
-                    },
-                    {
-                        question: "Do these calculators work for all US states?",
-                        answer: "Yes — the calculators let you input your state's sales tax rate. Five states (Alaska, Delaware, Montana, New Hampshire, Oregon) have no sales tax. Other states range from 2.9% (Colorado) to 7.25% (California).",
-                    },
-                ]}
+                items={FAQ_ITEMS}
             />
 
             <section style={{ marginTop: "var(--s-8)" }}>
