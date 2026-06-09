@@ -68,6 +68,13 @@ export default function RootLayout({
             gtag('config', 'G-XVZQHV08SG');
           `}
         </Script>
+        {/* Google AdSense */}
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3948319670483938"
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
       </head>
       <body className={`${jakarta.className} ${jakarta.variable} ${jetbrains.variable}`}>
         {/* Site-level Entity Schemas — Organization + WebSite */}
