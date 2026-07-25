@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+// Server Component — no 'use client' needed; hover effects handled via CSS
 import Link from "next/link";
 import Script from "next/script";
 import Breadcrumb from "@/components/layout/Breadcrumb";
@@ -300,27 +301,41 @@ export default function AboutPage() {
                         and fact-checked against primary authoritative sources.
                     </p>
 
+                    <style>{`
+                        .about-team-card {
+                            display: block;
+                            text-decoration: none;
+                            background: var(--n-surface);
+                            border: 1px solid var(--n-border);
+                            border-radius: var(--r-xl);
+                            padding: var(--s-6);
+                            transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+                        }
+                        .about-team-card:hover {
+                            border-color: #818cf8;
+                            transform: translateY(-2px);
+                            box-shadow: 0 8px 24px rgba(99,102,241,0.12);
+                        }
+                        .about-contact-card {
+                            display: block;
+                            text-decoration: none;
+                            background: var(--n-surface);
+                            border: 1px solid var(--n-border);
+                            border-radius: var(--r-xl);
+                            padding: var(--s-5);
+                            transition: border-color 0.2s;
+                        }
+                        .about-contact-card:hover {
+                            border-color: #818cf8;
+                        }
+                    `}</style>
+
                     <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "var(--s-5)" }}>
                         {authors.map((author) => (
                             <Link
                                 key={author.slug}
                                 href={`/authors/${author.slug}`}
-                                style={{
-                                    display: "block", textDecoration: "none",
-                                    background: "var(--n-surface)",
-                                    border: "1px solid var(--n-border)",
-                                    borderRadius: "var(--r-xl)",
-                                    padding: "var(--s-6)",
-                                    transition: "border-color 0.2s, transform 0.2s",
-                                }}
-                                onMouseEnter={(e) => {
-                                    (e.currentTarget as HTMLElement).style.borderColor = "#818cf8";
-                                    (e.currentTarget as HTMLElement).style.transform = "translateY(-2px)";
-                                }}
-                                onMouseLeave={(e) => {
-                                    (e.currentTarget as HTMLElement).style.borderColor = "var(--n-border)";
-                                    (e.currentTarget as HTMLElement).style.transform = "none";
-                                }}
+                                className="about-team-card"
                             >
                                 {/* Avatar */}
                                 <div style={{
@@ -558,14 +573,7 @@ export default function AboutPage() {
                             <a
                                 key={c.label}
                                 href={c.href}
-                                style={{
-                                    display: "block", textDecoration: "none",
-                                    background: "var(--n-surface)",
-                                    border: "1px solid var(--n-border)",
-                                    borderRadius: "var(--r-xl)",
-                                    padding: "var(--s-5)",
-                                    transition: "border-color 0.2s",
-                                }}
+                                className="about-contact-card"
                             >
                                 <span style={{ fontSize: "1.5rem", display: "block", marginBottom: "var(--s-2)" }}>{c.icon}</span>
                                 <p style={{ fontSize: "0.78rem", fontWeight: 600, color: "#818cf8", marginBottom: "4px", textTransform: "uppercase", letterSpacing: "0.05em" }}>{c.label}</p>
