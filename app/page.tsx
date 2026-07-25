@@ -116,44 +116,44 @@ const TRENDING = [
 
 // ─── Trust features ───
 const TRUST_FEATURES = [
-  { icon: "✅", title: "Verified Formulas", desc: "Every calculator uses peer-reviewed, industry-standard formulas. Results match professional-grade financial and scientific tools." },
-  { icon: "🔒", title: "100% Private", desc: "All calculations run in your browser. Zero data collected, stored, or transmitted — ever. No account needed." },
-  { icon: "⚡", title: "Instant Results", desc: "Real-time answers as you type. No page reloads, no loading spinners, no waiting. Results in under a second." },
-  { icon: "🆓", title: "Used by 1M+ Users", desc: "Trusted by over a million monthly users for mortgage, EMI, health, and tax calculations. Completely free, forever." },
-  { icon: "🌍", title: "Country-Aware Logic", desc: "Tools adapt to local tax laws, regulations, and currencies — US, India (₹), UAE (AED), and Saudi Arabia (SAR)." },
-  { icon: "🎓", title: "Accurate & Tested", desc: "Results are cross-validated against CFA, NISM, and WHO standards. What you see matches real-world professional calculations." },
+  { icon: "verified",   color: "indigo",  title: "Verified Formulas",    desc: "Every calculator uses peer-reviewed, industry-standard formulas. Results match professional-grade financial and scientific tools." },
+  { icon: "private",   color: "violet",  title: "100% Private",          desc: "All calculations run in your browser. Zero data collected, stored, or transmitted — ever. No account needed." },
+  { icon: "instant",   color: "amber",   title: "Instant Results",       desc: "Real-time answers as you type. No page reloads, no loading spinners, no waiting. Results in under a second." },
+  { icon: "users",     color: "teal",    title: "Used by 1M+ Users",     desc: "Trusted by over a million monthly users for mortgage, EMI, health, and tax calculations. Completely free, forever." },
+  { icon: "globe",     color: "blue",    title: "Country-Aware Logic",   desc: "Tools adapt to local tax laws, regulations, and currencies — US, India (₹), UAE (AED), and Saudi Arabia (SAR)." },
+  { icon: "graduation",color: "emerald", title: "Accurate & Tested",     desc: "Results are cross-validated against CFA, NISM, and WHO standards. What you see matches real-world professional calculations." },
 ];
 
 // ─── How It Works steps ───
 const HOW_STEPS = [
-  { num: "01", title: "Find Your Calculator", desc: "Search or browse 500+ tools across finance, health, math, and everyday use. Find any tool in under 5 seconds.", icon: "🔍" },
-  { num: "02", title: "Enter Your Values", desc: "Type in your numbers — intuitive inputs, smart defaults, and presets make it instant. No manual formula needed.", icon: "✏️" },
-  { num: "03", title: "Get Instant Answers", desc: "Results appear as you type. See full breakdowns, step-by-step logic, and charts — not just a bare number.", icon: "📊" },
-  { num: "04", title: "Make Better Decisions", desc: "Each result includes real-life context, decision insights, and links to related tools so you can go deeper.", icon: "💡" },
+  { num: "01", title: "Find Your Calculator", desc: "Search or browse 500+ tools across finance, health, math, and everyday use. Find any tool in under 5 seconds.",    icon: "search"    },
+  { num: "02", title: "Enter Your Values",    desc: "Type in your numbers — intuitive inputs, smart defaults, and presets make it instant. No manual formula needed.",      icon: "pen"       },
+  { num: "03", title: "Get Instant Answers",  desc: "Results appear as you type. See full breakdowns, step-by-step logic, and charts — not just a bare number.",           icon: "chart"     },
+  { num: "04", title: "Make Better Decisions",desc: "Each result includes real-life context, decision insights, and links to related tools so you can go deeper.",          icon: "lightbulb" },
 ];
 
 // ─── Differentiators ───
 const DIFFERENTIATORS = [
   {
-    icon: "📐",
+    icon: "formula",
     title: "Shows the Formula",
     desc: "Every calculator shows the exact formula used. You're not trusting a black box — you see the math behind every result.",
     highlight: "Transparent by design",
   },
   {
-    icon: "🧩",
+    icon: "steps",
     title: "Step-by-Step Breakdown",
     desc: "Complex calculations are broken into readable steps. See how each component contributes to the final number.",
     highlight: "Education built in",
   },
   {
-    icon: "🌍",
+    icon: "examples",
     title: "Real-Life Examples",
     desc: "Every calculator comes with worked examples using realistic scenarios — not abstract numbers. Immediately usable.",
     highlight: "Context, not just results",
   },
   {
-    icon: "💡",
+    icon: "insights",
     title: "Decision Insights",
     desc: "Beyond the result, Numerral tells you what it means — is this EMI too high? Is this BMI healthy? What should you do next?",
     highlight: "Calculator → Advisor",
@@ -485,8 +485,10 @@ export default function HomePage() {
 
           <div className="hp-trust-grid" role="list">
             {TRUST_FEATURES.map((feat) => (
-              <div key={feat.title} className="hp-trust-card" role="listitem">
-                <span className="hp-trust-card__icon">{feat.icon}</span>
+              <div key={feat.title} className={`hp-trust-card hp-trust-card--${feat.color}`} role="listitem">
+                <span className="hp-trust-card__icon">
+                  <CalcIcon name={feat.icon} size={22} strokeWidth={1.75} />
+                </span>
                 <h3 className="hp-trust-card__title">{feat.title}</h3>
                 <p className="hp-trust-card__desc">{feat.desc}</p>
               </div>
@@ -514,7 +516,9 @@ export default function HomePage() {
             {HOW_STEPS.map((step) => (
               <div key={step.num} className="hp-how-step" role="listitem">
                 <div className="hp-how-step__num-wrap">
-                  <span className="hp-how-step__icon">{step.icon}</span>
+                  <span className="hp-how-step__icon">
+                    <CalcIcon name={step.icon} size={24} strokeWidth={1.75} />
+                  </span>
                   <span className="hp-how-step__num">{step.num}</span>
                 </div>
                 <h3 className="hp-how-step__title">{step.title}</h3>
@@ -544,7 +548,9 @@ export default function HomePage() {
             {DIFFERENTIATORS.map((d) => (
               <div key={d.title} className="hp-diff-card" role="listitem">
                 <div className="hp-diff-card__icon-wrap">
-                  <span className="hp-diff-card__icon">{d.icon}</span>
+                  <span className="hp-diff-card__icon">
+                    <CalcIcon name={d.icon} size={22} strokeWidth={1.75} />
+                  </span>
                 </div>
                 <div className="hp-diff-card__body">
                   <span className="hp-diff-card__highlight">{d.highlight}</span>
@@ -560,22 +566,22 @@ export default function HomePage() {
               <div className="hp-diff__vs-col hp-diff__vs-col--other">
                 <div className="hp-diff__vs-label">Other Calculator Sites</div>
                 <ul className="hp-diff__vs-list">
-                  <li className="hp-diff__vs-item hp-diff__vs-item--bad">❌ Bare number output</li>
-                  <li className="hp-diff__vs-item hp-diff__vs-item--bad">❌ No formula shown</li>
-                  <li className="hp-diff__vs-item hp-diff__vs-item--bad">❌ No step breakdown</li>
-                  <li className="hp-diff__vs-item hp-diff__vs-item--bad">❌ Ad-heavy UI</li>
-                  <li className="hp-diff__vs-item hp-diff__vs-item--bad">❌ No real-life examples</li>
+                  {["Bare number output","No formula shown","No step breakdown","Ad-heavy UI","No real-life examples"].map(t => (
+                    <li key={t} className="hp-diff__vs-item hp-diff__vs-item--bad">
+                      <CalcIcon name="bad" size={15} strokeWidth={2} />{t}
+                    </li>
+                  ))}
                 </ul>
               </div>
               <div className="hp-diff__vs-divider" aria-hidden="true">vs</div>
               <div className="hp-diff__vs-col hp-diff__vs-col--numerral">
                 <div className="hp-diff__vs-label">Numerral</div>
                 <ul className="hp-diff__vs-list">
-                  <li className="hp-diff__vs-item hp-diff__vs-item--good">✅ Full formula + explanation</li>
-                  <li className="hp-diff__vs-item hp-diff__vs-item--good">✅ Step-by-step breakdown</li>
-                  <li className="hp-diff__vs-item hp-diff__vs-item--good">✅ Real-life worked examples</li>
-                  <li className="hp-diff__vs-item hp-diff__vs-item--good">✅ Clean, ad-free first fold</li>
-                  <li className="hp-diff__vs-item hp-diff__vs-item--good">✅ Decision insights included</li>
+                  {["Full formula + explanation","Step-by-step breakdown","Real-life worked examples","Clean, ad-free first fold","Decision insights included"].map(t => (
+                    <li key={t} className="hp-diff__vs-item hp-diff__vs-item--good">
+                      <CalcIcon name="good" size={15} strokeWidth={2} />{t}
+                    </li>
+                  ))}
                 </ul>
               </div>
             </div>

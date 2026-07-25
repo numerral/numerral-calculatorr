@@ -9208,17 +9208,26 @@ main.container > section { order: 2; }
 }
 
 .hp-trust-card__icon {
-    font-size: 1.75rem;
-    line-height: 1;
     width: 52px;
     height: 52px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--n-primary-light);
     border-radius: var(--r-md);
-    border: 1px solid rgba(79, 70, 229, 0.1);
+    background: rgba(79, 70, 229, 0.08);
+    border: 1px solid rgba(79, 70, 229, 0.12);
+    color: rgb(79, 70, 229);
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
 }
+.hp-trust-card__icon svg { width: 22px; height: 22px; stroke: currentColor; }
+/* Per-colour trust icon accent */
+.hp-trust-card--indigo .hp-trust-card__icon { background: rgba(79,70,229,0.08);  border-color: rgba(79,70,229,0.14);   color: rgb(79,70,229); }
+.hp-trust-card--violet .hp-trust-card__icon { background: rgba(139,92,246,0.08); border-color: rgba(139,92,246,0.14);  color: rgb(139,92,246); }
+.hp-trust-card--amber  .hp-trust-card__icon { background: rgba(245,158,11,0.08); border-color: rgba(245,158,11,0.14);  color: rgb(217,119,6); }
+.hp-trust-card--teal   .hp-trust-card__icon { background: rgba(20,184,166,0.08); border-color: rgba(20,184,166,0.14);  color: rgb(20,184,166); }
+.hp-trust-card--blue   .hp-trust-card__icon { background: rgba(59,130,246,0.08); border-color: rgba(59,130,246,0.14);  color: rgb(59,130,246); }
+.hp-trust-card--emerald .hp-trust-card__icon { background: rgba(16,185,129,0.08); border-color: rgba(16,185,129,0.14); color: rgb(16,185,129); }
 
 .hp-trust-card__title {
     font-size: 1.025rem;
@@ -9311,8 +9320,17 @@ main.container > section { order: 2; }
 }
 
 .hp-how-step__icon {
-    font-size: 1.5rem;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(79, 70, 229, 0.08);
+    border-radius: var(--r-md);
+    color: var(--n-primary);
+    flex-shrink: 0;
 }
+.hp-how-step__icon svg { width: 24px; height: 24px; stroke: currentColor; }
 
 .hp-how-step__title {
     font-size: 1rem;
@@ -9664,9 +9682,14 @@ main.container > section { order: 2; }
 }
 
 .hp-diff-card__icon {
-    font-size: 1.6rem;
-    line-height: 1;
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgb(79, 70, 229);
 }
+.hp-diff-card__icon svg { width: 22px; height: 22px; stroke: currentColor; }
 
 /* Card content */
 .hp-diff-card__body {
@@ -9784,11 +9807,13 @@ main.container > section { order: 2; }
     color: var(--n-text-muted);
     opacity: 0.75;
 }
+.hp-diff__vs-item--bad svg { color: #ef4444; stroke: #ef4444; flex-shrink: 0; }
 
 .hp-diff__vs-item--good {
     color: var(--n-text);
     font-weight: 600;
 }
+.hp-diff__vs-item--good svg { color: #22c55e; stroke: #22c55e; flex-shrink: 0; }
 
 /* "vs" divider */
 .hp-diff__vs-divider {
