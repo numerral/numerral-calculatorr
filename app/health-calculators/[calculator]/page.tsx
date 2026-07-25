@@ -29,10 +29,95 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 const HUB_CONTENT: Record<string, { subtitle: string; explanation?: { heading: string; paragraphs?: string[]; contentHTML?: string; highlight?: string }; faq?: { question: string; answer: string }[] }> = {
     "bmi-calculator": {
-        subtitle: "Calculate your Body Mass Index from height and weight. See your BMI category and the healthy weight range for your height.",
-        explanation: { heading: "How BMI Is Calculated", paragraphs: ["BMI = weight (kg) / height (m)². A BMI of 18.5–24.9 is considered normal weight. Below 18.5 is underweight, 25–29.9 is overweight, and 30+ is obese.", "BMI is a quick screening tool, not a diagnostic measure. It doesn't distinguish between muscle and fat — a muscular athlete may have a high BMI but low body fat. For a more complete picture, combine BMI with body fat percentage and waist-to-hip ratio."], highlight: "A 70 kg person at 170 cm has a BMI of 24.2 (normal weight). Their healthy weight range is 53.5–72.0 kg." },
-        faq: [{ question: "What is a healthy BMI?", answer: "18.5–24.9 is the normal range. Below 18.5 is underweight (may indicate nutritional deficiency), 25–29.9 is overweight, and 30+ is obese. These ranges apply to adults over 18." }, { question: "Is BMI accurate for athletes?", answer: "Not always. BMI doesn't distinguish muscle from fat. A muscular person may be classified as overweight despite having low body fat. Use body fat percentage for a more accurate assessment." }],
+        subtitle: "Calculate your Body Mass Index from height and weight. See your WHO category, healthy weight range, and what your BMI actually means for your health.",
+        explanation: {
+            heading: "BMI Calculator — Complete Guide",
+            contentHTML: `<p>Body Mass Index (BMI) is a widely used screening tool that estimates whether a person's weight is appropriate for their height. Developed by Belgian mathematician Adolphe Quetelet in the 1830s and later adopted by the <strong>World Health Organization (WHO)</strong> and the <strong>US Centers for Disease Control and Prevention (CDC)</strong>, BMI provides a quick, cost-free method to identify potential weight-related health risks in large populations.</p>
+
+<h3>The BMI Formula</h3>
+<p>BMI is calculated using a straightforward formula that requires only two measurements — your weight and your height:</p>
+<div class="explanation__highlight">
+  <strong>Metric:</strong> BMI = weight (kg) ÷ height (m)²<br/>
+  <strong>Imperial:</strong> BMI = [weight (lbs) ÷ height (inches)²] × 703
+</div>
+<p>For example, a person weighing <strong>70 kg</strong> at a height of <strong>170 cm (1.70 m)</strong> has a BMI of:<br/>
+70 ÷ (1.70 × 1.70) = 70 ÷ 2.89 = <strong>24.2</strong> — classified as Normal Weight.</p>
+
+<h3>WHO BMI Categories for Adults</h3>
+<p>The World Health Organization defines the following BMI ranges for adults aged 18 and older:</p>
+<table class="calc-table">
+  <thead><tr><th>BMI Range</th><th>Category</th><th>Health Risk Level</th></tr></thead>
+  <tbody>
+    <tr><td>Below 16.0</td><td>Severe Underweight</td><td>Very High (malnutrition risk)</td></tr>
+    <tr><td>16.0 – 16.9</td><td>Moderate Underweight</td><td>High</td></tr>
+    <tr><td>17.0 – 18.4</td><td>Mild Underweight</td><td>Moderate</td></tr>
+    <tr><td>18.5 – 24.9</td><td><strong>Normal / Healthy Weight</strong></td><td>Low (average risk)</td></tr>
+    <tr><td>25.0 – 29.9</td><td>Overweight</td><td>Increased risk</td></tr>
+    <tr><td>30.0 – 34.9</td><td>Obese Class I</td><td>High risk</td></tr>
+    <tr><td>35.0 – 39.9</td><td>Obese Class II</td><td>Very High risk</td></tr>
+    <tr><td>40.0 and above</td><td>Obese Class III (Severe)</td><td>Extremely High risk</td></tr>
+  </tbody>
+</table>
+<p>A BMI in the <strong>18.5 – 24.9 range</strong> is associated with the lowest risk of weight-related chronic diseases. BMI above 30 is associated with significantly elevated risk of type 2 diabetes, cardiovascular disease, hypertension, sleep apnea, and certain cancers.</p>
+
+<h3>Adjusted BMI Thresholds for South Asian and Asian Populations</h3>
+<p>Standard WHO thresholds were developed primarily from data on European populations. Research has shown that <strong>South Asian, East Asian, and Southeast Asian populations</strong> face increased health risks at lower BMI values due to differences in body fat distribution — particularly higher rates of visceral (abdominal) fat at equivalent BMI scores.</p>
+<p>For these populations, many health authorities — including <strong>India's National Institute of Nutrition</strong> and the <strong>WHO expert consultation</strong> — recommend lower action points:</p>
+<div class="explanation__highlight">
+  <strong>Asian-adjusted thresholds:</strong><br/>
+  Overweight: BMI ≥ 23 (instead of 25)<br/>
+  Obese: BMI ≥ 27.5 (instead of 30)<br/>
+  This is particularly relevant for Indian, Chinese, Japanese, Korean, and South-East Asian populations.
+</div>
+
+<h3>BMI and Health Risks — What the Research Shows</h3>
+<p>Multiple large-scale studies confirm the relationship between BMI and health outcomes. The <strong>Nurses' Health Study</strong> (Harvard, 100,000+ participants over 16 years) found that even a BMI of 25-26.9 in women (technically "overweight" but below obese threshold) was associated with a 35-60% increased risk of coronary heart disease compared to BMI below 21. The <strong>PURE Study</strong> (2020, 127,000 participants across 21 countries) found a J-shaped curve — health risks rise at both extremes of BMI.</p>
+
+<h3>Critical Limitations of BMI — What It Cannot Tell You</h3>
+<p>BMI is a <em>population-level screening tool</em>, not a diagnostic test. It has well-documented limitations that you should understand before acting on your BMI result:</p>
+<ul style="padding-left:1.5rem; line-height:1.9; color: var(--n-text-secondary);">
+  <li><strong>Does not distinguish muscle from fat:</strong> A professional athlete or bodybuilder may have a BMI of 28-30 (classified as overweight or obese) despite having very low body fat and exceptional cardiovascular health. BMI treats muscle and fat identically.</li>
+  <li><strong>Does not measure fat distribution:</strong> Visceral fat (around internal organs) is far more dangerous than subcutaneous fat (under the skin). Two people with identical BMI can have very different fat distribution patterns and health risks. Waist circumference and waist-to-hip ratio capture this risk more accurately.</li>
+  <li><strong>Age-related changes:</strong> As people age, body composition shifts — muscle mass decreases while fat increases. An older adult with a "normal" BMI may actually have higher body fat than a younger person with the same BMI.</li>
+  <li><strong>Sex differences:</strong> Women typically carry more body fat than men at any given BMI due to physiological differences. A BMI of 24 in a woman may represent more body fat than the same BMI in a man.</li>
+  <li><strong>Ethnic population differences:</strong> As discussed above, the same BMI indicates different levels of health risk depending on ancestry and body composition patterns.</li>
+</ul>
+
+<h3>BMI vs. Better Alternative Measurements</h3>
+<p>For a more complete picture of body composition and health risk, consider these additional measurements alongside BMI:</p>
+<table class="calc-table">
+  <thead><tr><th>Metric</th><th>What It Measures</th><th>Ideal Range</th></tr></thead>
+  <tbody>
+    <tr><td>Body Fat %</td><td>Actual fat mass vs lean mass</td><td>Men: 10–20% | Women: 18–28%</td></tr>
+    <tr><td>Waist Circumference</td><td>Central/abdominal fat</td><td>Men: &lt;94 cm | Women: &lt;80 cm</td></tr>
+    <tr><td>Waist-to-Hip Ratio</td><td>Fat distribution pattern</td><td>Men: &lt;0.9 | Women: &lt;0.85</td></tr>
+    <tr><td>Waist-to-Height Ratio</td><td>Central obesity risk</td><td>Below 0.5 for all adults</td></tr>
+  </tbody>
+</table>
+<p>If your BMI falls in the overweight or obese range, check your <strong>waist circumference</strong> — this is one of the strongest independent predictors of cardiovascular disease risk. A waist measurement above 88 cm (women) or 102 cm (men) indicates high risk regardless of BMI category.</p>
+
+<h3>Healthy Weight Range for Your Height</h3>
+<p>The healthy weight range is derived by rearranging the BMI formula to solve for weight at the 18.5 and 24.9 BMI boundaries. For your height <em>h</em> in meters:</p>
+<div class="explanation__highlight">
+  <strong>Minimum healthy weight</strong> = 18.5 × h²<br/>
+  <strong>Maximum healthy weight</strong> = 24.9 × h²<br/>
+  <br/>
+  Example: At 170 cm (1.70 m):<br/>
+  Min = 18.5 × 2.89 = <strong>53.5 kg</strong><br/>
+  Max = 24.9 × 2.89 = <strong>72.0 kg</strong>
+</div>`,
+        },
+        faq: [
+            { question: "What is a healthy BMI for adults?", answer: "A BMI between 18.5 and 24.9 is classified as 'Normal Weight' by the WHO and is associated with the lowest risk of weight-related health conditions. Below 18.5 is underweight (increased risk of malnutrition, bone density loss, and immune dysfunction). A BMI of 25–29.9 is overweight, and 30 or above is obese, each associated with progressively higher risk of type 2 diabetes, cardiovascular disease, and other chronic conditions." },
+            { question: "Is BMI accurate for athletes and muscular people?", answer: "No — BMI is notoriously inaccurate for athletes and people with high muscle mass. Because BMI only measures weight relative to height, it cannot distinguish between muscle tissue and fat tissue. A 90 kg athlete at 180 cm has a BMI of 27.8 (overweight) even if their body fat percentage is only 12%. For athletes, use body fat percentage (DEXA, Navy method, or calipers) as the primary metric instead." },
+            { question: "How does BMI differ for men and women?", answer: "The BMI formula and WHO classification ranges are the same for both men and women. However, women naturally carry more body fat than men at any given BMI due to hormonal differences and the physiological role of fat in reproduction. At a BMI of 22, a woman may have 25% body fat while a man has 15-18%. Some researchers argue women should have slightly adjusted thresholds, but WHO and most clinical guidelines still use the same 18.5-24.9 normal range for both sexes." },
+            { question: "What BMI is considered obese?", answer: "A BMI of 30 or above is classified as Obese by the WHO, divided into three classes: Class I (30-34.9), Class II (35-39.9), and Class III or Severe Obesity (40 and above). Class III obesity is sometimes called 'morbid obesity' and carries extremely high risk of serious health complications. For South Asian and Asian populations, many health authorities recommend an obesity threshold of 27.5 instead of 30." },
+            { question: "Should I use BMI or body fat percentage?", answer: "Body fat percentage is a superior measure of body composition and health risk because it directly measures fat mass versus lean mass. However, BMI is free, instant, and requires no equipment — making it valuable for initial screening. The best approach is to use both: check BMI first, then if you're near a category boundary or suspect your result doesn't reflect your actual health (e.g., you're muscular or older), measure body fat percentage using the Navy method, calipers, or DEXA scan." },
+            { question: "Does BMI change with age?", answer: "The BMI formula doesn't change with age for adults, but the interpretation may need adjustment. As people age past 40-50, muscle mass naturally decreases (sarcopenia) while fat mass tends to increase — meaning an older adult may have the same BMI as a younger person but significantly higher body fat percentage. Some geriatric health experts suggest that a slightly higher BMI (23-27) may actually be protective in adults over 65, associated with better outcomes during illness." },
+            { question: "How often should I check my BMI?", answer: "For most adults, checking BMI once every 6-12 months is sufficient unless you're actively working toward a health or fitness goal, in which case monthly tracking is appropriate. Remember that day-to-day fluctuations in body weight (due to hydration, food in digestive system, hormonal cycles) can cause BMI variations of 0.5-1.0 points without any real change in body composition. Always weigh yourself at the same time of day (morning, after using the bathroom, before eating) for the most consistent readings." },
+        ],
     },
+
     "calorie-calculator": {
         subtitle: "Calculate how many calories you need per day to maintain, lose, or gain weight based on your age, sex, height, weight, and activity level.",
         explanation: { heading: "How Daily Calories Are Calculated", paragraphs: ["This calculator uses the Mifflin-St Jeor equation for BMR (the most accurate for most people), then multiplies by an activity factor to get total daily energy expenditure (TDEE). Weight loss target = TDEE − 500 kcal (≈0.5 kg/week loss). Weight gain = TDEE + 500 kcal.", "Activity levels range from sedentary (desk job, no exercise) to very active (athlete or physically demanding job + daily training). Be honest about your activity level — overestimating is the most common mistake."], highlight: "A 30-year-old male, 70 kg, 170 cm, moderate activity: BMR ≈ 1,596 kcal, TDEE ≈ 2,474 kcal. To lose weight: eat ~1,974 kcal/day." },
