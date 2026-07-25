@@ -1,7 +1,8 @@
 // CalcIcon — Clean SVG icon set replacing emoji across Numerral
 // Each icon is a crisp 24×24 stroke-based SVG (Heroicons/Feather style)
+import { ReactElement } from "react";
 
-const ICONS: Record<string, JSX.Element> = {
+const ICONS: Record<string, ReactElement> = {
   mortgage: (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
       <path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z" />
