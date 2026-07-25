@@ -61,12 +61,29 @@ const nextConfig: NextConfig = {
         destination: '/in/retirement-corpus-calculator',
         permanent: true,
       },
+      // ─── Fix dead links from Trending Right Now section ───
+      {
+        source: '/investment-calculators/compound-interest-calculator',
+        destination: '/utility-calculators/compound-interest-calculator',
+        permanent: true,
+      },
+      {
+        source: '/tax-calculators/sales-tax-calculator',
+        destination: '/tax-calculators/income-tax-calculator',
+        permanent: true,
+      },
+      {
+        source: '/ev-calculators/ev-cost-calculator',
+        destination: '/ev-calculators/ev-cost-per-mile-calculator',
+        permanent: true,
+      },
       // ─── Fix dead internal links: /in/salary-calculator → actual page ───
       {
         source: '/in/salary-calculator',
         destination: '/in/in-hand-salary-calculator',
         permanent: true,
       },
+
 
       // ─── India-specific SALARY calculators → /in/ ───
       {

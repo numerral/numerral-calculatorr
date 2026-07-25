@@ -103,14 +103,15 @@ const COUNTRIES = [
 // ─── Trending Calculators ───
 const TRENDING = [
   { icon: "🏠", title: "Mortgage Calculator", href: "/loan-calculators/mortgage-calculator", tag: "Most Used" },
-  { icon: "📊", title: "Compound Interest Calculator", href: "/investment-calculators/compound-interest-calculator", tag: "Finance" },
+  { icon: "📊", title: "Compound Interest Calculator", href: "/utility-calculators/compound-interest-calculator", tag: "Finance" },
   { icon: "⚖️", title: "BMI Calculator", href: "/health-calculators/bmi-calculator", tag: "Health" },
-  { icon: "🧾", title: "Sales Tax Calculator", href: "/tax-calculators/sales-tax-calculator", tag: "Trending" },
-  { icon: "💼", title: "Salary Calculator", href: "/salary-calculators/salary-calculator", tag: "Popular" },
+  { icon: "🧾", title: "Sales Tax Calculator", href: "/tax-calculators/income-tax-calculator", tag: "Trending" },
+  { icon: "💼", title: "Salary Calculator", href: "/in/in-hand-salary-calculator", tag: "Popular" },
   { icon: "🎂", title: "Age Calculator", href: "/utility-calculators/age-calculator", tag: "Everyday" },
-  { icon: "🏖️", title: "Retirement Calculator", href: "/investment-calculators/retirement-calculator", tag: "Planning" },
-  { icon: "⚡", title: "EV Cost Calculator", href: "/ev-calculators/ev-cost-calculator", tag: "Trending" },
+  { icon: "🏖️", title: "Retirement Calculator", href: "/in/retirement-corpus-calculator", tag: "Planning" },
+  { icon: "⚡", title: "EV Cost Calculator", href: "/ev-calculators/ev-cost-per-mile-calculator", tag: "Trending" },
 ];
+
 
 // ─── Trust features ───
 const TRUST_FEATURES = [
