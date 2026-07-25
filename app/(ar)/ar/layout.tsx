@@ -29,13 +29,20 @@ export const metadata: Metadata = {
         locale: "ar_SA",
         alternateLocale: ["ar_AE"],
     },
+    // hreflang — tells Google which URL to serve per language/region
     alternates: {
+        canonical: `${SITE_URL}/ar`,
         languages: {
-            "ar-SA": `${SITE_URL}/ar`,
-            "ar-AE": `${SITE_URL}/ar`,
-            "en-SA": `${SITE_URL}/ksa`,
+            "en":    SITE_URL,
+            "en-IN": `${SITE_URL}/in`,
             "en-AE": `${SITE_URL}/uae`,
-            "x-default": `${SITE_URL}/ar`,
+            "en-SA": `${SITE_URL}/ksa`,
+            "ar":    `${SITE_URL}/ar`,
+            "de":    `${SITE_URL}/de`,
+            "de-CH": `${SITE_URL}/ch`,
+            "id":    `${SITE_URL}/id`,
+            "tr":    `${SITE_URL}/tr`,
+            "x-default": SITE_URL,
         },
     },
 };

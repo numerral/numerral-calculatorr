@@ -43,6 +43,22 @@ export const metadata: Metadata = {
   other: {
     "google-adsense-account": "ca-pub-3948319670483938",
   },
+  // hreflang — tells Google which URL to serve per language/region
+  alternates: {
+    canonical: SITE_URL,
+    languages: {
+      "en":    SITE_URL,                  // English (global default)
+      "en-IN": `${SITE_URL}/in`,          // English — India
+      "en-AE": `${SITE_URL}/uae`,         // English — UAE
+      "en-SA": `${SITE_URL}/ksa`,         // English — Saudi Arabia
+      "ar":    `${SITE_URL}/ar`,          // Arabic
+      "de":    `${SITE_URL}/de`,          // German
+      "de-CH": `${SITE_URL}/ch`,          // German — Switzerland
+      "id":    `${SITE_URL}/id`,          // Indonesian
+      "tr":    `${SITE_URL}/tr`,          // Turkish
+      "x-default": SITE_URL,             // Fallback for unmatched regions
+    },
+  },
   openGraph: {
     type: "website",
     siteName: SITE_NAME,
