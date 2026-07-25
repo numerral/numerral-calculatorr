@@ -5,6 +5,7 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 import Link from "next/link";
+import CalcIcon from "@/components/shared/CalcIcon";
 import HomeSearchBar from "@/components/shared/HomeSearchBar";
 import FAQAccordion from "@/components/shared/FAQAccordion";
 import {
@@ -49,27 +50,27 @@ const orgSchema = JSON.stringify({
 
 // ─── US-Priority Popular Calculators ───
 const US_POPULAR = [
-  { icon: "🏠", title: "Mortgage Calculator", href: "/loan-calculators/mortgage-calculator", desc: "Estimate monthly payments, total interest & amortization schedule", tag: "Most Used" },
-  { icon: "📊", title: "EMI Calculator", href: "/in/home-loan-calculator", desc: "Loan EMI with full amortization breakdown & prepayment insights", tag: "Trending" },
-  { icon: "⚖️", title: "BMI Calculator", href: "/health-calculators/bmi-calculator", desc: "Body Mass Index using WHO categories with health interpretation", tag: "Health" },
-  { icon: "💼", title: "Salary Calculator", href: "/in/in-hand-salary-calculator", desc: "Gross to net pay with full tax & deduction breakdown", tag: "Popular" },
-  { icon: "🏖️", title: "Retirement Calculator", href: "/in/retirement-corpus-calculator", desc: "Build your retirement corpus with year-by-year projections", tag: "Finance" },
-  { icon: "🧧", title: "Loan Calculator", href: "/loan-calculators/personal-loan-emi", desc: "Any loan type — personal, auto, student — with full breakdown", tag: "Popular" },
-  { icon: "🎂", title: "Age Calculator", href: "/utility-calculators/age-calculator", desc: "Exact age in years, months, and days with milestone tracking", tag: "Everyday" },
-  { icon: "📈", title: "Percentage Calculator", href: "/math-calculators/percentage-calculator", desc: "5 modes: percent of, change, increase, decrease & reverse", tag: "Math" },
+  { icon: "mortgage", title: "Mortgage Calculator", href: "/loan-calculators/mortgage-calculator", desc: "Estimate monthly payments, total interest & amortization schedule", tag: "Most Used" },
+  { icon: "emi", title: "EMI Calculator", href: "/in/home-loan-calculator", desc: "Loan EMI with full amortization breakdown & prepayment insights", tag: "Trending" },
+  { icon: "bmi", title: "BMI Calculator", href: "/health-calculators/bmi-calculator", desc: "Body Mass Index using WHO categories with health interpretation", tag: "Health" },
+  { icon: "salary", title: "Salary Calculator", href: "/in/in-hand-salary-calculator", desc: "Gross to net pay with full tax & deduction breakdown", tag: "Popular" },
+  { icon: "retirement", title: "Retirement Calculator", href: "/in/retirement-corpus-calculator", desc: "Build your retirement corpus with year-by-year projections", tag: "Finance" },
+  { icon: "loan", title: "Loan Calculator", href: "/loan-calculators/personal-loan-emi", desc: "Any loan type — personal, auto, student — with full breakdown", tag: "Popular" },
+  { icon: "age", title: "Age Calculator", href: "/utility-calculators/age-calculator", desc: "Exact age in years, months, and days with milestone tracking", tag: "Everyday" },
+  { icon: "percentage", title: "Percentage Calculator", href: "/math-calculators/percentage-calculator", desc: "5 modes: percent of, change, increase, decrease & reverse", tag: "Math" },
 ];
 
 
 // ─── Category Cards ───
 const CATEGORY_CARDS = [
-  { icon: "🏦", title: "Finance Calculators", desc: "Mortgage, loans, compound interest & more", href: "/loan-calculators", count: "60+", accent: "indigo" },
-  { icon: "🧾", title: "Tax Calculators", desc: "Income tax, sales tax, VAT & deductions", href: "/tax-calculators", count: "40+", accent: "purple" },
-  { icon: "❤️", title: "Health Calculators", desc: "BMI, TDEE, calories, ideal weight & more", href: "/health-calculators", count: "30+", accent: "rose" },
-  { icon: "🔨", title: "Construction Calculators", desc: "Concrete, lumber, roofing & materials", href: "/construction-calculators", count: "150+", accent: "amber" },
-  { icon: "📐", title: "Math Calculators", desc: "Percentage, ratios, algebra & geometry", href: "/math-calculators", count: "20+", accent: "teal" },
-  { icon: "📈", title: "Investment Calculators", desc: "SIP, compound interest, retirement & goals", href: "/investment-calculators", count: "25+", accent: "emerald" },
-  { icon: "⚡", title: "EV Calculators", desc: "Charging cost, range, savings & TCO", href: "/ev-calculators", count: "15+", accent: "cyan" },
-  { icon: "🚗", title: "Automotive Calculators", desc: "Car loan, fuel cost, depreciation & more", href: "/automotive-calculators", count: "20+", accent: "blue" },
+  { icon: "finance", title: "Finance Calculators", desc: "Mortgage, loans, compound interest & more", href: "/loan-calculators", count: "60+", accent: "indigo" },
+  { icon: "tax", title: "Tax Calculators", desc: "Income tax, sales tax, VAT & deductions", href: "/tax-calculators", count: "40+", accent: "purple" },
+  { icon: "health", title: "Health Calculators", desc: "BMI, TDEE, calories, ideal weight & more", href: "/health-calculators", count: "30+", accent: "rose" },
+  { icon: "construction", title: "Construction Calculators", desc: "Concrete, lumber, roofing & materials", href: "/construction-calculators", count: "150+", accent: "amber" },
+  { icon: "math", title: "Math Calculators", desc: "Percentage, ratios, algebra & geometry", href: "/math-calculators", count: "20+", accent: "teal" },
+  { icon: "investment", title: "Investment Calculators", desc: "SIP, compound interest, retirement & goals", href: "/investment-calculators", count: "25+", accent: "emerald" },
+  { icon: "ev", title: "EV Calculators", desc: "Charging cost, range, savings & TCO", href: "/ev-calculators", count: "15+", accent: "cyan" },
+  { icon: "automotive", title: "Automotive Calculators", desc: "Car loan, fuel cost, depreciation & more", href: "/automotive-calculators", count: "20+", accent: "blue" },
 ];
 
 // ─── Country Discovery ───
@@ -102,14 +103,14 @@ const COUNTRIES = [
 
 // ─── Trending Calculators ───
 const TRENDING = [
-  { icon: "🏠", title: "Mortgage Calculator", href: "/loan-calculators/mortgage-calculator", tag: "Most Used" },
-  { icon: "📊", title: "Compound Interest Calculator", href: "/utility-calculators/compound-interest-calculator", tag: "Finance" },
-  { icon: "⚖️", title: "BMI Calculator", href: "/health-calculators/bmi-calculator", tag: "Health" },
-  { icon: "🧾", title: "Sales Tax Calculator", href: "/tax-calculators/income-tax-calculator", tag: "Trending" },
-  { icon: "💼", title: "Salary Calculator", href: "/in/in-hand-salary-calculator", tag: "Popular" },
-  { icon: "🎂", title: "Age Calculator", href: "/utility-calculators/age-calculator", tag: "Everyday" },
-  { icon: "🏖️", title: "Retirement Calculator", href: "/in/retirement-corpus-calculator", tag: "Planning" },
-  { icon: "⚡", title: "EV Cost Calculator", href: "/ev-calculators/ev-cost-per-mile-calculator", tag: "Trending" },
+  { icon: "mortgage", title: "Mortgage Calculator", href: "/loan-calculators/mortgage-calculator", tag: "Most Used" },
+  { icon: "compound-interest", title: "Compound Interest Calculator", href: "/utility-calculators/compound-interest-calculator", tag: "Finance" },
+  { icon: "bmi", title: "BMI Calculator", href: "/health-calculators/bmi-calculator", tag: "Health" },
+  { icon: "sales-tax", title: "Sales Tax Calculator", href: "/tax-calculators/income-tax-calculator", tag: "Trending" },
+  { icon: "salary", title: "Salary Calculator", href: "/in/in-hand-salary-calculator", tag: "Popular" },
+  { icon: "age", title: "Age Calculator", href: "/utility-calculators/age-calculator", tag: "Everyday" },
+  { icon: "retirement", title: "Retirement Calculator", href: "/in/retirement-corpus-calculator", tag: "Planning" },
+  { icon: "ev", title: "EV Cost Calculator", href: "/ev-calculators/ev-cost-per-mile-calculator", tag: "Trending" },
 ];
 
 
@@ -331,7 +332,7 @@ export default function HomePage() {
             {US_POPULAR.map((calc) => (
               <Link key={calc.href} href={calc.href} className="hp-calc-card" role="listitem">
                 <div className="hp-calc-card__header">
-                  <span className="hp-calc-card__icon">{calc.icon}</span>
+                  <span className="hp-calc-card__icon"><CalcIcon name={calc.icon} size={24} /></span>
                   <span className={`hp-calc-card__tag hp-calc-card__tag--${calc.tag === "Most Used" ? "primary" : calc.tag === "Trending" ? "trending" : "default"}`}>
                     {calc.tag}
                   </span>
@@ -378,7 +379,7 @@ export default function HomePage() {
             {CATEGORY_CARDS.map((cat) => (
               <Link key={cat.href} href={cat.href} className={`hp-cat-card hp-cat-card--${cat.accent}`} role="listitem">
                 <div className="hp-cat-card__icon-wrap">
-                  <span className="hp-cat-card__icon">{cat.icon}</span>
+                  <span className="hp-cat-card__icon"><CalcIcon name={cat.icon} size={26} /></span>
                 </div>
                 <div className="hp-cat-card__body">
                   <h3 className="hp-cat-card__title">{cat.title}</h3>
@@ -453,7 +454,7 @@ export default function HomePage() {
             {TRENDING.map((item, i) => (
               <Link key={item.href} href={item.href} className="hp-trending-card" role="listitem">
                 <span className="hp-trending-card__num">{String(i + 1).padStart(2, "0")}</span>
-                <span className="hp-trending-card__icon">{item.icon}</span>
+                <span className="hp-trending-card__icon"><CalcIcon name={item.icon} size={20} /></span>
                 <div className="hp-trending-card__body">
                   <span className="hp-trending-card__title">{item.title}</span>
                   <span className={`hp-trending-card__tag hp-trending-card__tag--${item.tag === "Most Used" ? "top" : "default"}`}>
