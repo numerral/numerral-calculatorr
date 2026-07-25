@@ -50,14 +50,15 @@ const orgSchema = JSON.stringify({
 // ─── US-Priority Popular Calculators ───
 const US_POPULAR = [
   { icon: "🏠", title: "Mortgage Calculator", href: "/loan-calculators/mortgage-calculator", desc: "Estimate monthly payments, total interest & amortization schedule", tag: "Most Used" },
-  { icon: "📊", title: "EMI Calculator", href: "/loan-calculators/emi-calculator", desc: "Loan EMI with full amortization breakdown & prepayment insights", tag: "Trending" },
+  { icon: "📊", title: "EMI Calculator", href: "/in/home-loan-calculator", desc: "Loan EMI with full amortization breakdown & prepayment insights", tag: "Trending" },
   { icon: "⚖️", title: "BMI Calculator", href: "/health-calculators/bmi-calculator", desc: "Body Mass Index using WHO categories with health interpretation", tag: "Health" },
-  { icon: "💼", title: "Salary Calculator", href: "/salary-calculators/salary-calculator", desc: "Gross to net pay with full tax & deduction breakdown", tag: "Popular" },
-  { icon: "🏖️", title: "Retirement Calculator", href: "/investment-calculators/retirement-calculator", desc: "Build your retirement corpus with year-by-year projections", tag: "Finance" },
-  { icon: "🧾", title: "Loan Calculator", href: "/loan-calculators/loan-calculator", desc: "Any loan type — personal, auto, student — with full breakdown", tag: "Popular" },
+  { icon: "💼", title: "Salary Calculator", href: "/in/in-hand-salary-calculator", desc: "Gross to net pay with full tax & deduction breakdown", tag: "Popular" },
+  { icon: "🏖️", title: "Retirement Calculator", href: "/in/retirement-corpus-calculator", desc: "Build your retirement corpus with year-by-year projections", tag: "Finance" },
+  { icon: "🧧", title: "Loan Calculator", href: "/loan-calculators/personal-loan-emi", desc: "Any loan type — personal, auto, student — with full breakdown", tag: "Popular" },
   { icon: "🎂", title: "Age Calculator", href: "/utility-calculators/age-calculator", desc: "Exact age in years, months, and days with milestone tracking", tag: "Everyday" },
   { icon: "📈", title: "Percentage Calculator", href: "/math-calculators/percentage-calculator", desc: "5 modes: percent of, change, increase, decrease & reverse", tag: "Math" },
 ];
+
 
 // ─── Category Cards ───
 const CATEGORY_CARDS = [
@@ -191,12 +192,12 @@ const homepageFaqs = [
 
 // ─── Quick access chips ───
 const QUICK_CHIPS = [
-  { label: "EMI Calculator", href: "/loan-calculators/emi-calculator" },
+  { label: "EMI Calculator", href: "/in/home-loan-calculator" },
   { label: "BMI Calculator", href: "/health-calculators/bmi-calculator" },
-  { label: "Loan Calculator", href: "/loan-calculators/loan-calculator" },
+  { label: "Loan Calculator", href: "/loan-calculators/personal-loan-emi" },
   { label: "Mortgage", href: "/loan-calculators/mortgage-calculator" },
-  { label: "Salary", href: "/salary-calculators/salary-calculator" },
-  { label: "Retirement", href: "/investment-calculators/retirement-calculator" },
+  { label: "Salary", href: "/in/in-hand-salary-calculator" },
+  { label: "Retirement", href: "/in/retirement-corpus-calculator" },
   { label: "Age Calculator", href: "/utility-calculators/age-calculator" },
   { label: "Percentage", href: "/math-calculators/percentage-calculator" },
 ];

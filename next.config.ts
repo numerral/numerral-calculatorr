@@ -40,6 +40,27 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      // ─── Fix dead internal links from homepage chips / popular cards ───
+      {
+        source: '/loan-calculators/emi-calculator',
+        destination: '/in/home-loan-calculator',
+        permanent: true,
+      },
+      {
+        source: '/loan-calculators/loan-calculator',
+        destination: '/loan-calculators/personal-loan-emi',
+        permanent: true,
+      },
+      {
+        source: '/salary-calculators/salary-calculator',
+        destination: '/in/in-hand-salary-calculator',
+        permanent: true,
+      },
+      {
+        source: '/investment-calculators/retirement-calculator',
+        destination: '/in/retirement-corpus-calculator',
+        permanent: true,
+      },
       // ─── Fix dead internal links: /in/salary-calculator → actual page ───
       {
         source: '/in/salary-calculator',
