@@ -59,33 +59,87 @@ const HUB_CONTENT: Record<string, {
     /* ─── 1. PERCENTAGE CALCULATOR ─── */
     "percentage-calculator": {
         subtitle: "Calculate percentages instantly — find X% of Y, what percent one number is of another, percentage change, increase, and decrease.",
-        explanation: {
-            heading: "What is a Percentage and How Do You Calculate It?",
-            paragraphs: [
-                "A percentage is a way of expressing a number as a fraction of 100. The word itself comes from the Latin 'per centum,' meaning 'by the hundred.' Percentages are used everywhere — in discounts and sales tax, exam scores, statistics, finance (interest rates, inflation), and data analysis. Understanding how to calculate percentages is one of the most practical mathematical skills.",
-                "There are five common percentage calculations: (1) finding X% of a number, (2) finding what percentage one number is of another, (3) calculating the percentage change between two values, (4) increasing a number by a given percentage, and (5) decreasing a number by a given percentage. Our calculator handles all five modes with step-by-step formulas shown for each calculation.",
-                "Percentage calculations are the backbone of financial literacy. Interest rates, tax rates, discounts, tips, profit margins, inflation, and investment returns are all expressed as percentages. Mastering these calculations helps you make better decisions about money, data, and everyday math problems.",
-            ],
-            highlight: "Example: What is 15% of 240? → (15 ÷ 100) × 240 = 36. Or: 45 is what % of 180? → (45 ÷ 180) × 100 = 25%.",
-        },
-        formula: {
-            formula: "Percentage = (Part / Whole) × 100",
-            variables: [
-                { symbol: "Part", meaning: "The value you want to express as a percentage" },
-                { symbol: "Whole", meaning: "The total or reference value (denominator)" },
-                { symbol: "100", meaning: "Multiplier to convert the fraction to a percentage" },
-            ],
-            example: [
-                { label: "What is 25% of 200?", substitution: "(25/100) × 200", result: "50" },
-                { label: "36 is what % of 150?", substitution: "(36/150) × 100", result: "24%" },
-                { label: "% change from 80 to 100", substitution: "((100-80)/80) × 100", result: "25% increase" },
-            ],
-        },
+        contentHTML: `<p>A <strong>percentage</strong> is a way of expressing a number as a fraction of 100, denoted by the symbol <strong>%</strong>. The word comes from the Latin <em>per centum</em>, meaning "by the hundred." Introduced to Europe through medieval Italian merchants who needed a standardized way to calculate trade profits and taxes, percentages are now the universal language of comparison — used in finance, science, medicine, education, and everyday life.</p>
+
+<p>This percentage calculator handles all five of the most common percentage operations: finding a percentage of a number, finding what percent one number is of another, calculating percentage change between two values, and computing percentage increase or decrease. Each calculation is shown with its formula and step-by-step solution.</p>
+
+<h3>The 5 Percentage Formulas You Must Know</h3>
+<table class="calc-table">
+  <thead><tr><th>Operation</th><th>Formula</th><th>Example</th><th>Result</th></tr></thead>
+  <tbody>
+    <tr><td><strong>X% of Y</strong></td><td>(X ÷ 100) × Y</td><td>15% of 240</td><td>36</td></tr>
+    <tr><td><strong>X is what % of Y</strong></td><td>(X ÷ Y) × 100</td><td>45 is what % of 180</td><td>25%</td></tr>
+    <tr><td><strong>% Change</strong></td><td>((New − Old) ÷ |Old|) × 100</td><td>80 → 100</td><td>+25%</td></tr>
+    <tr><td><strong>% Increase</strong></td><td>Y × (1 + X/100)</td><td>200 increased by 15%</td><td>230</td></tr>
+    <tr><td><strong>% Decrease</strong></td><td>Y × (1 − X/100)</td><td>200 decreased by 15%</td><td>170</td></tr>
+  </tbody>
+</table>
+
+<h3>How to Calculate X% of a Number — Step by Step</h3>
+<p>This is the most common percentage question: <em>"What is 20% of 350?"</em> The method is straightforward:</p>
+<div class="explanation__highlight">
+  <strong>Step 1:</strong> Convert the percentage to a decimal → 20 ÷ 100 = 0.20<br/>
+  <strong>Step 2:</strong> Multiply by the number → 0.20 × 350 = <strong>70</strong><br/>
+  <br/>
+  Shortcut: Move the decimal point two places left. 20% becomes 0.20, then multiply.
+</div>
+<p>Real-world uses: calculating a 20% restaurant tip on a $85 bill ($17), finding 8.5% sales tax on a $1,200 purchase ($102), or determining a 30% discount on a $250 jacket ($75 off → you pay $175).</p>
+
+<h3>How to Find What Percentage One Number Is of Another</h3>
+<p>This answers: <em>"36 is what percent of 150?"</em></p>
+<div class="explanation__highlight">
+  <strong>Formula:</strong> (Part ÷ Whole) × 100<br/>
+  <strong>Example:</strong> (36 ÷ 150) × 100 = 0.24 × 100 = <strong>24%</strong>
+</div>
+<p>Common applications: calculating your exam score as a percentage (you scored 78 out of 90 → 86.7%), finding what percentage of your monthly income goes toward rent ($1,200 rent ÷ $4,500 income × 100 = 26.7%), or working out a company's market share (company sales $8M ÷ total market $50M × 100 = 16%).</p>
+
+<h3>How to Calculate Percentage Change</h3>
+<p>Percentage change measures the relative difference between two values — showing whether something increased or decreased and by how much. This is critical in finance, economics, and data analysis.</p>
+<div class="explanation__highlight">
+  <strong>Formula:</strong> ((New Value − Old Value) ÷ |Old Value|) × 100<br/>
+  <strong>Increase example:</strong> Price went from $80 to $100 → ((100 − 80) ÷ 80) × 100 = <strong>+25%</strong><br/>
+  <strong>Decrease example:</strong> Stock dropped from $150 to $120 → ((120 − 150) ÷ 150) × 100 = <strong>−20%</strong>
+</div>
+<p>A positive result means the value increased; a negative result means it decreased. The absolute value of the original (|Old Value|) ensures the formula works correctly even when the old value is negative (such as when a company moves from a loss to a profit).</p>
+
+<h3>Percentage in Real-Life Finance — Key Applications</h3>
+<p>Understanding percentages is the foundation of financial literacy. Here's how percentages appear in the most important financial decisions:</p>
+<ul style="padding-left:1.5rem; line-height:2; color: var(--n-text-secondary);">
+  <li><strong>Interest rates:</strong> A personal loan at 12% per annum means you pay 12% of the outstanding principal each year as interest. On a $10,000 loan, that's $1,200/year.</li>
+  <li><strong>Income tax brackets:</strong> Tax rates are percentages applied to income ranges. If the 25% bracket applies to income between $40,000–$85,000, you pay 25% of any income in that range (not 25% of your total income).</li>
+  <li><strong>Investment returns (CAGR):</strong> A mutual fund with 12% CAGR turns $10,000 into $31,058 over 10 years, using the compound growth formula: 10,000 × (1 + 0.12)^10.</li>
+  <li><strong>Inflation:</strong> 6% annual inflation means goods costing $100 today will cost $106 next year and $179 in 10 years.</li>
+  <li><strong>GST/VAT/Sales tax:</strong> 18% GST on a ₹5,000 product adds ₹900, making the final price ₹5,900.</li>
+  <li><strong>Discount and markup:</strong> A 40% markup on a $50 item costs the retailer adds $20 → selling price $70. A 30% discount at checkout reduces the price by 30%.</li>
+</ul>
+
+<h3>How to Reverse a Percentage (Find the Original Value)</h3>
+<p>Often you know the result after a percentage was applied, but need the original. This is called the "reverse percentage" or "working backwards from a percentage."</p>
+<table class="calc-table">
+  <thead><tr><th>Situation</th><th>Formula</th><th>Example</th></tr></thead>
+  <tbody>
+    <tr><td>Price after X% increase</td><td>Original = Final ÷ (1 + X/100)</td><td>$120 after 20% increase → $120 ÷ 1.20 = $100</td></tr>
+    <tr><td>Price after X% decrease</td><td>Original = Final ÷ (1 − X/100)</td><td>$85 after 15% discount → $85 ÷ 0.85 = $100</td></tr>
+    <tr><td>Amount includes X% tax</td><td>Pre-tax = Total ÷ (1 + X/100)</td><td>$118 includes 18% GST → $118 ÷ 1.18 = $100</td></tr>
+  </tbody>
+</table>
+
+<h3>Common Percentage Mistakes to Avoid</h3>
+<p>Even people comfortable with numbers make these errors:</p>
+<ul style="padding-left:1.5rem; line-height:2; color: var(--n-text-secondary);">
+  <li><strong>Percentage points vs percentages:</strong> If interest rates rise from 4% to 6%, that's an increase of 2 <em>percentage points</em> — but a 50% <em>increase</em> in the rate itself. These are very different statements.</li>
+  <li><strong>Reversing isn't symmetric:</strong> A 50% increase followed by a 50% decrease does NOT return to the original. $100 → +50% = $150 → −50% = $75. You've lost $25.</li>
+  <li><strong>Using the wrong base:</strong> Percentage change always uses the original value as the base, not the new one. Going from 80 to 100 is a 25% increase (using 80 as base), not a 20% increase (using 100 as base).</li>
+  <li><strong>Cumulative percentages:</strong> Two successive 10% increases do not equal a 20% increase. $100 → +10% = $110 → +10% = $121. The combined effect is 21%, not 20%.</li>
+</ul>`,
         faq: [
-            { question: "How do I calculate a percentage of a number?", answer: "Divide the percentage by 100, then multiply by the number. For example, 20% of 350 = (20 ÷ 100) × 350 = 0.20 × 350 = 70." },
-            { question: "How do I find what percentage one number is of another?", answer: "Divide the part by the whole and multiply by 100. For example, 45 out of 200 = (45 ÷ 200) × 100 = 22.5%." },
-            { question: "What is the formula for percentage change?", answer: "Percentage change = ((New Value − Old Value) / |Old Value|) × 100. A positive result means an increase; negative means a decrease." },
-            { question: "How do I reverse a percentage? For example, 120 after a 20% increase — what was the original?", answer: "Original = Final Value / (1 + percentage/100). So 120 / 1.20 = 100. The original value was 100." },
+            { question: "How do I calculate a percentage of a number?", answer: "Divide the percentage by 100 to convert it to a decimal, then multiply by the number. Formula: (percentage ÷ 100) × number. Example: 20% of 350 = (20 ÷ 100) × 350 = 0.20 × 350 = 70. Practical shortcut: to find 10%, move the decimal one place left (10% of 350 = 35). For 20%, double it (70). For 5%, halve the 10% value (17.5). This mental math trick works for common percentages like 10%, 5%, 25%, and 50%." },
+            { question: "How do I find what percentage one number is of another?", answer: "Use the formula: (Part ÷ Whole) × 100. Example: 45 out of 200 = (45 ÷ 200) × 100 = 22.5%. This tells you that 45 is 22.5% of 200. This is used constantly in real life: your exam score as a percentage (78 out of 90 = 86.7%), the percentage of your salary spent on rent ($1,200 of $4,500 income = 26.7%), or a company's market share." },
+            { question: "What is the formula for percentage change?", answer: "Percentage change = ((New Value − Old Value) ÷ |Old Value|) × 100. A positive result means an increase; a negative result means a decrease. Example: a stock price moved from $80 to $100 → ((100 − 80) ÷ 80) × 100 = 25% increase. If it dropped from $100 to $80 → ((80 − 100) ÷ 100) × 100 = −20% decrease. Always divide by the original (old) value, not the new one — a common mistake that gives a wrong answer." },
+            { question: "How do I reverse a percentage — find the original value before a percentage was applied?", answer: "If you know the final value after a percentage increase, divide by (1 + rate): Original = Final ÷ (1 + X/100). Example: a price is $120 after a 20% increase → $120 ÷ 1.20 = $100 original. For a percentage decrease: Original = Final ÷ (1 − X/100). Example: $85 after a 15% discount → $85 ÷ 0.85 = $100 original. For a tax-inclusive price: pre-tax = total price ÷ (1 + tax rate). $118 including 18% GST → $118 ÷ 1.18 = $100." },
+            { question: "What is the difference between percentage points and percent?", answer: "These are two completely different things and are frequently confused. A 'percentage point' is the arithmetic difference between two percentages. A 'percent change' is the relative change expressed as a percentage of the original. Example: if a savings rate rises from 4% to 6%, it increased by 2 percentage points — but the rate itself increased by 50% (since 2 is 50% of 4). In media and finance reports, confusing these two can completely misrepresent the significance of a change." },
+            { question: "What is 30% of 1000? And other quick percentage shortcuts?", answer: "30% of 1000 = 300. Quick mental math shortcuts: 10% of any number = move decimal one place left (10% of 1000 = 100). 20% = double the 10% (200). 25% = divide by 4 (250). 30% = triple the 10% (300). 50% = halve the number (500). 75% = three-quarters (750). 1% = move decimal two places left (1% of 1000 = 10). For 15%: find 10% then add half of that (100 + 50 = 150). These shortcuts let you estimate percentages instantly without a calculator." },
+            { question: "Why does a 50% increase followed by a 50% decrease not return to the original?", answer: "Because the base changes. Start with $100. After 50% increase: $100 × 1.50 = $150. After 50% decrease from $150: $150 × 0.50 = $75. You lose $25 because the 50% decrease is applied to the larger $150 base, not the original $100. This is why symmetric percentage moves (like stock market ups and downs) are asymmetric in dollar terms. A stock that drops 50% needs to gain 100% to break even, not 50%." },
         ],
         relatedCalculators: [
             { title: "Fraction Calculator", slug: "fraction-calculator", categorySlug: "math-calculators", description: "Convert between fractions and percentages" },
@@ -94,6 +148,8 @@ const HUB_CONTENT: Record<string, {
             { title: "Compound Interest", slug: "compound-interest-calculator", categorySlug: "utility-calculators", description: "Apply percentages to investment growth" },
         ],
     },
+
+
 
     /* ─── 1b. PERCENTAGE DECREASE CALCULATOR — RICH CONTENT (Competitor-beating) ─── */
     "percentage-decrease-calculator": {
