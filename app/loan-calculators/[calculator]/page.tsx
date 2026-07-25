@@ -1,3 +1,4 @@
+
 // Dynamic Hub Page — /loan-calculators/[calculator]/ (Server Component)
 // Handles all 6 EMI calculator hubs + 3 utility tools via one route
 
@@ -28,287 +29,36 @@ interface PageProps {
     params: Promise<{ calculator: string }>;
 }
 
-// Pre-render only loan calculator hub pages at build time
 export async function generateStaticParams() {
     const calcs = getCalculatorsByCategory("loan");
     return calcs.map((c) => ({ calculator: c.slug }));
 }
 
-// Dynamic metadata per calculator
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
     const { calculator } = await params;
-    const calc = getAllCalculators().find((c) => c.slug === calculator);
+    const calc = getCalculatorsByCategory("loan").find((c) => c.slug === calculator);
     if (!calc) return {};
-    const url = canonicalUrl(`/loan-calculators/${calc.slug}`);
+    const hub = HUB_CONTENT[calc.slug];
     return {
-        title: `${calc.title}`,
-        description: calc.description,
-        keywords: calc.keywords ? calc.keywords.split(", ") : undefined,
-        alternates: { canonical: url },
+        title: hub ? `${calc.title} | Numerral` : calc.title,
+        description: hub?.explanation?.highlight ?? calc.description,
+        alternates: { canonical: canonicalUrl(`/loan-calculators/${calc.slug}`) },
     };
 }
 
-// Hub page content per calculator type
-const LOAN_TOOL_TYPES = ["mortgage","debtConsolidation","loanAffordability","loanInterestRate","loanPayoff","loanAmortization","ltv","balloonLoan","arm","fixedVsVariable","extraPayment","refinance","mortgageRefinance","rentAffordability","debtRatio","downPayment","aprCalc","homeEquity","heloc","vaMortgage","fhaLoan","rentalProperty","apyCalc","aprToApy","simpleInterest","compoundInterest","dailyCompoundInterest","interestCalc","interestRateCalc","cdCalc","creditCardInterest","creditCardPayoff","futureValue","presentValue","ruleOf72","studentLoanPayoff"];
+const LOAN_TOOL_TYPES = ["emi-compare", "loan-eligibility", "prepayment"];
 
 const HUB_CONTENT: Record<string, {
     subtitle: string;
     explanation?: { heading: string; paragraphs: string[]; highlight: string };
-    contentHTML?: string;
-    faq: { question: string; answer: string }[];
-    steps?: { label: string; formula?: string; result: string }[];
+    steps?: { label: string; formula: string; result: string }[];
     comparison?: { title: string; value: string; detail: string; isWinner?: boolean }[];
     insight?: { icon: string; title: string; text: string };
+    faq?: { question: string; answer: string }[];
+    contentHTML?: string;
 }> = {
-    "car-loan-emi": {
-        subtitle: "Calculate your monthly car loan payment. Adjust amount, interest rate, and tenure — results update instantly.",
-        explanation: {
-            heading: "Understanding Car Loan EMI",
-            paragraphs: [
-                "A car loan EMI depends on three factors: the principal amount you borrow, the annual interest rate offered by your bank, and the repayment tenure. Most car loans in India range from 7–12% for new cars and 14–18% for used cars.",
-                "Always negotiate the interest rate before signing. Even a 0.25% reduction on a ₹5 Lakh loan over 5 years saves approximately ₹800 in total interest. Check pre-approved offers from your existing bank first — they're typically 1–2% lower than walk-in rates.",
-            ],
-            highlight: "Key insight: A ₹5 Lakh car loan at 8.5% for 5 years costs you ₹1,14,620 in total interest — that's 23% of the loan amount.",
-        },
-        faq: [
-            { question: "What is the current car loan interest rate?", answer: "Car loan rates in India range from 7.5% (SBI, Bank of Baroda) to 12% (NBFCs). Your rate depends on credit score, car type (new/used), and loan amount." },
-            { question: "How is car loan EMI calculated?", answer: "Using the reducing balance formula: EMI = P × r × (1+r)^n / ((1+r)^n - 1), where P is principal, r is monthly rate, and n is tenure in months." },
-            { question: "Does prepaying my car loan reduce the EMI?", answer: "Prepayment reduces your outstanding principal, which can either reduce your EMI amount or shorten your loan tenure. Most banks allow zero-penalty prepayment." },
-        ],
-        steps: [
-            { label: "Convert annual rate to monthly", formula: "r = 8.5% ÷ 12 = 0.00708", result: "Monthly rate: 0.708%" },
-            { label: "Calculate (1+r)^n", formula: "(1 + 0.00708)^60 = 1.526", result: "Compounding factor: 1.526" },
-            { label: "Apply EMI formula", formula: "EMI = 5,00,000 × 0.00708 × 1.526 ÷ (1.526 - 1)", result: "Monthly EMI: ₹10,243" },
-            { label: "Calculate total interest", formula: "(₹10,243 × 60) − ₹5,00,000", result: "Total interest: ₹1,14,580" },
-        ],
-        comparison: [
-            { title: "SBI Car Loan", value: "₹10,122/mo", detail: "8.25% p.a. | 5 yrs | Total interest: ₹1,07,320", isWinner: true },
-            { title: "HDFC Bank Car Loan", value: "₹10,364/mo", detail: "8.75% p.a. | 5 yrs | Total interest: ₹1,21,840" },
-        ],
-        insight: { icon: "💰", title: "Save on Car Loan Interest", text: "Pre-approved offers from your existing bank are typically 1-2% cheaper. A ₹5L loan at 8.25% instead of 9.5% saves ₹9,240 in interest over 5 years. Always compare 3-4 lenders before signing." },
-    },
-    "home-loan-emi": {
-        subtitle: "Plan your dream home with accurate EMI calculations. Adjust loan amount, interest rate, and tenure to find the right fit.",
-        explanation: {
-            heading: "Understanding Home Loan EMI",
-            paragraphs: [
-                "Home loans are the longest-tenure loans — up to 30 years. Even a small rate difference compounds dramatically. A 0.5% rate increase on ₹50 Lakh over 20 years adds ₹6.5 Lakh in total interest.",
-                "Key decision: Fixed vs floating rate. Floating rates are currently 8–9% and track RBI repo rate changes. Fixed rates are 1–2% higher but provide certainty. Most borrowers in India choose floating rates.",
-            ],
-            highlight: "On a ₹50 Lakh home loan for 20 years at 8.5%, your total interest is ₹53.1 Lakh — more than the loan itself. Consider shorter tenure if affordable.",
-        },
-        faq: [
-            { question: "What is the current home loan interest rate?", answer: "Home loan rates range from 8.25% (SBI) to 10% (NBFCs). Rates are linked to repo rate and change periodically." },
-            { question: "Should I choose fixed or floating rate?", answer: "Floating rate is typically 1-2% cheaper. Choose fixed only if you expect rates to rise significantly. Most Indian home loans are floating." },
-            { question: "Is there any tax benefit on home loan?", answer: "Yes. Principal up to ₹1.5L under Section 80C and interest up to ₹2L under Section 24(b) are deductible. Joint loans double the benefit." },
-        ],
-        steps: [
-            { label: "Loan amount after down payment", formula: "₹75L property × 80% LTV", result: "Loan: ₹60,00,000" },
-            { label: "Monthly interest rate", formula: "r = 8.5% ÷ 12 = 0.00708", result: "Monthly rate: 0.708%" },
-            { label: "EMI calculation (20 yr)", formula: "EMI = 60L × 0.00708 × (1.00708)^240 ÷ ((1.00708)^240 − 1)", result: "Monthly EMI: ₹52,069" },
-            { label: "Total cost over 20 years", formula: "₹52,069 × 240 months", result: "Total paid: ₹1,24,96,560 (Interest: ₹64,96,560)" },
-        ],
-        comparison: [
-            { title: "20-Year Tenure", value: "₹52,069/mo", detail: "Total interest: ₹64.97L — lower EMI, higher cost" },
-            { title: "15-Year Tenure", value: "₹59,075/mo", detail: "Total interest: ₹46.33L — saves ₹18.64L!", isWinner: true },
-        ],
-        insight: { icon: "🏠", title: "Home Loan Tax Benefit", text: "Claim up to ₹3.5L tax deduction annually: ₹1.5L on principal (80C) + ₹2L on interest (24b). Joint loan with spouse doubles this to ₹7L. Over 20 years, this saves ₹15-25L in taxes depending on your bracket." },
-    },
-    "personal-loan-emi": {
-        subtitle: "Estimate your monthly personal loan EMI instantly. Compare rates and find the most affordable option.",
-        explanation: {
-            heading: "Understanding Personal Loan EMI",
-            paragraphs: [
-                "Personal loans are unsecured — no collateral needed — but charge 10–24% interest depending on credit score and lender. The loan amount, rate, and tenure determine your EMI.",
-                "Before taking a personal loan, check alternatives: loan against FD (6-7%), loan against mutual funds (9-10.5%), or credit card EMI conversion. These are 2-5% cheaper than standard personal loans.",
-            ],
-            highlight: "Credit score matters most for personal loans. 750+ gets you 10.5-12%. Below 700 means 16-24%. Improving your score by 50 points can save lakhs in interest.",
-        },
-        faq: [
-            { question: "What is the minimum credit score for personal loan?", answer: "Most banks require 700+. Some NBFCs accept 650+ but at much higher rates (16-22%). 750+ gets the best rates." },
-            { question: "Can I prepay a personal loan?", answer: "Yes, but most banks charge 2-5% foreclosure penalty. RBI mandates zero penalty for floating rate loans. Check your agreement." },
-        ],
-    },
-    "education-loan-emi": {
-        subtitle: "Plan your education financing with EMI calculations. Includes moratorium period considerations.",
-        explanation: {
-            heading: "Understanding Education Loan EMI",
-            paragraphs: [
-                "Education loans have unique features: moratorium period (course duration + 6-12 months), lower rates for meritorious students, and Section 80E tax deduction on interest — no upper limit.",
-                "For study abroad, check SBI Scholar Loan, Credila, and HDFC Credila. Rates range from 8-12%. Collateral-free loans are available up to ₹7.5 Lakh. Above this, banks require security.",
-            ],
-            highlight: "Section 80E allows unlimited interest deduction on education loans — no cap unlike home loans. This benefit lasts for 8 years from when you start repaying.",
-        },
-        faq: [
-            { question: "What is the moratorium period?", answer: "The grace period during which you don't pay EMI — typically course duration + 6-12 months. Interest still accrues during this period." },
-            { question: "Is collateral required for education loan?", answer: "No collateral up to ₹7.5 Lakh. Above this, banks require property, FD, or LIC policy as security." },
-        ],
-    },
-    "bike-loan-emi": {
-        subtitle: "Calculate your two-wheeler EMI in seconds. Find the best deal for your dream bike.",
-        explanation: {
-            heading: "Understanding Bike Loan EMI",
-            paragraphs: [
-                "Bike loans typically range from 8-15% for new two-wheelers and 15-20% for used ones. Tenure is shorter than car loans — usually 1-4 years. Down payment of 10-30% is required.",
-                "For electric scooters, check for additional subsidies. State and central government incentives can reduce the effective cost by ₹20,000-50,000. EV-specific financing is available at lower rates.",
-            ],
-            highlight: "Dealer financing is often 1-2% more expensive than direct bank loans. Always check your bank's personal/two-wheeler loan rates before accepting the dealer's offer.",
-        },
-        faq: [
-            { question: "What is the minimum down payment?", answer: "Most lenders require 10-30% down payment. Zero down payment offers exist but come with higher EMI and interest rates." },
-            { question: "Can I get EV subsidy on bike loan?", answer: "FAME II subsidy of ₹15,000-22,000 applies to eligible electric scooters. State subsidies vary. Check the manufacturer's website for eligible models." },
-        ],
-    },
-    "business-loan-emi": {
-        subtitle: "Calculate MSME and business term loan EMIs. Covers working capital and expansion financing.",
-        explanation: {
-            heading: "Understanding Business Loan EMI",
-            paragraphs: [
-                "Business loans range from 11-18% depending on business vintage, turnover, and credit profile. Mudra loans under PMMY offer up to ₹10 Lakh at subsidized rates. CGTSME provides collateral-free guarantee.",
-                "Key decision: Term loan vs overdraft (OD). Term loans have fixed EMI — good for asset purchase. OD facilities charge interest only on utilized amount — ideal for working capital needs.",
-            ],
-            highlight: "Mudra loans offer up to ₹10 Lakh without collateral through PMMY. SHISHU (up to ₹50K), KISHOR (up to ₹5L), TARUN (up to ₹10L) — interest rates start at 8.5%.",
-        },
-        faq: [
-            { question: "What is Mudra Loan?", answer: "PMMY Mudra loans are government-backed loans up to ₹10 Lakh for small businesses. No collateral required. Available through all banks and NBFCs." },
-            { question: "Are business loan EMIs tax deductible?", answer: "The interest component is fully deductible as business expense. Principal repayment is not tax deductible but the borrowed amount is used for business purposes." },
-        ],
-    },
-    "loan-comparison": {
-        subtitle: "Compare two loan scenarios side-by-side. Calculate how differences in interest rates, tenures, and loan amounts impact your EMIs and total interest generated.",
-        explanation: {
-            heading: "Why You Should Always Compare Loans",
-            paragraphs: [
-                "Taking a home loan, personal loan, or car loan without comparing multiple lenders is a costly mistake. Even a fractional difference in an interest rate—such as selecting a 9% rate instead of an 8.5% rate on a 20-year home loan—can ultimately cost you lakhs of rupees in extra interest overhead over the life of the loan.",
-                "Beyond just interest rates, it is vital to compare loan tenures. While opting for a 30-year home loan will result in a lower and more comfortable monthly EMI, the total interest paid to the bank will be astronomically higher. By comparing a 20-year term against a 15-year term using this calculator, you can visually clearly see exactly how much money you save by slightly increasing your EMI commitment.",
-                "Additionally, borrowers must evaluate processing fees, pre-closure charges, and down payment requirements across different banks before finalizing an offer. A loan with a lower interest rate but exorbitant processing fees (like 2% of the loan amount + GST) might effectively be more expensive in the short run than a loan with a slightly higher rate but zero processing fees."
-            ],
-            highlight: "Financial Wisdom: On a ₹50 Lakh loan for 20 years, an interest rate of 8.5% costs ₹43,400 monthly. If a competitor offers 8.25%, your EMI drops to ₹42,600. It seems minor, but it totals ₹1.92 Lakhs in guaranteed savings over the 20 years!"
-        },
-        faq: [
-            { question: "How does a longer tenure affect my loan?", answer: "A longer tenure reduces your monthly EMI, making it easier on your current cash flow. However, it significantly increases the total amount of interest you end up paying to the bank over the entire lifespan of the loan." },
-            { question: "Can I use this to compare different banks?", answer: "Absolutely. Input the loan amount, the interest rate offered by Bank A, and compare it with Bank B. The calculator will explicitly outline the monthly EMI difference and total interest savings." },
-            { question: "Is a flat parity rate better than a reducing balance?", answer: "No. Flat interest rates appear lower but are exceptionally expensive because you continue to pay interest on the original starting principal throughout the loan's life. Reducing balance rates adjust downward as you repay the principal, saving you massive amounts." },
-            { question: "When should I execute a balance transfer to a different bank?", answer: "You should consider a balance loan transfer when the new bank offers an interest rate that is at least 0.50% to 0.75% lower, and the calculated long-term interest savings exceed the upfront processing fees required to switch." }
-        ],
-        steps: [
-            { label: "Determine Loan Profiles", formula: "Find the exact details for Loan Scenario A and Loan Scenario B", result: "Gather Principal, Rate, and Tenure" },
-            { label: "Input Specifications", formula: "Set the parameters in the dual-column slider UI", result: "Instant side-by-side computation" },
-            { label: "Analyze Variance", formula: "Difference = Total Interest A — Total Interest B", result: "Highlight of exact cost savings" },
-            { label: "Factor Associated Fees", formula: "Add processing and administrative charges", result: "Real-world effective cost comparison" }
-        ],
-        insight: { icon: "⚖️", title: "Balance Transfer Reality Check", text: "When evaluating a home loan balance transfer, always use a loan comparison tool to ensure the long-term interest savings over the remaining tenure actually surpass the 0.5% - 1% processing fee the new bank will charge to take over your loan." }
-    },
-    "prepayment": {
-        subtitle: "Analyze how partial prepayments (part-payments) dramatically shrink your total loan tenure and eliminate massive interest blocks.",
-        explanation: {
-            heading: "The Mathematical Power of Loan Prepayment",
-            paragraphs: [
-                "Prepayment, often referred to as part-payment or making a lumpsum deposit, is mathematically the most effective financial strategy you can use to crush your debt early. Whenever you make a prepayment outside your standard EMI cycle, 100% of that extra cash injection directly attacks the outstanding principal balance. By shrinking the principal, the subsequent interest calculated on the remaining balance immediately plunges.",
-                "In India, as per RBI guidelines, all floating-rate term loans for individual borrowers—such as standard home loans—carry absolutely zero prepayment penalties. This means you can deposit annual bonuses, tax refunds, or matured FDs straight into your loan account with no hidden fees attached.",
-                "The timing of a prepayment fundamentally decides its power. Because loans operate on an amortization schedule where the initial years are heavily skewed toward interest recovery, making large prepayments during the first 1-5 years of a 20-year loan yields exponentially higher savings than making identical prepayments during the final 5 years. Always prioritize prepaying high-interest unsecured debt (like personal loans at 14%) before low-interest tax-shielded debt (like home loans at 8.5%)."
-            ],
-            highlight: "The Magic Trick: For a standard 20-year home loan, if you deposit just one extra EMI per year towards the principal, you will completely close the loan 4 entire years earlier, wiping out massive segments of the amortization schedule."
-        },
-        faq: [
-            { question: "Will the bank charge a penalty for prepaying?", answer: "According to strict RBI mandates, banks cannot charge any foreclosure, pre-closure, or part-payment penalties on floating rate loans taken by individual borrowers. Fixed-rate loans and business loans may still carry a 2-4% penalty." },
-            { question: "Does prepayment lower my EMI or reduce my tenure?", answer: "By default, banks apply part-payments to reduce your total remaining loan tenure while keeping your existing monthly EMI strictly identical. Alternatively, you can actively request the bank to lower your running EMI while keeping the tenure unchanged, though reducing tenure saves far more interest." },
-            { question: "When is the absolute best time to prepay a loan?", answer: "The most impactful time to prepay is as early in the loan cycle as humanly possible. Because of how reducing balance amortization works, early prepayments wipe out principal balances before they have a chance to generate decades of compound interest." },
-            { question: "Should I invest in mutual funds or prepay my home loan?", answer: "This is a classic question. If your home loan is at 8.5% (effective rate 6.5% considering Section 24b tax benefits) and you expect your diversified equity portfolio to yield 12%+, the math favors investing. However, prepaying guarantees a risk-free 8.5% return, making it the superior choice for conservative individuals." }
-        ],
-        steps: [
-            { label: "Understand Base Liability", formula: "Log existing loan principal, interest rate, and current remaining tenure.", result: "Establishes baseline total interest." },
-            { label: "Factor Lumpsum Injection", formula: "Determine the exact amount of the one-time prepayment (e.g., a ₹1 Lakh bonus).", result: "Subtract injection directly from Principal." },
-            { label: "Recalculate Amortization", formula: "Simulate the remaining tenure using the newly reduced Principal balance.", result: "Instantly updates the new schedule." },
-            { label: "Quantify Total Savings", formula: "Baseline Interest Liability — New Adjusted Interest Liability", result: "Actual Rupee amount saved by prepaying." }
-        ],
-        insight: { icon: "🔥", title: "Early Prepayment Advantage", text: "Prepaying ₹2 Lakhs in year 2 of a 20-year loan is exponentially more effective at reducing total interest overhead than prepaying that exact same ₹2 Lakhs in year 15. The underlying mathematical structure of EMI amortization guarantees that early interventions are geometrically rewarded." }
-    },
-    "loan-eligibility": {
-        subtitle: "Find out how much loan you're eligible for based on your monthly income, existing EMIs, interest rate, and tenure. Loan eligibility in India depends on several financial factors — this calculator estimates your maximum borrowing capacity using standard bank formulas.",
-        explanation: {
-            heading: "How Loan Eligibility Is Calculated in India",
-            paragraphs: [
-                "Loan eligibility in India is determined by a combination of your monthly or annual income, existing financial obligations (EMIs you're already paying), the proposed interest rate, and the loan tenure. Banks and NBFCs in India typically use a metric called FOIR (Fixed Obligation to Income Ratio) — this is the percentage of your monthly income that goes toward loan repayments. Most lenders cap FOIR at 50-60%, meaning your total EMIs (existing + proposed) should not exceed 50-60% of your net monthly income.",
-                "For salaried individuals, banks consider gross monthly salary minus statutory deductions (PF, professional tax, TDS). For self-employed borrowers, eligibility is based on ITR-filed income averaged over the last 2-3 years. Self-employed professionals (doctors, CAs, architects) typically get 1.5-2× higher eligibility than self-employed businesspersons due to perceived income stability.",
-                "Beyond income, your CIBIL score plays a critical role. A score of 750+ not only improves approval chances but can increase your eligible loan amount by 10-20% because banks feel confident lending more to creditworthy borrowers. Additionally, joint loans (husband-wife or parent-child) combine both applicants' incomes, significantly increasing eligibility — this is particularly useful for home loans where the property value exceeds a single borrower's capacity.",
-                "It's important to understand that gross eligibility (what you can borrow) and net eligibility (what you should borrow) are different. Financial advisors recommend keeping total EMIs below 35-40% of income, not 50-60%, to maintain a comfortable debt-to-income ratio and emergency buffer.",
-            ],
-            highlight: "Rule of thumb: Your maximum loan eligibility is approximately 60× your monthly take-home salary for a 20-year tenure at 8.5%. For example, a ₹1 Lakh/month salary makes you eligible for approximately ₹60 Lakh home loan. Reducing existing EMIs by ₹10,000 can increase eligibility by ₹8-12 Lakh.",
-        },
-        faq: [
-            { question: "How is loan eligibility calculated?", answer: "Banks use the FOIR (Fixed Obligation to Income Ratio) method. They take your net monthly income, subtract existing EMIs, and calculate the maximum new EMI you can afford (typically 50-60% of income). This EMI is then reverse-calculated using the interest rate and tenure to determine the maximum loan amount." },
-            { question: "What is FOIR and how does it affect eligibility?", answer: "FOIR (Fixed Obligation to Income Ratio) is the percentage of your income going toward EMIs. Banks cap this at 50-60%. If your salary is ₹1 Lakh and existing EMIs are ₹20K, your available capacity is ₹30-40K/month for new EMI. Lower existing obligations = higher eligibility." },
-            { question: "Does CIBIL score affect loan eligibility amount?", answer: "Yes, significantly. A CIBIL score of 750+ can increase your eligible amount by 10-20%. Some banks offer preferential treatment for 800+ scores, including higher loan-to-value ratios and lower interest rates, both of which increase the total amount you can borrow." },
-            { question: "How to increase loan eligibility in India?", answer: "1) Close existing loans and credit card dues. 2) Add a co-applicant (spouse/parent) to combine incomes. 3) Choose a longer tenure. 4) Improve your CIBIL score above 750. 5) Include variable income (bonuses, rental income) in your application. 6) Reduce credit card utilisation below 30%." },
-            { question: "What salary is needed for a ₹50 Lakh home loan?", answer: "At 8.5% for 20 years, the EMI is ~₹43,400. With a 50% FOIR limit, you need ₹86,800/month minimum income (assuming no other EMIs). With existing EMIs of ₹15K, you'd need ~₹1,17,000/month. Joint applications can reduce the required individual income." },
-            { question: "Is loan eligibility different for salaried and self-employed?", answer: "Yes. Salaried individuals get eligibility based on payslip income. Self-employed eligibility uses ITR-filed income (average of last 2-3 years). Self-employed borrowers typically need 20-30% higher documented income for the same loan amount due to perceived income variability." },
-            { question: "Can I check loan eligibility for multiple loan types?", answer: "Yes. Home loan eligibility is highest (longest tenure = lower EMI = more borrowing). Personal loan eligibility is lower (shorter tenure, higher rate). Car/bike loan eligibility depends on vehicle value. Use this calculator with different rates and tenures to compare across loan types." },
-        ],
-        steps: [
-            { label: "Calculate available EMI capacity", formula: "Net income ₹1,00,000 × 50% FOIR = ₹50,000 — Existing EMIs ₹15,000", result: "Available for new EMI: ₹35,000/month" },
-            { label: "Convert to monthly interest rate", formula: "8.5% ÷ 12 = 0.00708", result: "Monthly rate: 0.708%" },
-            { label: "Reverse-calculate max loan amount", formula: "₹35,000 × [(1.00708)^240 − 1] ÷ [0.00708 × (1.00708)^240]", result: "Max eligible: ₹33,67,000 (20 yrs at 8.5%)" },
-            { label: "Factor in LTV and down payment", formula: "Home: 80-90% LTV → You need 10-20% down payment", result: "₹33.67L loan + ₹4.2-8.4L down = ₹38-42L property" },
-        ],
-        comparison: [
-            { title: "20-Year Tenure", value: "₹33.67L eligible", detail: "EMI: ₹35,000/mo | Rate: 8.5% | Lower EMI, more borrowing", isWinner: true },
-            { title: "10-Year Tenure", value: "₹22.80L eligible", detail: "EMI: ₹35,000/mo | Rate: 8.5% | Higher EMI burden, less borrowing" },
-        ],
-        insight: { icon: "💡", title: "Eligibility Maximisation Tip", text: "Close credit card revolving balances and small personal loans before applying. Every ₹10,000 reduction in existing EMIs increases your home loan eligibility by ₹8-12 Lakh. A joint application with your spouse can nearly double your eligible amount." },
-    },
-    "bank-emi-calculator": {
-        subtitle: "A universal, high-precision EMI calculator bridging all consumer banking products. Accurately forecast your monthly installments for personal, vehicle, durable, or gold loans.",
-        explanation: {
-            heading: "The Comprehensive Guide to Bank EMIs and Amortization Logistics",
-            paragraphs: [
-                "An Equated Monthly Installment (EMI) is the foundational construct of modern consumer finance. It represents a standardized, fixed payment made by a borrower to a lending institution on a designated date each calendar month. The primary utility of the EMI structure is its predictability; it enables borrowers to systematically budget their cash flows while amortizing a substantial debt obligation over an extended period. The EMI amount integrates two distinct components: the principal repayment (the actual capital borrowed) and the interest payment (the cost of borrowing the capital). The continuous, monthly payment of these EMIs ensures that the loan is comprehensively liquidated by the termination of the agreed-upon tenure.",
-                "The mathematical behavior of an EMI follows a reducing balance amortization schedule. In the preliminary phases of your loan tenure, a significantly disproportionate percentage of your monthly EMI is allocated toward servicing the interest overhead, because the outstanding principal balance remains high. Conversely, only a fractional segment of the EMI contributes to chipping away at the principal. As the months progress and the principal is incrementally diminished, the interest burden proportionally decreases. Consequently, in the terminal years of the loan, the structural ratio flips: the overwhelming majority of your EMI is directed toward principal repayment. Understanding this pivotal non-linear curve is crucial for borrowers contemplating loan foreclosure or balance transfers.",
-                "Deploying a universal Bank EMI calculator empowers consumers with absolute financial transparency prior to initiating formal discussions with a direct sales agent or branch manager. Lenders frequently obfuscate the true cost of credit by blending upfront processing fees, documentation charges, and flat-rate calculations into the proposal. By independently calculating the Reducing Balance EMI based solely on the disbursed principal and the annualized interest rate, borrowers can accurately identify the effective Annual Percentage Rate (APR). Whether evaluating an unsecured personal loan, a collateralized gold loan, or retail financing for consumer durables, maintaining clarity on the exact monthly outflow and the cumulative interest total is an absolute prerequisite for sound personal financial management."
-            ],
-            highlight: "Amortization Strategy: If you aggressively prepay your loan during the first 25% of its tenure, you capture exponential interest savings by directly severing the principal before the bulk of the interest is accrued. Prepaying during the final 25% of the tenure yields negligible interest savings, as the remaining EMIs consist almost entirely of principal.",
-        },
-        faq: [
-            { question: "What is the exact mathematical algorithm used by banks to compute the EMI?", answer: "Banks utilize the universal reducing balance amortization equation: EMI = P × r × (1 + r)^n / ((1 + r)^n - 1). In this algorithm, 'P' signifies the total disbursed principal loan amount, 'r' denotes the rate of interest calculated strictly on a monthly basis (i.e., Annual Rate / 12 / 100), and 'n' indicates the comprehensive loan tenure expressed in total months." },
-            { question: "Under what specific circumstances will my bank alter my monthly EMI?", answer: "If you have secured a floating rate loan (which is standard for home and education loans), the bank will modify your repayment structure when the Reserve Bank of India (RBI) implements changes to the macroeconomic Repo Rate. Typically, banks prefer to extend the loan tenure while keeping the EMI constant to avoid inflating your monthly budget. However, if extending the tenure breaches the maximum allowable age limit (usually 60 or 65 years), the bank is forced to strictly elevate the EMI amount." },
-            { question: "How does a 'Flat Rate' loan fundamentally differ from a 'Reducing Balance' loan?", answer: "This is a critical distinction. In a Reducing Balance structure, interest is calculated solely on the outstanding principal left for that specific month. In a Flat Rate structure (commonly seen in two-wheeler loans or microfinance), the interest is calculated on the original starting principal for the entire duration of the loan. A 10% Flat Rate is mathematically equivalent to an excruciating 17-18% Reducing Balance rate." },
-            { question: "Is it financially prudent to utilize a Credit Card EMI conversion instead of taking a dedicated bank loan?", answer: "Credit card EMI conversion is highly convenient but notoriously expensive. While it eliminates the documentation friction inherent in processing a fresh personal loan, the interest rates applied to post-purchase EMI conversions typically hover between 15% and 18% per annum, often coupled with a non-refundable upfront processing fee. For larger funding requirements, a dedicated personal loan or overdraft facility is almost universally more cost-efficient." }
-        ],
-    },
-    "mortgage-calculator": {
-        subtitle: "Calculate your full monthly mortgage payment including principal, interest, property tax, insurance, PMI, and HOA. See your amortization schedule and total cost of homeownership.",
-        explanation: {
-            heading: "How Mortgage Payments Work in the U.S.",
-            paragraphs: [
-                "Your monthly mortgage payment has up to five components, often called PITI+: Principal (paying down the loan balance), Interest (the cost of borrowing), Taxes (property tax escrowed monthly), Insurance (homeowner's insurance), and optional PMI/HOA fees. The principal and interest portion is calculated using the standard amortization formula — M = P × r(1+r)^n / ((1+r)^n − 1) — which keeps your payment fixed while gradually shifting the balance from interest-heavy to principal-heavy over time.",
-                "The 20% down payment threshold is one of the most important numbers in home buying. Putting less than 20% down triggers Private Mortgage Insurance (PMI), which costs 0.3%–1.5% of the loan amount annually — that's $80–$400/month on a $320,000 loan. PMI automatically drops off when your equity reaches 22%. If you can't reach 20%, consider lender-paid PMI (built into a slightly higher rate) or FHA loans (3.5% down, but with mortgage insurance for the life of the loan).",
-                "Choosing between a 15-year and 30-year mortgage is a major decision. A 30-year loan on $320,000 at 6.5% costs $2,023/month but $408,185 in total interest. The same loan at 15 years costs $2,789/month (+$766) but only $181,984 in total interest — saving you $226,201. If you can afford the higher payment, the 15-year option builds equity faster and saves massively on interest.",
-            ],
-            highlight: "$400K home, 20% down ($80K), 6.5% rate, 30 years → Monthly P&I: $2,023 | Property Tax: $400 | Insurance: $125 | Total: ~$2,548/mo. Total interest over 30 years: $408,185 — more than the original loan amount.",
-        },
-        faq: [
-            { question: "How much house can I afford?", answer: "Follow the 28/36 rule: your total housing payment (mortgage + taxes + insurance) should not exceed 28% of gross monthly income, and total debt payments should stay under 36%. On a $7,000/month gross income, aim for a max housing payment of ~$1,960." },
-            { question: "What is PMI and when can I remove it?", answer: "Private Mortgage Insurance (PMI) protects the lender when your down payment is less than 20%. It typically costs 0.3%–1.5% of the loan amount per year. You can request removal at 20% equity and it's automatically cancelled at 22% equity. Refinancing is another way to drop PMI once you've built enough equity." },
-            { question: "Should I choose a 15-year or 30-year mortgage?", answer: "A 30-year mortgage gives you lower monthly payments and more budget flexibility. A 15-year mortgage has a higher monthly payment but dramatically lower total interest — you could save $150K–$250K on a typical loan. If you can comfortably afford the 15-year payment, it's almost always the smarter financial choice." },
-            { question: "Fixed-rate or adjustable-rate mortgage (ARM)?", answer: "Fixed-rate offers payment certainty for the full term — ideal if you plan to stay 10+ years. ARMs (like 5/1 ARM) start 0.5–1.5% lower but adjust after the intro period. Choose an ARM only if you plan to sell or refinance before the adjustment date." },
-            { question: "What are typical closing costs?", answer: "Closing costs run 2%–5% of the home purchase price. On a $400,000 home, expect $8,000–$20,000 covering appraisal, title insurance, attorney fees, origination fees, and prepaid taxes/insurance. Some costs are negotiable, and sellers sometimes contribute toward closing costs." },
-            { question: "How does property tax affect my payment?", answer: "Property tax is typically 0.5%–2.5% of your home's assessed value, depending on your state and county. On a $400,000 home at 1.2%, that's $4,800/year or $400/month added to your mortgage payment. This is usually escrowed by your lender and included in your monthly payment." },
-        ],
-        steps: [
-            { label: "Calculate loan amount", formula: "$400,000 home − $80,000 down (20%)", result: "Loan: $320,000" },
-            { label: "Monthly interest rate", formula: "r = 6.5% ÷ 12 = 0.005417", result: "Monthly rate: 0.5417%" },
-            { label: "P&I payment (30yr)", formula: "M = $320K × 0.005417 × (1.005417)^360 ÷ ((1.005417)^360 − 1)", result: "P&I: $2,023/mo" },
-            { label: "Add taxes + insurance", formula: "$2,023 + $400 (tax) + $125 (insurance) + $0 (no PMI)", result: "Total: $2,548/mo" },
-        ],
-        comparison: [
-            { title: "30-Year Fixed", value: "$2,023/mo", detail: "6.5% rate | Total interest: $408,185 | Lower payment, higher total cost" },
-            { title: "15-Year Fixed", value: "$2,789/mo", detail: "5.9% rate | Total interest: $181,984 | Saves $226,201!", isWinner: true },
-        ],
-        insight: { icon: "🏠", title: "20% Down Payment Strategy", text: "Putting 20% down on a $400K home ($80K) eliminates PMI, saving $133–$400/month. If it takes you 2 years to save the extra down payment, calculate whether the PMI payments during that time exceed the savings. Sometimes buying sooner with 10% down and refinancing later is cheaper than waiting." },
-    },
     "debt-consolidation-calculator": {
-        subtitle: "Compare the total cost of your existing debts against a single consolidated loan. See monthly payment reduction and total interest savings.",
-        contentHTML: `<h3>When Does Debt Consolidation Make Sense?</h3><p>Debt consolidation works best when the consolidated loan rate is significantly lower than your weighted average current rate. It simplifies multiple payments into one, reduces total interest, and can lower your monthly cash outflow.</p><ul><li><strong>Best for:</strong> High-interest credit card debt (18-24%) consolidated into a personal loan (8-12%)</li><li><strong>Risky if:</strong> You continue accumulating new debt after consolidating</li><li><strong>Consider:</strong> Balance transfer cards with 0% intro APR for debts under $15K</li></ul>`,
+        subtitle: "Calculate how much you can save by consolidating multiple debts into a single loan. Compare monthly payments, total interest, and payoff timelines side-by-side.",
         faq: [
             { question: "Will debt consolidation hurt my credit score?", answer: "Short-term: a small dip from the hard inquiry. Long-term: it typically improves your score by lowering credit utilization and reducing the number of accounts with balances." },
             { question: "What types of debt can be consolidated?", answer: "Credit card balances, personal loans, medical bills, payday loans, and store credit. Student loans and mortgages have their own refinancing programs." },
@@ -1932,6 +1682,162 @@ A = $10,000 × (1 + 0.048/365)^365 = $10,000 × 1.04918 = <strong>$10,491.80</st
             { question: "Can student loans be discharged in bankruptcy?", answer: "Difficult but possible via 'undue hardship' test. Recent policy has eased this somewhat." },
         ],
     },
+    "mortgage-calculator": {
+        subtitle: "Calculate your monthly PITI mortgage payment — principal, interest, property taxes, homeowner's insurance, and PMI. See a full 30-year amortization schedule and total loan cost.",
+        explanation: {
+            heading: "How Mortgage Payments Are Calculated — The PITI Formula",
+            paragraphs: [
+                "A mortgage payment consists of four components known as PITI: Principal, Interest, Taxes, and Insurance. The core calculation uses the standard amortization formula: M = P × [r(1+r)^n] / [(1+r)^n − 1], where M is the monthly payment, P is the loan principal (home price minus down payment), r is the monthly interest rate (annual rate ÷ 12), and n is the total number of payments (loan term in years × 12). This formula ensures each payment reduces your loan balance while covering accrued interest — a process called amortization.",
+                "Property taxes are typically collected by the lender monthly and held in an escrow account, then paid to local government annually. Property tax rates vary enormously by state: New Jersey averages 2.23% annually while Hawaii averages 0.32%. On a $400,000 home, that difference is $7,640/year — adding $637/month to your payment in New Jersey vs. $107/month in Hawaii. Homeowner's insurance averages $1,300–$2,400/year ($108–$200/month) but varies by location, home size, and coverage level.",
+                "Private Mortgage Insurance (PMI) is required on conventional loans when your down payment is less than 20%. PMI costs 0.3%–1.5% of the loan amount annually, with the exact rate determined by your credit score, loan-to-value ratio, and lender policy. On a $350,000 loan, PMI of 0.8% adds $2,800/year ($233/month). PMI is automatically cancelled when your loan balance reaches 78% of the original home value, or you can request removal at 80% equity under the Homeowners Protection Act.",
+            ],
+            highlight: "$400,000 home, 20% down ($80,000), 6.5% rate, 30 years: Monthly P&I = $2,023. Add taxes (1.2%) = $400/mo + insurance = $150/mo. Total PITI = $2,573/month. Total cost over 30 years: $925,080 — you pay $525,080 in interest and overhead beyond the $400,000 home price.",
+        },
+        faq: [
+            { question: "What is PITI in a mortgage payment?", answer: "PITI stands for Principal, Interest, Taxes, and Insurance — the four components of a monthly mortgage payment. Principal reduces your loan balance. Interest is the lender's charge, calculated on the outstanding balance. Taxes are your property tax, collected monthly in escrow and paid annually. Insurance includes homeowner's insurance (mandatory) and PMI (required if down payment < 20%)." },
+            { question: "How do I calculate my monthly mortgage payment?", answer: "Use the formula M = P × [r(1+r)^n] / [(1+r)^n − 1], where P = loan amount, r = monthly rate (annual rate ÷ 12), n = number of payments (years × 12). For a $320,000 loan at 6.5% for 30 years: r = 0.065/12 = 0.005417, n = 360, M = $2,023/month for P&I only (before taxes and insurance)." },
+            { question: "What is a good interest rate for a 30-year mortgage in 2026?", answer: "As of 2026, 30-year fixed mortgage rates range from 6.0% to 7.5% for qualified borrowers with 20% down and a 740+ credit score. Rates below 6.5% are considered competitive in the current environment. Your rate depends on credit score, loan-to-value ratio, loan type, and market conditions at closing." },
+            { question: "How much does PMI cost on a mortgage?", answer: "PMI costs 0.3%–1.5% of the loan amount annually. On a $300,000 mortgage, that's $900–$4,500/year ($75–$375/month). The exact rate depends on your credit score (higher score = lower PMI), down payment percentage, and lender. PMI is automatically cancelled when your balance reaches 78% of the original home value." },
+            { question: "What is the difference between a 15-year and 30-year mortgage?", answer: "On a $300,000 loan at 6.5%: 30-year payment = $1,896/month with total interest = $382,633. 15-year payment = $2,613/month with total interest = $170,178 — saving $212,455 in interest. The 15-year has 38% higher monthly payments but saves 56% on total interest. The 30-year provides cash flow flexibility; the 15-year builds equity faster." },
+            { question: "Should I pay points to lower my mortgage rate?", answer: "One point = 1% of the loan amount and typically reduces the rate by 0.25%. On a $300,000 loan, one point costs $3,000 and saves $50/month. Break-even = $3,000 ÷ $50 = 60 months (5 years). If you stay in the home longer than the break-even period, paying points makes financial sense." },
+            { question: "How much house can I afford on my salary?", answer: "The 28/36 rule: housing costs (PITI) should not exceed 28% of gross monthly income, and total debts (housing + car + student loans + credit cards) should not exceed 36%. On $90,000/year ($7,500/month): max housing payment = $2,100. At 6.5% for 30 years, that supports approximately $330,000 in loan (or $413,000 home with 20% down)." },
+            { question: "What is an ARM vs. a fixed-rate mortgage?", answer: "A fixed-rate mortgage keeps the same interest rate for the entire loan term. An adjustable-rate mortgage (ARM) has a fixed period (3, 5, 7, or 10 years) then adjusts annually based on a benchmark index (like SOFR) plus a margin. ARMs start with lower rates — a 5/1 ARM at 5.75% vs. 6.5% fixed saves $125/month initially, but adds risk of rate increases after year 5." },
+            { question: "What credit score do I need to qualify for a mortgage?", answer: "Conventional loans require a minimum 620 credit score (but 740+ gets the best rates). FHA loans accept 580 with 3.5% down (or 500 with 10% down). VA loans have no official minimum but most lenders require 580–620. Each 20-point credit score improvement can reduce your rate by 0.1–0.2%, saving $15,000–$30,000 over 30 years on a $350,000 loan." },
+            { question: "How does a down payment affect my mortgage payment?", answer: "A larger down payment reduces your loan amount, eliminates PMI (at 20%+), and may qualify you for a better rate. On a $400,000 home: 5% down ($20,000) → $380,000 loan + PMI ~$237/month. 20% down ($80,000) → $320,000 loan, no PMI. The difference in monthly payment: ~$600/month ($7,200/year). Over 30 years: $86,000+ savings from the larger down payment." },
+            { question: "What are closing costs on a mortgage?", answer: "Closing costs are 2%–5% of the loan amount, paid at loan settlement. They include: origination fee (0.5–1%), appraisal ($300–$500), title insurance ($700–$1,500), attorney fees (if required by state), prepaid taxes and insurance, and recording fees. On a $350,000 loan: closing costs of 3% = $10,500. Many lenders offer 'no closing cost' mortgages that roll costs into the rate." },
+            { question: "What happens if I miss a mortgage payment?", answer: "Most lenders have a 15-day grace period with no penalty. After 15 days, a late fee (typically 3–5% of the payment) is charged. After 30 days, the delinquency is reported to credit bureaus (significant score damage). After 90+ days of missed payments, lenders may begin foreclosure proceedings. During hardship, contact your lender immediately for forbearance or modification options." },
+            { question: "Is it better to rent or buy a home in 2026?", answer: "The 5% Rule: if annual rent is less than 5% of the home price, renting may be more financially efficient. At $400,000 home value: 5% = $20,000/year ($1,667/month). If you can rent a comparable home for less than $1,667/month, renting may make sense. Additional factors: how long you plan to stay (breakeven typically 3–5 years), local market appreciation, and the opportunity cost of the down payment." },
+            { question: "What is mortgage refinancing and when does it make sense?", answer: "Refinancing replaces your current mortgage with a new loan, typically to get a lower rate, change the term, or access equity (cash-out refinance). It makes sense when: (1) rates drop 0.75–1%+ below your current rate, (2) you plan to stay long enough to recoup closing costs (typically 24–36 months), or (3) you want to switch from ARM to fixed. Closing costs of 2–5% mean the monthly savings must be significant enough to break even." },
+            { question: "How does property tax affect my mortgage payment?", answer: "Property taxes are collected by lenders monthly (1/12 of the annual tax bill) and held in escrow until the annual payment is due. Tax rates vary by state: NJ (2.23%) adds $556/month on a $300K home. TX (1.60%) adds $400/month. CA (0.75%) adds $188/month. FL (0.80%) adds $200/month. High property taxes significantly increase PITI beyond just principal and interest." },
+        ],
+        steps: [
+            { label: "Determine loan amount", formula: "Home price $400,000 − Down payment $80,000 (20%)", result: "Loan amount: $320,000" },
+            { label: "Calculate monthly P&I", formula: "M = $320,000 × [0.005417 × 1.005417^360] / [1.005417^360 − 1]", result: "Monthly P&I: $2,023" },
+            { label: "Add escrow (taxes + insurance)", formula: "Property tax $400K × 1.2% ÷ 12 = $400 | Insurance = $150/mo", result: "Escrow: $550/month" },
+            { label: "Total PITI payment", formula: "$2,023 + $550", result: "Monthly PITI: $2,573" },
+        ],
+        comparison: [
+            { title: "30-Year Fixed", value: "$2,023/mo P&I", detail: "Total interest: $408,808 | Lower payment, maximum flexibility" },
+            { title: "15-Year Fixed", value: "$2,789/mo P&I", detail: "Total interest: $182,020 | Saves $226,788 in interest!", isWinner: true },
+        ],
+        insight: { icon: "🏠", title: "The Real Cost of a Mortgage", text: "On a $400,000 home with 20% down at 6.5%, you borrow $320,000 but repay $728,808 over 30 years — paying $408,808 in interest alone. That's 128% of the original loan amount in interest. This is why making extra payments in the first 10 years is transformative: extra payments in Year 1 save 3–5× more interest than the same payments in Year 20, because they eliminate years of compounding interest." },
+        contentHTML: `
+<h3>The Amortization Formula — How Your Mortgage Balance Shrinks</h3>
+<p>Mortgage amortization uses the formula <strong>M = P × [r(1+r)^n] / [(1+r)^n − 1]</strong> to calculate a fixed monthly payment that fully retires the loan over the term. Each payment is applied first to the accrued interest for the month, with the remainder reducing principal.</p>
+<p>On a $320,000 loan at 6.5% for 30 years:</p>
+<ul>
+<li><strong>Month 1:</strong> $1,733 interest + $290 principal (86% interest)</li>
+<li><strong>Month 60 (Year 5):</strong> $1,664 interest + $359 principal</li>
+<li><strong>Month 180 (Year 15):</strong> $1,468 interest + $555 principal</li>
+<li><strong>Month 300 (Year 25):</strong> $886 interest + $1,137 principal</li>
+<li><strong>Month 360 (Final):</strong> $11 interest + $2,012 principal</li>
+</ul>
+<p>This front-loading is why early prepayments are so powerful — every extra dollar paid in the first 5 years eliminates 3–5× its value in future interest.</p>
+
+<h3>PMI: What It Costs and When It Goes Away</h3>
+<p>Private Mortgage Insurance protects the lender (not you) if you default with less than 20% equity. Key facts:</p>
+<ul>
+<li><strong>Cost:</strong> 0.3%–1.5% of original loan amount annually. At 0.8% on a $350,000 loan: $233/month.</li>
+<li><strong>Credit score impact:</strong> 760+ score → 0.3% PMI. 680 score → 0.8% PMI. 620 score → 1.2% PMI.</li>
+<li><strong>Automatic cancellation:</strong> At 78% LTV (per Homeowners Protection Act of 1998).</li>
+<li><strong>Requested cancellation:</strong> At 80% LTV with a good payment history and property appraisal.</li>
+<li><strong>FHA MIP:</strong> Different from PMI — required for the life of the loan if down payment < 10%.</li>
+</ul>
+
+<h3>Understanding Mortgage Rate Factors</h3>
+<p>Your mortgage rate is determined by multiple factors layered on top of the base rate set by bond market conditions:</p>
+<ul>
+<li><strong>Credit score:</strong> 740+ = lowest rates. Each 20-point drop typically adds 0.1–0.25% to your rate.</li>
+<li><strong>Loan-to-value (LTV):</strong> Higher LTV = higher rate. 95% LTV pays 0.25–0.5% more than 80% LTV.</li>
+<li><strong>Loan type:</strong> Conventional, FHA, VA, and USDA each have different rate structures.</li>
+<li><strong>Loan size:</strong> Conforming loans (≤$766,550) get better rates than jumbo loans.</li>
+<li><strong>Loan term:</strong> 15-year rates are typically 0.5–0.75% lower than 30-year rates.</li>
+<li><strong>Points:</strong> You can pay points upfront (1 point = 1% of loan) to permanently lower the rate.</li>
+</ul>
+
+<h3>30-Year vs. 15-Year Mortgage: A Complete Comparison</h3>
+<table><thead><tr><th>Factor</th><th>30-Year Fixed</th><th>15-Year Fixed</th></tr></thead><tbody>
+<tr><td>Interest rate (typical)</td><td>6.50%</td><td>5.75%</td></tr>
+<tr><td>Monthly P&I ($320K loan)</td><td>$2,023</td><td>$2,659</td></tr>
+<tr><td>Total interest paid</td><td>$408,808</td><td>$158,574</td></tr>
+<tr><td>Interest savings</td><td>—</td><td>$250,234</td></tr>
+<tr><td>Equity at year 5</td><td>$17,200</td><td>$59,000</td></tr>
+<tr><td>Best for</td><td>Cash flow priority</td><td>Wealth building</td></tr>
+</tbody></table>
+
+<h3>How Extra Payments Accelerate Mortgage Payoff</h3>
+<p>On a $320,000 mortgage at 6.5% (30 years, $2,023/month):</p>
+<ul>
+<li>Extra <strong>$100/month:</strong> Pays off 4.5 years early, saves <strong>$52,000</strong> in interest</li>
+<li>Extra <strong>$300/month:</strong> Pays off 8 years early, saves <strong>$117,000</strong> in interest</li>
+<li>Extra <strong>$500/month:</strong> Pays off 10 years early, saves <strong>$158,000</strong> in interest</li>
+<li><strong>Biweekly payments</strong> (half payment every 2 weeks): Pays off 4–5 years early, saves $56,000+</li>
+</ul>
+`,
+    },
+    "personal-loan-emi": {
+        subtitle: "Calculate your personal loan EMI, total interest payable, and generate a complete amortization schedule. Compare loan amounts, tenures, and rates side by side.",
+        explanation: {
+            heading: "How Personal Loan EMI Is Calculated",
+            paragraphs: [
+                "Personal loan EMI (Equated Monthly Installment) is calculated using the reducing balance method: EMI = P × r × (1+r)^n / [(1+r)^n − 1], where P is the principal (loan amount), r is the monthly interest rate (annual rate ÷ 12), and n is the loan tenure in months. Unlike flat-rate loans — where interest is calculated on the original principal throughout — reducing balance means each monthly payment reduces your outstanding principal, so interest decreases over time. This is the standard method used by all major banks and NBFCs in India (HDFC Bank, SBI, ICICI Bank, Axis Bank) and personal loan platforms globally.",
+                "The total interest you pay on a personal loan is dramatically affected by three factors: loan amount, interest rate, and tenure. On a ₹5 lakh loan at 14% p.a.: a 3-year tenure gives EMI = ₹17,087 with total interest of ₹1,15,132. The same loan at 5 years gives EMI = ₹11,634 but total interest = ₹1,98,040 — ₹82,908 more just for the lower monthly payment. This is the core trade-off: longer tenure = lower EMI but much higher total cost.",
+                "Processing fees significantly affect the true cost of personal loans. Most lenders charge 1%–3% of the loan amount as a processing fee deducted upfront. On a ₹5 lakh loan at 1.5% processing fee: ₹7,500 is deducted before you receive the funds, meaning you pay interest on ₹5,00,000 but receive only ₹4,92,500. The effective APR is higher than the stated interest rate. Always compare loans using the effective APR (inclusive of all fees), not just the stated interest rate.",
+            ],
+            highlight: "₹5 lakh personal loan at 14% p.a. for 3 years: EMI = ₹17,087/month. Total amount payable = ₹6,15,132. Total interest = ₹1,15,132 (23% of the loan amount). With a 1% processing fee (₹5,000), your actual disbursement is ₹4,95,000 but you repay ₹6,15,132.",
+        },
+        faq: [
+            { question: "What is EMI and how is it calculated?", answer: "EMI (Equated Monthly Installment) is a fixed monthly payment paid to repay a loan. Formula: EMI = P × r × (1+r)^n / [(1+r)^n − 1]. Where P = principal, r = monthly interest rate (annual rate ÷ 12), n = tenure in months. Example: ₹3 lakh at 12% for 24 months → r = 0.01, EMI = 3,00,000 × 0.01 × 1.01^24 / (1.01^24 − 1) = ₹14,089/month." },
+            { question: "What factors determine personal loan interest rates?", answer: "Key factors: (1) CIBIL score — 750+ qualifies for best rates (10–14%); 650–749 = 15–20%; below 650 = high risk or rejection. (2) Income — higher income means lower rate. (3) Employment type — salaried employees at established companies get better rates than self-employed. (4) Employer category — top-tier employers (FAANG, PSUs, MNCs) get preferential rates. (5) Existing relationship with lender — salary account holders often get 0.5–1% lower rates." },
+            { question: "What is the maximum personal loan amount I can get?", answer: "Maximum personal loan amounts depend on income. HDFC Bank: up to ₹40 lakh. SBI: up to ₹20 lakh. ICICI Bank: up to ₹50 lakh. The standard formula is: maximum EMI ≤ 40–50% of net monthly income. If your take-home salary is ₹60,000/month, maximum EMI = ₹24,000–₹30,000. At 14% for 3 years, this supports a loan of ₹7–8.4 lakh." },
+            { question: "How does loan tenure affect EMI and total interest?", answer: "Longer tenure = lower EMI but higher total interest. On ₹5 lakh at 14%: 1-year tenure = ₹44,933 EMI, ₹39,196 total interest. 3-year tenure = ₹17,087 EMI, ₹1,15,132 total interest. 5-year tenure = ₹11,634 EMI, ₹1,98,040 total interest. The 5-year option costs ₹82,908 more than the 3-year option just for a ₹5,453 lower monthly payment." },
+            { question: "What is the difference between flat rate and reducing rate interest?", answer: "Flat rate calculates interest on the original principal throughout the tenure. Reducing rate calculates interest on the outstanding (reducing) balance each month. A 10% flat rate is approximately equivalent to 18–19% reducing rate. Banks and RBI-regulated lenders must use the reducing balance method. Always compare loans using the reducing rate (or Effective Annual Rate) for accurate comparison." },
+            { question: "How can I reduce my personal loan EMI?", answer: "Three strategies: (1) Negotiate a lower interest rate — a 1% reduction on ₹5 lakh for 3 years saves ₹7,500+ in total interest. (2) Extend the tenure — increasing from 3 to 5 years drops EMI by ₹5,453 but costs ₹82,908 more in total interest. (3) Make a partial prepayment — a ₹1 lakh prepayment in month 6 on a ₹5 lakh loan saves ₹30,000+ in interest and reduces tenure by ~1 year." },
+            { question: "What is a personal loan prepayment penalty?", answer: "Most lenders charge a prepayment penalty of 2–5% of the outstanding loan amount if you repay before the end of the tenure. Some lenders allow prepayment after 12 EMIs without penalty. As per RBI guidelines (2023), for floating-rate personal loans, lenders cannot charge prepayment penalties. For fixed-rate loans, penalties may apply — check your loan agreement." },
+            { question: "How does a personal loan affect my CIBIL score?", answer: "Short-term: a hard inquiry (−5 to −10 points) occurs when you apply. Taking the loan adds a new credit account, which can temporarily reduce average account age. Long-term (6–12 months): consistently paying EMIs on time significantly improves your score (+40–80 points). Personal loans diversify your credit mix (installment credit), which is positive for CIBIL. Missed EMIs cause severe score damage (−80 to −150 points per missed payment)." },
+            { question: "Can I get a personal loan without a salary slip?", answer: "Yes, but options are limited. Self-employed individuals can use ITR (last 2 years), bank statements (6 months), and business financial statements. Freelancers can use Form 16, GST returns, and client contracts. NBFCs and fintech lenders (MoneyTap, PaySense, Navi) have more flexible documentation requirements than traditional banks. Interest rates for non-salaried borrowers are typically 2–5% higher." },
+            { question: "What is the minimum CIBIL score for a personal loan?", answer: "Most banks require 700+ for personal loan approval at good rates. 750+ qualifies for the best rates (10–14% p.a.). 650–699 = possible approval at 18–24% p.a. Below 650 = most banks reject; some NBFCs may approve at 28–36% p.a. Improving your CIBIL score from 650 to 750 before applying can save ₹40,000+ in interest on a ₹5 lakh loan." },
+            { question: "What documents are required for a personal loan?", answer: "Standard documents: Identity proof (Aadhaar, PAN, passport), address proof (Aadhaar, utility bill, rental agreement), income proof (last 3 months salary slips + 6 months bank statements for salaried; ITR last 2 years + bank statements for self-employed), and employment proof (offer letter, employee ID). Processing time: digital lenders (1–3 days), banks (3–7 days)." },
+            { question: "Is personal loan interest tax deductible in India?", answer: "Personal loan interest is NOT tax-deductible under any standard income tax provision. However, there are exceptions: if the personal loan is used for home renovation (Section 24(b) — up to ₹30,000 deduction), business investment (Schedule BP deduction), or education loan (Section 80E — but must be an actual education loan). For tax efficiency, use a home loan (Section 24 deduction of up to ₹2 lakh) or education loan instead of a personal loan." },
+            { question: "What is the personal loan interest rate at SBI, HDFC, and ICICI Bank?", answer: "Current rates (2026): SBI Personal Loan — 11.15%–15.30% p.a. (salary account holders get lower). HDFC Bank — 10.50%–24.00% p.a. (pre-approved offers start at 10.50%). ICICI Bank — 10.65%–16.00% p.a. Axis Bank — 11.25%–22.00% p.a. Bajaj Finserv — 13.00%–26.00% p.a. Rates vary based on CIBIL score, income, and existing relationship with the bank." },
+            { question: "How do I check my personal loan eligibility online?", answer: "Online eligibility check: (1) Use the bank's EMI/eligibility calculator (monthly EMI should be ≤ 40–50% of net salary). (2) Check your CIBIL score — free from CIBIL.com, Experian India, or CRIF High Mark. (3) Use our Personal Loan EMI Calculator to find the maximum loan amount your income supports at your target rate. (4) Apply with pre-approved banks first — they do a soft inquiry, not a hard inquiry, protecting your CIBIL score." },
+        ],
+        steps: [
+            { label: "Determine loan amount", formula: "Net monthly salary ₹60,000 × 50% maximum EMI ratio", result: "Maximum EMI: ₹30,000/month" },
+            { label: "Identify rate and tenure", formula: "14% p.a. (reducing balance) for 3 years (36 months)", result: "Monthly rate r = 14/12/100 = 0.01167" },
+            { label: "Calculate EMI", formula: "EMI = P × r × (1+r)^36 / [(1+r)^36 − 1]", result: "On ₹5L loan: EMI = ₹17,087" },
+            { label: "Calculate total cost", formula: "₹17,087 × 36 months", result: "Total repayment: ₹6,15,132 | Interest: ₹1,15,132" },
+        ],
+        comparison: [
+            { title: "3-Year Tenure", value: "₹17,087/mo", detail: "Total interest: ₹1,15,132 | Faster payoff, lower total cost" },
+            { title: "5-Year Tenure", value: "₹11,634/mo", detail: "Total interest: ₹1,98,040 | Saves ₹5,453/mo but costs ₹82,908 more", isWinner: false },
+        ],
+        insight: { icon: "💳", title: "The EMI-to-Income Trap", text: "Banks approve loans up to 50% of net income in EMIs — but financial advisors recommend keeping all EMIs (home loan + car + personal) below 40% of net income. If you earn ₹60,000/month, a ₹17,087 personal EMI plus a ₹12,000 car EMI already uses 48% of income — leaving almost no buffer for emergencies. Reserve personal loans for high-return investments, emergencies, or debt consolidation. Using personal loans for vacations or gadgets is the costliest financing option available to consumers." },
+        contentHTML: `
+<h3>Personal Loan vs. Other Loan Types — When to Choose Each</h3>
+<table><thead><tr><th>Loan Type</th><th>Rate (2026)</th><th>Amount</th><th>Collateral</th><th>Best For</th></tr></thead><tbody>
+<tr><td>Personal Loan</td><td>10.5–24%</td><td>Up to ₹50L</td><td>None</td><td>Medical emergency, wedding, debt consolidation</td></tr>
+<tr><td>Home Loan</td><td>8.5–9.5%</td><td>Up to ₹10 Cr</td><td>Property</td><td>Buying real estate; tax-deductible interest</td></tr>
+<tr><td>Gold Loan</td><td>8–15%</td><td>Up to ₹1 Cr</td><td>Gold</td><td>Short-term cash need with gold as collateral</td></tr>
+<tr><td>Loan vs. Credit Card</td><td>10.5% vs. 36–48%</td><td>—</td><td>None</td><td>Personal loan always beats credit card EMIs</td></tr>
+<tr><td>Education Loan</td><td>8–12%</td><td>Up to ₹75L</td><td>Co-applicant</td><td>Higher education; Section 80E tax benefit</td></tr>
+</tbody></table>
+
+<h3>Smart Prepayment Strategy — When and How Much to Prepay</h3>
+<p>Prepaying a personal loan reduces your outstanding principal, which reduces future interest. The optimal time to prepay is in the <strong>first half of the tenure</strong> when interest constitutes the majority of each EMI.</p>
+<p>On a ₹5 lakh loan at 14% for 3 years:</p>
+<ul>
+<li>Prepaying ₹1 lakh in <strong>Month 3:</strong> Saves ₹34,500 in interest, reduces tenure by 10 months</li>
+<li>Prepaying ₹1 lakh in <strong>Month 18</strong> (halfway): Saves ₹17,200 in interest, reduces tenure by 6 months</li>
+<li>Prepaying ₹1 lakh in <strong>Month 30:</strong> Saves only ₹5,800 — much less effective</li>
+</ul>
+<p>Check for prepayment charges (2–5% of outstanding amount). If the penalty exceeds the interest saved, prepayment is not worthwhile.</p>
+
+<h3>Balance Transfer — How to Reduce Your Rate Mid-Loan</h3>
+<p>A personal loan balance transfer moves your outstanding principal to a new lender at a lower interest rate. It makes sense when: (1) the new rate is at least 2% lower, (2) you have significant tenure remaining, and (3) balance transfer fees + new processing fee are less than total interest savings.</p>
+<p>Example: ₹3 lakh outstanding at 20% with 24 months remaining. Transfer to 14%: new EMI = ₹14,423 (vs. ₹15,286). Monthly saving = ₹863. Over 24 months: ₹20,712 saved. If transfer costs ₹5,000 (fees), net saving = ₹15,712.</p>
+`,
+    },
 };
 
 export default async function CalculatorHubPage({ params }: PageProps) {
@@ -2054,7 +1960,7 @@ export default async function CalculatorHubPage({ params }: PageProps) {
                                 highlight={content.explanation?.highlight}
                                 contentHTML={content.contentHTML}
                             />
-                            <FAQAccordion title={`${calc.title} FAQ`} items={content.faq} />
+                            <FAQAccordion title={`${calc.title} FAQ`} items={content.faq ?? []} />
 
                             {CIBIL_FAQS[calc.id] && (
                                 <FAQAccordion

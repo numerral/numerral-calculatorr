@@ -300,3 +300,111 @@ export function howToSchema(
         })),
     };
 }
+
+/**
+ * Build JSON-LD MathSolver schema.
+ * Enables Google's MathSolver rich results for calculation-based queries.
+ * Reference: https://developers.google.com/search/docs/appearance/structured-data/math-solvers
+ */
+export function mathSolverSchema(
+    name: string,
+    url: string,
+    description: string,
+    eduQuestionType: string = "Math"
+): object {
+    return {
+        "@context": "https://schema.org",
+        "@type": "MathSolver",
+        name,
+        url,
+        description,
+        potentialAction: {
+            "@type": "SolveMathAction",
+            target: {
+                "@type": "EntryPoint",
+                urlTemplate: url,
+                actionAccessibilityRequirement: {
+                    "@type": "ActionAccessSpecification",
+                    availabilityStarts: "2024-01-01",
+                    eligibleRegion: { "@type": "Country", name: "Worldwide" },
+                },
+            },
+            eduQuestionType,
+        },
+    };
+}
+
+/**
+ * Build JSON-LD Speakable schema for voice search optimisation.
+ * Marks CSS selectors that Google Assistant / voice devices should read.
+ */
+export function speakableSchema(
+    url: string,
+    cssSelector: string[] = [".calc-result__emi", ".explanation__highlight", ".insight-box__text"]
+): object {
+    return {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        url,
+        speakable: {
+            "@type": "SpeakableSpecification",
+            cssSelector,
+        },
+    };
+}
+
+/**
+ * Build an entity-rich WebApplication schema.
+ * Adds `about` (entity URI), `teaches`, `audience` for semantic search engines.
+ * Per Koray Tuğberk's methodology: entity-context signals improve topical authority.
+ */
+export function entityRichWebAppSchema(
+    name: string,
+    url: string,
+    description: string,
+    options: {
+        applicationCategory?: string;
+        currency?: string;
+        aboutEntity?: { name: string; sameAs: string }; // Wikipedia URI
+        teaches?: string;
+        audienceType?: string;
+        dateModified?: string; // ISO 8601 e.g. "2026-07-01"
+        keywords?: string[];
+    } = {}
+): object {
+    const {
+        applicationCategory = "WebApplication",
+        currency = "USD",
+        aboutEntity,
+        teaches,
+        audienceType = "Everyone",
+        dateModified,
+        keywords = [],
+    } = options;
+
+    return {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        name,
+        url,
+        description,
+        applicationCategory,
+        operatingSystem: "Any",
+        offers: { "@type": "Offer", price: "0", priceCurrency: currency },
+        ...(aboutEntity
+            ? {
+                  about: {
+                      "@type": "Thing",
+                      name: aboutEntity.name,
+                      sameAs: aboutEntity.sameAs,
+                  },
+              }
+            : {}),
+        ...(teaches ? { teaches } : {}),
+        ...(audienceType
+            ? { audience: { "@type": "Audience", audienceType } }
+            : {}),
+        ...(dateModified ? { dateModified } : {}),
+        ...(keywords.length > 0 ? { keywords: keywords.join(", ") } : {}),
+    };
+}

@@ -346,6 +346,42 @@ const HUB_CONTENT: Record<string, {
             { question: "Can I claim PT as a deduction?", answer: "Yes. Professional tax paid is deductible under Section 16(iii) of the Income Tax Act. It's automatically deducted from your gross salary when computing taxable income — in both old and new regimes." },
         ],
     },
+    "sales-tax-calculator": {
+        subtitle: "Calculate sales tax for any US state instantly. Find the exact tax amount, total price after tax, and pre-tax price from a tax-inclusive total. Covers all 50 state rates plus local jurisdictions.",
+        explanation: {
+            heading: "How US Sales Tax Works — State Rates, Local Rates, and Nexus",
+            paragraphs: [
+                "Sales tax in the United States is a consumption tax collected by retailers at the point of sale and remitted to state (and sometimes local) governments. Unlike VAT systems in Europe and India, US sales tax is only applied at the final retail stage — not at each step of the supply chain. There is no federal sales tax; each state independently sets its own rules. As of 2026, five states have no state sales tax: Alaska (though local taxes apply), Delaware, Montana, New Hampshire, and Oregon.",
+                "The total sales tax rate in any location combines the state rate plus county and city rates. Sales tax applies to the pre-tax price: Tax Amount = Price × Tax Rate. Post-tax price: Total = Price × (1 + Tax Rate). Reverse calculation (finding pre-tax price from total): Pre-tax Price = Total ÷ (1 + Tax Rate). Example: a $119 item with 8.5% tax has a pre-tax price of $119 ÷ 1.085 = $109.68.",
+                "Economic nexus rules (established by the Supreme Court's South Dakota v. Wayfair ruling in 2018) require out-of-state sellers to collect sales tax if they exceed $100,000 in annual sales or 200 transactions in a state. Most states exempt groceries, prescription drugs, and certain medical devices from sales tax.",
+            ],
+            highlight: "California has the highest state sales tax at 7.25%, plus local rates up to 2.5% (combined rate up to 10.75% in some cities). New Hampshire, Oregon, Montana, Delaware, and Alaska (state-level) have 0% state sales tax. Average combined rate across all US states: approximately 6.6%.",
+        },
+        faq: [
+            { question: "How do I calculate sales tax on a purchase?", answer: "Sales tax calculation: Tax Amount = Pre-tax Price × (Tax Rate ÷ 100). Total with tax = Pre-tax Price × (1 + Tax Rate/100). Example: $75 item in Texas (8.25% combined rate): Tax = $75 × 0.0825 = $6.19. Total = $75 + $6.19 = $81.19." },
+            { question: "Which US states have the highest sales tax rates?", answer: "Highest combined state + local sales tax rates (2026): Tennessee 9.55% average combined, Louisiana 9.52%, Arkansas 9.47%, Washington 9.38%, Alabama 9.24%. Five states with NO state sales tax: Alaska, Delaware, Montana, New Hampshire, Oregon." },
+            { question: "How is sales tax calculated on a car purchase?", answer: "Vehicle sales tax is typically calculated on the purchase price. Example: $35,000 car in California (8.25% combined): Tax = $35,000 × 0.0825 = $2,887.50. Montana, Alaska, New Hampshire, Oregon, and Delaware charge no sales tax on vehicles." },
+            { question: "What items are exempt from sales tax?", answer: "Common sales tax exemptions: Groceries (exempt in 32 states). Prescription drugs (exempt in all sales tax states). Clothing (exempt in Pennsylvania, New Jersey, Minnesota, New York on items under $110). Medical equipment (largely exempt). Check your specific state's Department of Revenue for the complete exemption list." },
+            { question: "What is the difference between sales tax and use tax?", answer: "Sales tax is collected by the retailer at point of sale. Use tax is owed by the buyer when sales tax was not collected — typically when purchasing from out-of-state retailers who don't have nexus in your state. Both are the same rate. If an online retailer doesn't charge your state's tax, you technically owe use tax when filing your state income tax return." },
+            { question: "How do I find the pre-tax price from a sales-tax-inclusive total?", answer: "Reverse sales tax formula: Pre-tax Price = Total ÷ (1 + Tax Rate/100). Example: You paid $108.50 total at 10.3% combined rate. Pre-tax = $108.50 ÷ 1.103 = $98.37. Tax paid = $108.50 − $98.37 = $10.13. Our calculator's reverse mode does this automatically." },
+            { question: "Does Amazon charge sales tax?", answer: "Yes. Since the Wayfair ruling (2018), Amazon collects sales tax in all 45 states that have a state sales tax plus applicable local taxes. If you are a business purchasing items for resale, you can provide Amazon a resale certificate to avoid sales tax. Amazon's Marketplace Tax Collection policy applies to most third-party sellers." },
+            { question: "How does sales tax work for online purchases?", answer: "For online purchases, sales tax is determined by the 'destination' state — where the buyer is located. After the Wayfair v. South Dakota Supreme Court ruling (2018), states can require out-of-state sellers with more than $100,000/year in sales or 200+ transactions to collect and remit sales tax. If an online seller doesn't charge tax, the buyer technically owes 'use tax' to their state." },
+            { question: "How is sales tax different in California, New York, Texas, and Florida?", answer: "California: 7.25% state rate (highest in US) + local rates up to 2.5%; most clothing and food (unprepared) are exempt. New York: 4% state rate + local (NYC is 8.875% combined); clothing under $110 per item is exempt. Texas: 6.25% state rate + local up to 2% (8.25% max); food and prescription drugs exempt. Florida: 6% state rate + local (average combined 7.01%); groceries and most prescription drugs exempt." },
+            { question: "Can businesses get a sales tax refund or exemption?", answer: "Yes. Businesses that purchase goods for resale can provide a resale certificate to avoid paying sales tax. Manufacturers can often get exemptions on equipment and raw materials. Nonprofits (501(c)(3)) are exempt in most states. To claim exemptions, businesses must register with the state's Department of Revenue and obtain a sales tax permit/resale certificate." },
+        ],
+        contentHTML: `<h3>US State Sales Tax Rate Reference Table (2026)</h3>
+<table><thead><tr><th>State</th><th>State Rate</th><th>Combined Average</th><th>Grocery Tax</th></tr></thead><tbody>
+<tr><td>California</td><td>7.25%</td><td>8.68%</td><td>Exempt (unprepared)</td></tr>
+<tr><td>Texas</td><td>6.25%</td><td>8.25%</td><td>Exempt</td></tr>
+<tr><td>New York</td><td>4.00%</td><td>8.53%</td><td>Exempt</td></tr>
+<tr><td>Florida</td><td>6.00%</td><td>7.01%</td><td>Exempt</td></tr>
+<tr><td>Washington</td><td>6.50%</td><td>9.38%</td><td>Exempt</td></tr>
+<tr><td>Tennessee</td><td>7.00%</td><td>9.55%</td><td>4% (reduced)</td></tr>
+<tr><td>Oregon</td><td>0%</td><td>0%</td><td>N/A</td></tr>
+<tr><td>Delaware</td><td>0%</td><td>0%</td><td>N/A</td></tr>
+<tr><td>New Hampshire</td><td>0%</td><td>0%</td><td>N/A</td></tr>
+</tbody></table>`,
+    },
 };
 
 export default async function TaxCalculatorHubPage({ params }: PageProps) {
